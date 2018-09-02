@@ -1,0 +1,21 @@
+## editors
+/.idea
+/.vscode
+
+## system files
+.DS_Store
+
+## npm
+/node_modules/
+/npm-debug.log
+
+## bower
+/bower_components*/
+/bower-*.json
+
+## temp folders
+/.tmp/
+
+## we don't want lock files for now
+yarn.lock
+package-lock.json

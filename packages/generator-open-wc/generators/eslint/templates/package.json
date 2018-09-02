@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "lint:eslint": "eslint --ext .js,.html ."
+  },
+  "devDependencies": {
+    "@open-wc/eslint-config": "^0.0.0"
+  }
+}

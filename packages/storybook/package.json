@@ -1,0 +1,29 @@
+{
+  "name": "@open-wc/storybook",
+  "version": "0.0.0",
+  "description": "Storybook configuration following open-wc recommendations",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/storybook",
+  "dependencies": {
+    "@babel/core": "^7.0.0",
+    "@storybook/addon-actions": "^4.0.0-alpha.20",
+    "@storybook/addon-backgrounds": "^4.0.0-alpha.20",
+    "@storybook/addon-knobs": "^4.0.0-alpha.20",
+    "@storybook/addon-links": "^4.0.0-alpha.20",
+    "@storybook/addon-notes": "^4.0.0-alpha.20",
+    "@storybook/addon-options": "^4.0.0-alpha.20",
+    "@storybook/addon-storysource": "^4.0.0-alpha.20",
+    "@storybook/addon-viewport": "^4.0.0-alpha.20",
+    "@storybook/polymer": "^4.0.0-alpha.20",
+    "@webcomponents/webcomponentsjs": "^1.2.0",
+    "babel-loader": "^8.0.1",
+    "lit-html": "^0.11.0",
+    "moment": "^2.22.2",
+    "polymer-webpack-loader": "^2.0.3"
+  }
+}

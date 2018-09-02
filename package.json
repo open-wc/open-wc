@@ -1,0 +1,11 @@
+{
+  "name": "@open-wc/root",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "bootstrap": "lerna bootstrap --hoist"
+  },
+  "devDependencies": {
+    "lerna": "^3.2.1"
+  }
+}

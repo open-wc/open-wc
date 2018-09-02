@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build-storybook": "build-storybook",
+    "start": "webpack-dev-server",
+    "storybook": "start-storybook -p 9001 -c .storybook"
+  },
+  "devDependencies": {
+    "@open-wc/storybook": "^0.0.0"
+  }
+}
