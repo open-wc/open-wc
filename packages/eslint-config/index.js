@@ -2,8 +2,10 @@ module.exports = {
   extends: [
     'eslint-config-airbnb-base',
   ].map(require.resolve),
+  parser: 'babel-eslint',
   env: {
     browser: true,
+    mocha: true,
   },
   rules: {
     'import/extensions': 'off',
