@@ -1,24 +1,32 @@
-var Generator = require('yeoman-generator');
+const Generator = require('yeoman-generator');
 const glob = require('glob');
 
+const PROMPTS = [
+  {
+    name: 'tagName',
+    type: 'input',
+    required: true,
+    message: 'Give it a tag name (min two words separated by dashes)',
+    validate: str => /^([a-z])(?!.*[<>])(?=.*-).+$/.test(str),
+  },
+];
+
 function getClassName(tagName) {
-  return tagName.split('-').reduce((previous, part) => {
-    return previous + part.charAt(0).toUpperCase() + part.slice(1);
-  }, '');
+  return tagName.split('-').reduce((previous, part) => previous + part.charAt(0).toUpperCase() + part.slice(1), '');
 }
 
 module.exports = class GeneratorOpenWc extends Generator {
   prompting() {
     const done = this.async();
 
-    return this.prompt(PROMPTS).then(answers => {
+    return this.prompt(PROMPTS).then((answers) => {
       this.props = answers;
       done();
     });
   }
 
   default() {
-    const { tagName, type } = this.props;
+    const { tagName } = this.props;
 
     // Build component class
     this.props.className = getClassName(tagName);
@@ -31,31 +39,21 @@ module.exports = class GeneratorOpenWc extends Generator {
     this.fs.copyTpl(
       this.templatePath('ExampleElement.js'),
       this.destinationPath(`${className}.js`),
-      this
+      this,
     );
 
     // Write & rename element definition
     this.fs.copyTpl(
       this.templatePath('example-element.js'),
       this.destinationPath(`${tagName}.js`),
-      this
+      this,
     );
 
     // Write everything else
     this.fs.copyTpl(
       glob.sync(this.templatePath('!(ExampleElement.js|example-element.js)'), { dot: true }),
       this.destinationPath(),
-      this
+      this,
     );
   }
 };
-
-const PROMPTS = [
-  {
-    name: 'tagName',
-    type: 'input',
-    required: true,
-    message: 'Give it a tag name (min two words separated by dashes)',
-    validate: str => /^([a-z])(?!.*[<>])(?=.*-).+$/.test(str)
-  },
-];

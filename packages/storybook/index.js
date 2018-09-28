@@ -1,3 +1,5 @@
+import { html as litHtml } from 'lit-html';
+
 export { storiesOf, addParameters } from '@storybook/polymer';
 export { action } from '@storybook/addon-actions';
 export { linkTo } from '@storybook/addon-links';
@@ -15,8 +17,6 @@ export {
   array,
   boolean,
 } from '@storybook/addon-knobs';
-
-import { html as litHtml } from 'lit-html';
 
 /**
  * This is a wrapper around lit-html that supports dynamic strings to be added as a preprocessing
@@ -66,10 +66,10 @@ export function html(strings, ...values) {
   });
   // Return lit template
   return litHtml(newStr, ...newVal);
-};
+}
 
 export function unsafeStatic(options) {
   return {
-    d: options
+    d: options,
   };
 }

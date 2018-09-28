@@ -7,25 +7,28 @@ module.exports = {
     browser: true,
     mocha: true,
   },
+  globals: {
+    expect: true,
+  },
   rules: {
     'import/extensions': 'off',
     'no-underscore-dangle': 'off',
     'import/prefer-default-export': 'off',
-    "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": [
-        "**/*.test.js",
-        "**/*.spec.js",
-        "**/*.stories.js",
-        "**/*.stories.options.js"
-      ]
-    }]
+    'import/no-extraneous-dependencies': ['error', {
+      devDependencies: [
+        '**/*.test.js',
+        '**/*.spec.js',
+        '**/*.stories.js',
+        '**/*.stories.options.js',
+      ],
+    }],
   },
   settings: {
     'import/resolver': {
-      'node': {
-        'moduleDirectory': ['node_modules', 'bower_components']
-      }
-    }
+      node: {
+        moduleDirectory: ['node_modules', 'bower_components'],
+      },
+    },
   },
-  plugins: ['html']
+  plugins: ['html'],
 };
