@@ -1,0 +1,23 @@
+{
+  "name": "@open-wc/test",
+  "version": "0.0.0",
+  "description": "Testing following open-wc recommendations",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/test",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "lit-html": "^0.11.0",
+    "sinon": "^6.3.4"
+  },
+  "devDependencies": {
+    "@webcomponents/webcomponentsjs": "^2.1.3",
+    "mocha": "^5.2.0",
+    "wallaby-webpack": "^3.9.12",
+    "webpack": "^4.20.2"
+  }
+}
