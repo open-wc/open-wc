@@ -8,6 +8,10 @@
     "lint:eslint": "eslint --ext .js,.html ."
   },
   "devDependencies": {
+    "@commitlint/cli": "^7.1.2",
+    "@commitlint/config-conventional": "^7.1.2",
+    "@commitlint/config-lerna-scopes": "^7.1.2",
+    "husky": "^1.0.1",
     "lerna": "^3.2.1",
     "npm-run-all": "^4.1.3"
   }
