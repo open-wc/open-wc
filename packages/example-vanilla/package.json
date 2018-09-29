@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/example-vanilla",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Example Webcomponent following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -20,7 +20,7 @@
     "lint:eslint": "eslint --ext .js,.html ."
   },
   "devDependencies": {
-    "@open-wc/eslint-config": "^0.1.0",
-    "@open-wc/storybook": "^0.1.0"
+    "@open-wc/eslint-config": "^0.1.1",
+    "@open-wc/storybook": "^0.1.1"
   }
 }
