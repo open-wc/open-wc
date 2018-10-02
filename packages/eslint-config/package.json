@@ -10,9 +10,6 @@
   },
   "repository": "https://github.com/open-wc/open-wc/tree/master/packages/eslint-config",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "dependencies": {
     "babel-eslint": "^10.0.1",
     "eslint": "^5.5.0",

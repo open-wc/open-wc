@@ -1,0 +1,16 @@
+{
+  "name": "@open-wc/test-wallaby",
+  "version": "0.0.0",
+  "description": "Testing with wallaby following open-wc recommendations",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/test-wallaby",
+  "dependencies": {
+    "wallaby-webpack": "^3.9.12",
+    "webpack": "^4.20.2"
+  }
+}

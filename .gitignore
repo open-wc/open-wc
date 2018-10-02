@@ -5,6 +5,9 @@
 ## system files
 .DS_Store
 
+# code coverage folders
+coverage/
+
 ## npm
 node_modules
 npm-debug.log

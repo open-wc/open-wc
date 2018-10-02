@@ -3,7 +3,9 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "bootstrap": "lerna bootstrap --hoist",
+    "bootstrap": "lerna bootstrap --hoist --no-ci",
+    "test": "lerna run test --stream",
+    "test:bs": "lerna run test:bs --stream",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint --ext .js,.html ."
   },
