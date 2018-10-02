@@ -19,7 +19,8 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:storybook'
 npx -p yo -p generator-open-wc -c 'yo open-wc:eslint'
 ```
 
-
+## We proudly use
+<a href="http://browserstack.com/" style="border: none;"><img src="https://github.com/open-wc/open-wc/blob/master/assets/images/Browserstack-logo.svg" width="200" alt="Browserstack Logo" /></a>
 
 ## Working on it
 
