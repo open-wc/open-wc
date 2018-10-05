@@ -16,10 +16,8 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'import/no-extraneous-dependencies': ['error', {
       devDependencies: [
-        '**/*.test.js',
-        '**/*.spec.js',
-        '**/*.stories.js',
-        '**/*.stories.options.js',
+        '**/test/*.js',
+        '**/stories/*.js',
       ],
     }],
   },
