@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.1.1...generator-open-wc@0.1.2) (2018-10-06)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies to 7.1.2 ([d9a36c6](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/d9a36c6))
+* **deps:** update dependency lit-html to v0.12.0 ([8c161be](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/8c161be))
+* add minimal readme ([9e52ca2](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/9e52ca2))
+
+
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.1.0...generator-open-wc@0.1.1) (2018-09-29)
 
