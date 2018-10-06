@@ -11,7 +11,7 @@
     "open-wc"
   ],
   "dependencies": {
-    "glob": "^7.1.3",
-    "yeoman-generator": "^1.0.0"
+    "glob": "7.1.3",
+    "yeoman-generator": "1.1.1"
   }
 }

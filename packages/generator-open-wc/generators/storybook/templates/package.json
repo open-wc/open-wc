@@ -5,6 +5,6 @@
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "devDependencies": {
-    "@open-wc/storybook": "^0.1.0"
+    "@open-wc/storybook": "0.1.1"
   }
 }

@@ -11,7 +11,7 @@
   "repository": "https://github.com/open-wc/open-wc/tree/master/packages/example-vanilla",
   "private": true,
   "dependencies": {
-    "lit-html": "^0.11.0"
+    "lit-html": "0.11.4"
   },
   "scripts": {
     "build-storybook": "build-storybook",
