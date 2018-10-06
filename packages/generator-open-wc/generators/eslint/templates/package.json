@@ -3,6 +3,6 @@
     "lint:eslint": "eslint --ext .js,.html ."
   },
   "devDependencies": {
-    "@open-wc/eslint-config": "0.1.1"
+    "@open-wc/eslint-config": "0.2.0"
   }
 }
