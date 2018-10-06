@@ -32,9 +32,15 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:eslint'
 npm run bootstrap
 # does: lerna bootstrap --hoist
 
-# run demos
-lerna run storybook --scope @open-wc/example-vanilla --stream
+# linting
+npm run lint
 
-# eslint
-lerna run lint:eslint --scope @open-wc/example-vanilla --stream
+# local testing
+npm run test
+
+# testing via browserstack
+npm run test:bs
+
+# run commands only for a specific scope
+lerna run <command> --scope @open-wc/<package-name> --stream
 ```
