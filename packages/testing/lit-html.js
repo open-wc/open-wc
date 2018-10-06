@@ -1,6 +1,6 @@
 import { html as litHtml } from 'lit-html/lit-html.js';
 
-export { render } from 'lit-html/lib/shady-render.js';
+export { render } from 'lit-html/lit-html.js';
 
 /**
  * This is a wrapper around lit-html that supports dynamic strings to be added as a preprocessing
