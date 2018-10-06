@@ -27,10 +27,10 @@ module.exports = (config) => {
         pattern: '../../node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
         watched: false,
       },
-      // {
-      //   pattern: '../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js',
-      //   watched: false
-      // },
+      {
+        pattern: '../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js',
+        watched: false,
+      },
       'test/index.karma.js',
     ],
     preprocessors: {
