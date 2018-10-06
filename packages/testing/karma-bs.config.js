@@ -22,6 +22,7 @@ module.exports = (config) => {
     browserStack: {
       username: process.env.BROWSER_STACK_USERNAME,
       accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
+      project: 'open-wc',
     },
 
     browsers: [
