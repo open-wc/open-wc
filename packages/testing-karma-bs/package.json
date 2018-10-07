@@ -1,0 +1,16 @@
+{
+  "name": "@open-wc/testing-karma-bs",
+  "version": "0.0.0",
+  "description": "Testing with karma using browserstack following open-wc recommendations",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs",
+  "dependencies": {
+    "@open-wc/testing-karma": "0.1.0",
+    "karma-browserstack-launcher": "1.3.0"
+  }
+}
