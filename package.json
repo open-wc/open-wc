@@ -4,10 +4,11 @@
   "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist --no-ci",
-    "test": "lerna run test --stream",
-    "test:bs": "lerna run test:bs --stream",
     "lint": "run-p lint:*",
-    "lint:eslint": "eslint --ext .js,.html ."
+    "lint:eslint": "eslint --ext .js,.html .",
+    "publish": "lerna publish --message 'chore: release new versions'",
+    "test": "lerna run test --stream",
+    "test:bs": "lerna run test:bs --stream"
   },
   "devDependencies": {
     "@commitlint/cli": "7.2.0",
