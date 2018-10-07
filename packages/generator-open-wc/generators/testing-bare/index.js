@@ -1,6 +1,6 @@
 const Generator = require('yeoman-generator');
 
-module.exports = class GeneratorVanillaBare extends Generator {
+module.exports = class GeneratorTestingBare extends Generator {
   initializing() {
     if (Object.keys(this.config.getAll()).length === 0) {
       this.composeWith(require.resolve('../get-tag-name'), {
@@ -10,26 +10,18 @@ module.exports = class GeneratorVanillaBare extends Generator {
   }
 
   writing() {
-    const { tagName, className } = this.config.getAll();
+    const tagName = this.config.get('tagName');
 
-    // write package.json
-    this.fs.copyTpl(
-      this.templatePath('_package.json'),
+    // extend package.json
+    this.fs.extendJSON(
       this.destinationPath('package.json'),
-      this.config.getAll(),
+      this.fs.readJSON(this.templatePath('_package.json')),
     );
 
-    // write & rename element src
+    // test file
     this.fs.copyTpl(
-      this.templatePath('MyEl.js'),
-      this.destinationPath(`${className}.js`),
-      this.config.getAll(),
-    );
-
-    // write & rename element definition
-    this.fs.copyTpl(
-      this.templatePath('my-el.js'),
-      this.destinationPath(`${tagName}.js`),
+      this.templatePath('my-el.test.js'),
+      this.destinationPath(`test/${tagName}.test.js`),
       this.config.getAll(),
     );
 

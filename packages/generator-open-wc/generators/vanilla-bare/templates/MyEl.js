@@ -1,6 +1,6 @@
 import { html, render } from 'lit-html';
 
-export default class <%= props.className %> extends HTMLElement {
+export default class <%= className %> extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });

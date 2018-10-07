@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "test": "karma start"
+  },
+  "devDependencies": {
+    "@open-wc/testing-karma": "^0.1.0"
+  }
+}
