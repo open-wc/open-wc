@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href="../node_modules/mocha/mocha.css" rel="stylesheet" />
+  <script src="../node_modules/mocha/mocha.js"></script>
+  <script src="../node_modules/chai/chai.js"></script>
+  <script src="../node_modules/sinon/pkg/sinon.js"></script>
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+</head>
+<body>
+  <div id="mocha"></div>
+  <script>
+    /* global chai */
+    mocha.setup('bdd');
+    window.expect = chai.expect;
+  </script>
+
+  <script type="module">
+    import './index.js';
+
+    mocha.checkLeaks();
+    mocha.run();
+  </script>
+</body>
+</html>

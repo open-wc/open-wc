@@ -4,7 +4,7 @@ import {
 } from '@open-wc/storybook';
 
 import { opts } from './index.stories.options.js';
-import '../<%= props.tagName %>.js';
+import '../<%= tagName %>.js';
 
 storiesOf(`${opts.header}`, module)
   .add('default', () => html`

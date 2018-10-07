@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@open-wc/testing": "^0.2.0"
+  }
+}

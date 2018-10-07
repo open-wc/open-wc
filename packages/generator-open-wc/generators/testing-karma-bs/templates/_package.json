@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "test:bs": "karma start karma-bs.config.js"
+  },
+  "devDependencies": {
+    "@open-wc/testing-karma-bs": "^0.0.1"
+  }
+}

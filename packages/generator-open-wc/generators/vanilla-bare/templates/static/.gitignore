@@ -9,6 +9,9 @@
 /node_modules/
 /npm-debug.log
 
+## testing
+/coverage/
+
 ## bower
 /bower_components*/
 /bower-*.json
