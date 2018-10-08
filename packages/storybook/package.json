@@ -11,6 +11,8 @@
   "repository": "https://github.com/open-wc/open-wc/tree/master/packages/storybook",
   "dependencies": {
     "@babel/core": "7.1.2",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "7.0.0",
     "@storybook/addon-actions": "4.0.0-alpha.24",
     "@storybook/addon-backgrounds": "4.0.0-alpha.24",
     "@storybook/addon-knobs": "4.0.0-alpha.24",
