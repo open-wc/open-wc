@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.1.2...generator-open-wc@0.2.0) (2018-10-08)
+
+
+### Features
+
+* refactor generators ([71ecd75](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/71ecd75))
+
+
+
+
+
 ## [0.1.2](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.1.1...generator-open-wc@0.1.2) (2018-10-06)
 
 
