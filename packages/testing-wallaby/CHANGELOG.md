@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby/compare/@open-wc/testing-wallaby@0.1.0...@open-wc/testing-wallaby@0.1.1) (2018-10-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency wallaby-webpack to v3.9.13 ([a88c96f](https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby/commit/a88c96f))
+
+
+
+
+
 # 0.1.0 (2018-10-06)
 
 

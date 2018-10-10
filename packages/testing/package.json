@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Testing following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@open-wc/testing-karma": "^0.1.1",
-    "@open-wc/testing-wallaby": "^0.1.0",
+    "@open-wc/testing-wallaby": "^0.1.1",
     "@webcomponents/webcomponentsjs": "2.1.3"
   }
 }

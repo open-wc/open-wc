@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.1.3...@open-wc/storybook@0.1.4) (2018-10-10)
+
+
+### Bug Fixes
+
+* **storybook:** disable addon-knobs until retirejs finding is resolved ([8d6f2a6](https://github.com/open-wc/open-wc/tree/master/packages/storybook/commit/8d6f2a6))
+
+
+
+
+
 ## [0.1.3](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.1.2...@open-wc/storybook@0.1.3) (2018-10-08)
 
 

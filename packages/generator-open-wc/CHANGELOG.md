@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.2.0...generator-open-wc@0.2.1) (2018-10-10)
+
+
+### Bug Fixes
+
+* **storybook:** disable addon-knobs until retirejs finding is resolved ([8d6f2a6](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/8d6f2a6))
+
+
+
+
+
 # [0.2.0](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.1.2...generator-open-wc@0.2.0) (2018-10-08)
 
 
