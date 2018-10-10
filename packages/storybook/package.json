@@ -15,7 +15,6 @@
     "@babel/plugin-syntax-dynamic-import": "7.0.0",
     "@storybook/addon-actions": "4.0.0-alpha.24",
     "@storybook/addon-backgrounds": "4.0.0-alpha.24",
-    "@storybook/addon-knobs": "4.0.0-alpha.24",
     "@storybook/addon-links": "4.0.0-alpha.24",
     "@storybook/addon-notes": "4.0.0-alpha.24",
     "@storybook/addon-options": "4.0.0-alpha.24",

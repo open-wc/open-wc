@@ -1,7 +1,7 @@
 {
   "scripts": {
     "storybook:build": "build-storybook",
-    "storybook:start": "start-storybook -p 9001 -c .storybook"
+    "storybook:start": "start-storybook -p 9001"
   },
   "devDependencies": {
     "@open-wc/storybook": "^0.1.1"

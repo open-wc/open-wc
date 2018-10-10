@@ -6,17 +6,18 @@ export { linkTo } from '@storybook/addon-links';
 export { withBackgrounds } from '@storybook/addon-backgrounds';
 export { withNotes } from '@storybook/addon-notes';
 export { document } from 'global';
-export {
-  withKnobs,
-  text,
-  button,
-  number,
-  select,
-  date,
-  color,
-  array,
-  boolean,
-} from '@storybook/addon-knobs';
+// disable until https://github.com/storybooks/storybook/issues/4321 is resolved
+// export {
+//   withKnobs,
+//   text,
+//   button,
+//   number,
+//   select,
+//   date,
+//   color,
+//   array,
+//   boolean,
+// } from '@storybook/addon-knobs';
 
 /**
  * This is a wrapper around lit-html that supports dynamic strings to be added as a preprocessing
