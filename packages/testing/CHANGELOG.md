@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.2.2...@open-wc/testing@0.2.3) (2018-10-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency sinon to v7 ([a50d8c8](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/a50d8c8))
+
+
+
+
+
 ## [0.2.2](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.2.1...@open-wc/testing@0.2.2) (2018-10-10)
 
 **Note:** Version bump only for package @open-wc/testing

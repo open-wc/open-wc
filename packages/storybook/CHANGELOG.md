@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.1.4...@open-wc/storybook@0.1.5) (2018-10-14)
+
+
+### Bug Fixes
+
+* **deps:** update storybook monorepo to v4.0.0-alpha.25 ([4dbd414](https://github.com/open-wc/open-wc/tree/master/packages/storybook/commit/4dbd414))
+* **storybook:** babel config that works for IE11 as well ([426a88a](https://github.com/open-wc/open-wc/tree/master/packages/storybook/commit/426a88a))
+
+
+
+
+
 ## [0.1.4](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.1.3...@open-wc/storybook@0.1.4) (2018-10-10)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.2.1...generator-open-wc@0.2.2) (2018-10-14)
+
+
+### Bug Fixes
+
+* **storybook:** babel config that works for IE11 as well ([426a88a](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/426a88a))
+
+
+
+
+
 ## [0.2.1](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.2.0...generator-open-wc@0.2.1) (2018-10-10)
 
 
