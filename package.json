@@ -11,9 +11,9 @@
     "test:bs": "lerna run test:bs --stream"
   },
   "devDependencies": {
-    "@commitlint/cli": "7.2.0",
+    "@commitlint/cli": "7.2.1",
     "@commitlint/config-conventional": "7.1.2",
-    "@commitlint/config-lerna-scopes": "7.1.2",
+    "@commitlint/config-lerna-scopes": "7.2.1",
     "husky": "1.1.1",
     "lerna": "3.4.3",
     "npm-run-all": "4.1.3"
