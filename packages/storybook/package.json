@@ -13,6 +13,7 @@
     "@babel/core": "7.1.2",
     "@babel/plugin-proposal-object-rest-spread": "7.0.0",
     "@babel/plugin-syntax-dynamic-import": "7.0.0",
+    "@babel/preset-env": "7.1.0",
     "@storybook/addon-actions": "4.0.0-alpha.25",
     "@storybook/addon-backgrounds": "4.0.0-alpha.25",
     "@storybook/addon-links": "4.0.0-alpha.25",
