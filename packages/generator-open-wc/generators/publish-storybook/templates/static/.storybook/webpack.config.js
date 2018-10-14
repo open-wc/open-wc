@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 
 module.exports = (storybookBaseConfig, configType, defaultConfig) => {
   defaultConfig.resolve.modules.push('bower_components');
@@ -10,8 +9,22 @@ module.exports = (storybookBaseConfig, configType, defaultConfig) => {
     enforce: 'pre',
   });
 
-  // TEMP fix: https://github.com/plotly/plotly.js/issues/2466#issuecomment-372924684
-  defaultConfig.plugins.push(new webpack.IgnorePlugin(/vertx/));
+  // Searches through all exclude rules and replaces them if they exclude node_modules
+  // Replacement will exclude node_modules with the exeption of listed below packages
+  for (let i = 0; i < defaultConfig.module.rules.length; i += 1) {
+    const rule = defaultConfig.module.rules[i];
+    if (rule.exclude) {
+      for (let j = 0; j < rule.exclude.length; j += 1) {
+        if (rule.exclude[j] === path.resolve('node_modules')) {
+          rule.exclude[j] = (modulePath) => {
+            return /node_modules/.test(modulePath) &&
+                !/node_modules\/lit-html/.test(modulePath) &&
+                !/node_modules\/@open-wc/.test(modulePath);
+          }
+        }
+      }
+    }
+  }
 
   return defaultConfig;
 };
