@@ -11,7 +11,7 @@
   "repository": "https://github.com/open-wc/open-wc/tree/master/packages/testing-karma",
   "dependencies": {
     "istanbul-instrumenter-loader": "3.0.1",
-    "karma": "3.0.0",
+    "karma": "3.1.1",
     "karma-chrome-launcher": "2.2.0",
     "karma-coverage-istanbul-reporter": "2.0.4",
     "karma-firefox-launcher": "1.1.0",
