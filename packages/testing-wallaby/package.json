@@ -11,6 +11,6 @@
   "repository": "https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby",
   "dependencies": {
     "wallaby-webpack": "3.9.13",
-    "webpack": "4.20.2"
+    "webpack": "4.23.1"
   }
 }
