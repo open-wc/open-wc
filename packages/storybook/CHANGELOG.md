@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.6](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.1.5...@open-wc/storybook@0.1.6) (2018-10-27)
+
+
+### Bug Fixes
+
+* **storybook:** no need to use dynamic tags ([b5a3d09](https://github.com/open-wc/open-wc/tree/master/packages/storybook/commit/b5a3d09))
+
+
+
+
+
 ## [0.1.5](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.1.4...@open-wc/storybook@0.1.5) (2018-10-14)
 
 

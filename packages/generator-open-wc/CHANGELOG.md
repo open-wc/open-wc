@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.2.2...generator-open-wc@0.2.3) (2018-10-27)
+
+
+### Bug Fixes
+
+* **generator-open-wc:** simpler default stories with static tags ([0bd9d11](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/0bd9d11))
+
+
+
+
+
 ## [0.2.2](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.2.1...generator-open-wc@0.2.2) (2018-10-14)
 
 
