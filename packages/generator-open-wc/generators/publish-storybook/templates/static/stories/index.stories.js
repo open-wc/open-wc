@@ -3,13 +3,12 @@ import {
   html,
 } from '@open-wc/storybook';
 
-import { opts } from './index.stories.options.js';
 import '../<%= tagName %>.js';
 
-storiesOf(`${opts.header}`, module)
+storiesOf(`<%= tagName %>`, module)
   .add('default', () => html`
-    <${opts.tag}>user content tag: ${opts.tag}</${opts.tag}>
+    <<%= tagName %>>user content tag: <%= tagName %></<%= tagName %>>
   `)
   .add('right', () => html`
-    <${opts.tag} class="right">user content tag: ${opts.tag}</${opts.tag}>
+    <<%= tagName %> class="right">user content tag: <%= tagName %></<%= tagName %>>
   `);
