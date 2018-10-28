@@ -33,7 +33,7 @@ We recommend the following user settings:
 We recommend the following plugins:
 
 * [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)  
-Get ESLint feedback directly in your IDE => more details under [Linting](./recommodations/linting)
+Get ESLint feedback directly in your IDE => more details under [Linting](./recommendations/linting)
 * [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html)  
 Highlights all your html tagged template literal
 * [es6-string-css](https://marketplace.visualstudio.com/items?itemName=bashmish.es6-string-css)  
