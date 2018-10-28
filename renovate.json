@@ -1,7 +1,7 @@
 {
   "extends": [
     "config:base",
-    "config:preserveSemverRanges"
+    ":preserveSemverRanges"
   ],
   "schedule": "before 3am on Monday"
 }
