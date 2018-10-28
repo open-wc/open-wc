@@ -20,6 +20,7 @@ module.exports = {
       { text: 'Guide', link: '/guide/' },
     ],
     repo: 'open-wc/open-wc',
+    docsDir: 'docs',
     editLinks: true,
     editLinkText: 'Improve these recommodations (or add your own)',
     lastUpdated: 'Last Updated',
