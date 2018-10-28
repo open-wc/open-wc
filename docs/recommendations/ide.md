@@ -4,13 +4,13 @@ Your IDE is your primary tool while working with code.
 
 ## Visual Studio Code
 
-We recommond [VSCode](https://code.visualstudio.com/).
+We recommend [VSCode](https://code.visualstudio.com/).
 
-For Setup pls visit its [homepage](https://code.visualstudio.com/) and follow installation instructions there.
+For Setup please visit its [homepage](https://code.visualstudio.com/) and follow installation instructions there.
 
 ## Configuration
 
-We recommond the following user settings:
+We recommend the following user settings:
 ```json
 {
     "workbench.colorTheme": "Solarized Light",
@@ -22,7 +22,7 @@ We recommond the following user settings:
     },
 }
 ```
-**How to set it**:
+**How to set up**:
 1. File > Preferences > Settings
 1. click on "..." > Open settings.json
 
@@ -33,7 +33,7 @@ We recommond the following user settings:
 We recommend the following plugins:
 
 * [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)  
-Get ESLint feedback directly in your IDE => more details under [Linting](./recommodations/linting)
+Get ESLint feedback directly in your IDE => more details under [Linting](./recommendations/linting)
 * [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html)  
 Highlights all your html tagged template literal
 * [es6-string-css](https://marketplace.visualstudio.com/items?itemName=bashmish.es6-string-css)  

@@ -12,7 +12,7 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:lint-eslint'
 ```
 
 ::: tip Info
-This is part of the default recommodations
+This is part of the default recommendations
 :::
 
 ### What you get

@@ -3,7 +3,7 @@
 Having tests should be the fundament of every production ready product.
 
 ## Bare Testing Setup
-We recommend using [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development)(Behavior Driven Development) as it seem to be easier when talking to non tech collegues. However note that this can still be a personal preference - we give this recommodation to promote unity within everyone using this recommodation.
+We recommend using [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development)(Behavior Driven Development) as it seem to be easier when talking to non tech collegues. However note that this can still be a personal preference - we give this recommendation to promote unity within everyone using this recommendation.
 
 Using:
 - System via [mocha](https://mochajs.org/)
@@ -16,7 +16,7 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:testing-bare'
 ```
 
 ::: tip Info
-This is part of the default recommodations
+This is part of the default recommendations
 :::
 
 ### Usage
@@ -120,7 +120,7 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:testing-karma'
 ```
 
 ::: tip Info
-This is part of the default recommodations
+This is part of the default recommendations
 :::
 
 ### Usage
@@ -146,7 +146,7 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:testing-karma-bs'
 ```
 
 ::: tip Info
-This is part of the default recommodations
+This is part of the default recommendations
 :::
 
 ### Usage

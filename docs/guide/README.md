@@ -1,25 +1,25 @@
 # Introduction
 
-Open Webcomponents goal is it to allow everyone to have a powerful setup for sharing open source web components. To archive this we give a set of recommodations on howto facilitate such a component.
+The goal of Open Web Components is to allow everyone to have a powerful setup for sharing open source web components. To achieve this we give a set of recommendations on how to facilitate such a component.
 
 ## Quickstart
 
-This will setup a vanilla web component basend on our latest recommodations.
+This will setup a vanilla web component based on our latest recommendations.
 
 ```bash
 mkdir my-element
 cd my-element
-# Default Recommodation
+# Default recommendation
 npx -p yo -p generator-open-wc -c 'yo open-wc:vanilla'
 ```
 
-## Available Recommodations
-- [IDE](/recommodations/ide.html)
-- [Linting](/recommodations/linting.html)
-- [Testing](/recommodations/testing.html)
-- [Demos](/recommodations/demos.html)
-- [Publishing](/recommodations/publishing.html)
-- [Automate](/recommodations/automate.html)
+## Available Recommendations
+- [IDE](/recommendations/ide.html)
+- [Linting](/recommendations/linting.html)
+- [Testing](/recommendations/testing.html)
+- [Demos](/recommendations/demos.html)
+- [Publishing](/recommendations/publishing.html)
+- [Automate](/recommendations/automate.html)
 
 ## General Help Section
 - [JavaScript](/help/js.html)
