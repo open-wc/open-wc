@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.7](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.1.6...@open-wc/storybook@0.1.7) (2018-10-28)
+
+
+### Bug Fixes
+
+* use version ranges ([694e137](https://github.com/open-wc/open-wc/tree/master/packages/storybook/commit/694e137))
+
+
+
+
+
 ## [0.1.6](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.1.5...@open-wc/storybook@0.1.6) (2018-10-27)
 
 

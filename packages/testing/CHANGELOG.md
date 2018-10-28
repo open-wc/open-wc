@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.2.4...@open-wc/testing@0.2.5) (2018-10-28)
+
+
+### Bug Fixes
+
+* use version ranges ([694e137](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/694e137))
+
+
+
+
+
 ## [0.2.4](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.2.3...@open-wc/testing@0.2.4) (2018-10-27)
 
 

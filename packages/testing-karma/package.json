@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Testing with karma following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
