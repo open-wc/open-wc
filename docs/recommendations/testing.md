@@ -16,7 +16,7 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:testing-bare'
 ```
 
 ::: tip Info
-This is part of the default recommodations
+This is part of the default recommendations
 :::
 
 ### Usage
@@ -120,7 +120,7 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:testing-karma'
 ```
 
 ::: tip Info
-This is part of the default recommodations
+This is part of the default recommendations
 :::
 
 ### Usage
@@ -146,7 +146,7 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:testing-karma-bs'
 ```
 
 ::: tip Info
-This is part of the default recommodations
+This is part of the default recommendations
 :::
 
 ### Usage

@@ -1,6 +1,6 @@
 # Open Web Component Recommendations
 
-We want to provide a good set of default on how to vasilitate your web component.
+We want to provide a good set of default on how to facilitate your web component.
 
 [![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
@@ -10,15 +10,15 @@ We want to provide a good set of default on how to vasilitate your web component
 ```bash
 mkdir my-element
 cd my-element
-# Default Recommodation
+# Default recommendation
 npx -p yo -p generator-open-wc -c 'yo open-wc:vanilla'
 ```
 
-## Default Recommodation Content
+## Default Recommendation Content
 
 You can also pick and choose to apply them at any point later.
 
-- Vanilla Webcomponent `npx -p yo -p generator-open-wc -c 'yo open-wc:vanilla-bare'`
+- Vanilla Web Component `npx -p yo -p generator-open-wc -c 'yo open-wc:vanilla-bare'`
 - Testing Helpers `npx -p yo -p generator-open-wc -c 'yo open-wc:testing-bare'`
 - Automated Testing with [Karma](https://karma-runner.github.io/) `npx -p yo -p generator-open-wc -c 'yo open-wc:testing-karma'`
 - Automated Testing via Karma and [Browserstack](https://www.browserstack.com/) `npx -p yo -p generator-open-wc -c 'yo open-wc:testing-karma-bs'`
@@ -26,7 +26,7 @@ You can also pick and choose to apply them at any point later.
 - Publish with [Storybook](https://storybook.js.org/) `npx -p yo -p generator-open-wc -c 'yo open-wc:publish-storybook'`
 - Continous Integration with [CircleCi](https://circleci.com/) `npx -p yo -p generator-open-wc -c 'yo open-wc:publish-storybook'`
 
-## Additional Recommodation
+## Additional Recommendation
 
 - Instant Testing in IDE with [Wallaby](https://wallabyjs.com/) `npx -p yo -p generator-open-wc -c 'yo open-wc:testing-wallaby'`
 

@@ -4,13 +4,13 @@ Your IDE is your primary tool while working with code.
 
 ## Visual Studio Code
 
-We recommond [VSCode](https://code.visualstudio.com/).
+We recommend [VSCode](https://code.visualstudio.com/).
 
-For Setup pls visit its [homepage](https://code.visualstudio.com/) and follow installation instructions there.
+For Setup please visit its [homepage](https://code.visualstudio.com/) and follow installation instructions there.
 
 ## Configuration
 
-We recommond the following user settings:
+We recommend the following user settings:
 ```json
 {
     "workbench.colorTheme": "Solarized Light",
@@ -22,7 +22,7 @@ We recommond the following user settings:
     },
 }
 ```
-**How to set it**:
+**How to set up**:
 1. File > Preferences > Settings
 1. click on "..." > Open settings.json
 
