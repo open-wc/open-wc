@@ -1,5 +1,3 @@
-/* global chai */
-
 const wallabyWebpack = require('wallaby-webpack'); // eslint-disable-line import/no-extraneous-dependencies
 const path = require('path');
 
@@ -7,17 +5,25 @@ const wallabyPostprocessor = wallabyWebpack({
   resolve: {
     modules: [path.resolve(__dirname, 'bower_components'), 'node_modules'],
   },
+  entryPatterns: [
+    'test/index.js',
+  ],
 });
 
 module.exports = () => ({
   files: [
-    '*.js',
+    { pattern: '*.js', load: false },
     '!wallaby.js',
+    '!*.config.js',
+    '!*.conf.js',
+    { pattern: 'test/index.js', load: false },
+    { pattern: 'test/*.test.js', ignore: true },
+
     { pattern: 'node_modules/chai/chai.js', instrument: false },
     { pattern: 'node_modules/sinon/pkg/sinon.js', instrument: false },
   ],
   tests: [
-    'test/*.test.js',
+    { pattern: 'test/*.test.js', load: false },
   ],
   testFramework: 'mocha',
   debug: true,
@@ -29,7 +35,6 @@ module.exports = () => ({
   },
   postprocessor: wallabyPostprocessor,
   setup: () => {
-    window.expect = chai.expect;
     // required to trigger test loading
     window.__moduleBundler.loadTests();
   },

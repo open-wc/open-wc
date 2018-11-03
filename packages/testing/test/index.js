@@ -1,3 +1,3 @@
-import './lit-html.test.js';
-import './helpers.test.js';
-import './litHtmlFixture.test.js';
+import '../bdd-setup.js';
+
+import './bdd.test.js';
