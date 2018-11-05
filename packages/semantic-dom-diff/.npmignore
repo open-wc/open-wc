@@ -1,0 +1,5 @@
+coverage/
+test/
+karma-bs.config.js
+karma.config.js
+wallaby.js
