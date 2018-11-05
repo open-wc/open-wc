@@ -79,18 +79,36 @@ export const chaiDomEquals = (chai, utils) => {
       const result = getSemanticDomDiff(value, getOuterHtml(this._obj));
       const message = result ? result.message : '';
       const path = result ? result.path : '';
+      const normalizedHTML = result ? result.normalizedLeftHTML : '';
       this.assert(
         result === null,
-        `expected dom to be semantically equal\n- diff found: ${message}\n- in path: ${path}`,
+        () => {
+          /* eslint-disable no-console */
+          console.log('Snapshot changed, want to accept the change?');
+          console.log('Updated Snapshot:');
+          console.log('');
+          console.log(normalizedHTML);
+          /* eslint-enable no-console */
+          return `expected dom to be semantically equal\n- diff found: ${message}\n- in path: ${path}`;
+        },
         'expected dom to not be semantically equal',
       );
     } else if (utils.flag(this, 'semantically') && utils.flag(this, 'shadowDom')) {
       const result = getSemanticDomDiff(value, getCleanedShadowDom(this._obj));
       const message = result ? result.message : '';
       const path = result ? result.path : '';
+      const normalizedHTML = result ? result.normalizedLeftHTML : '';
       this.assert(
         result === null,
-        `expected shadow dom to be semantically equal\n- diff found: ${message}\n- in path: ${path}`,
+        () => {
+          /* eslint-disable no-console */
+          console.log('Snapshot changed, want to accept the change?');
+          console.log('Updated Snapshot:');
+          console.log('');
+          console.log(normalizedHTML);
+          /* eslint-enable no-console */
+          return `expected shadow dom to be semantically equal\n- diff found: ${message}\n- in path: ${path}`;
+        },
         'expected shadow dom to not be semantically equal',
       );
     } else {

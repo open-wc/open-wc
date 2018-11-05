@@ -1,4 +1,4 @@
-import { parseFragment } from '@bundled-es-modules/parse5';
+import { parseFragment, serialize } from '@bundled-es-modules/parse5';
 import { deepDiff } from '@bundled-es-modules/deep-diff';
 
 import { sanitizeHtmlString } from './sanitize-html-string';
@@ -29,6 +29,8 @@ function createDiffResult(leftTree, rightTree, diff) {
   return {
     message: getDiffMessage(diff, leftDiffObject, rightDiffObject),
     path: getDiffPath(leftTree, diff.path),
+    normalizedLeftHTML: serialize(leftTree),
+    normalizedRightHTML: serialize(rightTree),
   };
 }
 
