@@ -1,6 +1,6 @@
 // do manual setup and not use testing to not have circle dependencies
 import { cachedWrappers } from '@open-wc/testing-helpers/htmlFixture.js';
-import { chaiDomEquals } from '../index.js';
+import { chaiDomEquals } from '../chai-dom-equals.js';
 
 // register-cleanup
 if (afterEach) {
