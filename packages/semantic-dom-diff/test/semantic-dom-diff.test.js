@@ -334,4 +334,16 @@ bar
       expect(diff.message).to.equal('tag <div> was changed to tag <span>');
     });
   });
+
+  describe('diff tree', () => {
+    it('returns the left and right side normalized trees', () => {
+      const diff = getSemanticDomDiff(`
+        <div id="foo">  <div>  <div class="foo   bar  ">    <div>
+        </div>   </div>
+      `, '<span></span>');
+
+      expect(diff.normalizedLeftHTML).to.equal('<div id="foo"><div><div class="bar foo"><div></div></div></div></div>');
+      expect(diff.normalizedRightHTML).to.equal('<span></span>');
+    });
+  });
 });
