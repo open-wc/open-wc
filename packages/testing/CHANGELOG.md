@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.2.5...@open-wc/testing@0.3.0) (2018-11-05)
+
+
+### Bug Fixes
+
+* add an npmignore file ([ddceeca](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/ddceeca))
+
+
+### Features
+
+* **testing:** refactor using testing-helpers, chai-dom-equals ([d6ac78c](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/d6ac78c))
+
+
+
+
+
 ## [0.2.5](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.2.4...@open-wc/testing@0.2.5) (2018-10-28)
 
 
