@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Testing following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -14,8 +14,8 @@
     "test:bs": "karma start karma-bs.config.js"
   },
   "dependencies": {
-    "@open-wc/chai-dom-equals": "^0.1.0",
-    "@open-wc/testing-helpers": "^0.1.1",
+    "@open-wc/chai-dom-equals": "^0.1.1",
+    "@open-wc/testing-helpers": "^0.1.2",
     "chai": "^4.0.0",
     "lit-html": "^0.12.0",
     "mocha": "^5.0.0",

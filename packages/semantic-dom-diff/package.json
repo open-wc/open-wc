@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/semantic-dom-diff",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "To compare dom and shadow dom trees. Part of open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
