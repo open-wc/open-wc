@@ -1,3 +1,6 @@
+> ## 🛠 Status: In Development
+> open-wc is still in an early stage - pls review our recommendations and test our tools! we are eager to get feedback
+
 # Open Web Component Recommendations
 
 We want to provide a good set of default on how to facilitate your web component.
@@ -14,22 +17,9 @@ cd my-element
 npx -p yo -p generator-open-wc -c 'yo open-wc:vanilla'
 ```
 
-## Default Recommendation Content
+## Homepage
 
-You can also pick and choose to apply them at any point later.
-
-- Vanilla Web Component `npx -p yo -p generator-open-wc -c 'yo open-wc:vanilla-bare'`
-- Testing Helpers `npx -p yo -p generator-open-wc -c 'yo open-wc:testing-bare'`
-- Automated Testing with [Karma](https://karma-runner.github.io/) `npx -p yo -p generator-open-wc -c 'yo open-wc:testing-karma'`
-- Automated Testing via Karma and [Browserstack](https://www.browserstack.com/) `npx -p yo -p generator-open-wc -c 'yo open-wc:testing-karma-bs'`
-- Linting with [ESLint](https://eslint.org/) `npx -p yo -p generator-open-wc -c 'yo open-wc:lint-eslint'`
-- Publish with [Storybook](https://storybook.js.org/) `npx -p yo -p generator-open-wc -c 'yo open-wc:publish-storybook'`
-- Continous Integration with [CircleCi](https://circleci.com/) `npx -p yo -p generator-open-wc -c 'yo open-wc:publish-storybook'`
-
-## Additional Recommendation
-
-- Instant Testing in IDE with [Wallaby](https://wallabyjs.com/) `npx -p yo -p generator-open-wc -c 'yo open-wc:testing-wallaby'`
-
+For all further details pls visit [open-wc.org](https://www.open-wc.org).
 
 ## We proudly use
 <a href="http://browserstack.com/" style="border: none;"><img src="https://github.com/open-wc/open-wc/blob/master/assets/images/Browserstack-logo.svg" width="200" alt="Browserstack Logo" /></a>
@@ -37,8 +27,8 @@ You can also pick and choose to apply them at any point later.
 ## Working on it
 
 ```bash
+# bootstrap/setup
 npm run bootstrap
-# does: lerna bootstrap --hoist
 
 # linting
 npm run lint
