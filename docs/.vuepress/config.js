@@ -10,6 +10,8 @@ module.exports = {
       '/recommendations/ide',
       '/recommendations/linting',
       '/recommendations/testing',
+      '/recommendations/testing-helpers',
+      '/recommendations/testing-dom',
       '/recommendations/demos',
       '/recommendations/publishing',
       '/recommendations/automate',

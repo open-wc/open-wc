@@ -7,7 +7,7 @@ The goal of linting is to
 Uses [ESLint](https://eslint.org/) to lint your es6 code.
 
 Setup
-```sh
+```bash
 npx -p yo -p generator-open-wc -c 'yo open-wc:lint-eslint'
 ```
 
@@ -26,7 +26,7 @@ This will install `@open-wc/eslint-config`. A config based on airbnb but allow f
 - do not prefer no file extension
 
 ### Run
-```sh
+```bash
 npm run lint:eslint
 ```
 
@@ -35,7 +35,7 @@ npm run lint:eslint
 Uses [commitlint](http://marionebl.github.io/commitlint) to ensure proper commit messages.
 
 Setup
-```sh
+```bash
 # tbd
 ```
 
@@ -44,6 +44,6 @@ Setup
 tbd
 
 ### Run
-```sh
+```bash
 #tbd
 ```
