@@ -39,6 +39,8 @@ jobs:
   deploy:
     <<: *defaults
     steps:
+      # will add github as known host
+      - checkout
       - attach_workspace:
           at: ~/repo
       - add_ssh_keys:
