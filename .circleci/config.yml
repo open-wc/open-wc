@@ -48,7 +48,9 @@ jobs:
             - "3f:ea:54:b7:77:13:b6:cf:29:90:2b:19:bb:eb:b5:f1"
       - run:
           name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - run: git config --global user.email circleci@circleci
+      - run: git config --global user.name CircleCI
       - run:
           name: Publish package
           command: "./node_modules/.bin/lerna publish --message 'chore: release new versions' --yes"
