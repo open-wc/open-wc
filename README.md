@@ -14,6 +14,8 @@ cd my-element
 npx -p yo -p generator-open-wc -c 'yo open-wc:vanilla'
 ```
 
+change
+
 ## Default Recommendation Content
 
 You can also pick and choose to apply them at any point later.
