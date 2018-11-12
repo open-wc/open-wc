@@ -5,7 +5,7 @@ import {
 
 import '../<%= tagName %>.js';
 
-storiesOf(`<%= tagName %>`, module)
+storiesOf('<%= tagName %>', module)
   .add('default', () => html`
     <<%= tagName %>>user content tag: <%= tagName %></<%= tagName %>>
   `)

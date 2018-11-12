@@ -2,7 +2,7 @@ import {
   html,
   htmlFixture,
   litHtmlFixture,
-} from '@open-wc/testing/bdd.js';
+} from '@open-wc/testing';
 
 import '../<%= tagName %>';
 
