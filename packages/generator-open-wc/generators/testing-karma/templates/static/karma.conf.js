@@ -23,18 +23,13 @@ module.exports = (config) => {
 
     frameworks: ['mocha'],
     files: [
-      {
-        pattern: './node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
-        watched: false,
-      },
-      {
-        pattern: './node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js',
-        watched: false,
-      },
-      'test/index.karma.js',
+      { pattern: './node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js', watched: false },
+      { pattern: './node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js', watched: false },
+      { pattern: './node_modules/chai/chai.js', watched: false },
+      'test/index.js',
     ],
     preprocessors: {
-      'test/index.karma.js': ['webpack', 'sourcemap'],
+      'test/index.js': ['webpack', 'sourcemap'],
     },
     webpackMiddleware: {
       stats: 'errors-only',
