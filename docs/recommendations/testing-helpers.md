@@ -8,20 +8,20 @@ This is part of the default testing recommendations
 
 ## Test a custom element
 ```js
-import { htmlFixture } from '@open-wc/testing-helpers';
+import { fixture } from '@open-wc/testing-helpers';
 
 it('can instanciate an element', async () => {
-  const el = await htmlFixture('<my-el foo="bar"></my-el>');
+  const el = await fixture('<my-el foo="bar"></my-el>');
   expect(el.getAttribute('foo')).to.equal('bar');
 }
 ```
 
 ## Test a custom element with properties
 ```js
-import { html, litHtmlFixture } from '@open-wc/testing-helpers';
+import { html, litFixture } from '@open-wc/testing-helpers';
 
 it('can instanciate an element with properties', async () => {
-  const el = await litHtmlFixture(html`<my-el .foo=${'bar'}></my-el>`);
+  const el = await litFixture(html`<my-el .foo=${'bar'}></my-el>`);
   expect(el.foo).to.equal('bar');
 }
 ```
@@ -31,15 +31,15 @@ If you test a mixin or you have multiple base classes that offer a various set o
 This is rather dangerous as custom elements are global so you do not want to have overlapping names in your tests.
 Therefore we recommend using a special function for it.
 ```js
-import { htmlFixture, registerUniqueElement } from '@open-wc/testing-helpers';
+import { fixture, defineCE } from '@open-wc/testing-helpers';
 
-const tag = registerUniqueElement(class extends MyMixin(HTMLElement) {
+const tag = defineCE(class extends MyMixin(HTMLElement) {
   constructor() {
     super();
     this.foo = true;
   }
 });
-const el = htmlFixture(`<${tag}></${tag}>`);
+const el = fixture(`<${tag}></${tag}>`);
 expect(el.foo).to.be.true;
 ```
 
@@ -49,16 +49,16 @@ This is using a "workaround" which is not performant for rerenders.
 As this is usually not a problem for tests it's ok here but do NOT use it in production code.
 
 ```js
-import { html, lithtmlFixture, registerUniqueElement, unsafeStatic } from '@open-wc/testing-helpers';
+import { html, litFixture, defineCE, unsafeStatic } from '@open-wc/testing-helpers';
 
-const tagName = registerUniqueElement(class extends MyMixin(HTMLElement) {
+const tagName = defineCE(class extends MyMixin(HTMLElement) {
   constructor() {
     super();
     this.foo = true;
   }
 });
 const tag = unsafeStatic(tagName);
-const el = litHtmlFixture(html`<${tag} .bar=${'baz'}></${tag}>`);
+const el = litFixture(html`<${tag} .bar=${'baz'}></${tag}>`);
 expect(el.bar).to.equal('baz');
 ```
 
@@ -67,14 +67,14 @@ If you need to wait for multiple elements to update you can use flush.
 By default it will be a timeout of 2ms but it will use a `window.flush` method if set.
 
 ```js
-import { flush, timeoutAsync, html, litHtmlFixture } from '@open-wc/testing-helpers';
+import { flush, aTimeout, html, litFixture } from '@open-wc/testing-helpers';
 
-const el = await litHtmlFixture(html`<my-el .foo=${'bar'}></my-el>`);
+const el = await litFixture(html`<my-el .foo=${'bar'}></my-el>`);
 expect(el.foo).to.equal('bar');
 el.foo = 'baz';
 await flush();
 // or as an alternative us timeout
-// await timeoutAsync(10); // would wait 10ms
+// await aTimeout(10); // would wait 10ms
 expect(el.shadowRoot.querySelector('#foo').innerText).to.equal('baz');
 ```
 

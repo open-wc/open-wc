@@ -20,7 +20,7 @@ window.chai.use(chaiDomEquals);
 ## Test dom of an element
 ```js
 it('has the following dom', async () => {
-  const el = await htmlFixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
+  const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
   expect(el).dom.to.equal('<div><!-- comment --><h1>Hey  </h1>  </div>');
   expect(el).dom.to.semantically.equal('<div><h1>Hey</h1></div>');
 });
@@ -29,7 +29,7 @@ it('has the following dom', async () => {
 ## Test shadow dom of an element
 ```js
 it('has the following shadow dom', async () => {
-  const tag = registerUniqueElement(class extends HTMLElement {
+  const tag = defineCE(class extends HTMLElement {
     constructor() {
       super();
       this.attachShadow({ mode: 'open' });
@@ -39,7 +39,7 @@ it('has the following shadow dom', async () => {
       this.shadowRoot.innerHTML = '<p>  shadow content</p> <!-- comment --> <slot></slot>';
     }
   });
-  const el = await htmlFixture(`<${tag}></${tag}>`);
+  const el = await fixture(`<${tag}></${tag}>`);
   expect(el).shadowDom.to.equal('<p>  shadow content</p> <!-- comment --> <slot></slot>');
   expect(el).shadowDom.to.semantically.equal('<p>shadow content</p><slot>');
 });

@@ -3,4 +3,4 @@ import './bdd-setup.js';
 
 import './lit-html.test.js';
 import './helpers.test.js';
-import './litHtmlFixture.test.js';
+import './litFixture.test.js';

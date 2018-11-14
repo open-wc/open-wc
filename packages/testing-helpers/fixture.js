@@ -1,4 +1,4 @@
-import { flush } from './helpers.js';
+import { nextFrame } from './helpers.js';
 
 export const cachedWrappers = [];
 
@@ -26,7 +26,7 @@ export class FixtureWrapper {
  * @param {Object|function(element: HTMLElement)} props
  * @returns {HTMLElement}
  */
-export function htmlFixtureSync(template, props = {}) {
+export function fixtureSync(template, props = {}) {
   const parent = document.createElement('div'); // we need a real dom node for getters/setters
   parent.innerHTML = template;
   const element = parent.children[0];
@@ -47,8 +47,8 @@ export function htmlFixtureSync(template, props = {}) {
  * @param {Object|function(element: HTMLElement)} props
  * @returns {Promise<HTMLElement>}
  */
-export async function htmlFixture(template, setup = {}) {
-  const fixture = htmlFixtureSync(template, setup);
-  await flush();
-  return fixture;
+export async function fixture(template, setup = {}) {
+  const result = fixtureSync(template, setup);
+  await nextFrame();
+  return result;
 }
