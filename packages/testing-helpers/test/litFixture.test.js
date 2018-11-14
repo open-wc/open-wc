@@ -1,27 +1,27 @@
 import {
   html,
-  htmlFixture,
-  htmlFixtureSync,
-  litHtmlFixture,
-  litHtmlFixtureSync,
+  fixture,
+  fixtureSync,
+  litFixture,
+  litFixtureSync,
 } from '../index.js';
 
 class TestComponent extends HTMLElement {}
 customElements.define('test-component', TestComponent);
 
-describe('htmlFixtureSync & litHtmlFixtureSync & htmlFixture & litHtmlFixture', () => {
+describe('fixtureSync & litFixtureSync & fixture & litFixture', () => {
   it('asynchronously returns an element node', async () => {
     function testElement(element) {
       expect(element).to.be.an.instanceof(TestComponent);
       expect(element.textContent).to.equal('Text content');
     }
     [
-      htmlFixtureSync('<test-component>Text content</test-component>'),
-      litHtmlFixtureSync(html`<test-component>Text content</test-component>`),
+      fixtureSync('<test-component>Text content</test-component>'),
+      litFixtureSync(html`<test-component>Text content</test-component>`),
     ].forEach(testElement);
     (await Promise.all([
-      htmlFixture('<test-component>Text content</test-component>'),
-      litHtmlFixture(html`<test-component>Text content</test-component>`),
+      fixture('<test-component>Text content</test-component>'),
+      litFixture(html`<test-component>Text content</test-component>`),
     ])).forEach(testElement);
   });
 
@@ -31,12 +31,12 @@ describe('htmlFixtureSync & litHtmlFixtureSync & htmlFixture & litHtmlFixture', 
       expect(element.parentNode.parentNode).to.equal(document.body);
     }
     [
-      htmlFixtureSync('<test-component></test-component>'),
-      litHtmlFixtureSync(html`<test-component></test-component>`),
+      fixtureSync('<test-component></test-component>'),
+      litFixtureSync(html`<test-component></test-component>`),
     ].forEach(testElement);
     (await Promise.all([
-      htmlFixture('<test-component></test-component>'),
-      litHtmlFixture(html`<test-component></test-component>`),
+      fixture('<test-component></test-component>'),
+      litFixture(html`<test-component></test-component>`),
     ])).forEach(testElement);
   });
 
@@ -47,16 +47,16 @@ describe('htmlFixtureSync & litHtmlFixtureSync & htmlFixture & litHtmlFixture', 
       expect(element.parentNode.parentNode).to.equal(document.body);
     }
     [
-      htmlFixtureSync('<test-component></test-component>'),
-      htmlFixtureSync('<test-component></test-component>'),
-      litHtmlFixtureSync(html`<test-component></test-component>`),
-      litHtmlFixtureSync(html`<test-component></test-component>`),
+      fixtureSync('<test-component></test-component>'),
+      fixtureSync('<test-component></test-component>'),
+      litFixtureSync(html`<test-component></test-component>`),
+      litFixtureSync(html`<test-component></test-component>`),
     ].forEach(testElement);
     (await Promise.all([
-      htmlFixture('<test-component></test-component>'),
-      htmlFixture('<test-component></test-component>'),
-      litHtmlFixture(html`<test-component></test-component>`),
-      litHtmlFixture(html`<test-component></test-component>`),
+      fixture('<test-component></test-component>'),
+      fixture('<test-component></test-component>'),
+      litFixture(html`<test-component></test-component>`),
+      litFixture(html`<test-component></test-component>`),
     ])).forEach(testElement);
   });
 
@@ -65,12 +65,12 @@ describe('htmlFixtureSync & litHtmlFixtureSync & htmlFixture & litHtmlFixture', 
       expect(element).to.be.an.instanceof(TestComponent);
     }
     [
-      htmlFixtureSync('<test-component/>'),
-      litHtmlFixtureSync(html`<test-component/>`),
+      fixtureSync('<test-component/>'),
+      litFixtureSync(html`<test-component/>`),
     ].forEach(testElement);
     (await Promise.all([
-      htmlFixture('<test-component/>'),
-      litHtmlFixture(html`<test-component/>`),
+      fixture('<test-component/>'),
+      litFixture(html`<test-component/>`),
     ])).forEach(testElement);
   });
 
@@ -79,21 +79,21 @@ describe('htmlFixtureSync & litHtmlFixtureSync & htmlFixture & litHtmlFixture', 
       expect(element).to.be.an.instanceof(TestComponent);
     }
     [
-      htmlFixtureSync(`
+      fixtureSync(`
         <test-component></test-component>
         <div></div>
       `),
-      litHtmlFixtureSync(html`
+      litFixtureSync(html`
         <test-component></test-component>
         <div></div>
       `),
     ].forEach(testElement);
     (await Promise.all([
-      htmlFixture(`
+      fixture(`
         <test-component></test-component>
         <div></div>
       `),
-      litHtmlFixture(html`
+      litFixture(html`
         <test-component></test-component>
         <div></div>
       `),
@@ -101,33 +101,33 @@ describe('htmlFixtureSync & litHtmlFixtureSync & htmlFixture & litHtmlFixture', 
   });
 });
 
-describe('htmlFixtureSync & htmlFixture', () => {
+describe('fixtureSync & fixture', () => {
   it('accepts root element properties via second argument as an object', async () => {
-    const elementSync = htmlFixtureSync('<div></div>', {
+    const elementSync = fixtureSync('<div></div>', {
       myProp: 'value',
     });
     expect(elementSync.myProp).to.equal('value');
 
-    const elementAsync = await htmlFixture('<div></div>', {
+    const elementAsync = await fixture('<div></div>', {
       myProp: 'value',
     });
     expect(elementAsync.myProp).to.equal('value');
   });
 
   it('accepts root element properties via second argument as a function with "element" argument', async () => {
-    const elementSync = htmlFixtureSync('<div></div>', element => ({
+    const elementSync = fixtureSync('<div></div>', element => ({
       myProp: `access-to-${element.tagName}-instance`,
     }));
     expect(elementSync.myProp).to.equal('access-to-DIV-instance');
 
-    const elementAsync = await htmlFixture('<div></div>', element => ({
+    const elementAsync = await fixture('<div></div>', element => ({
       myProp: `access-to-${element.tagName}-instance`,
     }));
     expect(elementAsync.myProp).to.equal('access-to-DIV-instance');
   });
 });
 
-describe('litHtmlFixtureSync & litHtmlFixture', () => {
+describe('litFixtureSync & litFixture', () => {
   it('supports lit-html', async () => {
     const myFunction = () => {};
 
@@ -136,12 +136,12 @@ describe('litHtmlFixtureSync & litHtmlFixture', () => {
       expect(element.propFunction).to.equal(myFunction);
     }
 
-    const elementSync = litHtmlFixtureSync(html`
+    const elementSync = litFixtureSync(html`
       <test-component .propNumber=${10} .propFunction=${myFunction}></test-component>
     `);
     testElement(elementSync);
 
-    const elementAsync = await litHtmlFixture(html`
+    const elementAsync = await litFixture(html`
       <test-component .propNumber=${10} .propFunction=${myFunction}></test-component>
     `);
     testElement(elementAsync);

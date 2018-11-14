@@ -1,5 +1,5 @@
 // do manual setup and not use testing to not have circle dependencies
-import { cachedWrappers } from '../htmlFixture.js';
+import { cachedWrappers } from '../fixture.js';
 
 // register-cleanup
 if (afterEach) {

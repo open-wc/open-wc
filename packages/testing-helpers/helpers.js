@@ -1,22 +1,24 @@
+let defineCECounter = 0;
+
 /**
  * Registers a new element with an automatically generated unique name.
  * Helps to make a test fully isolated.
  *
  * @example
- * const tag = registerUniqueElement(class extends MyMixin(HTMLElement) {
+ * const tag = defineCE(class extends MyMixin(HTMLElement) {
  *   // define custom element class body
  * });
- * const el = htmlFixture(`<${tag}></${tag}>`);
+ * const el = fixture(`<${tag}></${tag}>`);
  * // test el
  *
  * @param {function()} klass
  * @returns {string}
  */
-export function registerUniqueElement(klass) {
-  const uniqueNumberString = `${Date.now()}${Math.random()}`.replace('.', '');
-  const name = `test-${uniqueNumberString}`;
-  customElements.define(name, klass);
-  return name;
+export function defineCE(klass) {
+  const tag = `test-${defineCECounter}`;
+  customElements.define(tag, klass);
+  defineCECounter += 1;
+  return tag;
 }
 
 /**
@@ -34,7 +36,7 @@ export function isIE() {
  * @param {number} ms Miliseconds.
  * @returns {Promise<void>}
  */
-export async function timeoutAsync(ms) {
+export async function aTimeout(ms) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
@@ -46,10 +48,10 @@ export async function timeoutAsync(ms) {
  * @param {HTMLElement} element
  * @returns {Promise<void>}
  */
-export async function blurTrigger(element) {
+export async function triggerBlurFor(element) {
   element.blur();
   if (isIE()) {
-    await timeoutAsync();
+    await aTimeout();
   }
 }
 
@@ -59,10 +61,10 @@ export async function blurTrigger(element) {
  * @param {HTMLElement} element
  * @returns {Promise<void>}
  */
-export async function focusTrigger(element) {
+export async function triggerFocusFor(element) {
   element.focus();
   if (isIE()) {
-    await timeoutAsync();
+    await aTimeout();
   }
 }
 
@@ -73,19 +75,24 @@ export async function focusTrigger(element) {
  * @param {string} eventName
  * @returns {Promise<Event>}
  */
-export async function eventTrigger(element, eventName) {
+export async function oneEvent(element, eventName) {
   return new Promise((resolve) => {
-    function listener(event) {
-      resolve(event);
+    function listener(ev) {
+      resolve(ev);
       element.removeEventListener(eventName, listener);
     }
     element.addEventListener(eventName, listener);
   });
 }
 
+export async function nextFrame() {
+  return new Promise(resolve => requestAnimationFrame(resolve));
+}
+
 /**
- * Resolves after flush.
- * Useful in async tests with await keyword.
+ * DEPRECATED:
+ * Only useful with WCT pls use nextFrame as an alternative.
+ * If used not within WCT it will fallback to a timout of 2ms.
  *
  * @returns {Promise<void>}
  */

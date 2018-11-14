@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-expressions */
 
-import { cachedWrappers } from '@open-wc/testing-helpers/htmlFixture.js';
+import { cachedWrappers } from '@open-wc/testing-helpers/fixture.js';
 import {
-  htmlFixture,
+  fixture,
 } from '../index.js';
 
 describe('BDD', () => {
-  it('can use htmlFixture', async () => {
-    const el = await htmlFixture('<div class="el1"></div>');
-    const el2 = await htmlFixture('<div class="el2"></div>');
+  it('can use fixture', async () => {
+    const el = await fixture('<div class="el1"></div>');
+    const el2 = await fixture('<div class="el2"></div>');
     expect(el).to.not.be.undefined;
     expect(el2).to.not.be.undefined;
   });
@@ -18,7 +18,7 @@ describe('BDD', () => {
   });
 
   it('uses chai dom equals plugin', async () => {
-    const el = await htmlFixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
+    const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
     expect(el).dom.to.semantically.equal('<div><h1>Hey</h1></div>');
   });
 });

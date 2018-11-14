@@ -1,13 +1,13 @@
 import {
   html,
-  litHtmlFixture,
+  litFixture,
   unsafeStatic,
 } from '../index.js';
 
 describe('html', () => {
   it('renders dynamic tags', async () => {
     const tag = unsafeStatic('my-foo');
-    const el = await litHtmlFixture(html`
+    const el = await litFixture(html`
       <${tag} .myNumber=${4} foo="bar"></${tag}>
     `);
     expect(el.tagName).to.equal('MY-FOO');
@@ -16,14 +16,14 @@ describe('html', () => {
   });
 
   it('renders static templates', async () => {
-    const el = await litHtmlFixture(html`
+    const el = await litFixture(html`
       <div></div>
     `);
     expect(el.tagName).to.equal('DIV');
   });
 
   it('renders static templates with properties, attributes', async () => {
-    const el = await litHtmlFixture(html`
+    const el = await litFixture(html`
       <div .myNumber=${4} foo="bar"></div>
     `);
     expect(el.tagName).to.equal('DIV');

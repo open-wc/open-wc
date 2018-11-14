@@ -1,6 +1,6 @@
 export { html, unsafeStatic } from './lit-html.js';
 export {
-  blurTrigger, focusTrigger, eventTrigger, isIE, registerUniqueElement, timeoutAsync,
+  triggerBlurFor, triggerFocusFor, oneEvent, isIE, defineCE, aTimeout, nextFrame,
 } from './helpers.js';
-export { litHtmlFixture, litHtmlFixtureSync } from './litHtmlFixture.js';
-export { htmlFixture, htmlFixtureSync } from './htmlFixture.js';
+export { litFixture, litFixtureSync } from './litFixture.js';
+export { fixture, fixtureSync } from './fixture.js';
