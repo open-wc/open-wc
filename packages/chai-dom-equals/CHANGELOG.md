@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/compare/@open-wc/chai-dom-equals@0.2.0...@open-wc/chai-dom-equals@0.3.0) (2018-11-15)
+
+
+### Features
+
+* simplify testing-helpers names ([68e1cb5](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/commit/68e1cb5))
+
+
+
+
+
 # [0.2.0](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/compare/@open-wc/chai-dom-equals@0.1.1...@open-wc/chai-dom-equals@0.2.0) (2018-11-12)
 
 

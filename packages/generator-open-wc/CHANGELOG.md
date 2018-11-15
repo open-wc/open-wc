@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.2.5...generator-open-wc@0.3.0) (2018-11-15)
+
+
+### Features
+
+* simplify testing-helpers names ([68e1cb5](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/68e1cb5))
+
+
+
+
+
 ## [0.2.5](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.2.4...generator-open-wc@0.2.5) (2018-11-12)
 
 
