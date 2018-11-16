@@ -81,3 +81,23 @@ This is part of the default recommendations
 ```bash
 npm run test:bs
 ```
+
+
+
+## Run tests in your IDE via wallaby.js
+Wallaby.js is a Plugin for your IDE and runs the tests in real time while you are typing.
+
+Using:
+- In IDE Testing via [wallaby.js](https://wallabyjs.com/)
+
+### Setup
+```bash
+npx -p yo -p generator-open-wc -c 'yo open-wc:wallaby'
+```
+
+### Manual Setup
+1. Copy the [config](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/testing-wallaby/templates/static/wallaby.js) and save it as `wallaby.js` into your project root
+1. Install `@open-wc/testing-wallaby` via npm or yarn `yarn add @open-wc/testing-wallaby --dev`
+
+### Usage
+Open your wallaby.js supported IDE and start it with the provided config.
