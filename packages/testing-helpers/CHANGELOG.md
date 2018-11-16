@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.2.0...@open-wc/testing-helpers@0.2.1) (2018-11-16)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
 # [0.2.0](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.1.2...@open-wc/testing-helpers@0.2.0) (2018-11-15)
 
 
