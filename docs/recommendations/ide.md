@@ -36,5 +36,5 @@ We recommend the following plugins:
 Get ESLint feedback directly in your IDE => more details under [Linting](./recommendations/linting)
 * [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html)  
 Highlights all your html tagged template literal
-* [es6-string-css](https://marketplace.visualstudio.com/items?itemName=bashmish.es6-string-css)  
+* [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)  
 Highlights all your css tagged template literal
