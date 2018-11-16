@@ -13,7 +13,7 @@
     "test": "karma start",
     "test:bs": "karma start karma-bs.config.js"
   },
-  "dependencies": {
+  "peerDependencies": {
     "lit-html": "^0.12.0"
   },
   "devDependencies": {
