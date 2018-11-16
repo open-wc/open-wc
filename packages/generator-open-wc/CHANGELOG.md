@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.3.0...generator-open-wc@0.3.1) (2018-11-16)
+
+
+### Bug Fixes
+
+* **generator-open-wc:** update versions; add wallaby.js ([4d14a15](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/4d14a15))
+
+
+
+
+
 # [0.3.0](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.2.5...generator-open-wc@0.3.0) (2018-11-15)
 
 
