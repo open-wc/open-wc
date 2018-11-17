@@ -1,0 +1,17 @@
+{
+  "name": "@open-wc/tslint-config",
+  "version": "0.0.0",
+  "description": "TSLint config following open-wc recommendations",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/eslint-config",
+  "license": "MIT",
+  "author": "open-wc",
+  "main": "index.js",
+  "dependencies": {
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-immutable": "^4.9.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

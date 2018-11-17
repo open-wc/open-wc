@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "newLine": "LF",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "traceResolution": false,
+
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "esnext.array",
+      "esnext.asynciterable",
+      "esnext.intl",
+      "esnext.symbol"
+    ],
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "esnext",
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "src/test*/**/*",
+    "src/demo*/**/*"
+  ]
+}

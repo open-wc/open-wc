@@ -1,0 +1,47 @@
+{
+  "name": "@open-wc/typescript-lit-element",
+  "version": "0.1.3",
+  "description": "TypeScript LitElement following open-wc recommendations",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/typescript-lit-element",
+  "license": "MIT",
+  "author": "open-wc",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/my-element.js",
+  "module": "./dist/my-element.js",
+  "typings": "./dist/my-element.d.ts",
+  "dependencies": {
+    "@polymer/lit-element": "^0.6.3"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.test.json",
+    "clean": "rm -rf dist/",
+    "lint:prod": "tslint --project tsconfig.json --config tslint.prod.json --format stylish 'src/**/*.ts*'",
+    "lint": "tslint --project tsconfig.json --config tslint.json --format stylish 'src/**/*.ts*'",
+    "prepublishOnly": "npm run clean && cross-env NODE_ENV=production rollup -c ./rollup.config.js",
+    "rollup": "rollup -c ./rollup.config.js",
+    "test": "npm run build && wct"
+  },
+  "devDependencies": {
+    "@open-wc/tslint-config": "*",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "cross-env": "^5.2.0",
+    "rollup": "^0.67.3",
+    "rollup-plugin-filesize": "^5.0.1",
+    "rollup-plugin-minify-html-literals": "^1.1.1",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-terser": "^3.0.0",
+    "rollup-plugin-tslint": "^0.1.38",
+    "rollup-plugin-typescript": "^1.0.0",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.6",
+    "wct-browser-legacy": "^1.0.2",
+    "web-component-tester": "^6.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
