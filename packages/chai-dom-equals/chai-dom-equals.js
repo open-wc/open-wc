@@ -79,7 +79,7 @@ export const chaiDomEquals = (chai, utils) => {
       const result = getSemanticDomDiff(value, getOuterHtml(this._obj));
       const message = result ? result.message : '';
       const path = result ? result.path : '';
-      const normalizedHTML = result ? result.normalizedLeftHTML : '';
+      const normalizedHTML = result ? result.normalizedRightHTML : '';
       this.assert(
         result === null,
         () => {
@@ -97,7 +97,7 @@ export const chaiDomEquals = (chai, utils) => {
       const result = getSemanticDomDiff(value, getCleanedShadowDom(this._obj));
       const message = result ? result.message : '';
       const path = result ? result.path : '';
-      const normalizedHTML = result ? result.normalizedLeftHTML : '';
+      const normalizedHTML = result ? result.normalizedRightHTML : '';
       this.assert(
         result === null,
         () => {
