@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.4.2...@open-wc/testing@0.5.0) (2018-11-18)
+
+
+### Features
+
+* sinon is no longer a mandatory package ([ef97cec](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/ef97cec))
+* use es module chai version; auto-register side-effects ([263f4ff](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/263f4ff))
+
+
+
+
+
 ## [0.4.2](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.4.1...@open-wc/testing@0.4.2) (2018-11-18)
 
 **Note:** Version bump only for package @open-wc/testing

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.2.0...@open-wc/semantic-dom-diff@0.3.0) (2018-11-18)
+
+
+### Features
+
+* sinon is no longer a mandatory package ([ef97cec](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/commit/ef97cec))
+* use es module chai version; auto-register side-effects ([263f4ff](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/commit/263f4ff))
+
+
+
+
+
 # [0.2.0](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.1.2...@open-wc/semantic-dom-diff@0.2.0) (2018-11-12)
 
 

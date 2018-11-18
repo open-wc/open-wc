@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.2.1...@open-wc/eslint-config@0.3.0) (2018-11-18)
+
+
+### Features
+
+* use es module chai version; auto-register side-effects ([263f4ff](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/commit/263f4ff))
+
+
+
+
+
 ## [0.2.1](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.2.0...@open-wc/eslint-config@0.2.1) (2018-10-28)
 
 
