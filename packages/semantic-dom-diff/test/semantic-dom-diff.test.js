@@ -1,3 +1,4 @@
+import { expect } from '@bundled-es-modules/chai';
 import { getSemanticDomDiff } from '../index.js';
 import largeTemplate from './large-template';
 

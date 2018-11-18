@@ -4,16 +4,13 @@
   <meta charset="utf-8">
   <link href="../../../mocha/mocha.css" rel="stylesheet" />
   <script src="../../../mocha/mocha.js"></script>
-  <script src="../../../chai/chai.js"></script>
   <script src="../../../sinon/pkg/sinon.js"></script>
   <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 </head>
 <body>
   <div id="mocha"></div>
   <script>
-    /* global chai */
     mocha.setup('bdd');
-    window.expect = chai.expect;
   </script>
 
   <script type="module">

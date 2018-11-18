@@ -24,9 +24,9 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:testing-bare'
 yarn add @open-wc/testing
 ```
 
-Add to your test/index.js
+Add to your test:
 ```js
-import '../bdd-setup.js';
+import { fixture, litFixture, expect } '@open-wc/testing';
 ```
 
 ### Usage

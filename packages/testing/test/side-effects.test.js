@@ -3,6 +3,7 @@
 import { cachedWrappers } from '@open-wc/testing-helpers/fixture.js';
 import {
   fixture,
+  expect,
 } from '../index.js';
 
 describe('BDD', () => {

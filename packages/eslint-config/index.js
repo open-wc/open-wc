@@ -7,9 +7,6 @@ module.exports = {
     browser: true,
     mocha: true,
   },
-  globals: {
-    expect: true,
-  },
   rules: {
     'import/extensions': 'off',
     'no-underscore-dangle': 'off',

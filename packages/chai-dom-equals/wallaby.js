@@ -19,7 +19,6 @@ module.exports = () => ({
     { pattern: 'test/index.js', load: false },
     { pattern: 'test/*.test.js', ignore: true },
 
-    { pattern: 'node_modules/chai/chai.js', instrument: false },
     { pattern: 'node_modules/sinon/pkg/sinon.js', instrument: false },
   ],
   tests: [

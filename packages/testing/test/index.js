@@ -1,3 +1,1 @@
-import '../bdd-setup.js';
-
-import './bdd.test.js';
+import './side-effects.test.js';

@@ -2,6 +2,7 @@ import {
   html,
   fixture,
   litFixture,
+  expect,
 } from '@open-wc/testing';
 
 import '../<%= tagName %>';

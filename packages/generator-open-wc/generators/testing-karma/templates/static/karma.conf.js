@@ -25,7 +25,6 @@ module.exports = (config) => {
     files: [
       { pattern: './node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js', watched: false },
       { pattern: './node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js', watched: false },
-      { pattern: './node_modules/chai/chai.js', watched: false },
       'test/index.js',
     ],
     preprocessors: {
