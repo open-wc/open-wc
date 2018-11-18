@@ -1,3 +1,4 @@
+import { expect } from '@bundled-es-modules/chai';
 import {
   fixture,
   defineCE,

@@ -1,6 +1,3 @@
-import './register-chai-plugins.js';
-import './register-fixture-cleanup.js';
-
 export {
   html,
   unsafeStatic,

@@ -25,7 +25,6 @@ module.exports = (config) => {
     files: [
       { pattern: '../../node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js', watched: false },
       { pattern: '../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js', watched: false },
-      { pattern: '../../node_modules/chai/chai.js', watched: false },
       'test/index.js',
     ],
     preprocessors: {
@@ -49,8 +48,8 @@ module.exports = (config) => {
       skipFilesWithNoCoverage: true,
       thresholds: {
         global: {
-          statements: 70,
-          lines: 70,
+          statements: 60,
+          lines: 60,
           branches: 0, // no real test files here
           functions: 70,
         },

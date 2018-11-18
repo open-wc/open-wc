@@ -1,4 +1,5 @@
 // do manual setup and not use testing to not have circle dependencies
+import { chai } from '@bundled-es-modules/chai';
 import { cachedWrappers } from '@open-wc/testing-helpers/fixture.js';
 import { chaiDomEquals } from '../chai-dom-equals.js';
 
@@ -14,8 +15,5 @@ if (afterEach) {
   });
 }
 
-// register-expect
-window.expect = window.chai.expect;
-
 // register-plugins
-window.chai.use(chaiDomEquals);
+chai.use(chaiDomEquals);

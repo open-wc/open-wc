@@ -1,7 +1,7 @@
 # Testing Chai Dom Equals
 
 Comparing dom literally is usually not what you want when testing components.
-Additional classes or just 
+Additional classes or just
 
 ::: tip Info
 This is part of the default testing recommendations
@@ -12,9 +12,10 @@ This is part of the default testing recommendations
 Add the following after chai is loaded
 
 ```js
+import { chai } from '@bundled-es-modules/chai';
 import { chaiDomEquals } from '@open-wc/chai-dom-equals';
 
-window.chai.use(chaiDomEquals);
+chai.use(chaiDomEquals);
 ```
 
 ## Test dom of an element
