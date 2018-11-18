@@ -13,7 +13,6 @@ module.exports = () => ({
     '!wallaby.js',
     '!*.config.js',
     '!*.conf.js',
-    { pattern: 'node_modules/sinon/pkg/sinon.js', instrument: false },
   ],
   tests: [
     'test/*.test.js',
