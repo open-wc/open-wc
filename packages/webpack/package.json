@@ -1,0 +1,14 @@
+{
+  "name": "@open-wc/webpack",
+  "version": "0.0.1",
+  "description": "Webpack configuration following open-wc recommendations",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/webpack",
+  "dependencies": {
+  }
+}
