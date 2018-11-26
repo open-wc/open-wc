@@ -9,7 +9,19 @@
     "access": "public"
   },
   "repository": "https://github.com/open-wc/open-wc/tree/master/packages/testing-karma",
+  "scripts": {
+    "test": "karma start demo/karma.conf.js",
+    "test:watch": "karma start demo/karma.conf.js --auto-watch=true --single-run=false",
+    "test:es5": "karma start demo/karma.es5.config.js",
+    "test:es5:bs": "karma start demo/karma.es5.bs.config.js"
+  },
   "dependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@open-wc/webpack": "^0.1.0",
+    "@webcomponents/webcomponentsjs": "^2.2.0",
+    "babel-loader": "^8.0.4",
     "istanbul-instrumenter-loader": "^3.0.0",
     "karma": "^3.0.0",
     "karma-chrome-launcher": "^2.0.0",
@@ -18,7 +30,12 @@
     "karma-mocha": "^1.0.0",
     "karma-mocha-reporter": "^2.0.0",
     "karma-sourcemap-loader": "^0.3.0",
+    "karma-static": "^1.0.1",
     "karma-webpack": "^4.0.0-rc.2",
     "webpack": "^4.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "karma-browserstack-launcher": "^1.0.0"
   }
 }
