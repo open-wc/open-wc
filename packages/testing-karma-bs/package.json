@@ -9,8 +9,17 @@
     "access": "public"
   },
   "repository": "https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs",
+  "scripts": {
+    "test": "karma start demo/karma.conf.js",
+    "test:watch": "karma start demo/karma.conf.js --auto-watch=true --single-run=false",
+    "test:es5": "karma start demo/karma.es5.config.js",
+    "test:es5:bs": "karma start demo/karma.es5.bs.config.js"
+  },
   "dependencies": {
     "@open-wc/testing-karma": "^0.1.3",
     "karma-browserstack-launcher": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0"
   }
 }
