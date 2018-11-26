@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs/compare/@open-wc/testing-karma-bs@0.0.3...@open-wc/testing-karma-bs@0.1.0) (2018-11-26)
+
+
+### Features
+
+* **testing-karma-bs:** add config creator ([6cdbcbd](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs/commit/6cdbcbd))
+
+
+
+
+
 ## [0.0.3](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs/compare/@open-wc/testing-karma-bs@0.0.2...@open-wc/testing-karma-bs@0.0.3) (2018-10-28)
 
 

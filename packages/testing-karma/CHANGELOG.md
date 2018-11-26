@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.1.3...@open-wc/testing-karma@0.2.0) (2018-11-26)
+
+
+### Features
+
+* **testing-karma:** provide latest and es5 karma config creators ([575f53e](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/commit/575f53e))
+
+
+
+
+
 ## [0.1.3](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.1.2...@open-wc/testing-karma@0.1.3) (2018-10-28)
 
 
