@@ -1,3 +1,4 @@
+import './bdd-setup.js';
 import { expect } from '@bundled-es-modules/chai';
 import {
   fixture,

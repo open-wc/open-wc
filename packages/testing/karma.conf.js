@@ -1,90 +1,27 @@
-const path = require('path');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const createBaseConfig = require('@open-wc/testing-karma/create-karma-config');
 
 module.exports = (config) => {
+  const baseConfig = createBaseConfig(config);
+
   config.set({
-    browsers: [
-      'ChromeHeadlessNoSandbox',
-      // 'FirefoxHeadless'
-    ],
+    ...baseConfig,
 
-    customLaunchers: {
-      ChromeHeadlessNoSandbox: {
-        base: 'ChromeHeadless',
-        flags: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-        ],
-      },
-      FirefoxHeadless: {
-        base: 'Firefox',
-        flags: ['-headless'],
-      },
-    },
-
-    frameworks: ['mocha'],
     files: [
-      { pattern: '../../node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js', watched: false },
-      { pattern: '../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js', watched: false },
-      'test/index.js',
+      // allows running single tests with the --grep flag
+      config.grep ? config.grep : 'test/**/*.test.js',
     ],
-    preprocessors: {
-      'test/index.js': ['webpack', 'sourcemap'],
-    },
-    webpackMiddleware: {
-      stats: 'errors-only',
-    },
-    reporters: ['dots', 'coverage-istanbul'],
-    colors: true,
 
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN ||
-    //   config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_ERROR,
-
-    // ## code coverage config
+    // is a meta package with with just some smoke tests
     coverageIstanbulReporter: {
-      reports: ['html', 'lcovonly', 'text-summary'],
-      dir: path.join(__dirname, 'coverage'),
-      combineBrowserReports: true,
-      skipFilesWithNoCoverage: true,
       thresholds: {
-        global: { // no real test files here
+        global: {
           statements: 0,
-          lines: 0,
           branches: 0,
           functions: 0,
+          lines: 0,
         },
       },
     },
-    webpack: {
-      devtool: 'inline-source-map',
-      mode: 'development',
-      module: {
-        rules: [
-          {
-            test: /\.js$/,
-            loader: 'babel-loader',
-            exclude: /node_modules\/(?!(@webcomponents\/shadycss|lit-html)\/).*/,
-            options: {
-              cacheDirectory: true,
-            },
-          },
-          {
-            test: /\.js$/,
-            loader: 'istanbul-instrumenter-loader',
-            enforce: 'post',
-            include: path.resolve('./'),
-            exclude: /node_modules|\.test\.js$/,
-            options: {
-              esModules: true,
-            },
-          },
-        ],
-      },
-    },
-
-    // ci settings
-    autoWatch: false,
-    singleRun: true,
-    concurrency: Infinity,
   });
 };
