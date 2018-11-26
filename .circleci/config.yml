@@ -31,7 +31,7 @@ jobs:
       - run: npm run lint
 
       # run tests
-      - run: npm run test:bs
+      - run: npm run test:es5:bs
 
       - persist_to_workspace:
           root: ~/repo

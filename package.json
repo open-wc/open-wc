@@ -10,7 +10,7 @@
     "site:build": "npm run vuepress:build",
     "site:start": "npm run vuepress:start",
     "test": "lerna run test --stream --concurrency 1",
-    "test:bs": "lerna run test:bs --stream --concurrency 1",
+    "test:es5:bs": "lerna run test:es5:bs --stream --concurrency 1",
     "vuepress:build": "vuepress build docs",
     "vuepress:start": "vuepress dev docs"
   },
