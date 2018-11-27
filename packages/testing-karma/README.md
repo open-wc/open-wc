@@ -1,8 +1,8 @@
-# Open Web Component Recommendations for karma
+# Testing with karma
 
-> Part of Open Web Component Recommendations [open-wc](https://github.com/open-wc/open-wc/)
+> Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
 
-We want to provide a good set of default on how to vasilitate your web component.
+We want to provide a good set of defaults on how to facilitate your web component.
 
 [![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
@@ -21,7 +21,7 @@ Configuration should be customized per project, We provide several presets which
 
 The intention for the presets is to be able to write browser runnable code, with some exceptions such bare module imports.
 
-### Features:
+### Features
 - Serves static files
 - Runs tests through mocha
 - Deep object diffs in mocha errors
@@ -30,7 +30,21 @@ The intention for the presets is to be able to write browser runnable code, with
 - Supports `import.meta.url`
 - Supports older browsers through the es5 preset
 
-### Minimal setup
+### Using
+- Runner via [karma](https://karma-runner.github.io/)
+- Building via [webpack](https://webpack.js.org/) via [karma-webpack](https://github.com/webpack-contrib/karma-webpack)
+- Test Coverage via [istanbul](https://istanbul.js.org/) via [istanbul-instrumenter-loader](https://github.com/webpack-contrib/istanbul-instrumenter-loader)
+
+### Setup
+```bash
+npx -p yo -p generator-open-wc -c 'yo open-wc:testing-karma'
+```
+
+::: tip Info
+This is part of the default [open-wc](https://open-wc.org/) recommendation
+:::
+
+### Manual setup
 For a minimal setup, extend the base config and specify where your tests are:
 
 ```javascript
@@ -91,4 +105,4 @@ module.exports = (config) => {
 };
 ```
 
-Then run your tests with: `karma start karma.es5.conf.js`
+Then run your tests with: `karma start karma.es5.config.js`

@@ -15,11 +15,15 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:vanilla'
 
 ## Available Recommendations
 - [IDE](/recommendations/ide.html)
-- [Linting](/recommendations/linting.html)
+- [Linting](/recommendations/linting-eslint.html)
 - [Testing](/recommendations/testing.html)
-- [Demos](/recommendations/demos.html)
+- [Demos](/recommendations/demos-storybook.html)
 - [Publishing](/recommendations/publishing.html)
 - [Automate](/recommendations/automate.html)
 
 ## General Help Section
 - [JavaScript](/help/js.html)
+
+## Example
+The [Set-Game Example](https://github.com/open-wc/example-vanilla-set-game/) uses all the above recommendations
+You can find a published storybook here: [https://example-set-game-open-wc.netlify.com/](https://example-set-game-open-wc.netlify.com/).
