@@ -1,0 +1,1 @@
+../../packages/generator-open-wc/README.md
