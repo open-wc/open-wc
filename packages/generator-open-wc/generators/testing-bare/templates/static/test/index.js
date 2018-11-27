@@ -1,1 +1,0 @@
-import './<%= tagName %>.test.js';
