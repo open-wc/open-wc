@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "storybook:build": "build-storybook",
+    "site:build": "npm run storybook:build",
+    "storybook:build": "build-storybook -o _site",
     "storybook:start": "start-storybook -p 9001"
   },
   "devDependencies": {

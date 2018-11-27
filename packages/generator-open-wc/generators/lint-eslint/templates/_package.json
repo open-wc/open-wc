@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "lint": "npm run lint:eslint",
     "lint:eslint": "eslint --ext .js,.html ."
   },
   "devDependencies": {
