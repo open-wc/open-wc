@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.2.0...@open-wc/testing-karma@0.2.1) (2018-11-30)
+
+
+### Bug Fixes
+
+* move documentation to READMEs of packages ([b4a0426](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/commit/b4a0426))
+
+
+
+
+
 # [0.2.0](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.1.3...@open-wc/testing-karma@0.2.0) (2018-11-26)
 
 
