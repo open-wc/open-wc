@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Testing with karma following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -19,7 +19,7 @@
     "@babel/core": "^7.1.6",
     "@babel/plugin-syntax-import-meta": "^7.0.0",
     "@babel/polyfill": "^7.0.0",
-    "@open-wc/webpack": "^0.1.1",
+    "@open-wc/webpack": "^0.1.2",
     "@webcomponents/webcomponentsjs": "^2.2.0",
     "babel-loader": "^8.0.4",
     "istanbul-instrumenter-loader": "^3.0.0",

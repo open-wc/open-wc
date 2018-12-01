@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/semantic-dom-diff",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "To compare dom and shadow dom trees. Part of open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -19,8 +19,8 @@
   },
   "devDependencies": {
     "@bundled-es-modules/chai": "^4.2.0",
-    "@open-wc/testing-karma": "^0.2.1",
-    "@open-wc/testing-karma-bs": "^0.1.1",
+    "@open-wc/testing-karma": "^0.2.2",
+    "@open-wc/testing-karma-bs": "^0.1.2",
     "@open-wc/testing-wallaby": "^0.1.4",
     "mocha": "^5.0.0"
   }
