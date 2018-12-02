@@ -45,7 +45,7 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 :::
 
 ### Manual setup
-For a minimal setup, extend the base config and specify where your tests are:
+1. Extend the base config and return it without modifying any options:
 
 ```javascript
 // filename: karma.conf.js
@@ -56,23 +56,26 @@ module.exports = (config) => {
 
   config.set({
     ...baseConfig,
-
-    files: [
-      // if --grep flag is set, run those tests instead
-      config.grep ? config.grep : 'test/**/*.test.js',
-    ],
   });
 };
 ```
+
+2. Create a `karma-test-loader.js` next to your config file. This file should import all your tests. This is necessary for webpack to generate a single bundle, instead of a separate bundle per test.
+You could import all the tests manually or use webpack context to collect them dynamically:
+```javascript
+// Imports all test files for webpack to generate one single test bundle.
+// First parameter is the test folder, third paramter is a regexp to match the file against
+const testsContext = require.context('./test', true, /.test$/);
+testsContext.keys().forEach(testsContext);
+```
+
 Add to your scripts: `"test": "karma start karma.conf.js"` and run your tests with: `npm run test`.
 
 ### Testing single files or folders
-By default karma runs all your test files. To test only a single file or folder, use the `--grep` flag. Make sure you are handling the grep option in your config, see the above example. Pass which files to test to the grep flag: `npm run test -- --grep test/foo/bar.test.js`.
-
-Grep supports file globs.
+By default karma runs all your test files. To test only a single file, use the `--grep` flag. Pass which file to test to the grep flag: `npm run test -- --grep test/foo/bar.test.js`.
 
 ### Watch mode
-Use `npm run test -- --auto-watch=true --single-run=false` to keep karma running. Any code changes will trigger a re-run of your tests.
+Use `npm run test -- --auto-watch=true --single-run=false` to keep karma running. Any code changes will trigger a re-run of your tests. You can add this to your scripts section: `"test:watch": "karma start karma.conf.js"`
 
 ### Debugging in the browser
 While testing, it can be useful to debug your tests in a real browser so that you can use the browser's dev tools.
@@ -96,13 +99,10 @@ module.exports = (config) => {
 
   config.set({
     ...baseConfig,
-
-    files: [
-      ...baseConfig.files,
-      config.grep ? config.grep : 'test/**/*.test.js',
-    ],
   });
 };
 ```
+
+For full customization you can override the `files` property. You will need to make sure to load the necessary polyfills as well.
 
 Then run your tests with: `karma start karma.es5.config.js`

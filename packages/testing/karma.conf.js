@@ -7,11 +7,6 @@ module.exports = (config) => {
   config.set({
     ...baseConfig,
 
-    files: [
-      // allows running single tests with the --grep flag
-      config.grep ? config.grep : 'test/**/*.test.js',
-    ],
-
     // is a meta package with with just some smoke tests
     coverageIstanbulReporter: {
       thresholds: {

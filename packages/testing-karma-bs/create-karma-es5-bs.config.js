@@ -24,8 +24,8 @@ if (!process.env.BROWSER_STACK_USERNAME || !process.env.BROWSER_STACK_ACCESS_KEY
  *
  * See demo/karma.es5.config.js for an example implementation.
  */
-module.exports = (config) => {
-  const baseConfig = createBaseConfig(config);
+module.exports = (config, testDir, testFilePattern) => {
+  const baseConfig = createBaseConfig(config, testDir, testFilePattern);
 
   return {
     ...baseConfig,

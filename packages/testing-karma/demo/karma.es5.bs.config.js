@@ -13,16 +13,10 @@ if (!process.env.BROWSER_STACK_USERNAME || !process.env.BROWSER_STACK_ACCESS_KEY
 }
 
 module.exports = (config) => {
-  const baseConfig = createBaseConfig(config);
+  const baseConfig = createBaseConfig(config, '/demo/test');
 
   config.set({
     ...baseConfig,
-
-    files: [
-      ...baseConfig.files,
-      // allows running single tests with the --grep flag
-      config.grep ? [config.grep] : 'test/**/*.test.js',
-    ],
 
     browserStack: {
       username: process.env.BROWSER_STACK_USERNAME,
