@@ -14,7 +14,8 @@
     "test:es5:bs": "karma start karma.es5.bs.config.js"
   },
   "dependencies": {
-    "@open-wc/semantic-dom-diff": "^0.4.3"
+    "@open-wc/semantic-dom-diff": "^0.4.3",
+    "@types/chai": "^4.1.7"
   },
   "devDependencies": {
     "@bundled-es-modules/chai": "^4.2.0",

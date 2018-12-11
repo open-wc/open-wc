@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "@bundled-es-modules/deep-diff": "^1.0.2-rc.1",
-    "@bundled-es-modules/parse5": "^5.1.0"
+    "@bundled-es-modules/parse5": "^5.1.0",
+    "@types/parse5": "^5.0.0"
   },
   "devDependencies": {
     "@bundled-es-modules/chai": "^4.2.0",
