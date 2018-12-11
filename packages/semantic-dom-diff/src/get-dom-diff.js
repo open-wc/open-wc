@@ -1,11 +1,11 @@
 import { parseFragment, serialize } from '@bundled-es-modules/parse5';
 import { deepDiff } from '@bundled-es-modules/deep-diff';
 
-import { sanitizeHtmlString } from './sanitize-html-string';
-import { normalizeAST } from './normalize-ast';
-import { getDiffMessage } from './get-diff-message';
-import { findDiffedObject } from './find-diffed-object';
-import { getDiffPath } from './get-diff-path';
+import { sanitizeHtmlString } from './sanitize-html-string.js';
+import { normalizeAST } from './normalize-ast.js';
+import { getDiffMessage } from './get-diff-message.js';
+import { findDiffedObject } from './find-diffed-object.js';
+import { getDiffPath } from './get-diff-path.js';
 
 /**
  * @typedef {object} DiffResult

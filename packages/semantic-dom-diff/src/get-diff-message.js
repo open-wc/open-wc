@@ -1,4 +1,4 @@
-import { isElement, isTextNode } from './parse5-utils';
+import { isElement, isTextNode } from './parse5-utils.js';
 
 export const isAttribute = arg => arg && 'name' in arg && 'value' in arg;
 const { isArray } = Array;
