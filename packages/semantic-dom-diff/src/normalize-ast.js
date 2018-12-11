@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { isElement, isParentNode } from './parse5-utils';
+import { isElement, isParentNode } from './parse5-utils.js';
 
 const defaultIgnoresTags = ['style', 'script', '#comment'];
 

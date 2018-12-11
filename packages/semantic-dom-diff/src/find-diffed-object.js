@@ -1,4 +1,4 @@
-import { isParentNode, isElement } from './parse5-utils';
+import { isParentNode, isElement } from './parse5-utils.js';
 
 /**
  * @param {ASTNode | ASTNode[]} root
