@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/compare/@open-wc/chai-dom-equals@0.5.3...@open-wc/chai-dom-equals@0.6.0) (2018-12-11)
+
+
+### Features
+
+* add typescript type declaration files ([f5cb243](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/commit/f5cb243))
+
+
+
+
+
 ## [0.5.3](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/compare/@open-wc/chai-dom-equals@0.5.2...@open-wc/chai-dom-equals@0.5.3) (2018-12-02)
 
 **Note:** Version bump only for package @open-wc/chai-dom-equals

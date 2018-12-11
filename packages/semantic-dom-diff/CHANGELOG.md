@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.4.3...@open-wc/semantic-dom-diff@0.5.0) (2018-12-11)
+
+
+### Features
+
+* add typescript type declaration files ([f5cb243](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/commit/f5cb243))
+
+
+
+
+
 ## [0.4.3](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.4.2...@open-wc/semantic-dom-diff@0.4.3) (2018-12-02)
 
 **Note:** Version bump only for package @open-wc/semantic-dom-diff

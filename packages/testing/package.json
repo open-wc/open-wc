@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing",
-  "version": "0.6.3",
+  "version": "0.7.0",
   "description": "Testing following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@bundled-es-modules/chai": "^4.2.0",
-    "@open-wc/chai-dom-equals": "^0.5.3",
-    "@open-wc/testing-helpers": "^0.4.3",
+    "@open-wc/chai-dom-equals": "^0.6.0",
+    "@open-wc/testing-helpers": "^0.5.0",
     "@types/chai": "^4.1.7",
     "mocha": "^5.0.0"
   },

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.1.9...@open-wc/storybook@0.2.0) (2018-12-11)
+
+
+### Features
+
+* add typescript type declaration files ([f5cb243](https://github.com/open-wc/open-wc/tree/master/packages/storybook/commit/f5cb243))
+
+
+
+
+
 ## [0.1.9](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.1.8...@open-wc/storybook@0.1.9) (2018-11-30)
 
 
