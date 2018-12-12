@@ -37,7 +37,7 @@ export function isIE() {
  * @returns {Promise<void>}
  */
 export async function aTimeout(ms) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(resolve, ms);
   });
 }
@@ -76,7 +76,7 @@ export async function triggerFocusFor(element) {
  * @returns {Promise<Event>}
  */
 export async function oneEvent(element, eventName) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     function listener(ev) {
       resolve(ev);
       element.removeEventListener(eventName, listener);
@@ -97,7 +97,7 @@ export async function nextFrame() {
  * @returns {Promise<void>}
  */
 export async function flush() {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     if (window.flush) {
       window.flush(() => {
         resolve();

@@ -31,7 +31,7 @@ export function fixtureSync(template, props = {}) {
   parent.innerHTML = template;
   const element = parent.children[0];
   const properties = typeof props === 'function' ? props(element) : props;
-  Object.keys(properties).forEach((prop) => {
+  Object.keys(properties).forEach(prop => {
     element[prop] = properties[prop];
   });
   const wrapper = new FixtureWrapper();

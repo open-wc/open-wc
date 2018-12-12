@@ -5,9 +5,7 @@ const wallabyPostprocessor = wallabyWebpack({
   resolve: {
     modules: [path.resolve(__dirname, 'bower_components'), 'node_modules'],
   },
-  entryPatterns: [
-    'test/index.js',
-  ],
+  entryPatterns: ['test/index.js'],
 });
 
 module.exports = () => ({
@@ -19,15 +17,14 @@ module.exports = () => ({
     { pattern: 'test/index.js', load: false },
     { pattern: 'test/*.test.js', ignore: true },
   ],
-  tests: [
-    { pattern: 'test/*.test.js', load: false },
-  ],
+  tests: [{ pattern: 'test/*.test.js', load: false }],
   testFramework: 'mocha',
   debug: true,
   env: {
     kind: 'chrome',
     params: {
-      runner: '--no-sandbox --disable-setuid-sandbox --headless --disable-gpu --disable-translate --disable-extensions --disable-background-networking --safebrowsing-disable-auto-update --disable-sync --metrics-recording-only --disable-default-apps --no-first-run',
+      runner:
+        '--no-sandbox --disable-setuid-sandbox --headless --disable-gpu --disable-translate --disable-extensions --disable-background-networking --safebrowsing-disable-auto-update --disable-sync --metrics-recording-only --disable-default-apps --no-first-run',
     },
   },
   postprocessor: wallabyPostprocessor,

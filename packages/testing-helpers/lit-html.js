@@ -28,7 +28,7 @@ export function html(strings, ...values) {
   }
 
   const isDynamicProp = p => p && p.d && typeof p.d === 'string' && Object.keys(p).length === 1;
-  const addToCurrentString = (add) => {
+  const addToCurrentString = add => {
     newStr[newStr.length - 1] = newStr[newStr.length - 1] + add;
   };
 

@@ -10,15 +10,21 @@ const createBaseConfig = require('./create-karma-config');
  *
  * See demo/karma.es5.config.js for an example implementation.
  */
-module.exports = (config) => {
+module.exports = config => {
   const baseConfig = createBaseConfig(config);
 
   return {
     ...baseConfig,
     files: [
       { pattern: require.resolve('@babel/polyfill/browser'), watched: false },
-      { pattern: require.resolve('@webcomponents/webcomponentsjs/custom-elements-es5-adapter'), watched: false },
-      { pattern: require.resolve('@webcomponents/webcomponentsjs/webcomponents-bundle'), watched: false },
+      {
+        pattern: require.resolve('@webcomponents/webcomponentsjs/custom-elements-es5-adapter'),
+        watched: false,
+      },
+      {
+        pattern: require.resolve('@webcomponents/webcomponentsjs/webcomponents-bundle'),
+        watched: false,
+      },
     ],
 
     webpack: {
@@ -30,9 +36,7 @@ module.exports = (config) => {
             test: /\.js$/,
             loader: 'babel-loader',
             options: {
-              presets: [
-                ['@babel/preset-env', { targets: 'IE 11' }],
-              ],
+              presets: [['@babel/preset-env', { targets: 'IE 11' }]],
               cacheDirectory: true,
             },
           },
