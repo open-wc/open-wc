@@ -13,9 +13,4 @@ export {
   fixtureSync,
 } from '@open-wc/testing-helpers';
 
-export {
-  chai,
-  expect,
-  should,
-  assert,
-} from '@bundled-es-modules/chai';
+export { chai, expect, should, assert } from '@bundled-es-modules/chai';

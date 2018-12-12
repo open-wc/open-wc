@@ -6,17 +6,12 @@ const path = require('path');
  * See demo/karma.conf.js for an example implementation.
  */
 module.exports = config => ({
-  browsers: [
-    'ChromeHeadlessNoSandbox',
-  ],
+  browsers: ['ChromeHeadlessNoSandbox'],
 
   customLaunchers: {
     ChromeHeadlessNoSandbox: {
       base: 'ChromeHeadless',
-      flags: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-      ],
+      flags: ['--no-sandbox', '--disable-setuid-sandbox'],
     },
   },
 

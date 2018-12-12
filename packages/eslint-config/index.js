@@ -1,7 +1,5 @@
 module.exports = {
-  extends: [
-    'eslint-config-airbnb-base',
-  ].map(require.resolve),
+  extends: ['eslint-config-airbnb-base'].map(require.resolve),
   parser: 'babel-eslint',
   env: {
     browser: true,
@@ -11,12 +9,12 @@ module.exports = {
     'import/extensions': 'off',
     'no-underscore-dangle': 'off',
     'import/prefer-default-export': 'off',
-    'import/no-extraneous-dependencies': ['error', {
-      devDependencies: [
-        '**/test/*.js',
-        '**/stories/*.js',
-      ],
-    }],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['**/test/*.js', '**/stories/*.js'],
+      },
+    ],
   },
   settings: {
     'import/resolver': {

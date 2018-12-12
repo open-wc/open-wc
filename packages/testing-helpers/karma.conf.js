@@ -1,6 +1,6 @@
 const createBaseConfig = require('../testing-karma/create-karma-config');
 
-module.exports = (config) => {
+module.exports = config => {
   const baseConfig = createBaseConfig(config);
 
   config.set({

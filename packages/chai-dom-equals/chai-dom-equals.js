@@ -4,11 +4,11 @@ import { getSemanticDomDiff } from '@open-wc/semantic-dom-diff';
  * el.outerHTML is not polyfilled so we need to recreate the tag + attributes and
  * combine it with el.innerHTML.
  */
-export const getOuterHtml = (el) => {
+export const getOuterHtml = el => {
   if (window.ShadyCSS && window.ShadyCSS.nativeShadow === false) {
     const tagName = el.tagName.toLowerCase();
     let attributes = ' ';
-    Array.prototype.slice.call(el.attributes).forEach((item) => {
+    Array.prototype.slice.call(el.attributes).forEach(item => {
       attributes += `${item.name}="${item.value}" `;
     });
     // removes last ' ' or if there are no attributes makes it to equal ''
@@ -22,7 +22,7 @@ export const getOuterHtml = (el) => {
  * For comparision we do not need the style scoping classes on polyfilled browsers
  * Rather naive approach for now - probably need to improve once we have failing cases.
  */
-export const getCleanedShadowDom = (el) => {
+export const getCleanedShadowDom = el => {
   if (window.ShadyCSS && window.ShadyCSS.nativeShadow === false) {
     const tagName = el.tagName.toLowerCase();
     const regexTagName = new RegExp(tagName, 'g');
@@ -56,6 +56,7 @@ export const chaiDomEquals = (chai, utils) => {
   });
 
   // can not be an arrow function as it gets rebound
+  // prettier-ignore
   const domEquals = _super => function handleDom(value, ...args) {
     if (!utils.flag(this, 'semantically') && utils.flag(this, 'dom')) {
       const expected = getOuterHtml(this._obj);
