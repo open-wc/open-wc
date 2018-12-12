@@ -1,0 +1,17 @@
+{
+  "name": "@open-wc/prettier-config",
+  "version": "0.0.0",
+  "description": "Prettier config following open-wc recommendations",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/prettier-config",
+  "main": "prettier.config.js",
+  "dependencies": {
+    "eslint-config-prettier": "^3.3.0",
+    "prettier": "^1.15.0"
+  }
+}

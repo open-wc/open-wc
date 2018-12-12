@@ -9,6 +9,7 @@ module.exports = {
       '/guide/',
       '/recommendations/ide',
       '/recommendations/linting-eslint',
+      '/recommendations/linting-prettier',
       '/recommendations/testing',
       '/recommendations/testing-helpers',
       '/recommendations/testing-chai-dom-equals',
