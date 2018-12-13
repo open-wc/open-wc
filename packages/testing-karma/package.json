@@ -31,7 +31,7 @@
     "karma-mocha-reporter": "^2.0.0",
     "karma-sourcemap-loader": "^0.3.0",
     "karma-static": "^1.0.1",
-    "karma-webpack": "^4.0.0-rc.2",
+    "karma-webpack": "^5.0.0-alpha.0",
     "webpack": "^4.0.0"
   },
   "devDependencies": {
