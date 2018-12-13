@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.7.0...@open-wc/testing@0.7.1) (2018-12-13)
+
+
+### Bug Fixes
+
+* apply prettier; add lint-staged ([43acfad](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/43acfad))
+
+
+
+
+
 # [0.7.0](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.6.3...@open-wc/testing@0.7.0) (2018-12-11)
 
 

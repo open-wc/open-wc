@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.3.1...@open-wc/eslint-config@0.3.2) (2018-12-13)
+
+
+### Bug Fixes
+
+* apply prettier; add lint-staged ([43acfad](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/commit/43acfad))
+
+
+
+
+
 ## [0.3.1](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.3.0...@open-wc/eslint-config@0.3.1) (2018-11-30)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/compare/@open-wc/chai-dom-equals@0.6.0...@open-wc/chai-dom-equals@0.6.1) (2018-12-13)
+
+
+### Bug Fixes
+
+* apply prettier; add lint-staged ([43acfad](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/commit/43acfad))
+
+
+
+
+
 # [0.6.0](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/compare/@open-wc/chai-dom-equals@0.5.3...@open-wc/chai-dom-equals@0.6.0) (2018-12-11)
 
 

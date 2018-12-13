@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.5.0...@open-wc/semantic-dom-diff@0.5.1) (2018-12-13)
+
+
+### Bug Fixes
+
+* apply prettier; add lint-staged ([43acfad](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/commit/43acfad))
+
+
+
+
+
 # [0.5.0](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.4.3...@open-wc/semantic-dom-diff@0.5.0) (2018-12-11)
 
 

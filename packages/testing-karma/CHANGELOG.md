@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.2.3...@open-wc/testing-karma@0.3.0) (2018-12-13)
+
+
+### Bug Fixes
+
+* apply prettier; add lint-staged ([43acfad](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/commit/43acfad))
+
+
+### Features
+
+* **testing-karma:** use karma-webpack#^5.0.0 for proper wc support ([#89](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/issues/89)) ([10e0de8](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/commit/10e0de8))
+
+
+
+
+
 ## [0.2.3](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.2.2...@open-wc/testing-karma@0.2.3) (2018-12-02)
 
 **Note:** Version bump only for package @open-wc/testing-karma
