@@ -15,7 +15,7 @@ module.exports = config => ({
     },
   },
 
-  frameworks: ['mocha'],
+  frameworks: ['mocha', 'webpack'],
 
   middleware: ['static'],
 
@@ -26,10 +26,6 @@ module.exports = config => ({
   preprocessors: {
     '**/*.test.js': ['webpack', 'sourcemap'],
     '**/*.spec.js': ['webpack', 'sourcemap'],
-  },
-
-  webpackMiddleware: {
-    stats: 'errors-only',
   },
 
   reporters: ['mocha', 'coverage-istanbul'],
