@@ -3,6 +3,6 @@
     "test": "karma start"
   },
   "devDependencies": {
-    "@open-wc/testing-karma": "^0.2.0"
+    "@open-wc/testing-karma": "^0.3.0"
   }
 }
