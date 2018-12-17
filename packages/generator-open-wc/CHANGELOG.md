@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.5.3...generator-open-wc@0.5.4) (2018-12-17)
+
+
+### Bug Fixes
+
+* update generators to use latest versions ([2ed1b6d](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/2ed1b6d))
+
+
+
+
+
 ## [0.5.3](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.5.2...generator-open-wc@0.5.3) (2018-11-30)
 
 
