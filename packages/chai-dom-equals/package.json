@@ -11,6 +11,9 @@
   "repository": "https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals",
   "scripts": {
     "test": "karma start",
+    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:es5": "karma start karma.es5.config.js",
+    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
     "test:es5:bs": "karma start karma.es5.bs.config.js"
   },
   "dependencies": {
@@ -21,8 +24,9 @@
     "@bundled-es-modules/chai": "^4.2.0",
     "@open-wc/testing-helpers": "^0.5.2",
     "@open-wc/testing-karma": "^0.3.0",
-    "@open-wc/testing-karma-bs": "^0.1.5",
+    "@open-wc/testing-karma-bs": "^0.1.0",
     "@open-wc/testing-wallaby": "^0.1.4",
-    "mocha": "^5.0.0"
+    "mocha": "^5.0.0",
+    "webpack-merge": "^4.1.5"
   }
 }

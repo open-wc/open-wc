@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "karma-browserstack-launcher": "^1.0.0"
+    "karma-browserstack-launcher": "^1.0.0",
+    "webpack-merge": "^4.1.5"
   }
 }

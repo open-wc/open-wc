@@ -1,27 +1,27 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-const createBaseConfig = require('@open-wc/testing-karma/create-karma-config');
+/* eslint-disable import/no-extraneous-dependencies */
+const defaultSettings = require('@open-wc/testing-karma/default-settings.js');
+const merge = require('webpack-merge');
 
 module.exports = config => {
-  const baseConfig = createBaseConfig(config);
+  config.set(
+    merge(defaultSettings(config), {
+      files: [
+        // allows running single tests with the --grep flag
+        config.grep ? config.grep : 'test/**/*.test.js',
+      ],
 
-  config.set({
-    ...baseConfig,
-
-    files: [
-      // allows running single tests with the --grep flag
-      config.grep ? config.grep : 'test/**/*.test.js',
-    ],
-
-    // only smoke tests for chai here
-    coverageIstanbulReporter: {
-      thresholds: {
-        global: {
-          statements: 0,
-          branches: 0,
-          functions: 0,
-          lines: 0,
+      // only smoke tests for chai here
+      coverageIstanbulReporter: {
+        thresholds: {
+          global: {
+            statements: 0,
+            branches: 0,
+            functions: 0,
+            lines: 0,
+          },
         },
       },
-    },
-  });
+    }),
+  );
+  return config;
 };

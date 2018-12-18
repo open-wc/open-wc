@@ -11,8 +11,11 @@
   "repository": "https://github.com/open-wc/open-wc/tree/master/packages/testing",
   "scripts": {
     "test": "karma start",
-    "test:es5:bs": "karma start karma.es5.bs.config.js",
-    "test:demo": "karma start demo/karma.conf.js"
+    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:demo": "karma start demo/karma.conf.js",
+    "test:es5": "karma start karma.es5.config.js",
+    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
+    "test:es5:bs": "karma start karma.es5.bs.config.js"
   },
   "dependencies": {
     "@bundled-es-modules/chai": "^4.2.0",
@@ -23,7 +26,8 @@
   },
   "devDependencies": {
     "@open-wc/testing-karma": "^0.3.0",
-    "@open-wc/testing-karma-bs": "^0.1.5",
-    "@open-wc/testing-wallaby": "^0.1.4"
+    "@open-wc/testing-karma-bs": "^0.1.0",
+    "@open-wc/testing-wallaby": "^0.1.4",
+    "webpack-merge": "^4.1.5"
   }
 }

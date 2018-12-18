@@ -1,20 +1,9 @@
-const createBaseConfig = require('../create-karma-es5.config');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const merge = require('webpack-merge');
+const karmaConf = require('./karma.conf.js');
+const es5Settings = require('../es5-settings.js');
 
-/**
- * An example karma configuration, taking the base config as a start and
- * adding the test files to run. Make sure to support the grep config option
- * to allow running individual tests.
- */
-module.exports = (config) => {
-  const baseConfig = createBaseConfig(config);
-
-  config.set({
-    ...baseConfig,
-
-    files: [
-      ...baseConfig.files,
-      // allows running single tests with the --grep flag
-      config.grep ? [config.grep] : 'test/**/*.test.js',
-    ],
-  });
+module.exports = config => {
+  config.set(merge(karmaConf(config), es5Settings(config)));
+  return config;
 };
