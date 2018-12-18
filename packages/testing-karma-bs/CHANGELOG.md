@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs/compare/@open-wc/testing-karma-bs@0.1.4...@open-wc/testing-karma-bs@0.1.5) (2018-12-18)
+
+
+### Bug Fixes
+
+* add testing generator + update docu ([81c765d](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs/commit/81c765d))
+
+
+
+
+
 ## [0.1.4](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs/compare/@open-wc/testing-karma-bs@0.1.3...@open-wc/testing-karma-bs@0.1.4) (2018-12-13)
 
 
