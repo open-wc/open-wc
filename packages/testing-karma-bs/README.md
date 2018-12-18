@@ -28,11 +28,12 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:testing-karma-bs'
 ### Manual
 - `yarn add @open-wc/testing-karma-bs --dev`
 - copy [karma.es5.bs.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/testing-karma-bs/templates/static/karma.es5.bs.config.js) to `karma.es5.bs.config.js`
-```js
-"scripts": {
-  "test:es5:bs": "karma start karma.es5.bs.config.js"
-},
-```
+- add to package.json
+  ```js
+  "scripts": {
+    "test:es5:bs": "karma start karma.es5.bs.config.js"
+  },
+  ```
 
 ### Setup user + key
 - Go to https://www.browserstack.com/accounts/settings
@@ -54,5 +55,5 @@ echo "Key: $BROWSER_STACK_ACCESS_KEY"
 
 ### Usage
 ```bash
-npm run test:bs
+npm run test:es5:bs
 ```

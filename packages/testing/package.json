@@ -11,7 +11,8 @@
   "repository": "https://github.com/open-wc/open-wc/tree/master/packages/testing",
   "scripts": {
     "test": "karma start",
-    "test:es5:bs": "karma start karma.es5.bs.config.js"
+    "test:es5:bs": "karma start karma.es5.bs.config.js",
+    "test:demo": "karma start demo/karma.conf.js"
   },
   "dependencies": {
     "@bundled-es-modules/chai": "^4.2.0",

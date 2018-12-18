@@ -14,6 +14,7 @@ module.exports = {
       '/recommendations/testing-helpers',
       '/recommendations/testing-chai-dom-equals',
       '/recommendations/testing-karma',
+      '/recommendations/testing-karma-bs',
       '/recommendations/testing-wallaby',
       '/recommendations/demos-storybook',
       '/recommendations/publishing',
@@ -21,15 +22,12 @@ module.exports = {
       '/recommendations/generator',
       '/help/js',
     ],
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/guide/' },
-    ],
+    nav: [{ text: 'Home', link: '/' }, { text: 'Guide', link: '/guide/' }],
     repo: 'open-wc/open-wc',
     docsDir: 'docs',
     editLinks: true,
     editLinkText: 'Improve these recommendations (or add your own)',
     lastUpdated: 'Last Updated',
   },
-  dest: '_site'
-}
+  dest: '_site',
+};
