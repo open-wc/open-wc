@@ -47,24 +47,36 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 ### Manual setup
 For a minimal setup, extend the base config and specify where your tests are:
 
-```javascript
-// filename: karma.conf.js
-const createBaseConfig = require('@open-wc/testing-karma/create-karma-config');
+- create a `karma.conf.js`
+  ```js
+  /* eslint-disable import/no-extraneous-dependencies */
+  const defaultSettings = require('@open-wc/testing-karma/default-settings.js');
+  const merge = require('webpack-merge');
 
-module.exports = (config) => {
-  const baseConfig = createBaseConfig(config);
+  module.exports = config => {
+    config.set(
+      merge(defaultSettings(config), {
+        files: [
+          // allows running single tests with the --grep flag
+          config.grep ? config.grep : 'test/**/*.test.js',
+        ],
 
-  config.set({
-    ...baseConfig,
-
-    files: [
-      // if --grep flag is set, run those tests instead
-      config.grep ? config.grep : 'test/**/*.test.js',
-    ],
-  });
-};
-```
-Add to your scripts: `"test": "karma start karma.conf.js"` and run your tests with: `npm run test`.
+        // you custom config
+      }),
+    );
+    return config;
+  };
+  ```
+- add to package.json
+  ```js
+  "scripts": {
+    "test": "karma start",
+    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:es5": "karma start karma.es5.config.js",
+    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
+  },
+  ```
+- run via `npm run test`
 
 ### Testing single files or folders
 By default karma runs all your test files. To test only a single file or folder, use the `--grep` flag. Make sure you are handling the grep option in your config, see the above example. Pass which files to test to the grep flag: `npm run test -- --grep test/foo/bar.test.js`.
@@ -84,24 +96,22 @@ Open the dev tools to see your test results in the console. For debugging, set b
 ### Testing against older browsers
 The default karma preset runs in browsers which support modern language features and web component. At the time of writing this is the latest chrome, firefox and safari. Edge is working on support.
 
-To speed up development, we avoid compiling code or loading unnecessary polyfills. To run your tests against older browsers, create a es5 config which extends the es5 preset. This config takes care of compiling to es5, and loading the necessary es2015 and web component polyfills.
+To speed up development, we avoid compiling code or loading unnecessary polyfills. To run your tests against older browsers, create a es5 config which extends extends your `karma.conf.js` and merge in the es5Settings. This config takes care of compiling to es5, and loading the necessary es2015 and web component polyfills.
 
+::: tip
+Note the order of merging and that `es5Settings(config)` is first. That is important as it determines the order of files loaded => and we want those polyfills loaded first.
+::::
 
 ```javascript
 // filename: karma.es5.config.js
-const createBaseConfig = require('@open-wc/testing-karma/create-karma-es5-config');
+/* eslint-disable import/no-extraneous-dependencies */
+const merge = require('webpack-merge');
+const es5Settings = require('@open-wc/testing-karma/es5-settings.js');
+const karmaConf = require('./karma.conf.js');
 
-module.exports = (config) => {
-  const baseConfig = createBaseConfig(config);
-
-  config.set({
-    ...baseConfig,
-
-    files: [
-      ...baseConfig.files,
-      config.grep ? config.grep : 'test/**/*.test.js',
-    ],
-  });
+module.exports = config => {
+  config.set(merge(es5Settings(config), karmaConf(config)));
+  return config;
 };
 ```
 

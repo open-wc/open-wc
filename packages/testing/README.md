@@ -25,6 +25,9 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 ## Setup
 ```bash
 npx -p yo -p generator-open-wc -c 'yo open-wc:testing'
+
+# or if you already have a webcomponent and/or test files
+npx -p yo -p generator-open-wc -c 'yo open-wc:testing-upgrade'
 ```
 
 This runs the setup for multiple packages (testing-bare, testing-karma, testing-karma-bs).
@@ -61,7 +64,10 @@ Already part of `yo open-wc:testing`
 - add to package.json
   ```js
   "scripts": {
-    "test": "karma start"
+    "test": "karma start",
+    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:es5": "karma start karma.es5.config.js",
+    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
   },
   ```
 

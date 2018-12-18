@@ -3,10 +3,12 @@
     "test": "karma start",
     "test:watch": "karma start --auto-watch=true --single-run=false",
     "test:es5": "karma start karma.es5.config.js",
-    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false"
+    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
+    "test:es5:bs": "karma start karma.es5.bs.config.js"
   },
   "devDependencies": {
     "@open-wc/testing-karma": "^0.3.0",
-    "webpack-merge": "^4.1.5"
+    "webpack-merge": "^4.1.5",
+    "@open-wc/testing-karma-bs": "^0.1.0"
   }
 }
