@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.3.0...@open-wc/testing-karma@0.4.0) (2018-12-19)
+
+
+### Features
+
+* use extendable karma configs by default ([8fd9435](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/commit/8fd9435))
+
+
+
+
+
 # [0.3.0](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.2.3...@open-wc/testing-karma@0.3.0) (2018-12-13)
 
 

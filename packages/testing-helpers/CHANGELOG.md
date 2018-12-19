@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.5.2...@open-wc/testing-helpers@0.6.0) (2018-12-19)
+
+
+### Features
+
+* use extendable karma configs by default ([8fd9435](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/8fd9435))
+
+
+
+
+
 ## [0.5.2](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.5.1...@open-wc/testing-helpers@0.5.2) (2018-12-18)
 
 **Note:** Version bump only for package @open-wc/testing-helpers
