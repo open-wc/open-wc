@@ -3,6 +3,6 @@
     "test:es5:bs": "karma start karma.es5.bs.config.js"
   },
   "devDependencies": {
-    "@open-wc/testing-karma-bs": "^0.1.0"
+    "@open-wc/testing-karma-bs": "^0.2.0"
   }
 }
