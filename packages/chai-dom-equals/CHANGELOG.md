@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/compare/@open-wc/chai-dom-equals@0.7.1...@open-wc/chai-dom-equals@0.7.2) (2018-12-20)
+
+
+### Bug Fixes
+
+* properly apply prettier ([a12bb09](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/commit/a12bb09))
+
+
+
+
+
 ## [0.7.1](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/compare/@open-wc/chai-dom-equals@0.7.0...@open-wc/chai-dom-equals@0.7.1) (2018-12-20)
 
 **Note:** Version bump only for package @open-wc/chai-dom-equals

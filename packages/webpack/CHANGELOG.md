@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/open-wc/open-wc/tree/master/packages/webpack/compare/@open-wc/webpack@0.1.3...@open-wc/webpack@0.1.4) (2018-12-20)
+
+
+### Bug Fixes
+
+* properly apply prettier ([a12bb09](https://github.com/open-wc/open-wc/tree/master/packages/webpack/commit/a12bb09))
+
+
+
+
+
 ## [0.1.3](https://github.com/open-wc/open-wc/tree/master/packages/webpack/compare/@open-wc/webpack@0.1.2...@open-wc/webpack@0.1.3) (2018-12-02)
 
 

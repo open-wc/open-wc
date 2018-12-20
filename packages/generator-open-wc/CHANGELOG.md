@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.1...generator-open-wc@0.6.2) (2018-12-20)
+
+
+### Bug Fixes
+
+* linting generators & documentation ([5c29f7a](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/5c29f7a))
+* properly apply prettier ([a12bb09](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/a12bb09))
+
+
+
+
+
 ## [0.6.1](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.0...generator-open-wc@0.6.1) (2018-12-19)
 
 

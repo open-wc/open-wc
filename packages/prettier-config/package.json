@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/prettier-config",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Prettier config following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",

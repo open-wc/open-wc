@@ -1,6 +1,6 @@
 {
   "name": "generator-open-wc",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Scaffold web components following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",

@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/eslint-config",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Eslint config following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
