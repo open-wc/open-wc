@@ -10,7 +10,7 @@
  */
 module.exports = () => ({
   files: [
-    { pattern: require.resolve('@babel/polyfill/browser'), watched: false },
+    { pattern: require.resolve('@babel/polyfill/dist/polyfill.min.js'), watched: false },
     {
       pattern: require.resolve('@webcomponents/webcomponentsjs/custom-elements-es5-adapter'),
       watched: false,
