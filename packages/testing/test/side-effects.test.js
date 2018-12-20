@@ -1,10 +1,7 @@
 /* eslint-disable no-unused-expressions */
 
 import { cachedWrappers } from '@open-wc/testing-helpers/fixture.js';
-import {
-  fixture,
-  expect,
-} from '../index.js';
+import { fixture, expect } from '../index.js';
 
 describe('BDD', () => {
   it('can use fixture', async () => {

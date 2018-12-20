@@ -1,9 +1,5 @@
 import { expect } from '@bundled-es-modules/chai';
-import {
-  html,
-  litFixture,
-  unsafeStatic,
-} from '../index.js';
+import { html, litFixture, unsafeStatic } from '../index.js';
 
 describe('html', () => {
   it('renders dynamic tags', async () => {

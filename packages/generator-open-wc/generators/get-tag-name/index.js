@@ -13,14 +13,16 @@ const PROMPTS = [
 ];
 
 function getClassName(tagName) {
-  return tagName.split('-').reduce((previous, part) => previous + part.charAt(0).toUpperCase() + part.slice(1), '');
+  return tagName
+    .split('-')
+    .reduce((previous, part) => previous + part.charAt(0).toUpperCase() + part.slice(1), '');
 }
 
 module.exports = class GeneratorGetTagName extends Generator {
   prompting() {
     const done = this.async();
 
-    return this.prompt(PROMPTS).then((answers) => {
+    return this.prompt(PROMPTS).then(answers => {
       this.props = answers;
       this.props.className = getClassName(this.props.tagName);
       done();

@@ -5,7 +5,7 @@ import { cachedWrappers } from '../fixture.js';
 if (afterEach) {
   afterEach(() => {
     if (cachedWrappers) {
-      cachedWrappers.forEach((wrapper) => {
+      cachedWrappers.forEach(wrapper => {
         document.body.removeChild(wrapper);
       });
     }
