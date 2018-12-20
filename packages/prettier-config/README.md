@@ -10,38 +10,41 @@ We want to provide a good set of defaults on how to facilitate your web componen
 
 Uses [Prettier](https://prettier.io) to format your JS, CSS and HTML code.
 
+::: tip Info
+This is part of the default [open-wc](https://open-wc.org/) recommendation
+:::
+
+## Setup
+```bash
+npx -p yo -p generator-open-wc -c 'yo open-wc:lint-prettier'
+```
+
 ## Manual
 
 - Install `@open-wc/prettier-config`.
-
-```bash
-yarn add @open-wc/prettier-config --dev
-```
-
+  ```bash
+  yarn add --dev @open-wc/prettier-config
+  ```
 - Create `prettier.config.js` to root directory of the project as following.
-
-```js
-module.exports = require('@open-wc/prettier-config');
-```
-
+  ```js
+  module.exports = require('@open-wc/prettier-config');
+  ```
 - Add these lines to your package.json
-
-```js
-"scripts": {
-  "prettier": "prettier src/**/*.js --write"
-},
-```
-
+  ```js
+  "scripts": {
+    "lint:prettier": "prettier '**/*.js' --list-different || (echo '↑↑ these files are not prettier formatted ↑↑' && exit 1)",
+    "format:prettier": "prettier '**/*.js' --write",
+  },
+  ```
 - Update your `.eslintrc.js` to look like this:
-
-```js
-module.exports = {
-  extends: [
-    '@open-wc/eslint-config',
-    'eslint-config-prettier'
-  ].map(require.resolve),
-};
-```
+  ```js
+  module.exports = {
+    extends: [
+      '@open-wc/eslint-config',
+      'eslint-config-prettier'
+    ].map(require.resolve),
+  };
+  ```
 
 ## What you get
 
@@ -49,3 +52,21 @@ module.exports = {
 - apply formatting to HTML inside of `html` tagged template literals used by [lit-html](https://github.com/Polymer/lit-html)
 - apply formatting to CSS inside of `css` tagged template literals used by [lit-css](https://github.com/lit-styles/lit-styles/tree/master/packages/lit-css)
 - integration with ESLint to prevent potentially conflicting rules
+
+## Usage
+
+Run:
+- `npm run lint:prettier` to check if any file is not correctly formatted
+- `npm run format:prettier` to auto format your files
+
+## Linting Error Examples
+
+```bash
+$ npm run lint:prettier
+
+test/set-card.test.js
+test/set-game.test.js
+↑↑ these files are not prettier formatted ↑↑
+```
+
+So just run `npm run format:prettier` to format those files automatically.

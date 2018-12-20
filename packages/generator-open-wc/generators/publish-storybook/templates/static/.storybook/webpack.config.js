@@ -16,11 +16,13 @@ module.exports = (storybookBaseConfig, configType, defaultConfig) => {
     if (rule.exclude) {
       for (let j = 0; j < rule.exclude.length; j += 1) {
         if (rule.exclude[j] === path.resolve('node_modules')) {
-          rule.exclude[j] = (modulePath) => {
-            return /node_modules/.test(modulePath) &&
-                !/node_modules\/lit-html/.test(modulePath) &&
-                !/node_modules\/@open-wc/.test(modulePath);
-          }
+          rule.exclude[j] = modulePath => {
+            return (
+              /node_modules/.test(modulePath) &&
+              !/node_modules\/lit-html/.test(modulePath) &&
+              !/node_modules\/@open-wc/.test(modulePath)
+            );
+          };
         }
       }
     }

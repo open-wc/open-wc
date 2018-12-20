@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "lint:prettier": "prettier '**/*.js' --list-different || (echo '↑↑ these files are not prettier formatted ↑↑' && exit 1)",
+    "format:prettier": "prettier '**/*.js' --write"
+  },
+  "devDependencies": {
+    "@open-wc/prettier-config": "^0.1.0"
+  }
+}

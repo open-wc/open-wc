@@ -20,16 +20,16 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 :::
 
 ### Manual
-- `yarn add @open-wc/eslint-config --dev`
+- `yarn add --dev @open-wc/eslint-config`
 - copy [.eslintignore](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-eslint/templates/static/.eslintignore) to `.eslintignore`
 - copy [.eslintrc.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-eslint/templates/static/.eslintrc.js) to `.eslintrc.js`
 - add these scripts to your package.json
-```js
-"scripts": {
-  "lint": "npm run lint:eslint",
-  "lint:eslint": "eslint --ext .js,.html ."
-},
-```
+  ```js
+  "scripts": {
+    "lint:eslint": "eslint --ext .js,.html .",
+    "format:eslint": "eslint --ext .js,.html . --fix"
+  },
+  ```
 
 ## What you get
 
@@ -41,7 +41,8 @@ This will install `@open-wc/eslint-config`. A config based on airbnb but allow f
 - do not prefer default exports
 - do not prefer no file extension
 
-## Run
-```bash
-npm run lint:eslint
-```
+## Usage
+
+Run:
+- `npm run lint:eslint` to check if any file is not correctly formatted
+- `npm run format:eslint` to auto format your files
