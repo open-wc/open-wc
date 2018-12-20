@@ -17,9 +17,7 @@ function getIdentifier(arg) {
   }
 
   if (isAttribute(arg)) {
-    return arg.value
-      ? `attribute [${arg.name}="${arg.value}"]`
-      : `attribute [${arg.name}]`;
+    return arg.value ? `attribute [${arg.name}="${arg.value}"]` : `attribute [${arg.name}]`;
   }
 
   throw new Error(`Unknown arg: ${arg}`);

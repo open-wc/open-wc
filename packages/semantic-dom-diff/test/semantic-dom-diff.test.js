@@ -75,7 +75,10 @@ describe('getSemanticDomDiff()', () => {
 
     describe('multiple diffs', () => {
       it('returns the first diff', () => {
-        const diff = getSemanticDomDiff('<div>foo</div><div foo="bar"></div>', '<div>bar</div><span foo="baz"></span>');
+        const diff = getSemanticDomDiff(
+          '<div>foo</div><div foo="bar"></div>',
+          '<div>bar</div><span foo="baz"></span>',
+        );
 
         expect(diff.message).to.equal('tag <div> was changed to tag <span>');
         expect(diff.path).to.equal('div');
@@ -188,13 +191,19 @@ describe('getSemanticDomDiff()', () => {
 
     describe('ordering', () => {
       it('attributes order', () => {
-        const diff = getSemanticDomDiff('<div a="1" b="2" c="3"></div>', '<div c="3" a="1" b="2"></div>');
+        const diff = getSemanticDomDiff(
+          '<div a="1" b="2" c="3"></div>',
+          '<div c="3" a="1" b="2"></div>',
+        );
 
         expect(diff).to.equal(null);
       });
 
       it('class order', () => {
-        const diff = getSemanticDomDiff('<div class="foo bar"></div>', '<div class="bar foo"></div>');
+        const diff = getSemanticDomDiff(
+          '<div class="foo bar"></div>',
+          '<div class="bar foo"></div>',
+        );
 
         expect(diff).to.equal(null);
       });
@@ -208,13 +217,19 @@ describe('getSemanticDomDiff()', () => {
       });
 
       it('trailing whitespace in class', () => {
-        const diff = getSemanticDomDiff('<div class="foo bar "></div>', '<div class="foo bar "></div>');
+        const diff = getSemanticDomDiff(
+          '<div class="foo bar "></div>',
+          '<div class="foo bar "></div>',
+        );
 
         expect(diff).to.equal(null);
       });
 
       it('whitespace between classes', () => {
-        const diff = getSemanticDomDiff('<div class="foo  bar "></div>', '<div class="foo bar"></div>');
+        const diff = getSemanticDomDiff(
+          '<div class="foo  bar "></div>',
+          '<div class="foo bar"></div>',
+        );
 
         expect(diff).to.equal(null);
       });
@@ -226,7 +241,10 @@ describe('getSemanticDomDiff()', () => {
       });
 
       it('whitespace in between nodes', () => {
-        const diff = getSemanticDomDiff('<div> </div>    foo  <div>     </div>', '<div></div>foo<div></div>');
+        const diff = getSemanticDomDiff(
+          '<div> </div>    foo  <div>     </div>',
+          '<div></div>foo<div></div>',
+        );
 
         expect(diff).to.equal(null);
       });
@@ -246,7 +264,10 @@ describe('getSemanticDomDiff()', () => {
       });
 
       it('tabs in between nodes', () => {
-        const diff = getSemanticDomDiff('<div>\t<div></div>\t \t \t</div>', '<div><div></div></div>');
+        const diff = getSemanticDomDiff(
+          '<div>\t<div></div>\t \t \t</div>',
+          '<div><div></div></div>',
+        );
 
         expect(diff).to.equal(null);
       });
@@ -266,7 +287,10 @@ describe('getSemanticDomDiff()', () => {
       });
 
       it('newlines in between nodes', () => {
-        const diff = getSemanticDomDiff('<div>\n<div></div>\n \n \n</div>', '<div><div></div></div>');
+        const diff = getSemanticDomDiff(
+          '<div>\n<div></div>\n \n \n</div>',
+          '<div><div></div></div>',
+        );
 
         expect(diff).to.equal(null);
       });
@@ -286,24 +310,33 @@ describe('getSemanticDomDiff()', () => {
       });
 
       it('styles', () => {
-        const diff = getSemanticDomDiff('<div>foo<style> .foo { color: blue; } </style></div>', '<div>foo</div>');
+        const diff = getSemanticDomDiff(
+          '<div>foo<style> .foo { color: blue; } </style></div>',
+          '<div>foo</div>',
+        );
 
         expect(diff).to.equal(null);
       });
 
       it('script', () => {
-        const diff = getSemanticDomDiff('<div>foo<script>console.log("foo");</script></div>', '<div>foo</div>');
+        const diff = getSemanticDomDiff(
+          '<div>foo<script>console.log("foo");</script></div>',
+          '<div>foo</div>',
+        );
 
         expect(diff).to.equal(null);
       });
 
       it('ignored tags', () => {
-        const diff = getSemanticDomDiff('<div><span>foo</span></div>', '<div><span>bar</span></div>', { ignoredTags: ['span'] });
+        const diff = getSemanticDomDiff(
+          '<div><span>foo</span></div>',
+          '<div><span>bar</span></div>',
+          { ignoredTags: ['span'] },
+        );
 
         expect(diff).to.equal(null);
       });
     });
-
 
     describe('template string', () => {
       it('differently formatted', () => {
@@ -338,12 +371,17 @@ bar
 
   describe('diff tree', () => {
     it('returns the left and right side normalized trees', () => {
-      const diff = getSemanticDomDiff(`
+      const diff = getSemanticDomDiff(
+        `
         <div id="foo">  <div>  <div class="foo   bar  ">    <div>
         </div>   </div>
-      `, '<span></span>');
+      `,
+        '<span></span>',
+      );
 
-      expect(diff.normalizedLeftHTML).to.equal('<div id="foo"><div><div class="bar foo"><div></div></div></div></div>');
+      expect(diff.normalizedLeftHTML).to.equal(
+        '<div id="foo"><div><div class="bar foo"><div></div></div></div></div>',
+      );
       expect(diff.normalizedRightHTML).to.equal('<span></span>');
     });
   });

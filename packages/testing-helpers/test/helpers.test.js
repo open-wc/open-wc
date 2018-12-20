@@ -1,11 +1,5 @@
 import { expect } from '@bundled-es-modules/chai';
-import {
-  defineCE,
-  oneEvent,
-  triggerFocusFor,
-  triggerBlurFor,
-  fixture,
-} from '../index.js';
+import { defineCE, oneEvent, triggerFocusFor, triggerBlurFor, fixture } from '../index.js';
 
 describe('Helpers', () => {
   it('provides defineCE() to register a unique new element', async () => {
@@ -34,15 +28,21 @@ describe('Helpers', () => {
   });
 
   it('provides triggerFocusFor(), triggerBlurFor() to await a focus/blur event (for IE)', async () => {
-    const tag = defineCE(class FocusElement extends HTMLElement {
-      connectedCallback() {
-        this.focusCount = 0;
-        this.blurCount = 0;
-        this.inputElement = this.querySelector('input');
-        this.inputElement.addEventListener('focus', () => { this.focusCount += 1; });
-        this.inputElement.addEventListener('blur', () => { this.blurCount += 1; });
-      }
-    });
+    const tag = defineCE(
+      class FocusElement extends HTMLElement {
+        connectedCallback() {
+          this.focusCount = 0;
+          this.blurCount = 0;
+          this.inputElement = this.querySelector('input');
+          this.inputElement.addEventListener('focus', () => {
+            this.focusCount += 1;
+          });
+          this.inputElement.addEventListener('blur', () => {
+            this.blurCount += 1;
+          });
+        }
+      },
+    );
     const el = await fixture(`<${tag}><input></${tag}>`);
     expect(el.focusCount).to.equal(0);
     expect(el.blurCount).to.equal(0);

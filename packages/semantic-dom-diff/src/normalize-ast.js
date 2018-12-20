@@ -8,30 +8,36 @@ function filterNode(node, ignoredTags) {
 }
 
 function sortAttributes(attrs) {
-  return attrs
-    // Sort attributes
-    .map((attr) => {
-      if (attr.name === 'class') {
-        attr.value = attr.value.trim().split(/\s+/).sort().join(' ');
-      }
+  return (
+    attrs
+      // Sort attributes
+      .map(attr => {
+        if (attr.name === 'class') {
+          attr.value = attr.value
+            .trim()
+            .split(/\s+/)
+            .sort()
+            .join(' ');
+        }
 
-      return attr;
-    })
-    // Sort classes
-    .sort((attrA, attrB) => {
-      const a = attrA.name.toLowerCase();
-      const b = attrB.name.toLowerCase();
+        return attr;
+      })
+      // Sort classes
+      .sort((attrA, attrB) => {
+        const a = attrA.name.toLowerCase();
+        const b = attrB.name.toLowerCase();
 
-      if (a < b) {
-        return -1;
-      }
+        if (a < b) {
+          return -1;
+        }
 
-      if (a > b) {
-        return 1;
-      }
+        if (a > b) {
+          return 1;
+        }
 
-      return 0;
-    });
+        return 0;
+      })
+  );
 }
 
 /**

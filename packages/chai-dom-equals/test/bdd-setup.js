@@ -7,7 +7,7 @@ import { chaiDomEquals } from '../chai-dom-equals.js';
 if (afterEach) {
   afterEach(() => {
     if (cachedWrappers) {
-      cachedWrappers.forEach((wrapper) => {
+      cachedWrappers.forEach(wrapper => {
         document.body.removeChild(wrapper);
       });
     }

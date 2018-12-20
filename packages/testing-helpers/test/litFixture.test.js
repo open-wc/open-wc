@@ -1,11 +1,5 @@
 import { expect } from '@bundled-es-modules/chai';
-import {
-  html,
-  fixture,
-  fixtureSync,
-  litFixture,
-  litFixtureSync,
-} from '../index.js';
+import { html, fixture, fixtureSync, litFixture, litFixtureSync } from '../index.js';
 
 class TestComponent extends HTMLElement {}
 customElements.define('test-component', TestComponent);
@@ -18,11 +12,19 @@ describe('fixtureSync & litFixtureSync & fixture & litFixture', () => {
     }
     [
       fixtureSync('<test-component>Text content</test-component>'),
-      litFixtureSync(html`<test-component>Text content</test-component>`),
+      litFixtureSync(
+        html`
+          <test-component>Text content</test-component>
+        `,
+      ),
     ].forEach(testElement);
     (await Promise.all([
       fixture('<test-component>Text content</test-component>'),
-      litFixture(html`<test-component>Text content</test-component>`),
+      litFixture(
+        html`
+          <test-component>Text content</test-component>
+        `,
+      ),
     ])).forEach(testElement);
   });
 
@@ -33,11 +35,19 @@ describe('fixtureSync & litFixtureSync & fixture & litFixture', () => {
     }
     [
       fixtureSync('<test-component></test-component>'),
-      litFixtureSync(html`<test-component></test-component>`),
+      litFixtureSync(
+        html`
+          <test-component></test-component>
+        `,
+      ),
     ].forEach(testElement);
     (await Promise.all([
       fixture('<test-component></test-component>'),
-      litFixture(html`<test-component></test-component>`),
+      litFixture(
+        html`
+          <test-component></test-component>
+        `,
+      ),
     ])).forEach(testElement);
   });
 
@@ -50,14 +60,30 @@ describe('fixtureSync & litFixtureSync & fixture & litFixture', () => {
     [
       fixtureSync('<test-component></test-component>'),
       fixtureSync('<test-component></test-component>'),
-      litFixtureSync(html`<test-component></test-component>`),
-      litFixtureSync(html`<test-component></test-component>`),
+      litFixtureSync(
+        html`
+          <test-component></test-component>
+        `,
+      ),
+      litFixtureSync(
+        html`
+          <test-component></test-component>
+        `,
+      ),
     ].forEach(testElement);
     (await Promise.all([
       fixture('<test-component></test-component>'),
       fixture('<test-component></test-component>'),
-      litFixture(html`<test-component></test-component>`),
-      litFixture(html`<test-component></test-component>`),
+      litFixture(
+        html`
+          <test-component></test-component>
+        `,
+      ),
+      litFixture(
+        html`
+          <test-component></test-component>
+        `,
+      ),
     ])).forEach(testElement);
   });
 
@@ -67,11 +93,19 @@ describe('fixtureSync & litFixtureSync & fixture & litFixture', () => {
     }
     [
       fixtureSync('<test-component/>'),
-      litFixtureSync(html`<test-component/>`),
+      litFixtureSync(
+        html`
+          <test-component />
+        `,
+      ),
     ].forEach(testElement);
     (await Promise.all([
       fixture('<test-component/>'),
-      litFixture(html`<test-component/>`),
+      litFixture(
+        html`
+          <test-component />
+        `,
+      ),
     ])).forEach(testElement);
   });
 
