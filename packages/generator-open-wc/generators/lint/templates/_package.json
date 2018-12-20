@@ -1,0 +1,17 @@
+{
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "scripts": {
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "format": "npm run format:eslint && npm run format:prettier"
+  },
+  "devDependencies": {
+    "husky": "^1.0.0",
+    "lint-staged": "^8.0.0"
+  }
+}

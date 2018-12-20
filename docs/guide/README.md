@@ -15,7 +15,7 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:vanilla'
 
 ## Available Recommendations
 - [IDE](/recommendations/ide.html)
-- [Linting](/recommendations/linting-eslint.html)
+- [Linting](/recommendations/linting.html)
 - [Testing](/recommendations/testing.html)
 - [Demos](/recommendations/demos-storybook.html)
 - [Publishing](/recommendations/publishing.html)

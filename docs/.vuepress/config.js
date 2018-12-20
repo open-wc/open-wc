@@ -8,6 +8,7 @@ module.exports = {
     sidebar: [
       '/guide/',
       '/recommendations/ide',
+      '/recommendations/linting',
       '/recommendations/linting-eslint',
       '/recommendations/linting-prettier',
       '/recommendations/testing',
