@@ -88,24 +88,3 @@ export async function oneEvent(element, eventName) {
 export async function nextFrame() {
   return new Promise(resolve => requestAnimationFrame(resolve));
 }
-
-/**
- * DEPRECATED:
- * Only useful with WCT pls use nextFrame as an alternative.
- * If used not within WCT it will fallback to a timout of 2ms.
- *
- * @returns {Promise<void>}
- */
-export async function flush() {
-  return new Promise(resolve => {
-    if (window.flush) {
-      window.flush(() => {
-        resolve();
-      });
-    } else {
-      setTimeout(() => {
-        resolve();
-      }, 2);
-    }
-  });
-}
