@@ -36,7 +36,7 @@ export function isIE() {
  * @param {number} ms Miliseconds.
  * @returns {Promise<void>}
  */
-export async function aTimeout(ms) {
+export function aTimeout(ms) {
   return new Promise(resolve => {
     setTimeout(resolve, ms);
   });
@@ -75,7 +75,7 @@ export async function triggerFocusFor(element) {
  * @param {string} eventName
  * @returns {Promise<Event>}
  */
-export async function oneEvent(element, eventName) {
+export function oneEvent(element, eventName) {
   return new Promise(resolve => {
     function listener(ev) {
       resolve(ev);
@@ -85,6 +85,6 @@ export async function oneEvent(element, eventName) {
   });
 }
 
-export async function nextFrame() {
+export function nextFrame() {
   return new Promise(resolve => requestAnimationFrame(resolve));
 }
