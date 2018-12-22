@@ -71,16 +71,15 @@ expect(el.bar).to.equal('baz');
 ```
 
 ## Timings
-If you need to wait for multiple elements to update you can use flush.  
-By default it will be a timeout of 2ms but it will use a `window.flush` method if set.
+If you need to wait for multiple elements to update you can use `nextFrame`.  
 
 ```js
-import { flush, aTimeout, html, litFixture } from '@open-wc/testing-helpers';
+import { nextFrame, aTimeout, html, litFixture } from '@open-wc/testing-helpers';
 
 const el = await litFixture(html`<my-el .foo=${'bar'}></my-el>`);
 expect(el.foo).to.equal('bar');
 el.foo = 'baz';
-await flush();
+await nextFrame();
 // or as an alternative us timeout
 // await aTimeout(10); // would wait 10ms
 expect(el.shadowRoot.querySelector('#foo').innerText).to.equal('baz');
