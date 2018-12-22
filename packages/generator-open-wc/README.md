@@ -26,14 +26,24 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:{generator-name}'
 
 ## Available generators
 
+### Primary entry points
 - open-wc:vanilla
-  - open-wc:vanilla-bare
-  - open-wc:lint-eslint
-  - open-wc:publish-storybook
-  - open-wc:testing-bare
-  - open-wc:testing-karma
-  - open-wc:testing-karma-bs
-  - open-wc:tools-circleci
+- open-wc:lint
+- open-wc:testing
+- open-wc:testing-upgrade
+- open-wc:publish-storybook
+
+### Optional entry points
 - open-wc:testing-wallaby
+
+### Sub generators
+- open-wc:vanilla-bare
+- open-wc:lint-eslint
+- open-wc:lint-prettier
+- open-wc:lint-commitlint
+- open-wc:testing-bare
+- open-wc:testing-karma
+- open-wc:testing-karma-bs
+- open-wc:tools-circleci
 
 For what they actually do please see the details for each system at [open-wc](https://open-wc.org/)
