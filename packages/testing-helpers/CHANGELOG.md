@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.6.2...@open-wc/testing-helpers@0.6.3) (2018-12-22)
+
+
+### Bug Fixes
+
+* **testing-helpers:** adopt fixture/litFixture typings ([57764fe](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/57764fe))
+* **testing-helpers:** remove deprecated flush ([df077dc](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/df077dc))
+
+
+
+
+
 ## [0.6.2](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.6.1...@open-wc/testing-helpers@0.6.2) (2018-12-20)
 
 
