@@ -51,7 +51,7 @@ export function aTimeout(ms) {
 export async function triggerBlurFor(element) {
   element.blur();
   if (isIE()) {
-    await aTimeout();
+    await aTimeout(2); // it's 2ms to be extra save as IE otherwise very rarely randomly fails
   }
 }
 
@@ -64,7 +64,7 @@ export async function triggerBlurFor(element) {
 export async function triggerFocusFor(element) {
   element.focus();
   if (isIE()) {
-    await aTimeout();
+    await aTimeout(2); // it's 2ms to be extra save as IE otherwise very rarely randomly fails
   }
 }
 
