@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.4](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.3...generator-open-wc@0.6.4) (2018-12-22)
+
+
+### Bug Fixes
+
+* **generator-open-wc:** vanilla compose with lint instead of lint-eslint ([1b11b74](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/1b11b74))
+
+
+
+
+
 ## [0.6.3](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.2...generator-open-wc@0.6.3) (2018-12-22)
 
 
