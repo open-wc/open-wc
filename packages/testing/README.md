@@ -165,4 +165,9 @@ Lines        : 100% ( 8/8 )
 ================================================================================
 ```
 
+::: tip Note
+Make sure you have chrome (or chromium) installed.
+Additionally you may need to set your CHROME_BIN env variable `export CHROME_BIN=/usr/bin/chromium-browser` if you get an error.
+::::
+
 For some real tests look at our [Set-Game Example Test Files](https://github.com/open-wc/example-vanilla-set-game/tree/master/test).
