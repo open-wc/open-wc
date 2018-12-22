@@ -2,7 +2,6 @@
 > open-wc is still in an early stage - pls review our recommendations and test our tools! we are eager to get feedback
 
 # Open Web Component Recommendations
-
 We want to provide a good set of default on how to facilitate your web component.
 
 [![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
@@ -18,14 +17,22 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:vanilla'
 ```
 
 ## Homepage
-
 For all further details pls visit [open-wc.org](https://www.open-wc.org).
+
+
+## Contact
+The easiest is probably to create [a github issue](https://github.com/open-wc/open-wc/issues/new).
+Don't be afraid to use it for questions as well.
+
+Also we usually hang out on [polymer.slack.com in the #open-wc channel](https://polymer.slack.com/messages/CE6D9DN05) if you wanna chat.  
+You can join polymers slack by visiting [this link](https://join.slack.com/t/polymer/shared_invite/enQtNTAzNzg3NjU4ODM4LTkzZGVlOGIxMmNiMjMzZDM1YzYyMzdiYTk0YjQyOWZhZTMwN2RlNjM5ZDFmZjMxZWRjMWViMDA1MjNiYWFhZWM).
+
 
 ## We proudly use
 <a href="http://browserstack.com/" style="border: none;"><img src="https://github.com/open-wc/open-wc/blob/master/assets/images/Browserstack-logo.svg" width="200" alt="Browserstack Logo" /></a>
 
-## Working on it
 
+## Working on it
 ```bash
 # bootstrap/setup
 npm run bootstrap
