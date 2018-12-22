@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.2...generator-open-wc@0.6.3) (2018-12-22)
+
+
+### Bug Fixes
+
+* **generator-open-wc:** grammar issue ([e7a28ed](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/e7a28ed))
+
+
+
+
+
 ## [0.6.2](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.1...generator-open-wc@0.6.2) (2018-12-20)
 
 
