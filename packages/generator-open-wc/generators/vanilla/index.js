@@ -9,7 +9,7 @@ module.exports = class GeneratorVanilla extends Generator {
 
   default() {
     this.composeWith(require.resolve('../vanilla-bare'), this.config.getAll());
-    this.composeWith(require.resolve('../lint-eslint'), this.config.getAll());
+    this.composeWith(require.resolve('../lint'), this.config.getAll());
     this.composeWith(require.resolve('../publish-storybook'), this.config.getAll());
     // this.composeWith(require.resolve('../publish-vuepress'), this.config.getAll());
     this.composeWith(require.resolve('../testing-bare'), this.config.getAll());
