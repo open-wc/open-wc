@@ -35,5 +35,5 @@ Open WC uses [commitlint](https://github.com/marionebl/commitlint) to standardiz
 Open WC uses package name as scope. So for example if you fix a *terrible bug* in the package `@open-wc/testing`, the commit message should look like this:
 
 ```
-fix(testing) fix terrible bug
+fix(testing): fix terrible bug
 ```
