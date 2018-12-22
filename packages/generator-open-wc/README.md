@@ -10,7 +10,7 @@ We want to provide a good set of defaults on how to facilitate your web componen
 
 ## Usage
 
-This generator is based on [yeoman](http://yeoman.io/). To us it you have 2 ways.
+This generator is based on [yeoman](http://yeoman.io/). You can use it in two ways.
 
 ```bash
 npm i -g yeoman
