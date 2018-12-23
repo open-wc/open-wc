@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.4](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.6.3...@open-wc/testing-helpers@0.6.4) (2018-12-23)
+
+
+### Bug Fixes
+
+* **testing-helpers:** on IE set timeout to 2ms for blur/focus trigger ([c62b684](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/c62b684))
+
+
+
+
+
 ## [0.6.3](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.6.2...@open-wc/testing-helpers@0.6.3) (2018-12-22)
 
 
