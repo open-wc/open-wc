@@ -13,7 +13,6 @@ For Setup please visit its [homepage](https://code.visualstudio.com/) and follow
 We recommend the following user settings:
 ```json
 {
-    "workbench.colorTheme": "Solarized Light",
     "files.autoSave": "onWindowChange",
     "editor.tabSize": 2,
     "files.trimTrailingWhitespace": true,
