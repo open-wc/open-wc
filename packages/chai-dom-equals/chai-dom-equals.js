@@ -1,4 +1,4 @@
-import { getSemanticDomDiff } from '@open-wc/semantic-dom-diff';
+import { getDiffableSemanticHTML } from '@open-wc/semantic-dom-diff';
 
 /**
  * el.outerHTML is not polyfilled so we need to recreate the tag + attributes and
@@ -50,6 +50,8 @@ export const chaiDomEquals = (chai, utils) => {
   });
 
   // can not be an arrow function as it gets rebound
+  // TODO: this is here for backwards compatibility, removal will be
+  // a breaking change
   chai.Assertion.addProperty('semantically', function shadowDom() {
     new chai.Assertion(this._obj.nodeType).to.equal(1);
     utils.flag(this, 'semantically', true);
@@ -58,60 +60,34 @@ export const chaiDomEquals = (chai, utils) => {
   // can not be an arrow function as it gets rebound
   // prettier-ignore
   const domEquals = _super => function handleDom(value, ...args) {
-    if (!utils.flag(this, 'semantically') && utils.flag(this, 'dom')) {
-      const expected = getOuterHtml(this._obj);
-      this.assert(
-        value === expected,
-        'expected dom #{exp} to equal #{act}',
-        'expected dom #{exp} to not equal #{act}',
-        expected,
-        value,
-      );
-    } else if (!utils.flag(this, 'semantically') && utils.flag(this, 'shadowDom')) {
-      const expected = getCleanedShadowDom(this._obj);
-      this.assert(
-        value === expected,
-        'expected shadow dom #{exp} to equal #{act}',
-        'expected shadow dom #{exp} to not equal #{act}',
-        expected,
-        value,
-      );
-    } else if (utils.flag(this, 'semantically') && utils.flag(this, 'dom')) {
-      const result = getSemanticDomDiff(value, getOuterHtml(this._obj));
-      const message = result ? result.message : '';
-      const path = result ? result.path : '';
-      const normalizedHTML = result ? result.normalizedRightHTML : '';
-      this.assert(
-        result === null,
-        () => {
-          /* eslint-disable no-console */
-          console.log('Snapshot changed, want to accept the change?');
-          console.log('Updated Snapshot:');
-          console.log('');
-          console.log(normalizedHTML);
-          /* eslint-enable no-console */
-          return `expected dom to be semantically equal\n- diff found: ${message}\n- in path: ${path}`;
-        },
-        'expected dom to not be semantically equal',
-      );
-    } else if (utils.flag(this, 'semantically') && utils.flag(this, 'shadowDom')) {
-      const result = getSemanticDomDiff(value, getCleanedShadowDom(this._obj));
-      const message = result ? result.message : '';
-      const path = result ? result.path : '';
-      const normalizedHTML = result ? result.normalizedRightHTML : '';
-      this.assert(
-        result === null,
-        () => {
-          /* eslint-disable no-console */
-          console.log('Snapshot changed, want to accept the change?');
-          console.log('Updated Snapshot:');
-          console.log('');
-          console.log(normalizedHTML);
-          /* eslint-enable no-console */
-          return `expected shadow dom to be semantically equal\n- diff found: ${message}\n- in path: ${path}`;
-        },
-        'expected shadow dom to not be semantically equal',
-      );
+    if (utils.flag(this, 'dom')) {
+      const expectedHTML = getDiffableSemanticHTML(value);
+      const actualHTML = getDiffableSemanticHTML(getOuterHtml(this._obj));
+
+      // use chai's built-in string comparison, log the updated snapshot on error
+      try {
+        new chai.Assertion(actualHTML).to.equal(expectedHTML);
+      } catch (error) {
+        console.log('Snapshot changed, want to accept the change:');
+        console.log('');
+        console.log(actualHTML);
+        throw error;
+      }
+
+    } else if (utils.flag(this, 'shadowDom')) {
+      const expectedHTML = getDiffableSemanticHTML(value);
+      const actualHTML = getDiffableSemanticHTML(getCleanedShadowDom(this._obj));
+
+      // use chai's built-in string comparison, log the updated snapshot on error
+      try {
+        new chai.Assertion(actualHTML).to.equal(expectedHTML);
+      } catch (error) {
+        console.log('Snapshot changed, want to accept the change:');
+        console.log('');
+        console.log(actualHTML);
+        throw error;
+      }
+
     } else {
       _super.apply(this, [value, ...args]);
     }

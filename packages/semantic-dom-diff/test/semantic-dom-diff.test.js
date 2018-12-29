@@ -1,93 +1,81 @@
 import { expect } from '@bundled-es-modules/chai';
-import { getSemanticDomDiff } from '../index.js';
+import { getDiffableSemanticHTML } from '../index.js';
 import largeTemplate from './large-template';
 
 describe('getSemanticDomDiff()', () => {
   describe('diffs', () => {
     describe('element', () => {
       it('changed element', () => {
-        const diff = getSemanticDomDiff('<div></div>', '<span></span>');
+        const htmlA = getDiffableSemanticHTML('<div></div>');
+        const htmlB = getDiffableSemanticHTML('<span></span>');
 
-        expect(diff.message).to.equal('tag <div> was changed to tag <span>');
-        expect(diff.path).to.equal('div');
+        expect(htmlA).to.not.equal(htmlB);
       });
 
       it('added element', () => {
-        const diff = getSemanticDomDiff('<div></div>', '<div></div><div></div>');
+        const htmlA = getDiffableSemanticHTML('<div></div>');
+        const htmlB = getDiffableSemanticHTML('<div></div><div></div>');
 
-        expect(diff.message).to.equal('tag <div> has been added');
-        expect(diff.path).to.equal('');
+        expect(htmlA).to.not.equal(htmlB);
       });
 
       it('removed element', () => {
-        const diff = getSemanticDomDiff('<div></div><div></div>', '<div></div>');
+        const htmlA = getDiffableSemanticHTML('<div></div><div></div>');
+        const htmlB = getDiffableSemanticHTML('<div></div>');
 
-        expect(diff.message).to.equal('tag <div> has been removed');
-        expect(diff.path).to.equal('');
+        expect(htmlA).to.not.equal(htmlB);
       });
     });
 
     describe('attributes', () => {
       it('changed attribute', () => {
-        const diff = getSemanticDomDiff('<div foo="bar"></div>', '<div foo="baz"></div>');
+        const htmlA = getDiffableSemanticHTML('<div foo="bar"></div>');
+        const htmlB = getDiffableSemanticHTML('<div foo="baz"></div>');
 
-        expect(diff.message).to.equal('attribute [foo="bar"] was changed to attribute [foo="baz"]');
-        expect(diff.path).to.equal('div');
+        expect(htmlA).to.not.equal(htmlB);
       });
 
       it('added attribute', () => {
-        const diff = getSemanticDomDiff('<div></div>', '<div foo="bar"></div>');
+        const htmlA = getDiffableSemanticHTML('<div></div>');
+        const htmlB = getDiffableSemanticHTML('<div foo="bar"></div>');
 
-        expect(diff.message).to.equal('attribute [foo="bar"] has been added');
-        expect(diff.path).to.equal('div');
+        expect(htmlA).to.not.equal(htmlB);
       });
 
       it('removed attribute', () => {
-        const diff = getSemanticDomDiff('<div foo="bar"></div>', '<div></div>');
+        const htmlA = getDiffableSemanticHTML('<div foo="bar"></div>');
+        const htmlB = getDiffableSemanticHTML('<div></div>');
 
-        expect(diff.message).to.equal('attribute [foo="bar"] has been removed');
-        expect(diff.path).to.equal('div');
+        expect(htmlA).to.not.equal(htmlB);
       });
     });
 
     describe('text', () => {
       it('changed text', () => {
-        const diff = getSemanticDomDiff('<div>foo</div>', '<div>bar</div>');
+        const htmlA = getDiffableSemanticHTML('<div>foo</div>');
+        const htmlB = getDiffableSemanticHTML('<div>bar</div>');
 
-        expect(diff.message).to.equal('text "foo" was changed to text "bar"');
-        expect(diff.path).to.equal('div');
+        expect(htmlA).to.not.equal(htmlB);
       });
 
       it('removed text', () => {
-        const diff = getSemanticDomDiff('<div>foo</div>', '<div></div>');
+        const htmlA = getDiffableSemanticHTML('<div>foo</div>');
+        const htmlB = getDiffableSemanticHTML('<div></div>');
 
-        expect(diff.message).to.equal('text "foo" has been removed');
-        expect(diff.path).to.equal('div');
+        expect(htmlA).to.not.equal(htmlB);
       });
 
       it('added text', () => {
-        const diff = getSemanticDomDiff('<div></div>', '<div>foo</div>');
+        const htmlA = getDiffableSemanticHTML('<div></div>');
+        const htmlB = getDiffableSemanticHTML('<div>foo</div>');
 
-        expect(diff.message).to.equal('text "foo" has been added');
-        expect(diff.path).to.equal('div');
-      });
-    });
-
-    describe('multiple diffs', () => {
-      it('returns the first diff', () => {
-        const diff = getSemanticDomDiff(
-          '<div>foo</div><div foo="bar"></div>',
-          '<div>bar</div><span foo="baz"></span>',
-        );
-
-        expect(diff.message).to.equal('tag <div> was changed to tag <span>');
-        expect(diff.path).to.equal('div');
+        expect(htmlA).to.not.equal(htmlB);
       });
     });
 
     describe('deep changes', () => {
       it('element changes', () => {
-        const a = `
+        const htmlA = getDiffableSemanticHTML(`
           <div>
             <div id="foo">
               <div>
@@ -99,8 +87,9 @@ describe('getSemanticDomDiff()', () => {
             </div>
             <div></div>
           </div>
-        `;
-        const b = `
+        `);
+
+        const htmlB = getDiffableSemanticHTML(`
           <div>
             <div id="foo">
               <div>
@@ -112,15 +101,13 @@ describe('getSemanticDomDiff()', () => {
             </div>
             <div></div>
           </div>
-        `;
-        const diff = getSemanticDomDiff(a, b);
+        `);
 
-        expect(diff.message).to.equal('tag <div> was changed to tag <span>');
-        expect(diff.path).to.equal('div > div#foo > div > div.foo > div.bar.baz.foo');
+        expect(htmlA).to.not.equal(htmlB);
       });
 
       it('attribute changes', () => {
-        const a = `
+        const htmlA = getDiffableSemanticHTML(`
           <div>
             <div id="foo">
               <div>
@@ -132,8 +119,9 @@ describe('getSemanticDomDiff()', () => {
             </div>
             <div></div>
           </div>
-        `;
-        const b = `
+        `);
+
+        const htmlB = getDiffableSemanticHTML(`
           <div>
             <div id="foo">
               <div>
@@ -145,11 +133,9 @@ describe('getSemanticDomDiff()', () => {
             </div>
             <div></div>
           </div>
-        `;
-        const diff = getSemanticDomDiff(a, b);
+        `);
 
-        expect(diff.message).to.equal('attribute [foo="bar"] has been added');
-        expect(diff.path).to.equal('div > div#foo > div > div');
+        expect(htmlA).to.not.equal(htmlB);
       });
     });
   });
@@ -157,184 +143,143 @@ describe('getSemanticDomDiff()', () => {
   describe('equality', () => {
     describe('simple', () => {
       it('element', () => {
-        const diff = getSemanticDomDiff('<div></div>', '<div></div>');
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div></div>');
+        const htmlB = getDiffableSemanticHTML('<div></div>');
+        expect(htmlA).to.equal(htmlB);
       });
 
       it('attribute', () => {
-        const diff = getSemanticDomDiff('<div foo="bar"></div>', '<div foo="bar"></div>');
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div foo="bar"></div>');
+        const htmlB = getDiffableSemanticHTML('<div foo="bar"></div>');
+        expect(htmlA).to.equal(htmlB);
       });
 
       it('text', () => {
-        const diff = getSemanticDomDiff('<div>foo</div>', '<div>foo</div>');
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div>foo</div>');
+        const htmlB = getDiffableSemanticHTML('<div>foo</div>');
+        expect(htmlA).to.equal(htmlB);
       });
     });
 
     describe('complex', () => {
       it('large template', () => {
-        const diff = getSemanticDomDiff(largeTemplate, largeTemplate);
-
-        expect(diff).to.equal(null);
-      });
-
-      it('self closing tags', () => {
-        const diff = getSemanticDomDiff('<div><br><hr /></div>', '<div><br /><hr></div>');
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML(largeTemplate);
+        const htmlB = getDiffableSemanticHTML(largeTemplate);
+        expect(htmlA).to.equal(htmlB);
       });
     });
 
     describe('ordering', () => {
       it('attributes order', () => {
-        const diff = getSemanticDomDiff(
-          '<div a="1" b="2" c="3"></div>',
-          '<div c="3" a="1" b="2"></div>',
-        );
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div a="1" b="2" c="3"></div>');
+        const htmlB = getDiffableSemanticHTML('<div c="3" a="1" b="2"></div>');
+        expect(htmlA).to.equal(htmlB);
       });
 
       it('class order', () => {
-        const diff = getSemanticDomDiff(
-          '<div class="foo bar"></div>',
-          '<div class="bar foo"></div>',
-        );
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div class="foo bar"></div>');
+        const htmlB = getDiffableSemanticHTML('<div class="bar foo"></div>');
+        expect(htmlA).to.equal(htmlB);
       });
     });
 
     describe('whitespace', () => {
       it('trailing whitespace in attributes', () => {
-        const diff = getSemanticDomDiff('<div foo="bar" ></div>', '<div foo="bar"></div>');
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div foo="bar" ></div>');
+        const htmlB = getDiffableSemanticHTML('<div foo="bar"></div>');
+        expect(htmlA).to.equal(htmlB);
       });
 
       it('trailing whitespace in class', () => {
-        const diff = getSemanticDomDiff(
-          '<div class="foo bar "></div>',
-          '<div class="foo bar "></div>',
-        );
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div class="foo bar "></div>');
+        const htmlB = getDiffableSemanticHTML('<div class="foo bar "></div>');
+        expect(htmlA).to.equal(htmlB);
       });
 
       it('whitespace between classes', () => {
-        const diff = getSemanticDomDiff(
-          '<div class="foo  bar "></div>',
-          '<div class="foo bar"></div>',
-        );
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div class="foo  bar "></div>');
+        const htmlB = getDiffableSemanticHTML('<div class="foo bar"></div>');
+        expect(htmlA).to.equal(htmlB);
       });
 
       it('whitespace before and after template', () => {
-        const diff = getSemanticDomDiff(' <div></div> ', '<div></div>');
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML(' <div></div> ');
+        const htmlB = getDiffableSemanticHTML('<div></div>');
+        expect(htmlA).to.equal(htmlB);
       });
 
       it('whitespace in between nodes', () => {
-        const diff = getSemanticDomDiff(
-          '<div> </div>    foo  <div>     </div>',
-          '<div></div>foo<div></div>',
-        );
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div> </div>    foo  <div>     </div>');
+        const htmlB = getDiffableSemanticHTML('<div></div>foo<div></div>');
+        expect(htmlA).to.equal(htmlB);
       });
 
       it('whitespace around text nodes', () => {
-        const diff = getSemanticDomDiff('<div>foo</div>', '<div> foo </div>');
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div>foo</div>');
+        const htmlB = getDiffableSemanticHTML('<div> foo </div>');
+        expect(htmlA).to.equal(htmlB);
       });
     });
 
     describe('tabs', () => {
       it('tabs before and after template', () => {
-        const diff = getSemanticDomDiff('\t\t<div></div>\t', '<div></div>');
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('\t\t<div></div>\t');
+        const htmlB = getDiffableSemanticHTML('<div></div>');
+        expect(htmlA).to.equal(htmlB);
       });
 
       it('tabs in between nodes', () => {
-        const diff = getSemanticDomDiff(
-          '<div>\t<div></div>\t \t \t</div>',
-          '<div><div></div></div>',
-        );
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div>\t<div></div>\t \t \t</div>');
+        const htmlB = getDiffableSemanticHTML('<div><div></div></div>');
+        expect(htmlA).to.equal(htmlB);
       });
 
       it('tabs around text nodes', () => {
-        const diff = getSemanticDomDiff('<div>foo</div>', '<div>\tfoo\t</div>');
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div>foo</div>');
+        const htmlB = getDiffableSemanticHTML('<div>\tfoo\t</div>');
+        expect(htmlA).to.equal(htmlB);
       });
     });
 
     describe('newlines', () => {
       it('newlines before and after template', () => {
-        const diff = getSemanticDomDiff('\n\n<div></div>\n', '<div></div>');
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('\n\n<div></div>\n');
+        const htmlB = getDiffableSemanticHTML('<div></div>');
+        expect(htmlA).to.equal(htmlB);
       });
 
       it('newlines in between nodes', () => {
-        const diff = getSemanticDomDiff(
-          '<div>\n<div></div>\n \n \n</div>',
-          '<div><div></div></div>',
-        );
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div>\n<div></div>\n \n \n</div>');
+        const htmlB = getDiffableSemanticHTML('<div><div></div></div>');
+        expect(htmlA).to.equal(htmlB);
       });
 
       it('newlines around text nodes', () => {
-        const diff = getSemanticDomDiff('<div>foo</div>', '<div>\n\n\nfoo\n</div>');
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div>foo</div>');
+        const htmlB = getDiffableSemanticHTML('<div>\n\n\nfoo\n</div>');
+        expect(htmlA).to.equal(htmlB);
       });
     });
 
     describe('filtered nodes', () => {
       it('comments', () => {
-        const diff = getSemanticDomDiff('<div>foo<!-- comment --></div>', '<div>foo</div>');
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div>foo<!-- comment --></div>');
+        const htmlB = getDiffableSemanticHTML('<div>foo</div>');
+        expect(htmlA).to.equal(htmlB);
       });
 
       it('styles', () => {
-        const diff = getSemanticDomDiff(
+        const htmlA = getDiffableSemanticHTML(
           '<div>foo<style> .foo { color: blue; } </style></div>',
-          '<div>foo</div>',
         );
-
-        expect(diff).to.equal(null);
+        const htmlB = getDiffableSemanticHTML('<div>foo</div>');
+        expect(htmlA).to.equal(htmlB);
       });
 
       it('script', () => {
-        const diff = getSemanticDomDiff(
-          '<div>foo<script>console.log("foo");</script></div>',
-          '<div>foo</div>',
-        );
-
-        expect(diff).to.equal(null);
-      });
-
-      it('ignored tags', () => {
-        const diff = getSemanticDomDiff(
-          '<div><span>foo</span></div>',
-          '<div><span>bar</span></div>',
-          { ignoredTags: ['span'] },
-        );
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML('<div>foo<script>console.log("foo");</script></div>');
+        const htmlB = getDiffableSemanticHTML('<div>foo</div>');
+        expect(htmlA).to.equal(htmlB);
       });
     });
 
@@ -354,35 +299,10 @@ bar
 </div>
     <div></div>
       `;
-        const diff = getSemanticDomDiff(a, b);
-
-        expect(diff).to.equal(null);
+        const htmlA = getDiffableSemanticHTML(a);
+        const htmlB = getDiffableSemanticHTML(b);
+        expect(htmlA).to.equal(htmlB);
       });
-    });
-  });
-
-  describe('values', () => {
-    it('handles strings', () => {
-      const diff = getSemanticDomDiff('<div></div>', '<span></span>');
-
-      expect(diff.message).to.equal('tag <div> was changed to tag <span>');
-    });
-  });
-
-  describe('diff tree', () => {
-    it('returns the left and right side normalized trees', () => {
-      const diff = getSemanticDomDiff(
-        `
-        <div id="foo">  <div>  <div class="foo   bar  ">    <div>
-        </div>   </div>
-      `,
-        '<span></span>',
-      );
-
-      expect(diff.normalizedLeftHTML).to.equal(
-        '<div id="foo"><div><div class="bar foo"><div></div></div></div></div>',
-      );
-      expect(diff.normalizedRightHTML).to.equal('<span></span>');
     });
   });
 });
