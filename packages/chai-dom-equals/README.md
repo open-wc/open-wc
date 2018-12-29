@@ -30,8 +30,7 @@ chai.use(chaiDomEquals);
 ```js
 it('has the following dom', async () => {
   const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
-  expect(el).dom.to.equal('<div><!-- comment --><h1>Hey  </h1>  </div>');
-  expect(el).dom.to.semantically.equal('<div><h1>Hey</h1></div>');
+  expect(el).dom.to.equal('<div><h1>Hey</h1></div>');
 });
 ```
 
@@ -49,7 +48,35 @@ it('has the following shadow dom', async () => {
     }
   });
   const el = await fixture(`<${tag}></${tag}>`);
-  expect(el).shadowDom.to.equal('<p>  shadow content</p> <!-- comment --> <slot></slot>');
-  expect(el).shadowDom.to.semantically.equal('<p>shadow content</p><slot>');
+  expect(el).shadowDom.to.equal('<p>shadow content</p><slot>');
 });
+```
+
+## Literal matching
+By default dom is diffed 'semantically'. Differences in whitespace, newlines, attributes/class order are ignored and style, script and commend nodes are removed.
+
+If you want to match literally instead you can use some of the provided utilities to handle diffing on browsers with the shadow dom polyfill:
+
+```javascript
+import { getOuterHtml, getCleanedShadowDom } from '@open-wc/chai-dom-equals';
+
+it('literally equals', () => {
+  const tag = defineCE(class extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' });
+    }
+
+    connectedCallback() {
+      this.shadowRoot.innerHTML = '<p>  shadow content</p> <!-- comment --> <slot></slot>';
+    }
+  });
+  const el = await fixture(`<${tag}></${tag}>`);
+  const outerHTML = getOuterHtml(el);
+  const innerHTML = getCleanedShadowDom(el);
+
+  expect(outerHTML).to.equal(`<${tag}></${tag}>`);
+  expect(innerHTML).to.equal('<p>  shadow content</p> <!-- comment --> <slot></slot>');
+});
+
 ```

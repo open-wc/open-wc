@@ -152,19 +152,19 @@ describe('getCleanedShadowDom', () => {
 });
 
 describe('dom', () => {
-  it('can strictly compare dom nodes', async () => {
+  it('can compare dom nodes', async () => {
     const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
-    expect(el).dom.to.equal('<div><!-- comment --><h1>Hey  </h1>  </div>');
+    expect(el).dom.to.equal('<div><h1>Hey</h1></div>');
   });
 
-  it('can semmantically compare dom nodes', async () => {
+  it('handles .semantically as backwards compatibility', async () => {
     const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
     expect(el).dom.to.semantically.equal('<div><h1>Hey</h1></div>');
   });
 });
 
 describe('shadowDom', () => {
-  it('can strict compare shadow dom nodes', async () => {
+  it('can compare shadow dom nodes', async () => {
     const tag = defineCE(
       class extends HTMLElement {
         constructor() {
@@ -178,12 +178,11 @@ describe('shadowDom', () => {
       },
     );
     const el = await fixture(`<${tag}><span>  light content  </span></${tag}>`);
-    expect(el).dom.to.semantically.equal(`<${tag}><span>light content</span></${tag}>`);
-    expect(el).shadowDom.to.equal('<p>  shadow content</p> <!-- comment --> <slot></slot>');
-    expect(el).shadowDom.to.semantically.equal('<p>shadow content</p><slot>');
+    expect(el).dom.to.equal(`<${tag}><span>light content</span></${tag}>`);
+    expect(el).shadowDom.to.equal('<p>shadow content</p><slot>');
   });
 
-  it('can semmantically compare shadow dom nodes', async () => {
+  it('supports .semantically as backwards compatibility', async () => {
     const tag = defineCE(
       class extends HTMLElement {
         constructor() {
