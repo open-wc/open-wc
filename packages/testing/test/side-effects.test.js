@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 
-import { cachedWrappers } from '@open-wc/testing-helpers/fixture.js';
+import { cachedWrappers } from '@open-wc/testing-helpers/fixtureWrapper.js';
 import { fixture, expect } from '../index.js';
 
 describe('BDD', () => {
@@ -17,6 +17,6 @@ describe('BDD', () => {
 
   it('uses chai dom equals plugin', async () => {
     const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
-    expect(el).dom.to.semantically.equal('<div><h1>Hey</h1></div>');
+    expect(el).dom.to.equal('<div><h1>Hey</h1></div>');
   });
 });

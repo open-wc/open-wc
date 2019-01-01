@@ -11,7 +11,7 @@ let defineCECounter = 0;
  * const el = fixture(`<${tag}></${tag}>`);
  * // test el
  *
- * @param {function()} klass
+ * @param {function} klass
  * @returns {string}
  */
 export function defineCE(klass) {

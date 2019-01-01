@@ -9,4 +9,5 @@ export {
   nextFrame,
 } from './helpers.js';
 export { litFixture, litFixtureSync } from './litFixture.js';
+export { stringFixture, stringFixtureSync } from './stringFixture.js';
 export { fixture, fixtureSync } from './fixture.js';

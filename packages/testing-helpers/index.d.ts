@@ -1,12 +1,13 @@
-export { html, unsafeStatic } from './lit-html';
+export { html, unsafeStatic } from './lit-html.js';
 export {
-  aTimeout,
-  defineCE,
-  isIE,
-  nextFrame,
-  oneEvent,
   triggerBlurFor,
   triggerFocusFor,
-} from './helpers';
-export { litFixture, litFixtureSync } from './litFixture';
-export { fixture, fixtureSync } from './fixture';
+  oneEvent,
+  isIE,
+  defineCE,
+  aTimeout,
+  nextFrame,
+} from './helpers.js';
+export { litFixture, litFixtureSync } from './litFixture.js';
+export { stringFixture, stringFixtureSync } from './stringFixture.js';
+export { fixture, fixtureSync } from './fixture.js';

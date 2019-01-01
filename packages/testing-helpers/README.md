@@ -26,10 +26,10 @@ it('can instantiate an element', async () => {
 
 ## Test a custom element with properties
 ```js
-import { html, litFixture } from '@open-wc/testing-helpers';
+import { html, fixture } from '@open-wc/testing-helpers';
 
 it('can instantiate an element with properties', async () => {
-  const el = await litFixture(html`<my-el .foo=${'bar'}></my-el>`);
+  const el = await fixture(html`<my-el .foo=${'bar'}></my-el>`);
   expect(el.foo).to.equal('bar');
 }
 ```
@@ -57,7 +57,7 @@ This is using a "workaround" which is not performant for rerenders.
 As this is usually not a problem for tests it's ok here but do NOT use it in production code.
 
 ```js
-import { html, litFixture, defineCE, unsafeStatic } from '@open-wc/testing-helpers';
+import { html, fixture, defineCE, unsafeStatic } from '@open-wc/testing-helpers';
 
 const tagName = defineCE(class extends MyMixin(HTMLElement) {
   constructor() {
@@ -66,7 +66,7 @@ const tagName = defineCE(class extends MyMixin(HTMLElement) {
   }
 });
 const tag = unsafeStatic(tagName);
-const el = litFixture(html`<${tag} .bar=${'baz'}></${tag}>`);
+const el = fixture(html`<${tag} .bar=${'baz'}></${tag}>`);
 expect(el.bar).to.equal('baz');
 ```
 
@@ -74,9 +74,9 @@ expect(el.bar).to.equal('baz');
 If you need to wait for multiple elements to update you can use `nextFrame`.  
 
 ```js
-import { nextFrame, aTimeout, html, litFixture } from '@open-wc/testing-helpers';
+import { nextFrame, aTimeout, html, fixture } from '@open-wc/testing-helpers';
 
-const el = await litFixture(html`<my-el .foo=${'bar'}></my-el>`);
+const el = await fixture(html`<my-el .foo=${'bar'}></my-el>`);
 expect(el.foo).to.equal('bar');
 el.foo = 'baz';
 await nextFrame();

@@ -1,4 +1,4 @@
-import { cachedWrappers } from '@open-wc/testing-helpers/fixture.js';
+import { cachedWrappers } from '@open-wc/testing-helpers/fixtureWrapper.js';
 
 if (afterEach) {
   afterEach(() => {
