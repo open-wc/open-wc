@@ -1,4 +1,4 @@
-import { FixtureWrapper } from './fixture';
+import { TemplateResult } from 'lit-html';
 
-export function litFixtureSync(template: TemplateResult): FixtureWrapper;
-export async function litFixture(template: TemplateResult): Promise<FixtureWrapper>;
+export function litFixtureSync(template: TemplateResult): Element;
+export function litFixture(template: TemplateResult): Promise<Element>;

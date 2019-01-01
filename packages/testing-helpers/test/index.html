@@ -13,7 +13,12 @@
   </script>
 
   <script type="module">
-    import './index.js';
+    import './bdd-setup.js';
+
+    import './fixture.test.js';
+    import './helpers.test.js';
+    import './lit-html.test.js';
+    import './stringLitFixture.test.js';
 
     mocha.checkLeaks();
     mocha.run();

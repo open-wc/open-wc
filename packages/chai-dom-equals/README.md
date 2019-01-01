@@ -53,7 +53,7 @@ it('has the following shadow dom', async () => {
 ```
 
 ## Literal matching
-By default dom is diffed 'semantically'. Differences in whitespace, newlines, attributes/class order are ignored and style, script and commend nodes are removed.
+By default dom is diffed 'semantically'. Differences in whitespace, newlines, attributes/class order are ignored and style, script and comment nodes are removed.
 
 If you want to match literally instead you can use some of the provided utilities to handle diffing on browsers with the shadow dom polyfill:
 

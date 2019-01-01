@@ -68,9 +68,11 @@ export const chaiDomEquals = (chai, utils) => {
       try {
         new chai.Assertion(actualHTML).to.equal(expectedHTML);
       } catch (error) {
+        /* eslint-disable no-console */
         console.log('Snapshot changed, want to accept the change:');
         console.log('');
         console.log(actualHTML);
+        /* eslint-enable no-console */
         throw error;
       }
 
@@ -82,9 +84,11 @@ export const chaiDomEquals = (chai, utils) => {
       try {
         new chai.Assertion(actualHTML).to.equal(expectedHTML);
       } catch (error) {
+        /* eslint-disable no-console */
         console.log('Snapshot changed, want to accept the change:');
         console.log('');
         console.log(actualHTML);
+        /* eslint-enable no-console */
         throw error;
       }
 

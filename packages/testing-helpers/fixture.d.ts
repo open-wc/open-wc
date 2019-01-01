@@ -1,5 +1,4 @@
-type PropsFunction = (element: HTMLElement) => Object;
-type FixtureProps = Object | PropsFunction;
-export class FixtureWrapper extends HTMLElement { };
-export function fixtureSync(template: string, props?: FixtureProps): FixtureWrapper;
-export async function fixture(template: string, setup?: FixtureProps): Promise<FixtureWrapper>;
+import { TemplateResult } from 'lit-html';
+
+export function fixtureSync(template: string | TemplateResult): Element;
+export function fixture(template: string | TemplateResult): Promise<Element>;

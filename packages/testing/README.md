@@ -48,7 +48,7 @@ import { expect } '@open-wc/testing';
 
 This will have the following side effect:
   - use the plugin [chai-dom-equals](https://www.npmjs.com/package/@open-wc/chai-dom-equals)
-  - enables cleanup after each test for `fixture` and `litFixture`
+  - enables cleanup after each test for all `fixture`s
 
 ## Automating Tests
 Normally, you'll want some way of automatically running all of your tests, for that we recommend karma via `@open-wc/testing-karma` and browserstack via `@open-wc/testing-karma-bs`.  
@@ -104,7 +104,6 @@ A typical webcomponent test will look something like this:
 import {
   html,
   fixture,
-  litFixture,
   expect,
 } from '@open-wc/testing';
 
@@ -118,14 +117,14 @@ describe('True Checking', () => {
 
   it('false values will have a light-dom of <p>NOPE</p>', async () => {
     const el = await fixture('<get-result></get-result>');
-    expect(el).dom.to.semantically.equal('<get-result><p>NOPE</p></get-result>');
+    expect(el).dom.to.equal('<get-result><p>NOPE</p></get-result>');
   });
 
   it('true values will have a light-dom of <p>YEAH</p>', async () => {
     const foo = 1;
-    const el = await litFixture(html`<get-result .success=${foo === 1}></get-result>`);
+    const el = await fixture(html`<get-result .success=${foo === 1}></get-result>`);
     expect(el.success).to.be.true;
-    expect(el).dom.to.semantically.equal('<get-result><p>YEAH</p></get-result>');
+    expect(el).dom.to.equal('<get-result><p>YEAH</p></get-result>');
   });
 });
 ```

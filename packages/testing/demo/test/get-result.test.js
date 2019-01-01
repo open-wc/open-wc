@@ -11,7 +11,7 @@ describe('True Checking', () => {
 
   it('false values will have a light-dom of <p>NOPE</p>', async () => {
     const el = await fixture('<get-result></get-result>');
-    expect(el).dom.to.semantically.equal('<get-result><p>NOPE</p></get-result>');
+    expect(el).dom.to.equal('<get-result><p>NOPE</p></get-result>');
   });
 
   it('true values will have a light-dom of <p>YEAH</p>', async () => {
@@ -22,6 +22,6 @@ describe('True Checking', () => {
       `,
     );
     expect(el.success).to.be.true;
-    expect(el).dom.to.semantically.equal('<get-result><p>YEAH</p></get-result>');
+    expect(el).dom.to.equal('<get-result><p>YEAH</p></get-result>');
   });
 });
