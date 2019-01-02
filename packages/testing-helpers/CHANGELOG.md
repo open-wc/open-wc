@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.6.4...@open-wc/testing-helpers@0.7.0) (2019-01-02)
+
+
+### Features
+
+* **testing-helpers:** fixture can handle strings and TemplateResults ([0649ea0](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/0649ea0))
+
+
+
+
+
 ## [0.6.4](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.6.3...@open-wc/testing-helpers@0.6.4) (2018-12-23)
 
 

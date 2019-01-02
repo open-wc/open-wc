@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/compare/@open-wc/chai-dom-equals@0.8.0...@open-wc/chai-dom-equals@0.9.0) (2019-01-02)
+
+
+### Features
+
+* **testing-helpers:** fixture can handle strings and TemplateResults ([0649ea0](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/commit/0649ea0))
+
+
+
+
+
 # [0.8.0](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/compare/@open-wc/chai-dom-equals@0.7.4...@open-wc/chai-dom-equals@0.8.0) (2018-12-29)
 
 
