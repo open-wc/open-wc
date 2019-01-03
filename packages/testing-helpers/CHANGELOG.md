@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.0...@open-wc/testing-helpers@0.7.1) (2019-01-03)
+
+
+### Bug Fixes
+
+* **testing-helpers:** add await to fixture example in docs ([393f3ed](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/393f3ed))
+
+
+
+
+
 # [0.7.0](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.6.4...@open-wc/testing-helpers@0.7.0) (2019-01-02)
 
 
