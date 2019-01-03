@@ -47,7 +47,7 @@ const tag = defineCE(class extends MyMixin(HTMLElement) {
     this.foo = true;
   }
 });
-const el = fixture(`<${tag}></${tag}>`);
+const el = await fixture(`<${tag}></${tag}>`);
 expect(el.foo).to.be.true;
 ```
 
@@ -66,7 +66,7 @@ const tagName = defineCE(class extends MyMixin(HTMLElement) {
   }
 });
 const tag = unsafeStatic(tagName);
-const el = fixture(html`<${tag} .bar=${'baz'}></${tag}>`);
+const el = await fixture(html`<${tag} .bar=${'baz'}></${tag}>`);
 expect(el.bar).to.equal('baz');
 ```
 
