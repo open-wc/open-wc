@@ -36,4 +36,6 @@ module.exports = {
     lastUpdated: 'Last Updated',
   },
   dest: '_site',
+  plugins: ['@vuepress/google-analytics'],
+  ga: 'UA-131782693-1',
 };
