@@ -61,7 +61,7 @@ For a minimal setup, extend the base config and specify where your tests are:
           config.grep ? config.grep : 'test/**/*.test.js',
         ],
 
-        // you custom config
+        // your custom config
       }),
     );
     return config;
