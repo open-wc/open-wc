@@ -61,7 +61,7 @@ For a minimal setup, extend the base config and specify where your tests are:
           config.grep ? config.grep : 'test/**/*.test.js',
         ],
 
-        // you custom config
+        // your custom config
       }),
     );
     return config;
@@ -84,12 +84,12 @@ By default karma runs all your test files. To test only a single file or folder,
 Grep supports file globs.
 
 ### Watch mode
-Use `npm run test -- --auto-watch=true --single-run=false` to keep karma running. Any code changes will trigger a re-run of your tests.
+Use `npm run test --auto-watch=true --single-run=false` to keep karma running. Any code changes will trigger a re-run of your tests.
 
 ### Debugging in the browser
 While testing, it can be useful to debug your tests in a real browser so that you can use the browser's dev tools.
 
-Use `npm run test -- --single-run=false` to keep karma running. Then open the URL printed by karma when it boots up. By default this is `http://localhost:9876/`. Click the debug button in the top right corner, or go directly to `http://localhost:9876/debug.html`. You can bookmark this page for easy access.
+Use `npm run test --single-run=false` to keep karma running. Then open the URL printed by karma when it boots up. By default this is `http://localhost:9876/`. Click the debug button in the top right corner, or go directly to `http://localhost:9876/debug.html`. You can bookmark this page for easy access.
 
 Open the dev tools to see your test results in the console. For debugging, set breakpoints or add `debugger` statements to your code.
 

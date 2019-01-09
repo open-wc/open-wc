@@ -43,7 +43,7 @@ yarn add @open-wc/testing --dev
 
 Add to your test:
 ```js
-import { expect } '@open-wc/testing';
+import { expect } from '@open-wc/testing';
 ```
 
 This will have the following side effect:
