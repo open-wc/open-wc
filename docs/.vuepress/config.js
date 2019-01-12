@@ -17,6 +17,7 @@ module.exports = {
       '/recommendations/testing-karma',
       '/recommendations/testing-karma-bs',
       '/recommendations/testing-wallaby',
+      '/development/lit-html',
       '/recommendations/demos-storybook',
       '/recommendations/publishing',
       '/recommendations/automate',
