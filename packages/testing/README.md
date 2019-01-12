@@ -71,7 +71,7 @@ Already part of `yo open-wc:testing`
   },
   ```
 
-For more details pls see [testing-karma](https://open-wc.org/recommendations/testing-karma.html)
+For more details, pls see [testing-karma](https://open-wc.org/testing/testing-karma.html)
 
 ## Automating Tests via Browserstack
 To be production ready you should run tests in all the browsers you wish to support.
@@ -93,7 +93,7 @@ Already part of `yo open-wc:testing`
   },
   ```
 
-For more details pls see [testing-karma-bs](https://open-wc.org/recommendations/testing-karma-bs.html)
+For more details, pls see [testing-karma-bs](https://open-wc.org/testing/testing-karma-bs.html)
 
 ## Example Tests
 
