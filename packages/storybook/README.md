@@ -1,4 +1,4 @@
-# Demos via storybook
+# Demoing via storybook
 
 > Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
 
@@ -45,4 +45,4 @@ npm run storybook:start
 
 ## Example
 The [Set-Game Example](https://github.com/open-wc/example-vanilla-set-game/) has the default publishing via storybook on netlify.
-You can see the finished page at: https://example-set-game-open-wc.netlify.com/.
+You can see the finished page at: [https://example-set-game-open-wc.netlify.com/](https://example-set-game-open-wc.netlify.com/).

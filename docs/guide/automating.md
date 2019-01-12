@@ -1,4 +1,4 @@
-# Automate
+# Automating
 
 Having a ci running test for you is really helpful as it gives valuable insights especially for merge requests.
 

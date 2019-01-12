@@ -1,6 +1,6 @@
-# General JavaScript
+# Rerender not triggered
 
-## Modifying an Array or Object's Members Does not Trigger Rerender
+# Modifying an Array or Objects Members Does not Trigger Rerender
 
 Imagine the following scenario: you've created a custom element which observes an `items` property:
 ```js
