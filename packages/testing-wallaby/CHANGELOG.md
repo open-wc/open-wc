@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5](https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby/compare/@open-wc/testing-wallaby@0.1.4...@open-wc/testing-wallaby@0.1.5) (2019-01-16)
+
+
+### Bug Fixes
+
+* improve documentation ([4f5472f](https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby/commit/4f5472f))
+
+
+
+
+
 ## [0.1.4](https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby/compare/@open-wc/testing-wallaby@0.1.3...@open-wc/testing-wallaby@0.1.4) (2018-11-30)
 
 
