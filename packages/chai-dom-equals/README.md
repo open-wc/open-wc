@@ -8,9 +8,7 @@ Open Web Components provides a set of defaults, recommendations and tools to hel
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 
-Our 
-Comparing dom literally is usually not what you want when testing components.
-Additionally, when using ShadyDOM and/or ShadyCSS there will be additional classes you are not interested in.
+Usually, you don't want to literally compare dom when testing your Web Components. Additionally, when using ShadyDOM and/or ShadyCSS there will be additional classes you are not interested in. This package provides a solution for that problem.
 
 ::: tip Info
 This is part of the default [open-wc](https://open-wc.org/) recommendation
