@@ -2,7 +2,7 @@
 
 > Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
 
-We want to provide a good set of defaults on how to facilitate your web component.
+The goal of Open Web Components is to empower everyone with a powerful and battle-tested setup for sharing open source web components. We try to achieve this by giving a set of recommendations and defaults on how to facilitate your Web Component. Our recommendations include: developing, linting, testing, tooling, demoing, publishing and automating.
 
 [![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
@@ -26,11 +26,11 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 ```bash
 npx -p yo -p generator-open-wc -c 'yo open-wc:testing'
 
-# or if you already have a webcomponent and/or test files
+# or if you already have a Web Component project set up and/or test files
 npx -p yo -p generator-open-wc -c 'yo open-wc:testing-upgrade'
 ```
 
-This runs the setup for multiple packages (testing-bare, testing-karma, testing-karma-bs).
+This will run the setup for multiple packages (testing-bare, testing-karma, testing-karma-bs).
 
 ::: tip Note
 If you want to use your own test runner you can use `npx -p yo -p generator-open-wc -c 'yo open-wc:testing-bare'`
@@ -46,22 +46,22 @@ Add to your test:
 import { expect } from '@open-wc/testing';
 ```
 
-This will have the following side effect:
-  - use the plugin [chai-dom-equals](https://www.npmjs.com/package/@open-wc/chai-dom-equals)
-  - enables cleanup after each test for all `fixture`s
+This will have the following side effects:
+  - Use the plugin [chai-dom-equals](https://www.npmjs.com/package/@open-wc/chai-dom-equals)
+  - Enables cleanup after each test for all `fixture`s
 
 ## Automating Tests
-Normally, you'll want some way of automatically running all of your tests, for that we recommend karma via `@open-wc/testing-karma` and browserstack via `@open-wc/testing-karma-bs`.  
-If you use a different runner or a different browser grid then these steps can be skipped.
+Ideally, you'll want some way of automatically running all of your tests. To do that, we recommend karma via `@open-wc/testing-karma` and browserstack via `@open-wc/testing-karma-bs`.  
+If you use a different test runner or a different browser grid you may skip these steps.
 
 ::: tip Note
 Already part of `yo open-wc:testing`
 ::::
 
 ### Manual Install
-- install via `yarn add @open-wc/testing-karma --dev`
-- copy [karma.conf.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/testing-karma/templates/static/karma.conf.js) to `karma.conf.js`
-- add to package.json
+- Install via `yarn add @open-wc/testing-karma --dev`
+- Copy [karma.conf.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/testing-karma/templates/static/karma.conf.js) to `karma.conf.js`
+- Add these scripts to package.json
   ```js
   "scripts": {
     "test": "karma start",
@@ -71,12 +71,13 @@ Already part of `yo open-wc:testing`
   },
   ```
 
-For more details, pls see [testing-karma](https://open-wc.org/testing/testing-karma.html)
+For more details, please see [testing-karma](https://open-wc.org/testing/testing-karma.html).
 
 ## Automating Tests via Browserstack
-To be production ready you should run tests in all the browsers you wish to support.
-Usually you do not have access to all of them locally so a service like [browserstack](https://www.browserstack.com/) can help make sure everything is covered.
-This step connects the automatic karma runner with browserstack.
+To make sure your project is production ready, we recommend running tests in all the browsers you want to support.
+If you do not have access to all browsers, we recommend using a service like [Browserstack](https://www.browserstack.com/) to make sure your project works as intended.
+
+The following step connects the automatic karma runner with browserstack.
 
 ::: tip Note
 Already part of `yo open-wc:testing`
@@ -84,20 +85,20 @@ Already part of `yo open-wc:testing`
 
 ### Manual Install
 
-- install via `yarn add @open-wc/testing-karma-bs --dev`
-- copy [karma.es5.bs.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/testing-karma-bs/templates/static/karma.es5.bs.config.js) to `karma.es5.bs.config.js`
-- add to package.json
+- Install via `yarn add @open-wc/testing-karma-bs --dev`
+- Copy [karma.es5.bs.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/testing-karma-bs/templates/static/karma.es5.bs.config.js) to `karma.es5.bs.config.js`
+- Add these scripts to your package.json
   ```js
   "scripts": {
     "test:es5:bs": "karma start karma.es5.bs.config.js"
   },
   ```
 
-For more details, pls see [testing-karma-bs](https://open-wc.org/testing/testing-karma-bs.html)
+For more details, please see [testing-karma-bs](https://open-wc.org/testing/testing-karma-bs.html).
 
 ## Example Tests
 
-A typical webcomponent test will look something like this:
+A typical Web Component test will look something like this:
 
 ```js
 /* eslint-disable no-unused-expressions */
@@ -129,7 +130,7 @@ describe('True Checking', () => {
 });
 ```
 
-If you run it automatically via `npm run test` it will result in something like this
+If you run your tests automatically with `npm run test`, the output should look like this:
 
 ```
 > karma start demo/karma.conf.js
@@ -165,8 +166,8 @@ Lines        : 100% ( 8/8 )
 ```
 
 ::: tip Note
-Make sure you have chrome (or chromium) installed.
-Additionally you may need to set your CHROME_BIN env variable `export CHROME_BIN=/usr/bin/chromium-browser` if you get an error.
+Make sure you have Chrome (or Chromium) installed.
+Additionally you may need to set your CHROME_BIN env variable `export CHROME_BIN=/usr/bin/chromium-browser`.
 ::::
 
-For some real tests look at our [Set-Game Example Test Files](https://github.com/open-wc/example-vanilla-set-game/tree/master/test).
+For some example tests, please take a look at our [Set-Game Example Test Files](https://github.com/open-wc/example-vanilla-set-game/tree/master/test).
