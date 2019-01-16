@@ -1,8 +1,8 @@
 # Rerender not triggered
 
-# Modifying an Array or Objects Members Does not Trigger Rerender
+# Modifying an array or objects members does not trigger rerender
 
-Imagine the following scenario: you've created a custom element which observes an `items` property:
+Imagine the following scenario: you've created a custom element that observes an `items` property:
 ```js
 class MyEl extends LitElement {
   render() {/*...*/}
@@ -67,10 +67,10 @@ myEl.objectProperty = {
 ```
 
 ### Summary
-Dracco summed it up nicely:
+Polymer slack user Dracco adds:
 
 > Actually it's not about JS, every objective language can have a collection structure, but modifying the collection does not modify the object.  
 > Comparing in JS means comparing references (it would be impossible to make a universal and fast content comparison), so pushing things to an array keeps the reference the same (as it is still the same instance of an Array class) -  just the contents change.  
 > Similarly in `class Person { constructor() { this.isBanned = false; } }`, if you create a new instance (`const p = new Person();`) and then modify the property (`p.isBanned = true;`), it is still the same instance it was before, just the property differs.  
 
--- <cite>dracco</cite>
+-- <cite>Dracco</cite>
