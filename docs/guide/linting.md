@@ -1,7 +1,6 @@
 # Linting
 
-In order to write consistent code it's good to have strict linting rules.
-Also these rules should be checked and applied in an automatic manner.
+Linting can help you write consistent code, and easily prevent mistakes. Open-wc recommends the following tools:
 
 We recommend
 - [ESLint](https://eslint.org/) to lint your es6 code
@@ -20,13 +19,13 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ### Manual
 - `yarn add --dev @open-wc/eslint-config @open-wc/prettier-config lint-staged husky @commitlint/cli @commitlint/config-conventional`
-- copy [.eslintignore](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-eslint/templates/static/.eslintignore) to `.eslintignore`
-- copy [.eslintrc.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-prettier/templates/static/.eslintrc.js) to `.eslintrc.js`
-- copy [.prettierignore](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-prettier/templates/static/.prettierignore) to `.prettierignore`
-- copy [prettier.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-prettier/templates/_prettier.config.js) to `prettier.config.js`
-- copy [husky.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint/templates/static/husky.config.js) to `husky.config.js`
-- copy [commitlint.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-commitlint/templates/static/commitlint.config.js) to `commitlint.config.js`
-- add these scripts to your package.json
+- Copy [.eslintignore](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-eslint/templates/static/.eslintignore) to `.eslintignore`
+- Copy [.eslintrc.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-prettier/templates/static/.eslintrc.js) to `.eslintrc.js`
+- Copy [.prettierignore](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-prettier/templates/static/.prettierignore) to `.prettierignore`
+- Copy [prettier.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-prettier/templates/_prettier.config.js) to `prettier.config.js`
+- Copy [husky.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint/templates/static/husky.config.js) to `husky.config.js`
+- Copy [commitlint.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-commitlint/templates/static/commitlint.config.js) to `commitlint.config.js`
+- Add these scripts to your package.json
   ```js
   "lint-staged": {
     "*.js": [
@@ -47,17 +46,17 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## What you get
 
-- linting and auto formatting using eslint & prettier
-- full automatic linting for changed files on commit
-- linting commit message
+- Linting and auto formatting using eslint & prettier
+- Full automatic linting for changed files on commit
+- Linting commit message
 
 ## Usage
 
 Run:
-- `npm run lint` to check if any file is not correctly formatted
+- `npm run lint` to check if any file is correctly formatted
 - `npm run format` to auto format your files
 
-Whenever you create a commit the update files will be auto formatted and the commit message will be linted.
+Whenever you create a commit the update files will be auto formatted and the commit message will be linted for you.
 
 ## Linting Error Examples
 
@@ -69,7 +68,7 @@ test/set-game.test.js
 ↑↑ these files are not prettier formatted ↑↑
 ```
 
-So just run `npm run format:prettier` to format those files automatically.
+Simply run `npm run format:prettier` to format those files automatically.
 
 ```bash
 $ npm run lint:eslint
@@ -80,5 +79,5 @@ $ npm run lint:eslint
 ✖ 1 problem (1 error, 0 warnings)
 ```
 
-If you are using eslint and prettier togeter most eslint errors will not be auto fixable.
+If you're using eslint and prettier together most eslint errors will not be auto fixable.
 This means usually you will need to pick up an editor and actually fix the problem in code.
