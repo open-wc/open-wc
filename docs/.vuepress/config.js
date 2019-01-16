@@ -3,6 +3,7 @@ module.exports = {
   title: 'open-wc',
   description: 'Open Web Components Recommendations',
   themeConfig: {
+    logo: '/logo.png',
     displayAllHeaders: false,
     sidebarDepth: 2,
     sidebar: {
