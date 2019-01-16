@@ -1,4 +1,4 @@
-# About Us
+# About us
 
 - We are programmers
 - We are web component enthusiasts

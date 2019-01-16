@@ -2,14 +2,14 @@
 
 > Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
 
-We want to provide a good set of defaults on how to facilitate your web component.
+Open Web Components provides a set of defaults, recommendations and tools to help facilitate your Web Component. Our recommendations include: developing, linting, testing, tooling, demoing, publishing and automating.
 
 [![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 
 ## Browser testing
-Web components are at the cutting edge of browser support. Test solutions which run a simulated browser are often not suitable due to missing features. We therefore recommend running tests in a real browser. With headless chrome and firefox this very convenient to set up and use, and will give more testing confidence as you can run the same tests across multiple browsers.
+Web Components are at the cutting edge of browser support. Testing solutions that run a simulated browser are often not suitable due to missing features. We therefore recommend running tests in a real browser. With headless Chrome and Firefox this is very convenient to set up and use, and will give more testing confidence as you can run the same tests across multiple browsers.
 
 Karma is a solid tool for running tests in the browser.
 
@@ -17,9 +17,9 @@ Karma is a solid tool for running tests in the browser.
 Karma can be used both for running unit tests, as well as for running more complex e2e/integration tests.
 
 ## Karma config presets
-Configuration should be customized per project, We provide several presets which can be used as a starting point. You can copy paste the presets into your own project for full control, or you can extend it and add your project specific requirements.
+Configuration should be customized per project, We provide several presets that can be used as a starting point. You can copy paste the presets into your own project for full control, or you can extend them and add your project specific requirements.
 
-The intention for the presets is to be able to write browser runnable code, with some exceptions such bare module imports.
+The intention of the presets is to be able to write browser runnable code, with some exceptions such as bare module imports.
 
 ### Features
 - Serves static files
@@ -47,7 +47,7 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 ### Manual setup
 For a minimal setup, extend the base config and specify where your tests are:
 
-- create a `karma.conf.js`
+- Create a `karma.conf.js`
   ```js
   /* eslint-disable import/no-extraneous-dependencies */
   const defaultSettings = require('@open-wc/testing-karma/default-settings.js');
@@ -67,7 +67,7 @@ For a minimal setup, extend the base config and specify where your tests are:
     return config;
   };
   ```
-- add to package.json
+- Add these scrips to your package.json
   ```js
   "scripts": {
     "test": "karma start",
@@ -76,10 +76,10 @@ For a minimal setup, extend the base config and specify where your tests are:
     "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
   },
   ```
-- run via `npm run test`
+- Run via `npm run test`
 
 ### Testing single files or folders
-By default karma runs all your test files. To test only a single file or folder, use the `--grep` flag. Make sure you are handling the grep option in your config, see the above example. Pass which files to test to the grep flag: `npm run test -- --grep test/foo/bar.test.js`.
+By default karma runs all your test files. To test a single file or folder, use the `--grep` flag. Make sure you are handling the grep option in your config, see the above example. Pass which files to test to the grep flag: `npm run test -- --grep test/foo/bar.test.js`.
 
 Grep supports file globs.
 

@@ -2,7 +2,7 @@
 
 > Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/) Recommendation [open-wc](https://github.com/open-wc/open-wc/)
 
-We want to provide a good set of defaults on how to facilitate your web component.
+Open Web Components provides a set of defaults, recommendations and tools to help facilitate your Web Component. Our recommendations include: developing, linting, testing, tooling, demoing, publishing and automating.
 
 [![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
@@ -10,7 +10,7 @@ We want to provide a good set of defaults on how to facilitate your web componen
 
 ## Usage
 
-This generator is based on [yeoman](http://yeoman.io/). You can use it in two ways.
+This generator is based on [yeoman](http://yeoman.io/). You can use it as demonstrated:
 
 ```bash
 npm i -g yeoman
@@ -46,4 +46,4 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:{generator-name}'
 - open-wc:testing-karma-bs
 - open-wc:tools-circleci
 
-For what they actually do please see the details for each system at [open-wc](https://open-wc.org/)
+For more information on these generators, please see [open-wc](https://open-wc.org/).
