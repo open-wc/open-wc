@@ -1,7 +1,7 @@
 // .vuepress/config.js
 module.exports = {
   title: 'open-wc',
-  description: 'Open Web Components Recommendations',
+  description: 'Open Web Component Recommendations',
   themeConfig: {
     displayAllHeaders: false,
     sidebarDepth: 2,
