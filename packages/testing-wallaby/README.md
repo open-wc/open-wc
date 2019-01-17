@@ -1,4 +1,4 @@
-# Testing in IDE via wallaby
+# Testing in IDE via Wallaby
 
 > Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
 
