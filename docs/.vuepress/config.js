@@ -6,18 +6,18 @@ const sidebar = [
   {
     title: 'IDE',
     collapsable: true,
-    children: [['/guide/ide', 'Getting started']],
+    children: [['/ide/', 'Getting started']],
   },
   {
     title: 'Developing',
     collapsable: true,
-    children: [['/guide/developing', 'Getting started']],
+    children: [['/developing/', 'Getting started']],
   },
   {
     title: 'Linting',
     collapsable: true,
     children: [
-      ['/guide/linting', 'Getting started'],
+      ['/linting/', 'Getting started'],
       '/linting/linting-eslint',
       '/linting/linting-prettier',
     ],
@@ -26,7 +26,7 @@ const sidebar = [
     title: 'Testing',
     collapsable: true,
     children: [
-      ['/guide/testing', 'Getting started'],
+      ['/testing/', 'Getting started'],
       '/testing/testing-helpers',
       '/testing/testing-chai-dom-equals',
       '/testing/testing-karma',
@@ -37,17 +37,17 @@ const sidebar = [
   {
     title: 'Demoing',
     collapsable: true,
-    children: [['/guide/demoing', 'Getting started']],
+    children: [['/demoing/', 'Getting started']],
   },
   {
     title: 'Publishing',
     collapsable: true,
-    children: [['/guide/publishing', 'Getting started']],
+    children: [['/publishing/', 'Getting started']],
   },
   {
     title: 'Automating',
     collapsable: true,
-    children: [['/guide/automating', 'Getting started']],
+    children: [['/automating/', 'Getting started']],
   },
 ];
 module.exports = {
