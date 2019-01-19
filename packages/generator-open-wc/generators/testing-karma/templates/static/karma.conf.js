@@ -10,7 +10,7 @@ module.exports = config => {
         config.grep ? config.grep : 'test/**/*.test.js',
       ],
 
-      // you custom config
+      // your custom config
     }),
   );
   return config;

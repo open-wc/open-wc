@@ -24,24 +24,66 @@ or
 npx -p yo -p generator-open-wc -c 'yo open-wc:{generator-name}'
 ```
 
-## Available generators
+## Scaffold generators
 
-### Generators
-- open-wc:vanilla
-- open-wc:lint
-- open-wc:testing
-- open-wc:testing-upgrade
-- open-wc:publish-storybook
+These generators help you kickstart a web component.
+They are expected to run in an empty folder and create everything to get you started immediately.
 
-### Optional generators
-- open-wc:testing-wallaby
+Usage:
+```bash
+mkdir foo-bar
+yo open-wc:scaffold-vanilla
+```
 
-### Sub generators
-- open-wc:vanilla-bare
-- open-wc:lint-eslint
-- open-wc:lint-prettier
-- open-wc:lint-commitlint
-- open-wc:testing-bare
-- open-wc:testing-karma
-- open-wc:testing-karma-bs
-- open-wc:tools-circleci
+### Specific scaffold generators:
+- `yo open-wc:scaffold-demoing`
+  If you already have a webcomponent but no `/stories/` folder
+- `yo open-wc:scaffold-testing`
+  If you already have a webcomponent but no `/test/` folder
+
+
+## Upgrate generators
+These generates help you to align your current setup with `open-wc`
+They are expected to run in an existing folder which already contains code for a webcomponent.
+
+Usage:
+```bash
+cd existing-webcomponent
+yo open-wc
+```
+
+### Specific upgrade generators
+These generators are executed within the default upgrade generator.
+However if you only want to opt into a specific category you can do so by executing them instead.
+
+- `yo open-wc:linting`
+  If you only want to setup linting (modifies package.json + adds linting config files)
+- `yo open-wc:testing`
+  If you only want to setup testing (modifies package.json + adds testing config files)
+- `yo open-wc:demoing`
+  If you only want to setup testing (modifies package.json + adds demo config files)
+- `yo open-wc:automating`
+  If you only want to setup automating (add automating config files)
+
+### Optional upgrade generators
+These generators are NOT executed within the default upgrade generator.
+
+- `yo open-wc:testing-wallaby`
+  This will setup [wallaby](https://wallabyjs.com/) to enable testing directly in your IDE - for details see [testing-wallby](https://open-wc.org/testing/testing-wallaby.html)
+
+### More specific upgrade generators
+These generators are executed within the default upgrade generator.
+However if you only want to opt into a specific tool you can do so by executing them instead.
+
+- `yo open-wc:linting-eslint`
+  If you only want to setup eslint (modifies package.json + adds eslint config files)
+- `yo open-wc:linting-prettier`
+  If you only want to setup prettier (modifies package.json + adds prettier config files)
+- `yo open-wc:linting-commitlint`
+  If you only want to setup commitlint (modifies package.json + adds commitlint config files)
+- `yo open-wc:testing-karma`
+  If you only want to setup karma (modifies package.json + adds karma config files)
+- `yo open-wc:testing-karma-bs`
+  If you only want to setup karma browserstack (modifies package.json + adds karma browserstack config files)
+- `yo open-wc:automating-circleci`
+  If you only want to setup circleci (adds circleci config files)
