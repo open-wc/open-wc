@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.4](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/compare/@open-wc/chai-dom-equals@0.9.3...@open-wc/chai-dom-equals@0.9.4) (2019-01-19)
+
+
+### Bug Fixes
+
+* restructure menu and improve docu ([dd37e22](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/commit/dd37e22))
+
+
+
+
+
 ## [0.9.3](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/compare/@open-wc/chai-dom-equals@0.9.2...@open-wc/chai-dom-equals@0.9.3) (2019-01-16)
 
 

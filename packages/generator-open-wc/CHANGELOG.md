@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.6](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.5...generator-open-wc@0.6.6) (2019-01-19)
+
+
+### Bug Fixes
+
+* restructure menu and improve docu ([dd37e22](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/dd37e22))
+
+
+
+
+
 ## [0.6.5](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.4...generator-open-wc@0.6.5) (2019-01-16)
 
 
