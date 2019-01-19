@@ -1,4 +1,4 @@
-# Testing with karma
+# Testing with Karma
 
 > Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
 

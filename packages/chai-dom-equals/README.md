@@ -1,6 +1,6 @@
 # Testing Chai Dom Equals
 
-> Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/) Recommendation [open-wc](https://github.com/open-wc/open-wc/)
+> Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
 
 Open Web Components provides a set of defaults, recommendations and tools to help facilitate your Web Component. Our recommendations include: developing, linting, testing, tooling, demoing, publishing and automating.
 

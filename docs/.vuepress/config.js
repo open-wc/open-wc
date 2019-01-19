@@ -1,4 +1,55 @@
 // .vuepress/config.js
+
+const sidebar = [
+  ['/', 'Home'],
+  ['/guide/', 'Introduction'],
+  {
+    title: 'IDE',
+    collapsable: true,
+    children: [['/ide/', 'Getting started']],
+  },
+  {
+    title: 'Developing',
+    collapsable: true,
+    children: [['/developing/', 'Getting started'], ['/developing/generator', 'Generators']],
+  },
+  {
+    title: 'Linting',
+    collapsable: true,
+    children: [
+      ['/linting/', 'Getting started'],
+      '/linting/linting-eslint',
+      '/linting/linting-prettier',
+    ],
+  },
+  {
+    title: 'Testing',
+    collapsable: true,
+    children: [
+      ['/testing/', 'Getting started'],
+      '/testing/testing-helpers',
+      '/testing/testing-chai-dom-equals',
+      '/testing/testing-karma',
+      '/testing/testing-karma-bs',
+      '/testing/testing-wallaby',
+    ],
+  },
+  {
+    title: 'Demoing',
+    collapsable: true,
+    children: [['/demoing/', 'Getting started']],
+  },
+  {
+    title: 'Publishing',
+    collapsable: true,
+    children: [['/publishing/', 'Getting started']],
+  },
+  {
+    title: 'Automating',
+    collapsable: true,
+    children: [['/automating/', 'Getting started']],
+  },
+];
 module.exports = {
   title: 'open-wc',
   description: 'Open Web Component Recommendations',
@@ -7,33 +58,14 @@ module.exports = {
     displayAllHeaders: false,
     sidebarDepth: 2,
     sidebar: {
-      '/guide/': [
-        '/',
-        '',
-        'ide',
-        'developing',
-        'linting',
-        'testing',
-        ['demoing', 'Demoing'],
-        'publishing',
-        'automating',
-        'next-steps',
-      ],
-      '/linting/': [
-        ['/guide/linting', '⇐ back to Guide'],
-        '',
-        'linting-eslint',
-        'linting-prettier',
-      ],
-      '/testing/': [
-        ['/guide/testing', '⇐ back to Guide'],
-        '',
-        'testing-helpers',
-        'testing-chai-dom-equals',
-        'testing-karma',
-        'testing-karma-bs',
-        'testing-wallaby',
-      ],
+      '/guide/': sidebar,
+      '/ide/': sidebar,
+      '/developing/': sidebar,
+      '/linting/': sidebar,
+      '/testing/': sidebar,
+      '/demoing/': sidebar,
+      '/publishing/': sidebar,
+      '/automating/': sidebar,
       '/setup/': [['/guide/', '⇐ back to Guide'], '', 'generator'],
       '/faq/': ['', 'rerender'],
       '/about/': ['', 'contact'],
