@@ -14,3 +14,15 @@ export function fixtureWrapper() {
   cachedWrappers.push(wrapper);
   return wrapper;
 }
+
+/**
+ * Cleans up all defined fixtures
+ */
+export function fixtureCleanup() {
+  if (cachedWrappers) {
+    cachedWrappers.forEach(wrapper => {
+      document.body.removeChild(wrapper);
+    });
+  }
+  cachedWrappers.length = 0; // reset it like this as we can't reassign it
+}

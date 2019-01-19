@@ -1,5 +1,4 @@
 import './register-chai-plugins.js';
-import './register-fixture-cleanup.js';
 
 export {
   html,
@@ -14,6 +13,7 @@ export {
   litFixtureSync,
   fixture,
   fixtureSync,
-} from '@open-wc/testing-helpers';
+  fixtureCleanup,
+} from '@open-wc/testing-helpers/index.js';
 
 export { chai, expect, should, assert } from '@bundled-es-modules/chai';
