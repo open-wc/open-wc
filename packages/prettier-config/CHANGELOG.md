@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/open-wc/open-wc/tree/master/packages/prettier-config/compare/@open-wc/prettier-config@0.1.2...@open-wc/prettier-config@0.1.3) (2019-01-19)
+
+
+### Bug Fixes
+
+* restructure menu and improve docu ([dd37e22](https://github.com/open-wc/open-wc/tree/master/packages/prettier-config/commit/dd37e22))
+
+
+
+
+
 ## [0.1.2](https://github.com/open-wc/open-wc/tree/master/packages/prettier-config/compare/@open-wc/prettier-config@0.1.1...@open-wc/prettier-config@0.1.2) (2019-01-16)
 
 

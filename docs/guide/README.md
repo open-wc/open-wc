@@ -14,13 +14,13 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:vanilla'
 ```
 
 ## Available Recommendations
-- [IDE](/guide/ide.html)
-- [Developing](/guide/developing.html)
-- [Linting](/guide/linting.html)
-- [Testing](/guide/testing.html)
-- [Demos](/guide/demos-storybook.html)
-- [Publishing](/guide/publishing.html)
-- [Automating](/guide/automating.html)
+- [IDE](/ide/)
+- [Developing](/developing/)
+- [Linting](/linting/)
+- [Testing](/testing/)
+- [Demoing](/demoing/)
+- [Publishing](/publishing/)
+- [Automating](/automating/)
 
 ## FAQ
 - [FAQ](/faq/)
