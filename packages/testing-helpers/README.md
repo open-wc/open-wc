@@ -83,3 +83,21 @@ await nextFrame();
 // await aTimeout(10); // would wait 10ms
 expect(el.shadowRoot.querySelector('#foo').innerText).to.equal('baz');
 ```
+
+## Fixture Cleanup
+By default if you import via `import { ... } from '@open-wc/testing-helpers';` it will include a side-effect that cleans up fixtures.
+If you want to be in full control you can do so by using
+```js
+import { fixture, fixtureCleanup } from '@open-wc/testing-helpers/index-no-side-effects.js';
+
+it('can instantiate an element with properties', async () => {
+  const el = await fixture(html`<my-el .foo=${'bar'}></my-el>`);
+  expect(el.foo).to.equal('bar');
+  fixtureCleanup();
+}
+
+// you can also write it like this - note that is exactly what the side-effect does
+afterEach(() => {
+  fixtureCleanup();
+});
+```
