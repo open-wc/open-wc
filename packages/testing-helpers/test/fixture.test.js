@@ -1,8 +1,6 @@
 import { expect } from '@bundled-es-modules/chai';
+import { cachedWrappers } from '../fixtureWrapper.js';
 import { html, fixture, fixtureSync } from '../index.js';
-
-class TestComponent2 extends HTMLElement {}
-customElements.define('test-component2', TestComponent2);
 
 describe('fixtureSync & fixture', () => {
   it('supports strings', async () => {
@@ -14,12 +12,12 @@ describe('fixtureSync & fixture', () => {
     }
 
     const elementSync = fixtureSync(html`
-      <test-component2 foo="${'bar'}"></test-component2>
+      <div foo="${'bar'}"></div>
     `);
     testElement(elementSync);
 
     const elementAsync = await fixture(html`
-      <test-component2 foo="${'bar'}"></test-component2>
+      <div foo="${'bar'}"></div>
     `);
     testElement(elementAsync);
   });
@@ -36,13 +34,17 @@ describe('fixtureSync & fixture', () => {
     }
 
     const elementSync = fixtureSync(html`
-      <test-component2 .propNumber=${10} .propFunction=${myFunction}></test-component2>
+      <div .propNumber=${10} .propFunction=${myFunction}></div>
     `);
     testElement(elementSync);
 
     const elementAsync = await fixture(html`
-      <test-component2 .propNumber=${10} .propFunction=${myFunction}></test-component2>
+      <div .propNumber=${10} .propFunction=${myFunction}></div>
     `);
     testElement(elementAsync);
+  });
+
+  it('will cleanup after each test', async () => {
+    expect(cachedWrappers.length).to.equal(0);
   });
 });
