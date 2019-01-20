@@ -13,7 +13,7 @@ cd my-element
 # Default development recommendation
 npx -p yo -p generator-open-wc -c 'yo open-wc:scaffold-vanilla'
 
-# upgrade/align your existing webcomponent with 'open-wc' recommendations
+# upgrade/align your existing web component with 'open-wc' recommendations
 cd existing-web-component
 yo open-wc
 ```

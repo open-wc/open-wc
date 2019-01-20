@@ -35,16 +35,18 @@ Example usage:
 mkdir foo-bar
 cd foo-bar
 yo open-wc:scaffold-vanilla
-# this will scaffold a webcomponent + run all available scaffold generators
+# this will scaffold a new web component + run all available scaffold generators
 ```
 
 ### Available scaffold generators:
-- `yo open-wc:scaffold-demoing`<br> 
-  If you already have a web component but no `/stories/` folder
+- `yo open-wc:scaffold-vanilla`<br> 
+  This generator scaffolds a new web component project for you with all of our recommendations, and runs all the subsequent scaffold generators below. We recommend using this generator at the start of your web component project.
 
+- `yo open-wc:scaffold-demoing`<br> 
+  This generator scaffolds a Storybook setup for you with examples to your existing project.
 
 - `yo open-wc:scaffold-testing`<br>
-  If you already have a web component but no `/test/` folder
+  This generator scaffolds a Karma setup for you with examples to your existing project.
 
 
 ## Upgrade generators
