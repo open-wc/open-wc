@@ -61,19 +61,19 @@ These generators are executed with the default upgrade generator.
 However if you only want to opt into a specific category you can do so by executing them instead.
 
 - `yo open-wc:linting`<br> 
-This generator adds a linting setup with ESLint, Prettier, Husky and commitlint to your existing project.
+This generator adds a complete linting setup with ESLint, Prettier, Husky and commitlint to your existing project.
 
 
 - `yo open-wc:testing`<br>
-This generator adds a testing setup with Karma, and Karma Browserstack to your existing project.
+This generator adds a complete testing setup with Karma, and Karma Browserstack to your existing project.
 
 
 - `yo open-wc:demoing`<br>
-This generator adds a demoing setup with Storybook to your existing project.
+This generator adds a complete demoing setup with Storybook to your existing project.
 
 
 - `yo open-wc:automating`<br>
-This generator adds an automating setup with CircleCi to your existing project.
+This generator adds a complete automating setup with CircleCi to your existing project.
 
 
 
@@ -81,7 +81,7 @@ This generator adds an automating setup with CircleCi to your existing project.
 These generators are not executed with the default upgrade generator.
 
 - `yo open-wc:testing-wallaby`<br>
-  This will set up [Wallaby](https://wallabyjs.com/) to enable testing directly in your IDE. For more information, see [testing-wallaby](https://open-wc.org/testing/testing-wallaby.html).
+  This will set up [Wallaby](https://wallabyjs.com/) to enable testing directly in your IDE. For more information, see [testing-wallaby](/testing/testing-wallaby.html).
 
 ### Sub generators
 These generators are executed with the default upgrade generator.
