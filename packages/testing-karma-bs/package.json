@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma-bs",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Testing with karma using browserstack following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -16,7 +16,7 @@
     "test:es5:bs": "karma start demo/karma.es5.bs.config.js"
   },
   "dependencies": {
-    "@open-wc/testing-karma": "^0.4.5",
+    "@open-wc/testing-karma": "^0.4.6",
     "karma-browserstack-launcher": "^1.0.0"
   },
   "devDependencies": {
