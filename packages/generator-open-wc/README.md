@@ -63,7 +63,7 @@ yo open-wc:scaffold-vanilla
     This generator will internally run:
 
       - open-wc:testing
-      - Plus example tests
+      - Plus Storybook examples
   </details>
   <br/>
 
@@ -75,7 +75,7 @@ yo open-wc:scaffold-vanilla
     This generator will internally run:
 
       - open-wc:demoing
-      - Plus Storybook examples
+      - Plus example tests
   </details>
   <br/>
 
