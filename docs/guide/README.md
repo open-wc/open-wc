@@ -7,11 +7,14 @@ The goal of Open Web Components is to empower everyone with a powerful and battl
 This will bootstrap a vanilla Web Component project based on our latest recommendations.
 
 ```bash
+npm i -g yo
+npm i -g generator-open-wc
+
 # scaffold a complete new component
 mkdir my-element
 cd my-element
 # Default development recommendation
-npx -p yo -p generator-open-wc -c 'yo open-wc:scaffold-vanilla'
+yo open-wc:scaffold-vanilla
 
 # upgrade/align your existing web component with 'open-wc' recommendations
 cd existing-web-component

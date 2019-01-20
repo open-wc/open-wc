@@ -15,6 +15,7 @@ This generator is based on [yeoman](http://yeoman.io/). You can use it as demons
 ```bash
 npm i -g yeoman
 npm i -g generator-open-wc
+
 yo open-wc:{generator-name}
 ```
 

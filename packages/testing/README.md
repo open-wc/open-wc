@@ -24,11 +24,14 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Setup
 ```bash
+npm i -g yo
+npm i -g generator-open-wc
+
 # if you already have a Web Component project set up and/or test files
-npx -p yo -p generator-open-wc -c 'yo open-wc:testing'
+yo open-wc:testing
 
 # if you do not have tests yet - will run the above + some example test files
-npx -p yo -p generator-open-wc -c 'yo open-wc:scaffold-testing'
+yo open-wc:scaffold-testing
 ```
 
 ### Manual
