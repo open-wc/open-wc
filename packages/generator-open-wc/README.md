@@ -73,7 +73,8 @@ This generator adds a demoing setup with Storybook to your existing project.
 
 
 - `yo open-wc:automating`<br>
-what does this one add? (edited) 
+This generator adds an automating setup with CircleCi to your existing project.
+
 
 
 ### Optional upgrade generators
