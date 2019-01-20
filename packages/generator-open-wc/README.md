@@ -61,19 +61,20 @@ These generators are executed with the default upgrade generator.
 However if you only want to opt into a specific category you can do so by executing them instead.
 
 - `yo open-wc:linting`<br> 
-  This generator adds ... (difference with sub generators?) linting with prettier AND eslint? whats the difference with the sub generators?
+This generator adds a linting setup with ESLint, Prettier, Husky and commitlint to your existing project.
 
 
 - `yo open-wc:testing`<br>
-  This generator adds ... (difference with sub generators?)
+This generator adds a testing setup with Karma, and Karma Browserstack to your existing project.
 
 
 - `yo open-wc:demoing`<br>
-  This generator adds ... (difference with sub generators?)
+This generator adds a demoing setup with Storybook to your existing project.
 
 
 - `yo open-wc:automating`<br>
-  This generator adds ... (difference with sub generators?)
+what does this one add? (edited) 
+
 
 ### Optional upgrade generators
 These generators are not executed with the default upgrade generator.
