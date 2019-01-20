@@ -37,7 +37,10 @@ The intention of the presets is to be able to write browser runnable code, with 
 
 ### Setup
 ```bash
-npx -p yo -p generator-open-wc -c 'yo open-wc:testing-karma'
+npm i -g yo
+npm i -g generator-open-wc
+
+yo open-wc:testing-karma
 ```
 
 ::: tip Info
