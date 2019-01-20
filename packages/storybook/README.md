@@ -16,7 +16,7 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Setup
 ```bash
-npx -p yo -p generator-open-wc -c 'yo open-wc:publish-storybook'
+npx -p yo -p generator-open-wc -c 'yo open-wc:demoing'
 ```
 
 ### Manual

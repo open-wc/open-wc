@@ -12,7 +12,7 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation.
 
 ## Setup
 ```bash
-npx -p yo -p generator-open-wc -c 'yo open-wc:tools-circleci'
+npx -p yo -p generator-open-wc -c 'yo open-wc:automating'
 ```
 
 ### Manual Setup

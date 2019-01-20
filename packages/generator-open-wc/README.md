@@ -35,6 +35,7 @@ Example usage:
 mkdir foo-bar
 cd foo-bar
 yo open-wc:scaffold-vanilla
+# this will scaffold a webcomponent + run all available scaffold generators
 ```
 
 ### Available scaffold generators:
@@ -53,7 +54,8 @@ You can use these to add to an existing project that already contains code for y
 Example usage:
 ```bash
 cd existing-web-component
-yo open-wc:eslint
+yo open-wc
+# this will execute all available upgrade generators
 ```
 
 ### Available upgrade generators

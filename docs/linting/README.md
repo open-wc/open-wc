@@ -10,7 +10,7 @@ We recommend
 
 ## Setup
 ```bash
-npx -p yo -p generator-open-wc -c 'yo open-wc:lint'
+npx -p yo -p generator-open-wc -c 'yo open-wc:linting'
 ```
 
 ::: tip Info

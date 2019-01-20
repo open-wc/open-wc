@@ -12,7 +12,7 @@ Use [ESLint](https://eslint.org/) to lint your es6 code.
 
 ## Setup
 ```bash
-npx -p yo -p generator-open-wc -c 'yo open-wc:lint-eslint'
+npx -p yo -p generator-open-wc -c 'yo open-wc:linting-eslint'
 ```
 
 ::: tip Info
