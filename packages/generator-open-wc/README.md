@@ -40,14 +40,45 @@ yo open-wc:scaffold-vanilla
 ```
 
 ### Available scaffold generators:
-- `yo open-wc:scaffold-vanilla`<br> 
-  This generator scaffolds a new web component project for you with all of our recommendations, and runs all the subsequent scaffold generators below. We recommend using this generator at the start of your web component project.
 
-- `yo open-wc:scaffold-demoing`<br> 
-  This generator scaffolds a Storybook setup for you with examples to your existing project.
+#### scaffold-vanilla
+- `yo open-wc:scaffold-vanilla`<br/> 
+  This generator scaffolds a new web component project for you with all of our recommendations. We recommend using this generator at the start of your web component project. 
+  <details>
+    <summary>More info</summary>
+    <br/>
+    This generator will internally run:
 
-- `yo open-wc:scaffold-testing`<br>
-  This generator scaffolds a Karma setup for you with examples to your existing project.
+      - open-wc:linting
+      - open-wc:scaffold-testing
+      - open-wc:scaffold-demoing
+      - open-wc:automating
+  </details>
+  <br/>
+
+- `yo open-wc:scaffold-demoing`<br/> 
+  This generator scaffolds a Storybook setup for you with examples to your existing project. 
+  <details>
+    <summary>More info</summary>
+    <br/>
+    This generator will internally run:
+
+      - open-wc:testing
+      - Plus example tests
+  </details>
+  <br/>
+
+- `yo open-wc:scaffold-testing`<br/>
+  This generator scaffolds a Karma setup for you with examples to your existing project. 
+  <details>
+    <summary>More info</summary>
+    <br/>
+    This generator will internally run:
+
+      - open-wc:demoing
+      - Plus Storybook examples
+  </details>
+  <br/>
 
 
 ## Upgrade generators
@@ -62,24 +93,56 @@ yo open-wc
 ```
 
 ### Available upgrade generators
-These generators are executed with the default upgrade generator.
-However if you only want to opt into a specific category you can do so by executing them instead.
 
 - `yo open-wc:linting`<br> 
-This generator adds a complete linting setup with ESLint, Prettier, Husky and commitlint to your existing project.
+This generator adds a complete linting setup with ESLint, Prettier, Husky and commitlint to your existing project. 
+  <details>
+    <summary>More info</summary>
+    <br/>
+    This generator will internally run:
 
+      - open-wc:linting-eslint
+      - open-wc:linting-prettier
+      - open-wc:linting-commitlint
+  </details>
+  <br/>
+  
 
 - `yo open-wc:testing`<br>
-This generator adds a complete testing setup with Karma, and Karma Browserstack to your existing project.
+This generator adds a complete testing setup with Karma, and Karma Browserstack to your existing project. 
+  <details>
+    <summary>More info</summary>
+    <br/>
+    This generator will internally run:
 
+      - open-wc:testing-karma
+      - open-wc:testing-karma-bs
+  </details>
+  <br/>
+      
 
 - `yo open-wc:demoing`<br>
 This generator adds a complete demoing setup with Storybook to your existing project.
+  <details>
+    <summary>More info</summary>
+    <br/>
+    This generator will internally run:
+
+      - open-wc:demoing-storybook
+  </details>
+  <br/>
 
 
 - `yo open-wc:automating`<br>
-This generator adds a complete automating setup with CircleCi to your existing project.
+This generator adds a complete automating setup with CircleCi to your existing project. 
+  <details>
+    <summary>More info</summary>
+    <br/>
+    This generator will internally run:
 
+      - open-wc:automating-circleci
+  </details>
+  <br/>
 
 
 ### Optional upgrade generators
