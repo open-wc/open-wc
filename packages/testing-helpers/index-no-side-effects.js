@@ -10,5 +10,5 @@ export {
 } from './helpers.js';
 export { litFixture, litFixtureSync } from './litFixture.js';
 export { stringFixture, stringFixtureSync } from './stringFixture.js';
-export { fixture, fixtureSync } from './fixture.js';
+export { fixture, fixtureSync } from './fixture-no-side-effect.js';
 export { cachedWrappers, fixtureWrapper, fixtureCleanup } from './fixtureWrapper.js';
