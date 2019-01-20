@@ -3,7 +3,6 @@
 const sidebar = [
   ['/', 'Home'],
   ['/guide/', 'Introduction'],
-  ['/philosophy', 'Our philosophy'],
   {
     title: 'IDE',
     collapsable: true,
@@ -60,7 +59,6 @@ module.exports = {
     sidebarDepth: 2,
     sidebar: {
       '/guide/': sidebar,
-      '/philosophy': sidebar,
       '/ide/': sidebar,
       '/developing/': sidebar,
       '/linting/': sidebar,
