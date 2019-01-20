@@ -41,7 +41,6 @@ yo open-wc:scaffold-vanilla
 
 ### Available scaffold generators:
 
-#### scaffold-vanilla
 - `yo open-wc:scaffold-vanilla`<br/> 
   This generator scaffolds a new web component project for you with all of our recommendations. We recommend using this generator at the start of your web component project. 
   <details>
