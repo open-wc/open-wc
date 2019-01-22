@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.8](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.7...generator-open-wc@0.6.8) (2019-01-22)
+
+
+### Bug Fixes
+
+* **generator-open-wc:** scaffold:vanilla should create .gitignore ([d245cc0](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/d245cc0))
+
+
+
+
+
 ## [0.6.7](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.6...generator-open-wc@0.6.7) (2019-01-20)
 
 
