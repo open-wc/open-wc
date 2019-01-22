@@ -40,7 +40,9 @@ The goal of Open Web Components is to empower developers with powerful and battl
 
 Many web developers have experienced the dreaded "Javascript Fatigue". With our recommendations, we hope you'll enjoy the peace of mind that comes from having a well-known default solution for almost everything. From IDE to CI, `open-wc` has got you covered.
 
-We want web component development to be accessible and approachable for everyone, regardless of their background. Therefore, our recommendations aim to be easy to use, be ready to use, and provide that "it just works" developer experience we all crave for the various aspects of web component development
+We want web component development to be accessible and approachable for everyone, regardless of their background. Therefore, our recommendations aim to be easy to use, be ready to use, and provide that "it just works" developer experience we all crave for the various aspects of web component development.
+
+Best practices/recommendations and examples may change and evolve over time.	
 
 ### Why Web Components
 
@@ -54,7 +56,7 @@ The World Wide Web was originally just text documents connected by hyperlinks. A
 
 At first, JavaScript libraries like jQuery were absolutely required. jQuery gave developers a common set of tools across browsers with extremely different feature sets. Eventually jQuery features became standard browser features. The pattern of libraries innovating and browsers subsequently standardizing continued. As the "[browser wars](https://www.wikiwand.com/en/Browser_wars)" died down, the pace of standardization increased, and many new features came to the web.
 
-In the last several years, a component-based model for web app development became popular, and the JavaScript community blossomed with a wide variety of libraries and approaches. Work on standardizing the web's component model began at Google in 2012. After several years of open development, the web components standards became implemented across all major browsers in 2019.
+In the last several years, a component-based model for web application development was popularized, and the JavaScript community blossomed with a wide variety of libraries and approaches. Work on standardizing the web’s native component model began at Google in 2012, and after several years of open development, was successfully implemented across all major browsers in 2019.
 
 #### Technical Benefits
 
@@ -73,17 +75,9 @@ Using the browser's standards-based component model will increase the longevity 
 ##### Flexibility
 The web components standards are fairly low-level, letting library authors build upon them with innovative APIs. By using such libraries you can build your app in the style you want while still leveraging built-in browser features.
 
-### How We Work
-
-	- Polymer slack, evaluate tools, open discussion, blogs, ?????, etc.
-
-### Mention Changes
-
-Best practices/recommendations and examples are subject to change and will evolve over time.
-
 ## Contribute
 
-Feel free to critique, ask questions and join the conversation, we'd love to hear your opinions and feedback. You can reach us by creating an issue on our [github](https://github.com/open-wc) or on the [#open-wc]() channel in the [Polymer slack]().
+Feel free to critique, ask questions and join the conversation, we'd love to hear your opinions and feedback. You can reach us by creating an issue on our [github](https://github.com/open-wc) or on the [#open-wc](https://polymer.slack.com/messages/CE6D9DN05) channel in the [Polymer slack](https://join.slack.com/t/polymer/shared_invite/enQtNTAzNzg3NjU4ODM4LTkzZGVlOGIxMmNiMjMzZDM1YzYyMzdiYTk0YjQyOWZhZTMwN2RlNjM5ZDFmZjMxZWRjMWViMDA1MjNiYWFhZWM).
 
 ## FAQ
 - [FAQ](/faq/)
