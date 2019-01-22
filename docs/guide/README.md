@@ -1,6 +1,6 @@
 # Introduction
 
-The goal of Open Web Components is to empower everyone with a powerful and battle-tested setup for sharing open source web components. We try to achieve this by giving a set of recommendations and defaults on how to facilitate your Web Component. Our recommendations include: developing, linting, testing, tooling, demoing, publishing and automating.
+The goal of Open Web Components is to empower everyone with a powerful and battle-tested setup for sharing open source web components. We try to achieve this by giving a set of recommendations and defaults on how to facilitate your web component. Our recommendations include: developing, linting, testing, tooling, demoing, publishing and automating.
 
 ## Quickstart
 
@@ -30,27 +30,55 @@ yo open-wc
 - [Publishing](/publishing/)
 - [Automating](/automating/)
 
-## Why open-wc
+## Why `open-wc`
 
-### Our philosophy
+We want to provide the community with well-known and experience-tested recommendations for their web component projects. Everything we do here is to encourage and support development with these open standards.
 
-- The goal of Open Web Components is to empower everyone with a powerful and battle-tested setup for creating and sharing open source web components.
-- Javascript fatigue: Enjoy the peace of mind that comes from having a well-known default solution for almost everything. Open-wc has got you covered.
-- Making things accessible and approachable for people: Easy to use, ready to use, 'it just works' feeling
+### Our Philosophy
 
-### Why web components
+The goal of Open Web Components is to empower developers with powerful and battle-tested tools for creating and sharing open source web components.
 
-- keep it frank, and friendly (no throwing shade at frameworks)
-	- close to browser standards etc
-	- bundle size?
+Many web developers have experienced the dreaded "Javascript Fatigue". With our recommendations, we hope you'll enjoy the peace of mind that comes from having a well-known default solution for almost everything. From IDE to CI, `open-wc` has got you covered.
 
-### How we work
+We want web component development to be accessible and approachable for people, so our recommendations aim to:
+- Be easy to use
+- Be ready to use
+- Give you that 'it just works' feeling
+
+### Why Web Components
+
+We believe that the open web is an ideal platform for application development. It's free, open, and standardized nature reenforces user's privacy and control while enabling developers to produce useful apps.
+
+#### Historical Background
+
+**tl;dr:** Libraries provided the inspiration to standardize the web's component model, which became a practical reality in 2019 after many years of work.
+
+The World Wide Web was originally just text documents connected by hyperlinks. As technologies like JavaScript and techniques like <abbr title="Asynchronous JavaScript and XML">AJAX</abbr> and <abbr title="Representational State Transfer">REST</abbr> entered the picture, the web slowly developed into a platform for full-fledged application development.
+
+At first, JavaScript libraries like jQuery were absolutely required. jQuery gave developers a common set of tools across browsers with extremely different feature sets. Eventually jQuery features became standard browser features. The pattern of libraries innovating then browsers standardizing continued. As the "[browser wars](https://www.wikiwand.com/en/Browser_wars)" died down, the pace of standardization increased, and many new features came to the web.
+
+In the last several years, a component-based model for web app development became popular, and the JavaScript community blossomed with a wide variety of libraries and approaches. Work on standardizing the web's component model began at Google in 2012. After several years of open development, the web components standards became implemented across all major browsers in 2019.
+
+#### Technical Benefits
+
+Working with built-in browser features has several advantages over purely JavaScript-based frameworks.
+
+##### Performance
+Just like `querySelector` reduces developers' dependence on jQuery, the web components standards reduces the size and complexity of component libraries and frameworks. This ultimately benefits users by decreasing page load times and increasing app performance.
+
+##### Future Proofing
+Using standard components protects your app from framework churn. The web has an extremely strong tradition of backwards-compatibility. Standards bodies have consistently gone out of their way to maintain legacy APIs.
+
+##### Flexibility
+The web components standards are fairly low-level, letting library authors build upon them with innovative APIs. By using such libraries you can build your app in the style you want while still leveraging built-in browser features.
+
+### How We Work
 
 	- Polymer slack, evaluate tools, open discussion, blogs, ?????, etc.
 
-### Mention changes
+### Mention Changes
 
-Best practices/recommendations and examples are subect to change and will evolve over time.
+Best practices/recommendations and examples are subject to change and will evolve over time.
 
 ## Contribute
 
