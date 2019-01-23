@@ -27,8 +27,7 @@ Best practices/recommendations and examples may change and evolve over time.
 
 ### Why Web Components
 
-
-We believe that the open web is an ideal platform for application development. It's free, open, and standardized nature reenforces user's privacy and control while enabling developers to produce useful apps.
+We believe that web components provide a standards-based solution to problems like reusability, interopability, and encapsulation.
 
 #### Historical Background
 
@@ -50,7 +49,7 @@ What if you could remove code, gain performance, and streamline implementation a
 Just like `querySelector` reduces developers' dependence on jQuery, the web components standards reduces the size and complexity of component libraries and frameworks. This ultimately benefits users by decreasing page load times and increasing app performance.
 
 ##### Future Proofing
-Using the browser's standards-based component model will increase the longevity of your application by protecting it from framework churn. The web has an extremely strong tradition of backwards-compatibility. Standards bodies have consistently gone out of their way to maintain legacy APIs.
+Using the browser's standards-based component model will increase the longevity of your application. The web has an extremely strong tradition of backwards-compatibility. Standards bodies have consistently gone out of their way to maintain legacy APIs.
 
 ##### Flexibility
 The web components standards are fairly low-level, letting library authors build upon them with innovative APIs. By using such libraries you can build your app in the style you want while still leveraging built-in browser features.
