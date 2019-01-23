@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/semantic-dom-diff",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "To compare dom and shadow dom trees. Part of open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -17,9 +17,9 @@
     "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false"
   },
   "dependencies": {
+    "@bundled-es-modules/diffable-html": "^4.0.0-rc.2",
     "@bundled-es-modules/parse5": "^5.1.0",
-    "@types/parse5": "^5.0.0",
-    "diffable-html": "^3.0.0"
+    "@types/parse5": "^5.0.0"
   },
   "devDependencies": {
     "@bundled-es-modules/chai": "^4.2.0",

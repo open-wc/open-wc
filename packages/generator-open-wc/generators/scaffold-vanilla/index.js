@@ -19,6 +19,9 @@ module.exports = class GeneratorVanillaBare extends Generator {
       this.config.getAll(),
     );
 
+    // write & rename .gitignore
+    this.fs.copy(this.templatePath('_gitignore'), this.destinationPath('.gitignore'));
+
     // write & rename element src
     this.fs.copyTpl(
       this.templatePath('MyEl.js'),

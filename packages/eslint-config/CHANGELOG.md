@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.7](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.3.6...@open-wc/eslint-config@0.3.7) (2019-01-21)
+
+
+### Bug Fixes
+
+* broken links in README ([5685887](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/commit/5685887))
+
+
+
+
+
 ## [0.3.6](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.3.5...@open-wc/eslint-config@0.3.6) (2019-01-20)
 
 
