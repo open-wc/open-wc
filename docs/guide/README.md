@@ -30,6 +30,10 @@ yo open-wc
 - [Publishing](/publishing/)
 - [Automating](/automating/)
 
+## Our Philosophy
+
+You can read all about our motivation and our philosophy [here](/about/).
+
 ## FAQ
 - [FAQ](/faq/)
 
