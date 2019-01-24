@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.2.3...@open-wc/storybook@0.2.4) (2019-01-21)
+
+
+### Bug Fixes
+
+* broken links in README ([5685887](https://github.com/open-wc/open-wc/tree/master/packages/storybook/commit/5685887))
+
+
+
+
+
+## [0.2.3](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.2.2...@open-wc/storybook@0.2.3) (2019-01-20)
+
+
+### Bug Fixes
+
+* refactor generators ([1dab1f4](https://github.com/open-wc/open-wc/tree/master/packages/storybook/commit/1dab1f4))
+
+
+
+
+
 ## [0.2.2](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.2.1...@open-wc/storybook@0.2.2) (2019-01-16)
 
 

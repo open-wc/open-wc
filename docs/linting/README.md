@@ -10,7 +10,10 @@ We recommend
 
 ## Setup
 ```bash
-npx -p yo -p generator-open-wc -c 'yo open-wc:lint'
+npm i -g yo
+npm i -g generator-open-wc
+
+yo open-wc:linting
 ```
 
 ::: tip Info
@@ -19,12 +22,12 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ### Manual
 - `yarn add --dev @open-wc/eslint-config @open-wc/prettier-config lint-staged husky @commitlint/cli @commitlint/config-conventional`
-- Copy [.eslintignore](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-eslint/templates/static/.eslintignore) to `.eslintignore`
-- Copy [.eslintrc.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-prettier/templates/static/.eslintrc.js) to `.eslintrc.js`
-- Copy [.prettierignore](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-prettier/templates/static/.prettierignore) to `.prettierignore`
-- Copy [prettier.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-prettier/templates/_prettier.config.js) to `prettier.config.js`
-- Copy [husky.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint/templates/static/husky.config.js) to `husky.config.js`
-- Copy [commitlint.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-commitlint/templates/static/commitlint.config.js) to `commitlint.config.js`
+- Copy [.eslintignore](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/linting-eslint/templates/static/.eslintignore) to `.eslintignore`
+- Copy [.eslintrc.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/linting-prettier/templates/static/.eslintrc.js) to `.eslintrc.js`
+- Copy [.prettierignore](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/linting-prettier/templates/static/.prettierignore) to `.prettierignore`
+- Copy [prettier.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/linting-prettier/templates/_prettier.config.js) to `prettier.config.js`
+- Copy [husky.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/linting/templates/static/husky.config.js) to `husky.config.js`
+- Copy [commitlint.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/linting-commitlint/templates/static/commitlint.config.js) to `commitlint.config.js`
 - Add these scripts to your package.json
   ```js
   "lint-staged": {

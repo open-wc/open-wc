@@ -16,12 +16,15 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Setup
 ```bash
-npx -p yo -p generator-open-wc -c 'yo open-wc:publish-storybook'
+npm i -g yo
+npm i -g generator-open-wc
+
+yo open-wc:demoing
 ```
 
 ### Manual
 - `yarn add @open-wc/storybook --dev`
-- Copy at minimum the [.storybook](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/generators/publish-storybook/templates/static) folder to `.storybook`
+- Copy at minimum the [.storybook](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/generators/demoing-storybook/templates/static/.storybook) folder to `.storybook`
 - If you want to bring along the examples, you may also copy the `stories` folder.
 - Add the following scripts to your package.json
 ```js

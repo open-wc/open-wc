@@ -21,7 +21,10 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Setup
 ```bash
-npx -p yo -p generator-open-wc -c 'yo open-wc:testing-karma-bs'
+npm i -g yo
+npm i -g generator-open-wc
+
+yo open-wc:testing-karma-bs
 # follow Setup user + key
 ```
 

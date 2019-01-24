@@ -12,10 +12,18 @@ Open-wc provides a set of recommendations and defaults on how to facilitate your
 
 ## Usage
 ```bash
+npm i -g yo
+npm i -g generator-open-wc
+
+# scaffold a complete new component
 mkdir my-element
 cd my-element
 # Default development recommendation
-npx -p yo -p generator-open-wc -c 'yo open-wc:vanilla'
+yo open-wc:scaffold-vanilla
+
+# upgrade/align your existing web component with 'open-wc' recommendations
+cd existing-web-component
+yo open-wc
 ```
 
 ## Homepage

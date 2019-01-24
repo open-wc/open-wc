@@ -24,17 +24,15 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Setup
 ```bash
-npx -p yo -p generator-open-wc -c 'yo open-wc:testing'
+npm i -g yo
+npm i -g generator-open-wc
 
-# or if you already have a Web Component project set up and/or test files
-npx -p yo -p generator-open-wc -c 'yo open-wc:testing-upgrade'
+# if you already have a Web Component project set up and/or test files
+yo open-wc:testing
+
+# if you do not have tests yet - will run the above + some example test files
+yo open-wc:scaffold-testing
 ```
-
-This will run the setup for multiple packages (testing-bare, testing-karma, testing-karma-bs).
-
-::: tip Note
-If you want to use your own test runner you can use `npx -p yo -p generator-open-wc -c 'yo open-wc:testing-bare'`
-::::
 
 ### Manual
 ```bash

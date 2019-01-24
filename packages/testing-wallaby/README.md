@@ -15,7 +15,10 @@ Using:
 
 ## Setup
 ```bash
-npx -p yo -p generator-open-wc -c 'yo open-wc:wallaby'
+npm i -g yo
+npm i -g generator-open-wc
+
+yo open-wc:testing-wallaby
 ```
 
 ### Manual

@@ -12,7 +12,10 @@ Use [ESLint](https://eslint.org/) to lint your es6 code.
 
 ## Setup
 ```bash
-npx -p yo -p generator-open-wc -c 'yo open-wc:lint-eslint'
+npm i -g yo
+npm i -g generator-open-wc
+
+yo open-wc:linting-eslint
 ```
 
 ::: tip Info
@@ -21,8 +24,8 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Manual
 - `yarn add --dev @open-wc/eslint-config`
-- Copy [.eslintignore](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-eslint/templates/static/.eslintignore) to `.eslintignore`
-- Copy [.eslintrc.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/lint-eslint/templates/static/.eslintrc.js) to `.eslintrc.js`
+- Copy [.eslintignore](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/linting-eslint/templates/static/.eslintignore) to `.eslintignore`
+- Copy [.eslintrc.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/linting-eslint/templates/static/.eslintrc.js) to `.eslintrc.js`
 - Add these scripts to your package.json
   ```js
   "scripts": {

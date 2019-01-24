@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.6](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs/compare/@open-wc/testing-karma-bs@0.2.5...@open-wc/testing-karma-bs@0.2.6) (2019-01-20)
+
+
+### Bug Fixes
+
+* refactor generators ([1dab1f4](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs/commit/1dab1f4))
+
+
+
+
+
 ## [0.2.5](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs/compare/@open-wc/testing-karma-bs@0.2.4...@open-wc/testing-karma-bs@0.2.5) (2019-01-19)
 
 **Note:** Version bump only for package @open-wc/testing-karma-bs

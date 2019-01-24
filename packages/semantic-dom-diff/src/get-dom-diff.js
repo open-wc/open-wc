@@ -1,5 +1,5 @@
 import { parseFragment, serialize } from '@bundled-es-modules/parse5';
-import toDiffableHtml from 'diffable-html';
+import toDiffableHtml from '@bundled-es-modules/diffable-html';
 
 import { sanitizeHtmlString } from './sanitize-html-string.js';
 import { normalizeAST } from './normalize-ast.js';
