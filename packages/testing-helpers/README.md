@@ -85,7 +85,7 @@ expect(el.shadowRoot.querySelector('#foo').innerText).to.equal('baz');
 ```
 
 ## Fixture Cleanup
-By default, if you import anything via import { ... } from '@open-wc/testing-helpers';, it will automatically register a side-effect that cleans up fixtures.
+By default, if you import anything via `import { ... } from '@open-wc/testing-helpers';`, it will automatically register a side-effect that cleans up fixtures.
 If you want to be in full control you can do so by using
 ```js
 import { fixture, fixtureCleanup } from '@open-wc/testing-helpers/index-no-side-effects.js';
