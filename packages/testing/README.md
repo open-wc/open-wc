@@ -169,3 +169,22 @@ Additionally you may need to set your CHROME_BIN env variable `export CHROME_BIN
 ::::
 
 For some example tests, please take a look at our [Set-Game Example Test Files](https://github.com/open-wc/example-vanilla-set-game/tree/master/test).
+
+
+## Fixture Cleanup
+By default, if you import anything via `import { ... } from '@open-wc/testing-helpers';`, it will automatically register a side-effect that cleans up your fixtures.
+If you want to be in full control you can do so by using
+```js
+import { fixture, fixtureCleanup } from '@open-wc/testing/index-no-side-effects.js';
+
+it('can instantiate an element with properties', async () => {
+  const el = await fixture(html`<my-el .foo=${'bar'}></my-el>`);
+  expect(el.foo).to.equal('bar');
+  fixtureCleanup();
+}
+
+// Alternatively, you can add the fixtureCleanup in the afterEach function, but note that this is exactly what the automatically registered side-effect does.
+afterEach(() => {
+  fixtureCleanup();
+});
+```
