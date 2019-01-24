@@ -80,9 +80,8 @@ module.exports = {
       '/demoing/': sidebar,
       '/publishing/': sidebar,
       '/automating/': sidebar,
-      '/setup/': [['/guide/', '⇐ back to Guide'], '', 'generator'],
       '/faq/': ['', 'rerender'],
-      '/about/': [['/about/', 'About'], ['/about/contact', 'Contact']],
+      '/about/': [['/about/', 'About'], '/about/contact', '/about/rationales'],
     },
     nav: [
       { text: 'Home', link: '/' },
