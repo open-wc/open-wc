@@ -85,7 +85,7 @@ expect(el.shadowRoot.querySelector('#foo').innerText).to.equal('baz');
 ```
 
 ## Fixture Cleanup
-By default, if you import anything via `import { ... } from '@open-wc/testing-helpers';`, it will automatically register a side-effect that cleans up fixtures.
+By default, if you import anything via `import { ... } from '@open-wc/testing-helpers';`, it will automatically register a side-effect that cleans up your fixtures.
 If you want to be in full control you can do so by using
 ```js
 import { fixture, fixtureCleanup } from '@open-wc/testing-helpers/index-no-side-effects.js';
@@ -96,7 +96,7 @@ it('can instantiate an element with properties', async () => {
   fixtureCleanup();
 }
 
-// Alternatively, you can do add the fixtureCleanup in the afterEach function, but note that this is exactly what the automatically registered side-effect does.
+// Alternatively, you can add the fixtureCleanup in the afterEach function, but note that this is exactly what the automatically registered side-effect does.
 afterEach(() => {
   fixtureCleanup();
 });
