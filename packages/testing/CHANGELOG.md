@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.9](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.8...@open-wc/testing@0.9.9) (2019-01-24)
+
+
+### Bug Fixes
+
+* add docu for fixtureCleanup ([ab0170a](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/ab0170a))
+
+
+
+
+
 ## [0.9.8](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.7...@open-wc/testing@0.9.8) (2019-01-23)
 
 **Note:** Version bump only for package @open-wc/testing

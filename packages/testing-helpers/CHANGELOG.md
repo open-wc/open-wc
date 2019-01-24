@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.7](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.6...@open-wc/testing-helpers@0.7.7) (2019-01-24)
+
+
+### Bug Fixes
+
+* add docu for fixtureCleanup ([ab0170a](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/ab0170a))
+
+
+
+
+
 ## [0.7.6](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.5...@open-wc/testing-helpers@0.7.6) (2019-01-20)
 
 **Note:** Version bump only for package @open-wc/testing-helpers
