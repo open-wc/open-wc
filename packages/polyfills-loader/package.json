@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/polyfills-loader",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "polyfills-loader.js",
   "description": "Load web component polyfills using dynamic imports",
   "author": "open-wc",
