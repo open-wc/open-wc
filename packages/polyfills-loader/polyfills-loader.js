@@ -20,8 +20,8 @@ function needsTemplatePolyfill() {
   template.content.appendChild(template2);
   const clone = template.cloneNode(true);
   return (
-    clone.content.childNodes.length !== 0 &&
-    clone.content.firstChild.content.childNodes.length !== 0
+    clone.content.childNodes.length === 0 ||
+    clone.content.firstChild.content.childNodes.length === 0
   );
 }
 
