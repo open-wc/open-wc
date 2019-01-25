@@ -43,6 +43,15 @@ export function aTimeout(ms) {
 }
 
 /**
+ * Resolves after requestAnimationFrame.
+ *
+ * @returns {Promise<void>}
+ */
+export function nextFrame() {
+  return new Promise(resolve => requestAnimationFrame(resolve));
+}
+
+/**
  * Resolves after blur.
  *
  * @param {HTMLElement} element
@@ -51,7 +60,8 @@ export function aTimeout(ms) {
 export async function triggerBlurFor(element) {
   element.blur();
   if (isIE()) {
-    await aTimeout(2); // it's 2ms to be extra save as IE otherwise very rarely randomly fails
+    await nextFrame();
+    await nextFrame();
   }
 }
 
@@ -64,7 +74,8 @@ export async function triggerBlurFor(element) {
 export async function triggerFocusFor(element) {
   element.focus();
   if (isIE()) {
-    await aTimeout(2); // it's 2ms to be extra save as IE otherwise very rarely randomly fails
+    await nextFrame();
+    await nextFrame();
   }
 }
 
@@ -83,8 +94,4 @@ export function oneEvent(element, eventName) {
     }
     element.addEventListener(eventName, listener);
   });
-}
-
-export function nextFrame() {
-  return new Promise(resolve => requestAnimationFrame(resolve));
 }
