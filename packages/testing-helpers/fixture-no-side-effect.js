@@ -1,5 +1,4 @@
 import { TemplateResult } from 'lit-html';
-import { nextFrame } from './helpers.js';
 import { stringFixtureSync } from './stringFixture.js';
 import { litFixtureSync } from './litFixture.js';
 
@@ -28,7 +27,11 @@ export function fixtureSync(template) {
  * @returns {Promise<Element>}
  */
 export async function fixture(template) {
-  const result = fixtureSync(template);
-  await nextFrame();
-  return result;
+  if (typeof template === 'string') {
+    return stringFixtureSync(template);
+  }
+  if (template instanceof TemplateResult) {
+    return litFixtureSync(template);
+  }
+  throw new Error('Invalid template provided - string or lit-html TemplateResult is supported');
 }

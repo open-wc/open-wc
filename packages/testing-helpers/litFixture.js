@@ -21,7 +21,12 @@ export function litFixtureSync(template) {
  * @returns {Promise<Element>}
  */
 export async function litFixture(template) {
-  const fixture = litFixtureSync(template);
-  await nextFrame();
-  return fixture;
+  const el = litFixtureSync(template);
+  const update = el.updateComplete;
+  if (typeof update === 'object' && Promise.resolve(update) === update) {
+    await update;
+  } else {
+    await nextFrame();
+  }
+  return el;
 }
