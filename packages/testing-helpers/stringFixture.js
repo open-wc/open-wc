@@ -22,7 +22,12 @@ export function stringFixtureSync(template) {
  * @returns {Promise<Element>}
  */
 export async function stringFixture(template) {
-  const result = stringFixtureSync(template);
-  await nextFrame();
-  return result;
+  const el = stringFixtureSync(template);
+  const update = el.updateComplete;
+  if (typeof update === 'object' && Promise.resolve(update) === update) {
+    await update;
+  } else {
+    await nextFrame();
+  }
+  return el;
 }

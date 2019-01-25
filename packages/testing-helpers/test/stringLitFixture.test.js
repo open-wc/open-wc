@@ -1,5 +1,8 @@
+/* eslint-disable class-methods-use-this */
 import { expect } from '@bundled-es-modules/chai';
 import { html, stringFixture, stringFixtureSync, litFixture, litFixtureSync } from '../index.js';
+import { defineCE, nextFrame } from '../helpers.js';
+import { unsafeStatic } from '../lit-html.js';
 
 class TestComponent extends HTMLElement {}
 customElements.define('test-component', TestComponent);
@@ -148,5 +151,42 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
         <div></div>
       `),
     ])).forEach(testElement);
+  });
+
+  it('will wait for one frame', async () => {
+    let counter = 0;
+    const tag = defineCE(class extends HTMLElement {});
+    const litTag = unsafeStatic(tag);
+
+    nextFrame().then(() => {
+      counter += 1;
+    });
+    await stringFixture(`<${tag}></${tag}>`);
+    expect(counter).to.equal(1);
+
+    nextFrame().then(() => {
+      counter += 1;
+    });
+    await litFixture(html`<${litTag}></${litTag}>`);
+    expect(counter).to.equal(2);
+  });
+
+  it('will wait for an updateComplete promise if it is available', async () => {
+    let counter = 0;
+    const tag = defineCE(
+      class extends HTMLElement {
+        get updateComplete() {
+          return new Promise(resolve => requestAnimationFrame(resolve)).then(() => {
+            counter += 1;
+          });
+        }
+      },
+    );
+    const litTag = unsafeStatic(tag);
+
+    await stringFixture(`<${tag}></${tag}>`);
+    expect(counter).to.equal(1);
+    await litFixture(html`<${litTag}></${litTag}>`);
+    expect(counter).to.equal(2);
   });
 });
