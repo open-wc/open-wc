@@ -1,0 +1,25 @@
+{
+  "name": "@open-wc/webpack-import-meta-loader",
+  "version": "0.0.0",
+  "description": "Webpack configuration following open-wc recommendations",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "webpack-import-meta-loader.js",
+  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/webpack-import-meta-loader",
+  "scripts": {
+    "test": "mocha --require @babel/register",
+    "test:ci": "npm run test"
+  },
+  "devDependencies": {
+    "@babel/register": "^7.0.0",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.2.0",
+    "memory-fs": "^0.4.1",
+    "mocha": "^5.2.0",
+    "webpack": "^4.26.1"
+  }
+}
