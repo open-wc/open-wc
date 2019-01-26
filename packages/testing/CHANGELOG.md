@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.11](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.10...@open-wc/testing@0.9.11) (2019-01-26)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
 ## [0.9.10](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.9...@open-wc/testing@0.9.10) (2019-01-26)
 
 **Note:** Version bump only for package @open-wc/testing

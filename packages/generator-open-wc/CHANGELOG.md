@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.9](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.8...generator-open-wc@0.6.9) (2019-01-26)
+
+
+### Bug Fixes
+
+* align all open-wc readme headers ([b589429](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/b589429))
+
+
+
+
+
 ## [0.6.8](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.7...generator-open-wc@0.6.8) (2019-01-22)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.9](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.8...@open-wc/testing-helpers@0.7.9) (2019-01-26)
+
+
+### Bug Fixes
+
+* align all open-wc readme headers ([b589429](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/b589429))
+
+
+
+
+
 ## [0.7.8](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.7...@open-wc/testing-helpers@0.7.8) (2019-01-26)
 
 

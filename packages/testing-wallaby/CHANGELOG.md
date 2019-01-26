@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8](https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby/compare/@open-wc/testing-wallaby@0.1.7...@open-wc/testing-wallaby@0.1.8) (2019-01-26)
+
+
+### Bug Fixes
+
+* align all open-wc readme headers ([b589429](https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby/commit/b589429))
+
+
+
+
+
 ## [0.1.7](https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby/compare/@open-wc/testing-wallaby@0.1.6...@open-wc/testing-wallaby@0.1.7) (2019-01-20)
 
 
