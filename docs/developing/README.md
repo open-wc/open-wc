@@ -1,13 +1,19 @@
 # Developing
 The web component ecosystem is evolving fast, with many libraries and solutions appearing. High level frameworks such as [Angular](https://angular.io/guide/elements), [Vue](https://github.com/vuejs/vue-web-component-wrapper) and [Stencil](https://stenciljs.com/) provide solutions which compile to web components.
 
+## Browser standards
+We strongly believe that staying close to browser standards will be the best long term investment for your code. It is the basis for all our recommendations, and it means that sometimes we will not recommend a popular feature or functionality. It also means we can be faster to adopt and recommend new browser standards.
+
 ## lit-html
-We think that staying close to browser standards is the best long term investment. While there are other good libraries out there, to get started we recommend using the `lit-html` library with the `LitElement` base class for developing web components.
+While there are other good libraries out there, to get started we recommend using the `lit-html` library with the `LitElement` base class for developing web components.
 
 Check out the official documentation for: [lit-html](https://lit-html.polymer-project.org/) and [lit-element](https://lit-element.polymer-project.org/) or check out our code-samples below.
 
+## Development workflow
+When you're starting out we recommend using our [simple dev server](/developing/dev-server.md). It is a simple server that will get you started on chrome, safari and firefox.
+
 ## Examples
-A collection of live code samples can be found on `Stackblitz`:
+A collection of live code samples for `lit-html` and `LitElement` can be found on `Stackblitz`:
 
 * [Basic](https://open-wc-lit-demos.stackblitz.io/basic)
 	- [01 Basic setup](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F01-basic-setup.js)
@@ -41,11 +47,11 @@ A collection of live code samples can be found on `Stackblitz`:
 	- [07 Template factories](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F07-template-factories.js)
 	- [08 Should update](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F08-should-update.js)
 
-## Development server
-During development you will need something to serve your files. Until you get to your app's build setup, we recommend setting up [our dev-server](./dev-server.md) to keep things simple.
+## Browser support
+Not all browsers adopt new features at the same rate. Depending on your browser support requirement, you might end up using features not yet available everywhere. In this case you will need to set up build tools to run your app during development. See `building` below for more.
 
 ## Building
-When you are ready to ship your app to production, or when you need to test your app on older browsers, take a look at our [building documentation](TODO) to get you started.
+When you are ready to ship your app to production, or when you need to test your app on older browsers, take a look at our [building documentation](/building/) to get you started.
 
 ## Further reading
 See: [awesome lit-html](https://github.com/web-padawan/awesome-lit-html) for a great collection of resources.
