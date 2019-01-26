@@ -1,3 +1,4 @@
 node_modules
 coverage/
 /packages/generator-open-wc/generators/*/templates/**/*
+dist

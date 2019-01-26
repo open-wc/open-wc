@@ -35,6 +35,15 @@ const sidebar = [
     ],
   },
   {
+    title: 'Building',
+    collapsable: true,
+    children: [
+      ['/building/', 'Getting started'],
+      '/building/building-webpack',
+      '/building/polyfills-loader',
+    ],
+  },
+  {
     title: 'Demoing',
     collapsable: true,
     children: [['/demoing/', 'Getting started']],
@@ -63,6 +72,7 @@ module.exports = {
       '/developing/': sidebar,
       '/linting/': sidebar,
       '/testing/': sidebar,
+      '/building/': sidebar,
       '/demoing/': sidebar,
       '/publishing/': sidebar,
       '/automating/': sidebar,

@@ -1,0 +1,42 @@
+{
+  "name": "@open-wc/building-webpack",
+  "version": "0.0.0",
+  "description": "Default configuration for working with webpack",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/building-webpack",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --config demo/webpack.config.js --open",
+    "start:es5": "webpack-dev-server --mode development --config demo/webpack.config.js --es5 --open",
+    "build": "webpack --mode production --config demo/webpack.config.js",
+    "build:stats": "webpack --mode production --config demo/webpack.config.js --profile --json > build-stats.json"
+  },
+  "keywords": [
+    "open-wc",
+    "webpack"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/runtime-corejs2": "^7.2.0",
+    "@open-wc/polyfills-loader": "^0.1.0",
+    "@open-wc/webpack-import-meta-loader": "^0.1.0",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-template-html-minifier": "^2.1.3",
+    "clean-webpack-plugin": "^1.0.0",
+    "fast-async": "^7.0.6",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.28.4",
+    "webpack-babel-multi-target-plugin": "^v2.1.0-alpha.8"
+  },
+  "devDependencies": {
+    "@babel/register": "^7.0.0",
+    "@webpack-cli/serve": "^0.1.3",
+    "http-server": "^0.11.1",
+    "lit-element": "^2.0.0-rc.3",
+    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
+  }
+}
