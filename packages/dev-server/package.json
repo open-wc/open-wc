@@ -1,0 +1,30 @@
+{
+  "name": "@open-wc/dev-server",
+  "main": "./dev-server.js",
+  "version": "0.0.0",
+  "description": "Development server for modern web apps",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "bin": {
+    "@open-wc/dev-server": "./dev-server.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "start": "./dev-server.js -o demo --app-index demo/index.html"
+  },
+  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/dev-server",
+  "dependencies": {
+    "command-line-args": "^5.0.2",
+    "command-line-usage": "^5.0.5",
+    "express": "^4.16.4",
+    "express-history-api-fallback": "^2.2.1",
+    "express-transform-bare-module-specifiers": "^1.0.2",
+    "opn": "^5.4.0"
+  },
+  "devDependencies": {
+    "lit-html": "^1.0.0-rc.2"
+  }
+}
