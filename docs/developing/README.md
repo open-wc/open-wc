@@ -1,8 +1,10 @@
 # Developing
+The web component ecosystem is evolving fast, with many libraries and solutions appearing. High level frameworks such as [Angular](https://angular.io/guide/elements), [Vue](https://github.com/vuejs/vue-web-component-wrapper) and [Stencil](https://stenciljs.com/) provide solutions which compile to web components.
 
-We recommend using the `lit-html` library with the `LitElement` base class for developing web components.
+## lit-html
+We think that staying close to browser standards is the best long term investment. While there are other good libraries out there, to get started we recommend using the `lit-html` library with the `LitElement` base class for developing web components.
 
-Check out the official documentation for: [lit-html](https://lit-html.polymer-project.org/) and [lit-element](https://lit-element.polymer-project.org/) or check out our code-samples on `Stackblitz`.
+Check out the official documentation for: [lit-html](https://lit-html.polymer-project.org/) and [lit-element](https://lit-element.polymer-project.org/) or check out our code-samples below.
 
 ## Examples
 A collection of live code samples can be found on `Stackblitz`:
@@ -38,6 +40,12 @@ A collection of live code samples can be found on `Stackblitz`:
 	- [06 External template](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F06-external-template.js)
 	- [07 Template factories](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F07-template-factories.js)
 	- [08 Should update](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F08-should-update.js)
+
+## Development server
+During development you will need something to serve your files. Until you get to your app's build setup, we recommend setting up [our dev-server](./dev-server.md) to keep things simple.
+
+## Building
+When you are ready to ship your app to production, or when you need to test your app on older browsers, take a look at our [building documentation](TODO) to get you started.
 
 ## Further reading
 See: [awesome lit-html](https://github.com/web-padawan/awesome-lit-html) for a great collection of resources.
