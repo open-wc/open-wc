@@ -31,33 +31,26 @@ function needsTemplatePolyfill() {
  */
 export default function loadPolyfills() {
   const polyfills = [];
+  const needsTemplate = needsTemplatePolyfill();
+  const needsShadowDom =
+    !('attachShadow' in Element.prototype) ||
+    !('getRootNode' in Element.prototype) ||
+    (window.ShadyDOM && window.ShadyDOM.force);
+  const needsCustomElements = !window.customElements || window.customElements.forcePolyfill;
 
   // URL is required by webcomponents polyfill
   // We can use URLSearchParams as a watermark for URL support
   if (!('URLSearchParams' in window)) {
-    polyfills.push(import('url-polyfill'));
+    polyfills.push(import('@bundled-es-modules/url-polyfill'));
   }
 
-  // template polyfill (IE11 and Edge)
-  if (needsTemplatePolyfill()) {
-    // no template means we also need to load general platform polyfills
-    polyfills.push(import('@webcomponents/webcomponents-platform/webcomponents-platform.js'));
-    polyfills.push(import('@webcomponents/template/template.js'));
-  }
-
-  // shadow dom polyfills
-  if (
-    !('attachShadow' in Element.prototype) ||
-    !('getRootNode' in Element.prototype) ||
-    (window.ShadyDOM && window.ShadyDOM.force)
-  ) {
-    polyfills.push(import('@webcomponents/shadydom/src/shadydom.js'));
-    polyfills.push(import('@webcomponents/shadycss/entrypoints/scoping-shim.js'));
-  }
-
-  // custom element polyfills
-  if (!window.customElements || window.customElements.forcePolyfill) {
-    polyfills.push(import('@webcomponents/custom-elements/src/custom-elements.js'));
+  if (needsTemplate) {
+    // template is a watermark for requiring all polyfills (IE11 and Edge)
+    polyfills.push(import('./src/webcomponents-all.js'));
+  } else if (needsShadowDom || needsCustomElements) {
+    // only chrome 53 supports shadow dom but not custom elements. this is an older browser, there is no need
+    // for complicating the setup here. there is no harm in loading the polyfills there
+    polyfills.push(import('./src/webcomponents-sd-ce.js'));
   }
 
   return Promise.all(polyfills);
