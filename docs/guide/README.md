@@ -1,6 +1,6 @@
 # Introduction
 
-The goal of Open Web Components is to empower everyone with a powerful and battle-tested setup for sharing open source web components. We try to achieve this by giving a set of recommendations and defaults on how to facilitate your Web Component. Our recommendations include: developing, linting, testing, tooling, demoing, publishing and automating.
+The goal of Open Web Components is to empower everyone with a powerful and battle-tested setup for sharing open source web components. We try to achieve this by giving a set of recommendations and defaults on how to facilitate your web component project. Our recommendations include: developing, linting, testing, tooling, demoing, publishing and automating.
 
 ## Quickstart
 
@@ -26,6 +26,7 @@ yo open-wc
 - [Developing](/developing/)
 - [Linting](/linting/)
 - [Testing](/testing/)
+- [Building](/building/)
 - [Demoing](/demoing/)
 - [Publishing](/publishing/)
 - [Automating](/automating/)
