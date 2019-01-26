@@ -33,16 +33,6 @@ import './my-non-web-component-code.js';
 loadPolyfills().then(() => import('./my-web-component-code.js'));
 ```
 
-If you use a build setup which supports preloading you can prevent the extra 'hop' we created by postponing the import of your app.
-
-For example with webpack:
-
-```javascript
-import loadPolyfills from '@open-wc/polyfills-loader';
-
-loadPolyfills().then(() => import(/* webpackPreload: true */ './my-app.js'));
-```
-
 ## Polyfills
 The web component polyfill loads:
 - Broken CustomEvent on IE11
