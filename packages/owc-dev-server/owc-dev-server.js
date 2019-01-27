@@ -60,11 +60,11 @@ if ('help' in options) {
   console.log(
     commandLineUsage([
       {
-        header: '@open-wc/dev-server',
+        header: 'owc-dev-server',
         content: `
           Simply server with node resolution for bare modules.
 
-          Usage: \`@open-wc/dev-server <root-dir> [options...]\`
+          Usage: \`owc-dev-server <root-dir> [options...]\`
         `.trim(),
       },
       {
@@ -139,7 +139,7 @@ if (appIndex) {
 
 app.listen(port, hostname, () => {
   const msgs = [];
-  msgs.push(`@open-wc/dev-server started on http://${hostname}:${port}`);
+  msgs.push(`owc-dev-server started on http://${hostname}:${port}`);
   msgs.push(`  Serving files from '${rootDir}'.`);
   if (shouldOpen) {
     msgs.push(`  Opening browser on '${openPath}'`);

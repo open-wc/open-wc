@@ -1,19 +1,19 @@
 {
-  "name": "@open-wc/dev-server",
-  "main": "./dev-server.js",
-  "version": "0.1.1",
+  "name": "owc-dev-server",
+  "main": "./owc-dev-server.js",
+  "version": "0.0.0",
   "description": "Development server for modern web apps",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
   "license": "MIT",
   "bin": {
-    "owc-dev-server": "./dev-server.js"
+    "owc-dev-server": "./owc-dev-server.js"
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "start": "./dev-server.js -o demo --app-index demo/index.html"
+    "start": "./owc-dev-server.js -o demo --app-index demo/index.html"
   },
   "repository": "https://github.com/open-wc/open-wc/tree/master/packages/dev-server",
   "dependencies": {

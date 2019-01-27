@@ -24,7 +24,7 @@ This will become obsolete over time, as a similar behavior is being standardized
 
 ### Usage
 ```bash
-npm i -D @open-wc/dev-server
+npm i -D owc-dev-server
 ```
 
 #### Execute
@@ -38,42 +38,42 @@ npm i -D @open-wc/dev-server
 npm run start
 
 // or via npx
-npx @open-wc/dev-server
+npx owc-dev-server
 ```
 
 #### Static files
 By default the server will just serve up static files from your current working directory:
 ```bash
-npx @open-wc/dev-server --open
+npx owc-dev-server --open
 ```
 You can open the server at a specific file/location:
 ```bash
-npx @open-wc/dev-server --open demo/my-file.html
-npx @open-wc/dev-server --open demo
+npx owc-dev-server --open demo/my-file.html
+npx owc-dev-server --open demo
 ```
 To change the server's root directory:
 ```bash
-npx @open-wc/dev-server ./dist
+npx owc-dev-server ./dist
 # or
-npx @open-wc/dev-server --root-dir ./dist
+npx owc-dev-server --root-dir ./dist
 ```
 
 #### Single Page App
 For a SPA, you will want non-file requests to serve the app's index so that you can handle routing within your app. The browser will automatically open at your app's root path.
 ```bash
-npx @open-wc/dev-server --app-index index.html --open
+npx owc-dev-server --app-index index.html --open
 ```
 Note: That this will require a `<base href="/">` in your html head.
 
 #### Component project
 When working on a (web) component project, you will usually have a demo folder for local development:
 ```bash
-npx @open-wc/dev-server --open demo/
+npx owc-dev-server --open demo/
 ```
 
 If your demo itself is a SPA, you can also specify the app-index option:
 ```bash
-npx @open-wc/dev-server --app-index demo/index.html --open
+npx owc-dev-server --app-index demo/index.html --open
 ```
 
 ### Command line options
