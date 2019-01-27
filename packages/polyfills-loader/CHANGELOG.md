@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/open-wc/open-wc/tree/master/packages/polyfills-loader/compare/@open-wc/polyfills-loader@0.1.2...@open-wc/polyfills-loader@0.2.0) (2019-01-27)
+
+
+### Features
+
+* **polyfills-loader:** use only es modules in polyfills loader ([9197968](https://github.com/open-wc/open-wc/tree/master/packages/polyfills-loader/commit/9197968))
+
+
+
+
+
 ## [0.1.2](https://github.com/open-wc/open-wc/tree/master/packages/polyfills-loader/compare/@open-wc/polyfills-loader@0.1.1...@open-wc/polyfills-loader@0.1.2) (2019-01-26)
 
 

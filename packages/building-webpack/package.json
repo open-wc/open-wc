@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-webpack",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Default configuration for working with webpack",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -23,7 +23,7 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "@babel/runtime-corejs2": "^7.2.0",
-    "@open-wc/polyfills-loader": "^0.1.2",
+    "@open-wc/polyfills-loader": "^0.2.0",
     "@open-wc/webpack-import-meta-loader": "^0.1.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-template-html-minifier": "^2.1.3",
