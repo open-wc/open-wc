@@ -1,7 +1,7 @@
 {
   "name": "@open-wc/dev-server",
   "main": "./dev-server.js",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Development server for modern web apps",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
