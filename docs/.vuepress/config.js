@@ -99,4 +99,23 @@ module.exports = {
   dest: '_site',
   plugins: ['@vuepress/google-analytics'],
   ga: 'UA-131782693-1',
+  head: [
+    [
+      'meta',
+      {
+        property: 'og:image',
+        content: 'https://github.com/open-wc/open-wc/raw/master/assets/images/logo.png',
+      },
+    ],
+    ['meta', { property: 'og:site_name', content: 'Open Web Components' }],
+    [
+      'meta',
+      {
+        property: 'og:description',
+        content:
+          'Open Web Components provides a set of defaults, recommendations and tools to help facilitate your web component project. Our recommendations include: developing, linting, testing, building, tooling, demoing, publishing and automating.',
+      },
+    ],
+    ['meta', { name: 'twitter:card', content: 'summary' }],
+  ],
 };
