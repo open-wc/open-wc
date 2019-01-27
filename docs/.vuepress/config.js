@@ -107,7 +107,7 @@ module.exports = {
         content: '/hero.png',
       },
     ],
-    ['meta', { property: 'og:site_name', content: 'Open Web Components' }],
+    // ['meta', { property: 'og:site_name', content: 'Open Web Components' }],
     [
       'meta',
       {
@@ -117,5 +117,6 @@ module.exports = {
       },
     ],
     ['meta', { name: 'twitter:card', content: 'summary' }],
+    ['meta', { name: 'twitter:title', content: 'Open Web Components' }],
   ],
 };
