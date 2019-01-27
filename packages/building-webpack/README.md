@@ -16,13 +16,13 @@ To set up the default configuration manually:
 
 1. Install the required dependencies:
 ```bash
-npm i -D @open-wc/webpack webpack webpack-dev-server http-server
+npm i -D @open-wc/building-webpack webpack webpack-dev-server http-server
 ```
 
 2. Create a file `webpack.config.js`:
 ```javascript
 const path = require('path');
-const defaultConfig = require('@open-wc/webpack/default-config');
+const defaultConfig = require('@open-wc/building-webpack/default-config');
 
 module.exports = defaultConfig();
 ```
@@ -98,8 +98,8 @@ By default, babel's compilation of async functions and `for of` loops using an e
 
 For async functions we use the [fast-async](https://github.com/MatAtBread/fast-async) plugin instead.
 
-### Polyfills by usage
-[Language polyfills](https://github.com/zloirock/core-js) are added based on browser support and usage. This leads to a significantly smaller initial bundle of your app.
+### es2015 polyfills
+We add [Language polyfills](https://github.com/zloirock/core-js) for `es2015` features, such as `Map` and `'/foo'.startsWith('/')`. But only on the `es5` build, so that we don't need to ship it to modern browsers.
 
 ### Syntax and javascript APIs
 Our config only supports standard javascript syntax and browser APIs. We support stage 3 proposals when they add significant value and are easy to support without performance penalties.
@@ -114,7 +114,7 @@ The `default-config` function outputs a regular webpack config, it can easily be
 ```javascript
 const path = require('path');
 const merge = require('webpack-merge');
-const createDefaultConfig = require('@open-wc/webpack/default-config');
+const createDefaultConfig = require('@open-wc/building-webpack/default-config');
 
 const defaultConfig = createDefaultConfig();
 
