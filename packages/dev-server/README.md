@@ -27,6 +27,20 @@ This will become obsolete over time, as a similar behavior is being standardized
 npm i -D @open-wc/dev-server
 ```
 
+#### Execute
+```
+// package.json
+"scripts": {
+  "start": "owc-dev-server"
+}
+
+// bash
+npm run start
+
+// or via npx
+npx @open-wc/dev-server
+```
+
 #### Static files
 By default the server will just serve up static files from your current working directory:
 ```bash

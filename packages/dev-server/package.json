@@ -7,7 +7,7 @@
   "homepage": "https://github.com/open-wc/open-wc/",
   "license": "MIT",
   "bin": {
-    "@open-wc/dev-server": "./dev-server.js"
+    "owc-dev-server": "./dev-server.js"
   },
   "publishConfig": {
     "access": "public"
