@@ -16,13 +16,13 @@ To set up the default configuration manually:
 
 1. Install the required dependencies:
 ```bash
-npm i -D @open-wc/webpack webpack webpack-dev-server http-server
+npm i -D @open-wc/building-webpack webpack webpack-dev-server http-server
 ```
 
 2. Create a file `webpack.config.js`:
 ```javascript
 const path = require('path');
-const defaultConfig = require('@open-wc/webpack/default-config');
+const defaultConfig = require('@open-wc/building-webpack/default-config');
 
 module.exports = defaultConfig();
 ```
@@ -114,7 +114,7 @@ The `default-config` function outputs a regular webpack config, it can easily be
 ```javascript
 const path = require('path');
 const merge = require('webpack-merge');
-const createDefaultConfig = require('@open-wc/webpack/default-config');
+const createDefaultConfig = require('@open-wc/building-webpack/default-config');
 
 const defaultConfig = createDefaultConfig();
 

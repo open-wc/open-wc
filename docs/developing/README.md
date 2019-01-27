@@ -12,6 +12,54 @@ Check out the official documentation for: [lit-html](https://lit-html.polymer-pr
 ## Development workflow
 When you're starting out we recommend using our [simple dev server](/developing/dev-server.md). It is a simple server that will get you started on chrome, safari and firefox.
 
+Follow these steps to get started:
+1. Install the required dependencies:
+```
+npm i -D @open-wc/dev-server lit-element
+```
+
+2. Create a `index.html`
+```html
+<!doctype html>
+<html>
+  <head>
+    <script type="module" src="./my-component.js"></script>
+    </head>
+  <body>
+    <my-component></my-component>
+  </body>
+</html>
+```
+
+3. Create a `my-component.js`
+```javascript
+import { LitElement, html } from 'lit-element';
+
+class MyComponent extends LitElement {
+  render() {
+    return html`
+      <p>Hello world!</p>
+    `;
+  }
+}
+
+customElements.define('my-component', MyComponent);
+```
+
+4. Add start scripts to your `package.json`:
+```json
+{
+  "scripts": {
+    "start": "@open-wc/dev-server -o"
+  }
+}
+```
+
+5. Start your app:
+```bash
+npm start
+```
+
 ## Examples
 A collection of live code samples for `lit-html` and `LitElement` can be found on `Stackblitz`:
 
