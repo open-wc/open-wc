@@ -104,10 +104,10 @@ module.exports = {
       'meta',
       {
         property: 'og:image',
-        content: '/hero.png',
+        content: 'https://github.com/open-wc/open-wc/raw/master/assets/images/logo.png',
       },
     ],
-    // ['meta', { property: 'og:site_name', content: 'Open Web Components' }],
+    ['meta', { property: 'og:site_name', content: 'Open Web Components' }],
     [
       'meta',
       {
