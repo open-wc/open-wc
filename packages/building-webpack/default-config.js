@@ -148,6 +148,18 @@ module.exports = userOptions => {
       }),
     ],
 
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          uglifyOptions: {
+            output: {
+              comments: false
+            }
+          }
+        })
+      ],
+    }
+
     devtool: ENV === 'development' ? 'inline-source-map' : 'source-map',
     devServer: {
       contentBase: process.cwd(),
