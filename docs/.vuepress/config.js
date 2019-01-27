@@ -11,7 +11,11 @@ const sidebar = [
   {
     title: 'Developing',
     collapsable: true,
-    children: [['/developing/', 'Getting started'], ['/developing/generator', 'Generators']],
+    children: [
+      ['/developing/', 'Getting started'],
+      '/developing/owc-dev-server',
+      ['/developing/generator', 'Generators'],
+    ],
   },
   {
     title: 'Linting',

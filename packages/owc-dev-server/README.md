@@ -20,7 +20,19 @@ becomes:
 ```javascript
 import { html } from '../../node_modules/lit-html/lit-html.js';
 ```
-This will become obsolete over time, as a similar behavior is being standardized in browsers: https://github.com/WICG/import-maps
+This will become obsolete over time, as a similar behavior is being standardized in browsers. It's called [import maps](https://github.com/WICG/import-maps).
+
+Note: import paths are only resolved within `.js` files. This means you cannot do a bare module import from your `index.html`:
+```html
+<html>
+  <head>
+    <script type="module">
+      import { html } from 'lit-html'; // does not work
+    </script>
+  </head>
+  <body></body>
+</html>
+```
 
 ### Usage
 ```bash
