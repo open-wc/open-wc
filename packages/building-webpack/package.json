@@ -30,6 +30,7 @@
     "clean-webpack-plugin": "^1.0.0",
     "fast-async": "^7.0.6",
     "html-webpack-plugin": "^3.2.0",
+    "terser-webpack-plugin": "^1.2.1",
     "webpack": "^4.28.4",
     "webpack-babel-multi-target-plugin": "^v2.1.0-alpha.8"
   },
