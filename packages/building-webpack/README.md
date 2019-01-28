@@ -93,6 +93,9 @@ Using [webpack-babel-multi-target-plugin](https://www.npmjs.com/package/webpack-
 
 Read more about this trick at [Jakes blog post "ECMAScript modules in browsers"](https://jakearchibald.com/2017/es-modules-in-browsers/).
 
+### Comment code
+Comment code gets stript at build time. So comment away!
+
 ### No regenerator runtime / transform
 By default, babel's compilation of async functions and `for of` loops using an expensive transform and runtime. A lot of runtime code is added, and a lot of boilerplate code is added in the transform.
 
