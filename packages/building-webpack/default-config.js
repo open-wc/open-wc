@@ -148,6 +148,10 @@ module.exports = userOptions => {
       }),
     ],
 
+    optimization: {
+      minimizer: [new TerserPlugin()],
+    },
+
     devtool: ENV === 'development' ? 'inline-source-map' : 'source-map',
     devServer: {
       contentBase: process.cwd(),
