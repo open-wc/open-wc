@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BabelMultiTargetPlugin } = require('webpack-babel-multi-target-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const ENV = process.argv.find(arg => arg.includes('production')) ? 'production' : 'development';
 const developmentEs5 = !!process.argv.find(arg => arg.includes('es5'));
@@ -147,6 +148,14 @@ module.exports = userOptions => {
         inject: true,
       }),
     ],
+
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          extractComments: true,
+        }),
+      ],
+    },
 
     devtool: ENV === 'development' ? 'inline-source-map' : 'source-map',
     devServer: {
