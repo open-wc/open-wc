@@ -25,6 +25,6 @@ module.exports = class GeneratorScaffoldBuilding extends Generator {
   }
 
   default() {
-    this.composeWith(require.resolve('../building-webpack'), this.config.getAll());
+    this.composeWith(require.resolve('../building'), this.config.getAll());
   }
 };
