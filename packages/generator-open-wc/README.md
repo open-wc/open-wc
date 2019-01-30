@@ -154,6 +154,9 @@ These generators are not executed with the default upgrade generator.
 These generators are executed with the default upgrade generator.
 You can use these generators if you already have an existing project that you would like to add to.
 
+- `yo open-wc:building-webpack`<br>
+  This generator adds a build configuration with Webpack to your existing project.
+
 - `yo open-wc:linting-eslint`<br>
   This generator adds linting with ESLint to your existing project.
 
