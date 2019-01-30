@@ -1,6 +1,6 @@
 const Generator = require('yeoman-generator');
 
-module.exports = class GeneratorTestingBare extends Generator {
+module.exports = class GeneratorScaffoldBuilding extends Generator {
   initializing() {
     if (Object.keys(this.config.getAll()).length === 0) {
       this.composeWith(require.resolve('../get-tag-name'), {
