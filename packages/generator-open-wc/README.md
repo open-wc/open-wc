@@ -55,6 +55,18 @@ yo open-wc:scaffold-vanilla
   </details>
   <br/>
 
+- `yo open-wc:scaffold-building`<br/> 
+  This generator scaffolds a webpack configuration for you with examples to your existing project. 
+  <details>
+    <summary>More info</summary>
+    <br/>
+    This generator will internally run:
+
+      - open-wc:building-webpack
+      - Plus an index.html and index.js using the [@open-wc/polyfills-loader](https://www.npmjs.com/package/@open-wc/polyfills-loader)
+  </details>
+  <br/>
+
 - `yo open-wc:scaffold-demoing`<br/> 
   This generator scaffolds a Storybook setup for you with examples to your existing project. 
   <details>
