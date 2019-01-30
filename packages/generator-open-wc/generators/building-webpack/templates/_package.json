@@ -7,7 +7,6 @@
     "build:stats": "webpack --mode production --profile --json > bundle-stats.json"
   },
   "devDependencies": {
-  	"@open-wc/polyfills-loader": "^0.2.0",
     "@open-wc/building-webpack": "^0.1.3",
     "webpack": "^4.28.4",
     "webpack-dev-server": "^3.1.14",
