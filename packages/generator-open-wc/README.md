@@ -119,6 +119,18 @@ This generator adds a complete linting setup with ESLint, Prettier, Husky and co
   <br/>
   
 
+- `yo open-wc:building`<br> 
+This generator adds a complete building setup with webpack to your existing project. 
+  <details>
+    <summary>More info</summary>
+    <br/>
+    This generator will internally run:
+
+      - open-wc:building-webpack
+  </details>
+  <br/>
+
+
 - `yo open-wc:testing`<br>
 This generator adds a complete testing setup with Karma, and Karma Browserstack to your existing project. 
   <details>
