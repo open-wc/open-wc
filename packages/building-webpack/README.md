@@ -100,8 +100,6 @@ Note: Licence required comments are extracted and provided via {chunkname}.LICEN
 ### No regenerator runtime / transform
 By default, babel's compilation of async functions and `for of` loops using an expensive transform and runtime. A lot of runtime code is added, and a lot of boilerplate code is added in the transform.
 
-For async functions we use the [fast-async](https://github.com/MatAtBread/fast-async) plugin instead.
-
 ### es2015 polyfills
 We add [Language polyfills](https://github.com/zloirock/core-js) for `es2015` features, such as `Map` and `'/foo'.startsWith('/')`. But only on the `es5` build, so that we don't need to ship it to modern browsers.
 

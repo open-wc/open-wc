@@ -129,14 +129,11 @@ module.exports = userOptions => {
                 },
               },
             ],
-            // fast async uses Promise instead of regenerator to compile async functions
-            'module:fast-async',
           ],
 
           // @babel/preset-env options common for all bundles
           presetOptions: {
             useBuiltIns: false,
-            // we use fast-async, it's faster than regenerator
             exclude: ['transform-async-to-generator', 'transform-regenerator'],
           },
         },
