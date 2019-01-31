@@ -9,6 +9,7 @@ export {
   isIE,
   defineCE,
   aTimeout,
+  nextFrame,
   litFixture,
   litFixtureSync,
   fixture,
