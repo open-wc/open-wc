@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.6](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.7.5...@open-wc/semantic-dom-diff@0.7.6) (2019-01-26)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.7.5](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.7.4...@open-wc/semantic-dom-diff@0.7.5) (2019-01-23)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** better browser support via es modules for deps ([#146](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/issues/146)) ([56176bd](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/commit/56176bd))
+
+
+
+
+
+## [0.7.4](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.7.3...@open-wc/semantic-dom-diff@0.7.4) (2019-01-20)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.7.3](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.7.2...@open-wc/semantic-dom-diff@0.7.3) (2019-01-19)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.7.2](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.7.1...@open-wc/semantic-dom-diff@0.7.2) (2019-01-16)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.7.1](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.7.0...@open-wc/semantic-dom-diff@0.7.1) (2019-01-09)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
 # [0.7.0](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.6.2...@open-wc/semantic-dom-diff@0.7.0) (2018-12-29)
 
 

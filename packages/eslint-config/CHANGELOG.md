@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.8](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.3.7...@open-wc/eslint-config@0.3.8) (2019-01-26)
+
+
+### Bug Fixes
+
+* align all open-wc readme headers ([b589429](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/commit/b589429))
+
+
+
+
+
+## [0.3.7](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.3.6...@open-wc/eslint-config@0.3.7) (2019-01-21)
+
+
+### Bug Fixes
+
+* broken links in README ([5685887](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/commit/5685887))
+
+
+
+
+
+## [0.3.6](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.3.5...@open-wc/eslint-config@0.3.6) (2019-01-20)
+
+
+### Bug Fixes
+
+* refactor generators ([1dab1f4](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/commit/1dab1f4))
+
+
+
+
+
+## [0.3.5](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.3.4...@open-wc/eslint-config@0.3.5) (2019-01-19)
+
+
+### Bug Fixes
+
+* restructure menu and improve docu ([dd37e22](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/commit/dd37e22))
+
+
+
+
+
+## [0.3.4](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.3.3...@open-wc/eslint-config@0.3.4) (2019-01-16)
+
+
+### Bug Fixes
+
+* improve documentation ([4f5472f](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/commit/4f5472f))
+
+
+
+
+
 ## [0.3.3](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.3.2...@open-wc/eslint-config@0.3.3) (2018-12-20)
 
 

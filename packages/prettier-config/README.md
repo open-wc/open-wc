@@ -1,14 +1,14 @@
 # Linting Prettier
 
-> Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/) Recommendations [open-wc](https://open-wc.org/)
+> Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
 
-We want to provide a good set of defaults on how to facilitate your web component.
+Open Web Components provides a set of defaults, recommendations and tools to help facilitate your web component project. Our recommendations include: developing, linting, testing, building, tooling, demoing, publishing and automating.
 
 [![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 
-Uses [Prettier](https://prettier.io) to format your JS, CSS and HTML code.
+Use [Prettier](https://prettier.io) to format your JS, CSS and HTML code.
 
 ::: tip Info
 This is part of the default [open-wc](https://open-wc.org/) recommendation
@@ -16,7 +16,10 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Setup
 ```bash
-npx -p yo -p generator-open-wc -c 'yo open-wc:lint-prettier'
+npm i -g yo
+npm i -g generator-open-wc
+
+yo open-wc:linting-prettier
 ```
 
 ## Manual
@@ -25,11 +28,11 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:lint-prettier'
   ```bash
   yarn add --dev @open-wc/prettier-config
   ```
-- Create `prettier.config.js` to root directory of the project as following.
+- Create `prettier.config.js` in the root directory of your project.
   ```js
   module.exports = require('@open-wc/prettier-config');
   ```
-- Add these lines to your package.json
+- Add the following scripts to your package.json
   ```js
   "scripts": {
     "lint:prettier": "prettier '**/*.js' --list-different || (echo '↑↑ these files are not prettier formatted ↑↑' && exit 1)",
@@ -48,15 +51,15 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:lint-prettier'
 
 ## What you get
 
-- apply formatting to JS files
-- apply formatting to HTML inside of `html` tagged template literals used by [lit-html](https://github.com/Polymer/lit-html)
-- apply formatting to CSS inside of `css` tagged template literals used by [lit-css](https://github.com/lit-styles/lit-styles/tree/master/packages/lit-css)
-- integration with ESLint to prevent potentially conflicting rules
+- Apply formatting to JS files
+- Apply formatting to HTML inside of `html` tagged template literals used by [lit-html](https://github.com/Polymer/lit-html)
+- Apply formatting to CSS inside of `css` tagged template literals used by [lit-css](https://github.com/lit-styles/lit-styles/tree/master/packages/lit-css)
+- Integration with ESLint to prevent potentially conflicting rules
 
 ## Usage
 
 Run:
-- `npm run lint:prettier` to check if any file is not correctly formatted
+- `npm run lint:prettier` to check if your files are correctly formatted
 - `npm run format:prettier` to auto format your files
 
 ## Linting Error Examples
@@ -69,4 +72,4 @@ test/set-game.test.js
 ↑↑ these files are not prettier formatted ↑↑
 ```
 
-So just run `npm run format:prettier` to format those files automatically.
+Simply run `npm run format:prettier` to format your files automatically.

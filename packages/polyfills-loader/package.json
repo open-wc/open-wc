@@ -1,0 +1,26 @@
+{
+  "name": "@open-wc/polyfills-loader",
+  "version": "0.2.0",
+  "main": "polyfills-loader.js",
+  "description": "Load web component polyfills using dynamic imports",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/polyfills-loader",
+  "keywords": [
+    "open-wc",
+    "polyfill",
+    "web-components"
+  ],
+  "dependencies": {
+    "@bundled-es-modules/url-polyfill": "^1.1.3",
+    "@webcomponents/custom-elements": "^1.2.1",
+    "@webcomponents/shadycss": "^1.8.0",
+    "@webcomponents/shadydom": "^1.4.2",
+    "@webcomponents/template": "^1.4.0",
+    "@webcomponents/webcomponents-platform": "^1.0.0"
+  }
+}

@@ -1,21 +1,24 @@
-# Testing in IDE via wallaby
+# Testing in IDE via Wallaby
 
 > Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
 
-We want to provide a good set of defaults on how to facilitate your web component.
+Open Web Components provides a set of defaults, recommendations and tools to help facilitate your web component project. Our recommendations include: developing, linting, testing, building, tooling, demoing, publishing and automating.
 
 [![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 
-Wallaby.js is a Plugin for your IDE and runs the tests in real time while you are typing.
+Wallaby.js is a Plugin for your IDE and runs tests in real time while you are typing.
 
 Using:
 - In IDE Testing via [wallaby.js](https://wallabyjs.com/)
 
 ## Setup
 ```bash
-npx -p yo -p generator-open-wc -c 'yo open-wc:wallaby'
+npm i -g yo
+npm i -g generator-open-wc
+
+yo open-wc:testing-wallaby
 ```
 
 ### Manual
@@ -23,7 +26,7 @@ npx -p yo -p generator-open-wc -c 'yo open-wc:wallaby'
 1. `yarn add @open-wc/testing-wallaby --dev`
 
 ## Usage
-Open your wallaby.js supported IDE and start it with the provided config.
+Open your wallaby.js supported IDE and start with the provided config.
 
 ## Example
 The [Set-Game Example](https://github.com/open-wc/example-vanilla-set-game/) has Wallaby Setup.

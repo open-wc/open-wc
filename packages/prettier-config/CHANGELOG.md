@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5](https://github.com/open-wc/open-wc/tree/master/packages/prettier-config/compare/@open-wc/prettier-config@0.1.4...@open-wc/prettier-config@0.1.5) (2019-01-26)
+
+
+### Bug Fixes
+
+* align all open-wc readme headers ([b589429](https://github.com/open-wc/open-wc/tree/master/packages/prettier-config/commit/b589429))
+
+
+
+
+
+## [0.1.4](https://github.com/open-wc/open-wc/tree/master/packages/prettier-config/compare/@open-wc/prettier-config@0.1.3...@open-wc/prettier-config@0.1.4) (2019-01-20)
+
+
+### Bug Fixes
+
+* refactor generators ([1dab1f4](https://github.com/open-wc/open-wc/tree/master/packages/prettier-config/commit/1dab1f4))
+
+
+
+
+
+## [0.1.3](https://github.com/open-wc/open-wc/tree/master/packages/prettier-config/compare/@open-wc/prettier-config@0.1.2...@open-wc/prettier-config@0.1.3) (2019-01-19)
+
+
+### Bug Fixes
+
+* restructure menu and improve docu ([dd37e22](https://github.com/open-wc/open-wc/tree/master/packages/prettier-config/commit/dd37e22))
+
+
+
+
+
+## [0.1.2](https://github.com/open-wc/open-wc/tree/master/packages/prettier-config/compare/@open-wc/prettier-config@0.1.1...@open-wc/prettier-config@0.1.2) (2019-01-16)
+
+
+### Bug Fixes
+
+* improve documentation ([4f5472f](https://github.com/open-wc/open-wc/tree/master/packages/prettier-config/commit/4f5472f))
+
+
+
+
+
 ## [0.1.1](https://github.com/open-wc/open-wc/tree/master/packages/prettier-config/compare/@open-wc/prettier-config@0.1.0...@open-wc/prettier-config@0.1.1) (2018-12-20)
 
 

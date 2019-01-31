@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.9](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.8...generator-open-wc@0.6.9) (2019-01-26)
+
+
+### Bug Fixes
+
+* align all open-wc readme headers ([b589429](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/b589429))
+
+
+
+
+
+## [0.6.8](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.7...generator-open-wc@0.6.8) (2019-01-22)
+
+
+### Bug Fixes
+
+* **generator-open-wc:** scaffold:vanilla should create .gitignore ([d245cc0](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/d245cc0))
+
+
+
+
+
+## [0.6.7](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.6...generator-open-wc@0.6.7) (2019-01-20)
+
+
+### Bug Fixes
+
+* refactor generators ([1dab1f4](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/1dab1f4))
+
+
+
+
+
+## [0.6.6](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.5...generator-open-wc@0.6.6) (2019-01-19)
+
+
+### Bug Fixes
+
+* restructure menu and improve docu ([dd37e22](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/dd37e22))
+
+
+
+
+
+## [0.6.5](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.4...generator-open-wc@0.6.5) (2019-01-16)
+
+
+### Bug Fixes
+
+* improve documentation ([4f5472f](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/4f5472f))
+
+
+
+
+
 ## [0.6.4](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.3...generator-open-wc@0.6.4) (2018-12-22)
 
 

@@ -2,13 +2,13 @@
 
 > Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
 
-We want to provide a good set of defaults on how to facilitate your web component.
+Open Web Components provides a set of defaults, recommendations and tools to help facilitate your web component project. Our recommendations include: developing, linting, testing, building, tooling, demoing, publishing and automating.
 
 [![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 
-In order to efficient test webcomponent you will need some helpers to register and instantiate them.
+In order to efficiently test Web Components you will need some helpers to register and instantiate them for you.
 
 ::: tip Info
 This is part of the default [open-wc](https://open-wc.org/) recommendation
@@ -35,9 +35,9 @@ it('can instantiate an element with properties', async () => {
 ```
 
 ## Test a custom class
-If you test a mixin or you have multiple base classes that offer a various set of options you will find yourself in the situation of needing multiple custom element names in your tests.
-This is rather dangerous as custom elements are global so you do not want to have overlapping names in your tests.
-Therefore we recommend using a special function for it.
+If you're testing a mixin, or have multiple base classes that offer a various set of options you might find yourself in the situation of needing multiple custom element names in your tests.
+This can be dangerous as custom elements are global, so you don't want to have overlapping names in your tests.
+Therefore we recommend using a the following function to avoid that.
 ```js
 import { fixture, defineCE } from '@open-wc/testing-helpers';
 
@@ -53,8 +53,7 @@ expect(el.foo).to.be.true;
 
 ## Test a custom class with properties
 For lit-html it's a little tougher as it does not support dynamic tag names by default.  
-This is using a "workaround" which is not performant for rerenders.
-As this is usually not a problem for tests it's ok here but do NOT use it in production code.
+This uses a workaround that's not performant for rerenders, which is fine for testing, but do NOT use this in production code.
 
 ```js
 import { html, fixture, defineCE, unsafeStatic } from '@open-wc/testing-helpers';
@@ -83,4 +82,22 @@ await nextFrame();
 // or as an alternative us timeout
 // await aTimeout(10); // would wait 10ms
 expect(el.shadowRoot.querySelector('#foo').innerText).to.equal('baz');
+```
+
+## Fixture Cleanup
+By default, if you import anything via `import { ... } from '@open-wc/testing-helpers';`, it will automatically register a side-effect that cleans up your fixtures.
+If you want to be in full control you can do so by using
+```js
+import { fixture, fixtureCleanup } from '@open-wc/testing-helpers/index-no-side-effects.js';
+
+it('can instantiate an element with properties', async () => {
+  const el = await fixture(html`<my-el .foo=${'bar'}></my-el>`);
+  expect(el.foo).to.equal('bar');
+  fixtureCleanup();
+}
+
+// Alternatively, you can add the fixtureCleanup in the afterEach function, but note that this is exactly what the automatically registered side-effect does.
+afterEach(() => {
+  fixtureCleanup();
+});
 ```

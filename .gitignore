@@ -24,3 +24,7 @@ lerna-debug.log
 ## we don't want lock files for now
 yarn.lock
 package-lock.json
+
+## build output
+dist
+build-stats.json

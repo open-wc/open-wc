@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.7](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.4.6...@open-wc/testing-karma@0.4.7) (2019-01-26)
+
+
+### Bug Fixes
+
+* align all open-wc readme headers ([b589429](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/commit/b589429))
+
+
+
+
+
+## [0.4.6](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.4.5...@open-wc/testing-karma@0.4.6) (2019-01-20)
+
+
+### Bug Fixes
+
+* refactor generators ([1dab1f4](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/commit/1dab1f4))
+
+
+
+
+
+## [0.4.5](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.4.4...@open-wc/testing-karma@0.4.5) (2019-01-19)
+
+
+### Bug Fixes
+
+* restructure menu and improve docu ([dd37e22](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/commit/dd37e22))
+
+
+
+
+
+## [0.4.4](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.4.3...@open-wc/testing-karma@0.4.4) (2019-01-16)
+
+
+### Bug Fixes
+
+* improve documentation ([4f5472f](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/commit/4f5472f))
+
+
+
+
+
+## [0.4.3](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.4.2...@open-wc/testing-karma@0.4.3) (2019-01-09)
+
+
+### Bug Fixes
+
+* docu typos ([aafd5e4](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/commit/aafd5e4))
+
+
+
+
+
 ## [0.4.2](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.4.1...@open-wc/testing-karma@0.4.2) (2018-12-20)
 
 **Note:** Version bump only for package @open-wc/testing-karma

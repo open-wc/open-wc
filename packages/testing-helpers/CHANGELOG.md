@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.9](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.8...@open-wc/testing-helpers@0.7.9) (2019-01-26)
+
+
+### Bug Fixes
+
+* align all open-wc readme headers ([b589429](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/b589429))
+
+
+
+
+
+## [0.7.8](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.7...@open-wc/testing-helpers@0.7.8) (2019-01-26)
+
+
+### Bug Fixes
+
+* **testing-helpers:** fixture waits for elements updateComplete ([a80a625](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/a80a625))
+* **testing-helpers:** flaky IE11 blur/focus helpers ([aa91e06](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/aa91e06))
+
+
+
+
+
+## [0.7.7](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.6...@open-wc/testing-helpers@0.7.7) (2019-01-24)
+
+
+### Bug Fixes
+
+* add docu for fixtureCleanup ([ab0170a](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/ab0170a))
+
+
+
+
+
+## [0.7.6](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.5...@open-wc/testing-helpers@0.7.6) (2019-01-20)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.7.5](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.4...@open-wc/testing-helpers@0.7.5) (2019-01-19)
+
+
+### Bug Fixes
+
+* move fixtureCleanup to testing helpers ([#136](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/issues/136)) ([9d268ab](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/9d268ab))
+
+
+
+
+
+## [0.7.4](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.3...@open-wc/testing-helpers@0.7.4) (2019-01-19)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.7.3](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.2...@open-wc/testing-helpers@0.7.3) (2019-01-16)
+
+
+### Bug Fixes
+
+* improve documentation ([4f5472f](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/4f5472f))
+
+
+
+
+
+## [0.7.2](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.1...@open-wc/testing-helpers@0.7.2) (2019-01-09)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
 ## [0.7.1](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.0...@open-wc/testing-helpers@0.7.1) (2019-01-03)
 
 

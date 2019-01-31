@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-wallaby",
-  "version": "0.1.4",
+  "version": "0.1.8",
   "description": "Testing with wallaby following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",

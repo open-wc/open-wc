@@ -1,41 +1,123 @@
 // .vuepress/config.js
+
+const sidebar = [
+  ['/', 'Home'],
+  ['/guide/', 'Introduction'],
+  {
+    title: 'IDE',
+    collapsable: true,
+    children: [['/ide/', 'Getting started']],
+  },
+  {
+    title: 'Developing',
+    collapsable: true,
+    children: [
+      ['/developing/', 'Getting started'],
+      '/developing/owc-dev-server',
+      ['/developing/generator', 'Generators'],
+    ],
+  },
+  {
+    title: 'Linting',
+    collapsable: true,
+    children: [
+      ['/linting/', 'Getting started'],
+      '/linting/linting-eslint',
+      '/linting/linting-prettier',
+    ],
+  },
+  {
+    title: 'Testing',
+    collapsable: true,
+    children: [
+      ['/testing/', 'Getting started'],
+      '/testing/testing-helpers',
+      '/testing/testing-chai-dom-equals',
+      '/testing/testing-karma',
+      '/testing/testing-karma-bs',
+      '/testing/testing-wallaby',
+    ],
+  },
+  {
+    title: 'Building',
+    collapsable: true,
+    children: [
+      ['/building/', 'Getting started'],
+      '/building/building-webpack',
+      '/building/polyfills-loader',
+    ],
+  },
+  {
+    title: 'Demoing',
+    collapsable: true,
+    children: [['/demoing/', 'Getting started']],
+  },
+  {
+    title: 'Publishing',
+    collapsable: true,
+    children: [['/publishing/', 'Getting started']],
+  },
+  {
+    title: 'Automating',
+    collapsable: true,
+    children: [['/automating/', 'Getting started']],
+  },
+];
 module.exports = {
   title: 'open-wc',
-  description: 'Open Web Components Recommendations',
+  description: 'Open Web Component Recommendations',
   themeConfig: {
+    logo: '/logo.png',
     displayAllHeaders: false,
     sidebarDepth: 2,
-    sidebar: [
-      '/guide/',
-      '/recommendations/ide',
-      '/recommendations/linting',
-      '/recommendations/linting-eslint',
-      '/recommendations/linting-prettier',
-      '/recommendations/testing',
-      '/recommendations/testing-helpers',
-      '/recommendations/testing-chai-dom-equals',
-      '/recommendations/testing-karma',
-      '/recommendations/testing-karma-bs',
-      '/recommendations/testing-wallaby',
-      '/recommendations/demos-storybook',
-      '/recommendations/publishing',
-      '/recommendations/automate',
-      '/recommendations/generator',
-      '/help/js',
-      '/contact/',
-    ],
+    sidebar: {
+      '/guide/': sidebar,
+      '/ide/': sidebar,
+      '/developing/': sidebar,
+      '/linting/': sidebar,
+      '/testing/': sidebar,
+      '/building/': sidebar,
+      '/demoing/': sidebar,
+      '/publishing/': sidebar,
+      '/automating/': sidebar,
+      '/setup/': [['/guide/', '⇐ back to Guide'], '', 'generator'],
+      '/faq/': ['', 'rerender'],
+      '/about/': [['/about/', 'About'], ['/about/contact', 'Contact']],
+    },
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/' },
-      { text: 'Contact', link: '/contact/' },
+      { text: 'FAQ', link: '/faq/' },
+      { text: 'About', link: '/about/' },
     ],
     repo: 'open-wc/open-wc',
     docsDir: 'docs',
     editLinks: true,
-    editLinkText: 'Improve these recommendations (or add your own)',
+    editLinkText: 'Edit Page',
     lastUpdated: 'Last Updated',
   },
   dest: '_site',
   plugins: ['@vuepress/google-analytics'],
   ga: 'UA-131782693-1',
+  head: [
+    [
+      'meta',
+      {
+        property: 'og:image',
+        content:
+          'https://raw.githubusercontent.com/open-wc/open-wc/master/docs/.vuepress/public/logo.png',
+      },
+    ],
+    ['meta', { property: 'og:site_name', content: 'Open Web Components' }],
+    [
+      'meta',
+      {
+        property: 'og:description',
+        content:
+          'Open Web Components provides a set of defaults, recommendations and tools to help facilitate your web component project. Our recommendations include: developing, linting, testing, building, tooling, demoing, publishing and automating.',
+      },
+    ],
+    ['meta', { name: 'twitter:card', content: 'summary' }],
+    ['meta', { name: 'twitter:title', content: 'Open Web Components' }],
+  ],
 };

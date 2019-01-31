@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.2.4...@open-wc/storybook@0.2.5) (2019-01-26)
+
+
+### Bug Fixes
+
+* align all open-wc readme headers ([b589429](https://github.com/open-wc/open-wc/tree/master/packages/storybook/commit/b589429))
+
+
+
+
+
+## [0.2.4](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.2.3...@open-wc/storybook@0.2.4) (2019-01-21)
+
+
+### Bug Fixes
+
+* broken links in README ([5685887](https://github.com/open-wc/open-wc/tree/master/packages/storybook/commit/5685887))
+
+
+
+
+
+## [0.2.3](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.2.2...@open-wc/storybook@0.2.3) (2019-01-20)
+
+
+### Bug Fixes
+
+* refactor generators ([1dab1f4](https://github.com/open-wc/open-wc/tree/master/packages/storybook/commit/1dab1f4))
+
+
+
+
+
+## [0.2.2](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.2.1...@open-wc/storybook@0.2.2) (2019-01-16)
+
+
+### Bug Fixes
+
+* improve documentation ([4f5472f](https://github.com/open-wc/open-wc/tree/master/packages/storybook/commit/4f5472f))
+
+
+
+
+
+## [0.2.1](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.2.0...@open-wc/storybook@0.2.1) (2019-01-13)
+
+**Note:** Version bump only for package @open-wc/storybook
+
+
+
+
+
 # [0.2.0](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.1.9...@open-wc/storybook@0.2.0) (2018-12-11)
 
 

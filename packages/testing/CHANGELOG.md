@@ -3,6 +3,101 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.11](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.10...@open-wc/testing@0.9.11) (2019-01-26)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.10](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.9...@open-wc/testing@0.9.10) (2019-01-26)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.9](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.8...@open-wc/testing@0.9.9) (2019-01-24)
+
+
+### Bug Fixes
+
+* add docu for fixtureCleanup ([ab0170a](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/ab0170a))
+
+
+
+
+
+## [0.9.8](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.7...@open-wc/testing@0.9.8) (2019-01-23)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.7](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.6...@open-wc/testing@0.9.7) (2019-01-20)
+
+
+### Bug Fixes
+
+* refactor generators ([1dab1f4](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/1dab1f4))
+
+
+
+
+
+## [0.9.6](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.5...@open-wc/testing@0.9.6) (2019-01-19)
+
+
+### Bug Fixes
+
+* move fixtureCleanup to testing helpers ([#136](https://github.com/open-wc/open-wc/tree/master/packages/testing/issues/136)) ([9d268ab](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/9d268ab))
+
+
+
+
+
+## [0.9.5](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.4...@open-wc/testing@0.9.5) (2019-01-19)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.4](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.3...@open-wc/testing@0.9.4) (2019-01-16)
+
+
+### Bug Fixes
+
+* improve documentation ([4f5472f](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/4f5472f))
+
+
+
+
+
+## [0.9.3](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.2...@open-wc/testing@0.9.3) (2019-01-13)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.2](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.1...@open-wc/testing@0.9.2) (2019-01-09)
+
+
+### Bug Fixes
+
+* docu typos ([aafd5e4](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/aafd5e4))
+
+
+
+
+
 ## [0.9.1](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.0...@open-wc/testing@0.9.1) (2019-01-03)
 
 **Note:** Version bump only for package @open-wc/testing
