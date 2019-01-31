@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
-    "start:es5": "webpack-dev-server --mode development --es5",
-    "start:build": "http-server dist/ -o",
+    "start:dev": "webpack-dev-server --mode development --open",
+    "start:dev:es5": "webpack-dev-server --mode development --es5",
+    "start:prod": "http-server dist/ -o",
     "build": "webpack --mode production",
     "build:stats": "webpack --mode production --profile --json > bundle-stats.json"
   },
