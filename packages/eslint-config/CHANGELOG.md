@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.9](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.3.8...@open-wc/eslint-config@0.3.9) (2019-01-31)
+
+
+### Bug Fixes
+
+* **eslint-config:** allow usage of devDeps in nested test/stories folders ([e8663f3](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/commit/e8663f3))
+
+
+
+
+
 ## [0.3.8](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.3.7...@open-wc/eslint-config@0.3.8) (2019-01-26)
 
 

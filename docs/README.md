@@ -12,3 +12,13 @@ features:
   details: Open Web Components is a community-effort, independent of any framework or company. We use mostly open-source tools and services. 
 footer: MIT Licensed | Copyright © 2019-present open-wc
 ---
+<hr>
+<p align="center" style="margin: 50px; color: #4e6e8e;">
+	<q><i>I used open-wc to get testing working, it was so helpful, works like a charm!</i></q>
+	<br><br> - Ikira
+</p>
+<hr>
+<p align="center" style="margin: 50px; color: #4e6e8e;">
+	<q><i>Just now visiting open-wc.org site for the first time. You guys are killing it! Amazing stuff, and IMO totally on target. Many thanks.</i></q>
+	<br><br> - Petecarapetyan
+</p>
