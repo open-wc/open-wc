@@ -16,7 +16,7 @@ To set up the default configuration manually:
 
 1. Install the required dependencies:
 ```bash
-npm i -D @open-wc/building-webpack webpack webpack-dev-server http-server
+npm i -D @open-wc/building-webpack webpack webpack-cli webpack-dev-server http-server
 ```
 
 2. Create a file `webpack.config.js`:
@@ -27,7 +27,42 @@ const defaultConfig = require('@open-wc/building-webpack/default-config');
 module.exports = defaultConfig();
 ```
 
-3. Add the following commands to your `package.json`:
+The default configuration assumes default locations for your app's HTML and JavaScript entrypoints.
+Youll add these files in steps 3 and 4. If you're adding webpack to an existing project, you may 
+need to change the default entrypoints—see [Changing the default entrypoints](#changing-the-default-entrypoints).
+
+
+3. Create an `index.html`:
+```html
+<!doctype html>
+<html>
+  <head></head>
+  <body>
+    <your-app></your-app>
+  </body>
+</html>
+```
+
+Note that the `index.html` file doesn't reference the JavaScript file—webpack will add a `<script>` tag when it builds your project. Also note that webpack does **not** process inline script tags, like:
+
+```html
+<script>
+  import {MyApp} from './src/my-app.js';
+</script>
+```
+
+4. Create a `index.js` which kickstarts your JS code.
+For older browser we need to load the web component polyfills. We use the [polyfills-loader](https://open-wc.org/building/polyfills-loader.html) for that:
+
+```javascript
+import loadPolyfills from '@open-wc/polyfills-loader';
+
+loadPolyfills().then(() => {
+  import('./my-app.js');
+});
+```
+
+5. Add the following commands to your `package.json`:
 ```json
 {
   "scripts": {
@@ -45,29 +80,8 @@ module.exports = defaultConfig();
 - `start:build` runs your built app using a plain web server, to prove it works without magic :)
 - `build:stats` creates an analysis report of your app bundle to be consumed by Webpack [Visualizer](https://chrisbateman.github.io/webpack-visualizer/) and [Analyser](https://webpack.github.io/analyse/)
 
-4. Create an `index.html`:
-```html
-<!doctype html>
-<html>
-  <head></head>
-  <body>
-    <your-app></your-app>
-  </body>
-</html>
-```
+### Changing the default entrypoints
 
-5. Create a `index.js` which kickstarts your JS code.
-For older browser we need to load the web component polyfills. We use the [polyfills-loader](https://open-wc.org/building/polyfills-loader.html) for that:
-
-```javascript
-import loadPolyfills from '@open-wc/polyfills-loader';
-
-loadPolyfills().then(() => {
-  import('./my-app.js');
-});
-```
-
-### Notes
 You can change the default `index.html` and `index.js` files:
 
 ```javascript
