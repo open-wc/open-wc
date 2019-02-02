@@ -32,6 +32,7 @@
     "@commitlint/config-conventional": "7.1.2",
     "@commitlint/config-lerna-scopes": "7.2.1",
     "@vuepress/plugin-google-analytics": "^1.0.0-alpha.30",
+    "eslint": "^5.13.0",
     "eslint-config-prettier": "^3.3.0",
     "husky": "1.1.2",
     "lerna": "3.4.3",
