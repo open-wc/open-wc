@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "description": "Testing with karma following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -30,8 +30,8 @@
     "karma-firefox-launcher": "^1.0.0",
     "karma-mocha": "^1.0.0",
     "karma-mocha-reporter": "^2.0.0",
-    "karma-sourcemap-loader": "^0.3.0",
     "karma-source-map-support": "^1.3.0",
+    "karma-sourcemap-loader": "^0.3.0",
     "karma-static": "^1.0.1",
     "karma-webpack": "^5.0.0-alpha.0",
     "webpack": "^4.0.0"
