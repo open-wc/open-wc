@@ -120,4 +120,10 @@ module.exports = {
     ['meta', { name: 'twitter:card', content: 'summary' }],
     ['meta', { name: 'twitter:title', content: 'Open Web Components' }],
   ],
+  // temporary set to develop mode as Terser seems to have a problem :/
+  configureWebpack: (config, isServer) => {
+    if (!isServer) {
+      config.mode = 'development';
+    }
+  },
 };
