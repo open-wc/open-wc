@@ -41,3 +41,15 @@ The webcomponent polyfill requires:
 - Symbol
 
 Make sure the required polyfills are loaded before calling the loader. If you configure babel to load these polyfills on usage, this is done automatically.
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/polyfills-loader/README.md';
+      }
+    }
+  }
+</script>

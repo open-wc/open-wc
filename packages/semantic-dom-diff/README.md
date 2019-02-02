@@ -22,3 +22,15 @@ const rightTree = `
 // Diff will be an object if there is a difference, otherwise undefined
 const diff = getSemanticDomDiff(leftTree, rightTree);
 ```
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/semantic-dom-diff/README.md';
+      }
+    }
+  }
+</script>

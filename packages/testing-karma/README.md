@@ -113,3 +113,15 @@ module.exports = config => {
 ```
 
 Then run your tests with: `karma start karma.es5.config.js`
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/testing-karma/README.md';
+      }
+    }
+  }
+</script>

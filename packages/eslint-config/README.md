@@ -43,3 +43,15 @@ This will install `@open-wc/eslint-config`, a config based on airbnb but allows 
 Run:
 - `npm run lint:eslint` to check if any file is not correctly formatted
 - `npm run format:eslint` to auto format your files
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/eslint-config/README.md';
+      }
+    }
+  }
+</script>

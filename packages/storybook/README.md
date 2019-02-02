@@ -40,3 +40,15 @@ npm run storybook:start
 ## Example
 The [Set-Game Example](https://github.com/open-wc/example-vanilla-set-game/) has the default publishing via storybook on netlify.
 You can see the finished page at: [https://example-set-game-open-wc.netlify.com/](https://example-set-game-open-wc.netlify.com/).
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/storybook/README.md';
+      }
+    }
+  }
+</script>
