@@ -20,7 +20,7 @@ Note: import paths are only resolved within `.js` files. This means you cannot d
 ```html
 <html>
   <head>
-    <script type="module">
+    <script>
       import { html } from 'lit-html'; // does not work
     </script>
   </head>
@@ -92,3 +92,15 @@ npx owc-dev-server --app-index demo/index.html --open
 |--root-dir|-r|string|The root directory to serve files from. Defaults to the project root.|
 |--modules-dir|-m|string|Directory to resolve modules from. Default: node_modules|
 |--help|none|none|See all options|
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/owc-dev-server/README.md';
+      }
+    }
+  }
+</script>

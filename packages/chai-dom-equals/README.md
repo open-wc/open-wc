@@ -71,5 +71,16 @@ it('literally equals', () => {
   expect(outerHTML).to.equal(`<${tag}></${tag}>`);
   expect(innerHTML).to.equal('<p>  shadow content</p> <!-- comment --> <slot></slot>');
 });
-
 ```
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/chai-dom-equals/README.md';
+      }
+    }
+  }
+</script>

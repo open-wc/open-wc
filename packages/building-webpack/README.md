@@ -136,3 +136,15 @@ module.exports = merge(defaultConfig, {
 We recommend extending the config only to make small additions.
 If your configuration deviates too much from our default setup, simply copy paste what we have and use it as a starting point.
 It will keep your configuration easier to understand.
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/building-webpack/README.md';
+      }
+    }
+  }
+</script>

@@ -171,3 +171,14 @@ You can use these generators if you already have an existing project that you wo
 - `yo open-wc:automating-circleci`<br>
   This generator adds continuous integration with CircleCi to your existing project.
 
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/generator-open-wc/README.md';
+      }
+    }
+  }
+</script>

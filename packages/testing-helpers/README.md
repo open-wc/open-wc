@@ -95,3 +95,15 @@ afterEach(() => {
   fixtureCleanup();
 });
 ```
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/testing-helpers/README.md';
+      }
+    }
+  }
+</script>
