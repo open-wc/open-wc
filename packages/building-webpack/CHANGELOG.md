@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5](https://github.com/open-wc/open-wc/tree/master/packages/building-webpack/compare/@open-wc/building-webpack@0.1.4...@open-wc/building-webpack@0.1.5) (2019-02-02)
+
+
+### Bug Fixes
+
+* unify npm readme header for all open-wc packages ([1bac939](https://github.com/open-wc/open-wc/tree/master/packages/building-webpack/commit/1bac939))
+
+
+
+
+
 ## [0.1.4](https://github.com/open-wc/open-wc/tree/master/packages/building-webpack/compare/@open-wc/building-webpack@0.1.3...@open-wc/building-webpack@0.1.4) (2019-01-30)
 
 

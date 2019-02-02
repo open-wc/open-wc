@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.12](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/compare/@open-wc/chai-dom-equals@0.9.11...@open-wc/chai-dom-equals@0.9.12) (2019-02-02)
+
+
+### Bug Fixes
+
+* unify npm readme header for all open-wc packages ([1bac939](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/commit/1bac939))
+
+
+
+
+
 ## [0.9.11](https://github.com/open-wc/open-wc/tree/master/packages/chai-dom-equals/compare/@open-wc/chai-dom-equals@0.9.10...@open-wc/chai-dom-equals@0.9.11) (2019-02-02)
 
 **Note:** Version bump only for package @open-wc/chai-dom-equals

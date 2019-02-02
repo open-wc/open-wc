@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.14](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.13...@open-wc/testing@0.9.14) (2019-02-02)
+
+
+### Bug Fixes
+
+* unify npm readme header for all open-wc packages ([1bac939](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/1bac939))
+
+
+
+
+
 ## [0.9.13](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.12...@open-wc/testing@0.9.13) (2019-02-02)
 
 **Note:** Version bump only for package @open-wc/testing

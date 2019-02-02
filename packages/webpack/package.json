@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/webpack",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Webpack configuration following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
