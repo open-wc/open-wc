@@ -4,6 +4,7 @@ import MemoryFs from 'memory-fs';
 
 export default (fixture, rules = [{}]) => {
   const compiler = webpack({
+    mode: 'development',
     context: __dirname,
     entry: `./${fixture}`,
     output: {

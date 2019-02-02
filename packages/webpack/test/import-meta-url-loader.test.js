@@ -34,8 +34,8 @@ describe('import-meta-url-loader', () => {
 
   it('Replaces nested instances of import.meta', async () => {
     const stats = await compiler('caseB/index.js', rules);
-    const caseB = stats.toJson().modules[0].source;
-    const caseBsub = stats.toJson().modules[1].source;
+    const caseB = stats.toJson().modules[1].source;
+    const caseBsub = stats.toJson().modules[0].source;
 
     expect(caseB).to.equal(
       '' +
