@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.6](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.2.5...@open-wc/storybook@0.2.6) (2019-02-02)
+
+
+### Bug Fixes
+
+* update/insert readme open-wc header via script ([be84d36](https://github.com/open-wc/open-wc/tree/master/packages/storybook/commit/be84d36))
+
+
+
+
+
 ## [0.2.5](https://github.com/open-wc/open-wc/tree/master/packages/storybook/compare/@open-wc/storybook@0.2.4...@open-wc/storybook@0.2.5) (2019-01-26)
 
 
