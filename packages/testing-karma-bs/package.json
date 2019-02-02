@@ -13,7 +13,8 @@
     "test": "karma start demo/karma.conf.js",
     "test:watch": "karma start demo/karma.conf.js --auto-watch=true --single-run=false",
     "test:es5": "karma start demo/karma.es5.config.js",
-    "test:es5:bs": "karma start demo/karma.es5.bs.config.js"
+    "test:es5:bs": "karma start demo/karma.es5.bs.config.js",
+    "prepublishOnly": "../../scripts/insert-header.js"
   },
   "dependencies": {
     "@open-wc/testing-karma": "^0.4.8",
