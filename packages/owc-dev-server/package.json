@@ -13,7 +13,8 @@
     "access": "public"
   },
   "scripts": {
-    "start": "./owc-dev-server.js -o demo --app-index demo/index.html"
+    "start": "./owc-dev-server.js -o demo --app-index demo/index.html",
+    "prepublishOnly": "../../scripts/insert-header.js"
   },
   "repository": "https://github.com/open-wc/open-wc/tree/master/packages/dev-server",
   "dependencies": {

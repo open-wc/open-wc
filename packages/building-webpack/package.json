@@ -13,7 +13,8 @@
     "start": "webpack-dev-server --mode development --config demo/webpack.config.js --open",
     "start:es5": "webpack-dev-server --mode development --config demo/webpack.config.js --es5 --open",
     "build": "webpack --mode production --config demo/webpack.config.js",
-    "build:stats": "webpack --mode production --config demo/webpack.config.js --profile --json > build-stats.json"
+    "build:stats": "webpack --mode production --config demo/webpack.config.js --profile --json > build-stats.json",
+    "prepublishOnly": "../../scripts/insert-header.js"
   },
   "keywords": [
     "open-wc",

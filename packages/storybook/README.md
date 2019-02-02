@@ -4,7 +4,7 @@
 
 For demoing and showcasing different states of your Web Component, we recommend using [storybook](https://storybook.js.org/).
 
-::: tip Info
+::: tip
 This is part of the default [open-wc](https://open-wc.org/) recommendation
 :::
 

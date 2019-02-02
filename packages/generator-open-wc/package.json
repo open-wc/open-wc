@@ -10,6 +10,9 @@
     "yeoman-generator",
     "open-wc"
   ],
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js"
+  },
   "dependencies": {
     "glob": "^7.0.0",
     "yeoman-generator": "^3.0.0"

@@ -14,7 +14,8 @@
     "test:watch": "karma start --auto-watch=true --single-run=false",
     "test:es5": "karma start karma.es5.config.js",
     "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
-    "test:es5:bs": "karma start karma.es5.bs.config.js"
+    "test:es5:bs": "karma start karma.es5.bs.config.js",
+    "prepublishOnly": "../../scripts/insert-header.js"
   },
   "peerDependencies": {
     "lit-html": "^0.12.0"

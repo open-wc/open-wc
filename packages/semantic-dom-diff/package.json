@@ -14,7 +14,8 @@
     "test:es5:bs": "karma start karma.es5.bs.config.js",
     "test:watch": "karma start --auto-watch=true --single-run=false",
     "test:es5": "karma start karma.es5.config.js",
-    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false"
+    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
+    "prepublishOnly": "../../scripts/insert-header.js"
   },
   "dependencies": {
     "@bundled-es-modules/diffable-html": "^4.0.0-rc.2",
