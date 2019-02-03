@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.11](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.10...generator-open-wc@0.6.11) (2019-02-03)
+
+
+### Bug Fixes
+
+* **generator-open-wc:** add building-webpack generator ([8f2979c](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/8f2979c))
+
+
+
+
+
 ## [0.6.10](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.9...generator-open-wc@0.6.10) (2019-02-02)
 
 
