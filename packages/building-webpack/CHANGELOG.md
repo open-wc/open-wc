@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.7](https://github.com/open-wc/open-wc/tree/master/packages/building-webpack/compare/@open-wc/building-webpack@0.1.6...@open-wc/building-webpack@0.1.7) (2019-02-03)
+
+
+### Bug Fixes
+
+* **building-webpack:** improve setup docu to minify user errors ([3835e73](https://github.com/open-wc/open-wc/tree/master/packages/building-webpack/commit/3835e73))
+
+
+
+
+
 ## [0.1.6](https://github.com/open-wc/open-wc/tree/master/packages/building-webpack/compare/@open-wc/building-webpack@0.1.5...@open-wc/building-webpack@0.1.6) (2019-02-03)
 
 
