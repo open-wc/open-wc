@@ -1,6 +1,6 @@
 import { fixtureWrapper } from './fixtureWrapper.js';
 import { render } from './lit-html.js';
-import { nextFrame } from './helpers.js';
+import { elementUpdated } from './elementUpdated.js';
 
 /**
  * Setups an element synchronously from the provided lit-html template and puts it in the DOM.
@@ -22,11 +22,6 @@ export function litFixtureSync(template) {
  */
 export async function litFixture(template) {
   const el = litFixtureSync(template);
-  const update = el.updateComplete;
-  if (typeof update === 'object' && Promise.resolve(update) === update) {
-    await update;
-  } else {
-    await nextFrame();
-  }
+  await elementUpdated(el);
   return el;
 }

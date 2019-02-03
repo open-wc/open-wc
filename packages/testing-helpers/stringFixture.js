@@ -1,5 +1,5 @@
-import { nextFrame } from './helpers.js';
 import { fixtureWrapper } from './fixtureWrapper.js';
+import { elementUpdated } from './elementUpdated.js';
 
 /**
  * Setups an element synchronously from the provided string template and puts it in the DOM.
@@ -23,11 +23,6 @@ export function stringFixtureSync(template) {
  */
 export async function stringFixture(template) {
   const el = stringFixtureSync(template);
-  const update = el.updateComplete;
-  if (typeof update === 'object' && Promise.resolve(update) === update) {
-    await update;
-  } else {
-    await nextFrame();
-  }
+  await elementUpdated(el);
   return el;
 }
