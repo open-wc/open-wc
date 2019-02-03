@@ -9,7 +9,7 @@ const developmentEs5 = !!process.argv.find(arg => arg.includes('es5'));
 
 const defaultOptions = {
   indexHTML: './index.html',
-  indexJS: ['./index.js'],
+  indexJS: './index.js',
 };
 
 const es6Target = {
