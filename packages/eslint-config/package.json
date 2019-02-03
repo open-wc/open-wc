@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/eslint-config",
-  "version": "0.3.8",
+  "version": "0.3.10",
   "description": "Eslint config following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -10,6 +10,9 @@
   },
   "repository": "https://github.com/open-wc/open-wc/tree/master/packages/eslint-config",
   "main": "index.js",
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js"
+  },
   "dependencies": {
     "babel-eslint": "^10.0.0",
     "eslint": "^5.0.0",

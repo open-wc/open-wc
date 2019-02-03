@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-wallaby",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Testing with wallaby following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -9,6 +9,9 @@
     "access": "public"
   },
   "repository": "https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby",
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js"
+  },
   "dependencies": {
     "wallaby-webpack": "^3.0.0",
     "webpack": "^4.0.0"

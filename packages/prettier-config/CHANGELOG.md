@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.6](https://github.com/open-wc/open-wc/tree/master/packages/prettier-config/compare/@open-wc/prettier-config@0.1.5...@open-wc/prettier-config@0.1.6) (2019-02-02)
+
+
+### Bug Fixes
+
+* unify npm readme header for all open-wc packages ([1bac939](https://github.com/open-wc/open-wc/tree/master/packages/prettier-config/commit/1bac939))
+
+
+
+
+
 ## [0.1.5](https://github.com/open-wc/open-wc/tree/master/packages/prettier-config/compare/@open-wc/prettier-config@0.1.4...@open-wc/prettier-config@0.1.5) (2019-01-26)
 
 

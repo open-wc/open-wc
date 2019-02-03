@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.8](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.7.7...@open-wc/semantic-dom-diff@0.7.8) (2019-02-02)
+
+
+### Bug Fixes
+
+* unify npm readme header for all open-wc packages ([1bac939](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/commit/1bac939))
+
+
+
+
+
+## [0.7.7](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.7.6...@open-wc/semantic-dom-diff@0.7.7) (2019-02-02)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
 ## [0.7.6](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.7.5...@open-wc/semantic-dom-diff@0.7.6) (2019-01-26)
 
 **Note:** Version bump only for package @open-wc/semantic-dom-diff

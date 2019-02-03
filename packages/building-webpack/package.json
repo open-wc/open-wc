@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-webpack",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "Default configuration for working with webpack",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -13,7 +13,8 @@
     "start": "webpack-dev-server --mode development --config demo/webpack.config.js --open",
     "start:es5": "webpack-dev-server --mode development --config demo/webpack.config.js --es5 --open",
     "build": "webpack --mode production --config demo/webpack.config.js",
-    "build:stats": "webpack --mode production --config demo/webpack.config.js --profile --json > build-stats.json"
+    "build:stats": "webpack --mode production --config demo/webpack.config.js --profile --json > build-stats.json",
+    "prepublishOnly": "../../scripts/insert-header.js"
   },
   "keywords": [
     "open-wc",
@@ -23,13 +24,14 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "@babel/runtime-corejs2": "^7.2.0",
-    "@open-wc/polyfills-loader": "^0.2.0",
-    "@open-wc/webpack-import-meta-loader": "^0.1.0",
+    "@open-wc/polyfills-loader": "^0.2.1",
+    "@open-wc/webpack-import-meta-loader": "^0.1.1",
     "babel-loader": "^8.0.5",
     "babel-plugin-template-html-minifier": "^2.1.3",
     "clean-webpack-plugin": "^1.0.0",
     "fast-async": "^7.0.6",
     "html-webpack-plugin": "^3.2.0",
+    "terser-webpack-plugin": "^1.2.1",
     "webpack": "^4.28.4",
     "webpack-babel-multi-target-plugin": "^v2.1.0-alpha.8"
   },

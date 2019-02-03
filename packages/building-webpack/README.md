@@ -1,12 +1,6 @@
 # Webpack
 
-> Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
-
-Open Web Components provides a set of defaults, recommendations and tools to help facilitate your web component project. Our recommendations include: developing, linting, testing, building, tooling, demoing, publishing and automating.
-
-[![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
-[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
-[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+[//]: # (AUTO INSERT HEADER PREPUBLISH)
 
 ## Default configuration
 We provide default configuration to help you get started building your web component project with webpack.
@@ -93,6 +87,10 @@ Using [webpack-babel-multi-target-plugin](https://www.npmjs.com/package/webpack-
 
 Read more about this trick at [Jakes blog post "ECMAScript modules in browsers"](https://jakearchibald.com/2017/es-modules-in-browsers/).
 
+### Comment code
+Comment code gets stripped at build time. So comment away!  
+Note: Licence required comments are extracted and provided via {chunkname}.LICENCE files.
+
 ### No regenerator runtime / transform
 By default, babel's compilation of async functions and `for of` loops using an expensive transform and runtime. A lot of runtime code is added, and a lot of boilerplate code is added in the transform.
 
@@ -138,3 +136,15 @@ module.exports = merge(defaultConfig, {
 We recommend extending the config only to make small additions.
 If your configuration deviates too much from our default setup, simply copy paste what we have and use it as a starting point.
 It will keep your configuration easier to understand.
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/building-webpack/README.md';
+      }
+    }
+  }
+</script>

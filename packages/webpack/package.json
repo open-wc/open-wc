@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/webpack",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Webpack configuration following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -11,7 +11,8 @@
   "repository": "https://github.com/open-wc/open-wc/tree/master/packages/webpack",
   "scripts": {
     "test": "mocha --require @babel/register",
-    "test:ci": "npm run test"
+    "test:ci": "npm run test",
+    "prepublishOnly": "../../scripts/insert-header.js"
   },
   "devDependencies": {
     "@babel/register": "^7.0.0",

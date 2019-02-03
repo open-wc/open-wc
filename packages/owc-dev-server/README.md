@@ -1,12 +1,6 @@
 # Dev server
 
-> Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
-
-Open Web Components provides a set of defaults, recommendations and tools to help facilitate your web component project. Our recommendations include: developing, linting, testing, building, tooling, demoing, publishing and automating.
-
-[![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
-[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
-[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+[//]: # (AUTO INSERT HEADER PREPUBLISH)
 
 A simple web server for simple web developers. Does the minimal amount of work required for web development on modern web browsers. Specifically designed to work with the native es module loader available in all major browsers.
 
@@ -26,7 +20,7 @@ Note: import paths are only resolved within `.js` files. This means you cannot d
 ```html
 <html>
   <head>
-    <script type="module">
+    <script>
       import { html } from 'lit-html'; // does not work
     </script>
   </head>
@@ -98,3 +92,15 @@ npx owc-dev-server --app-index demo/index.html --open
 |--root-dir|-r|string|The root directory to serve files from. Defaults to the project root.|
 |--modules-dir|-m|string|Directory to resolve modules from. Default: node_modules|
 |--help|none|none|See all options|
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/owc-dev-server/README.md';
+      }
+    }
+  }
+</script>

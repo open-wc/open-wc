@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma-bs",
-  "version": "0.2.7",
+  "version": "0.2.9",
   "description": "Testing with karma using browserstack following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -13,10 +13,11 @@
     "test": "karma start demo/karma.conf.js",
     "test:watch": "karma start demo/karma.conf.js --auto-watch=true --single-run=false",
     "test:es5": "karma start demo/karma.es5.config.js",
-    "test:es5:bs": "karma start demo/karma.es5.bs.config.js"
+    "test:es5:bs": "karma start demo/karma.es5.bs.config.js",
+    "prepublishOnly": "../../scripts/insert-header.js"
   },
   "dependencies": {
-    "@open-wc/testing-karma": "^0.4.7",
+    "@open-wc/testing-karma": "^0.4.9",
     "karma-browserstack-launcher": "^1.0.0"
   },
   "devDependencies": {

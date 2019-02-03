@@ -1,12 +1,6 @@
 # Testing with Karma
 
-> Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
-
-Open Web Components provides a set of defaults, recommendations and tools to help facilitate your web component project. Our recommendations include: developing, linting, testing, building, tooling, demoing, publishing and automating.
-
-[![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
-[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
-[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+[//]: # (AUTO INSERT HEADER PREPUBLISH)
 
 ## Browser testing
 Web Components are at the cutting edge of browser support. Testing solutions that run a simulated browser are often not suitable due to missing features. We therefore recommend running tests in a real browser. With headless Chrome and Firefox this is very convenient to set up and use, and will give more testing confidence as you can run the same tests across multiple browsers.
@@ -43,7 +37,7 @@ npm i -g generator-open-wc
 yo open-wc:testing-karma
 ```
 
-::: tip Info
+::: tip
 This is part of the default [open-wc](https://open-wc.org/) recommendation
 :::
 
@@ -119,3 +113,15 @@ module.exports = config => {
 ```
 
 Then run your tests with: `karma start karma.es5.config.js`
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/testing-karma/README.md';
+      }
+    }
+  }
+</script>

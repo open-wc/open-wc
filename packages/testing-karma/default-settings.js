@@ -15,7 +15,7 @@ module.exports = config => ({
     },
   },
 
-  frameworks: ['mocha', 'webpack'],
+  frameworks: ['mocha', 'source-map-support', 'webpack'],
 
   middleware: ['static'],
 

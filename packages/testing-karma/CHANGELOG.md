@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.9](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.4.8...@open-wc/testing-karma@0.4.9) (2019-02-02)
+
+
+### Bug Fixes
+
+* unify npm readme header for all open-wc packages ([1bac939](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/commit/1bac939))
+
+
+
+
+
+## [0.4.8](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.4.7...@open-wc/testing-karma@0.4.8) (2019-02-02)
+
+
+### Bug Fixes
+
+* **testing-karma:** show file/line number of failing tests on terminal ([32b0b00](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/commit/32b0b00))
+
+
+
+
+
 ## [0.4.7](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.4.6...@open-wc/testing-karma@0.4.7) (2019-01-26)
 
 

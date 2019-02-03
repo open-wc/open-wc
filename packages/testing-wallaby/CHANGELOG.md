@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.9](https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby/compare/@open-wc/testing-wallaby@0.1.8...@open-wc/testing-wallaby@0.1.9) (2019-02-02)
+
+
+### Bug Fixes
+
+* unify npm readme header for all open-wc packages ([1bac939](https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby/commit/1bac939))
+
+
+
+
+
 ## [0.1.8](https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby/compare/@open-wc/testing-wallaby@0.1.7...@open-wc/testing-wallaby@0.1.8) (2019-01-26)
 
 
