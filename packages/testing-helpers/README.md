@@ -64,18 +64,37 @@ expect(el.bar).to.equal('baz');
 ```
 
 ## Timings
-If you need to wait for multiple elements to update you can use `nextFrame`.  
+By default fixture awaits the elements "update complete" Promise.
+- for [lit-element](https://github.com/polymer/lit-element) that is `el.updateComplete`;
+- for [stencil](https://github.com/ionic-team/stencil/) that is `el.componentOnReady()`;
 
+If none of those specfic Promise hooks are found, it will wait for one frame via `await nextFrame()`.<br>
+**Note**: this does not guarantee that the element is done rendering - it just waits for the next JavaScript tick.
+
+Essentially, `fixture` creates a synchronous fixture, then waits for the element to finish updating, checking `updateComplete` first, then falling back to `componentReady()`, and `nextFrame()` as a last resort.
+
+This way, you can write your tests more succinctly, without having to explicitly `await` those hooks yourself.
 ```js
-import { nextFrame, aTimeout, html, fixture } from '@open-wc/testing-helpers';
-
 const el = await fixture(html`<my-el .foo=${'bar'}></my-el>`);
 expect(el.foo).to.equal('bar');
-el.foo = 'baz';
+
+// vs
+
+const el = fixtureSync(html`<my-el .foo=${'bar'}></my-el>`);
+await elementUpdated(el);
+expect(el.foo).to.equal('bar');
+```
+
+### nextFrame
+Uses `requestAnimationFrame` to wait for the next frame.
+```js
 await nextFrame();
-// or as an alternative us timeout
-// await aTimeout(10); // would wait 10ms
-expect(el.shadowRoot.querySelector('#foo').innerText).to.equal('baz');
+```
+
+### aTimeout
+Waits for `x` ms via `setTimeout`;
+```js
+await aTimeout(10); // would wait 10ms
 ```
 
 ## Fixture Cleanup
