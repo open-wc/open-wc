@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "start:dev": "webpack-dev-server --mode development --open",
+    "start:dev:es5": "webpack-dev-server --mode development --es5",
+    "start:prod": "http-server dist/ -o",
+    "build": "webpack --mode production",
+    "build:stats": "webpack --mode production --profile --json > bundle-stats.json"
+  },
+  "devDependencies": {
+    "@open-wc/building-webpack": "^0.1.3",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14",
+    "http-server": "^0.11.1"
+  }
+}

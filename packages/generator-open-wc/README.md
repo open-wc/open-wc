@@ -49,6 +49,18 @@ yo open-wc:scaffold-vanilla
   </details>
   <br/>
 
+- `yo open-wc:scaffold-building`<br/> 
+  This generator scaffolds a webpack configuration for you with examples to your existing project. 
+  <details>
+    <summary>More info</summary>
+    <br/>
+    This generator will internally run:
+
+      - open-wc:building-webpack
+      - Plus an index.html and index.js using the [@open-wc/polyfills-loader](https://www.npmjs.com/package/@open-wc/polyfills-loader)
+  </details>
+  <br/>
+
 - `yo open-wc:scaffold-demoing`<br/> 
   This generator scaffolds a Storybook setup for you with examples to your existing project. 
   <details>
@@ -101,6 +113,18 @@ This generator adds a complete linting setup with ESLint, Prettier, Husky and co
   <br/>
   
 
+- `yo open-wc:building`<br> 
+This generator adds a complete building setup with webpack to your existing project. 
+  <details>
+    <summary>More info</summary>
+    <br/>
+    This generator will internally run:
+
+      - open-wc:building-webpack
+  </details>
+  <br/>
+
+
 - `yo open-wc:testing`<br>
 This generator adds a complete testing setup with Karma, and Karma Browserstack to your existing project. 
   <details>
@@ -147,6 +171,9 @@ These generators are not executed with the default upgrade generator.
 ### Sub generators
 These generators are executed with the default upgrade generator.
 You can use these generators if you already have an existing project that you would like to add to.
+
+- `yo open-wc:building-webpack`<br>
+  This generator adds a build configuration with Webpack to your existing project.
 
 - `yo open-wc:linting-eslint`<br>
   This generator adds linting with ESLint to your existing project.
