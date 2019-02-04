@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.12](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.11...@open-wc/testing-helpers@0.7.12) (2019-02-04)
+
+
+### Bug Fixes
+
+* **testing-helpers:** add `await elementUpdated(el)` supports stencil ([c442f21](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/c442f21))
+
+
+
+
+
 ## [0.7.11](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.10...@open-wc/testing-helpers@0.7.11) (2019-02-02)
 
 
