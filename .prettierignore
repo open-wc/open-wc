@@ -1,4 +1,5 @@
 node_modules
 coverage/
 /packages/generator-open-wc/generators/*/templates/**/*
+/packages/testing-helpers/test/stencil-el/**/*.js
 dist
