@@ -49,6 +49,7 @@ module.exports = () => ({
     bs_win10_firefox_latest: {
       base: 'BrowserStack',
       browser: 'Firefox',
+      browser_version: '64.0',
       os: 'Windows',
       os_version: '10',
     },

@@ -1,7 +1,7 @@
 const Generator = require('yeoman-generator');
 
 module.exports = class GeneratorAutomatingCircleci extends Generator {
-  writing() {
+  default() {
     // write everything else
     this.fs.copyTpl(
       this.templatePath('static/**/*'),
@@ -10,5 +10,9 @@ module.exports = class GeneratorAutomatingCircleci extends Generator {
       undefined,
       { globOptions: { dot: true } },
     );
+  }
+
+  install() {
+    this.npmInstall();
   }
 };

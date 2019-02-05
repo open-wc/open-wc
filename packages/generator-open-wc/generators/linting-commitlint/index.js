@@ -1,7 +1,7 @@
 const Generator = require('yeoman-generator');
 
 module.exports = class GeneratorLintingCommitlint extends Generator {
-  writing() {
+  default() {
     // extend package.json
     this.fs.extendJSON(
       this.destinationPath('package.json'),
@@ -16,5 +16,9 @@ module.exports = class GeneratorLintingCommitlint extends Generator {
       undefined,
       { globOptions: { dot: true } },
     );
+  }
+
+  install() {
+    this.npmInstall();
   }
 };

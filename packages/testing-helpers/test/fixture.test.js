@@ -1,5 +1,7 @@
 import { expect } from '@bundled-es-modules/chai';
+import { assert, spy } from 'sinon';
 import { cachedWrappers } from '../fixtureWrapper.js';
+import { defineCE } from '../helpers';
 import { html, fixture, fixtureSync } from '../index.js';
 
 describe('fixtureSync & fixture', () => {
@@ -20,6 +22,62 @@ describe('fixtureSync & fixture', () => {
       <div foo="${'bar'}"></div>
     `);
     testElement(elementAsync);
+  });
+
+  it('waits for updateComplete', async () => {
+    const connectedCallbackSpy = spy();
+
+    class Test extends HTMLElement {
+      constructor() {
+        super();
+        this.updateComplete = new Promise(resolve => {
+          this.resolve = resolve();
+        });
+      }
+
+      connectedCallback() {
+        this.resolve();
+        connectedCallbackSpy();
+      }
+    }
+
+    const tag = defineCE(Test);
+
+    await fixture(html`
+      <${tag}></${tag}>
+    `);
+
+    assert.calledOnce(connectedCallbackSpy);
+  });
+
+  it('waits for componentOnReady', async () => {
+    const connectedCallbackSpy = spy();
+
+    class Test extends HTMLElement {
+      constructor() {
+        super();
+        this.rendered = new Promise(resolve => {
+          this.resolve = resolve();
+        });
+      }
+
+      connectedCallback() {
+        this.resolve();
+        connectedCallbackSpy();
+      }
+
+      componentOnReady() {
+        return this.rendered;
+      }
+    }
+
+    const tag = defineCE(Test);
+
+    await fixture(html`
+      <${tag}></${tag}>
+    `);
+
+    assert.calledOnce(connectedCallbackSpy);
   });
 
   it('supports lit-html TemplateResult with properties', async () => {

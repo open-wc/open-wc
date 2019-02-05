@@ -4,7 +4,14 @@
 
 ## Usage
 
-This generator is based on [yeoman](http://yeoman.io/). You can use it as demonstrated:
+This generator is based on [yeoman](http://yeoman.io/). Simply use it like this:
+```bash
+# in a new or existing folder:
+npm init yo open-wc
+# requires npm 6 or higher
+```
+
+For running specific generators you can do as demonstrated:
 
 ```bash
 npm i -g yeoman
@@ -32,6 +39,23 @@ cd foo-bar
 yo open-wc:scaffold-vanilla
 # this will scaffold a new web component + run all available scaffold generators
 ```
+
+
+### Available application generators:
+
+- `yo open-wc:starter-app`<br/> 
+  This generator scaffolds a new starter application. We recommend using this generator at the start of your web component project. 
+  <details>
+    <summary>More info</summary>
+    <br/>
+    This generator will internally run:
+
+      - open-wc:bundling-webpack
+      - open-wc:testing
+      - open-wc:linting
+      - A frontend setup
+  </details>
+  <br/>
 
 ### Available scaffold generators:
 
@@ -93,7 +117,7 @@ You can use these to add to an existing project that already contains code for y
 Example usage:
 ```bash
 cd existing-web-component
-yo open-wc
+yo open-wc:upgrade
 # this will execute all available upgrade generators
 ```
 

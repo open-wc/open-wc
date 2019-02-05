@@ -19,19 +19,11 @@ function getClassName(tagName) {
 }
 
 module.exports = class GeneratorGetTagName extends Generator {
-  prompting() {
-    const done = this.async();
-
-    return this.prompt(PROMPTS).then(answers => {
-      this.props = answers;
-      this.props.className = getClassName(this.props.tagName);
-      done();
-    });
-  }
-
-  configuring() {
-    this.__setOption('tagName', this.props.tagName);
-    this.__setOption('className', getClassName(this.props.tagName));
+  async prompting() {
+    this.answers = await this.prompt(PROMPTS);
+    this.answers.className = getClassName(this.answers.tagName);
+    this.__setOption('tagName', this.answers.tagName);
+    this.__setOption('className', getClassName(this.answers.tagName));
   }
 
   __setOption(option, value) {

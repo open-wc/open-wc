@@ -1,7 +1,7 @@
 const Generator = require('yeoman-generator');
 
 module.exports = class GeneratorLintingPrettier extends Generator {
-  writing() {
+  default() {
     // extend package.json
     this.fs.extendJSON(
       this.destinationPath('package.json'),
@@ -21,5 +21,9 @@ module.exports = class GeneratorLintingPrettier extends Generator {
       undefined,
       { globOptions: { dot: true } },
     );
+  }
+
+  install() {
+    this.npmInstall();
   }
 };

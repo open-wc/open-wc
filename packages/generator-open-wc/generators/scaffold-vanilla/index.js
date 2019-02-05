@@ -9,7 +9,14 @@ module.exports = class GeneratorVanillaBare extends Generator {
     }
   }
 
-  writing() {
+  configuring() {
+    this.composeWith(require.resolve('../linting'), this.config.getAll());
+    this.composeWith(require.resolve('../scaffold-testing'), this.config.getAll());
+    this.composeWith(require.resolve('../scaffold-demoing'), this.config.getAll());
+    this.composeWith(require.resolve('../automating'), this.config.getAll());
+  }
+
+  default() {
     const { tagName, className } = this.config.getAll();
 
     // write package.json
@@ -46,10 +53,7 @@ module.exports = class GeneratorVanillaBare extends Generator {
     );
   }
 
-  default() {
-    this.composeWith(require.resolve('../linting'), this.config.getAll());
-    this.composeWith(require.resolve('../scaffold-testing'), this.config.getAll());
-    this.composeWith(require.resolve('../scaffold-demoing'), this.config.getAll());
-    this.composeWith(require.resolve('../automating'), this.config.getAll());
+  install() {
+    this.npmInstall();
   }
 };
