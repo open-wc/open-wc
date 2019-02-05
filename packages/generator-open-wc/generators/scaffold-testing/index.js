@@ -9,7 +9,11 @@ module.exports = class GeneratorTestingBare extends Generator {
     }
   }
 
-  writing() {
+  configuring() {
+    this.composeWith(require.resolve('../testing'), this.config.getAll());
+  }
+
+  default() {
     const tagName = this.config.get('tagName');
 
     // test file
@@ -27,10 +31,6 @@ module.exports = class GeneratorTestingBare extends Generator {
       undefined,
       { globOptions: { dot: true } },
     );
-  }
-
-  default() {
-    this.composeWith(require.resolve('../testing'), this.config.getAll());
   }
 
   install() {

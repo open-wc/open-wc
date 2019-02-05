@@ -9,7 +9,7 @@ module.exports = class GeneratorDemoingStorybook extends Generator {
     }
   }
 
-  writing() {
+  default() {
     // extend package.json
     this.fs.extendJSON(
       this.destinationPath('package.json'),
