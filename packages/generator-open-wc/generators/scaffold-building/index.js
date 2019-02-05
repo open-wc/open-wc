@@ -9,7 +9,11 @@ module.exports = class GeneratorScaffoldBuilding extends Generator {
     }
   }
 
-  writing() {
+  configuring() {
+    this.composeWith(require.resolve('../building'), this.config.getAll());
+  }
+
+  default() {
     this.fs.extendJSON(
       this.destinationPath('package.json'),
       this.fs.readJSON(this.templatePath('_package.json')),
@@ -22,10 +26,6 @@ module.exports = class GeneratorScaffoldBuilding extends Generator {
       undefined,
       { globOptions: { dot: true } },
     );
-  }
-
-  default() {
-    this.composeWith(require.resolve('../building'), this.config.getAll());
   }
 
   install() {

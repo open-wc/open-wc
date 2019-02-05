@@ -1,13 +1,13 @@
 const Generator = require('yeoman-generator');
 
 module.exports = class GeneratorLinting extends Generator {
-  default() {
+  configuring() {
     this.composeWith(require.resolve('../linting-eslint'), this.config.getAll());
     this.composeWith(require.resolve('../linting-prettier'), this.config.getAll());
     this.composeWith(require.resolve('../linting-commitlint'), this.config.getAll());
   }
 
-  writing() {
+  default() {
     // extend package.json
     this.fs.extendJSON(
       this.destinationPath('package.json'),
