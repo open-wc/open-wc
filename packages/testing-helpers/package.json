@@ -27,6 +27,7 @@
     "@open-wc/testing-wallaby": "^0.1.9",
     "lit-html": "^0.12.0",
     "mocha": "^5.0.0",
+    "sinon": "^7.2.3",
     "webpack-merge": "^4.1.5"
   }
 }
