@@ -10,6 +10,7 @@ npm i -g yo
 npm i -g generator-open-wc
 
 yo open-wc:linting-eslint
+npm i
 ```
 
 ::: tip

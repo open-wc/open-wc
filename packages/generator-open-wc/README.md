@@ -11,12 +11,14 @@ npm i -g yeoman
 npm i -g generator-open-wc
 
 yo open-wc:{generator-name}
+npm i
 ```
 
 or
 
 ```bash
 npx -p yo -p generator-open-wc -c 'yo open-wc:{generator-name}'
+npm i
 ```
 
 
@@ -31,6 +33,7 @@ mkdir foo-bar
 cd foo-bar
 yo open-wc:scaffold-vanilla
 # this will scaffold a new web component + run all available scaffold generators
+npm i
 ```
 
 ### Available scaffold generators:
@@ -95,6 +98,7 @@ Example usage:
 cd existing-web-component
 yo open-wc
 # this will execute all available upgrade generators
+npm i
 ```
 
 ### Available upgrade generators

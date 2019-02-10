@@ -15,10 +15,12 @@ mkdir my-element
 cd my-element
 # Default development recommendation
 yo open-wc:scaffold-vanilla
+npm i
 
 # upgrade/align your existing web component with 'open-wc' recommendations
 cd existing-web-component
 yo open-wc
+npm i
 ```
 
 ## Available Recommendations
