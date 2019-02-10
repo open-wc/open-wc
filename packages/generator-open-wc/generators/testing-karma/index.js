@@ -17,4 +17,8 @@ module.exports = class GeneratorTestingKarma extends Generator {
       { globOptions: { dot: true } },
     );
   }
+
+  install() {
+    this.npmInstall();
+  }
 };

@@ -22,4 +22,8 @@ module.exports = class GeneratorLintingPrettier extends Generator {
       { globOptions: { dot: true } },
     );
   }
+
+  install() {
+    this.npmInstall();
+  }
 };

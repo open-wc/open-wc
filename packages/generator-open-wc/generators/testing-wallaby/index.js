@@ -17,4 +17,8 @@ module.exports = class GeneratorTestingBare extends Generator {
       { globOptions: { dot: true } },
     );
   }
+
+  install() {
+    this.npmInstall();
+  }
 };

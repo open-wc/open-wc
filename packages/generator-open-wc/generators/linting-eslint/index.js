@@ -17,4 +17,8 @@ module.exports = class GeneratorLintingEslint extends Generator {
       { globOptions: { dot: true } },
     );
   }
+
+  install() {
+    this.npmInstall();
+  }
 };
