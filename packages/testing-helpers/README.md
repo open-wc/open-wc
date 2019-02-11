@@ -97,6 +97,41 @@ Waits for `x` ms via `setTimeout`;
 await aTimeout(10); // would wait 10ms
 ```
 
+## Testing Events
+If you want to interact with web components you will sometimes need to await a specific event before you can continue testing.
+
+```js
+it('can await an event', async () => {
+  const tag = defineCE(class extends HTMLElement {
+    fireDone() {
+      this.done = true;
+      this.dispatchEvent(new CustomEvent('done');
+    }
+  });
+
+  const el = await fixture(`<${tag}></${tag}>`);
+
+  setTimeout(() => el.fireDone());
+  await oneEvent('done');
+  expect(el.done).to.be.true;
+});
+```
+
+## Testing Focus & Blur
+Focus and blur events are usually sync but not on IE11 so if you need to support it you can use these little helpers with an await.
+
+```js
+it('can be focused and blured', async () => {
+  const el = await fixture('<input type="text">');
+
+  await triggerFocusFor(el);
+  expect(document.activeElement === el).to.be.true;
+
+  await triggerBlurFor(el);
+  expect(document.activeElement === el).to.be.false;
+});
+```
+
 ## Fixture Cleanup
 By default, if you import anything via `import { ... } from '@open-wc/testing-helpers';`, it will automatically register a side-effect that cleans up your fixtures.
 If you want to be in full control you can do so by using
