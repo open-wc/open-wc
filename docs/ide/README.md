@@ -33,7 +33,7 @@ We recommend the following plugins:
 
 * [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)  
 Get ESLint feedback directly in your IDE => more details under [Linting](./guide/linting)
-* [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html)  
+* [lit-html](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html)  
 Highlights all your html tagged template literals
 * [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)  
 Highlights all your css tagged template literals
