@@ -14,13 +14,13 @@ const isDefinedPromise = action => typeof action === 'object' && Promise.resolve
  */
 export async function elementUpdated(el) {
   let hasSpecificAwait = false;
-  let update = el.updateComplete;
+  let update = el && el.updateComplete;
   if (isDefinedPromise(update)) {
     await update;
     hasSpecificAwait = true;
   }
 
-  update = el.componentOnReady ? el.componentOnReady() : false;
+  update = el && el.componentOnReady ? el.componentOnReady() : false;
   if (isDefinedPromise(update)) {
     await update;
     hasSpecificAwait = true;
