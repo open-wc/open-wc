@@ -84,7 +84,7 @@ npx owc-dev-server --app-index demo/index.html --open
 
 ### Command line options
 |name|alias|type|description|
-|---|---|---|---|---|
+|---|---|---|---|
 |--port|-p|number|The port to use. Default: 8080|
 |--hostname|-h|string|The hostname to use. Default: localhost|
 |--open|-o|string/boolean|Opens the default browser on the given path or default /|
