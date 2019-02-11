@@ -52,4 +52,8 @@ module.exports = class GeneratorVanillaBare extends Generator {
     this.composeWith(require.resolve('../scaffold-demoing'), this.config.getAll());
     this.composeWith(require.resolve('../automating'), this.config.getAll());
   }
+
+  install() {
+    this.npmInstall();
+  }
 };

@@ -7,4 +7,8 @@ module.exports = class GeneratorApp extends Generator {
     this.composeWith(require.resolve('../demoing'), this.config.getAll());
     this.composeWith(require.resolve('../automating'), this.config.getAll());
   }
+
+  install() {
+    this.npmInstall();
+  }
 };

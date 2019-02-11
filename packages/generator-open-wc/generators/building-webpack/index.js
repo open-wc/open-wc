@@ -17,4 +17,8 @@ module.exports = class GeneratorBuildingWebpack extends Generator {
       { globOptions: { dot: true } },
     );
   }
+
+  install() {
+    this.npmInstall();
+  }
 };

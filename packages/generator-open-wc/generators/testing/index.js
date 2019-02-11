@@ -13,4 +13,8 @@ module.exports = class GeneratorTesting extends Generator {
       this.fs.readJSON(this.templatePath('_package.json')),
     );
   }
+
+  install() {
+    this.npmInstall();
+  }
 };

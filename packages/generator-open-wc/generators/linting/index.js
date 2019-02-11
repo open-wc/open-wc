@@ -23,4 +23,8 @@ module.exports = class GeneratorLinting extends Generator {
       { globOptions: { dot: true } },
     );
   }
+
+  install() {
+    this.npmInstall();
+  }
 };
