@@ -1,83 +1,16 @@
 import { expect } from '@bundled-es-modules/chai';
-import { assert, spy } from 'sinon';
 import { cachedWrappers } from '../fixtureWrapper.js';
 import { defineCE } from '../helpers';
 import { html, fixture, fixtureSync } from '../index.js';
+import { unsafeStatic } from '../lit-html.js';
 
 describe('fixtureSync & fixture', () => {
   it('supports strings', async () => {
-    /**
-     * @param {Element} element
-     */
-    function testElement(element) {
-      expect(element.getAttribute('foo')).to.equal('bar');
-    }
+    const elSync = fixtureSync(`<div foo="${'bar'}"></div>`);
+    expect(elSync.getAttribute('foo')).to.equal('bar');
 
-    const elementSync = fixtureSync(html`
-      <div foo="${'bar'}"></div>
-    `);
-    testElement(elementSync);
-
-    const elementAsync = await fixture(html`
-      <div foo="${'bar'}"></div>
-    `);
-    testElement(elementAsync);
-  });
-
-  it('waits for updateComplete', async () => {
-    const connectedCallbackSpy = spy();
-
-    class Test extends HTMLElement {
-      constructor() {
-        super();
-        this.updateComplete = new Promise(resolve => {
-          this.resolve = resolve();
-        });
-      }
-
-      connectedCallback() {
-        this.resolve();
-        connectedCallbackSpy();
-      }
-    }
-
-    const tag = defineCE(Test);
-
-    await fixture(html`
-      <${tag}></${tag}>
-    `);
-
-    assert.calledOnce(connectedCallbackSpy);
-  });
-
-  it('waits for componentOnReady', async () => {
-    const connectedCallbackSpy = spy();
-
-    class Test extends HTMLElement {
-      constructor() {
-        super();
-        this.rendered = new Promise(resolve => {
-          this.resolve = resolve();
-        });
-      }
-
-      connectedCallback() {
-        this.resolve();
-        connectedCallbackSpy();
-      }
-
-      componentOnReady() {
-        return this.rendered;
-      }
-    }
-
-    const tag = defineCE(Test);
-
-    await fixture(html`
-      <${tag}></${tag}>
-    `);
-
-    assert.calledOnce(connectedCallbackSpy);
+    const elAsync = await fixture(`<div foo="${'bar'}"></div>`);
+    expect(elAsync.getAttribute('foo')).to.equal('bar');
   });
 
   it('supports lit-html TemplateResult with properties', async () => {
@@ -104,5 +37,63 @@ describe('fixtureSync & fixture', () => {
 
   it('will cleanup after each test', async () => {
     expect(cachedWrappers.length).to.equal(0);
+  });
+
+  it('waits for updateComplete', async () => {
+    let counter = 0;
+
+    class Test extends HTMLElement {
+      constructor() {
+        super();
+        this.updateComplete = new Promise(resolve => {
+          this.resolve = resolve;
+        }).then(() => {
+          counter += 1;
+        });
+      }
+
+      connectedCallback() {
+        this.resolve();
+      }
+    }
+
+    const tag = defineCE(Test);
+    await fixture(`<${tag}></${tag}>`);
+    expect(counter).to.equal(1);
+
+    const litTag = unsafeStatic(tag);
+    await fixture(html`<${litTag}></${litTag}>`);
+    expect(counter).to.equal(2);
+  });
+
+  it('waits for componentOnReady', async () => {
+    let counter = 0;
+
+    class Test extends HTMLElement {
+      constructor() {
+        super();
+        this.rendered = new Promise(resolve => {
+          this.resolve = resolve;
+        }).then(() => {
+          counter += 1;
+        });
+      }
+
+      connectedCallback() {
+        this.resolve();
+      }
+
+      componentOnReady() {
+        return this.rendered;
+      }
+    }
+
+    const tag = defineCE(Test);
+    await fixture(`<${tag}></${tag}>`);
+    expect(counter).to.equal(1);
+
+    const litTag = unsafeStatic(tag);
+    await fixture(html`<${litTag}></${litTag}>`);
+    expect(counter).to.equal(2);
   });
 });

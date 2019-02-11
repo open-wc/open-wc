@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <link href="../../../mocha/mocha.css" rel="stylesheet" />
-  <script src="../../../mocha/mocha.js"></script>
-  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <link href="../../../node_modules/mocha/mocha.css" rel="stylesheet" />
+  <script src="../../../node_modules/mocha/mocha.js"></script>
+  <script src="../../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 </head>
 <body>
   <div id="mocha"></div>
@@ -13,6 +13,7 @@
   </script>
 
   <script type="module">
+    import './elementUpdated.test.js';
     import './fixture.test.js';
     import './helpers.test.js';
     import './lit-html.test.js';
