@@ -23,4 +23,8 @@ module.exports = class GeneratorPublishStorybook extends Generator {
   default() {
     this.composeWith(require.resolve('../demoing'), this.config.getAll());
   }
+
+  install() {
+    this.npmInstall();
+  }
 };

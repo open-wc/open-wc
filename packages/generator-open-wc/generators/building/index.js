@@ -4,4 +4,8 @@ module.exports = class GeneratorBuilding extends Generator {
   default() {
     this.composeWith(require.resolve('../building-webpack'), this.config.getAll());
   }
+
+  install() {
+    this.npmInstall();
+  }
 };

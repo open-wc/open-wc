@@ -27,4 +27,8 @@ module.exports = class GeneratorScaffoldBuilding extends Generator {
   default() {
     this.composeWith(require.resolve('../building'), this.config.getAll());
   }
+
+  install() {
+    this.npmInstall();
+  }
 };

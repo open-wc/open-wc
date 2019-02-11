@@ -25,4 +25,8 @@ module.exports = class GeneratorDemoingStorybook extends Generator {
       { globOptions: { dot: true } },
     );
   }
+
+  install() {
+    this.npmInstall();
+  }
 };
