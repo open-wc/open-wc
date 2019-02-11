@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.13](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.12...@open-wc/testing-helpers@0.7.13) (2019-02-11)
+
+
+### Bug Fixes
+
+* **testing-helpers:** document oneEvent, triggerFocusFor, triggerBlurFor ([a591611](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/a591611))
+* **testing-helpers:** use asynchronous fixtures ([7b6372b](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/7b6372b))
+
+
+
+
+
 ## [0.7.12](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.11...@open-wc/testing-helpers@0.7.12) (2019-02-04)
 
 

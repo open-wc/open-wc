@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/open-wc/open-wc/tree/master/packages/dev-server/compare/owc-dev-server@0.1.2...owc-dev-server@0.1.3) (2019-02-11)
+
+
+### Bug Fixes
+
+* **owc-dev-server:** fix CLI options table formatting in README ([1f0e535](https://github.com/open-wc/open-wc/tree/master/packages/dev-server/commit/1f0e535))
+
+
+
+
+
 ## [0.1.2](https://github.com/open-wc/open-wc/tree/master/packages/dev-server/compare/owc-dev-server@0.1.1...owc-dev-server@0.1.2) (2019-02-02)
 
 

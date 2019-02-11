@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs/compare/@open-wc/testing-karma-bs@0.2.9...@open-wc/testing-karma-bs@0.2.10) (2019-02-11)
+
+
+### Bug Fixes
+
+* **testing-karma-bs:** hard code Firefox 64 as 65 produces a timeout ([922b42a](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs/commit/922b42a))
+
+
+
+
+
 ## [0.2.9](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs/compare/@open-wc/testing-karma-bs@0.2.8...@open-wc/testing-karma-bs@0.2.9) (2019-02-02)
 
 
