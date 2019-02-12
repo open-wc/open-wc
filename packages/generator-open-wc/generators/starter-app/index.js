@@ -3,10 +3,16 @@
 const Generator = require('yeoman-generator');
 
 module.exports = class GeneratorStarterApp extends Generator {
+  constructor(args, opts) {
+    super(args, opts);
+    this.argument('appname', { type: String, required: false });
+  }
+
   initializing() {
     if (Object.keys(this.config.getAll()).length === 0) {
       this.composeWith(require.resolve('../get-tag-name'), {
         __store: this.config,
+        appname: this.options.appname,
       });
     }
   }
