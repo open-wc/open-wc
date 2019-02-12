@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.7.0...generator-open-wc@0.7.1) (2019-02-12)
+
+
+### Bug Fixes
+
+* **generator-open-wc:** allow options for starter-app ([1770904](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/commit/1770904))
+
+
+
+
+
 # [0.7.0](https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc/compare/generator-open-wc@0.6.11...generator-open-wc@0.7.0) (2019-02-11)
 
 
