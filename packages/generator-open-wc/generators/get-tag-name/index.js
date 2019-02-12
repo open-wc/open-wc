@@ -20,10 +20,15 @@ function getClassName(tagName) {
 
 module.exports = class GeneratorGetTagName extends Generator {
   async prompting() {
-    this.answers = await this.prompt(PROMPTS);
-    this.answers.className = getClassName(this.answers.tagName);
-    this.__setOption('tagName', this.answers.tagName);
-    this.__setOption('className', getClassName(this.answers.tagName));
+    if (!this.options.appname) {
+      this.answers = await this.prompt(PROMPTS);
+      this.answers.className = getClassName(this.answers.tagName);
+      this.__setOption('tagName', this.answers.tagName);
+      this.__setOption('className', getClassName(this.answers.tagName));
+    } else {
+      this.__setOption('tagName', this.options.appname);
+      this.__setOption('className', this.options.appname);
+    }
   }
 
   __setOption(option, value) {
