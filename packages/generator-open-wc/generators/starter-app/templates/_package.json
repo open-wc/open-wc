@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "owc-dev-server -o"
+    "start": "owc-dev-server --open"
   },
   "dependencies": {
     "lit-html": "^1.0.0",
