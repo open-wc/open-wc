@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "owc-dev-server --open"
+    "start": "npm run start:dev"
   },
   "dependencies": {
     "lit-html": "^1.0.0",

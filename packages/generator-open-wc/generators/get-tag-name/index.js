@@ -27,7 +27,10 @@ module.exports = class GeneratorGetTagName extends Generator {
       this.__setOption('className', getClassName(this.answers.tagName));
     } else {
       this.__setOption('tagName', this.options.appname);
-      this.__setOption('className', this.options.appname);
+      this.__setOption(
+        'className',
+        this.options.appname.replace(/-([a-z])/g, g => g[1].toUpperCase()),
+      );
     }
   }
 
