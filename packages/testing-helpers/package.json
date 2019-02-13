@@ -18,7 +18,7 @@
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "peerDependencies": {
-    "lit-html": "^0.12.0"
+    "lit-html": "^1.0.0"
   },
   "devDependencies": {
     "@bundled-es-modules/chai": "^4.2.0",
