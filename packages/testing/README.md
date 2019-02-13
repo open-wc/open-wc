@@ -57,11 +57,17 @@ Already part of `yo open-wc:testing`
   ```js
   "scripts": {
     "test": "karma start",
-    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:watch": "karma start --auto-watch=true --single-run=false"
+  },
+  ```
+#### If you need to support legacy browsers
+- Copy [karma.es5.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/testing-karma/templates/static/karma.es5.config.js) to `karma.es5.config.js` as well
+```js
+  "scripts": {
     "test:es5": "karma start karma.es5.config.js",
     "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
   },
-  ```
+```
 
 For more details, please see [testing-karma](https://open-wc.org/testing/testing-karma.html).
 
