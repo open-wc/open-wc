@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.10](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.4.9...@open-wc/testing-karma@0.4.10) (2019-02-14)
+
+
+### Bug Fixes
+
+* **testing-karma:** upgrade karma to 4.x ([7b8a2f2](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/commit/7b8a2f2))
+
+
+
+
+
 ## [0.4.9](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma/compare/@open-wc/testing-karma@0.4.8...@open-wc/testing-karma@0.4.9) (2019-02-02)
 
 
