@@ -8,6 +8,14 @@ In order to efficiently test Web Components you will need some helpers to regist
 This is part of the default [open-wc](https://open-wc.org/) recommendation
 :::
 
+::: warning
+Testing helpers requires as a peer dependency [lit-html](https://lit-html.polymer-project.org/).
+You can install it inside your project with npm :
+```bash
+npm i --save lit-html
+```
+:::
+
 ## Test a custom element
 ```js
 import { fixture } from '@open-wc/testing-helpers';
