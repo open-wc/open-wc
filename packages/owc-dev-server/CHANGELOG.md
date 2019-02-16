@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.1.4...owc-dev-server@0.1.5) (2019-02-16)
+
+
+### Bug Fixes
+
+* **owc-dev-server:** read and apply .owc-dev-server.config.js ([e04d885](https://github.com/open-wc/open-wc/commit/e04d885))
+
+
+
+
+
 ## [0.1.4](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.1.3...owc-dev-server@0.1.4) (2019-02-16)
 
 
