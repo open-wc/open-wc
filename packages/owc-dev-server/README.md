@@ -82,16 +82,33 @@ If your demo itself is a SPA, you can also specify the app-index option:
 npx owc-dev-server --app-index demo/index.html --open
 ```
 
+### Additional configs like a proxy
+If you need additional configuration for the server you can provide them via a config file `.owc-dev-server.config.js`.
+```js
+// example for a proxy middleware for netlify lambda functions
+const proxy = require('http-proxy-middleware');
+
+module.exports = function(app) {
+  app.use(proxy('/.netlify/functions/', {
+    target: 'http://localhost:9000/',
+    "pathRewrite": {
+      "^/\\.netlify/functions": ""
+    }
+  }));
+};
+```
+
 ### Command line options
-|name|alias|type|description|
-|---|---|---|---|
-|--port|-p|number|The port to use. Default: 8080|
-|--hostname|-h|string|The hostname to use. Default: localhost|
-|--open|-o|string/boolean|Opens the default browser on the given path or default /|
-|--app-index|-a|string|The app's index.html file. When set, serves the index.html for non-file|
-|--root-dir|-r|string|The root directory to serve files from. Defaults to the project root.|
-|--modules-dir|-m|string|Directory to resolve modules from. Default: node_modules|
-|--help|none|none|See all options|
+| name          | alias | type           | description                                                             |
+| ------------- | ----- | -------------- | ----------------------------------------------------------------------- |
+| --port        | -p    | number         | The port to use. Default: 8080                                          |
+| --hostname    | -h    | string         | The hostname to use. Default: localhost                                 |
+| --open        | -o    | string/boolean | Opens the default browser on the given path or default /                |
+| --app-index   | -a    | string         | The app's index.html file. When set, serves the index.html for non-file |
+| --root-dir    | -r    | string         | The root directory to serve files from. Defaults to the project root.   |
+| --modules-dir | -m    | string         | Directory to resolve modules from. Default: node_modules                |
+| --config-file | -c    | string         | File with additional config. Default: .owc-dev-server.config.js         |
+| --help        | none  | none           | See all options                                                         |
 
 <script>
   export default {

@@ -52,6 +52,13 @@ const optionDefinitions = [
     type: String,
     description: 'Directory to resolve modules from. Default: node_modules',
   },
+  {
+    name: 'config-file',
+    alias: 'c',
+    type: String,
+    defaultValue: path.join(process.cwd(), '.owc-dev-server.config.js'),
+    description: 'Node file which can provide additional config',
+  },
   { name: 'help', type: Boolean, description: 'See all options' },
 ];
 
@@ -85,6 +92,7 @@ const {
   'root-dir': rootDir,
   'app-index': appIndex,
   'modules-dir': modulesDir,
+  'config-file': configFilePath,
 } = options;
 
 let openPath;
@@ -135,6 +143,12 @@ if (appIndex) {
     );
   }
   app.use(historyFallback(fullAppIndexPath));
+}
+
+// load additonal config file for express
+if (fs.existsSync(configFilePath)) {
+  const appConfig = require(configFilePath); // eslint-disable-line import/no-dynamic-require, global-require
+  appConfig(app);
 }
 
 app.listen(port, hostname, () => {
