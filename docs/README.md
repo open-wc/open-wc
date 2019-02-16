@@ -22,3 +22,12 @@ footer: MIT Licensed | Copyright © 2018-2019 open-wc
 	<q><i>Just now visiting open-wc.org site for the first time. You guys are killing it! Amazing stuff, and IMO totally on target. Many thanks.</i></q>
 	<br><br> - Petecarapetyan
 </p>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131782693-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-131782693-1');
+</script>
