@@ -9,7 +9,11 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/polyfills-loader",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/polyfills-loader"
+  },
   "keywords": [
     "open-wc",
     "polyfill",

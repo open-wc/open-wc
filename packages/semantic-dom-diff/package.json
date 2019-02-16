@@ -8,7 +8,11 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/semantic-dom-diff"
+  },
   "scripts": {
     "test": "karma start",
     "test:es5:bs": "karma start karma.es5.bs.config.js",

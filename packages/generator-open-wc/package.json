@@ -5,7 +5,11 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
   "license": "MIT",
-  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/generator-open-wc",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/generator-open-wc"
+  },
   "keywords": [
     "yeoman-generator",
     "open-wc"

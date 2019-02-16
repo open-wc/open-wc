@@ -16,7 +16,11 @@
     "start": "./owc-dev-server.js -o demo --app-index demo/index.html",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
-  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/dev-server",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/dev-server"
+  },
   "dependencies": {
     "command-line-args": "^5.0.2",
     "command-line-usage": "^5.0.5",
