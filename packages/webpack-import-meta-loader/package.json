@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/webpack-import-meta-loader",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Webpack configuration following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -10,8 +10,8 @@
   },
   "main": "webpack-import-meta-loader.js",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/open-wc/open-wc.git",
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/webpack-import-meta-loader"
   },
   "scripts": {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.1.3...owc-dev-server@0.1.4) (2019-02-16)
+
+
+### Bug Fixes
+
+* update package repository fields with monorepo details ([cb1acb7](https://github.com/open-wc/open-wc/commit/cb1acb7))
+
+
+
+
+
 ## [0.1.3](https://github.com/open-wc/open-wc/tree/master/packages/dev-server/compare/owc-dev-server@0.1.2...owc-dev-server@0.1.3) (2019-02-11)
 
 

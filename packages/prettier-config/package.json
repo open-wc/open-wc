@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/prettier-config",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Prettier config following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -9,8 +9,8 @@
     "access": "public"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/open-wc/open-wc.git",
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/prettier-config"
   },
   "main": "prettier.config.js",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10](https://github.com/open-wc/open-wc/compare/@open-wc/testing-wallaby@0.1.9...@open-wc/testing-wallaby@0.1.10) (2019-02-16)
+
+
+### Bug Fixes
+
+* update package repository fields with monorepo details ([cb1acb7](https://github.com/open-wc/open-wc/commit/cb1acb7))
+
+
+
+
+
 ## [0.1.9](https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby/compare/@open-wc/testing-wallaby@0.1.8...@open-wc/testing-wallaby@0.1.9) (2019-02-02)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-wallaby",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Testing with wallaby following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -9,8 +9,8 @@
     "access": "public"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/open-wc/open-wc.git",
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/testing-wallaby"
   },
   "scripts": {

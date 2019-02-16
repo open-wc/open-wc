@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.6](https://github.com/open-wc/open-wc/compare/@open-wc/webpack@0.1.5...@open-wc/webpack@0.1.6) (2019-02-16)
+
+
+### Bug Fixes
+
+* update package repository fields with monorepo details ([cb1acb7](https://github.com/open-wc/open-wc/commit/cb1acb7))
+
+
+
+
+
 ## [0.1.5](https://github.com/open-wc/open-wc/tree/master/packages/webpack/compare/@open-wc/webpack@0.1.4...@open-wc/webpack@0.1.5) (2019-02-02)
 
 

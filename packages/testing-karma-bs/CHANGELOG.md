@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.12](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@0.2.11...@open-wc/testing-karma-bs@0.2.12) (2019-02-16)
+
+
+### Bug Fixes
+
+* update package repository fields with monorepo details ([cb1acb7](https://github.com/open-wc/open-wc/commit/cb1acb7))
+
+
+
+
+
 ## [0.2.11](https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs/compare/@open-wc/testing-karma-bs@0.2.10...@open-wc/testing-karma-bs@0.2.11) (2019-02-14)
 
 **Note:** Version bump only for package @open-wc/testing-karma-bs

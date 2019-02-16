@@ -1,13 +1,13 @@
 {
   "name": "generator-open-wc",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Scaffold web components following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
   "license": "MIT",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/open-wc/open-wc.git",
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/generator-open-wc"
   },
   "keywords": [
