@@ -28,22 +28,26 @@ npm i -D owc-dev-server lit-element
 </html>
 ```
 
-3. Create a `my-component.js`
+3. Create a `MyComponent.js`
 ```javascript
 import { LitElement, html } from 'lit-element';
 
-class MyComponent extends LitElement {
+export class MyComponent extends LitElement {
   render() {
     return html`
       <p>Hello world!</p>
     `;
   }
 }
+```
 
+4. Create a 'my-component.js'
+```javascript
+import { MyComponent } from './MyComponent.js';
 customElements.define('my-component', MyComponent);
 ```
 
-4. Add start scripts to your `package.json`:
+5. Add start scripts to your `package.json`:
 ```json
 {
   "scripts": {
@@ -52,9 +56,33 @@ customElements.define('my-component', MyComponent);
 }
 ```
 
-5. Start your app:
+6. Start your app:
 ```bash
 npm start
+```
+
+## Separate `class` and Definition Files
+We recommend separating your element's `class` declaration from the call to `customElements.define`. Doing so will allow users of your element to easily extend it without polluting the global custom elements registry, for example:
+
+```javascript
+import { html } from 'lit-element';
+import { MyComponent } from './MyComponent.js';
+
+customElements.define('enhanced-component', class extends MyComponent {
+  render() {
+    static get properties() {
+      return {
+        alert: { type: String }
+      }
+    }
+
+    return html`
+      ${super.render()}
+      <style>p { color: red; }</style>
+      <p>${alert}</p>
+    `
+  }
+})
 ```
 
 ## Examples
