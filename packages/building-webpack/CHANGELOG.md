@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.9](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@0.1.8...@open-wc/building-webpack@0.1.9) (2019-02-18)
+
+
+### Bug Fixes
+
+* bump versions of lit-html and lit-element to 1.0.x stable releases ([32c5bd8](https://github.com/open-wc/open-wc/commit/32c5bd8))
+
+
+
+
+
 ## [0.1.8](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@0.1.7...@open-wc/building-webpack@0.1.8) (2019-02-16)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.6](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.1.5...owc-dev-server@0.1.6) (2019-02-18)
+
+
+### Bug Fixes
+
+* bump versions of lit-html and lit-element to 1.0.x stable releases ([32c5bd8](https://github.com/open-wc/open-wc/commit/32c5bd8))
+
+
+
+
+
 ## [0.1.5](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.1.4...owc-dev-server@0.1.5) (2019-02-16)
 
 

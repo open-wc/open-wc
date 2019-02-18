@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/open-wc/open-wc/compare/generator-open-wc@0.7.2...generator-open-wc@0.7.3) (2019-02-18)
+
+
+### Bug Fixes
+
+* bump versions of lit-html and lit-element to 1.0.x stable releases ([32c5bd8](https://github.com/open-wc/open-wc/commit/32c5bd8))
+
+
+
+
+
 ## [0.7.2](https://github.com/open-wc/open-wc/compare/generator-open-wc@0.7.1...generator-open-wc@0.7.2) (2019-02-16)
 
 
