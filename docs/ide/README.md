@@ -4,7 +4,7 @@ Your IDE is your primary tool while working with code, we recommend the followin
 
 ## Visual Studio Code
 
-We recommend [VSCode](https://code.visualstudio.com/).
+We recommend [VSCode](https://code.visualstudio.com/). For alternative IDEs see [here](alternatives.md).
 
 For setup please visit the instructions on the Visual Studio Code [homepage](https://code.visualstudio.com/).
 
