@@ -1,6 +1,6 @@
 ## [Atom](https://atom.io/)
 
-Atom is an IDE created by Github. It provides near-native support for working with web components. It has great support for template-literals.
+Atom is an IDE created by Github. It provides near-native support for working with web components and has great support for template literals.
 
 ### Recomended plugins
  - [atom-typescript](https://atom.io/packages/atom-typescript) - Typescript support
