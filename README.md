@@ -60,6 +60,8 @@ You can join the Polymer slack by visiting [this link](https://join.slack.com/t/
 ## We Proudly Use
 <a href="http://browserstack.com/" style="border: none;"><img src="https://github.com/open-wc/open-wc/blob/master/assets/images/Browserstack-logo.svg" width="200" alt="Browserstack Logo" /></a>
 
+<a href="http://netlify.com/" style="border: none;"><img src="https://www.netlify.com/img/press/logos/full-logo-light.svg" width="185" alt="netlify logo" /></a>
+
 
 ## Guide
 ```bash
