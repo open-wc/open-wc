@@ -1,0 +1,58 @@
+{
+  "name": "@open-wc/building-rollup",
+  "version": "0.0.0",
+  "description": "Default configuration for working with rollup",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/building-rollup"
+  },
+  "scripts": {
+    "build:demo": "rimraf dist && rollup -c demo/rollup.config.js",
+    "start:build": "http-server dist -o",
+    "prepublishOnly": "../../scripts/insert-header.js"
+  },
+  "keywords": [
+    "open-wc",
+    "web components",
+    "modules",
+    "es modules",
+    "rollup"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-syntax-import-meta": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@webcomponents/custom-elements": "^1.2.1",
+    "@webcomponents/shadycss": "^1.9.0",
+    "@webcomponents/shadydom": "^1.5.0",
+    "@webcomponents/template": "^1.4.0",
+    "@webcomponents/webcomponentsjs": "^2.2.7",
+    "babel-plugin-bundled-import-meta": "^0.2.2",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-clean": "^1.0.0",
+    "rollup-plugin-cleaner": "^0.2.0",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-plugin-polyfill": "^2.0.1",
+    "rollup-plugin-terser": "^4.0.4",
+    "core-js": "^2.6.5",
+    "dom5": "^3.0.1",
+    "parse5": "^5.1.0",
+    "mkdirp": "^0.5.1",
+    "systemjs": "^3.0.0"
+  },
+  "devDependencies": {
+    "http-server": "^0.11.1",
+    "lit-element": "^2.0.1",
+    "owc-dev-server": "^0.1.6",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.2.2"
+  }
+}
