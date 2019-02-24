@@ -64,6 +64,33 @@ For a minimal setup, extend the base config and specify where your tests are:
     return config;
   };
   ```
+   <details>
+    <summary>Replacing Default Settings Instead of Merging</summary>
+    <br/>
+    In some cases you'll want `your custom config` to include config values that replace, rather than extend, the defaults provided. To make this possible you can make advanced usage of webpack-merge to set a [merge strategy](https://github.com/survivejs/webpack-merge#mergestrategy-field-prependappendreplaceconfiguration-configuration) to follow when joining the defaults and your custom config. See below for an example that uses `replace` to change the `reports` used by `coverageIstanbulReporter`.
+  
+    ```js
+    module.exports = config => {
+      config.set(
+        merge.strategy(
+          {
+            'coverageIstanbulReporter.reports': 'replace',
+          }
+        )(defaultSettings(config), {
+          files: [
+            // allows running single tests with the --grep flag
+            config.grep ? config.grep : 'test/**/*.test.js',
+          ],
+          // your custom config
+          coverageIstanbulReporter: {
+            reports: ['html', 'lcovonly', 'text']
+          }
+        })
+      );
+      return config;
+    };
+    ```
+  </details>
 - Add these scrips to your package.json
   ```js
   "scripts": {
