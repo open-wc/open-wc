@@ -67,7 +67,7 @@ For a minimal setup, extend the base config and specify where your tests are:
   
    <details>
     <summary>Replacing Default Settings Instead of Merging</summary>
-    <br/>
+  
     In some cases you'll want `your custom config` to include config values that replace, rather than extend, the defaults provided. To make this possible you can make advanced usage of webpack-merge to set a [merge strategy](https://github.com/survivejs/webpack-merge#mergestrategy-field-prependappendreplaceconfiguration-configuration) to follow when joining the defaults and your custom config. See below for an example that uses `replace` to change the `reports` used by `coverageIstanbulReporter`.
   
     ```js
