@@ -58,6 +58,10 @@ export function nextFrame() {
  * @returns {Promise<void>}
  */
 export async function triggerBlurFor(element) {
+  if (isIE()) {
+    await nextFrame();
+    await nextFrame();
+  }
   element.blur();
   if (isIE()) {
     await nextFrame();
@@ -67,11 +71,17 @@ export async function triggerBlurFor(element) {
 
 /**
  * Resolves after focus.
+ * Adding an event and immediately trigger it in fails in IE.
+ * Also before checking the effects of a trigger IE needs some time.
  *
  * @param {HTMLElement} element
  * @returns {Promise<void>}
  */
 export async function triggerFocusFor(element) {
+  if (isIE()) {
+    await nextFrame();
+    await nextFrame();
+  }
   element.focus();
   if (isIE()) {
     await nextFrame();
