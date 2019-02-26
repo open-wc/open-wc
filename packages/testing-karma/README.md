@@ -64,6 +64,7 @@ For a minimal setup, extend the base config and specify where your tests are:
     return config;
   };
   ```
+  
    <details>
     <summary>Replacing Default Settings Instead of Merging</summary>
     <br/>
@@ -91,6 +92,7 @@ For a minimal setup, extend the base config and specify where your tests are:
     };
     ```
   </details>
+  
 - Add these scrips to your package.json
   ```js
   "scripts": {
