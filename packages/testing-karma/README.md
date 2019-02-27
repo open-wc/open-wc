@@ -58,7 +58,18 @@ For a minimal setup, extend the base config and specify where your tests are:
           config.grep ? config.grep : 'test/**/*.test.js',
         ],
 
-        // your custom config
+        // your custom config,
+        // for example, this lowers the code coverage threshold to 50%
+        coverageIstanbulReporter: {
+          thresholds: {
+            global: {
+              statements: 50,
+              lines: 50,
+              branches: 50,
+              functions: 50,
+            },
+          },
+        },
       }),
     );
     return config;
