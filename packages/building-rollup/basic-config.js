@@ -46,7 +46,7 @@ export default function createBasicConfig(_options, legacy) {
                     'last 2 Safari major versions',
                     'last 2 iOS major versions',
                   ],
-              useBuiltIns: 'entry',
+              useBuiltIns: false,
             },
           ],
         ],
