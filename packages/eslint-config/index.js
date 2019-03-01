@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['eslint-config-airbnb-base', 'plugin:wc/best-practices'].map(require.resolve),
+  extends: ['eslint-config-airbnb-base', 'plugin:wc/best-practices'],
   parser: 'babel-eslint',
   env: {
     browser: true,
@@ -16,13 +16,6 @@ module.exports = {
         devDependencies: ['**/test/**/*.js', '**/stories/**/*.js', '**/*.config.js'],
       },
     ],
-  },
-  settings: {
-    'import/resolver': {
-      node: {
-        moduleDirectory: ['node_modules'],
-      },
-    },
   },
 };
 
