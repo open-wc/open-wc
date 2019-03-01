@@ -1,13 +1,14 @@
 module.exports = {
-  extends: ['eslint-config-airbnb-base'].map(require.resolve),
+  extends: ['eslint-config-airbnb-base', 'plugin:wc/best-practice'],
   parser: 'babel-eslint',
   env: {
     browser: true,
     mocha: true,
   },
+  plugins: ['html'],
   rules: {
-    'import/extensions': 'off',
     'no-underscore-dangle': 'off',
+    'import/extensions': 'off',
     'import/prefer-default-export': 'off',
     'import/no-extraneous-dependencies': [
       'error',
@@ -16,12 +17,4 @@ module.exports = {
       },
     ],
   },
-  settings: {
-    'import/resolver': {
-      node: {
-        moduleDirectory: ['node_modules', 'bower_components'],
-      },
-    },
-  },
-  plugins: ['html'],
 };
