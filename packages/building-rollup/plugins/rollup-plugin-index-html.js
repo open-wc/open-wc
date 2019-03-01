@@ -14,6 +14,8 @@ import {
 } from 'dom5';
 
 const prefix = '[rollup-plugin-legacy-browsers]:';
+let writtenModules = false;
+let writtenLegacyModules = false;
 let inputPaths;
 let inputPath;
 
@@ -210,9 +212,11 @@ export default (_pluginConfig = {}) => {
      * Injects generated module into index.html
      */
     generateBundle(outputConfig) {
-      if (!pluginConfig.legacy) {
+      if (!pluginConfig.legacy && !writtenModules) {
         writeModules(pluginConfig, outputConfig);
-      } else {
+        writtenModules = true;
+      } else if (!writtenLegacyModules) {
+        writtenLegacyModules = true;
         writeLegacyModules(pluginConfig, outputConfig);
       }
     },

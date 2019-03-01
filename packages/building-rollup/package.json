@@ -15,7 +15,8 @@
   },
   "scripts": {
     "build:demo": "rimraf dist && rollup -c demo/rollup.config.js",
-    "start:build": "http-server dist -o",
+    "start:demo": "http-server dist -o",
+    "watch:demo": "rimraf dist && rollup -c demo/rollup.config.js --watch & http-server dist -o",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "keywords": [
