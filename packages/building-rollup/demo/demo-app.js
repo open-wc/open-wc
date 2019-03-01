@@ -62,7 +62,7 @@ class DemoApp extends LitElement {
     return html`
       <p>Hello world</p>
 
-      <!-- <button @click="${() => this._lazyLoad()}">Lazy load</button> -->
+      <button @click="${() => this._lazyLoad()}">Lazy load</button>
       <demo-component></demo-component>
 
       ${
@@ -75,10 +75,10 @@ class DemoApp extends LitElement {
     `;
   }
 
-  // async _lazyLoad() {
-  //   await import('./lazy-component.js');
-  //   this._myElementLoaded = true;
-  // }
+  async _lazyLoad() {
+    await import('./lazy-component.js');
+    this._myElementLoaded = true;
+  }
 }
 
 customElements.define('demo-app', DemoApp);

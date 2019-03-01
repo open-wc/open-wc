@@ -29,21 +29,16 @@
     "@babel/core": "^7.3.3",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
+    "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.1",
-    "@webcomponents/custom-elements": "^1.2.1",
-    "@webcomponents/shadycss": "^1.9.0",
-    "@webcomponents/shadydom": "^1.5.0",
-    "@webcomponents/template": "^1.4.0",
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "babel-plugin-bundled-import-meta": "^0.2.2",
-    "core-js": "^2.6.5",
+    "dynamic-import-polyfill": "github:uupaa/dynamic-import-polyfill",
     "dom5": "^3.0.1",
-    "fast-async": "^6.3.8",
+    "magic-string": "^0.25.2",
     "mkdirp": "^0.5.1",
     "parse5": "^5.1.0",
     "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-clean": "^1.0.0",
-    "rollup-plugin-cleaner": "^0.2.0",
     "rollup-plugin-node-resolve": "^4.0.1",
     "rollup-plugin-polyfill": "^2.0.1",
     "rollup-plugin-terser": "^4.0.4",
@@ -54,6 +49,6 @@
     "lit-element": "^2.0.1",
     "owc-dev-server": "^0.1.6",
     "rimraf": "^2.6.3",
-    "rollup": "^1.2.2"
+    "rollup": "^1.4.0"
   }
 }

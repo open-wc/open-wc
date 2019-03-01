@@ -1,6 +1,6 @@
 import path from 'path';
 import mkdirp from 'mkdirp';
-import { readFileSync, writeFileSync, copyFileSync } from 'fs';
+import { readFileSync, writeFileSync, copyFileSync, existsSync } from 'fs';
 import { parse, serialize } from 'parse5';
 import {
   query,
@@ -14,17 +14,6 @@ import {
 } from 'dom5';
 
 const prefix = '[rollup-plugin-legacy-browsers]:';
-const wcPolyfillImports = [
-  '@webcomponents/webcomponents-platform/webcomponents-platform.js',
-  '@webcomponents/template/template.js',
-  '@webcomponents/shadydom/src/shadydom.js',
-  '@webcomponents/custom-elements/src/custom-elements.js',
-  '@webcomponents/shadycss/entrypoints/scoping-shim.js',
-  '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
-]
-  .map(i => `import '${i}';`)
-  .join('');
-let outputHTML;
 let inputPaths;
 let inputPath;
 
@@ -60,10 +49,11 @@ function createElement(tag, attributes) {
  * with the original module scripts removed.
  */
 function getOutputHTML(dir) {
-  if (outputHTML) {
-    return outputHTML;
+  if (existsSync(`${dir}/index.html`)) {
+    return readHTML(`${dir}/index.html`);
   }
-  outputHTML = readHTML(inputPath);
+
+  const outputHTML = readHTML(inputPath);
   const scripts = queryAll(outputHTML, predicates.hasTagName('script'));
   const moduleScripts = scripts.filter(script => getAttribute(script, 'type') === 'module');
   moduleScripts.forEach(moduleScript => {
@@ -77,24 +67,43 @@ function getOutputHTML(dir) {
 /**
  * Writes module scripts to output HTML file
  */
-function writeModules(outputConfig) {
+function writeModules(pluginConfig, outputConfig) {
   const indexHTML = getOutputHTML(outputConfig.dir);
   const head = query(indexHTML, predicates.hasTagName('head'));
   const body = query(indexHTML, predicates.hasTagName('body'));
-  const loadScript = createElement('script');
-  const loadScriptText = constructors.text(`
-		${inputPaths.map(src => `import('${src}');`)}
-		window.supportsDynamicImport = true;
-	`);
-  append(loadScript, loadScriptText);
-  append(body, loadScript);
 
-  inputPaths.forEach(src => {
-    append(
-      head,
-      createElement('link', { rel: 'preload', as: 'script', crossorigin: 'anonymous', href: src }),
-    );
-  });
+  if (pluginConfig.preventLegacyModuleRequest) {
+    // some browsers (IE, edge, older safari/firefox) request module scripts once or multiple times
+    // but don't run it. this is wasteful. we can fix this by preloading the module and importing
+    // it in the module script
+    const script = createElement('script', { type: 'module' });
+    const scriptText = constructors.text(`
+      ${inputPaths.map(src => `import '${src}';`)}
+    `);
+
+    append(script, scriptText);
+    append(body, script);
+    inputPaths.forEach(src => {
+      append(
+        head,
+        createElement('link', {
+          rel: 'preload',
+          as: 'script',
+          crossorigin: 'anonymous',
+          href: src,
+        }),
+      );
+    });
+  } else {
+    inputPaths.forEach(src => {
+      const script = createElement('script', {
+        type: 'module',
+        src,
+      });
+      append(body, script);
+    });
+  }
+
   writeOutputHTML(outputConfig.dir, indexHTML);
 }
 
@@ -108,31 +117,44 @@ function writeLegacyModules(pluginConfig, outputConfig) {
   const polyfillsDir = `${outputConfig.dir}/polyfills`;
   mkdirp.sync(polyfillsDir);
 
-  // Inject core-js polyfills
-  if (pluginConfig.polyfillCoreJs) {
-    copyFileSync(require.resolve('core-js/client/core.min.js'), `${polyfillsDir}/core-js.js`);
+  // Inject babel polyfills
+  if (pluginConfig.babelPolyfills) {
+    copyFileSync(
+      require.resolve('@babel/polyfill/browser.js'),
+      `${polyfillsDir}/babel-polyfills.js`,
+    );
     const coreJsScript = createElement('script', {
-      src: `legacy/polyfills/core-js.js`,
+      src: `legacy/polyfills/babel-polyfills.js`,
       nomodule: '',
     });
     append(body, coreJsScript);
   }
 
-  // Inject system-js loader and import modules
+  if (pluginConfig.webcomponentPolyfills) {
+    copyFileSync(
+      require.resolve('@webcomponents/webcomponentsjs/webcomponents-bundle.js'),
+      `${polyfillsDir}/webcomponent-polyfills.js`,
+    );
+    const coreJsScript = createElement('script', {
+      src: `legacy/polyfills/webcomponent-polyfills.js`,
+      nomodule: '',
+    });
+    append(body, coreJsScript);
+  }
+
   copyFileSync(require.resolve('systemjs/dist/s.min.js'), `${polyfillsDir}/system-loader.js`);
-  const systemScript = createElement('script');
-  const systemScriptText = constructors.text(`
-		if (!window.supportsDynamicImport) {
-			const systemJsLoaderTag = document.createElement('script');
-			systemJsLoaderTag.src = './legacy/polyfills/system-loader.js';
-			systemJsLoaderTag.addEventListener('load', function () {
-				${inputPaths.map(src => `System.import('./${path.join('legacy', src)}');`)}
-			});
-			document.head.appendChild(systemJsLoaderTag);
-		}
+  const systemJsScript = createElement('script', {
+    src: `legacy/polyfills/system-loader.js`,
+    nomodule: '',
+  });
+  append(body, systemJsScript);
+
+  const script = createElement('script', { nomodule: '' });
+  const scriptText = constructors.text(`
+    ${inputPaths.map(src => `System.import('./${path.join('legacy', src)}');`)}
 	`);
-  append(systemScript, systemScriptText);
-  append(body, systemScript);
+  append(script, scriptText);
+  append(body, script);
 
   writeOutputHTML(outputPath, indexHTML);
 }
@@ -141,10 +163,11 @@ export default (_pluginConfig = {}) => {
   const pluginConfig = {
     // Whether this the systemjs output for legacy browsers
     legacy: false,
-    // Whether to inject core-js (Object.assign, Promise, Array.prototype.some etc.) polyfills
-    polyfillCoreJs: true,
+    preventLegacyModuleRequest: false,
+    // Whether to inject babel polyfills (Object.assign, Promise, Array.prototype.some etc.)
+    babelPolyfills: false,
     // Whether to inject webcomponentsjs polyfills. These are only added if on the legacy build
-    polyfillWebComponents: false,
+    webcomponentPolyfills: false,
     ..._pluginConfig,
   };
 
@@ -186,30 +209,12 @@ export default (_pluginConfig = {}) => {
     /**
      * Injects generated module into index.html
      */
-    generateBundle(outputConfig, bundles) {
+    generateBundle(outputConfig) {
       if (!pluginConfig.legacy) {
-        writeModules(outputConfig, bundles);
+        writeModules(pluginConfig, outputConfig);
       } else {
-        writeLegacyModules(pluginConfig, outputConfig, bundles);
+        writeLegacyModules(pluginConfig, outputConfig);
       }
-    },
-
-    /**
-     * If on the legacy build, injects web components polyfill to entry point modules.
-     */
-    transform(code, id) {
-      if (
-        pluginConfig.legacy &&
-        pluginConfig.polyfillWebComponents &&
-        inputPaths.map(p => require.resolve(p)).includes(id)
-      ) {
-        return {
-          code: `${wcPolyfillImports}${code}`,
-          map: null,
-        };
-      }
-
-      return null;
     },
   };
 };

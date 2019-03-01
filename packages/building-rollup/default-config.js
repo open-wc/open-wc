@@ -16,7 +16,12 @@ export default function createDefaultConfig(options) {
   const basicConfig = createBasicConfig(options, false);
   const config = {
     ...basicConfig,
-    plugins: [indexHTML(), ...basicConfig.plugins],
+    plugins: [
+      indexHTML({
+        preventLegacyModuleRequest: true,
+      }),
+      ...basicConfig.plugins,
+    ],
   };
 
   const basicLegacyConfig = createBasicConfig(options, true);
@@ -25,7 +30,8 @@ export default function createDefaultConfig(options) {
     plugins: [
       indexHTML({
         legacy: true,
-        polyfillWebComponents: true,
+        babelPolyfills: true,
+        webcomponentPolyfills: true,
       }),
       ...basicLegacyConfig.plugins,
     ],
