@@ -30,7 +30,7 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## What you get
 
-This will install `@open-wc/eslint-config`, a config based on airbnb but allows for some specialities needed for Web Components.
+This will install [`@open-wc/eslint-config`](https://github.com/open-wc/open-wc/blob/master/packages/eslint-config/index.js), a config based on airbnb but allows for some specialities needed for Web Components.
 - Apply linting to js and html files
 - Allow dynamic module imports
 - Allow imports in test/demos from devDependencies

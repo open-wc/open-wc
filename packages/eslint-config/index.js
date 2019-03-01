@@ -5,9 +5,10 @@ module.exports = {
     browser: true,
     mocha: true,
   },
+  plugins: ['html'],
   rules: {
-    'import/extensions': 'off',
     'no-underscore-dangle': 'off',
+    'import/extensions': 'off',
     'import/prefer-default-export': 'off',
     'import/no-extraneous-dependencies': [
       'error',
@@ -19,9 +20,9 @@ module.exports = {
   settings: {
     'import/resolver': {
       node: {
-        moduleDirectory: ['node_modules', 'bower_components'],
+        moduleDirectory: ['node_modules'],
       },
     },
   },
-  plugins: ['html'],
 };
+
