@@ -1,11 +1,11 @@
 import resolve from 'rollup-plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 import babel from 'rollup-plugin-babel';
-import dynamicImportPolyfill from './plugins/rollup-plugin-dynamic-import-polyfill';
+import modernWeb from './plugins/rollup-plugin-modern-web/rollup-plugin-modern-web.js';
 
 const production = !process.env.ROLLUP_WATCH;
 
-export default function createBasicConfig(_options, legacy) {
+export default function createBasicConfig(_options) {
   const options = {
     outputDir: 'dist',
     ..._options,
@@ -14,17 +14,14 @@ export default function createBasicConfig(_options, legacy) {
   return {
     input: options.input,
     output: {
-      // output into given folder or default /dist. Output legacy into a /legacy subfolder
-      dir: `${options.outputDir}${legacy ? '/legacy' : ''}`,
-      format: legacy ? 'system' : 'esm',
+      dir: options.outputDir,
+      format: 'esm',
       sourcemap: true,
-      dynamicImportFunction: !legacy && 'importModule',
     },
     plugins: [
-      !legacy && dynamicImportPolyfill(),
+      modernWeb(),
       resolve(),
       babel({
-        babelrc: false,
         plugins: [
           '@babel/plugin-syntax-dynamic-import',
           '@babel/plugin-syntax-import-meta',
@@ -36,16 +33,14 @@ export default function createBasicConfig(_options, legacy) {
           [
             '@babel/env',
             {
-              targets: legacy
-                ? ['ie 11']
-                : [
-                    'last 2 Chrome major versions',
-                    'last 2 ChromeAndroid major versions',
-                    'last 2 Edge major versions',
-                    'last 2 Firefox major versions',
-                    'last 2 Safari major versions',
-                    'last 2 iOS major versions',
-                  ],
+              targets: [
+                'last 2 Chrome major versions',
+                'last 2 ChromeAndroid major versions',
+                'last 2 Edge major versions',
+                'last 2 Firefox major versions',
+                'last 2 Safari major versions',
+                'last 2 iOS major versions',
+              ],
               useBuiltIns: false,
             },
           ],

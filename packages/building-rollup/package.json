@@ -17,6 +17,9 @@
     "build:demo": "rimraf dist && rollup -c demo/rollup.config.js",
     "start:demo": "http-server dist -o",
     "watch:demo": "rimraf dist && rollup -c demo/rollup.config.js --watch & http-server dist -o",
+    "build-modern:demo": "rimraf dist && rollup -c demo/rollup.modern.config.js",
+    "start-modern:demo": "http-server dist -o",
+    "watch-modern:demo": "rimraf dist && rollup -c demo/rollup.modern.config.js --watch & http-server dist -o",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "keywords": [
