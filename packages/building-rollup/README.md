@@ -57,9 +57,9 @@ Note: our config will **not** handle 'inline' module such as:
 - `start:build` runs your built app from `dist` directory
 - `watch:build` builds and runs your app, rebuilding when input files change
 
-## Supporting more browsers
-`modern-config.js` we setup above works for browsers which support modules and dynamic imports (Chrome 63+, Safari 11.1+, Firefox 67+).
-If you need to support other or older browsers, use our `modern-and-legacy-config.js` in your `rollup.config.js`:
+## Supporting legacy browsers
+`modern-config.js` we setup above works for modern browsers (see below for config features)
+If you need to support older browsers, use our `modern-and-legacy-config.js` in your `rollup.config.js`:
 
 ```javascript
 import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
@@ -68,6 +68,35 @@ export default createDefaultConfig({ input: './index.html' });
 ```
 
 In addition to outputting your app as a module, it also outputs a legacy build of your app and loads the appropriate version based on browser support. Depending on your app's own code, this will work on Chrome, Safari, Firefox, Edge and IE11.
+
+## Config features
+`modern-config.js`:
+- compatible with (Chrome 63+, Safari 11.1+, Firefox 67+)
+- babel transform based on browser support (no es5)
+- output es modules using native dynamic import
+- resolve bare imports ( `import { html } from 'lit-html'` )
+- preserve `import.meta.url` value from before bundling
+- minify & treeshake
+
+`modern-and-legacy-config.js`:
+
+**Modern build:**
+- compatible with latest 2 versions of chrome, safari, firefox and edge
+- babel transform based on browser support (no es5)
+- es modules
+- dynamic import polyfill
+
+**Legacy build**
+- compatible down to IE11
+- babel transform es5
+- core js babel polyfills (`Array.from`, `String.prototype.includes` etc.)
+- systemjs modules
+
+**Both**
+- resolve bare imports ( `import { html } from 'lit-html'` )
+- web component polyfills
+- preserve `import.meta.url` value from before bundling
+- minify & treeshake
 
 ## Config options
 Our config accepts two options. Any further configuration can be done by extending the config
