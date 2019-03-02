@@ -3,6 +3,8 @@ import { LitElement, html, css } from 'lit-element';
 import './demo-component.js';
 import './meta-url-test.js';
 
+console.log('file name should end with demo/demo-app.js', import.meta.url);
+
 // some simple tests to see if compilation worked
 if (!'foo'.startsWith('foo')) {
   throw new Error('startsWith failed');
@@ -77,7 +79,7 @@ class DemoApp extends LitElement {
   }
 
   async _lazyLoad() {
-    await import('./lazy-component.js');
+    await import('./lazy/lazy-component.js');
     this._myElementLoaded = true;
   }
 }
