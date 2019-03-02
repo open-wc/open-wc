@@ -132,6 +132,7 @@ export default {
 ```
 
 ### Common extensions
+Note: Many extensions add non-native syntax to your code, which can be bad for maintenance longer term. Make sure you're willing to accept this before adding plugins.
 
 #### Resolve commonjs
 CommonJS is the module format for NodeJS, and not suitable for the browser. Rollup only handles es modules by default, but it's easy to add https://github.com/rollup/rollup-plugin-commonjs:
@@ -147,6 +148,24 @@ export default {
   ],
 };
 ```
+
+#### Import CSS files in lit-html
+To separate your lit-html styles in css files, you can use https://github.com/bennypowers/rollup-plugin-lit-css:
+
+```javascript
+import litcss from 'rollup-plugin-lit-css';
+
+const config = createDefaultConfig({ input: './index.html' });
+
+export default {
+  plugins: [
+    ...config.plugins,
+    litcss({ include, exclude, uglify })
+  ],
+};
+```
+
+
 
 <script>
   export default {

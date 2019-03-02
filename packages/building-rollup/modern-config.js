@@ -13,6 +13,7 @@ export default function createBasicConfig(_options) {
 
   return {
     input: options.input,
+    treeshake: !!production,
     output: {
       dir: options.outputDir,
       format: 'esm',
