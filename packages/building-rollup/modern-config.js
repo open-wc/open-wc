@@ -40,7 +40,7 @@ export default function createBasicConfig(_options) {
           '@babel/plugin-syntax-import-meta',
           // rollup rewrites import.meta.url, but makes them point to the file location after bundling
           // we want the location before bundling
-          ['bundled-import-meta', { importStyle: 'iife' }],
+          'bundled-import-meta',
         ],
         presets: [
           [

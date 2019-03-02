@@ -1,8 +1,13 @@
-/* eslint-disable class-methods-use-this, import/no-extraneous-dependencies */
+/* eslint-disable */
 import { LitElement, html, css } from 'lit-element';
-import './import-meta/meta-url-test-2.js';
 
-console.log('file name should end with demo/lazy/import-meta/lazy-component.js', import.meta.url);
+import('./import-meta/meta-url-test-4.js');
+
+console.log(
+  'lazy-component.js import.meta.url correct: ' +
+    import.meta.url.endsWith('/demo/lazy/lazy-component.js'),
+  import.meta.url,
+);
 
 class LazyComponent extends LitElement {
   static get styles() {

@@ -13,8 +13,7 @@ import {
 const prefix = '[rollup-plugin-legacy-browsers]:';
 let writtenModules = false;
 let writtenLegacyModules = false;
-let inputPaths;
-let inputPath;
+let inputIndexHTMLPath;
 
 // Gets the output HTML as AST. Rollup might run with multiple outputs, but there
 // should be only one index.html output. Therefore we check if it wasn't already
@@ -25,7 +24,7 @@ function getOutputHTML(dir) {
     return readHTML(`${dir}/index.html`);
   }
 
-  const outputHTML = readHTML(inputPath);
+  const outputHTML = readHTML(inputIndexHTMLPath);
   const scripts = queryAll(outputHTML, predicates.hasTagName('script'));
   const moduleScripts = scripts.filter(script => getAttribute(script, 'type') === 'module');
   moduleScripts.forEach(moduleScript => {
@@ -71,7 +70,7 @@ function copyPolyfills(pluginConfig, outputConfig) {
 }
 
 // Writes module scripts to output HTML file and copy necessary polyfills.
-function writeModules(pluginConfig, outputConfig) {
+function writeModules(pluginConfig, outputConfig, entryModules) {
   const indexHTML = getOutputHTML(outputConfig.dir);
   const head = query(indexHTML, predicates.hasTagName('head'));
   const body = query(indexHTML, predicates.hasTagName('body'));
@@ -93,14 +92,14 @@ function writeModules(pluginConfig, outputConfig) {
         if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) {p.push('./polyfills/webcomponent-polyfills.js');}
         if (!window.importModule) {p.push('./polyfills/dynamic-import-polyfill.js');}
         if (p.length > 0) {await Promise.all(p.map(p => new Promise((rs, rj) => {const s = document.createElement('script');s.src = p;s.onerror = () => rj(\`Failed to load \${s.s}\`);s.onload = () => rs();document.head.appendChild(s);})));}
-        ${inputPaths.map(src => `importModule('${src}');`)}
+        ${entryModules.map(src => `importModule('${src}');`).join('')}
       })();
     `),
     );
 
     // Because the module is loaded after some js execution, add preload hints so that it is downloaded
     // from the start
-    inputPaths.forEach(src => {
+    entryModules.forEach(src => {
       append(
         head,
         createElement('link', {
@@ -113,7 +112,7 @@ function writeModules(pluginConfig, outputConfig) {
     });
   } else {
     // No polyfilling needed, so just create a module script
-    inputPaths.forEach(src => {
+    entryModules.forEach(src => {
       append(body, createScript({ type: 'module', src }));
     });
   }
@@ -127,7 +126,7 @@ function writeModules(pluginConfig, outputConfig) {
 // - babel polyfills
 // - web component polyfills (no feature detection needed)
 // - systemjs loader for modules
-function writeLegacyModules(pluginConfig, outputConfig) {
+function writeLegacyModules(pluginConfig, outputConfig, entryModules) {
   const legacyOutputDir = outputConfig.dir;
   const outputDir = legacyOutputDir.replace('/legacy', '');
   const indexHTML = getOutputHTML(outputDir);
@@ -167,7 +166,7 @@ function writeLegacyModules(pluginConfig, outputConfig) {
 
   const loadScript = createScript(
     { nomodule: '' },
-    inputPaths.map(src => `System.import('./${path.join('legacy', src)}');`).join(''),
+    entryModules.map(src => `System.import('./${path.join('legacy', src)}');`).join(''),
   );
   append(body, loadScript);
   writeOutputHTML(outputDir, indexHTML);
@@ -192,7 +191,7 @@ export default (_pluginConfig = {}) => {
     // Takes the configured index.html input, looks for all defined module scripts and feeds them to rollup.
     options(config) {
       if (typeof config.input === 'string' && config.input.endsWith('index.html')) {
-        inputPath = config.input;
+        inputIndexHTMLPath = config.input;
         const indexHTML = readHTML(config.input);
         const scripts = queryAll(indexHTML, predicates.hasTagName('script'));
         const moduleScripts = scripts.filter(script => getAttribute(script, 'type') === 'module');
@@ -208,10 +207,10 @@ export default (_pluginConfig = {}) => {
         }
         const indexDir = path.dirname(config.input);
 
-        inputPaths = moduleScripts.map(script => getAttribute(script, 'src'));
+        const modules = moduleScripts.map(script => getAttribute(script, 'src'));
         return {
           ...config,
-          input: inputPaths.map(p => path.join(indexDir, p)),
+          input: modules.map(p => path.join(indexDir, p)),
         };
       }
 
@@ -219,14 +218,18 @@ export default (_pluginConfig = {}) => {
     },
 
     // Injects generated module paths into index.html
-    generateBundle(outputConfig) {
+    generateBundle(outputConfig, bundles) {
+      const entryModules = Object.keys(bundles)
+        .filter(key => bundles[key].isEntry)
+        .map(e => `./${e}`);
+
       if (!pluginConfig.legacy && !writtenModules) {
         copyPolyfills(pluginConfig, outputConfig);
-        writeModules(pluginConfig, outputConfig);
+        writeModules(pluginConfig, outputConfig, entryModules);
         writtenModules = true;
       } else if (!writtenLegacyModules) {
         copyPolyfills(pluginConfig, outputConfig);
-        writeLegacyModules(pluginConfig, outputConfig);
+        writeLegacyModules(pluginConfig, outputConfig, entryModules);
         writtenLegacyModules = true;
       }
     },

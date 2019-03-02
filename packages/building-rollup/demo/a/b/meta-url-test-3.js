@@ -1,13 +1,14 @@
 /* eslint-disable */
-import request from './request';
+import request from '../../request';
 
 console.log(
-  'meta-url-test.js import.meta.url correct: ' + import.meta.url.endsWith('/demo/meta-url-test.js'),
+  'meta-url-test-3.js import.meta.url correct: ' +
+    import.meta.url.endsWith('/demo/lazy/import-meta/meta-url-test-3.js'),
   import.meta.url,
 );
 
 const basePath = new URL('./', import.meta.url);
 
-request(`${basePath}a/b/foo.txt`)
+request(`${basePath}foo.txt`)
   .then(txt => console.log(`foo.txt evaluated to: ${txt}`))
   .catch(console.error);
