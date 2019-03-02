@@ -16,12 +16,10 @@ let writtenLegacyModules = false;
 let inputPaths;
 let inputPath;
 
-/**
- * Gets the output HTML as AST. Rollup might run with multiple outputs, but there
- * should be only one index.html output. Therefore we check if it wasn't already
- * created before. If there is no index.html yet, we copy over the input index.html
- * with the original module scripts removed.
- */
+// Gets the output HTML as AST. Rollup might run with multiple outputs, but there
+// should be only one index.html output. Therefore we check if it wasn't already
+// created before. If there is no index.html yet, we copy over the input index.html
+// with the original module scripts removed.
 function getOutputHTML(dir) {
   if (existsSync(`${dir}/index.html`)) {
     return readHTML(`${dir}/index.html`);
@@ -38,6 +36,7 @@ function getOutputHTML(dir) {
   return outputHTML;
 }
 
+// Copy required polyfills from node_modules to the build directory
 function copyPolyfills(pluginConfig, outputConfig) {
   if (
     !pluginConfig.polyfillDynamicImports &&
@@ -77,6 +76,8 @@ function writeModules(pluginConfig, outputConfig) {
   const head = query(indexHTML, predicates.hasTagName('head'));
   const body = query(indexHTML, predicates.hasTagName('body'));
 
+  // If dynamic imports are polyfilled, we first need to feature detect so we can't load our app using the
+  // 'src' attribute.
   if (pluginConfig.polyfillDynamicImports) {
     // Feature detect dynamic import in a separate script, because browsers which don't
     // support it will throw a syntax error and stop executing the module
@@ -111,6 +112,7 @@ function writeModules(pluginConfig, outputConfig) {
       );
     });
   } else {
+    // No polyfilling needed, so just create a module script
     inputPaths.forEach(src => {
       append(body, createScript({ type: 'module', src }));
     });
@@ -119,7 +121,7 @@ function writeModules(pluginConfig, outputConfig) {
   writeOutputHTML(outputConfig.dir, indexHTML);
 }
 
-// browsers which don't support es modules also don't support es2015 and web components
+// Browsers which don't support es modules also don't support es2015 and web components
 // for those browsers we load a systemjs build, including:
 // - es5 code
 // - babel polyfills
@@ -175,6 +177,7 @@ export default (_pluginConfig = {}) => {
   const pluginConfig = {
     // Whether this the systemjs output for legacy browsers
     legacy: false,
+    // Whether to inject a polyfill for dynamic imports if there is no native support.
     polyfillDynamicImports: false,
     // Whether to inject babel polyfills (Object.assign, Promise, Array.prototype.some etc.)
     polyfillBabel: false,
@@ -186,10 +189,7 @@ export default (_pluginConfig = {}) => {
   return {
     name: 'modern-web',
 
-    /**
-     * Takes configured index.html input, looking for all module scripts and converting them to
-     * module inputs for rollup.
-     */
+    // Takes the configured index.html input, looks for all defined module scripts and feeds them to rollup.
     options(config) {
       if (typeof config.input === 'string' && config.input.endsWith('index.html')) {
         inputPath = config.input;
@@ -218,9 +218,7 @@ export default (_pluginConfig = {}) => {
       return null;
     },
 
-    /**
-     * Injects generated module into index.html
-     */
+    // Injects generated module paths into index.html
     generateBundle(outputConfig) {
       if (!pluginConfig.legacy && !writtenModules) {
         copyPolyfills(pluginConfig, outputConfig);
