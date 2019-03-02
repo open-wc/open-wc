@@ -81,7 +81,7 @@ module.exports = {
       '/publishing/': sidebar,
       '/automating/': sidebar,
       '/faq/': ['', 'rerender'],
-      '/about/': [['/about/', 'About'], '/about/contact', '/about/rationales'],
+      '/about/': [['/about/', 'About'], '/about/contact', '/about/rationales', '/about/blog'],
     },
     nav: [
       { text: 'Home', link: '/' },

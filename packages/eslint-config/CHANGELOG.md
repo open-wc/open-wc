@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.3.12...@open-wc/eslint-config@0.4.0) (2019-03-01)
+
+
+### Features
+
+* **eslint-config:** add eslint-plugin-wc ([be637a5](https://github.com/open-wc/open-wc/commit/be637a5))
+
+
+
+
+
+## [0.3.12](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.3.11...@open-wc/eslint-config@0.3.12) (2019-02-24)
+
+
+### Bug Fixes
+
+* **eslint-config:** allow usage of devDeps in *.config files ([ad52be0](https://github.com/open-wc/open-wc/commit/ad52be0))
+
+
+
+
+
 ## [0.3.11](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.3.10...@open-wc/eslint-config@0.3.11) (2019-02-16)
 
 

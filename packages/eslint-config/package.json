@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/eslint-config",
-  "version": "0.3.11",
+  "version": "0.4.0",
   "description": "Eslint config following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -22,6 +22,7 @@
     "eslint": "^5.0.0",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-html": "^4.0.0",
-    "eslint-plugin-import": "^2.0.0"
+    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-wc": "^1.0.0"
   }
 }

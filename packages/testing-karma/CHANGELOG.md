@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.12](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@0.4.11...@open-wc/testing-karma@0.4.12) (2019-02-26)
+
+
+### Bug Fixes
+
+* **testing-karma:** add docs how to replace a specific config part ([7bcb901](https://github.com/open-wc/open-wc/commit/7bcb901))
+
+
+
+
+
 ## [0.4.11](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@0.4.10...@open-wc/testing-karma@0.4.11) (2019-02-16)
 
 

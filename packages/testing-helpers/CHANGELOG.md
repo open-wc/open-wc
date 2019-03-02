@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.18](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.17...@open-wc/testing-helpers@0.7.18) (2019-02-26)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.7.17](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.16...@open-wc/testing-helpers@0.7.17) (2019-02-24)
+
+
+### Bug Fixes
+
+* **testing-helpers:** add time before triggering focus/blur (only IE) ([f77cfa2](https://github.com/open-wc/open-wc/commit/f77cfa2))
+
+
+
+
+
 ## [0.7.16](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.15...@open-wc/testing-helpers@0.7.16) (2019-02-16)
 
 
