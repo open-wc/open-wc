@@ -1,6 +1,7 @@
 import resolve from 'rollup-plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 import babel from 'rollup-plugin-babel';
+import minifyHTML from 'rollup-plugin-minify-html-literals';
 import modernWeb from './plugins/rollup-plugin-modern-web/rollup-plugin-modern-web.js';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -20,8 +21,19 @@ export default function createBasicConfig(_options) {
       sourcemap: true,
     },
     plugins: [
+      // minify html and css template literals if in production
+      production &&
+        minifyHTML({
+          failOnError: true,
+        }),
+
+      // parse input index.html as input and feed any modules found to rollup
       modernWeb(),
+
+      // resolve bare import specifiers
       resolve(),
+
+      // run code through babel
       babel({
         plugins: [
           '@babel/plugin-syntax-dynamic-import',
@@ -47,6 +59,8 @@ export default function createBasicConfig(_options) {
           ],
         ],
       }),
+
+      // only minify if in production
       production && terser(),
     ],
   };

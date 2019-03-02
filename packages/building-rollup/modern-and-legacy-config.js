@@ -4,7 +4,8 @@ import babel from 'rollup-plugin-babel';
 import minifyHTML from 'rollup-plugin-minify-html-literals';
 import modernWeb from './plugins/rollup-plugin-modern-web/rollup-plugin-modern-web.js';
 
-const production = !process.env.ROLLUP_WATCH;
+// const production = !process.env.ROLLUP_WATCH;
+const production = false;
 const prefix = '[owc-building-rollup]';
 
 function createConfig(_options, legacy) {
@@ -30,7 +31,7 @@ function createConfig(_options, legacy) {
           failOnError: true,
         }),
 
-      // parse input index.html as input and feed any modules found to rollup
+      // parse input index.html as input, feed any modules found to rollup and add polyfills
       modernWeb({
         legacy,
         polyfillDynamicImports: !legacy,
@@ -43,7 +44,6 @@ function createConfig(_options, legacy) {
 
       // run code through babel
       babel({
-        babelrc: false,
         plugins: [
           '@babel/plugin-syntax-dynamic-import',
           '@babel/plugin-syntax-import-meta',

@@ -110,7 +110,17 @@ export default createDefaultConfig({
 ```
 
 ## Customizing the babel config
-This is currently not possible. We are working on adding this in a later version.
+You can define your own babel plugins by adding a `.babelrc` or `babel.config.js` to your project. See https://babeljs.io/docs/en/configuration for more information.
+
+For example to add support for class properties:
+
+```json
+{
+  "plugins": [
+    "@babel/plugin-proposal-class-properties"
+  ]
+}
+```
 
 ## Extending the config
 The rollup config is just a plain object. It's easy to extend it using javascript:
