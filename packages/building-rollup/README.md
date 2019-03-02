@@ -146,7 +146,11 @@ export default {
 ```
 
 ### Common extensions
->Many extensions add non-native syntax to your code, which can be bad for maintenance longer term. We suggest sticking to native syntax.
+::: warning
+Many extensions add non-native syntax to your code, which can be bad for maintenance longer term.
+We suggest sticking to native syntax.
+If you really need it below are some usage examples.
+:::
 
 #### Resolve commonjs
 CommonJS is the module format for NodeJS, and not suitable for the browser. Rollup only handles es modules by default, but sometimes it's necessray to be able to import a dependency. To do this, you can add https://github.com/rollup/rollup-plugin-commonjs:
@@ -178,6 +182,7 @@ export default {
   ],
 };
 ```
+
 <script>
   export default {
     mounted() {
