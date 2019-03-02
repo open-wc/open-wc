@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.1.6...owc-dev-server@0.2.0) (2019-03-02)
+
+
+### Features
+
+* **building-rollup:** added building-rollup ([273cb94](https://github.com/open-wc/open-wc/commit/273cb94))
+
+
+
+
+
 ## [0.1.6](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.1.5...owc-dev-server@0.1.6) (2019-02-18)
 
 
