@@ -4,8 +4,7 @@ import babel from 'rollup-plugin-babel';
 import minifyHTML from 'rollup-plugin-minify-html-literals';
 import modernWeb from './plugins/rollup-plugin-modern-web/rollup-plugin-modern-web.js';
 
-// const production = !process.env.ROLLUP_WATCH;
-const production = false;
+const production = !process.env.ROLLUP_WATCH;
 const prefix = '[owc-building-rollup]';
 
 function createConfig(_options, legacy) {
