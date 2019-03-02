@@ -1,1 +1,1 @@
-../../packages/storybook/README.md
+../../packages/demoing-storybook/README.md
