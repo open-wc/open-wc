@@ -1,3 +1,3 @@
-import createDefaultConfig from '../default-config';
+import createDefaultConfig from '../modern-and-legacy-config';
 
 export default createDefaultConfig({ input: './demo/index.html' });

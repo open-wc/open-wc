@@ -2,7 +2,83 @@
 
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
+## Default configuration
+We provide a good default configuration to help you get started with using rollup with web components and modules.
+
+Our configuration contains the minimal requirements for getting your app up and running, providing the necessary polyfills for older browsers. For more customization, such as installing custom babel plugins, read more below.
+
+## Manual setup
+
+1. Install the required dependencies:
+```bash
+npm i -D @open-wc/building-rollup rollup rimraf http-server
+```
+
+2. Create a file `rollup.config.js` and pass in your app's index.html:
+```javascript
+import createDefaultConfig from '@open-wc/building-rollup/modern-config';
+
+export default createDefaultConfig({ input: './index.html' });
+```
+
+Our rollup config will look through your index.html and extract all module scripts and feed them to rollup.
+
+3. Create an `index.html`:
+```html
+<!doctype html>
+<html>
+  <head></head>
+  <body>
+    <your-app></your-app>
+
+    <script type="module" src="./your-app.js"></script>
+  </body>
+</html>
+```
+
+Note: our config will **not** handle 'inline' module such as:
+```html
+  <script type="module">
+    import { MyApp } from './my-app';
+  </script>
+```
+
+4. Add the following commands to your `package.json`:
+```json
+{
+  "scripts": {
+    "build": "rimraf dist && rollup",
+    "start:build": "http-server dist -o",
+    "watch:build": "rimraf dist && rollup --watch & http-server dist -o",
+  }
+}
+```
+- `build` builds your app and outputs it in your `dist` directory
+- `start:build` runs your built app from `dist` directory
+- `watch:build` builds and runs your app, rebuilding when input files change
+
+## Supporting more browsers
+`modern-config.js` we setup above works for browsers which support modules and dynamic imports (Chrome 63+, Safari 11.1+, Firefox 67+).
+If you need to support other or older browsers, use our `modern-and-legacy-config.js` in your `rollup.config.js`:
+
+```javascript
+import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
+
+export default createDefaultConfig({ input: './index.html' });
+```
+
+In additional to outputting your app as a module, it also outputs a legacy build of your app and loads the appropriate version based on browser support. Depending on your app's own code, this will work on Chrome, Safari, Firefox, Edge and IE11.
+
+## Config options
 TODO
+
+## Adding babel plugins
+TODO
+
+## Extending the config
+TODO
+
+More info
 
 <script>
   export default {
