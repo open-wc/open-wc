@@ -18,7 +18,7 @@ Our recommended setups address the first four points but refrain from introducin
 [Webpack](https://webpack.js.org/) is a popular and flexible build tool, with a growing ecosystem of plugins. We recommend it as a general purpose tool. See our [default configuration](/building/building-webpack.html) to get started.
 
 ## Rollup
-[Rollup](https://rollupjs.org/) is a another popular build tool which recently had it's 1.0 release. It's especially suitable for optimizing and minifying es modules, and it can output es modules for browsers which have native support. We don't have a recommended setup for rollup yet.
+[Rollup](https://rollupjs.org/) is a another popular build tool which recently had it's 1.0 release. It's especially suitable for optimizing and minifying es modules, and it can output es modules for browsers which have native support. See our [default configuration](/building/building-rollup.html) to get started.
 
 ## Polyfills loader
 Web components are not supported yet on Edge and Internet Explorer 11. The recommended approach is to conditionally load the polyfills at runtime using our [Polyfills Loader](/building/polyfills-loader.html) for more.

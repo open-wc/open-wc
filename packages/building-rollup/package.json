@@ -1,0 +1,62 @@
+{
+  "name": "@open-wc/building-rollup",
+  "version": "0.0.0",
+  "description": "Default configuration for working with rollup",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/building-rollup"
+  },
+  "scripts": {
+    "build:demo": "rimraf dist && rollup -c demo/rollup.config.js",
+    "start:demo": "http-server dist -o",
+    "watch:demo": "rimraf dist && rollup -c demo/rollup.config.js --watch & http-server dist -o",
+    "visualizer:demo": "rimraf dist && rollup -c demo/rollup.visualizer.config.js",
+    "build-modern:demo": "rimraf dist && rollup -c demo/rollup.modern.config.js",
+    "start-modern:demo": "http-server dist -o",
+    "watch-modern:demo": "rimraf dist && rollup -c demo/rollup.modern.config.js --watch & http-server dist -o",
+    "prepublishOnly": "../../scripts/insert-header.js"
+  },
+  "keywords": [
+    "open-wc",
+    "web-components",
+    "modules",
+    "rollup"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-syntax-import-meta": "^7.2.0",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.1",
+    "@webcomponents/webcomponentsjs": "^2.2.7",
+    "babel-plugin-bundled-import-meta": "^0.3.0",
+    "dom5": "^3.0.1",
+    "mkdirp": "^0.5.1",
+    "parse5": "^5.1.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-minify-html-literals": "^1.2.2",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-plugin-polyfill": "^2.0.1",
+    "rollup-plugin-terser": "^4.0.4",
+    "systemjs": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-decorators": "^7.3.0",
+    "http-server": "^0.11.1",
+    "lit-element": "^2.0.1",
+    "owc-dev-server": "^0.1.6",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.4.0",
+    "rollup-plugin-copier": "^1.1.0",
+    "rollup-plugin-copy-assets": "^1.1.0",
+    "rollup-plugin-visualizer": "^1.0.2"
+  }
+}

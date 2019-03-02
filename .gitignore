@@ -28,3 +28,4 @@ package-lock.json
 ## build output
 dist
 build-stats.json
+stats.html
