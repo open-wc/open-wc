@@ -68,13 +68,11 @@ class DemoApp extends LitElement {
       <button @click="${this._lazyLoad}">Lazy load</button>
       <demo-component></demo-component>
 
-      ${
-        this._myElementLoaded
-          ? html`
-              <lazy-component></lazy-component>
-            `
-          : ''
-      }
+      ${this._myElementLoaded
+        ? html`
+            <lazy-component></lazy-component>
+          `
+        : ''}
     `;
   }
 
