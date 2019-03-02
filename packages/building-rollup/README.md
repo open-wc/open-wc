@@ -3,7 +3,7 @@
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
 ## Default configuration
-We provide a good default configuration to help you get started with using rollup with web components and modules.
+We provide a good default configuration to help you get started using rollup with web components and modules.
 
 Our configuration contains the minimal requirements for getting your app up and running, providing the necessary polyfills for older browsers. For more customization, such as installing custom babel plugins, read more below.
 
