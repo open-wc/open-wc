@@ -44,6 +44,7 @@ const sidebar = [
     children: [
       ['/building/', 'Getting started'],
       '/building/building-webpack',
+      '/building/building-rollup',
       '/building/polyfills-loader',
     ],
   },

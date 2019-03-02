@@ -25,9 +25,8 @@
   },
   "keywords": [
     "open-wc",
-    "web components",
+    "web-components",
     "modules",
-    "es modules",
     "rollup"
   ],
   "dependencies": {
