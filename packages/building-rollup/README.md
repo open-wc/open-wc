@@ -114,7 +114,7 @@ export default createDefaultConfig({
 ```
 
 ## Customizing the babel config
-You can define your own babel plugins by adding a `.babelrc` or `babel.config.js` to your project. See https://babeljs.io/docs/en/configuration for more information.
+You can define your own babel plugins by adding a `.babelrc` or `babel.config.js` to your project. See [babeljs config](https://babeljs.io/docs/en/configuration) for more information.
 
 For example to add support for class properties:
 
@@ -149,11 +149,11 @@ export default {
 ::: warning
 Many extensions add non-native syntax to your code, which can be bad for maintenance longer term.
 We suggest sticking to native syntax.
-If you really need it below are some usage examples.
+If you really need it scroll below to see some usage examples.
 :::
 
 #### Resolve commonjs
-CommonJS is the module format for NodeJS, and not suitable for the browser. Rollup only handles es modules by default, but sometimes it's necessray to be able to import a dependency. To do this, you can add https://github.com/rollup/rollup-plugin-commonjs:
+CommonJS is the module format for NodeJS, and not suitable for the browser. Rollup only handles es modules by default, but sometimes it's necessray to be able to import a dependency. To do this, you can add [rollup-plugin-commonjs](https://github.com/rollup/rollup-plugin-commonjs):
 ```javascript
 import commonjs from 'rollup-plugin-commonjs';
 
@@ -168,7 +168,7 @@ export default {
 ```
 
 #### Import CSS files in lit-html
-To separate your lit-html styles in css files, you can use https://github.com/bennypowers/rollup-plugin-lit-css:
+To separate your lit-html styles in css files, you can use [rollup-plugin-lit-css](https://github.com/bennypowers/rollup-plugin-lit-css):
 
 ```javascript
 import litcss from 'rollup-plugin-lit-css';
