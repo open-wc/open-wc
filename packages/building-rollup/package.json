@@ -17,6 +17,7 @@
     "build:demo": "rimraf dist && rollup -c demo/rollup.config.js",
     "start:demo": "http-server dist -o",
     "watch:demo": "rimraf dist && rollup -c demo/rollup.config.js --watch & http-server dist -o",
+    "visualizer:demo": "rimraf dist && rollup -c demo/rollup.visualizer.config.js",
     "build-modern:demo": "rimraf dist && rollup -c demo/rollup.modern.config.js",
     "start-modern:demo": "http-server dist -o",
     "watch-modern:demo": "rimraf dist && rollup -c demo/rollup.modern.config.js --watch & http-server dist -o",
@@ -58,6 +59,7 @@
     "rimraf": "^2.6.3",
     "rollup": "^1.4.0",
     "rollup-plugin-copier": "^1.1.0",
-    "rollup-plugin-copy-assets": "^1.1.0"
+    "rollup-plugin-copy-assets": "^1.1.0",
+    "rollup-plugin-visualizer": "^1.0.2"
   }
 }
