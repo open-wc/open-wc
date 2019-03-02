@@ -5,7 +5,7 @@
 ## Default configuration
 We provide a good default configuration to help you get started using rollup with web components and modules.
 
-Our configuration contains the minimal requirements for getting your app up and running, providing the necessary polyfills for older browsers. For more customization, such as installing custom babel plugins, read more below.
+Our configuration contains the minimal requirements for getting your app up and running, providing the necessary polyfills for older browsers. For more customization, such as installing custom babel plugins, see the extending section below.
 
 ## Manual setup
 
@@ -36,7 +36,7 @@ Our rollup config will look through your index.html and extract all module scrip
 </html>
 ```
 
-Note: our config will **not** handle 'inline' module such as:
+Note: our config will **not** handle inline module such as:
 ```html
   <script type="module">
     import { MyApp } from './my-app';
@@ -58,7 +58,9 @@ Note: our config will **not** handle 'inline' module such as:
 - `watch:build` builds and runs your app, rebuilding when input files change
 
 ## Supporting legacy browsers
-`modern-config.js` we setup above works for modern browsers (see below for config features)
+`modern-config.js` we setup above works for modern browsers (see config features for more details).
+
+
 If you need to support older browsers, use our `modern-and-legacy-config.js` in your `rollup.config.js`:
 
 ```javascript
@@ -67,7 +69,7 @@ import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-conf
 export default createDefaultConfig({ input: './index.html' });
 ```
 
-In addition to outputting your app as a module, it also outputs a legacy build of your app and loads the appropriate version based on browser support. Depending on your app's own code, this will work on Chrome, Safari, Firefox, Edge and IE11.
+In addition to outputting your app as a module, it outputs a legacy build of your app and loads the appropriate version based on browser support. Depending on your app's own code, this will work on Chrome, Safari, Firefox, Edge and IE11.
 
 ## Config features
 `modern-config.js`:
@@ -76,7 +78,8 @@ In addition to outputting your app as a module, it also outputs a legacy build o
 - output es modules using native dynamic import
 - resolve bare imports ( `import { html } from 'lit-html'` )
 - preserve `import.meta.url` value from before bundling
-- minify & treeshake
+- minify + treeshake js
+- minify html and css in template literals
 
 `modern-and-legacy-config.js`:
 
@@ -88,7 +91,7 @@ In addition to outputting your app as a module, it also outputs a legacy build o
 
 **Legacy build**
 - compatible down to IE11
-- babel transform es5
+- babel transform down to IE11 (es5)
 - core js babel polyfills (`Array.from`, `String.prototype.includes` etc.)
 - systemjs modules
 
@@ -96,7 +99,8 @@ In addition to outputting your app as a module, it also outputs a legacy build o
 - resolve bare imports ( `import { html } from 'lit-html'` )
 - web component polyfills
 - preserve `import.meta.url` value from before bundling
-- minify & treeshake
+- minify + treeshake js
+- minify html and css in template literals
 
 ## Config options
 Our config accepts two options. Any further configuration can be done by extending the config
@@ -122,7 +126,7 @@ For example to add support for class properties:
 }
 ```
 
-## Extending the config
+## Extending the rollup config
 The rollup config is just a plain object. It's easy to extend it using javascript:
 ```javascript
 import createDefaultConfig from '@open-wc/building-rollup/modern-config';
@@ -142,10 +146,10 @@ export default {
 ```
 
 ### Common extensions
-Note: Many extensions add non-native syntax to your code, which can be bad for maintenance longer term. Make sure you're willing to accept this before adding plugins.
+>Many extensions add non-native syntax to your code, which can be bad for maintenance longer term. We suggest sticking to native syntax.
 
 #### Resolve commonjs
-CommonJS is the module format for NodeJS, and not suitable for the browser. Rollup only handles es modules by default, but it's easy to add https://github.com/rollup/rollup-plugin-commonjs:
+CommonJS is the module format for NodeJS, and not suitable for the browser. Rollup only handles es modules by default, but sometimes it's necessray to be able to import a dependency. To do this, you can add https://github.com/rollup/rollup-plugin-commonjs:
 ```javascript
 import commonjs from 'rollup-plugin-commonjs';
 
@@ -174,9 +178,6 @@ export default {
   ],
 };
 ```
-
-
-
 <script>
   export default {
     mounted() {
