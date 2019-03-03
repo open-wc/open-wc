@@ -73,7 +73,7 @@ module.exports = config => ({
 
         {
           test: /\.js$/,
-          loader: require.resolve('@open-wc/webpack/loaders/import-meta-url-loader.js'),
+          loader: require.resolve('@open-wc/webpack-import-meta-loader'),
         },
       ],
     },
