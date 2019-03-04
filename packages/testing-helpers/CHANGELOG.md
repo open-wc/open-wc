@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.20](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.19...@open-wc/testing-helpers@0.7.20) (2019-03-04)
+
+
+### Bug Fixes
+
+* **testing-helpers:** correct usage of oneEvent in readme ([a16969a](https://github.com/open-wc/open-wc/commit/a16969a))
+
+
+
+
+
 ## [0.7.19](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.18...@open-wc/testing-helpers@0.7.19) (2019-03-03)
 
 **Note:** Version bump only for package @open-wc/testing-helpers
