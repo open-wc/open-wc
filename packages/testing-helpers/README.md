@@ -120,7 +120,7 @@ it('can await an event', async () => {
   const el = await fixture(`<${tag}></${tag}>`);
 
   setTimeout(() => el.fireDone());
-  await oneEvent('done');
+  await oneEvent(el, 'done');
   expect(el.done).to.be.true;
 });
 ```
