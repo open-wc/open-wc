@@ -14,7 +14,7 @@ const sidebar = [
     children: [
       ['/developing/', 'Getting started'],
       '/developing/owc-dev-server',
-      ['/developing/generator', 'Generators'],
+      ['/developing/create', 'Generators'],
     ],
   },
   {

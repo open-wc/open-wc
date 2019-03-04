@@ -10,10 +10,7 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Setup
 ```bash
-npm i -g yo
-npm i -g generator-open-wc
-
-yo open-wc:linting-prettier
+npm init @open-wc linting-prettier
 ```
 
 ## Manual

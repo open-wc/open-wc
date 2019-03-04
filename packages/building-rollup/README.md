@@ -9,6 +9,12 @@ Our configuration lets you write code using modern javascript syntax and feature
 
 See the extending section for more customization, such as supporting non-standard syntax or adding babel plugins.
 
+## Setup
+
+```bash
+npm init @open-wc building-rollup
+```
+
 ## Manual setup
 
 1. Install the required dependencies:

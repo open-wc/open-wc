@@ -18,14 +18,7 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Setup
 ```bash
-npm i -g yo
-npm i -g generator-open-wc
-
-# if you already have a Web Component project set up and/or test files
-yo open-wc:testing
-
-# if you do not have tests yet - will run the above + some example test files
-yo open-wc:scaffold-testing
+npm init @open-wc testing
 ```
 
 ### Manual
@@ -43,11 +36,11 @@ This will have the following side effects:
   - Enables cleanup after each test for all `fixture`s
 
 ## Automating Tests
-Ideally, you'll want some way of automatically running all of your tests. To do that, we recommend karma via `@open-wc/testing-karma` and browserstack via `@open-wc/testing-karma-bs`.  
+Ideally, you'll want some way of automatically running all of your tests. To do that, we recommend karma via `@open-wc/testing-karma` and browserstack via `@open-wc/testing-karma-bs`.
 If you use a different test runner or a different browser grid you may skip these steps.
 
 ::: tip Note
-Already part of `yo open-wc:testing`
+Already part of `npm init @open-wc testing`
 ::::
 
 ### Manual Install
@@ -78,7 +71,7 @@ If you do not have access to all browsers, we recommend using a service like [Br
 The following step connects the automatic karma runner with browserstack.
 
 ::: tip Note
-Already part of `yo open-wc:testing`
+Already part of `npm init @open-wc testing`
 ::::
 
 ### Manual Install
