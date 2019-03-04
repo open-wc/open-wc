@@ -7,18 +7,15 @@
 
 ## Open-wc Starter App
 
-[![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc) 
+[![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc)
 
 ## Quickstart
 
 To get started:
 
 ```sh
-# in a new folder:
-npm init yo open-wc
-# requires npm 6 or higher
-
-npm run start
+npm init @open-wc starter-app
+# requires node 10 & npm 6 or higher
 ```
 
 <p align="center">

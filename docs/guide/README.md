@@ -4,14 +4,12 @@ The goal of Open Web Components is to empower everyone with a powerful and battl
 
 ## Quickstart
 
-This will bootstrap a vanilla Web Component project based on our latest recommendations.
+This will kickstart a menu guiding you through all available Open Web Components actions.
 
 ```bash
-npm i -g yo
-npm i -g generator-open-wc
-
 # in a new or existing folder:
-yo open-wc
+npm init @open-wc
+# requires node 10 & npm 6 or higher
 ```
 
 ## Available Recommendations
