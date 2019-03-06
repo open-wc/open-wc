@@ -87,8 +87,16 @@ So with a configuration like this you will get this auto generated.
 <img src="https://raw.githubusercontent.com/open-wc/open-wc/master/packages/demoing-storybook/dev_assets/storybook.gif" alt="storybook demo animation" />
 
 
-For most types this works fine out of the box but if want to provide better knobs you can do so by overriding.
+For most types this works fine out of the box but if want to provide better knobs you can customize by overriding the
+properties definitions and using the [available knobs](https://github.com/storybooks/storybook/tree/5.0.0/addons/knobs#available-knobs).
 ```js
+import {
+  withClassPropertiesKnobs,
+  color,
+  select,
+  object  
+} from '@open-wc/demoing-storybook';
+
 () => withClassPropertiesKnobs(MyEl, {
   overrides: el => [
     // show a color selector
@@ -108,7 +116,8 @@ For most types this works fine out of the box but if want to provide better knob
 
 By default it will create one simple node from the given Class.
 However for a nicer demo it may be needed to set properties or add more lightdom.
-You can do so by providing a template.
+You can do so by providing a template. The template must render the custom element 
+to be tested as first root node.
 ```js
 () => withClassPropertiesKnobs(MyEl, {
   template: html`
