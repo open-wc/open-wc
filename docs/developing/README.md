@@ -72,6 +72,7 @@ A collection of live code samples for `lit-html` and `LitElement` can be found o
 	- [09 Update arrays and objects](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F09-update-arrays-and-objects.js)
 	- [10 Render styles](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F10-render-styles.js)
 	- [11 Fetching data](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F11-fetching-data.js)
+	- [12 Firing events](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F12-firing-events.js)
 * [Intermediate](https://open-wc-lit-demos.stackblitz.io/intermediate)
 	- [01 First updated](https://stackblitz.com/edit/open-wc-lit-demos?file=01-intermediate%2F01-first-updated.js)
 	- [02 Updated](https://stackblitz.com/edit/open-wc-lit-demos?file=02-intermediate%2F02-updated.js)
