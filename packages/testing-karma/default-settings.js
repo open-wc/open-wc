@@ -65,7 +65,7 @@ module.exports = config => ({
           loader: 'istanbul-instrumenter-loader',
           enforce: 'post',
           include: path.resolve('./'),
-          exclude: /node_modules|bower_components|\.test\.js$/,
+          exclude: /node_modules|bower_components|\.(spec|test)\.js$/,
           options: {
             esModules: true,
           },
