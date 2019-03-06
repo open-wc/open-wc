@@ -113,7 +113,7 @@ it('can await an event', async () => {
   const tag = defineCE(class extends HTMLElement {
     fireDone() {
       this.done = true;
-      this.dispatchEvent(new CustomEvent('done');
+      this.dispatchEvent(new CustomEvent('done'));
     }
   });
 
