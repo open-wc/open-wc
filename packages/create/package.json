@@ -1,0 +1,44 @@
+{
+  "name": "@open-wc/create",
+  "version": "0.0.1",
+  "description": "Easily setup all the tools of Open Web Components.",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/create"
+  },
+  "keywords": [
+    "open-wc",
+    "owc",
+    "generator",
+    "starter-app"
+  ],
+  "scripts": {
+    "build": "babel src --out-dir dist --copy-files --include-dotfiles",
+    "start": "npm run build && node ./dist/create.js",
+    "prepublishOnly": "npm run build && ../../scripts/insert-header.js"
+  },
+  "bin": {
+    "create-open-wc": "./dist/create.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "deepmerge": "^3.2.0",
+    "glob": "^7.1.3",
+    "qoa": "^0.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.0.0",
+    "babel-plugin-transform-dynamic-import": "^2.1.0"
+  }
+}

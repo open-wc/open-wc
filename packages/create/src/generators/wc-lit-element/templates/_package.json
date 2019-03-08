@@ -1,0 +1,19 @@
+{
+  "name": "<%= tagName %>",
+  "version": "0.0.0",
+  "description": "Webcomponent <%= tagName %> following open-wc recommendations",
+  "author": "<%= tagName %>",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "repository": "https://github.com/open-wc/open-wc/",
+  "scripts": {
+    "start": "owc-dev-server --open demo"
+  },
+  "dependencies": {
+    "lit-html": "^1.0.0",
+    "lit-element": "^2.0.1"
+  },
+  "devDependencies": {
+    "owc-dev-server": "^0.2.0"
+  }
+}
