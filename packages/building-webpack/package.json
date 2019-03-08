@@ -25,18 +25,18 @@
     "webpack"
   ],
   "dependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.0.0",
     "@babel/runtime-corejs2": "^7.2.0",
     "@open-wc/polyfills-loader": "^0.2.2",
     "@open-wc/webpack-import-meta-loader": "^0.1.2",
-    "babel-loader": "^8.0.5",
+    "babel-loader": "^8.0.0",
     "babel-plugin-template-html-minifier": "^2.1.3",
     "clean-webpack-plugin": "^1.0.0",
     "fast-async": "^7.0.6",
     "html-webpack-plugin": "^3.2.0",
     "terser-webpack-plugin": "^1.2.1",
-    "webpack": "^4.28.4",
+    "webpack": "^4.28.0",
     "webpack-babel-multi-target-plugin": "^v2.1.0-alpha.8"
   },
   "devDependencies": {
