@@ -1,8 +1,8 @@
 import visualizer from 'rollup-plugin-visualizer';
-import createDefaultConfig from '../modern-and-legacy-config';
+import createDefaultConfig from '../../modern-and-legacy-config';
 
 const configs = createDefaultConfig({
-  input: './demo/index.html',
+  input: './demo/js/index.html',
 });
 const config = configs[0];
 
