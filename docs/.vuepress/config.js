@@ -14,7 +14,7 @@ const sidebar = [
     children: [
       ['/developing/', 'Getting started'],
       '/developing/owc-dev-server',
-      ['/developing/generator', 'Generators'],
+      ['/developing/create', 'Generators'],
     ],
   },
   {
@@ -43,8 +43,8 @@ const sidebar = [
     collapsable: true,
     children: [
       ['/building/', 'Getting started'],
-      '/building/building-webpack',
       '/building/building-rollup',
+      '/building/building-webpack',
       '/building/polyfills-loader',
     ],
   },

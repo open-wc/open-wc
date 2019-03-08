@@ -18,7 +18,7 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Setup
 ```bash
-npm init open-wc demoing
+npm init @open-wc demoing
 ```
 
 ### Manual
@@ -68,17 +68,23 @@ The data will be read from the elements properties.
 So this should probably be your default story to gives users documentation, api and playground all in one.
 For additional edge cases you should add more stories.
 
+Features:
+- Show your README.md without leaving storybook
+- On the canvas the "knobs" panel is pre selected
+- All the knobs are auto generated from your JavaScript Class
+
 Note: you need to provide the Class (not a node or a template)
 
 ```js
 import { storiesOf, withKnobs, withClassPropertiesKnobs } from '@open-wc/demoing-storybook';
+import readme from '../README.md';
 
 storiesOf('Demo|Example Element', module)
   .addDecorator(withKnobs)
   .add(
     'Documentation',
     () => withClassPropertiesKnobs(MyEl),
-    { notes: { markdown: notes } },
+    { notes: { markdown: readme }, options: { selectedPanel: 'storybooks/knobs/panel' } },
   )
 ```
 
@@ -87,8 +93,18 @@ So with a configuration like this you will get this auto generated.
 <img src="https://raw.githubusercontent.com/open-wc/open-wc/master/packages/demoing-storybook/dev_assets/storybook.gif" alt="storybook demo animation" />
 
 
-For most types this works fine out of the box but if want to provide better knobs you can do so by overriding.
+For most types this works fine out of the box but if want to provide better knobs you can customize by overriding the
+properties definitions and using the [available knobs](https://github.com/storybooks/storybook/tree/5.0.0/addons/knobs#available-knobs).<br>
+It creates the knobs by reading `static get properties` (host properties) and `static get _classProperties` (inherited properties).<br>
+This is currently pretty specific to LitElement - However there is an attribute/properties documentation spec [in discussion](https://github.com/w3c/webcomponents/issues/776).
 ```js
+import {
+  withClassPropertiesKnobs,
+  color,
+  select,
+  object,
+} from '@open-wc/demoing-storybook';
+
 () => withClassPropertiesKnobs(MyEl, {
   overrides: el => [
     // show a color selector
@@ -108,7 +124,8 @@ For most types this works fine out of the box but if want to provide better knob
 
 By default it will create one simple node from the given Class.
 However for a nicer demo it may be needed to set properties or add more lightdom.
-You can do so by providing a template.
+You can do so by providing a template. The template must render the custom element
+to be tested as first root node.
 ```js
 () => withClassPropertiesKnobs(MyEl, {
   template: html`
@@ -122,14 +139,14 @@ You can do so by providing a template.
 The documentation will be visible when clicking on "notes" at the top menu.
 
 ```js
-import notes from '../README.md';
+import readme from '../README.md';
 
 .add(
   'Documentation',
   () => html`
     <my-el></my-el>
   `,
-  { notes: { markdown: notes } },
+  { notes: { markdown: readme } },
 )
 ```
 

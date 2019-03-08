@@ -12,18 +12,19 @@ Open Web Components provides a set of defaults, recommendations and tools to hel
 
 ## Usage
 ```bash
-npm i -g yo
-npm i -g generator-open-wc
+# in a new or existing folder:
+npm init @open-wc
+# requires node 10 & npm 6 or higher
+```
 
-# scaffold a complete new component
-mkdir my-element
-cd my-element
-# Default development recommendation
-yo open-wc:scaffold-vanilla
-
-# upgrade/align your existing web component with 'open-wc' recommendations
-cd existing-web-component
-yo open-wc
+This will kickstart a menu guiding you through all available actions.
+```
+$ npm init @open-wc
+npx: installed 14 in 4.074s
+What would you like to do today?
+  > Scaffold a new project
+    Upgrade an existing project
+    Nah, I am fine thanks! => exit
 ```
 
 ## Homepage
@@ -75,7 +76,7 @@ npm run lint
 npm run test
 
 # testing via browserstack
-npm run test:bs
+npm run test:es5:bs
 
 # run commands only for a specific scope
 lerna run <command> --scope @open-wc/<package-name> --stream

@@ -10,7 +10,7 @@ import {
 } from '../../index.js';
 
 import { MyEl } from '../my-el.js';
-import notes from '../README.md';
+import readme from '../README.md';
 
 addParameters({
   options: {
@@ -38,7 +38,7 @@ storiesOf('Demo|Example Element', module)
           <my-el><p>foo</p></my-el>
         `,
       }),
-    { notes: { markdown: notes } },
+    { notes: { markdown: readme }, options: { selectedPanel: 'storybooks/knobs/panel' } },
   )
   .add(
     'Alternative Header',

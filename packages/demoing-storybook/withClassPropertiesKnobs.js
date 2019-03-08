@@ -31,7 +31,7 @@ export function withClassPropertiesKnobs(Klass, { overrides: overrideFunction, t
 
   const overrides = overrideFunction ? overrideFunction(el) : [];
 
-  const elProperties = Object.keys(Klass.properties);
+  const elProperties = Klass.properties ? Object.keys(Klass.properties) : [];
   const properties = Array.from(elProperties);
   if (Klass._classProperties) {
     Array.from(Klass._classProperties.keys()).forEach(propName => {

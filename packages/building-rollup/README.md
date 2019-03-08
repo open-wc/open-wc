@@ -2,10 +2,18 @@
 
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
-## Default configuration
-We provide a good default configuration to help you get started using rollup with web components and modules.
+## Configuration
+We provide a rollup configuration to help you get started using rollup with web components and modules.
 
-Our configuration contains the minimal requirements for getting your app up and running, providing the necessary polyfills for older browsers. For more customization, such as installing custom babel plugins, see the extending section below.
+Our configuration lets you write code using modern javascript syntax and features, providing the necessary syntax transformation and polyfills for older browsers. See 'config features' for more details.
+
+See the extending section for more customization, such as supporting non-standard syntax or adding babel plugins.
+
+## Setup
+
+```bash
+npm init @open-wc building-rollup
+```
 
 ## Manual setup
 
@@ -58,10 +66,9 @@ Note: our config will **not** handle inline module such as:
 - `watch:build` builds and runs your app, rebuilding when input files change
 
 ## Supporting legacy browsers
-`modern-config.js` we setup above works for modern browsers (see config features for more details).
+The `modern-config.js` based config we setup above works for browsers which support dynamic imports (Chrome 63+, Safari 11.1+, Firefox 67+)
 
-
-If you need to support older browsers, use our `modern-and-legacy-config.js` in your `rollup.config.js`:
+If you need to support older browsers or Edge and IE11 you use our `modern-and-legacy-config.js` in your `rollup.config.js`:
 
 ```javascript
 import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
@@ -103,7 +110,8 @@ In addition to outputting your app as a module, it outputs a legacy build of you
 - minify html and css in template literals
 
 ## Config options
-Our config accepts two options. Any further configuration can be done by extending the config
+Our config accepts two options:
+
 ```javascript
 export default createDefaultConfig({
   // your app's index.html. required
@@ -112,6 +120,8 @@ export default createDefaultConfig({
   outputDir: '',
 });
 ```
+
+See 'extending' to add more configuration.
 
 ## Customizing the babel config
 You can define your own babel plugins by adding a `.babelrc` or `babel.config.js` to your project. See [babeljs config](https://babeljs.io/docs/en/configuration) for more information.
@@ -127,13 +137,14 @@ For example to add support for class properties:
 ```
 
 ## Extending the rollup config
-The rollup config is just a plain object. It's easy to extend it using javascript:
+A rollup config is just a plain object. It's easy to extend it using javascript:
 ```javascript
 import createDefaultConfig from '@open-wc/building-rollup/modern-config';
 
 const config = createDefaultConfig({ input: './index.html' });
 
 export default {
+  ...config,
   output: {
     ...config.output,
     sourcemap: false,
@@ -145,6 +156,26 @@ export default {
 };
 ```
 
+If you use `modern-and-legacy-config.js`, it is actually an array of configs so that rollup outputs a modern and a legacy build. Simply map over the array to adjust both configs:
+
+```javascript
+import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
+
+const configs = createDefaultConfig({ input: './index.html' });
+
+export default configs.map(config => ({
+  ...config,
+  output: {
+    ...config.output,
+    sourcemap: false,
+  },
+  plugins: {
+    ...config.plugins,
+    myAwesomePlugin(),
+  },
+});
+```
+
 ### Common extensions
 ::: warning
 Many extensions add non-native syntax to your code, which can be bad for maintenance longer term.
@@ -152,35 +183,138 @@ We suggest sticking to native syntax.
 If you really need it scroll below to see some usage examples.
 :::
 
-#### Resolve commonjs
-CommonJS is the module format for NodeJS, and not suitable for the browser. Rollup only handles es modules by default, but sometimes it's necessray to be able to import a dependency. To do this, you can add [rollup-plugin-commonjs](https://github.com/rollup/rollup-plugin-commonjs):
+#### Resolve commonjs modules
+CommonJS is the module format for NodeJS, and not suitable for the browser. Rollup only handles es modules by default, but sometimes it's necessary to be able to import a dependency. To do this, you can add [rollup-plugin-commonjs](https://github.com/rollup/rollup-plugin-commonjs):
 ```javascript
+import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
 import commonjs from 'rollup-plugin-commonjs';
 
-const config = createDefaultConfig({ input: './index.html' });
+const configs = createDefaultConfig({ input: './index.html' });
 
-export default {
+// map if you use an array of configs, otherwise just extend the config
+export default configs.map(config => ({
+  ...config,
+  plugins: {
+    ...config.plugins,
+    commonjs(),
+  },
+});
+```
+
+### Copy assets
+Web apps often include assets such as css files and images. These are not part of your regular dependency graph, so they need to be copied into the build directory.
+
+[Rollup-plugin-cpy](https://github.com/shrynx/rollup-plugin-cpy) is a plugin that can be used, but there are other options too.
+
+```javascript
+import cpy from 'rollup-plugin-cpy';
+import createDefaultConfig from '../modern-and-legacy-config';
+
+const config = createDefaultConfig({
+  input: './demo/index.html',
+});
+
+// if you use an array of configs, you don't need the copy task to be executed for both builds.
+// we can add the plugin only to the first rollup config:
+export default [
+  // add plugin to the first config
+  {
+    ...config[0],
+    plugins: [
+      ...config[0].plugins,
+      cpy({
+        // copy over all images files
+        files: ['**/*.png'],
+        dest: 'dist',
+        options: {
+          // parents makes sure to preserve the original folder structure
+          parents: true
+        }
+      }),
+    ],
+  },
+
+  // leave the second config untouched
+  config[1],
+];
+```
+
+### Support typescript
+To import a typescript file, use the `.ts` extension in your `index.html`:
+
+```html
+<html>
+<head></head>
+<body>
+  <my-app></my-app>
+  <script type="module" src="./my-app.ts"></script>
+</body>
+</html>
+```
+
+Make sure your set your `tsconfig.json` to compile to
+
+Within rollup there are two options to add typescript support.
+
+#### 1. Babel
+We recommend using the babel typescript plugin. Add it to your `.babelrc`:
+```json
+{
+  "presets": [
+    "@babel/preset-typescript"
+  ],
+}
+```
+
+This the fastest method, as it strips away types during babel transformormation of your code. It will not perform any type checking though. We recommend setting up the type checking as part of your linting setup, so that you don't need to run the typechecker during development for faster builds.
+
+#### 2. Plugin
+It is also possible to add the rollup typescript plugin, which does typechecking and compiling for you:
+```javascript
+import typescript from 'rollup-plugin-typescript2';
+import createDefaultConfig from '../../modern-and-legacy-config';
+
+const configs = createDefaultConfig({
+  input: './demo/ts/index.html',
+});
+
+export default configs.map(config => ({
+  ...config,
   plugins: [
     ...config.plugins,
-    commonjs()
+    typescript(),
   ],
-};
+}));
+```
+
+Make sure to prevent any compilation done by the typescript compiler `tsconfig.json`, as babel and rollup do this for you:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ESNEXT",
+    "module": "ESNext",
+  }
+}
 ```
 
 #### Import CSS files in lit-html
 To separate your lit-html styles in css files, you can use [rollup-plugin-lit-css](https://github.com/bennypowers/rollup-plugin-lit-css):
 
 ```javascript
+import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
 import litcss from 'rollup-plugin-lit-css';
 
-const config = createDefaultConfig({ input: './index.html' });
+const configs = createDefaultConfig({ input: './index.html' });
 
-export default {
-  plugins: [
+// map if you use an array of configs, otherwise just extend the config
+export default configs.map(config => ({
+  ...config,
+  plugins: {
     ...config.plugins,
     litcss({ include, exclude, uglify })
-  ],
-};
+  },
+});
 ```
 
 <script>

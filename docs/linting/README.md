@@ -10,10 +10,7 @@ We recommend
 
 ## Setup
 ```bash
-npm i -g yo
-npm i -g generator-open-wc
-
-yo open-wc:linting
+npm init @open-wc linting
 ```
 
 ::: tip Info

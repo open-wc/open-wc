@@ -1,4 +1,5 @@
 node_modules
 coverage/
-/packages/generator-open-wc/generators/*/templates/**/*
+/packages/create/src/generators/*/templates/**/*
 dist
+stats.html
