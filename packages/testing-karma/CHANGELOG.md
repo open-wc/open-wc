@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.14](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@0.4.13...@open-wc/testing-karma@0.4.14) (2019-03-08)
+
+
+### Bug Fixes
+
+* **testing-karma:** exclude spec files in node_modules ([c4ad1c1](https://github.com/open-wc/open-wc/commit/c4ad1c1))
+
+
+
+
+
 ## [0.4.13](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@0.4.12...@open-wc/testing-karma@0.4.13) (2019-03-03)
 
 
