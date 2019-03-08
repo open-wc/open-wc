@@ -24,7 +24,7 @@
     "babel-preset-env": "^1.7.0",
     "chai": "^4.2.0",
     "memory-fs": "^0.4.1",
-    "mocha": "^5.2.0",
-    "webpack": "^4.26.1"
+    "mocha": "^5.0.0",
+    "webpack": "^4.28.0"
   }
 }
