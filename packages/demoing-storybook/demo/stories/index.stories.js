@@ -10,6 +10,7 @@ import {
 } from '../../index.js';
 
 import { MyEl } from '../my-el.js';
+// @ts-ignore
 import readme from '../README.md';
 
 addParameters({

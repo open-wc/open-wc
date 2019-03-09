@@ -4,6 +4,13 @@ import toDiffableHtml from '@bundled-es-modules/diffable-html';
 import { sanitizeHtmlString } from './sanitize-html-string.js';
 import { normalizeAST } from './normalize-ast.js';
 
+/**
+ * Returns an ast for a given string
+ *
+ * @param {string} value String to convert to AST
+ * @param {Object} config Options
+ * @returns {import('parse5').DefaultTreeElement} Ast
+ */
 export function getAST(value, config = {}) {
   const ast = parseFragment(sanitizeHtmlString(value));
   normalizeAST(ast, config.ignoredTags);

@@ -80,7 +80,7 @@ if ('help' in options) {
       },
     ]),
   );
-  return;
+  process.exit();
 }
 
 // open if the open option is given, even when there were no arguments

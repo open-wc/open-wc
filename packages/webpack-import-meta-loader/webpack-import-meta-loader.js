@@ -1,4 +1,5 @@
 /* eslint-disable */
+// @ts-nocheck
 const regex = /import\.meta/g;
 
 /**

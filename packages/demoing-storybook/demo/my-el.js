@@ -21,6 +21,8 @@ class Base extends LitElement {
   }
 }
 
+// TODO: check how to allow extending with added properties with LitElement
+// @ts-ignore
 export class MyEl extends Base {
   static get styles() {
     return css`
@@ -47,6 +49,7 @@ export class MyEl extends Base {
 
   constructor() {
     super();
+    this.locked = false;
     this.header = 'Default Header';
     this.headerColor = '#ff0000';
     this.disabled = false;

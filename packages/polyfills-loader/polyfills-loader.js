@@ -3,7 +3,6 @@
  *
  * Adapted to not load language polyfills and use dynamic imports
  */
-
 function needsTemplatePolyfill() {
   // no real <template> because no `content` property (IE and older browsers)
   const template = document.createElement('template');
@@ -20,14 +19,17 @@ function needsTemplatePolyfill() {
   template.content.appendChild(template2);
   const clone = template.cloneNode(true);
   return (
+    // @ts-ignore
     clone.content.childNodes.length === 0 ||
+    // @ts-ignore
     clone.content.firstChild.content.childNodes.length === 0
   );
 }
 
 /**
  * Loads web component polyfills if needed
- * @returns {Promise<void>} resolves when polyfills are loaded
+ *
+ * @returns {Promise} resolves when polyfills are loaded
  */
 export default function loadPolyfills() {
   const polyfills = [];
@@ -35,12 +37,15 @@ export default function loadPolyfills() {
   const needsShadowDom =
     !('attachShadow' in Element.prototype) ||
     !('getRootNode' in Element.prototype) ||
+    // @ts-ignore
     (window.ShadyDOM && window.ShadyDOM.force);
+  // @ts-ignore
   const needsCustomElements = !window.customElements || window.customElements.forcePolyfill;
 
   // URL is required by webcomponents polyfill
   // We can use URLSearchParams as a watermark for URL support
   if (!('URLSearchParams' in window)) {
+    // @ts-ignore
     polyfills.push(import('@bundled-es-modules/url-polyfill'));
   }
 

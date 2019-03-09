@@ -11,8 +11,8 @@ let defineCECounter = 0;
  * const el = fixture(`<${tag}></${tag}>`);
  * // test el
  *
- * @param {function} klass
- * @returns {string}
+ * @param {function} klass Class which extends HTMLElement
+ * @returns {string} Tag name of the registered element
  */
 export function defineCE(klass) {
   const tag = `test-${defineCECounter}`;
@@ -31,10 +31,13 @@ export function isIE() {
 }
 
 /**
- * Resolves after provided amount of time.
+ * Resolves after provided amount of miliseconds.
+ *
+ * @example
+ * await aTimeout(100);
  *
  * @param {number} ms Miliseconds.
- * @returns {Promise<void>}
+ * @returns {Promise<void>} Promise to await until time is up
  */
 export function aTimeout(ms) {
   return new Promise(resolve => {
@@ -45,17 +48,25 @@ export function aTimeout(ms) {
 /**
  * Resolves after requestAnimationFrame.
  *
- * @returns {Promise<void>}
+ * @example
+ * await nextFrame();
+ *
+ * @returns {Promise<void>} Promise that resolved after requestAnimationFrame
  */
 export function nextFrame() {
-  return new Promise(resolve => requestAnimationFrame(resolve));
+  return new Promise(resolve => requestAnimationFrame(() => resolve()));
 }
 
 /**
- * Resolves after blur.
+ * Blurs the provided element and await time before and after it on IE.
  *
- * @param {HTMLElement} element
- * @returns {Promise<void>}
+ * @example
+ * const el = await fixture('<input type="text" autofocus />');
+ * await triggerBlurFor(el);
+ * // el is no longer focused
+ *
+ * @param {HTMLElement} element Element/Node to blur
+ * @returns {Promise<void>} Promise to await until blur is done (for IE)
  */
 export async function triggerBlurFor(element) {
   if (isIE()) {
@@ -70,12 +81,19 @@ export async function triggerBlurFor(element) {
 }
 
 /**
- * Resolves after focus.
- * Adding an event and immediately trigger it in fails in IE.
+ * Focuses the provided element and await time before and after it on IE.
+ *
+ * Background info:
+ * Adding an event and immediately trigger it fails in IE.
  * Also before checking the effects of a trigger IE needs some time.
  *
- * @param {HTMLElement} element
- * @returns {Promise<void>}
+ * @example
+ * const el = await fixture('<input type="text" />');
+ * await triggerFocusFor(el);
+ * // el is now focused
+ *
+ * @param {HTMLElement} element Element/Node to focus
+ * @returns {Promise<void>} Promise to await until focus is done (for IE)
  */
 export async function triggerFocusFor(element) {
   if (isIE()) {
@@ -92,9 +110,14 @@ export async function triggerFocusFor(element) {
 /**
  * Listens for one event and resolves with this event object after it was fired.
  *
- * @param {HTMLElement} element
- * @param {string} eventName
- * @returns {Promise<Event>}
+ * @example
+ * setTimeout(() => el.fireDone());
+ * await oneEvent(el, 'done');
+ * expect(el.done).to.be.true;
+ *
+ * @param {HTMLElement} element Element that is going to fire the event
+ * @param {string} eventName Name of the event
+ * @returns {Promise<CustomEvent>} Promise to await until the event has been fired
  */
 export function oneEvent(element, eventName) {
   return new Promise(resolve => {

@@ -1,4 +1,6 @@
+// @ts-ignore
 import sinon from 'sinon';
+// @ts-ignore
 import { expect } from '@bundled-es-modules/chai';
 import { cachedWrappers } from '../fixtureWrapper.js';
 import { defineCE } from '../helpers';
@@ -18,7 +20,11 @@ describe('fixtureSync & fixture', () => {
     const myFunction = () => {};
 
     /**
-     * @param {Element} element
+     * @typedef {Object} TestDiv
+     * @property {number} propNumber Test property for number
+     * @property {function} propFunction Test property for function
+     *
+     * @param {TestDiv} element
      */
     function testElement(element) {
       expect(element.propNumber).to.equal(10);
@@ -68,16 +74,20 @@ describe('fixtureSync & fixture', () => {
   });
 
   it('ensures ShadyDOM finished its job', async () => {
+    // @ts-ignore
     const originalShadyDOM = window.ShadyDOM;
 
+    // @ts-ignore
     window.ShadyDOM = { flush: sinon.spy() };
 
     class Test extends HTMLElement {}
 
     const tag = defineCE(Test);
     await fixture(`<${tag}></${tag}>`);
+    // @ts-ignore
     expect(window.ShadyDOM.flush.callCount).to.equal(1);
 
+    // @ts-ignore
     window.ShadyDOM = originalShadyDOM;
   });
 

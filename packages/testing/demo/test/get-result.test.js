@@ -21,6 +21,7 @@ describe('True Checking', () => {
         <get-result .success=${foo === 1}></get-result>
       `,
     );
+    // @ts-ignore
     expect(el.success).to.be.true;
     expect(el).dom.to.equal('<get-result><p>YEAH</p></get-result>');
   });
