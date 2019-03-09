@@ -37,7 +37,6 @@
     "@storybook/polymer": "^5.0.0",
     "@types/storybook__addon-actions": "^3.4.1",
     "@types/storybook__addon-backgrounds": "^3.2.1",
-    "@types/storybook__addon-knobs": "^3.4.1",
     "@types/storybook__addon-links": "^3.3.3",
     "@types/storybook__addon-notes": "^3.3.3",
     "@webcomponents/webcomponentsjs": "^2.2.0",

@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["es2017", "dom"],
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "strict": false,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "types": ["node", "mocha"],
+    "esModuleInterop": true,
+  },
+  "files": [
+    "browser.d.ts"
+  ],
+  "include": [
+    "packages"
+  ],
+  "exclude": [
+    "**/karma.conf.js",
+    "**/*.config.js",
+    "**/wallaby.js",
+    "node_modules",
+    "**/node_modules/*",
+    "**/coverage/*",
+    "packages/create/src/generators/*/templates/**/*",
+    "**/dist/*"
+  ]
+}

@@ -1,9 +1,20 @@
+/**
+ * Changes a relative URL to an absolute URL.
+ *
+ * @example
+ * toAbsoluteURL('hoge.html') // http://example.com/hoge.html
+ *
+ * @param {string} url Relative URL
+ * @returns {string} Absolute URL
+ */
 function toAbsoluteURL(url) {
   const a = document.createElement('a');
   a.setAttribute('href', url); // <a href="hoge.html">
+  // @ts-ignore
   return a.cloneNode(false).href; // -> "http://example.com/hoge.html"
 }
 
+// @ts-ignore
 window.importModule = function importModule(url) {
   return new Promise((resolve, reject) => {
     const vector = `$importModule$${Math.random()
@@ -18,7 +29,7 @@ window.importModule = function importModule(url) {
       URL.revokeObjectURL(script.src);
       script.src = '';
     };
-    script.defer = 'defer';
+    script.defer = true;
     script.type = 'module';
     script.onerror = () => {
       reject(new Error(`Failed to import: ${url}`));

@@ -86,6 +86,7 @@ module.exports = userOptions => {
     },
 
     plugins: [
+      // @ts-ignore
       !development && new CleanWebpackPlugin(),
 
       new HtmlWebpackPlugin({

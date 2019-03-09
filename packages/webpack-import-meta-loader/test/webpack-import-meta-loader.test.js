@@ -41,11 +41,11 @@ describe('import-meta-url-loader', () => {
       '' +
         "import './caseBsub/caseBsub';\n" +
         '\n' +
-        "window.foo = new URL('./', ({ url: `${window.location.protocol}//${window.location.host}/caseB/index.js` }).url);\n",
+        "export const foo = new URL('./', ({ url: `${window.location.protocol}//${window.location.host}/caseB/index.js` }).url);\n",
     );
 
     expect(caseBsub).to.equal(
-      "window.bar = new URL('./', ({ url: `${window.location.protocol}//${window.location.host}/caseB/caseBsub/caseBsub.js` }).url);\n",
+      "export const bar = new URL('./', ({ url: `${window.location.protocol}//${window.location.host}/caseB/caseBsub/caseBsub.js` }).url);\n",
     );
   });
 });

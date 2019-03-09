@@ -1,1 +1,1 @@
-export { getDiffableSemanticHTML } from './src/get-dom-diff.js';
+export { getDiffableSemanticHTML, getAST } from './src/get-dom-diff.js';

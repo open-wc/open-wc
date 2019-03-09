@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable no-param-reassign */
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');

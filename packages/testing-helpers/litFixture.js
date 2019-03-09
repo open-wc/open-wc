@@ -5,20 +5,22 @@ import { elementUpdated } from './elementUpdated.js';
 /**
  * Setups an element synchronously from the provided lit-html template and puts it in the DOM.
  *
+ * @template {Element} T - Is an element or a node
  * @param {import('lit-html').TemplateResult} template
- * @returns {Element}
+ * @returns {T}
  */
 export function litFixtureSync(template) {
   const wrapper = fixtureWrapper();
   render(template, wrapper);
-  return wrapper.children[0];
+  return /** @type {T} */ (wrapper.children[0]);
 }
 
 /**
  * Setups an element asynchronously from the provided lit-html template and puts it in the DOM.
  *
+ * @template {Element} T - Is an element or a node
  * @param {import('lit-html').TemplateResult} template
- * @returns {Promise<Element>}
+ * @returns {Promise<T>}
  */
 export async function litFixture(template) {
   const el = litFixtureSync(template);

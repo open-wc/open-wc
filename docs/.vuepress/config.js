@@ -15,6 +15,7 @@ const sidebar = [
       ['/developing/', 'Getting started'],
       '/developing/owc-dev-server',
       ['/developing/create', 'Generators'],
+      '/developing/types',
     ],
   },
   {
