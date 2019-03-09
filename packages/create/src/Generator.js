@@ -1,11 +1,23 @@
 import path from 'path';
+import commandLineArgs from 'command-line-args';
+
 import { copyTemplates, copyTemplate, copyTemplateJsonInto, installNpm } from './core.js';
+import { parseCliOptions } from './helpers.js';
+
+const optionDefinitions = [
+  { name: 'tag-name', type: String, defaultValue: '' },
+  { name: 'no-npm', type: Boolean, defaultValue: false },
+  { name: 'scaffold', type: String, defaultValue: '' },
+];
+
+export const cliOptions = commandLineArgs(optionDefinitions, { partial: true });
 
 class Generator {
   constructor() {
     this._destinationPath = process.cwd();
     this.templateData = {};
-    this._installNpm = true;
+    this.cliOptions = parseCliOptions(cliOptions);
+    this._noNpm = this.cliOptions['no-npm'];
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -28,7 +40,7 @@ class Generator {
   }
 
   async end() {
-    if (this._installNpm) {
+    if (!this._noNpm) {
       await installNpm(this._destinationPath);
     }
   }

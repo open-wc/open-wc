@@ -1,18 +1,18 @@
 import qoa from 'qoa';
-import commandLineArgs from 'command-line-args';
-
-const optionDefinitions = [
-  { name: 'tag-name', type: String, defaultValue: '' },
-  { name: 'no-npm', type: Boolean, defaultValue: false },
-  { name: 'no-scaffold', type: Boolean, defaultValue: false },
-];
-
-export const cliOptions = commandLineArgs(optionDefinitions, { partial: true });
+import { cliOptions } from './Generator.js';
 
 function getClassName(tagName) {
   return tagName
     .split('-')
     .reduce((previous, part) => previous + part.charAt(0).toUpperCase() + part.slice(1), '');
+}
+
+export function parseCliOptions(optns) {
+  Object.keys(optns).forEach(key => {
+    if (optns[key] === 'false') optns[key] = false; // eslint-disable-line no-param-reassign
+    if (optns[key] === 'true') optns[key] = true; // eslint-disable-line no-param-reassign
+  });
+  return optns;
 }
 
 export async function askTagInfo() {

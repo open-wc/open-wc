@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import TestingKarmaMixin from '../testing-karma/index.js';
 import TestingKarmaBsMixin from '../testing-karma-bs/index.js';
-import { askYesNo, askTagInfo, cliOptions } from '../../helpers.js';
+import { askYesNo, askTagInfo } from '../../helpers.js';
 
 const TestingMixin = subclass =>
   class extends TestingKarmaBsMixin(TestingKarmaMixin(subclass)) {
@@ -14,10 +14,10 @@ const TestingMixin = subclass =>
       );
 
       let wantsScaffolding;
-      if (!cliOptions['no-scaffold']) {
+      if (this.cliOptions.scaffold === '') {
         wantsScaffolding = await askYesNo('Should we scaffold some test files as well?');
       } else {
-        wantsScaffolding = cliOptions['no-scaffold'];
+        wantsScaffolding = this.cliOptions.scaffold;
       }
 
       if (wantsScaffolding) {
