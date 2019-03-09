@@ -37,9 +37,7 @@ export async function askTagInfo() {
     className = getClassName(tagName);
   } else {
     tagName = cliOptions['tag-name'];
-    className = cliOptions['tag-name']
-      .replace(/-([a-z])/g, g => g[1].toUpperCase())
-      .replace(/^\w/, c => c.toUpperCase());
+    className = getClassName(cliOptions['tag-name']);
   }
 
   return { className, tagName };
