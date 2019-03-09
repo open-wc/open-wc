@@ -10,6 +10,8 @@ import deepmerge from 'deepmerge';
 
 import Generator from './Generator.js';
 
+import { cliOptions } from './helpers.js';
+
 const execAsync = util.promisify(exec);
 
 export async function executeMixinGenerator(Mixin) {
@@ -100,17 +102,19 @@ function _install(command = 'npm', options) {
 }
 
 export async function installNpm(where) {
-  console.log('');
-  console.log('Installing dependencies...');
-  console.log('This might take some time...');
+  if(!cliOptions['no-npm']) {
+    console.log('');
+    console.log('Installing dependencies...');
+    console.log('This might take some time...');
 
-  const { stdout } = await execAsync('command -v yarn');
-  let command = 'npm';
-  if (stdout !== '') {
-    command = 'yarn';
+    const { stdout } = await execAsync('command -v yarn');
+    let command = 'npm';
+    if (stdout !== '') {
+      command = 'yarn';
+    }
+    console.log(`Using ${command} to install...`);
+
+    await _install(command, { cwd: where });
+    console.log('');
   }
-  console.log(`Using ${command} to install...`);
-
-  await _install(command, { cwd: where });
-  console.log('');
 }

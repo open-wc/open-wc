@@ -2,6 +2,7 @@
 import TestingKarmaMixin from '../testing-karma/index.js';
 import TestingKarmaBsMixin from '../testing-karma-bs/index.js';
 import { askYesNo, askTagInfo } from '../../helpers.js';
+import { cliOptions } from '../../helpers.js';
 
 const TestingMixin = subclass =>
   class extends TestingKarmaBsMixin(TestingKarmaMixin(subclass)) {
@@ -13,7 +14,13 @@ const TestingMixin = subclass =>
         this.destinationPath('package.json'),
       );
 
-      const wantsScaffolding = await askYesNo('Should we scaffold some test files as well?');
+      let wantsScaffolding;
+      if(!cliOptions['no-scaffold']) {
+        wantsScaffolding = await askYesNo('Should we scaffold some test files as well?');
+      } else {
+        wantsScaffolding = cliOptions['no-scaffold'];
+      }
+
       if (wantsScaffolding) {
         const { tagName, className } = await askTagInfo();
         this.templateData = { ...this.templateData, tagName, className };
