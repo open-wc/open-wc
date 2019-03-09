@@ -102,7 +102,7 @@ function _install(command = 'npm', options) {
 }
 
 export async function installNpm(where) {
-  if(!cliOptions['no-npm']) {
+  if (!cliOptions['no-npm']) {
     console.log('');
     console.log('Installing dependencies...');
     console.log('This might take some time...');
