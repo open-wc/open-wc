@@ -20,7 +20,7 @@ export async function askTagInfo() {
   let tagName = '';
   let className = '';
 
-  if (!cliOptions['tag-name']) {
+  if (cliOptions['tag-name'] === '') {
     tagName = '';
     do {
       // eslint-disable-next-line no-await-in-loop
