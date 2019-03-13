@@ -26,8 +26,8 @@ npm init @open-wc linting-prettier
 - Add the following scripts to your package.json
   ```js
   "scripts": {
-    "lint:prettier": "prettier '**/*.js' --list-different || (echo '↑↑ these files are not prettier formatted ↑↑' && exit 1)",
-    "format:prettier": "prettier '**/*.js' --write",
+    "lint:prettier": "prettier \"**/*.js\" --list-different || (echo '↑↑ these files are not prettier formatted ↑↑' && exit 1)",
+    "format:prettier": "prettier \"**/*.js\" --write",
   },
   ```
 - Update your `.eslintrc.js` to look like this:
