@@ -29,7 +29,7 @@ npm init @open-wc demoing
 ```js
 "scripts": {
   "storybook": "start-storybook -p 9001",
-  "storybook:build": "build-storybook -o _site",
+  "storybook:build": "build-storybook -o _site -s storybook-static",
   "site:build": "npm run storybook:build",
 },
 ```
