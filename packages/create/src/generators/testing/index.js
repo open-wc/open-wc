@@ -13,7 +13,13 @@ const TestingMixin = subclass =>
         this.destinationPath('package.json'),
       );
 
-      const wantsScaffolding = await askYesNo('Should we scaffold some test files as well?');
+      let wantsScaffolding;
+      if (this.cliOptions.scaffold === '') {
+        wantsScaffolding = await askYesNo('Should we scaffold some test files as well?');
+      } else {
+        wantsScaffolding = this.cliOptions.scaffold;
+      }
+
       if (wantsScaffolding) {
         const { tagName, className } = await askTagInfo();
         this.templateData = { ...this.templateData, tagName, className };

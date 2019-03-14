@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Default configuration for working with rollup",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -56,7 +56,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "http-server": "^0.11.1",
     "lit-element": "^2.0.1",
-    "owc-dev-server": "^0.2.0",
+    "owc-dev-server": "^0.2.1",
     "rimraf": "^2.6.3",
     "rollup": "^1.4.0",
     "rollup-plugin-cpy": "^1.1.0",

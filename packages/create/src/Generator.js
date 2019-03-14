@@ -1,11 +1,23 @@
 import path from 'path';
+import commandLineArgs from 'command-line-args';
+
 import { copyTemplates, copyTemplate, copyTemplateJsonInto, installNpm } from './core.js';
+import { parseCliOptions } from './helpers.js';
+
+const optionDefinitions = [
+  { name: 'tag-name', type: String, defaultValue: '' },
+  { name: 'npm-install', type: String, defaultValue: 'true' }, // set to emptry string later
+  { name: 'scaffold', type: String, defaultValue: '' },
+];
+
+export const cliOptions = commandLineArgs(optionDefinitions, { partial: true });
 
 class Generator {
   constructor() {
     this._destinationPath = process.cwd();
     this.templateData = {};
-    this._installNpm = true;
+    this.wantsNpmInstall = '';
+    this.cliOptions = parseCliOptions(cliOptions);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -28,7 +40,13 @@ class Generator {
   }
 
   async end() {
-    if (this._installNpm) {
+    if (this.cliOptions['npm-install'] === '') {
+      // this.wantsNpmInstall = await askYesNo('Do you want to run npm install?'); // eslint-disable-line
+    } else {
+      this.wantsNpmInstall = this.cliOptions['npm-install'];
+    }
+
+    if (this.wantsNpmInstall) {
       await installNpm(this._destinationPath);
     }
   }

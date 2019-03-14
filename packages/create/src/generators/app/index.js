@@ -14,7 +14,7 @@ const AppMixin = subclass =>
   class AppMixin extends subclass {
     constructor() {
       super();
-      this._installNpm = false;
+      this.wantsNpmInstall = false;
     }
 
     async execute() {

@@ -133,7 +133,7 @@ app.use(express.static(rootDir));
 
 // serve app index.html for non asset requests to allow for SPA routing
 if (appIndex) {
-  const fullAppIndexPath = `${__dirname}/${appIndex}`;
+  const fullAppIndexPath = `${process.cwd()}/${appIndex}`;
   if (!fs.existsSync(fullAppIndexPath)) {
     throw new Error(`Could not find "${fullAppIndexPath}". The apps index file needs to exist.`);
   }
