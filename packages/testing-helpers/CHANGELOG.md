@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.23](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.22...@open-wc/testing-helpers@0.7.23) (2019-03-14)
+
+
+### Bug Fixes
+
+* **testing-helpers:** make fixture type generic ([613a672](https://github.com/open-wc/open-wc/commit/613a672))
+
+
+
+
+
 ## [0.7.22](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.21...@open-wc/testing-helpers@0.7.22) (2019-03-08)
 
 **Note:** Version bump only for package @open-wc/testing-helpers
