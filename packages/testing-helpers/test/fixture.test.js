@@ -1,3 +1,4 @@
+import sinon from 'sinon';
 import { expect } from '@bundled-es-modules/chai';
 import { cachedWrappers } from '../fixtureWrapper.js';
 import { defineCE } from '../helpers';
@@ -64,6 +65,20 @@ describe('fixtureSync & fixture', () => {
     const litTag = unsafeStatic(tag);
     await fixture(html`<${litTag}></${litTag}>`);
     expect(counter).to.equal(2);
+  });
+
+  it('ensures ShadyDOM finished its job', async () => {
+    const originalShadyDOM = window.ShadyDOM;
+
+    window.ShadyDOM = { flush: sinon.spy() };
+
+    class Test extends HTMLElement {}
+
+    const tag = defineCE(Test);
+    await fixture(`<${tag}></${tag}>`);
+    expect(window.ShadyDOM.flush.callCount).to.equal(1);
+
+    window.ShadyDOM = originalShadyDOM;
   });
 
   it('waits for componentOnReady', async () => {
