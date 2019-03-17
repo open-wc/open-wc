@@ -52,7 +52,7 @@ export function withClassPropertiesKnobs(Klass, { overrides: overrideFunction, t
         group = override.group; // eslint-disable-line prefer-destructuring
       }
       const prop = isElProperty ? Klass.properties[propName] : Klass._classProperties.get(propName);
-      if (prop.type.name) {
+      if (prop.type && prop.type.name) {
         // let method = false;
         switch (prop.type.name) {
           case 'String':
