@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.1.2...@open-wc/demoing-storybook@0.1.3) (2019-03-17)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** allow untyped properties ([9c97d8f](https://github.com/open-wc/open-wc/commit/9c97d8f))
+
+
+
+
+
 ## [0.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.1.1...@open-wc/demoing-storybook@0.1.2) (2019-03-17)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
