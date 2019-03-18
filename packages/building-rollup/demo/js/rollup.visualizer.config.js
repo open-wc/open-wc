@@ -1,12 +1,12 @@
-import visualizer from 'rollup-plugin-visualizer';
-import createDefaultConfig from '../../modern-and-legacy-config';
+const visualizer = require('rollup-plugin-visualizer');
+const createDefaultConfig = require('../../modern-and-legacy-config');
 
 const configs = createDefaultConfig({
   input: './demo/js/index.html',
 });
 const config = configs[0];
 
-export default {
+module.exports = {
   ...config,
   plugins: [
     ...config.plugins,

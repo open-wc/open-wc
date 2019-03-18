@@ -1,11 +1,11 @@
-import cpy from 'rollup-plugin-cpy';
-import createDefaultConfig from '../../modern-and-legacy-config';
+const cpy = require('rollup-plugin-cpy');
+const createDefaultConfig = require('../../modern-and-legacy-config');
 
 const config = createDefaultConfig({
   input: './demo/js/index.html',
 });
 
-export default [
+module.exports = [
   {
     ...config[0],
     plugins: [
