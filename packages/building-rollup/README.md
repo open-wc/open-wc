@@ -55,9 +55,9 @@ Note: our config will **not** handle inline module such as:
 ```json
 {
   "scripts": {
-    "build": "rimraf dist && rollup",
+    "build": "rimraf dist && rollup -c rollup.config.js",
     "start:build": "http-server dist -o",
-    "watch:build": "rimraf dist && rollup --watch & http-server dist -o",
+    "watch:build": "rimraf dist && rollup --watch -c rollup.config.js & http-server dist -o",
   }
 }
 ```

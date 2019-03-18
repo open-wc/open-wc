@@ -1,11 +1,11 @@
-import typescript from 'rollup-plugin-typescript2';
-import createDefaultConfig from '../../modern-and-legacy-config';
+const typescript = require('rollup-plugin-typescript2');
+const createDefaultConfig = require('../../modern-and-legacy-config');
 
 const configs = createDefaultConfig({
   input: './demo/ts/index.html',
 });
 
-export default configs.map(config => ({
+module.exports = configs.map(config => ({
   ...config,
   plugins: [
     ...config.plugins,

@@ -1,12 +1,12 @@
-import resolve from 'rollup-plugin-node-resolve';
-import { terser } from 'rollup-plugin-terser';
-import babel from 'rollup-plugin-babel';
-import minifyHTML from 'rollup-plugin-minify-html-literals';
-import modernWeb from './plugins/rollup-plugin-modern-web/rollup-plugin-modern-web.js';
+const resolve = require('rollup-plugin-node-resolve');
+const { terser } = require('rollup-plugin-terser');
+const babel = require('rollup-plugin-babel');
+const minifyHTML = require('rollup-plugin-minify-html-literals').default;
+const modernWeb = require('./plugins/rollup-plugin-modern-web/rollup-plugin-modern-web.js');
 
 const production = !process.env.ROLLUP_WATCH;
 
-export default function createBasicConfig(_options) {
+module.exports = function createBasicConfig(_options) {
   const options = {
     outputDir: 'dist',
     ..._options,
@@ -64,4 +64,4 @@ export default function createBasicConfig(_options) {
       production && terser(),
     ],
   };
-}
+};
