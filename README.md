@@ -1,6 +1,3 @@
-> ## 🛠 Status: In Development
-> open-wc is still in an early stage - please review our recommendations and test our tools! We'd love to get your feedback.
-
 <p align="center"><img src="https://github.com/open-wc/open-wc/blob/master/assets/images/logo.png" width="200" alt="Open-wc Logo" /></p>
 
 # Open Web Component Recommendations
