@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-helpers",
-  "version": "0.7.22",
+  "version": "0.7.24",
   "description": "Testing Helpers following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -31,6 +31,7 @@
     "@open-wc/testing-wallaby": "^0.1.11",
     "lit-html": "^1.0.0",
     "mocha": "^5.0.0",
+    "sinon": "^7.2.7",
     "webpack-merge": "^4.1.5"
   }
 }

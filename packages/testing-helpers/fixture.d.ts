@@ -1,5 +1,5 @@
 import { TemplateResult } from 'lit-html';
 
-export function fixtureSync(template: string | TemplateResult): Element;
-export function fixture(template: string | TemplateResult): Promise<Element>;
+export function fixtureSync<T extends Element = Element>(template: string | TemplateResult): T;
+export function fixture<T extends Element = Element>(template: string | TemplateResult): Promise<T>;
 export function fixtureCleanup(): void;

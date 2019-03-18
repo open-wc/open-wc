@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.2.0...owc-dev-server@0.2.1) (2019-03-13)
+
+
+### Bug Fixes
+
+* **owc-dev-server:** use current working directory for app index ([988420a](https://github.com/open-wc/open-wc/commit/988420a))
+
+
+
+
+
 # [0.2.0](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.1.6...owc-dev-server@0.2.0) (2019-03-02)
 
 

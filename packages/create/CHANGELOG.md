@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.1.2...@open-wc/create@0.1.3) (2019-03-17)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+## [0.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.1.1...@open-wc/create@0.1.2) (2019-03-13)
+
+
+### Bug Fixes
+
+* **create:** generated prettier scripts should work on windows ([438a319](https://github.com/open-wc/open-wc/commit/438a319))
+
+
+
+
+
 ## [0.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.1.0...@open-wc/create@0.1.1) (2019-03-10)
 
 

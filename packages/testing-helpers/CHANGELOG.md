@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.24](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.23...@open-wc/testing-helpers@0.7.24) (2019-03-14)
+
+
+### Bug Fixes
+
+* **testing-helpers:** ensure ShadyDOM finished its job in fixture ([4fbe93d](https://github.com/open-wc/open-wc/commit/4fbe93d))
+
+
+
+
+
+## [0.7.23](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.22...@open-wc/testing-helpers@0.7.23) (2019-03-14)
+
+
+### Bug Fixes
+
+* **testing-helpers:** make fixture type generic ([613a672](https://github.com/open-wc/open-wc/commit/613a672))
+
+
+
+
+
 ## [0.7.22](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.21...@open-wc/testing-helpers@0.7.22) (2019-03-08)
 
 **Note:** Version bump only for package @open-wc/testing-helpers

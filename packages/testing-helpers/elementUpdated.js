@@ -9,6 +9,8 @@ const isDefinedPromise = action => typeof action === 'object' && Promise.resolve
  *
  * If none of these is available we await the next frame.
  *
+ * Ensures that ShadyDOM finished its job if available.
+ *
  * @param {HTMLElement} el
  * @returns {Promise<Element>}
  */
@@ -29,5 +31,10 @@ export async function elementUpdated(el) {
   if (!hasSpecificAwait) {
     await nextFrame();
   }
+
+  if (window.ShadyDOM && typeof window.ShadyDOM.flush === 'function') {
+    window.ShadyDOM.flush();
+  }
+
   return el;
 }
