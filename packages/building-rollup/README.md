@@ -252,7 +252,7 @@ To import a typescript file, use the `.ts` extension in your `index.html`:
 </html>
 ```
 
-Make sure your set your `tsconfig.json` to compile to
+Make sure you set your `tsconfig.json` `target` and `module` fields to `esnext`. This way typescript won't do any compilation so that babel can take care of it.
 
 Within rollup there are two options to add typescript support.
 
