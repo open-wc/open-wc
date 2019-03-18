@@ -1,14 +1,14 @@
-import path from 'path';
-import mkdirp from 'mkdirp';
-import { copyFileSync, existsSync } from 'fs';
-import { query, queryAll, predicates, getAttribute, append, remove } from 'dom5';
-import {
+const path = require('path');
+const mkdirp = require('mkdirp');
+const { copyFileSync, existsSync } = require('fs');
+const { query, queryAll, predicates, getAttribute, append, remove } = require('dom5');
+const {
   readHTML,
   writeOutputHTML,
   createElement,
   createScript,
   createScriptModule,
-} from './utils.js';
+} = require('./utils.js');
 
 const prefix = '[rollup-plugin-legacy-browsers]:';
 let writtenModules = false;
@@ -172,7 +172,7 @@ function writeLegacyModules(pluginConfig, outputConfig, entryModules) {
   writeOutputHTML(outputDir, indexHTML);
 }
 
-export default (_pluginConfig = {}) => {
+module.exports = (_pluginConfig = {}) => {
   const pluginConfig = {
     // Whether this the systemjs output for legacy browsers
     legacy: false,

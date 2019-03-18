@@ -1,8 +1,8 @@
-import resolve from 'rollup-plugin-node-resolve';
-import { terser } from 'rollup-plugin-terser';
-import babel from 'rollup-plugin-babel';
-import minifyHTML from 'rollup-plugin-minify-html-literals';
-import modernWeb from './plugins/rollup-plugin-modern-web/rollup-plugin-modern-web.js';
+const resolve = require('rollup-plugin-node-resolve');
+const { terser } = require('rollup-plugin-terser');
+const babel = require('rollup-plugin-babel');
+const minifyHTML = require('rollup-plugin-minify-html-literals').default;
+const modernWeb = require('./plugins/rollup-plugin-modern-web/rollup-plugin-modern-web.js');
 
 const production = !process.env.ROLLUP_WATCH;
 const prefix = '[owc-building-rollup]';
@@ -76,7 +76,7 @@ function createConfig(_options, legacy) {
   };
 }
 
-export default function createDefaultConfig(options) {
+module.exports = function createDefaultConfig(options) {
   if (!options.input) {
     throw new Error(`${prefix}: missing option 'input'.`);
   }
@@ -86,4 +86,4 @@ export default function createDefaultConfig(options) {
   }
 
   return [createConfig(options, false), createConfig(options, true)];
-}
+};

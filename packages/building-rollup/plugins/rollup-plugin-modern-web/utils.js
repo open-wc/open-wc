@@ -1,22 +1,22 @@
-import path from 'path';
-import mkdirp from 'mkdirp';
-import { readFileSync, writeFileSync } from 'fs';
-import { parse, serialize } from 'parse5';
-import { constructors, setAttribute, append } from 'dom5';
+const path = require('path');
+const mkdirp = require('mkdirp');
+const { readFileSync, writeFileSync } = require('fs');
+const { parse, serialize } = require('parse5');
+const { constructors, setAttribute, append } = require('dom5');
 
 /** Reads file as HTML AST */
-export function readHTML(file) {
+function readHTML(file) {
   return parse(readFileSync(file, 'utf-8'));
 }
 
 /** Writes given HTML AST to output index.html */
-export function writeOutputHTML(dir, html) {
+function writeOutputHTML(dir, html) {
   const outputPath = path.join(dir, 'index.html');
   mkdirp.sync(path.dirname(outputPath));
   writeFileSync(outputPath, serialize(html));
 }
 
-export function createElement(tag, attributes) {
+function createElement(tag, attributes) {
   const element = constructors.element(tag);
   if (attributes) {
     Object.keys(attributes).forEach(key => {
@@ -26,7 +26,7 @@ export function createElement(tag, attributes) {
   return element;
 }
 
-export function createScript(attributes, code) {
+function createScript(attributes, code) {
   const script = createElement('script', attributes);
   if (code) {
     const scriptText = constructors.text(code);
@@ -35,6 +35,14 @@ export function createScript(attributes, code) {
   return script;
 }
 
-export function createScriptModule(code) {
+function createScriptModule(code) {
   return createScript({ type: 'module' }, code);
 }
+
+module.exports = {
+  readHTML,
+  writeOutputHTML,
+  createElement,
+  createScript,
+  createScriptModule,
+};
