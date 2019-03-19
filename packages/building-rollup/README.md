@@ -252,7 +252,7 @@ To import a typescript file, use the `.ts` extension in your `index.html`:
 </html>
 ```
 
-Make sure you set your `tsconfig.json` `target` and `module` fields to `ESNext`. This way typescript won't do any compilation so that babel can take care of it.
+Make sure you set your `tsconfig.json` `target` and `module` fields to `ESNext`. This way `tsc`, the typescript compiler, won't do any compilation so that a plugin can take care of it.
 
 Within rollup there are two options to add typescript support.
 
@@ -287,8 +287,10 @@ export default configs.map(config => ({
 }));
 ```
 
-Make sure to prevent any compilation done by the typescript compiler `tsconfig.json`, as babel and rollup do this for you:
+#### Disable typescript compilation
+We already mentioned this above, but this is *really important*: Make sure to prevent any compilation done by the typescript compiler (`tsc`). If you use one of the options above, you put babel or rollup in charge of the compilation of typescript. In no case do you want multiple compilers to interfere with each other.
 
+You do this by setting these options in `tsconfig.json`:
 ```json
 {
   "compilerOptions": {
