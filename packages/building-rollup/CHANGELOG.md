@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.1.3...@open-wc/building-rollup@0.1.4) (2019-03-19)
+
+
+### Bug Fixes
+
+* **building-rollup:** fix path to dynamic-import-polyfill.js ([ecaa847](https://github.com/open-wc/open-wc/commit/ecaa847))
+
+
+
+
+
 ## [0.1.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.1.2...@open-wc/building-rollup@0.1.3) (2019-03-18)
 
 
