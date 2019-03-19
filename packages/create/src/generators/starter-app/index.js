@@ -15,7 +15,6 @@ const StarterAppMixin = subclass =>
 
       console.log('Setup Starter App...');
       await super.execute();
-
       // write & rename app-template
       this.copyTemplate(
         `${__dirname}/templates/_app.js`,

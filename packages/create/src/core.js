@@ -57,7 +57,6 @@ export function copyTemplates(fromGlob, toDir = process.cwd(), data = {}) {
           // find path write to
           const replace = path.join(fromGlob.replace(/\*/g, ''));
           const toPath = filePath.replace(replace, `${toDir}/`);
-
           writeFileToPath(toPath, processed);
         }
       });
