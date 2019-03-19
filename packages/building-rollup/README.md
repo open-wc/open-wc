@@ -173,14 +173,14 @@ export default configs.map(config => ({
     ...config.plugins,
     myAwesomePlugin(),
   },
-});
+}));
 ```
 
 ### Common extensions
 ::: warning
 Many extensions add non-native syntax to your code, which can be bad for maintenance longer term.
 We suggest sticking to native syntax.
-If you really need it scroll below to see some usage examples.
+If you really need it, scroll below to see some usage examples.
 :::
 
 #### Resolve commonjs modules
@@ -257,7 +257,7 @@ Make sure you set your `tsconfig.json` `target` and `module` fields to `ESNext`.
 Within rollup there are two options to add typescript support.
 
 #### 1. Babel
-We recommend using the babel typescript plugin. Add it to your `.babelrc`:
+We recommend using the babel typescript plugin. Add it to your babel config file (`.babelrc` or `babel.config.js`):
 ```json
 {
   "presets": [
@@ -266,7 +266,7 @@ We recommend using the babel typescript plugin. Add it to your `.babelrc`:
 }
 ```
 
-This the fastest method, as it strips away types during babel transformormation of your code. It will not perform any type checking though. We recommend setting up the type checking as part of your linting setup, so that you don't need to run the typechecker during development for faster builds.
+This is the fastest method, as it strips away types during babel transformation of your code. It will not perform any type checking though. We recommend setting up the type checking as part of your linting setup, so that you don't need to run the typechecker during development for faster builds.
 
 #### 2. Plugin
 It is also possible to add the rollup typescript plugin, which does typechecking and compiling for you:
