@@ -49,7 +49,7 @@ function copyPolyfills(pluginConfig, outputConfig) {
 
   if (pluginConfig.polyfillDynamicImports) {
     copyFileSync(
-      path.resolve('./src/dynamic-import-polyfill.js'),
+      path.resolve(path.join(__dirname, '../../src/dynamic-import-polyfill.js')),
       `${polyfillsDir}/dynamic-import-polyfill.js`,
     );
   }
