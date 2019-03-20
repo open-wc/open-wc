@@ -185,9 +185,7 @@ module.exports = [
   merge(configs[0], {
     plugins: [
       new CopyWebpackPlugin([
-        {
-          from: 'images/**/*.png',
-        },
+        'images/**/*.png',
       ]),
     ],
   }),

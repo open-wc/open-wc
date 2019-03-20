@@ -9,11 +9,5 @@ const defaultConfig = createDefaultConfig({
 });
 
 module.exports = merge(defaultConfig, {
-  plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: 'demo/**/*.txt',
-      },
-    ]),
-  ],
+  plugins: [new CopyWebpackPlugin(['demo/**/*.txt'])],
 });
