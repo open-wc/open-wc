@@ -25,7 +25,7 @@ What would you like to do today?
 ```
 
 ## Homepage
-For more details please visit us at [open-wc.org](https://www.open-wc.org).
+For more details please visit us at [open-wc.org](https://open-wc.org).
 
 ## Packages
 
