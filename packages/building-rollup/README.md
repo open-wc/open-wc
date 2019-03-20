@@ -290,7 +290,7 @@ export default configs.map(config => ({
 #### Disable typescript compilation
 We already mentioned this above, but this is *really important*: Make sure to prevent any compilation done by the typescript compiler (`tsc`). If you use one of the options above, you put babel or rollup in charge of the compilation of typescript. In no case do you want multiple compilers to interfere with each other.
 
-You do this by setting these options in `tsconfig.json`:
+You can do this by setting the following options in `tsconfig.json`:
 ```json
 {
   "compilerOptions": {
