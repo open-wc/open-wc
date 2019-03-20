@@ -107,28 +107,42 @@ await aTimeout(10); // would wait 10ms
 
 ## Testing Events
 If you want to interact with web components you will sometimes need to await a specific event before you can continue testing.
+Ordinarily, you might pass the `done` callback to a test, and call it in the body of an event handler.
+This does not work with async test functions, though, which must return a promise instead of calling the `done` callback.
+The `oneEvent` function helps you handle events in the context of the kinds of async test functions that we recommend.
+`oneEvent` resolves with the event specified when it fires on the element specified. 
 
 ```js
+import { oneEvent } from '@open-wc/testing';
+
+class FiresDone extends HTMLElement {
+  fireDone() {
+    this.done = true;
+    this.dispatchEvent(new CustomEvent('done', { detail: this.done }));
+  }
+}
+
 it('can await an event', async () => {
-  const tag = defineCE(class extends HTMLElement {
-    fireDone() {
-      this.done = true;
-      this.dispatchEvent(new CustomEvent('done'));
-    }
-  });
+  const tag = defineCE(FiresDone);
 
   const el = await fixture(`<${tag}></${tag}>`);
 
   setTimeout(() => el.fireDone());
-  await oneEvent(el, 'done');
+
+  const { detail } = await oneEvent(el, 'done');
+
   expect(el.done).to.be.true;
+  expect(detail).to.be.true;
 });
 ```
 
-## Testing Focus & Blur
-Focus and blur events are usually sync but not on IE11 so if you need to support it you can use these little helpers with an await.
+## Testing Focus & Blur on IE11
+Focus and blur events are synchronous events in all browsers except IE11.
+If you need to support that browser in your tests, you can await `triggerFocusFor` and `triggerBlurFor` helper functions.
 
 ```js
+import { triggerFocusFor, triggerBlurFor } from '@open-wc/testing';
+
 it('can be focused and blured', async () => {
   const el = await fixture('<input type="text">');
 
