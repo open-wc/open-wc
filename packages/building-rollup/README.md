@@ -22,7 +22,7 @@ npm init @open-wc building-rollup
 npm i -D @open-wc/building-rollup rollup rimraf http-server
 ```
 
-2. Create a file `rollup.config.js` and pass in your app's `index.html`:
+2. Create a `rollup.config.js` file and pass in your app's `index.html`:
 ```javascript
 import createDefaultConfig from '@open-wc/building-rollup/modern-config';
 
