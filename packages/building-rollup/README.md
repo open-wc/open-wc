@@ -149,10 +149,10 @@ export default {
     ...config.output,
     sourcemap: false,
   },
-  plugins: {
+  plugins: [
     ...config.plugins,
     myAwesomePlugin(),
-  },
+  ],
 };
 ```
 
@@ -169,10 +169,10 @@ export default configs.map(config => ({
     ...config.output,
     sourcemap: false,
   },
-  plugins: {
+  plugins: [
     ...config.plugins,
     myAwesomePlugin(),
-  },
+  ],
 }));
 ```
 
@@ -194,10 +194,10 @@ const configs = createDefaultConfig({ input: './src/index.html' });
 // map if you use an array of configs, otherwise just extend the config
 export default configs.map(config => ({
   ...config,
-  plugins: {
+  plugins: [
     ...config.plugins,
     commonjs(),
-  },
+  ],
 });
 ```
 
@@ -312,10 +312,10 @@ const configs = createDefaultConfig({ input: './src/index.html' });
 // map if you use an array of configs, otherwise just extend the config
 export default configs.map(config => ({
   ...config,
-  plugins: {
+  plugins: [
     ...config.plugins,
     litcss({ include, exclude, uglify })
-  },
+  ],
 });
 ```
 
