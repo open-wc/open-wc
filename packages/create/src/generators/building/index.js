@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-import BuildingWebpackMixin from '../building-webpack/index.js';
+import BuildingRollupMixin from '../building-rollup/index.js';
 
 const BuildingMixin = subclass =>
-  class extends BuildingWebpackMixin(subclass) {
+  class extends BuildingRollupMixin(subclass) {
     async execute() {
       await super.execute();
       console.log('... Building done');
