@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.2.0...@open-wc/create@0.3.0) (2019-03-20)
+
+
+### Features
+
+* add rollup starter-app ([#298](https://github.com/open-wc/open-wc/issues/298)) ([ad9bb59](https://github.com/open-wc/open-wc/commit/ad9bb59))
+
+
+
+
+
 # [0.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.1.3...@open-wc/create@0.2.0) (2019-03-18)
 
 
