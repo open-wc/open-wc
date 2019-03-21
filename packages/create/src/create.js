@@ -3,6 +3,8 @@
 /* eslint-disable no-console */
 
 import fs from 'fs';
+import semver from 'semver';
+import chalk from 'chalk';
 import { executeMixinGenerator } from './core.js';
 
 (async () => {
@@ -18,8 +20,18 @@ import { executeMixinGenerator } from './core.js';
   }
 
   try {
-    const module = await import(fullGeneratorPath);
-    await executeMixinGenerator(module.default);
+    if(semver.lte(process.version, '10.12.0')) {
+      console.log(chalk.bgRed('\nUh oh! Looks like you dont have Node v10.12.0 installed!\n'));
+      console.log(`You can do this by going to ${chalk.underline.blue(`https://nodejs.org/`)}
+
+Or if you use nvm:
+  $ nvm install node ${chalk.gray(`# "node" is an alias for the latest version`)}
+  $ nvm use node
+  `);
+    } else {
+      const module = await import(fullGeneratorPath);
+      await executeMixinGenerator(module.default);
+    }
   } catch (err) {
     console.log(err);
   }
