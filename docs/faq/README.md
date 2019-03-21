@@ -58,3 +58,12 @@ class MyEl extends LitElement {
   }
 }
 ```
+
+### Checkbox's 'checked' state does not reflect a property's value after the checkbox has been clicked
+
+The checked _attribute_ on an input element does not reflect the attribute to a _property_, and should only be relied on to set an initial state. If you use the dot prefix `.checked`, your checked status should update. 
+
+Notice that if you would drop the attribute binding and update the checked attribute manually by using native setAttribute and removeAttribute methods in the updated callback this problem would still occur. (By [mchyb](https://github.com/Polymer/lit-element/issues/601#issuecomment-469626034))
+
+You can see a demo of this in action [here](https://jsfiddle.net/sorvell1/ko9sc3tv/2/).
+
