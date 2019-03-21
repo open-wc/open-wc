@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@0.1.10...@open-wc/building-webpack@1.0.0) (2019-03-21)
+
+
+### Features
+
+* **building-webpack:** update building webpack ([a0925f2](https://github.com/open-wc/open-wc/commit/a0925f2))
+
+
+### BREAKING CHANGES
+
+* **building-webpack:** config API and names changed
+
+* chore(building-webpack): add copy webpack plugin to all demos
+
+* Update packages/building-webpack/package.json
+
+Co-Authored-By: LarsDenBakker <larsdenbakker@gmail.com>
+
+* Update packages/building-webpack/package.json
+
+Co-Authored-By: LarsDenBakker <larsdenbakker@gmail.com>
+
+* Update packages/building-webpack/package.json
+
+Co-Authored-By: LarsDenBakker <larsdenbakker@gmail.com>
+
+
+
+
+
 ## [0.1.10](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@0.1.9...@open-wc/building-webpack@0.1.10) (2019-03-08)
 
 **Note:** Version bump only for package @open-wc/building-webpack
