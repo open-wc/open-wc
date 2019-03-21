@@ -81,7 +81,7 @@ console.log(myButton.hasAttribute('disabled')) // false
 
 This concept is called attribute reflection.
 
-However, this is not true for the checked attribute on an input element of type checkbox. The checked _attribute_ on the input element does not reflect the property to an attribute, and should only be relied on to set an initial state. Consider the following example:
+However, this is not true for the `checked` attribute on an input element of type checkbox. The `checked` property on the input element does not reflect to an attribute, and should only be relied on to set an initial state. Consider the following example:
 
 ```html
 <input id="mycheck" type="checkbox" checked></input>
