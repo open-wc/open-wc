@@ -1,6 +1,9 @@
-/* eslint-disable class-methods-use-this, import/no-extraneous-dependencies, no-console, no-restricted-syntax */
+/* eslint-disable */
 import { LitElement, html, css } from 'lit-element';
 import './demo-component.js';
+import './meta-url-test.js';
+
+console.log('file name should end with demo/demo-app.js', import.meta.url);
 
 // some simple tests to see if compilation worked
 if (!'foo'.startsWith('foo')) {
@@ -39,15 +42,15 @@ class DemoApp extends LitElement {
     };
   }
 
-  static get styles() {
-    return css`
-      :host {
-        display: block;
-        color: black;
-        background-color: white;
-      }
-    `;
-  }
+  static styles = css`
+    :host {
+      display: block;
+      color: black;
+      background-color: white;
+    }
+  `;
+
+  foo = '123';
 
   constructor() {
     super();
@@ -60,9 +63,9 @@ class DemoApp extends LitElement {
 
   render() {
     return html`
-      <p>Hello world</p>
+      <p>Hello world ${this.foo}</p>
 
-      <button @click="${() => this._lazyLoad()}">Lazy load</button>
+      <button @click="${this._lazyLoad}">Lazy load</button>
       <demo-component></demo-component>
 
       ${this._myElementLoaded
@@ -74,7 +77,7 @@ class DemoApp extends LitElement {
   }
 
   async _lazyLoad() {
-    await import('./lazy-component.js');
+    await import('./lazy/lazy-component.js');
     this._myElementLoaded = true;
   }
 }
