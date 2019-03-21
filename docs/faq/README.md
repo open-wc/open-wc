@@ -59,11 +59,50 @@ class MyEl extends LitElement {
 }
 ```
 
-### Checkbox's 'checked' state does not reflect a property's value after the checkbox has been clicked
+### Checkbox's 'checked' attribute does not match the property
 
-The checked _attribute_ on an input element does not reflect the attribute to a _property_, and should only be relied on to set an initial state. If you use the dot prefix `.checked`, your checked status should update. 
+Many elements reflect their properties as attributes, and vice versa, like for example the `disabled` attribute on a button.
 
-Notice that if you would drop the attribute binding and update the checked attribute manually by using native setAttribute and removeAttribute methods in the updated callback this problem would still occur. (By [mchyb](https://github.com/Polymer/lit-element/issues/601#issuecomment-469626034))
+```html
+<button disabled></button>
+```
 
-You can see a demo of this in action [here](https://jsfiddle.net/sorvell1/ko9sc3tv/2/).
+```js
+console.log(myButton.disabled) // true
+console.log(myButton.hasAttribute('disabled')) // true
+```
 
+If we set the property to false, it'll _reflect_ it to an attribute. (In this case, because it's a boolean attribute, it'll be omitted)
+
+```js
+myButton.disabled = false;
+console.log(myButton.hasAttribute('disabled')) // false
+```
+
+This concept is called attribute reflection.
+
+However, this is not true for the checked attribute on an input element of type checkbox. The checked _attribute_ on the input element does not reflect the property to an attribute, and should only be relied on to set an initial state. Consider the following example:
+
+```html
+<input id="mycheck" type="checkbox" checked></input>
+```
+
+It will only set the property the first time:
+```js
+console.log(mycheck.checked); // true
+```
+
+Removing the `checked` attribute does not change the `checked` _property_.
+
+```js
+mycheck.removeAttribute('checked');
+console.log(mycheck.checked); // true
+```
+
+And similarly, changing the `checked` property does not change the attribute:
+
+```js
+mycheck.checked = false;
+console.log(mycheck.hasAttribute('checked')); // true
+console.log(mycheck.checked); // false
+```
