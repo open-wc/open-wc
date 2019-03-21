@@ -2,8 +2,10 @@
 
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
-## Default configuration
-We provide default configuration to help you get started building your web component project with webpack.
+## Configuration
+Our webpack configuration will help you get started using webpack. Our configuration lets you write code using modern javascript syntax and features, providing the necessary syntax transformation and polyfills for older browsers.
+
+See 'config features' for all details. See the extending section for customization, such as supporting non-standard syntax or adding babel plugins.
 
 ## Setup
 
@@ -12,25 +14,26 @@ npm init @open-wc building-webpack
 ```
 
 ## Manual setup
-To set up the default configuration manually:
 
 1. Install the required dependencies:
 ```bash
-npm i -D @open-wc/building-webpack webpack webpack-cli webpack-dev-server http-server
+npm i -D @open-wc/building-webpack webpack http-server webpack-dev-server
 ```
 
-2. Create a file `webpack.config.js`:
+2. Create a file called `webpack.config.js` and pass in your app's js entry point and index.html.
+
+If you don't need to support IE11 or other legacy browsers, use `@open-wc/building-webpack/modern-config`. Otherwise, use `@open-wc/building-webpack/modern-and-legacy-config`.
 ```javascript
-const path = require('path');
-const defaultConfig = require('@open-wc/building-webpack/default-config');
+import createDefaultConfig from '@open-wc/building-webpack/modern-and-legacy-config';
 
-module.exports = defaultConfig();
+// If you don't need IE11 support, use the modern-config instead
+// import createDefaultConfig from '@open-wc/building-webpack/modern-config';
+
+export default createDefaultConfig({
+  entry: path.resolve(__dirname, './my-app.js'),
+  indexHTML: path.resolve(__dirname, './index.html'),
+});
 ```
-
-The default configuration assumes default locations for your app's HTML and JavaScript entrypoints.
-Youll add these files in steps 3 and 4. If you're adding webpack to an existing project, you may 
-need to change the default entrypoints—see [Changing the default entrypoints](#changing-the-default-entrypoints).
-
 
 3. Create an `index.html`:
 ```html
@@ -43,119 +46,202 @@ need to change the default entrypoints—see [Changing the default entrypoints](
 </html>
 ```
 
-Note that the `index.html` file doesn't reference the JavaScript file—webpack will add a `<script>` tag when it builds your project. Also note that webpack does **not** process inline script tags, like:
+We use [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) to work with your index.html. View the documentation for the plugin to learn how you can use it.
 
-```html
-<script>
-  import { MyApp } from './src/my-app.js';
-</script>
+Remember to not add your app's entry point to your index.html, as it will be injected dynamically by `html-webpack-plugin`.
+
+4. Create a `.browserslistrc` in the root of your project. Adjust it based on your browser support, for example:
+```
+last 2 Chrome major versions
+last 2 ChromeAndroid major versions
+last 2 Edge major versions
+last 2 Firefox major versions
+last 2 Safari major versions
+last 2 iOS major versions
 ```
 
-4. Create a `index.js` which kickstarts your JS code.
-For older browsers we need to load the web component polyfills. We use the [polyfills-loader](https://open-wc.org/building/polyfills-loader.html) for that:
-
-```javascript
-import loadPolyfills from '@open-wc/polyfills-loader';
-
-loadPolyfills().then(() => {
-  import('./my-app.js');
-});
-```
+Do **not** put IE11 in your `.browserslistrc`. `modern-and-legacy-config` already creates a separate build for IE11, the `.browserslistrc` is used for the modern build.
 
 5. Add the following commands to your `package.json`:
 ```json
 {
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
-    "start:es5": "webpack-dev-server --mode development --es5",
-    "start:build": "http-server dist/ -o",
     "build": "webpack --mode production",
-    "build:stats": "webpack --mode production --profile --json > bundle-stats.json"
+    "start": "webpack-dev-server --mode development --open",
+    "start:build": "http-server dist -o",
   }
 }
 ```
-- `start` runs your app with auto reload for development, it only works on browsers which support modules for faster builds
-- `start:es5` runs your app for development, it only works on browsers that don't support modules (IE11)
-- `build` builds your app for production and outputs it in the `/dist` folder
-- `start:build` runs your built app using a plain web server, to prove it works without magic :)
-- `build:stats` creates an analysis report of your app bundle to be consumed by Webpack [Visualizer](https://chrisbateman.github.io/webpack-visualizer/) and [Analyser](https://webpack.github.io/analyse/)
+- `build` builds your app and outputs it in your `dist` directory
+- `start` builds and runs your app, rebuilding on file changes
+- `start:build` runs your built app from `dist` directory, it uses a simple http-server to make sure that it runs without magic
 
-### Changing the default entrypoints
+## Browser support
+`modern-config.js` creates a single build of your app, based on your `.browserslistrc`. This is recommended if you only need to support modern browsers, otherwise you will need to ship compatibility code for browsers which don't need it.
 
-You can change the default `index.html` and `index.js` files:
+`modern-and-legacy-config.js` creates two builds of your app. A modern build based on your `.browserslistrc` and a legacy build for IE11. Additional code is injected to load polyfills and the correct version of your app. This is recommended if you need to support IE11.
 
-```javascript
-module.exports = defaultConfig({
-  indexHTML: path.resolve(__dirname, './src/index.html'),
-  indexJS: path.resolve(__dirname, './src/index.js'),
-});
+## Config features
+All configs:
+- compilation target based on `.browserslistrc`
+- resolve bare imports (`import { html } from 'lit-html'`)
+- preserve `import.meta.url` value from before bundling
+- minify + treeshake js
+- minify html and css in template literals
+
+`modern-config.js`:
+- single build output
+- compatible with any browser which supports Web Components
+
+`modern-and-legacy-config.js`:
+- Two build outputs:
+  - Modern:
+    - compilation target based on `.browserslistrc`
+    - does not penalize users with modern browser with compatibility code for IE11
+  - Legacy:
+    - compatible down to IE11
+    - babel transform down to IE11 (es5)
+    - core js babel polyfills (`Array.from`, `String.prototype.includes` etc.)
+    - URL polyfill
+    - webcomponentsjs polyfills
+
+See 'extending' to add more configuration.
+
+## Customizing the babel config
+You can define your own babel plugins by adding a `.babelrc` or `babel.config.js` to your project. See [babeljs config](https://babeljs.io/docs/en/configuration) for more information.
+
+For example to add support for class properties:
+
+```json
+{
+  "plugins": [
+    "@babel/plugin-proposal-class-properties"
+  ]
+}
 ```
 
-## Features
-
-### Module resolution
-This lets you use bare imports: `import { bar } from 'foo'` instead of `import { bar } from '../node_modules/foo/foo.js'`
-
-### Automatic module type selection
-Based on `package.json` it selects the most optimal type of module format. es modules and es2015 code is preferred, but it falls back to support other module types such as CommonJS and UMD. These can be a useful way to get done writing code today, but these are not future proof formats. We recommend using es modules as much as possible.
-
-### HTML, JS and CSS minifications
-JS is minified for performance. HTML, CSS and is minified when they are used in combination with the `html` and `css` template tags from `lit-html` and `lit-element`.
-
-### es2015 and es5 output
-Using [webpack-babel-multi-target-plugin](https://www.npmjs.com/package/webpack-babel-multi-target-plugin), our build outputs an es5 and es2015 version of your app. Using the `nomodule` trick, we can serve es2015 code on modern browsers and es5 on older browsers (IE11 mostly). This significantly reduces the size of your app on modern browsers.
-
-Read more about this trick at [Jakes blog post "ECMAScript modules in browsers"](https://jakearchibald.com/2017/es-modules-in-browsers/).
-
-### Comment code
-Comment code gets stripped at build time. So comment away!  
-Note: Licence required comments are extracted and provided via {chunkname}.LICENCE files.
-
-### No regenerator runtime / transform
-By default, babel's compilation of async functions and `for of` loops using an expensive transform and runtime. A lot of runtime code is added, and a lot of boilerplate code is added in the transform.
-
-For async functions we use the [fast-async](https://github.com/MatAtBread/fast-async) plugin instead.
-
-### es2015 polyfills
-We add [Language polyfills](https://github.com/zloirock/core-js) for `es2015` features, such as `Map` and `'/foo'.startsWith('/')`. But only on the `es5` build, so that we don't need to ship it to modern browsers.
-
-### Syntax and javascript APIs
-Our config only supports standard javascript syntax and browser APIs. We support stage 3 proposals when they add significant value and are easy to support without performance penalties.
-
-Supported proposals:
-- [Dynamic import](https://github.com/tc39/proposal-dynamic-import)
-- [`import.meta.url`](https://github.com/tc39/proposal-import-meta)
-
-## Customizing the configuration
-The `default-config` function outputs a regular webpack config, it can easily be extended using `webpack-merge`. For example to add an extra entry file and sass loader:
-
+## Extending the webpack config
+A webpack config is an object. To extend it, we recommend using `webpack-merge` to ensure plugins are merged correctly. For example to adjust the output folder:
 ```javascript
-const path = require('path');
 const merge = require('webpack-merge');
-const createDefaultConfig = require('@open-wc/building-webpack/default-config');
+const createDefaultConfig = require('@open-wc/building-webpack/modern-config');
 
-const defaultConfig = createDefaultConfig();
+const config = createDefaultConfig({
+  entry: path.resolve(__dirname, './my-app.js'),
+  indexHTML: path.resolve(__dirname, './index.html'),
+});
 
-module.exports = merge(defaultConfig, {
-  entry: ['additional-entry-file.js'],
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        use: [
-          "style-loader",
-          "css-loader",
-          "sass-loader"
-        ]
-      },
-    ],
+module.exports = merge(config, {
+  output: {
+    path: 'build'
   },
 });
 ```
 
-We recommend extending the config only to make small additions.
-If your configuration deviates too much from our default setup, simply copy paste what we have and use it as a starting point.
-It will keep your configuration easier to understand.
+If you use `modern-and-legacy-config.js`, it is actually an array of configs so that webpack outputs a modern and a legacy build. Simply map over the array to adjust both configs:
+
+```javascript
+const merge = require('webpack-merge');
+const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
+
+const configs = createDefaultConfigs({
+  entry: path.resolve(__dirname, './my-app.js'),
+  indexHTML: path.resolve(__dirname, './index.html'),
+});
+
+module.exports = configs.map(config => merge(config, {
+  output: {
+    path: 'build'
+  },
+}));
+```
+
+### Common extensions
+::: warning
+Some extensions add non-native syntax to your code, which can be bad for maintenance longer term. We suggest avoiding adding plugins for using experimental javascript proposals or for importing non-standard module types.
+:::
+
+### Copy assets
+Web apps often include assets such as css files and images. These are not part of your regular dependency graph, so they need to be copied into the build directory.
+
+[copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin) is a popular plugin fo this.
+
+```javascript
+const path = require('path');
+const merge = require('webpack-merge');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
+
+const configs = createDefaultConfigs({
+  entry: path.resolve(__dirname, './demo-app.js'),
+  indexHTML: path.resolve(__dirname, './index.html'),
+});
+
+// with modern-and-legacy-config, the config is actually an array of configs for a modern and
+// a legacy build. We don't need to copy files twice, so we aadd the copy job only to the first
+// config
+module.exports = [
+  // add plugin to the first config
+  merge(configs[0], {
+    plugins: [
+      new CopyWebpackPlugin([
+        'images/**/*.png',
+      ]),
+    ],
+  }),
+
+  // the second config left untouched
+  configs[1],
+];
+```
+
+### Support typescript
+Make sure to prevent any compilation done by the typescript compiler `tsconfig.json`, as babel and webpack do this for you:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ESNEXT",
+    "module": "ESNext",
+  }
+}
+```
+
+Within webpack there are two options to add typescript support.
+
+#### 1. Babel
+We recommend using the babel typescript plugin. Add this to your `.babelrc`:
+```json
+{
+  "presets": [
+    "@babel/preset-typescript"
+  ],
+}
+```
+
+This the fastest method, as it strips away types during babel transformormation of your code. It will not perform any type checking though. We recommend setting up the type checking as part of your linting setup, so that you don't need to run the typechecker during development for faster builds.
+
+#### 2. Plugin
+It is also possible to add the webpack typescript plugin, which does typechecking and compiling for you:
+
+```javascript
+const path = require('path');
+const merge = require('webpack-merge');
+const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
+
+const configs = createDefaultConfigs({
+  entry: path.resolve(__dirname, './demo-app.ts'),
+  indexHTML: path.resolve(__dirname, './index.html'),
+});
+
+module.exports = configs.map(config =>
+  merge(config, {
+    module: {
+      rules: [{ test: /\.ts$/, loader: 'ts-loader' }],
+    },
+  }),
+);
+```
 
 <script>
   export default {
