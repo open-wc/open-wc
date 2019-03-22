@@ -29,7 +29,7 @@ import createDefaultConfig from '@open-wc/building-rollup/modern-config';
 export default createDefaultConfig({ input: './src/index.html' });
 ```
 
-Our rollup config will look through your `index.html` and extract all module scripts and feed them to rollup.
+Our rollup config will look through your `index.html` and extract all module scripts (nothing else -- see below) and feed them to rollup.
 
 3. Create an `index.html`:
 ```html
@@ -44,11 +44,23 @@ Our rollup config will look through your `index.html` and extract all module scr
 </html>
 ```
 
-Note: our config will **not** handle inline module such as:
+Note: Our rollup config will go through the `index.html` file, detect all *js files*, that are *loaded as a module*, put them in its dependency graph, and bundle them in the end. Anything else (e.g. CSS files, fonts, images, other js scripts, modules from inline scripts) will *not* be put in the dependency graph for you, even if it is referenced in the `index.html` file. You'll need to copy this to the output directory separately. See [copy assets](#copy-assets) below for details.
+
+To illustrate this, here is an example of scripts which our rollup config will **not** handle automatically:
 ```html
   <script type="module">
+    // this *is* a module, but it's inlined in the HTML, so
+    // `my-app` will not be picked up by rollup and needs
+    // to be copied separately
     import { MyApp } from './my-app';
   </script>
+
+  <!--
+    other-script.js is not inline, it is sourced, but as
+    it is not type="module", it will still not be picked up
+    by rollup and needs to be copied separately
+  -->
+  <script src="other-script.js"></script>
 ```
 
 4. Add the following commands to your `package.json`:
@@ -202,9 +214,9 @@ export default configs.map(config => ({
 ```
 
 ### Copy assets
-Web apps often include assets such as css files and images. These are not part of your regular dependency graph, so they need to be copied into the build directory.
+Web apps often include assets such as CSS files and images. These are not part of your regular dependency graph (see above), so they need to be copied into the build directory. Other files you might need to copy this way are e.g. fonts, JSON files, sound or video files, and HTML files (other than the `index.html` referenced in the `input` option) etc.
 
-[Rollup-plugin-cpy](https://github.com/shrynx/rollup-plugin-cpy) is a plugin that can be used, but there are other options too.
+[Rollup-plugin-cpy](https://github.com/shrynx/rollup-plugin-cpy) is a plugin that can be used, but there are other options, too.
 
 ```javascript
 import cpy from 'rollup-plugin-cpy';
