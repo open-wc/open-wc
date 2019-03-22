@@ -20,6 +20,9 @@
     "test:es5:bs": "karma start demo/karma.es5.bs.config.js",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
+  "files": [
+    "*.js"
+  ],
   "dependencies": {
     "@babel/core": "^7.3.3",
     "@babel/plugin-syntax-import-meta": "^7.2.0",

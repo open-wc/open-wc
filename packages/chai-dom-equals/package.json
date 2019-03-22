@@ -13,6 +13,10 @@
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/chai-dom-equals"
   },
+  "files": [
+    "index.js",
+    "chai-dom-equals.js"
+  ],
   "scripts": {
     "test": "karma start",
     "test:watch": "karma start --auto-watch=true --single-run=false",

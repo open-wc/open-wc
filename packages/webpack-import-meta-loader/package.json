@@ -14,6 +14,9 @@
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/webpack-import-meta-loader"
   },
+  "files": [
+    "*.js"
+  ],
   "scripts": {
     "test": "mocha --require @babel/register",
     "test:ci": "npm run test",

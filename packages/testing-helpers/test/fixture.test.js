@@ -2,10 +2,10 @@
 import sinon from 'sinon';
 // @ts-ignore
 import { expect } from '@bundled-es-modules/chai';
-import { cachedWrappers } from '../fixtureWrapper.js';
-import { defineCE } from '../helpers';
-import { html, fixture, fixtureSync } from '../index.js';
-import { unsafeStatic } from '../lit-html.js';
+import { cachedWrappers } from '../src/fixtureWrapper.js';
+import { defineCE } from '../src/helpers';
+import { html, fixture, fixtureSync } from '..';
+import { unsafeStatic } from '../src/lit-html.js';
 
 describe('fixtureSync & fixture', () => {
   it('supports strings', async () => {

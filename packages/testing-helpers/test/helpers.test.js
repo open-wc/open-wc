@@ -1,5 +1,5 @@
 import { expect } from '@bundled-es-modules/chai';
-import { defineCE, oneEvent, triggerFocusFor, triggerBlurFor, fixture } from '../index.js';
+import { defineCE, oneEvent, triggerFocusFor, triggerBlurFor, fixture } from '..';
 
 describe('Helpers', () => {
   it('provides defineCE() to register a unique new element', async () => {

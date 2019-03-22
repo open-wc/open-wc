@@ -12,6 +12,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "owc-dev-server.js"
+  ],
   "scripts": {
     "start": "./owc-dev-server.js -o demo --app-index demo/index.html",
     "prepublishOnly": "../../scripts/insert-header.js"

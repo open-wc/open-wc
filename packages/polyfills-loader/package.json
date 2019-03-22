@@ -19,6 +19,10 @@
     "polyfill",
     "web-components"
   ],
+  "files": [
+    "src",
+    "*.js"
+  ],
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
   },

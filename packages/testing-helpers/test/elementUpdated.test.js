@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import { expect } from '@bundled-es-modules/chai';
-import { elementUpdated } from '../elementUpdated.js';
-import { nextFrame } from '../helpers.js';
+import { elementUpdated } from '../src/elementUpdated.js';
+import { nextFrame } from '../src/helpers.js';
 
 describe('elementUpdated', () => {
   it('will wait for one frame', async () => {

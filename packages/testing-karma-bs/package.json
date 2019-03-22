@@ -13,6 +13,9 @@
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/testing-karma-bs"
   },
+  "files": [
+    "*.js"
+  ],
   "scripts": {
     "test": "karma start demo/karma.conf.js",
     "test:watch": "karma start demo/karma.conf.js --auto-watch=true --single-run=false",

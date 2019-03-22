@@ -13,6 +13,12 @@
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/testing"
   },
+  "module": "index.js",
+  "files": [
+    "index.js",
+    "index-no-side-effects.js",
+    "register-chai-plugins.js"
+  ],
   "scripts": {
     "test": "karma start",
     "test:watch": "karma start --auto-watch=true --single-run=false",
