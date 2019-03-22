@@ -61,7 +61,7 @@ class <%= className %> extends LitElement {
       <header class="app-header">
         ${openWc}
         <h1>${this.title}</h1>
-        <p>Edit <code>src/my-app.js</code> and save to reload.</p>
+        <p>Edit <code>src/<%= tagName %>.js</code> and save to reload.</p>
         <a
           class="app-link"
           href="https://open-wc.org/developing/#examples"

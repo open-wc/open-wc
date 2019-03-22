@@ -198,7 +198,7 @@ export default configs.map(config => ({
     ...config.plugins,
     commonjs(),
   ],
-});
+}));
 ```
 
 ### Copy assets
@@ -316,7 +316,7 @@ export default configs.map(config => ({
     ...config.plugins,
     litcss({ include, exclude, uglify })
   ],
-});
+}));
 ```
 
 <script>
