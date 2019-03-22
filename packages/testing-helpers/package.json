@@ -13,6 +13,12 @@
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/testing-helpers"
   },
+  "module": "index.js",
+  "files": [
+    "src",
+    "index.js",
+    "index-no-side-effects.js"
+  ],
   "scripts": {
     "test": "karma start",
     "test:watch": "karma start --auto-watch=true --single-run=false",

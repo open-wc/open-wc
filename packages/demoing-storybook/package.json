@@ -19,8 +19,7 @@
   },
   "main": "index.js",
   "files": [
-    "*.js",
-    "*.ts"
+    "*.js"
   ],
   "dependencies": {
     "@babel/core": "^7.3.3",
