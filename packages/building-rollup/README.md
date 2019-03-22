@@ -7,7 +7,7 @@ We provide a rollup configuration to help you get started using rollup with web 
 
 Our configuration lets you write code using modern javascript syntax and features, providing the necessary syntax transformation and polyfills for older browsers. See 'config features' for more details.
 
-See the extending section for more customization, such as supporting non-standard syntax or adding babel plugins.
+See the [extending section](#extending-the-rollup-config) for more customization, such as supporting non-standard syntax or adding babel plugins.
 
 ## Setup
 
@@ -121,7 +121,7 @@ export default createDefaultConfig({
 });
 ```
 
-See 'extending' to add more configuration.
+See [extending](#extending-the-rollup-config) to add more configuration.
 
 ## Customizing the babel config
 You can define your own babel plugins by adding a `.babelrc` or `babel.config.js` to your project. See [babeljs config](https://babeljs.io/docs/en/configuration) for more information.
