@@ -3,9 +3,9 @@ import sinon from 'sinon';
 // @ts-ignore
 import { expect } from '@bundled-es-modules/chai';
 import { cachedWrappers } from '../src/fixtureWrapper.js';
-import { defineCE } from '../src/helpers';
-import { html, fixture, fixtureSync } from '..';
-import { unsafeStatic } from '../src/lit-html.js';
+import { defineCE } from '../src/helpers.js';
+import { fixture, fixtureSync } from '../src/fixture.js';
+import { html, unsafeStatic } from '../src/lit-html.js';
 
 describe('fixtureSync & fixture', () => {
   it('supports strings', async () => {

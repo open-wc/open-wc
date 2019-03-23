@@ -69,11 +69,11 @@ However as `allowJs` prevents you from generating definition files for your own 
 
 ```json
 {
-	"extends": "./tsconfig.json",
-	"compilerOptions": {
-		"allowJs": false,
-		"checkJs": false
-	}
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowJs": false,
+    "checkJs": false
+  }
 }
 ```
 
