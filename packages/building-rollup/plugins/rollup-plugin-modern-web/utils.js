@@ -2,7 +2,7 @@ const path = require('path');
 const mkdirp = require('mkdirp');
 const { readFileSync, writeFileSync } = require('fs');
 const { parse, serialize } = require('parse5');
-const { constructors, setAttribute, append } = require('dom5');
+const { constructors, setAttribute, append } = require('../../dom5-fork/index.js');
 
 /** Reads file as HTML AST */
 function readHTML(file) {
