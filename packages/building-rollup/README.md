@@ -77,8 +77,6 @@ To illustrate this, here is an example of scripts which our rollup config will *
 - `start:build` runs your built app from `dist` directory
 - `watch:build` builds and runs your app, rebuilding when input files change
 
-Note that caching is disabled by default, if you want to enable caching, remove `-c-1` from the `start:build` and `watch:build` scripts.
-
 ## Supporting legacy browsers
 The `modern-config.js` based config we setup above works for browsers which support dynamic imports (Chrome 63+, Safari 11.1+, Firefox 67+)
 
