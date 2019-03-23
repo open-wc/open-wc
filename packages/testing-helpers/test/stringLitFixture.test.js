@@ -1,8 +1,9 @@
 /* eslint-disable class-methods-use-this */
 import { expect } from '@bundled-es-modules/chai';
-import { html, stringFixture, stringFixtureSync, litFixture, litFixtureSync } from '..';
+import { stringFixture, stringFixtureSync } from '../src/stringFixture.js';
+import { litFixture, litFixtureSync } from '../src/litFixture.js';
 import { defineCE, nextFrame } from '../src/helpers.js';
-import { unsafeStatic } from '../src/lit-html.js';
+import { html, unsafeStatic } from '../src/lit-html.js';
 
 class TestComponent extends HTMLElement {}
 customElements.define('test-component', TestComponent);
