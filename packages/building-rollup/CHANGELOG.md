@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.1.10...@open-wc/building-rollup@0.2.0) (2019-03-23)
+
+
+### Bug Fixes
+
+* **building-rollup:** temporary fork dom5 as it has outdated typings ([3d0d187](https://github.com/open-wc/open-wc/commit/3d0d187))
+
+
+### Features
+
+* add types + linting & improve intellisense ([b6d260c](https://github.com/open-wc/open-wc/commit/b6d260c))
+
+
+
+
+
 ## [0.1.10](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.1.9...@open-wc/building-rollup@0.1.10) (2019-03-23)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.9.28...@open-wc/testing@0.10.0) (2019-03-23)
+
+
+### Features
+
+* add types + linting & improve intellisense ([b6d260c](https://github.com/open-wc/open-wc/commit/b6d260c))
+
+
+
+
+
 ## [0.9.28](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.9.27...@open-wc/testing@0.9.28) (2019-03-20)
 
 **Note:** Version bump only for package @open-wc/testing

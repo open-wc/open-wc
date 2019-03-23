@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma-bs",
-  "version": "0.2.15",
+  "version": "0.2.16",
   "description": "Testing with karma using browserstack following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -24,7 +24,7 @@
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "dependencies": {
-    "@open-wc/testing-karma": "^0.4.14",
+    "@open-wc/testing-karma": "^0.4.15",
     "karma-browserstack-launcher": "^1.0.0"
   },
   "devDependencies": {

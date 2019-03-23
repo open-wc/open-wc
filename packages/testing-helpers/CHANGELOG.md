@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.25...@open-wc/testing-helpers@0.8.0) (2019-03-23)
+
+
+### Features
+
+* add types + linting & improve intellisense ([b6d260c](https://github.com/open-wc/open-wc/commit/b6d260c))
+
+
+
+
+
 ## [0.7.25](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.24...@open-wc/testing-helpers@0.7.25) (2019-03-20)
 
 **Note:** Version bump only for package @open-wc/testing-helpers
