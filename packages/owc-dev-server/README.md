@@ -28,6 +28,14 @@ Note: import paths are only resolved within `.js` files. This means you cannot d
 </html>
 ```
 
+::: warning
+owc-dev-server *only transforms the URL* when importing ES modules (what will be done through import maps). No other transformations are performed.
+
+If your project uses a library with a different module format (e.g. [CommonJS](https://requirejs.org/docs/commonjs.html)), and you would `import` that, owc-dev-server will only change the URL, so the browser can access the file, but it will still be in its original format. That means, that probably the `import` will fail.
+
+For such use cases you will need different tools. Have a look at our guide for building with rollup.
+:::
+
 ### Usage
 ```bash
 npm i -D owc-dev-server
