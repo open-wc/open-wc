@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.2.0...@open-wc/building-rollup@0.2.1) (2019-03-23)
+
+
+### Bug Fixes
+
+* **building-rollup:** include dom5 fork in npm bundle ([0909aa6](https://github.com/open-wc/open-wc/commit/0909aa6))
+
+
+
+
+
 # [0.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.1.10...@open-wc/building-rollup@0.2.0) (2019-03-23)
 
 
