@@ -68,8 +68,8 @@ To illustrate this, here is an example of scripts which our rollup config will *
 {
   "scripts": {
     "build": "rimraf dist && rollup -c rollup.config.js",
-    "start:build": "http-server dist -o",
-    "watch:build": "rimraf dist && rollup --watch -c rollup.config.js & http-server dist -o",
+    "start:build": "http-server dist -o -c-1",
+    "watch:build": "rimraf dist && rollup --watch -c rollup.config.js & http-server dist -o -c-1",
   }
 }
 ```

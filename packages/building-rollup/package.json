@@ -15,15 +15,15 @@
   },
   "scripts": {
     "build:demo": "rimraf dist && rollup -c demo/js/rollup.config.js",
-    "start:demo": "http-server dist -o",
-    "watch:demo": "rimraf dist && rollup -c demo/js/rollup.config.js --watch & http-server dist -o",
+    "start:demo": "http-server dist -o -c-1",
+    "watch:demo": "rimraf dist && rollup -c demo/js/rollup.config.js --watch & http-server dist -o -c-1",
     "visualizer:demo": "rimraf dist && rollup -c demo/rollup.visualizer.config.js",
     "build:modern": "rimraf dist && rollup -c demo/js/rollup.modern.config.js",
-    "watch:modern": "rimraf dist && rollup -c demo/js/rollup.modern.config.js --watch & http-server dist -o",
+    "watch:modern": "rimraf dist && rollup -c demo/js/rollup.modern.config.js --watch & http-server dist -o -c-1",
     "build:ts": "rimraf dist && rollup -c demo/ts/rollup.config.js",
-    "watch:ts": "rimraf dist && rollup -c demo/ts/rollup.config.js --watch & http-server dist -o",
+    "watch:ts": "rimraf dist && rollup -c demo/ts/rollup.config.js --watch & http-server dist -o -c-1",
     "build:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js",
-    "watch:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js --watch & http-server dist -o",
+    "watch:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js --watch & http-server dist -o -c-1",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "keywords": [
