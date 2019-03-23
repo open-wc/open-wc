@@ -33,6 +33,7 @@
     "rollup"
   ],
   "files": [
+    "dom5-fork",
     "plugins",
     "src",
     "*.js"
