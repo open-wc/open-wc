@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.1.9...@open-wc/building-rollup@0.1.10) (2019-03-23)
+
+
+### Bug Fixes
+
+* **building-rollup:** disable http server caching ([#313](https://github.com/open-wc/open-wc/issues/313)) ([d3ce2b2](https://github.com/open-wc/open-wc/commit/d3ce2b2))
+
+
+
+
+
 ## [0.1.9](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.1.8...@open-wc/building-rollup@0.1.9) (2019-03-23)
 
 **Note:** Version bump only for package @open-wc/building-rollup
