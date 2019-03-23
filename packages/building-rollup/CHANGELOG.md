@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.1.6...@open-wc/building-rollup@0.1.7) (2019-03-22)
+
+
+### Bug Fixes
+
+* **building-rollup:** add missing brackets in docs ([#310](https://github.com/open-wc/open-wc/issues/310)) ([7da6bfa](https://github.com/open-wc/open-wc/commit/7da6bfa))
+
+
+
+
+
 ## [0.1.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.1.5...@open-wc/building-rollup@0.1.6) (2019-03-20)
 
 **Note:** Version bump only for package @open-wc/building-rollup
