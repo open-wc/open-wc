@@ -1,7 +1,7 @@
 {
   "name": "owc-dev-server",
   "main": "./owc-dev-server.js",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Development server for modern web apps",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
