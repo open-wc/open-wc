@@ -1,5 +1,5 @@
 import { expect } from '@bundled-es-modules/chai';
-import getDiffableSemanticHTML from '../src/get-diffable-html.js';
+import { getDiffableSemanticHTML } from '../index.js';
 import largeTemplate from './large-template';
 
 describe('getSemanticDomDiff()', () => {

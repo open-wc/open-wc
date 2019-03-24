@@ -9,6 +9,7 @@ export default {
   input: 'src/get-diffable-html.js',
   output: {
     file: 'dist/get-diffable-html.js',
+    intro: '// @ts-nocheck\n/* istanbul ignore file */',
     format: 'esm',
   },
   plugins: [
@@ -17,6 +18,14 @@ export default {
     json(),
     builtins(),
     globals(),
-    terser(),
+    terser({
+      output: {
+        comments(node, comment) {
+          return (
+            comment.value.includes('@ts-nocheck') || comment.value.includes('istanbul ignore file')
+          );
+        },
+      },
+    }),
   ],
 };
