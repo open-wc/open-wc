@@ -26,7 +26,7 @@ function getIgnoreTags(options) {
   return options.ignoreTags ? [...defaultIgnoreTags, ...options.ignoreTags] : defaultIgnoreTags;
 }
 
-export function getDiffableHTML(html, options = {}) {
+export default function getDiffableHTML(html, options = {}) {
   const tagsBeingIgnored = [];
   const lightDomTagsBeingIgnored = [];
   const ignoreTags = getIgnoreTags(options);
