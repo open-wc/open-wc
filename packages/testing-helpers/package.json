@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-helpers",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Testing Helpers following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -33,8 +33,8 @@
   "devDependencies": {
     "@bundled-es-modules/chai": "^4.2.0",
     "@open-wc/testing-karma": "^0.4.15",
-    "@open-wc/testing-karma-bs": "^0.2.16",
-    "@open-wc/testing-wallaby": "^0.1.11",
+    "@open-wc/testing-karma-bs": "^0.2.17",
+    "@open-wc/testing-wallaby": "^0.1.12",
     "lit-html": "^1.0.0",
     "mocha": "^5.0.0",
     "sinon": "^7.2.7",

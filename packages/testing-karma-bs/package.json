@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma-bs",
-  "version": "0.2.16",
+  "version": "0.2.17",
   "description": "Testing with karma using browserstack following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",

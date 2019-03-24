@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "Testing following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -30,16 +30,16 @@
   },
   "dependencies": {
     "@bundled-es-modules/chai": "^4.2.0",
-    "@open-wc/chai-dom-equals": "^0.10.1",
-    "@open-wc/testing-helpers": "^0.8.1",
+    "@open-wc/chai-dom-equals": "^0.10.2",
+    "@open-wc/testing-helpers": "^0.8.2",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.0.0",
     "mocha": "^5.0.0"
   },
   "devDependencies": {
     "@open-wc/testing-karma": "^0.4.15",
-    "@open-wc/testing-karma-bs": "^0.2.16",
-    "@open-wc/testing-wallaby": "^0.1.11",
+    "@open-wc/testing-karma-bs": "^0.2.17",
+    "@open-wc/testing-wallaby": "^0.1.12",
     "webpack-merge": "^4.1.5"
   }
 }
