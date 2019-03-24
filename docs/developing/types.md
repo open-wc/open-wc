@@ -18,7 +18,18 @@ Types provide valuable information about the nature of code, and help identify t
 ## Open Web Components Types
 
 For most of our products we do offer types via JSDocs.
-In order to utalize them you will need to add something to your setup.
+In order to utilize types, you will need to set them up for your project.
+
+### Why types?
+
+Types can help improve your developer experience by giving you:
+
+- Awesome intellisense for @open-wc tools/helpers
+- Ability to jump directly to the source of @open-wc code via F12 (in vs code)
+
+Here is a small gif showing how it can help.
+
+![TypesExample](/types.gif)
 
 ### Setup for JavaScript
 
