@@ -1,4 +1,4 @@
-import getDiff from './src/get-diffable-html';
+import getDiff from './dist/get-diffable-html';
 
 /**
  * @typedef IgnoreAttributesForTags

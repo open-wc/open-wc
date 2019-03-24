@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Parser } from 'htmlparser2';
+import Parser from 'htmlparser2/lib/Parser';
 
 // https://www.w3.org/TR/html/syntax.html#writing-html-documents-elements
 const voidElements = [

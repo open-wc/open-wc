@@ -1,5 +1,5 @@
 import { expect } from '@bundled-es-modules/chai';
-import { getDiffableSemanticHTML } from '../index.js';
+import getDiffableSemanticHTML from '../src/get-diffable-html.js';
 import largeTemplate from './large-template';
 
 describe('getSemanticDomDiff()', () => {
@@ -165,6 +165,17 @@ describe('getSemanticDomDiff()', () => {
       it('large template', () => {
         const htmlA = getDiffableSemanticHTML(largeTemplate);
         const htmlB = getDiffableSemanticHTML(largeTemplate);
+        expect(htmlA).to.equal(htmlB);
+      });
+
+      it('multiline element', () => {
+        const htmlA = getDiffableSemanticHTML(`
+          <my-element
+            foo="bar"
+            buz="baz"
+          ></my-element>
+        `);
+        const htmlB = getDiffableSemanticHTML('<my-element foo="bar" buz="baz"></my-element>');
         expect(htmlA).to.equal(htmlB);
       });
     });
