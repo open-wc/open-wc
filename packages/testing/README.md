@@ -45,7 +45,7 @@ Already part of `npm init @open-wc testing`
 
 ### Manual Install
 - Install via `yarn add @open-wc/testing-karma --dev`
-- Copy [karma.conf.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/testing-karma/templates/static/karma.conf.js) to `karma.conf.js`
+- Copy [karma.conf.js](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/testing-karma/templates/static/karma.conf.js) to `karma.conf.js`
 - Add these scripts to package.json
   ```js
   "scripts": {
@@ -54,7 +54,7 @@ Already part of `npm init @open-wc testing`
   },
   ```
 #### If you need to support legacy browsers
-- Copy [karma.es5.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/testing-karma/templates/static/karma.es5.config.js) to `karma.es5.config.js` as well
+- Copy [karma.es5.config.js](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/testing-karma/templates/static/karma.es5.config.js) to `karma.es5.config.js` as well
 ```js
   "scripts": {
     "test:es5": "karma start karma.es5.config.js",
@@ -77,7 +77,7 @@ Already part of `npm init @open-wc testing`
 ### Manual Install
 
 - Install via `yarn add @open-wc/testing-karma-bs --dev`
-- Copy [karma.es5.bs.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/testing-karma-bs/templates/static/karma.es5.bs.config.js) to `karma.es5.bs.config.js`
+- Copy [karma.es5.bs.config.js](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/testing-karma-bs/templates/static/karma.es5.bs.config.js) to `karma.es5.bs.config.js`
 - Add these scripts to your package.json
   ```js
   "scripts": {

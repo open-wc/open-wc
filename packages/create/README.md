@@ -172,7 +172,7 @@ You can use these generators if you already have an existing project that you wo
       const editLink = document.querySelector('.edit-link a');
       if (editLink) {
         const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/generator-open-wc/README.md';
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/create/src/README.md';
       }
     }
   }
