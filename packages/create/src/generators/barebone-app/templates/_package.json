@@ -9,6 +9,6 @@
     "lit-element": "^2.0.1"
   },
   "devDependencies": {
-    "owc-dev-server": "^0.1.2"
+    "owc-dev-server": "^0.3.0"
   }
 }
