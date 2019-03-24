@@ -169,20 +169,6 @@ describe('getSemanticDomDiff()', () => {
       });
     });
 
-    describe('ordering', () => {
-      it('attributes order', () => {
-        const htmlA = getDiffableSemanticHTML('<div a="1" b="2" c="3"></div>');
-        const htmlB = getDiffableSemanticHTML('<div c="3" a="1" b="2"></div>');
-        expect(htmlA).to.equal(htmlB);
-      });
-
-      it('class order', () => {
-        const htmlA = getDiffableSemanticHTML('<div class="foo bar"></div>');
-        const htmlB = getDiffableSemanticHTML('<div class="bar foo"></div>');
-        expect(htmlA).to.equal(htmlB);
-      });
-    });
-
     describe('whitespace', () => {
       it('trailing whitespace in attributes', () => {
         const htmlA = getDiffableSemanticHTML('<div foo="bar" ></div>');
@@ -193,12 +179,6 @@ describe('getSemanticDomDiff()', () => {
       it('trailing whitespace in class', () => {
         const htmlA = getDiffableSemanticHTML('<div class="foo bar "></div>');
         const htmlB = getDiffableSemanticHTML('<div class="foo bar "></div>');
-        expect(htmlA).to.equal(htmlB);
-      });
-
-      it('whitespace between classes', () => {
-        const htmlA = getDiffableSemanticHTML('<div class="foo  bar "></div>');
-        const htmlB = getDiffableSemanticHTML('<div class="foo bar"></div>');
         expect(htmlA).to.equal(htmlB);
       });
 
@@ -279,6 +259,312 @@ describe('getSemanticDomDiff()', () => {
       it('script', () => {
         const htmlA = getDiffableSemanticHTML('<div>foo<script>console.log("foo");</script></div>');
         const htmlB = getDiffableSemanticHTML('<div>foo</div>');
+        expect(htmlA).to.equal(htmlB);
+      });
+
+      it('ignored tags', () => {
+        const htmlA = getDiffableSemanticHTML(
+          `
+          <div>
+            <div>A</div>
+            <span>
+              <div>B</div>
+                <span>
+                  <div>C</div>
+                  <div>D</div>
+                </span>
+              <div>E</div>
+              <div>F</div>
+            </span>
+            <div>G</div>
+          </div>
+        `,
+          { ignoreTags: ['span'] },
+        );
+        const htmlB = getDiffableSemanticHTML(`
+          <div>
+            <div>A</div>
+            <div>G</div>
+          </div>
+        `);
+        expect(htmlA).to.equal(htmlB);
+      });
+
+      it('ignored attributes', () => {
+        const htmlA = getDiffableSemanticHTML(
+          `
+          <div foo="bar">
+            <div class="foo">A</div>
+            <span foo="bar" bar="foo">
+              <div foo="baz">B</div>
+              <div>E</div>
+            </span>
+            <div foo="foo">F</div>
+          </div>
+        `,
+          { ignoreAttributes: ['foo'] },
+        );
+        const htmlB = getDiffableSemanticHTML(`
+          <div>
+            <div class="foo">A</div>
+            <span bar="foo">
+              <div>B</div>
+              <div>E</div>
+            </span>
+            <div>F</div>
+          </div>
+        `);
+        expect(htmlA).to.equal(htmlB);
+      });
+
+      it('ignored attributes for tags', () => {
+        const diffOptions = {
+          ignoreAttributes: [{ tags: ['my-element', 'div'], attributes: ['foo', 'foo2'] }],
+        };
+        const htmlA = getDiffableSemanticHTML(
+          `
+          <div foo="bar">
+            <div class="foo">A</div>
+            <my-element foo="bar" foo2="bar"></my-element>
+            <span foo="bar" bar="foo">
+              <div foo="baz" bar="foo">B</div>
+              <div>E</div>
+            </span>
+            <div foo="foo">F</div>
+          </div>
+        `,
+          diffOptions,
+        );
+        const htmlB = getDiffableSemanticHTML(
+          `
+          <div>
+            <div class="foo">A</div>
+            <my-element></my-element>
+            <span foo="bar" bar="foo">
+              <div bar="foo">B</div>
+              <div>E</div>
+            </span>
+            <div>F</div>
+          </div>
+        `,
+          diffOptions,
+        );
+        expect(htmlA).to.equal(htmlB);
+      });
+
+      describe('ignored light dom', () => {
+        it('no light dom', () => {
+          const diffOptions = {
+            ignoreLightDom: ['my-element'],
+          };
+          const htmlA = getDiffableSemanticHTML(
+            `
+            <my-element foo="bar" foo2="bar"></my-element>
+          `,
+            diffOptions,
+          );
+          const htmlB = getDiffableSemanticHTML(
+            `
+            <my-element foo="bar" foo2="bar"></my-element>
+          `,
+            diffOptions,
+          );
+          expect(htmlA).to.equal(htmlB);
+        });
+      });
+
+      it('light dom text', () => {
+        const diffOptions = {
+          ignoreLightDom: ['my-element'],
+        };
+        const htmlA = getDiffableSemanticHTML(
+          `
+          <my-element foo="bar" foo2="bar">
+            light dom
+          </my-element>
+        `,
+          diffOptions,
+        );
+        const htmlB = getDiffableSemanticHTML(
+          `
+          <my-element foo="bar" foo2="bar">
+          </my-element>
+        `,
+          diffOptions,
+        );
+        expect(htmlA).to.equal(htmlB);
+      });
+
+      it('two light dom text nodes', () => {
+        const diffOptions = {
+          ignoreLightDom: ['my-element'],
+        };
+        const htmlA = getDiffableSemanticHTML(
+          `
+          <my-element foo="bar" foo2="bar">
+            light dom 1
+            <!-- comment to create a second text node -->
+            light dom 2
+          </my-element>
+        `,
+          diffOptions,
+        );
+        const htmlB = getDiffableSemanticHTML(
+          `
+          <my-element foo="bar" foo2="bar"></my-element>
+        `,
+          diffOptions,
+        );
+        expect(htmlA).to.equal(htmlB);
+      });
+
+      it('light dom node', () => {
+        const diffOptions = {
+          ignoreLightDom: ['my-element'],
+        };
+        const htmlA = getDiffableSemanticHTML(
+          `
+          <my-element foo="bar" foo2="bar">
+            <div>light dom</div>
+          </my-element>
+        `,
+          diffOptions,
+        );
+        const htmlB = getDiffableSemanticHTML(
+          `
+          <my-element foo="bar" foo2="bar"></my-element>
+        `,
+          diffOptions,
+        );
+        expect(htmlA).to.equal(htmlB);
+      });
+
+      it('two light dom nodes', () => {
+        const diffOptions = {
+          ignoreLightDom: ['my-element'],
+        };
+        const htmlA = getDiffableSemanticHTML(
+          `
+          <my-element foo="bar" foo2="bar">
+            <div>light dom 1</div>
+            <div>light dom 2</div>
+          </my-element>
+        `,
+          diffOptions,
+        );
+        const htmlB = getDiffableSemanticHTML(
+          `
+          <my-element foo="bar" foo2="bar"></my-element>
+        `,
+          diffOptions,
+        );
+        expect(htmlA).to.equal(htmlB);
+      });
+
+      it('attributes on light dom nodes', () => {
+        const diffOptions = {
+          ignoreLightDom: ['my-element'],
+        };
+        const htmlA = getDiffableSemanticHTML(
+          `
+          <my-element foo="bar" foo2="bar">
+            <div id="foo" class="bar"></div>
+            <div class="foo2" id="foo2">
+              <div class="foo3" id="foo3"></div>
+            </div>
+          </my-element>
+        `,
+          diffOptions,
+        );
+        const htmlB = getDiffableSemanticHTML(
+          `
+          <my-element foo="bar" foo2="bar"></my-element>
+        `,
+          diffOptions,
+        );
+        expect(htmlA).to.equal(htmlB);
+      });
+
+      it('nested light dom', () => {
+        const diffOptions = {
+          ignoreLightDom: ['my-element-1', 'my-element-2'],
+        };
+        const htmlA = getDiffableSemanticHTML(
+          `
+          <my-element-1 foo="bar" foo2="bar">
+            <my-element-1>
+              <div>light dom< 1/div>
+            </my-element-1>
+
+            <div>light dom 2</div>
+
+            <my-element-2>
+              <my-element-1>light dom 3</my-element-1>
+            </my-element-2>
+
+          </my-element-1>
+        `,
+          diffOptions,
+        );
+        const htmlB = getDiffableSemanticHTML(
+          `
+          <my-element-1 foo="bar" foo2="bar"></my-element-1>
+        `,
+          diffOptions,
+        );
+        expect(htmlA).to.equal(htmlB);
+      });
+
+      it('light dom ignored in a deep tree', () => {
+        const diffOptions = {
+          ignoreLightDom: ['my-element-1', 'my-element-2'],
+        };
+        const htmlA = getDiffableSemanticHTML(
+          `
+          <div>
+            <div class="foo">
+              <div>
+                <my-element-1 foo="bar">light dom 1</my-element-1>
+                <my-element-1 id="x"><div>light dom 2</div></my-element-1>
+              </div>
+
+              <my-element-2 class="foo bar">
+                <div>light dom 3</div>
+                light dom 4
+              </my-element-2>
+            </div>
+
+            <div>
+              <div>
+                <my-element-1 hidden>light dom 5</my-element-1>
+              </div>
+            </div>
+          </div>
+        `,
+          diffOptions,
+        );
+        const htmlB = getDiffableSemanticHTML(
+          `
+          <div>
+            <div class="foo">
+              <div>
+                <my-element-1 foo="bar"></my-element-1>
+                <my-element-1 id="x"><div></div></my-element-1>
+              </div>
+
+              <my-element-2 class="foo bar"></my-element-2>
+            </div>
+
+            <div>
+              <div>
+                <my-element-1 hidden></my-element-1>
+              </div>
+            </div>
+          </div>
+
+        `,
+          diffOptions,
+        );
         expect(htmlA).to.equal(htmlB);
       });
     });

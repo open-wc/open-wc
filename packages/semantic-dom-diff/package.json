@@ -26,16 +26,13 @@
     "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
-  "dependencies": {
-    "@bundled-es-modules/diffable-html": "^4.0.0-rc.2",
-    "@bundled-es-modules/parse5": "^5.1.0",
-    "@types/parse5": "^5.0.0"
-  },
   "devDependencies": {
     "@bundled-es-modules/chai": "^4.2.0",
     "@open-wc/testing-karma": "^0.4.15",
     "@open-wc/testing-karma-bs": "^0.2.16",
     "@open-wc/testing-wallaby": "^0.1.11",
+    "@types/htmlparser2": "^3.7.31",
+    "htmlparser2": "^3.10.1",
     "mocha": "^5.0.0",
     "webpack-merge": "^4.1.5"
   }
