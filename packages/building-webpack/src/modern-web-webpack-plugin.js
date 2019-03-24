@@ -21,20 +21,6 @@ const PLUGIN = 'LegacyBrowserWebpackPlugin';
 
 const asArrayLiteral = arr => `[${arr.map(e => `'${e}'`).join(',')}]`;
 
-// URL is required by webcomponents polyfill
-// We can use URLSearchParams as a watermark for URL support
-const urlPolyfill = `
-  if (!('URLSearchParams' in window)) {
-      polyfills.push(loadScript('./polyfills/url.js'));
-  }`;
-
-// there is no need anymore to feature detect web component APIs separately,
-// only IE and edge don't support web components
-const webcomponentsPolyfill = `
-  if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) {
-    polyfills.push(loadScript('./polyfills/webcomponents.js'));
-  }`;
-
 // function to load a piece of code dynamically
 const loadScriptFunction = `
   function loadScript(src) {
@@ -80,14 +66,27 @@ function createEntryVariable(entries, development) {
     : ${asArrayLiteral(entries.legacy)};`;
 }
 
-function createPolyfillsLoaders(options) {
+function createPolyfillsLoaders(options, polyfillsPublicDir) {
   const polyfillScripts = [];
 
   if (options.polyfillURL) {
+    // URL is required by webcomponents polyfill
+    // We can use URLSearchParams as a watermark for URL support
+    const urlPolyfill = `
+      if (!('URLSearchParams' in window)) {
+          polyfills.push(loadScript('${path.join(polyfillsPublicDir, 'url.js')}'));
+      }`;
+
     polyfillScripts.push(urlPolyfill);
   }
 
   if (options.polyfillWebcomponents) {
+    // there is no need anymore to feature detect web component APIs separately,
+    // only IE and edge don't support web components
+    const webcomponentsPolyfill = `
+      if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) {
+        polyfills.push(loadScript('${path.join(polyfillsPublicDir, 'webcomponents.js')}'));
+      }`;
     polyfillScripts.push(webcomponentsPolyfill);
   }
 
@@ -125,6 +124,7 @@ module.exports = class LegacyBrowserWebpackPlugin {
 
   apply(compiler) {
     const polyfillsDir = path.join(compiler.outputPath, 'polyfills');
+    const polyfillsPublicDir = path.join(compiler.options.output.publicPath || '.', polyfillsDir);
 
     // copy over polyfill files. just once since this plugin is run twice
     if (!this.copiedFiles) {
@@ -180,10 +180,10 @@ module.exports = class LegacyBrowserWebpackPlugin {
         }
 
         const babelPolyfills = this.options.polyfillBabel
-          ? '<script src="./polyfills/babel.js" nomodule></script>'
+          ? `<script src="${path.join(polyfillsPublicDir, 'babel.js')}" nomodule></script>`
           : '';
         const entryVariable = createEntryVariable(this.entries, this.options.development);
-        const polyfillsLoader = createPolyfillsLoaders(this.options);
+        const polyfillsLoader = createPolyfillsLoaders(this.options, polyfillsPublicDir);
 
         // javascript code which loads polyfills + app entries
         const loadScriptCode = `
