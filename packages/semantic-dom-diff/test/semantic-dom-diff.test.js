@@ -1,5 +1,5 @@
 import { expect } from '@bundled-es-modules/chai';
-import { getDiffableSemanticHTML } from '../index.js';
+import getDiffableSemanticHTML from '../src/get-diffable-html';
 import largeTemplate from './large-template';
 
 describe('getSemanticDomDiff()', () => {
@@ -212,6 +212,21 @@ describe('getSemanticDomDiff()', () => {
       });
     });
 
+    it('can handle regular html documents', () => {
+      const document = `
+        <!doctype html>
+        <html lang="en-GB">
+          <head>
+            <meta charset="utf-8">
+            <meta http-equiv="x-ua-compatible" content="ie=edge">
+            <title>test</title>
+          </head>
+          <body></body>
+        </html>
+      `;
+      expect(getDiffableSemanticHTML(document)).to.be.a('string');
+    });
+
     describe('tabs', () => {
       it('tabs before and after template', () => {
         const htmlA = getDiffableSemanticHTML('\t\t<div></div>\t');
@@ -361,6 +376,19 @@ describe('getSemanticDomDiff()', () => {
           diffOptions,
         );
         expect(htmlA).to.equal(htmlB);
+      });
+
+      it('throws on invalid options', () => {
+        try {
+          getDiffableSemanticHTML(`<div foo="bar"></div>`, {
+            ignoreAttributes: [{ tags: ['div'] }],
+          });
+          throw new Error('should not resolve');
+        } catch (error) {
+          expect(error.message).to.equal(
+            "An object entry to ignoreAttributes should contain a 'tags' and an 'attributes' property.",
+          );
+        }
       });
 
       describe('ignored light dom', () => {
