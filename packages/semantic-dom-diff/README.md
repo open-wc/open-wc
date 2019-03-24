@@ -28,7 +28,7 @@ expect(leftTree).to.equal(rightTree);
 ```
 
 ## Ignoring tags and attributes
-When working with libraries or custom elements there might be parts of the renderd HTML which is random or otherwise outside of your control. On those cases, you might want to ignore certain attributes or tags entirely. This is possible by passing an options object.
+When working with libraries or custom elements there might be parts of the rendered HTML which is random or otherwise outside of your control. In those cases, you might want to ignore certain attributes or tags entirely. This is possible by passing an options object.
 
 ### Ignoring an attribute
 ```javascript
