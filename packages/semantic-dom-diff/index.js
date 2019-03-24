@@ -8,11 +8,11 @@ import getDiff from './src/get-diffable-html';
 
 /**
  * @typedef DiffOptions
- * @property {(string | IgnoreAttributesForTags)[]} ignoreAttributes
+ * @property {(string | IgnoreAttributesForTags)[]} [ignoreAttributes]
  *  array of attributes to ignore, when given a string that attribute will be ignored on all tags
  *  when given an object of type `IgnoreAttributesForTags`, you can specify on which tags to ignore which attributes
- * @property {string[]} ignoreTags array of tags to ignore, these tags are stripped from the output
- * @property {string[]} ignoreLightDom array of tags whose light dom to ignore, the light dom of
+ * @property {string[]} [ignoreTags] array of tags to ignore, these tags are stripped from the output
+ * @property {string[]} [ignoreLightDom] array of tags whose light dom to ignore, the light dom of
  *   these tags are stripped from the output
  */
 
@@ -35,7 +35,7 @@ import getDiff from './src/get-diffable-html';
  * expect(htmlA).to.equal(htmlB);
  *
  * @param {string} html
- * @param {DiffOptions} options
+ * @param {DiffOptions} [options]
  * @returns {string} html restructured in a diffable format
  */
 export function getDiffableSemanticHTML(html, options) {
