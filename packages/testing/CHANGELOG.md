@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.1...@open-wc/testing@0.10.2) (2019-03-24)
+
+
+### Bug Fixes
+
+* adjust generator-open-wc links to create ([cc014b1](https://github.com/open-wc/open-wc/commit/cc014b1))
+
+
+
+
+
+## [0.10.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.0...@open-wc/testing@0.10.1) (2019-03-23)
+
+
+### Bug Fixes
+
+* do not assume globally setup mocha types ([977d5b4](https://github.com/open-wc/open-wc/commit/977d5b4))
+
+
+
+
+
 # [0.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.9.28...@open-wc/testing@0.10.0) (2019-03-23)
 
 

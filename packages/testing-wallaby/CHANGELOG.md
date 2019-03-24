@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.12](https://github.com/open-wc/open-wc/compare/@open-wc/testing-wallaby@0.1.11...@open-wc/testing-wallaby@0.1.12) (2019-03-24)
+
+
+### Bug Fixes
+
+* adjust generator-open-wc links to create ([cc014b1](https://github.com/open-wc/open-wc/commit/cc014b1))
+
+
+
+
+
 ## [0.1.11](https://github.com/open-wc/open-wc/compare/@open-wc/testing-wallaby@0.1.10...@open-wc/testing-wallaby@0.1.11) (2019-03-08)
 
 **Note:** Version bump only for package @open-wc/testing-wallaby

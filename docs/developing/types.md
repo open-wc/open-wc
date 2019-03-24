@@ -18,26 +18,44 @@ Types provide valuable information about the nature of code, and help identify t
 ## Open Web Components Types
 
 For most of our products we do offer types via JSDocs.
-In order to utalize them you will need to add something to your setup.
+In order to utilize types, you will need to set them up for your project.
+
+### Why types?
+
+Types can help improve your developer experience by giving you:
+
+- Awesome intellisense for @open-wc tools/helpers
+- Ability to jump directly to the source of @open-wc code via F12 (in vs code)
+
+Here is a small gif showing how it can help.
+
+![TypesExample](/types.gif)
 
 ### Setup for JavaScript
 
-In order to get type linting in a JavaScript project using VS Code all you need is to add a `jsconfig.json`.
+In order to get type linting in a JavaScript project using VS Code all you need is to add a `tsconfig.json`.
 
 ```json
 {
   "compilerOptions": {
     "target": "esnext",
+    "module": "esnext",
     "moduleResolution": "node",
     "lib": ["es2017", "dom"],
+    "allowJs": true,
     "checkJs": true,
-    "strictNullChecks": true,
+    "noEmit": true,
+    "strict": false,
     "noImplicitThis": true,
     "alwaysStrict": true,
     "esModuleInterop": true
   },
+  "include": [
+    "**/*.js",
+    "node_modules/@open-wc/**/*.js"
+  ],
   "exclude": [
-    "node_modules",
+    "node_modules/!(@open-wc)"
   ]
 }
 ```
@@ -50,14 +68,13 @@ You will need to add to this to your `tsconfig.json`.
 ```json
 {
   "compilerOptions": {
-    "allowJs": true,
-    "checkJs": true,
+    "allowJs": true
   },
   "include": [
     "node_modules/@open-wc/**/*.js"
   ],
   "exclude": [
-    "node_modules/!(@open-wc)",
+    "node_modules/!(@open-wc)"
   ]
 }
 ```
@@ -106,13 +123,14 @@ Example how a full config might look like
     "strict": false,
     "noImplicitThis": true,
     "alwaysStrict": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true
   },
   "include": [
+    "**/*.js",
     "node_modules/@open-wc/**/*.js"
   ],
   "exclude": [
-    "node_modules/!(@open-wc)",
+    "node_modules/!(@open-wc)"
   ]
 }
 ```

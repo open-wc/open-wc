@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Default configuration for working with rollup",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -33,6 +33,7 @@
     "rollup"
   ],
   "files": [
+    "dom5-fork",
     "plugins",
     "src",
     "*.js"
