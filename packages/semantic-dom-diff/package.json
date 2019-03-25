@@ -25,7 +25,6 @@
     "test:es5": "karma start karma.es5.config.js",
     "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
     "postinstall": "rollup -c rollup.config.js",
-    "prepublish": "rollup -c rollup.config.js",
      "prepublishOnly": "../../scripts/insert-header.js && rollup -c rollup.config.js"
   },
   "devDependencies": {
