@@ -35,14 +35,14 @@ it('dispatches a custom event on firstUpdated', async () => {
 
 #### connectedCallback
 
-For `connectedCallback`, since this callback is fired immediately after calling `fixture`, you can't catch it anymore. You can just call the function in a `setTimeout` to trigger it again.
+For `connectedCallback`, since this callback is fired immediately after calling `fixture`, you can't catch it anymore. What you can do is define a new component and test its callback function in a `setTimeout`.
 
 ```js
 it('test', async () => {
-  const tag = defineCE(class Foo extends readyMixin(LionLitElement) {});
-  const el = await fixture(`<${tag}></${tag}>`);
-  setTimeout(() => el.connectedCallback());
-  const ev = await oneEvent(el, 'connected-callback');
-  expect(ev).to.exist;
+  const tag = defineCE(class extends mixin(LitElement) {});
+  const foo = document.createElement(`${tag}`);
+  setTimeout(() => foo.connectedCallback());
+  const { detail } = await oneEvent(foo, 'connected-callback');
+  expect(detail.isConnected).to.equal(true);
 });
 ```
