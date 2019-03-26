@@ -35,7 +35,7 @@ it('dispatches a custom event on firstUpdated', async () => {
 
 #### connectedCallback
 
-For `connectedCallback`, you can just call the function in a `setTimeout`.
+For `connectedCallback`, since this callback is fired immediately after calling `fixture`, you can't catch it anymore. You can just call the function in a `setTimeout` to trigger it again.
 
 ```js
 it('test', async () => {
