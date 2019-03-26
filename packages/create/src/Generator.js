@@ -1,4 +1,5 @@
 import path from 'path';
+import qoa from 'qoa';
 import commandLineArgs from 'command-line-args';
 
 import { copyTemplates, copyTemplate, copyTemplateJsonInto, installNpm } from './core.js';
@@ -40,14 +41,19 @@ class Generator {
   }
 
   async end() {
-    if (this.cliOptions['npm-install'] === '') {
-      // this.wantsNpmInstall = await askYesNo('Do you want to run npm install?'); // eslint-disable-line
-    } else {
-      this.wantsNpmInstall = this.cliOptions['npm-install'];
-    }
+    const { command } = await qoa.prompt([
+      {
+        type: 'interactive',
+        query: 'Do you want to install dependencies?',
+        handle: 'command',
+        symbol: '>',
+        menu: ['Yes, with yarn', 'Yes, with npm', 'No'],
+      },
+    ]);
 
-    if (this.wantsNpmInstall) {
-      await installNpm(this._destinationPath);
+    this.wantsNpmInstall = this.cliOptions['npm-install'];
+    if (this.wantsNpmInstall && command !== 'No') {
+      await installNpm(this._destinationPath, command.split('Yes, with ').slice(-1)[0]);
     }
   }
 }

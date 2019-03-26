@@ -2,15 +2,12 @@
 
 import fs from 'fs';
 import path from 'path';
-import util from 'util';
-import { exec, spawn } from 'child_process';
+import { spawn } from 'child_process';
 
 import glob from 'glob';
 import deepmerge from 'deepmerge';
 
 import Generator from './Generator.js';
-
-const execAsync = util.promisify(exec);
 
 export async function executeMixinGenerator(Mixin) {
   class Do extends Mixin(Generator) {}
@@ -99,18 +96,11 @@ function _install(command = 'npm', options) {
   });
 }
 
-export async function installNpm(where) {
+export async function installNpm(where, command) {
   console.log('');
   console.log('Installing dependencies...');
   console.log('This might take some time...');
-
-  const { stdout } = await execAsync('command -v yarn');
-  let command = 'npm';
-  if (stdout !== '') {
-    command = 'yarn';
-  }
   console.log(`Using ${command} to install...`);
-
   await _install(command, { cwd: where });
   console.log('');
 }
