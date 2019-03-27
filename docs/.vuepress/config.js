@@ -83,7 +83,14 @@ module.exports = {
       '/demoing/': sidebar,
       '/publishing/': sidebar,
       '/automating/': sidebar,
-      '/faq/': ['', 'rerender', 'unit-testing-custom-events'],
+      '/faq/': [
+        ['', 'Faq'],
+        {
+          title: 'Deep dives',
+          collapsable: true,
+          children: ['rerender', 'unit-testing-custom-events'],
+        },
+      ],
       '/about/': [['/about/', 'About'], '/about/contact', '/about/rationales', '/about/blog'],
     },
     nav: [
