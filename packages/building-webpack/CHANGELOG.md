@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.1.0...@open-wc/building-webpack@1.1.1) (2019-03-27)
+
+
+### Bug Fixes
+
+* **building-webpack:** default webpack generator config and docs ([#321](https://github.com/open-wc/open-wc/issues/321)) ([c4f37a6](https://github.com/open-wc/open-wc/commit/c4f37a6))
+
+
+
+
+
 # [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.0.0...@open-wc/building-webpack@1.1.0) (2019-03-23)
 
 

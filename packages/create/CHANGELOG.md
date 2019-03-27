@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.5.3...@open-wc/create@0.5.4) (2019-03-27)
+
+
+### Bug Fixes
+
+* **building-webpack:** default webpack generator config and docs ([#321](https://github.com/open-wc/open-wc/issues/321)) ([c4f37a6](https://github.com/open-wc/open-wc/commit/c4f37a6))
+
+
+
+
+
 ## [0.5.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.5.2...@open-wc/create@0.5.3) (2019-03-27)
 
 
