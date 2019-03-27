@@ -19,11 +19,10 @@ cd open-wc
 Now that you have cloned the repository, run the following commands to set up the development environment.
 
 ```
-npm install
-npm run bootstrap
+yarn install
 ```
 
-Both commands will install packages like eslint which are necessary to make your changes.
+This will download and install all packages needed.
 
 # Making Your Changes
 

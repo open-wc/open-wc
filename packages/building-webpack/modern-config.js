@@ -90,8 +90,7 @@ module.exports = userOptions => {
       !development && new CleanWebpackPlugin(),
 
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, options.indexHTML),
-        inject: 'head',
+        template: options.indexHTML,
       }),
     ].filter(_ => !!_),
 

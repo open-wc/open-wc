@@ -24,14 +24,15 @@ npm i -D @open-wc/building-webpack webpack http-server webpack-dev-server
 
 If you don't need to support IE11 or other legacy browsers, use `@open-wc/building-webpack/modern-config`. Otherwise, use `@open-wc/building-webpack/modern-and-legacy-config`.
 ```javascript
-import createDefaultConfig from '@open-wc/building-webpack/modern-and-legacy-config';
+const { resolve } = require('path');
+const createDefaultConfig = require('@open-wc/building-webpack/modern-and-legacy-config');
 
 // If you don't need IE11 support, use the modern-config instead
 // import createDefaultConfig from '@open-wc/building-webpack/modern-config';
 
-export default createDefaultConfig({
-  entry: path.resolve(__dirname, './my-app.js'),
-  indexHTML: path.resolve(__dirname, './index.html'),
+module.exports = createDefaultConfig({
+  entry: resolve(__dirname, './src/index.js'),
+  indexHTML: resolve(__dirname, './src/index.html'),
 });
 ```
 
@@ -68,7 +69,7 @@ Do **not** put IE11 in your `.browserslistrc`. `modern-and-legacy-config` alread
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --open",
-    "start:build": "http-server dist -o",
+    "start:build": "http-server dist -o"
   }
 }
 ```

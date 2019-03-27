@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.5.3...@open-wc/create@0.5.4) (2019-03-27)
+
+
+### Bug Fixes
+
+* **building-webpack:** default webpack generator config and docs ([#321](https://github.com/open-wc/open-wc/issues/321)) ([c4f37a6](https://github.com/open-wc/open-wc/commit/c4f37a6))
+
+
+
+
+
+## [0.5.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.5.2...@open-wc/create@0.5.3) (2019-03-27)
+
+
+### Bug Fixes
+
+* **create:** fix generator install deps for Windows ([c8bbaf9](https://github.com/open-wc/open-wc/commit/c8bbaf9))
+
+
+
+
+
+## [0.5.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.5.1...@open-wc/create@0.5.2) (2019-03-27)
+
+
+### Bug Fixes
+
+* **create:** install should only be executed once ([84fb08f](https://github.com/open-wc/open-wc/commit/84fb08f))
+
+
+
+
+
+## [0.5.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.5.0...@open-wc/create@0.5.1) (2019-03-26)
+
+
+### Bug Fixes
+
+* **create:** fix bug and allow user to choose package manager ([aecc42a](https://github.com/open-wc/open-wc/commit/aecc42a))
+
+
+
+
+
 # [0.5.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.4.1...@open-wc/create@0.5.0) (2019-03-24)
 
 
