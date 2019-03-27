@@ -43,6 +43,6 @@ it('test', async () => {
   const foo = document.createElement(`${tag}`);
   setTimeout(() => foo.connectedCallback());
   const ev = await oneEvent(foo, 'connected-callback');
-  expect(detail.isConnected).to.equal(true);
+  expect(ev).to.exist;
 });
 ```
