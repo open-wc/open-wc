@@ -42,7 +42,7 @@ it('test', async () => {
   const tag = defineCE(class extends mixin(LitElement) {});
   const foo = document.createElement(`${tag}`);
   setTimeout(() => foo.connectedCallback());
-  const { detail } = await oneEvent(foo, 'connected-callback');
+  const ev = await oneEvent(foo, 'connected-callback');
   expect(detail.isConnected).to.equal(true);
 });
 ```
