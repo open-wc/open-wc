@@ -7,7 +7,7 @@ import { parseCliOptions } from './helpers.js';
 
 const optionDefinitions = [
   { name: 'tag-name', type: String, defaultValue: '' },
-  { name: 'npm-install', type: String, defaultValue: 'true' }, // set to emptry string later
+  { name: 'npm-install', type: String, defaultValue: '' },
   { name: 'scaffold', type: String, defaultValue: '' },
 ];
 
@@ -17,7 +17,7 @@ class Generator {
   constructor() {
     this._destinationPath = process.cwd();
     this.templateData = {};
-    this.wantsNpmInstall = '';
+    this.wantsNpmInstall = true;
     this.cliOptions = parseCliOptions(cliOptions);
   }
 
@@ -41,19 +41,36 @@ class Generator {
   }
 
   async end() {
-    const { command } = await qoa.prompt([
-      {
-        type: 'interactive',
-        query: 'Do you want to install dependencies?',
-        handle: 'command',
-        symbol: '>',
-        menu: ['Yes, with yarn', 'Yes, with npm', 'No'],
-      },
-    ]);
+    if (this.cliOptions['npm-install'] !== '') {
+      this.wantsNpmInstall = this.cliOptions['npm-install'];
+    }
+    if (this.wantsNpmInstall) {
+      let command = 'No';
+      if (this.cliOptions['npm-install'] === 'yarn') {
+        command = 'yarn';
+      }
+      if (this.cliOptions['npm-install'] === 'npm') {
+        command = 'npm';
+      }
+      if (command === 'No') {
+        const result = await qoa.prompt([
+          {
+            type: 'interactive',
+            query: 'Do you want to install dependencies?',
+            handle: 'command',
+            symbol: '>',
+            menu: ['Yes, with yarn', 'Yes, with npm', 'No'],
+          },
+        ]);
+        if (result.command !== 'No') {
+          // eslint-disable-next-line prefer-destructuring
+          command = result.command.split('Yes, with ').slice(-1)[0];
+        }
+      }
 
-    this.wantsNpmInstall = this.cliOptions['npm-install'];
-    if (this.wantsNpmInstall && command !== 'No') {
-      await installNpm(this._destinationPath, command.split('Yes, with ').slice(-1)[0]);
+      if (command !== 'No') {
+        await installNpm(this._destinationPath, command);
+      }
     }
   }
 }
