@@ -1,7 +1,14 @@
 const path = require('path');
 const mkdirp = require('mkdirp');
 const { copyFileSync, existsSync } = require('fs');
-const { query, queryAll, predicates, getAttribute, append, remove } = require('dom5');
+const {
+  query,
+  queryAll,
+  predicates,
+  getAttribute,
+  append,
+  remove,
+} = require('../../dom5-fork/index.js');
 const {
   readHTML,
   writeOutputHTML,

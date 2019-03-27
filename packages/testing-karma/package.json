@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma",
-  "version": "0.4.14",
+  "version": "0.4.15",
   "description": "Testing with karma following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -20,12 +20,15 @@
     "test:es5:bs": "karma start demo/karma.es5.bs.config.js",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
+  "files": [
+    "*.js"
+  ],
   "dependencies": {
     "@babel/core": "^7.3.3",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
-    "@open-wc/webpack-import-meta-loader": "^0.1.3",
+    "@open-wc/webpack-import-meta-loader": "^0.2.0",
     "@webcomponents/webcomponentsjs": "^2.2.0",
     "babel-loader": "^8.0.0",
     "istanbul-instrumenter-loader": "^3.0.0",

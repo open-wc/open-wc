@@ -93,6 +93,7 @@ function createConfig(options, legacy) {
     },
 
     plugins: [
+      // @ts-ignore
       !development && new CleanWebpackPlugin(),
 
       new HtmlWebpackPlugin({

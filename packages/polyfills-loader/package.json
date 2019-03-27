@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/polyfills-loader",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "main": "polyfills-loader.js",
   "description": "Load web component polyfills using dynamic imports",
   "author": "open-wc",
@@ -18,6 +18,10 @@
     "open-wc",
     "polyfill",
     "web-components"
+  ],
+  "files": [
+    "src",
+    "*.js"
   ],
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"

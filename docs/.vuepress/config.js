@@ -15,6 +15,7 @@ const sidebar = [
       ['/developing/', 'Getting started'],
       '/developing/owc-dev-server',
       ['/developing/create', 'Generators'],
+      '/developing/types',
     ],
   },
   {
@@ -24,6 +25,7 @@ const sidebar = [
       ['/linting/', 'Getting started'],
       '/linting/linting-eslint',
       '/linting/linting-prettier',
+      '/linting/linting-types',
     ],
   },
   {

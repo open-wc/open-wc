@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "0.1.6",
+  "version": "0.2.1",
   "description": "Default configuration for working with rollup",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -15,15 +15,15 @@
   },
   "scripts": {
     "build:demo": "rimraf dist && rollup -c demo/js/rollup.config.js",
-    "start:demo": "http-server dist -o",
-    "watch:demo": "rimraf dist && rollup -c demo/js/rollup.config.js --watch & http-server dist -o",
+    "start:demo": "http-server dist -o -c-1",
+    "watch:demo": "rimraf dist && rollup -c demo/js/rollup.config.js --watch & http-server dist -o -c-1",
     "visualizer:demo": "rimraf dist && rollup -c demo/rollup.visualizer.config.js",
     "build:modern": "rimraf dist && rollup -c demo/js/rollup.modern.config.js",
-    "watch:modern": "rimraf dist && rollup -c demo/js/rollup.modern.config.js --watch & http-server dist -o",
+    "watch:modern": "rimraf dist && rollup -c demo/js/rollup.modern.config.js --watch & http-server dist -o -c-1",
     "build:ts": "rimraf dist && rollup -c demo/ts/rollup.config.js",
-    "watch:ts": "rimraf dist && rollup -c demo/ts/rollup.config.js --watch & http-server dist -o",
+    "watch:ts": "rimraf dist && rollup -c demo/ts/rollup.config.js --watch & http-server dist -o -c-1",
     "build:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js",
-    "watch:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js --watch & http-server dist -o",
+    "watch:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js --watch & http-server dist -o -c-1",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "keywords": [
@@ -31,6 +31,12 @@
     "web-components",
     "modules",
     "rollup"
+  ],
+  "files": [
+    "dom5-fork",
+    "plugins",
+    "src",
+    "*.js"
   ],
   "dependencies": {
     "@babel/core": "^7.3.3",
@@ -40,7 +46,6 @@
     "@babel/preset-env": "^7.0.0",
     "@webcomponents/webcomponentsjs": "^2.2.0",
     "babel-plugin-bundled-import-meta": "^0.3.0",
-    "dom5": "^3.0.1",
     "mkdirp": "^0.5.1",
     "parse5": "^5.1.0",
     "rollup-plugin-babel": "^4.3.2",
@@ -56,7 +61,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "http-server": "^0.11.1",
     "lit-element": "^2.0.1",
-    "owc-dev-server": "^0.2.1",
+    "owc-dev-server": "^0.3.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.4.0",
     "rollup-plugin-cpy": "^1.1.0",

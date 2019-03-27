@@ -43,7 +43,7 @@ function sortAttributes(attrs) {
 /**
  * Normalized AST tree, normlaizing whitespace, attribute + class order etc. Not a pure function,
  * mutates input.
- * @param {ASTNode} node
+ * @param {import('parse5').DefaultTreeElement} node
  * @param {string[]} ignoredTags
  */
 export function normalizeAST(node, ignoredTags = []) {
@@ -53,6 +53,7 @@ export function normalizeAST(node, ignoredTags = []) {
 
   if (isParentNode(node)) {
     node.childNodes = node.childNodes.filter(child => filterNode(child, ignoredTags));
+    // @ts-ignore
     node.childNodes.forEach(child => normalizeAST(child, ignoredTags));
   }
 }

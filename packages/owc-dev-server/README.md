@@ -28,6 +28,11 @@ Note: import paths are only resolved within `.js` files. This means you cannot d
 </html>
 ```
 
+::: warning
+Please note that the owc-dev-server *only resolves bare module specifiers*, and does nothing to transform different module formats like [CommonJS](https://requirejs.org/docs/commonjs.html). If this is a requirement for you, please check out our [rollup configuration](/building/building-rollup/).
+:::
+
+
 ### Usage
 ```bash
 npm i -D owc-dev-server

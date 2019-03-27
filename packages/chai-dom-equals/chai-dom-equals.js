@@ -3,8 +3,12 @@ import { getDiffableSemanticHTML } from '@open-wc/semantic-dom-diff';
 /**
  * el.outerHTML is not polyfilled so we need to recreate the tag + attributes and
  * combine it with el.innerHTML.
+ *
+ * @param {Element} el Element you want to get the out Html from
+ * @returns {String} outer html
  */
 export const getOuterHtml = el => {
+  // @ts-ignore
   if (window.ShadyCSS && window.ShadyCSS.nativeShadow === false) {
     const tagName = el.tagName.toLowerCase();
     let attributes = ' ';
@@ -21,8 +25,12 @@ export const getOuterHtml = el => {
 /**
  * For comparision we do not need the style scoping classes on polyfilled browsers
  * Rather naive approach for now - probably need to improve once we have failing cases.
+ *
+ * @param {Element} el Element you want to get the cleaned shadow dom
+ * @returns {String} cleaned shadow dom
  */
 export const getCleanedShadowDom = el => {
+  // @ts-ignore
   if (window.ShadyCSS && window.ShadyCSS.nativeShadow === false) {
     const tagName = el.tagName.toLowerCase();
     const regexTagName = new RegExp(tagName, 'g');
@@ -36,16 +44,27 @@ export const getCleanedShadowDom = el => {
   return el.shadowRoot.innerHTML;
 };
 
+/**
+ * Setup the
+ *
+ * Note: can not be an arrow function as it gets rebound
+ *
+ * @param {any} chai
+ * @param {any} utils
+ */
 export const chaiDomEquals = (chai, utils) => {
-  // can not be an arrow function as it gets rebound
   chai.Assertion.addProperty('dom', function dom() {
+    // @ts-ignore
     new chai.Assertion(this._obj.nodeType).to.equal(1);
+    // @ts-ignore
     utils.flag(this, 'dom', true);
   });
 
   // can not be an arrow function as it gets rebound
   chai.Assertion.addProperty('shadowDom', function shadowDom() {
+    // @ts-ignore
     new chai.Assertion(this._obj.nodeType).to.equal(1);
+    // @ts-ignore
     utils.flag(this, 'shadowDom', true);
   });
 
@@ -53,15 +72,19 @@ export const chaiDomEquals = (chai, utils) => {
   // TODO: this is here for backwards compatibility, removal will be
   // a breaking change
   chai.Assertion.addProperty('semantically', function shadowDom() {
+    // @ts-ignore
     new chai.Assertion(this._obj.nodeType).to.equal(1);
+    // @ts-ignore
     utils.flag(this, 'semantically', true);
   });
 
   // can not be an arrow function as it gets rebound
   // prettier-ignore
   const domEquals = _super => function handleDom(value, ...args) {
+    // @ts-ignore
     if (utils.flag(this, 'dom')) {
       const expectedHTML = getDiffableSemanticHTML(value);
+      // @ts-ignore
       const actualHTML = getDiffableSemanticHTML(getOuterHtml(this._obj));
 
       // use chai's built-in string comparison, log the updated snapshot on error
@@ -76,8 +99,10 @@ export const chaiDomEquals = (chai, utils) => {
         throw error;
       }
 
+    // @ts-ignore
     } else if (utils.flag(this, 'shadowDom')) {
       const expectedHTML = getDiffableSemanticHTML(value);
+      // @ts-ignore
       const actualHTML = getDiffableSemanticHTML(getCleanedShadowDom(this._obj));
 
       // use chai's built-in string comparison, log the updated snapshot on error
@@ -93,6 +118,7 @@ export const chaiDomEquals = (chai, utils) => {
       }
 
     } else {
+      // @ts-ignore
       _super.apply(this, [value, ...args]);
     }
   };

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.17](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@0.2.16...@open-wc/testing-karma-bs@0.2.17) (2019-03-24)
+
+
+### Bug Fixes
+
+* adjust generator-open-wc links to create ([cc014b1](https://github.com/open-wc/open-wc/commit/cc014b1))
+
+
+
+
+
+## [0.2.16](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@0.2.15...@open-wc/testing-karma-bs@0.2.16) (2019-03-23)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
 ## [0.2.15](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@0.2.14...@open-wc/testing-karma-bs@0.2.15) (2019-03-08)
 
 **Note:** Version bump only for package @open-wc/testing-karma-bs

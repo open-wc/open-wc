@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.1.3...@open-wc/webpack-import-meta-loader@0.2.0) (2019-03-23)
+
+
+### Features
+
+* add types + linting & improve intellisense ([b6d260c](https://github.com/open-wc/open-wc/commit/b6d260c))
+
+
+
+
+
 ## [0.1.3](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.1.2...@open-wc/webpack-import-meta-loader@0.1.3) (2019-03-08)
 
 **Note:** Version bump only for package @open-wc/webpack-import-meta-loader

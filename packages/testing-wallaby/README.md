@@ -13,7 +13,7 @@ npm init @open-wc testing-wallaby
 ```
 
 ### Manual
-1. Copy the [config](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/testing-wallaby/templates/static/wallaby.js) and save it as `wallaby.js` into your project root
+1. Copy the [config](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/testing-wallaby/templates/static/wallaby.js) and save it as `wallaby.js` into your project root
 1. `yarn add @open-wc/testing-wallaby --dev`
 
 ## Usage

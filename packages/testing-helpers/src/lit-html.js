@@ -18,6 +18,10 @@ export { render } from 'lit-html/lit-html.js';
  * html`<${tag} prop="${prop}"></${tag>`
  * // will in turn calls lit-html html function as:
  * html`<my-tag prop="${prop}"></my-tag>`
+ *
+ * @param {TemplateStringsArray} strings Static Parts
+ * @param {Array[any]} values Dynamic Parts
+ * @returns {import('lit-html').TemplateResult}
  */
 export function html(strings, ...values) {
   const newVal = []; // result values to be passed on to lit-html
@@ -49,6 +53,9 @@ export function html(strings, ...values) {
     }
   });
   // Return lit template
+  // TODO: this is the reason it's not performant TemplateStringsArray needs to be always exactly
+  //   the same => e.g. would require specific caching
+  // @ts-ignore
   return litHtml(newStr, ...newVal);
 }
 
