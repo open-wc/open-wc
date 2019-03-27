@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/semantic-dom-diff",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "description": "To compare dom and shadow dom trees. Part of open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -25,13 +25,14 @@
     "test:es5": "karma start karma.es5.config.js",
     "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
     "postinstall": "rollup -c rollup.config.js",
-     "prepublishOnly": "../../scripts/insert-header.js && rollup -c rollup.config.js"
+    "prepublishOnly": "../../scripts/insert-header.js && rollup -c rollup.config.js"
   },
   "devDependencies": {
     "@bundled-es-modules/chai": "^4.2.0",
     "@open-wc/testing-karma": "^0.4.15",
     "@open-wc/testing-karma-bs": "^0.2.17",
     "@open-wc/testing-wallaby": "^0.1.12",
+    "htmlparser2": "^3.10.1",
     "mocha": "^5.0.0",
     "rollup": "^1.7.2",
     "rollup-plugin-commonjs": "^9.2.1",
@@ -40,7 +41,6 @@
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-node-resolve": "^4.0.1",
     "rollup-plugin-terser": "^4.0.4",
-    "webpack-merge": "^4.1.5",
-    "htmlparser2": "^3.10.1"
+    "webpack-merge": "^4.1.5"
   }
 }
