@@ -46,6 +46,7 @@
     "@babel/preset-env": "^7.0.0",
     "@webcomponents/webcomponentsjs": "^2.2.0",
     "babel-plugin-bundled-import-meta": "^0.3.0",
+    "clone": "2.1.2",
     "mkdirp": "^0.5.1",
     "parse5": "^5.1.0",
     "rollup-plugin-babel": "^4.3.2",
