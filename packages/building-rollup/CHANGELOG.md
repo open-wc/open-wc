@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.2.1...@open-wc/building-rollup@0.2.2) (2019-03-27)
+
+
+### Bug Fixes
+
+* **building-rollup:** Add missing dependency ([#326](https://github.com/open-wc/open-wc/issues/326)) ([60d0fec](https://github.com/open-wc/open-wc/commit/60d0fec))
+
+
+
+
+
 ## [0.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.2.0...@open-wc/building-rollup@0.2.1) (2019-03-23)
 
 
