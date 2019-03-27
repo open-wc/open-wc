@@ -13,7 +13,7 @@ This is an OPTIONAL recommendation. You will need to opt-in by running the gener
 
 ## Manual
 - `yarn add --dev typescript`
-- Copy [tsconfig.js](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/linting-types-js/templates/static/tsconfig.json) to `tsconfig.json`
+- Copy [tsconfig.json](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/linting-types-js/templates/static/tsconfig.json) to `tsconfig.json`
 - Add these scripts to your package.json
   ```js
   "scripts": {
