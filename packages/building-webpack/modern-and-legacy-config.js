@@ -97,7 +97,7 @@ function createConfig(options, legacy) {
       !development && new CleanWebpackPlugin(),
 
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, options.indexHTML),
+        template: options.indexHTML,
         inject: false,
       }),
 
