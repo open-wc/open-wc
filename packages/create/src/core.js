@@ -101,6 +101,6 @@ export async function installNpm(where, command) {
   console.log('Installing dependencies...');
   console.log('This might take some time...');
   console.log(`Using ${command} to install...`);
-  await _install(command, { cwd: where });
+  await _install(command, { cwd: where, shell: true });
   console.log('');
 }
