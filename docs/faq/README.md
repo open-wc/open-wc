@@ -10,12 +10,12 @@ In this section you can find answers to frequently asked questions regarding jav
 - [Unit testing custom events](./unit-testing-custom-events.html)
 
 
-### Custom elements render life cycle
+## Custom elements render life cycle
 
 <iframe src="https://andyogo.github.io/custom-element-reactions-diagram/" style="width: 940px; border: none;margin-left: -100px; height: 1350px;"></iframe>
 
 
-### How can I set `:host` width via a property?
+## How can I set `:host` width via a property?
 
 The following example features 3 variations:
 - `disabled` style differently if a property is set
@@ -60,7 +60,7 @@ class MyEl extends LitElement {
 }
 ```
 
-### Checkbox's 'checked' attribute does not match the property
+## Checkbox's 'checked' attribute does not match the property
 
 Many elements reflect their properties as attributes, and vice versa, like for example the `disabled` attribute on a button.
 
