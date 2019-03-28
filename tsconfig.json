@@ -27,6 +27,7 @@
     "**/node_modules/*",
     "**/coverage/*",
     "packages/create/src/generators/*/templates/**/*",
+    "packages/semantic-dom-diff/index.js",
     "**/dist/*"
   ]
 }

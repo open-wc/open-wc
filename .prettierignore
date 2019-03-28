@@ -3,3 +3,4 @@ coverage/
 /packages/create/src/generators/*/templates/**/*
 dist
 stats.html
+packages/semantic-dom-diff/index.js

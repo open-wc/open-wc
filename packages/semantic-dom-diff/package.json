@@ -24,7 +24,8 @@
     "test:watch": "karma start --auto-watch=true --single-run=false",
     "test:es5": "karma start karma.es5.config.js",
     "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
-    "prepublishOnly": "../../scripts/insert-header.js && rollup -c rollup.config.js"
+    "prepublish": "rollup -c rollup.config.js",
+    "prepublishOnly": "../../scripts/insert-header.js"
   },
   "devDependencies": {
     "@bundled-es-modules/chai": "^4.2.0",
