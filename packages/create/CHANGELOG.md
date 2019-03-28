@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.5.4...@open-wc/create@0.5.5) (2019-03-28)
+
+
+### Bug Fixes
+
+* **create:** add browserslistrc ([#331](https://github.com/open-wc/open-wc/issues/331)) ([e6c6924](https://github.com/open-wc/open-wc/commit/e6c6924))
+
+
+
+
+
 ## [0.5.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.5.3...@open-wc/create@0.5.4) (2019-03-27)
 
 
