@@ -8,6 +8,7 @@ In this section you can find answers to frequently asked questions regarding jav
 **Deep dives:**
 - [Rerender not triggered](./rerender.html)
 - [Unit testing custom events](./unit-testing-custom-events.html)
+- [Unit testing initialization error](./unit-testing-init-error.html)
 
 
 ## Custom elements render life cycle
