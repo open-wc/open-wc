@@ -8,8 +8,8 @@ import { terser } from 'rollup-plugin-terser';
 export default {
   input: 'src/get-diffable-html.js',
   output: {
-    file: 'dist/get-diffable-html.js',
-    intro: '// @ts-nocheck\n/* istanbul ignore file */',
+    file: 'bundle/get-diffable-html.js',
+    intro: '// @ts-nocheck\n/* istanbul ignore file */\n/* eslint-disable */',
     format: 'esm',
   },
   plugins: [
@@ -22,7 +22,9 @@ export default {
       output: {
         comments(node, comment) {
           return (
-            comment.value.includes('@ts-nocheck') || comment.value.includes('istanbul ignore file')
+            comment.value.includes('@ts-nocheck') ||
+            comment.value.includes('istanbul ignore file') ||
+            comment.value.includes('eslint-disable')
           );
         },
       },

@@ -19,13 +19,13 @@
     "index.js"
   ],
   "scripts": {
+    "build": "rollup -c rollup.config.js",
     "test": "karma start",
     "test:es5:bs": "karma start karma.es5.bs.config.js",
     "test:watch": "karma start --auto-watch=true --single-run=false",
     "test:es5": "karma start karma.es5.config.js",
     "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
-    "postinstall": "rollup -c rollup.config.js",
-    "prepublishOnly": "../../scripts/insert-header.js && rollup -c rollup.config.js"
+    "prepublishOnly": "../../scripts/insert-header.js"
   },
   "devDependencies": {
     "@bundled-es-modules/chai": "^4.2.0",
