@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.2](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.1...@open-wc/semantic-dom-diff@0.9.2) (2019-03-29)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** publish bundle ([#337](https://github.com/open-wc/open-wc/issues/337)) ([2d62772](https://github.com/open-wc/open-wc/commit/2d62772))
+
+
+
+
+
 ## [0.9.1](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.0...@open-wc/semantic-dom-diff@0.9.1) (2019-03-28)
 
 
