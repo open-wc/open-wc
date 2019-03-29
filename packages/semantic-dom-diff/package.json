@@ -15,7 +15,7 @@
   },
   "module": "index.js",
   "files": [
-    "dist",
+    "bundle",
     "index.js"
   ],
   "scripts": {
