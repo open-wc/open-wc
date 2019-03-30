@@ -20,11 +20,11 @@
   ],
   "scripts": {
     "build": "rollup -c rollup.config.js",
-    "test": "karma start",
-    "test:es5:bs": "karma start karma.es5.bs.config.js",
+    "test": "karma start --coverage",
     "test:watch": "karma start --auto-watch=true --single-run=false",
-    "test:es5": "karma start karma.es5.config.js",
-    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
+    "test:legacy": "karma start --legacy --coverage",
+    "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false",
+    "test:bs": "karma start karma.bs.conf.js --legacy --coverage",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "devDependencies": {

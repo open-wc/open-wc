@@ -15,8 +15,8 @@
     "site:start": "npm run vuepress:start",
     "test": "karma start --coverage",
     "test:ci": "lerna run test:ci",
-    "test:legacy": "karma start --legacy",
-    "test:bs": "karma start karma.bs.conf.js --legacy",
+    "test:legacy": "karma start --legacy --coverage",
+    "test:bs": "karma start karma.bs.conf.js --legacy --coverage",
     "vuepress:build": "vuepress build docs",
     "vuepress:start": "vuepress dev docs"
   },
