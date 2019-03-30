@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.1.1...@open-wc/building-webpack@1.1.2) (2019-03-30)
+
+
+### Bug Fixes
+
+* **building-webpack:** allow to provide a publicPath ([2f54a78](https://github.com/open-wc/open-wc/commit/2f54a78))
+
+
+
+
+
 ## [1.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.1.0...@open-wc/building-webpack@1.1.1) (2019-03-27)
 
 
