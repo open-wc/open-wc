@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const merge = require('webpack-merge');
-const karmaEs5Config = require('./karma.es5.config.js');
+const baseConfig = require('./karma.conf.js');
 
 if (!process.env.BROWSER_STACK_USERNAME || !process.env.BROWSER_STACK_ACCESS_KEY) {
   throw new Error(`
@@ -16,7 +16,7 @@ if (!process.env.BROWSER_STACK_USERNAME || !process.env.BROWSER_STACK_ACCESS_KEY
 
 module.exports = config => {
   config.set(
-    merge(karmaEs5Config(config), {
+    merge(baseConfig(config), {
       browserStack: {
         username: process.env.BROWSER_STACK_USERNAME,
         accessKey: process.env.BROWSER_STACK_ACCESS_KEY,

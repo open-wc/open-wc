@@ -1751,23 +1751,24 @@
   version "0.4.15"
   dependencies:
     "@babel/core" "^7.3.3"
+    "@babel/plugin-syntax-dynamic-import" "^7.2.0"
     "@babel/plugin-syntax-import-meta" "^7.2.0"
     "@babel/polyfill" "^7.0.0"
     "@babel/preset-env" "^7.0.0"
     "@open-wc/webpack-import-meta-loader" "^0.2.0"
     "@webcomponents/webcomponentsjs" "^2.2.0"
     babel-loader "^8.0.0"
+    babel-plugin-bundled-import-meta "^0.3.0"
     istanbul-instrumenter-loader "^3.0.0"
     karma "^4.0.0"
     karma-chrome-launcher "^2.0.0"
     karma-coverage-istanbul-reporter "^2.0.0"
-    karma-firefox-launcher "^1.0.0"
     karma-mocha "^1.0.0"
     karma-mocha-reporter "^2.0.0"
     karma-source-map-support "^1.3.0"
     karma-sourcemap-loader "^0.3.0"
     karma-static "^1.0.1"
-    karma-webpack "^5.0.0-alpha.0"
+    karma-webpack "^5.0.0-alpha.2"
     webpack "^4.28.0"
 
 "@reach/router@^1.2.1":
@@ -10430,11 +10431,6 @@ karma-coverage-istanbul-reporter@^2.0.0:
     istanbul-api "^2.1.1"
     minimatch "^3.0.4"
 
-karma-firefox-launcher@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/karma-firefox-launcher/-/karma-firefox-launcher-1.1.0.tgz#2c47030452f04531eb7d13d4fc7669630bb93339"
-  integrity sha512-LbZ5/XlIXLeQ3cqnCbYLn+rOVhuMIK9aZwlP6eOLGzWdo1UVp7t6CN3DP4SafiRLjexKwHeKHDm0c38Mtd3VxA==
-
 karma-mocha-reporter@^2.0.0:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/karma-mocha-reporter/-/karma-mocha-reporter-2.2.5.tgz#15120095e8ed819186e47a0b012f3cd741895560"
@@ -10472,7 +10468,7 @@ karma-static@^1.0.1:
   dependencies:
     serve-static "^1.13.1"
 
-karma-webpack@^5.0.0-alpha.0:
+karma-webpack@^5.0.0-alpha.2:
   version "5.0.0-alpha.3.0"
   resolved "https://registry.yarnpkg.com/karma-webpack/-/karma-webpack-5.0.0-alpha.3.0.tgz#896817100d4ab917e3e3035cb735de8471aab865"
   integrity sha512-ID2xYs8CnvPPbOCdj/ridr0w9l0vmuZem7hJP7yEXVQ94KhFG++IrTH1qj+EUO4ymll3ECLCw6N+nQIY/Nvj1w==

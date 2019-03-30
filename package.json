@@ -13,10 +13,10 @@
     "publish": "lerna publish --message 'chore: release new versions'",
     "site:build": "npm run vuepress:build",
     "site:start": "npm run vuepress:start",
-    "test": "karma start",
+    "test": "karma start --coverage",
     "test:ci": "lerna run test:ci",
-    "test:es5": "karma start karma.es5.config.js",
-    "test:es5:bs": "karma start karma.es5.bs.config.js",
+    "test:legacy": "karma start --legacy",
+    "test:bs": "karma start karma.bs.conf.js --legacy",
     "vuepress:build": "vuepress build docs",
     "vuepress:start": "vuepress dev docs"
   },
