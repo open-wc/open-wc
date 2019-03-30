@@ -6,20 +6,22 @@
 ```bash
 yarn add @open-wc/semantic-dom-diff --dev
 ```
-`semantic-dom-diff` exports a function which takes a string of HTML, and returns a string of HTML. It restructures given HTML string, returning it in a format which can be used for comparison:
+`semantic-dom-diff` exports a function which takes a string of HTML and returns a string of HTML, restructuring it so that it can be easily compared:
 - whitespace and newlines are normalized
 - tags and attributes are printed on individual lines
-- comments, style and script tags are removed
-- additional tags and attributes can optionally be ignored
+- comments are removed
+- style, script and svg contents are removed
+
+Additional options can be configured.
 
 ## Basic usage
 ```javascript
-import { getDiffableSemanticHTML } from '@open-wc/semantic-dom-diff';
+import { getDiffableHTML } from '@open-wc/semantic-dom-diff';
 
-const leftTree = getDiffableSemanticHTML(`
+const leftTree = getDiffableHTML(`
   <div>foo</div>
 `);
-const rightTree = getDiffableSemanticHTML(`
+const rightTree = getDiffableHTML(`
   <div>bar</div>
 `);
 
@@ -32,15 +34,15 @@ When working with libraries or custom elements there might be parts of the rende
 
 ### Ignoring an attribute
 ```javascript
-import { getDiffableSemanticHTML } from '@open-wc/semantic-dom-diff';
+import { getDiffableHTML } from '@open-wc/semantic-dom-diff';
 
-const leftTree = getDiffableSemanticHTML(`
+const leftTree = getDiffableHTML(`
   <div data-my-attribute="someRandomlyGeneratedDataInAnAttribute">
     foo
   </div>
 `, { ignoreAttributes: ['data-my-attribute'] });
 
-const rightTree = getDiffableSemanticHTML(`
+const rightTree = getDiffableHTML(`
   <div>
     foo
   </div>
@@ -53,15 +55,15 @@ expect(leftTree).to.equal(rightTree);
 ### Ignoring an attribute only for certain tags
 Randomly generated ids are often used, throwing off your diffs. You can ignore attributes on specific tags:
 ```javascript
-import { getDiffableSemanticHTML } from '@open-wc/semantic-dom-diff';
+import { getDiffableHTML } from '@open-wc/semantic-dom-diff';
 
-const leftTree = getDiffableSemanticHTML(`
+const leftTree = getDiffableHTML(`
   <div>
     <input id="someRandomlyGeneratedId">
   </div>
 `, { ignoreAttributes: [{ tags: ['input'], attributs: ['id'] }] });
 
-const rightTree = getDiffableSemanticHTML(`
+const rightTree = getDiffableHTML(`
   <div>
     <input>
   </div>
@@ -74,16 +76,16 @@ expect(leftTree).to.equal(rightTree);
 ### Ignoring a tag
 Similarly you can tell the diff to ignore certain tags entirely:
 ```javascript
-import { getDiffableSemanticHTML } from '@open-wc/semantic-dom-diff';
+import { getDiffableHTML } from '@open-wc/semantic-dom-diff';
 
-const leftTree = getDiffableSemanticHTML(`
+const leftTree = getDiffableHTML(`
   <div>
     <my-custom-element><my-custom-element>
     foo
   </div>
 `, { ignoreTags: ['my-custom-element'] });
 
-const rightTree = getDiffableSemanticHTML(`
+const rightTree = getDiffableHTML(`
   <div>
     foo
   </div>
@@ -93,13 +95,15 @@ const rightTree = getDiffableSemanticHTML(`
 expect(leftTree).to.equal(rightTree);
 ```
 
-### Ignoring light dom
-When working with web components you may find that they sometimes render to their light dom, for example to meet some accessibility requirements. We don't want to ignore the tag completely, as we would then not be able to test if we did render the tag. We can ignore just it's light dom:
+### Ignoring children
+When working with web components you may find that they sometimes render to their light dom, for example to meet some accessibility requirements. We don't want to ignore the tag completely, as we would then not be able to test if we did render the tag.
+
+We can ignore just it's light dom:
 
 ```javascript
-import { getDiffableSemanticHTML } from '@open-wc/semantic-dom-diff';
+import { getDiffableHTML } from '@open-wc/semantic-dom-diff';
 
-const leftTree = getDiffableSemanticHTML(`
+const leftTree = getDiffableHTML(`
   <div>
     <my-custom-input id="myInput">
       <input id="inputRenderedInLightDom">
@@ -107,9 +111,9 @@ const leftTree = getDiffableSemanticHTML(`
     </my-custom-input>
     foo
   </div>
-`, { ignoreLightDom: ['my-custom-element'] });
+`, { ignoreChildren: ['my-custom-element'] });
 
-const rightTree = getDiffableSemanticHTML(`
+const rightTree = getDiffableHTML(`
   <div>
     <my-custom-input id="myInput"></my-custom-input>
     foo
