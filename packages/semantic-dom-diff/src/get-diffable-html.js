@@ -1,358 +1,126 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import Parser from 'htmlparser2/lib/Parser';
+const NODES_IGNORE_CHILDREN = ['script', 'style', 'svg'];
 
-// https://www.w3.org/TR/html/syntax.html#writing-html-documents-elements
-const voidElements = [
-  'area',
-  'base',
-  'br',
-  'col',
-  'embed',
-  'hr',
-  'img',
-  'input',
-  'keygen',
-  'link',
-  'menuitem',
-  'meta',
-  'param',
-  'source',
-  'track',
-  'wbr',
-];
+export default function getDiffableHTML(html) {
+  let text = '';
+  let depth = -1;
+  /** @type {Set<Node>} */
+  const processedChildren = new Set();
+  /** @type {Set<Node>} */
+  const printedOpen = new Set();
 
-const defaultIgnoreTags = ['script', 'style'];
-function getIgnoreTags(options) {
-  return options.ignoreTags ? [...defaultIgnoreTags, ...options.ignoreTags] : defaultIgnoreTags;
-}
-
-export default function getDiffableHTML(html, options = {}) {
-  const tagsBeingIgnored = [];
-  const lightDomTagsBeingIgnored = [];
-  const ignoreTags = getIgnoreTags(options);
-  const ignoreAttributes = options.ignoreAttributes
-    ? options.ignoreAttributes.filter(e => typeof e === 'string')
-    : [];
-  const ignoreAttributesForTags = options.ignoreAttributes
-    ? options.ignoreAttributes.filter(e => typeof e !== 'string')
-    : [];
-  const ignoreLightDom = options.ignoreLightDom || [];
-  const elements = [];
-  const indentSize = 2;
-
-  let currentDepth = 0;
-
-  function isIgnoringTags() {
-    return tagsBeingIgnored.length > 0;
+  /** @returns {string} */
+  function getIndentation() {
+    return '  '.repeat(depth);
   }
 
-  function isIgnoringLightDom() {
-    return lightDomTagsBeingIgnored.length > 0;
-  }
+  /** @param {Text} textNode */
+  function printText(textNode) {
+    const value = textNode.nodeValue.trim();
 
-  function isIgnoring() {
-    return isIgnoringTags() || isIgnoringLightDom();
-  }
-
-  function onTagStartIgnored(tagName) {
-    tagsBeingIgnored.push(tagName);
-  }
-
-  function onTagEndIgnored(tagName) {
-    if (tagsBeingIgnored[tagsBeingIgnored.length - 1] === tagName) {
-      tagsBeingIgnored.splice(tagsBeingIgnored.length - 1, 1);
+    if (value !== '') {
+      text += `${getIndentation()}${value}\n`;
     }
   }
 
-  const increaseCurrentDepth = () => {
-    currentDepth += 1;
-  };
+  /** @param {Node} node */
+  function shouldProcessChildren(node) {
+    return (
+      NODES_IGNORE_CHILDREN.includes(node.nodeName.toLowerCase()) || processedChildren.has(node)
+    );
+  }
 
-  const decreaseCurrentDepth = () => {
-    currentDepth -= 1;
-  };
-
-  const getIndentation = size => ' '.repeat(size);
-
-  const getIndentationForDepth = depth => getIndentation(indentSize * depth);
-
-  const getCurrentIndentation = () => getIndentationForDepth(currentDepth);
-
-  const getAttributeIndentation = tagName =>
-    getIndentation(indentSize * currentDepth + tagName.length - 1);
-
-  const append = content => {
-    elements.push(content);
-  };
-
-  const appendLineBreak = () => {
-    append('\n');
-  };
-
-  const appendIndentation = depth => {
-    append(getIndentationForDepth(depth));
-  };
-
-  const appendCurrentIndentation = () => {
-    append(getCurrentIndentation());
-  };
-
-  const appendOpeningTag = name => {
-    append(`<${name}`);
-  };
-
-  const appendClosingTagOnSameLine = (closeWith = '>') => {
-    append(closeWith);
-  };
-
-  const appendClosingTagOnNewLine = (closeWith = '>') => {
-    appendLineBreak();
-    appendIndentation(currentDepth - 1);
-    append(closeWith);
-  };
-
-  const appendAttribute = (name, value) => {
-    let attribute = ` ${name}`;
-
-    if (value.length > 0) {
-      attribute += `="${value}"`;
+  /**
+   * @param {Element} el
+   * @param {Attr} attr
+   */
+  function getAttributeString(el, attr) {
+    if (attr.name === 'class') {
+      const sortedClasses = [...el.classList.values()].sort().join(' ');
+      return ` class="${sortedClasses}"`;
     }
+    return ` ${attr.name}="${attr.value}"`;
+  }
 
-    append(attribute);
-  };
-
-  const appendAttributeOnNewLine = (name, value, tagName) => {
-    appendLineBreak();
-    append(getAttributeIndentation(tagName));
-    appendAttribute(name, value);
-  };
-
-  const isIgnoredAttribute = (attribute, tagName) => {
-    if (ignoreAttributes.includes(attribute)) {
-      return true;
-    }
-
-    return !!ignoreAttributesForTags.find(e => {
-      if (!e.tags || !e.attributes) {
-        throw new Error(
-          `An object entry to ignoreAttributes should contain a 'tags' and an 'attributes' property.`,
-        );
+  /** @param {Element} el */
+  function getAttributesString(el) {
+    let attrStr = '';
+    const attributes = [...el.attributes].sort((a, b) => a.name.localeCompare(b.name));
+    if (attributes.length === 1) {
+      attrStr = getAttributeString(el, attributes[0]);
+    } else if (attributes.length > 1) {
+      for (let i = 0; i < attributes.length; i += 1) {
+        attrStr += `\n${getIndentation()} ${getAttributeString(el, attributes[i])}`;
       }
-
-      return e.tags.includes(tagName) && e.attributes.includes(attribute);
-    });
-  };
-
-  const filterignoreAttributes = (attributes, tagName) => {
-    const filteredAttributes = {};
-
-    Object.keys(attributes).forEach(key => {
-      if (!isIgnoredAttribute(key, tagName)) {
-        filteredAttributes[key] = attributes[key];
-      }
-    });
-
-    return filteredAttributes;
-  };
-
-  const appendAttributes = (attributes, tagName) => {
-    const names = Object.keys(attributes);
-
-    if (names.length === 1) {
-      appendAttribute(names[0], attributes[names[0]]);
+      attrStr += `\n${getIndentation()}`;
     }
 
-    if (names.length <= 1) {
+    return attrStr;
+  }
+
+  /** @param {Element} el */
+  function printOpenElement(el) {
+    if (el.localName === 'diff-container') {
       return;
     }
 
-    let firstAttribute = true;
-    Object.keys(attributes).forEach(name => {
-      if (firstAttribute === true) {
-        firstAttribute = false;
-        appendAttribute(name, attributes[name]);
-      } else {
-        appendAttributeOnNewLine(name, attributes[name], tagName);
-      }
-    });
-  };
+    text += `${getIndentation()}<${el.localName}${getAttributesString(el)}>\n`;
+    printedOpen.add(el);
+  }
 
-  const appendClosingTag = (attributes, closeWith) => {
-    if (Object.keys(attributes).length <= 1) {
-      appendClosingTagOnSameLine(closeWith);
+  /** @param {Node} node */
+  function printStart(node) {
+    if (node instanceof Text) {
+      printText(node);
+    } else if (node instanceof Element) {
+      printOpenElement(node);
+    } else {
+      throw new Error(`Unknown node type: ${node}`);
+    }
+  }
 
+  /** @param {Element} el */
+  function printCloseElement(el) {
+    if (el.localName === 'diff-container') {
       return;
     }
-    appendClosingTagOnNewLine(closeWith);
-  };
 
-  const render = () => elements.join('');
+    text += `${getIndentation()}</${el.localName}>\n`;
+  }
 
-  const isXmlDirective = name => name === '?xml';
-
-  const isVoidTagName = name => voidElements.indexOf(name) !== -1;
-
-  // https://www.w3.org/TR/html52/infrastructure.html#space-characters
-  // defines "space characters" to include SPACE, TAB, LF, FF, and CR.
-  const trimText = text => text.replace(/^[ \t\n\f\r]+|[ \t\n\f\r]+$/g, '');
-
-  const extractAttributesFromString = content => {
-    const attributes = {};
-
-    const pieces = content.split(/\s/);
-    // Remove tag name.
-    delete pieces[0];
-
-    pieces.forEach(element => {
-      if (element.length === 0) {
-        return;
-      }
-      if (element.indexOf('=') === -1) {
-        attributes[element] = '';
-      }
-    });
-
-    const attributesRegex = /(\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|[>"']))+.)["']?/gim;
-
-    let result;
-    /* eslint-disable-next-line no-cond-assign */
-    while ((result = attributesRegex.exec(content))) {
-      /* eslint-disable-next-line prefer-destructuring */
-      attributes[result[1]] = result[2];
+  /** @param {Node} node */
+  function printEnd(node) {
+    if (node instanceof Element) {
+      printCloseElement(node);
     }
+  }
 
-    return attributes;
-  };
+  const container = document.createElement('diff-container');
+  container.innerHTML = html;
 
-  const parser = new Parser(
-    {
-      onprocessinginstruction(tagName, data) {
-        if (isIgnoringTags()) {
-          return;
-        }
-
-        // don't print if we are ignoring light dom, unless this is the light dom container element
-        const isLightDomContainer =
-          lightDomTagsBeingIgnored.length === 1 && lightDomTagsBeingIgnored[0] === tagName;
-        if (isIgnoringLightDom() && !isLightDomContainer) {
-          return;
-        }
-
-        let closingTag = '>';
-        if (isXmlDirective(tagName)) {
-          closingTag = '?>';
-        }
-
-        appendLineBreak();
-        appendCurrentIndentation();
-        increaseCurrentDepth();
-        appendOpeningTag(tagName);
-
-        const attributes = extractAttributesFromString(data);
-        const filteredAttributes = filterignoreAttributes(attributes, tagName);
-        appendAttributes(filteredAttributes, tagName);
-        appendClosingTag(filteredAttributes, closingTag);
-        decreaseCurrentDepth();
-      },
-
-      onopentag(tagName, attributes) {
-        // if we should ignore this tag's light dom, we need to make sure we keep track of it even if it is already
-        // being ignored by a parent element
-        if (ignoreLightDom.includes(tagName)) {
-          lightDomTagsBeingIgnored.push(tagName);
-
-          // if this was not the first tag on the stack, it means this should not be printed
-          // if this was the first tag on the stack, we need to print it
-          if (lightDomTagsBeingIgnored.length > 1) {
-            return;
-          }
-
-          // else if a parent element's light dom is being ignored, we should not print this tag
-        } else if (lightDomTagsBeingIgnored.length > 0) {
-          return;
-        }
-
-        // we should start ignoring from this tag, don't print this tag
-        if (ignoreTags.includes(tagName)) {
-          onTagStartIgnored(tagName);
-          return;
-        }
-
-        // tags are being ignored, don't print this tag
-        if (isIgnoringTags()) {
-          return;
-        }
-
-        appendLineBreak();
-        appendCurrentIndentation();
-        increaseCurrentDepth();
-        appendOpeningTag(tagName);
-
-        const filteredAttributes = filterignoreAttributes(attributes, tagName);
-        appendAttributes(filteredAttributes, tagName);
-        appendClosingTag(filteredAttributes, '>');
-      },
-
-      ontext(text) {
-        if (isIgnoring()) {
-          return;
-        }
-
-        const trimmed = trimText(text);
-        if (trimmed.length === 0) {
-          return;
-        }
-
-        appendLineBreak();
-        appendCurrentIndentation();
-        append(trimmed);
-      },
-
-      onclosetag(tagName) {
-        if (isIgnoringTags()) {
-          onTagEndIgnored(tagName);
-          return;
-        }
-
-        if (isIgnoringLightDom()) {
-          // if closing a tag whose light dom is being ignored, remove it from the stack
-          if (lightDomTagsBeingIgnored[lightDomTagsBeingIgnored.length - 1] === tagName) {
-            lightDomTagsBeingIgnored.splice(lightDomTagsBeingIgnored.length - 1, 1);
-          }
-
-          // if the current tag is being ignored because it is in the light dom of a parent element
-          // whose light dom is being ignored, don't print it
-          if (lightDomTagsBeingIgnored.length > 0) {
-            return;
-          }
-        }
-
-        const isVoidTag = isVoidTagName(tagName);
-        if (isVoidTagName(tagName) === false) {
-          appendLineBreak();
-        }
-        decreaseCurrentDepth();
-        if (isVoidTag === true) {
-          return;
-        }
-        appendCurrentIndentation();
-        append(`</${tagName}>`);
-      },
-
-      oncomment() {
-        // comments are always ignored
-      },
-    },
-
-    {
-      lowerCaseTags: false,
-      recognizeSelfClosing: true,
-    },
+  const walker = document.createTreeWalker(
+    container,
+    NodeFilter.SHOW_TEXT + NodeFilter.SHOW_ELEMENT,
   );
-  parser.write(html);
-  parser.end();
+  while (walker.currentNode) {
+    const current = walker.currentNode;
+    if (!printedOpen.has(current)) {
+      printStart(current);
+    }
 
-  appendLineBreak();
+    if (!shouldProcessChildren(current) && walker.firstChild()) {
+      depth += 1;
+    } else {
+      printEnd(current);
+      if (!walker.nextSibling()) {
+        depth -= 1;
 
-  return render();
+        if (!walker.parentNode()) {
+          break;
+        }
+        processedChildren.add(walker.currentNode);
+      }
+    }
+  }
+
+  return text;
 }
