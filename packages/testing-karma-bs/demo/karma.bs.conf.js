@@ -1,11 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const merge = require('webpack-merge');
 const bsSettings = require('../bs-settings.js');
-const karmaEs5Config = require('./karma.es5.config.js');
+const createBaseConfig = require('./karma.conf.js');
 
 module.exports = config => {
   config.set(
-    merge(bsSettings(config), karmaEs5Config(config), {
+    merge(bsSettings(), createBaseConfig(config), {
       browserStack: {
         project: 'open-wc',
       },
