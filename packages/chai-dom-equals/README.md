@@ -1,12 +1,8 @@
-# Testing Chai Dom Equals
+# Chai Dom Equals
 
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
-Usually, you don't want to literally compare dom when testing your Web Components. Additionally, when using ShadyDOM and/or ShadyCSS there will be additional classes you are not interested in. This package provides a solution for that problem.
-
-::: tip
-This is part of the default [open-wc](https://open-wc.org/) recommendation
-:::
+`chai-dom-test` enables you to easily test the rendered dom of test fixture against a snapshot. It integrates [semantic-dom-diff](https://www.npmjs.com/package/@open-wc/semantic-dom-diff) with chai.
 
 ## Manual Setup
 

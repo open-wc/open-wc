@@ -157,6 +157,11 @@ describe('dom', () => {
     expect(el).dom.to.equal('<div><h1>Hey</h1></div>');
   });
 
+  it('passes along provided configuration', async () => {
+    const el = await fixture('<div foo="bar"></div>');
+    expect(el).dom.to.equal('<div></div>', { ignoreAttributes: ['foo'] });
+  });
+
   it('handles .semantically as backwards compatibility', async () => {
     const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
     expect(el).dom.to.semantically.equal('<div><h1>Hey</h1></div>');

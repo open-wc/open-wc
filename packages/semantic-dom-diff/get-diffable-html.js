@@ -205,6 +205,8 @@ export function getDiffableHTML(html, options = {}) {
   const walker = document.createTreeWalker(
     container,
     NodeFilter.SHOW_TEXT + NodeFilter.SHOW_ELEMENT,
+    null,
+    false,
   );
 
   // walk the dom and create a diffable string representation
