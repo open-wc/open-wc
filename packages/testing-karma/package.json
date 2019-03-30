@@ -16,8 +16,8 @@
   "scripts": {
     "test": "karma start demo/karma.conf.js --coverage",
     "test:watch": "karma start demo/karma.conf.js --auto-watch=true --single-run=false",
-    "test:legacy": "karma start demo/karma.conf.js --legacy --auto-watch=true --single-run=false",
-    "test:bs": "karma start demo/karma.bs.conf.js --legacy",
+    "test:legacy": "karma start demo/karma.conf.js --legacy --coverage",
+    "test:bs": "karma start demo/karma.bs.conf.js --legacy --coverage",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "files": [

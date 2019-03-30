@@ -22,16 +22,16 @@ npm init @open-wc testing-karma-bs
 
 ### Manual
 - `yarn add @open-wc/testing-karma-bs --dev`
-- Copy [karma.es5.bs.config.js](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/testing-karma-bs/templates/static/karma.es5.bs.config.js) to `karma.es5.bs.config.js`
+- Copy [karma.bs.config.js](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/testing-karma-bs/templates/static/karma.bs.config.js) to `karma.bs.config.js`
 - Add these scripts to your package.json
   ```js
   "scripts": {
-    "test:es5:bs": "karma start karma.es5.bs.config.js"
+    "test:bs": "karma start karma.bs.config.js --legacy --coverage"
   },
   ```
 
 ### Setup user + key
-- Go to https://www.browserstack.com/accounts/settings
+- Go to [https://www.browserstack.com/accounts/settings](https://www.browserstack.com/accounts/settings)
 - Look for "Automate" and write down your "Access Key" and "Username"
 
 ```bash
