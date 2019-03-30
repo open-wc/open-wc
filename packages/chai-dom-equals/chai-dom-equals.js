@@ -1,4 +1,4 @@
-import { getDiffableSemanticHTML } from '@open-wc/semantic-dom-diff';
+import { getDiffableHTML } from '@open-wc/semantic-dom-diff';
 
 /**
  * el.outerHTML is not polyfilled so we need to recreate the tag + attributes and
@@ -83,9 +83,9 @@ export const chaiDomEquals = (chai, utils) => {
   const domEquals = _super => function handleDom(value, ...args) {
     // @ts-ignore
     if (utils.flag(this, 'dom')) {
-      const expectedHTML = getDiffableSemanticHTML(value);
+      const expectedHTML = getDiffableHTML(value, args[0]);
       // @ts-ignore
-      const actualHTML = getDiffableSemanticHTML(getOuterHtml(this._obj));
+      const actualHTML = getDiffableHTML(getOuterHtml(this._obj), args[0]);
 
       // use chai's built-in string comparison, log the updated snapshot on error
       try {
@@ -101,9 +101,9 @@ export const chaiDomEquals = (chai, utils) => {
 
     // @ts-ignore
     } else if (utils.flag(this, 'shadowDom')) {
-      const expectedHTML = getDiffableSemanticHTML(value);
+      const expectedHTML = getDiffableHTML(value, args[0]);
       // @ts-ignore
-      const actualHTML = getDiffableSemanticHTML(getCleanedShadowDom(this._obj));
+      const actualHTML = getDiffableHTML(getCleanedShadowDom(this._obj), args[0]);
 
       // use chai's built-in string comparison, log the updated snapshot on error
       try {
