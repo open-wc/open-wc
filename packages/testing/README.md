@@ -49,16 +49,15 @@ Already part of `npm init @open-wc testing`
 - Add these scripts to package.json
   ```js
   "scripts": {
-    "test": "karma start",
+    "test": "karma start --coverage",
     "test:watch": "karma start --auto-watch=true --single-run=false"
   },
   ```
 #### If you need to support legacy browsers
-- Copy [karma.es5.config.js](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/testing-karma/templates/static/karma.es5.config.js) to `karma.es5.config.js` as well
 ```js
   "scripts": {
-    "test:es5": "karma start karma.es5.config.js",
-    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
+    "test:legacy": "karma start --legacy --coverage",
+    "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false",
   },
 ```
 
@@ -77,11 +76,11 @@ Already part of `npm init @open-wc testing`
 ### Manual Install
 
 - Install via `yarn add @open-wc/testing-karma-bs --dev`
-- Copy [karma.es5.bs.config.js](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/testing-karma-bs/templates/static/karma.es5.bs.config.js) to `karma.es5.bs.config.js`
+- Copy [karma.bs.config.js](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/testing-karma-bs/templates/static/karma.bs.config.js) to `karma.bs.config.js`
 - Add these scripts to your package.json
   ```js
   "scripts": {
-    "test:es5:bs": "karma start karma.es5.bs.config.js"
+    "test:bs": "karma start karma.bs.config.js --legacy --coverage"
   },
   ```
 
@@ -176,7 +175,8 @@ it('can instantiate an element with properties', async () => {
   fixtureCleanup();
 }
 
-// Alternatively, you can add the fixtureCleanup in the afterEach function, but note that this is exactly what the automatically registered side-effect does.
+// Alternatively, you can add the fixtureCleanup in the afterEach function.
+// Note that this is exactly what the automatically registered side-effect does.
 afterEach(() => {
   fixtureCleanup();
 });
