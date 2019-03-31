@@ -160,9 +160,6 @@ Make sure you have Chrome (or Chromium) installed.
 Additionally you may need to set your CHROME_BIN env variable `export CHROME_BIN=/usr/bin/chromium-browser`.
 ::::
 
-For some example tests, please take a look at our [Set-Game Example Test Files](https://github.com/open-wc/example-vanilla-set-game/tree/master/test).
-
-
 ## Fixture Cleanup
 By default, if you import anything via `import { ... } from '@open-wc/testing-helpers';`, it will automatically register a side-effect that cleans up your fixtures.
 If you want to be in full control you can do so by using

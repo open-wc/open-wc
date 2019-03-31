@@ -15,7 +15,7 @@
   },
   "module": "index.js",
   "files": [
-    "bundle",
+    "get-diffable-html.js",
     "index.js"
   ],
   "scripts": {
