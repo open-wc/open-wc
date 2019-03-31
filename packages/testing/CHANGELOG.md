@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.7](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.6...@open-wc/testing@0.10.7) (2019-03-31)
+
+
+### Bug Fixes
+
+* **testing:** update instructions for new karma config setup ([2de10bf](https://github.com/open-wc/open-wc/commit/2de10bf))
+
+
+
+
+
 ## [0.10.6](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.5...@open-wc/testing@0.10.6) (2019-03-31)
 
 
