@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.5](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.4...@open-wc/semantic-dom-diff@0.9.5) (2019-03-31)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** add get-diffable-html.js to npm bundle ([7ee3ba9](https://github.com/open-wc/open-wc/commit/7ee3ba9))
+
+
+
+
+
 ## [0.9.4](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.3...@open-wc/semantic-dom-diff@0.9.4) (2019-03-31)
 
 

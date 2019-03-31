@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.9](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.8...@open-wc/testing@0.10.9) (2019-03-31)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** add get-diffable-html.js to npm bundle ([7ee3ba9](https://github.com/open-wc/open-wc/commit/7ee3ba9))
+
+
+
+
+
 ## [0.10.8](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.7...@open-wc/testing@0.10.8) (2019-03-31)
 
 **Note:** Version bump only for package @open-wc/testing
