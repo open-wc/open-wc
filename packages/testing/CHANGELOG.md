@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.6](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.5...@open-wc/testing@0.10.6) (2019-03-31)
+
+
+### Bug Fixes
+
+* adopt new karma setup for all packages ([1888260](https://github.com/open-wc/open-wc/commit/1888260))
+
+
+
+
+
 ## [0.10.5](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.4...@open-wc/testing@0.10.5) (2019-03-29)
 
 **Note:** Version bump only for package @open-wc/testing

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.3](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.2...@open-wc/semantic-dom-diff@0.9.3) (2019-03-31)
+
+
+### Bug Fixes
+
+* adopt new karma setup for all packages ([1888260](https://github.com/open-wc/open-wc/commit/1888260))
+
+
+
+
+
 ## [0.9.2](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.1...@open-wc/semantic-dom-diff@0.9.2) (2019-03-29)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.6](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.5.5...@open-wc/create@0.5.6) (2019-03-31)
+
+
+### Bug Fixes
+
+* adopt new karma setup for all packages ([1888260](https://github.com/open-wc/open-wc/commit/1888260))
+
+
+
+
+
 ## [0.5.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.5.4...@open-wc/create@0.5.5) (2019-03-28)
 
 
