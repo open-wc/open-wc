@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.7](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.5.6...@open-wc/create@0.5.7) (2019-04-01)
+
+
+### Bug Fixes
+
+* **create:** handle windows file pathes as well ([792d7b6](https://github.com/open-wc/open-wc/commit/792d7b6))
+* **create:** use npx for http-server in building-webpack ([bbbc8a1](https://github.com/open-wc/open-wc/commit/bbbc8a1))
+
+
+
+
+
 ## [0.5.6](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.5.5...@open-wc/create@0.5.6) (2019-03-31)
 
 
