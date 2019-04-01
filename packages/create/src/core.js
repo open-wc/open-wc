@@ -51,8 +51,8 @@ export function copyTemplates(fromGlob, toDir = process.cwd(), data = {}) {
           const fileContent = fs.readFileSync(filePath, 'utf-8');
           const processed = processTemplate(fileContent, data);
 
-          // find path write to
-          const replace = path.join(fromGlob.replace(/\*/g, ''));
+          // find path write to (force / also on windows)
+          const replace = path.join(fromGlob.replace(/\*/g, '')).replace(/\\(?! )/g, '/');
           const toPath = filePath.replace(replace, `${toDir}/`);
 
           writeFileToPath(toPath, processed);
