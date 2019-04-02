@@ -168,6 +168,23 @@ describe('dom', () => {
   });
 });
 
+describe('lightDom', () => {
+  it('can compare lightDom nodes', async () => {
+    const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
+    expect(el).lightDom.to.equal('<h1>Hey</h1>');
+  });
+
+  it('passes along provided configuration', async () => {
+    const el = await fixture('<div><p foo="bar">foo</p></div>');
+    expect(el).lightDom.to.equal('<p>foo</p>', { ignoreAttributes: ['foo'] });
+  });
+
+  it('handles .semantically as backwards compatibility', async () => {
+    const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
+    expect(el).lightDom.to.semantically.equal('<h1>Hey</h1>');
+  });
+});
+
 describe('shadowDom', () => {
   it('can compare shadow dom nodes', async () => {
     const tag = defineCE(
