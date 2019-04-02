@@ -54,6 +54,11 @@ const legacyError = error(
   'You are running webpack-dev-server with a legacy build, run the dev server with the --legacy flag for this browser or run a production build.',
 );
 
+function pathJoin(...args) {
+  // enfore / also on windows => as it is used for web pathes
+  return path.join.apply(null, args).replace(/\\(?! )/g, '/');
+}
+
 function createEntryVariable(entries, development) {
   if (development) {
     return `var entries = 'noModule' in HTMLScriptElement.prototype
@@ -74,7 +79,7 @@ function createPolyfillsLoaders(options, polyfillsPublicDir) {
     // We can use URLSearchParams as a watermark for URL support
     const urlPolyfill = `
       if (!('URLSearchParams' in window)) {
-          polyfills.push(loadScript('${path.join(polyfillsPublicDir, 'url.js')}'));
+          polyfills.push(loadScript('${pathJoin(polyfillsPublicDir, 'url.js')}'));
       }`;
 
     polyfillScripts.push(urlPolyfill);
@@ -85,7 +90,7 @@ function createPolyfillsLoaders(options, polyfillsPublicDir) {
     // only IE and edge don't support web components
     const webcomponentsPolyfill = `
       if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) {
-        polyfills.push(loadScript('${path.join(polyfillsPublicDir, 'webcomponents.js')}'));
+        polyfills.push(loadScript('${pathJoin(polyfillsPublicDir, 'webcomponents.js')}'));
       }`;
     polyfillScripts.push(webcomponentsPolyfill);
   }
@@ -123,8 +128,8 @@ module.exports = class LegacyBrowserWebpackPlugin {
   }
 
   apply(compiler) {
-    const polyfillsDir = path.join(compiler.outputPath, 'polyfills');
-    const polyfillsPublicDir = path.join(compiler.options.output.publicPath || '.', polyfillsDir);
+    const polyfillsDir = pathJoin(compiler.outputPath, 'polyfills');
+    const polyfillsPublicDir = pathJoin(compiler.options.output.publicPath || '.', polyfillsDir);
 
     // copy over polyfill files. just once since this plugin is run twice
     if (!this.copiedFiles) {
@@ -134,25 +139,25 @@ module.exports = class LegacyBrowserWebpackPlugin {
       if (this.options.polyfillBabel) {
         polyfills.push({
           from: require.resolve('@babel/polyfill/dist/polyfill.min.js'),
-          to: path.join(polyfillsDir, 'babel.js'),
+          to: pathJoin(polyfillsDir, 'babel.js'),
         });
       }
 
       if (this.options.polyfillURL) {
         polyfills.push({
           from: require.resolve('url-polyfill/url-polyfill.min.js'),
-          to: path.join(polyfillsDir, 'url.js'),
+          to: pathJoin(polyfillsDir, 'url.js'),
         });
       }
 
       if (this.options.polyfillWebcomponents) {
         polyfills.push({
           from: require.resolve('@webcomponents/webcomponentsjs/webcomponents-bundle.js'),
-          to: path.join(polyfillsDir, 'webcomponents.js'),
+          to: pathJoin(polyfillsDir, 'webcomponents.js'),
         });
         polyfills.push({
           from: require.resolve('@webcomponents/webcomponentsjs/webcomponents-bundle.js.map'),
-          to: path.join(polyfillsDir, 'webcomponents-bundle.js.map'),
+          to: pathJoin(polyfillsDir, 'webcomponents-bundle.js.map'),
         });
       }
 
@@ -160,7 +165,7 @@ module.exports = class LegacyBrowserWebpackPlugin {
         polyfills.push(
           ...this.options.polyfills.map(pf => ({
             from: require.resolve(pf.file),
-            to: path.join(polyfillsDir, `${pf.name}.js`),
+            to: pathJoin(polyfillsDir, `${pf.name}.js`),
           })),
         );
       }
@@ -180,7 +185,7 @@ module.exports = class LegacyBrowserWebpackPlugin {
         }
 
         const babelPolyfills = this.options.polyfillBabel
-          ? `<script src="${path.join(polyfillsPublicDir, 'babel.js')}" nomodule></script>`
+          ? `<script src="${pathJoin(polyfillsPublicDir, 'babel.js')}" nomodule></script>`
           : '';
         const entryVariable = createEntryVariable(this.entries, this.options.development);
         const polyfillsLoader = createPolyfillsLoaders(this.options, polyfillsPublicDir);
