@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.1.2...@open-wc/building-webpack@1.1.3) (2019-04-02)
+
+
+### Bug Fixes
+
+* **building-webpack:** support windows file pathes as well ([#344](https://github.com/open-wc/open-wc/issues/344)) ([cca6eae](https://github.com/open-wc/open-wc/commit/cca6eae))
+
+
+
+
+
 ## [1.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.1.1...@open-wc/building-webpack@1.1.2) (2019-03-30)
 
 
