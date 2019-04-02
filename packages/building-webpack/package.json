@@ -46,6 +46,7 @@
     "clean-webpack-plugin": "^2.0.0",
     "copy-webpack-plugin": "^5.0.1",
     "html-webpack-plugin": "^3.2.0",
+    "parse5": "^5.1.0",
     "terser": "^3.17.0",
     "terser-webpack-plugin": "^1.2.1",
     "url-polyfill": "^1.1.5",
