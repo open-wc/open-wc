@@ -31,8 +31,7 @@ const createDefaultConfig = require('@open-wc/building-webpack/modern-and-legacy
 // import createDefaultConfig from '@open-wc/building-webpack/modern-config';
 
 module.exports = createDefaultConfig({
-  entry: resolve(__dirname, './src/index.js'),
-  indexHTML: resolve(__dirname, './src/index.html'),
+  input: path.resolve(__dirname, './src/index.html'),
 });
 ```
 
@@ -43,6 +42,8 @@ module.exports = createDefaultConfig({
   <head></head>
   <body>
     <your-app></your-app>
+
+    <script type="module" src="./your-app.js"></script>
   </body>
 </html>
 ```
@@ -128,8 +129,7 @@ const merge = require('webpack-merge');
 const createDefaultConfig = require('@open-wc/building-webpack/modern-config');
 
 const config = createDefaultConfig({
-  entry: path.resolve(__dirname, './my-app.js'),
-  indexHTML: path.resolve(__dirname, './index.html'),
+  input: path.resolve(__dirname, './src/index.html'),
 });
 
 module.exports = merge(config, {
@@ -146,8 +146,7 @@ const merge = require('webpack-merge');
 const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
 
 const configs = createDefaultConfigs({
-  entry: path.resolve(__dirname, './my-app.js'),
-  indexHTML: path.resolve(__dirname, './index.html'),
+  input: path.resolve(__dirname, './src/index.html'),
 });
 
 module.exports = configs.map(config => merge(config, {
@@ -174,8 +173,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
 
 const configs = createDefaultConfigs({
-  entry: path.resolve(__dirname, './demo-app.js'),
-  indexHTML: path.resolve(__dirname, './index.html'),
+  input: path.resolve(__dirname, './src/index.html'),
 });
 
 // with modern-and-legacy-config, the config is actually an array of configs for a modern and
@@ -231,8 +229,7 @@ const merge = require('webpack-merge');
 const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
 
 const configs = createDefaultConfigs({
-  entry: path.resolve(__dirname, './demo-app.ts'),
-  indexHTML: path.resolve(__dirname, './index.html'),
+  input: path.resolve(__dirname, './src/index.html'),
 });
 
 module.exports = configs.map(config =>

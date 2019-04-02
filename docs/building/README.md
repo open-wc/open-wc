@@ -13,6 +13,19 @@ Building is a necessary optimization when shipping apps to production. Generally
 
 Our recommended setups address the first four points but refrain from introducing non-standard features. We think it's best to avoid those, as they might lock your source code to a specific build setup which can be hard to get away from at a later time. Javascript is evolving fast, your code can quickly become out of sync with new developments.
 
+## Using `index.html` as an entry point
+Our configs for `rollup` & `webpack` are unique in that sense that they take a single html file as an entry point.
+Doing so allows you to work with the same entry point no matter if you use
+- webpack
+- rollup
+- owc-dev-server
+- polymer serve
+- etc
+
+This means you can easily compare how different setups affect your app size and loading time.
+This allows you to easily switch between build configurations; if you want to switch to webpack for a while, your entrypoint will be exactly the same.
+It also means you can use `owc-dev-server` for your regular development, and then use either `rollup` or `webpack` to prepare your application for your production environment.
+
 ## Rollup
 We recommend [Rollup](https://rollupjs.org/) for building front-end projects. Rollup is convenient to use and gets out of your way. It is easy to understand what's going on. Quite a relief in a world of complex javascript tooling.
 

@@ -5,9 +5,14 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 const development = !process.argv.find(arg => arg.includes('production'));
 
+const prefix = '[@open-wc/building-webpack/modern-config]:';
+const { queryAll, predicates, getAttribute } = require('./dom5-fork/index.js');
+const { readHTML } = require('./src/utils.js');
+
 const defaultOptions = {
   indexHTML: './index.html',
   entry: './index.js',
+  htmlEntryPoint: false,
 };
 
 module.exports = userOptions => {
@@ -15,6 +20,28 @@ module.exports = userOptions => {
     ...defaultOptions,
     ...userOptions,
   };
+
+  if (typeof options.input === 'string' && options.input.endsWith('index.html')) {
+    options.indexHTML = options.input;
+    options.htmlEntryPoint = true;
+    const indexHTML = readHTML(options.input);
+    const scripts = queryAll(indexHTML, predicates.hasTagName('script'));
+    const moduleScripts = scripts.filter(script => getAttribute(script, 'type') === 'module');
+
+    if (moduleScripts.length === 0) {
+      throw new Error(
+        `${prefix} Could not find any module script in configured input: ${options.input}`,
+      );
+    }
+
+    if (moduleScripts.some(script => !getAttribute(script, 'src'))) {
+      throw new Error(`${prefix} Module scripts without a 'src' attribute are not supported.`);
+    }
+    const indexDir = path.dirname(options.input);
+
+    const modules = moduleScripts.map(script => getAttribute(script, 'src'));
+    options.entry = modules.map(p => path.join(indexDir, p));
+  }
 
   return {
     entry: Array.isArray(options.entry) ? options.entry : [options.entry],
@@ -67,7 +94,11 @@ module.exports = userOptions => {
             },
           },
         },
-      ],
+        options.htmlEntryPoint && {
+          test: options.input,
+          loader: require.resolve('./src/clean-up-html-loader.js'),
+        },
+      ].filter(_ => !!_),
     },
 
     optimization: {

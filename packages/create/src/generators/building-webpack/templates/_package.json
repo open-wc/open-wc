@@ -1,13 +1,14 @@
 {
   "scripts": {
     "start:dev": "webpack-dev-server --mode development --open",
-    "start:dev:es5": "webpack-dev-server --mode development --es5",
-    "start:prod": "npx http-server dist/ -o",
+    "start:dev:legacy": "webpack-dev-server --mode development --legacy",
+    "start:prod": "http-server dist/ -o",
     "build": "webpack --mode production",
     "build:stats": "webpack --mode production --profile --json > bundle-stats.json"
   },
   "devDependencies": {
-    "@open-wc/building-webpack": "^1.1.0",
+    "@open-wc/building-webpack": "^1.2.0",
+    "http-server": "^0.11.1",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"
   }
