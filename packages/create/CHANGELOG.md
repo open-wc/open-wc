@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.5.7...@open-wc/create@0.6.0) (2019-04-03)
+
+
+### Features
+
+* **building-webpack:** enable single entry point html file ([71e5650](https://github.com/open-wc/open-wc/commit/71e5650))
+
+
+
+
+
 ## [0.5.7](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.5.6...@open-wc/create@0.5.7) (2019-04-01)
 
 
