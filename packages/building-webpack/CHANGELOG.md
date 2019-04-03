@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.2.0...@open-wc/building-webpack@1.2.1) (2019-04-03)
+
+
+### Bug Fixes
+
+* **building-webpack:** add dom5 fork to npm package ([fcb26fd](https://github.com/open-wc/open-wc/commit/fcb26fd))
+
+
+
+
+
 # [1.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.1.3...@open-wc/building-webpack@1.2.0) (2019-04-03)
 
 
