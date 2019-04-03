@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.2.1...@open-wc/building-webpack@1.2.2) (2019-04-03)
+
+
+### Bug Fixes
+
+* add clone dependency ([4d15a39](https://github.com/open-wc/open-wc/commit/4d15a39))
+
+
+
+
+
 ## [1.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.2.0...@open-wc/building-webpack@1.2.1) (2019-04-03)
 
 
