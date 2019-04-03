@@ -30,6 +30,7 @@
     "webpack"
   ],
   "files": [
+    "dom5-fork",
     "src",
     "*.js"
   ],
