@@ -53,14 +53,19 @@ export const getCleanedShadowDom = el => {
  * @param {any} utils
  */
 export const chaiDomEquals = (chai, utils) => {
-  chai.Assertion.addProperty('dom', function dom() {
+  /**
+   * can not be an arrow function as it gets rebound by chai
+   */
+  chai.Assertion.addProperty('lightDom', function lightDom() {
     // @ts-ignore
     new chai.Assertion(this._obj.nodeType).to.equal(1);
     // @ts-ignore
-    utils.flag(this, 'dom', true);
+    utils.flag(this, 'lightDom', true);
   });
 
-  // can not be an arrow function as it gets rebound
+  /**
+   * can not be an arrow function as it gets rebound by chai
+   */
   chai.Assertion.addProperty('shadowDom', function shadowDom() {
     // @ts-ignore
     new chai.Assertion(this._obj.nodeType).to.equal(1);
@@ -68,10 +73,22 @@ export const chaiDomEquals = (chai, utils) => {
     utils.flag(this, 'shadowDom', true);
   });
 
-  // can not be an arrow function as it gets rebound
-  // TODO: this is here for backwards compatibility, removal will be
-  // a breaking change
-  chai.Assertion.addProperty('semantically', function shadowDom() {
+  /**
+   * can not be an arrow function as it gets rebound by chai
+   */
+  chai.Assertion.addProperty('dom', function dom() {
+    // @ts-ignore
+    new chai.Assertion(this._obj.nodeType).to.equal(1);
+    // @ts-ignore
+    utils.flag(this, 'dom', true);
+  });
+
+  /**
+   * can not be an arrow function as it gets rebound by chai
+   * TODO: this is here for backwards compatibility, removal will be a breaking change
+   * @deprecated
+   */
+  chai.Assertion.addProperty('semantically', function semantically() {
     // @ts-ignore
     new chai.Assertion(this._obj.nodeType).to.equal(1);
     // @ts-ignore
@@ -82,25 +99,7 @@ export const chaiDomEquals = (chai, utils) => {
   // prettier-ignore
   const domEquals = _super => function handleDom(value, ...args) {
     // @ts-ignore
-    if (utils.flag(this, 'dom')) {
-      const expectedHTML = getDiffableHTML(value, args[0]);
-      // @ts-ignore
-      const actualHTML = getDiffableHTML(getOuterHtml(this._obj), args[0]);
-
-      // use chai's built-in string comparison, log the updated snapshot on error
-      try {
-        new chai.Assertion(actualHTML).to.equal(expectedHTML);
-      } catch (error) {
-        /* eslint-disable no-console */
-        console.log('Snapshot changed, want to accept the change:');
-        console.log('');
-        console.log(actualHTML);
-        /* eslint-enable no-console */
-        throw error;
-      }
-
-    // @ts-ignore
-    } else if (utils.flag(this, 'shadowDom')) {
+    if (utils.flag(this, 'shadowDom')) {
       const expectedHTML = getDiffableHTML(value, args[0]);
       // @ts-ignore
       const actualHTML = getDiffableHTML(getCleanedShadowDom(this._obj), args[0]);
@@ -110,7 +109,43 @@ export const chaiDomEquals = (chai, utils) => {
         new chai.Assertion(actualHTML).to.equal(expectedHTML);
       } catch (error) {
         /* eslint-disable no-console */
-        console.log('Snapshot changed, want to accept the change:');
+        console.log('ShadowDom Snapshot changed, want to accept the change:');
+        console.log('');
+        console.log(actualHTML);
+        /* eslint-enable no-console */
+        throw error;
+      }
+
+    // @ts-ignore
+    } else if (utils.flag(this, 'lightDom')) {
+      const expectedHTML = getDiffableHTML(value, args[0]);
+      // @ts-ignore
+      const actualHTML = getDiffableHTML(this._obj.innerHTML, args[0]);
+
+      // use chai's built-in string comparison, log the updated snapshot on error
+      try {
+        new chai.Assertion(actualHTML).to.equal(expectedHTML);
+      } catch (error) {
+        /* eslint-disable no-console */
+        console.log('LightDom Snapshot changed, want to accept the change:');
+        console.log('');
+        console.log(actualHTML);
+        /* eslint-enable no-console */
+        throw error;
+      }
+
+    // @ts-ignore
+    } else if (utils.flag(this, 'dom')) {
+      const expectedHTML = getDiffableHTML(value, args[0]);
+      // @ts-ignore
+      const actualHTML = getDiffableHTML(getOuterHtml(this._obj), args[0]);
+
+      // use chai's built-in string comparison, log the updated snapshot on error
+      try {
+        new chai.Assertion(actualHTML).to.equal(expectedHTML);
+      } catch (error) {
+        /* eslint-disable no-console */
+        console.log('Dom Snapshot changed, want to accept the change:');
         console.log('');
         console.log(actualHTML);
         /* eslint-enable no-console */

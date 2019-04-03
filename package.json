@@ -14,6 +14,7 @@
     "site:build": "npm run vuepress:build",
     "site:start": "npm run vuepress:start",
     "test": "karma start --coverage",
+    "test:watch": "karma start --auto-watch=true --single-run=false",
     "test:ci": "lerna run test:ci",
     "test:legacy": "karma start --legacy --coverage",
     "test:bs": "karma start karma.bs.conf.js --legacy --coverage",
