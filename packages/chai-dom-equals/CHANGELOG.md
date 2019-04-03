@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.9](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.8...@open-wc/chai-dom-equals@0.10.9) (2019-04-03)
+
+
+### Bug Fixes
+
+* **chai-dom-equals:** compare children only via lightDom ([#346](https://github.com/open-wc/open-wc/issues/346)) ([c94408d](https://github.com/open-wc/open-wc/commit/c94408d))
+
+
+
+
+
 ## [0.10.8](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.7...@open-wc/chai-dom-equals@0.10.8) (2019-03-31)
 
 **Note:** Version bump only for package @open-wc/chai-dom-equals
