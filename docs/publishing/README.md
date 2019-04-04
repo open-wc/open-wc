@@ -27,7 +27,7 @@ If you're using our [build configuration](http://open-wc.org/building), the `dis
 
 - Build command: `npm run build`
 - Copy the `dist` directory to your desired location: `sudo cp -R dist /Library/WebServer/Documents/myapp`
-- Add a `<VirtualHost>` directive to `httpd.conf`, either directly or by include:
+- Add a `<VirtualHost>` directive to `httpd.conf`, either directly or by an `Include` directive:
 ```
 <VirtualHost *:80>
     DocumentRoot "/Library/WebServer/Documents/myapp"
