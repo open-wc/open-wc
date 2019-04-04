@@ -26,7 +26,7 @@ You can see the finished page here: [https://example-set-game-open-wc.netlify.co
 If you're using our [build configuration](http://open-wc.org/building), the `dist` directory created by the `npm run build` command can be deployed on any local web server. These directions are for the [Apache HTTP Server](http://httpd.apache.org/) specifically, but should be adaptable to other web servers.
 
 - Build command: `npm run build`
-- Copy `dist` to the desired location: `sudo cp -R dist /Library/WebServer/Documents/myapp`
+- Copy the `dist` directory to your desired location: `sudo cp -R dist /Library/WebServer/Documents/myapp`
 - Add a `<VirtualHost>` directive to `httpd.conf`, either directly or by include:
 ```
 <VirtualHost *:80>
