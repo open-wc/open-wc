@@ -12,6 +12,7 @@ The hardest part of any project is often overcoming that first blank file and ge
 - [Morningstar](http://designsystem.morningstar.com/components/component-status.html)
 - [SAP UI5](https://sap.github.io/ui5-webcomponents/)
 - [Vaadin](https://vaadin.com/components)
+- [Wired Elements](https://wiredjs.com/)
 
 ## Don't see your design system here?
 If you have a design system built on web components, we'd love to include it here! Please make a pull request adding a link with a short description via on our [github repository](https://github.com/open-wc/open-wc/pulls).
