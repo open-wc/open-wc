@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@open-wc/testing-karma": "^1.0.0",
+    "@types/node": "^11.13.0",
     "karma-browserstack-launcher": "^1.0.0"
   },
   "devDependencies": {
