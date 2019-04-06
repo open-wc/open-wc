@@ -6,7 +6,7 @@ The hardest part of any project is often overcoming that first blank file and ge
 - [Aybolit](https://web-padawan.github.io/aybolit/)
 - [Bolt](https://boltdesignsystem.com/)
 - [Helix UI](https://rackerlabs.github.io/helix-ui/)
-- [Ionix Componentss](https://ionicframework.com/docs/components)
+- [Ionix Components](https://ionicframework.com/docs/components)
 - [Lightning Web Components by SalesForce](https://developer.salesforce.com/docs/component-library/overview/components)
 - [Material Web Components](https://material-components.github.io/material-components-web-components/demos/index.html)
 - [Morningstar](http://designsystem.morningstar.com/components/component-status.html)
