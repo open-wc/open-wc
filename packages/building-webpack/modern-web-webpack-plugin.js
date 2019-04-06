@@ -97,7 +97,7 @@ function createPolyfillsLoaders(options, polyfillsPublicDir) {
 
   if (options.polyfills) {
     polyfillScripts.push(
-      ...this.options.polyfills.map(
+      ...options.polyfills.map(
         polyfill => `
       if (${polyfill.test}) {
         polyfills.push(loadScript(${polyfill.src}));
