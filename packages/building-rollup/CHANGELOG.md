@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.2.3...@open-wc/building-rollup@0.2.4) (2019-04-05)
+
+
+### Bug Fixes
+
+* do not assume available global types of users ([cd394d9](https://github.com/open-wc/open-wc/commit/cd394d9))
+
+
+
+
+
 ## [0.2.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.2.2...@open-wc/building-rollup@0.2.3) (2019-04-03)
 
 

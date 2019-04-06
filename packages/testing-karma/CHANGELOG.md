@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@1.0.0...@open-wc/testing-karma@1.0.1) (2019-04-05)
+
+
+### Bug Fixes
+
+* do not assume available global types of users ([cd394d9](https://github.com/open-wc/open-wc/commit/cd394d9))
+
+
+
+
+
 # [1.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@0.4.15...@open-wc/testing-karma@1.0.0) (2019-03-31)
 
 

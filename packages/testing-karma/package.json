@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Testing with karma following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -30,6 +30,7 @@
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@open-wc/webpack-import-meta-loader": "^0.2.0",
+    "@types/node": "^11.13.0",
     "@webcomponents/webcomponentsjs": "^2.2.0",
     "babel-loader": "^8.0.0",
     "babel-plugin-bundled-import-meta": "^0.3.0",

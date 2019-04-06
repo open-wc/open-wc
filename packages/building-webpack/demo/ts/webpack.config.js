@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 const path = require('path');
 const merge = require('webpack-merge');
 const createDefaultConfig = require('../../modern-and-legacy-config');

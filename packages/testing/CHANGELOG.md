@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.11](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.10...@open-wc/testing@0.10.11) (2019-04-05)
+
+
+### Bug Fixes
+
+* do not assume available global types of users ([cd394d9](https://github.com/open-wc/open-wc/commit/cd394d9))
+
+
+
+
+
 ## [0.10.10](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.9...@open-wc/testing@0.10.10) (2019-04-03)
 
 **Note:** Version bump only for package @open-wc/testing
