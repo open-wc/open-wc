@@ -100,9 +100,9 @@ export const chaiDomEquals = (chai, utils) => {
   const domEquals = _super => function handleDom(value, ...args) {
     // @ts-ignore
     if (utils.flag(this, 'shadowDom')) {
-      const expectedHTML = getDiffableHTML(value, args[0]);
+      const expectedHTML = getDiffableHTML(value, { ignoreTags: ['style'], ...args[0] });
       // @ts-ignore
-      const actualHTML = getDiffableHTML(getCleanedShadowDom(this._obj), args[0]);
+      const actualHTML = getDiffableHTML(getCleanedShadowDom(this._obj), { ignoreTags: ['style'], ...args[0] });
 
       // use chai's built-in string comparison, log the updated snapshot on error
       try {
