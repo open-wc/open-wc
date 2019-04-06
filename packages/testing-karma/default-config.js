@@ -42,6 +42,7 @@ module.exports = config => ({
     require.resolve('karma-sourcemap-loader'),
     require.resolve('karma-coverage-istanbul-reporter'),
     require.resolve('karma-static'),
+    require.resolve('karma-chrome-launcher'),
 
     // fallback: resolve any karma- plugins
     'karma-*',
