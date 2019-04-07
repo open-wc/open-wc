@@ -1815,21 +1815,15 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@open-wc/semantic-dom-diff@file:packages/semantic-dom-diff":
-  version "0.9.6"
-
-"@open-wc/testing-helpers@file:packages/testing-helpers":
-  version "0.8.4"
-
 "@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.0.1"
+  version "1.0.2"
   dependencies:
-    "@open-wc/testing-karma" "^1.0.1"
+    "@open-wc/testing-karma" "^1.0.2"
     "@types/node" "^11.13.0"
     karma-browserstack-launcher "^1.0.0"
 
 "@open-wc/testing-karma@file:./packages/testing-karma":
-  version "1.0.1"
+  version "1.0.2"
   dependencies:
     "@babel/core" "^7.3.3"
     "@babel/plugin-syntax-dynamic-import" "^7.2.0"
@@ -4910,9 +4904,9 @@ buffer@^4.3.0:
     isarray "^1.0.0"
 
 builtin-modules@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-3.0.0.tgz#1e587d44b006620d90286cc7a9238bbc6129cab1"
-  integrity sha512-hMIeU4K2ilbXV6Uv93ZZ0Avg/M91RaKXucQ+4me2Do1txxBDyDZWCBa5bJSLqoNTRpXTLwEzIk1KmloenDDjhg==
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-3.1.0.tgz#aad97c15131eb76b65b50ef208e7584cd76a7484"
+  integrity sha512-k0KL0aWZuBt2lrxrcASWDfwOLMnodeQjodT/1SxEQAXsHANgo6ZC/VEaSEHCXt7aSTZ4/4H5LKa+tBXmW7Vtvw==
 
 builtin-status-codes@^3.0.0:
   version "3.0.0"

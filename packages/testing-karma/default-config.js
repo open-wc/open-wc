@@ -47,6 +47,7 @@ module.exports = config => ({
     require.resolve('karma-static'),
     require.resolve('karma-snapshot'),
     require.resolve('karma-mocha-snapshot'),
+    require.resolve('karma-chrome-launcher'),
 
     // fallback: resolve any karma- plugins
     'karma-*',

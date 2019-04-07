@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.2.3...@open-wc/building-webpack@1.3.0) (2019-04-06)
+
+
+### Features
+
+* **building-webpack:** make custom webpack plugin public ([#355](https://github.com/open-wc/open-wc/issues/355)) ([f3d291a](https://github.com/open-wc/open-wc/commit/f3d291a))
+
+
+
+
+
 ## [1.2.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.2.2...@open-wc/building-webpack@1.2.3) (2019-04-05)
 
 
