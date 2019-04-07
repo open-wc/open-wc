@@ -14,4 +14,9 @@ describe('BDD', () => {
     const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
     expect(el).dom.to.equal('<div><h1>Hey</h1></div>');
   });
+
+  it('uses chai dom equals plugin snapshot', async () => {
+    const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
+    expect(el).dom.to.equalSnapshot();
+  });
 });

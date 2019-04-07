@@ -43,6 +43,8 @@ Commands explained:
 - `test:watch`: does a single test run, and then re-runs on file changes. coverage is not analyzed for performance. in watch mode you can also debug in the browser, which is very convenient. visit http://localhost:9876/debug.html
 - `test:legacy`: like `test`, except that it compiles your code to es5 and adds [babel](https://babeljs.io/docs/en/babel-polyfill) and [web component](https://github.com/webcomponents/webcomponentsjs) polyfills for maximum compatibility.
 - `test:legacy:watch`: like `test:watch`, adding the same mentioned polyfills
+- `update-snapshots`: updates any snapshots files from `@open-wc/semantic-dom-diff`. Use this when your component's rendered HTML changed.
+- `prune-snapshots`: prunes any used snapshots files from `@open-wc/semantic-dom-diff`.
 
 ### Testing single files or folders
 By default karma runs all your test files. To test a single file or folder, use the `--grep` flag. (If you did a manual setup, makes sure your config handles this flag).
@@ -168,7 +170,9 @@ npm i --save @open-wc/testing-karma webpack-merge karma
 ```json
 "scripts": {
   "test": "karma start --coverage",
-  "test:watch": "karma start --auto-watch=true --single-run=false"
+  "test:watch": "karma start --auto-watch=true --single-run=false",
+  "update-snapshots": "karma start --update-snapshots",
+  "prune-snapshots": "karma start --prune-snapshots"
 },
 ```
 - If you want to run tests on legacy browsers as well, add these scripts:
@@ -177,7 +181,9 @@ npm i --save @open-wc/testing-karma webpack-merge karma
   "test": "karma start --coverage",
   "test:watch": "karma start --auto-watch=true --single-run=false",
   "test:legacy": "karma start --legacy --coverage",
-  "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false"
+  "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false",
+  "update-snapshots": "karma start --update-snapshots",
+  "prune-snapshots": "karma start --prune-snapshots"
 },
 ```
 - Run via `npm run <command>`

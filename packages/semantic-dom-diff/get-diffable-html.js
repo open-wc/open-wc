@@ -52,7 +52,7 @@ const VOID_ELEMENTS = [
  * // use regular string comparison to spot the differences
  * expect(htmlA).to.equal(htmlB);
  *
- * @param {string} html
+ * @param {Node | string} html
  * @param {DiffOptions} [options]
  * @returns {string} html restructured in a diffable format
  */
@@ -199,8 +199,18 @@ export function getDiffableHTML(html, options = {}) {
     }
   }
 
-  const container = document.createElement('diff-container');
-  container.innerHTML = html;
+  let container;
+
+  if (typeof html === 'string') {
+    container = document.createElement('diff-container');
+    container.innerHTML = html;
+    depth = -1;
+  } else if (html instanceof Node) {
+    container = html;
+    depth = 0;
+  } else {
+    throw new Error(`Cannot create diffable HTML from: ${html}`);
+  }
 
   const walker = document.createTreeWalker(
     container,

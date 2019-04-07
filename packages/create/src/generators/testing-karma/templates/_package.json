@@ -3,7 +3,9 @@
     "test": "karma start --coverage",
     "test:watch": "karma start --auto-watch=true --single-run=false",
     "test:legacy": "karma start --legacy --coverage",
-    "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false"
+    "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false",
+    "update-snapshots": "karma start --update-snapshots",
+    "prune-snapshots": "karma start --prune-snapshots"
   },
   "devDependencies": {
     "@open-wc/testing-karma": "^1.0.0",

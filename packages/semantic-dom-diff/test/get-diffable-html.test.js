@@ -783,4 +783,26 @@ describe('getDiffableHTML()', () => {
       );
     });
   });
+
+  it('dom node as input', () => {
+    const node = document.createElement('div');
+    node.setAttribute('id', 'foo');
+    node.innerHTML = `
+      <span>A</span>
+      <span>B</span>
+    `;
+
+    const html = getDiffableHTML(node);
+
+    expect(html).to.equal(
+      '<div id="foo">\n' +
+        '  <span>\n' +
+        '    A\n' +
+        '  </span>\n' +
+        '  <span>\n' +
+        '    B\n' +
+        '  </span>\n' +
+        '</div>\n',
+    );
+  });
 });
