@@ -6,4 +6,4 @@ export {
   getDiffableHTML as getDiffableSemanticHTML,
 };
 
-export { chaiDomEquals } from './chai-dom-equals';
+export { chaiDomDiff } from './chai-dom-diff';

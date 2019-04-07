@@ -33,10 +33,8 @@
     "@open-wc/testing-karma": "^1.0.1",
     "@open-wc/testing-karma-bs": "^1.0.1",
     "@open-wc/testing-wallaby": "^0.1.12",
+    "@open-wc/testing-helpers": "file:../testing-helpers",
     "mocha": "^5.0.0",
     "webpack-merge": "^4.1.5"
-  },
-  "dependencies": {
-    "@open-wc/testing-helpers": "^0.8.5"
   }
 }

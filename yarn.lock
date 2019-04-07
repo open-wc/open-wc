@@ -1815,15 +1815,45 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@open-wc/semantic-dom-diff@^0.9.7":
-  version "0.9.7"
-  resolved "https://registry.yarnpkg.com/@open-wc/semantic-dom-diff/-/semantic-dom-diff-0.9.7.tgz#58d2eb49bf37871cd2374d7dac4401ed0ffee422"
-  integrity sha512-WOUdV7dhJrfwY8FQGJRD15YbjVPagMYyO70OtEaJqVDzzfckjo7eXq4muu0aFlqmcy0bCoFaw9kYBAhVSkKX9A==
+"@open-wc/semantic-dom-diff@file:packages/semantic-dom-diff":
+  version "0.9.6"
 
-"@open-wc/testing-helpers@^0.8.5":
-  version "0.8.5"
-  resolved "https://registry.yarnpkg.com/@open-wc/testing-helpers/-/testing-helpers-0.8.5.tgz#7a1f3303ea721b658b9927f9733e1a85f03f0c43"
-  integrity sha512-xSFa63mp2d2Lx5Q5MoX5hAUqrM6G7H53CGUTWorTDUj5GSFQKuo4qIlsdwjIn6JHMJHk6ULr+BR/yttXGCSBPg==
+"@open-wc/testing-helpers@file:packages/testing-helpers":
+  version "0.8.4"
+
+"@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
+  version "1.0.1"
+  dependencies:
+    "@open-wc/testing-karma" "^1.0.1"
+    "@types/node" "^11.13.0"
+    karma-browserstack-launcher "^1.0.0"
+
+"@open-wc/testing-karma@file:./packages/testing-karma":
+  version "1.0.1"
+  dependencies:
+    "@babel/core" "^7.3.3"
+    "@babel/plugin-syntax-dynamic-import" "^7.2.0"
+    "@babel/plugin-syntax-import-meta" "^7.2.0"
+    "@babel/polyfill" "^7.0.0"
+    "@babel/preset-env" "^7.0.0"
+    "@open-wc/webpack-import-meta-loader" "^0.2.0"
+    "@types/node" "^11.13.0"
+    "@webcomponents/webcomponentsjs" "^2.2.0"
+    babel-loader "^8.0.0"
+    babel-plugin-bundled-import-meta "^0.3.0"
+    istanbul-instrumenter-loader "^3.0.0"
+    karma "^4.0.0"
+    karma-chrome-launcher "^2.0.0"
+    karma-coverage-istanbul-reporter "^2.0.0"
+    karma-mocha "^1.0.0"
+    karma-mocha-reporter "^2.0.0"
+    karma-mocha-snapshot "^0.2.1"
+    karma-snapshot "^0.6.0"
+    karma-source-map-support "^1.3.0"
+    karma-sourcemap-loader "^0.3.0"
+    karma-static "^1.0.1"
+    karma-webpack "^5.0.0-alpha.2"
+    webpack "^4.28.0"
 
 "@reach/router@^1.2.1":
   version "1.2.1"
@@ -5111,14 +5141,6 @@ caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
-
-chai-karma-snapshot@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/chai-karma-snapshot/-/chai-karma-snapshot-0.8.0.tgz#265b2667252c8d5359654a9777d12caa50ab45a2"
-  integrity sha512-py7mJM/8Jr8sR3cpY0jRJaZe+8JfWSvwUt871maUMPu3NqwtlQB1u5I0GRDB/KuYEmb60z3uCYEi8q/xO5Z+yQ==
-  dependencies:
-    babel-runtime "^6.23.0"
-    pretty-format "^22.4.3"
 
 chai@^4.2.0:
   version "4.2.0"
@@ -13850,14 +13872,6 @@ pretty-error@^2.0.2, pretty-error@^2.1.1:
   dependencies:
     renderkid "^2.0.1"
     utila "~0.4"
-
-pretty-format@^22.4.3:
-  version "22.4.3"
-  resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-22.4.3.tgz#f873d780839a9c02e9664c8a082e9ee79eaac16f"
-  integrity sha512-S4oT9/sT6MN7/3COoOy+ZJeA92VmOnveLHgrwBE3Z1W5N9S2A1QGNYiE1z75DAENbJrXXUb+OWXhpJcg05QKQQ==
-  dependencies:
-    ansi-regex "^3.0.0"
-    ansi-styles "^3.2.0"
 
 pretty-format@^23.6.0:
   version "23.6.0"

@@ -4,7 +4,7 @@ const coverage = process.argv.find(arg => arg.includes('coverage'));
 const legacy = process.argv.find(arg => arg.includes('legacy'));
 const updateSnapshots = process.argv.find(arg => arg.includes('update-snapshots'));
 const pruneSnapshots = process.argv.find(arg => arg.includes('prune-snapshots'));
-console.log('testing karma');
+
 /**
  * Creates a basic karma configuration file.
  *
