@@ -90,7 +90,12 @@ module.exports = {
         {
           title: 'Deep dives',
           collapsable: true,
-          children: ['component-libraries', 'rerender', 'unit-testing-custom-events', 'unit-testing-init-error'],
+          children: [
+            'component-libraries',
+            'rerender',
+            'unit-testing-custom-events',
+            'unit-testing-init-error',
+          ],
         },
       ],
       '/about/': [['/about/', 'About'], '/about/contact', '/about/rationales', '/about/blog'],

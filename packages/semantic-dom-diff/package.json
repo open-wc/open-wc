@@ -15,6 +15,7 @@
   },
   "module": "index.js",
   "files": [
+    "chai-dom-diff.js",
     "get-diffable-html.js",
     "index.js"
   ],
