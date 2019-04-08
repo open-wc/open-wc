@@ -1,7 +1,8 @@
+/* istanbul ignore next */
 // do manual setup and not use testing to not have circle dependencies
 import { chai } from '@bundled-es-modules/chai';
 import { cachedWrappers } from '@open-wc/testing-helpers/index-no-side-effects.js';
-import { chaiDomEquals } from '../chai-dom-equals.js';
+import { chaiDomDiff } from '../chai-dom-diff.js';
 
 // register-cleanup
 if (afterEach) {
@@ -16,4 +17,4 @@ if (afterEach) {
 }
 
 // register-plugins
-chai.use(chaiDomEquals);
+chai.use(chaiDomDiff);

@@ -1,7 +1,7 @@
-import './bdd-setup.js';
 import { expect } from '@bundled-es-modules/chai';
 import { fixture, defineCE } from '@open-wc/testing-helpers';
-import { getOuterHtml, getCleanedShadowDom } from '../index.js';
+import '../bdd-setup.js';
+import { getOuterHtml, getCleanedShadowDom } from '../../src/utils.js';
 
 describe('getOuterHtml', () => {
   it('support el.outerHTML also on polyfilled browsers', async () => {
@@ -148,77 +148,5 @@ describe('getCleanedShadowDom', () => {
     expect(getCleanedShadowDom(el)).to.equals(
       `<${innerTag} class="foo"></${innerTag}><p>shadow content</p><slot></slot>`,
     );
-  });
-});
-
-describe('dom', () => {
-  it('can compare dom nodes', async () => {
-    const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
-    expect(el).dom.to.equal('<div><h1>Hey</h1></div>');
-  });
-
-  it('passes along provided configuration', async () => {
-    const el = await fixture('<div foo="bar"></div>');
-    expect(el).dom.to.equal('<div></div>', { ignoreAttributes: ['foo'] });
-  });
-
-  it('handles .semantically as backwards compatibility', async () => {
-    const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
-    expect(el).dom.to.semantically.equal('<div><h1>Hey</h1></div>');
-  });
-});
-
-describe('lightDom', () => {
-  it('can compare lightDom nodes', async () => {
-    const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
-    expect(el).lightDom.to.equal('<h1>Hey</h1>');
-  });
-
-  it('passes along provided configuration', async () => {
-    const el = await fixture('<div><p foo="bar">foo</p></div>');
-    expect(el).lightDom.to.equal('<p>foo</p>', { ignoreAttributes: ['foo'] });
-  });
-
-  it('handles .semantically as backwards compatibility', async () => {
-    const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
-    expect(el).lightDom.to.semantically.equal('<h1>Hey</h1>');
-  });
-});
-
-describe('shadowDom', () => {
-  it('can compare shadow dom nodes', async () => {
-    const tag = defineCE(
-      class extends HTMLElement {
-        constructor() {
-          super();
-          this.attachShadow({ mode: 'open' });
-        }
-
-        connectedCallback() {
-          this.shadowRoot.innerHTML = '<p>  shadow content</p> <!-- comment --> <slot></slot>';
-        }
-      },
-    );
-    const el = await fixture(`<${tag}><span>  light content  </span></${tag}>`);
-    expect(el).dom.to.equal(`<${tag}><span>light content</span></${tag}>`);
-    expect(el).shadowDom.to.equal('<p>shadow content</p><slot>');
-  });
-
-  it('supports .semantically as backwards compatibility', async () => {
-    const tag = defineCE(
-      class extends HTMLElement {
-        constructor() {
-          super();
-          this.attachShadow({ mode: 'open' });
-        }
-
-        connectedCallback() {
-          this.shadowRoot.innerHTML = '<p>  shadow content</p> <!-- comment --> <slot></slot>';
-        }
-      },
-    );
-    const el = await fixture(`<${tag}><span>  light content  </span></${tag}>`);
-    expect(el).dom.to.semantically.equal(`<${tag}><span>light content</span></${tag}>`);
-    expect(el).shadowDom.to.semantically.equal('<p>shadow content</p><slot>');
   });
 });

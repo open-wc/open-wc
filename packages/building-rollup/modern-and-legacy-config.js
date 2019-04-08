@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 const resolve = require('rollup-plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const babel = require('rollup-plugin-babel');

@@ -1,4 +1,4 @@
-const DEFAULT_IGNORE_CHILDREN = ['script', 'style', 'svg'];
+const DEFAULT_IGNORE_TAGS = ['script', 'style', 'svg'];
 const VOID_ELEMENTS = [
   'area',
   'base',
@@ -52,7 +52,7 @@ const VOID_ELEMENTS = [
  * // use regular string comparison to spot the differences
  * expect(htmlA).to.equal(htmlB);
  *
- * @param {string} html
+ * @param {Node | string} html
  * @param {DiffOptions} [options]
  * @returns {string} html restructured in a diffable format
  */
@@ -63,8 +63,8 @@ export function getDiffableHTML(html, options = {}) {
   const ignoreAttributesForTags = /** @type {IgnoreAttributesForTags[]} */ (options.ignoreAttributes
     ? options.ignoreAttributes.filter(e => typeof e !== 'string')
     : []);
-  const ignoreTags = options.ignoreTags || [];
-  const ignoreChildren = [...(options.ignoreChildren || []), ...DEFAULT_IGNORE_CHILDREN];
+  const ignoreTags = [...(options.ignoreTags || []), ...DEFAULT_IGNORE_TAGS];
+  const ignoreChildren = options.ignoreChildren || [];
 
   let text = '';
   let depth = -1;
@@ -199,8 +199,18 @@ export function getDiffableHTML(html, options = {}) {
     }
   }
 
-  const container = document.createElement('diff-container');
-  container.innerHTML = html;
+  let container;
+
+  if (typeof html === 'string') {
+    container = document.createElement('diff-container');
+    container.innerHTML = html;
+    depth = -1;
+  } else if (html instanceof Node) {
+    container = html;
+    depth = 0;
+  } else {
+    throw new Error(`Cannot create diffable HTML from: ${html}`);
+  }
 
   const walker = document.createTreeWalker(
     container,

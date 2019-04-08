@@ -6,123 +6,251 @@
 ```bash
 yarn add @open-wc/semantic-dom-diff --dev
 ```
-`semantic-dom-diff` exports a function which takes a string of HTML and returns a string of HTML, restructuring it so that it can be easily compared:
+`semantic-dom-diff` allows diffing chunks of dom or HTML for semanticaly equality:
 - whitespace and newlines are normalized
 - tags and attributes are printed on individual lines
 - comments are removed
 - style, script and svg contents are removed
+- tags, attributes or element's light dom can be ignored through configuration
 
-Additional options can be configured.
+## Chai plugin
+While `semantic-dom-diff` can be used standalone (see below) you will most commonly use this through our chai plugin.
 
-## Basic usage
+<details>
+  <summary>Registering the plugin</summary>
+
+  > If you are using `@open-wc/testing` this is already done for you.
+  ```javascript
+  import { chai } from '@bundled-es-modules/chai';
+  import { chaiDomDiff } from '@open-wc/semantic-dom-diff';
+
+  chai.use(chaiDomDiff);
+  ```
+</details>
+
+### Setting up your dom for diffing
+You can set up our chai plugin to diff different types of DOM:
+
 ```javascript
-import { getDiffableHTML } from '@open-wc/semantic-dom-diff';
+class MyElement extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
 
-const leftTree = getDiffableHTML(`
-  <div>foo</div>
-`);
-const rightTree = getDiffableHTML(`
-  <div>bar</div>
-`);
+  connectedCallback() {
+    this.shadowRoot.innerHTML = '<p> shadow content </p>';
+  }
+}
 
-// use any string comparison tool, for example chai:
-expect(leftTree).to.equal(rightTree);
+customElements.define('my-element', MyElement);
+
+it('my test', async () => {
+  const el = await fixture(`
+    <my-element>
+      <div> light dom content </div>
+    </my-element>
+  `);
+
+  expect(el).dom // dom is <my-element><div>light dom content</div></my-element>
+  expect(el).lightDom // dom is <div>light dom content</div>
+  expect(el).shadowDom // dom is <p>shadow content</p>
+});
 ```
 
-## Ignoring tags and attributes
-When working with libraries or custom elements there might be parts of the rendered HTML which is random or otherwise outside of your control. In those cases, you might want to ignore certain attributes or tags entirely. This is possible by passing an options object.
+### Manual diffing
+You can use the chai plugin to manually diff chunks of dom. The dom is diffed semantically: whitespace, newlines etc. are normalized.
 
-### Ignoring an attribute
 ```javascript
-import { getDiffableHTML } from '@open-wc/semantic-dom-diff';
+class MyElement extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
 
-const leftTree = getDiffableHTML(`
-  <div data-my-attribute="someRandomlyGeneratedDataInAnAttribute">
-    foo
-  </div>
-`, { ignoreAttributes: ['data-my-attribute'] });
+  connectedCallback() {
+    this.shadowRoot.innerHTML = '<p> shadow content </p>';
+  }
+}
 
-const rightTree = getDiffableHTML(`
-  <div>
-    foo
-  </div>
-`);
+customElements.define('my-element', MyElement);
 
-// this test will pass, the attribute is ignored
-expect(leftTree).to.equal(rightTree);
+it('my test', async () => {
+  const el = await fixture(`
+    <my-element>
+      <div> light dom content </div>
+    </my-element>
+  `);
+
+  expect(el).dom.to.equal('<my-element><div>light dom content</div></my-element>');
+  expect(el).lightDom.to.equal('<div>light dom content</div>');
+  expect(el).shadowDom.to.equal('<p>shadow content</p>');
+});
 ```
 
-### Ignoring an attribute only for certain tags
+### Snapshot testing
+The most powerful feature of `semantic-dom-diff` is the ability to test and manage snapshots of your web components.
+
+> If you are not using `@open-wc/testing-karma`, you need to manually install [karma-snapshot](https://www.npmjs.com/package/karma-snapshot) and [karma-mocha-snapshot](https://www.npmjs.com/package/karma-mocha-snapshot).
+
+#### Setting up a snapshot
+
+Snapshots are created by setting up your component in a specific state, and then calling `.to.equalSnapshot()`. You can use `.dom`, `.lightDom` or `.shadowDom` to set up the dom of your element:
+
+```js
+import { fixture } from '@open-wc/testing';
+
+describe('my-message', () => {
+  it('renders message foo correctly', () => {
+    const element = await fixture(`
+      <my-message message="Foo"></my-element>
+    `);
+
+    expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('renders message bar correctly', () => {
+    const element = await fixture(`
+      <my-message message="Bar"></my-element>
+    `);
+
+    expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('renders a capitalized message correctly', () => {
+    const element = await fixture(`
+      <my-message message="Bar" capitalized></my-element>
+    `);
+
+    expect(element).shadowDom.to.equalSnapshot();
+  });
+
+  it('allows rendering a message from a slot', () => {
+    const element = await fixture(`
+      <my-message capitalized>Bar</my-element>
+    `);
+
+    expect(element).lightDom.to.equalSnapshot();
+  });
+});
+```
+
+Snapshots are stored in the `__snapshots__` folder in your project, using the most top level `describe` as the name for your snapshots file.
+
+#### Updating a snapshot
+
+> If you are not using the standard `@open-wc/testing-karma` configuration, see the documentation of `karma-snapshot` how to pass the update/prune flags.
+
+When your tests run for the first time the snapshot files are generated. On subsequent test runs your element is compared with the stored snapshots. If the element and the snapshots differ the test fails.
+
+If the difference was an intended change, you can update the snapshots by passing the `--update-snapshots` flag.
+
+
+#### Cleaning up unused snapshots
+
+After refactoring there might be leftover snapshot files which are unused. You can run karma with the `--prune-snapshots` flag to clean these up.
+
+**Ignoring tags and attributes**
+
+When working with libraries or custom elements there might be parts of the rendered dom which is random or otherwise outside of your control. In those cases, you might want to ignore certain attributes or tags entirely. This is possible by passing an options object.
+
+```javascript
+it('renders correctly', async () => {
+  const el = await fixture(`
+    <div my-random-attribute="${Math.random()}">
+      Hey
+    </div>
+  `);
+  
+  expect(el).dom.to.equal('<div>Hey</div>', {
+    ignoreAttributes: ['my-random-attribute']
+  });
+
+  expect(el).dom.to.equalSnapshot({
+    ignoreAttributes: ['my-random-attribute']
+  });
+});
+```
+
+**Ignoring an attribute only for certain tags**
+
 Randomly generated ids are often used, throwing off your diffs. You can ignore attributes on specific tags:
+
 ```javascript
-import { getDiffableHTML } from '@open-wc/semantic-dom-diff';
+it('renders correctly', async () => {
+  const el = await fixture(`
+    <input id="customInput${Math.random()}">
+  `);
 
-const leftTree = getDiffableHTML(`
-  <div>
-    <input id="someRandomlyGeneratedId">
-  </div>
-`, { ignoreAttributes: [{ tags: ['input'], attributs: ['id'] }] });
+  // ignore id attributes on input elements
+  expect(el).dom.to.equal('<div>Hey</div>', {
+    ignoreAttributes: [
+      { tags: ['input'], attributs: ['id'] }
+    ]
+  });
 
-const rightTree = getDiffableHTML(`
-  <div>
-    <input>
-  </div>
-`);
-
-// this test will pass, the id attribute is ignored
-expect(leftTree).to.equal(rightTree);
+  expect(el).dom.to.equalSnapshot({
+    ignoreAttributes: [
+      { tags: ['input'], attributs: ['id'] }
+    ]
+  });
+});
 ```
 
-### Ignoring a tag
-Similarly you can tell the diff to ignore certain tags entirely:
+**Ignoring tags**
+
+You can tell the diff to ignore certain tags entirely:
+
 ```javascript
-import { getDiffableHTML } from '@open-wc/semantic-dom-diff';
+it('renders correctly', async () => {
+  const el = await fixture(`
+    <div>
+      <my-custom-element></my-custom-element>
+      foo
+    </div>
+  `);
 
-const leftTree = getDiffableHTML(`
-  <div>
-    <my-custom-element><my-custom-element>
-    foo
-  </div>
-`, { ignoreTags: ['my-custom-element'] });
+  // ignore id attributes on input elements
+  expect(el).dom.to.equal('<div>Hey</div>', {
+    ignoreTags: ['my-custom-element']
+  });
 
-const rightTree = getDiffableHTML(`
-  <div>
-    foo
-  </div>
-`);
-
-// this test will pass, the tag is ignored completely
-expect(leftTree).to.equal(rightTree);
+  expect(el).dom.to.equalSnapshot({
+    ignoreTags: ['my-custom-element']
+  });
+});
 ```
 
-### Ignoring children
+**Ignoring children**
+
 When working with web components you may find that they sometimes render to their light dom, for example to meet some accessibility requirements. We don't want to ignore the tag completely, as we would then not be able to test if we did render the tag.
 
 We can ignore just it's light dom:
 
 ```javascript
-import { getDiffableHTML } from '@open-wc/semantic-dom-diff';
+it('renders correctly', async () => {
+  const el = await fixture(`
+    <div>
+      <my-custom-input id="myInput">
+        <input id="inputRenderedInLightDom">
+        Some text rendered in the light dom
+      </my-custom-input>
+      foo
+    </div>
+  `);
 
-const leftTree = getDiffableHTML(`
-  <div>
-    <my-custom-input id="myInput">
-      <input id="inputRenderedInLightDom">
-      Some text rendered in the light dom
-    </my-custom-input>
-    foo
-  </div>
-`, { ignoreChildren: ['my-custom-element'] });
+  // ignore id attributes on input elements
+  expect(el).dom.to.equal(`
+    <div>
+      <my-custom-input id="myInput"></my-custom-input>
+      foo
+    </div>
+  `, { ignoreChildren: ['my-custom-element'] });
 
-const rightTree = getDiffableHTML(`
-  <div>
-    <my-custom-input id="myInput"></my-custom-input>
-    foo
-  </div>
-`);
-
-// this test will pass, the light dom of my-custom-input is ignored, but we can still test
-// to see if the tag is placed properly
-expect(leftTree).to.equal(rightTree);
+  expect(el).dom.to.equalSnapshot({
+    ignoreChildren: ['my-custom-element']
+  });
+});
 ```
 
 <script>
