@@ -25,7 +25,7 @@ The hardest part of any project is often getting content onto that first blank p
   Lightning Web Components are now the go-to standard for developing applications in the SalesForce ecosystem, and with the power of web components, they can be the basis of applications outside of their ecosystem, too! 
 - [Material Web Components](https://material-components.github.io/material-components-web-components/demos/index.html)
 
-  Material Design Component from the team behind the Material Design specification. Stay as close to the changing specification as possible with these web components from Google's own Material Design team.
+  Material Design Components from Material Design team themselves. Stay as close as possible to the changing specification with these components from Google's own Material Design team.
 - [Morningstar](http://designsystem.morningstar.com/components/component-status.html)
 
   The Morningstar Design System combines vanilla HTML/CSS with web components in just the right proportions to empower the design and development of wide reaching content and functionality.
