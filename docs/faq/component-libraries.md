@@ -19,7 +19,7 @@ The hardest part of any project is often getting content onto that first blank p
   The HelixUI library provides front-end developers a set of reusable CSS classes and HTML Custom Elements that adhere to Helix design standards, as outlined by Rackspace.
 - [Ionic UI Components](https://ionicframework.com/docs/components)
 
-  Take advantage of the component system that powers Ionic applications with a large ecosystem to choose from and indepth usage instructions no matter the framework with which your project is built.
+  Take advantage of the component system that powers Ionic applications with a large ecosystem to choose from and in-depth usage instructions, no matter the framework you use.
 - [Lightning Web Components by SalesForce](https://developer.salesforce.com/docs/component-library/overview/components)
 
   Lightning Web Components are now the go-to standard for developing applications in the SalesForce ecosystem, and with the power of web components, they can be the basis of applications outside of their ecosystem, too! 
