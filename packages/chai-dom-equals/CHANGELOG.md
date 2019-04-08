@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.11...@open-wc/chai-dom-equals@0.11.0) (2019-04-08)
+
+
+### Features
+
+* **semantic-dom-diff:** add support for snapshot testing ([f7a675a](https://github.com/open-wc/open-wc/commit/f7a675a))
+
+
+
+
+
 ## [0.10.11](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.10...@open-wc/chai-dom-equals@0.10.11) (2019-04-06)
 
 **Note:** Version bump only for package @open-wc/chai-dom-equals

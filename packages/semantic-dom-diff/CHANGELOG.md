@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.7...@open-wc/semantic-dom-diff@0.10.0) (2019-04-08)
+
+
+### Features
+
+* **semantic-dom-diff:** add support for snapshot testing ([f7a675a](https://github.com/open-wc/open-wc/commit/f7a675a))
+
+
+
+
+
 ## [0.9.7](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.6...@open-wc/semantic-dom-diff@0.9.7) (2019-04-06)
 
 **Note:** Version bump only for package @open-wc/semantic-dom-diff
