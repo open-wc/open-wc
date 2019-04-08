@@ -31,7 +31,7 @@ The hardest part of any project is often getting content onto that first blank p
   The Morningstar Design System combines vanilla HTML/CSS with web components in just the right proportions to empower the design and development of wide reaching content and functionality.
 - [SAP UI5](https://sap.github.io/ui5-webcomponents/)
 
-  Get the power and flexibility of SAP'ss UI5 rendering stack with the ergonomics and ease of use of Web Components, and bring enterprise-grade features, Fiori UX and themeability home to your application.
+  Get the power and flexibility of SAP's UI5 rendering stack with the ergonomics and ease of use of web components, and bring enterprise-grade features, Fiori UX and themeability home to your application.
 - [Smart HTML Elements](https://www.htmlelements.com)
 
   With the goal of helping to deliver modern responsive websites and applications that work on any device and are pleasure to use, the Smart HTML Elements collection is one the most feature rich and comprehensive javascript user interface frameworks.
