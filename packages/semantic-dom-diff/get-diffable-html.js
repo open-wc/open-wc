@@ -1,4 +1,4 @@
-const DEFAULT_IGNORE_CHILDREN = ['script', 'style', 'svg'];
+const DEFAULT_IGNORE_TAGS = ['script', 'style', 'svg'];
 const VOID_ELEMENTS = [
   'area',
   'base',
@@ -63,8 +63,8 @@ export function getDiffableHTML(html, options = {}) {
   const ignoreAttributesForTags = /** @type {IgnoreAttributesForTags[]} */ (options.ignoreAttributes
     ? options.ignoreAttributes.filter(e => typeof e !== 'string')
     : []);
-  const ignoreTags = options.ignoreTags || [];
-  const ignoreChildren = [...(options.ignoreChildren || []), ...DEFAULT_IGNORE_CHILDREN];
+  const ignoreTags = [...(options.ignoreTags || []), ...DEFAULT_IGNORE_TAGS];
+  const ignoreChildren = options.ignoreChildren || [];
 
   let text = '';
   let depth = -1;

@@ -387,7 +387,7 @@ describe('getDiffableHTML()', () => {
   });
 
   describe('non-HTML elements', () => {
-    it('does not sprint script content, but preserves attributes', () => {
+    it('does not print script tags', () => {
       const html = getDiffableHTML(`
         <div>pre</div>
         <script>
@@ -397,23 +397,11 @@ describe('getDiffableHTML()', () => {
         <div>post</div>
       `);
       expect(html).to.equal(
-        '<div>\n' +
-          '  pre\n' +
-          '</div>\n' +
-          '<script>\n' +
-          '</script>\n' +
-          '<script\n' +
-          '  src="./foo.js"\n' +
-          '  type="module"\n' +
-          '>\n' +
-          '</script>\n' +
-          '<div>\n' +
-          '  post\n' +
-          '</div>\n',
+        '<div>\n' + '  pre\n' + '</div>\n' + '<div>\n' + '  post\n' + '</div>\n',
       );
     });
 
-    it('does not sprint style content, but preserves attributes', () => {
+    it('does not print styles', () => {
       const html = getDiffableHTML(`
         <div>pre</div>
         <style scope="foo">
@@ -422,18 +410,11 @@ describe('getDiffableHTML()', () => {
         <div>post</div>
         `);
       expect(html).to.equal(
-        '<div>\n' +
-          '  pre\n' +
-          '</div>\n' +
-          '<style scope="foo">\n' +
-          '</style>\n' +
-          '<div>\n' +
-          '  post\n' +
-          '</div>\n',
+        '<div>\n' + '  pre\n' + '</div>\n' + '<div>\n' + '  post\n' + '</div>\n',
       );
     });
 
-    it('does not sprint svg content, but preserves attributes', () => {
+    it('does not print svg', () => {
       const html = getDiffableHTML(`
         <div>pre</div>
         <svg height="80" width="300" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -449,18 +430,7 @@ describe('getDiffableHTML()', () => {
         <div>post</div>
         `);
       expect(html).to.equal(
-        '<div>\n' +
-          '  pre\n' +
-          '</div>\n' +
-          '<svg\n' +
-          '  height="80"\n' +
-          '  width="300"\n' +
-          '  xmlns:xlink="http://www.w3.org/1999/xlink"\n' +
-          '>\n' +
-          '</svg>\n' +
-          '<div>\n' +
-          '  post\n' +
-          '</div>\n',
+        '<div>\n' + '  pre\n' + '</div>\n' + '<div>\n' + '  post\n' + '</div>\n',
       );
     });
   });
