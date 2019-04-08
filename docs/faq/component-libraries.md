@@ -43,5 +43,5 @@ The hardest part of any project is often getting content onto that first blank p
   A set of common UI elements with a hand-drawn, sketchy look. These can be used for wireframes, mockups, or just the fun hand-drawn look.
 
 ::: tip Don't see your design system here?
-If you have a design system built on web components, we'd love to include it here! Please make a pull request adding a link with a short description via on our [github repository](https://github.com/open-wc/open-wc/pulls).
+If you have a design system built on web components, we'd love to include it here! Please make a pull request adding a link with a short description via our [github repository](https://github.com/open-wc/open-wc/pulls).
 :::
