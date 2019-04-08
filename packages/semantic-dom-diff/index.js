@@ -5,3 +5,5 @@ export {
   // backwards compatible export
   getDiffableHTML as getDiffableSemanticHTML,
 };
+
+export { chaiDomDiff } from './chai-dom-diff';

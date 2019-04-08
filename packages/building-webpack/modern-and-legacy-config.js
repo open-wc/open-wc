@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const ModernWebWebpackPlugin = require('./src/modern-web-webpack-plugin');
+const ModernWebWebpackPlugin = require('./modern-web-webpack-plugin');
 
 const development = !process.argv.find(arg => arg.includes('production'));
 const legacy = process.argv.find(arg => arg.includes('legacy'));

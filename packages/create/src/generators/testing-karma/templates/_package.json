@@ -2,6 +2,8 @@
   "scripts": {
     "test": "karma start --coverage",
     "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:update-snapshots": "karma start --update-snapshots",
+    "test:prune-snapshots": "karma start --prune-snapshots",
     "test:legacy": "karma start --legacy --coverage",
     "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false"
   },

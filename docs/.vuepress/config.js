@@ -13,6 +13,7 @@ const sidebar = [
     collapsable: true,
     children: [
       ['/developing/', 'Getting started'],
+      '/developing/best-practices',
       '/developing/owc-dev-server',
       ['/developing/create', 'Generators'],
       '/developing/types',

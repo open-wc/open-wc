@@ -32,3 +32,6 @@ dist
 build-stats.json
 stats.html
 .rpt2_cache
+
+##
+packages/**/__snapshots__
