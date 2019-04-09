@@ -48,6 +48,7 @@ module.exports = config => ({
     require.resolve('karma-snapshot'),
     require.resolve('karma-mocha-snapshot'),
     require.resolve('karma-chrome-launcher'),
+    require.resolve(require.resolve('./src/snapshot-filename-preprocessor.js')),
 
     // fallback: resolve any karma- plugins
     'karma-*',
@@ -62,7 +63,7 @@ module.exports = config => ({
   },
 
   preprocessors: {
-    '**/__snapshots__/**/*.md': ['snapshot'],
+    '**/__snapshots__/**/*.md': ['snapshot', 'snapshot-filename'],
     '**/*.test.js': ['webpack', 'sourcemap'],
     '**/*.spec.js': ['webpack', 'sourcemap'],
   },

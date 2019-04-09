@@ -23,7 +23,8 @@
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "files": [
-    "*.js"
+    "*.js",
+    "src"
   ],
   "dependencies": {
     "@babel/core": "^7.3.3",
