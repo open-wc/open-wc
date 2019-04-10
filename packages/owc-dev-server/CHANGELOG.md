@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.2.3...owc-dev-server@0.3.0) (2019-03-23)
+
+
+### Features
+
+* add types + linting & improve intellisense ([b6d260c](https://github.com/open-wc/open-wc/commit/b6d260c))
+
+
+
+
+
+## [0.2.3](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.2.2...owc-dev-server@0.2.3) (2019-03-23)
+
+
+### Bug Fixes
+
+* **owc-dev-server:** shorten commonjs warning notification ([#314](https://github.com/open-wc/open-wc/issues/314)) ([bfba5be](https://github.com/open-wc/open-wc/commit/bfba5be))
+
+
+
+
+
+## [0.2.2](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.2.1...owc-dev-server@0.2.2) (2019-03-23)
+
+**Note:** Version bump only for package owc-dev-server
+
+
+
+
+
 ## [0.2.1](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.2.0...owc-dev-server@0.2.1) (2019-03-13)
 
 

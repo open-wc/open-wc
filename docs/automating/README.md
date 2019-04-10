@@ -16,7 +16,7 @@ npm init @open-wc automating
 ```
 
 ### Manual Setup
-- copy [.circleci/config.yml](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/tools-circleci/templates/static/.circleci/config.yml) to  `.circleci/config.yml`
+- copy [.circleci/config.yml](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/tools-circleci/templates/static/.circleci/config.yml) to  `.circleci/config.yml`
 
 
 ## Usage

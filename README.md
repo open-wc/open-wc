@@ -65,7 +65,7 @@ You can join the Polymer slack by visiting [this link](https://join.slack.com/t/
 ## Guide
 ```bash
 # bootstrap/setup
-npm run bootstrap
+yarn install
 
 # linting
 npm run lint

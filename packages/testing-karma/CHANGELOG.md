@@ -3,6 +3,108 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@1.0.2...@open-wc/testing-karma@1.1.0) (2019-04-08)
+
+
+### Features
+
+* **semantic-dom-diff:** add support for snapshot testing ([f7a675a](https://github.com/open-wc/open-wc/commit/f7a675a))
+
+
+
+
+
+## [1.0.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@1.0.1...@open-wc/testing-karma@1.0.2) (2019-04-06)
+
+
+### Bug Fixes
+
+* **testing-karma:** resolve chrome launcher ([6e303b5](https://github.com/open-wc/open-wc/commit/6e303b5))
+
+
+
+
+
+## [1.0.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@1.0.0...@open-wc/testing-karma@1.0.1) (2019-04-05)
+
+
+### Bug Fixes
+
+* do not assume available global types of users ([cd394d9](https://github.com/open-wc/open-wc/commit/cd394d9))
+
+
+
+
+
+# [1.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@0.4.15...@open-wc/testing-karma@1.0.0) (2019-03-31)
+
+
+### Bug Fixes
+
+* adopt new karma setup for all packages ([1888260](https://github.com/open-wc/open-wc/commit/1888260))
+
+
+### Features
+
+* **testing-karma:** improve karma config setup ([b173380](https://github.com/open-wc/open-wc/commit/b173380))
+
+
+### BREAKING CHANGES
+
+* **testing-karma:** overall setup changed
+=> if you have mostly default configs you should be able to just run `npm init @open-wc testing`
+* **testing-karma:** `karma.conf.js` changes
+```js
+// old
+const defaultSettings = require('@open-wc/testing-karma/default-settings.js');
+
+// new
+const createDefaultConfig = require('@open-wc/testing-karma/default-config.js');
+```
+* **testing-karma:** `karma.es5.config.js` is no longer needed
+=> use `karma start --legacy` instead
+* **testing-karma:** `karma.es5.bs.config.js` renamed to `karma.bs.config.js`
+* **testing-karma:** `karma.bs.config.js` changes
+```js
+// old
+const karmaEs5Config = require('./karma.es5.config.js');
+
+// new
+const createBaseConfig = require('./karma.conf.js');
+```
+* **testing-karma:** `package.json` scripts changed
+```js
+// old package.json
+"scripts": {
+  "test": "karma start",
+  "test:watch": "karma start --auto-watch=true --single-run=false",
+  "test:es5": "karma start karma.es5.config.js",
+  "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
+  "test:es5:bs": "karma start karma.es5.bs.config.js"
+},
+
+// new
+"scripts": {
+  "test": "karma start --coverage",
+  "test:watch": "karma start --auto-watch=true --single-run=false",
+  "test:legacy": "karma start --legacy --coverage",
+  "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false",
+  "test:bs": "karma start karma.bs.conf.js --legacy --coverage"
+}
+```
+
+
+
+
+
+## [0.4.15](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@0.4.14...@open-wc/testing-karma@0.4.15) (2019-03-23)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
 ## [0.4.14](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@0.4.13...@open-wc/testing-karma@0.4.14) (2019-03-08)
 
 

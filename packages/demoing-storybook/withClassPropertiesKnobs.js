@@ -3,6 +3,12 @@ import { text, number, date, object, array, boolean } from '@storybook/addon-kno
 import { render } from 'lit-html';
 
 /**
+ * @typedef {Object} OptionsWithClassPropertiesKnobs
+ * @property {function} [overrides] Override knobs for specific properties
+ * @property {import('lit-html').TemplateResult} [template] Your template if you need properties or children set
+ */
+
+/**
  * @example
  * class MyEl extends LitElement { ... }
  *
@@ -18,6 +24,8 @@ import { render } from 'lit-html';
  *     { key: 'locked', group: 'Security' }, // change group of an default Element property
  *   ]));
  * });
+ * @param {any} Klass The class (not instance) you want the knobs for
+ * @param {OptionsWithClassPropertiesKnobs} Options Define overrides and a template if neeed
  */
 export function withClassPropertiesKnobs(Klass, { overrides: overrideFunction, template } = {}) {
   let el;

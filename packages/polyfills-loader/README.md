@@ -10,7 +10,7 @@ The [official web component polyfills](https://github.com/webcomponents/webcompo
 This loader seeks to solve this issue, it only loads the required web component polyfills. Additionally, the loader uses dynamic imports so that it integrates properly with your app's dependency graph. This works nicely when using the `usage` option on babel's polyfill transform.
 
 ## Using the loader
-The loader should be called before importing you app:
+The loader should be called before importing your app:
 
 ```javascript
 import loadPolyfills from '@open-wc/polyfills-loader';

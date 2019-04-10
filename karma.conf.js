@@ -1,10 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const merge = require('webpack-merge');
-const defaultSettings = require('./packages/testing-karma/default-settings.js');
+const createDefaultConfig = require('./packages/testing-karma/default-config.js');
 
 module.exports = config => {
   config.set(
-    merge(defaultSettings(config), {
+    merge(createDefaultConfig(config), {
       files: [
         // allows running single tests with the --grep flag
         config.grep ? config.grep : 'packages/!(webpack-import-meta-loader)/test/*.test.js',

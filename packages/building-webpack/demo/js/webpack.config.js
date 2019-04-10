@@ -4,11 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const createDefaultConfigs = require('../../modern-and-legacy-config');
 
 const configs = createDefaultConfigs({
-  entry: [
-    path.resolve(__dirname, './demo-app.js'),
-    path.resolve(__dirname, './a/meta-url-test-2.js'),
-  ],
-  indexHTML: path.resolve(__dirname, './index.html'),
+  input: path.resolve(__dirname, './index.html'),
 });
 
 module.exports = [

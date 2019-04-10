@@ -1,10 +1,14 @@
-import { getDiffableSemanticHTML } from '@open-wc/semantic-dom-diff';
+import { getDiffableHTML } from '@open-wc/semantic-dom-diff';
 
 /**
  * el.outerHTML is not polyfilled so we need to recreate the tag + attributes and
  * combine it with el.innerHTML.
+ *
+ * @param {Element} el Element you want to get the out Html from
+ * @returns {String} outer html
  */
 export const getOuterHtml = el => {
+  // @ts-ignore
   if (window.ShadyCSS && window.ShadyCSS.nativeShadow === false) {
     const tagName = el.tagName.toLowerCase();
     let attributes = ' ';
@@ -21,8 +25,12 @@ export const getOuterHtml = el => {
 /**
  * For comparision we do not need the style scoping classes on polyfilled browsers
  * Rather naive approach for now - probably need to improve once we have failing cases.
+ *
+ * @param {Element} el Element you want to get the cleaned shadow dom
+ * @returns {String} cleaned shadow dom
  */
 export const getCleanedShadowDom = el => {
+  // @ts-ignore
   if (window.ShadyCSS && window.ShadyCSS.nativeShadow === false) {
     const tagName = el.tagName.toLowerCase();
     const regexTagName = new RegExp(tagName, 'g');
@@ -36,56 +44,108 @@ export const getCleanedShadowDom = el => {
   return el.shadowRoot.innerHTML;
 };
 
+/**
+ * Setup the
+ *
+ * Note: can not be an arrow function as it gets rebound
+ *
+ * @param {any} chai
+ * @param {any} utils
+ */
 export const chaiDomEquals = (chai, utils) => {
-  // can not be an arrow function as it gets rebound
-  chai.Assertion.addProperty('dom', function dom() {
+  /**
+   * can not be an arrow function as it gets rebound by chai
+   */
+  chai.Assertion.addProperty('lightDom', function lightDom() {
+    // @ts-ignore
     new chai.Assertion(this._obj.nodeType).to.equal(1);
-    utils.flag(this, 'dom', true);
+    // @ts-ignore
+    utils.flag(this, 'lightDom', true);
   });
 
-  // can not be an arrow function as it gets rebound
+  /**
+   * can not be an arrow function as it gets rebound by chai
+   */
   chai.Assertion.addProperty('shadowDom', function shadowDom() {
+    // @ts-ignore
     new chai.Assertion(this._obj.nodeType).to.equal(1);
+    // @ts-ignore
     utils.flag(this, 'shadowDom', true);
   });
 
-  // can not be an arrow function as it gets rebound
-  // TODO: this is here for backwards compatibility, removal will be
-  // a breaking change
-  chai.Assertion.addProperty('semantically', function shadowDom() {
+  /**
+   * can not be an arrow function as it gets rebound by chai
+   */
+  chai.Assertion.addProperty('dom', function dom() {
+    // @ts-ignore
     new chai.Assertion(this._obj.nodeType).to.equal(1);
+    // @ts-ignore
+    utils.flag(this, 'dom', true);
+  });
+
+  /**
+   * can not be an arrow function as it gets rebound by chai
+   * TODO: this is here for backwards compatibility, removal will be a breaking change
+   * @deprecated
+   */
+  chai.Assertion.addProperty('semantically', function semantically() {
+    // @ts-ignore
+    new chai.Assertion(this._obj.nodeType).to.equal(1);
+    // @ts-ignore
     utils.flag(this, 'semantically', true);
   });
 
   // can not be an arrow function as it gets rebound
   // prettier-ignore
   const domEquals = _super => function handleDom(value, ...args) {
-    if (utils.flag(this, 'dom')) {
-      const expectedHTML = getDiffableSemanticHTML(value);
-      const actualHTML = getDiffableSemanticHTML(getOuterHtml(this._obj));
+    // @ts-ignore
+    if (utils.flag(this, 'shadowDom')) {
+      const expectedHTML = getDiffableHTML(value, args[0]);
+      // @ts-ignore
+      const actualHTML = getDiffableHTML(getCleanedShadowDom(this._obj), args[0]);
 
       // use chai's built-in string comparison, log the updated snapshot on error
       try {
         new chai.Assertion(actualHTML).to.equal(expectedHTML);
       } catch (error) {
         /* eslint-disable no-console */
-        console.log('Snapshot changed, want to accept the change:');
+        console.log('ShadowDom Snapshot changed, want to accept the change:');
         console.log('');
         console.log(actualHTML);
         /* eslint-enable no-console */
         throw error;
       }
 
-    } else if (utils.flag(this, 'shadowDom')) {
-      const expectedHTML = getDiffableSemanticHTML(value);
-      const actualHTML = getDiffableSemanticHTML(getCleanedShadowDom(this._obj));
+    // @ts-ignore
+    } else if (utils.flag(this, 'lightDom')) {
+      const expectedHTML = getDiffableHTML(value, args[0]);
+      // @ts-ignore
+      const actualHTML = getDiffableHTML(this._obj.innerHTML, args[0]);
 
       // use chai's built-in string comparison, log the updated snapshot on error
       try {
         new chai.Assertion(actualHTML).to.equal(expectedHTML);
       } catch (error) {
         /* eslint-disable no-console */
-        console.log('Snapshot changed, want to accept the change:');
+        console.log('LightDom Snapshot changed, want to accept the change:');
+        console.log('');
+        console.log(actualHTML);
+        /* eslint-enable no-console */
+        throw error;
+      }
+
+    // @ts-ignore
+    } else if (utils.flag(this, 'dom')) {
+      const expectedHTML = getDiffableHTML(value, args[0]);
+      // @ts-ignore
+      const actualHTML = getDiffableHTML(getOuterHtml(this._obj), args[0]);
+
+      // use chai's built-in string comparison, log the updated snapshot on error
+      try {
+        new chai.Assertion(actualHTML).to.equal(expectedHTML);
+      } catch (error) {
+        /* eslint-disable no-console */
+        console.log('Dom Snapshot changed, want to accept the change:');
         console.log('');
         console.log(actualHTML);
         /* eslint-enable no-console */
@@ -93,6 +153,7 @@ export const chaiDomEquals = (chai, utils) => {
       }
 
     } else {
+      // @ts-ignore
       _super.apply(this, [value, ...args]);
     }
   };

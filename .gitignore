@@ -5,12 +5,13 @@
 ## system files
 .DS_Store
 
-# code coverage folders
+## code coverage folders
 coverage/
 
 ## npm
 node_modules
 npm-debug.log
+yarn-error.log
 
 ## lerna
 lerna-debug.log
@@ -18,15 +19,19 @@ lerna-debug.log
 ## temp folders
 /.tmp/
 
-# build hp
+## build hp
 /_site/
 
-## we don't want lock files for now
-yarn.lock
+## we prefer yarn.lock
 package-lock.json
+## lock files in packages we do not need to save
+packages/*/yarn.lock
 
 ## build output
 dist
 build-stats.json
 stats.html
 .rpt2_cache
+
+##
+packages/**/__snapshots__

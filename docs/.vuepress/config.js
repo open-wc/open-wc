@@ -13,8 +13,10 @@ const sidebar = [
     collapsable: true,
     children: [
       ['/developing/', 'Getting started'],
+      '/developing/best-practices',
       '/developing/owc-dev-server',
       ['/developing/create', 'Generators'],
+      '/developing/types',
     ],
   },
   {
@@ -24,6 +26,7 @@ const sidebar = [
       ['/linting/', 'Getting started'],
       '/linting/linting-eslint',
       '/linting/linting-prettier',
+      '/linting/linting-types',
     ],
   },
   {
@@ -33,6 +36,7 @@ const sidebar = [
       ['/testing/', 'Getting started'],
       '/testing/testing-helpers',
       '/testing/testing-chai-dom-equals',
+      '/testing/semantic-dom-diff',
       '/testing/testing-karma',
       '/testing/testing-karma-bs',
       '/testing/testing-wallaby',
@@ -81,7 +85,19 @@ module.exports = {
       '/demoing/': sidebar,
       '/publishing/': sidebar,
       '/automating/': sidebar,
-      '/faq/': ['', 'rerender'],
+      '/faq/': [
+        ['', 'Faq'],
+        {
+          title: 'Deep dives',
+          collapsable: true,
+          children: [
+            'component-libraries',
+            'rerender',
+            'unit-testing-custom-events',
+            'unit-testing-init-error',
+          ],
+        },
+      ],
       '/about/': [['/about/', 'About'], '/about/contact', '/about/rationales', '/about/blog'],
     },
     nav: [

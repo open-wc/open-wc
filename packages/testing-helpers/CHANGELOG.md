@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.6](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.5...@open-wc/testing-helpers@0.8.6) (2019-04-08)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.8.5](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.4...@open-wc/testing-helpers@0.8.5) (2019-04-06)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.8.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.3...@open-wc/testing-helpers@0.8.4) (2019-04-05)
+
+
+### Bug Fixes
+
+* do not assume available global types of users ([cd394d9](https://github.com/open-wc/open-wc/commit/cd394d9))
+
+
+
+
+
+## [0.8.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.2...@open-wc/testing-helpers@0.8.3) (2019-03-31)
+
+
+### Bug Fixes
+
+* adopt new karma setup for all packages ([1888260](https://github.com/open-wc/open-wc/commit/1888260))
+
+
+
+
+
+## [0.8.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.1...@open-wc/testing-helpers@0.8.2) (2019-03-24)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.8.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.0...@open-wc/testing-helpers@0.8.1) (2019-03-23)
+
+
+### Bug Fixes
+
+* do not assume globally setup mocha types ([977d5b4](https://github.com/open-wc/open-wc/commit/977d5b4))
+
+
+
+
+
+# [0.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.25...@open-wc/testing-helpers@0.8.0) (2019-03-23)
+
+
+### Features
+
+* add types + linting & improve intellisense ([b6d260c](https://github.com/open-wc/open-wc/commit/b6d260c))
+
+
+
+
+
 ## [0.7.25](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.24...@open-wc/testing-helpers@0.7.25) (2019-03-20)
 
 **Note:** Version bump only for package @open-wc/testing-helpers

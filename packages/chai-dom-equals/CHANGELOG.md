@@ -3,6 +3,141 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.2](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.11.1...@open-wc/chai-dom-equals@0.11.2) (2019-04-08)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.11.1](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.11.0...@open-wc/chai-dom-equals@0.11.1) (2019-04-08)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+# [0.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.11...@open-wc/chai-dom-equals@0.11.0) (2019-04-08)
+
+
+### Features
+
+* **semantic-dom-diff:** add support for snapshot testing ([f7a675a](https://github.com/open-wc/open-wc/commit/f7a675a))
+
+
+
+
+
+## [0.10.11](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.10...@open-wc/chai-dom-equals@0.10.11) (2019-04-06)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.10.10](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.9...@open-wc/chai-dom-equals@0.10.10) (2019-04-05)
+
+
+### Bug Fixes
+
+* do not assume available global types of users ([cd394d9](https://github.com/open-wc/open-wc/commit/cd394d9))
+
+
+
+
+
+## [0.10.9](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.8...@open-wc/chai-dom-equals@0.10.9) (2019-04-03)
+
+
+### Bug Fixes
+
+* **chai-dom-equals:** compare children only via lightDom ([#346](https://github.com/open-wc/open-wc/issues/346)) ([c94408d](https://github.com/open-wc/open-wc/commit/c94408d))
+
+
+
+
+
+## [0.10.8](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.7...@open-wc/chai-dom-equals@0.10.8) (2019-03-31)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.10.7](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.6...@open-wc/chai-dom-equals@0.10.7) (2019-03-31)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.10.6](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.5...@open-wc/chai-dom-equals@0.10.6) (2019-03-31)
+
+
+### Bug Fixes
+
+* adopt new karma setup for all packages ([1888260](https://github.com/open-wc/open-wc/commit/1888260))
+
+
+
+
+
+## [0.10.5](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.4...@open-wc/chai-dom-equals@0.10.5) (2019-03-29)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.10.4](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.3...@open-wc/chai-dom-equals@0.10.4) (2019-03-28)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.10.3](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.2...@open-wc/chai-dom-equals@0.10.3) (2019-03-27)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.10.2](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.1...@open-wc/chai-dom-equals@0.10.2) (2019-03-24)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.10.1](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.10.0...@open-wc/chai-dom-equals@0.10.1) (2019-03-23)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+# [0.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.9.26...@open-wc/chai-dom-equals@0.10.0) (2019-03-23)
+
+
+### Features
+
+* add types + linting & improve intellisense ([b6d260c](https://github.com/open-wc/open-wc/commit/b6d260c))
+
+
+
+
+
 ## [0.9.26](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.9.25...@open-wc/chai-dom-equals@0.9.26) (2019-03-20)
 
 **Note:** Version bump only for package @open-wc/chai-dom-equals

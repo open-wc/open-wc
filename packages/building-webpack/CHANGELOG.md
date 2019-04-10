@@ -3,6 +3,105 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.2.3...@open-wc/building-webpack@1.3.0) (2019-04-06)
+
+
+### Features
+
+* **building-webpack:** make custom webpack plugin public ([#355](https://github.com/open-wc/open-wc/issues/355)) ([f3d291a](https://github.com/open-wc/open-wc/commit/f3d291a))
+
+
+
+
+
+## [1.2.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.2.2...@open-wc/building-webpack@1.2.3) (2019-04-05)
+
+
+### Bug Fixes
+
+* do not assume available global types of users ([cd394d9](https://github.com/open-wc/open-wc/commit/cd394d9))
+
+
+
+
+
+## [1.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.2.1...@open-wc/building-webpack@1.2.2) (2019-04-03)
+
+
+### Bug Fixes
+
+* add clone dependency ([4d15a39](https://github.com/open-wc/open-wc/commit/4d15a39))
+
+
+
+
+
+## [1.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.2.0...@open-wc/building-webpack@1.2.1) (2019-04-03)
+
+
+### Bug Fixes
+
+* **building-webpack:** add dom5 fork to npm package ([fcb26fd](https://github.com/open-wc/open-wc/commit/fcb26fd))
+
+
+
+
+
+# [1.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.1.3...@open-wc/building-webpack@1.2.0) (2019-04-03)
+
+
+### Features
+
+* **building-webpack:** enable single entry point html file ([71e5650](https://github.com/open-wc/open-wc/commit/71e5650))
+
+
+
+
+
+## [1.1.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.1.2...@open-wc/building-webpack@1.1.3) (2019-04-02)
+
+
+### Bug Fixes
+
+* **building-webpack:** support windows file pathes as well ([#344](https://github.com/open-wc/open-wc/issues/344)) ([cca6eae](https://github.com/open-wc/open-wc/commit/cca6eae))
+
+
+
+
+
+## [1.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.1.1...@open-wc/building-webpack@1.1.2) (2019-03-30)
+
+
+### Bug Fixes
+
+* **building-webpack:** allow to provide a publicPath ([2f54a78](https://github.com/open-wc/open-wc/commit/2f54a78))
+
+
+
+
+
+## [1.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.1.0...@open-wc/building-webpack@1.1.1) (2019-03-27)
+
+
+### Bug Fixes
+
+* **building-webpack:** default webpack generator config and docs ([#321](https://github.com/open-wc/open-wc/issues/321)) ([c4f37a6](https://github.com/open-wc/open-wc/commit/c4f37a6))
+
+
+
+
+
+# [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.0.0...@open-wc/building-webpack@1.1.0) (2019-03-23)
+
+
+### Features
+
+* add types + linting & improve intellisense ([b6d260c](https://github.com/open-wc/open-wc/commit/b6d260c))
+
+
+
+
+
 # [1.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@0.1.10...@open-wc/building-webpack@1.0.0) (2019-03-21)
 
 

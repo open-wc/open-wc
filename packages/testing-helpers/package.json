@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-helpers",
-  "version": "0.7.25",
+  "version": "0.8.6",
   "description": "Testing Helpers following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -13,12 +13,18 @@
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/testing-helpers"
   },
+  "module": "index.js",
+  "files": [
+    "src",
+    "index.js",
+    "index-no-side-effects.js"
+  ],
   "scripts": {
-    "test": "karma start",
+    "test": "karma start --coverage",
     "test:watch": "karma start --auto-watch=true --single-run=false",
-    "test:es5": "karma start karma.es5.config.js",
-    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
-    "test:es5:bs": "karma start karma.es5.bs.config.js",
+    "test:legacy": "karma start --legacy --coverage",
+    "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false",
+    "test:bs": "karma start karma.bs.conf.js --legacy --coverage",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "peerDependencies": {
@@ -26,9 +32,9 @@
   },
   "devDependencies": {
     "@bundled-es-modules/chai": "^4.2.0",
-    "@open-wc/testing-karma": "^0.4.14",
-    "@open-wc/testing-karma-bs": "^0.2.15",
-    "@open-wc/testing-wallaby": "^0.1.11",
+    "@open-wc/testing-karma": "^1.1.0",
+    "@open-wc/testing-karma-bs": "^1.0.3",
+    "@open-wc/testing-wallaby": "^0.1.12",
     "lit-html": "^1.0.0",
     "mocha": "^5.0.0",
     "sinon": "^7.2.7",
