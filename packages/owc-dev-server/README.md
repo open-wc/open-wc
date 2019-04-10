@@ -20,7 +20,7 @@ Note: import paths are only resolved within `.js` files. This means you cannot d
 ```html
 <html>
   <head>
-    <script>
+    <script type="module">
       import { html } from 'lit-html'; // does not work
     </script>
   </head>
@@ -33,26 +33,41 @@ Please note that the owc-dev-server *only resolves bare module specifiers*, and 
 :::
 
 
-### Usage
+## Usage
+If you just want to try owc-dev-server once, you can [run it through `npx`](#execute-with-npx). If you decide to keep using owc-dev-server in your project, you should install and add it to your package's `devDependencies`:
 ```bash
 npm i -D owc-dev-server
+# or
+yarn add --dev owc-dev-server
 ```
 
-#### Execute
-```
+Note: The owc-dev-server package is *named after the command* it provides. That's why it doesn't follow the naming pattern for the other open-wc packages and does not use a `@open-wc/` scope prefix.
+
+### Execute as script
+For convenience (i.e. to always use the same [command line options](#command-line-options)) you should add an entry to your `scripts`:
+```javascript
 // package.json
 "scripts": {
   "start": "owc-dev-server"
 }
+```
 
-// bash
+This allows you to execute owc-dev-server like this:
+```bash
+# run package.json script 'start'
 npm run start
+# or
+yarn run start
+```
 
-// or via npx
+### Execute with npx
+You can also start owc-dev-server through `npx`. This allows you to easily try out different [command line options](#command-line-options). Starting owc-dev-server through `npx` will even work if you did not previously install it ([see above](#usage)).
+```bash
+# run ad-hoc via npx -- works even without prior installation
 npx owc-dev-server
 ```
 
-#### Static files
+### Static files
 By default the server will just serve up static files from your current working directory:
 ```bash
 npx owc-dev-server --open
@@ -69,14 +84,14 @@ npx owc-dev-server ./dist
 npx owc-dev-server --root-dir ./dist
 ```
 
-#### Single Page App
+### Single Page App
 For a SPA, you will want non-file requests to serve the app's index so that you can handle routing within your app. The browser will automatically open at your app's root path.
 ```bash
 npx owc-dev-server --app-index index.html --open
 ```
 Note: That this will require a `<base href="/">` in your html head.
 
-#### Component project
+### Component project
 When working on a (web) component project, you will usually have a demo folder for local development:
 ```bash
 npx owc-dev-server --open demo/
@@ -87,7 +102,7 @@ If your demo itself is a SPA, you can also specify the app-index option:
 npx owc-dev-server --app-index demo/index.html --open
 ```
 
-### Additional configs like a proxy
+## Additional configs like a proxy
 If you need additional configuration for the server you can provide them via a config file `.owc-dev-server.config.js`.
 ```js
 // example for a proxy middleware for netlify lambda functions
@@ -103,17 +118,17 @@ module.exports = function(app) {
 };
 ```
 
-### Command line options
-| name          | alias | type           | description                                                             |
-| ------------- | ----- | -------------- | ----------------------------------------------------------------------- |
-| --port        | -p    | number         | The port to use. Default: 8080                                          |
-| --hostname    | -h    | string         | The hostname to use. Default: localhost                                 |
-| --open        | -o    | string/boolean | Opens the default browser on the given path or default /                |
-| --app-index   | -a    | string         | The app's index.html file. When set, serves the index.html for non-file |
-| --root-dir    | -r    | string         | The root directory to serve files from. Defaults to the project root.   |
-| --modules-dir | -m    | string         | Directory to resolve modules from. Default: node_modules                |
-| --config-file | -c    | string         | File with additional config. Default: .owc-dev-server.config.js         |
-| --help        | none  | none           | See all options                                                         |
+## Command line options
+| name          | alias | type           | description                                                                      |
+| ------------- | ----- | -------------- | -------------------------------------------------------------------------------- |
+| --port        | -p    | number         | The port to use. Default: 8080                                                   |
+| --hostname    | -h    | string         | The hostname to use. Default: localhost                                          |
+| --open        | -o    | string/boolean | Opens the default browser on the given path. Default: /                          |
+| --app-index   | -a    | string         | The app's index.html file. When set, serves the index.html for non-file requests |
+| --root-dir    | -r    | string         | The root directory to serve files from. Defaults to the project root.            |
+| --modules-dir | -m    | string         | Directory to resolve modules from. Default: node_modules                         |
+| --config-file | -c    | string         | File with additional config. Default: .owc-dev-server.config.js                  |
+| --help        | none  | none           | See all options                                                                  |
 
 <script>
   export default {
