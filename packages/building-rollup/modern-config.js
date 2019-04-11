@@ -20,7 +20,7 @@ module.exports = function createBasicConfig(_options) {
     output: {
       dir: options.outputDir,
       format: 'esm',
-      sourcemap: true,
+      sourcemap: options.sourcemap !== undefined ? options.sourcemap : true,
     },
     plugins: [
       // minify html and css template literals if in production
