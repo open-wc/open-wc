@@ -29,7 +29,7 @@ The hardest part of any project is often getting content onto that first blank p
 - [Morningstar](http://designsystem.morningstar.com/components/component-status.html)
 
   The Morningstar Design System combines vanilla HTML/CSS with web components in just the right proportions to empower the design and development of wide reaching content and functionality.
-- [SAP UI5](https://sap.github.io/ui5-webcomponents/)
+- [UI5 Web Components](https://sap.github.io/ui5-webcomponents/)
 
   Get the power and flexibility of SAP's UI5 rendering stack with the ergonomics and ease of use of web components, and bring enterprise-grade features, Fiori UX and themeability home to your application.
 - [Smart HTML Elements](https://www.htmlelements.com)
