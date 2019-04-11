@@ -34,7 +34,7 @@ Please note that the owc-dev-server *only resolves bare module specifiers*, and 
 
 
 ## Usage
-If you just want to try owc-dev-server once, you can [run it through `npx`](#execute-with-npx). If you decide to keep using owc-dev-server in your project, you should install and add it to your package's `devDependencies`:
+Before using owc-dev-server in your project, you need to install and add it to your package's `devDependencies`:
 ```bash
 npm i -D owc-dev-server
 # or
@@ -61,11 +61,15 @@ yarn run start
 ```
 
 ### Execute with npx
-You can also start owc-dev-server through `npx`. This allows you to easily try out different [command line options](#command-line-options). Starting owc-dev-server through `npx` will even work if you did not previously install it ([see above](#usage)).
+You can also start owc-dev-server through `npx`. This allows you to easily try out different [command line options](#command-line-options).
 ```bash
-# run ad-hoc via npx -- works even without prior installation
+# run ad-hoc via npx
 npx owc-dev-server
 ```
+
+::: warning
+If you didn't install owc-dev-server locally (as a dependency, [see above](#usage)), running `npx owc-dev-server` will start owc-dev-server, but it **will not work** properly and report errors. See [this issue](https://github.com/open-wc/open-wc/issues/366) for details.
+:::
 
 ### Static files
 By default the server will just serve up static files from your current working directory:
