@@ -220,6 +220,23 @@ We recommend using the babel typescript plugin. Add this to your `.babelrc`:
 
 This the fastest method, as it strips away types during babel transformormation of your code. It will not perform any type checking though. We recommend setting up the type checking as part of your linting setup, so that you don't need to run the typechecker during development for faster builds.
 
+
+<details>
+  <summary>Supporting `LitElement`'s `@customElement` and `@property`</summary>
+
+  > Due to the way Babel handles [decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) and class properties, you'll need to specify the plugins in a specific order with specific options. Here's what you'll need:
+  ```javascript
+  {
+    "presets": ["@babel/preset-typescript"],
+    "plugins": [
+      ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
+      "@babel/plugin-proposal-class-properties"
+    ]
+  }
+
+  ```
+</details>
+
 #### 2. Plugin
 It is also possible to add the webpack typescript plugin, which does typechecking and compiling for you:
 
