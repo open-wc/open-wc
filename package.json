@@ -40,7 +40,6 @@
     "@open-wc/testing-karma": "file:./packages/testing-karma",
     "@open-wc/testing-karma-bs": "file:./packages/testing-karma-bs",
     "@vuepress/plugin-google-analytics": "^1.0.0-alpha.30",
-    "babel-eslint": "^10.0.1",
     "eslint": "^5.13.0",
     "eslint-config-prettier": "^3.3.0",
     "husky": "1.1.2",
