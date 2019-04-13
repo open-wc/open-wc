@@ -50,7 +50,7 @@ echo "Key: $BROWSER_STACK_ACCESS_KEY"
 
 ### Usage
 ```bash
-npm run test:es5:bs
+npm run test:bs
 ```
 
 <script>
