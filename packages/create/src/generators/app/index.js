@@ -44,7 +44,7 @@ const AppMixin = subclass =>
       const { scaffold } = await qoa.prompt([
         {
           type: 'interactive',
-          query: 'What would you like to scaffold?\nNote: Content will be written in a new folder.',
+          query: 'What would you like to scaffold?\n You can read more abbout your options here : https://open-wc.org/developing/create.html#usage\nNote: Content will be written in a new folder. ',
           handle: 'scaffold',
           symbol: '>',
           menu: [
