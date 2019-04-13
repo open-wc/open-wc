@@ -857,10 +857,10 @@
   resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-7.1.2.tgz#5b5e45924c9abd8f9a8d83eb1f66e24e5f66916f"
   integrity sha512-DmA4ixkpv03qA1TVs1Bl25QsVym2bPL6pKapesALWIVggG3OpwqGZ55vN75Tx8xZoG7LFKrVyrt7kwhA7X8njQ==
 
-"@commitlint/config-lerna-scopes@7.2.1":
-  version "7.2.1"
-  resolved "https://registry.yarnpkg.com/@commitlint/config-lerna-scopes/-/config-lerna-scopes-7.2.1.tgz#412bbe63dea599b37d7c3aeae2b71a7f961f6c75"
-  integrity sha512-mwOchKzUKCINOUGlKPaavX9oF1vNT6kr6bZEshh6Hv1kfcNqBt9alLjbQq+4H/jHB7bvUER088pUaAjwHVP+7A==
+"@commitlint/config-lerna-scopes@7.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@commitlint/config-lerna-scopes/-/config-lerna-scopes-7.5.1.tgz#b4747e9cc7558f14a0fc9d59715e771d73a63caa"
+  integrity sha512-llv08M+b/VSemUfDsKFo8Dv1LHGVTMPsA8J1/ISMAlJCayTCCkgnJS812E8HPOVVQlMxBmqXvMmSOhvp3gFkZQ==
   dependencies:
     import-from "2.1.0"
     resolve-pkg "1.0.0"
@@ -1816,14 +1816,14 @@
     url-template "^2.0.8"
 
 "@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.0.2"
+  version "1.0.3"
   dependencies:
-    "@open-wc/testing-karma" "^1.0.2"
+    "@open-wc/testing-karma" "^1.1.0"
     "@types/node" "^11.13.0"
     karma-browserstack-launcher "^1.0.0"
 
 "@open-wc/testing-karma@file:./packages/testing-karma":
-  version "1.0.2"
+  version "1.1.0"
   dependencies:
     "@babel/core" "^7.3.3"
     "@babel/plugin-syntax-dynamic-import" "^7.2.0"

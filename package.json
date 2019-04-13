@@ -36,7 +36,7 @@
   "devDependencies": {
     "@commitlint/cli": "7.2.1",
     "@commitlint/config-conventional": "7.1.2",
-    "@commitlint/config-lerna-scopes": "7.2.1",
+    "@commitlint/config-lerna-scopes": "7.5.1",
     "@open-wc/testing-karma": "file:./packages/testing-karma",
     "@open-wc/testing-karma-bs": "file:./packages/testing-karma-bs",
     "@vuepress/plugin-google-analytics": "^1.0.0-alpha.30",
