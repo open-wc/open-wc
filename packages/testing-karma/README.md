@@ -28,10 +28,14 @@ The intention of the presets is to be able to write browser runnable code, with 
 - Building via [webpack](https://webpack.js.org/) via [karma-webpack](https://github.com/webpack-contrib/karma-webpack)
 - Test Coverage via [istanbul](https://istanbul.js.org/) via [istanbul-instrumenter-loader](https://github.com/webpack-contrib/istanbul-instrumenter-loader)
 
+::: tip
+This is part of the default [open-wc testing](https://open-wc.org/testing/) recommendation
+:::
+
 ### Setup
-Automated setup:
 ```bash
-npm init @open-wc testing-karma
+npm init @open-wc
+# Upgrade > Testing
 ```
 
 For manual setup, follow the steps at the bottom of this readme.

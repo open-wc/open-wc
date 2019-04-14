@@ -12,13 +12,10 @@ Using:
   - Plugin [chai-dom-equals](https://www.npmjs.com/package/@open-wc/chai-dom-equals)
 - Mocks via [sinon](https://sinonjs.org/)
 
-::: tip
-This is part of the default [open-wc](https://open-wc.org/) recommendation
-:::
-
 ## Setup
 ```bash
-npm init @open-wc testing
+npm init @open-wc
+# Upgrade > Testing
 ```
 
 ### Manual
