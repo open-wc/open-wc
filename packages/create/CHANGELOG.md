@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.7.1...@open-wc/create@0.8.0) (2019-04-14)
+
+
+### Features
+
+* **create:** use prompts package and refactor flow ([16a22be](https://github.com/open-wc/open-wc/commit/16a22be))
+
+
+
+
+
 ## [0.7.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.7.0...@open-wc/create@0.7.1) (2019-04-08)
 
 

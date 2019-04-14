@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.4.2...@open-wc/eslint-config@0.4.3) (2019-04-14)
+
+
+### Bug Fixes
+
+* update generator usage ([5d284d4](https://github.com/open-wc/open-wc/commit/5d284d4))
+
+
+
+
+
 ## [0.4.2](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.4.1...@open-wc/eslint-config@0.4.2) (2019-03-24)
 
 
