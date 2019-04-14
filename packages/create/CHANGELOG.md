@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.8.0...@open-wc/create@0.8.1) (2019-04-14)
+
+
+### Bug Fixes
+
+* **create:** fill templateData for upgrade generators ([6140652](https://github.com/open-wc/open-wc/commit/6140652))
+
+
+
+
+
 # [0.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.7.1...@open-wc/create@0.8.0) (2019-04-14)
 
 
