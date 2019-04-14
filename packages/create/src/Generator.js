@@ -24,11 +24,13 @@ class Generator {
   }
 
   execute() {
-    if (this.options.type === 'scaffold' && this.options.tagName) {
+    if (this.options.tagName) {
       const { tagName } = this.options;
       const className = getClassName(tagName);
-      this._destinationPath = path.join(process.cwd(), tagName);
       this.templateData = { ...this.templateData, tagName, className };
+      if (this.options.type === 'scaffold') {
+        this._destinationPath = path.join(process.cwd(), tagName);
+      }
     }
   }
 
