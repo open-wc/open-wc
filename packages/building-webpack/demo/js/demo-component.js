@@ -2,6 +2,12 @@
 import { LitElement, html, css } from 'lit-element';
 
 class DemoComponent extends LitElement {
+  static get properties() {
+    return {
+      myProperty: { type: String },
+    };
+  }
+
   static get styles() {
     return css`
       p {
@@ -10,9 +16,12 @@ class DemoComponent extends LitElement {
     `;
   }
 
+  /** @type {string} */
+  myProperty = null;
+
   render() {
     return html`
-      <p>Demo component</p>
+      <p>Demo component, myProperty is: ${this.myProperty}</p>
     `;
   }
 

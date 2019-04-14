@@ -83,7 +83,11 @@ module.exports = userOptions => {
                       'lit-html': ['html'],
                       'lit-element': ['html', { name: 'css', encapsulation: 'style' }],
                     },
-                    htmlMinifier: { collapseWhitespace: true, removeComments: true },
+                    htmlMinifier: {
+                      collapseWhitespace: true,
+                      removeComments: true,
+                      caseSensitive: true,
+                    },
                   },
                 ],
                 // webpack does not support import.meta.url yet, so we rewrite them in babel
