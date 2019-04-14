@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.0.3...@open-wc/testing-karma-bs@1.0.4) (2019-04-13)
+
+
+### Bug Fixes
+
+* **testing-karma-bs:** adjust wrong readme snippet for adding scripts ([89ef389](https://github.com/open-wc/open-wc/commit/89ef389))
+
+
+
+
+
 ## [1.0.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.0.2...@open-wc/testing-karma-bs@1.0.3) (2019-04-08)
 
 **Note:** Version bump only for package @open-wc/testing-karma-bs

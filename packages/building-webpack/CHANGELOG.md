@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.3.0...@open-wc/building-webpack@1.3.1) (2019-04-13)
+
+
+### Bug Fixes
+
+* **building-webpack:** add decorator friendly .babelrc example ([211653b](https://github.com/open-wc/open-wc/commit/211653b))
+
+
+
+
+
 # [1.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.2.3...@open-wc/building-webpack@1.3.0) (2019-04-06)
 
 
