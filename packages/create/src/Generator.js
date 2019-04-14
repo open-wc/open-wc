@@ -1,28 +1,36 @@
 import path from 'path';
-import qoa from 'qoa';
-import commandLineArgs from 'command-line-args';
 
-import { copyTemplates, copyTemplate, copyTemplateJsonInto, installNpm } from './core.js';
-import { parseCliOptions } from './helpers.js';
+import {
+  copyTemplates,
+  copyTemplate,
+  copyTemplateJsonInto,
+  installNpm,
+  writeFilesToDisk,
+} from './core.js';
 
-const optionDefinitions = [
-  { name: 'tag-name', type: String, defaultValue: '' },
-  { name: 'npm-install', type: String, defaultValue: '' },
-  { name: 'scaffold', type: String, defaultValue: '' },
-];
-
-export const cliOptions = commandLineArgs(optionDefinitions, { partial: true });
+function getClassName(tagName) {
+  return tagName
+    .split('-')
+    .reduce((previous, part) => previous + part.charAt(0).toUpperCase() + part.slice(1), '');
+}
 
 class Generator {
   constructor() {
     this._destinationPath = process.cwd();
+    this.options = {};
     this.templateData = {};
     this.wantsNpmInstall = true;
-    this.cliOptions = parseCliOptions(cliOptions);
+    this.wantsWriteToDisk = true;
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  execute() {}
+  execute() {
+    if (this.options.type === 'scaffold' && this.options.tagName) {
+      const { tagName } = this.options;
+      const className = getClassName(tagName);
+      this._destinationPath = path.join(process.cwd(), tagName);
+      this.templateData = { ...this.templateData, tagName, className };
+    }
+  }
 
   destinationPath(destination = '') {
     return path.join(this._destinationPath, destination);
@@ -41,35 +49,14 @@ class Generator {
   }
 
   async end() {
-    if (this.cliOptions['npm-install'] !== '') {
-      this.wantsNpmInstall = this.cliOptions['npm-install'];
+    if (this.wantsWriteToDisk) {
+      writeFilesToDisk();
     }
-    if (this.wantsNpmInstall) {
-      let command = 'No';
-      if (this.cliOptions['npm-install'] === 'yarn') {
-        command = 'yarn';
-      }
-      if (this.cliOptions['npm-install'] === 'npm') {
-        command = 'npm';
-      }
-      if (command === 'No') {
-        const result = await qoa.prompt([
-          {
-            type: 'interactive',
-            query: 'Do you want to install dependencies?',
-            handle: 'command',
-            symbol: '>',
-            menu: ['Yes, with yarn', 'Yes, with npm', 'No'],
-          },
-        ]);
-        if (result.command !== 'No') {
-          // eslint-disable-next-line prefer-destructuring
-          command = result.command.split('Yes, with ').slice(-1)[0];
-        }
-      }
 
-      if (command !== 'No') {
-        await installNpm(this._destinationPath, command);
+    if (this.wantsNpmInstall) {
+      const { installDependencies } = this.options;
+      if (installDependencies === 'yarn' || installDependencies === 'npm') {
+        await installNpm(this._destinationPath, installDependencies);
       }
     }
   }

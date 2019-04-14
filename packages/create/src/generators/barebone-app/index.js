@@ -1,17 +1,10 @@
 /* eslint-disable no-console */
-import path from 'path';
-import { askTagInfo } from '../../helpers';
-
 const BareboneAppMixin = subclass =>
   class extends subclass {
     async execute() {
-      // before super to also affect the Mixin it applies
-      const { tagName, className } = await askTagInfo();
-      this.templateData = { ...this.templateData, tagName, className };
-      this._destinationPath = path.join(process.cwd(), tagName);
-
-      console.log('Setup Barebone App...');
       await super.execute();
+
+      const { tagName } = this.templateData;
 
       // write & rename app-template
       this.copyTemplate(

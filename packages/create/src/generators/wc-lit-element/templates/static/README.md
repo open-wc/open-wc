@@ -23,7 +23,7 @@ npm run test
 
 ## Testing using karma via browserstack (if applied by author)
 ```bash
-npm run test:es5:bs
+npm run test:bs
 ```
 
 ## Demoing using storybook (if applied by author)
