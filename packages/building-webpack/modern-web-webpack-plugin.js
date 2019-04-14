@@ -48,10 +48,12 @@ const entriesLoader = `
 const error = msg =>
   `(function() { document.body.innerHTML = '<h1 style="color:red">${msg}</h1>'; throw new Error('${msg}'); })()`;
 const modernError = error(
-  'You are running webpack-dev-server with a modern build, run the dev server with the --legacy flag for this browser or run a production build.',
+  'You are running webpack-dev-server with a modern build which does not work on a legacy browser.' +
+    'Run the dev server with the --legacy flag for this browser, or run a production build to get a modern and a legacy output.',
 );
 const legacyError = error(
-  'You are running webpack-dev-server with a legacy build, run the dev server with the --legacy flag for this browser or run a production build.',
+  'You are running webpack-dev-server with a legacy build which does not work on a modern browser.' +
+    'Run the dev server without the --legacy flag for this browser, or run a production build to get a modern and a legacy output.',
 );
 
 function pathJoin(...args) {
