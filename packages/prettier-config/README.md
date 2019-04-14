@@ -10,7 +10,8 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Setup
 ```bash
-npm init @open-wc linting-prettier
+npm init @open-wc
+# Upgrade > Linting
 ```
 
 ## Manual

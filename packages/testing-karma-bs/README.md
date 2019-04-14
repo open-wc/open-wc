@@ -10,12 +10,13 @@ Using:
 - Testing via [Browserstack](https://www.browserstack.com/) via [karma-browserstack-launcher](https://github.com/karma-runner/karma-browserstack-launcher)
 
 ::: tip
-This is part of the default [open-wc](https://open-wc.org/) recommendation
+This is part of the default [open-wc testing](https://open-wc.org/testing/) recommendation
 :::
 
 ## Setup
 ```bash
-npm init @open-wc testing-karma-bs
+npm init @open-wc
+# Upgrade > Testing
 
 # follow Setup user + key
 ```
