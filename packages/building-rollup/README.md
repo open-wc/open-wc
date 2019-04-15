@@ -12,7 +12,8 @@ See the [extending section](#extending-the-rollup-config) for more customization
 ## Setup
 
 ```bash
-npm init @open-wc building-rollup
+npm init @open-wc
+# Upgrade > Building > Rollup
 ```
 
 ## Manual setup

@@ -1,18 +1,9 @@
 /* eslint-disable no-console */
-import path from 'path';
-import { askTagInfo } from '../../helpers';
-
 const WcLitElementMixin = subclass =>
   class extends subclass {
     async execute() {
-      // before super to also affect the Mixin it applies
-      const { tagName, className } = await askTagInfo();
-      this.templateData = { ...this.templateData, tagName, className };
-
-      this._destinationPath = path.join(process.cwd(), tagName);
-
-      console.log('Setup lit-element web component...');
       await super.execute();
+      const { tagName, className } = this.templateData;
 
       // write & rename el class template
       this.copyTemplate(

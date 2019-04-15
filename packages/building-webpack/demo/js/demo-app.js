@@ -66,7 +66,7 @@ class DemoApp extends LitElement {
       <p>Hello world ${this.foo}</p>
 
       <button @click="${this._lazyLoad}">Lazy load</button>
-      <demo-component></demo-component>
+      <demo-component .myProperty=${'Hello world'}></demo-component>
 
       ${this._myElementLoaded
         ? html`

@@ -5,7 +5,7 @@
 In order to efficiently test Web Components you will need some helpers to register and instantiate them for you.
 
 ::: tip
-This is part of the default [open-wc](https://open-wc.org/) recommendation
+This is part of the default [open-wc testing](https://open-wc.org/testing/) recommendation
 :::
 
 ::: warning
@@ -54,7 +54,7 @@ expect(el.foo).to.be.true;
 ```
 
 ## Test a custom class with properties
-For lit-html it's a little tougher as it does not support dynamic tag names by default.  
+For lit-html it's a little tougher as it does not support dynamic tag names by default.
 This uses a workaround that's not performant for rerenders, which is fine for testing, but do NOT use this in production code.
 
 ```js
@@ -110,7 +110,7 @@ If you want to interact with web components you will sometimes need to await a s
 Ordinarily, you might pass the `done` callback to a test, and call it in the body of an event handler.
 This does not work with async test functions, though, which must return a promise instead of calling the `done` callback.
 The `oneEvent` function helps you handle events in the context of the kinds of async test functions that we recommend.
-`oneEvent` resolves with the event specified when it fires on the element specified. 
+`oneEvent` resolves with the event specified when it fires on the element specified.
 
 ```js
 import { oneEvent } from '@open-wc/testing';

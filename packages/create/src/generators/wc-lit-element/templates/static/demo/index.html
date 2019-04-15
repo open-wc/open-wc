@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="utf-8">
   <style>
@@ -11,18 +11,6 @@
 <body>
   <div id="demo"></div>
 
-  <script type="module">
-    import { html, render } from 'https://unpkg.com/lit-html?module'; // workaround until owc-dev-server supports html
-    import '../src/<%= tagName %>.js';
-
-    const title = 'test';
-    render(html`
-      <<%= tagName %> .header=${title}>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-        galley of type and scrambled it to make a type specimen book.
-      </<%= tagName %>>
-    `, document.querySelector('#demo'));
-  </script>
+  <script type="module" src="index.js"></script>
 </body>
 </html>

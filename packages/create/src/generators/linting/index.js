@@ -16,8 +16,6 @@ const LintingMixin = subclass =>
 
       // write everything else
       await this.copyTemplates(`${__dirname}/templates/static/**/*`);
-
-      console.log('... Linting done');
     }
   };
 

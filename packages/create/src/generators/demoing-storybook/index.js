@@ -1,5 +1,3 @@
-import { askYesNo, askTagInfo } from '../../helpers.js';
-
 const DemoingStorybookMixin = subclass =>
   class extends subclass {
     async execute() {
@@ -12,11 +10,7 @@ const DemoingStorybookMixin = subclass =>
 
       await this.copyTemplates(`${__dirname}/templates/static/**/*`);
 
-      const wantsScaffolding = await askYesNo('Should we scaffold some story files as well?');
-      if (wantsScaffolding) {
-        const { tagName, className } = await askTagInfo();
-        this.templateData = { ...this.templateData, tagName, className };
-
+      if (this.options.scaffoldFilesFor && this.options.scaffoldFilesFor.includes('demoing')) {
         await this.copyTemplates(`${__dirname}/templates/static-scaffold/**/*`);
       }
     }

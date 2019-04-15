@@ -1,20 +1,12 @@
 /* eslint-disable no-console */
-import path from 'path';
 import LintingMixin from '../linting/index.js';
-import BuildingMixin from '../building/index.js';
 import TestingMixin from '../testing/index.js';
-import { askTagInfo } from '../../helpers.js';
 
 const StarterAppMixin = subclass =>
-  class extends BuildingMixin(TestingMixin(LintingMixin(subclass))) {
+  class extends TestingMixin(LintingMixin(subclass)) {
     async execute() {
-      // before super to also affect the Mixin it applies
-      const { tagName, className } = await askTagInfo();
-      this.templateData = { ...this.templateData, tagName, className };
-      this._destinationPath = path.join(process.cwd(), tagName);
-
-      console.log('Setup Starter App...');
       await super.execute();
+      const { tagName } = this.templateData;
 
       // write & rename app-template
       this.copyTemplate(

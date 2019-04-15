@@ -10,7 +10,8 @@ See 'config features' for all details. See the extending section for customizati
 ## Setup
 
 ```bash
-npm init @open-wc building-webpack
+npm init @open-wc
+# Upgrade > Building > Webpack
 ```
 
 ## Manual setup

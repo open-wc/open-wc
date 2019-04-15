@@ -15,7 +15,7 @@ const sidebar = [
       ['/developing/', 'Getting started'],
       '/developing/best-practices',
       '/developing/owc-dev-server',
-      ['/developing/create', 'Generators'],
+      ['/init/', 'Generators'],
       '/developing/types',
     ],
   },
@@ -78,6 +78,7 @@ module.exports = {
     sidebar: {
       '/guide/': sidebar,
       '/ide/': sidebar,
+      '/init/': sidebar,
       '/developing/': sidebar,
       '/linting/': sidebar,
       '/testing/': sidebar,

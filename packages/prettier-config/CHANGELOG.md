@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10](https://github.com/open-wc/open-wc/compare/@open-wc/prettier-config@0.1.9...@open-wc/prettier-config@0.1.10) (2019-04-14)
+
+
+### Bug Fixes
+
+* update generator usage ([5d284d4](https://github.com/open-wc/open-wc/commit/5d284d4))
+
+
+
+
+
 ## [0.1.9](https://github.com/open-wc/open-wc/compare/@open-wc/prettier-config@0.1.8...@open-wc/prettier-config@0.1.9) (2019-03-13)
 
 
