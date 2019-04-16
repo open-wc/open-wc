@@ -4,15 +4,11 @@ const sidebar = [
   ['/', 'Home'],
   ['/guide/', 'Introduction'],
   {
-    title: 'IDE',
-    collapsable: true,
-    children: [['/ide/', 'Getting started']],
-  },
-  {
     title: 'Developing',
     collapsable: true,
     children: [
       ['/developing/', 'Getting started'],
+      ['/developing/ide', 'IDE'],
       '/developing/best-practices',
       '/developing/owc-dev-server',
       ['/init/', 'Generators'],
@@ -77,7 +73,6 @@ module.exports = {
     sidebarDepth: 2,
     sidebar: {
       '/guide/': sidebar,
-      '/ide/': sidebar,
       '/init/': sidebar,
       '/developing/': sidebar,
       '/linting/': sidebar,
