@@ -18,14 +18,14 @@ npm init @open-wc
 
 1. Install the required dependencies:
 ```bash
-npm i -D @open-wc/building-webpack webpack http-server webpack-dev-server
+npm i -D @open-wc/building-webpack webpack webpack-cli webpack-dev-server http-server
 ```
 
 2. Create a file called `webpack.config.js` and pass in your app's js entry point and index.html.
 
 If you don't need to support IE11 or other legacy browsers, use `@open-wc/building-webpack/modern-config`. Otherwise, use `@open-wc/building-webpack/modern-and-legacy-config`.
 ```javascript
-const { resolve } = require('path');
+const path = require('path');
 const createDefaultConfig = require('@open-wc/building-webpack/modern-and-legacy-config');
 
 // If you don't need IE11 support, use the modern-config instead
