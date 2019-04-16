@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+import prompts from 'prompts';
 import path from 'path';
 
 import {
@@ -6,6 +8,7 @@ import {
   copyTemplateJsonInto,
   installNpm,
   writeFilesToDisk,
+  optionsToCommand,
 } from './core.js';
 
 function getClassName(tagName) {
@@ -21,6 +24,7 @@ class Generator {
     this.templateData = {};
     this.wantsNpmInstall = true;
     this.wantsWriteToDisk = true;
+    this.wantsRecreateInfo = true;
   }
 
   execute() {
@@ -52,14 +56,40 @@ class Generator {
 
   async end() {
     if (this.wantsWriteToDisk) {
-      writeFilesToDisk();
+      this.options.writeToDisk = await writeFilesToDisk();
     }
 
     if (this.wantsNpmInstall) {
+      const answers = await prompts(
+        [
+          {
+            type: 'select',
+            name: 'installDependencies',
+            message: 'Do you want to install dependencies?',
+            choices: [
+              { title: 'No', value: 'false' },
+              { title: 'Yes, with yarn', value: 'yarn' },
+              { title: 'Yes, with npm', value: 'npm' },
+            ],
+          },
+        ],
+        {
+          onCancel: () => {
+            process.exit();
+          },
+        },
+      );
+      this.options.installDependencies = answers.installDependencies;
       const { installDependencies } = this.options;
       if (installDependencies === 'yarn' || installDependencies === 'npm') {
         await installNpm(this._destinationPath, installDependencies);
       }
+    }
+
+    if (this.wantsRecreateInfo) {
+      console.log('');
+      console.log('If you want to rerun this exact same generator you can do so by executing:');
+      console.log(optionsToCommand(this.options));
     }
   }
 }

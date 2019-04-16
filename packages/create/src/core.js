@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { spawn } from 'child_process';
 
+import prompts from 'prompts';
 import glob from 'glob';
 import deepmerge from 'deepmerge';
 
@@ -119,16 +120,117 @@ export function writeFileToPathOnDisk(toPath, fileContent) {
     fs.mkdirSync(toPathDir, { recursive: true });
   }
   fs.writeFileSync(toPath, fileContent);
-  console.log(`Writing ${toPath}.`);
+}
+
+/**
+ * @param {String[]} allFiles pathes to files
+ * @param {Number} [level] internal to track nesting level
+ */
+export function filesToTree(allFiles, level = 0) {
+  const files = allFiles.filter(file => !file.includes('/'));
+  const dirFiles = allFiles.filter(file => file.includes('/'));
+
+  let indent = '';
+  for (let i = 1; i < level; i += 1) {
+    indent += '│   ';
+  }
+
+  let output = '';
+  const processed = [];
+
+  if (dirFiles.length > 0) {
+    dirFiles.forEach(dirFile => {
+      if (!processed.includes(dirFile)) {
+        const dir = `${dirFile.split('/').shift()}/`;
+        const subFiles = [];
+        allFiles.forEach(file => {
+          if (file.startsWith(dir)) {
+            subFiles.push(file.substr(dir.length));
+            processed.push(file);
+          }
+        });
+        output += level === 0 ? `${dir}\n` : `${indent}├── ${dir}\n`;
+        output += filesToTree(subFiles, level + 1);
+      }
+    });
+  }
+
+  if (files.length === 1) {
+    output += `${indent}└── ${files[0]}\n`;
+  }
+  if (files.length > 1) {
+    const last = files.pop();
+    output += `${indent}├── `;
+    output += files.join(`\n${indent}├── `);
+    output += `\n${indent}└── ${last}\n`;
+  }
+  return output;
 }
 
 /**
  *
  */
-export function writeFilesToDisk() {
-  virtualFiles.forEach(fileMeta => {
-    writeFileToPathOnDisk(fileMeta.path, fileMeta.content);
+export async function writeFilesToDisk() {
+  const treeFiles = [];
+  const root = process.cwd();
+  virtualFiles.sort((a, b) => {
+    const pathA = a.path.toLowerCase();
+    const pathB = b.path.toLowerCase();
+    if (pathA < pathB) return -1;
+    if (pathA > pathB) return 1;
+    return 0;
   });
+
+  virtualFiles.forEach(vFile => {
+    if (vFile.path.startsWith(root)) {
+      let vFilePath = './';
+      vFilePath += vFile.path.substr(root.length + 1);
+      treeFiles.push(vFilePath);
+    }
+  });
+
+  console.log('');
+  console.log(filesToTree(treeFiles));
+
+  const answers = await prompts(
+    [
+      {
+        type: 'select',
+        name: 'writeToDisk',
+        message: 'Do you want to write this file structure to disk?',
+        choices: [{ title: 'Yes', value: 'true' }, { title: 'No', value: 'false' }],
+      },
+    ],
+    {
+      onCancel: () => {
+        process.exit();
+      },
+    },
+  );
+
+  if (answers.writeToDisk === 'true') {
+    virtualFiles.forEach(fileMeta => {
+      writeFileToPathOnDisk(fileMeta.path, fileMeta.content);
+    });
+    console.log('Writing..... done');
+  }
+
+  return answers.writeToDisk;
+}
+
+export function optionsToCommand(options) {
+  let command = 'npm init @open-wc ';
+  Object.keys(options).forEach(key => {
+    const value = options[key];
+    if (typeof value === 'string') {
+      command += `--${key} ${value} `;
+    } else if (typeof value === 'boolean' && value === true) {
+      command += `--${key} `;
+    } else if (Array.isArray(value)) {
+      command += `--${key} ${value.join(' ')} `;
+    }
+  });
+  return command;
 }
 
 /**
