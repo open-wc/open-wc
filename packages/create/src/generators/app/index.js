@@ -28,6 +28,7 @@ const optionDefinitions = [
   { name: 'scaffoldFilesFor', type: String, multiple: true }, // testing, demoing, building
   { name: 'tagName', type: String },
   { name: 'installDependencies', type: String }, // yarn, npm, false
+  { name: 'writeToDisk', type: String }, // true, false
 ];
 const overrides = commandLineArgs(optionDefinitions);
 prompts.override(overrides);
@@ -39,6 +40,7 @@ export const AppMixin = subclass =>
       super();
       this.wantsNpmInstall = false;
       this.wantsWriteToDisk = false;
+      this.wantsRecreateInfo = false;
     }
 
     async execute() {
@@ -113,19 +115,7 @@ export const AppMixin = subclass =>
               ? 'You need a minimum of two words separated by dashes (e.g. foo-bar)'
               : true,
         },
-        {
-          type: 'select',
-          name: 'installDependencies',
-          message: 'Do you want to install dependencies?',
-          choices: [
-            { title: 'No', value: 'false' },
-            { title: 'Yes, with yarn', value: 'yarn' },
-            { title: 'Yes, with npm', value: 'npm' },
-          ],
-        },
       ];
-
-      this.canceled = false;
 
       /**
        * {
@@ -140,7 +130,7 @@ export const AppMixin = subclass =>
        */
       this.options = await prompts(questions, {
         onCancel: () => {
-          this.canceled = true;
+          process.exit();
         },
       });
 
@@ -185,9 +175,7 @@ export const AppMixin = subclass =>
         });
       }
 
-      if (this.canceled === false) {
-        await executeMixinGenerator(mixins, this.options);
-      }
+      await executeMixinGenerator(mixins, this.options);
     }
   };
 

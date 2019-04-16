@@ -11,6 +11,8 @@ import {
   copyTemplateJsonInto,
   deleteVirtualFile,
   executeMixinGenerator,
+  filesToTree,
+  optionsToCommand,
 } from '../src/core.js';
 
 const { expect } = chai;
@@ -167,5 +169,143 @@ describe('executeMixinGenerator', () => {
       gotExecuted: true,
       gotEnded: true,
     });
+  });
+});
+
+describe('optionsToCommand', () => {
+  it('supports strings', async () => {
+    const options = {
+      type: 'scaffold',
+    };
+    expect(optionsToCommand(options)).to.equal('npm init @open-wc --type scaffold ');
+  });
+
+  it('supports boolean', async () => {
+    const options = {
+      writeToDisk: true,
+    };
+    expect(optionsToCommand(options)).to.equal('npm init @open-wc --writeToDisk ');
+    const options2 = {
+      writeToDisk: false,
+    };
+    expect(optionsToCommand(options2)).to.equal('npm init @open-wc ');
+  });
+
+  it('supports arrays', async () => {
+    const options = {
+      features: ['testing', 'demoing'],
+    };
+    expect(optionsToCommand(options)).to.equal('npm init @open-wc --features testing demoing ');
+  });
+
+  it('converts real example', async () => {
+    const options = {
+      type: 'scaffold',
+      scaffoldType: 'wc',
+      features: ['testing', 'demoing'],
+      scaffoldFilesFor: ['testing', 'demoing'],
+      tagName: 'foo-bar',
+      installDependencies: 'false',
+    };
+    expect(optionsToCommand(options)).to.equal(
+      'npm init @open-wc --type scaffold --scaffoldType wc --features testing demoing --scaffoldFilesFor testing demoing --tagName foo-bar --installDependencies false ',
+    );
+  });
+});
+
+describe('filesToTree', () => {
+  it('renders a single file', async () => {
+    expect(filesToTree(['./foo.js'])).to.equal(['./', '└── foo.js\n'].join('\n'));
+  });
+
+  it('renders two files', async () => {
+    // prettier-ignore
+    expect(filesToTree(['./foo.js', './bar.js'])).to.equal([
+      './',
+      '├── foo.js',
+      '└── bar.js\n',
+    ].join('\n'));
+  });
+
+  it('renders multiple files', async () => {
+    // prettier-ignore
+    expect(filesToTree(['./foo.js', './bar.js', './baz.js'])).to.equal([
+      './',
+      '├── foo.js',
+      '├── bar.js',
+      '└── baz.js\n',
+    ].join('\n'));
+  });
+
+  it('renders a directory and file', async () => {
+    // prettier-ignore
+    expect(filesToTree(['./foo/foo.js'])).to.equal([
+      './',
+      '├── foo/',
+      '│   └── foo.js\n',
+    ].join('\n'));
+  });
+
+  it('renders a directory and file and root file', async () => {
+    // prettier-ignore
+    expect(filesToTree(['./foo/foo.js', './bar.js'])).to.equal([
+      './',
+      '├── foo/',
+      '│   └── foo.js',
+      '└── bar.js\n',
+    ].join('\n'));
+  });
+
+  it('renders a nested directory and file', async () => {
+    // prettier-ignore
+    expect(filesToTree(['./foo/bar/baz/bong.js'])).to.equal([
+      './',
+      '├── foo/',
+      '│   ├── bar/',
+      '│   │   ├── baz/',
+      '│   │   │   └── bong.js\n',
+    ].join('\n'));
+  });
+
+  it('renders a nested directory and file', async () => {
+    // prettier-ignore
+    expect(filesToTree(['./foo/bar.js', './foo/foo.js'])).to.equal([
+      './',
+      '├── foo/',
+      '│   ├── bar.js',
+      '│   └── foo.js\n',
+    ].join('\n'));
+  });
+
+  it('renders a nested directory and file', async () => {
+    // prettier-ignore
+    expect(filesToTree(['./foo/bar/baz.js', './foo/foo.js'])).to.equal([
+      './',
+      '├── foo/',
+      '│   ├── bar/',
+      '│   │   └── baz.js',
+      '│   └── foo.js\n',
+    ].join('\n'));
+  });
+
+  it('renders an common usecase', async () => {
+    expect(
+      filesToTree([
+        './foo-bar/src/FooBar.js',
+        './foo-bar/src/foo-bar.js',
+        './foo-bar/LICENSE',
+        './foo-bar/README.md',
+      ]),
+    ).to.equal(
+      [
+        './',
+        '├── foo-bar/',
+        '│   ├── src/',
+        '│   │   ├── FooBar.js',
+        '│   │   └── foo-bar.js',
+        '│   ├── LICENSE',
+        '│   └── README.md\n',
+      ].join('\n'),
+    );
   });
 });
