@@ -10,6 +10,7 @@ const {
   remove,
 } = require('../../dom5-fork/index.js');
 const {
+  pathJoin,
   readHTML,
   writeOutputHTML,
   createElement,
@@ -56,7 +57,7 @@ function copyPolyfills(pluginConfig, outputConfig) {
 
   if (pluginConfig.polyfillDynamicImports) {
     copyFileSync(
-      path.resolve(path.join(__dirname, '../../src/dynamic-import-polyfill.js')),
+      path.resolve(pathJoin(__dirname, '../../src/dynamic-import-polyfill.js')),
       `${polyfillsDir}/dynamic-import-polyfill.js`,
     );
   }
@@ -173,7 +174,7 @@ function writeLegacyModules(pluginConfig, outputConfig, entryModules) {
 
   const loadScript = createScript(
     { nomodule: '' },
-    entryModules.map(src => `System.import('./${path.join('legacy', src)}');`).join(''),
+    entryModules.map(src => `System.import('./${pathJoin('legacy', src)}');`).join(''),
   );
   append(body, loadScript);
   writeOutputHTML(outputDir, indexHTML);
@@ -217,7 +218,7 @@ module.exports = (_pluginConfig = {}) => {
         const modules = moduleScripts.map(script => getAttribute(script, 'src'));
         return {
           ...config,
-          input: modules.map(p => path.join(indexDir, p)),
+          input: modules.map(p => pathJoin(indexDir, p)),
         };
       }
 
