@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.3.3...@open-wc/building-webpack@1.3.4) (2019-04-23)
+
+
+### Bug Fixes
+
+* **building-webpack:** correct manual install steps ([50531ff](https://github.com/open-wc/open-wc/commit/50531ff))
+
+
+
+
+
 ## [1.3.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.3.2...@open-wc/building-webpack@1.3.3) (2019-04-14)
 
 
