@@ -10,7 +10,8 @@ We recommend
 
 ## Setup
 ```bash
-npm init @open-wc linting
+npm init @open-wc
+# Upgrade > Linting
 ```
 
 ::: tip Info
