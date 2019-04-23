@@ -4,6 +4,11 @@ const { readFileSync, writeFileSync } = require('fs');
 const { parse, serialize } = require('parse5');
 const { constructors, setAttribute, append } = require('../../dom5-fork/index.js');
 
+function pathJoin(...args) {
+  // enfore / also on windows => as it is used for web pathes
+  return path.join.apply(null, args).replace(/\\(?! )/g, '/');
+}
+
 /** Reads file as HTML AST */
 function readHTML(file) {
   return parse(readFileSync(file, 'utf-8'));
@@ -11,7 +16,7 @@ function readHTML(file) {
 
 /** Writes given HTML AST to output index.html */
 function writeOutputHTML(dir, html) {
-  const outputPath = path.join(dir, 'index.html');
+  const outputPath = pathJoin(dir, 'index.html');
   mkdirp.sync(path.dirname(outputPath));
   writeFileSync(outputPath, serialize(html));
 }
@@ -40,6 +45,7 @@ function createScriptModule(code) {
 }
 
 module.exports = {
+  pathJoin,
   readHTML,
   writeOutputHTML,
   createElement,
