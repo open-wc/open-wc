@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.2.1...@open-wc/demoing-storybook@0.2.2) (2019-04-27)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** remove warning by setting to use corejs 2 ([b42daba](https://github.com/open-wc/open-wc/commit/b42daba))
+
+
+
+
+
 ## [0.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.2.0...@open-wc/demoing-storybook@0.2.1) (2019-04-14)
 
 
