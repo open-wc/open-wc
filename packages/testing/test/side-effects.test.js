@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions */
-
 import { fixture, expect } from '../index.js';
 
 describe('BDD', () => {

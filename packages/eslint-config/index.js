@@ -17,4 +17,14 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: ['**/test/**/*.js', '**/demo/**/*.js', '**/stories/**/*.js'],
+      rules: {
+        'no-console': 'off',
+        'no-unused-expressions': 'off',
+        'class-methods-use-this': 'off',
+      },
+    },
+  ],
 };
