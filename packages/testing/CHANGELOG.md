@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.5](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.11.4...@open-wc/testing@0.11.5) (2019-04-28)
+
+
+### Bug Fixes
+
+* **eslint-config:** loosen up rules for test and stories files ([#408](https://github.com/open-wc/open-wc/issues/408)) ([3fd251e](https://github.com/open-wc/open-wc/commit/3fd251e))
+
+
+
+
+
 ## [0.11.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.11.3...@open-wc/testing@0.11.4) (2019-04-14)
 
 
