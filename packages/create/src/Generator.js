@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console, import/no-cycle */
 import prompts from 'prompts';
 import path from 'path';
 

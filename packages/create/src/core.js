@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console, import/no-cycle */
 
 import fs from 'fs';
 import path from 'path';
