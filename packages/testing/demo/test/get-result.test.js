@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 import { html, fixture, litFixture, expect } from '../../index.js';
 
 import '../src/get-result.js';

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 /* eslint-disable no-template-curly-in-string */
 
 import chai from 'chai';
