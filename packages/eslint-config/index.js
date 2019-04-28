@@ -16,6 +16,25 @@ module.exports = {
         devDependencies: ['**/test/**/*.js', '**/stories/**/*.js', '**/*.config.js'],
       },
     ],
+    'class-methods-use-this': [
+      'error',
+      {
+        exceptMethods: [
+          // web components life cycle
+          'connectedCallback',
+          'disconnectedCallback',
+
+          // LitElement life cycle
+          'performUpdate',
+          'shouldUpdate',
+          'firstUpdated',
+          'update',
+          'updated',
+          'createRenderRoot',
+          'render',
+        ],
+      },
+    ],
   },
   overrides: [
     {
