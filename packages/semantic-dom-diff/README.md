@@ -185,13 +185,13 @@ it('renders correctly', async () => {
   // ignore id attributes on input elements
   expect(el).dom.to.equal('<div>Hey</div>', {
     ignoreAttributes: [
-      { tags: ['input'], attributs: ['id'] }
+      { tags: ['input'], attributes: ['id'] }
     ]
   });
 
   expect(el).dom.to.equalSnapshot({
     ignoreAttributes: [
-      { tags: ['input'], attributs: ['id'] }
+      { tags: ['input'], attributes: ['id'] }
     ]
   });
 });
