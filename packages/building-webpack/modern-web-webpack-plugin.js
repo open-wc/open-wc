@@ -211,7 +211,7 @@ module.exports = class LegacyBrowserWebpackPlugin {
           const preloadLinks = this.entries.modern.map(
             src => `<link rel="preload" href="${src}" as="script">`,
           );
-          data.html = data.html.replace('</head>', `${preloadLinks}</head>`);
+          data.html = data.html.replace('</head>', `${preloadLinks.join('')}</head>`);
         }
 
         // add the actual scripts to the body
