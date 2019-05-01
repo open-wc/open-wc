@@ -63,8 +63,8 @@ const optionDefinitions = [
   },
   { name: 'help', type: Boolean, description: 'See all options' },
   {
-    name: 'sync',
-    alias: 's',
+    name: 'browsersync',
+    alias: 'b',
     type: Boolean,
     defaultValue: true,
     description: 'Wether or not to auto reload the browser. Default: true',
@@ -102,7 +102,7 @@ const {
   'app-index': appIndex,
   'modules-dir': modulesDir,
   'config-file': configFilePath,
-  sync,
+  browsersync,
 } = options;
 
 let openPath;
@@ -138,7 +138,7 @@ if (modulesDir) {
 }
 app.use('*', transformMiddleware(transformOptions));
 
-if (sync) {
+if (browsersync) {
   const bs = browserSync.create().init({
     logLevel: 'silent',
     files: rootDir,
