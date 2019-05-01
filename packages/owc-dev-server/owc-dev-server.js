@@ -3,6 +3,7 @@
 /* eslint-disable no-console */
 const commandLineArgs = require('command-line-args');
 const browserSync = require('browser-sync');
+const connectBrowserSync = require('connect-browser-sync');
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
@@ -61,6 +62,13 @@ const optionDefinitions = [
     description: 'Node file which can provide additional config',
   },
   { name: 'help', type: Boolean, description: 'See all options' },
+  {
+    name: 'sync',
+    alias: 's',
+    type: Boolean,
+    defaultValue: true,
+    description: 'Wether or not to auto reload the browser. Default: true',
+  },
 ];
 
 const options = commandLineArgs(optionDefinitions);
@@ -94,6 +102,7 @@ const {
   'app-index': appIndex,
   'modules-dir': modulesDir,
   'config-file': configFilePath,
+  sync,
 } = options;
 
 let openPath;
@@ -129,12 +138,14 @@ if (modulesDir) {
 }
 app.use('*', transformMiddleware(transformOptions));
 
-const bs = browserSync.create().init({
-  logLevel: 'silent',
-  files: rootDir,
-  notify: false,
-});
-app.use(require('connect-browser-sync')(bs));
+if (sync) {
+  const bs = browserSync.create().init({
+    logLevel: 'silent',
+    files: rootDir,
+    notify: false,
+  });
+  app.use(connectBrowserSync(bs));
+}
 // serve static files
 app.use(express.static(rootDir));
 

@@ -113,6 +113,7 @@ module.exports = function(app) {
 | --root-dir    | -r    | string         | The root directory to serve files from. Defaults to the project root.   |
 | --modules-dir | -m    | string         | Directory to resolve modules from. Default: node_modules                |
 | --config-file | -c    | string         | File with additional config. Default: .owc-dev-server.config.js         |
+| --sync        | -s    | boolean        | Wether or not to auto reload the browser. Default: true                 |
 | --help        | none  | none           | See all options                                                         |
 
 <script>
