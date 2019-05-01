@@ -2,6 +2,7 @@
 
 /* eslint-disable no-console */
 const commandLineArgs = require('command-line-args');
+const browserSync = require('browser-sync');
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
@@ -128,6 +129,12 @@ if (modulesDir) {
 }
 app.use('*', transformMiddleware(transformOptions));
 
+const bs = browserSync.create().init({
+  logLevel: 'silent',
+  files: rootDir,
+  notify: false,
+});
+app.use(require('connect-browser-sync')(bs));
 // serve static files
 app.use(express.static(rootDir));
 

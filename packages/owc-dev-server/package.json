@@ -25,8 +25,10 @@
     "directory": "packages/dev-server"
   },
   "dependencies": {
+    "browser-sync": "^2.26.5",
     "command-line-args": "^5.0.2",
     "command-line-usage": "^5.0.5",
+    "connect-browser-sync": "^2.1.0",
     "express": "^4.16.4",
     "express-history-api-fallback": "^2.2.1",
     "express-transform-bare-module-specifiers": "^1.0.2",
