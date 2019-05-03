@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.9.4...@open-wc/create@0.9.5) (2019-05-03)
+
+
+### Bug Fixes
+
+* **create:** fix tests in barebone-app ([b6a88cc](https://github.com/open-wc/open-wc/commit/b6a88cc))
+
+
+
+
+
 ## [0.9.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.9.3...@open-wc/create@0.9.4) (2019-04-28)
 
 
