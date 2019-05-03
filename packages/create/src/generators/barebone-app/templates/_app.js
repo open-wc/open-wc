@@ -1,9 +1,15 @@
 import { LitElement, html } from 'lit-element';
 
 class <%= className %> extends LitElement {
+	static get properties() {
+		return {
+			heading: { type: String },
+		};
+	}
+
 	render() {
 		return html`
-			<h1>Hello world!</h1>
+			<h1>${this.heading}</h1>
 		`;
 	}
 }
