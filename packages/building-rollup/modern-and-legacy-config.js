@@ -33,12 +33,13 @@ function createConfig(_options, legacy) {
         }),
 
       // parse input index.html as input, feed any modules found to rollup and add polyfills
-      modernWeb({
-        legacy,
-        polyfillDynamicImports: !legacy,
-        polyfillBabel: legacy,
-        polyfillWebcomponents: legacy,
-      }),
+      options.input.endsWith('.html') &&
+        modernWeb({
+          legacy,
+          polyfillDynamicImports: !legacy,
+          polyfillBabel: legacy,
+          polyfillWebcomponents: legacy,
+        }),
 
       // resolve bare import specifiers
       resolve(),
