@@ -30,7 +30,7 @@ module.exports = function createBasicConfig(_options) {
         }),
 
       // parse input index.html as input and feed any modules found to rollup
-      modernWeb(),
+      options.input.endsWith('.html') && modernWeb(),
 
       // resolve bare import specifiers
       resolve(),
