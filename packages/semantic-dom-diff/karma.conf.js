@@ -7,7 +7,7 @@ module.exports = config => {
     merge(createDefaultConfig(config), {
       files: [
         // allows running single tests with the --grep flag
-        config.grep ? config.grep : 'test/**/*.test.js',
+        { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' },
       ],
 
       coverageIstanbulReporter: {
