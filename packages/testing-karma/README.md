@@ -11,22 +11,18 @@ Karma is a solid tool for running tests in the browser.
 Karma can be used both for running unit tests, as well as for running more complex e2e/integration tests.
 
 ## Karma config presets
-Configuration should be customized per project, We provide several presets that can be used as a starting point. You can copy paste the presets into your own project for full control, or you can extend them and add your project specific requirements.
+Configuration should be customized per project, We provide a preset that can be used as a starting point. You can copy paste the preset into your own project for full control, or you can extend them and add your project specific requirements.
 
 The intention of the presets is to be able to write browser runnable code, with some exceptions such as bare module imports.
 
 ### Features
+- Runs tests as plain es modules
 - Serves static files
 - Runs tests through mocha
 - Deep object diffs in mocha errors
-- Test coverage through instanbul by passing the `coverage` flag
-- Resolves imports by bundling through webpack
-- Supports older browsers by passing the `legacy` flag
-
-### Using
-- Runner via [karma](https://karma-runner.github.io/)
-- Building via [webpack](https://webpack.js.org/) via [karma-webpack](https://github.com/webpack-contrib/karma-webpack)
-- Test Coverage via [istanbul](https://istanbul.js.org/) via [istanbul-instrumenter-loader](https://github.com/webpack-contrib/istanbul-instrumenter-loader)
+- Handles bare import specifiers
+- Test coverage through instanbul when passing the `coverage` flag
+- Supports older browsers (down to IE11) when passing the `legacy` flag
 
 ::: tip
 This is part of the default [open-wc testing](https://open-wc.org/testing/) recommendation
@@ -43,7 +39,7 @@ For manual setup, follow the steps at the bottom of this readme.
 ### Workflow
 
 Commands explained:
-- `test`: does a single test run on the configured browsers (default headless chrome) and prints tests and coverage results
+- `test`: does a single test run on the configured browsers (default headless chrome) and prints tests and coverage results.
 - `test:watch`: does a single test run, and then re-runs on file changes. coverage is not analyzed for performance. in watch mode you can also debug in the browser, which is very convenient. visit http://localhost:9876/debug.html
 - `test:legacy`: like `test`, except that it compiles your code to es5 and adds [babel](https://babeljs.io/docs/en/babel-polyfill) and [web component](https://github.com/webcomponents/webcomponentsjs) polyfills for maximum compatibility.
 - `test:legacy:watch`: like `test:watch`, adding the same mentioned polyfills
@@ -96,7 +92,7 @@ npm i --save @open-wc/testing-karma webpack-merge karma
           //
           // npm run test -- --grep test/foo/bar.test.js
           // npm run test -- --grep test/bar/*
-          config.grep ? config.grep : 'test/**/*.test.js',
+          { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' }
         ],
       }),
     );
@@ -121,7 +117,7 @@ npm i --save @open-wc/testing-karma webpack-merge karma
             //
             // npm run test -- --grep test/foo/bar.test.js
             // npm run test -- --grep test/bar/*
-            config.grep ? config.grep : 'test/**/*.test.js',
+            { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' }
           ],
 
           coverageIstanbulReporter: {
@@ -157,7 +153,7 @@ npm i --save @open-wc/testing-karma webpack-merge karma
         )(defaultSettings(config), {
           files: [
             // allows running single tests with the --grep flag
-            config.grep ? config.grep : 'test/**/*.test.js',
+            { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' }
           ],
           // your custom config
           coverageIstanbulReporter: {

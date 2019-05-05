@@ -1,0 +1,40 @@
+{
+  "name": "@open-wc/karma-esm",
+  "version": "0.1.0",
+  "description": "Karma plugin for testing with es modules",
+  "author": "open-wc",
+  "main": "./src/index.js",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/karma-esm"
+  },
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js"
+  },
+  "files": [
+    "src",
+    "*.js"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-syntax-import-meta": "^7.2.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@types/node": "^11.13.0",
+    "arrify": "^2.0.1",
+    "babel-plugin-istanbul": "^5.1.1",
+    "chokidar": "^2.1.5",
+    "minimatch": "^3.0.4",
+    "path-is-inside": "^1.0.2",
+    "resolve": "^1.10.0",
+    "webpack-merge": "^4.2.1",
+    "whatwg-url": "^7.0.0"
+  }
+}
