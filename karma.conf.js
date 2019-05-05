@@ -7,19 +7,13 @@ module.exports = config => {
     merge(createDefaultConfig(config), {
       files: [
         // allows running single tests with the --grep flag
-        config.grep ? config.grep : 'packages/!(webpack-import-meta-loader|create)/test/*.test.js',
-      ],
-
-      coverageIstanbulReporter: {
-        thresholds: {
-          global: {
-            statements: 80,
-            lines: 80,
-            branches: 80,
-            functions: 80,
-          },
+        {
+          pattern: config.grep
+            ? config.grep
+            : 'packages/!(webpack-import-meta-loader|create)/test/*.test.js',
+          type: 'module',
         },
-      },
+      ],
     }),
   );
   return config;
