@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.10...@open-wc/testing-helpers@0.9.0) (2019-05-06)
+
+
+### Features
+
+* update to latest testing-karma config syntax ([465bfe0](https://github.com/open-wc/open-wc/commit/465bfe0))
+
+
+
+
+
 ## [0.8.10](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.9...@open-wc/testing-helpers@0.8.10) (2019-05-03)
 
 **Note:** Version bump only for package @open-wc/testing-helpers

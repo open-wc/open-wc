@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/karma-esm",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Karma plugin for testing with es modules",
   "author": "open-wc",
   "main": "./src/index.js",
