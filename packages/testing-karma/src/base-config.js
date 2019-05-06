@@ -30,7 +30,7 @@ module.exports = config => ({
     require.resolve('karma-snapshot'),
     require.resolve('karma-mocha-snapshot'),
     require.resolve('karma-chrome-launcher'),
-    require.resolve('@open-wc/karma-esm'),
+    require.resolve('./snapshot-filename-preprocessor.js'),
 
     // fallback: resolve any karma- plugins
     'karma-*',
@@ -45,7 +45,7 @@ module.exports = config => ({
   },
 
   preprocessors: {
-    '**/__snapshots__/**/*.md': ['snapshot'],
+    '**/__snapshots__/**/*.md': ['snapshot', 'snapshot-filename'],
   },
 
   reporters: coverage ? ['mocha', 'coverage-istanbul'] : ['mocha'],
@@ -102,6 +102,8 @@ module.exports = config => ({
   snapshot: {
     update: updateSnapshots,
     prune: pruneSnapshots,
+    // only warn about unused snapshots when running all tests
+    limitUnusedSnapshotsInWarning: config.grep ? 0 : -1,
     pathResolver(basePath, suiteName) {
       return path.join(basePath, '__snapshots__', `${suiteName}.md`);
     },
