@@ -24,7 +24,14 @@ const createBabelOptions = (config = {}) => ({
     config.coverage && [
       require.resolve('babel-plugin-istanbul'),
       {
-        exclude: ['**/node_modules/**', '**/*.test.js', '**/*.spec.js'],
+        exclude: [
+          '**/node_modules/**',
+          '**/*.test.js',
+          '**/*.spec.js',
+          '**/demo/**/*.js',
+          '**/stories/**/*.js',
+          ...(config.coverageExclude || []),
+        ],
       },
     ],
   ].filter(_ => _),
