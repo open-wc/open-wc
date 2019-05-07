@@ -1,3 +1,4 @@
+const { findSupportedBrowsers } = require('@open-wc/building-utils');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -77,7 +78,7 @@ function createConfig(options, legacy) {
                 [
                   '@babel/preset-env',
                   // hardcode IE11 for legacy build, otherwise use browserslist configuration
-                  { targets: legacy ? 'IE 11' : undefined },
+                  { targets: legacy ? 'IE 11' : findSupportedBrowsers() },
                 ],
               ],
             },
