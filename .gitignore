@@ -33,5 +33,8 @@ build-stats.json
 stats.html
 .rpt2_cache
 
-##
+## we already store snapshots globally
 packages/**/__snapshots__
+
+## browserstack
+local.log

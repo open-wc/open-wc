@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.3.2...@open-wc/building-rollup@0.3.3) (2019-05-04)
+
+
+### Bug Fixes
+
+* **building-rollup:** handle .js files ([#434](https://github.com/open-wc/open-wc/issues/434)) ([02e080d](https://github.com/open-wc/open-wc/commit/02e080d))
+
+
+
+
+
 ## [0.3.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.3.1...@open-wc/building-rollup@0.3.2) (2019-04-16)
 
 

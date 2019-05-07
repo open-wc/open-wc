@@ -223,7 +223,11 @@ This the fastest method, as it strips away types during babel transformormation 
 
 
 <details>
-  <summary>Supporting `LitElement`'s `@customElement` and `@property`</summary>
+  <summary>Supporting decorators</summary>
+
+  ::: warning
+  Please note that decorators will add [non standard syntax](https://open-wc.org/building/building-webpack.html#common-extensions) to your code.
+  :::
 
   > Due to the way Babel handles [decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) and class properties, you'll need to specify the plugins in a specific order with specific options. Here's what you'll need:
   ```javascript

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.2.0...@open-wc/webpack-import-meta-loader@0.2.1) (2019-05-03)
+
+
+### Bug Fixes
+
+* **webpack-import-meta-loader:** fix filepaths ([4480d2d](https://github.com/open-wc/open-wc/commit/4480d2d))
+
+
+
+
+
 # [0.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.1.3...@open-wc/webpack-import-meta-loader@0.2.0) (2019-03-23)
 
 
