@@ -32,7 +32,7 @@ const createDefaultConfig = require('@open-wc/building-webpack/modern-and-legacy
 // import createDefaultConfig from '@open-wc/building-webpack/modern-config';
 
 module.exports = createDefaultConfig({
-  input: path.resolve(__dirname, './src/index.html'),
+  input: path.resolve(__dirname, './index.html'),
 });
 ```
 
@@ -44,7 +44,7 @@ module.exports = createDefaultConfig({
   <body>
     <your-app></your-app>
 
-    <script type="module" src="./your-app.js"></script>
+    <script type="module" src="./src/your-app.js"></script>
   </body>
 </html>
 ```
@@ -130,7 +130,7 @@ const merge = require('webpack-merge');
 const createDefaultConfig = require('@open-wc/building-webpack/modern-config');
 
 const config = createDefaultConfig({
-  input: path.resolve(__dirname, './src/index.html'),
+  input: path.resolve(__dirname, './index.html'),
 });
 
 module.exports = merge(config, {
@@ -147,7 +147,7 @@ const merge = require('webpack-merge');
 const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
 
 const configs = createDefaultConfigs({
-  input: path.resolve(__dirname, './src/index.html'),
+  input: path.resolve(__dirname, './index.html'),
 });
 
 module.exports = configs.map(config => merge(config, {
@@ -174,7 +174,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
 
 const configs = createDefaultConfigs({
-  input: path.resolve(__dirname, './src/index.html'),
+  input: path.resolve(__dirname, './index.html'),
 });
 
 // with modern-and-legacy-config, the config is actually an array of configs for a modern and
@@ -251,7 +251,7 @@ const merge = require('webpack-merge');
 const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
 
 const configs = createDefaultConfigs({
-  input: path.resolve(__dirname, './src/index.html'),
+  input: path.resolve(__dirname, './index.html'),
 });
 
 module.exports = configs.map(config =>
