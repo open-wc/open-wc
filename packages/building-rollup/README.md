@@ -61,7 +61,7 @@ To illustrate this, here is an example of scripts which our rollup config will *
     it is not type="module", it will still not be picked up
     by rollup and needs to be copied separately
   -->
-  <script src="src/other-script.js"></script>
+  <script src="./src/other-script.js"></script>
 ```
 
 4. Add the following commands to your `package.json`:
