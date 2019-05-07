@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.3.6...@open-wc/building-webpack@1.4.0) (2019-05-07)
+
+
+### Features
+
+* **building-webpack:** use a default browserslist ([76c03c7](https://github.com/open-wc/open-wc/commit/76c03c7))
+
+
+
+
+
+## [1.3.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.3.5...@open-wc/building-webpack@1.3.6) (2019-05-06)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [1.3.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.3.4...@open-wc/building-webpack@1.3.5) (2019-04-30)
+
+
+### Bug Fixes
+
+* **building-webpack:** Solve issue where preload links had comma's between them. ([#411](https://github.com/open-wc/open-wc/issues/411)) ([6bdf529](https://github.com/open-wc/open-wc/commit/6bdf529))
+
+
+
+
+
 ## [1.3.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.3.3...@open-wc/building-webpack@1.3.4) (2019-04-23)
 
 

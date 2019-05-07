@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+const { findSupportedBrowsers } = require('@open-wc/building-utils');
 const resolve = require('rollup-plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const babel = require('rollup-plugin-babel');
@@ -33,12 +34,13 @@ function createConfig(_options, legacy) {
         }),
 
       // parse input index.html as input, feed any modules found to rollup and add polyfills
-      modernWeb({
-        legacy,
-        polyfillDynamicImports: !legacy,
-        polyfillBabel: legacy,
-        polyfillWebcomponents: legacy,
-      }),
+      options.input.endsWith('.html') &&
+        modernWeb({
+          legacy,
+          polyfillDynamicImports: !legacy,
+          polyfillBabel: legacy,
+          polyfillWebcomponents: legacy,
+        }),
 
       // resolve bare import specifiers
       resolve(),
@@ -56,16 +58,7 @@ function createConfig(_options, legacy) {
           [
             '@babel/env',
             {
-              targets: legacy
-                ? ['ie 11']
-                : [
-                    'last 2 Chrome major versions',
-                    'last 2 ChromeAndroid major versions',
-                    'last 2 Edge major versions',
-                    'last 2 Firefox major versions',
-                    'last 2 Safari major versions',
-                    'last 2 iOS major versions',
-                  ],
+              targets: legacy ? ['ie 11'] : findSupportedBrowsers(),
               useBuiltIns: false,
             },
           ],

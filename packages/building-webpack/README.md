@@ -53,19 +53,7 @@ We use [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) to
 
 Remember to not add your app's entry point to your index.html, as it will be injected dynamically by `html-webpack-plugin`.
 
-4. Create a `.browserslistrc` in the root of your project. Adjust it based on your browser support, for example:
-```
-last 2 Chrome major versions
-last 2 ChromeAndroid major versions
-last 2 Edge major versions
-last 2 Firefox major versions
-last 2 Safari major versions
-last 2 iOS major versions
-```
-
-Do **not** put IE11 in your `.browserslistrc`. `modern-and-legacy-config` already creates a separate build for IE11, the `.browserslistrc` is used for the modern build.
-
-5. Add the following commands to your `package.json`:
+4. Add the following commands to your `package.json`:
 ```json
 {
   "scripts": {
@@ -80,13 +68,12 @@ Do **not** put IE11 in your `.browserslistrc`. `modern-and-legacy-config` alread
 - `start:build` runs your built app from `dist` directory, it uses a simple http-server to make sure that it runs without magic
 
 ## Browser support
-`modern-config.js` creates a single build of your app, based on your `.browserslistrc`. This is recommended if you only need to support modern browsers, otherwise you will need to ship compatibility code for browsers which don't need it.
+`modern-config.js` creates a single build of your app for modern browsers (by default last 2 of major browsers). This is recommended if you only need to support modern browsers, otherwise you will need to ship compatibility code for browsers which don't need it.
 
-`modern-and-legacy-config.js` creates two builds of your app. A modern build based on your `.browserslistrc` and a legacy build for IE11. Additional code is injected to load polyfills and the correct version of your app. This is recommended if you need to support IE11.
+`modern-and-legacy-config.js` creates two builds of your app. A modern build like the above, and a legacy build for IE11. Additional code is injected to load polyfills and the correct version of your app. This is recommended if you need to support IE11.
 
 ## Config features
 All configs:
-- compilation target based on `.browserslistrc`
 - resolve bare imports (`import { html } from 'lit-html'`)
 - preserve `import.meta.url` value from before bundling
 - minify + treeshake js
@@ -99,7 +86,7 @@ All configs:
 `modern-and-legacy-config.js`:
 - Two build outputs:
   - Modern:
-    - compilation target based on `.browserslistrc`
+    - compatible with modern browsers (default: last 2 chrome, firefox safari and edge)
     - does not penalize users with modern browser with compatibility code for IE11
   - Legacy:
     - compatible down to IE11
@@ -122,6 +109,13 @@ For example to add support for class properties:
   ]
 }
 ```
+
+## Adjusting browser support for the modern build
+The legacy build targets IE11, which is the earliest browser supported by the webcomponents polyfill. For the modern build we target the lates 2 versions of the major browsers (chrome, firefox, safari and edge).
+
+You can adjust this by adding a [browserslist](https://github.com/browserslist/browserslist) configuration. For example by adding a `.browserslistrc` file to your project, or adding an entry to your package.json. See the [browserslist documentation](https://github.com/browserslist/browserslist) for more information.
+
+> Note: you should not add IE11 or other very early browsers as a target in your browserslist, as it would result in a broken modern build because it makes some assumptions around browser support. Use the `--legacy` flag for legacy builds.
 
 ## Extending the webpack config
 A webpack config is an object. To extend it, we recommend using `webpack-merge` to ensure plugins are merged correctly. For example to adjust the output folder:
@@ -223,7 +217,11 @@ This the fastest method, as it strips away types during babel transformormation 
 
 
 <details>
-  <summary>Supporting `LitElement`'s `@customElement` and `@property`</summary>
+  <summary>Supporting decorators</summary>
+
+  ::: warning
+  Please note that decorators will add [non standard syntax](https://open-wc.org/building/building-webpack.html#common-extensions) to your code.
+  :::
 
   > Due to the way Babel handles [decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) and class properties, you'll need to specify the plugins in a specific order with specific options. Here's what you'll need:
   ```javascript

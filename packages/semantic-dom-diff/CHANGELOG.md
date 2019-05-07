@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.11.0...@open-wc/semantic-dom-diff@0.11.1) (2019-05-06)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+# [0.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.10.7...@open-wc/semantic-dom-diff@0.11.0) (2019-05-06)
+
+
+### Features
+
+* update to latest testing-karma config syntax ([465bfe0](https://github.com/open-wc/open-wc/commit/465bfe0))
+
+
+
+
+
+## [0.10.7](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.10.6...@open-wc/semantic-dom-diff@0.10.7) (2019-05-03)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.10.6](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.10.5...@open-wc/semantic-dom-diff@0.10.6) (2019-04-30)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
 ## [0.10.5](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.10.4...@open-wc/semantic-dom-diff@0.10.5) (2019-04-28)
 
 **Note:** Version bump only for package @open-wc/semantic-dom-diff

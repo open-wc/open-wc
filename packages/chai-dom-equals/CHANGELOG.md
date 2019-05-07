@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.0...@open-wc/chai-dom-equals@0.12.1) (2019-05-06)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+# [0.12.0](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.11.7...@open-wc/chai-dom-equals@0.12.0) (2019-05-06)
+
+
+### Features
+
+* update to latest testing-karma config syntax ([465bfe0](https://github.com/open-wc/open-wc/commit/465bfe0))
+
+
+
+
+
+## [0.11.7](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.11.6...@open-wc/chai-dom-equals@0.11.7) (2019-05-03)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.11.6](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.11.5...@open-wc/chai-dom-equals@0.11.6) (2019-04-30)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
 ## [0.11.5](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.11.4...@open-wc/chai-dom-equals@0.11.5) (2019-04-28)
 
 **Note:** Version bump only for package @open-wc/chai-dom-equals

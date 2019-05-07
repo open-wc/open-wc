@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma",
-  "version": "1.1.1",
+  "version": "2.0.1",
   "description": "Testing with karma following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -23,7 +23,8 @@
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "files": [
-    "*.js"
+    "*.js",
+    "src"
   ],
   "dependencies": {
     "@babel/core": "^7.3.3",
@@ -31,11 +32,12 @@
     "@babel/plugin-syntax-import-meta": "^7.2.0",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
-    "@open-wc/webpack-import-meta-loader": "^0.2.0",
+    "@open-wc/karma-esm": "^1.0.1",
     "@types/node": "^11.13.0",
     "@webcomponents/webcomponentsjs": "^2.2.0",
     "babel-loader": "^8.0.0",
     "babel-plugin-bundled-import-meta": "^0.3.0",
+    "babel-plugin-istanbul": "^5.1.1",
     "istanbul-instrumenter-loader": "^3.0.0",
     "karma": "^4.0.0",
     "karma-chrome-launcher": "^2.0.0",
@@ -48,11 +50,11 @@
     "karma-sourcemap-loader": "^0.3.0",
     "karma-static": "^1.0.1",
     "karma-webpack": "^5.0.0-alpha.2",
-    "webpack": "^4.28.0"
+    "webpack": "^4.28.0",
+    "webpack-merge": "^4.1.5"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "karma-browserstack-launcher": "^1.0.0",
-    "webpack-merge": "^4.1.5"
+    "@bundled-es-modules/chai": "^4.2.1",
+    "karma-browserstack-launcher": "^1.0.0"
   }
 }

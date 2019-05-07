@@ -11,8 +11,13 @@ module.exports = config => {
         //
         // npm run test -- --grep test/foo/bar.test.js
         // npm run test -- --grep test/bar/*
-        config.grep ? config.grep : 'test/**/*.test.js',
+        { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' },
       ],
+
+      esm: {
+        baseDir: './demo/',
+        moduleResolveRoot: '../../',
+      },
 
       // you can overwrite/extend the config further
     }),

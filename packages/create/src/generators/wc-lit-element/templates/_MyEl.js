@@ -13,18 +13,18 @@ export default class <%= className %> extends LitElement {
 
   static get properties() {
     return {
-      header: { type: String }
+      heading: { type: String }
     }
   }
 
   constructor() {
     super();
-    this.header = 'My Example';
+    this.heading = 'Hello world!';
   }
 
   render() {
     return html`
-      <h2>${this.header}</h2>
+      <h2>${this.heading}</h2>
       <div>
         <slot></slot>
       </div>
