@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "Default configuration for working with rollup",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -39,12 +39,12 @@
     "*.js"
   ],
   "dependencies": {
-    "@open-wc/building-utils": "^1.0.0",
     "@babel/core": "^7.3.3",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
+    "@open-wc/building-utils": "^1.1.0",
     "@webcomponents/webcomponentsjs": "^2.2.0",
     "babel-plugin-bundled-import-meta": "^0.3.0",
     "browserslist": "^4.5.6",
