@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.3.3...@open-wc/building-rollup@0.4.0) (2019-05-07)
+
+
+### Features
+
+* **building-rollup:** use a default browserslist ([cc8204d](https://github.com/open-wc/open-wc/commit/cc8204d))
+
+
+
+
+
 ## [0.3.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.3.2...@open-wc/building-rollup@0.3.3) (2019-05-04)
 
 

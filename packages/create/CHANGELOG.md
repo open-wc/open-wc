@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.11.0...@open-wc/create@0.11.1) (2019-05-07)
+
+
+### Bug Fixes
+
+* **create:** add building-rollup to starter-app ([561f153](https://github.com/open-wc/open-wc/commit/561f153))
+
+
+
+
+
+# [0.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.10.1...@open-wc/create@0.11.0) (2019-05-07)
+
+
+### Features
+
+* **create:** remove browerslistrc ([1930660](https://github.com/open-wc/open-wc/commit/1930660))
+
+
+
+
+
 ## [0.10.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.10.0...@open-wc/create@0.10.1) (2019-05-06)
 
 **Note:** Version bump only for package @open-wc/create
