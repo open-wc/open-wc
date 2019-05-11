@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.4.0...@open-wc/building-rollup@0.4.1) (2019-05-11)
+
+
+### Bug Fixes
+
+* recommend putting index.html into the root folder ([b943f53](https://github.com/open-wc/open-wc/commit/b943f53))
+
+
+
+
+
 # [0.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.3.3...@open-wc/building-rollup@0.4.0) (2019-05-07)
 
 
