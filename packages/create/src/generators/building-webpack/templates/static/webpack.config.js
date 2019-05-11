@@ -5,5 +5,5 @@ const createDefaultConfig = require('@open-wc/building-webpack/modern-and-legacy
 // import createDefaultConfig from '@open-wc/building-webpack/modern-config';
 
 module.exports = createDefaultConfig({
-  input: resolve(__dirname, './src/index.html'),
+  input: resolve(__dirname, './index.html'),
 });

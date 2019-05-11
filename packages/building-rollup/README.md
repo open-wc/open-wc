@@ -27,7 +27,7 @@ npm i -D @open-wc/building-rollup rollup rimraf http-server
 ```javascript
 import createDefaultConfig from '@open-wc/building-rollup/modern-config';
 
-export default createDefaultConfig({ input: './src/index.html' });
+export default createDefaultConfig({ input: './index.html' });
 ```
 
 Our rollup config will look through your `index.html` and extract all module scripts (nothing else -- see below) and feed them to rollup.
@@ -40,7 +40,7 @@ Our rollup config will look through your `index.html` and extract all module scr
   <body>
     <your-app></your-app>
 
-    <script type="module" src="./your-app.js"></script>
+    <script type="module" src="./src/your-app.js"></script>
   </body>
 </html>
 ```
@@ -53,7 +53,7 @@ To illustrate this, here is an example of scripts which our rollup config will *
     // this *is* a module, but it's inlined in the HTML, so
     // `my-app` will not be picked up by rollup and needs
     // to be copied separately
-    import { MyApp } from './my-app';
+    import { MyApp } from './src/my-app';
   </script>
 
   <!--
@@ -61,7 +61,7 @@ To illustrate this, here is an example of scripts which our rollup config will *
     it is not type="module", it will still not be picked up
     by rollup and needs to be copied separately
   -->
-  <script src="other-script.js"></script>
+  <script src="./src/other-script.js"></script>
 ```
 
 4. Add the following commands to your `package.json`:
@@ -86,7 +86,7 @@ If you need to support older browsers or Edge and IE11 you use our `modern-and-l
 ```javascript
 import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
 
-export default createDefaultConfig({ input: './src/index.html' });
+export default createDefaultConfig({ input: './index.html' });
 ```
 
 In addition to outputting your app as a module, it outputs a legacy build of your app and loads the appropriate version based on browser support. Depending on your app's own code, this will work on Chrome, Safari, Firefox, Edge and IE11.
@@ -128,7 +128,7 @@ Our config accepts two options:
 ```javascript
 export default createDefaultConfig({
   // your app's index.html. required
-  input: './src/index.html',
+  input: './index.html',
   // the directory to output files into, defaults to 'dist'. optional
   outputDir: '',
 });
@@ -161,7 +161,7 @@ A rollup config is just a plain object. It's easy to extend it using javascript:
 ```javascript
 import createDefaultConfig from '@open-wc/building-rollup/modern-config';
 
-const config = createDefaultConfig({ input: './src/index.html' });
+const config = createDefaultConfig({ input: './index.html' });
 
 export default {
   ...config,
@@ -181,7 +181,7 @@ If you use `modern-and-legacy-config.js`, it is actually an array of configs so 
 ```javascript
 import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
 
-const configs = createDefaultConfig({ input: './src/index.html' });
+const configs = createDefaultConfig({ input: './index.html' });
 
 export default configs.map(config => ({
   ...config,
@@ -209,7 +209,7 @@ CommonJS is the module format for NodeJS, and not suitable for the browser. Roll
 import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
 import commonjs from 'rollup-plugin-commonjs';
 
-const configs = createDefaultConfig({ input: './src/index.html' });
+const configs = createDefaultConfig({ input: './index.html' });
 
 // map if you use an array of configs, otherwise just extend the config
 export default configs.map(config => ({
@@ -231,7 +231,7 @@ import cpy from 'rollup-plugin-cpy';
 import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
 
 const config = createDefaultConfig({
-  input: './src/index.html',
+  input: './index.html',
 });
 
 // if you use an array of configs, you don't need the copy task to be executed for both builds.
@@ -267,7 +267,7 @@ To import a typescript file, use the `.ts` extension in your `index.html`:
 <head></head>
 <body>
   <my-app></my-app>
-  <script type="module" src="./my-app.ts"></script>
+  <script type="module" src="./src/my-app.ts"></script>
 </body>
 </html>
 ```
@@ -295,7 +295,7 @@ import typescript from 'rollup-plugin-typescript2';
 import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
 
 const configs = createDefaultConfig({
-  input: './src/index.html',
+  input: './index.html',
 });
 
 export default configs.map(config => ({
@@ -327,7 +327,7 @@ To separate your lit-html styles in css files, you can use [rollup-plugin-lit-cs
 import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
 import litcss from 'rollup-plugin-lit-css';
 
-const configs = createDefaultConfig({ input: './src/index.html' });
+const configs = createDefaultConfig({ input: './index.html' });
 
 // map if you use an array of configs, otherwise just extend the config
 export default configs.map(config => ({

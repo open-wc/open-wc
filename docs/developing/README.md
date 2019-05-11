@@ -20,7 +20,7 @@ npm i -D owc-dev-server lit-element
 <!doctype html>
 <html>
   <head>
-    <script type="module" src="./my-component.js"></script>
+    <script type="module" src="./src/my-component.js"></script>
     </head>
   <body>
     <my-component></my-component>

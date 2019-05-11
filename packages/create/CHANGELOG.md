@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.11.2...@open-wc/create@0.12.0) (2019-05-11)
+
+
+### Bug Fixes
+
+* recommend putting index.html into the root folder ([b943f53](https://github.com/open-wc/open-wc/commit/b943f53))
+
+
+### Features
+
+* use latest eslint-plugin-lit ([0d90757](https://github.com/open-wc/open-wc/commit/0d90757))
+
+
+
+
+
+## [0.11.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.11.1...@open-wc/create@0.11.2) (2019-05-08)
+
+
+### Bug Fixes
+
+* **create:** use latest version of testing-karma ([7a68451](https://github.com/open-wc/open-wc/commit/7a68451))
+
+
+
+
+
 ## [0.11.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.11.0...@open-wc/create@0.11.1) (2019-05-07)
 
 
