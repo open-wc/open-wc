@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+const { findSupportedBrowsers } = require('@open-wc/building-utils');
 const resolve = require('rollup-plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const babel = require('rollup-plugin-babel');
@@ -48,14 +49,7 @@ module.exports = function createBasicConfig(_options) {
           [
             '@babel/env',
             {
-              targets: [
-                'last 2 Chrome major versions',
-                'last 2 ChromeAndroid major versions',
-                'last 2 Edge major versions',
-                'last 2 Firefox major versions',
-                'last 2 Safari major versions',
-                'last 2 iOS major versions',
-              ],
+              targets: findSupportedBrowsers(),
               useBuiltIns: false,
             },
           ],

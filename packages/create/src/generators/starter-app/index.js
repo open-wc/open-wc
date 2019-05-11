@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
 import LintingMixin from '../linting/index.js';
 import TestingMixin from '../testing/index.js';
+import BuildingRollupMixin from '../building-rollup/index.js';
 
 const StarterAppMixin = subclass =>
-  class extends TestingMixin(LintingMixin(subclass)) {
+  class extends BuildingRollupMixin(TestingMixin(LintingMixin(subclass))) {
     async execute() {
       await super.execute();
       const { tagName } = this.templateData;

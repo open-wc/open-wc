@@ -149,6 +149,13 @@ For example to add support for class properties:
 }
 ```
 
+## Adjusting browser support for the modern build
+The legacy build targets IE11, which is the earliest browser supported by the webcomponents polyfill. For the modern build we target the lates 2 versions of the major browsers (chrome, firefox, safari and edge).
+
+You can adjust this by adding a [browserslist](https://github.com/browserslist/browserslist) configuration. For example by adding a `.browserslistrc` file to your project, or adding an entry to your package.json. See the [browserslist documentation](https://github.com/browserslist/browserslist) for more information.
+
+> Note: you should not add IE11 or other very early browsers as a target in your browserslist, as it would result in a broken modern build because it makes some assumptions around browser support. Use the `--legacy` flag for legacy builds.
+
 ## Extending the rollup config
 A rollup config is just a plain object. It's easy to extend it using javascript:
 ```javascript
