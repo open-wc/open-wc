@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.0...@open-wc/create@0.12.1) (2019-05-11)
+
+
+### Bug Fixes
+
+* **create:** remove plain/direct browser tests use karma watch instead ([eb23c8f](https://github.com/open-wc/open-wc/commit/eb23c8f))
+
+
+
+
+
 # [0.12.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.11.2...@open-wc/create@0.12.0) (2019-05-11)
 
 
