@@ -87,6 +87,12 @@ If your demo itself is a SPA, you can also specify the app-index option:
 npx owc-dev-server --app-index demo/index.html --open
 ```
 
+#### Auto reload
+You can let the server automatically reload the browser on file changes by using the `watch` flag. This requires the `--app-index` flag to be set as well. Note that this does not work on IE11 or Edge.
+```bash
+npx owc-dev-server --app-index demo/index.html --open --watch
+```
+
 ### Additional configs like a proxy
 If you need additional configuration for the server you can provide them via a config file `.owc-dev-server.config.js`.
 ```js
@@ -104,16 +110,17 @@ module.exports = function(app) {
 ```
 
 ### Command line options
-| name          | alias | type           | description                                                             |
-| ------------- | ----- | -------------- | ----------------------------------------------------------------------- |
-| --port        | -p    | number         | The port to use. Default: 8080                                          |
-| --hostname    | -h    | string         | The hostname to use. Default: localhost                                 |
-| --open        | -o    | string/boolean | Opens the default browser on the given path or default /                |
-| --app-index   | -a    | string         | The app's index.html file. When set, serves the index.html for non-file |
-| --root-dir    | -r    | string         | The root directory to serve files from. Defaults to the project root.   |
-| --modules-dir | -m    | string         | Directory to resolve modules from. Default: node_modules                |
-| --config-file | -c    | string         | File with additional config. Default: .owc-dev-server.config.js         |
-| --help        | none  | none           | See all options                                                         |
+| name          | alias | type           | description                                                               |
+| ------------- | ----- | -------------- | ------------------------------------------------------------------------- |
+| --port        | -p    | number         | The port to use. Default: 8080                                            |
+| --hostname    | -h    | string         | The hostname to use. Default: localhost                                   |
+| --open        | -o    | string/boolean | Opens the default browser on the given path or default /                  |
+| --app-index   | -a    | string         | The app's index.html file. When set, serves the index.html for non-file   |
+| --watch       | -w    | boolean        | Whether to reload the browser on file changes. (Does not work on IE/Edge) |
+| --root-dir    | -r    | string         | The root directory to serve files from. Defaults to the project root.     |
+| --modules-dir | -m    | string         | Directory to resolve modules from. Default: node_modules                  |
+| --config-file | -c    | string         | File with additional config. Default: .owc-dev-server.config.js           |
+| --help        | none  | none           | See all options                                                           |
 
 <script>
   export default {
