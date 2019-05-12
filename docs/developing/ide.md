@@ -35,5 +35,7 @@ We recommend the following plugins:
 Get ESLint feedback directly in your IDE => more details under [Linting](./guide/linting)
 * [lit-html](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html)  
 Highlights all your html tagged template literals
+* [lit-plugin](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin)
+Syntax highlighting, type checking and code completion for lit-html
 * [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)  
 Highlights all your css tagged template literals
