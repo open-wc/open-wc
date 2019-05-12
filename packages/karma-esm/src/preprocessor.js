@@ -9,11 +9,7 @@ function karmaEsmPreprocessor(logger) {
 
   function preprocess(code, file, done) {
     try {
-      let compiledCode = esm.compiler.getCached(file.originalPath);
-      if (!compiledCode) {
-        compiledCode = esm.compiler.compile(file.originalPath, code);
-      }
-      done(null, compiledCode);
+      done(null, esm.compiler.compile(file.originalPath, code));
     } catch (e) {
       const message = `\n\n${e.message}\n at ${file.originalPath}\n\n`;
       log.error(message);

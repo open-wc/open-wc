@@ -18,6 +18,13 @@
     "*.js"
   ],
   "dependencies": {
-    "browserslist": "^4.5.6"
+    "@babel/core": "^7.4.4",
+    "browserslist": "^4.5.6",
+    "chokidar": "^3.0.0",
+    "lru-cache": "^5.1.1",
+    "minimatch": "^3.0.4"
+  },
+  "devDependencies": {
+    "@types/lru-cache": "^5.1.0"
   }
 }

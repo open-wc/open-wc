@@ -10,7 +10,7 @@ const esm = require('./karma-esm');
 
 function getCode(filePath) {
   // take code from cache if available
-  const cachedCode = esm.compiler.getCached(filePath);
+  const cachedCode = esm.compiler.getFromCache(filePath);
   if (cachedCode) {
     return cachedCode;
   }
