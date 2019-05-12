@@ -47,7 +47,9 @@ const defaultPluginConfig = {
 function createPluginConfig(karmaConfig) {
   return merge(
     {
-      babelOptions: createBabelOptions(karmaConfig.esm),
+      babel: {
+        options: createBabelOptions(karmaConfig.esm),
+      },
     },
     defaultPluginConfig,
     karmaConfig.esm,

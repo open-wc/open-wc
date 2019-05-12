@@ -27,6 +27,7 @@
     "@babel/plugin-syntax-import-meta": "^7.2.0",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
+    "@open-wc/building-utils": "^1.1.0",
     "@types/node": "^11.13.0",
     "arrify": "^2.0.1",
     "babel-plugin-istanbul": "^5.1.1",
