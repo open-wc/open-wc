@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.2.0...@open-wc/webpack-import-meta-loader@0.2.1) (2019-05-03)
+
+
+### Bug Fixes
+
+* **webpack-import-meta-loader:** fix filepaths ([4480d2d](https://github.com/open-wc/open-wc/commit/4480d2d))
+
+
+
+
+
+# [0.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.1.3...@open-wc/webpack-import-meta-loader@0.2.0) (2019-03-23)
+
+
+### Features
+
+* add types + linting & improve intellisense ([b6d260c](https://github.com/open-wc/open-wc/commit/b6d260c))
+
+
+
+
+
+## [0.1.3](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.1.2...@open-wc/webpack-import-meta-loader@0.1.3) (2019-03-08)
+
+**Note:** Version bump only for package @open-wc/webpack-import-meta-loader
+
+
+
+
+
+## [0.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.1.1...@open-wc/webpack-import-meta-loader@0.1.2) (2019-02-16)
+
+
+### Bug Fixes
+
+* update package repository fields with monorepo details ([cb1acb7](https://github.com/open-wc/open-wc/commit/cb1acb7))
+
+
+
+
+
+## [0.1.1](https://github.com/open-wc/open-wc/tree/master/packages/webpack-import-meta-loader/compare/@open-wc/webpack-import-meta-loader@0.1.0...@open-wc/webpack-import-meta-loader@0.1.1) (2019-02-02)
+
+
+### Bug Fixes
+
+* unify npm readme header for all open-wc packages ([1bac939](https://github.com/open-wc/open-wc/tree/master/packages/webpack-import-meta-loader/commit/1bac939))
+
+
+
+
+
 # 0.1.0 (2019-01-26)
 
 

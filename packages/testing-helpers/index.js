@@ -1,4 +1,4 @@
-export { html, unsafeStatic } from './lit-html.js';
+export { html, unsafeStatic } from './src/lit-html.js';
 export {
   triggerBlurFor,
   triggerFocusFor,
@@ -7,8 +7,9 @@ export {
   defineCE,
   aTimeout,
   nextFrame,
-} from './helpers.js';
-export { litFixture, litFixtureSync } from './litFixture.js';
-export { stringFixture, stringFixtureSync } from './stringFixture.js';
-export { fixture, fixtureSync } from './fixture.js';
-export { cachedWrappers, fixtureWrapper, fixtureCleanup } from './fixtureWrapper.js';
+} from './src/helpers.js';
+export { litFixture, litFixtureSync } from './src/litFixture.js';
+export { stringFixture, stringFixtureSync } from './src/stringFixture.js';
+export { fixture, fixtureSync } from './src/fixture.js';
+export { cachedWrappers, fixtureWrapper, fixtureCleanup } from './src/fixtureWrapper.js';
+export { elementUpdated } from './src/elementUpdated.js';

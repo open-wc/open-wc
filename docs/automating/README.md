@@ -12,14 +12,11 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation.
 
 ## Setup
 ```bash
-npm i -g yo
-npm i -g generator-open-wc
-
-yo open-wc:automating
+npm init @open-wc automating
 ```
 
 ### Manual Setup
-- copy [.circleci/config.yml](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/tools-circleci/templates/static/.circleci/config.yml) to  `.circleci/config.yml`
+- copy [.circleci/config.yml](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/tools-circleci/templates/static/.circleci/config.yml) to  `.circleci/config.yml`
 
 
 ## Usage

@@ -1,12 +1,6 @@
 # Testing
 
-> Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
-
-Open Web Components provides a set of defaults, recommendations and tools to help facilitate your Web Component. Our recommendations include: developing, linting, testing, tooling, demoing, publishing and automating.
-
-[![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
-[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
-[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+[//]: # (AUTO INSERT HEADER PREPUBLISH)
 
 We believe that testing is fundamental to every production-ready product.
 
@@ -18,20 +12,10 @@ Using:
   - Plugin [chai-dom-equals](https://www.npmjs.com/package/@open-wc/chai-dom-equals)
 - Mocks via [sinon](https://sinonjs.org/)
 
-::: tip Info
-This is part of the default [open-wc](https://open-wc.org/) recommendation
-:::
-
 ## Setup
 ```bash
-npm i -g yo
-npm i -g generator-open-wc
-
-# if you already have a Web Component project set up and/or test files
-yo open-wc:testing
-
-# if you do not have tests yet - will run the above + some example test files
-yo open-wc:scaffold-testing
+npm init @open-wc
+# Upgrade > Testing
 ```
 
 ### Manual
@@ -49,25 +33,30 @@ This will have the following side effects:
   - Enables cleanup after each test for all `fixture`s
 
 ## Automating Tests
-Ideally, you'll want some way of automatically running all of your tests. To do that, we recommend karma via `@open-wc/testing-karma` and browserstack via `@open-wc/testing-karma-bs`.  
+Ideally, you'll want some way of automatically running all of your tests. To do that, we recommend karma via `@open-wc/testing-karma` and browserstack via `@open-wc/testing-karma-bs`.
 If you use a different test runner or a different browser grid you may skip these steps.
 
 ::: tip Note
-Already part of `yo open-wc:testing`
+Already part of `npm init @open-wc testing`
 ::::
 
 ### Manual Install
 - Install via `yarn add @open-wc/testing-karma --dev`
-- Copy [karma.conf.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/testing-karma/templates/static/karma.conf.js) to `karma.conf.js`
+- Copy [karma.conf.js](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/testing-karma/templates/static/karma.conf.js) to `karma.conf.js`
 - Add these scripts to package.json
   ```js
   "scripts": {
-    "test": "karma start",
-    "test:watch": "karma start --auto-watch=true --single-run=false",
-    "test:es5": "karma start karma.es5.config.js",
-    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
+    "test": "karma start --coverage",
+    "test:watch": "karma start --auto-watch=true --single-run=false"
   },
   ```
+#### If you need to support legacy browsers
+```js
+  "scripts": {
+    "test:legacy": "karma start --legacy --coverage",
+    "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false",
+  },
+```
 
 For more details, please see [testing-karma](https://open-wc.org/testing/testing-karma.html).
 
@@ -78,17 +67,17 @@ If you do not have access to all browsers, we recommend using a service like [Br
 The following step connects the automatic karma runner with browserstack.
 
 ::: tip Note
-Already part of `yo open-wc:testing`
+Already part of `npm init @open-wc testing`
 ::::
 
 ### Manual Install
 
 - Install via `yarn add @open-wc/testing-karma-bs --dev`
-- Copy [karma.es5.bs.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/testing-karma-bs/templates/static/karma.es5.bs.config.js) to `karma.es5.bs.config.js`
+- Copy [karma.bs.config.js](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/testing-karma-bs/templates/static/karma.bs.config.js) to `karma.bs.config.js`
 - Add these scripts to your package.json
   ```js
   "scripts": {
-    "test:es5:bs": "karma start karma.es5.bs.config.js"
+    "test:bs": "karma start karma.bs.config.js --legacy --coverage"
   },
   ```
 
@@ -168,9 +157,6 @@ Make sure you have Chrome (or Chromium) installed.
 Additionally you may need to set your CHROME_BIN env variable `export CHROME_BIN=/usr/bin/chromium-browser`.
 ::::
 
-For some example tests, please take a look at our [Set-Game Example Test Files](https://github.com/open-wc/example-vanilla-set-game/tree/master/test).
-
-
 ## Fixture Cleanup
 By default, if you import anything via `import { ... } from '@open-wc/testing-helpers';`, it will automatically register a side-effect that cleans up your fixtures.
 If you want to be in full control you can do so by using
@@ -183,8 +169,21 @@ it('can instantiate an element with properties', async () => {
   fixtureCleanup();
 }
 
-// Alternatively, you can add the fixtureCleanup in the afterEach function, but note that this is exactly what the automatically registered side-effect does.
+// Alternatively, you can add the fixtureCleanup in the afterEach function.
+// Note that this is exactly what the automatically registered side-effect does.
 afterEach(() => {
   fixtureCleanup();
 });
 ```
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/testing/README.md';
+      }
+    }
+  }
+</script>

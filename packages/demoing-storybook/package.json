@@ -1,0 +1,53 @@
+{
+  "name": "@open-wc/demoing-storybook",
+  "version": "0.2.2",
+  "description": "Storybook configuration following open-wc recommendations",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/building-storybook"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 9001 -c demo/.storybook",
+    "prepublishOnly": "../../scripts/insert-header.js"
+  },
+  "main": "index.js",
+  "files": [
+    "*.js"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.0.0",
+    "@storybook/addon-actions": "^5.0.0",
+    "@storybook/addon-console": "^1.1.0",
+    "@storybook/addon-knobs": "^5.0.0",
+    "@storybook/addon-links": "^5.0.0",
+    "@storybook/addon-notes": "^5.0.0",
+    "@storybook/addon-storysource": "^5.0.0",
+    "@storybook/addon-viewport": "^5.0.0",
+    "@storybook/polymer": "^5.0.0",
+    "@types/storybook__addon-actions": "^3.4.1",
+    "@types/storybook__addon-backgrounds": "^3.2.1",
+    "@types/storybook__addon-links": "^3.3.3",
+    "@types/storybook__addon-notes": "^3.3.3",
+    "@webcomponents/webcomponentsjs": "^2.2.0",
+    "babel-loader": "^8.0.0",
+    "moment": "^2.0.0",
+    "polymer-webpack-loader": "^2.0.0"
+  },
+  "peerDependencies": {
+    "lit-html": "^1.0.0"
+  },
+  "devDependencies": {
+    "lit-element": "^2.0.1",
+    "lit-html": "^1.0.0"
+  }
+}

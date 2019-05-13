@@ -1,9 +1,0 @@
-{
-  "scripts": {
-    "lint:eslint": "eslint --ext .js,.html .",
-    "format:eslint": "eslint --ext .js,.html . --fix"
-  },
-  "devDependencies": {
-    "@open-wc/eslint-config": "^0.3.0"
-  }
-}

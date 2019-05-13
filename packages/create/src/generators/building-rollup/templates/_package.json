@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "build": "rimraf dist && rollup -c rollup.config.js",
+    "start:build": "http-server dist -o -c-1",
+    "watch:build": "rimraf dist && rollup --watch -c rollup.config.js & http-server dist -o -c-1"
+  },
+  "devDependencies": {
+    "@open-wc/building-rollup": "^0.3.0",
+    "http-server": "^0.11.1",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.6.0"
+  }
+}

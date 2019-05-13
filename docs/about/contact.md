@@ -1,6 +1,6 @@
 # Contact
 
-Feel free to create [a github issue](https://github.com/open-wc/open-wc/issues/new) for any feedback or questions you might have.
+Feel free to reach out to us on [twitter](https://twitter.com/OpenWc) or create [a github issue](https://github.com/open-wc/open-wc/issues/new) for any feedback or questions you might have.
 
 You can also find us on the Polymer slack in the [#open-wc](https://polymer.slack.com/messages/CE6D9DN05) channel.
 

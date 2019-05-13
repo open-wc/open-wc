@@ -1,0 +1,54 @@
+{
+  "name": "@open-wc/create",
+  "version": "0.12.1",
+  "description": "Easily setup all the tools of Open Web Components.",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/create"
+  },
+  "keywords": [
+    "open-wc",
+    "owc",
+    "generator",
+    "starter-app"
+  ],
+  "scripts": {
+    "build": "babel src --out-dir dist --copy-files --include-dotfiles",
+    "start": "npm run build && node ./dist/create.js",
+    "test": "mocha --require @babel/register",
+    "test:ci": "npm run test",
+    "test:watch": "onchange 'src/**/*.js' 'test/**/*.js' -- npm run test --silent",
+    "prepublishOnly": "npm run build && ../../scripts/insert-header.js"
+  },
+  "bin": {
+    "create-open-wc": "./dist/create.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "command-line-args": "^5.0.2",
+    "deepmerge": "^3.2.0",
+    "glob": "^7.1.3",
+    "prompts": "^2.0.4",
+    "semver": "^5.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-plugin-transform-dynamic-import": "^2.1.0",
+    "chai": "^4.2.0",
+    "mocha": "^5.0.0",
+    "onchange": "^5.2.0"
+  }
+}

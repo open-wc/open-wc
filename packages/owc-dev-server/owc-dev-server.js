@@ -52,6 +52,13 @@ const optionDefinitions = [
     type: String,
     description: 'Directory to resolve modules from. Default: node_modules',
   },
+  {
+    name: 'config-file',
+    alias: 'c',
+    type: String,
+    defaultValue: path.join(process.cwd(), '.owc-dev-server.config.js'),
+    description: 'Node file which can provide additional config',
+  },
   { name: 'help', type: Boolean, description: 'See all options' },
 ];
 
@@ -73,7 +80,7 @@ if ('help' in options) {
       },
     ]),
   );
-  return;
+  process.exit();
 }
 
 // open if the open option is given, even when there were no arguments
@@ -85,6 +92,7 @@ const {
   'root-dir': rootDir,
   'app-index': appIndex,
   'modules-dir': modulesDir,
+  'config-file': configFilePath,
 } = options;
 
 let openPath;
@@ -125,7 +133,7 @@ app.use(express.static(rootDir));
 
 // serve app index.html for non asset requests to allow for SPA routing
 if (appIndex) {
-  const fullAppIndexPath = `${__dirname}/${appIndex}`;
+  const fullAppIndexPath = `${process.cwd()}/${appIndex}`;
   if (!fs.existsSync(fullAppIndexPath)) {
     throw new Error(`Could not find "${fullAppIndexPath}". The apps index file needs to exist.`);
   }
@@ -135,6 +143,12 @@ if (appIndex) {
     );
   }
   app.use(historyFallback(fullAppIndexPath));
+}
+
+// load additonal config file for express
+if (fs.existsSync(configFilePath)) {
+  const appConfig = require(configFilePath); // eslint-disable-line import/no-dynamic-require, global-require
+  appConfig(app);
 }
 
 app.listen(port, hostname, () => {

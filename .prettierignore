@@ -1,4 +1,6 @@
 node_modules
 coverage/
-/packages/generator-open-wc/generators/*/templates/**/*
+/packages/create/src/generators/*/templates/**/*
 dist
+stats.html
+packages/semantic-dom-diff/bundle/get-diffable-html.js

@@ -1,144 +1,270 @@
 # Webpack
 
-> Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
+[//]: # (AUTO INSERT HEADER PREPUBLISH)
 
-Open Web Components provides a set of defaults, recommendations and tools to help facilitate your web component project. Our recommendations include: developing, linting, testing, building, tooling, demoing, publishing and automating.
+## Configuration
+Our webpack configuration will help you get started using webpack. Our configuration lets you write code using modern javascript syntax and features, providing the necessary syntax transformation and polyfills for older browsers.
 
-[![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
-[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
-[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+See 'config features' for all details. See the extending section for customization, such as supporting non-standard syntax or adding babel plugins.
 
-## Default configuration
-We provide default configuration to help you get started building your web component project with webpack.
+## Setup
+
+```bash
+npm init @open-wc
+# Upgrade > Building > Webpack
+```
 
 ## Manual setup
-To set up the default configuration manually:
 
 1. Install the required dependencies:
 ```bash
-npm i -D @open-wc/building-webpack webpack webpack-dev-server http-server
+npm i -D @open-wc/building-webpack webpack webpack-cli webpack-dev-server http-server
 ```
 
-2. Create a file `webpack.config.js`:
+2. Create a file called `webpack.config.js` and pass in your app's js entry point and index.html.
+
+If you don't need to support IE11 or other legacy browsers, use `@open-wc/building-webpack/modern-config`. Otherwise, use `@open-wc/building-webpack/modern-and-legacy-config`.
 ```javascript
 const path = require('path');
-const defaultConfig = require('@open-wc/building-webpack/default-config');
+const createDefaultConfig = require('@open-wc/building-webpack/modern-and-legacy-config');
 
-module.exports = defaultConfig();
+// If you don't need IE11 support, use the modern-config instead
+// import createDefaultConfig from '@open-wc/building-webpack/modern-config';
+
+module.exports = createDefaultConfig({
+  input: path.resolve(__dirname, './index.html'),
+});
 ```
 
-3. Add the following commands to your `package.json`:
-```json
-{
-  "scripts": {
-    "start": "webpack-dev-server --mode development --open",
-    "start:es5": "webpack-dev-server --mode development --es5",
-    "start:build": "http-server dist/ -o",
-    "build": "webpack --mode production",
-    "build:stats": "webpack --mode production --profile --json > bundle-stats.json"
-  }
-}
-```
-- `start` runs your app with auto reload for development, it only works on browsers which support modules for faster builds
-- `start:es5` runs your app for development, it only works on browsers that don't support modules (IE11)
-- `build` builds your app for production and outputs it in the `/dist` folder
-- `start:build` runs your built app using a plain web server, to prove it works without magic :)
-- `build:stats` creates an analysis report of your app bundle to be consumed by Webpack [Visualizer](https://chrisbateman.github.io/webpack-visualizer/) and [Analyser](https://webpack.github.io/analyse/)
-
-4. Create an `index.html`:
+3. Create an `index.html`:
 ```html
 <!doctype html>
 <html>
   <head></head>
   <body>
     <your-app></your-app>
+
+    <script type="module" src="./src/your-app.js"></script>
   </body>
 </html>
 ```
 
-5. Create a `index.js` which kickstarts your JS code.
-For older browser we need to load the web component polyfills. We use the [polyfills-loader](https://open-wc.org/building/polyfills-loader.html) for that:
+We use [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) to work with your index.html. View the documentation for the plugin to learn how you can use it.
 
-```javascript
-import loadPolyfills from '@open-wc/polyfills-loader';
+Remember to not add your app's entry point to your index.html, as it will be injected dynamically by `html-webpack-plugin`.
 
-loadPolyfills().then(() => {
-  import('./my-app.js');
-});
+4. Add the following commands to your `package.json`:
+```json
+{
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --open",
+    "start:build": "http-server dist -o"
+  }
+}
+```
+- `build` builds your app and outputs it in your `dist` directory
+- `start` builds and runs your app, rebuilding on file changes
+- `start:build` runs your built app from `dist` directory, it uses a simple http-server to make sure that it runs without magic
+
+## Browser support
+`modern-config.js` creates a single build of your app for modern browsers (by default last 2 of major browsers). This is recommended if you only need to support modern browsers, otherwise you will need to ship compatibility code for browsers which don't need it.
+
+`modern-and-legacy-config.js` creates two builds of your app. A modern build like the above, and a legacy build for IE11. Additional code is injected to load polyfills and the correct version of your app. This is recommended if you need to support IE11.
+
+## Config features
+All configs:
+- resolve bare imports (`import { html } from 'lit-html'`)
+- preserve `import.meta.url` value from before bundling
+- minify + treeshake js
+- minify html and css in template literals
+
+`modern-config.js`:
+- single build output
+- compatible with any browser which supports Web Components
+
+`modern-and-legacy-config.js`:
+- Two build outputs:
+  - Modern:
+    - compatible with modern browsers (default: last 2 chrome, firefox safari and edge)
+    - does not penalize users with modern browser with compatibility code for IE11
+  - Legacy:
+    - compatible down to IE11
+    - babel transform down to IE11 (es5)
+    - core js babel polyfills (`Array.from`, `String.prototype.includes` etc.)
+    - URL polyfill
+    - webcomponentsjs polyfills
+
+See 'extending' to add more configuration.
+
+## Customizing the babel config
+You can define your own babel plugins by adding a `.babelrc` or `babel.config.js` to your project. See [babeljs config](https://babeljs.io/docs/en/configuration) for more information.
+
+For example to add support for class properties:
+
+```json
+{
+  "plugins": [
+    "@babel/plugin-proposal-class-properties"
+  ]
+}
 ```
 
-### Notes
-You can change the default `index.html` and `index.js` files:
+## Adjusting browser support for the modern build
+The legacy build targets IE11, which is the earliest browser supported by the webcomponents polyfill. For the modern build we target the lates 2 versions of the major browsers (chrome, firefox, safari and edge).
 
+You can adjust this by adding a [browserslist](https://github.com/browserslist/browserslist) configuration. For example by adding a `.browserslistrc` file to your project, or adding an entry to your package.json. See the [browserslist documentation](https://github.com/browserslist/browserslist) for more information.
+
+> Note: you should not add IE11 or other very early browsers as a target in your browserslist, as it would result in a broken modern build because it makes some assumptions around browser support. Use the `--legacy` flag for legacy builds.
+
+## Extending the webpack config
+A webpack config is an object. To extend it, we recommend using `webpack-merge` to ensure plugins are merged correctly. For example to adjust the output folder:
 ```javascript
-module.exports = defaultConfig({
-  indexHTML: path.resolve(__dirname, './src/index.html'),
-  indexJS: path.resolve(__dirname, './src/index.js'),
-});
-```
-
-## Features
-
-### Module resolution
-This lets you use bare imports: `import { bar } from 'foo'` instead of `import { bar } from '../node_modules/foo/foo.js'`
-
-### Automatic module type selection
-Based on `package.json` it selects the most optimal type of module format. es modules and es2015 code is preferred, but it falls back to support other module types such as CommonJS and UMD. These can be a useful way to get done writing code today, but these are not future proof formats. We recommend using es modules as much as possible.
-
-### HTML, JS and CSS minifications
-JS is minified for performance. HTML, CSS and is minified when they are used in combination with the `html` and `css` template tags from `lit-html` and `lit-element`.
-
-### es2015 and es5 output
-Using [webpack-babel-multi-target-plugin](https://www.npmjs.com/package/webpack-babel-multi-target-plugin), our build outputs an es5 and es2015 version of your app. Using the `nomodule` trick, we can serve es2015 code on modern browsers and es5 on older browsers (IE11 mostly). This significantly reduces the size of your app on modern browsers.
-
-Read more about this trick at [Jakes blog post "ECMAScript modules in browsers"](https://jakearchibald.com/2017/es-modules-in-browsers/).
-
-### Comment code
-Comment code gets stripped at build time. So comment away!  
-Note: Licence required comments are extracted and provided via {chunkname}.LICENCE files.
-
-### No regenerator runtime / transform
-By default, babel's compilation of async functions and `for of` loops using an expensive transform and runtime. A lot of runtime code is added, and a lot of boilerplate code is added in the transform.
-
-For async functions we use the [fast-async](https://github.com/MatAtBread/fast-async) plugin instead.
-
-### es2015 polyfills
-We add [Language polyfills](https://github.com/zloirock/core-js) for `es2015` features, such as `Map` and `'/foo'.startsWith('/')`. But only on the `es5` build, so that we don't need to ship it to modern browsers.
-
-### Syntax and javascript APIs
-Our config only supports standard javascript syntax and browser APIs. We support stage 3 proposals when they add significant value and are easy to support without performance penalties.
-
-Supported proposals:
-- [Dynamic import](https://github.com/tc39/proposal-dynamic-import)
-- [`import.meta.url`](https://github.com/tc39/proposal-import-meta)
-
-## Customizing the configuration
-The `default-config` function outputs a regular webpack config, it can easily be extended using `webpack-merge`. For example to add an extra entry file and sass loader:
-
-```javascript
-const path = require('path');
 const merge = require('webpack-merge');
-const createDefaultConfig = require('@open-wc/building-webpack/default-config');
+const createDefaultConfig = require('@open-wc/building-webpack/modern-config');
 
-const defaultConfig = createDefaultConfig();
+const config = createDefaultConfig({
+  input: path.resolve(__dirname, './index.html'),
+});
 
-module.exports = merge(defaultConfig, {
-  entry: ['additional-entry-file.js'],
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        use: [
-          "style-loader",
-          "css-loader",
-          "sass-loader"
-        ]
-      },
-    ],
+module.exports = merge(config, {
+  output: {
+    path: 'build'
   },
 });
 ```
 
-We recommend extending the config only to make small additions.
-If your configuration deviates too much from our default setup, simply copy paste what we have and use it as a starting point.
-It will keep your configuration easier to understand.
+If you use `modern-and-legacy-config.js`, it is actually an array of configs so that webpack outputs a modern and a legacy build. Simply map over the array to adjust both configs:
+
+```javascript
+const merge = require('webpack-merge');
+const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
+
+const configs = createDefaultConfigs({
+  input: path.resolve(__dirname, './index.html'),
+});
+
+module.exports = configs.map(config => merge(config, {
+  output: {
+    path: 'build'
+  },
+}));
+```
+
+### Common extensions
+::: warning
+Some extensions add non-native syntax to your code, which can be bad for maintenance longer term. We suggest avoiding adding plugins for using experimental javascript proposals or for importing non-standard module types.
+:::
+
+### Copy assets
+Web apps often include assets such as css files and images. These are not part of your regular dependency graph, so they need to be copied into the build directory.
+
+[copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin) is a popular plugin fo this.
+
+```javascript
+const path = require('path');
+const merge = require('webpack-merge');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
+
+const configs = createDefaultConfigs({
+  input: path.resolve(__dirname, './index.html'),
+});
+
+// with modern-and-legacy-config, the config is actually an array of configs for a modern and
+// a legacy build. We don't need to copy files twice, so we aadd the copy job only to the first
+// config
+module.exports = [
+  // add plugin to the first config
+  merge(configs[0], {
+    plugins: [
+      new CopyWebpackPlugin([
+        'images/**/*.png',
+      ]),
+    ],
+  }),
+
+  // the second config left untouched
+  configs[1],
+];
+```
+
+### Support typescript
+Make sure to prevent any compilation done by the typescript compiler `tsconfig.json`, as babel and webpack do this for you:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ESNEXT",
+    "module": "ESNext",
+  }
+}
+```
+
+Within webpack there are two options to add typescript support.
+
+#### 1. Babel
+We recommend using the babel typescript plugin. Add this to your `.babelrc`:
+```json
+{
+  "presets": [
+    "@babel/preset-typescript"
+  ],
+}
+```
+
+This the fastest method, as it strips away types during babel transformormation of your code. It will not perform any type checking though. We recommend setting up the type checking as part of your linting setup, so that you don't need to run the typechecker during development for faster builds.
+
+
+<details>
+  <summary>Supporting decorators</summary>
+
+  ::: warning
+  Please note that decorators will add [non standard syntax](https://open-wc.org/building/building-webpack.html#common-extensions) to your code.
+  :::
+
+  > Due to the way Babel handles [decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) and class properties, you'll need to specify the plugins in a specific order with specific options. Here's what you'll need:
+  ```javascript
+  {
+    "presets": ["@babel/preset-typescript"],
+    "plugins": [
+      ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
+      "@babel/plugin-proposal-class-properties"
+    ]
+  }
+
+  ```
+</details>
+
+#### 2. Plugin
+It is also possible to add the webpack typescript plugin, which does typechecking and compiling for you:
+
+```javascript
+const path = require('path');
+const merge = require('webpack-merge');
+const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
+
+const configs = createDefaultConfigs({
+  input: path.resolve(__dirname, './index.html'),
+});
+
+module.exports = configs.map(config =>
+  merge(config, {
+    module: {
+      rules: [{ test: /\.ts$/, loader: 'ts-loader' }],
+    },
+  }),
+);
+```
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/building-webpack/README.md';
+      }
+    }
+  }
+</script>

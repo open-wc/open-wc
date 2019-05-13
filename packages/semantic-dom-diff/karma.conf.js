@@ -1,16 +1,15 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const defaultSettings = require('@open-wc/testing-karma/default-settings.js');
+const createDefaultConfig = require('@open-wc/testing-karma/default-config.js');
 const merge = require('webpack-merge');
 
 module.exports = config => {
   config.set(
-    merge(defaultSettings(config), {
+    merge(createDefaultConfig(config), {
       files: [
         // allows running single tests with the --grep flag
-        config.grep ? config.grep : 'test/**/*.test.js',
+        { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' },
       ],
 
-      // TODO: not yet within the 90% default
       coverageIstanbulReporter: {
         thresholds: {
           global: {

@@ -3,6 +3,360 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.12.0...@open-wc/testing@0.12.1) (2019-05-06)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+# [0.12.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.11.7...@open-wc/testing@0.12.0) (2019-05-06)
+
+
+### Features
+
+* update to latest testing-karma config syntax ([465bfe0](https://github.com/open-wc/open-wc/commit/465bfe0))
+
+
+
+
+
+## [0.11.7](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.11.6...@open-wc/testing@0.11.7) (2019-05-03)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.11.6](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.11.5...@open-wc/testing@0.11.6) (2019-04-30)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.11.5](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.11.4...@open-wc/testing@0.11.5) (2019-04-28)
+
+
+### Bug Fixes
+
+* **eslint-config:** loosen up rules for test and stories files ([#408](https://github.com/open-wc/open-wc/issues/408)) ([3fd251e](https://github.com/open-wc/open-wc/commit/3fd251e))
+
+
+
+
+
+## [0.11.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.11.3...@open-wc/testing@0.11.4) (2019-04-14)
+
+
+### Bug Fixes
+
+* update generator usage ([5d284d4](https://github.com/open-wc/open-wc/commit/5d284d4))
+
+
+
+
+
+## [0.11.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.11.2...@open-wc/testing@0.11.3) (2019-04-13)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.11.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.11.1...@open-wc/testing@0.11.2) (2019-04-08)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.11.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.11.0...@open-wc/testing@0.11.1) (2019-04-08)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+# [0.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.12...@open-wc/testing@0.11.0) (2019-04-08)
+
+
+### Features
+
+* **semantic-dom-diff:** add support for snapshot testing ([f7a675a](https://github.com/open-wc/open-wc/commit/f7a675a))
+
+
+
+
+
+## [0.10.12](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.11...@open-wc/testing@0.10.12) (2019-04-06)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.10.11](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.10...@open-wc/testing@0.10.11) (2019-04-05)
+
+
+### Bug Fixes
+
+* do not assume available global types of users ([cd394d9](https://github.com/open-wc/open-wc/commit/cd394d9))
+
+
+
+
+
+## [0.10.10](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.9...@open-wc/testing@0.10.10) (2019-04-03)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.10.9](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.8...@open-wc/testing@0.10.9) (2019-03-31)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** add get-diffable-html.js to npm bundle ([7ee3ba9](https://github.com/open-wc/open-wc/commit/7ee3ba9))
+
+
+
+
+
+## [0.10.8](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.7...@open-wc/testing@0.10.8) (2019-03-31)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.10.7](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.6...@open-wc/testing@0.10.7) (2019-03-31)
+
+
+### Bug Fixes
+
+* **testing:** update instructions for new karma config setup ([2de10bf](https://github.com/open-wc/open-wc/commit/2de10bf))
+
+
+
+
+
+## [0.10.6](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.5...@open-wc/testing@0.10.6) (2019-03-31)
+
+
+### Bug Fixes
+
+* adopt new karma setup for all packages ([1888260](https://github.com/open-wc/open-wc/commit/1888260))
+
+
+
+
+
+## [0.10.5](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.4...@open-wc/testing@0.10.5) (2019-03-29)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.10.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.3...@open-wc/testing@0.10.4) (2019-03-28)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.10.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.2...@open-wc/testing@0.10.3) (2019-03-27)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.10.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.1...@open-wc/testing@0.10.2) (2019-03-24)
+
+
+### Bug Fixes
+
+* adjust generator-open-wc links to create ([cc014b1](https://github.com/open-wc/open-wc/commit/cc014b1))
+
+
+
+
+
+## [0.10.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.10.0...@open-wc/testing@0.10.1) (2019-03-23)
+
+
+### Bug Fixes
+
+* do not assume globally setup mocha types ([977d5b4](https://github.com/open-wc/open-wc/commit/977d5b4))
+
+
+
+
+
+# [0.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.9.28...@open-wc/testing@0.10.0) (2019-03-23)
+
+
+### Features
+
+* add types + linting & improve intellisense ([b6d260c](https://github.com/open-wc/open-wc/commit/b6d260c))
+
+
+
+
+
+## [0.9.28](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.9.27...@open-wc/testing@0.9.28) (2019-03-20)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.27](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.9.26...@open-wc/testing@0.9.27) (2019-03-14)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.26](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.9.25...@open-wc/testing@0.9.26) (2019-03-14)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.25](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.9.24...@open-wc/testing@0.9.25) (2019-03-08)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.24](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.9.23...@open-wc/testing@0.9.24) (2019-03-06)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.23](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.9.22...@open-wc/testing@0.9.23) (2019-03-04)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.22](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.9.21...@open-wc/testing@0.9.22) (2019-03-03)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.21](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.9.20...@open-wc/testing@0.9.21) (2019-02-26)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.20](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.9.19...@open-wc/testing@0.9.20) (2019-02-24)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.19](https://github.com/open-wc/open-wc/compare/@open-wc/testing@0.9.18...@open-wc/testing@0.9.19) (2019-02-16)
+
+
+### Bug Fixes
+
+* update package repository fields with monorepo details ([cb1acb7](https://github.com/open-wc/open-wc/commit/cb1acb7))
+
+
+
+
+
+## [0.9.18](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.17...@open-wc/testing@0.9.18) (2019-02-14)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.17](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.16...@open-wc/testing@0.9.17) (2019-02-13)
+
+
+### Bug Fixes
+
+* **testing:** add info to docs to test legacy browsers ([012a867](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/012a867))
+
+
+
+
+
+## [0.9.16](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.15...@open-wc/testing@0.9.16) (2019-02-11)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.15](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.14...@open-wc/testing@0.9.15) (2019-02-04)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [0.9.14](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.13...@open-wc/testing@0.9.14) (2019-02-02)
+
+
+### Bug Fixes
+
+* unify npm readme header for all open-wc packages ([1bac939](https://github.com/open-wc/open-wc/tree/master/packages/testing/commit/1bac939))
+
+
+
+
+
+## [0.9.13](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.12...@open-wc/testing@0.9.13) (2019-02-02)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
 ## [0.9.12](https://github.com/open-wc/open-wc/tree/master/packages/testing/compare/@open-wc/testing@0.9.11...@open-wc/testing@0.9.12) (2019-01-31)
 
 

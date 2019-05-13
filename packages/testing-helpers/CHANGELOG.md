@@ -3,6 +3,287 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.9.0...@open-wc/testing-helpers@0.9.1) (2019-05-06)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+# [0.9.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.10...@open-wc/testing-helpers@0.9.0) (2019-05-06)
+
+
+### Features
+
+* update to latest testing-karma config syntax ([465bfe0](https://github.com/open-wc/open-wc/commit/465bfe0))
+
+
+
+
+
+## [0.8.10](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.9...@open-wc/testing-helpers@0.8.10) (2019-05-03)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.8.9](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.8...@open-wc/testing-helpers@0.8.9) (2019-04-28)
+
+
+### Bug Fixes
+
+* **eslint-config:** loosen up rules for test and stories files ([#408](https://github.com/open-wc/open-wc/issues/408)) ([3fd251e](https://github.com/open-wc/open-wc/commit/3fd251e))
+
+
+
+
+
+## [0.8.8](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.7...@open-wc/testing-helpers@0.8.8) (2019-04-14)
+
+
+### Bug Fixes
+
+* update generator usage ([5d284d4](https://github.com/open-wc/open-wc/commit/5d284d4))
+
+
+
+
+
+## [0.8.7](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.6...@open-wc/testing-helpers@0.8.7) (2019-04-13)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.8.6](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.5...@open-wc/testing-helpers@0.8.6) (2019-04-08)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.8.5](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.4...@open-wc/testing-helpers@0.8.5) (2019-04-06)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.8.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.3...@open-wc/testing-helpers@0.8.4) (2019-04-05)
+
+
+### Bug Fixes
+
+* do not assume available global types of users ([cd394d9](https://github.com/open-wc/open-wc/commit/cd394d9))
+
+
+
+
+
+## [0.8.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.2...@open-wc/testing-helpers@0.8.3) (2019-03-31)
+
+
+### Bug Fixes
+
+* adopt new karma setup for all packages ([1888260](https://github.com/open-wc/open-wc/commit/1888260))
+
+
+
+
+
+## [0.8.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.1...@open-wc/testing-helpers@0.8.2) (2019-03-24)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.8.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.0...@open-wc/testing-helpers@0.8.1) (2019-03-23)
+
+
+### Bug Fixes
+
+* do not assume globally setup mocha types ([977d5b4](https://github.com/open-wc/open-wc/commit/977d5b4))
+
+
+
+
+
+# [0.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.25...@open-wc/testing-helpers@0.8.0) (2019-03-23)
+
+
+### Features
+
+* add types + linting & improve intellisense ([b6d260c](https://github.com/open-wc/open-wc/commit/b6d260c))
+
+
+
+
+
+## [0.7.25](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.24...@open-wc/testing-helpers@0.7.25) (2019-03-20)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.7.24](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.23...@open-wc/testing-helpers@0.7.24) (2019-03-14)
+
+
+### Bug Fixes
+
+* **testing-helpers:** ensure ShadyDOM finished its job in fixture ([4fbe93d](https://github.com/open-wc/open-wc/commit/4fbe93d))
+
+
+
+
+
+## [0.7.23](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.22...@open-wc/testing-helpers@0.7.23) (2019-03-14)
+
+
+### Bug Fixes
+
+* **testing-helpers:** make fixture type generic ([613a672](https://github.com/open-wc/open-wc/commit/613a672))
+
+
+
+
+
+## [0.7.22](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.21...@open-wc/testing-helpers@0.7.22) (2019-03-08)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.7.21](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.20...@open-wc/testing-helpers@0.7.21) (2019-03-06)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.7.20](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.19...@open-wc/testing-helpers@0.7.20) (2019-03-04)
+
+
+### Bug Fixes
+
+* **testing-helpers:** correct usage of oneEvent in readme ([a16969a](https://github.com/open-wc/open-wc/commit/a16969a))
+
+
+
+
+
+## [0.7.19](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.18...@open-wc/testing-helpers@0.7.19) (2019-03-03)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.7.18](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.17...@open-wc/testing-helpers@0.7.18) (2019-02-26)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.7.17](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.16...@open-wc/testing-helpers@0.7.17) (2019-02-24)
+
+
+### Bug Fixes
+
+* **testing-helpers:** add time before triggering focus/blur (only IE) ([f77cfa2](https://github.com/open-wc/open-wc/commit/f77cfa2))
+
+
+
+
+
+## [0.7.16](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.7.15...@open-wc/testing-helpers@0.7.16) (2019-02-16)
+
+
+### Bug Fixes
+
+* update package repository fields with monorepo details ([cb1acb7](https://github.com/open-wc/open-wc/commit/cb1acb7))
+
+
+
+
+
+## [0.7.15](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.14...@open-wc/testing-helpers@0.7.15) (2019-02-14)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.7.14](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.13...@open-wc/testing-helpers@0.7.14) (2019-02-13)
+
+
+### Bug Fixes
+
+* **testing-helpers:** raise peer dependency of lit-html to 1.x ([1744317](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/1744317))
+
+
+
+
+
+## [0.7.13](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.12...@open-wc/testing-helpers@0.7.13) (2019-02-11)
+
+
+### Bug Fixes
+
+* **testing-helpers:** document oneEvent, triggerFocusFor, triggerBlurFor ([a591611](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/a591611))
+* **testing-helpers:** use asynchronous fixtures ([7b6372b](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/7b6372b))
+
+
+
+
+
+## [0.7.12](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.11...@open-wc/testing-helpers@0.7.12) (2019-02-04)
+
+
+### Bug Fixes
+
+* **testing-helpers:** add `await elementUpdated(el)` supports stencil ([c442f21](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/c442f21))
+
+
+
+
+
+## [0.7.11](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.10...@open-wc/testing-helpers@0.7.11) (2019-02-02)
+
+
+### Bug Fixes
+
+* unify npm readme header for all open-wc packages ([1bac939](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/commit/1bac939))
+
+
+
+
+
+## [0.7.10](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.9...@open-wc/testing-helpers@0.7.10) (2019-02-02)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
 ## [0.7.9](https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers/compare/@open-wc/testing-helpers@0.7.8...@open-wc/testing-helpers@0.7.9) (2019-01-26)
 
 

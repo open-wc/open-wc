@@ -4,17 +4,15 @@ const sidebar = [
   ['/', 'Home'],
   ['/guide/', 'Introduction'],
   {
-    title: 'IDE',
-    collapsable: true,
-    children: [['/ide/', 'Getting started']],
-  },
-  {
     title: 'Developing',
     collapsable: true,
     children: [
       ['/developing/', 'Getting started'],
+      ['/developing/ide', 'IDE'],
+      '/developing/best-practices',
       '/developing/owc-dev-server',
-      ['/developing/generator', 'Generators'],
+      ['/init/', 'Generators'],
+      '/developing/types',
     ],
   },
   {
@@ -24,6 +22,7 @@ const sidebar = [
       ['/linting/', 'Getting started'],
       '/linting/linting-eslint',
       '/linting/linting-prettier',
+      '/linting/linting-types',
     ],
   },
   {
@@ -33,6 +32,7 @@ const sidebar = [
       ['/testing/', 'Getting started'],
       '/testing/testing-helpers',
       '/testing/testing-chai-dom-equals',
+      '/testing/semantic-dom-diff',
       '/testing/testing-karma',
       '/testing/testing-karma-bs',
       '/testing/testing-wallaby',
@@ -43,6 +43,7 @@ const sidebar = [
     collapsable: true,
     children: [
       ['/building/', 'Getting started'],
+      '/building/building-rollup',
       '/building/building-webpack',
       '/building/polyfills-loader',
     ],
@@ -72,7 +73,7 @@ module.exports = {
     sidebarDepth: 2,
     sidebar: {
       '/guide/': sidebar,
-      '/ide/': sidebar,
+      '/init/': sidebar,
       '/developing/': sidebar,
       '/linting/': sidebar,
       '/testing/': sidebar,
@@ -80,9 +81,20 @@ module.exports = {
       '/demoing/': sidebar,
       '/publishing/': sidebar,
       '/automating/': sidebar,
-      '/setup/': [['/guide/', '⇐ back to Guide'], '', 'generator'],
-      '/faq/': ['', 'rerender'],
-      '/about/': [['/about/', 'About'], ['/about/contact', 'Contact']],
+      '/faq/': [
+        ['', 'Faq'],
+        {
+          title: 'Deep dives',
+          collapsable: true,
+          children: [
+            'component-libraries',
+            'rerender',
+            'unit-testing-custom-events',
+            'unit-testing-init-error',
+          ],
+        },
+      ],
+      '/about/': [['/about/', 'About'], '/about/contact', '/about/rationales', '/about/blog'],
     },
     nav: [
       { text: 'Home', link: '/' },
@@ -100,6 +112,7 @@ module.exports = {
   plugins: ['@vuepress/google-analytics'],
   ga: 'UA-131782693-1',
   head: [
+    ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
     [
       'meta',
       {
@@ -120,4 +133,10 @@ module.exports = {
     ['meta', { name: 'twitter:card', content: 'summary' }],
     ['meta', { name: 'twitter:title', content: 'Open Web Components' }],
   ],
+  // temporary set to develop mode as Terser seems to have a problem :/
+  configureWebpack: (config, isServer) => {
+    if (!isServer) {
+      config.mode = 'development';
+    }
+  },
 };

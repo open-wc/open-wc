@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.12](https://github.com/open-wc/open-wc/compare/@open-wc/testing-wallaby@0.1.11...@open-wc/testing-wallaby@0.1.12) (2019-03-24)
+
+
+### Bug Fixes
+
+* adjust generator-open-wc links to create ([cc014b1](https://github.com/open-wc/open-wc/commit/cc014b1))
+
+
+
+
+
+## [0.1.11](https://github.com/open-wc/open-wc/compare/@open-wc/testing-wallaby@0.1.10...@open-wc/testing-wallaby@0.1.11) (2019-03-08)
+
+**Note:** Version bump only for package @open-wc/testing-wallaby
+
+
+
+
+
+## [0.1.10](https://github.com/open-wc/open-wc/compare/@open-wc/testing-wallaby@0.1.9...@open-wc/testing-wallaby@0.1.10) (2019-02-16)
+
+
+### Bug Fixes
+
+* update package repository fields with monorepo details ([cb1acb7](https://github.com/open-wc/open-wc/commit/cb1acb7))
+
+
+
+
+
+## [0.1.9](https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby/compare/@open-wc/testing-wallaby@0.1.8...@open-wc/testing-wallaby@0.1.9) (2019-02-02)
+
+
+### Bug Fixes
+
+* unify npm readme header for all open-wc packages ([1bac939](https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby/commit/1bac939))
+
+
+
+
+
 ## [0.1.8](https://github.com/open-wc/open-wc/tree/master/packages/testing-wallaby/compare/@open-wc/testing-wallaby@0.1.7...@open-wc/testing-wallaby@0.1.8) (2019-01-26)
 
 

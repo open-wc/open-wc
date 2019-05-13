@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma-bs",
-  "version": "0.2.7",
+  "version": "1.1.1",
   "description": "Testing with karma using browserstack following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -8,15 +8,25 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/testing-karma-bs"
+  },
+  "files": [
+    "*.js"
+  ],
   "scripts": {
-    "test": "karma start demo/karma.conf.js",
+    "test": "karma start demo/karma.conf.js --coverage",
     "test:watch": "karma start demo/karma.conf.js --auto-watch=true --single-run=false",
-    "test:es5": "karma start demo/karma.es5.config.js",
-    "test:es5:bs": "karma start demo/karma.es5.bs.config.js"
+    "test:legacy": "karma start demo/karma.conf.js --legacy --coverage",
+    "test:legacy:watch": "karma start demo/karma.conf.js --legacy --auto-watch=true --single-run=false",
+    "test:bs": "karma start demo/karma.bs.conf.js --legacy --coverage",
+    "prepublishOnly": "../../scripts/insert-header.js"
   },
   "dependencies": {
-    "@open-wc/testing-karma": "^0.4.7",
+    "@open-wc/testing-karma": "^2.0.1",
+    "@types/node": "^11.13.0",
     "karma-browserstack-launcher": "^1.0.0"
   },
   "devDependencies": {

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 import { html, fixture, litFixture, expect } from '../../index.js';
 
 import '../src/get-result.js';
@@ -21,6 +20,7 @@ describe('True Checking', () => {
         <get-result .success=${foo === 1}></get-result>
       `,
     );
+    // @ts-ignore
     expect(el.success).to.be.true;
     expect(el).dom.to.equal('<get-result><p>YEAH</p></get-result>');
   });

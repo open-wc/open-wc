@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions */
-
 import { fixture, expect } from '../index.js';
 
 describe('BDD', () => {
@@ -13,5 +11,10 @@ describe('BDD', () => {
   it('uses chai dom equals plugin', async () => {
     const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
     expect(el).dom.to.equal('<div><h1>Hey</h1></div>');
+  });
+
+  it('uses chai dom equals plugin snapshot', async () => {
+    const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
+    expect(el).dom.to.equalSnapshot();
   });
 });

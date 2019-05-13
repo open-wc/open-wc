@@ -1,25 +1,17 @@
 # Linting Prettier
 
-> Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
-
-Open Web Components provides a set of defaults, recommendations and tools to help facilitate your web component project. Our recommendations include: developing, linting, testing, building, tooling, demoing, publishing and automating.
-
-[![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
-[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
-[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+[//]: # (AUTO INSERT HEADER PREPUBLISH)
 
 Use [Prettier](https://prettier.io) to format your JS, CSS and HTML code.
 
-::: tip Info
+::: tip
 This is part of the default [open-wc](https://open-wc.org/) recommendation
 :::
 
 ## Setup
 ```bash
-npm i -g yo
-npm i -g generator-open-wc
-
-yo open-wc:linting-prettier
+npm init @open-wc
+# Upgrade > Linting
 ```
 
 ## Manual
@@ -35,8 +27,8 @@ yo open-wc:linting-prettier
 - Add the following scripts to your package.json
   ```js
   "scripts": {
-    "lint:prettier": "prettier '**/*.js' --list-different || (echo '↑↑ these files are not prettier formatted ↑↑' && exit 1)",
-    "format:prettier": "prettier '**/*.js' --write",
+    "lint:prettier": "prettier \"**/*.js\" --list-different || (echo '↑↑ these files are not prettier formatted ↑↑' && exit 1)",
+    "format:prettier": "prettier \"**/*.js\" --write",
   },
   ```
 - Update your `.eslintrc.js` to look like this:
@@ -73,3 +65,15 @@ test/set-game.test.js
 ```
 
 Simply run `npm run format:prettier` to format your files automatically.
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/prettier-config/README.md';
+      }
+    }
+  }
+</script>

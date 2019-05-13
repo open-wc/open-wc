@@ -1,12 +1,6 @@
 # Polyfills loader
 
-> Part of Open Web Component Recommendation [open-wc](https://github.com/open-wc/open-wc/)
-
-Open Web Components provides a set of defaults, recommendations and tools to help facilitate your web component project. Our recommendations include: developing, linting, testing, building, tooling, demoing, publishing and automating.
-
-[![CircleCI](https://circleci.com/gh/open-wc/open-wc.svg?style=shield)](https://circleci.com/gh/open-wc/open-wc)
-[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)](https://www.browserstack.com/automate/public-build/M2UrSFVRang2OWNuZXlWSlhVc3FUVlJtTDkxMnp6eGFDb2pNakl4bGxnbz0tLUE5RjhCU0NUT1ZWa0NuQ3MySFFWWnc9PQ==--86f7fac07cdbd01dd2b26ae84dc6c8ca49e45b50)
-[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+[//]: # (AUTO INSERT HEADER PREPUBLISH)
 
 A modern loader for the web components polyfills.
 
@@ -16,7 +10,7 @@ The [official web component polyfills](https://github.com/webcomponents/webcompo
 This loader seeks to solve this issue, it only loads the required web component polyfills. Additionally, the loader uses dynamic imports so that it integrates properly with your app's dependency graph. This works nicely when using the `usage` option on babel's polyfill transform.
 
 ## Using the loader
-The loader should be called before importing you app:
+The loader should be called before importing your app:
 
 ```javascript
 import loadPolyfills from '@open-wc/polyfills-loader';
@@ -47,3 +41,15 @@ The webcomponent polyfill requires:
 - Symbol
 
 Make sure the required polyfills are loaded before calling the loader. If you configure babel to load these polyfills on usage, this is done automatically.
+
+<script>
+  export default {
+    mounted() {
+      const editLink = document.querySelector('.edit-link a');
+      if (editLink) {
+        const url = editLink.href;
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/polyfills-loader/README.md';
+      }
+    }
+  }
+</script>

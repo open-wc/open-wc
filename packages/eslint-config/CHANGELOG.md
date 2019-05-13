@@ -3,6 +3,102 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.5](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.4.4...@open-wc/eslint-config@0.4.5) (2019-04-28)
+
+
+### Bug Fixes
+
+* **eslint-config:** do not force use of this in life cycle methods ([#409](https://github.com/open-wc/open-wc/issues/409)) ([a407aba](https://github.com/open-wc/open-wc/commit/a407aba))
+
+
+
+
+
+## [0.4.4](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.4.3...@open-wc/eslint-config@0.4.4) (2019-04-28)
+
+
+### Bug Fixes
+
+* **eslint-config:** loosen up rules for test and stories files ([#408](https://github.com/open-wc/open-wc/issues/408)) ([3fd251e](https://github.com/open-wc/open-wc/commit/3fd251e))
+
+
+
+
+
+## [0.4.3](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.4.2...@open-wc/eslint-config@0.4.3) (2019-04-14)
+
+
+### Bug Fixes
+
+* update generator usage ([5d284d4](https://github.com/open-wc/open-wc/commit/5d284d4))
+
+
+
+
+
+## [0.4.2](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.4.1...@open-wc/eslint-config@0.4.2) (2019-03-24)
+
+
+### Bug Fixes
+
+* adjust generator-open-wc links to create ([cc014b1](https://github.com/open-wc/open-wc/commit/cc014b1))
+
+
+
+
+
+## [0.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.4.0...@open-wc/eslint-config@0.4.1) (2019-03-08)
+
+**Note:** Version bump only for package @open-wc/eslint-config
+
+
+
+
+
+# [0.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.3.12...@open-wc/eslint-config@0.4.0) (2019-03-01)
+
+
+### Features
+
+* **eslint-config:** add eslint-plugin-wc ([be637a5](https://github.com/open-wc/open-wc/commit/be637a5))
+
+
+
+
+
+## [0.3.12](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.3.11...@open-wc/eslint-config@0.3.12) (2019-02-24)
+
+
+### Bug Fixes
+
+* **eslint-config:** allow usage of devDeps in *.config files ([ad52be0](https://github.com/open-wc/open-wc/commit/ad52be0))
+
+
+
+
+
+## [0.3.11](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.3.10...@open-wc/eslint-config@0.3.11) (2019-02-16)
+
+
+### Bug Fixes
+
+* update package repository fields with monorepo details ([cb1acb7](https://github.com/open-wc/open-wc/commit/cb1acb7))
+
+
+
+
+
+## [0.3.10](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.3.9...@open-wc/eslint-config@0.3.10) (2019-02-02)
+
+
+### Bug Fixes
+
+* unify npm readme header for all open-wc packages ([1bac939](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/commit/1bac939))
+
+
+
+
+
 ## [0.3.9](https://github.com/open-wc/open-wc/tree/master/packages/eslint-config/compare/@open-wc/eslint-config@0.3.8...@open-wc/eslint-config@0.3.9) (2019-01-31)
 
 

@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "test:bs": "karma start karma.bs.config.js --legacy --coverage"
+  },
+  "devDependencies": {
+    "@open-wc/testing-karma-bs": "^1.0.0"
+  }
+}

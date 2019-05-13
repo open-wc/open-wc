@@ -1,4 +1,5 @@
 /* eslint-disable */
+// @ts-nocheck
 const regex = /import\.meta/g;
 
 /**
@@ -12,12 +13,16 @@ const regex = /import\.meta/g;
  * // becomes: return ({ url: `${window.location.protocol}//${window.location.host}/relative/path/to/file.js` }).url;
  */
 module.exports = function(source) {
-  const relativePath = this.context.substring(
-    this.context.indexOf(this.rootContext) + this.rootContext.length + 1,
-    this.resource.lastIndexOf('/') + 1,
-  );
+  const path = require('path');
 
-  const fileName = this.resource.substring(this.resource.lastIndexOf('/') + 1);
+  const relativePath = this.context
+    .substring(
+      this.context.indexOf(this.rootContext) + this.rootContext.length + 1,
+      this.resource.lastIndexOf(path.sep) + 1,
+    )
+    .replace('\\', '/');
+
+  const fileName = this.resource.substring(this.resource.lastIndexOf(path.sep) + 1);
   return source.replace(
     regex,
     () =>

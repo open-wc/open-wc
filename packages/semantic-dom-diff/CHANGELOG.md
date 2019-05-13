@@ -3,6 +3,273 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.11.0...@open-wc/semantic-dom-diff@0.11.1) (2019-05-06)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+# [0.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.10.7...@open-wc/semantic-dom-diff@0.11.0) (2019-05-06)
+
+
+### Features
+
+* update to latest testing-karma config syntax ([465bfe0](https://github.com/open-wc/open-wc/commit/465bfe0))
+
+
+
+
+
+## [0.10.7](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.10.6...@open-wc/semantic-dom-diff@0.10.7) (2019-05-03)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.10.6](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.10.5...@open-wc/semantic-dom-diff@0.10.6) (2019-04-30)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.10.5](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.10.4...@open-wc/semantic-dom-diff@0.10.5) (2019-04-28)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.10.4](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.10.3...@open-wc/semantic-dom-diff@0.10.4) (2019-04-14)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.10.3](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.10.2...@open-wc/semantic-dom-diff@0.10.3) (2019-04-13)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.10.2](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.10.1...@open-wc/semantic-dom-diff@0.10.2) (2019-04-08)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** add src to npm package ([8b99ee4](https://github.com/open-wc/open-wc/commit/8b99ee4))
+
+
+
+
+
+## [0.10.1](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.10.0...@open-wc/semantic-dom-diff@0.10.1) (2019-04-08)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** add missing files to package.json ([#359](https://github.com/open-wc/open-wc/issues/359)) ([11aa5e9](https://github.com/open-wc/open-wc/commit/11aa5e9))
+
+
+
+
+
+# [0.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.7...@open-wc/semantic-dom-diff@0.10.0) (2019-04-08)
+
+
+### Features
+
+* **semantic-dom-diff:** add support for snapshot testing ([f7a675a](https://github.com/open-wc/open-wc/commit/f7a675a))
+
+
+
+
+
+## [0.9.7](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.6...@open-wc/semantic-dom-diff@0.9.7) (2019-04-06)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.9.6](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.5...@open-wc/semantic-dom-diff@0.9.6) (2019-04-05)
+
+
+### Bug Fixes
+
+* do not assume available global types of users ([cd394d9](https://github.com/open-wc/open-wc/commit/cd394d9))
+
+
+
+
+
+## [0.9.5](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.4...@open-wc/semantic-dom-diff@0.9.5) (2019-03-31)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** add get-diffable-html.js to npm bundle ([7ee3ba9](https://github.com/open-wc/open-wc/commit/7ee3ba9))
+
+
+
+
+
+## [0.9.4](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.3...@open-wc/semantic-dom-diff@0.9.4) (2019-03-31)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** remove dependency on libraries ([319075c](https://github.com/open-wc/open-wc/commit/319075c))
+
+
+
+
+
+## [0.9.3](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.2...@open-wc/semantic-dom-diff@0.9.3) (2019-03-31)
+
+
+### Bug Fixes
+
+* adopt new karma setup for all packages ([1888260](https://github.com/open-wc/open-wc/commit/1888260))
+
+
+
+
+
+## [0.9.2](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.1...@open-wc/semantic-dom-diff@0.9.2) (2019-03-29)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** publish bundle ([#337](https://github.com/open-wc/open-wc/issues/337)) ([2d62772](https://github.com/open-wc/open-wc/commit/2d62772))
+
+
+
+
+
+## [0.9.1](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.9.0...@open-wc/semantic-dom-diff@0.9.1) (2019-03-28)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** commit bundled file ([#335](https://github.com/open-wc/open-wc/issues/335)) ([70d3803](https://github.com/open-wc/open-wc/commit/70d3803))
+* **semantic-dom-diff:** remove postinstall ([#330](https://github.com/open-wc/open-wc/issues/330)) ([6e6b208](https://github.com/open-wc/open-wc/commit/6e6b208))
+
+
+
+
+
+# [0.9.0](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.8.1...@open-wc/semantic-dom-diff@0.9.0) (2019-03-27)
+
+
+### Features
+
+* **semantic-dom-diff:** added option to ignore html in diff ([1d24cc6](https://github.com/open-wc/open-wc/commit/1d24cc6))
+
+
+
+
+
+## [0.8.1](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.8.0...@open-wc/semantic-dom-diff@0.8.1) (2019-03-24)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+# [0.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.7.14...@open-wc/semantic-dom-diff@0.8.0) (2019-03-23)
+
+
+### Features
+
+* add types + linting & improve intellisense ([b6d260c](https://github.com/open-wc/open-wc/commit/b6d260c))
+
+
+
+
+
+## [0.7.14](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.7.13...@open-wc/semantic-dom-diff@0.7.14) (2019-03-08)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.7.13](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.7.12...@open-wc/semantic-dom-diff@0.7.13) (2019-03-03)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.7.12](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.7.11...@open-wc/semantic-dom-diff@0.7.12) (2019-02-26)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.7.11](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.7.10...@open-wc/semantic-dom-diff@0.7.11) (2019-02-16)
+
+
+### Bug Fixes
+
+* update package repository fields with monorepo details ([cb1acb7](https://github.com/open-wc/open-wc/commit/cb1acb7))
+
+
+
+
+
+## [0.7.10](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.7.9...@open-wc/semantic-dom-diff@0.7.10) (2019-02-14)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.7.9](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.7.8...@open-wc/semantic-dom-diff@0.7.9) (2019-02-11)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
+## [0.7.8](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.7.7...@open-wc/semantic-dom-diff@0.7.8) (2019-02-02)
+
+
+### Bug Fixes
+
+* unify npm readme header for all open-wc packages ([1bac939](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/commit/1bac939))
+
+
+
+
+
+## [0.7.7](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.7.6...@open-wc/semantic-dom-diff@0.7.7) (2019-02-02)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
 ## [0.7.6](https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff/compare/@open-wc/semantic-dom-diff@0.7.5...@open-wc/semantic-dom-diff@0.7.6) (2019-01-26)
 
 **Note:** Version bump only for package @open-wc/semantic-dom-diff
