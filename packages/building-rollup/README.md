@@ -339,6 +339,7 @@ export default configs.map(config => ({
 }));
 ```
 
+```html
 <script>
   export default {
     mounted() {
@@ -350,3 +351,4 @@ export default configs.map(config => ({
     }
   }
 </script>
+```
