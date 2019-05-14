@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.9.1...@open-wc/testing-helpers@0.9.2) (2019-05-14)
+
+
+### Bug Fixes
+
+* **testing-helpers:** force focus/blur for IE ([#457](https://github.com/open-wc/open-wc/issues/457)) ([e06b5ce](https://github.com/open-wc/open-wc/commit/e06b5ce))
+
+
+
+
+
 ## [0.9.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.9.0...@open-wc/testing-helpers@0.9.1) (2019-05-06)
 
 **Note:** Version bump only for package @open-wc/testing-helpers
