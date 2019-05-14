@@ -75,11 +75,8 @@ export async function triggerBlurFor(element) {
   }
   element.blur();
   if (isIE()) {
-    while (element === document.activeElement) {
-      element.blur();
-      // eslint-disable-next-line no-await-in-loop
-      await nextFrame();
-    }
+    element.blur();
+    await nextFrame();
     await nextFrame();
   }
 }
@@ -106,11 +103,8 @@ export async function triggerFocusFor(element) {
   }
   element.focus();
   if (isIE()) {
-    while (element !== document.activeElement) {
-      element.focus();
-      // eslint-disable-next-line no-await-in-loop
-      await nextFrame();
-    }
+    element.focus();
+    await nextFrame();
     await nextFrame();
   }
 }
