@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.2.2...@open-wc/demoing-storybook@0.2.3) (2019-05-18)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** add missing knob exports ([2d5b388](https://github.com/open-wc/open-wc/commit/2d5b388))
+
+
+
+
+
 ## [0.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.2.1...@open-wc/demoing-storybook@0.2.2) (2019-04-27)
 
 
