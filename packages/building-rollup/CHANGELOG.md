@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.4.1...@open-wc/building-rollup@0.4.2) (2019-05-18)
+
+
+### Bug Fixes
+
+* **building-rollup:** update to babel-plugin-template-html-minifier ([690952e](https://github.com/open-wc/open-wc/commit/690952e))
+
+
+
+
+
 ## [0.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.4.0...@open-wc/building-rollup@0.4.1) (2019-05-11)
 
 

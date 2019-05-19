@@ -75,6 +75,7 @@ export async function triggerBlurFor(element) {
   }
   element.blur();
   if (isIE()) {
+    element.blur();
     await nextFrame();
     await nextFrame();
   }
@@ -102,6 +103,7 @@ export async function triggerFocusFor(element) {
   }
   element.focus();
   if (isIE()) {
+    element.focus();
     await nextFrame();
     await nextFrame();
   }
