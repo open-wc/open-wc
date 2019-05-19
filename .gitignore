@@ -38,3 +38,7 @@ packages/**/__snapshots__
 
 ## browserstack
 local.log
+
+## ssl certificates
+packages/owc-dev-server/.ssl/servert.key
+packages/owc-dev-server/.ssl/servert.cert

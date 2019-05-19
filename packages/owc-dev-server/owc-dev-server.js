@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* eslint-disable no-console */
+/* eslint-disable no-console, global-require */
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
@@ -7,10 +7,14 @@ const opn = require('opn');
 const transformMiddleware = require('express-transform-bare-module-specifiers').default;
 const reloadInjectScript = require('./src/reload-inject-script');
 const createFileWatcher = require('./src/file-watcher');
+const getSslCertificates = require('./src/get-ssl-certificates');
 const {
   port,
   hostname,
   watch,
+  http2,
+  userSslKeyPath,
+  userSslCertPath,
   rootDir,
   appIndex,
   modulesDir,
@@ -127,9 +131,15 @@ if (fs.existsSync(configFilePath)) {
   appConfig(app);
 }
 
-app.listen(port, hostname, () => {
+function onServerStarted(error) {
+  if (error) {
+    console.error(error);
+    process.exit(1);
+    return;
+  }
+
   const msgs = [];
-  msgs.push(`owc-dev-server started on http://${hostname}:${port}`);
+  msgs.push(`owc-dev-server started on http${http2 ? 's' : ''}://${hostname}:${port}`);
   msgs.push(`  Serving files from '${rootDir}'.`);
   if (shouldOpen) {
     msgs.push(`  Opening browser on '${openPath}'`);
@@ -144,10 +154,23 @@ app.listen(port, hostname, () => {
     msgs.push(`  Using "${fullModulesPath}" as modules dir`);
   }
 
-  console.log(msgs.join('\n'));
-});
+  if (http2) {
+    msgs.push(`  Using HTTP2 and HTTPS`);
+  }
 
-// open browser if --open option was provided
-if (shouldOpen) {
-  opn(`http://${hostname}:${port}${openPath}`);
+  console.log(msgs.join('\n'));
+
+  // open browser if --open option was provided
+  if (shouldOpen) {
+    opn(`http${http2 ? 's' : ''}://${hostname}:${port}${openPath}`);
+  }
+}
+
+if (http2) {
+  const spdy = require('spdy');
+  const { sslKey, sslCert } = getSslCertificates(userSslKeyPath, userSslCertPath);
+
+  spdy.createServer({ key: sslKey, cert: sslCert }, app).listen(port, hostname, onServerStarted);
+} else {
+  app.listen(port, hostname, onServerStarted);
 }

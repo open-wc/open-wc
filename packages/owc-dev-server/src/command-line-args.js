@@ -58,6 +58,22 @@ const optionDefinitions = [
     defaultValue: path.join(process.cwd(), '.owc-dev-server.config.js'),
     description: 'Node file which can provide additional config',
   },
+  {
+    name: 'http2',
+    type: Boolean,
+    defaultValue: false,
+    description: 'Whether to serve files with http2',
+  },
+  {
+    name: 'ssl-key',
+    type: String,
+    description: 'path to custom SSL key',
+  },
+  {
+    name: 'ssl-cert',
+    type: String,
+    description: 'path to custom SSL certificate',
+  },
   { name: 'help', type: Boolean, description: 'See all options' },
 ];
 
@@ -89,6 +105,9 @@ const {
   hostname,
   open,
   watch,
+  http2,
+  'ssl-key': userSslKeyPath,
+  'ssl-cert': userSslCertPath,
   'root-dir': rootDir,
   'app-index': appIndex,
   'modules-dir': modulesDir,
@@ -117,6 +136,9 @@ module.exports = {
   hostname,
   open,
   watch,
+  http2,
+  userSslKeyPath,
+  userSslCertPath,
   rootDir,
   appIndex,
   modulesDir,

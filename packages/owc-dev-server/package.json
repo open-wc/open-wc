@@ -16,7 +16,7 @@
     "owc-dev-server.js"
   ],
   "scripts": {
-    "start": "./owc-dev-server.js -o demo --app-index demo/index.html --watch",
+    "start": "./owc-dev-server.js -o demo --app-index demo/index.html --watch --http2",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "repository": {
@@ -30,10 +30,13 @@
     "command-line-usage": "^5.0.5",
     "express": "^4.16.4",
     "express-transform-bare-module-specifiers": "^1.0.2",
-    "opn": "^5.4.0"
+    "opn": "^5.4.0",
+    "selfsigned": "^1.10.4",
+    "spdy": "^4.0.0"
   },
   "devDependencies": {
     "@types/lru-cache": "^4.1.1",
+    "@types/spdy": "^3.4.4",
     "lit-html": "^1.0.0"
   }
 }

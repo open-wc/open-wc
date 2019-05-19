@@ -93,6 +93,23 @@ You can let the server automatically reload the browser on file changes by using
 npx owc-dev-server --app-index demo/index.html --open --watch
 ```
 
+#### HTTP2
+When developing a large modular application the waterfall of requests can lead to slow reloads on HTTP1. You can enable HTTP2 by passing the `--http2` flag.
+
+HTTP2 requires a HTTPS connection. By default `owc-dev-server` generates a self-signed certificate for you. Because of this your browser will most likely warn you that your connected is not private or insecure. You will need to tell your browser to trust the certificates to proceed. You can also generate your own certificates.
+
+[Read more about HTTP2 here](https://developers.google.com/web/fundamentals/performance/http2/)
+
+```bash
+npx owc-dev-server --app-index demo/index.html --open --http2
+```
+
+You can specify your own certificates using the `--ssl-key` and `--ssl-cert` arguments:
+
+```
+npx owc-dev-server --app-index demo/index.html --open --http2 --ssl-key my-key.key --ssl-cert my-cert.cert
+```
+
 ### Additional configs like a proxy
 If you need additional configuration for the server you can provide them via a config file `.owc-dev-server.config.js`.
 ```js
@@ -117,6 +134,7 @@ module.exports = function(app) {
 | --open        | -o    | string/boolean | Opens the default browser on the given path or default /                  |
 | --app-index   | -a    | string         | The app's index.html file. When set, serves the index.html for non-file   |
 | --watch       | -w    | boolean        | Whether to reload the browser on file changes. (Does not work on IE/Edge) |
+| --http2       | N/A   | boolean        | Whether to serve over HTTP2.                                               |
 | --root-dir    | -r    | string         | The root directory to serve files from. Defaults to the project root.     |
 | --modules-dir | -m    | string         | Directory to resolve modules from. Default: node_modules                  |
 | --config-file | -c    | string         | File with additional config. Default: .owc-dev-server.config.js           |
