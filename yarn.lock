@@ -7700,11 +7700,6 @@ expect@^23.6.0:
     jest-message-util "^23.4.0"
     jest-regex-util "^23.3.0"
 
-express-history-api-fallback@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/express-history-api-fallback/-/express-history-api-fallback-2.2.1.tgz#3a2ad27f7bebc90fc533d110d7c6d83097bcd057"
-  integrity sha1-OirSf3vryQ/FM9EQ18bYMJe80Fc=
-
 express-transform-bare-module-specifiers@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/express-transform-bare-module-specifiers/-/express-transform-bare-module-specifiers-1.0.2.tgz#62bc54a7d146cd96345ef5df8bc3ed975075ab88"

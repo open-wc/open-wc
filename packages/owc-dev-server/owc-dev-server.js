@@ -1,120 +1,27 @@
 #!/usr/bin/env node
-
 /* eslint-disable no-console */
-const commandLineArgs = require('command-line-args');
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const opn = require('opn');
 const transformMiddleware = require('express-transform-bare-module-specifiers').default;
-const historyFallback = require('express-history-api-fallback');
-const commandLineUsage = require('command-line-usage');
-
-const optionDefinitions = [
-  {
-    name: 'port',
-    alias: 'p',
-    type: Number,
-    defaultValue: 8080,
-    description: 'The port to use. Default: 8080',
-  },
-  {
-    name: 'hostname',
-    alias: 'h',
-    type: String,
-    defaultValue: 'localhost',
-    description: 'The hostname to use. Default: localhost',
-  },
-  {
-    name: 'open',
-    alias: 'o',
-    type: String,
-    description: 'Opens the default browser on the given path or default /',
-  },
-  {
-    name: 'app-index',
-    alias: 'a',
-    type: String,
-    description:
-      "The app's index.html file. When set, serves the index.html for non-file requests. Use this to enable SPA routing.",
-  },
-  {
-    name: 'root-dir',
-    alias: 'r',
-    type: String,
-    defaultOption: true,
-    defaultValue: './',
-    description: 'The root directory to serve files from. Defaults to the project root.',
-  },
-  {
-    name: 'modules-dir',
-    alias: 'm',
-    type: String,
-    description: 'Directory to resolve modules from. Default: node_modules',
-  },
-  {
-    name: 'config-file',
-    alias: 'c',
-    type: String,
-    defaultValue: path.join(process.cwd(), '.owc-dev-server.config.js'),
-    description: 'Node file which can provide additional config',
-  },
-  { name: 'help', type: Boolean, description: 'See all options' },
-];
-
-const options = commandLineArgs(optionDefinitions);
-if ('help' in options) {
-  console.log(
-    commandLineUsage([
-      {
-        header: 'owc-dev-server',
-        content: `
-          Simply server with node resolution for bare modules.
-
-          Usage: \`owc-dev-server <root-dir> [options...]\`
-        `.trim(),
-      },
-      {
-        header: 'Global Options',
-        optionList: optionDefinitions,
-      },
-    ]),
-  );
-  process.exit();
-}
-
-// open if the open option is given, even when there were no arguments
-const shouldOpen = 'open' in options;
+const reloadInjectScript = require('./src/reload-inject-script');
+const createFileWatcher = require('./src/file-watcher');
 const {
   port,
   hostname,
-  open,
-  'root-dir': rootDir,
-  'app-index': appIndex,
-  'modules-dir': modulesDir,
-  'config-file': configFilePath,
-} = options;
-
-let openPath;
-if (open) {
-  // user-provided open path
-  openPath = path.normalize(open);
-} else if (appIndex) {
-  // if an appIndex was provided, use it's directory as open path
-  openPath = `${path.parse(appIndex).dir}/`;
-} else {
-  // default to working directory root
-  openPath = '/';
-}
-
-// make sure path properly starts a /
-if (!openPath.startsWith('/')) {
-  openPath = `/${openPath}`;
-}
+  watch,
+  rootDir,
+  appIndex,
+  modulesDir,
+  configFilePath,
+  shouldOpen,
+  openPath,
+} = require('./src/command-line-args');
 
 const app = express();
 
-// transform node-style imports to browser-style imports
+/** transform node-style imports to browser-style imports */
 const transformOptions = { rootDir };
 if (modulesDir) {
   const fullModulesPath = path.join(rootDir, modulesDir);
@@ -126,26 +33,95 @@ if (modulesDir) {
 
   transformOptions.modulesUrl = modulesDir;
 }
+
+/** Serves app index.html, injecting watch mode script if watching */
+function serveIndexHTML(req, res, next) {
+  if ((req.method === 'GET' || req.method === 'HEAD') && req.accepts('html')) {
+    let index = fs.readFileSync(path.join(process.cwd(), path.sep, appIndex), 'utf-8');
+    if (watch) {
+      index = index.replace('</body>', `${reloadInjectScript}</body>`);
+    }
+    res.send(index);
+  } else {
+    next();
+  }
+}
+
+/** Serves app index.html if the request was not a file request. This allows SPA routing */
+function serveIndexHTMLFallback(req, res, next) {
+  if (!req.url.includes('.')) {
+    serveIndexHTML(req, res, next);
+  } else {
+    next();
+  }
+}
+
+/** Adds any served files to file watcher, reloading the browser on change */
+if (watch) {
+  if (!appIndex) {
+    throw new Error(`appIndex must be provided if using watch mode`);
+  }
+  const watchFile = createFileWatcher(app, appIndex);
+
+  app.use((req, res, next) => {
+    watchFile(req.url);
+    next();
+  });
+
+  if (appIndex) {
+    watchFile(appIndex);
+  }
+}
+
 app.use('*', transformMiddleware(transformOptions));
+
+// serve index.html from root path
+if (appIndex) {
+  app.use(path.join('/', appIndex.replace('index.html', '/')), serveIndexHTMLFallback);
+  app.use(path.join('/', appIndex), serveIndexHTML);
+}
 
 // serve static files
 app.use(express.static(rootDir));
 
-// serve app index.html for non asset requests to allow for SPA routing
+// serve app index.html for requests that didn't match any file for SPA routing
 if (appIndex) {
   const fullAppIndexPath = `${process.cwd()}/${appIndex}`;
   if (!fs.existsSync(fullAppIndexPath)) {
     throw new Error(`Could not find "${fullAppIndexPath}". The apps index file needs to exist.`);
   }
+
   if (!fs.lstatSync(fullAppIndexPath).isFile()) {
     throw new Error(
       `The apps index file needs to be a file. Provided path: "${fullAppIndexPath}".`,
     );
   }
-  app.use(historyFallback(fullAppIndexPath));
+
+  app.use(serveIndexHTMLFallback);
 }
 
-// load additonal config file for express
+/** Server-sent-events endpoint to notify the browser about file changes */
+if (watch) {
+  app.get('/__owc-dev-server-watch__', (req, res) => {
+    res.set({
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      Connection: 'keep-alive',
+    });
+
+    function onFileChanged() {
+      res.write(`event: file-changed\ndata: \n\n`);
+    }
+
+    app.on('file-changed', onFileChanged);
+
+    req.on('close', () => {
+      app.removeListener('file-changed', onFileChanged);
+    });
+  });
+}
+
+/** Load additonal config file for express */
 if (fs.existsSync(configFilePath)) {
   const appConfig = require(configFilePath); // eslint-disable-line import/no-dynamic-require, global-require
   appConfig(app);
