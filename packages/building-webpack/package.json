@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-webpack",
-  "version": "1.4.0",
+  "version": "1.4.2",
   "description": "Default configuration for working with webpack",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -44,7 +44,7 @@
     "@webcomponents/webcomponentsjs": "^2.2.0",
     "babel-loader": "^8.0.0",
     "babel-plugin-bundled-import-meta": "^0.3.0",
-    "babel-plugin-template-html-minifier": "^2.2.1",
+    "babel-plugin-template-html-minifier": "^3.0.0",
     "clean-webpack-plugin": "^2.0.0",
     "clone": "^2.1.2",
     "copy-webpack-plugin": "^5.0.1",

@@ -17,8 +17,6 @@ const TestingMixin = subclass =>
           `${__dirname}/templates/_my-el.test.js`,
           this.destinationPath(`test/${tagName}.test.js`),
         );
-
-        await this.copyTemplates(`${__dirname}/templates/static-scaffold/**/*`);
       }
     }
   };

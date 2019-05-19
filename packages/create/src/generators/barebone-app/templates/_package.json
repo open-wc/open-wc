@@ -2,7 +2,7 @@
   "name": "<%= tagName %>",
   "license": "MIT",
   "scripts": {
-    "start": "owc-dev-server --open src"
+    "start": "owc-dev-server --open"
   },
   "dependencies": {
     "lit-html": "^1.0.0",
