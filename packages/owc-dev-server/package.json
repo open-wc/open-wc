@@ -16,7 +16,7 @@
     "owc-dev-server.js"
   ],
   "scripts": {
-    "start": "./owc-dev-server.js -o demo --app-index demo/index.html",
+    "start": "./owc-dev-server.js -o demo --app-index demo/index.html --watch",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "repository": {
@@ -25,10 +25,10 @@
     "directory": "packages/dev-server"
   },
   "dependencies": {
+    "chokidar": "^3.0.0",
     "command-line-args": "^5.0.2",
     "command-line-usage": "^5.0.5",
     "express": "^4.16.4",
-    "express-history-api-fallback": "^2.2.1",
     "express-transform-bare-module-specifiers": "^1.0.2",
     "opn": "^5.4.0"
   },
