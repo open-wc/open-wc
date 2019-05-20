@@ -16,7 +16,7 @@
     "owc-dev-server.js"
   ],
   "scripts": {
-    "start": "./owc-dev-server.js -o demo --app-index demo/index.html --watch",
+    "start": "./owc-dev-server.js --app-index demo/index.html --open --watch",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "repository": {
