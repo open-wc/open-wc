@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.1...@open-wc/create@0.12.2) (2019-05-20)
+
+
+### Bug Fixes
+
+* **create:** in wc-lit-element use correct attribute name in demo ([73cc787](https://github.com/open-wc/open-wc/commit/73cc787))
+
+
+
+
+
 ## [0.12.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.0...@open-wc/create@0.12.1) (2019-05-11)
 
 

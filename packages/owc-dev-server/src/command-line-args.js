@@ -36,7 +36,8 @@ const optionDefinitions = [
     type: String,
     defaultOption: true,
     defaultValue: './',
-    description: 'The root directory to serve files from. Defaults to the project root.',
+    description:
+      'The root directory to serve files from. Defaults to the current working directory.',
   },
   {
     name: 'modules-dir',

@@ -32,7 +32,6 @@ Note: import paths are only resolved within `.js` files. This means you cannot d
 Please note that the owc-dev-server *only resolves bare module specifiers*, and does nothing to transform different module formats like [CommonJS](https://requirejs.org/docs/commonjs.html). If this is a requirement for you, please check out our [rollup configuration](/building/building-rollup/).
 :::
 
-
 ### Usage
 ```bash
 npm i -D owc-dev-server
@@ -51,6 +50,14 @@ npm run start
 // or via npx
 npx owc-dev-server
 ```
+
+#### Basic command
+The most basic command that will work for most single page applications:
+```bash
+npx owc-dev-server --app-index index.html --open --watch
+```
+
+See the sections below for a detailed explanations of all command line options.
 
 #### Static files
 By default the server will just serve up static files from your current working directory:
@@ -131,7 +138,7 @@ module.exports = function(app) {
 | ------------- | ----- | -------------- | ------------------------------------------------------------------------- |
 | --port        | -p    | number         | The port to use. Default: 8080                                            |
 | --hostname    | -h    | string         | The hostname to use. Default: localhost                                   |
-| --open        | -o    | string/boolean | Opens the default browser on the given path or default /                  |
+| --open        | -o    | string/boolean | Opens the default browser on the given path, the app index or default /   |
 | --app-index   | -a    | string         | The app's index.html file. When set, serves the index.html for non-file   |
 | --watch       | -w    | boolean        | Whether to reload the browser on file changes. (Does not work on IE/Edge) |
 | --http2       | N/A   | boolean        | Whether to serve over HTTP2.                                               |

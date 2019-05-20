@@ -1,7 +1,7 @@
 {
   "name": "owc-dev-server",
   "main": "./owc-dev-server.js",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "description": "Development server for modern web apps",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -13,10 +13,11 @@
     "access": "public"
   },
   "files": [
-    "owc-dev-server.js"
+    "owc-dev-server.js",
+    "src"
   ],
   "scripts": {
-    "start": "./owc-dev-server.js -o demo --app-index demo/index.html --watch --http2",
+    "start": "./owc-dev-server.js --app-index demo/index.html --http2 --open --watch",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "repository": {
