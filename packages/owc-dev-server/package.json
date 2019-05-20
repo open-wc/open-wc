@@ -13,7 +13,8 @@
     "access": "public"
   },
   "files": [
-    "owc-dev-server.js"
+    "owc-dev-server.js",
+    "src"
   ],
   "scripts": {
     "start": "./owc-dev-server.js --app-index demo/index.html --open --watch",
