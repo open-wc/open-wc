@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.4.2...owc-dev-server@0.4.3) (2019-05-20)
+
+
+### Bug Fixes
+
+* **owc-dev-server:** add missing files to npm ([dce3327](https://github.com/open-wc/open-wc/commit/dce3327))
+
+
+
+
+
 ## [0.4.2](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.4.1...owc-dev-server@0.4.2) (2019-05-20)
 
 **Note:** Version bump only for package owc-dev-server
