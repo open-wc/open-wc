@@ -3,9 +3,8 @@ const fs = require('fs');
 const path = require('path');
 
 function getSslCertificates(userSslKeyPath, userSslCertPath) {
-  const sslDir = path.join(__dirname, '..', '.ssl');
-  const keyPath = path.join(sslDir, 'server.key');
-  const certPath = path.join(sslDir, 'server.cert');
+  const keyPath = path.join(__dirname, '..', '.ssl.key');
+  const certPath = path.join(__dirname, '..', '.ssl.cert');
   let sslKey;
   let sslCert;
 

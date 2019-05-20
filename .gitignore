@@ -40,5 +40,5 @@ packages/**/__snapshots__
 local.log
 
 ## ssl certificates
-packages/owc-dev-server/.ssl/servert.key
-packages/owc-dev-server/.ssl/servert.cert
+packages/owc-dev-server/.ssl.key
+packages/owc-dev-server/.ssl.cert
