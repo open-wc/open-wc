@@ -17,6 +17,9 @@ The hardest part of any project is often getting content onto that first blank p
 - [Helix UI](https://rackerlabs.github.io/helix-ui/)
 
   The HelixUI library provides front-end developers a set of reusable CSS classes and HTML Custom Elements that adhere to Helix design standards, as outlined by Rackspace.
+- [Ink Components](https://components.ink/)
+
+  Web components for interactive scientific writing, reactive documents and explorable explanations. The Ink Components library can bring your math and science documents to the next level by breathing life into charts, equations, and variables that can be used throughout your application or content. 
 - [Ionic UI Components](https://ionicframework.com/docs/components)
 
   Take advantage of the component system that powers Ionic applications with a large ecosystem to choose from and in-depth usage instructions, no matter the framework you use.
