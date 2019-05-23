@@ -43,7 +43,7 @@ The hardest part of any project is often getting content onto that first blank p
   Vaadin has a comprehensive set of beautifully crafted, performant, and adaptable UI components for modern mobile-first Web apps. They are the ideal building blocks for Progressive Web Applications.
 - [Weightless](https://weightless.dev/)
 
-  This light weight component library featuring a wide array of design concepts surfaces a good amount of cusomizability via a thorough component and CSS Custom Property APIs at an all in size investment [just short of 30KB](https://bundlephobia.com/result?p=weightless@0.0.34).
+  A lightweight component library featuring a wide array of design concepts. It surfaces a good amount of customizability via comprehensive component and CSS Custom Property APIs with a small footprint, [just short of 30KB](https://bundlephobia.com/result?p=weightless@0.0.34).
 - [Wired Elements](https://wiredjs.com/)
 
   A set of common UI elements with a hand-drawn, sketchy look. These can be used for wireframes, mockups, or just the fun hand-drawn look.
