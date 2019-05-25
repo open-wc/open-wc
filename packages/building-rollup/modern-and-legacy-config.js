@@ -57,6 +57,7 @@ function createConfig(_options, legacy) {
                 collapseWhitespace: true,
                 removeComments: true,
                 caseSensitive: true,
+                minifyCSS: true,
               },
             },
           ],
