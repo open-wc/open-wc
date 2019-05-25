@@ -88,6 +88,7 @@ module.exports = userOptions => {
                       collapseWhitespace: true,
                       removeComments: true,
                       caseSensitive: true,
+                      minifyCSS: true,
                     },
                   },
                 ],
