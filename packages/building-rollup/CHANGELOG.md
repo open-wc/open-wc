@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.4.6...@open-wc/building-rollup@0.4.7) (2019-05-25)
+
+
+### Bug Fixes
+
+* **building-rollup:** minify CSS properly ([bee9086](https://github.com/open-wc/open-wc/commit/bee9086))
+
+
+
+
+
 ## [0.4.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.4.5...@open-wc/building-rollup@0.4.6) (2019-05-20)
 
 **Note:** Version bump only for package @open-wc/building-rollup
