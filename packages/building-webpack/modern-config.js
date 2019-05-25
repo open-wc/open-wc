@@ -95,7 +95,18 @@ module.exports = userOptions => {
                 ['bundled-import-meta', { importStyle: 'baseURI' }],
               ].filter(_ => !!_),
 
-              presets: [['@babel/preset-env', { targets: findSupportedBrowsers() }]],
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    targets: findSupportedBrowsers(),
+                    // preset-env compiles template literals for safari 12 due to a small bug which
+                    // doesn't affect most use cases. lit-html handles it (https://github.com/Polymer/lit-html/issues/575)
+                    exclude: ['@babel/plugin-transform-template-literals'],
+                    useBuiltIns: false,
+                  },
+                ],
+              ],
             },
           },
         },
