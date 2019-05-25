@@ -48,6 +48,7 @@ module.exports = function createBasicConfig(_options) {
                 collapseWhitespace: true,
                 removeComments: true,
                 caseSensitive: true,
+                minifyCSS: true,
               },
             },
           ],
