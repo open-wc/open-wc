@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.4.4...@open-wc/building-webpack@1.4.5) (2019-05-30)
+
+
+### Bug Fixes
+
+* **building-webpack:** html race condition ([10c22ab](https://github.com/open-wc/open-wc/commit/10c22ab))
+
+
+
+
+
 ## [1.4.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.4.3...@open-wc/building-webpack@1.4.4) (2019-05-25)
 
 
