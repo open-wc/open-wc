@@ -178,11 +178,12 @@ module.exports = class LegacyBrowserWebpackPlugin {
     }
 
     compiler.hooks.compilation.tap(PLUGIN, compilation => {
-      compilation.hooks.htmlWebpackPluginAfterHtmlProcessing.tap(PLUGIN, data => {
+      compilation.hooks.htmlWebpackPluginAfterHtmlProcessing.tapAsync(PLUGIN, (data, callback) => {
         const legacy = data.assets.js.some(js => js.includes('legacy'));
         this.entries[legacy ? 'legacy' : 'modern'] = data.assets.js;
 
         if (!this.options.development && (!this.entries.legacy || !this.entries.modern)) {
+          callback(null, data);
           return;
         }
 
@@ -216,6 +217,7 @@ module.exports = class LegacyBrowserWebpackPlugin {
 
         // add the actual scripts to the body
         data.html = data.html.replace('</body>', `${scripts}</body>`);
+        callback(null, data);
       });
     });
   }
