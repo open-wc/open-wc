@@ -228,15 +228,13 @@ module.exports = (_pluginConfig = {}) => {
     // Injects generated module paths into index.html
     generateBundle(outputConfig, bundles) {
       const entryModules = Object.keys(bundles)
-        .filter(key => {
-          return bundles[key].isEntry;
-        })
+        .filter(key => bundles[key].isEntry)
         .reduce((acc, e) => {
           acc.push(`./${e}`);
           const imports = bundles[e].imports || [];
           imports.forEach(i => {
             if (!acc.includes(`./${i}`)) {
-              acc.push(`./${i}`)
+              acc.push(`./${i}`);
             }
           });
           return acc;
