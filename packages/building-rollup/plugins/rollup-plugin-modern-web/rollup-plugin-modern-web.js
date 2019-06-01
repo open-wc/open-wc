@@ -228,8 +228,19 @@ module.exports = (_pluginConfig = {}) => {
     // Injects generated module paths into index.html
     generateBundle(outputConfig, bundles) {
       const entryModules = Object.keys(bundles)
-        .filter(key => bundles[key].isEntry)
-        .map(e => `./${e}`);
+        .filter(key => {
+          return bundles[key].isEntry;
+        })
+        .reduce((acc, e) => {
+          acc.push(`./${e}`);
+          const imports = bundles[e].imports || [];
+          imports.map(i => {
+            if (!acc.includes(`./${i}`)) {
+              acc.push(`./${i}`)
+            }
+          });
+          return acc;
+        }, []);
 
       if (!pluginConfig.legacy && !writtenModules) {
         copyPolyfills(pluginConfig, outputConfig);
