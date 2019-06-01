@@ -234,7 +234,7 @@ module.exports = (_pluginConfig = {}) => {
         .reduce((acc, e) => {
           acc.push(`./${e}`);
           const imports = bundles[e].imports || [];
-          imports.map(i => {
+          imports.forEach(i => {
             if (!acc.includes(`./${i}`)) {
               acc.push(`./${i}`)
             }
