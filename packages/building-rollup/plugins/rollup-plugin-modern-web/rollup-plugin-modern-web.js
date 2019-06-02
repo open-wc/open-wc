@@ -229,7 +229,16 @@ module.exports = (_pluginConfig = {}) => {
     generateBundle(outputConfig, bundles) {
       const entryModules = Object.keys(bundles)
         .filter(key => bundles[key].isEntry)
-        .map(e => `./${e}`);
+        .reduce((acc, e) => {
+          acc.push(`./${e}`);
+          const imports = bundles[e].imports || [];
+          imports.forEach(i => {
+            if (!acc.includes(`./${i}`)) {
+              acc.push(`./${i}`);
+            }
+          });
+          return acc;
+        }, []);
 
       if (!pluginConfig.legacy && !writtenModules) {
         copyPolyfills(pluginConfig, outputConfig);
