@@ -27,6 +27,6 @@ module.exports = function(source) {
   return source.replace(
     regex,
     () =>
-      `({ url: \`\${window.location.protocol}//\${window.location.host}/${relativePath}/${fileName}\` })`,
+      `({ url: \`\${window.location.protocol}//\${window.location.host}/${browserPath}/${fileName}\` })`,
   );
 };
