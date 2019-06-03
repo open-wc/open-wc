@@ -20,7 +20,7 @@ module.exports = function(source) {
       this.context.indexOf(this.rootContext) + this.rootContext.length + 1,
       this.resource.lastIndexOf(path.sep) + 1,
     )
-    .replace('\\', '/');
+    .replace(new RegExp(path.sep, 'g'), '/');
 
   const fileName = this.resource.substring(this.resource.lastIndexOf(path.sep) + 1);
   return source.replace(
