@@ -15,6 +15,7 @@
     "directory": "packages/webpack-import-meta-loader"
   },
   "files": [
+    "src",
     "*.js"
   ],
   "scripts": {
