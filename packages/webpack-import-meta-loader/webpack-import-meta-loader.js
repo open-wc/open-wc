@@ -1,5 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
+const toBrowserPath = require('./src/to-browser-path');
 const regex = /import\.meta/g;
 
 /**
@@ -15,17 +16,17 @@ const regex = /import\.meta/g;
 module.exports = function(source) {
   const path = require('path');
 
-  const relativePath = this.context
-    .substring(
-      this.context.indexOf(this.rootContext) + this.rootContext.length + 1,
-      this.resource.lastIndexOf(path.sep) + 1,
-    )
-    .replace('\\', '/');
+  const relativePath = this.context.substring(
+    this.context.indexOf(this.rootContext) + this.rootContext.length + 1,
+    this.resource.lastIndexOf(path.sep) + 1,
+  );
+
+  const browserPath = toBrowserPath(relativePath);
 
   const fileName = this.resource.substring(this.resource.lastIndexOf(path.sep) + 1);
   return source.replace(
     regex,
     () =>
-      `({ url: \`\${window.location.protocol}//\${window.location.host}/${relativePath}/${fileName}\` })`,
+      `({ url: \`\${window.location.protocol}//\${window.location.host}/${browserPath}/${fileName}\` })`,
   );
 };
