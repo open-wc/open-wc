@@ -45,7 +45,7 @@ npm run storybook
 
 ### Create a Story
 
-Create an `*.story.js` (for example `index.stories.js`) file within the `stories` folder.
+Create an `*.stories.js` (for example `index.stories.js`) file within the `stories` folder.
 
 ```js
 import {
