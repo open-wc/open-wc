@@ -285,6 +285,14 @@ We recommend using the babel typescript plugin. Add it to your babel config file
   ],
 }
 ```
+You also need to specify `.ts` in the `extensions` option, for babel and node to properly recognize ts files:
+```
+const configs = createDefaultConfig({
+  input: './index.html',
+  extensions: ['.js', '.ts'],
+});
+```
+(keep `.js` in there, since node will want to resolve javascript files in node_modules)
 
 This is the fastest method, as it strips away types during babel transformation of your code. It will not perform any type checking though. We recommend setting up the type checking as part of your linting setup, so that you don't need to run the typechecker during development for faster builds.
 
