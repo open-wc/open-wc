@@ -289,7 +289,7 @@ You also need to specify `.ts` in the `extensions` option, for babel and node to
 ```
 const configs = createDefaultConfig({
   input: './index.html',
-  extensions: ['.js', '.ts'],
+  extensions: ['.js', '.mjs', '.ts'],
 });
 ```
 (keep `.js` in there, since node will want to resolve javascript files in node_modules)
