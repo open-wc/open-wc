@@ -13,3 +13,5 @@ const basePath = new URL('./', import.meta.url);
 request(`${basePath}b/foo.txt`)
   .then(txt => console.log(`foo.txt evaluated to: ${txt}`))
   .catch(console.error);
+
+throw new Error('stack trace are source mapped correctly');

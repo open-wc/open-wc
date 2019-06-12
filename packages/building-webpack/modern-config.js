@@ -1,19 +1,13 @@
 const { findSupportedBrowsers } = require('@open-wc/building-utils');
+const WebpackIndexHTMLPlugin = require('@open-wc/webpack-index-html-plugin');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const development = !process.argv.find(arg => arg.includes('production'));
 
-const prefix = '[@open-wc/building-webpack/modern-config]:';
-const { queryAll, predicates, getAttribute } = require('./dom5-fork/index.js');
-const { readHTML } = require('./src/utils.js');
-
 const defaultOptions = {
-  indexHTML: './index.html',
-  entry: './index.js',
-  htmlEntryPoint: false,
+  input: './index.html',
 };
 
 module.exports = userOptions => {
@@ -22,38 +16,25 @@ module.exports = userOptions => {
     ...userOptions,
   };
 
-  if (typeof options.input === 'string' && options.input.endsWith('index.html')) {
-    options.indexHTML = options.input;
-    options.htmlEntryPoint = true;
-    const indexHTML = readHTML(options.input);
-    const scripts = queryAll(indexHTML, predicates.hasTagName('script'));
-    const moduleScripts = scripts.filter(script => getAttribute(script, 'type') === 'module');
-
-    if (moduleScripts.length === 0) {
-      throw new Error(
-        `${prefix} Could not find any module script in configured input: ${options.input}`,
-      );
-    }
-
-    if (moduleScripts.some(script => !getAttribute(script, 'src'))) {
-      throw new Error(`${prefix} Module scripts without a 'src' attribute are not supported.`);
-    }
-    const indexDir = path.dirname(options.input);
-
-    const modules = moduleScripts.map(script => getAttribute(script, 'src'));
-    options.entry = modules.map(p => path.join(indexDir, p));
+  if (options.entry) {
+    /* eslint-disable-next-line no-console */
+    console.warn(
+      '[@open-wc/building-webpack]: options.entry is deprecated. Use options.input instead.',
+    );
   }
 
+  const outputFilename = `[name].${development ? '' : '[contenthash].'}js`;
+
   return {
-    entry: Array.isArray(options.entry) ? options.entry : [options.entry],
+    entry: options.input || options.entry,
 
     output: {
-      filename: '[name].[chunkhash].js',
-      chunkFilename: '[name].[chunkhash].js',
+      filename: outputFilename,
+      chunkFilename: outputFilename,
       path: path.resolve(process.cwd(), 'dist'),
     },
 
-    devtool: development ? 'inline-source-map' : 'source-map',
+    devtool: development ? 'cheap-module-source-map' : 'source-map',
 
     resolve: {
       mainFields: [
@@ -100,10 +81,6 @@ module.exports = userOptions => {
             },
           },
         },
-        options.htmlEntryPoint && {
-          test: options.input,
-          loader: require.resolve('./src/clean-up-html-loader.js'),
-        },
       ].filter(_ => !!_),
     },
 
@@ -126,9 +103,7 @@ module.exports = userOptions => {
       // @ts-ignore
       !development && new CleanWebpackPlugin(),
 
-      new HtmlWebpackPlugin({
-        template: options.indexHTML,
-      }),
+      new WebpackIndexHTMLPlugin(options.webpackIndexHTMLPlugin),
     ].filter(_ => !!_),
 
     devServer: {
