@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.5.0...@open-wc/building-rollup@0.5.1) (2019-06-12)
+
+
+### Bug Fixes
+
+* **building-rollup:** enable and show howto setup typescript ([36d9325](https://github.com/open-wc/open-wc/commit/36d9325))
+
+
+
+
+
 # [0.5.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.4.7...@open-wc/building-rollup@0.5.0) (2019-06-02)
 
 
