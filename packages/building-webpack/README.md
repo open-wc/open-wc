@@ -3,7 +3,9 @@
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
 ## Configuration
-Our webpack configuration will help you get started using webpack. Our configuration lets you write code using modern javascript syntax and features, providing the necessary syntax transformation and polyfills for older browsers.
+Our webpack configuration will help you get started using webpack. You can write modern javascript and use the latest browser features, webpack will optimize your code for production and do the necessary transforms and polyfills for older browsers.
+
+As input you specify your `index.html`, any module scripts are run through webpack and your index is updated with the correct code and polyfills to run application.
 
 See 'config features' for all details. See the extending section for customization, such as supporting non-standard syntax or adding babel plugins.
 
@@ -21,15 +23,14 @@ npm init @open-wc
 npm i -D @open-wc/building-webpack webpack webpack-cli webpack-dev-server http-server
 ```
 
-2. Create a file called `webpack.config.js` and pass in your app's js entry point and index.html.
+2. Create a file called `webpack.config.js` and pass in your app's js entry point and index.html. Pick the config you need below:
 
-If you don't need to support IE11 or other legacy browsers, use `@open-wc/building-webpack/modern-config`. Otherwise, use `@open-wc/building-webpack/modern-and-legacy-config`.
 ```javascript
 const path = require('path');
-const createDefaultConfig = require('@open-wc/building-webpack/modern-and-legacy-config');
+const createDefaultConfig = require('@open-wc/building-webpack/modern-config');
 
-// If you don't need IE11 support, use the modern-config instead
-// import createDefaultConfig from '@open-wc/building-webpack/modern-config';
+// if you need to support IE11 use "modern-and-legacy-config" instead.
+// const createDefaultConfig = require('@open-wc/building-webpack/modern-and-legacy-config');
 
 module.exports = createDefaultConfig({
   input: path.resolve(__dirname, './index.html'),
@@ -49,9 +50,7 @@ module.exports = createDefaultConfig({
 </html>
 ```
 
-We use [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) to work with your index.html. View the documentation for the plugin to learn how you can use it.
-
-Remember to not add your app's entry point to your index.html, as it will be injected dynamically by `html-webpack-plugin`.
+We use [webpack-index-html-plugin](https://open-wc.org/building/webpack-index-html-plugin.html). Contrary to other webpack plugins, you **do** need to include your app's module entrypoint in your `index.html`. This allows you to use the same index during development and when building.
 
 4. Add the following commands to your `package.json`:
 ```json
@@ -92,10 +91,11 @@ All configs:
     - compatible down to IE11
     - babel transform down to IE11 (es5)
     - core js babel polyfills (`Array.from`, `String.prototype.includes` etc.)
-    - URL polyfill
     - webcomponentsjs polyfills
+    - URL polyfill
+    - fetch polyfill
 
-See 'extending' to add more configuration.
+See below for more configuration options.
 
 ## Customizing the babel config
 You can define your own babel plugins by adding a `.babelrc` or `babel.config.js` to your project. See [babeljs config](https://babeljs.io/docs/en/configuration) for more information.
@@ -151,10 +151,61 @@ module.exports = configs.map(config => merge(config, {
 }));
 ```
 
-### Common extensions
+## Common extensions
 ::: warning
 Some extensions add non-native syntax to your code, which can be bad for maintenance longer term. We suggest avoiding adding plugins for using experimental javascript proposals or for importing non-standard module types.
 :::
+
+## Customizing index.html output
+If you need to customize the output of your `index.html` you can pass extra options to [webpack-index-html-plugin](https://open-wc.org/building/webpack-index-html-plugin.html):
+
+```javascript
+const merge = require('webpack-merge');
+const createDefaultConfig = require('@open-wc/building-webpack/modern-config');
+
+module.exports = createDefaultConfig({
+  input: path.resolve(__dirname, './index.html'),
+  webpackIndexHTMLPlugin: {
+    template: ({ assets, entries, legacyEntries, variation }) => `
+      <html>
+        <head></head>
+        <body>
+          ... custom index html template ...
+        </body>
+      </html>
+    `,
+  },
+});
+```
+
+See the documentation for all options.
+
+## Adding or removing polyfills
+By default we polyfill `core-js`, `webcomponentsjs` and `fetch`. It is possile to add or remove polyfills by passing `webpack-index-html` configuration like above:
+
+```javascript
+const merge = require('webpack-merge');
+const createDefaultConfig = require('@open-wc/building-webpack/modern-config');
+
+module.exports = createDefaultConfig({
+  input: path.resolve(__dirname, './index.html'),
+  webpackIndexHTMLPlugin: {
+    polyfills: {
+      fetch: false,
+      intersectionObserver: true,
+      customPolyfills: [
+        {
+          name: 'my-feature',
+          test: "'myFeature' in window",
+          path: require.resolve('my-feature-polyfill/dist/bundled.js'),
+        },
+      ],
+    },
+  },
+});
+```
+
+[See the documentation](https://open-wc.org/building/webpack-index-html-plugin.html) for more information.
 
 ### Copy assets
 Web apps often include assets such as css files and images. These are not part of your regular dependency graph, so they need to be copied into the build directory.
