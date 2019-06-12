@@ -26,5 +26,6 @@ export function stringFixtureSync(template) {
 export async function stringFixture(template) {
   const el = stringFixtureSync(template);
   await elementUpdated(el);
+  // @ts-ignore
   return el;
 }
