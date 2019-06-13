@@ -244,7 +244,7 @@ module.exports = (_pluginConfig = {}) => {
         copyPolyfills(pluginConfig, outputConfig);
         writeModules(pluginConfig, outputConfig, entryModules);
         writtenModules = true;
-      } else if (!writtenLegacyModules) {
+      } else if (pluginConfig.legacy && !writtenLegacyModules) {
         copyPolyfills(pluginConfig, outputConfig);
         writeLegacyModules(pluginConfig, outputConfig, entryModules);
         writtenLegacyModules = true;
