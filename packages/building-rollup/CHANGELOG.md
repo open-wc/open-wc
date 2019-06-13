@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.5.1...@open-wc/building-rollup@0.5.2) (2019-06-13)
+
+
+### Bug Fixes
+
+* **building-rollup:** remove legacy scripts from modern watch mode ([#489](https://github.com/open-wc/open-wc/issues/489)) ([8083431](https://github.com/open-wc/open-wc/commit/8083431))
+
+
+
+
+
 ## [0.5.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.5.0...@open-wc/building-rollup@0.5.1) (2019-06-12)
 
 
