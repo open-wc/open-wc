@@ -66,7 +66,7 @@ function createConfig(_options, legacy) {
               },
             },
           ],
-        ],
+        ].filter(_ => !!_),
         presets: [
           [
             '@babel/env',
