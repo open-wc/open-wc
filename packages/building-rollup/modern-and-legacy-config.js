@@ -67,11 +67,15 @@ function createConfig(_options, legacy) {
             },
           ],
         ].filter(_ => !!_),
+
         presets: [
           [
-            '@babel/env',
+            '@babel/preset-env',
             {
               targets: legacy ? ['ie 11'] : findSupportedBrowsers(),
+              // preset-env compiles template literals for safari 12 due to a small bug which
+              // doesn't affect most use cases. for example lit-html handles it: (https://github.com/Polymer/lit-html/issues/575)
+              exclude: legacy ? undefined : ['@babel/plugin-transform-template-literals'],
               useBuiltIns: false,
             },
           ],
