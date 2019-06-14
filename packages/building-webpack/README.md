@@ -20,7 +20,7 @@ npm init @open-wc
 
 1. Install the required dependencies:
 ```bash
-npm i -D @open-wc/building-webpack webpack webpack-cli webpack-dev-server http-server
+npm i -D @open-wc/building-webpack webpack webpack-cli owc-dev-server
 ```
 
 2. Create a file called `webpack.config.js` and pass in your app's js entry point and index.html. Pick the config you need below:
@@ -56,15 +56,15 @@ We use [webpack-index-html-plugin](https://open-wc.org/building/webpack-index-ht
 ```json
 {
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development --open",
-    "start:build": "http-server dist -o"
+    "start": "owc-dev-server --app-index index.html --open --watch",
+    "start:build": "owc-dev-server --root-dir dist --open",
+    "build": "webpack --mode production"
   }
 }
 ```
+- `start` runs your app for development, reloading on file changes
+- `start:build` runs your app after it has been built using the build command
 - `build` builds your app and outputs it in your `dist` directory
-- `start` builds and runs your app, rebuilding on file changes
-- `start:build` runs your built app from `dist` directory, it uses a simple http-server to make sure that it runs without magic
 
 ## Browser support
 `modern-config.js` creates a single build of your app for modern browsers (by default last 2 of major browsers). This is recommended if you only need to support modern browsers, otherwise you will need to ship compatibility code for browsers which don't need it.

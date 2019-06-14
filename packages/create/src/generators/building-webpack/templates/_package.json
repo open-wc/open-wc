@@ -1,16 +1,12 @@
 {
   "scripts": {
-    "start:dev": "webpack-dev-server --mode development --open",
-    "start:dev:legacy": "webpack-dev-server --mode development --legacy",
-    "start:prod": "http-server dist/ -o",
-    "build": "webpack --mode production",
-    "build:stats": "webpack --mode production --profile --json > bundle-stats.json"
+    "start:build": "owc-dev-server dist/ --open",
+    "build": "webpack --mode production"
   },
   "devDependencies": {
-    "@open-wc/building-webpack": "^1.2.0",
+    "@open-wc/building-webpack": "^2.0.0",
     "http-server": "^0.11.1",
-    "webpack-cli": "^3.2.3",
     "webpack": "^4.28.0",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-cli": "^3.3.4"
   }
 }
