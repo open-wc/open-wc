@@ -8,14 +8,17 @@
   <script type="module" src="./src/<%= tagName %>.js"></script>
 
   <style>
-    body {
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
       background-color: #ededed;
     }
   </style>
   <title>Open Web Components Barebone App</title>
 </head>
 <body>
-  <<%= tagName %>></<%= tagName %>>
+  <<%= tagName %> heading="Hello world!"></<%= tagName %>>
 </body>
 
 </html>

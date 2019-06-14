@@ -20,7 +20,7 @@ npm init @open-wc
 
 1. Install the required dependencies:
 ```bash
-npm i -D @open-wc/building-rollup rollup rimraf http-server
+npm i -D @open-wc/building-rollup rollup rimraf owc-dev-server
 ```
 
 2. Create a `rollup.config.js` file and pass in your app's `index.html`:
@@ -68,15 +68,15 @@ To illustrate this, here is an example of scripts which our rollup config will *
 ```json
 {
   "scripts": {
-    "build": "rimraf dist && rollup -c rollup.config.js",
-    "start:build": "http-server dist -o -c-1",
-    "watch:build": "rimraf dist && rollup --watch -c rollup.config.js & http-server dist -o -c-1",
+    "start": "owc-dev-server --app-index index.html --open --watch",
+    "start:build": "owc-dev-server dist/ --open",
+    "build": "rimraf dist && rollup -c rollup.config.js"
   }
 }
 ```
+- `start` runs your app for development, reloading on file changes
+- `start:build` runs your app after it has been built using the build command
 - `build` builds your app and outputs it in your `dist` directory
-- `start:build` runs your built app from `dist` directory
-- `watch:build` builds and runs your app, rebuilding when input files change
 
 ## Supporting legacy browsers
 The `modern-config.js` based config we setup above works for browsers which support dynamic imports (Chrome 63+, Safari 11.1+, Firefox 67+)
