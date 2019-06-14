@@ -64,7 +64,7 @@ function absResolve(importPath, sourceFileName, pluginOptions = {}) {
     return importPath;
   }
 
-  return resolve.sync(importPath, {
+  const result = resolve.sync(importPath, {
     basedir: basedirResolve(importPath, sourceFileName, pluginOptions),
     extensions: pluginOptions.extensions || ['.mjs', '.js', 'json'],
     moduleDirectory: pluginOptions.resolveDirectories || 'node_modules',
@@ -74,6 +74,9 @@ function absResolve(importPath, sourceFileName, pluginOptions = {}) {
       return packageJson;
     },
   });
+
+  // use node's resolve to convert symlinks to real paths
+  return require.resolve(result);
 }
 
 function tryResolve(babelPath, importPath, sourceFileName, pluginOptions) {

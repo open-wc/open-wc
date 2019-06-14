@@ -2,14 +2,13 @@
   "name": "<%= tagName %>",
   "license": "MIT",
   "scripts": {
-    "start": "owc-dev-server --open ./src"
+    "start": "owc-dev-server --open"
   },
   "dependencies": {
     "lit-html": "^1.0.0",
     "lit-element": "^2.0.1"
   },
   "devDependencies": {
-    "@open-wc/polyfills-loader": "^0.3.0",
     "owc-dev-server": "^0.3.0",
     "eslint-plugin-lit": "^1.0.0"
   }

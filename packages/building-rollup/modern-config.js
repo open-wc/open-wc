@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+const { DEFAULT_EXTENSIONS } = require('@babel/core');
 const { findSupportedBrowsers } = require('@open-wc/building-utils');
 const resolve = require('rollup-plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
@@ -11,6 +12,7 @@ const production = !process.env.ROLLUP_WATCH;
 module.exports = function createBasicConfig(_options) {
   const options = {
     outputDir: 'dist',
+    extensions: DEFAULT_EXTENSIONS,
     ..._options,
   };
 
@@ -27,10 +29,13 @@ module.exports = function createBasicConfig(_options) {
       options.input.endsWith('.html') && modernWeb(),
 
       // resolve bare import specifiers
-      resolve(),
+      resolve({
+        extensions: options.extensions,
+      }),
 
       // run code through babel
       babel({
+        extensions: options.extensions,
         plugins: [
           '@babel/plugin-syntax-dynamic-import',
           '@babel/plugin-syntax-import-meta',
@@ -48,6 +53,7 @@ module.exports = function createBasicConfig(_options) {
                 collapseWhitespace: true,
                 removeComments: true,
                 caseSensitive: true,
+                minifyCSS: true,
               },
             },
           ],

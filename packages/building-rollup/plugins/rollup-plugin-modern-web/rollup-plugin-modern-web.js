@@ -229,13 +229,22 @@ module.exports = (_pluginConfig = {}) => {
     generateBundle(outputConfig, bundles) {
       const entryModules = Object.keys(bundles)
         .filter(key => bundles[key].isEntry)
-        .map(e => `./${e}`);
+        .reduce((acc, e) => {
+          acc.push(`./${e}`);
+          const imports = bundles[e].imports || [];
+          imports.forEach(i => {
+            if (!acc.includes(`./${i}`)) {
+              acc.push(`./${i}`);
+            }
+          });
+          return acc;
+        }, []);
 
       if (!pluginConfig.legacy && !writtenModules) {
         copyPolyfills(pluginConfig, outputConfig);
         writeModules(pluginConfig, outputConfig, entryModules);
         writtenModules = true;
-      } else if (!writtenLegacyModules) {
+      } else if (pluginConfig.legacy && !writtenLegacyModules) {
         copyPolyfills(pluginConfig, outputConfig);
         writeLegacyModules(pluginConfig, outputConfig, entryModules);
         writtenLegacyModules = true;
