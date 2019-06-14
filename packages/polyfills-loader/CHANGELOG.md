@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/open-wc/open-wc/compare/@open-wc/polyfills-loader@0.3.1...@open-wc/polyfills-loader@0.3.2) (2019-06-14)
+
+
+### Bug Fixes
+
+* **polyfills-loader:** provide a 'module' entrypoint ([#496](https://github.com/open-wc/open-wc/issues/496)) ([e81555a](https://github.com/open-wc/open-wc/commit/e81555a))
+
+
+
+
+
 ## [0.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/polyfills-loader@0.3.0...@open-wc/polyfills-loader@0.3.1) (2019-04-08)
 
 
