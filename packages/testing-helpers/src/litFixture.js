@@ -25,5 +25,6 @@ export function litFixtureSync(template) {
 export async function litFixture(template) {
   const el = litFixtureSync(template);
   await elementUpdated(el);
+  // @ts-ignore
   return el;
 }

@@ -45,7 +45,7 @@ const sidebar = [
       ['/building/', 'Getting started'],
       '/building/building-rollup',
       '/building/building-webpack',
-      '/building/polyfills-loader',
+      '/building/webpack-index-html-plugin',
     ],
   },
   {

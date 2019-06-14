@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const commandLineArgs = require('command-line-args');
 const commandLineUsage = require('command-line-usage');
 const path = require('path');

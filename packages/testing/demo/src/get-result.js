@@ -1,4 +1,4 @@
-class GetResult extends HTMLElement {
+export class GetResult extends HTMLElement {
   set success(value) {
     this.__success = value;
     if (this.__success) {
