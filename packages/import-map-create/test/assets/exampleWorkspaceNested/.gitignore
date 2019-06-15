@@ -20,4 +20,4 @@ node_modules/lit-element/node_modules/lit-html/*
 !node_modules/lit-element/node_modules/lit-html/package.json
 
 !node_modules/@example/
-!node_modules/b/
+!node_modules/b
