@@ -4,8 +4,11 @@ import { findPackageJson } from './findPackageJson';
 export async function findWorkspaceProdutionDependenies(packageJson, root = process.cwd()) {
   let deps = packageJson.dependencies ? packageJson.dependencies : {};
   if (packageJson.workspaces) {
+    // eslint-disable-next-line no-restricted-syntax
     for (const globString of packageJson.workspaces) {
+      // eslint-disable-next-line no-await-in-loop
       const packageJsonPaths = await findPackageJson(globString, root);
+      // eslint-disable-next-line no-loop-func
       packageJsonPaths.forEach(packageJsonPath => {
         const packageJsonString = fs.readFileSync(packageJsonPath, 'utf-8');
         const wsPackageJson = JSON.parse(packageJsonString);

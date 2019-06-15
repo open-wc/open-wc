@@ -31,7 +31,9 @@ async function askForVersionSelection(depName, versions) {
 async function addWorkspaceDeps(flatResolvedDeps, packageJson, targetPath = process.cwd()) {
   const deps = flatResolvedDeps;
   if (packageJson.workspaces) {
+    // eslint-disable-next-line no-restricted-syntax
     for (const globString of packageJson.workspaces) {
+      // eslint-disable-next-line no-await-in-loop
       const packageJsonPaths = await findPackageJson(globString, targetPath);
       packageJsonPaths.forEach(packageJsonPath => {
         const packageJsonString = fs.readFileSync(packageJsonPath, 'utf-8');
@@ -42,7 +44,7 @@ async function addWorkspaceDeps(flatResolvedDeps, packageJson, targetPath = proc
           paths: [targetPath],
         });
 
-        const result = `/${  path.relative(targetPath, depPath)}`;
+        const result = `/${path.relative(targetPath, depPath)}`;
         deps[depName] = result;
       });
     }
@@ -55,7 +57,7 @@ export function flatResolvedDepsToImports(deps) {
   Object.keys(deps).forEach(depName => {
     const depPath = deps[depName];
     imports[depName] = depPath;
-    imports[`${depName  }/`] = `${path.dirname(depPath)  }/`;
+    imports[`${depName}/`] = `${path.dirname(depPath)}/`;
   });
   return imports;
 }
@@ -69,12 +71,15 @@ export async function resolvePathsAndConflicts(
 ) {
   const resolvedDeps = {};
 
+  // eslint-disable-next-line no-restricted-syntax
   for (const depName of Object.keys(flatDeps)) {
     const depData = flatDeps[depName];
     if (Array.isArray(depData)) {
       const selectedVersion = Object.keys(resolveMap).includes(depName)
         ? resolveMap[depName]
-        : await askForVersionSelection(depName, depData);
+        : // eslint-disable-next-line no-await-in-loop
+          await askForVersionSelection(depName, depData);
+      // eslint-disable-next-line no-await-in-loop
       resolvedDeps[depName] = await findPathToVersion(
         depName,
         selectedVersion,
@@ -87,7 +92,7 @@ export async function resolvePathsAndConflicts(
         paths: [targetPath],
       });
 
-      const result = `/${  path.relative(targetPath, depPath)}`;
+      const result = `/${path.relative(targetPath, depPath)}`;
       resolvedDeps[depName] = result;
     }
   }

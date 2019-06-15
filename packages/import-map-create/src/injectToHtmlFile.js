@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from 'fs';
 
 /**
  * Injects the importmap with the following priority
@@ -10,21 +10,21 @@ import fs from "fs";
  * @param {String} importMap
  */
 export default function injectToHtmlFile(filePath, importMap) {
-  let fileString = fs.readFileSync(filePath, "utf-8");
+  let fileString = fs.readFileSync(filePath, 'utf-8');
 
   if (fileString.includes('<script type="importmap">')) {
     fileString = fileString.replace(
       /<script type="importmap">(.|\n)*?<\/script>/,
-      `<script type="importmap">${importMap}</script>`
+      `<script type="importmap">${importMap}</script>`,
     );
-  } else if (fileString.includes("</head>")) {
+  } else if (fileString.includes('</head>')) {
     fileString = fileString.replace(
-      "</head>",
-      `<script type="importmap">${importMap}</script></head>`
+      '</head>',
+      `<script type="importmap">${importMap}</script></head>`,
     );
   } else {
     fileString += `<script type="importmap">${importMap}</script>`;
   }
 
-  fs.writeFileSync(filePath, fileString, "utf-8");
+  fs.writeFileSync(filePath, fileString, 'utf-8');
 }

@@ -1,15 +1,15 @@
 module.exports = {
-  plugins: ["babel-plugin-transform-dynamic-import"],
+  plugins: ['babel-plugin-transform-dynamic-import'],
   presets: [
     [
-      "@babel/env",
+      '@babel/env',
       {
         targets: {
-          node: "10"
+          node: '10',
         },
         corejs: 2,
-        useBuiltIns: "usage"
-      }
-    ]
-  ]
+        useBuiltIns: 'usage',
+      },
+    ],
+  ],
 };
