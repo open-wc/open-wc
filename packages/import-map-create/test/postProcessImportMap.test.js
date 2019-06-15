@@ -4,23 +4,25 @@ import { postProcessImportMap } from '../src/postProcessImportMap.js';
 const { expect } = chai;
 
 describe('postProcessImportMap', () => {
-  it('can override imports', async () => {
+  it('can override imports', () => {
     const importMap = {
       imports: {
         a: '/path/to/a/a.js',
         b: '/node_modules/kvs-polyfill/index.mjs',
       },
     };
-    const config = {
-      overrides: {
-        imports: {
-          a: '/newPath/patchIt.js',
-          b: ['std:kv-storage', '/node_modules/kvs-polyfill/index.mjs'],
+    const packageJson = {
+      importmap: {
+        overrides: {
+          imports: {
+            a: '/newPath/patchIt.js',
+            b: ['std:kv-storage', '/node_modules/kvs-polyfill/index.mjs'],
+          },
         },
-      },
+      }
     };
 
-    expect(postProcessImportMap(importMap, config)).to.deep.equal({
+    expect(postProcessImportMap(importMap, packageJson)).to.deep.equal({
       imports: {
         a: '/newPath/patchIt.js',
         b: ['std:kv-storage', '/node_modules/kvs-polyfill/index.mjs'],
@@ -28,7 +30,7 @@ describe('postProcessImportMap', () => {
     });
   });
 
-  it('can override scopes', async () => {
+  it('can override scopes', () => {
     const importMap = {
       imports: {
         a: '/path/to/a/a.js',
@@ -46,21 +48,23 @@ describe('postProcessImportMap', () => {
     // 1. everyone uses the polyfill
     // 2. urls within `/scope2/*` use built in with fallback to polyfill
     // 3. urls within `/scope2/scope3/*` forced to use built in
-    const config = {
-      overrides: {
-        scopes: {
-          '/scope2/': {
-            b: ['std:kv-storage', '/node_modules/kvs-polyfill/index.mjs'],
-          },
-          '/scope2/scope3/': {
-            a: '/a-3-override.js',
-            b: 'std:kv-storage',
+    const packageJson = {
+      importmap: {
+        overrides: {
+          scopes: {
+            '/scope2/': {
+              b: ['std:kv-storage', '/node_modules/kvs-polyfill/index.mjs'],
+            },
+            '/scope2/scope3/': {
+              a: '/a-3-override.js',
+              b: 'std:kv-storage',
+            },
           },
         },
-      },
+      }
     };
 
-    expect(postProcessImportMap(importMap, config)).to.deep.equal({
+    expect(postProcessImportMap(importMap, packageJson)).to.deep.equal({
       imports: {
         a: '/path/to/a/a.js',
         b: '/node_modules/kvs-polyfill/index.mjs',
@@ -77,7 +81,7 @@ describe('postProcessImportMap', () => {
     });
   });
 
-  it('can delete imports', async () => {
+  it('can delete imports', () => {
     const importMap = {
       imports: {
         a: '/path/to/a/a.js',
@@ -85,20 +89,22 @@ describe('postProcessImportMap', () => {
         c: '/path/to/c/c.js',
       },
     };
-    const config = {
-      deletes: {
-        imports: ['a', 'b'],
-      },
+    const packageJson = {
+      importmap: {
+        deletes: {
+          imports: ['a', 'b'],
+        },
+      }
     };
 
-    expect(postProcessImportMap(importMap, config)).to.deep.equal({
+    expect(postProcessImportMap(importMap, packageJson)).to.deep.equal({
       imports: {
         c: '/path/to/c/c.js',
       },
     });
   });
 
-  it('can delete complete scopes', async () => {
+  it('can delete complete scopes', () => {
     const importMap = {
       scopes: {
         '/scope2/': {
@@ -109,13 +115,15 @@ describe('postProcessImportMap', () => {
         },
       },
     };
-    const config = {
-      deletes: {
-        scopes: ['/scope2/scope3/'],
-      },
+    const packageJson = {
+      importmap: {
+        deletes: {
+          scopes: ['/scope2/scope3/'],
+        },
+      }
     };
 
-    expect(postProcessImportMap(importMap, config)).to.deep.equal({
+    expect(postProcessImportMap(importMap, packageJson)).to.deep.equal({
       scopes: {
         '/scope2/': {
           a: '/a-2.js',
@@ -124,7 +132,7 @@ describe('postProcessImportMap', () => {
     });
   });
 
-  it('can delete imports of a scopes', async () => {
+  it('can delete imports of a scopes', () => {
     const importMap = {
       scopes: {
         '/scope2/': {
@@ -137,16 +145,18 @@ describe('postProcessImportMap', () => {
         },
       },
     };
-    const config = {
-      deletes: {
-        scopeImports: {
-          '/scope2/': ['a'],
-          '/scope2/scope3/': ['b'],
+    const packageJson = {
+      importmap: {
+        deletes: {
+          scopeImports: {
+            '/scope2/': ['a'],
+            '/scope2/scope3/': ['b'],
+          },
         },
-      },
+      }
     };
 
-    expect(postProcessImportMap(importMap, config)).to.deep.equal({
+    expect(postProcessImportMap(importMap, packageJson)).to.deep.equal({
       scopes: {
         '/scope2/': {
           b: '/b-2.js',
@@ -158,7 +168,7 @@ describe('postProcessImportMap', () => {
     });
   });
 
-  it('cleans up empty scopes after if imports are deleted', async () => {
+  it('cleans up empty scopes after if imports are deleted', () => {
     const importMap = {
       scopes: {
         '/scope2/': {
@@ -170,15 +180,17 @@ describe('postProcessImportMap', () => {
         },
       },
     };
-    const config = {
-      deletes: {
-        scopeImports: {
-          '/scope2/': ['a', 'b'],
+    const packageJson = {
+      importmap: {
+        deletes: {
+          scopeImports: {
+            '/scope2/': ['a', 'b'],
+          },
         },
-      },
+      }
     };
 
-    expect(postProcessImportMap(importMap, config)).to.deep.equal({
+    expect(postProcessImportMap(importMap, packageJson)).to.deep.equal({
       scopes: {
         '/scope2/scope3/': {
           a: '/a-3.js',

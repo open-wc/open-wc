@@ -6,6 +6,7 @@ import { findProductionDependencies } from './findProductionDependencies';
 import { flattenYarnLock } from './flattenYarnLock';
 import { findPathToVersion } from './findPathToVersion';
 import { findPackageJson } from './findPackageJson';
+import { postProcessImportMap } from './postProcessImportMap';
 
 async function askForVersionSelection(depName, versions) {
   const choices = [];
@@ -119,6 +120,8 @@ export async function generateFromYarnLock(
     targetPath,
   );
 
-  const imports = flatResolvedDepsToImports(flatResolvedDepsWithWorkspaceDeps, targetPath);
+  let imports = flatResolvedDepsToImports(flatResolvedDepsWithWorkspaceDeps, targetPath);
+  imports = postProcessImportMap(imports, packageJson);
+
   return { imports };
 }
