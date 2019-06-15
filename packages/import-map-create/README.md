@@ -19,25 +19,20 @@ Only yarn.lock is supported for now
 In most cases you want to create the map in an postinstall step.
 
 ```bash
-yarn add @import-map/create
+yarn add @import-maps/generate
 ```
 
 ```json
 "scripts": {
-  "postinstall": "create-import-map"
+  "postinstall": "generate-import-map"
 }
 ```
 
 If you only want to try it out once to see what it will generate you can simply do so via
 
 ```bash
-npm init @import-map
+npx @import-map/generate
 ```
-
-::: warning
-`npm init` requires node 10 & npm 6 or higher
-:::
-
 
 <script>
   export default {

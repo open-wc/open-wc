@@ -1,7 +1,7 @@
 {
-  "name": "@import-map/create",
+  "name": "@import-maps/generate",
   "version": "0.0.0",
-  "description": "Generate an import map from you.",
+  "description": "Generate an import map based on your production dependencies",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
   "license": "MIT",
@@ -14,20 +14,21 @@
     "directory": "packages/import-map-create"
   },
   "keywords": [
-    "import-map"
+    "import-map",
+    "import-maps"
   ],
   "scripts": {
     "build": "babel src --out-dir dist --copy-files --include-dotfiles",
-    "start": "npm run build && node ./dist/create.js",
+    "start": "npm run build && node ./dist/generate.js",
     "test": "mocha --require @babel/register",
     "test:ci": "npm run test",
     "test:watch": "onchange 'src/**/*.js' 'test/**/*.js' -- npm run test --silent",
     "prepublishOnly": "npm run build && ../../scripts/insert-header.js"
   },
   "bin": {
-    "create-import-map": "./dist/create.js"
+    "generate-import-map": "./dist/generate.js"
   },
-  "main": "dist/create.js",
+  "main": "dist/generate.js",
   "files": [
     "dist"
   ],
