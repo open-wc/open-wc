@@ -49,6 +49,14 @@ npm init @open-wc
 
 ### Available scaffold generators:
 
+- `Web Component`<br/>
+  This generator scaffolds a starting point for a web component. We recommend using this generator when you want to develop and publish a single web component.
+  <br/>
+
+- `Basic Application`<br/>
+  This generator scaffolds a minimal application for quick prototyping, and does not come with any linting, testing, or building configs.
+  <br/>
+
 - `Starter App`<br/>
   This generator scaffolds a new starter application. We recommend using this generator at the start of your web component project.
   <details>
@@ -61,15 +69,6 @@ npm init @open-wc
       - building rollup
   </details>
   <br/>
-
-- `Application`<br/>
-  This generator scaffolds a starting point for an application.
-  <br/>
-
-- `Web Component`<br/>
-  This generator scaffolds a starting point for a web component.
-  <br/>
-
 
 ## Features
 
