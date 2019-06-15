@@ -15,3 +15,6 @@ node_modules/lit-element/*
 packages/b/node_modules/lit-html/*
 !packages/b/node_modules/lit-html/lit-html.js
 !packages/b/node_modules/lit-html/package.json
+
+!node_modules/@example/
+!node_modules/b/
