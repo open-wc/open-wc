@@ -71,11 +71,11 @@ describe('postProcessImportMap', () => {
       },
       scopes: {
         '/scope2/': {
-          a: '/a-2.js',
           b: ['std:kv-storage', '/node_modules/kvs-polyfill/index.mjs'],
         },
         '/scope2/scope3/': {
-          a: '/a-3.js',
+          a: '/a-3-override.js',
+          b: 'std:kv-storage',
         },
       },
     });
@@ -92,7 +92,9 @@ describe('postProcessImportMap', () => {
     };
     const packageJson = {
       importmap: {
-        deletes: ['a', 'a/', 'b'],
+        deletes: {
+          imports: ['a', 'a/', 'b'],
+        },
       },
     };
 
@@ -131,7 +133,7 @@ describe('postProcessImportMap', () => {
     });
   });
 
-  it('can delete imports of a scopes', () => {
+  it('can delete imports of a scope', () => {
     const importMap = {
       scopes: {
         '/scope2/': {
