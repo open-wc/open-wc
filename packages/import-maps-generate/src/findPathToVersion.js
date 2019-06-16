@@ -41,6 +41,11 @@ async function findAllParentDeps(depName, deps, packageJson, targetPath = proces
   return parents;
 }
 
+function readJsonFile(filePath) {
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  return JSON.parse(fileContent);
+}
+
 export async function findPathToVersion(
   depName,
   version,
@@ -51,9 +56,7 @@ export async function findPathToVersion(
   const rootVersionPath = require.resolve(`${depName}/package.json`, {
     paths: [targetPath],
   });
-  // TODO: read file and parse json instead of "hack" via require
-  // eslint-disable-next-line
-  const { version: rootVersion } = require(rootVersionPath);
+  const { version: rootVersion } = readJsonFile(rootVersionPath);
 
   if (rootVersion !== version) {
     const parents = await findAllParentDeps(depName, deps, packageJson, targetPath);
@@ -66,9 +69,7 @@ export async function findPathToVersion(
       const subVersionPath = require.resolve(`${depName}/package.json`, {
         paths: [parentPath],
       });
-      // TODO: read file and parse json instead of "hack" via require
-      // eslint-disable-next-line
-      const { version: subVersion } = require(subVersionPath);
+      const { version: subVersion } = readJsonFile(subVersionPath);
       if (subVersion === version) {
         const result = path.relative(targetPath, require.resolve(depName, { paths: [parentPath] }));
         return `/${result}`;

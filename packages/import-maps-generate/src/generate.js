@@ -7,7 +7,7 @@ import injectToHtmlFile from './injectToHtmlFile';
 const optionDefinitions = [{ name: 'inject-to' }];
 const options = commandLineArgs(optionDefinitions);
 
-export async function create(targetPath = process.cwd()) {
+export async function generate(targetPath = process.cwd()) {
   const yarnLockString = fs.readFileSync(path.resolve(targetPath, 'yarn.lock'), 'utf-8');
   const packageJsonString = fs.readFileSync(path.resolve(targetPath, 'package.json'), 'utf-8');
   const packageJson = JSON.parse(packageJsonString);
@@ -19,4 +19,4 @@ export async function create(targetPath = process.cwd()) {
   if (options['inject-to']) injectToHtmlFile(options['inject-to'], JSON.stringify(result, null, 2));
 }
 
-create();
+generate();

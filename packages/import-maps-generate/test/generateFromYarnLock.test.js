@@ -59,7 +59,7 @@ describe('flatResolvedDepsToImports', () => {
 });
 
 describe('generateFromYarnLock', () => {
-  it('creates an import map for a flat yarn.lock file', async () => {
+  it('generates an import map for a flat yarn.lock file', async () => {
     const targetPath = `${__dirname}/assets/example/`;
     const yarnLockString = fs.readFileSync(`${targetPath}/yarn.lock`, 'utf-8');
     const packageJson = JSON.parse(fs.readFileSync(`${targetPath}/package.json`, 'utf-8'));
@@ -76,7 +76,7 @@ describe('generateFromYarnLock', () => {
     });
   });
 
-  it('creates a flat import map for nested dependencies if possible', async () => {
+  it('generates a flat import map for nested dependencies if possible', async () => {
     const targetPath = `${__dirname}/assets/exampleNested/`;
     const yarnLockString = fs.readFileSync(`${targetPath}/yarn.lock`, 'utf-8');
     const packageJson = JSON.parse(fs.readFileSync(`${targetPath}/package.json`, 'utf-8'));
@@ -93,7 +93,7 @@ describe('generateFromYarnLock', () => {
     });
   });
 
-  it('creates a flat import map for nested dependencies if resolutions are provided', async () => {
+  it('generates a flat import map for nested dependencies if resolutions are provided', async () => {
     const targetPath = `${__dirname}/assets/exampleNestedResolution/`;
     const yarnLockString = fs.readFileSync(`${targetPath}/yarn.lock`, 'utf-8');
     const packageJson = JSON.parse(fs.readFileSync(`${targetPath}/package.json`, 'utf-8'));
@@ -112,7 +112,7 @@ describe('generateFromYarnLock', () => {
 });
 
 describe('generateFromYarnLock supports yarn workspaces', () => {
-  it('creates a flat import map by default', async () => {
+  it('generates a flat import map by default', async () => {
     const targetPath = `${__dirname}/assets/exampleWorkspace/`;
     const yarnLockString = fs.readFileSync(`${targetPath}/yarn.lock`, 'utf-8');
     const packageJson = JSON.parse(fs.readFileSync(`${targetPath}/package.json`, 'utf-8'));
@@ -133,7 +133,7 @@ describe('generateFromYarnLock supports yarn workspaces', () => {
     });
   });
 
-  it('creates a flat import map for semver possible nested dependencies', async () => {
+  it('generates a flat import map for semver possible nested dependencies', async () => {
     const targetPath = `${__dirname}/assets/exampleWorkspaceNested/`;
     const yarnLockString = fs.readFileSync(`${targetPath}/yarn.lock`, 'utf-8');
     const packageJson = JSON.parse(fs.readFileSync(`${targetPath}/package.json`, 'utf-8'));
@@ -154,7 +154,7 @@ describe('generateFromYarnLock supports yarn workspaces', () => {
     });
   });
 
-  it('creates a flat import map for semver impossible nested dependencies with a resolution', async () => {
+  it('generates a flat import map for semver impossible nested dependencies with a resolution', async () => {
     const targetPath = `${__dirname}/assets/exampleWorkspaceNestedResolution/`;
     const yarnLockString = fs.readFileSync(`${targetPath}/yarn.lock`, 'utf-8');
     const packageJson = JSON.parse(fs.readFileSync(`${targetPath}/package.json`, 'utf-8'));
