@@ -85,13 +85,14 @@ describe('postProcessImportMap', () => {
     const importMap = {
       imports: {
         a: '/path/to/a/a.js',
+        'a/': '/path/to/a/',
         b: ['std:kv-storage', '/node_modules/kvs-polyfill/index.mjs'],
         c: '/path/to/c/c.js',
       },
     };
     const packageJson = {
       importmap: {
-        deletes: ['a', 'b'],
+        deletes: ['a', 'a/', 'b'],
       },
     };
 
