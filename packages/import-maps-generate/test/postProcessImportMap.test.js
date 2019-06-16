@@ -19,7 +19,7 @@ describe('postProcessImportMap', () => {
             b: ['std:kv-storage', '/node_modules/kvs-polyfill/index.mjs'],
           },
         },
-      }
+      },
     };
 
     expect(postProcessImportMap(importMap, packageJson)).to.deep.equal({
@@ -61,7 +61,7 @@ describe('postProcessImportMap', () => {
             },
           },
         },
-      }
+      },
     };
 
     expect(postProcessImportMap(importMap, packageJson)).to.deep.equal({
@@ -91,10 +91,8 @@ describe('postProcessImportMap', () => {
     };
     const packageJson = {
       importmap: {
-        deletes: {
-          imports: ['a', 'b'],
-        },
-      }
+        deletes: ['a', 'b'],
+      },
     };
 
     expect(postProcessImportMap(importMap, packageJson)).to.deep.equal({
@@ -120,7 +118,7 @@ describe('postProcessImportMap', () => {
         deletes: {
           scopes: ['/scope2/scope3/'],
         },
-      }
+      },
     };
 
     expect(postProcessImportMap(importMap, packageJson)).to.deep.equal({
@@ -153,7 +151,7 @@ describe('postProcessImportMap', () => {
             '/scope2/scope3/': ['b'],
           },
         },
-      }
+      },
     };
 
     expect(postProcessImportMap(importMap, packageJson)).to.deep.equal({
@@ -187,7 +185,7 @@ describe('postProcessImportMap', () => {
             '/scope2/': ['a', 'b'],
           },
         },
-      }
+      },
     };
 
     expect(postProcessImportMap(importMap, packageJson)).to.deep.equal({

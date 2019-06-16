@@ -1,33 +1,18 @@
-function processResolutionName(res) {
-  if(res.includes('node_modules')) return res.split('/node_modules/')[1].split('/')[0];
-  return res;
-}
-
 export function postProcessImportMap(imports, packageJson) {
-  const importmap = imports;
-  if(typeof packageJson.importmap !== 'undefined' && typeof packageJson.importmap.overrides !== 'undefined') {
-    const { overrides } = packageJson.importmap;
+  let importmap = imports;
+  if (typeof packageJson.importmap !== 'undefined') {
+    if (typeof packageJson.importmap.overrides !== 'undefined') {
+      const { overrides } = packageJson.importmap;
+      importmap = { ...importmap, ...overrides };
+    }
 
-    Object.keys(overrides).forEach(dep => {
-      if(Array.isArray(overrides[dep])) {
-        /**
-         * we need to delete first, if someone has kv-storage-polyfill in their dependencies, they
-         * should have "std:kv-storage" in their importmap, not "kv-storage-polyfill"
-         */
-        overrides[dep].forEach(res => {
-          const resolution = processResolutionName(res);
+    if (typeof packageJson.importmap.deletes !== 'undefined') {
+      const { deletes } = packageJson.importmap;
 
-          delete importmap[resolution];
-          delete importmap[`${resolution}/`];
-        });
-        importmap[dep] = overrides[dep];
-      } else {
-        delete importmap[dep];
-        delete importmap[`${dep}/`];
-
-        importmap[dep] = overrides[dep];
-      }
-    });
+      Object.values(deletes).forEach(dependency => {
+        delete importmap.imports[dependency];
+      });
+    }
   }
   return importmap;
 }
