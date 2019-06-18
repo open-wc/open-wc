@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": "https://github.com/open-wc/open-wc/",
   "scripts": {
-    "start": "owc-dev-server --root-dir demo --open --watch"
+    "start": "owc-dev-server --app-index demo/index.html --open --watch"
   },
   "dependencies": {
     "lit-html": "^1.0.0",
