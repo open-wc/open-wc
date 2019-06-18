@@ -29,7 +29,7 @@ describe('polyfills', () => {
       },
       {
         code: undefined,
-        hash: '95138a44bb40831d28d42e45a2bf1bc6',
+        hash: '25d91ed49dc86803b0aa17858b018737',
         name: 'fetch',
         nomodule: false,
         sourcemap: undefined,

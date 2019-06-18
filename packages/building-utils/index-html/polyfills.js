@@ -51,7 +51,7 @@ function getPolyfills(config) {
       instructions.push({
         name: 'fetch',
         test: "!('fetch' in window)",
-        path: require.resolve('whatwg-fetch/fetch.js'),
+        path: require.resolve('whatwg-fetch/dist/fetch.umd.js'),
       });
     } catch (error) {
       throw new Error(
