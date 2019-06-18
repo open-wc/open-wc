@@ -9,7 +9,9 @@
     "access": "public"
   },
   "scripts": {
-    "test": "mocha test/**/*.test.js test/*.test.js"
+    "test": "mocha test/**/*.test.js test/*.test.js",
+    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots",
+    "test:ci": "npm run test"
   },
   "repository": {
     "type": "git",
@@ -31,11 +33,14 @@
     "lru-cache": "^5.1.1",
     "minimatch": "^3.0.4",
     "parse5": "^5.1.0",
+    "rimraf": "^2.6.3",
     "terser": "^4.0.0"
   },
   "devDependencies": {
     "@types/lru-cache": "^5.1.0",
+    "@types/rimraf": "^2.0.2",
     "chai": "^4.2.0",
-    "mocha": "^6.1.4"
+    "mocha": "^6.1.4",
+    "systemjs": "^3.1.6"
   }
 }

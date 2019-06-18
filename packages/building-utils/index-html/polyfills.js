@@ -4,20 +4,37 @@ const Terser = require('terser');
 const { createContentHash } = require('./utils');
 
 /** @typedef {import('./create-index-html').PolyfillInstruction} PolyfillInstruction */
-/** @typedef {import('./create-index-html').PolyfillsConfig} PolyfillsConfig */
+/** @typedef {import('./create-index-html').CreateIndexHTMLConfig} CreateIndexHTMLConfig */
 /** @typedef {import('./create-index-html').Polyfill} Polyfill */
 
 /**
- * @param {PolyfillsConfig} config
+ * @param {CreateIndexHTMLConfig} config
  * @returns {Polyfill[]}
  */
 function getPolyfills(config) {
   /** @type {Polyfill[]} */
   const polyfills = [];
   /** @type {PolyfillInstruction[]} */
-  const instructions = [...(config.customPolyfills || [])];
+  const instructions = [...(config.polyfills.customPolyfills || [])];
 
-  if (config.coreJs) {
+  if (config.polyfills.systemJs) {
+    try {
+      instructions.push({
+        name: 'systemjs',
+        path: require.resolve('systemjs/dist/s.min.js'),
+        sourcemapPath: require.resolve('systemjs/dist/s.min.js.map'),
+        // if main entrypoint is systemjs, we should always load it. Otherwise it
+        // should be loaded only on browsers without module support through nomodule attribute
+        nomodule: config.entries.type !== 'system',
+      });
+    } catch (error) {
+      throw new Error(
+        'configured to pollyfill systemjs, but no polyfills found. Install with "npm i -D systemjs"',
+      );
+    }
+  }
+
+  if (config.polyfills.coreJs) {
     try {
       instructions.push({
         name: 'core-js',
@@ -32,7 +49,7 @@ function getPolyfills(config) {
     }
   }
 
-  if (config.regeneratorRuntime) {
+  if (config.polyfills.regeneratorRuntime) {
     try {
       instructions.push({
         name: 'regenerator-runtime',
@@ -46,7 +63,7 @@ function getPolyfills(config) {
     }
   }
 
-  if (config.fetch) {
+  if (config.polyfills.fetch) {
     try {
       instructions.push({
         name: 'fetch',
@@ -60,7 +77,19 @@ function getPolyfills(config) {
     }
   }
 
-  if (config.intersectionObserver) {
+  if (config.polyfills.dynamicImport) {
+    instructions.push({
+      name: 'dynamic-import',
+      /**
+       * load dynamic import polyfill if we are on a browser which supports modules but not
+       * dynamic imports. we expect window.__dynamicImport to be aliased to import() elsewhere
+       */
+      test: "'noModule' in HTMLScriptElement.prototype && !('__dynamicImport' in window)",
+      path: require.resolve('./dynamic-import-polyfill.js'),
+    });
+  }
+
+  if (config.polyfills.intersectionObserver) {
     try {
       instructions.push({
         name: 'intersection-observer',
@@ -75,7 +104,7 @@ function getPolyfills(config) {
     }
   }
 
-  if (config.webcomponents) {
+  if (config.polyfills.webcomponents) {
     try {
       instructions.push({
         name: 'webcomponents',
@@ -95,12 +124,6 @@ function getPolyfills(config) {
   instructions.forEach(instruction => {
     if (!instruction.name || !instruction.path) {
       throw new Error(`A polyfill should have a name and a path property.`);
-    }
-
-    if (!instruction.test && !instruction.nomodule) {
-      throw new Error(
-        `A polyfill should either specify a test, or be configured to run with nomodule.`,
-      );
     }
 
     const codePath = path.resolve(instruction.path);

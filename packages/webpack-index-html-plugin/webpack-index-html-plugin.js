@@ -39,6 +39,7 @@ const { PLUGIN_NAME, createError } = require('./src/utils');
  * @property {number} [legacyTimeout]
  * @property {import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig} [polyfills]
  * @property {false|object} [minify] minify configuration, or false to disable minification
+ * @property {string} [loader]
  */
 
 const defaultConfig = {

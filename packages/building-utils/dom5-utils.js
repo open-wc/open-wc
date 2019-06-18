@@ -4,7 +4,9 @@ function createElement(tag, attributes) {
   const element = constructors.element(tag);
   if (attributes) {
     Object.keys(attributes).forEach(key => {
-      setAttribute(element, key, attributes[key]);
+      if (attributes[key] != null) {
+        setAttribute(element, key, attributes[key]);
+      }
     });
   }
   return element;

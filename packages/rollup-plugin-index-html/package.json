@@ -1,0 +1,41 @@
+{
+  "name": "rollup-plugin-index-html",
+  "version": "1.0.0",
+  "description": "Plugin for generating a index html with rollup",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "rollup-plugin-index-html.js",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "mocha test/**/*.test.js test/*.test.js",
+    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots",
+    "test:ci": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/webpack-index-html-plugin"
+  },
+  "files": [
+    "src",
+    "*.js"
+  ],
+  "dependencies": {
+    "@open-wc/building-utils": "^2.0.0",
+    "deepmerge": "^3.2.0",
+    "mkdirp": "^0.5.1",
+    "parse5": "^5.1.0"
+  },
+  "devDependencies": {
+    "@webcomponents/webcomponentsjs": "^2.2.10",
+    "chai": "^4.2.0",
+    "intersection-observer": "^0.7.0",
+    "mocha": "^6.1.4",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.15.6",
+    "whatwg-fetch": "^3.0.0"
+  }
+}

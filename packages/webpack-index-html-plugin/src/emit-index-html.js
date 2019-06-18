@@ -67,8 +67,8 @@ function emitIndexHTML(
     if (config.inject) {
       const generateResult = createIndexHTML(localBaseIndex, {
         ...config,
-        entries,
-        legacyEntries,
+        entries: { type: 'script', files: entries },
+        legacyEntries: legacyEntries ? { type: 'script', files: legacyEntries } : undefined,
       });
 
       finalIndexHTML = generateResult.indexHTML;

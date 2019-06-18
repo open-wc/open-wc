@@ -3,20 +3,27 @@
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
 ## Configuration
-We provide a rollup configuration to help you get started using rollup with web components and modules.
+Rollup configuration to help you get started building modern web applications. You write modern javascript using the latest browser features, rollup will optimize your code for production ensure it runs on all supported browsers.
 
-Our configuration lets you write code using modern javascript syntax and features, providing the necessary syntax transformation and polyfills for older browsers. See 'config features' for more details.
+The input for rollup is the same `index.html` you use for development. Any module scripts in your index are run through rollup and your index is updated with the output from rollup.
 
-See the [extending section](#extending-the-rollup-config) for more customization, such as supporting non-standard syntax or adding babel plugins.
+- See the [config features section](#config-features) for full details
+- See the [extending section](#extending-the-rollup-config) for more customization, such as supporting non-standard syntax or adding babel plugins.
 
 ## Setup
 
+### New project
+```bash
+npm init @open-wc
+```
+
+### Existing project
 ```bash
 npm init @open-wc
 # Upgrade > Building > Rollup
 ```
 
-## Manual setup
+### Manual setup
 
 1. Install the required dependencies:
 ```bash
@@ -27,10 +34,11 @@ npm i -D @open-wc/building-rollup rollup rimraf owc-dev-server
 ```javascript
 import createDefaultConfig from '@open-wc/building-rollup/modern-config';
 
+// if you need to support IE11 use "modern-and-legacy-config" instead.
+// import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
+
 export default createDefaultConfig({ input: './index.html' });
 ```
-
-Our rollup config will look through your `index.html` and extract all module scripts (nothing else -- see below) and feed them to rollup.
 
 3. Create an `index.html`:
 ```html
@@ -38,31 +46,16 @@ Our rollup config will look through your `index.html` and extract all module scr
 <html>
   <head></head>
   <body>
-    <your-app></your-app>
+    <my-app></my-app>
 
-    <script type="module" src="./src/your-app.js"></script>
+    <script type="module" src="./src/my-app.js"></script>
   </body>
 </html>
 ```
 
-Note: Our rollup config will go through the `index.html` file, detect all *js files*, that are *loaded as a module*, put them in its dependency graph, and bundle them in the end. Anything else (e.g. CSS files, fonts, images, other js scripts, modules from inline scripts) will *not* be put in the dependency graph for you, even if it is referenced in the `index.html` file. You'll need to copy this to the output directory separately. See [copy assets](#copy-assets) below for details.
+We use [rollup-plugin-index-html](https://open-wc.org/building/rollup-plugin-index-html.html) which takes your `index.html` as input for rollup. It scans for any `<script type="module" src="...">` and sends them to rollup for bundling, and outputs your `index.html` in the output directory.
 
-To illustrate this, here is an example of scripts which our rollup config will **not** handle automatically:
-```html
-  <script type="module">
-    // this *is* a module, but it's inlined in the HTML, so
-    // `my-app` will not be picked up by rollup and needs
-    // to be copied separately
-    import { MyApp } from './src/my-app';
-  </script>
-
-  <!--
-    other-script.js is not inline, it is sourced, but as
-    it is not type="module", it will still not be picked up
-    by rollup and needs to be copied separately
-  -->
-  <script src="./src/other-script.js"></script>
-```
+Note that "inline modules" (modules without a `src` attribute) are not sent to rollup.
 
 4. Add the following commands to your `package.json`:
 ```json
@@ -79,9 +72,7 @@ To illustrate this, here is an example of scripts which our rollup config will *
 - `build` builds your app and outputs it in your `dist` directory
 
 ## Supporting legacy browsers
-The `modern-config.js` based config we setup above works for browsers which support dynamic imports (Chrome 63+, Safari 11.1+, Firefox 67+)
-
-If you need to support older browsers or Edge and IE11 you use our `modern-and-legacy-config.js` in your `rollup.config.js`:
+`modern-config.js` works for browsers which [support es modules](https://caniuse.com/#feat=es6-module). If you need to support older browsers such as IE11 you need to use our `modern-and-legacy-config.js` in your `rollup.config.js`:
 
 ```javascript
 import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
@@ -89,52 +80,51 @@ import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-conf
 export default createDefaultConfig({ input: './index.html' });
 ```
 
-In addition to outputting your app as a module, it outputs a legacy build of your app and loads the appropriate version based on browser support. Depending on your app's own code, this will work on Chrome, Safari, Firefox, Edge and IE11.
+In addition to outputting a regular build of your app, it outputs a legacy build which is compatible with older browsers down to IE11.
+
+At runtime we determine which version of your app should be loaded, so that legacy browsers don't force you to ship more and slower code to most users on modern browsers.
 
 ## Config features
 `modern-config.js`:
-- compatible with (Chrome 63+, Safari 11.1+, Firefox 67+)
-- babel transform based on browser support (no es5)
-- output es modules using native dynamic import
+- compatible with browsers which [support es modules](https://caniuse.com/#feat=es6-module)
+- babel transform based on browser support (no es5 for all browsers)
+- load polyfills when needed:
+  - dynamic import
+  - webcomponents
 - resolve bare imports ( `import { html } from 'lit-html'` )
 - preserve `import.meta.url` value from before bundling
 - minify + treeshake js
 - minify html and css in template literals
 
 `modern-and-legacy-config.js`:
+- Two build outputs:
+  - Modern build:
+    - es modules
+    - compatible with browsers which [support es modules](https://caniuse.com/#feat=es6-module)
+    - babel transform based on browser support (no es5 for all browsers)
 
-**Modern build:**
-- compatible with latest 2 versions of chrome, safari, firefox and edge
-- babel transform based on browser support (no es5)
-- es modules
-- dynamic import polyfill
+  - Legacy build:
+    - systemjs modules
+    - compatible down to IE11
+    - babel transform down to IE11 (es5)
+    - core js polyfills (`Promise`, `Symbol`, `String.prototype.includes` etc.)
 
-**Legacy build**
-- compatible down to IE11
-- babel transform down to IE11 (es5)
-- core js babel polyfills (`Array.from`, `String.prototype.includes` etc.)
-- systemjs modules
+  - Both:
+    - resolve bare imports ( `import { html } from 'lit-html'` )
+    - preserve `import.meta.url` value from before bundling
+    - load polyfills when needed:
+      - dynamic import
+      - webcomponents
+      - fetch
+    - minify + treeshake js
+    - minify html and css in template literals
 
-**Both**
-- resolve bare imports ( `import { html } from 'lit-html'` )
-- web component polyfills
-- preserve `import.meta.url` value from before bundling
-- minify + treeshake js
-- minify html and css in template literals
+## Adjusting browser support for the modern build
+The legacy build targets IE11, which is the earliest browser supported by the webcomponents polyfill. For the modern build we target the lates 2 versions of the major browsers (chrome, firefox, safari and edge).
 
-## Config options
-Our config accepts two options:
+You can adjust this by adding a [browserslist](https://github.com/browserslist/browserslist) configuration. For example by adding a `.browserslistrc` file to your project, or adding an entry to your package.json. See the [browserslist documentation](https://github.com/browserslist/browserslist) for more information.
 
-```javascript
-export default createDefaultConfig({
-  // your app's index.html. required
-  input: './index.html',
-  // the directory to output files into, defaults to 'dist'. optional
-  outputDir: '',
-});
-```
-
-See [extending](#extending-the-rollup-config) to add more configuration.
+> Warning: you should not add IE11 or other very early browsers as a target in your browserslist, as it would result in a broken modern build because it makes some assumptions around browser support. Use the `--legacy` flag for legacy builds.
 
 ## Customizing the babel config
 You can define your own babel plugins by adding a `.babelrc` or `babel.config.js` to your project. See [babeljs config](https://babeljs.io/docs/en/configuration) for more information.
@@ -148,13 +138,6 @@ For example to add support for class properties:
   ]
 }
 ```
-
-## Adjusting browser support for the modern build
-The legacy build targets IE11, which is the earliest browser supported by the webcomponents polyfill. For the modern build we target the lates 2 versions of the major browsers (chrome, firefox, safari and edge).
-
-You can adjust this by adding a [browserslist](https://github.com/browserslist/browserslist) configuration. For example by adding a `.browserslistrc` file to your project, or adding an entry to your package.json. See the [browserslist documentation](https://github.com/browserslist/browserslist) for more information.
-
-> Note: you should not add IE11 or other very early browsers as a target in your browserslist, as it would result in a broken modern build because it makes some assumptions around browser support. Use the `--legacy` flag for legacy builds.
 
 ## Extending the rollup config
 A rollup config is just a plain object. It's easy to extend it using javascript:
@@ -198,13 +181,54 @@ export default configs.map(config => ({
 
 ### Common extensions
 ::: warning
-Many extensions add non-native syntax to your code, which can be bad for maintenance longer term.
-We suggest sticking to native syntax.
-If you really need it, scroll below to see some usage examples.
+Some extensions or plugins add non-native or experimental features to your code. This can be bad for the maintenance of your code in the long term, we therefore don't recommend it unless you know what you're doing.
 :::
+
+#### Customizing index.html output
+If you need to customize the output of your `index.html` you can pass extra options to [rollup-plugin-index-html](https://open-wc.org/building/rollup-plugin-index-html.html):
+
+```javascript
+import createDefaultConfig from '@open-wc/building-rollup/modern-config';
+
+export default createDefaultConfig({
+  input: './index.html',
+  indexHTMLPlugin: {
+    polyfills: {
+      fetch: false,
+      intersectionObserver: true,
+    },
+  }
+});
+```
+
+See the plugin docs for all options.
+
+#### non index.html entrypoint
+By default we look for an `index.html` as entrypoint. If want to use regular entrypoints you will need to provide your `index.html` for output manually:
+
+```javascript
+import createDefaultConfig from '@open-wc/building-rollup/modern-config';
+
+export default createDefaultConfig({
+  input: './my-app.js',
+  indexHTMLPlugin: {
+    // inline
+    indexHTML: `
+      <html>
+        <head></head>
+        <body></body>
+      </html>
+    `,
+
+    // from file
+    indexHTML: fs.readFileSync('/path/to/index.html', 'utf-8'),
+  }
+});
+```
 
 #### Resolve commonjs modules
 CommonJS is the module format for NodeJS, and not suitable for the browser. Rollup only handles es modules by default, but sometimes it's necessary to be able to import a dependency. To do this, you can add [rollup-plugin-commonjs](https://github.com/rollup/rollup-plugin-commonjs):
+
 ```javascript
 import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
 import commonjs from 'rollup-plugin-commonjs';

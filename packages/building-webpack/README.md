@@ -3,20 +3,26 @@
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
 ## Configuration
-Our webpack configuration will help you get started using webpack. You can write modern javascript and use the latest browser features, webpack will optimize your code for production and do the necessary transforms and polyfills for older browsers.
+Webpack configuration to help you get started building modern web applications. You write modern javascript using the latest browser features, webpack will optimize your code for production ensure it runs on all supported browsers.
 
-As input you specify your `index.html`, any module scripts are run through webpack and your index is updated with the correct code and polyfills to run application.
+The input for webpack is the same `index.html` you use for development. Any module scripts in your index are run through webpack and your index is updated with the output from rollup.
 
 See 'config features' for all details. See the extending section for customization, such as supporting non-standard syntax or adding babel plugins.
 
 ## Setup
 
+### New project
+```bash
+npm init @open-wc
+```
+
+### Existing project
 ```bash
 npm init @open-wc
 # Upgrade > Building > Webpack
 ```
 
-## Manual setup
+### Manual setup
 
 1. Install the required dependencies:
 ```bash
@@ -151,12 +157,12 @@ module.exports = configs.map(config => merge(config, {
 }));
 ```
 
-## Common extensions
+### Common extensions
 ::: warning
-Some extensions add non-native syntax to your code, which can be bad for maintenance longer term. We suggest avoiding adding plugins for using experimental javascript proposals or for importing non-standard module types.
+Some extensions or plugins add non-native or experimental features to your code. This can be bad for the maintenance of your code in the long term, we therefore don't recommend it unless you know what you're doing.
 :::
 
-## Customizing index.html output
+#### Customizing index.html output
 If you need to customize the output of your `index.html` you can pass extra options to [webpack-index-html-plugin](https://open-wc.org/building/webpack-index-html-plugin.html):
 
 ```javascript
@@ -166,21 +172,37 @@ const createDefaultConfig = require('@open-wc/building-webpack/modern-config');
 module.exports = createDefaultConfig({
   input: path.resolve(__dirname, './index.html'),
   webpackIndexHTMLPlugin: {
-    template: ({ assets, entries, legacyEntries, variation }) => `
-      <html>
-        <head></head>
-        <body>
-          ... custom index html template ...
-        </body>
-      </html>
-    `,
+    polyfills: {
+      fetch: false,
+      intersectionObserver: true,
+    },
   },
 });
 ```
 
 See the documentation for all options.
 
-## Adding or removing polyfills
+#### non index.html entrypoint
+By default we look for an `index.html` as entrypoint. If want to use regular entrypoints you will need to provide your `index.html` for output manually:
+
+```javascript
+const merge = require('webpack-merge');
+const createDefaultConfig = require('@open-wc/building-webpack/modern-config');
+
+module.exports = createDefaultConfig({
+  input: path.resolve(__dirname, './my-app.js'),
+  webpackIndexHTMLPlugin: {
+    template: ({ assets, entries, legacyEntries, variation }) => `
+      <html>
+        <head></head>
+        <body></body>
+      </html>
+    `,
+  },
+});
+```
+
+#### Adding or removing polyfills
 By default we polyfill `core-js`, `webcomponentsjs` and `fetch`. It is possile to add or remove polyfills by passing `webpack-index-html` configuration like above:
 
 ```javascript
@@ -207,7 +229,7 @@ module.exports = createDefaultConfig({
 
 [See the documentation](https://open-wc.org/building/webpack-index-html-plugin.html) for more information.
 
-### Copy assets
+#### Copy assets
 Web apps often include assets such as css files and images. These are not part of your regular dependency graph, so they need to be copied into the build directory.
 
 [copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin) is a popular plugin fo this.
@@ -240,7 +262,7 @@ module.exports = [
 ];
 ```
 
-### Support typescript
+#### Support typescript
 Make sure to prevent any compilation done by the typescript compiler `tsconfig.json`, as babel and webpack do this for you:
 
 ```json
@@ -254,7 +276,7 @@ Make sure to prevent any compilation done by the typescript compiler `tsconfig.j
 
 Within webpack there are two options to add typescript support.
 
-#### 1. Babel
+##### 1. Babel
 We recommend using the babel typescript plugin. Add this to your `.babelrc`:
 ```json
 {
@@ -287,7 +309,7 @@ This the fastest method, as it strips away types during babel transformormation 
   ```
 </details>
 
-#### 2. Plugin
+##### 2. Plugin
 It is also possible to add the webpack typescript plugin, which does typechecking and compiling for you:
 
 ```javascript
