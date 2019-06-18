@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.4...@open-wc/create@0.12.5) (2019-06-18)
+
+
+### Bug Fixes
+
+* **create:** set app-index in component demo ([#503](https://github.com/open-wc/open-wc/issues/503)) ([847cb52](https://github.com/open-wc/open-wc/commit/847cb52))
+
+
+
+
+
 ## [0.12.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.3...@open-wc/create@0.12.4) (2019-06-14)
 
 
