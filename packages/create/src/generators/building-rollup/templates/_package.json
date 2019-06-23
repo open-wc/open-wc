@@ -4,7 +4,7 @@
     "build": "rimraf dist && rollup -c rollup.config.js"
   },
   "devDependencies": {
-    "@open-wc/building-rollup": "^0.5.5",
+    "@open-wc/building-rollup": "^0.6.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.15.4"
   }
