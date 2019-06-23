@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.6](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@2.0.5...@open-wc/testing-karma@2.0.6) (2019-06-18)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
+## [2.0.5](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@2.0.4...@open-wc/testing-karma@2.0.5) (2019-06-14)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
+## [2.0.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@2.0.3...@open-wc/testing-karma@2.0.4) (2019-06-08)
+
+
+### Bug Fixes
+
+* **testing-karma:** changelog formatting for 2.0.0 ([a0c70f8](https://github.com/open-wc/open-wc/commit/a0c70f8))
+
+
+
+
+
 ## [2.0.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@2.0.2...@open-wc/testing-karma@2.0.3) (2019-05-25)
 
 **Note:** Version bump only for package @open-wc/testing-karma
@@ -48,7 +75,7 @@ files: [
 files: [
   { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' },
 ]
-
+```
 
 
 

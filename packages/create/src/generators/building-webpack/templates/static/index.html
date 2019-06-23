@@ -6,22 +6,21 @@
   <meta name="Description" content="Put your description here.">
 
   <style>
-    * {
+    html, body {
       margin: 0;
       padding: 0;
       font-family: sans-serif;
-    }
-
-    body {
       background-color: #ededed;
     }
   </style>
   <title><%= tagName %></title>
 </head>
 <body>
-  <<%= tagName %>></<%= tagName %>>
+  <<%= tagName %> heading="Hello world!"></<%= tagName %>>
 
   <script type="module" src="./src/<%= tagName %>.js"></script>
 </body>
 
 </html>
+
+

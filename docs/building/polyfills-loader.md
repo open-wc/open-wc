@@ -1,1 +1,0 @@
-../../packages/polyfills-loader/README.md

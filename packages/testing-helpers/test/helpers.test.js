@@ -28,17 +28,18 @@ describe('Helpers', () => {
   });
 
   it('provides triggerFocusFor() to await a focus event (for IE)', async () => {
-    const tag = defineCE(
-      class FocusElement extends HTMLElement {
-        connectedCallback() {
-          this.focusCount = 0;
-          this.inputElement = this.querySelector('input');
-          this.inputElement.addEventListener('focus', () => {
-            this.focusCount += 1;
-          });
-        }
-      },
-    );
+    class FocusElement extends HTMLElement {
+      connectedCallback() {
+        this.focusCount = 0;
+        this.inputElement = this.querySelector('input');
+        this.inputElement.addEventListener('focus', () => {
+          this.focusCount += 1;
+        });
+      }
+    }
+
+    const tag = defineCE(FocusElement);
+    /** @type {FocusElement} */
     const el = await fixture(`<${tag}><input></${tag}>`);
     expect(el.focusCount).to.equal(0);
 
@@ -47,18 +48,19 @@ describe('Helpers', () => {
   });
 
   it('provides triggerBlurFor() to await a blur event (for IE)', async () => {
-    const tag = defineCE(
-      class FocusElement extends HTMLElement {
-        connectedCallback() {
-          this.blurCount = 0;
-          this.inputElement = this.querySelector('input');
-          this.inputElement.addEventListener('blur', () => {
-            this.blurCount += 1;
-          });
-          this.inputElement.focus();
-        }
-      },
-    );
+    class FocusElement extends HTMLElement {
+      connectedCallback() {
+        this.blurCount = 0;
+        this.inputElement = this.querySelector('input');
+        this.inputElement.addEventListener('blur', () => {
+          this.blurCount += 1;
+        });
+        this.inputElement.focus();
+      }
+    }
+
+    const tag = defineCE(FocusElement);
+    /** @type {FocusElement} */
     const el = await fixture(`<${tag}><input></${tag}>`);
     expect(el.blurCount).to.equal(0);
 

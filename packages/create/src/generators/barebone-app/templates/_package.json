@@ -2,13 +2,13 @@
   "name": "<%= tagName %>",
   "license": "MIT",
   "scripts": {
-    "start": "owc-dev-server --open"
+    "start": "owc-dev-server --app-index index.html --open --watch"
   },
   "dependencies": {
     "lit-html": "^1.0.0",
     "lit-element": "^2.0.1"
   },
   "devDependencies": {
-    "owc-dev-server": "^0.3.0"
+    "owc-dev-server": "^1.0.0"
   }
 }

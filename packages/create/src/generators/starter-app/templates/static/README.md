@@ -11,7 +11,7 @@
 To get started:
 
 ```sh
-npm init @open-wc starter-app
+npm init @open-wc
 # requires node 10 & npm 6 or higher
 ```
 
@@ -20,8 +20,8 @@ npm init @open-wc starter-app
 </p>
 
 ## Scripts
-- `build` builds your app and outputs it in your dist directory
-- `start:build` runs your built app from dist directory
-- `watch:build` builds and runs your app, rebuilding when input files change
+- `start` runs your app for development, reloading on file changes
+- `start:build` runs your app after it has been built using the build command
+- `build` builds your app and outputs it in your `dist` directory
 - `test` runs your test suite with Karma
 - `lint` runs the linter for your project

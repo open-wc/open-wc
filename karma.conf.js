@@ -10,7 +10,7 @@ module.exports = config => {
         {
           pattern: config.grep
             ? config.grep
-            : 'packages/!(webpack-import-meta-loader|create)/test/*.test.js',
+            : 'packages/!(webpack-import-meta-loader|create|building-utils|webpack-index-html-plugin)/test/*.test.js',
           type: 'module',
         },
       ],

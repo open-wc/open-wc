@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.5.6...@open-wc/building-rollup@0.5.7) (2019-06-18)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.5.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.5.5...@open-wc/building-rollup@0.5.6) (2019-06-14)
+
+
+### Bug Fixes
+
+* align scripts and update create ([#494](https://github.com/open-wc/open-wc/issues/494)) ([96b62c7](https://github.com/open-wc/open-wc/commit/96b62c7))
+
+
+
+
+
+## [0.5.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.5.4...@open-wc/building-rollup@0.5.5) (2019-06-14)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.5.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.5.3...@open-wc/building-rollup@0.5.4) (2019-06-14)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.5.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.5.2...@open-wc/building-rollup@0.5.3) (2019-06-13)
+
+
+### Bug Fixes
+
+* **building-rollup:** clean falsy plugins in legacy watch ([#490](https://github.com/open-wc/open-wc/issues/490)) ([58d8e63](https://github.com/open-wc/open-wc/commit/58d8e63))
+* **building-rollup:** make ts builds work for modern ([#491](https://github.com/open-wc/open-wc/issues/491)) ([e940904](https://github.com/open-wc/open-wc/commit/e940904))
+
+
+
+
+
+## [0.5.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.5.1...@open-wc/building-rollup@0.5.2) (2019-06-13)
+
+
+### Bug Fixes
+
+* **building-rollup:** remove legacy scripts from modern watch mode ([#489](https://github.com/open-wc/open-wc/issues/489)) ([8083431](https://github.com/open-wc/open-wc/commit/8083431))
+
+
+
+
+
+## [0.5.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.5.0...@open-wc/building-rollup@0.5.1) (2019-06-12)
+
+
+### Bug Fixes
+
+* **building-rollup:** enable and show howto setup typescript ([36d9325](https://github.com/open-wc/open-wc/commit/36d9325))
+
+
+
+
+
+# [0.5.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.4.7...@open-wc/building-rollup@0.5.0) (2019-06-02)
+
+
+### Features
+
+* **building-rollup:** include all static modules in `entryModules` ([#473](https://github.com/open-wc/open-wc/issues/473)) ([2dec7a2](https://github.com/open-wc/open-wc/commit/2dec7a2))
+
+
+
+
+
 ## [0.4.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.4.6...@open-wc/building-rollup@0.4.7) (2019-05-25)
 
 

@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.0.2...@open-wc/building-webpack@2.0.3) (2019-06-18)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.0.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.0.1...@open-wc/building-webpack@2.0.2) (2019-06-14)
+
+
+### Bug Fixes
+
+* align scripts and update create ([#494](https://github.com/open-wc/open-wc/issues/494)) ([96b62c7](https://github.com/open-wc/open-wc/commit/96b62c7))
+
+
+
+
+
+## [2.0.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.0.0...@open-wc/building-webpack@2.0.1) (2019-06-14)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+# [2.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.4.5...@open-wc/building-webpack@2.0.0) (2019-06-14)
+
+
+### Features
+
+* utils and webpack plugin for an index.html entrypoint ([#474](https://github.com/open-wc/open-wc/issues/474)) ([c382cc7](https://github.com/open-wc/open-wc/commit/c382cc7))
+
+
+### BREAKING CHANGES
+
+* Replaced webpack html plugin with index html plugin
+
+
+
+
+
 ## [1.4.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@1.4.4...@open-wc/building-webpack@1.4.5) (2019-05-30)
 
 

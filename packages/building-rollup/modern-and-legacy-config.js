@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+const { DEFAULT_EXTENSIONS } = require('@babel/core');
 const { findSupportedBrowsers } = require('@open-wc/building-utils');
 const resolve = require('rollup-plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
@@ -12,6 +13,7 @@ const prefix = '[owc-building-rollup]';
 function createConfig(_options, legacy) {
   const options = {
     outputDir: 'dist',
+    extensions: DEFAULT_EXTENSIONS,
     ..._options,
   };
 
@@ -36,10 +38,13 @@ function createConfig(_options, legacy) {
         }),
 
       // resolve bare import specifiers
-      resolve(),
+      resolve({
+        extensions: options.extensions,
+      }),
 
       // run code through babel
       babel({
+        extensions: options.extensions,
         plugins: [
           '@babel/plugin-syntax-dynamic-import',
           '@babel/plugin-syntax-import-meta',
@@ -61,12 +66,16 @@ function createConfig(_options, legacy) {
               },
             },
           ],
-        ],
+        ].filter(_ => !!_),
+
         presets: [
           [
-            '@babel/env',
+            '@babel/preset-env',
             {
               targets: legacy ? ['ie 11'] : findSupportedBrowsers(),
+              // preset-env compiles template literals for safari 12 due to a small bug which
+              // doesn't affect most use cases. for example lit-html handles it: (https://github.com/Polymer/lit-html/issues/575)
+              exclude: legacy ? undefined : ['@babel/plugin-transform-template-literals'],
               useBuiltIns: false,
             },
           ],
