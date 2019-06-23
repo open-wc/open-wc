@@ -35,6 +35,7 @@
     "@open-wc/karma-esm": "^1.0.3",
     "@types/node": "^11.13.0",
     "@webcomponents/webcomponentsjs": "^2.2.0",
+    "accessibility-developer-tools": "^2.12.0",
     "babel-loader": "^8.0.0",
     "babel-plugin-bundled-import-meta": "^0.3.0",
     "babel-plugin-istanbul": "^5.1.1",

@@ -32,5 +32,9 @@ module.exports = function createEsmConfig(config) {
         exclude: ['**/node_modules/sinon/**', '**/node_modules/@bundled-es-modules/**'],
       },
     },
+
+    files: [
+      'node_modules/accessibility-developer-tools/dist/js/axs_testing.js'
+    ],
   });
 };

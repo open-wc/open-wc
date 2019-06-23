@@ -172,6 +172,27 @@ afterEach(() => {
 });
 ```
 
+## a11y
+To perform accessibility test use `a11ySuite` function.
+It accepts a template string from which a fixture is created or already created element. The later option is useful to perform accessibility test for the element at certain state.
+
+Rules can be ignored by providing 3rd argument which accepts array of rule names to ignore.
+
+```js
+
+import {a11y} from '@open-wc/testing';
+
+describe('<my-component>', () => {
+  a11y('Normal state', `<div role="listbox">
+    <my-component>item</my-component>
+    </div>`);
+  a11y('Disabled state', `<div role="listbox">
+    <my-component disabled>item</my-component>
+    </div>`);
+  a11y('This passes error in axa', `<div aria-labelledby="non-existing-id"></div><label id="my-id">Title</label>`, ['badAriaAttributeValue']);
+});
+```
+
 <script>
   export default {
     mounted() {

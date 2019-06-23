@@ -33,6 +33,7 @@ module.exports = function createLegacyConfig(config) {
         pattern: require.resolve('@webcomponents/webcomponentsjs/webcomponents-bundle'),
         watched: false,
       },
+      'node_modules/accessibility-developer-tools/dist/js/axs_testing.js',
     ],
 
     plugins: [

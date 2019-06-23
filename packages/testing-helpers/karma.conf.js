@@ -8,6 +8,7 @@ module.exports = config => {
       files: [
         // allows running single tests with the --grep flag
         { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' },
+        'node_modules/accessibility-developer-tools/dist/js/axs_testing.js',
       ],
 
       // TODO: not yet within the 90% default

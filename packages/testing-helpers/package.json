@@ -35,6 +35,7 @@
     "@open-wc/testing-karma": "^2.0.3",
     "@open-wc/testing-karma-bs": "^1.1.3",
     "@open-wc/testing-wallaby": "^0.1.12",
+    "accessibility-developer-tools": "^2.12.0",
     "lit-html": "^1.0.0",
     "mocha": "^5.0.0",
     "sinon": "^7.2.7",
