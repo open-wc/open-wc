@@ -4,3 +4,4 @@ coverage/
 dist
 stats.html
 packages/semantic-dom-diff/bundle/get-diffable-html.js
+packages/**/test/**/snapshots

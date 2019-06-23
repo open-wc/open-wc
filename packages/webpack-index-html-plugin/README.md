@@ -2,7 +2,7 @@
 
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
-Webpack plugin for building modern standards based web applications.
+Webpack plugin to make webpack understand your index.html.
 
 1. Takes in a standard index.html:
 ```html

@@ -5,12 +5,15 @@ const { getPolyfills } = require('../../index-html/polyfills');
 describe('polyfills', () => {
   it('returns the correct polyfills', () => {
     const config = {
-      coreJs: true,
-      webcomponents: true,
-      fetch: true,
-      intersectionObserver: true,
+      polyfills: {
+        coreJs: true,
+        webcomponents: true,
+        fetch: true,
+        intersectionObserver: true,
+      },
     };
 
+    // @ts-ignore
     const polyfills = getPolyfills(config);
     const polyfillsWithoutCode = polyfills.map(p => ({
       ...p,
@@ -60,14 +63,17 @@ describe('polyfills', () => {
     });
   });
 
-  it('can turn off some polyfills', () => {
+  it('polyfills system with nomodule false if entry is systemjs', () => {
     const config = {
-      coreJs: true,
-      webcomponents: false,
-      fetch: false,
-      intersectionObserver: false,
+      polyfills: {
+        systemJs: true,
+      },
+      entries: {
+        type: 'system',
+      },
     };
 
+    // @ts-ignore
     const polyfills = getPolyfills(config);
     const polyfillsWithoutCode = polyfills.map(p => ({
       ...p,
@@ -78,18 +84,43 @@ describe('polyfills', () => {
     expect(polyfillsWithoutCode).to.eql([
       {
         code: undefined,
-        hash: '79b2367fd020fda0c519294df7db91bf',
-        name: 'core-js',
-        nomodule: true,
-        sourcemap: undefined,
+        hash: 'b45ab1e6ec80f6791235b5a5dc18ba8a',
+        name: 'systemjs',
+        nomodule: false,
         test: undefined,
+        sourcemap: undefined,
       },
     ]);
+  });
 
-    polyfills.forEach(polyfill => {
-      expect(polyfill.code).to.exist;
-      expect(polyfill.sourcemap).to.exist;
-    });
+  it('polyfills system with nomodule true', () => {
+    const config = {
+      polyfills: {
+        systemJs: true,
+      },
+      entries: {
+        type: 'script',
+      },
+    };
+
+    // @ts-ignore
+    const polyfills = getPolyfills(config);
+    const polyfillsWithoutCode = polyfills.map(p => ({
+      ...p,
+      code: undefined,
+      sourcemap: undefined,
+    }));
+
+    expect(polyfillsWithoutCode).to.eql([
+      {
+        code: undefined,
+        hash: 'b45ab1e6ec80f6791235b5a5dc18ba8a',
+        name: 'systemjs',
+        nomodule: true,
+        test: undefined,
+        sourcemap: undefined,
+      },
+    ]);
   });
 
   it('can load custom polyfills', () => {
@@ -107,13 +138,16 @@ describe('polyfills', () => {
       },
     ];
     const config = {
-      coreJs: true,
-      webcomponents: false,
-      fetch: false,
-      intersectionObserver: false,
-      customPolyfills,
+      polyfills: {
+        coreJs: true,
+        webcomponents: false,
+        fetch: false,
+        intersectionObserver: false,
+        customPolyfills,
+      },
     };
 
+    // @ts-ignore
     const polyfills = getPolyfills(config);
     const polyfillsWithoutCode = polyfills.map(p => ({
       ...p,
