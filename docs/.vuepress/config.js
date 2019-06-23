@@ -33,6 +33,7 @@ const sidebar = [
       ['/testing/', 'Getting started'],
       '/testing/testing-helpers',
       '/testing/testing-chai-dom-equals',
+      '/testing/testing-chai-a11y-axe',
       '/testing/semantic-dom-diff',
       '/testing/testing-karma',
       '/testing/karma-esm',
