@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.8](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.7...@open-wc/create@0.12.8) (2019-06-23)
+
+
+### Bug Fixes
+
+* add missing dependencies ([9abf373](https://github.com/open-wc/open-wc/commit/9abf373))
+
+
+
+
+
 ## [0.12.7](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.6...@open-wc/create@0.12.7) (2019-06-23)
 
 **Note:** Version bump only for package @open-wc/create
