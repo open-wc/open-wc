@@ -1,0 +1,31 @@
+{
+  "name": "chai-a11y-axe",
+  "version": "1.0.0",
+  "description": "A11y tests for chai",
+  "author": "open-wc",
+  "main": "index.js",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/chai-a11y-axe"
+  },
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js"
+  },
+  "files": [
+    "*.js",
+    "src"
+  ],
+  "dependencies": {
+    "axe-core": "^3.3.0"
+  },
+  "devDependencies": {},
+  "contributors": [
+    "Pawel Psztyc"
+  ]
+}
