@@ -180,16 +180,16 @@ Rules can be ignored by providing 3rd argument which accepts array of rule names
 
 ```js
 
-import {a11y} from '@open-wc/testing';
+import { a11ySuite } from '@open-wc/testing';
 
 describe('<my-component>', () => {
-  a11y('Normal state', `<div role="listbox">
+  a11ySuite('Normal state', `<div role="listbox">
     <my-component>item</my-component>
     </div>`);
-  a11y('Disabled state', `<div role="listbox">
+  a11ySuite('Disabled state', `<div role="listbox">
     <my-component disabled>item</my-component>
     </div>`);
-  a11y('This passes error in axa', `<div aria-labelledby="non-existing-id"></div><label id="my-id">Title</label>`, ['badAriaAttributeValue']);
+  a11ySuite('This passes error in axa', `<div aria-labelledby="non-existing-id"></div><label id="my-id">Title</label>`, ['badAriaAttributeValue']);
 });
 ```
 
