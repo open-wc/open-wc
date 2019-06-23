@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.0.1...@open-wc/building-utils@2.1.0) (2019-06-23)
+
+
+### Features
+
+* **building-rollup:** add rollup-index-html-plugin ([#510](https://github.com/open-wc/open-wc/issues/510)) ([2ac2d19](https://github.com/open-wc/open-wc/commit/2ac2d19))
+
+
+
+
+
 ## [2.0.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.0.0...@open-wc/building-utils@2.0.1) (2019-06-18)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/webpack-index-html-plugin",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Plugin for generating a index html with webpack",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -23,7 +23,7 @@
     "*.js"
   ],
   "dependencies": {
-    "@open-wc/building-utils": "^2.0.1",
+    "@open-wc/building-utils": "^2.1.0",
     "deepmerge": "^3.2.0",
     "parse5": "^5.1.0"
   },

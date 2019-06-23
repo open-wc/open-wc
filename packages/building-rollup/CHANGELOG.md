@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.5.7...@open-wc/building-rollup@0.6.0) (2019-06-23)
+
+
+### Features
+
+* **building-rollup:** add rollup-index-html-plugin ([#510](https://github.com/open-wc/open-wc/issues/510)) ([2ac2d19](https://github.com/open-wc/open-wc/commit/2ac2d19))
+
+
+
+
+
 ## [0.5.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.5.6...@open-wc/building-rollup@0.5.7) (2019-06-18)
 
 **Note:** Version bump only for package @open-wc/building-rollup
