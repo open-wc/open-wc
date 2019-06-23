@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.6](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.5...@open-wc/create@0.12.6) (2019-06-23)
+
+
+### Bug Fixes
+
+* **create:** improve clarity of init ([#497](https://github.com/open-wc/open-wc/issues/497)) ([ed5277e](https://github.com/open-wc/open-wc/commit/ed5277e))
+
+
+
+
+
 ## [0.12.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.4...@open-wc/create@0.12.5) (2019-06-18)
 
 
