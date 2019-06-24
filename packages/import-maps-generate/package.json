@@ -26,6 +26,7 @@
     "prepublishOnly": "npm run build && ../../scripts/insert-header.js"
   },
   "bin": {
+    "generate": "./dist/generate.js",
     "generate-import-map": "./dist/generate.js"
   },
   "main": "dist/generate.js",
