@@ -14,7 +14,7 @@ The hardest part of any project is often getting content onto that first blank p
 - [Elix](https://component.kitchen/elix)
 
   The Elix project aims to create a universal library of all general-purpose user interface patterns commonly found in desktop and mobile UIs, where each pattern is implemented as a well-designed, attractive, high-quality, performant, accessible, localizable, and extensively customizable web component.
-- [Helix UI](https://rackerlabs.github.io/helix-ui/)
+- [HelixUI](https://rackerlabs.github.io/helix-ui/)
 
   The HelixUI library provides front-end developers a set of reusable CSS classes and HTML Custom Elements that adhere to Helix design standards, as outlined by Rackspace.
 - [Ink Components](https://components.ink/)
