@@ -1,6 +1,6 @@
 {
   "name": "@import-maps/generate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Generate an import map based on your production dependencies",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
