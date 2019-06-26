@@ -6,17 +6,17 @@ This will allow you to generate a flat [import-map](https://github.com/WICG/impo
 It allows you to fix the "nested" npm problem for front end development.
 
 ::: warning
-Only yarn.lock is supported for now
+Currently only yarn.lock is supported
 :::
 
 ::: warning
-This is still in early beta (with windows pathes not supported yet)
+This is still in early beta (windows paths are not supported yet)
 :::
 
 ## Features
 - generates a flat import-map
-- prompts when there are not automatically resolveable conflicts
-- supports resolutions, overrides, deletions via the `importMap` property in package.json
+- prompts the user when there are version conflicts that are not automatically resolvable
+- supports resolutions, overrides and deletions via the `importMap` property in package.json
 - supports yarn workspaces (monorepos)
 
 ## Usage
@@ -43,28 +43,45 @@ npx @import-map/generate
 
 ## Configuration
 
-There may be times where you'll want to apply overrides. For example, if you're using the built-in `std:kv-storage` module and the polyfill for browsers that don't support it, the `kv-storage-polyfill` will be in your yarn.lock, and will be included in your import map like so.
+You can add a `importMap` key in your `package.json` file to specify overrides, deletions or resolutions.
 
-```json
-{
-  "imports": {
-    "kv-storage-polyfill": "/node_modules/kv-storage-polyfill/index.js",
-    "kv-storage-polyfill/": "/node_modules/kv-storage-polyfill/"
-  }
-}
+`package.json`:
 ```
-
-however what you actually want is to
-- use the built-in module if supported
-- use the polyfill as a fallback
-
-you can archive that via an override in your `package.json`
-
-```json
 {
   "name": "my-package",
   "version": "0.0.0",
   // ...
+  "importMap": {
+    "overrides": {},
+    "deletes": [],
+    "resolutions": {}
+  }
+}
+```
+
+### Overrides
+
+There may be times where you'll want to apply overrides. For example, if you're using the built-in `std:kv-storage` module and the polyfill for browsers that don't support it, the `kv-storage-polyfill` will be in your yarn.lock, and will be included in your import map like so.
+
+```json
+{
+  "importMap": {
+    "imports": {
+      "kv-storage-polyfill": "/node_modules/kv-storage-polyfill/index.js",
+      "kv-storage-polyfill/": "/node_modules/kv-storage-polyfill/"
+    }
+  }
+}
+```
+
+however what you actually want is to:
+- use the built-in module if supported
+- use the polyfill as a fallback
+
+you can achieve that via an override in your `package.json`:
+
+```json
+{
   "importMap": {
     "overrides": {
       "kv-storage-polyfill": [
@@ -77,7 +94,11 @@ you can archive that via an override in your `package.json`
 }
 ```
 
-which will result in the following import map.
+::: warning
+Note that if you apply overrides, you may also need to specify deletions for the generated scope in the importmap.
+:::
+
+This will result in the following import map:
 ```json
 {
   "imports": {
@@ -89,46 +110,39 @@ which will result in the following import map.
 }
 ```
 
+Overrides may be useful for:
+- Polyfilling
+- Fixing a dependency with a local fork
+- Getting a dependency from a CDN instead
+
 ### Deletes
 
-You can apply deletions to the generated importMap by adding a `importMap` property to your package.json:
+You can apply deletions to the generated importmap by adding a `deletes` property to your package.json:
 
 `package.json`:
 ```json
 {
-  "name": "my-package",
-  "version": "0.0.0",
-  // ...
   "importMap": {
     "deletes": ["kv-storage-polyfill", "kv-storage-polyfill/"]
   }
 }
 ```
 
-### Overrides
+### Resolutions
 
-If you want to override a dependency in the importMap with a custom value you can add an `overrides` property.
-This can be useful
-- to fix a dependency with a local fork (hopefully temporarily)
-- to get a dependency from a CDN instead
+There may be times where you have conflicting versions. For example; `lit-html@0.14.0` and `lit-html@1.1.0` are both present, and you only want `lit-html@1.1.0`. When this happens, it will prompt the user to ask to solve the resolution. Alternatively, you can specify resolutions in your package.json instead.
 
 `package.json`:
 ```json
 {
-  "name": "my-package",
-  "version": "0.0.0",
-  // ...
   "importMap": {
-    "overrides": {
-      "lit-html": "/lit-html-fixed/lit-html.js",
-      "lit-html/": "/lit-html-fixed/"
-    },
+    "resolutions": {
+      "lit-html": "1.1.0"
+    }
   }
 }
 ```
-
-In this case everyone who import from `lit-html` will now use your local fork which may contain fixes.
-
+    
 <script>
   export default {
     mounted() {
