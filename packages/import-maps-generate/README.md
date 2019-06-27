@@ -53,7 +53,7 @@ You can add a `importMap` key in your `package.json` file to specify overrides, 
   // ...
   "importMap": {
     "overrides": {},
-    "deletes": [],
+    "deletions": [],
     "resolutions": {}
   }
 }
@@ -89,7 +89,7 @@ you can achieve that via an override in your `package.json`:
         "/node_modules/kv-storage-polyfill/index.js"
       ]
     },
-    "deletes": ["kv-storage-polyfill/"]
+    "deletions": ["kv-storage-polyfill/"]
   }
 }
 ```
@@ -115,15 +115,15 @@ Overrides may be useful for:
 - Fixing a dependency with a local fork
 - Getting a dependency from a CDN instead
 
-### Deletes
+### Deletions
 
-You can apply deletions to the generated importmap by adding a `deletes` property to your package.json:
+You can apply deletions to the generated importmap by adding a `deletions` property to your package.json:
 
 `package.json`:
 ```json
 {
   "importMap": {
-    "deletes": ["kv-storage-polyfill", "kv-storage-polyfill/"]
+    "deletions": ["kv-storage-polyfill", "kv-storage-polyfill/"]
   }
 }
 ```

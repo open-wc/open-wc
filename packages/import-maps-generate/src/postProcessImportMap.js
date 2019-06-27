@@ -16,10 +16,10 @@ export function postProcessImportMap(imports, packageJson) {
       }
     }
 
-    if (typeof packageJson.importMap.deletes !== 'undefined') {
+    if (typeof packageJson.importMap.deletions !== 'undefined') {
       // delete imports
-      if (typeof packageJson.importMap.deletes.imports !== 'undefined') {
-        const importsToDelete = packageJson.importMap.deletes.imports;
+      if (typeof packageJson.importMap.deletions.imports !== 'undefined') {
+        const importsToDelete = packageJson.importMap.deletions.imports;
 
         Object.values(importsToDelete).forEach(dependency => {
           delete importMap.imports[dependency];
@@ -27,8 +27,8 @@ export function postProcessImportMap(imports, packageJson) {
       }
 
       // delete scopes
-      if (typeof packageJson.importMap.deletes.scopes !== 'undefined') {
-        const scopesToDelete = packageJson.importMap.deletes.scopes;
+      if (typeof packageJson.importMap.deletions.scopes !== 'undefined') {
+        const scopesToDelete = packageJson.importMap.deletions.scopes;
 
         Object.values(scopesToDelete).forEach(dependency => {
           delete importMap.scopes[dependency];
@@ -36,8 +36,8 @@ export function postProcessImportMap(imports, packageJson) {
       }
 
       // delete imports of a scope
-      if (typeof packageJson.importMap.deletes.scopeImports !== 'undefined') {
-        const scopeImportsToDelete = packageJson.importMap.deletes.scopeImports;
+      if (typeof packageJson.importMap.deletions.scopeImports !== 'undefined') {
+        const scopeImportsToDelete = packageJson.importMap.deletions.scopeImports;
 
         Object.keys(scopeImportsToDelete).forEach(scope => {
           scopeImportsToDelete[scope].forEach(item => {

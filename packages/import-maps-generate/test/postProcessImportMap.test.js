@@ -92,7 +92,7 @@ describe('postProcessImportMap', () => {
     };
     const packageJson = {
       importMap: {
-        deletes: {
+        deletions: {
           imports: ['a', 'a/', 'b'],
         },
       },
@@ -118,7 +118,7 @@ describe('postProcessImportMap', () => {
     };
     const packageJson = {
       importMap: {
-        deletes: {
+        deletions: {
           scopes: ['/scope2/scope3/'],
         },
       },
@@ -148,7 +148,7 @@ describe('postProcessImportMap', () => {
     };
     const packageJson = {
       importMap: {
-        deletes: {
+        deletions: {
           scopeImports: {
             '/scope2/': ['a'],
             '/scope2/scope3/': ['b'],
@@ -183,7 +183,7 @@ describe('postProcessImportMap', () => {
     };
     const packageJson = {
       importMap: {
-        deletes: {
+        deletions: {
           scopeImports: {
             '/scope2/': ['a', 'b'],
           },
