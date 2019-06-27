@@ -27,7 +27,7 @@ Install:
 yarn add @import-maps/generate
 ```
 
-Generation of the importMap should happen after you install dependencies, so you can add the script to your postinstall hook in `package.json`:
+Generation of the import map should happen after you install dependencies, so you can add the script to your postinstall hook in `package.json`:
 
 ```json
 "scripts": {
@@ -95,7 +95,7 @@ you can achieve that via an override in your `package.json`:
 ```
 
 ::: warning
-Note that if you apply overrides, you may also need to specify deletions for the generated scope in the importmap.
+Note that if you apply overrides, you may also need to specify deletions for the generated scope in the import map.
 :::
 
 This will result in the following import map:
@@ -117,7 +117,7 @@ Overrides may be useful for:
 
 ### Deletes
 
-You can apply deletions to the generated importmap by adding a `deletes` property to your package.json:
+You can apply deletions to the generated import map by adding a `deletes` property to your package.json:
 
 `package.json`:
 ```json
