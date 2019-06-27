@@ -95,7 +95,7 @@ you can achieve that via an override in your `package.json`:
 ```
 
 ::: warning
-Note that if you apply overrides, you may also need to specify deletions for the generated scope in the import map.
+Note that if you apply overrides, you may also need to specify deletions for the generated directory map in the import map.
 :::
 
 This will result in the following import map:
