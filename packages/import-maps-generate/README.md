@@ -52,7 +52,10 @@ You can add a `importMap` key in your `package.json` file to specify overrides, 
   "version": "0.0.0",
   // ...
   "importMap": {
-    "overrides": {},
+    "overrides": {
+      "imports": {},
+      "scopes": {}
+    },
     "deletes": [],
     "resolutions": {}
   }
@@ -66,9 +69,11 @@ There may be times where you'll want to apply overrides. For example, if you're 
 ```json
 {
   "importMap": {
-    "imports": {
-      "kv-storage-polyfill": "/node_modules/kv-storage-polyfill/index.js",
-      "kv-storage-polyfill/": "/node_modules/kv-storage-polyfill/"
+    "overrides": {
+      "imports": {
+        "kv-storage-polyfill": "/node_modules/kv-storage-polyfill/index.js",
+        "kv-storage-polyfill/": "/node_modules/kv-storage-polyfill/"
+      }
     }
   }
 }
@@ -84,10 +89,12 @@ you can achieve that via an override in your `package.json`:
 {
   "importMap": {
     "overrides": {
-      "kv-storage-polyfill": [
-        "std:kv-storage",
-        "/node_modules/kv-storage-polyfill/index.js"
-      ]
+      "imports": {
+        "kv-storage-polyfill": [
+          "std:kv-storage",
+          "/node_modules/kv-storage-polyfill/index.js"
+        ]
+      }
     },
     "deletes": ["kv-storage-polyfill/"]
   }
@@ -114,6 +121,23 @@ Overrides may be useful for:
 - Polyfilling
 - Fixing a dependency with a local fork
 - Getting a dependency from a CDN instead
+
+### Overriding Scopes
+
+You can also override entire scopes:
+
+```json
+{
+  "importMap": {
+    "overrides": {
+      "scopes": {
+        "lit-html/": "/path/to/lit-html/"
+      }
+    }
+  }
+}
+```
+
 
 ### Deletes
 
