@@ -80,8 +80,6 @@ There may be times where you'll want to override certain imports. For example, i
 ```
 
 however what you actually want is to:
-- use the built-in module if supported
-- use the polyfill as a fallback
 
 You can achieve that via an override in your `package.json`'s `importMap` configuration:
 
