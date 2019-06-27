@@ -144,7 +144,10 @@ You can apply deletions to the generated import map by adding a `deletions` prop
 ```json
 {
   "importMap": {
-    "deletions": ["kv-storage-polyfill", "kv-storage-polyfill/"]
+    "deletions": {
+      "imports": ["kv-storage-polyfill"],
+      "scopes": ["kv-storage-polyfill/"]
+    }
   }
 }
 ```
