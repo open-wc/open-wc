@@ -68,18 +68,17 @@ There may be times where you'll want to override certain imports. For example, i
 
 ```json
 {
-  "importMap": {
-    "overrides": {
-      "imports": {
-        "kv-storage-polyfill": "/node_modules/kv-storage-polyfill/index.js",
-        "kv-storage-polyfill/": "/node_modules/kv-storage-polyfill/"
-      }
-    }
+  "imports": {
+    "kv-storage-polyfill": "/node_modules/kv-storage-polyfill/index.js",
+    "kv-storage-polyfill/": "/node_modules/kv-storage-polyfill/"
   }
 }
 ```
 
 however what you actually want is to:
+
+- use the built-in module if supported
+- use the polyfill as a fallback
 
 You can achieve that via an override in your `package.json`'s `importMap` configuration:
 
@@ -103,7 +102,7 @@ You can achieve that via an override in your `package.json`'s `importMap` config
 Note that if you apply overrides, you may also need to specify deletions for the generated [package map](https://github.com/WICG/import-maps#packages-via-trailing-slashes) in the import map.
 :::
 
-This will result in the following import map:
+Which will result in the following import map:
 ```json
 {
   "imports": {
