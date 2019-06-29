@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
-const { createEntrypoints } = require('./src/create-entrypoints');
+const { parseFromString, resolve, mergeImportMaps } = require('@import-maps/resolve');
+const { processEntryHtml } = require('./src/process-entry-html.js');
 const { createOutput } = require('./src/create-output');
 const { createEntriesConfig } = require('./src/create-entries-config');
 const { createError } = require('./src/utils');
@@ -22,6 +23,7 @@ const { createError } = require('./src/utils');
  * @property {boolean} [inject]
  * @property {string} [legacyDir]
  * @property {string} [indexHTML]
+ * @property {string} [rootDir] Path to the root of your application
  * @property {import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig} [polyfills]
  * @property {false|object} [minify] minify configuration, or false to disable minification
  * @property {() => Promise<EntriesConfig>} [getLegacyFiles]
@@ -52,6 +54,8 @@ module.exports = (pluginConfig = {}) => {
     ...pluginConfig,
   };
   let outputIndexHTML;
+  let inlineImportMaps;
+  let importMapCache = null;
 
   return {
     name: 'index-html',
@@ -68,9 +72,32 @@ module.exports = (pluginConfig = {}) => {
         return inputConfig;
       }
 
-      const result = createEntrypoints(inputConfig);
-      ({ outputIndexHTML } = result);
+      const result = processEntryHtml(inputConfig);
+      ({ outputIndexHTML, inlineImportMaps } = result);
       return result.rollupOptions;
+    },
+
+    resolveId(source, importer) {
+      if (Array.isArray(inlineImportMaps) && inlineImportMaps.length > 0) {
+        const { rootDir = process.cwd() } = localPluginConfig;
+
+        const basePath = importer ? importer.replace(rootDir, `${rootDir}::`) : `${rootDir}::`;
+        if (importMapCache === null) {
+          inlineImportMaps.forEach(importMapString => {
+            const newImportMap = parseFromString(importMapString, basePath);
+            importMapCache = mergeImportMaps(importMapCache, newImportMap);
+          });
+        }
+
+        const relativeSource = source.replace(rootDir, '');
+        const resolvedPath = resolve(relativeSource, importMapCache, basePath);
+
+        if (resolvedPath) {
+          return resolvedPath;
+        }
+      }
+
+      return null;
     },
 
     // Injects generated module paths into index.html

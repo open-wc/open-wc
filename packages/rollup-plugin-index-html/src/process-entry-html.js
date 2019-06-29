@@ -9,7 +9,7 @@ const { createError } = require('./utils');
  *
  * Returns the index html so that it can be used for output processing.
  */
-function createEntrypoints(inputConfig) {
+function processEntryHtml(inputConfig) {
   if (typeof inputConfig.input !== 'string' || !inputConfig.input.endsWith('index.html')) {
     throw createError('Input must be an index.html file, or an indexHTML option must be provided.');
   }
@@ -21,6 +21,7 @@ function createEntrypoints(inputConfig) {
 
   return {
     outputIndexHTML: resources.indexHTML,
+    inlineImportMaps: resources.inlineImportMaps,
     rollupOptions: {
       ...inputConfig,
       input: modules,
@@ -28,4 +29,4 @@ function createEntrypoints(inputConfig) {
   };
 }
 
-module.exports.createEntrypoints = createEntrypoints;
+module.exports.processEntryHtml = processEntryHtml;
