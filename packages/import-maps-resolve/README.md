@@ -17,16 +17,22 @@ import { parseFromString, resolve } from '@import-maps/resolve';
 
 // you probably want to cache the map processing and not redo it for every resolve
 // a simple example
-const mapCache = null;
+const importMapCache = null;
 
 function myResolve(specifier) {
-  const currentDir = process.cwd();
-  if (!mapCache) {
-    const mapString = fs.readFileSync(path.join(currentDir, 'import-map.json'), 'utf-8');
-    mapCache = parseFromString(mapString, currentDir);
+  const rootDir = process.cwd();
+  const basePath = importer ? importer.replace(rootDir, `${rootDir}::`) : `${rootDir}::`;
+  if (!importMapCache) {
+    const mapString = fs.readFileSync(path.join(rootDir, 'import-map.json'), 'utf-8');
+    mapCache = parseFromString(mapString, basePath);
   }
 
-  return specifier => resolve(specifier, mapCache, path.join(`${currentDir}::`, 'index.html');
+  const relativeSource = source.replace(rootDir, '');
+  const resolvedPath = resolve(relativeSource, importMapCache, basePath);
+
+  if (resolvedPath) {
+    return resolvedPath;
+  }
 }
 ```
 
