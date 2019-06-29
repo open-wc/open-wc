@@ -5,7 +5,7 @@ import { resolve } from '../src/resolver.js';
 const { expect } = chai;
 
 const mapBaseURL = '/home/foo/project-a::/app/index.js';
-const scriptURL = '/home/foo/project-a/app/node_modules/foo/foo.js';
+const scriptURL = '/home/foo/project-a::/js/app.js';
 
 function makeResolveUnderTest(mapString) {
   const map = parseFromString(mapString, mapBaseURL);
@@ -75,5 +75,31 @@ describe('Mapped using the "imports" key only (no scopes)', () => {
     it('should fail for package submodules that map to nowhere', () => {
       expect(() => resolveUnderTest('nowhere/foo')).to.throw(TypeError);
     });
+  });
+});
+
+describe('Unmapped', () => {
+  const resolveUnderTest = makeResolveUnderTest(`{}`);
+
+  it('should resolve ./ specifiers as URLs', () => {
+    expect(resolveUnderTest('./foo')).to.equal('/home/foo/project-a/js/foo');
+    expect(resolveUnderTest('./foo/bar')).to.equal('/home/foo/project-a/js/foo/bar');
+    expect(resolveUnderTest('./foo/../bar')).to.equal('/home/foo/project-a/js/bar');
+    expect(resolveUnderTest('./foo/../../bar')).to.equal('/home/foo/project-a/bar');
+  });
+
+  it('should resolve ../ specifiers as URLs', () => {
+    expect(resolveUnderTest('../foo')).to.equal('/home/foo/project-a/foo');
+    expect(resolveUnderTest('../foo/bar')).to.equal('/home/foo/project-a/foo/bar');
+    // TODO: do not allow to go up higher then root path
+    // expect(resolveUnderTest('../../../foo/bar')).to.equal('/home/foo/project-a/foo/bar');
+  });
+
+  it('should resolve / specifiers as URLs', () => {
+    expect(resolveUnderTest('/foo')).to.equal('/home/foo/project-a/foo');
+    expect(resolveUnderTest('/foo/bar')).to.equal('/home/foo/project-a/foo/bar');
+    // TODO: do not allow to go up higher then root path
+    // expect(resolveUnderTest('/../../foo/bar')).to.equal('/home/foo/project-a/foo/bar');
+    // expect(resolveUnderTest('/../foo/../bar')).to.equal('/home/foo/project-a/bar');
   });
 });

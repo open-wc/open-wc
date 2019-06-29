@@ -56,3 +56,21 @@ export function tryURLLikeSpecifierParse(specifier, baseURL) {
 
   return null;
 }
+
+export function mergeImportMaps(mapA, mapB) {
+  const mapAImports = mapA && mapA.imports ? mapA.imports : {};
+  const mapBImports = mapB && mapB.imports ? mapB.imports : {};
+  const mapAScopes = mapA && mapA.scopes ? mapA.scopes : {};
+  const mapBScopes = mapB && mapB.scopes ? mapB.scopes : {};
+
+  return {
+    imports: {
+      ...mapAImports,
+      ...mapBImports,
+    },
+    scopes: {
+      ...mapAScopes,
+      ...mapBScopes,
+    },
+  };
+}

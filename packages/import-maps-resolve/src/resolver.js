@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import { URL } from 'url';
+import path from 'path';
 import {
   tryURLLikeSpecifierParse,
   BUILT_IN_MODULE_SCHEME,
@@ -89,14 +90,25 @@ function resolveImportsMatch(normalizedSpecifier, specifierMap) {
 export function resolve(specifier, parsedImportMap, scriptURL) {
   const asURL = tryURLLikeSpecifierParse(specifier, scriptURL);
   const normalizedSpecifier = asURL ? asURL.href : specifier;
-  const scriptURLString = scriptURL;
+
+  let nodeSpecifier = null;
+  if (scriptURL.includes('::')) {
+    const [rootPath, basePath] = scriptURL.split('::');
+
+    const dirPath = specifier.startsWith('/') ? '' : path.dirname(basePath);
+    nodeSpecifier = path.normalize(path.join(rootPath, dirPath, specifier));
+  }
+  const scriptURLString = scriptURL.split('::').join('');
 
   for (const [scopePrefix, scopeImports] of Object.entries(parsedImportMap.scopes)) {
     if (
       scopePrefix === scriptURLString ||
       (scopePrefix.endsWith('/') && scriptURLString.startsWith(scopePrefix))
     ) {
-      const scopeImportsMatch = resolveImportsMatch(normalizedSpecifier, scopeImports);
+      const scopeImportsMatch = resolveImportsMatch(
+        nodeSpecifier || normalizedSpecifier,
+        scopeImports,
+      );
       if (scopeImportsMatch) {
         return scopeImportsMatch;
       }
@@ -114,6 +126,10 @@ export function resolve(specifier, parsedImportMap, scriptURL) {
       throw new TypeError(`The "${asURL.href}" built-in module is not implemented.`);
     }
     return asURL.href;
+  }
+
+  if (nodeSpecifier && (specifier.startsWith('/') || specifier.startsWith('.'))) {
+    return nodeSpecifier;
   }
 
   throw new TypeError(`Unmapped bare specifier "${specifier}"`);
