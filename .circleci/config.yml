@@ -26,6 +26,9 @@ jobs:
             - node_modules
           key: v2-dependencies-{{ checksum "package.json" }}
 
+      # build what needs to be build so we can use it in the next steps
+      - run: npm run build
+
       # run lint
       - run: npm run lint
 
