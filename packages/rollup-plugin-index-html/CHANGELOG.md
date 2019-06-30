@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.2.0...rollup-plugin-index-html@1.2.1) (2019-06-30)
+
+
+### Bug Fixes
+
+* **rollup-plugin-index-html:** no resolve of entry points via import map ([#524](https://github.com/open-wc/open-wc/issues/524)) ([edc4f46](https://github.com/open-wc/open-wc/commit/edc4f46))
+
+
+
+
+
 # [1.2.0](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.1.1...rollup-plugin-index-html@1.2.0) (2019-06-30)
 
 
