@@ -32,9 +32,12 @@ module.exports = () => ({
   browsers: [
     'bs_win10_chrome_latest',
     'bs_win10_firefox_latest',
-    'bs_win10_edge_latest',
+    // 'bs_win10_edge_latest', // currently flaky on browser stack
     'bs_osxmojave_safari_latest',
     'bs_win10_ie_11',
+    // specific versions
+    'bs_win10_edge_17',
+    'bs_win10_firefox_60ESR',
   ],
 
   // define browsers
@@ -49,7 +52,6 @@ module.exports = () => ({
     bs_win10_firefox_latest: {
       base: 'BrowserStack',
       browser: 'Firefox',
-      browser_version: '64.0',
       os: 'Windows',
       os_version: '10',
     },
@@ -69,6 +71,20 @@ module.exports = () => ({
       base: 'BrowserStack',
       browser: 'IE',
       browser_version: '11.0',
+      os: 'Windows',
+      os_version: '10',
+    },
+    bs_win10_edge_17: {
+      base: 'BrowserStack',
+      browser: 'Edge',
+      browser_version: '17.0',
+      os: 'Windows',
+      os_version: '10',
+    },
+    bs_win10_firefox_60ESR: {
+      base: 'BrowserStack',
+      browser: 'Firefox',
+      browser_version: '60.0',
       os: 'Windows',
       os_version: '10',
     },
