@@ -1,10 +1,8 @@
 /* eslint-disable class-methods-use-this, no-param-reassign */
-const path = require('path');
 const deepmerge = require('deepmerge');
 const { createEntrypoints } = require('./src/create-entrypoints');
-const { getLegacyEntries } = require('./src/get-legacy-entries');
 const { emitIndexHTML } = require('./src/emit-index-html');
-const { PLUGIN_NAME, createError } = require('./src/utils');
+const { PLUGIN_NAME, createError, createDeferredPromise, waitOrTimeout } = require('./src/utils');
 
 /**
  * @typedef {object} VariationConfig
@@ -42,10 +40,18 @@ const { PLUGIN_NAME, createError } = require('./src/utils');
  * @property {string} [loader]
  */
 
+/**
+ * @typedef {object} BuildResult
+ * @property {string[]} entries
+ * @property {Map<string, string[]>} entryNamesForVariations
+ */
+
+/** @type {import('./src/utils').DeferredPromise<BuildResult> | null} */
+let deferredLegacyBuildResult = null;
+
 const defaultConfig = {
   legacyDir: 'legacy',
   inject: true,
-  legacyTimeout: 1000 * 60 * 10,
 };
 
 class WebpackIndexHTMLPlugin {
@@ -64,11 +70,15 @@ class WebpackIndexHTMLPlugin {
         throw createError(`Some variations are missing a name property.`);
       }
     }
+
+    if (config.multiBuild && config.legacy) {
+      deferredLegacyBuildResult = createDeferredPromise();
+    }
   }
 
   apply(compiler) {
-    /** @type {string[] | null} */
-    let entries = null;
+    /** @type {string[]} */
+    const entries = [];
     /** @type {Map<string, string[]> | null} */
     let entryNamesForVariations = null;
     let baseIndex;
@@ -82,16 +92,9 @@ class WebpackIndexHTMLPlugin {
     if (!this._config.template) {
       compiler.hooks.entryOption.tap(PLUGIN_NAME, (context, entry) => {
         const result = createEntrypoints(compiler, context, entry, this._config, createError);
-        ({ baseIndex, entries, entryNamesForVariations } = result);
+        ({ entryNamesForVariations, baseIndex } = result);
         return false;
       });
-    }
-
-    /**
-     * If this is the legacy build run, we don't handle the emit hook as this is handled by the modern build run.
-     */
-    if (this._config.legacy) {
-      return;
     }
 
     compiler.hooks.emit.tapPromise(PLUGIN_NAME, async compilation => {
@@ -100,25 +103,37 @@ class WebpackIndexHTMLPlugin {
         return;
       }
 
-      const outputPath = path.join(compilation.outputOptions.path, this._config.legacyDir);
-      const timeout = this._config.legacyTimeout;
+      compilation.entrypoints.forEach(entrypoint => {
+        const jsFiles = entrypoint.getRuntimeChunk().files.filter(f => f.endsWith('.js'));
+        entries.push(...jsFiles);
+      });
 
-      let legacyEntries;
       if (this._config.multiBuild) {
-        try {
-          legacyEntries = await getLegacyEntries(
-            timeout,
-            outputPath,
-            entries,
-            entryNamesForVariations,
-          );
-        } catch (error) {
-          throw createError(error.message);
+        if (this._config.legacy) {
+          deferredLegacyBuildResult.resolve({ entries, entryNamesForVariations });
+          return;
         }
       }
 
-      emitIndexHTML(compilation, this._config, baseIndex, entryNamesForVariations, legacyEntries);
+      if (this._config.multiBuild) {
+        const legacyBuildResult = await waitOrTimeout(
+          deferredLegacyBuildResult.promise,
+          600000,
+          'Legacy build did not finish within 600000 ms.',
+        );
+
+        emitIndexHTML(
+          compilation,
+          this._config,
+          baseIndex,
+          { entries, entryNamesForVariations },
+          legacyBuildResult,
+        );
+      } else {
+        emitIndexHTML(compilation, this._config, baseIndex, { entries, entryNamesForVariations });
+      }
       this.emitted = true;
+      deferredLegacyBuildResult = null;
     });
   }
 }

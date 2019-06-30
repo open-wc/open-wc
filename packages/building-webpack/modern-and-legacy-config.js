@@ -153,5 +153,5 @@ module.exports = userOptions => {
     return createConfig(options, legacy);
   }
 
-  return [createConfig(options, false), createConfig(options, true)];
+  return [createConfig(options, true), createConfig(options, false)];
 };

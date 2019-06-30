@@ -15,7 +15,12 @@ module.exports = [
         multiBuild: true,
         legacy: true,
         multiIndex: {
-          variations: [{ name: 'en-GB' }, { name: 'nl-NL' }, { name: 'fr-FR' }],
+          variations: [
+            { name: 'en-GB' },
+            { name: 'nl-NL' },
+            { name: 'fr-FR' },
+            { name: 'demo', sharedEntry: 'en-GB' },
+          ],
         },
       }),
     ],
