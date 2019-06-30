@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.1.1...@open-wc/building-utils@2.2.0) (2019-06-30)
+
+
+### Features
+
+* **rollup-plugin-index-html:** support import maps ([#519](https://github.com/open-wc/open-wc/issues/519)) ([8c56540](https://github.com/open-wc/open-wc/commit/8c56540))
+
+
+
+
+
 ## [2.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.1.0...@open-wc/building-utils@2.1.1) (2019-06-23)
 
 

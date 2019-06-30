@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.1.1...@open-wc/webpack-index-html-plugin@1.1.2) (2019-06-30)
+
+
+### Bug Fixes
+
+* **webpack-index-html-plugin:** multi build now works on windows ([#522](https://github.com/open-wc/open-wc/issues/522)) ([b24723a](https://github.com/open-wc/open-wc/commit/b24723a))
+
+
+
+
+
 ## [1.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.1.0...@open-wc/webpack-index-html-plugin@1.1.1) (2019-06-23)
 
 **Note:** Version bump only for package @open-wc/webpack-index-html-plugin
