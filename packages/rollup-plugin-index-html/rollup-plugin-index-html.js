@@ -56,6 +56,7 @@ module.exports = (pluginConfig = {}) => {
   let outputIndexHTML;
   let inlineImportMaps;
   let importMapCache = null;
+  let rollupOptions = null;
 
   return {
     name: 'index-html',
@@ -73,12 +74,21 @@ module.exports = (pluginConfig = {}) => {
       }
 
       const result = processEntryHtml(inputConfig);
-      ({ outputIndexHTML, inlineImportMaps } = result);
+      ({ outputIndexHTML, inlineImportMaps, rollupOptions } = result);
       return result.rollupOptions;
     },
 
     resolveId(source, importer) {
       if (Array.isArray(inlineImportMaps) && inlineImportMaps.length > 0) {
+        // exclude entry points as they may get provided as `main.js` without a path
+        // which would be considered bare module according to import map spec
+        if (
+          rollupOptions.input &&
+          Array.isArray(rollupOptions.input) &&
+          rollupOptions.input.includes(source)
+        ) {
+          return null;
+        }
         const { rootDir = process.cwd() } = localPluginConfig;
 
         const basePath = importer ? importer.replace(rootDir, `${rootDir}::`) : `${rootDir}::`;
