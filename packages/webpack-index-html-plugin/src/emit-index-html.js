@@ -8,31 +8,22 @@ function cloneAST(ast) {
   return parse(serialize(ast));
 }
 
+/** @typedef {import('../webpack-index-html-plugin').BuildResult} BuildResult */
+
 /**
  * Emits index.html and the associated polyfills.
  *
  * @param {object} compilation
  * @param {import('../webpack-index-html-plugin').WebpackIndexHTMLPluginConfig} config
  * @param {import('parse5').ASTNode} [baseIndex]
- * @param {Map<string, string[]>} entryNamesForVariations
- * @param {object} legacyEntriesResult
+ * @param {BuildResult} buildResult
+ * @param {BuildResult} [legacyBuildResult]
  */
-function emitIndexHTML(
-  compilation,
-  config,
-  baseIndex,
-  entryNamesForVariations,
-  legacyEntriesResult,
-) {
-  const allEntries = [];
-  compilation.entrypoints.forEach(entrypoint => {
-    const jsFiles = entrypoint.getRuntimeChunk().files.filter(f => f.endsWith('.js'));
-    allEntries.push(...jsFiles);
-  });
-
+function emitIndexHTML(compilation, config, baseIndex, buildResult, legacyBuildResult) {
   /**
    * @param {string} [filename]
    * @param {string[]} [entries]
+   * @param {string[]} [legacyEntries]
    * @param {string | Symbol} [variation]
    */
   const generateIndex = (filename, entries, legacyEntries, variation) => {
@@ -98,32 +89,57 @@ function emitIndexHTML(
     };
   };
 
-  if (!entryNamesForVariations) {
+  if (!buildResult.entryNamesForVariations) {
     // regular build without variations
-    const legacyEntries = legacyEntriesResult && legacyEntriesResult.entries;
-    generateIndex('index.html', allEntries, legacyEntries);
+    generateIndex(
+      'index.html',
+      buildResult.entries,
+      legacyBuildResult && legacyBuildResult.entries,
+    );
   } else {
     // build with variations with a separate index per variation
-    entryNamesForVariations.forEach((entryNamesForVariation, variation) => {
-      const entriesForVariation = allEntries.filter(e1 =>
+    buildResult.entryNamesForVariations.forEach((entryNamesForVariation, variation) => {
+      const entriesForVariation = buildResult.entries.filter(e1 =>
         entryNamesForVariation.some(e2 => e1.startsWith(e2)),
       );
-      const legacyEntries =
-        legacyEntriesResult && legacyEntriesResult.entryNamesForVariations.get(variation);
-      generateIndex(`index-${variation}.html`, entriesForVariation, legacyEntries, variation);
+
+      const legacyEntriesForVariation =
+        legacyBuildResult &&
+        legacyBuildResult.entries.filter(e1 =>
+          legacyBuildResult.entryNamesForVariations.get(variation).some(e2 => e1.includes(e2)),
+        );
+
+      generateIndex(
+        `index-${variation}.html`,
+        entriesForVariation,
+        legacyEntriesForVariation,
+        variation,
+      );
     });
 
     // if necessary, also create a fallback build which generates a fallback index.html
     if (config.multiIndex.fallback) {
-      const entryNamesForVariation = entryNamesForVariations.get(config.multiIndex.fallback);
-      const entriesForVariation = allEntries.filter(e1 =>
+      const entryNamesForVariation = buildResult.entryNamesForVariations.get(
+        config.multiIndex.fallback,
+      );
+      const entriesForVariation = buildResult.entries.filter(e1 =>
         entryNamesForVariation.some(e2 => e1.startsWith(e2)),
       );
-      const legacyEntries =
-        legacyEntriesResult &&
-        legacyEntriesResult.entryNamesForVariations.get(config.multiIndex.fallback);
 
-      generateIndex('index.html', entriesForVariation, legacyEntries, VARIATION_FALLBACK);
+      const legacyEntriesForVariation =
+        legacyBuildResult &&
+        legacyBuildResult.entries.filter(e1 =>
+          legacyBuildResult.entryNamesForVariations
+            .get(config.multiIndex.fallback)
+            .some(e2 => e1.includes(e2)),
+        );
+
+      generateIndex(
+        'index.html',
+        entriesForVariation,
+        legacyEntriesForVariation,
+        VARIATION_FALLBACK,
+      );
     }
   }
 }
