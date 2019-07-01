@@ -19,7 +19,7 @@ if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototy
 
 
     function loadEntries() {
-      window.__dynamicImport__('./app.js');
+      window.importShim('./app.js');
     }
     polyfills.length ? Promise.all(polyfills).then(loadEntries) : loadEntries();
   })();

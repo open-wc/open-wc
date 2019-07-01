@@ -11,6 +11,7 @@ describe('polyfills', () => {
         fetch: true,
         intersectionObserver: true,
       },
+      minify: true,
     };
 
     // @ts-ignore
@@ -54,6 +55,14 @@ describe('polyfills', () => {
         nomodule: false,
         sourcemap: undefined,
         test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)",
+      },
+      {
+        code: undefined,
+        hash: '551c76d38426de62c33d8c61995c1d0f',
+        name: 'custom-elements-es5-adapter',
+        nomodule: false,
+        sourcemap: undefined,
+        test: "!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype",
       },
     ]);
 
@@ -145,6 +154,7 @@ describe('polyfills', () => {
         intersectionObserver: false,
         customPolyfills,
       },
+      minify: true,
     };
 
     // @ts-ignore

@@ -36,6 +36,6 @@ describe('extract-resources', () => {
     `;
 
     const result = extractResources(html);
-    expect(queryAll(result.indexHTML, predicates.hasTagName('script')).length).to.equal(1);
+    expect(queryAll(result.indexHTML, predicates.hasTagName('script')).length).to.equal(0);
   });
 });
