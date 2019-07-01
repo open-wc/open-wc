@@ -19,7 +19,7 @@ if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototy
 
 
     function loadEntries() {
-      'noModule' in HTMLScriptElement.prototype ? ['./app.js','./shared.js'].forEach(function (entry) { window.__dynamicImport__(entry); }) : ['./legacy/app.js','./legacy/shared.js'].forEach(function (entry) { System.import(entry); });
+      'noModule' in HTMLScriptElement.prototype ? ['./app.js','./shared.js'].forEach(function (entry) { window.importShim(entry); }) : ['./legacy/app.js','./legacy/shared.js'].forEach(function (entry) { System.import(entry); });
     }
     polyfills.length ? Promise.all(polyfills).then(loadEntries) : loadEntries();
   })();

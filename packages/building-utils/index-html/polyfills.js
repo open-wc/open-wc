@@ -17,6 +17,21 @@ function getPolyfills(config) {
   /** @type {PolyfillInstruction[]} */
   const instructions = [...(config.polyfills.customPolyfills || [])];
 
+  if (config.polyfills.coreJs) {
+    try {
+      instructions.push({
+        name: 'core-js',
+        path: require.resolve('core-js-bundle/minified.js'),
+        sourcemapPath: require.resolve('core-js-bundle/minified.js'),
+        nomodule: true,
+      });
+    } catch (error) {
+      throw new Error(
+        'configured to pollyfill core-js, but no polyfills found. Install with "npm i -D core-js-bundle"',
+      );
+    }
+  }
+
   if (config.polyfills.systemJs) {
     try {
       instructions.push({
@@ -34,17 +49,20 @@ function getPolyfills(config) {
     }
   }
 
-  if (config.polyfills.coreJs) {
+  // full systemjs, including import maps polyfill
+  if (config.polyfills.systemJsExtended) {
     try {
       instructions.push({
-        name: 'core-js',
-        path: require.resolve('core-js-bundle/minified.js'),
-        sourcemapPath: require.resolve('core-js-bundle/minified.js'),
-        nomodule: true,
+        name: 'systemjs',
+        path: require.resolve('systemjs/dist/system.min.js'),
+        sourcemapPath: require.resolve('systemjs/dist/system.min.js.map'),
+        // if main entrypoint is systemjs, we should always load it. Otherwise it
+        // should be loaded only on browsers without module support through nomodule attribute
+        nomodule: config.entries.type !== 'system',
       });
     } catch (error) {
       throw new Error(
-        'configured to pollyfill core-js, but no polyfills found. Install with "npm i -D core-js-bundle"',
+        'configured to pollyfill systemjs, but no polyfills found. Install with "npm i -D systemjs"',
       );
     }
   }
@@ -82,9 +100,9 @@ function getPolyfills(config) {
       name: 'dynamic-import',
       /**
        * load dynamic import polyfill if we are on a browser which supports modules but not
-       * dynamic imports. we expect window.__dynamicImport to be aliased to import() elsewhere
+       * dynamic imports. we expect window.importShim to be aliased to import() elsewhere
        */
-      test: "'noModule' in HTMLScriptElement.prototype && !('__dynamicImport' in window)",
+      test: "'noModule' in HTMLScriptElement.prototype && !('importShim' in window)",
       path: require.resolve('./dynamic-import-polyfill.js'),
     });
   }
@@ -114,10 +132,32 @@ function getPolyfills(config) {
           '@webcomponents/webcomponentsjs/webcomponents-bundle.js.map',
         ),
       });
+
+      // If a browser does not support nomodule attribute, but does support custom elements, we need
+      // to load the custom elements es5 adapter. This is the case for Safari 10.1
+      instructions.push({
+        name: 'custom-elements-es5-adapter',
+        test: "!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype",
+        path: require.resolve('@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'),
+      });
     } catch (error) {
       throw new Error(
         'configured to pollyfill webcomponentsjs, but no polyfills found. Install with "npm i -D @webcomponents/webcomponentsjs"',
       );
+    }
+
+    if (config.polyfills.esModuleShims) {
+      try {
+        instructions.push({
+          name: 'es-module-shims',
+          path: require.resolve('es-module-shims/dist/es-module-shims.min.js'),
+          sourcemapPath: require.resolve('es-module-shims/dist/es-module-shims.min.js.map'),
+        });
+      } catch (error) {
+        throw new Error(
+          'configured to pollyfill es-module-shims, but no polyfills found. Install with "npm i -D es-module-shims"',
+        );
+      }
     }
   }
 
@@ -141,7 +181,7 @@ function getPolyfills(config) {
 
       sourcemap = fs.readFileSync(sourcemapPath, 'utf-8');
       // minify only if there were no source maps, and if not disabled explicitly
-    } else if (!instruction.noMinify) {
+    } else if (!instruction.noMinify && config.minify) {
       const minifyResult = Terser.minify(code, { sourceMap: true });
       ({ code, map: sourcemap } = minifyResult);
     }

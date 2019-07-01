@@ -83,6 +83,7 @@ module.exports = function createBasicConfig(_options) {
               // doesn't affect most use cases. for example lit-html handles it: (https://github.com/Polymer/lit-html/issues/575)
               exclude: ['@babel/plugin-transform-template-literals'],
               useBuiltIns: false,
+              modules: false,
             },
           ],
         ],

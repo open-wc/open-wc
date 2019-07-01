@@ -46,8 +46,8 @@ const entryLoaderCreators = {
       : `${asArrayLiteral(files)}.forEach(function (entry) { loadScript(entry); })`,
   module: files =>
     files.length === 1
-      ? `window.__dynamicImport__('${files[0]}')`
-      : `${asArrayLiteral(files)}.forEach(function (entry) { window.__dynamicImport__(entry); })`,
+      ? `window.importShim('${files[0]}')`
+      : `${asArrayLiteral(files)}.forEach(function (entry) { window.importShim(entry); })`,
   system: files =>
     files.length === 1
       ? `System.import('${files[0]}')`

@@ -12,7 +12,7 @@ const createBabelOptions = (config = {}) => ({
     require.resolve('@babel/plugin-syntax-dynamic-import'),
     require.resolve('@babel/plugin-syntax-import-meta'),
     [
-      require.resolve('./forked-babel-plugin-bare-import-rewrite'),
+      require.resolve('@open-wc/building-utils/forked-babel-plugin-bare-import-rewrite'),
       {
         rootBaseDir: '.',
         alwaysRootImport: ['**'],

@@ -52,6 +52,8 @@ const { createContentHash } = require('./utils');
  * @property {boolean} [intersectionObserver] whether to polyfill intersection observer
  * @property {boolean} [dynamicImport] whether to polyfill dynamic import
  * @property {boolean} [systemJs] whether to polyfill systemjs
+ * @property {boolean} [systemJsExtended] whether to polyfill systemjs, extended version with import maps
+ * @property {boolean} [esModuleShims] whether to polyfill es modules using es module shims
  * @property {PolyfillInstruction[]} [customPolyfills] custom polyfills specified by the user
  */
 
@@ -62,6 +64,7 @@ const { createContentHash } = require('./utils');
  * @property {EntriesConfig} [legacyEntries]
  * @property {false|object} minify minify configuration, or false to disable minification
  * @property {string} loader 'inline' | 'external'
+ * @property {boolean} preload
  */
 
 /** @type {Partial<CreateIndexHTMLConfig>} */
@@ -75,6 +78,7 @@ const defaultConfig = {
   },
   minify: defaultMinifyHTMLConfig,
   loader: 'inline',
+  preload: true,
 };
 
 /**
@@ -98,11 +102,11 @@ function createScripts(polyfillsConfig, polyfills, entries, needsLoader) {
    *
    * This script will fail on browsers which don't support dynamic imports with
    * a syntax error. On browsers which do support it, it will create a function
-   * which calls native import(). Later we can check if window.__dynamicImport
+   * which calls native import(). Later we can check if window.importShim
    * is defined to know if it is natively supported.
    */
   if (polyfillsConfig.dynamicImport) {
-    scripts.push(createScript(null, 'window.__dynamicImport__=s=>import(s)'));
+    scripts.push(createScript(null, 'window.importShim=s=>import(s)'));
   }
 
   polyfills.forEach(polyfill => {
@@ -198,7 +202,9 @@ function createIndexHTML(baseIndex, config) {
       localConfig.loader === 'external',
     );
 
-    localConfig.entries.files.forEach(appendPreloadScript);
+    if (localConfig.preload) {
+      localConfig.entries.files.forEach(appendPreloadScript);
+    }
 
     if (localConfig.loader === 'inline') {
       append(body, createScript(null, loaderCode));

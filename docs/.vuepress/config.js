@@ -10,7 +10,7 @@ const sidebar = [
       ['/developing/', 'Getting started'],
       ['/developing/ide', 'IDE'],
       '/developing/best-practices',
-      '/developing/owc-dev-server',
+      '/developing/es-dev-server',
       ['/init/', 'Generators'],
       '/developing/types',
     ],

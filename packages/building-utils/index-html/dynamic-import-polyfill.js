@@ -16,7 +16,7 @@
     return a.cloneNode(false).href; // -> "http://example.com/hoge.html"
   }
 
-  function importModule(url) {
+  function importShim(url) {
     return new Promise((resolve, reject) => {
       const vector =
         '$importModule$' +
@@ -51,5 +51,5 @@
     });
   }
 
-  window.__dynamicImport__ = importModule;
+  window.importShim = importShim;
 })();

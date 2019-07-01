@@ -1,1 +1,0 @@
-../../packages/owc-dev-server/README.md
