@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /* eslint-disable import/no-dynamic-require, global-require */
 import commandLineArgs from 'command-line-args';
 import commandLineUsage from 'command-line-usage';
