@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.2.0...@open-wc/building-webpack@2.2.1) (2019-07-02)
+
+
+### Bug Fixes
+
+* **building-webpack:** always export an array of configs ([0eaff97](https://github.com/open-wc/open-wc/commit/0eaff97))
+
+
+
+
+
 # [2.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.1.2...@open-wc/building-webpack@2.2.0) (2019-07-02)
 
 

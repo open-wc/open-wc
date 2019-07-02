@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.2.0...@open-wc/webpack-index-html-plugin@1.2.1) (2019-07-02)
+
+
+### Bug Fixes
+
+* **webpack-index-html-plugin:** improve error message ([f4c93db](https://github.com/open-wc/open-wc/commit/f4c93db))
+
+
+
+
+
 # [1.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.1.2...@open-wc/webpack-index-html-plugin@1.2.0) (2019-07-02)
 
 
