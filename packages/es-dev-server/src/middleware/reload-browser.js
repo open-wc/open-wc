@@ -28,7 +28,6 @@ async function watchServedFile(ctx, cfg, excludes) {
   }
 
   const filePath = path.join(cfg.rootDir, ctx.url);
-  console.log('watchServedFile', filePath);
   // the path is excluded (for example node_modules)
   if (excludes.some(pattern => minimatch(filePath, pattern))) {
     return;
@@ -38,7 +37,6 @@ async function watchServedFile(ctx, cfg, excludes) {
 }
 
 function onFileChanged() {
-  console.log('onFileChanged');
   sendMessageToActiveBrowsers('file-changed');
 }
 
