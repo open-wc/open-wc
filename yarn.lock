@@ -937,7 +937,7 @@
   resolved "https://registry.yarnpkg.com/@blakeembrey/deque/-/deque-1.0.5.tgz#f4fa17fc5ee18317ec01a763d355782c7b395eaf"
   integrity sha512-6xnwtvp9DY1EINIKdTfvfeAtCYw4OqBZJhtiqkT3ivjnEfa25VQ3TsKvaFfKm8MyGIEfE95qLe+bNEt3nB0Ylg==
 
-"@bundled-es-modules/chai@^4.2.0":
+"@bundled-es-modules/chai@^4.2.0", "@bundled-es-modules/chai@^4.2.1":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@bundled-es-modules/chai/-/chai-4.2.1.tgz#124e9cc71584cb576c90b3e4e455abf525bbd3aa"
   integrity sha512-8tZO0prhIK8viNBAIo29lSXDJtTs/FrLwfNKsZiD0LzlTSGq6Ld2u7Bh73pUP2DvxMFqNbEWsRoUifOIvjDH8w==
@@ -1928,42 +1928,6 @@
     once "^1.4.0"
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
-
-"@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.1.8"
-  dependencies:
-    "@open-wc/testing-karma" "^2.0.8"
-    "@types/node" "^11.13.0"
-    karma-browserstack-launcher "^1.0.0"
-
-"@open-wc/testing-karma@file:./packages/testing-karma":
-  version "2.0.8"
-  dependencies:
-    "@babel/core" "^7.3.3"
-    "@babel/plugin-syntax-dynamic-import" "^7.2.0"
-    "@babel/plugin-syntax-import-meta" "^7.2.0"
-    "@babel/polyfill" "^7.0.0"
-    "@babel/preset-env" "^7.0.0"
-    "@open-wc/karma-esm" "^1.0.7"
-    "@types/node" "^11.13.0"
-    "@webcomponents/webcomponentsjs" "^2.2.0"
-    babel-loader "^8.0.0"
-    babel-plugin-bundled-import-meta "^0.3.0"
-    babel-plugin-istanbul "^5.1.1"
-    istanbul-instrumenter-loader "^3.0.0"
-    karma "^4.0.0"
-    karma-chrome-launcher "^2.0.0"
-    karma-coverage-istanbul-reporter "^2.0.0"
-    karma-mocha "^1.0.0"
-    karma-mocha-reporter "^2.0.0"
-    karma-mocha-snapshot "^0.2.1"
-    karma-snapshot "^0.6.0"
-    karma-source-map-support "^1.3.0"
-    karma-sourcemap-loader "^0.3.0"
-    karma-static "^1.0.1"
-    karma-webpack "^5.0.0-alpha.2"
-    webpack "^4.28.0"
-    webpack-merge "^4.1.5"
 
 "@reach/router@^1.2.1":
   version "1.2.1"
@@ -5976,11 +5940,6 @@ copy-webpack-plugin@^5.0.1:
     serialize-javascript "^1.7.0"
     webpack-log "^2.0.0"
 
-core-js-bundle@^3.1.3:
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.1.3.tgz#74f2bd2e73f700a41ebfff830e5b4c92ff06fab5"
-  integrity sha512-Tz3QeRfnSOeFu07mVAUqTydtgk5XIdQIw/w2Vi7LUqPcaniaBBpgPipXDmlwe/VFQoyZyMS6SpAO+QUPxjZsxQ==
-
 core-js-bundle@^3.1.4:
   version "3.1.4"
   resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.1.4.tgz#4fe6a2da1206c39a98cb73e91242b19d4f6f7afa"
@@ -7229,10 +7188,10 @@ es-abstract@^1.10.0, es-abstract@^1.11.0, es-abstract@^1.12.0, es-abstract@^1.13
     is-regex "^1.0.4"
     object-keys "^1.0.12"
 
-es-module-shims@^0.2.10:
-  version "0.2.10"
-  resolved "https://registry.yarnpkg.com/es-module-shims/-/es-module-shims-0.2.10.tgz#be105f2061bb688740fc8d83831019aa9b217e73"
-  integrity sha512-3sj1DtFiOiiTIJhOgEe8qKERpUsAUMQXb1aAVu/NkZ676KW9XHrIF6cU1mbducjjT7ccA6Uyx/JWLLt6EdWwmw==
+es-module-shims@^0.2.13:
+  version "0.2.13"
+  resolved "https://registry.yarnpkg.com/es-module-shims/-/es-module-shims-0.2.13.tgz#53b146df966bddebe55f60e62349e9de45d2e7e0"
+  integrity sha512-xuXyeSxoWMXoKk1WEvisS+xf2ALFWf7iimPLTnOQbNZP84i586nX447P6G9bET3dQeEwNh8WUBM/d/oB525tcQ==
 
 es-to-primitive@^1.2.0:
   version "1.2.0"
@@ -15918,10 +15877,10 @@ synchronous-promise@^2.0.5:
   resolved "https://registry.yarnpkg.com/synchronous-promise/-/synchronous-promise-2.0.7.tgz#3574b3d2fae86b145356a4b89103e1577f646fe3"
   integrity sha512-16GbgwTmFMYFyQMLvtQjvNWh30dsFe1cAW5Fg1wm5+dg84L9Pe36mftsIRU95/W2YsISxsz/xq4VB23sqpgb/A==
 
-systemjs@^3.1.6:
-  version "3.1.6"
-  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-3.1.6.tgz#0a13f45d2c3f7509824be46033a61115eda1903d"
-  integrity sha512-cXin4Z7FWf/eANmvuR5uE8qfPqMlkjyNZbayO/Mf3+AvSOegYY/3myiWgioKLOWUeB16if3VYqdk7HXXmgOL8Q==
+systemjs@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-4.0.0.tgz#8b2310ccf774242b492e35b8037b6e6ce580c24a"
+  integrity sha512-asE0z8PeNmCGEo6vxYYFvXTjUMnD3/CMoM8daFDNSI40y4CVm/Tc5pqF1c4uYqn0pREC6QQKxqRR1xHe+ckqsA==
 
 table-layout@^0.4.3:
   version "0.4.4"
