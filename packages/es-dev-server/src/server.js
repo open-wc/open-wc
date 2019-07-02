@@ -30,6 +30,7 @@ import { createHTTPServer } from './create-http-server.js';
  * @property {string} [compatibilityMode]
  * @property {string[]} [watchExcludes]
  * @property {number} [watchDebounce]
+ * @property {string[]} [extraFileExtensions]
  * @property {import('koa').Middleware[]} [customMiddlewares]
  */
 
@@ -47,6 +48,7 @@ export function startServer(config) {
     openPath,
     logStartup = false,
     http2 = false,
+    extraFileExtensions = [],
     compatibilityMode = compatibilityModes.NONE,
     watchExcludes = ['node_modules/**'],
     watchDebounce = 1000,
@@ -131,6 +133,7 @@ export function startServer(config) {
         nodeResolve,
         readUserBabelConfig,
         compatibilityMode,
+        extraFileExtensions,
       }),
     );
   }

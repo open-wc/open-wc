@@ -3,7 +3,7 @@ import { compatibilityModes } from '../constants.js';
 import { sendMessageToActiveBrowsers } from './message-channel.js';
 import createBabelCompiler from '../babel-compiler.js';
 
-const fileExtensions = ['.js', '.mjs'];
+const baseFileExtensions = ['.js', '.mjs'];
 
 /**
  * @typedef {object} BabelMiddlewareConfig
@@ -12,6 +12,8 @@ const fileExtensions = ['.js', '.mjs'];
  * @property {boolean} nodeResolve
  * @property {boolean} readUserBabelConfig
  * @property {string} compatibilityMode
+ * @property {string[]} extraFileExtensions
+ *
  */
 
 /**
@@ -21,6 +23,8 @@ const fileExtensions = ['.js', '.mjs'];
  * @param {BabelMiddlewareConfig} cfg
  */
 export function createBabelMiddleware(cfg) {
+  const fileExtensions = [...baseFileExtensions, ...cfg.extraFileExtensions];
+
   // create the default compiler, enable the modern config if all or modern compatibility mode is on
   const modern = [compatibilityModes.MODERN, compatibilityModes.ALL].includes(
     cfg.compatibilityMode,
