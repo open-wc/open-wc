@@ -25,7 +25,7 @@ describe('polyfills', () => {
     expect(polyfillsWithoutCode).to.eql([
       {
         code: undefined,
-        hash: '79b2367fd020fda0c519294df7db91bf',
+        hash: '7ca91f6b0231c95b468b2436196952c1',
         name: 'core-js',
         nomodule: true,
         sourcemap: undefined,
@@ -93,7 +93,7 @@ describe('polyfills', () => {
     expect(polyfillsWithoutCode).to.eql([
       {
         code: undefined,
-        hash: 'b45ab1e6ec80f6791235b5a5dc18ba8a',
+        hash: '3b7d80ec7b581e1f7a84a00277446cad',
         name: 'systemjs',
         nomodule: false,
         test: undefined,
@@ -123,7 +123,7 @@ describe('polyfills', () => {
     expect(polyfillsWithoutCode).to.eql([
       {
         code: undefined,
-        hash: 'b45ab1e6ec80f6791235b5a5dc18ba8a',
+        hash: '3b7d80ec7b581e1f7a84a00277446cad',
         name: 'systemjs',
         nomodule: true,
         test: undefined,
@@ -184,7 +184,7 @@ describe('polyfills', () => {
       },
       {
         code: undefined,
-        hash: '79b2367fd020fda0c519294df7db91bf',
+        hash: '7ca91f6b0231c95b468b2436196952c1',
         name: 'core-js',
         nomodule: true,
         sourcemap: undefined,

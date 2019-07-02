@@ -48,7 +48,7 @@ export function createBabelMiddleware(cfg) {
 
     // should be a 2xx response
     if (ctx.status < 200 || ctx.status >= 300) {
-      return next();
+      return undefined;
     }
 
     const filePath = ctx.body && ctx.body.path;
