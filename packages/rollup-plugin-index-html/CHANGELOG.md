@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.3.0...rollup-plugin-index-html@1.3.1) (2019-07-02)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't call next on non-2xx response ([f3e865a](https://github.com/open-wc/open-wc/commit/f3e865a))
+
+
+
+
+
 # [1.3.0](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.2.1...rollup-plugin-index-html@1.3.0) (2019-07-02)
 
 

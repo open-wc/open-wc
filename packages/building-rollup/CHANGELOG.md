@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.7.0...@open-wc/building-rollup@0.7.1) (2019-07-02)
+
+
+### Bug Fixes
+
+* only depend on polyfills in building-utils ([2568cdc](https://github.com/open-wc/open-wc/commit/2568cdc))
+
+
+
+
+
 # [0.7.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.6.3...@open-wc/building-rollup@0.7.0) (2019-07-02)
 
 

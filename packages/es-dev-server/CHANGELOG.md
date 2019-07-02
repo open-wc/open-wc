@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.2.0...es-dev-server@1.2.1) (2019-07-02)
+
+
+### Bug Fixes
+
+* only depend on polyfills in building-utils ([2568cdc](https://github.com/open-wc/open-wc/commit/2568cdc))
+* **es-dev-server:** don't call next on non-2xx response ([f3e865a](https://github.com/open-wc/open-wc/commit/f3e865a))
+
+
+
+
+
 # [1.2.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.1.0...es-dev-server@1.2.0) (2019-07-02)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.2.1...@open-wc/building-webpack@2.2.2) (2019-07-02)
+
+
+### Bug Fixes
+
+* only depend on polyfills in building-utils ([2568cdc](https://github.com/open-wc/open-wc/commit/2568cdc))
+
+
+
+
+
 ## [2.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.2.0...@open-wc/building-webpack@2.2.1) (2019-07-02)
 
 
