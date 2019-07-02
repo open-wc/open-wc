@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.10](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.1.9...@open-wc/testing-karma-bs@1.1.10) (2019-07-02)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
 ## [1.1.9](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.1.8...@open-wc/testing-karma-bs@1.1.9) (2019-06-30)
 
 **Note:** Version bump only for package @open-wc/testing-karma-bs

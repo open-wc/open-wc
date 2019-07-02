@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.1.2...@open-wc/webpack-index-html-plugin@1.2.0) (2019-07-02)
+
+
+### Features
+
+* add es dev server ([2c6a0a8](https://github.com/open-wc/open-wc/commit/2c6a0a8))
+
+
+
+
+
 ## [1.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.1.1...@open-wc/webpack-index-html-plugin@1.1.2) (2019-06-30)
 
 

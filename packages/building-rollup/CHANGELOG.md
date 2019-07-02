@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.6.3...@open-wc/building-rollup@0.7.0) (2019-07-02)
+
+
+### Features
+
+* add es dev server ([2c6a0a8](https://github.com/open-wc/open-wc/commit/2c6a0a8))
+
+
+
+
+
 ## [0.6.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.6.2...@open-wc/building-rollup@0.6.3) (2019-06-30)
 
 **Note:** Version bump only for package @open-wc/building-rollup
