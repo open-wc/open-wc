@@ -110,6 +110,28 @@ describe('babel middleware', () => {
 
       server.close();
     });
+
+    it('can handle any file extensions', async () => {
+      const { server } = startServer({
+        rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+        extraFileExtensions: ['.html', '.foo'],
+        readUserBabelConfig: true,
+      });
+
+      try {
+        const responseHtml = await fetch(`${host}src/fake-module.html`);
+        const responseFoo = await fetch(`${host}src/fake-module.foo`);
+        const responseTextHtml = await responseHtml.text();
+        const responseTextFoo = await responseFoo.text();
+
+        expect(responseHtml.status).to.equal(200);
+        expect(responseFoo.status).to.equal(200);
+        expect(responseTextHtml).to.include("var foo = 'bar';");
+        expect(responseTextFoo).to.include("var bar = 'foo';");
+      } finally {
+        server.close();
+      }
+    });
   });
 
   describe('compatibilityMode modern', () => {

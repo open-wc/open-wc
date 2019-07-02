@@ -85,6 +85,11 @@ const optionDefinitions = [
     description: 'Transform served code through babel. Requires .babelrc',
   },
   {
+    name: 'file-extensions',
+    type: String,
+    description: 'Extra file extentions to use when transforming code.',
+  },
+  {
     name: 'compatibility',
     type: String,
     description: 'Compatibility mode for older browsers. Can be: "esm", modern" or "all"',
@@ -177,5 +182,6 @@ startServer({
   compatibilityMode: options.compatibility,
   readUserBabelConfig: options.babel,
   customMiddlewares: options.customMiddlewares,
+  extraFileExtensions: options.fileExtensions,
   logStartup: true,
 });
