@@ -32,7 +32,7 @@ function createConfig(_options, legacy) {
       dir: path.join(options.outputDir, legacy ? '/legacy' : ''),
       format: legacy ? 'system' : 'esm',
       sourcemap: true,
-      dynamicImportFunction: !legacy && '__dynamicImport__',
+      dynamicImportFunction: !legacy && 'importShim',
     },
     plugins: [
       indexHTML({

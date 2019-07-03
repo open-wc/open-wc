@@ -30,7 +30,7 @@ module.exports = function createBasicConfig(_options) {
       dir: options.outputDir,
       format: 'esm',
       sourcemap: true,
-      dynamicImportFunction: '__dynamicImport__',
+      dynamicImportFunction: 'importShim',
     },
     plugins: [
       // parse input index.html as input and feed any modules found to rollup
