@@ -148,13 +148,11 @@ module.exports = {
 
 Compatibility mode enables bundle-free development with features such as es modules and import maps on older browsers, including IE11.
 
-Read more
-
 There are three modes that can be enabled:
 ### esm
 `esm` mode adds [es-module-shims](https://github.com/guybedford/es-module-shims) to enable new module features such as dynamic imports and import maps.
 
-This mode has a neglible performance impact, and is great when working on modern browsers.
+This mode has a neglible performance impact, and is great when working on modern browsers. Do note that for both compatability modes `esm` and `modern` you'll have to provide an import map in your `index.html`. To generate an import map, you can check out our package [import-maps-generate](https://github.com/open-wc/open-wc/tree/master/packages/import-maps-generate), or add one manually.
 
 ### modern
 `modern` mode expands `esm` mode, adding a babel transform and a polyfill loader.
