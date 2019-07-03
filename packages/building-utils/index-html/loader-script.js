@@ -8,17 +8,17 @@ const Terser = require('terser');
  * @typedef {import('./create-index-html').Polyfill} Polyfill
  */
 const loadScriptFunction = `
-function loadScript(src) {
-  return new Promise(function (resolve, reject) {
-    var script = document.createElement('script');
-    script.onerror = reject;
-    script.onload = resolve;
-    script.src = src;
-    script.defer = true;
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      var script = document.createElement('script');
+      script.onerror = reject;
+      script.onload = resolve;
+      script.src = src;
+      script.defer = true;
 
-    document.head.appendChild(script);
-  })\n\n;
-}`;
+      document.head.appendChild(script);
+    });
+  }\n\n`;
 
 /**
  * @param {EntriesConfig} entries
@@ -90,11 +90,12 @@ function createEntriesLoader(entries, legacyEntries, polyfills) {
   const executeLoadEntries = createExecuteLoadEntries(polyfills);
 
   return `
-    function loadEntries() {
-      ${loadEntriesFunction}
-    }
-    ${executeLoadEntries}
-  `;
+  function loadEntries() {
+    ${loadEntriesFunction}
+  }
+
+  ${executeLoadEntries}
+`;
 }
 
 /**
@@ -105,19 +106,19 @@ function createPolyfillsLoader(polyfills) {
     return '';
   }
 
-  let code = 'var polyfills = [];\n';
+  let code = '  var polyfills = [];\n';
 
   polyfills.forEach(polyfill => {
     if (!polyfill.test) {
       return;
     }
 
-    code += `if (${polyfill.test}) { polyfills.push(loadScript('polyfills/${polyfill.name}.${
+    code += `  if (${polyfill.test}) { polyfills.push(loadScript('polyfills/${polyfill.name}.${
       polyfill.hash
     }.js')) }\n`;
   });
 
-  return `${code}\n`;
+  return code;
 }
 
 /**
