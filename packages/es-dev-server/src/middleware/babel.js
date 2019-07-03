@@ -87,7 +87,7 @@ export function createBabelMiddleware(cfg) {
       ctx.status = 500;
       sendMessageToActiveBrowsers('error-message', JSON.stringify(error.message));
       /* eslint-disable-next-line no-console */
-      console.error(error.message);
+      console.error(error);
     }
     return undefined;
   }

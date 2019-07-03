@@ -118,21 +118,27 @@ export default function createBabelCompiler(cfg) {
    * @returns {Promise<string>}
    */
   async function compile(filename, sourceCode, lastModified) {
-    // check for currently running compile jobs to avoid race conditions, for example when
+    // check for currently running compile tasks to avoid race conditions, for example when
     // multiple browser instances request the same module
     const existingCompileTask = compileTasks.get(filename);
     if (existingCompileTask) {
       return (await existingCompileTask).code;
     }
+
     const compileTask = transformAsync(sourceCode, { filename, ...babelConfig });
 
     compileTasks.set(filename, compileTask);
-    const { code: compiledCode } = await compileTask;
-    compileTasks.delete(filename);
 
-    // cache result for later
-    cache.set(filename, { code: compiledCode, lastModified });
-    return compiledCode;
+    try {
+      const { code: compiledCode } = await compileTask;
+      // cache result for later
+      cache.set(filename, { code: compiledCode, lastModified });
+      return compiledCode;
+    } catch (error) {
+      throw error;
+    } finally {
+      compileTasks.delete(filename);
+    }
   }
 
   /**

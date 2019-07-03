@@ -13,6 +13,8 @@
     "access": "public"
   },
   "files": [
+    ".self-signed-dev-server-ssl.key",
+    ".self-signed-dev-server-ssl.cert",
     "dist"
   ],
   "scripts": {
