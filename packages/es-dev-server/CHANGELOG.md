@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.2.1...es-dev-server@1.2.2) (2019-07-03)
+
+
+### Bug Fixes
+
+* **es-dev-server:** dev server certificates and clean up async task ([#540](https://github.com/open-wc/open-wc/issues/540)) ([f71cfcd](https://github.com/open-wc/open-wc/commit/f71cfcd))
+
+
+
+
+
 ## [1.2.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.2.0...es-dev-server@1.2.1) (2019-07-02)
 
 

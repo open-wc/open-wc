@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.7.1...@open-wc/building-rollup@0.7.2) (2019-07-03)
+
+
+### Bug Fixes
+
+* **building-rollup:** use the correct dynamicImportFunction ([70a933f](https://github.com/open-wc/open-wc/commit/70a933f))
+
+
+
+
+
 ## [0.7.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.7.0...@open-wc/building-rollup@0.7.1) (2019-07-02)
 
 
