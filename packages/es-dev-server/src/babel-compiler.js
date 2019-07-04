@@ -10,6 +10,7 @@ import { findSupportedBrowsers } from '@open-wc/building-utils';
  * @property {string[]} moduleDirectories
  * @property {boolean} nodeResolve
  * @property {boolean} modern
+ * @property {object} [customBabelConfig]
  * @property {boolean} legacy
  */
 
@@ -93,6 +94,8 @@ const legacyConfig = {
 export default function createBabelCompiler(cfg) {
   // create babel configuration based on a number of presets
   const babelConfigs = [
+    // custom babel config if it's there
+    cfg.customBabelConfig,
     createDefaultConfig(cfg.readUserBabelConfig),
     cfg.nodeResolve && createNodeResolveConfig(cfg.rootDir, cfg.moduleDirectories),
     cfg.modern && modernConfig,
