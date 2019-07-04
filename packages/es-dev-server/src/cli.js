@@ -183,5 +183,6 @@ startServer({
   readUserBabelConfig: options.babel,
   customMiddlewares: options.customMiddlewares,
   extraFileExtensions: options.fileExtensions,
+  moduleDirectories: options.moduleDirs,
   logStartup: true,
 });

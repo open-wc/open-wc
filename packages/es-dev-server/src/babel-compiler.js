@@ -33,9 +33,9 @@ function createDefaultConfig(babelrc) {
 
 /**
  * @param {string} rootBaseDir
- * @param {string[]} moduleDirectories
+ * @param {string[]} resolveDirectories
  */
-function createNodeResolveConfig(rootBaseDir, moduleDirectories) {
+function createNodeResolveConfig(rootBaseDir, resolveDirectories) {
   return {
     plugins: [
       [
@@ -45,7 +45,7 @@ function createNodeResolveConfig(rootBaseDir, moduleDirectories) {
           alwaysRootImport: ['**'],
           modulesDir: './node_modules',
           failOnUnresolved: true,
-          moduleDirectories,
+          resolveDirectories,
         },
       ],
     ],
