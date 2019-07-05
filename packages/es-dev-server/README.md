@@ -148,7 +148,7 @@ module.exports = {
 
 Compatibility mode enables bundle-free development with features such as es modules and import maps on older browsers, including IE11.
 
-Read more
+If you want to make use of import maps, you can provide an import map in your `index.html`. To generate an import map, you can check out our package [import-maps-generate](https://github.com/open-wc/open-wc/tree/master/packages/import-maps-generate), or alternatively you can add one manually.
 
 There are three modes that can be enabled:
 ### esm
