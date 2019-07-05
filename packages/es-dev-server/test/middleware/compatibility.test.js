@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import path from 'path';
 import { startServer } from '../../src/server.js';
 import { compatibilityModes } from '../../src/constants.js';
-import systemJsLegacyResolveScript from '../../src/browser-scripts/system-js-legacy-resolve';
+import systemJsLegacyResolveScript from '../../src/browser-scripts/system-js-legacy-resolve.js';
 
 const REGEXP_ESM_SHIMS = /<script src="polyfills\/es-module-shims.*<\/script>/;
 const STRING_IMPORTMAP = '<script type="importmap">';

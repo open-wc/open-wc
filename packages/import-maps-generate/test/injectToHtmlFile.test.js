@@ -1,7 +1,7 @@
 import chai from 'chai';
 import fs from 'fs';
-import { indexHtml, indexHtmlWithImportMap } from './assets/injectToHtmlFile/utils';
-import injectToHtmlFile from '../src/injectToHtmlFile';
+import { indexHtml, indexHtmlWithImportMap } from './assets/injectToHtmlFile/utils.js';
+import injectToHtmlFile from '../src/injectToHtmlFile.js';
 
 const { expect } = chai;
 

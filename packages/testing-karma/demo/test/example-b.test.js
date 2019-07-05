@@ -1,5 +1,5 @@
 import { expect } from '@bundled-es-modules/chai';
-import { foo } from '../src/example';
+import { foo } from '../src/example.js';
 
 describe('b', () => {
   describe('foo()', () => {
