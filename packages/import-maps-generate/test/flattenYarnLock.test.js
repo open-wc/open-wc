@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { flattenYarnLock } from '../src/flattenYarnLock';
+import { flattenYarnLock } from '../src/flattenYarnLock.js';
 
 const { expect } = chai;
 

@@ -2,11 +2,11 @@ import * as lockfile from '@yarnpkg/lockfile';
 import path from 'path';
 import fs from 'fs';
 import prompts from 'prompts';
-import { findProductionDependencies } from './findProductionDependencies';
-import { flattenYarnLock } from './flattenYarnLock';
-import { findPathToVersion } from './findPathToVersion';
-import { findPackageJson } from './findPackageJson';
-import { postProcessImportMap } from './postProcessImportMap';
+import { findProductionDependencies } from './findProductionDependencies.js';
+import { flattenYarnLock } from './flattenYarnLock.js';
+import { findPathToVersion } from './findPathToVersion.js';
+import { findPackageJson } from './findPackageJson.js';
+import { postProcessImportMap } from './postProcessImportMap.js';
 
 async function askForVersionSelection(depName, versions) {
   const choices = [];

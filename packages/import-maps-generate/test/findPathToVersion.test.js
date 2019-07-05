@@ -1,7 +1,7 @@
 import chai from 'chai';
 import fs from 'fs';
 import * as lockfile from '@yarnpkg/lockfile';
-import { findPathToVersion } from '../src/findPathToVersion';
+import { findPathToVersion } from '../src/findPathToVersion.js';
 
 const { expect } = chai;
 

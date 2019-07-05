@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { expect } from 'chai';
-import { foo } from '../src/example';
+import { foo } from '../src/example.js';
 
 describe('foo()', () => {
   it('returns false when given true', () => {

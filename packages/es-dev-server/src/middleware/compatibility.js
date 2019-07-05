@@ -1,6 +1,6 @@
-import { extractResources, createIndexHTML } from '@open-wc/building-utils/index-html';
-import { getBodyAsString } from '../utils';
-import { compatibilityModes } from '../constants';
+import { extractResources, createIndexHTML } from '@open-wc/building-utils/index-html/index.js';
+import { getBodyAsString } from '../utils.js';
+import { compatibilityModes } from '../constants.js';
 import systemJsLegacyResolveScript from '../browser-scripts/system-js-legacy-resolve.js';
 
 /**
