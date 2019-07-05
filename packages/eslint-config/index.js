@@ -8,7 +8,7 @@ module.exports = {
   plugins: ['html'],
   rules: {
     'no-underscore-dangle': 'off',
-    'import/extensions': 'off',
+    'import/extensions': ['error', 'always', { ignorePackages: true }],
     'import/prefer-default-export': 'off',
     'import/no-extraneous-dependencies': [
       'error',
