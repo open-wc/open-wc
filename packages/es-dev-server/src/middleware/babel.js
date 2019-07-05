@@ -12,6 +12,7 @@ const baseFileExtensions = ['.js', '.mjs'];
  * @property {boolean} nodeResolve
  * @property {boolean} readUserBabelConfig
  * @property {string} compatibilityMode
+ * @property {object} [customBabelConfig]
  * @property {string[]} extraFileExtensions
  *
  */

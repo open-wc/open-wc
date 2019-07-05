@@ -30,6 +30,7 @@ import { createHTTPServer } from './create-http-server.js';
  * @property {string} [compatibilityMode]
  * @property {string[]} [watchExcludes]
  * @property {number} [watchDebounce]
+ * @property {object} [customBabelConfig]
  * @property {string[]} [extraFileExtensions]
  * @property {import('koa').Middleware[]} [customMiddlewares]
  */
@@ -43,6 +44,7 @@ export function startServer(config) {
     moduleDirectories = ['node_modules'],
     nodeResolve = false,
     readUserBabelConfig = false,
+    customBabelConfig,
     watch = false,
     openBrowser = false,
     openPath,
@@ -81,7 +83,10 @@ export function startServer(config) {
 
   const setupWatch = appIndex && watch;
   const setupBabel =
-    nodeResolve || compatibilityMode !== compatibilityModes.NONE || readUserBabelConfig;
+    customBabelConfig ||
+    nodeResolve ||
+    compatibilityMode !== compatibilityModes.NONE ||
+    readUserBabelConfig;
   const setupCompatibility = compatibilityMode && compatibilityMode !== compatibilityModes.NONE;
   const setupHistoryFallback = appIndex;
   const setupMessageChanel = setupWatch || setupBabel;
@@ -134,6 +139,7 @@ export function startServer(config) {
         readUserBabelConfig,
         compatibilityMode,
         extraFileExtensions,
+        customBabelConfig,
       }),
     );
   }
