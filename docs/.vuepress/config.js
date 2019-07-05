@@ -13,6 +13,7 @@ const sidebar = [
       '/developing/es-dev-server',
       ['/init/', 'Generators'],
       '/developing/types',
+      '/developing/routing',
     ],
   },
   {
