@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/open-wc/open-wc/compare/@import-maps/generate@0.1.3...@import-maps/generate@0.1.4) (2019-07-05)
+
+
+### Bug Fixes
+
+* **generate:** remove unnecessary .imports subproperty ([#549](https://github.com/open-wc/open-wc/issues/549)) ([bbd1411](https://github.com/open-wc/open-wc/commit/bbd1411))
+
+
+
+
+
 ## [0.1.3](https://github.com/open-wc/open-wc/compare/@import-maps/generate@0.1.2...@import-maps/generate@0.1.3) (2019-07-05)
 
 **Note:** Version bump only for package @import-maps/generate
