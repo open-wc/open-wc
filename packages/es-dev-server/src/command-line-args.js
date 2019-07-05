@@ -96,7 +96,7 @@ export default function readCommandLineArgs(argv = process.argv) {
     { name: 'help', type: Boolean, description: 'See all options' },
   ];
 
-  const dashesArgs = commandLineArgs(optionDefinitions, { argv });
+  const dashesArgs = commandLineArgs(optionDefinitions, { argv, partial: true });
 
   // convert kebab-case to camelCase
   /** @type {object} */
