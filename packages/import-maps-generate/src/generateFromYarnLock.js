@@ -21,7 +21,7 @@ async function askForVersionSelection(depName, versions) {
     {
       type: 'select',
       name: 'selectedVersion',
-      message: `Could not find a version of ${depName} that can sadisfy all dependencies. Which version would you like to use?`,
+      message: `Could not find a version of ${depName} that can satisfy all dependencies. Which version would you like to use?`,
       choices,
     },
   ]);
