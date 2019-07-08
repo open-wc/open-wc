@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-utils",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "Utils for @open-wc packages that do build stuff",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -39,7 +39,7 @@
     "parse5": "^5.1.0",
     "regenerator-runtime": "^0.13.2",
     "rimraf": "^2.6.3",
-    "systemjs": "^4.0.0",
+    "systemjs": "^4.0.1",
     "terser": "^4.0.0",
     "whatwg-fetch": "^3.0.0"
   },
@@ -47,7 +47,6 @@
     "@types/lru-cache": "^5.1.0",
     "@types/rimraf": "^2.0.2",
     "chai": "^4.2.0",
-    "mocha": "^6.1.4",
-    "systemjs": "^3.1.6"
+    "mocha": "^6.1.4"
   }
 }

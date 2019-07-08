@@ -2,7 +2,7 @@
 import prompts from 'prompts';
 import commandLineArgs from 'command-line-args';
 import { executeMixinGenerator } from '../../core.js';
-import LintingMixin from '../linting';
+import LintingMixin from '../linting/index.js';
 import TestingMixin from '../testing/index.js';
 import DemoingStorybookMixin from '../demoing-storybook/index.js';
 import BuildingRollupMixin from '../building-rollup/index.js';

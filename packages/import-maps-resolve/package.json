@@ -1,6 +1,6 @@
 {
   "name": "@import-maps/resolve",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Read and resolve urls via an import map",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",

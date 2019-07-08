@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import path from 'path';
 import { startServer } from '../../src/server.js';
 import { compatibilityModes } from '../../src/constants.js';
-import systemJsLegacyResolveScript from '../../src/browser-scripts/system-js-legacy-resolve';
+import systemJsLegacyResolveScript from '../../src/browser-scripts/system-js-legacy-resolve.js';
 
 const REGEXP_ESM_SHIMS = /<script src="polyfills\/es-module-shims.*<\/script>/;
 const STRING_IMPORTMAP = '<script type="importmap">';
@@ -23,7 +23,6 @@ describe('compatibility middleware', () => {
       beforeEach(async () => {
         ({ server } = startServer({
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-          appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
           compatibilityMode: compatibilityModes.MODERN,
         }));
 
@@ -56,7 +55,6 @@ describe('compatibility middleware', () => {
       beforeEach(async () => {
         ({ server } = startServer({
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-          appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
           compatibilityMode: compatibilityModes.ALL,
         }));
 
@@ -95,7 +93,6 @@ describe('compatibility middleware', () => {
       beforeEach(async () => {
         ({ server } = startServer({
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'import-map'),
-          appIndex: path.resolve(__dirname, '..', 'fixtures', 'import-map', 'index.html'),
           compatibilityMode: compatibilityModes.MODERN,
         }));
 
@@ -124,7 +121,6 @@ describe('compatibility middleware', () => {
       beforeEach(async () => {
         ({ server } = startServer({
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'import-map'),
-          appIndex: path.resolve(__dirname, '..', 'fixtures', 'import-map', 'index.html'),
           compatibilityMode: compatibilityModes.ALL,
         }));
 

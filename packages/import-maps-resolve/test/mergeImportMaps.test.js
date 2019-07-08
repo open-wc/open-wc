@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { mergeImportMaps } from '../src';
+import { mergeImportMaps } from '../src/index.js';
 
 const { expect } = chai;
 

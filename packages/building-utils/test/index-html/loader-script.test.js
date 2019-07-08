@@ -46,10 +46,10 @@ function testSnapshot({ name, entries, legacyEntries = null, polyfills = null })
   const script = createLoaderScript(entries, legacyEntries, polyfills, false);
 
   if (updateSnapshots) {
-    fs.writeFileSync(snapshotPath, `/* eslint-disable */\n ${script}`, 'utf-8');
+    fs.writeFileSync(snapshotPath, script, 'utf-8');
   } else {
     const snapshot = fs.readFileSync(snapshotPath, 'utf-8');
-    expect(`/* eslint-disable */\n ${script}`).to.equal(snapshot);
+    expect(script).to.equal(snapshot);
   }
 }
 

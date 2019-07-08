@@ -44,16 +44,22 @@ npx es-dev-server
 This setup does no code transformation at all. Great for blazing fast development on the latest browsers or when running a production build of your app.
 
 ```bash
-npx es-dev-server --app-index index.html --watch --open
+npx es-dev-server --watch --open index.html
 ```
 
 HTTP/2 is useful when serving unbundled code as it is better at handling many concurrent requests. It requires a HTTPS connection, we do this using self-signed certificates. On first run the browser will prompt a warning, you will need to accept the certificates before proceeding. Since you are on localhost, this is safe to do.
 
 ```bash
-npx es-dev-server --app-index index.html --watch --http2 --open
+npx es-dev-server --watch --http2 --open index.html
 ```
 
-The `app-index` flag tells the server where to find the index for your application, this is needed for some features such as browser reload and serving your index on all routes when doing SPA routing (history API fallback). For traditional static file serving you can leave this out.
+### SPA Routing
+
+If your app does routing in front-end using the history API you can setup the server to serve your `index.html` on any route request. For this you need to pass the `--app-index` flag. If you set this flag, `--open` will open on that path automatically.
+
+```bash
+npx es-dev-server --app-index index.html --watch --http2 --open
+```
 
 ### Resolve bare module imports
 

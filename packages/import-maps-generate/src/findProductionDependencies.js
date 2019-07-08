@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { findPackageJson } from './findPackageJson';
+import { findPackageJson } from './findPackageJson.js';
 
 export async function findWorkspaceProdutionDependenies(packageJson, root = process.cwd()) {
   let deps = packageJson.dependencies ? packageJson.dependencies : {};

@@ -1,5 +1,5 @@
 import { expect } from '@bundled-es-modules/chai';
-import { html, litFixture, unsafeStatic } from '..';
+import { html, litFixture, unsafeStatic } from '../index.js';
 
 /**
  * @typedef {Object} ChildType

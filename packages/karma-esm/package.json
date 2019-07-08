@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/karma-esm",
-  "version": "1.1.1",
+  "version": "1.1.4",
   "description": "Karma plugin for testing with es modules",
   "author": "open-wc",
   "main": "./src/index.js",
@@ -27,7 +27,7 @@
     "@babel/plugin-syntax-import-meta": "^7.2.0",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
-    "@open-wc/building-utils": "^2.3.1",
+    "@open-wc/building-utils": "^2.4.0",
     "@types/node": "^11.13.0",
     "arrify": "^2.0.1",
     "babel-plugin-istanbul": "^5.1.1",

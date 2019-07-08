@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { findPackageJson } from '../src/findPackageJson';
+import { findPackageJson } from '../src/findPackageJson.js';
 
 const { expect } = chai;
 

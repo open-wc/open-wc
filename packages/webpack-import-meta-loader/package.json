@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/webpack-import-meta-loader",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Webpack configuration following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",

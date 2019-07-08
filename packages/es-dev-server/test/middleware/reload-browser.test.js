@@ -44,7 +44,6 @@ describe.skip('reload browser middleware', function describe() {
   beforeEach(async () => {
     ({ server } = startServer({
       rootDir: path.resolve(__dirname, '..', 'fixtures', 'reload'),
-      appIndex: path.resolve(__dirname, '..', 'fixtures', 'reload', 'index.html'),
       watch: true,
       watchDebounce: 5,
     }));

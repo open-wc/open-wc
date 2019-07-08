@@ -1,7 +1,7 @@
-/* eslint-disable */
- (function() {
-    function loadEntries() {
-      window.importShim('./app.js');
-    }
-    loadEntries()
-  })();
+(function() {
+  function loadEntries() {
+    window.importShim('./app.js');
+  }
+
+  loadEntries()
+})();

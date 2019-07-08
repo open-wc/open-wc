@@ -1,6 +1,6 @@
-import { extractResources, createIndexHTML } from '@open-wc/building-utils/index-html';
-import { getBodyAsString } from '../utils';
-import { compatibilityModes } from '../constants';
+import { extractResources, createIndexHTML } from '@open-wc/building-utils/index-html/index.js';
+import { getBodyAsString } from '../utils.js';
+import { compatibilityModes } from '../constants.js';
 import systemJsLegacyResolveScript from '../browser-scripts/system-js-legacy-resolve.js';
 
 /**
@@ -59,8 +59,8 @@ export function createCompatibilityMiddleware(cfg) {
   const { compatibilityMode: compatMode } = cfg;
   /** @type {Map<string, string>} */
   const polyfills = new Map();
-  /** @type {{ body: string, lastModified: string }} */
-  let cachedIndexHTML;
+  /** @type {Map<string, { body: string, lastModified: string }>} */
+  const cachedHTMLs = new Map();
 
   if (!compatMode || compatMode === compatibilityModes.NONE) {
     throw new Error(
@@ -94,77 +94,98 @@ export function createCompatibilityMiddleware(cfg) {
      * Modules are loaded through es-module-shims for modern browsers, for browsers which
      * don't support modules the code is loaded by systemjs and compiled to es5.
      */
-    if (ctx.url === cfg.appIndex) {
-      const lastModified = ctx.response.headers['last-modified'];
 
-      // return cached index.html if it did not change
-      if (cachedIndexHTML) {
-        if (cachedIndexHTML.lastModified === lastModified) {
-          ctx.body = cachedIndexHTML.body;
-          return;
-        }
-      }
-
-      // read served index.html
-      const indexHTMLString = await getBodyAsString(ctx.body);
-
-      // extract input files from index.html
-      const resources = extractResources(indexHTMLString);
-      if (resources.inlineModules.length > 0) {
-        throw new Error(
-          `Compatibility cannot handle "inline" modules (modules without a src attribute). Place your js code in a separate file.`,
-        );
-      }
-
-      if (!resources.jsModules || resources.jsModules.length === 0) {
-        throw new Error(
-          `Compatibility mode requires at least one <script type="module" src="..."> in your index.html.`,
-        );
-      }
-
-      const files = resources.jsModules.map(e => e.replace('./', ''));
-
-      // create a new index.html with injected polyfills and loader script
-      const createResult = createIndexHTML(resources.indexHTML, {
-        entries: {
-          type: 'module',
-          files,
-        },
-        legacyEntries: modernOnly
-          ? undefined
-          : {
-              type: 'system',
-              files,
-            },
-        polyfills: modernOnly ? modernPolyfills : legacyPolyfills,
-        minify: false,
-        preload: false,
-      });
-
-      let { indexHTML } = createResult;
-
-      // if there were any importmaps, they were extracted. re-add them as an importmap shim
-      indexHTML = injectImportMaps(indexHTML, resources, 'importmap-shim');
-
-      if (!modernOnly) {
-        // if we need to support legacy browsers, also add systemjs-importmap
-        indexHTML = injectImportMaps(indexHTML, resources, 'systemjs-importmap');
-
-        // inject systemjs resolver which appends a query param to trigger es5 compilation
-        indexHTML = indexHTML.replace('</body>', `${systemJsLegacyResolveScript}</body>`);
-      }
-
-      // add new index.html
-      ctx.body = indexHTML;
-
-      // cache index for later use
-      cachedIndexHTML = { body: indexHTML, lastModified };
-
-      // cache polyfills for serving
-      createResult.files.forEach(file => {
-        polyfills.set(`${cfg.appIndexDir}/${file.path}`, file.content);
-      });
+    //  only look for html files
+    if (!ctx.url.endsWith('/') && !ctx.url.endsWith('.html')) {
+      return;
     }
+
+    if (ctx.status < 200 || ctx.status >= 300) {
+      return;
+    }
+
+    // if url is the app index we know for sure we need to inject polyfills. otherwise, check if
+    // this is a html document we are serving.
+    let indexHTMLString;
+    if (ctx.url !== cfg.appIndex) {
+      indexHTMLString = await getBodyAsString(ctx.body);
+
+      if (!indexHTMLString.includes('<html') && !indexHTMLString.includes('</html>')) {
+        return;
+      }
+    }
+
+    const lastModified = ctx.response.headers['last-modified'];
+
+    // return cached index.html if it did not change
+    const cache = cachedHTMLs.get(ctx.url);
+    if (cache && cache.lastModified === lastModified) {
+      ctx.body = cache.body;
+      return;
+    }
+
+    // for performance we didn't drain the index.html stream for the app index above. if we end up here
+    // we do need the whole body content now
+    if (!indexHTMLString) {
+      indexHTMLString = await getBodyAsString(ctx.body);
+    }
+
+    // extract input files from index.html
+    const resources = extractResources(indexHTMLString);
+    if (resources.inlineModules.length > 0) {
+      throw new Error(
+        `Compatibility cannot handle "inline" modules (modules without a src attribute). Place your js code in a separate file.`,
+      );
+    }
+
+    if (!resources.jsModules || resources.jsModules.length === 0) {
+      throw new Error(
+        `Compatibility mode requires at least one <script type="module" src="..."> in your index.html.`,
+      );
+    }
+
+    const files = resources.jsModules.map(e => e.replace('./', ''));
+
+    // create a new index.html with injected polyfills and loader script
+    const createResult = createIndexHTML(resources.indexHTML, {
+      entries: {
+        type: 'module',
+        files,
+      },
+      legacyEntries: modernOnly
+        ? undefined
+        : {
+            type: 'system',
+            files,
+          },
+      polyfills: modernOnly ? modernPolyfills : legacyPolyfills,
+      minify: false,
+      preload: false,
+    });
+
+    let { indexHTML } = createResult;
+
+    // if there were any importmaps, they were extracted. re-add them as an importmap shim
+    indexHTML = injectImportMaps(indexHTML, resources, 'importmap-shim');
+
+    if (!modernOnly) {
+      // if we need to support legacy browsers, also add systemjs-importmap
+      indexHTML = injectImportMaps(indexHTML, resources, 'systemjs-importmap');
+
+      // inject systemjs resolver which appends a query param to trigger es5 compilation
+      indexHTML = indexHTML.replace('</body>', `${systemJsLegacyResolveScript}</body>`);
+    }
+
+    // add new index.html
+    ctx.body = indexHTML;
+
+    // cache index for later use
+    cachedHTMLs.set(ctx.url, { body: indexHTML, lastModified });
+
+    // cache polyfills for serving
+    createResult.files.forEach(file => {
+      polyfills.set(`${cfg.appIndexDir}/${file.path}`, file.content);
+    });
   }
 
   return compatibilityMiddleware;

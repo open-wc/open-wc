@@ -93,7 +93,7 @@ describe('polyfills', () => {
     expect(polyfillsWithoutCode).to.eql([
       {
         code: undefined,
-        hash: '3b7d80ec7b581e1f7a84a00277446cad',
+        hash: '99ae432d7df7b7916392294c3f66e08c',
         name: 'systemjs',
         nomodule: false,
         test: undefined,
@@ -123,7 +123,7 @@ describe('polyfills', () => {
     expect(polyfillsWithoutCode).to.eql([
       {
         code: undefined,
-        hash: '3b7d80ec7b581e1f7a84a00277446cad',
+        hash: '99ae432d7df7b7916392294c3f66e08c',
         name: 'systemjs',
         nomodule: true,
         test: undefined,
