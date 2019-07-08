@@ -1,0 +1,2 @@
+- don't run babel on mocha etc. it's now passed to es dev server
+- http2

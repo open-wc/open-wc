@@ -1,6 +1,6 @@
-import { extractResources, createIndexHTML } from '@open-wc/building-utils/index-html/index.js';
-import { getBodyAsString } from '../utils.js';
-import { compatibilityModes } from '../constants.js';
+import { extractResources, createIndexHTML } from '@open-wc/building-utils/index-html';
+import { getBodyAsString } from '../utils';
+import { compatibilityModes, modernPolyfills, legacyPolyfills } from '../constants';
 import systemJsLegacyResolveScript from '../browser-scripts/system-js-legacy-resolve.js';
 
 /**
@@ -9,21 +9,6 @@ import systemJsLegacyResolveScript from '../browser-scripts/system-js-legacy-res
  * @property {string} appIndexDir
  * @property {string} compatibilityMode
  */
-
-/** @type {import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig} */
-const modernPolyfills = {
-  webcomponents: true,
-  esModuleShims: true,
-};
-
-/** @type {import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig} */
-const legacyPolyfills = {
-  ...modernPolyfills,
-  coreJs: true,
-  regeneratorRuntime: true,
-  fetch: true,
-  systemJsExtended: true,
-};
 
 function injectImportMaps(indexHTML, resources, type) {
   let transformedIndexHTML = indexHTML;
@@ -78,7 +63,8 @@ export function createCompatibilityMiddleware(cfg) {
     if (polyfill) {
       ctx.body = polyfill;
       // aggresively cache polyfills, they are hashed so content bust the cache
-      ctx.response.append('Cache-Control', 'public, max-age=31536000');
+      ctx.response.set('cache-control', 'public, max-age=31536000');
+      ctx.response.set('content-type', 'text/javascript');
       return;
     }
 

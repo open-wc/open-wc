@@ -2,6 +2,7 @@ import { transformAsync } from '@babel/core';
 import deepmerge from 'deepmerge';
 import LRUCache from 'lru-cache';
 import { findSupportedBrowsers } from '@open-wc/building-utils';
+import { baseFileExtensions } from './constants.js';
 
 /**
  * @typedef {object} CreateBabelCompilerConfig
@@ -12,6 +13,7 @@ import { findSupportedBrowsers } from '@open-wc/building-utils';
  * @property {boolean} modern
  * @property {object} [customBabelConfig]
  * @property {boolean} legacy
+ * @property {string[]} [extraFileExtensions]
  */
 
 /** @param {boolean} babelrc */
@@ -35,8 +37,9 @@ function createDefaultConfig(babelrc) {
 /**
  * @param {string} rootBaseDir
  * @param {string[]} resolveDirectories
+ * @param {string[]} fileExtensions
  */
-function createNodeResolveConfig(rootBaseDir, resolveDirectories) {
+function createNodeResolveConfig(rootBaseDir, resolveDirectories, fileExtensions) {
   return {
     plugins: [
       [
@@ -47,6 +50,7 @@ function createNodeResolveConfig(rootBaseDir, resolveDirectories) {
           modulesDir: './node_modules',
           failOnUnresolved: true,
           resolveDirectories,
+          extensions: fileExtensions,
         },
       ],
     ],
@@ -92,12 +96,14 @@ const legacyConfig = {
  * @param {CreateBabelCompilerConfig} cfg
  */
 export default function createBabelCompiler(cfg) {
+  const fileExtensions = [...baseFileExtensions, ...cfg.extraFileExtensions];
+
   // create babel configuration based on a number of presets
   const babelConfigs = [
     // custom babel config if it's there
-    cfg.customBabelConfig,
     createDefaultConfig(cfg.readUserBabelConfig),
-    cfg.nodeResolve && createNodeResolveConfig(cfg.rootDir, cfg.moduleDirectories),
+    cfg.customBabelConfig,
+    cfg.nodeResolve && createNodeResolveConfig(cfg.rootDir, cfg.moduleDirectories, fileExtensions),
     cfg.modern && modernConfig,
     cfg.legacy && legacyConfig,
   ].filter(Boolean);
@@ -164,3 +170,4 @@ export default function createBabelCompiler(cfg) {
     getFromCache,
   };
 }
+
