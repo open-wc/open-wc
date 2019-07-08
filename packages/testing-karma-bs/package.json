@@ -22,14 +22,18 @@
     "test:legacy": "karma start demo/karma.conf.js --legacy --coverage",
     "test:legacy:watch": "karma start demo/karma.conf.js --legacy --auto-watch=true --single-run=false",
     "test:bs": "karma start demo/karma.bs.conf.js --legacy --coverage",
-    "prepublishOnly": "../../scripts/insert-header.js"
+    "prepublishOnly": "../../scripts/insert-header.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "@open-wc/testing-karma": "^2.0.12",
     "@types/node": "^11.13.0",
-    "karma-browserstack-launcher": "^1.0.0"
+    "karma-browserstack-launcher": "^1.0.0",
+    "snyk": "^1.192.3"
   },
   "devDependencies": {
     "chai": "^4.2.0"
-  }
+  },
+  "snyk": true
 }
