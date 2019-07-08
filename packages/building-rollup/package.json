@@ -23,7 +23,9 @@
     "watch:ts": "rimraf dist && rollup -c demo/ts/rollup.config.js --watch & yarn start:build",
     "build:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js",
     "watch:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js --watch & yarn start:build",
-    "prepublishOnly": "../../scripts/insert-header.js"
+    "prepublishOnly": "../../scripts/insert-header.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [
     "open-wc",
@@ -48,7 +50,8 @@
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-index-html": "^1.3.3",
     "rollup-plugin-node-resolve": "^4.0.1",
-    "rollup-plugin-terser": "^4.0.4"
+    "rollup-plugin-terser": "^4.0.4",
+    "snyk": "^1.192.4"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.4",
@@ -61,5 +64,6 @@
     "rollup-plugin-cpy": "^1.1.0",
     "rollup-plugin-typescript2": "^0.19.3",
     "rollup-plugin-visualizer": "^1.0.2"
-  }
+  },
+  "snyk": true
 }
