@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.9](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.8...@open-wc/testing-helpers@1.0.9) (2019-07-08)
+
+
+### Bug Fixes
+
+* use file extensions for imports to support import maps ([c711b13](https://github.com/open-wc/open-wc/commit/c711b13))
+
+
+
+
+
 ## [1.0.8](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.7...@open-wc/testing-helpers@1.0.8) (2019-07-08)
 
 **Note:** Version bump only for package @open-wc/testing-helpers
