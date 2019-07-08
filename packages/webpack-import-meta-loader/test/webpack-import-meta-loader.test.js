@@ -39,7 +39,7 @@ describe('import-meta-url-loader', () => {
 
     expect(caseB).to.equal(
       `${'' +
-        "import './caseBsub/caseBsub';"}${newLine}${newLine}export const foo = new URL('./', ({ url: \`\${window.location.protocol}//\${window.location.host}/caseB/index.js\` }).url);${newLine}`,
+        "import './caseBsub/caseBsub.js';"}${newLine}${newLine}export const foo = new URL('./', ({ url: \`\${window.location.protocol}//\${window.location.host}/caseB/index.js\` }).url);${newLine}`,
     );
 
     expect(caseBsub).to.equal(

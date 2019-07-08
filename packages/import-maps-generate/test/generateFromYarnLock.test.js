@@ -4,7 +4,7 @@ import {
   generateFromYarnLock,
   resolvePathsAndConflicts,
   flatResolvedDepsToImports,
-} from '../src/generateFromYarnLock';
+} from '../src/generateFromYarnLock.js';
 
 const { expect } = chai;
 

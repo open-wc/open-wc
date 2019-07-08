@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/open-wc/open-wc/compare/@import-maps/resolve@0.1.1...@import-maps/resolve@0.1.2) (2019-07-08)
+
+
+### Bug Fixes
+
+* use file extensions for imports to support import maps ([c711b13](https://github.com/open-wc/open-wc/commit/c711b13))
+
+
+
+
+
 ## [0.1.1](https://github.com/open-wc/open-wc/compare/@import-maps/resolve@0.1.0...@import-maps/resolve@0.1.1) (2019-06-29)
 
 

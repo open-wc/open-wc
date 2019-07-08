@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import { findPackageJson } from './findPackageJson';
+import { findPackageJson } from './findPackageJson.js';
 
 async function findWorkspaceParentDeps(depName, packageJson, targetPath = process.cwd()) {
   const parents = [];

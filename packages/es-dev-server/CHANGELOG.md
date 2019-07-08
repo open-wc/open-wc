@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.3.1...es-dev-server@1.3.2) (2019-07-08)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+## [1.3.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.3.0...es-dev-server@1.3.1) (2019-07-08)
+
+
+### Bug Fixes
+
+* use file extensions for imports to support import maps ([c711b13](https://github.com/open-wc/open-wc/commit/c711b13))
+
+
+
+
+
+# [1.3.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.2.6...es-dev-server@1.3.0) (2019-07-08)
+
+
+### Features
+
+* **es-dev-server:** don't require index.html for transform middleware ([1fdf98b](https://github.com/open-wc/open-wc/commit/1fdf98b))
+
+
+
+
+
 ## [1.2.6](https://github.com/open-wc/open-wc/compare/es-dev-server@1.2.5...es-dev-server@1.2.6) (2019-07-08)
 
 **Note:** Version bump only for package es-dev-server

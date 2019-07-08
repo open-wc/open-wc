@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.3.4...rollup-plugin-index-html@1.4.0) (2019-07-08)
+
+
+### Features
+
+* **rollup-plugin-index-html:** support inline modules ([#525](https://github.com/open-wc/open-wc/issues/525)) ([f79de32](https://github.com/open-wc/open-wc/commit/f79de32))
+
+
+
+
+
+## [1.3.4](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.3.3...rollup-plugin-index-html@1.3.4) (2019-07-08)
+
+**Note:** Version bump only for package rollup-plugin-index-html
+
+
+
+
+
 ## [1.3.3](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.3.2...rollup-plugin-index-html@1.3.3) (2019-07-08)
 
 **Note:** Version bump only for package rollup-plugin-index-html

@@ -3,8 +3,8 @@
 import fs from 'fs';
 import path from 'path';
 import commandLineArgs from 'command-line-args';
-import { generateFromYarnLock } from './generateFromYarnLock';
-import injectToHtmlFile from './injectToHtmlFile';
+import { generateFromYarnLock } from './generateFromYarnLock.js';
+import injectToHtmlFile from './injectToHtmlFile.js';
 
 const optionDefinitions = [{ name: 'inject-to' }];
 const options = commandLineArgs(optionDefinitions);

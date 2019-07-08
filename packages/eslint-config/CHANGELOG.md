@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.4.5...@open-wc/eslint-config@1.0.0) (2019-07-08)
+
+
+### Bug Fixes
+
+* use file extensions for imports to support import maps ([c711b13](https://github.com/open-wc/open-wc/commit/c711b13))
+
+
+### Features
+
+* **eslint-config:** add import extensions linting rule ([cd407e7](https://github.com/open-wc/open-wc/commit/cd407e7))
+
+
+### BREAKING CHANGES
+
+* **eslint-config:** imports now require a file extension
+every import that is not a "pure" bare import requires a file extension
+```js
+// before
+import '../my-el';
+import '@open-wc/testing/index-no-side-effects';
+import '@open-wc/testing';
+// after
+import '../my-el.js';
+import '@open-wc/testing/index-no-side-effects.js';
+import '@open-wc/testing';
+```
+
+
+
+
+
 ## [0.4.5](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.4.4...@open-wc/eslint-config@0.4.5) (2019-04-28)
 
 

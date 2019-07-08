@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
 const { parseFromString, resolve, mergeImportMaps } = require('@import-maps/resolve');
+const { findInlineEntryId } = require('@open-wc/building-utils/index-html');
 const { processEntryHtml } = require('./src/process-entry-html.js');
 const { createOutput } = require('./src/create-output');
 const { createEntriesConfig } = require('./src/create-entries-config');
@@ -55,6 +56,7 @@ module.exports = (pluginConfig = {}) => {
   };
   let outputIndexHTML;
   let inlineImportMaps;
+  let inlineModules;
   let importMapCache = null;
   let rollupOptions = null;
 
@@ -74,11 +76,16 @@ module.exports = (pluginConfig = {}) => {
       }
 
       const result = processEntryHtml(inputConfig);
-      ({ outputIndexHTML, inlineImportMaps, rollupOptions } = result);
+      ({ outputIndexHTML, inlineImportMaps, inlineModules, rollupOptions } = result);
       return result.rollupOptions;
     },
 
     resolveId(source, importer) {
+      // if this is an inline entry keep it, load() will take ca,re of it
+      if (typeof findInlineEntryId(source) === 'number') {
+        return source;
+      }
+
       if (Array.isArray(inlineImportMaps) && inlineImportMaps.length > 0) {
         // exclude entry points as they may get provided as `main.js` without a path
         // which would be considered bare module according to import map spec
@@ -107,6 +114,17 @@ module.exports = (pluginConfig = {}) => {
         }
       }
 
+      return null;
+    },
+
+    load(id) {
+      const inlineEntryId = findInlineEntryId(id);
+      // if this is an inline entry, take the inline module index from the import and return it's content
+      if (typeof inlineEntryId === 'number') {
+        return inlineModules[inlineEntryId];
+      }
+
+      // defer loading to other plugins / rollup
       return null;
     },
 
