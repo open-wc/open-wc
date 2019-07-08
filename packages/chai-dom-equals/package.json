@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/chai-dom-equals",
-  "version": "0.12.17",
+  "version": "0.12.18",
   "description": "Chai Plugin to compare dom and shadow dom trees. Part of open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -26,7 +26,7 @@
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "dependencies": {
-    "@open-wc/semantic-dom-diff": "^0.11.17",
+    "@open-wc/semantic-dom-diff": "^0.12.0",
     "@types/chai": "^4.1.7"
   },
   "devDependencies": {
