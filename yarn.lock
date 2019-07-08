@@ -1930,21 +1930,21 @@
     url-template "^2.0.8"
 
 "@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.1.10"
+  version "1.1.11"
   dependencies:
-    "@open-wc/testing-karma" "^2.0.10"
+    "@open-wc/testing-karma" "^2.0.11"
     "@types/node" "^11.13.0"
     karma-browserstack-launcher "^1.0.0"
 
 "@open-wc/testing-karma@file:./packages/testing-karma":
-  version "2.0.10"
+  version "2.0.11"
   dependencies:
     "@babel/core" "^7.3.3"
     "@babel/plugin-syntax-dynamic-import" "^7.2.0"
     "@babel/plugin-syntax-import-meta" "^7.2.0"
     "@babel/polyfill" "^7.0.0"
     "@babel/preset-env" "^7.0.0"
-    "@open-wc/karma-esm" "^1.1.0"
+    "@open-wc/karma-esm" "^1.1.1"
     "@types/node" "^11.13.0"
     "@webcomponents/webcomponentsjs" "^2.2.0"
     babel-loader "^8.0.0"
@@ -15913,10 +15913,10 @@ synchronous-promise@^2.0.5:
   resolved "https://registry.yarnpkg.com/synchronous-promise/-/synchronous-promise-2.0.7.tgz#3574b3d2fae86b145356a4b89103e1577f646fe3"
   integrity sha512-16GbgwTmFMYFyQMLvtQjvNWh30dsFe1cAW5Fg1wm5+dg84L9Pe36mftsIRU95/W2YsISxsz/xq4VB23sqpgb/A==
 
-systemjs@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-4.0.0.tgz#8b2310ccf774242b492e35b8037b6e6ce580c24a"
-  integrity sha512-asE0z8PeNmCGEo6vxYYFvXTjUMnD3/CMoM8daFDNSI40y4CVm/Tc5pqF1c4uYqn0pREC6QQKxqRR1xHe+ckqsA==
+systemjs@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-4.0.1.tgz#38365642beb295a933459205794aefb723f1781e"
+  integrity sha512-/0Mu06EgSBZvxtxPoKRY2dN1Y7ymjFUtJ8SDIBIXNV7OXoCBNzFaH3rYfY2qG+k+4u13ZjJvvRv0IunxhhbDvg==
 
 table-layout@^0.4.3:
   version "0.4.4"
