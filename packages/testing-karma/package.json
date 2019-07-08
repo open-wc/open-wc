@@ -20,7 +20,9 @@
     "test:prune-snapshots": "karma start demo/karma.conf.js --prune-snapshots",
     "test:legacy": "karma start demo/karma.conf.js --legacy --coverage",
     "test:bs": "karma start demo/karma.bs.conf.js --legacy --coverage",
-    "prepublishOnly": "../../scripts/insert-header.js"
+    "prepublishOnly": "../../scripts/insert-header.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "files": [
     "*.js",
@@ -51,10 +53,12 @@
     "karma-static": "^1.0.1",
     "karma-webpack": "^5.0.0-alpha.2",
     "webpack": "^4.28.0",
-    "webpack-merge": "^4.1.5"
+    "webpack-merge": "^4.1.5",
+    "snyk": "^1.192.4"
   },
   "devDependencies": {
     "@bundled-es-modules/chai": "^4.2.1",
     "karma-browserstack-launcher": "^1.0.0"
-  }
+  },
+  "snyk": true
 }
