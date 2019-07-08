@@ -71,16 +71,6 @@ export function startServer(config) {
     appIndexDir = `${appIndex.substring(0, appIndex.lastIndexOf('/'))}`;
   }
 
-  if (!appIndex) {
-    if (watch) {
-      throw new Error(`Must provide an app index when watch mode is turned on.`);
-    }
-
-    if (compatibilityMode !== compatibilityModes.NONE) {
-      throw new Error(`Must provide an app index when compatibility mode is turned on.`);
-    }
-  }
-
   const setupWatch = appIndex && watch;
   const setupBabel =
     customBabelConfig ||

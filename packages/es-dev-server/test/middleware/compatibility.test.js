@@ -23,7 +23,6 @@ describe('compatibility middleware', () => {
       beforeEach(async () => {
         ({ server } = startServer({
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-          appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
           compatibilityMode: compatibilityModes.MODERN,
         }));
 
@@ -56,7 +55,6 @@ describe('compatibility middleware', () => {
       beforeEach(async () => {
         ({ server } = startServer({
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-          appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
           compatibilityMode: compatibilityModes.ALL,
         }));
 
@@ -95,7 +93,6 @@ describe('compatibility middleware', () => {
       beforeEach(async () => {
         ({ server } = startServer({
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'import-map'),
-          appIndex: path.resolve(__dirname, '..', 'fixtures', 'import-map', 'index.html'),
           compatibilityMode: compatibilityModes.MODERN,
         }));
 
@@ -124,7 +121,6 @@ describe('compatibility middleware', () => {
       beforeEach(async () => {
         ({ server } = startServer({
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'import-map'),
-          appIndex: path.resolve(__dirname, '..', 'fixtures', 'import-map', 'index.html'),
           compatibilityMode: compatibilityModes.ALL,
         }));
 

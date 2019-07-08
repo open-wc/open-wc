@@ -89,9 +89,11 @@ export function createMessageChannelMiddleware(cfg) {
 
     await next();
 
-    if (ctx.url === cfg.appIndex) {
-      await injectMessageChannelScript(ctx);
+    if (ctx.url !== cfg.appIndex && !ctx.url.endsWith('/') && !ctx.url.endsWith('.html')) {
+      return;
     }
+
+    await injectMessageChannelScript(ctx);
   }
 
   return messageChannelMiddleware;
