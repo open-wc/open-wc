@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.2.6...es-dev-server@1.3.0) (2019-07-08)
+
+
+### Features
+
+* **es-dev-server:** don't require index.html for transform middleware ([1fdf98b](https://github.com/open-wc/open-wc/commit/1fdf98b))
+
+
+
+
+
 ## [1.2.6](https://github.com/open-wc/open-wc/compare/es-dev-server@1.2.5...es-dev-server@1.2.6) (2019-07-08)
 
 **Note:** Version bump only for package es-dev-server
