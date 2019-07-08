@@ -1,6 +1,5 @@
 export function postProcessImportMap(imports, packageJson) {
   const importMap = imports;
-
   if (typeof packageJson.importMap !== 'undefined') {
     if (typeof packageJson.importMap.overrides !== 'undefined') {
       // override imports

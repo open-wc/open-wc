@@ -21,7 +21,7 @@ async function askForVersionSelection(depName, versions) {
     {
       type: 'select',
       name: 'selectedVersion',
-      message: `Could not find a version of ${depName} that can sadisfy all dependencies. Which version would you like to use?`,
+      message: `Could not find a version of ${depName} that can satisfy all dependencies. Which version would you like to use?`,
       choices,
     },
   ]);
@@ -53,13 +53,15 @@ async function addWorkspaceDeps(flatResolvedDeps, packageJson, targetPath = proc
 }
 
 export function flatResolvedDepsToImports(deps) {
-  const imports = {};
+  const importMap = {};
+  importMap.imports = {};
+
   Object.keys(deps).forEach(depName => {
     const depPath = deps[depName];
-    imports[depName] = depPath;
-    imports[`${depName}/`] = `${path.dirname(depPath)}/`;
+    importMap.imports[depName] = depPath;
+    importMap.imports[`${depName}/`] = `${path.dirname(depPath)}/`;
   });
-  return imports;
+  return importMap;
 }
 
 function updatePackageJsonResolutions(depName, selectedVersion, packageJson, targetPath) {
@@ -151,5 +153,5 @@ export async function generateFromYarnLock(
   let imports = flatResolvedDepsToImports(flatResolvedDepsWithWorkspaceDeps);
   imports = postProcessImportMap(imports, packageJson);
 
-  return { imports };
+  return imports;
 }

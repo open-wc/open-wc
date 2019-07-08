@@ -256,4 +256,40 @@ describe('babel middleware', () => {
       });
     });
   });
+
+  describe('custom babel config', () => {
+    let server;
+    beforeEach(() => {
+      ({ server } = startServer({
+        rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+        appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
+        customBabelConfig: {
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                targets: ['ie 11'],
+                useBuiltIns: false,
+              },
+            ],
+          ],
+        },
+      }));
+    });
+
+    afterEach(() => {
+      server.close();
+    });
+
+    it('uses the babel config', async () => {
+      const response = await fetch(`${host}app.js`);
+      const responseText = await response.text();
+
+      expect(response.status).to.equal(200);
+      expect(responseText).to.include(
+        'function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }',
+      );
+      expect(responseText).to.include('Foo = function Foo() {');
+    });
+  });
 });

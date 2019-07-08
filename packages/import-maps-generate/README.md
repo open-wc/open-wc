@@ -24,7 +24,7 @@ This is still in early beta (Windows paths are not supported yet)
 Install:
 
 ```bash
-yarn add @import-maps/generate
+yarn add --dev @import-maps/generate
 ```
 
 You should generate the import map after you install dependencies by adding the script to your `postinstall` hook in `package.json`:
@@ -168,6 +168,12 @@ Alternatively, you can specify your own resolutions in your package.json.
   }
 }
 ```
+
+## Command line flags overview
+### Development help
+| name            |  type          | description                                                              |
+| --------------- | -------------- | ------------------------------------------------------------------------ |
+| inject-to       | string         | Injects the import map to the specified html file                        |
     
 <script>
   export default {
