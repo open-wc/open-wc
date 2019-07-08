@@ -27,6 +27,9 @@
     "@import-maps/resolve": "^0.1.2",
     "@open-wc/building-utils": "^2.3.3",
     "deepmerge": "^3.2.0",
+    "lit-element": "^2.2.0",
+    "lit-html": "^1.1.0",
+    "md5": "^2.2.1",
     "mkdirp": "^0.5.1",
     "parse5": "^5.1.0"
   },
