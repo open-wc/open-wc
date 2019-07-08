@@ -33,18 +33,18 @@ function extractResources(htmlString) {
     const src = getAttribute(moduleScript, 'src');
     if (src) {
       jsModules.push(src);
-    } else {
-      inlineModules.push(moduleScript);
+    } else if (moduleScript.childNodes && moduleScript.childNodes[0]) {
+      inlineModules.push(moduleScript.childNodes[0].value);
     }
     remove(moduleScript);
   });
 
   importMapScripts.forEach(importMapScript => {
     const src = getAttribute(importMapScript, 'src');
-    if (!src) {
-      inlineImportMaps.push(importMapScript.childNodes[0].value);
-    } else {
+    if (src) {
       importMapPaths.push(src);
+    } else if (importMapScript.childNodes && importMapScript.childNodes[0]) {
+      inlineImportMaps.push(importMapScript.childNodes[0].value);
     }
     remove(importMapScript);
   });
