@@ -94,30 +94,32 @@ Note that "latest javascript features and syntax" is a general term, not everyth
 
 ## Command line flags overview
 ### Server configuration
-| name            |  type          | description                                                              |
-| --------------- | -------------- | ------------------------------------------------------------------------ |
-| port            | number         | The port to use. Default: 8080                                           |
-| hostname        | string         | The hostname to use. Default: localhost                                  |
-| open            | boolean/string | Opens the browser on app-index, root dir or a custom path                |
-| app-index       | string         | The app's index.html file, sets up history API fallback for SPA routing  |
-| root-dir        | string         | The root directory to serve files from. Default: working directory       |
-| config          | string         | The file to read configuration from (js or json)                         |
-| help            | none           | See all options                                                          |
+| name                 |  type          | description                                                              |
+| -------------------- | -------------- | ------------------------------------------------------------------------ |
+| port                 | number         | The port to use. Default: 8080                                           |
+| hostname             | string         | The hostname to use. Default: localhost                                  |
+| open                 | boolean/string | Opens the browser on app-index, root dir or a custom path                |
+| app-index            | string         | The app's index.html file, sets up history API fallback for SPA routing  |
+| root-dir             | string         | The root directory to serve files from. Default: working directory       |
+| config               | string         | The file to read configuration from (js or json)                         |
+| help                 | none           | See all options                                                          |
 
 ### Development help
-| name            |  type          | description                                                              |
-| --------------- | -------------- | ------------------------------------------------------------------------ |
-| watch           | boolean        | Reload the browser when files are edited                                 |
-| http2           | number         | Serve files over HTTP2. Sets up HTTPS with self-signed certificates      |
+| name                 |  type          | description                                                              |
+| -------------------- | -------------- | ------------------------------------------------------------------------ |
+| watch                | boolean        | Reload the browser when files are edited                                 |
+| http2                | number         | Serve files over HTTP2. Sets up HTTPS with self-signed certificates      |
 
 ### Code transformation
-| name            |  type          | description                                                              |
-| --------------- | -------------- | ------------------------------------------------------------------------ |
-| compatibility   | string         | Compatibility mode for older browsers. Can be: `esm`, `modern` or `all`  |
-| node-resolve    | number         | Resolve bare import imports using node resolve                           |
-| module-dirs     | string/array   | Directories to resolve modules from. Used by node-resolve                |
-| babel           | number         | Transform served code through babel. Requires .babelrc                   |
-| file-extensions | number/array   | Extra file extentions to use when transforming code.                     |
+| name                 |  type          | description                                                              |
+| -------------------- | -------------- | ------------------------------------------------------------------------ |
+| node-resolve         | number         | Resolve bare import imports using node resolve                           |
+| compatibility        | string         | Compatibility mode for older browsers. Can be: `esm`, `modern` or `all`  |
+| module-dirs          | string/array   | Directories to resolve modules from. Used by node-resolve                |
+| babel                | number         | Transform served code through babel. Requires .babelrc                   |
+| file-extensions      | number/array   | Extra file extentions to use when transforming code.                     |
+| babel-exclude        | number/array   | Patterns of files to exclude from babel compilation.                     |
+| babel-modern-exclude | number/array   | Patterns of files to exclude from babel compilation on modern browsers.  |
 
 Most commands have an alias/shorthand. You can view them by using `--help`.
 
