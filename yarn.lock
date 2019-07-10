@@ -289,7 +289,7 @@
     "@babel/helper-create-class-features-plugin" "^7.4.4"
     "@babel/helper-plugin-utils" "^7.0.0"
 
-"@babel/plugin-proposal-decorators@^7.1.0", "@babel/plugin-proposal-decorators@^7.3.0":
+"@babel/plugin-proposal-decorators@^7.1.0", "@babel/plugin-proposal-decorators@^7.3.0", "@babel/plugin-proposal-decorators@^7.4.4":
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.4.4.tgz#de9b2a1a8ab0196f378e2a82f10b6e2a36f21cc0"
   integrity sha512-z7MpQz3XC/iQJWXH9y+MaWcLPNSMY9RQSthrLzak8R8hCj0fuyNk+Dzi9kfNe/JxxlWQ2g7wkABbgWjW36MTcw==
@@ -1930,21 +1930,21 @@
     url-template "^2.0.8"
 
 "@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.1.11"
+  version "1.1.13"
   dependencies:
-    "@open-wc/testing-karma" "^2.0.11"
+    "@open-wc/testing-karma" "^2.0.13"
     "@types/node" "^11.13.0"
     karma-browserstack-launcher "^1.0.0"
 
 "@open-wc/testing-karma@file:./packages/testing-karma":
-  version "2.0.11"
+  version "2.0.13"
   dependencies:
     "@babel/core" "^7.3.3"
     "@babel/plugin-syntax-dynamic-import" "^7.2.0"
     "@babel/plugin-syntax-import-meta" "^7.2.0"
     "@babel/polyfill" "^7.0.0"
     "@babel/preset-env" "^7.0.0"
-    "@open-wc/karma-esm" "^1.1.1"
+    "@open-wc/karma-esm" "^1.1.3"
     "@types/node" "^11.13.0"
     "@webcomponents/webcomponentsjs" "^2.2.0"
     babel-loader "^8.0.0"
@@ -10613,6 +10613,13 @@ listr@^0.14.2:
     p-map "^2.0.0"
     rxjs "^6.3.3"
 
+lit-element@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/lit-element/-/lit-element-2.0.0.tgz#b3a212aed812f859d3cf12cc67beaef851446b09"
+  integrity sha512-9Bo4ytRMEPa0CYMDayXUqxOcMu2u96eoUappCd2tklbzzLDVgQR4etEqnBtgHWdDZ4wCR52/a1ZZf42FxzAxOQ==
+  dependencies:
+    lit-html "^1.0.0-rc.2"
+
 lit-element@^2.0.1:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/lit-element/-/lit-element-2.1.0.tgz#85bc3f1da0227f4b13de8a1be978229b9fa327e9"
@@ -10629,6 +10636,11 @@ lit-html@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-1.0.0.tgz#3dc3781a8ca68a9b5c2ff2a61e263662b9b2267b"
   integrity sha512-oeWlpLmBW3gFl7979Wol2LKITpmKTUFNn7PnFbh6YNynF61W74l6x5WhwItAwPRSATpexaX1egNnRzlN4GOtfQ==
+
+lit-html@^1.0.0-rc.2:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-1.1.0.tgz#6951fb717fb48fe34d915ae163448a04da321562"
+  integrity sha512-ZDJHpJi09yknMpjwPI8fuSl5sUG7+pF+eE5WciFtgyX7zebvgMDBgSLq4knXa7grxM00RkQ7PBd7UZQiruA78Q==
 
 load-json-file@^1.0.0:
   version "1.1.0"

@@ -292,4 +292,33 @@ describe('babel middleware', () => {
       expect(responseText).to.include('Foo = function Foo() {');
     });
   });
+
+  describe('typescript', () => {
+    let server;
+    beforeEach(() => {
+      ({ server } = startServer({
+        rootDir: path.resolve(__dirname, '..', 'fixtures', 'typescript'),
+        appIndex: path.resolve(__dirname, '..', 'fixtures', 'typescript', 'index.html'),
+        readUserBabelConfig: true,
+        nodeResolve: true,
+        extraFileExtensions: ['.ts'],
+      }));
+    });
+
+    afterEach(() => {
+      server.close();
+    });
+
+    it('can handle a typescript setup', async () => {
+      const response = await fetch(`${host}app.ts`);
+      const responseText = await response.text();
+
+      expect(response.status).to.equal(200);
+      expect(responseText).to.include(
+        'import { message } from "./node_modules/my-module/index.ts";',
+      );
+      expect(responseText).to.include('import "./src/local-module.ts";');
+      expect(responseText).to.include("const bar = 'buz';");
+    });
+  });
 });

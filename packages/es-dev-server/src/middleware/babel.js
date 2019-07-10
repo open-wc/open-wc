@@ -1,9 +1,7 @@
 import { getBodyAsString } from '../utils.js';
-import { compatibilityModes } from '../constants.js';
+import { compatibilityModes, baseFileExtensions } from '../constants.js';
 import { sendMessageToActiveBrowsers } from './message-channel.js';
 import createBabelCompiler from '../babel-compiler.js';
-
-const baseFileExtensions = ['.js', '.mjs'];
 
 /**
  * @typedef {object} BabelMiddlewareConfig

@@ -86,6 +86,7 @@ export default function readCommandLineArgs(argv = process.argv) {
     {
       name: 'file-extensions',
       type: String,
+      multiple: true,
       description: 'Extra file extentions to use when transforming code.',
     },
     {
