@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.3.2...es-dev-server@1.4.0) (2019-07-10)
+
+
+### Features
+
+* **es-dev-server:** add typescript support ([#553](https://github.com/open-wc/open-wc/issues/553)) ([d6d710b](https://github.com/open-wc/open-wc/commit/d6d710b))
+
+
+
+
+
 ## [1.3.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.3.1...es-dev-server@1.3.2) (2019-07-08)
 
 **Note:** Version bump only for package es-dev-server
