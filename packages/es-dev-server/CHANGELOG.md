@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.4.0...es-dev-server@1.5.0) (2019-07-10)
+
+
+### Features
+
+* **es-dev-server:** add option to prevent compiling files with babel ([#563](https://github.com/open-wc/open-wc/issues/563)) ([29d1515](https://github.com/open-wc/open-wc/commit/29d1515))
+
+
+
+
+
 # [1.4.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.3.2...es-dev-server@1.4.0) (2019-07-10)
 
 
