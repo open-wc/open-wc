@@ -64,19 +64,16 @@ function absResolve(importPath, sourceFileName, pluginOptions = {}) {
     return importPath;
   }
 
-  const result = resolve.sync(importPath, {
+  return resolve.sync(importPath, {
     basedir: basedirResolve(importPath, sourceFileName, pluginOptions),
     extensions: pluginOptions.extensions || ['.mjs', '.js', 'json'],
     moduleDirectory: pluginOptions.resolveDirectories || 'node_modules',
-    preserveSymlinks: false,
+    preserveSymlinks: true,
     packageFilter(packageJson) {
       packageJson.main = packageJson.module || packageJson['jsnext:main'] || packageJson.main;
       return packageJson;
     },
   });
-
-  // use node's resolve to convert symlinks to real paths
-  return require.resolve(result);
 }
 
 function tryResolve(babelPath, importPath, sourceFileName, pluginOptions) {

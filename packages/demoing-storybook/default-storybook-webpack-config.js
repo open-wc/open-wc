@@ -1,4 +1,7 @@
 module.exports = ({ config, transpilePackages = ['lit-html', 'lit-element', '@open-wc'] }) => {
+  // eslint-disable-next-line no-param-reassign
+  config.resolve.symlinks = false;
+
   config.module.rules.push({
     test: [/\.stories\.js$/, /index\.js$/],
     loaders: [require.resolve('@storybook/addon-storysource/loader')],

@@ -54,6 +54,7 @@ module.exports = function createLegacyConfig(config) {
       devtool: 'inline-cheap-module-source-map',
 
       resolve: {
+        symlinks: false,
         mainFields: [
           // current leading de-facto standard - see https://github.com/rollup/rollup/wiki/pkg.module
           'module',

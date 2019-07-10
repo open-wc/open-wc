@@ -1,4 +1,13 @@
-let defineCECounter = 0;
+function getAvailableCustomElementTag() {
+  const randomNumber = Math.floor(Math.random() * Math.floor(1000000));
+  const tag = `test-${randomNumber}`;
+
+  if (customElements.get(tag) !== undefined) {
+    return getAvailableCustomElementTag();
+  }
+
+  return tag;
+}
 
 /**
  * Registers a new element with an automatically generated unique name.
@@ -15,9 +24,8 @@ let defineCECounter = 0;
  * @returns {string} Tag name of the registered element
  */
 export function defineCE(klass) {
-  const tag = `test-${defineCECounter}`;
+  const tag = getAvailableCustomElementTag();
   customElements.define(tag, klass);
-  defineCECounter += 1;
   return tag;
 }
 
@@ -127,6 +135,7 @@ export function oneEvent(element, eventName) {
       resolve(ev);
       element.removeEventListener(eventName, listener);
     }
+
     element.addEventListener(eventName, listener);
   });
 }
