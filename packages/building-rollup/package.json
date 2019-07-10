@@ -14,7 +14,7 @@
     "directory": "packages/building-rollup"
   },
   "scripts": {
-    "start:build": "owc-dev-server --root-dir dist --open /",
+    "start:build": "es-dev-server --app-index dist/index.html --open",
     "build:modern-and-legacy": "rimraf dist && rollup -c demo/js/rollup.config.js",
     "watch:modern-and-legacy": "rimraf dist && rollup -c demo/js/rollup.config.js --watch & yarn start:build",
     "build:modern": "rimraf dist && rollup -c demo/js/rollup.modern.config.js",
@@ -55,7 +55,7 @@
     "@babel/plugin-proposal-decorators": "^7.3.0",
     "@babel/preset-typescript": "^7.3.3",
     "lit-element": "^2.0.1",
-    "owc-dev-server": "^1.0.0",
+    "es-dev-server": "^1.5.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.4.0",
     "rollup-plugin-cpy": "^1.1.0",

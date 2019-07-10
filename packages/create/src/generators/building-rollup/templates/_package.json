@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start:build": "owc-dev-server dist/ --open",
+    "start:build": "es-dev-server --app-index dist/index.html --open",
     "build": "rimraf dist && rollup -c rollup.config.js"
   },
   "devDependencies": {

@@ -12,7 +12,7 @@ Check out the official documentation for: [lit-html](https://lit-html.polymer-pr
 Follow these steps to get started:
 1. Install the required dependencies:
 ```
-npm i -D owc-dev-server lit-element
+npm i -D es-dev-server lit-element
 ```
 
 2. Create a `index.html`
@@ -47,14 +47,20 @@ customElements.define('my-component', MyComponent);
 ```json
 {
   "scripts": {
-    "start": "owc-dev-server -o"
+    "start": "es-dev-server --node-resolve --watch --open",
+    "start:compatibility": "es-dev-server --compatibility all --node-resolve --watch --open"
   }
 }
 ```
 
 5. Start your app:
 ```bash
-npm start
+npm run start
+```
+
+To view your app on older browsers:
+```bash
+npm run start:compatibility
 ```
 
 ## Examples

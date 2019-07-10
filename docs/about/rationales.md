@@ -22,7 +22,7 @@ The ideal development environment uses no tools, just an up-to-date browser and 
 
 ::: warning
 Unfortunately we are not fully there yet, because of the [bare modules exception](#bare-specifiers) you will need to have a server that at least supports them.
-We recommend our [Open Web Components Dev Server](../developing/owc-dev-server.html) as it does nothing more/nothing less.
+We recommend our [ES Dev Server](../developing/es-dev-server.html) as it does nothing more/nothing less.
 :::
 
 When would you choose this workflow:
@@ -50,7 +50,7 @@ Why would you choose it:
 
 ### Production Workflow
 
-Once you're happy with your web components, it's time to put them somewhere more useful. 
+Once you're happy with your web components, it's time to put them somewhere more useful.
 Most likely a publicly available web server.
 Before you do that let's apply all the optimizations magic we can cook up.
 
