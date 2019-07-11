@@ -13,8 +13,8 @@ yarn add @open-wc/semantic-dom-diff --dev
 - style, script and svg contents are removed
 - tags, attributes or element's light dom can be ignored through configuration
 
-## Chai plugin
-While `semantic-dom-diff` can be used standalone (see below) you will most commonly use this through our chai plugin.
+## Chai Plugin
+While `semantic-dom-diff` can be used standalone (see below), it most commonly used as a Chai plugin.
 
 <details>
   <summary>Registering the plugin</summary>
@@ -27,6 +27,22 @@ While `semantic-dom-diff` can be used standalone (see below) you will most commo
   chai.use(chaiDomDiff);
   ```
 </details>
+
+### Assertion Styles
+The Chai plugin supports both the BDD (`expect`) and TDD (`assert`) APIs.
+```javascript
+expect(el).dom.to.equal('<div></div>');
+assert.dom.equal(el, '<div></div>');
+
+expect(el).dom.to.equal('<div foo="bar"></div>', {ignoreAttributes: ['foo']});
+assert.dom.equal(el, '<div foo="bar"></div>', {ignoreAttributes: ['foo']});
+
+expect(el).lightDom.to.equal('<div></div>');
+assert.lightDom.equal(el, '<div></div>');
+
+expect(el).shadowDom.to.equal('<div></div>');
+assert.shadowDom.equal(el, '<div></div>');
+```
 
 ### Setting up your dom for diffing
 You can set up our chai plugin to diff different types of DOM:

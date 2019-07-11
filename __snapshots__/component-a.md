@@ -8,7 +8,12 @@
 <div>
   A
 </div>
+```
 
+```html
+<div>
+  A
+</div>
 ```
 
 ####   `matches a dom element snapshot`
@@ -17,10 +22,21 @@
 <div>
   B
 </div>
+```
 
+```html
+<div>
+  B
+</div>
 ```
 
 ####   `matches a dom element snapshot, using .dom`
+
+```html
+<div>
+  C
+</div>
+```
 
 ```html
 <div>
@@ -37,10 +53,22 @@
 <span>
   A
 </span>
+```
+
+```html
+<span>
+  A
+</span>
 
 ```
 
 ####   `matches shadow dom snapshot`
+
+```html
+<span>
+  B
+</span>
+```
 
 ```html
 <span>
