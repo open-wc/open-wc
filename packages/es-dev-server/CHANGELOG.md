@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.5.0...es-dev-server@1.6.0) (2019-07-12)
+
+
+### Features
+
+* **create:** switch from owc-dev-server to es-dev-server ([#571](https://github.com/open-wc/open-wc/issues/571)) ([97a80d1](https://github.com/open-wc/open-wc/commit/97a80d1))
+
+
+
+
+
 # [1.5.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.4.0...es-dev-server@1.5.0) (2019-07-10)
 
 
