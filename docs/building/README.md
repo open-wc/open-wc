@@ -18,13 +18,13 @@ Our configs for `rollup` & `webpack` are unique in that sense that they take a s
 Doing so allows you to work with the same entry point no matter if you use
 - webpack
 - rollup
-- owc-dev-server
+- es-dev-server
 - polymer serve
 - etc
 
 This means you can easily compare how different setups affect your app size and loading time.
 This allows you to easily switch between build configurations; if you want to switch to webpack for a while, your entrypoint will be exactly the same.
-It also means you can use `owc-dev-server` for your regular development, and then use either `rollup` or `webpack` to prepare your application for your production environment.
+It also means you can use `es-dev-server` for your regular development, and then use either `rollup` or `webpack` to prepare your application for your production environment.
 
 ## Rollup
 We recommend [Rollup](https://rollupjs.org/) for building front-end projects. Rollup is convenient to use and gets out of your way. It is easy to understand what's going on. Quite a relief in a world of complex javascript tooling.

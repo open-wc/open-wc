@@ -20,7 +20,7 @@ export function openBrowserAndLogStartup(cfg) {
 
   if (cfg.logStartup) {
     const msgs = [];
-    msgs.push(`owc-dev-server started on http://${prettyHost}:${cfg.port}`);
+    msgs.push(`es-dev-server started on http://${prettyHost}:${cfg.port}`);
     msgs.push(`  Serving files from '${cfg.rootDir}'.`);
 
     if (cfg.openBrowser) {
