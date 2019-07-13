@@ -25,7 +25,7 @@ function createEntriesConfig(outputConfig, files, preloadedFiles, legacyDir) {
   return {
     type: outputTypes[outputConfig.format],
     // if this is the legacy build, add the legacy folder to the output
-    files: legacyDir ? files.map(f => path.join(legacyDir, f)) : files,
+    files: legacyDir ? files.map(f => path.posix.join(legacyDir, f)) : files,
     // only preload legacy files for now
     preloadedFiles: legacyDir ? undefined : preloadedFiles,
   };
