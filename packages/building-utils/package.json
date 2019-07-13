@@ -26,7 +26,9 @@
   ],
   "dependencies": {
     "@babel/core": "^7.3.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@webcomponents/webcomponentsjs": "^2.2.10",
+    "arrify": "^2.0.1",
     "browserslist": "^4.5.6",
     "chokidar": "^3.0.0",
     "clone": "^2.1.2",
@@ -37,11 +39,14 @@
     "lru-cache": "^5.1.1",
     "minimatch": "^3.0.4",
     "parse5": "^5.1.0",
+    "path-is-inside": "^1.0.2",
     "regenerator-runtime": "^0.13.2",
+    "resolve": "^1.11.1",
     "rimraf": "^2.6.3",
     "systemjs": "^4.0.1",
     "terser": "^4.0.0",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.0.0",
+    "whatwg-url": "^7.0.0"
   },
   "devDependencies": {
     "@types/lru-cache": "^5.1.0",
