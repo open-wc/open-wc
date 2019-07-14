@@ -1,4 +1,5 @@
 import { extractResources, createIndexHTML } from '@open-wc/building-utils/index-html/index.js';
+import path from 'path';
 import { getBodyAsString } from '../utils.js';
 import { compatibilityModes } from '../constants.js';
 import systemJsLegacyResolveScript from '../browser-scripts/system-js-legacy-resolve.js';
@@ -184,7 +185,8 @@ export function createCompatibilityMiddleware(cfg) {
 
     // cache polyfills for serving
     createResult.files.forEach(file => {
-      polyfills.set(`${cfg.appIndexDir}/${file.path}`, file.content);
+      const root = ctx.url.endsWith('/') ? ctx.url : `${path.posix.dirname(ctx.url)}/`;
+      polyfills.set(`${root}${file.path}`, file.content);
     });
   }
 
