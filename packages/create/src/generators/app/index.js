@@ -7,7 +7,6 @@ import TestingMixin from '../testing/index.js';
 import DemoingStorybookMixin from '../demoing-storybook/index.js';
 import BuildingRollupMixin from '../building-rollup/index.js';
 import BuildingWebpackMixin from '../building-webpack/index.js';
-import StarterAppMixin from '../starter-app/index.js';
 import BareboneAppMixin from '../barebone-app/index.js';
 import WcLitElementMixin from '../wc-lit-element/index.js';
 
@@ -17,12 +16,12 @@ import header from './header.js';
  * Allows to control the data via command line
  *
  * example:
- * npm init @open-wc --type scaffold --scaffoldType starter-app --tagName foo-bar --installDependencies false
+ * npm init @open-wc --type scaffold --scaffoldType app --tagName foo-bar --installDependencies false
  * npm init @open-wc --type upgrade --features linting demoing --tagName foo-bar --scaffoldFilesFor demoing --installDependencies false
  */
 const optionDefinitions = [
   { name: 'type', type: String }, // scaffold, upgrade
-  { name: 'scaffoldType', type: String }, // wc, app, starter-app
+  { name: 'scaffoldType', type: String }, // wc, app
   { name: 'features', type: String, multiple: true }, // linting, testing, demoing, building
   { name: 'buildingType', type: String }, // rollup, webpack
   { name: 'scaffoldFilesFor', type: String, multiple: true }, // testing, demoing, building
@@ -62,8 +61,7 @@ export const AppMixin = subclass =>
           message: 'What would you like to scaffold?',
           choices: [
             { title: 'Web Component', value: 'wc' },
-            { title: 'Basic Application   (barebone)', value: 'app' },
-            { title: 'Starter App         (linting/testing/building)', value: 'starter-app' },
+            { title: 'Application       (linting/testing/building)', value: 'app' },
           ],
         },
         {
@@ -142,9 +140,6 @@ export const AppMixin = subclass =>
             break;
           case 'app':
             mixins.push(BareboneAppMixin);
-            break;
-          case 'starter-app':
-            mixins.push(StarterAppMixin);
             break;
           // no default
         }
