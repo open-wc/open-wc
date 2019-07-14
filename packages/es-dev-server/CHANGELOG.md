@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.6.1...es-dev-server@1.6.2) (2019-07-14)
+
+
+### Bug Fixes
+
+* **es-dev-server:** serve polyfills correctly without app index ([#580](https://github.com/open-wc/open-wc/issues/580)) ([b8427da](https://github.com/open-wc/open-wc/commit/b8427da))
+
+
+
+
+
 ## [1.6.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.6.0...es-dev-server@1.6.1) (2019-07-13)
 
 **Note:** Version bump only for package es-dev-server
