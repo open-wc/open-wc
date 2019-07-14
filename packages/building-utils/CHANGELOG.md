@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.4.0...@open-wc/building-utils@2.4.1) (2019-07-13)
+
+
+### Bug Fixes
+
+* **building-utils:** add missing dependencies ([#579](https://github.com/open-wc/open-wc/issues/579)) ([2d75124](https://github.com/open-wc/open-wc/commit/2d75124))
+
+
+
+
+
 # [2.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.3.3...@open-wc/building-utils@2.4.0) (2019-07-08)
 
 
