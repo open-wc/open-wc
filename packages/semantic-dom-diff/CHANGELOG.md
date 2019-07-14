@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.12.1...@open-wc/semantic-dom-diff@0.13.0) (2019-07-14)
+
+
+### Features
+
+* **semantic-dom-diff:** add Assert API to Chai plugin ([#573](https://github.com/open-wc/open-wc/issues/573)) ([ec15fc3](https://github.com/open-wc/open-wc/commit/ec15fc3))
+
+
+
+
+
 ## [0.12.1](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.12.0...@open-wc/semantic-dom-diff@0.12.1) (2019-07-13)
 
 **Note:** Version bump only for package @open-wc/semantic-dom-diff
