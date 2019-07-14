@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.3.0...@open-wc/building-webpack@2.3.1) (2019-07-13)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+# [2.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.2.5...@open-wc/building-webpack@2.3.0) (2019-07-12)
+
+
+### Features
+
+* **create:** switch from owc-dev-server to es-dev-server ([#571](https://github.com/open-wc/open-wc/issues/571)) ([97a80d1](https://github.com/open-wc/open-wc/commit/97a80d1))
+
+
+
+
+
 ## [2.2.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.2.4...@open-wc/building-webpack@2.2.5) (2019-07-08)
 
 **Note:** Version bump only for package @open-wc/building-webpack

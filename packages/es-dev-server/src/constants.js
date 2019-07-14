@@ -5,3 +5,5 @@ export const compatibilityModes = {
 };
 
 export const messageChannelEndpoint = '/__es-dev-server-message-channel__';
+
+export const baseFileExtensions = ['.js', '.mjs'];

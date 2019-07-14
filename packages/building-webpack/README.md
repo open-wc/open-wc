@@ -26,7 +26,7 @@ npm init @open-wc
 
 1. Install the required dependencies:
 ```bash
-npm i -D @open-wc/building-webpack webpack webpack-cli owc-dev-server
+npm i -D @open-wc/building-webpack webpack webpack-cli es-dev-server
 ```
 
 2. Create a file called `webpack.config.js` and pass in your app's js entry point and index.html. Pick the config you need below:
@@ -62,9 +62,8 @@ We use [webpack-index-html-plugin](https://open-wc.org/building/webpack-index-ht
 ```json
 {
   "scripts": {
-    "start": "owc-dev-server --app-index index.html --open --watch",
-    "start:build": "owc-dev-server --root-dir dist --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "start:build": "es-dev-server --app-index dist/index.html --open",
   }
 }
 ```

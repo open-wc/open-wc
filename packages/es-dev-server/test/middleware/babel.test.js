@@ -36,6 +36,7 @@ describe('babel middleware', () => {
       ({ server } = startServer({
         rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
         nodeResolve: true,
+        babelModernExclude: ['**/src/excluded-modern.js'],
       }));
     });
 
@@ -91,6 +92,14 @@ describe('babel middleware', () => {
       expect(responseText).to.include("const foo = require('bar');");
       expect(responseText).to.include('module.exports = loremIpsum;');
     });
+
+    it('does not transform excluded files', async () => {
+      const response = await fetch(`${host}src/excluded-modern.js`);
+      const responseText = await response.text();
+
+      expect(response.status).to.equal(200);
+      expect(responseText).to.include("import { message } from 'my-module';");
+    });
   });
 
   describe('readUserBabelConfig flag', () => {
@@ -141,6 +150,7 @@ describe('babel middleware', () => {
         rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
         appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
         compatibilityMode: compatibilityModes.MODERN,
+        babelModernExclude: ['**/src/excluded-modern.js'],
       }));
     });
 
@@ -176,6 +186,14 @@ describe('babel middleware', () => {
       expect(responseText).to.include("const foo = require('bar');");
       expect(responseText).to.include('module.exports = loremIpsum;');
     });
+
+    it('does not transform excluded files', async () => {
+      const response = await fetch(`${host}src/excluded-modern.js`);
+      const responseText = await response.text();
+
+      expect(response.status).to.equal(200);
+      expect(responseText).to.include('async function* asyncGenerator() {');
+    });
   });
 
   describe('compatibilityMode all', () => {
@@ -185,6 +203,8 @@ describe('babel middleware', () => {
         rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
         appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
         compatibilityMode: compatibilityModes.ALL,
+        babelModernExclude: ['**/src/excluded-modern.js'],
+        babelExclude: ['**/src/excluded-legacy.js'],
       }));
     });
 
@@ -221,6 +241,14 @@ describe('babel middleware', () => {
         expect(responseText).to.include("const foo = require('bar');");
         expect(responseText).to.include('module.exports = loremIpsum;');
       });
+
+      it('does not transform excluded files', async () => {
+        const response = await fetch(`${host}src/excluded-modern.js`);
+        const responseText = await response.text();
+
+        expect(response.status).to.equal(200);
+        expect(responseText).to.include('async function* asyncGenerator() {');
+      });
     });
 
     describe('requests with ?legacy=true suffixed', () => {
@@ -253,6 +281,15 @@ describe('babel middleware', () => {
         expect(responseText).to.include(
           'System.register(["my-module", "./src/local-module.js"], function',
         );
+      });
+
+      it('does not transform excluded files', async () => {
+        const response = await fetch(`${host}src/excluded-legacy.js`);
+        const responseText = await response.text();
+
+        expect(response.status).to.equal(200);
+        expect(responseText).to.include('class Foo');
+        expect(responseText).to.not.include('System.register');
       });
     });
   });
@@ -290,6 +327,35 @@ describe('babel middleware', () => {
         'function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }',
       );
       expect(responseText).to.include('Foo = function Foo() {');
+    });
+  });
+
+  describe('typescript', () => {
+    let server;
+    beforeEach(() => {
+      ({ server } = startServer({
+        rootDir: path.resolve(__dirname, '..', 'fixtures', 'typescript'),
+        appIndex: path.resolve(__dirname, '..', 'fixtures', 'typescript', 'index.html'),
+        readUserBabelConfig: true,
+        nodeResolve: true,
+        extraFileExtensions: ['.ts'],
+      }));
+    });
+
+    afterEach(() => {
+      server.close();
+    });
+
+    it('can handle a typescript setup', async () => {
+      const response = await fetch(`${host}app.ts`);
+      const responseText = await response.text();
+
+      expect(response.status).to.equal(200);
+      expect(responseText).to.include(
+        'import { message } from "./node_modules/my-module/index.ts";',
+      );
+      expect(responseText).to.include('import "./src/local-module.ts";');
+      expect(responseText).to.include("const bar = 'buz';");
     });
   });
 });

@@ -11,6 +11,9 @@ The hardest part of any project is often getting content onto that first blank p
 - [Bolt](https://boltdesignsystem.com/)
 
   A family of web components built with first-class participation in the Twig templating system for PHP in mind. This set is backed by an expansive catalog of usage variants.
+- [Clever Components](https://github.com/CleverCloud/clever-components)
+  
+  A collection of low-level (atoms) and high-level (domain specific) Web Components made by Clever Cloud for its different Web UIs (public and internal).
 - [Elix](https://component.kitchen/elix)
 
   The Elix project aims to create a universal library of all general-purpose user interface patterns commonly found in desktop and mobile UIs, where each pattern is implemented as a well-designed, attractive, high-quality, performant, accessible, localizable, and extensively customizable web component.

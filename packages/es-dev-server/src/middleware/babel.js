@@ -1,9 +1,8 @@
+import minimatch from 'minimatch';
 import { getBodyAsString } from '../utils.js';
-import { compatibilityModes } from '../constants.js';
+import { compatibilityModes, baseFileExtensions } from '../constants.js';
 import { sendMessageToActiveBrowsers } from './message-channel.js';
 import createBabelCompiler from '../babel-compiler.js';
-
-const baseFileExtensions = ['.js', '.mjs'];
 
 /**
  * @typedef {object} BabelMiddlewareConfig
@@ -14,8 +13,23 @@ const baseFileExtensions = ['.js', '.mjs'];
  * @property {string} compatibilityMode
  * @property {object} [customBabelConfig]
  * @property {string[]} extraFileExtensions
- *
+ * @property {string[]} babelModernExclude patterns to exclude from modern babel compilation
+ * @property {string[]} babelExclude patterns to exclude from all babel compilation
  */
+
+/**
+ * Returns whether we should compile this file with babel.
+ * @param {string} file
+ * @param {boolean} legacy
+ * @param {BabelMiddlewareConfig} cfg
+ */
+function shouldCompile(file, legacy, cfg) {
+  if (cfg.babelExclude.some(pattern => minimatch(file, pattern))) {
+    return false;
+  }
+
+  return legacy || !cfg.babelModernExclude.some(pattern => minimatch(file, pattern));
+}
 
 /**
  * Sets up a middleware which runs all served js code through babel. Different babel configs
@@ -63,6 +77,10 @@ export function createBabelMiddleware(cfg) {
     const legacy = ctx.url.endsWith('?legacy=true');
     if (legacy && !legacyBabelCompiler) {
       throw new Error(`Set compatibility mode to 'all' to compile for legacy browsers.`);
+    }
+
+    if (!shouldCompile(filePath, legacy, cfg)) {
+      return undefined;
     }
 
     const compiler = legacy ? legacyBabelCompiler : babelCompiler;

@@ -27,7 +27,7 @@ npm init @open-wc
 
 1. Install the required dependencies:
 ```bash
-npm i -D @open-wc/building-rollup rollup rimraf owc-dev-server
+npm i -D @open-wc/building-rollup rollup rimraf es-dev-server
 ```
 
 2. Create a `rollup.config.js` file and pass in your app's `index.html`:
@@ -55,15 +55,12 @@ export default createDefaultConfig({ input: './index.html' });
 
 We use [rollup-plugin-index-html](https://open-wc.org/building/rollup-plugin-index-html.html) which takes your `index.html` as input for rollup. It scans for any `<script type="module" src="...">` and sends them to rollup for bundling, and outputs your `index.html` in the output directory.
 
-Note that "inline modules" (modules without a `src` attribute) are not sent to rollup.
-
 4. Add the following commands to your `package.json`:
 ```json
 {
   "scripts": {
-    "start": "owc-dev-server --app-index index.html --open --watch",
-    "start:build": "owc-dev-server dist/ --open",
-    "build": "rimraf dist && rollup -c rollup.config.js"
+    "build": "rimraf dist && rollup -c rollup.config.js",
+    "start:build": "es-dev-server --app-index dist/index.html --open"
   }
 }
 ```

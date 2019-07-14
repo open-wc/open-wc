@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.6.0...es-dev-server@1.6.1) (2019-07-13)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+# [1.6.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.5.0...es-dev-server@1.6.0) (2019-07-12)
+
+
+### Features
+
+* **create:** switch from owc-dev-server to es-dev-server ([#571](https://github.com/open-wc/open-wc/issues/571)) ([97a80d1](https://github.com/open-wc/open-wc/commit/97a80d1))
+
+
+
+
+
+# [1.5.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.4.0...es-dev-server@1.5.0) (2019-07-10)
+
+
+### Features
+
+* **es-dev-server:** add option to prevent compiling files with babel ([#563](https://github.com/open-wc/open-wc/issues/563)) ([29d1515](https://github.com/open-wc/open-wc/commit/29d1515))
+
+
+
+
+
+# [1.4.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.3.2...es-dev-server@1.4.0) (2019-07-10)
+
+
+### Features
+
+* **es-dev-server:** add typescript support ([#553](https://github.com/open-wc/open-wc/issues/553)) ([d6d710b](https://github.com/open-wc/open-wc/commit/d6d710b))
+
+
+
+
+
 ## [1.3.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.3.1...es-dev-server@1.3.2) (2019-07-08)
 
 **Note:** Version bump only for package es-dev-server

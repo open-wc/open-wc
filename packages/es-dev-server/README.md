@@ -94,93 +94,178 @@ Note that "latest javascript features and syntax" is a general term, not everyth
 
 ## Command line flags overview
 ### Server configuration
-| name            |  type          | description                                                              |
-| --------------- | -------------- | ------------------------------------------------------------------------ |
-| port            | number         | The port to use. Default: 8080                                           |
-| hostname        | string         | The hostname to use. Default: localhost                                  |
-| open            | boolean/string | Opens the browser on app-index, root dir or a custom path                |
-| app-index       | string         | The app's index.html file, sets up history API fallback for SPA routing  |
-| root-dir        | string         | The root directory to serve files from. Default: working directory       |
-| config          | string         | The file to read configuration from (js or json)                         |
-| help            | none           | See all options                                                          |
+| name                 |  type          | description                                                              |
+| -------------------- | -------------- | ------------------------------------------------------------------------ |
+| port                 | number         | The port to use. Default: 8080                                           |
+| hostname             | string         | The hostname to use. Default: localhost                                  |
+| open                 | boolean/string | Opens the browser on app-index, root dir or a custom path                |
+| app-index            | string         | The app's index.html file, sets up history API fallback for SPA routing  |
+| root-dir             | string         | The root directory to serve files from. Default: working directory       |
+| config               | string         | The file to read configuration from (js or json)                         |
+| help                 | none           | See all options                                                          |
 
 ### Development help
-| name            |  type          | description                                                              |
-| --------------- | -------------- | ------------------------------------------------------------------------ |
-| watch           | boolean        | Reload the browser when files are edited                                 |
-| http2           | number         | Serve files over HTTP2. Sets up HTTPS with self-signed certificates      |
+| name                 |  type          | description                                                              |
+| -------------------- | -------------- | ------------------------------------------------------------------------ |
+| watch                | boolean        | Reload the browser when files are edited                                 |
+| http2                | number         | Serve files over HTTP2. Sets up HTTPS with self-signed certificates      |
 
 ### Code transformation
-| name            |  type          | description                                                              |
-| --------------- | -------------- | ------------------------------------------------------------------------ |
-| compatibility   | string         | Compatibility mode for older browsers. Can be: `esm`, `modern` or `all`  |
-| node-resolve    | number         | Resolve bare import imports using node resolve                           |
-| module-dirs     | string/array   | Directories to resolve modules from. Used by node-resolve                |
-| babel           | number         | Transform served code through babel. Requires .babelrc                   |
-| file-extensions | number/array   | Extra file extentions to use when transforming code.                     |
+| name                 |  type          | description                                                              |
+| -------------------- | -------------- | ------------------------------------------------------------------------ |
+| node-resolve         | number         | Resolve bare import imports using node resolve                           |
+| compatibility        | string         | Compatibility mode for older browsers. Can be: `esm`, `modern` or `all`  |
+| module-dirs          | string/array   | Directories to resolve modules from. Used by node-resolve                |
+| babel                | number         | Transform served code through babel. Requires .babelrc                   |
+| file-extensions      | number/array   | Extra file extentions to use when transforming code.                     |
+| babel-exclude        | number/array   | Patterns of files to exclude from babel compilation.                     |
+| babel-modern-exclude | number/array   | Patterns of files to exclude from babel compilation on modern browsers.  |
 
 Most commands have an alias/shorthand. You can view them by using `--help`.
 
-## Configuration files
+## Advanced usage
+
+### Configuration files
 We pick up an `es-dev-server.config.js` file automatically if it is present in the current working directory. You can specify a custom config path using the `config` flag.
+<details>
+  <summary>Read more</summary>
 
-The configuration file allows the same command line flags configured, using their camelCased names. Example:
-```javascript
-module.exports = {
-  port: 8080,
-  appIndex: 'demo/index.html',
-  moduleDirs: ['node_modules', 'custom-modules']
-}
+  The configuration file allows the same command line flags configured, using their camelCased names. Example:
+  ```javascript
+  module.exports = {
+    port: 8080,
+    appIndex: 'demo/index.html',
+    moduleDirs: ['node_modules', 'custom-modules']
+  }
 ```
+</details>
 
-## Custom middlewares / proxy
-You can install custom middlewares, using the `customMiddlewares` property. This should be an array of standard koa middleware. [Read more about koa here.](https://koajs.com/)
+### Custom middlewares / proxy
 
-You can use custom middlewares to set up a proxy, for example:
-```javascript
-const proxy = require('koa-proxies');
+You can install custom middlewares, using the `customMiddlewares` property.
 
-module.exports = {
-  port: 9000,
-  customMiddlewares: [
-    proxy('/api', {
-      target: 'http://localhost:9001',
-    })
-  ],
-};
-```
+<details>
+  <summary>Read more</summary>
+
+  The middleware should be a standard koa middleware. [Read more about koa here.](https://koajs.com/)
+
+  You can use custom middlewares to set up a proxy, for example:
+  ```javascript
+  const proxy = require('koa-proxies');
+
+  module.exports = {
+    port: 9000,
+    customMiddlewares: [
+      proxy('/api', {
+        target: 'http://localhost:9001',
+      })
+    ],
+  };
+  ```
+</details>
+
+### Typescript support
+`es-dev-server` is based around developing without any build tools, however you can make it work with typescript as well.
+
+<details>
+  <summary>Read more</summary>
+
+  The easiest way to use the server with typescript is to compile your typescript to javascript before running the server. Just run `tsc` in watch mode and include the compiled js files from your `index.html`.
+
+  You can also configure the dev server to consume your typescript files directly. This is done by running the server with a babel plugin to compile your typescript files to javascript.
+
+  Note that when compiling typescript with babel it does not do any type checking or special typescript compilation such as decorators, class fields and enums. You can configure babel to cover most of these, but not all. [Read more about babel typescript here](https://babeljs.io/docs/en/babel-plugin-transform-typescript).
+
+  1. Install the preset:
+  ```bash
+  npm i --save-dev @babel/preset-typescript
+  ```
+
+  2. Add a `babel.config.js` or `.babelrc` to your project:
+  ```json
+  {
+    "presets": [
+      "@babel/preset-typescript"
+    ]
+  }
+  ```
+
+  3. Import a typescript file from your `index.html`
+  ```html
+  <html>
+    <head></head>
+
+    <body>
+      <script type="module" src="./my-app.ts"></script>
+    </body>
+  </html>
+  ```
+
+  4. Run `es-dev-server` with these flags:
+  ```bash
+  es-dev-server --file-extensions .ts --node-resolve --babel --open
+  ```
+
+  To add support for experimental features which are normally handled by the typescript compiler, you can add extra babel plugins. Because typescript implements the legacy decorators proposal, you need to add the legacy flag and add class properties in loose mode:
+
+  1. Install the plugins:
+  ```bash
+  npm i --save-dev @babel/plugin-proposal-decorators @babel/plugin-proposal-class-properties
+  ```
+
+  2. Update your babel configuration:
+  ```json
+  {
+    "plugins": [
+      ["@babel/plugin-proposal-decorators", { "legacy": true }],
+      ["@babel/plugin-proposal-class-properties", { "loose": true }]
+    ],
+    "presets": [
+      "@babel/preset-typescript"
+    ]
+  }
+  ```
+
+</details>
 
 ## Compatibility mode
 
 Compatibility mode enables bundle-free development with features such as es modules and import maps on older browsers, including IE11.
 
-If you want to make use of import maps, you can provide an import map in your `index.html`. To generate an import map, you can check out our package [import-maps-generate](https://github.com/open-wc/open-wc/tree/master/packages/import-maps-generate), or alternatively you can add one manually.
+<details>
 
-There are three modes that can be enabled:
-### esm
-`esm` mode adds [es-module-shims](https://github.com/guybedford/es-module-shims) to enable new module features such as dynamic imports and import maps.
+  <summary>Read more</summary>
 
-This mode has a neglible performance impact, and is great when working on modern browsers.
+  If you want to make use of import maps, you can provide an import map in your `index.html`. To generate an import map, you can check out our package [import-maps-generate](https://github.com/open-wc/open-wc/tree/master/packages/import-maps-generate), or alternatively you can add one manually.
 
-### modern
-`modern` mode expands `esm` mode, adding a babel transform and a polyfill loader.
+  There are three modes that can be enabled:
+  ### esm
+  `esm` mode adds [es-module-shims](https://github.com/guybedford/es-module-shims) to enable new module features such as dynamic imports and import maps.
 
-The babel transform uses the [present-env](https://babeljs.io/docs/en/babel-preset-env) plugin. This transforms standard syntax which isn't yet supported by all browsers. By default it targets latest two versions of Chrome, Safari, Firefox and Edge. This can be configured with a [browserslist configuration](https://www.npmjs.com/package/browserslist).
+  This mode has a neglible performance impact, and is great when working on modern browsers.
 
-The polyfill loader does lightweight feature detection to determine which polyills to load. By default it loads polyfills for webcomponents, these can be turned off or custom polyfills can be added in the configuration.
+  ### modern
+  `modern` mode expands `esm` mode, adding a babel transform and a polyfill loader.
 
-This mode has a moderate performance impact. Use this when using new javascript syntax that is not yet supported on all browsers.
+  The babel transform uses the [present-env](https://babeljs.io/docs/en/babel-preset-env) plugin. This transforms standard syntax which isn't yet supported by all browsers. By default it targets latest two versions of Chrome, Safari, Firefox and Edge. This can be configured with a [browserslist configuration](https://www.npmjs.com/package/browserslist).
 
-### all
-`all` mode expands `modern` mode by making your code compatible with browsers which don't yet support modules.
+  The polyfill loader does lightweight feature detection to determine which polyills to load. By default it loads polyfills for webcomponents, these can be turned off or custom polyfills can be added in the configuration.
 
-In addition to the web component polyfills, it loads the general [core-js polyfills](https://www.npmjs.com/package/core-js) and a polyfill for [fetch](https://www.npmjs.com/package/whatwg-fetch)
+  This mode has a moderate performance impact. Use this when using new javascript syntax that is not yet supported on all browsers.
 
-When loading your application it detects module support. If it is not supported, your app is loaded through [systemjs](https://github.com/systemjs/systemjs) and your code is transformed to `es5`.
+  ### all
+  `all` mode expands `modern` mode by making your code compatible with browsers which don't yet support modules.
 
-The `es5` transformation is only done for browsers which don't support modules, so you can safely use this mode on modern browsers where it acts the same way as `modern` mode.
+  In addition to the web component polyfills, it loads the general [core-js polyfills](https://www.npmjs.com/package/core-js) and a polyfill for [fetch](https://www.npmjs.com/package/whatwg-fetch)
 
-`all` mode has the same moderate impact as `modern` mode on browsers that support modules. On browsers which don't support modules it has a heavier impact. Use this mode if you want to verify if your code runs correctly on older browsers without having to run a build.
+  When loading your application it detects module support. If it is not supported, your app is loaded through [systemjs](https://github.com/systemjs/systemjs) and your code is transformed to `es5`.
+
+  The `es5` transformation is only done for browsers which don't support modules, so you can safely use this mode on modern browsers where it acts the same way as `modern` mode.
+
+  `all` mode has the same moderate impact as `modern` mode on browsers that support modules. On browsers which don't support modules it has a heavier impact. Use this mode if you want to verify if your code runs correctly on older browsers without having to run a build.
+
+</details>
+
 
 <script>
   export default {

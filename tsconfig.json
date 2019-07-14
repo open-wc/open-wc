@@ -29,6 +29,7 @@
     "**/dist/**/*",
     "packages/**/test/**/snapshots",
     "packages/owc-dev-server/**/*",
-    "packages/es-dev-server/test/fixtures/**/*"
+    "packages/es-dev-server/test/fixtures/**/*",
+    "packages/es-dev-server/demo/**/*"
   ]
 }
