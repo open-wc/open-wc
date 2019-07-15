@@ -1,8 +1,20 @@
 const path = require('path');
 
-const coverage = process.argv.find(arg => arg.includes('coverage'));
-const updateSnapshots = process.argv.find(arg => arg.includes('update-snapshots'));
-const pruneSnapshots = process.argv.find(arg => arg.includes('prune-snapshots'));
+function getCompatibility() {
+  if (process.argv.find(arg => arg.includes('--legacy'))) {
+    /* eslint-disable-next-line no-console */
+    console.warn(`testing-karma --legacy flag has been renamed to --compatibility`);
+    return 'all';
+  }
+
+  const indexOf = process.argv.indexOf('--compatibility');
+  return indexOf === -1 ? 'none' : process.argv[indexOf + 1];
+}
+
+const compatibility = getCompatibility();
+const coverage = process.argv.find(arg => arg.includes('--coverage'));
+const updateSnapshots = process.argv.find(arg => arg.includes('--update-snapshots'));
+const pruneSnapshots = process.argv.find(arg => arg.includes('--prune-snapshots'));
 
 /**
  * Creates base karma configuration.
@@ -22,11 +34,11 @@ module.exports = config => ({
   plugins: [
     // resolve plugins relative to this config so that they don't always need to exist
     // at the top level
+    require.resolve('@open-wc/karma-esm'),
     require.resolve('karma-mocha'),
     require.resolve('karma-mocha-reporter'),
     require.resolve('karma-source-map-support'),
     require.resolve('karma-coverage-istanbul-reporter'),
-    require.resolve('karma-static'),
     require.resolve('karma-snapshot'),
     require.resolve('karma-mocha-snapshot'),
     require.resolve('karma-chrome-launcher'),
@@ -36,12 +48,22 @@ module.exports = config => ({
     'karma-*',
   ],
 
-  frameworks: ['mocha', 'snapshot', 'mocha-snapshot', 'source-map-support'],
+  frameworks: ['esm', 'mocha', 'snapshot', 'mocha-snapshot', 'source-map-support'],
 
-  middleware: ['static'],
-
-  static: {
-    path: path.join(process.cwd(), ''),
+  esm: {
+    coverage,
+    compatibility,
+    babelModernExclude: [
+      '**/node_modules/sinon/**/*',
+      '**/node_modules/mocha/**/*',
+      '**/node_modules/@bundled-es-modules/chai/**/*',
+      '**/node_modules/sinon/chai/**/*',
+    ],
+    polyfills: {
+      webcomponents: true,
+      fetch: true,
+    },
+    exclude: ['**/__snapshots__/**/*'],
   },
 
   preprocessors: {
@@ -66,22 +88,6 @@ module.exports = config => ({
 
   // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
   logLevel: config.LOG_INFO,
-
-  /** Some errors come in JSON format with a message property. */
-  formatError(error) {
-    try {
-      if (typeof error !== 'string') {
-        return error;
-      }
-      const parsed = JSON.parse(error);
-      if (typeof parsed !== 'object' || !parsed.message) {
-        return error;
-      }
-      return parsed.message;
-    } catch (_) {
-      return error;
-    }
-  },
 
   // ## code coverage config
   coverageIstanbulReporter: {
