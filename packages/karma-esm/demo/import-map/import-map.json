@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "lodash-es": "/base/node_modules/lodash-es/lodash.js",
+    "@bundled-es-modules/chai": "/base/node_modules/@bundled-es-modules/chai/index.js"
+  }
+}
