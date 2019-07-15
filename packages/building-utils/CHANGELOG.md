@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.4.1...@open-wc/building-utils@2.4.2) (2019-07-15)
+
+
+### Bug Fixes
+
+* **building-utils:** polyfills loader script supports module support ([d10817d](https://github.com/open-wc/open-wc/commit/d10817d))
+
+
+
+
+
 ## [2.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.4.0...@open-wc/building-utils@2.4.1) (2019-07-13)
 
 

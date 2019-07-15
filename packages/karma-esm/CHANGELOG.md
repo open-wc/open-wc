@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@1.1.5...@open-wc/karma-esm@2.0.0) (2019-07-15)
+
+
+### Features
+
+* **karma-esm:** support modules on all browsers ([786cac0](https://github.com/open-wc/open-wc/commit/786cac0))
+
+
+### BREAKING CHANGES
+
+* **karma-esm:** The plugin was rewritten completely,
+most config options changed. See the readme for an
+up to date overview of all options
+
+
+
+
+
 ## [1.1.5](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@1.1.4...@open-wc/karma-esm@1.1.5) (2019-07-13)
 
 **Note:** Version bump only for package @open-wc/karma-esm

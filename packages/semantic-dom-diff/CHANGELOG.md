@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.13.0...@open-wc/semantic-dom-diff@0.13.1) (2019-07-15)
+
+
+### Bug Fixes
+
+* adopt to new testing-karma setup ([bdcc717](https://github.com/open-wc/open-wc/commit/bdcc717))
+
+
+
+
+
 # [0.13.0](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.12.1...@open-wc/semantic-dom-diff@0.13.0) (2019-07-14)
 
 

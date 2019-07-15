@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.21](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.20...@open-wc/chai-dom-equals@0.12.21) (2019-07-15)
+
+
+### Bug Fixes
+
+* adopt to new testing-karma setup ([bdcc717](https://github.com/open-wc/open-wc/commit/bdcc717))
+
+
+
+
+
 ## [0.12.20](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.19...@open-wc/chai-dom-equals@0.12.20) (2019-07-14)
 
 **Note:** Version bump only for package @open-wc/chai-dom-equals

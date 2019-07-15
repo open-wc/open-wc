@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@2.0.16...@open-wc/testing-karma@3.0.0) (2019-07-15)
+
+
+### Features
+
+* **testing-karma:** support modules on all browsers ([e800597](https://github.com/open-wc/open-wc/commit/e800597))
+
+
+### BREAKING CHANGES
+
+* **testing-karma:** Removed the legacy flag which used webpack on
+older browsers. We now use karma-esm everywhere which supports
+older browsers with a compatibility option.
+
+Update your `package.json` script:
+```bash
+// before
+"test": "karma start --legacy",
+
+// after
+"test": "karma start --compatibility all"
+```
+* **testing-karma:** changed config import path:
+```js
+// before
+const createDefaultConfig = require('@open-wc/testing-karma/default-config.js');
+
+// after
+const { createDefaultConfig } = require('@open-wc/testing-karma');
+```
+* **testing-karma:** node resolve is no longer enabled by default
+You can enable it by adding this to your karma config:
+
+```js
+esm: {
+  nodeResolve: true
+},
+```
+
+
+
+
+
 ## [2.0.16](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@2.0.15...@open-wc/testing-karma@2.0.16) (2019-07-13)
 
 **Note:** Version bump only for package @open-wc/testing-karma

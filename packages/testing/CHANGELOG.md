@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.14](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.13...@open-wc/testing@1.0.14) (2019-07-15)
+
+
+### Bug Fixes
+
+* adopt to new testing-karma setup ([bdcc717](https://github.com/open-wc/open-wc/commit/bdcc717))
+
+
+
+
+
 ## [1.0.13](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.12...@open-wc/testing@1.0.13) (2019-07-14)
 
 **Note:** Version bump only for package @open-wc/testing

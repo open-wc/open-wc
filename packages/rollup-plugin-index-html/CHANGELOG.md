@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.4.2...rollup-plugin-index-html@1.4.3) (2019-07-15)
+
+
+### Bug Fixes
+
+* adopt to new testing-karma setup ([bdcc717](https://github.com/open-wc/open-wc/commit/bdcc717))
+
+
+
+
+
 ## [1.4.2](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.4.1...rollup-plugin-index-html@1.4.2) (2019-07-13)
 
 **Note:** Version bump only for package rollup-plugin-index-html

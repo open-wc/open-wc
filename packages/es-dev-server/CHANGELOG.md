@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.4](https://github.com/open-wc/open-wc/compare/es-dev-server@1.6.3...es-dev-server@1.6.4) (2019-07-15)
+
+
+### Bug Fixes
+
+* **es-dev-server:** export polyfill configs via constants.js ([a4ba0bd](https://github.com/open-wc/open-wc/commit/a4ba0bd))
+
+
+
+
+
 ## [1.6.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.6.2...es-dev-server@1.6.3) (2019-07-15)
 
 
