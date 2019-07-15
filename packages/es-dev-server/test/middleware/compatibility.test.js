@@ -5,12 +5,12 @@ import { startServer } from '../../src/server.js';
 import { compatibilityModes } from '../../src/constants.js';
 import systemJsLegacyResolveScript from '../../src/browser-scripts/system-js-legacy-resolve.js';
 
-const REGEXP_ESM_SHIMS = /<script src="polyfills\/es-module-shims.*<\/script>/;
 const STRING_IMPORTMAP = '<script type="importmap">';
 const STRING_IMPORTMAP_SHIM = '<script type="importmap-shim">';
 const STRING_SYSTEMJS_SHIM = '<script type="systemjs-importmap">';
 const STRING_IMPORT_SHIM = "window.importShim('./app.js')";
-const REGEXP_LOAD_SCRIPT = /loadScript\('polyfills\/webcomponents.*.js'\)/;
+const REGEXP_LOAD_WC_POLYFILLS = /loadScript\('polyfills\/webcomponents.*.js', false\)/;
+const REGEXP_LOAD_ESM = /loadScript\('polyfills\/es-module-shims.*.js', true\)/;
 
 const host = 'http://localhost:8080/';
 
@@ -35,8 +35,8 @@ describe('compatibility middleware', () => {
         server.close();
       });
 
-      it('injects an es-module-shims script', async () => {
-        expect(responseText.match(REGEXP_ESM_SHIMS).length).to.equal(1);
+      it('injects es-module-shims', async () => {
+        expect(responseText.match(REGEXP_LOAD_ESM).length).to.equal(1);
       });
 
       it('injects an importShim loader', async () => {
@@ -44,7 +44,7 @@ describe('compatibility middleware', () => {
       });
 
       it('injects web component polyfills', () => {
-        expect(responseText.match(REGEXP_LOAD_SCRIPT).length).to.equal(1);
+        expect(responseText.match(REGEXP_LOAD_WC_POLYFILLS).length).to.equal(1);
       });
     });
 
@@ -67,8 +67,8 @@ describe('compatibility middleware', () => {
         server.close();
       });
 
-      it('injects an es-module-shims script', async () => {
-        expect(responseText.match(REGEXP_ESM_SHIMS).length).to.equal(1);
+      it('injects es-module-shims', async () => {
+        expect(responseText.match(REGEXP_LOAD_ESM).length).to.equal(1);
       });
 
       it('injects an importShim loader', async () => {
@@ -76,7 +76,7 @@ describe('compatibility middleware', () => {
       });
 
       it('injects web component polyfills', () => {
-        expect(responseText.match(REGEXP_LOAD_SCRIPT).length).to.equal(1);
+        expect(responseText.match(REGEXP_LOAD_WC_POLYFILLS).length).to.equal(1);
       });
 
       it('injects a systemjs legacy script', () => {

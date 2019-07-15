@@ -75,6 +75,14 @@ export function startServer(config) {
     appIndexDir = `${appIndex.substring(0, appIndex.lastIndexOf('/'))}`;
   }
 
+  if (!Object.values(compatibilityModes).includes(compatibilityMode)) {
+    throw new Error(
+      `Unknown compatibility mode: ${compatibilityMode}. Must be one of: ${Object.values(
+        compatibilityModes,
+      )}`,
+    );
+  }
+
   const setupWatch = appIndex && watch;
   const setupBabel =
     customBabelConfig ||

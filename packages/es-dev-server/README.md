@@ -258,7 +258,7 @@ Compatibility mode enables bundle-free development with features such as es modu
 
   In addition to the web component polyfills, it loads the general [core-js polyfills](https://www.npmjs.com/package/core-js) and a polyfill for [fetch](https://www.npmjs.com/package/whatwg-fetch)
 
-  When loading your application it detects module support. If it is not supported, your app is loaded through [systemjs](https://github.com/systemjs/systemjs) and your code is transformed to `es5`.
+  When loading your application it detects module support. If it is not supported, your app is loaded through [system-js](https://github.com/systemjs/systemjs) and your code is transformed to `es5`.
 
   The `es5` transformation is only done for browsers which don't support modules, so you can safely use this mode on modern browsers where it acts the same way as `modern` mode.
 

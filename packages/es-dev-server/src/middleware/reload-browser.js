@@ -27,7 +27,7 @@ async function watchServedFile(ctx, cfg, excludes) {
     return;
   }
 
-  const filePath = path.join(cfg.rootDir, ctx.url);
+  const filePath = path.join(cfg.rootDir, ctx.url.split('?')[0].split('#')[0]);
   // the path is excluded (for example node_modules)
   if (excludes.some(pattern => minimatch(filePath, pattern))) {
     return;
