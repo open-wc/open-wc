@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.6.2...es-dev-server@1.6.3) (2019-07-15)
+
+
+### Bug Fixes
+
+* **es-dev-server:** only append trailing slash in polyfills if needed ([#584](https://github.com/open-wc/open-wc/issues/584)) ([f92d7e3](https://github.com/open-wc/open-wc/commit/f92d7e3))
+
+
+
+
+
 ## [1.6.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.6.1...es-dev-server@1.6.2) (2019-07-14)
 
 
