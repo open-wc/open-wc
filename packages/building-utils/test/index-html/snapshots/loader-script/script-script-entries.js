@@ -1,13 +1,11 @@
 (function() {
-  function loadScript(src) {
+  function loadScript(src, module) {
     return new Promise(function (resolve, reject) {
-      var script = document.createElement('script');
-      script.onerror = reject;
-      script.onload = resolve;
-      script.src = src;
-      script.defer = true;
-
-      document.head.appendChild(script);
+      document.head.appendChild(Object.assign(
+        document.createElement('script'),
+        { src: src, onload: resolve, onerror: reject },
+        module ? { type: 'module' } : undefined
+      ));
     });
   }
 
