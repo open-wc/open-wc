@@ -41,24 +41,7 @@ Already part of `npm init @open-wc testing`
 ::::
 
 ### Manual Install
-- Install via `yarn add @open-wc/testing-karma --dev`
-- Copy [karma.conf.js](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/testing-karma/templates/static/karma.conf.js) to `karma.conf.js`
-- Add these scripts to package.json
-  ```js
-  "scripts": {
-    "test": "karma start --coverage",
-    "test:watch": "karma start --auto-watch=true --single-run=false"
-  },
-  ```
-#### If you need to support legacy browsers
-```js
-  "scripts": {
-    "test:legacy": "karma start --legacy --coverage",
-    "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false",
-  },
-```
-
-For more details, please see [testing-karma](https://open-wc.org/testing/testing-karma.html).
+Read more at [testing-karma](https://open-wc.org/testing/testing-karma.html)
 
 ## Automating Tests via Browserstack
 To make sure your project is production ready, we recommend running tests in all the browsers you want to support.
@@ -71,17 +54,7 @@ Already part of `npm init @open-wc testing`
 ::::
 
 ### Manual Install
-
-- Install via `yarn add @open-wc/testing-karma-bs --dev`
-- Copy [karma.bs.config.js](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/testing-karma-bs/templates/static/karma.bs.config.js) to `karma.bs.config.js`
-- Add these scripts to your package.json
-  ```js
-  "scripts": {
-    "test:bs": "karma start karma.bs.config.js --legacy --coverage"
-  },
-  ```
-
-For more details, please see [testing-karma-bs](https://open-wc.org/testing/testing-karma-bs.html).
+Read more at [testing-karma-bs](https://open-wc.org/testing/testing-karma-bs.html)
 
 ## Example Tests
 

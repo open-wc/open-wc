@@ -19,8 +19,9 @@
     "test:update-snapshots": "karma start --update-snapshots",
     "test:prune-snapshots": "karma start --prune-snapshots",
     "test:ci": "lerna run test:ci",
-    "test:legacy": "karma start --legacy --coverage",
-    "test:bs": "karma start karma.bs.conf.js --legacy --coverage",
+    "test:compatibility": "karma start --compatibility all --coverage",
+    "test:compatibility:watch": "karma start --auto-watch=true --single-run=false --compatibility all --coverage",
+    "test:bs": "karma start karma.bs.conf.js --compatibility all --coverage",
     "vuepress:build": "vuepress build docs",
     "vuepress:start": "vuepress dev docs"
   },

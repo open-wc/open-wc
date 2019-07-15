@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const merge = require('webpack-merge');
-const createDefaultConfig = require('./packages/testing-karma/default-config.js');
+const { createDefaultConfig } = require('./packages/testing-karma');
 
 module.exports = config => {
   config.set(
@@ -14,6 +14,10 @@ module.exports = config => {
           type: 'module',
         },
       ],
+
+      esm: {
+        nodeResolve: true,
+      },
     }),
   );
   return config;
