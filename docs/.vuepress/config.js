@@ -35,6 +35,7 @@ const sidebar = [
       '/testing/testing-chai-dom-equals',
       '/testing/semantic-dom-diff',
       '/testing/testing-karma',
+      '/testing/karma-esm',
       '/testing/testing-karma-bs',
       '/testing/testing-wallaby',
     ],
