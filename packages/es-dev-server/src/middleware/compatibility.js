@@ -185,7 +185,10 @@ export function createCompatibilityMiddleware(cfg) {
 
     // cache polyfills for serving
     createResult.files.forEach(file => {
-      const root = ctx.url.endsWith('/') ? ctx.url : `${path.posix.dirname(ctx.url)}/`;
+      let root = ctx.url.endsWith('/') ? ctx.url : path.posix.dirname(ctx.url);
+      if (!root.endsWith('/')) {
+        root = `${root}/`;
+      }
       polyfills.set(`${root}${file.path}`, file.content);
     });
   }
