@@ -8,15 +8,13 @@ const Terser = require('terser');
  * @typedef {import('./create-index-html').Polyfill} Polyfill
  */
 const loadScriptFunction = `
-  function loadScript(src) {
+  function loadScript(src, module) {
     return new Promise(function (resolve, reject) {
-      var script = document.createElement('script');
-      script.onerror = reject;
-      script.onload = resolve;
-      script.src = src;
-      script.defer = true;
-
-      document.head.appendChild(script);
+      document.head.appendChild(Object.assign(
+        document.createElement('script'),
+        { src: src, onload: resolve, onerror: reject },
+        module ? { type: 'module' } : undefined
+      ));
     });
   }\n\n`;
 
@@ -115,13 +113,14 @@ function createPolyfillsLoader(polyfills) {
 
     code += `  if (${polyfill.test}) { polyfills.push(loadScript('polyfills/${polyfill.name}.${
       polyfill.hash
-    }.js')) }\n`;
+    }.js', ${Boolean(polyfill.module)})) }\n`;
   });
 
   return code;
 }
 
 /**
+ * Creates a loader script that executed immediately.
  *
  * @param {EntriesConfig} entries
  * @param {EntriesConfig} legacyEntries
@@ -139,4 +138,21 @@ function createLoaderScript(entries, legacyEntries, polyfills, minified = true) 
   return minified ? Terser.minify(code).code : code;
 }
 
-module.exports.createLoaderScript = createLoaderScript;
+/**
+ * Creates a function that only loads polyfills, deferring entry loader to the caller
+ * @param {import('@open-wc/building-utils/index-html/create-index-html').Polyfill[]} polyfills
+ */
+function createPolyfillsLoaderScript(polyfills, funcName = 'loadPolyfills') {
+  return (
+    `function ${funcName}() {` +
+    loadScriptFunction +
+    createPolyfillsLoader(polyfills) +
+    'return Promise.all(polyfills);\n' +
+    '}'
+  );
+}
+
+module.exports = {
+  createLoaderScript,
+  createPolyfillsLoaderScript,
+};

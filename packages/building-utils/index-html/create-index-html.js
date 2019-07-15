@@ -31,6 +31,7 @@ const { createContentHash } = require('./utils');
  * @property {string} hash
  * @property {string} sourcemap
  * @property {boolean} [nomodule]
+ * @property {boolean} [module]
  */
 
 /**
@@ -39,6 +40,7 @@ const { createContentHash } = require('./utils');
  * @property {string} path polyfill path
  * @property {string} [test] expression which should evaluate to true to load the polyfill
  * @property {boolean} [nomodule] whether to inject the polyfills as a script with nomodule attribute
+ * @property {boolean} [module] wether to load the polyfill with type module
  * @property {string} [sourcemapPath] polyfill sourcemaps path
  * @property {boolean} [noMinify] whether to minify the polyfills. default true if no sourcemap is given, false otherwise
  */
