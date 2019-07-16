@@ -4,6 +4,8 @@ import { getBodyAsString, toBrowserPath } from '../utils.js';
 import { compatibilityModes, modernPolyfills, legacyPolyfills } from '../constants.js';
 import systemJsLegacyResolveScript from '../browser-scripts/system-js-legacy-resolve.js';
 
+const htmlTags = ['html', 'head', 'body'];
+
 /**
  * @typedef {object} CompatibilityMiddlewareConfig
  * @property {string} appIndex
@@ -33,6 +35,39 @@ function injectImportMaps(indexHTML, resources, type) {
   }
 
   return transformedIndexHTML;
+}
+
+/**
+ * Returns whether this is a index html response.
+ * @param {import('koa').Context} ctx
+ * @param {CompatibilityMiddlewareConfig} cfg
+ */
+async function getIndexHTMLResponse(ctx, cfg) {
+  if (ctx.status < 200 || ctx.status >= 300) {
+    return false;
+  }
+
+  // if we're serving the app index, it's an index html response
+  if (ctx.url === cfg.appIndex) {
+    return getBodyAsString(ctx.body);
+  }
+
+  // make the check based on content-type and check
+  const contentType = ctx.response.header && ctx.response.header['content-type'];
+  if (!contentType || !contentType.includes('text/html')) {
+    return false;
+  }
+
+  const indexHTMLString = await getBodyAsString(ctx.body);
+  if (
+    !htmlTags.some(
+      tag => indexHTMLString.includes(`<${tag}`) && indexHTMLString.includes(`</${tag}>`),
+    )
+  ) {
+    return false;
+  }
+
+  return indexHTMLString;
 }
 
 /**
@@ -81,25 +116,9 @@ export function createCompatibilityMiddleware(cfg) {
      * Modules are loaded through es-module-shims for modern browsers, for browsers which
      * don't support modules the code is loaded by systemjs and compiled to es5.
      */
-
-    //  only look for html files
-    if (!ctx.url.endsWith('/') && !ctx.url.endsWith('.html')) {
+    const indexHTMLString = await getIndexHTMLResponse(ctx, cfg);
+    if (!indexHTMLString) {
       return;
-    }
-
-    if (ctx.status < 200 || ctx.status >= 300) {
-      return;
-    }
-
-    // if url is the app index we know for sure we need to inject polyfills. otherwise, check if
-    // this is a html document we are serving.
-    let indexHTMLString;
-    if (ctx.url !== cfg.appIndex) {
-      indexHTMLString = await getBodyAsString(ctx.body);
-
-      if (!indexHTMLString.includes('<html') && !indexHTMLString.includes('</html>')) {
-        return;
-      }
     }
 
     const lastModified = ctx.response.headers['last-modified'];
@@ -109,12 +128,6 @@ export function createCompatibilityMiddleware(cfg) {
     if (cache && cache.lastModified === lastModified) {
       ctx.body = cache.body;
       return;
-    }
-
-    // for performance we didn't drain the index.html stream for the app index above. if we end up here
-    // we do need the whole body content now
-    if (!indexHTMLString) {
-      indexHTMLString = await getBodyAsString(ctx.body);
     }
 
     // extract input files from index.html
