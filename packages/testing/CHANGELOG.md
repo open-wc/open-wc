@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.15](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.14...@open-wc/testing@1.0.15) (2019-07-16)
+
+
+### Bug Fixes
+
+* **testing:** bugfix release to keep non breaking testing-karma version ([99b4905](https://github.com/open-wc/open-wc/commit/99b4905))
+
+
+
+
+
 ## [1.0.14](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.13...@open-wc/testing@1.0.14) (2019-07-15)
 
 
