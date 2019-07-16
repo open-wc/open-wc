@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.15...@open-wc/testing@2.0.0) (2019-07-16)
+
+
+### Features
+
+* **testing:** upgrade testing-karma to latest version ([2e1be09](https://github.com/open-wc/open-wc/commit/2e1be09))
+
+
+### BREAKING CHANGES
+
+* **testing:** Removed the legacy flag which used webpack on older
+browsers. We now use karma-esm everywhere which supports older
+browsers with a compatibility option. For more details please see
+the changelog of testing-karma and karma-esm.
+
+
+
+
+
 ## [1.0.15](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.14...@open-wc/testing@1.0.15) (2019-07-16)
 
 
