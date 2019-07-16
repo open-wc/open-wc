@@ -39,7 +39,7 @@
     "mocha": "^5.0.0"
   },
   "devDependencies": {
-    "@open-wc/testing-karma": "^2.0.16",
+    "@open-wc/testing-karma": "^3.0.0",
     "@open-wc/testing-karma-bs": "^1.1.17",
     "@open-wc/testing-wallaby": "^0.1.12",
     "webpack-merge": "^4.1.5"
