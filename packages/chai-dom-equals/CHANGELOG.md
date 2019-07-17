@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.22](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.21...@open-wc/chai-dom-equals@0.12.22) (2019-07-17)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
 ## [0.12.21](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.20...@open-wc/chai-dom-equals@0.12.21) (2019-07-15)
 
 
