@@ -4,7 +4,7 @@
  * @property {string} rootDir
  */
 
-import { getBodyAsString, SSEStream } from '../utils.js';
+import { isIndexHTMLResponse, getBodyAsString, SSEStream } from '../utils/utils.js';
 import { messageChannelEndpoint } from '../constants.js';
 import messageChannelScript from '../browser-scripts/message-channel.js';
 
@@ -67,7 +67,7 @@ function setupMessageChannel(ctx) {
  * @param {import('koa').Context} ctx
  */
 async function injectMessageChannelScript(ctx) {
-  const bodyString = await getBodyAsString(ctx.body);
+  const bodyString = await getBodyAsString(ctx);
   const reloadInjected = bodyString.replace('</body>', messageChannelScript);
   ctx.body = reloadInjected;
 }
@@ -89,7 +89,7 @@ export function createMessageChannelMiddleware(cfg) {
 
     await next();
 
-    if (ctx.url !== cfg.appIndex && !ctx.url.endsWith('/') && !ctx.url.endsWith('.html')) {
+    if (!(await isIndexHTMLResponse(ctx, cfg.appIndex))) {
       return;
     }
 

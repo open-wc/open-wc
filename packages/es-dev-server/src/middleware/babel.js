@@ -1,8 +1,9 @@
 import minimatch from 'minimatch';
-import { getBodyAsString } from '../utils.js';
+import path from 'path';
+import { getBodyAsString, toFilePath } from '../utils/utils.js';
 import { compatibilityModes, baseFileExtensions } from '../constants.js';
 import { sendMessageToActiveBrowsers } from './message-channel.js';
-import createBabelCompiler from '../babel-compiler.js';
+import createBabelCompiler from '../utils/babel-compiler.js';
 
 /**
  * @typedef {object} BabelMiddlewareConfig
@@ -32,6 +33,21 @@ function shouldCompile(file, legacy, cfg) {
 }
 
 /**
+ * @param {import('koa').Context} ctx
+ * @param {BabelMiddlewareConfig} cfg
+ * @returns {string}
+ */
+function getFilePath(ctx, cfg) {
+  if (ctx.url.includes('/inline-module-') && ctx.url.includes('?source=')) {
+    const url = ctx.url.split('?')[0];
+    const indexPath = toFilePath(url);
+    return path.join(cfg.rootDir, indexPath);
+  }
+
+  return ctx.body && ctx.body.path;
+}
+
+/**
  * Sets up a middleware which runs all served js code through babel. Different babel configs
  * are loaded based on the server's configuration.
  *
@@ -55,7 +71,7 @@ export function createBabelMiddleware(cfg) {
   /** @type {import('koa').Middleware} */
   async function babelMiddleware(ctx, next) {
     const baseURL = ctx.url.split('?')[0].split('#')[0];
-    if (!fileExtensions.some(ext => baseURL.endsWith(ext))) {
+    if (baseURL.startsWith('/polyfills') || !fileExtensions.some(ext => baseURL.endsWith(ext))) {
       return next();
     }
 
@@ -66,9 +82,8 @@ export function createBabelMiddleware(cfg) {
       return undefined;
     }
 
-    const filePath = ctx.body && ctx.body.path;
+    const filePath = getFilePath(ctx, cfg);
     const lastModified = ctx.response.headers['last-modified'];
-
     if (!filePath || !lastModified) {
       return undefined;
     }
@@ -86,7 +101,7 @@ export function createBabelMiddleware(cfg) {
     const compiler = legacy ? legacyBabelCompiler : babelCompiler;
 
     // Ensure we respond with js content type
-    ctx.response.set('content-type', 'application/javascript; charset=utf-8');
+    ctx.response.set('content-type', 'text/javascript');
 
     // if we have a cached compilation for a file which wasn't modified in the meantime, return that
     const cachedBody = compiler.getFromCache(filePath, lastModified);
@@ -96,7 +111,7 @@ export function createBabelMiddleware(cfg) {
     }
 
     try {
-      const bodyString = await getBodyAsString(ctx.body);
+      const bodyString = await getBodyAsString(ctx);
       const compiled = await compiler.compile(filePath, bodyString, lastModified);
       ctx.body = compiled;
       return undefined;

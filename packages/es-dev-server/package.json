@@ -20,6 +20,7 @@
   "scripts": {
     "build": "babel src --out-dir dist --copy-files --include-dotfiles",
     "test": "mocha test/**/*.test.js test/*.test.js --require @babel/register",
+    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --require @babel/register --update-snapshots",
     "test:ci": "npm run test",
     "start": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --watch --http2",
     "start:compat-modern": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --watch --http2 --compatibility modern",

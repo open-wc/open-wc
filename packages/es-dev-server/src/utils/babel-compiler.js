@@ -2,7 +2,7 @@ import { transformAsync } from '@babel/core';
 import deepmerge from 'deepmerge';
 import LRUCache from 'lru-cache';
 import { findSupportedBrowsers } from '@open-wc/building-utils';
-import { baseFileExtensions } from './constants.js';
+import { baseFileExtensions } from '../constants.js';
 
 /**
  * @typedef {object} CreateBabelCompilerConfig
@@ -102,10 +102,10 @@ export default function createBabelCompiler(cfg) {
   const babelConfigs = [
     // custom babel config if it's there
     createDefaultConfig(cfg.readUserBabelConfig),
-    cfg.customBabelConfig,
     cfg.nodeResolve && createNodeResolveConfig(cfg.rootDir, cfg.moduleDirectories, fileExtensions),
     cfg.modern && modernConfig,
     cfg.legacy && legacyConfig,
+    cfg.customBabelConfig,
   ].filter(Boolean);
 
   const babelConfig = deepmerge.all(babelConfigs);
