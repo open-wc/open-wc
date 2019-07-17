@@ -1,6 +1,6 @@
 import { extractResources, createIndexHTML } from '@open-wc/building-utils/index-html/index.js';
 import path from 'path';
-import { getBodyAsString } from '../utils.js';
+import { getBodyAsString, toBrowserPath } from '../utils.js';
 import { compatibilityModes, modernPolyfills, legacyPolyfills } from '../constants.js';
 import systemJsLegacyResolveScript from '../browser-scripts/system-js-legacy-resolve.js';
 
@@ -175,7 +175,7 @@ export function createCompatibilityMiddleware(cfg) {
       if (!root.endsWith('/')) {
         root = `${root}/`;
       }
-      polyfills.set(`${root}${file.path}`, file.content);
+      polyfills.set(`${root}${toBrowserPath(file.path)}`, file.content);
     });
   }
 
