@@ -38,7 +38,7 @@ To manually setup this plugin, add it as a karma framework:
   frameworks: ['esm'],
 
   esm: {
-    // if you don't use import maps, you will probably need node resolve
+    // if you are using 'bare module imports' you will need this option
     nodeResolve: true,
     // set compatibility mode to all
     compatibility: 'all',
