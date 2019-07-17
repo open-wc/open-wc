@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.5](https://github.com/open-wc/open-wc/compare/es-dev-server@1.6.4...es-dev-server@1.6.5) (2019-07-17)
+
+
+### Bug Fixes
+
+* **es-dev-server:** resolve polyfill path on windows ([#594](https://github.com/open-wc/open-wc/issues/594)) ([71a43e1](https://github.com/open-wc/open-wc/commit/71a43e1))
+
+
+
+
+
 ## [1.6.4](https://github.com/open-wc/open-wc/compare/es-dev-server@1.6.3...es-dev-server@1.6.4) (2019-07-15)
 
 
