@@ -56,6 +56,12 @@ module.exports = config => {
         { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' }
       ],
     }),
+
+    // see the karma-esm docs for all options
+    esm: {
+      // if you are using 'bare module imports' you will need this option
+      nodeResolve: true
+    }
   );
   return config;
 };
@@ -67,8 +73,7 @@ module.exports = config => {
   "test:watch": "karma start --auto-watch=true --single-run=false",
   "test:update-snapshots": "karma start --update-snapshots",
   "test:prune-snapshots": "karma start --prune-snapshots",
-  "test:compatibility": "karma start --compatibility all --coverage",
-  "test:compatibility:watch": "karma start --compatibility all --auto-watch=true --single-run=false"
+  "test:compatibility": "karma start --compatibility all --auto-watch=true --single-run=false"
 },
 ```
 
@@ -79,8 +84,7 @@ Commands explained:
 - `test:watch`: does a single test run, and then re-runs on file changes. coverage is not analyzed for performance. in watch mode you can also visit http://localhost:9876/debug.html to debug in the browser
 - `test:update-snapshots`: updates any snapshots files from `@open-wc/semantic-dom-diff`. Use this when your component's rendered HTML changed.
 - `test:prune-snapshots`: prunes any used snapshots files from `@open-wc/semantic-dom-diff`.
-- `test:compatibility`: like `test`, except that it makes your tests compatible with older browsers (including IE11).
-- `test:compatibility:watch`: like `test:watch` with compatibility mode
+- `test:compatibility`: like `test:watch`, except that it makes your tests compatible with older browsers (including IE11).
 
 ### Testing single files or folders
 By default karma runs all your test files. To test a single file or folder, use the `--grep` flag. (If you did a manual setup, makes sure your config handles this flag).
@@ -145,6 +149,8 @@ When testing without a bundler you will be serving every imported module straigh
 
 In a monorepo dependencies are often two levels higher in the root of the repository. To run tests in a monorepository you either have to put your config in the root of the repository, or adjust the basePath in your karma config:
 
+### Other configuration
+`karma-esm` is the plugin powering our configuration, and it supports a few more for advanced usage. [Check out the documentaton](https://open-wc.org/testing/karma-esm.html) for more information.
 
 ```js
 const { createDefaultConfig } = require('@open-wc/testing-karma');
