@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.8](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.8.7...@open-wc/building-rollup@0.8.8) (2019-07-19)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
 ## [0.8.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.8.6...@open-wc/building-rollup@0.8.7) (2019-07-17)
 
 **Note:** Version bump only for package @open-wc/building-rollup

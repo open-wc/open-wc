@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-webpack",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "Default configuration for working with webpack",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -39,8 +39,8 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
     "@babel/preset-env": "^7.0.0",
-    "@open-wc/building-utils": "^2.4.2",
-    "@open-wc/webpack-index-html-plugin": "^1.2.7",
+    "@open-wc/building-utils": "^2.4.3",
+    "@open-wc/webpack-index-html-plugin": "^1.2.8",
     "babel-loader": "^8.0.0",
     "babel-plugin-bundled-import-meta": "^0.3.0",
     "babel-plugin-template-html-minifier": "^3.0.0",
