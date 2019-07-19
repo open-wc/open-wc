@@ -35,6 +35,15 @@ function forOf() {
 forOf();
 console.log('forOf function compiled to: ', forOf.toString());
 
+// partial css trips up the minifier
+const fontSize = css`
+  16
+`;
+
+const fontMd = css`
+  font-size: ${fontSize}px;
+`;
+
 class DemoApp extends LitElement {
   static get properties() {
     return {
@@ -47,6 +56,7 @@ class DemoApp extends LitElement {
       display: block;
       color: black;
       background-color: white;
+      ${fontMd}
     }
   `;
 
