@@ -2,6 +2,7 @@
 
 const { DEFAULT_EXTENSIONS } = require('@babel/core');
 const { findSupportedBrowsers } = require('@open-wc/building-utils');
+const customMinifyCss = require('@open-wc/building-utils/custom-minify-css');
 const resolve = require('rollup-plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const babel = require('rollup-plugin-babel');
@@ -68,7 +69,7 @@ module.exports = function createBasicConfig(_options) {
                 collapseWhitespace: true,
                 removeComments: true,
                 caseSensitive: true,
-                minifyCSS: true,
+                minifyCSS: customMinifyCss,
               },
             },
           ],

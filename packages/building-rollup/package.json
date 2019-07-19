@@ -15,14 +15,10 @@
   },
   "scripts": {
     "start:build": "es-dev-server --app-index dist/index.html --open",
-    "build:modern-and-legacy": "rimraf dist && rollup -c demo/js/rollup.config.js",
-    "watch:modern-and-legacy": "rimraf dist && rollup -c demo/js/rollup.config.js --watch & yarn start:build",
+    "build": "rimraf dist && rollup -c demo/js/rollup.config.js",
     "build:modern": "rimraf dist && rollup -c demo/js/rollup.modern.config.js",
-    "watch:modern": "rimraf dist && rollup -c demo/js/rollup.modern.config.js --watch & yarn start:build",
     "build:ts": "rimraf dist && rollup -c demo/ts/rollup.config.js",
-    "watch:ts": "rimraf dist && rollup -c demo/ts/rollup.config.js --watch & yarn start:build",
     "build:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js",
-    "watch:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js --watch & yarn start:build",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "keywords": [
