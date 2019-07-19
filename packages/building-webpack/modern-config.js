@@ -3,6 +3,7 @@ const WebpackIndexHTMLPlugin = require('@open-wc/webpack-index-html-plugin');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const customMinifyCSS = require('./src/custom-minify-css');
 
 const development = !process.argv.find(arg => arg.includes('production'));
 
@@ -69,7 +70,7 @@ module.exports = userOptions => {
                       collapseWhitespace: true,
                       removeComments: true,
                       caseSensitive: true,
-                      minifyCSS: true,
+                      minifyCSS: customMinifyCSS,
                     },
                   },
                 ],

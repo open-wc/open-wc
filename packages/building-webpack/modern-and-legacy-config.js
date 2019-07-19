@@ -4,6 +4,7 @@ const WebpackIndexHTMLPlugin = require('@open-wc/webpack-index-html-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const merge = require('webpack-merge');
+const customMinifyCSS = require('./src/custom-minify-css');
 
 const development = !process.argv.find(arg => arg.includes('production'));
 const legacy = process.argv.find(arg => arg.includes('legacy'));
@@ -34,6 +35,9 @@ function createConfig(options, legacy) {
     },
 
     devtool: development ? 'cheap-module-source-map' : 'source-map',
+
+    // don't polyfill any node built-in libraries
+    node: false,
 
     resolve: {
       mainFields: [
@@ -69,7 +73,7 @@ function createConfig(options, legacy) {
                       collapseWhitespace: true,
                       removeComments: true,
                       caseSensitive: true,
-                      minifyCSS: true,
+                      minifyCSS: customMinifyCSS,
                     },
                   },
                 ],
