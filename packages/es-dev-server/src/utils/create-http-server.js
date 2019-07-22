@@ -11,8 +11,8 @@ export function createHTTPServer(requestListener, http2) {
   if (http2) {
     const dir = path.join(__dirname, '..');
     const options = {
-      key: fs.readFileSync(path.join(dir, '.self-signed-dev-server-ssl.key')),
-      cert: fs.readFileSync(path.join(dir, '.self-signed-dev-server-ssl.cert')),
+      key: fs.readFileSync(path.join(dir, '..', '.self-signed-dev-server-ssl.key')),
+      cert: fs.readFileSync(path.join(dir, '..', '.self-signed-dev-server-ssl.cert')),
       allowHTTP1: true,
     };
 

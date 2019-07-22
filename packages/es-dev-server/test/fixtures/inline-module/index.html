@@ -1,0 +1,39 @@
+<html>
+
+<head>
+  <title>My app</title>
+</head>
+
+<body>
+
+  <script type="module">
+    import { message } from 'my-module';
+    import './src/local-module.js';
+
+    console.log(`The message is: ${message}`);
+
+    // class is compiled by legacy build
+    class Foo {
+
+    }
+
+    // class is compiled by legacy build
+    const bar = 'buz';
+
+    async function* asyncGenerator() {
+      await Promise.resolve();
+      yield 0;
+      await Promise.resolve();
+      yield 1;
+    }
+  </script>
+
+  <script type="module">
+    console.log('hello world');
+  </script>
+
+  <script type="module" src="./app.js"></script>
+
+</body>
+
+</html>

@@ -1,11 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 const deepmerge = require('deepmerge');
-const {
-  compatibilityModes,
-  modernPolyfills,
-  legacyPolyfills,
-} = require('es-dev-server/dist/constants.js');
+const { compatibilityModes } = require('es-dev-server/dist/constants.js');
+const { modernPolyfills, legacyPolyfills } = require('es-dev-server/dist/utils/polyfills.js');
 const { getPolyfills } = require('@open-wc/building-utils/index-html/polyfills.js');
 const { createTestLoaderBrowserScript } = require('./test-loader-browser-script');
 

@@ -1,0 +1,47 @@
+<html><head>
+  <title>My app</title>
+</head>
+
+<body>
+
+  
+
+  
+
+  
+
+
+
+<script>(function() {
+  function loadScript(src, module) {
+    return new Promise(function (resolve, reject) {
+      document.head.appendChild(Object.assign(
+        document.createElement('script'),
+        { src: src, onload: resolve, onerror: reject },
+        module ? { type: 'module' } : undefined
+      ));
+    });
+  }
+
+  var polyfills = [];
+  if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) { polyfills.push(loadScript('polyfills/webcomponents.88b4b5855ede008ecad6bbdd4a69e57d.js', false)) }
+  if (!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype) { polyfills.push(loadScript('polyfills/custom-elements-es5-adapter.01496319407efe7ef743b10afbb93714.js', false)) }
+  if ('noModule' in HTMLScriptElement.prototype) { polyfills.push(loadScript('polyfills/es-module-shims.c9fab74391a606424f346398bb048a79.js', true)) }
+
+  function loadEntries() {
+    ['./app.js','./inline-module-0.js?source=%2Findex.html','./inline-module-1.js?source=%2Findex.html'].forEach(function (entry) { window.importShim(entry); });
+  }
+
+  polyfills.length ? Promise.all(polyfills).then(loadEntries) : loadEntries();
+})();</script>
+<script nomodule>
+  // appends a query param to each systemjs request to trigger es5 compilation
+  var originalResolve = System.constructor.prototype.resolve;
+  System.constructor.prototype.resolve = function () {
+    return Promise.resolve(originalResolve.apply(this, arguments))
+      .then(function (url) {
+        return url + '?legacy=true';
+      });
+  };
+</script>
+</body></html>

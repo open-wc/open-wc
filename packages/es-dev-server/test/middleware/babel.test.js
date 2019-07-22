@@ -358,4 +358,27 @@ describe('babel middleware', () => {
       expect(responseText).to.include("const bar = 'buz';");
     });
   });
+
+  it('compiles inline modules', async () => {
+    let server;
+    try {
+      ({ server } = startServer({
+        rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
+        compatibilityMode: compatibilityModes.ALL,
+        nodeResolve: true,
+      }));
+
+      const indexResponse = await fetch(`${host}index.html`);
+      expect(indexResponse.status).to.equal(200);
+      const inlineModuleResponse = await fetch(`${host}inline-module-0.js?source=/index.html`);
+      expect(inlineModuleResponse.status).to.equal(200);
+      const inlineModuleText = await inlineModuleResponse.text();
+      expect(inlineModuleText).to.include(
+        'import { message } from "./node_modules/my-module/index.js";',
+      );
+      expect(inlineModuleText).to.include('function asyncGenerator() {');
+    } finally {
+      server.close();
+    }
+  });
 });

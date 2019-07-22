@@ -1,0 +1,82 @@
+<html><head>
+    <script type="importmap-shim">
+    {
+      "imports": {
+        "foo": "/node_modules/foo/foo.js",
+        "bar": "/node_modules/bar/bar.js"
+      }
+    }
+  </script>
+
+  <title>My app</title>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "foo": "/node_modules/foo/foo.js",
+        "bar": "/node_modules/bar/bar.js"
+      }
+    }
+  </script>
+</head>
+
+<body>
+
+  
+
+
+
+<script>(function() {
+  function loadScript(src, module) {
+    return new Promise(function (resolve, reject) {
+      document.head.appendChild(Object.assign(
+        document.createElement('script'),
+        { src: src, onload: resolve, onerror: reject },
+        module ? { type: 'module' } : undefined
+      ));
+    });
+  }
+
+  var polyfills = [];
+  if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) { polyfills.push(loadScript('polyfills/webcomponents.88b4b5855ede008ecad6bbdd4a69e57d.js', false)) }
+  if (!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype) { polyfills.push(loadScript('polyfills/custom-elements-es5-adapter.01496319407efe7ef743b10afbb93714.js', false)) }
+  if ('noModule' in HTMLScriptElement.prototype) { polyfills.push(loadScript('polyfills/es-module-shims.c9fab74391a606424f346398bb048a79.js', true)) }
+
+  function loadEntries() {
+    window.importShim('./app.js');
+  }
+
+  polyfills.length ? Promise.all(polyfills).then(loadEntries) : loadEntries();
+})();</script>
+<script nomodule>
+  // appends a query param to each systemjs request to trigger es5 compilation
+  var originalResolve = System.constructor.prototype.resolve;
+  System.constructor.prototype.resolve = function () {
+    return Promise.resolve(originalResolve.apply(this, arguments))
+      .then(function (url) {
+        return url + '?legacy=true';
+      });
+  };
+</script>
+
+  <script>
+    // sets up a message channel with es-dev-server to receive events
+    // for reloading the browser on file change or logging errors
+    (function () {
+      if (!('EventSource' in window)) {
+        return;
+      }
+
+      var eventSource = new EventSource('/__es-dev-server-message-channel__');
+
+      eventSource.addEventListener('file-changed', function (e) {
+        location.reload();
+      });
+
+      eventSource.addEventListener('error-message', function (e) {
+        console.log(JSON.parse(e.data));
+      });
+    }());
+  </script>
+</body>
+</html>
