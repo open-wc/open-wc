@@ -1,6 +1,6 @@
 {
   "name": "es-dev-server",
-  "main": "./dist/cli.js",
+  "main": "./dist/es-dev-server.js",
   "version": "1.7.2",
   "description": "Development server for modern web apps",
   "author": "open-wc",

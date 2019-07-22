@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import AbortController from 'abort-controller';
 import path from 'path';
 import fs from 'fs';
-import { startServer } from '../../src/server.js';
+import { startServer, createConfig } from '../../src/es-dev-server.js';
 import { messageChannelEndpoint } from '../../src/constants.js';
 import { AsyncStream, timeout } from '../test-helpers.js';
 
@@ -43,8 +43,10 @@ describe.skip('reload browser middleware', function describe() {
   let server;
   beforeEach(async () => {
     ({ server } = startServer({
-      rootDir: path.resolve(__dirname, '..', 'fixtures', 'reload'),
-      watch: true,
+      ...createConfig({
+        rootDir: path.resolve(__dirname, '..', 'fixtures', 'reload'),
+        watch: true,
+      }),
       watchDebounce: 5,
     }));
 

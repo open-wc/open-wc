@@ -6,7 +6,13 @@ import camelcase from 'camelcase';
 import fs from 'fs';
 import deepmerge from 'deepmerge';
 
-export default function readCommandLineArgs(argv = process.argv) {
+/**
+ * Reads command line args from arguments array. Defaults to `process.argv`.
+ *
+ * @param {string[]} [argv]
+ * @returns {import('./config.js').Config}
+ */
+export function readCommandLineArgs(argv = process.argv) {
   const optionDefinitions = [
     {
       name: 'config',
@@ -110,6 +116,7 @@ export default function readCommandLineArgs(argv = process.argv) {
   ];
 
   const dashesArgs = commandLineArgs(optionDefinitions, { argv, partial: true });
+  const openInCommandLineArgs = 'open' in dashesArgs;
 
   // convert kebab-case to camelCase
   /** @type {object} */
@@ -125,7 +132,7 @@ export default function readCommandLineArgs(argv = process.argv) {
         {
           header: 'es-dev-server',
           content: `
-          Simply server with node resolution for bare modules.
+          A dev server for modern web development workflows.
 
           Usage: \`es-dev-server [options...]\`
         `.trim(),
@@ -162,42 +169,18 @@ export default function readCommandLineArgs(argv = process.argv) {
     }
   }
 
-  // open if the open option is given, even when there were no arguments
-  const openBrowser = 'open' in options;
-  let openPath;
-  if (typeof options.open === 'string' && options.open !== '') {
-    // user-provided open path
-    openPath = path.normalize(options.open);
-  } else if (options.appIndex) {
-    // if an appIndex was provided, use it's directory as open path
-    openPath = `${path.parse(options.appIndex).dir}/`;
-  } else {
-    // default to working directory root
-    openPath = '/';
-  }
+  let { open } = options;
 
-  // make sure path properly starts a /
-  if (!openPath.startsWith('/')) {
-    openPath = `/${openPath}`;
+  // open can be a boolean nor a string. if it's a boolean from command line args,
+  // it's passed as null. so if it's not a string or boolean type, we check for the
+  // existence of open in the args object, and treat that as true
+  if (typeof open !== 'string' && typeof open !== 'boolean' && openInCommandLineArgs) {
+    open = true;
   }
 
   return {
-    openBrowser,
-    openPath,
-    port: options.port,
-    hostname: options.hostname,
-    watch: options.watch,
-    rootDir: options.rootDir,
-    appIndex: options.appIndex,
-    nodeResolve: options.nodeResolve,
-    http2: options.http2,
-    compatibilityMode: options.compatibility,
-    readUserBabelConfig: options.babel,
-    customMiddlewares: options.customMiddlewares,
-    extraFileExtensions: options.fileExtensions,
-    moduleDirectories: options.moduleDirs,
-    babelExclude: options.babelExclude,
-    babelModernExclude: options.babelModernExclude,
+    ...options,
+    open,
     logStartup: true,
   };
 }

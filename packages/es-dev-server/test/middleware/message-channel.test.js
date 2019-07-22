@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import fetch from 'node-fetch';
 import AbortController from 'abort-controller';
 import path from 'path';
-import { startServer } from '../../src/server.js';
+import { startServer, createConfig } from '../../src/es-dev-server.js';
 import { messageChannelEndpoint } from '../../src/constants.js';
 import { AsyncStream, timeout } from '../test-helpers.js';
 import { sendMessageToActiveBrowsers } from '../../src/middleware/message-channel.js';
@@ -21,10 +21,12 @@ describe.skip('message channel middleware', () => {
   describe('no flags', () => {
     let server;
     beforeEach(() => {
-      ({ server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'reload'),
-        appIndex: path.resolve(__dirname, '..', 'fixtures', 'reload', 'index.html'),
-      }));
+      ({ server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'reload'),
+          appIndex: path.resolve(__dirname, '..', 'fixtures', 'reload', 'index.html'),
+        }),
+      ));
     });
 
     afterEach(() => {
@@ -44,9 +46,11 @@ describe.skip('message channel middleware', () => {
     let server;
     beforeEach(() => {
       ({ server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'reload'),
-        appIndex: path.resolve(__dirname, '..', 'fixtures', 'reload', 'index.html'),
-        watch: true,
+        ...createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'reload'),
+          appIndex: path.resolve(__dirname, '..', 'fixtures', 'reload', 'index.html'),
+          watch: true,
+        }),
         watchDebounce: 5,
       }));
     });

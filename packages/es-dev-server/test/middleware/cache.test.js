@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import fetch from 'node-fetch';
 import path from 'path';
 import fs from 'fs';
-import { startServer } from '../../src/server.js';
+import { startServer, createConfig } from '../../src/es-dev-server.js';
 
 const host = 'http://localhost:8080/';
 
@@ -12,9 +12,11 @@ const testFile = path.join(fixtureDir, 'cached-files.js');
 describe('cache middleware', () => {
   let server;
   beforeEach(() => {
-    ({ server } = startServer({
-      rootDir: fixtureDir,
-    }));
+    ({ server } = startServer(
+      createConfig({
+        rootDir: fixtureDir,
+      }),
+    ));
 
     fs.writeFileSync(testFile, 'this file is cached', 'utf-8');
   });

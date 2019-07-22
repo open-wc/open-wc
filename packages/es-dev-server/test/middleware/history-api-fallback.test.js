@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import fetch from 'node-fetch';
 import path from 'path';
-import { startServer } from '../../src/server.js';
+import { startServer, createConfig } from '../../src/es-dev-server.js';
 
 const host = 'http://localhost:8080/';
 
@@ -9,10 +9,12 @@ describe('history api fallback middleware', () => {
   describe('index in root', () => {
     let server;
     beforeEach(() => {
-      ({ server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-        appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
-      }));
+      ({ server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
+        }),
+      ));
     });
 
     afterEach(() => {
@@ -56,17 +58,19 @@ describe('history api fallback middleware', () => {
   describe('index not in root', () => {
     let server;
     beforeEach(() => {
-      ({ server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'index-not-in-root'),
-        appIndex: path.resolve(
-          __dirname,
-          '..',
-          'fixtures',
-          'index-not-in-root',
-          'src',
-          'index.html',
-        ),
-      }));
+      ({ server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'index-not-in-root'),
+          appIndex: path.resolve(
+            __dirname,
+            '..',
+            'fixtures',
+            'index-not-in-root',
+            'src',
+            'index.html',
+          ),
+        }),
+      ));
     });
 
     afterEach(() => {

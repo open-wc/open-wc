@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import fetch from 'node-fetch';
 import path from 'path';
 import fs from 'fs';
-import { startServer } from '../../src/server.js';
+import { startServer, createConfig } from '../../src/es-dev-server.js';
 import { compatibilityModes } from '../../src/constants.js';
 
 const update = process.argv.includes('--update-snapshots');
@@ -13,23 +13,25 @@ const snapshotsDir = path.join(__dirname, '..', 'snapshots', 'transform-index-ht
 
 describe('transform-index-html middleware', () => {
   fixtures.forEach(fixture => {
-    Object.values(compatibilityModes).forEach(compatibilityMode => {
+    Object.values(compatibilityModes).forEach(compatibility => {
       // inline-module + compat mode none doesn't trigger transform without running babel
       const extraOptionsArray =
-        fixture === 'inline-module' && compatibilityMode === compatibilityModes.NONE
+        fixture === 'inline-module' && compatibility === compatibilityModes.NONE
           ? [null, { nodeResolve: true }]
           : [null];
 
       extraOptionsArray.forEach(extraOptions => {
-        const name = `${fixture}-${compatibilityMode}${extraOptions ? '-babel' : ''}`;
+        const name = `${fixture}-${compatibility}${extraOptions ? '-babel' : ''}`;
         it(`${name} matches the snapshot`, async () => {
           let server;
           try {
-            ({ server } = startServer({
-              rootDir: path.resolve(__dirname, '..', 'fixtures', fixture),
-              compatibilityMode,
-              ...extraOptions,
-            }));
+            ({ server } = startServer(
+              createConfig({
+                rootDir: path.resolve(__dirname, '..', 'fixtures', fixture),
+                compatibility,
+                ...extraOptions,
+              }),
+            ));
 
             const response = await fetch(`${host}index.html`);
             expect(response.status).to.equal(200);
@@ -58,10 +60,12 @@ describe('transform-index-html middleware', () => {
   it('serves polyfills', async () => {
     let server;
     try {
-      ({ server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
-        compatibilityMode: compatibilityModes.ALL,
-      }));
+      ({ server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
+          compatibility: compatibilityModes.ALL,
+        }),
+      ));
 
       const indexResponse = await fetch(`${host}index.html`);
       expect(indexResponse.status).to.equal(200);
@@ -81,10 +85,12 @@ describe('transform-index-html middleware', () => {
   it('serves inline modules', async () => {
     let server;
     try {
-      ({ server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
-        compatibilityMode: compatibilityModes.ESM,
-      }));
+      ({ server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
+          compatibility: compatibilityModes.ESM,
+        }),
+      ));
 
       const indexResponse = await fetch(`${host}index.html`);
       expect(indexResponse.status).to.equal(200);
@@ -107,10 +113,12 @@ describe('transform-index-html middleware', () => {
   it('handles pages without modules', async () => {
     let server;
     try {
-      ({ server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-        compatibilityMode: compatibilityModes.ESM,
-      }));
+      ({ server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          compatibility: compatibilityModes.ESM,
+        }),
+      ));
 
       const indexResponse = await fetch(`${host}no-modules.html`);
       expect(indexResponse.status).to.equal(200);
