@@ -1,7 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-const { compatibilityModes } = require('es-dev-server/dist/constants.js');
+const { compatibilityModes } = require('es-dev-server');
 const {
   createPolyfillsLoaderScript,
 } = require('@open-wc/building-utils/index-html/loader-script.js');

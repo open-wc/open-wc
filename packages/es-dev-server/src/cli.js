@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-import { startServer } from './server.js';
-import readCommandLineArgs from './command-line-args.js';
+import { startServer, createConfig } from './es-dev-server.js';
+import { readCommandLineArgs } from './command-line-args.js';
 
-const config = readCommandLineArgs();
-
+const config = createConfig(readCommandLineArgs());
 startServer(config);

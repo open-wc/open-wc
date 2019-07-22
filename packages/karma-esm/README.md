@@ -57,8 +57,8 @@ To manually setup this plugin, add it as a karma framework:
 | importMap         | string  | Path to import map used for testing.                            |
 | compatibility     | string  | Compatibility level to run the `es-dev-server` with.            |
 | coverageExclude   | array   | Extra glob patterns of tests to exclude from coverage.          |
-| customBabelConfig | string  | Custom babel configuration file to run on served code.          |
-| moduleDirectories | string  | Directories to resolve modules from. Defaults to `node_modules` |
+| babelConfig       | string  | Custom babel configuration file to run on served code.          |
+| moduleDirs        | string  | Directories to resolve modules from. Defaults to `node_modules` |
 | babel             | boolean | Whether to pick up a babel configuration file in your project.  |
 | fileExtensions    | array   | Custom file extensions to serve as es modules.                  |
 | polyfills         | object  | Polyfill configuration.                                         |

@@ -113,7 +113,7 @@ Click read more to view different strategies for setting up your project's folde
   If you run `es-dev-server` regularly from the root of this project, you can access your app at `/` or `/index.html` in the browser.
 
   ### index.html in a subfoolder
-  If you move your `index.html` in inside a subfolder:
+  If you move your `index.html` inside a subfolder:
   ```
   node_modules/...
   src/...
@@ -173,7 +173,7 @@ Click read more to view different strategies for setting up your project's folde
 
 </details>
 
-## Command line flags overview
+## Command line flags and Configuration
 ### Server configuration
 | name                 |  type          | description                                                              |
 | -------------------- | -------------- | ------------------------------------------------------------------------ |
@@ -194,8 +194,8 @@ Click read more to view different strategies for setting up your project's folde
 ### Code transformation
 | name                 |  type          | description                                                              |
 | -------------------- | -------------- | ------------------------------------------------------------------------ |
-| node-resolve         | number         | Resolve bare import imports using node resolve                           |
 | compatibility        | string         | Compatibility mode for older browsers. Can be: `esm`, `modern` or `all`  |
+| node-resolve         | number         | Resolve bare import imports using node resolve                           |
 | module-dirs          | string/array   | Directories to resolve modules from. Used by node-resolve                |
 | babel                | number         | Transform served code through babel. Requires .babelrc                   |
 | file-extensions      | number/array   | Extra file extentions to use when transforming code.                     |
@@ -204,26 +204,32 @@ Click read more to view different strategies for setting up your project's folde
 
 Most commands have an alias/shorthand. You can view them by using `--help`.
 
-## Advanced usage
-
 ### Configuration files
 We pick up an `es-dev-server.config.js` file automatically if it is present in the current working directory. You can specify a custom config path using the `config` flag.
-<details>
-  <summary>Read more</summary>
 
-  The configuration file allows the same command line flags configured, using their camelCased names. Example:
-  ```javascript
-  module.exports = {
-    port: 8080,
-    appIndex: 'demo/index.html',
-    moduleDirs: ['node_modules', 'custom-modules']
-  }
+Configuration options are the same as command line flags, using their camelCased names. Example:
+```javascript
+module.exports = {
+  port: 8080,
+  watch: true,
+  nodeResolve: true,
+  appIndex: 'demo/index.html',
+  moduleDirs: ['node_modules', 'custom-modules']
+}
 ```
-</details>
+
+In addition to the command line flags, the configuration file accepts these additional options:
+
+| name                 |  type          | description                                                              |
+| -------------------- | -------------- | ------------------------------------------------------------------------ |
+| middlewares          | array          | Koa middlewares to add to the server, read more below.                   |
+| babelConfig          | object         | Babel config to run with the server                                      |
+
+## Advanced usage
 
 ### Custom middlewares / proxy
 
-You can install custom middlewares, using the `customMiddlewares` property.
+You can install custom middlewares, using the `middlewares` property.
 
 <details>
   <summary>Read more</summary>
@@ -236,7 +242,7 @@ You can install custom middlewares, using the `customMiddlewares` property.
 
   module.exports = {
     port: 9000,
-    customMiddlewares: [
+    middlewares: [
       proxy('/api', {
         target: 'http://localhost:9001',
       })
@@ -256,7 +262,7 @@ You can rewrite certain file requests using a simple custom middleware. This can
 
   ```javascript
   module.exports = {
-    customMiddlewares: [
+    middlewares: [
       function rewriteIndex(context, next) {
         if (context.url === '/' || context.url === '/index.html') {
           context.url = '/src/index.html';
@@ -374,6 +380,96 @@ Compatibility mode enables bundle-free development with features such as es modu
 
 </details>
 
+## Using es-dev-server programmatically
+You can use different components from `es-dev-server` as a library and integrate it with other tools:
+
+<details>
+
+<summary>Read more</summary>
+
+### createConfig
+When using the server from javascript you are going to need a config object to tell the server what options to turn on and off. It's best to use `createConfig` for this as this converts the public API to an internal config structure and sets up default values.
+
+By default all options besides static file serving is turned off, so it's easy to configure based on your own requirements.
+
+The config structure is the same as the configuration explained in the [configuration files section](#configuration-files)
+
+```javascript
+import { createConfig } from 'es-dev-server';
+
+const config = createConfig({
+  http2: true,
+  babel: true,
+  open: true,
+});
+```
+
+### createMiddlewares
+`createMiddlewares` creates the dev server's middlewares based on your configuration. You can use this to hook them up to your own koa server.
+
+Returns an array of koa middleware functions.
+
+```javascript
+import Koa from 'koa';
+import { createConfig, createMiddlewares } from 'es-dev-server';
+
+const config = createConfig({ });
+const middlewares = createMiddlewares(config);
+
+const app = new Koa();
+middlewares.forEach(middleware => {
+  app.use(middleware);
+});
+```
+
+### createServer
+`createServer` creates an instance of the dev server including all middlewares, but without starting the server. This is useful if you want to be in control of starting the server yourself.
+
+Returns the koa app and a node http or http2 server.
+
+```javascript
+import Koa from 'koa';
+import { createConfig, createServer } from 'es-dev-server';
+
+const config = createConfig({ ... });
+const { app, server } = createServer(config);
+server.listen(3000);
+```
+
+### watch mode
+`createMiddlewares` and `createServer` requires a chokidar fileWatcher if watch mode is enabled. You need to pass this separately because the watcher needs to be killed explicitly when the server closes.
+
+```javascript
+import Koa from 'koa';
+import chokidar from 'chokidar';
+import { createConfig, createMiddlewares, createServer } from 'es-dev-server';
+
+const config = createConfig({ ... });
+const fileWatcher = chokidar.watch([]);
+
+// if using createMiddlewares
+createMiddlewares(config, fileWatcher);
+// if using createServer
+createServer(config, fileWatcher);
+
+// close filewatcher when no longer necessary
+fileWatcher.close();
+```
+
+### startServer
+`startServer` creates and starts the server, listening on the configured port. It opens the browser if configured and logs a startup message.
+
+Returns the koa app and a node http or http2 server.
+
+```javascript
+import Koa from 'koa';
+import { createConfig, startServer } from 'es-dev-server';
+
+const config = createConfig({ ... });
+const { app, server } = startServer(config, fileWatcher);
+```
+
+</details>
 
 <script>
   export default {

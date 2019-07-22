@@ -2,7 +2,7 @@
 import { expect } from 'chai';
 import fetch from 'node-fetch';
 import path from 'path';
-import { startServer } from '../src/server.js';
+import { startServer, createConfig } from '../src/es-dev-server.js';
 
 const host = 'http://localhost:8080/';
 
@@ -10,9 +10,11 @@ describe('server', () => {
   context('', () => {
     let server;
     beforeEach(() => {
-      ({ server } = startServer({
-        rootDir: path.resolve(__dirname, 'fixtures', 'simple'),
-      }));
+      ({ server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, 'fixtures', 'simple'),
+        }),
+      ));
     });
 
     afterEach(() => {
@@ -50,10 +52,12 @@ describe('server', () => {
   });
 
   it('can configure the hostname', async () => {
-    const { server } = startServer({
-      rootDir: path.resolve(__dirname, 'fixtures', 'simple'),
-      hostname: '0.0.0.0',
-    });
+    const { server } = startServer(
+      createConfig({
+        rootDir: path.resolve(__dirname, 'fixtures', 'simple'),
+        hostname: '0.0.0.0',
+      }),
+    );
     const response = await fetch(`http://0.0.0.0:8080/index.html`);
     const responseText = await response.text();
 
@@ -64,11 +68,13 @@ describe('server', () => {
 
   it('can run multiple servers in parallel', async () => {
     function createServer(port) {
-      return startServer({
-        rootDir: path.resolve(__dirname, 'fixtures', 'simple'),
-        hostname: '0.0.0.0',
-        port,
-      }).server;
+      return startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, 'fixtures', 'simple'),
+          hostname: '0.0.0.0',
+          port,
+        }),
+      ).server;
     }
 
     const servers = [8080, 8081, 8082, 8083, 8084, 8085].map(createServer);
@@ -89,16 +95,18 @@ describe('server', () => {
 
   it('can install custom middlewares', async () => {
     let requestURL;
-    const { server } = startServer({
-      rootDir: path.resolve(__dirname, 'fixtures', 'simple'),
-      hostname: '0.0.0.0',
-      customMiddlewares: [
-        function customMiddleware(ctx, next) {
-          requestURL = ctx.url;
-          return next();
-        },
-      ],
-    });
+    const { server } = startServer(
+      createConfig({
+        rootDir: path.resolve(__dirname, 'fixtures', 'simple'),
+        hostname: '0.0.0.0',
+        middlewares: [
+          function customMiddleware(ctx, next) {
+            requestURL = ctx.url;
+            return next();
+          },
+        ],
+      }),
+    );
     const response = await fetch(`http://0.0.0.0:8080/index.html`);
     const responseText = await response.text();
 

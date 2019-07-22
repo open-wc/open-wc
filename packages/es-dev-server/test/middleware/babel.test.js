@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import fetch from 'node-fetch';
 import path from 'path';
-import { startServer } from '../../src/server.js';
+import { startServer, createConfig } from '../../src/es-dev-server.js';
 import { compatibilityModes } from '../../src/constants.js';
 
 const host = 'http://localhost:8080/';
@@ -10,9 +10,11 @@ describe('babel middleware', () => {
   describe('no flags', () => {
     let server;
     beforeEach(() => {
-      ({ server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-      }));
+      ({ server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+        }),
+      ));
     });
 
     afterEach(() => {
@@ -33,11 +35,13 @@ describe('babel middleware', () => {
   describe('node resolve', () => {
     let server;
     beforeEach(() => {
-      ({ server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-        nodeResolve: true,
-        babelModernExclude: ['**/src/excluded-modern.js'],
-      }));
+      ({ server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          nodeResolve: true,
+          babelModernExclude: ['**/src/excluded-modern.js'],
+        }),
+      ));
     });
 
     afterEach(() => {
@@ -102,12 +106,14 @@ describe('babel middleware', () => {
     });
   });
 
-  describe('readUserBabelConfig flag', () => {
+  describe('babel flag', () => {
     it('transforms code based on .babelrc from the user', async () => {
-      const { server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-        readUserBabelConfig: true,
-      });
+      const { server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          babel: true,
+        }),
+      );
       const response = await fetch(`${host}app.js`);
       const responseText = await response.text();
       expect(response.status).to.equal(200);
@@ -121,11 +127,13 @@ describe('babel middleware', () => {
     });
 
     it('can handle any file extensions', async () => {
-      const { server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-        extraFileExtensions: ['.html', '.foo'],
-        readUserBabelConfig: true,
-      });
+      const { server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          fileExtensions: ['.html', '.foo'],
+          babel: true,
+        }),
+      );
 
       try {
         const responseHtml = await fetch(`${host}src/fake-module.html`);
@@ -143,15 +151,17 @@ describe('babel middleware', () => {
     });
   });
 
-  describe('compatibilityMode modern', () => {
+  describe('compatibility modern', () => {
     let server;
     beforeEach(() => {
-      ({ server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-        appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
-        compatibilityMode: compatibilityModes.MODERN,
-        babelModernExclude: ['**/src/excluded-modern.js'],
-      }));
+      ({ server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
+          compatibility: compatibilityModes.MODERN,
+          babelModernExclude: ['**/src/excluded-modern.js'],
+        }),
+      ));
     });
 
     afterEach(() => {
@@ -196,16 +206,18 @@ describe('babel middleware', () => {
     });
   });
 
-  describe('compatibilityMode all', () => {
+  describe('compatibility all', () => {
     let server;
     beforeEach(() => {
-      ({ server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-        appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
-        compatibilityMode: compatibilityModes.ALL,
-        babelModernExclude: ['**/src/excluded-modern.js'],
-        babelExclude: ['**/src/excluded-legacy.js'],
-      }));
+      ({ server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
+          compatibility: compatibilityModes.ALL,
+          babelModernExclude: ['**/src/excluded-modern.js'],
+          babelExclude: ['**/src/excluded-legacy.js'],
+        }),
+      ));
     });
 
     afterEach(() => {
@@ -297,21 +309,23 @@ describe('babel middleware', () => {
   describe('custom babel config', () => {
     let server;
     beforeEach(() => {
-      ({ server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-        appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
-        customBabelConfig: {
-          presets: [
-            [
-              '@babel/preset-env',
-              {
-                targets: ['ie 11'],
-                useBuiltIns: false,
-              },
+      ({ server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
+          babelConfig: {
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  targets: ['ie 11'],
+                  useBuiltIns: false,
+                },
+              ],
             ],
-          ],
-        },
-      }));
+          },
+        }),
+      ));
     });
 
     afterEach(() => {
@@ -333,13 +347,15 @@ describe('babel middleware', () => {
   describe('typescript', () => {
     let server;
     beforeEach(() => {
-      ({ server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'typescript'),
-        appIndex: path.resolve(__dirname, '..', 'fixtures', 'typescript', 'index.html'),
-        readUserBabelConfig: true,
-        nodeResolve: true,
-        extraFileExtensions: ['.ts'],
-      }));
+      ({ server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'typescript'),
+          appIndex: path.resolve(__dirname, '..', 'fixtures', 'typescript', 'index.html'),
+          babel: true,
+          nodeResolve: true,
+          fileExtensions: ['.ts'],
+        }),
+      ));
     });
 
     afterEach(() => {
@@ -362,11 +378,13 @@ describe('babel middleware', () => {
   it('compiles inline modules', async () => {
     let server;
     try {
-      ({ server } = startServer({
-        rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
-        compatibilityMode: compatibilityModes.ALL,
-        nodeResolve: true,
-      }));
+      ({ server } = startServer(
+        createConfig({
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
+          compatibility: compatibilityModes.ALL,
+          nodeResolve: true,
+        }),
+      ));
 
       const indexResponse = await fetch(`${host}index.html`);
       expect(indexResponse.status).to.equal(200);

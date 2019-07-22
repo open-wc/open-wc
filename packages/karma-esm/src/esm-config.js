@@ -1,8 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const deepmerge = require('deepmerge');
-const { compatibilityModes } = require('es-dev-server/dist/constants.js');
-const { modernPolyfills, legacyPolyfills } = require('es-dev-server/dist/utils/polyfills.js');
+const { compatibilityModes, modernPolyfills, legacyPolyfills } = require('es-dev-server');
 const { getPolyfills } = require('@open-wc/building-utils/index-html/polyfills.js');
 const { createTestLoaderBrowserScript } = require('./test-loader-browser-script');
 
@@ -18,15 +17,15 @@ const polyfillPresets = {
  * @property {boolean} nodeResolve
  * @property {boolean} coverage
  * @property {string[]} coverageExclude
- * @property {object} customBabelConfig
+ * @property {object} babelConfig
  * @property {string} [compatibility]
- * @property {string[]} [moduleDirectories]
- * @property {Function[]} [customMiddlewares]
+ * @property {string[]} [moduleDirs]
+ * @property {Function[]} [middlewars]
  * @property {boolean} [babel]
  * @property {string[]} [fileExtensions]
  * @property {string} [importMap]
- * @property {string[]} [babelExclude]
  * @property {string[]} [exclude]
+ * @property {string[]} [babelExclude]
  * @property {string[]} [babelModernExclude]
  * @property {Partial<import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig>} polyfills
  */
@@ -51,10 +50,13 @@ function createEsmConfig(karmaConfig) {
   }
 
   const polyfillsPreset = esmConfig.compatibility ? polyfillPresets[esmConfig.compatibility] : null;
-  let { customBabelConfig } = esmConfig;
+
+  // the option used to be called `customBabelConfig`, remain backwards compatible for now
+  // @ts-ignore
+  let babelConfig = esmConfig.babelConfig || esmConfig.customBabelConfig;
 
   if (esmConfig.coverage) {
-    customBabelConfig = deepmerge(
+    babelConfig = deepmerge(
       {
         plugins: [
           [
@@ -72,7 +74,7 @@ function createEsmConfig(karmaConfig) {
           ],
         ],
       },
-      customBabelConfig || {},
+      babelConfig || {},
     );
   }
 
@@ -94,7 +96,7 @@ function createEsmConfig(karmaConfig) {
     esmConfig,
     polyfills,
     testLoaderBrowserScript,
-    customBabelConfig,
+    babelConfig,
   };
 }
 
