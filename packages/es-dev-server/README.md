@@ -61,6 +61,8 @@ If your app does routing in front-end using the history API you can setup the se
 npx es-dev-server --app-index index.html --watch --http2 --open
 ```
 
+If you use this option it's recommend to set up a `<base href="">` element with the base path of your application. This way all relative files resolved correctly also when changing paths. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
+
 ### Resolve bare module imports
 
 If you are using "bare" module imports (`import foo from 'bar';`) without valid paths, the browser will not understand them.
@@ -91,6 +93,85 @@ npx es-dev-server --app-index index.html --watch --http2 --compatibility all --o
 ```
 
 Note that "latest javascript features and syntax" is a general term, not everything can be polyfilled/shimmed properly. [Read more here](#compatibility-mode) for full details on compatibility mode.
+
+## Folder structure
+`es-dev-server` serves static files using the same structure as your file system. It cannot serve any files outside of the root of the web server. You need to make sure any files requested, including node modules, are accessible for the web server.
+
+Click read more to view different strategies for setting up your project's folder structure.
+
+<details>
+  <summary>Read more</summary>
+
+  ### index.html in root
+  The simplest setup where all files are accessible is to place your index.html at the root of your project:
+  ```
+  node_modules/...
+  src/...
+  index.html
+  ```
+
+  If you run `es-dev-server` regularly from the root of this project, you can access your app at `/` or `/index.html` in the browser.
+
+  ### index.html in a subfoolder
+  If you move your `index.html` in inside a subfolder:
+  ```
+  node_modules/...
+  src/...
+  src/index.html
+  ```
+
+  You can access your app in the browser at `/src/` or `/src/index.html`. You can tell `es-dev-server` to explicitly open at this path:
+
+  ```bash
+  # with app-index flag
+  es-dev-server --app-index src/index.html --open
+  # without app-index flag
+  es-dev-server --open src/
+  ```
+
+  You can also change the root directory of the dev server:
+
+  ```bash
+  es-dev-server --root-dir src --open
+  ```
+
+  Now your `index.html` is accessible at `/` or `/index.html`. However the dev server cannot serve any files outside of the root directory. So if your app uses any node modules, they will no longer because accessible.
+
+  If you want your index in a sub folder without this being visible in the browser url, you can set up a file rewrite rule. [Read more here](#rewriting-file-requests)
+
+  ### Monorepos
+  If you are using `es-dev-server` in a monorepo, your node modules are in two different locations. In the package's folder and the repository root:
+  ```
+  node_modules/...
+  packages/my-package/node_modules/...
+  packages/my-package/index.html
+  ```
+
+  You will need make sure the root node_modules folder is accessible to the dev server.
+
+  If your working directory is `packages/my-package` you can use this command:
+
+  ```bash
+  # with app-index
+  es-dev-server --root-dir ../../ --app-index packages/my-package/index.html --open
+  # without app-index
+  es-dev-server --root-dir ../../ --open packages/my-package/index.html
+  ```
+
+  If your working directory is the root of the repository you can use this command:
+
+  ```bash
+  es-dev-server --app-index packages/my-package/index.html --open
+  ```
+
+  This is the same approach as serving an index.html in a subdirectory, so the section above applies here as well.
+
+  ### Base element
+  You can set up a `<base href="">` element to modify how files are resolved relatively to your index.html. You can be very useful when your index.html is not in the root of your project.
+
+  If you use SPA routing, using a base element is highly recommended. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
+
+</details>
 
 ## Command line flags overview
 ### Server configuration
@@ -162,6 +243,33 @@ You can install custom middlewares, using the `customMiddlewares` property.
     ],
   };
   ```
+</details>
+
+### Rewriting file requests
+
+You can rewrite certain file requests using a simple custom middleware. This can be useful for example to serve your `index.html` from a different file location.
+
+<details>
+  <summary>Read more</summary>
+
+  Set up a configuration file with a custom middleware:
+
+  ```javascript
+  module.exports = {
+    customMiddlewares: [
+      function rewriteIndex(context, next) {
+        if (context.url === '/' || context.url === '/index.html') {
+          context.url = '/src/index.html';
+        }
+
+        return next();
+      }
+    ],
+  };
+  ```
+
+  This way from the browser you can request `/` or `/index.html` and it will serve `/src/index.html`. This middleware is run before the dev server's own file serving logic, which will use the rewritten url.
+
 </details>
 
 ### Typescript support

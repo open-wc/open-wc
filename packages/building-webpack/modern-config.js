@@ -1,5 +1,6 @@
 const { findSupportedBrowsers } = require('@open-wc/building-utils');
 const WebpackIndexHTMLPlugin = require('@open-wc/webpack-index-html-plugin');
+const customMinifyCSS = require('@open-wc/building-utils/custom-minify-css');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -36,6 +37,9 @@ module.exports = userOptions => {
 
     devtool: development ? 'cheap-module-source-map' : 'source-map',
 
+    // don't polyfill any node built-in libraries
+    node: false,
+
     resolve: {
       mainFields: [
         // current leading de-facto standard - see https://github.com/rollup/rollup/wiki/pkg.module
@@ -69,7 +73,7 @@ module.exports = userOptions => {
                       collapseWhitespace: true,
                       removeComments: true,
                       caseSensitive: true,
-                      minifyCSS: true,
+                      minifyCSS: customMinifyCSS,
                     },
                   },
                 ],

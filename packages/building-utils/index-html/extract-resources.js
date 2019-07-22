@@ -15,9 +15,11 @@ const { queryAll, predicates, getAttribute, remove } = require('../dom5-fork');
  * using script or link elements.
  *
  * @param {string} htmlString the html file as string
+ * @param {{ removeModules?: boolean, removeImportMaps?: boolean }} options
  * @returns {ExtractResult}
  */
-function extractResources(htmlString) {
+function extractResources(htmlString, options = {}) {
+  const { removeModules = true, removeImportMaps = true } = options;
   const indexHTML = parse(htmlString);
 
   const scripts = queryAll(indexHTML, predicates.hasTagName('script'));
@@ -36,7 +38,10 @@ function extractResources(htmlString) {
     } else if (moduleScript.childNodes && moduleScript.childNodes[0]) {
       inlineModules.push(moduleScript.childNodes[0].value);
     }
-    remove(moduleScript);
+
+    if (removeModules) {
+      remove(moduleScript);
+    }
   });
 
   importMapScripts.forEach(importMapScript => {
@@ -46,7 +51,10 @@ function extractResources(htmlString) {
     } else if (importMapScript.childNodes && importMapScript.childNodes[0]) {
       inlineImportMaps.push(importMapScript.childNodes[0].value);
     }
-    remove(importMapScript);
+
+    if (removeImportMaps) {
+      remove(importMapScript);
+    }
   });
 
   return { indexHTML, inlineModules, jsModules, inlineImportMaps, importMapPaths };

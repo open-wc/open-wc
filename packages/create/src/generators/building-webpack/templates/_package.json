@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start:build": "es-dev-server --app-index dist/index.html --open",
+    "start:build": "cd dist && es-dev-server --open",
     "build": "webpack --mode production"
   },
   "devDependencies": {

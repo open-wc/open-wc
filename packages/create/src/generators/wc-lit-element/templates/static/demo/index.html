@@ -11,6 +11,19 @@
 <body>
   <div id="demo"></div>
 
-  <script type="module" src="index.js"></script>
+  <script type="module">
+    import { html, render } from 'lit-html';
+    import '../src/<%= tagName %>.js';
+
+    const title = 'Hello owc World!';
+    render(
+      html`
+        <<%= tagName %> .title=${title}>
+          some more light-dom
+        </<%= tagName %>>
+      `,
+      document.querySelector('#demo')
+    );
+  </script>
 </body>
 </html>

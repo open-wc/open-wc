@@ -6,12 +6,13 @@ import path from 'path';
 import { createHistoryAPIFallbackMiddleware } from './middleware/history-api-fallback.js';
 import { createBabelMiddleware } from './middleware/babel.js';
 import { createReloadBrowserMiddleware } from './middleware/reload-browser.js';
-import { createCompatibilityMiddleware } from './middleware/compatibility.js';
+import { createTransformIndexHTMLMiddleware } from './middleware/transform-index-html.js';
 import { createMessageChannelMiddleware } from './middleware/message-channel.js';
 import { createCacheMiddleware } from './middleware/cache.js';
 import { compatibilityModes } from './constants.js';
 import { openBrowserAndLogStartup } from './open-browser.js';
-import { createHTTPServer } from './create-http-server.js';
+import { createHTTPServer } from './utils/create-http-server.js';
+import { toBrowserPath } from './utils/utils.js';
 
 /**
  * @typedef {object} EsDevServerConfig
@@ -64,12 +65,14 @@ export function startServer(config) {
   let { appIndex } = config;
   let appIndexDir;
 
-  // ensure appIndex is relative to rootDir
+  // resolve appIndex relative to rootDir and a browser path
   if (appIndex) {
     if (path.isAbsolute(appIndex)) {
-      appIndex = `/${path.relative(rootDir, appIndex)}`;
+      appIndex = `/${toBrowserPath(path.relative(rootDir, appIndex))}`;
     } else if (!appIndex.startsWith('/')) {
-      appIndex = `/${appIndex}`;
+      appIndex = `/${toBrowserPath(appIndex)}`;
+    } else {
+      appIndex = toBrowserPath(appIndex);
     }
 
     appIndexDir = `${appIndex.substring(0, appIndex.lastIndexOf('/'))}`;
@@ -83,19 +86,19 @@ export function startServer(config) {
     );
   }
 
-  const setupWatch = appIndex && watch;
   const setupBabel =
     customBabelConfig ||
     nodeResolve ||
-    compatibilityMode !== compatibilityModes.NONE ||
+    [compatibilityModes.ALL, compatibilityModes.MODERN].includes(compatibilityMode) ||
     readUserBabelConfig;
   const setupCompatibility = compatibilityMode && compatibilityMode !== compatibilityModes.NONE;
+  const setupTransformIndexHTML = setupBabel || setupCompatibility;
   const setupHistoryFallback = appIndex;
-  const setupMessageChanel = setupWatch || setupBabel;
+  const setupMessageChanel = watch || setupBabel;
 
   const app = new Koa();
   /** @type {import('chokidar').FSWatcher | null} */
-  const fileWatcher = setupWatch ? chokidar.watch([]) : null;
+  const fileWatcher = watch ? chokidar.watch([]) : null;
 
   // add custom user's middlewares
   if (customMiddlewares && customMiddlewares.length > 0) {
@@ -114,13 +117,8 @@ export function startServer(config) {
     app.use(createMessageChannelMiddleware({ rootDir, appIndex }));
   }
 
-  // inject polyfills for compatibility with older browsers
-  if (setupCompatibility) {
-    app.use(createCompatibilityMiddleware({ compatibilityMode, appIndex, appIndexDir }));
-  }
-
   // watch files and reload browser
-  if (setupWatch) {
+  if (watch) {
     app.use(
       createReloadBrowserMiddleware({
         rootDir,
@@ -146,6 +144,11 @@ export function startServer(config) {
         babelModernExclude,
       }),
     );
+  }
+
+  // inject polyfills and shims for compatibility with older browsers
+  if (setupTransformIndexHTML) {
+    app.use(createTransformIndexHTMLMiddleware({ compatibilityMode, appIndex, appIndexDir }));
   }
 
   // serve index.html for non-file requests for SPA routing

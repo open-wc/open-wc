@@ -27,7 +27,7 @@ Best practices/recommendations and examples may change and evolve over time.
 
 ### Why Web Components
 
-We believe that web components provide a standards-based solution to problems like reusability, interopability, and encapsulation.
+We believe that web components provide a standards-based solution to problems like reusability, interoperability, and encapsulation.
 
 #### Historical Background
 
