@@ -86,7 +86,6 @@ export function startServer(config) {
     );
   }
 
-  const setupWatch = appIndex && watch;
   const setupBabel =
     customBabelConfig ||
     nodeResolve ||
@@ -95,11 +94,11 @@ export function startServer(config) {
   const setupCompatibility = compatibilityMode && compatibilityMode !== compatibilityModes.NONE;
   const setupTransformIndexHTML = setupBabel || setupCompatibility;
   const setupHistoryFallback = appIndex;
-  const setupMessageChanel = setupWatch || setupBabel;
+  const setupMessageChanel = watch || setupBabel;
 
   const app = new Koa();
   /** @type {import('chokidar').FSWatcher | null} */
-  const fileWatcher = setupWatch ? chokidar.watch([]) : null;
+  const fileWatcher = watch ? chokidar.watch([]) : null;
 
   // add custom user's middlewares
   if (customMiddlewares && customMiddlewares.length > 0) {
@@ -119,7 +118,7 @@ export function startServer(config) {
   }
 
   // watch files and reload browser
-  if (setupWatch) {
+  if (watch) {
     app.use(
       createReloadBrowserMiddleware({
         rootDir,
