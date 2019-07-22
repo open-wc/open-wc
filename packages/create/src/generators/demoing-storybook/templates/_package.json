@@ -5,6 +5,6 @@
     "storybook:build": "build-storybook -o _site -s storybook-static"
   },
   "devDependencies": {
-    "@open-wc/demoing-storybook": "^0.2.0"
+    "@open-wc/demoing-storybook": "^0.3.0"
   }
 }
