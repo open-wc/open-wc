@@ -1,6 +1,6 @@
 import { html, css, LitElement } from 'lit-element';
 
-export default class <%= className %> extends LitElement {
+export class <%= className %> extends LitElement {
   static get styles() {
     return css`
       :host {
@@ -13,18 +13,18 @@ export default class <%= className %> extends LitElement {
 
   static get properties() {
     return {
-      heading: { type: String }
-    }
+      title: { type: String },
+    };
   }
 
   constructor() {
     super();
-    this.heading = 'Hello world!';
+    this.title = 'Hello world!';
   }
 
   render() {
     return html`
-      <h2>${this.heading}</h2>
+      <h2>${this.title}</h2>
       <div>
         <slot></slot>
       </div>

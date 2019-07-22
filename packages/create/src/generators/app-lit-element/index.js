@@ -1,14 +1,20 @@
 /* eslint-disable no-console */
-const BareboneAppMixin = subclass =>
+const AppLitElementMixin = subclass =>
   class extends subclass {
     async execute() {
       await super.execute();
 
-      const { tagName } = this.templateData;
+      const { tagName, className } = this.templateData;
 
-      // write & rename app-template
+      // write & rename el class template
       this.copyTemplate(
-        `${__dirname}/templates/_app.js`,
+        `${__dirname}/templates/_MyApp.js`,
+        this.destinationPath(`src/${className}.js`),
+      );
+
+      // write & rename el registration template
+      this.copyTemplate(
+        `${__dirname}/templates/_my-app.js`,
         this.destinationPath(`src/${tagName}.js`),
       );
 
@@ -32,4 +38,4 @@ const BareboneAppMixin = subclass =>
     }
   };
 
-export default BareboneAppMixin;
+export default AppLitElementMixin;

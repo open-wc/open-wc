@@ -1,16 +1,14 @@
 import { storiesOf, html, withKnobs, withClassPropertiesKnobs } from '@open-wc/demoing-storybook';
 
-import <%= className %> from '../src/<%= className %>.js';
+import { <%= className %> } from '../src/<%= className %>.js';
 import '../src/<%= tagName %>.js';
-
-import readme from '../README.md';
 
 storiesOf('<%= tagName %>', module)
   .addDecorator(withKnobs)
-  .add('Documentation', () => withClassPropertiesKnobs(<%= className %>), { notes: { markdown: readme } })
+  .add('Documentation', () => withClassPropertiesKnobs(<%= className %>))
   .add(
-    'Alternative Header',
+    'Alternative Title',
     () => html`
-      <<%= tagName %> .header=${'Something else'}></<%= tagName %>>
+      <<%= tagName %> .title=${'Something else'}></<%= tagName %>>
     `,
   );
