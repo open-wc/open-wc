@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.5](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.0.4...@open-wc/testing-karma@3.0.5) (2019-07-22)
+
+
+### Bug Fixes
+
+* **testing-karma:** add missing mocha dependency ([#607](https://github.com/open-wc/open-wc/issues/607)) ([7a0f38e](https://github.com/open-wc/open-wc/commit/7a0f38e))
+
+
+
+
+
 ## [3.0.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.0.3...@open-wc/testing-karma@3.0.4) (2019-07-19)
 
 **Note:** Version bump only for package @open-wc/testing-karma

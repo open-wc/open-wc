@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.6.7...es-dev-server@1.7.0) (2019-07-22)
+
+
+### Features
+
+* **es-dev-server:** handle inline modules ([#596](https://github.com/open-wc/open-wc/issues/596)) ([49e4013](https://github.com/open-wc/open-wc/commit/49e4013))
+
+
+
+
+
 ## [1.6.7](https://github.com/open-wc/open-wc/compare/es-dev-server@1.6.6...es-dev-server@1.6.7) (2019-07-19)
 
 **Note:** Version bump only for package es-dev-server
