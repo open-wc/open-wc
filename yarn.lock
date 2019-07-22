@@ -1962,16 +1962,16 @@
     url-template "^2.0.8"
 
 "@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.1.21"
+  version "1.1.23"
   dependencies:
-    "@open-wc/testing-karma" "^3.0.4"
+    "@open-wc/testing-karma" "^3.0.6"
     "@types/node" "^11.13.0"
     karma-browserstack-launcher "^1.0.0"
 
 "@open-wc/testing-karma@file:./packages/testing-karma":
-  version "3.0.4"
+  version "3.0.6"
   dependencies:
-    "@open-wc/karma-esm" "^2.0.4"
+    "@open-wc/karma-esm" "^2.1.1"
     istanbul-instrumenter-loader "^3.0.0"
     karma "^4.0.0"
     karma-chrome-launcher "^2.0.0"
@@ -13628,14 +13628,6 @@ promise@^7.1.1:
   integrity sha512-nolQXZ/4L+bP/UGlkfaIujX9BKxGwmQ9OT4mOt5yvy8iK1h3wqTEJCijzGANTCCl9nWjY41juyAn2K3Q1hLLTg==
   dependencies:
     asap "~2.0.3"
-
-prompts@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/prompts/-/prompts-2.0.4.tgz#179f9d4db3128b9933aa35f93a800d8fce76a682"
-  integrity sha512-HTzM3UWp/99A0gk51gAegwo1QRYA7xjcZufMNe33rCclFszUYAuHe1fIN/3ZmiHeGPkUsNaRyQm1hHOfM0PKxA==
-  dependencies:
-    kleur "^3.0.2"
-    sisteransi "^1.0.0"
 
 prompts@^2.1.0:
   version "2.1.0"

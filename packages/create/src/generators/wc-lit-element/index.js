@@ -17,6 +17,8 @@ const WcLitElementMixin = subclass =>
         this.destinationPath(`src/${tagName}.js`),
       );
 
+      this.copyTemplate(`${__dirname}/templates/_gitignore`, this.destinationPath(`.gitignore`));
+
       this.copyTemplateJsonInto(
         `${__dirname}/templates/_package.json`,
         this.destinationPath('package.json'),

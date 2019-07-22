@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ['@open-wc/eslint-config', 'eslint-config-prettier', 'plugin:lit/recommended']
+  extends: ['@open-wc/eslint-config', 'eslint-config-prettier'],
 };

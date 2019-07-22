@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit-element';
-import { openWc } from './static/open-wc-logo';
+import { openWcLogo } from './open-wc-logo.js';
 
-class <%= className %> extends LitElement {
+export class <%= className %> extends LitElement {
   static get properties() {
     return {
       title: { type: String },
@@ -10,7 +10,7 @@ class <%= className %> extends LitElement {
 
   constructor() {
     super();
-    this.title = 'open-wc';
+    this.title = 'Hello world!';
   }
 
   static get styles() {
@@ -59,7 +59,7 @@ class <%= className %> extends LitElement {
   render() {
     return html`
       <header class="app-header">
-        ${openWc}
+        ${openWcLogo}
         <h1>${this.title}</h1>
         <p>Edit <code>src/<%= tagName %>.js</code> and save to reload.</p>
         <a
@@ -78,5 +78,3 @@ class <%= className %> extends LitElement {
     `;
   }
 }
-
-customElements.define('<%= tagName %>', <%= className %>);

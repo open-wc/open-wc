@@ -7,7 +7,7 @@ import TestingMixin from '../testing/index.js';
 import DemoingStorybookMixin from '../demoing-storybook/index.js';
 import BuildingRollupMixin from '../building-rollup/index.js';
 import BuildingWebpackMixin from '../building-webpack/index.js';
-import BareboneAppMixin from '../barebone-app/index.js';
+import AppLitElementMixin from '../app-lit-element/index.js';
 import WcLitElementMixin from '../wc-lit-element/index.js';
 
 import header from './header.js';
@@ -61,7 +61,7 @@ export const AppMixin = subclass =>
           message: 'What would you like to scaffold?',
           choices: [
             { title: 'Web Component', value: 'wc' },
-            { title: 'Application       (linting/testing/building)', value: 'app' },
+            { title: 'Application', value: 'app' },
           ],
         },
         {
@@ -71,12 +71,13 @@ export const AppMixin = subclass =>
               : null,
           name: 'features',
           message: 'What would you like to add?',
-          choices: [
-            { title: 'Linting', value: 'linting' },
-            { title: 'Testing', value: 'testing' },
-            { title: 'Demoing', value: 'demoing' },
-            { title: 'Building', value: 'building' },
-          ],
+          choices: (prev, all) =>
+            [
+              { title: 'Linting', value: 'linting' },
+              { title: 'Testing', value: 'testing' },
+              { title: 'Demoing', value: 'demoing' },
+              all.scaffoldType !== 'wc' && { title: 'Building', value: 'building' },
+            ].filter(_ => !!_),
           onState: state => {
             state.value.forEach(meta => {
               if (meta.selected === true && meta.value !== 'linting') {
@@ -139,7 +140,7 @@ export const AppMixin = subclass =>
             mixins.push(WcLitElementMixin);
             break;
           case 'app':
-            mixins.push(BareboneAppMixin);
+            mixins.push(AppLitElementMixin);
             break;
           // no default
         }
