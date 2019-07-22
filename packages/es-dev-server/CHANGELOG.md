@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.7.0...es-dev-server@1.7.1) (2019-07-22)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't require app-index for reload ([#609](https://github.com/open-wc/open-wc/issues/609)) ([273ddf5](https://github.com/open-wc/open-wc/commit/273ddf5))
+
+
+
+
+
 # [1.7.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.6.7...es-dev-server@1.7.0) (2019-07-22)
 
 
