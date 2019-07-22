@@ -8,6 +8,12 @@
 <div>
   A
 </div>
+```
+
+```html
+<div random-attribute="0.5954442939066347">
+  A
+</div>
 
 ```
 
@@ -19,6 +25,15 @@
 <div>
   A
 </div>
+```
+
+```html
+<div>
+  A
+</div>
+<span>
+  B
+</span>
 
 ```
 

@@ -2,14 +2,21 @@
 
 const { DEFAULT_EXTENSIONS } = require('@babel/core');
 const { findSupportedBrowsers } = require('@open-wc/building-utils');
+const path = require('path');
 const resolve = require('rollup-plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const babel = require('rollup-plugin-babel');
-const modernWeb = require('./plugins/rollup-plugin-modern-web/rollup-plugin-modern-web.js');
+const indexHTML = require('rollup-plugin-index-html');
 
 const production = !process.env.ROLLUP_WATCH;
 const prefix = '[owc-building-rollup]';
 
+/**
+ * Function which creates a config so that we can create a modern and a legacy config
+ * with small alterations.
+ * @param {object} _options
+ * @param {boolean} legacy
+ */
 function createConfig(_options, legacy) {
   const options = {
     outputDir: 'dist',
@@ -22,20 +29,28 @@ function createConfig(_options, legacy) {
     treeshake: !!production,
     output: {
       // output into given folder or default /dist. Output legacy into a /legacy subfolder
-      dir: `${options.outputDir}${legacy ? '/legacy' : ''}`,
+      dir: path.join(options.outputDir, legacy ? '/legacy' : ''),
       format: legacy ? 'system' : 'esm',
       sourcemap: true,
-      dynamicImportFunction: !legacy && 'importModule',
+      dynamicImportFunction: !legacy && 'importShim',
     },
     plugins: [
-      // parse input index.html as input, feed any modules found to rollup and add polyfills
-      options.input.endsWith('.html') &&
-        modernWeb({
-          legacy,
-          polyfillDynamicImports: !legacy,
-          polyfillBabel: legacy,
-          polyfillWebcomponents: legacy,
-        }),
+      indexHTML({
+        // tell index-html-plugin that we are creating two builds
+        multiBuild: true,
+        // tell index-html-plugin whether this is the legacy config
+        legacy,
+        polyfills: {
+          ...((options.indexHTMLPlugin && options.indexHTMLPlugin.polyfills) || {}),
+          dynamicImport: true,
+          coreJs: true,
+          regeneratorRuntime: true,
+          webcomponents: true,
+          systemJs: true,
+          fetch: true,
+        },
+        ...(options.indexHTMLPlugin || {}),
+      }),
 
       // resolve bare import specifiers
       resolve({
@@ -77,6 +92,7 @@ function createConfig(_options, legacy) {
               // doesn't affect most use cases. for example lit-html handles it: (https://github.com/Polymer/lit-html/issues/575)
               exclude: legacy ? undefined : ['@babel/plugin-transform-template-literals'],
               useBuiltIns: false,
+              modules: false,
             },
           ],
         ],
@@ -93,9 +109,5 @@ module.exports = function createDefaultConfig(options) {
     throw new Error(`${prefix}: missing option 'input'.`);
   }
 
-  if (typeof options.input !== 'string' || !options.input.endsWith('.html')) {
-    throw new Error(`${prefix}: input should point to a single .html file.`);
-  }
-
-  return [createConfig(options, false), createConfig(options, true)];
+  return [createConfig(options, true), createConfig(options, false)];
 };

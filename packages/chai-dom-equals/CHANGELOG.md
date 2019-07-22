@@ -3,6 +3,129 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.23](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.22...@open-wc/chai-dom-equals@0.12.23) (2019-07-17)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.12.22](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.21...@open-wc/chai-dom-equals@0.12.22) (2019-07-17)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.12.21](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.20...@open-wc/chai-dom-equals@0.12.21) (2019-07-15)
+
+
+### Bug Fixes
+
+* adopt to new testing-karma setup ([bdcc717](https://github.com/open-wc/open-wc/commit/bdcc717))
+
+
+
+
+
+## [0.12.20](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.19...@open-wc/chai-dom-equals@0.12.20) (2019-07-14)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.12.19](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.18...@open-wc/chai-dom-equals@0.12.19) (2019-07-13)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.12.18](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.17...@open-wc/chai-dom-equals@0.12.18) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.12.17](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.16...@open-wc/chai-dom-equals@0.12.17) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.12.16](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.15...@open-wc/chai-dom-equals@0.12.16) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.12.15](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.14...@open-wc/chai-dom-equals@0.12.15) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.12.14](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.13...@open-wc/chai-dom-equals@0.12.14) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.12.13](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.12...@open-wc/chai-dom-equals@0.12.13) (2019-07-02)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.12.12](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.11...@open-wc/chai-dom-equals@0.12.12) (2019-07-02)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.12.11](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.10...@open-wc/chai-dom-equals@0.12.11) (2019-06-30)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.12.10](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.9...@open-wc/chai-dom-equals@0.12.10) (2019-06-23)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
+## [0.12.9](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.8...@open-wc/chai-dom-equals@0.12.9) (2019-06-23)
+
+**Note:** Version bump only for package @open-wc/chai-dom-equals
+
+
+
+
+
 ## [0.12.8](https://github.com/open-wc/open-wc/compare/@open-wc/chai-dom-equals@0.12.7...@open-wc/chai-dom-equals@0.12.8) (2019-06-18)
 
 **Note:** Version bump only for package @open-wc/chai-dom-equals

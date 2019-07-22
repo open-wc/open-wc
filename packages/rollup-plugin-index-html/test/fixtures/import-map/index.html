@@ -1,0 +1,41 @@
+<html lang="en-GB">
+
+<head>
+  <script type="importmap">
+    {
+      "imports": {
+        "foo": "./node_modules/foo/index.js",
+        "foo/": "./node_modules/foo/",
+        "bar": "./bar-fork/bar.js",
+        "lazy": "./node_modules/lazy/index.js"
+      }
+    }
+  </script>
+
+  <title>My app</title>
+  <style>
+    my-app {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>
+    <span>
+      Hello world!
+    </span>
+  </h1>
+  <my-app></my-app>
+  <script>
+    /* eslint-disable */
+    (function () {
+      const message = 'hello inline script';
+      console.log(message);
+    })();
+  </script>
+
+  <script type="module" src="./app.js"></script>
+</body>
+
+</html>

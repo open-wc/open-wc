@@ -6,15 +6,14 @@ const LRUCache = require('lru-cache');
 /**
  * @typedef {object} CompilerConfig
  * @property {object} options options to pass to babel
- * @property {string[]} exclude files to exclude from compilation
+ * @property {string[]} [exclude] files to exclude from compilation
  */
 
 /**
  * Creates a babel compiler backed by a cache.
  * @param {CompilerConfig} config
  */
-function createCompiler(config) {
-  const fileWatcher = chokidar.watch([]);
+function createCompiler(config, fileWatcher = chokidar.watch([])) {
   const cache = new LRUCache({
     length: (n, key) => n.length + key.length,
     max: 52428800,
@@ -30,6 +29,7 @@ function createCompiler(config) {
    */
   function addToCache(filePath, code) {
     cache.set(filePath, code);
+
     fileWatcher.add(filePath);
   }
 
@@ -83,10 +83,15 @@ function createCompiler(config) {
     return cache.get(filePath);
   }
 
+  function clearCache() {
+    cache.reset();
+  }
+
   return {
     fileWatcher,
     compile,
     getFromCache,
+    clearCache,
   };
 }
 

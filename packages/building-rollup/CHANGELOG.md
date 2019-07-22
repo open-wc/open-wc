@@ -3,6 +3,168 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.8.5...@open-wc/building-rollup@0.8.6) (2019-07-17)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.8.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.8.4...@open-wc/building-rollup@0.8.5) (2019-07-15)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.8.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.8.3...@open-wc/building-rollup@0.8.4) (2019-07-15)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.8.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.8.2...@open-wc/building-rollup@0.8.3) (2019-07-14)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.8.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.8.1...@open-wc/building-rollup@0.8.2) (2019-07-13)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.8.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.8.0...@open-wc/building-rollup@0.8.1) (2019-07-13)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+# [0.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.7.6...@open-wc/building-rollup@0.8.0) (2019-07-12)
+
+
+### Features
+
+* **create:** switch from owc-dev-server to es-dev-server ([#571](https://github.com/open-wc/open-wc/issues/571)) ([97a80d1](https://github.com/open-wc/open-wc/commit/97a80d1))
+
+
+
+
+
+## [0.7.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.7.5...@open-wc/building-rollup@0.7.6) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.7.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.7.4...@open-wc/building-rollup@0.7.5) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.7.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.7.3...@open-wc/building-rollup@0.7.4) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.7.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.7.2...@open-wc/building-rollup@0.7.3) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.7.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.7.1...@open-wc/building-rollup@0.7.2) (2019-07-03)
+
+
+### Bug Fixes
+
+* **building-rollup:** use the correct dynamicImportFunction ([70a933f](https://github.com/open-wc/open-wc/commit/70a933f))
+
+
+
+
+
+## [0.7.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.7.0...@open-wc/building-rollup@0.7.1) (2019-07-02)
+
+
+### Bug Fixes
+
+* only depend on polyfills in building-utils ([2568cdc](https://github.com/open-wc/open-wc/commit/2568cdc))
+
+
+
+
+
+# [0.7.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.6.3...@open-wc/building-rollup@0.7.0) (2019-07-02)
+
+
+### Features
+
+* add es dev server ([2c6a0a8](https://github.com/open-wc/open-wc/commit/2c6a0a8))
+
+
+
+
+
+## [0.6.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.6.2...@open-wc/building-rollup@0.6.3) (2019-06-30)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.6.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.6.1...@open-wc/building-rollup@0.6.2) (2019-06-30)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.6.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.6.0...@open-wc/building-rollup@0.6.1) (2019-06-23)
+
+
+### Bug Fixes
+
+* add missing dependencies ([9abf373](https://github.com/open-wc/open-wc/commit/9abf373))
+
+
+
+
+
+# [0.6.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.5.7...@open-wc/building-rollup@0.6.0) (2019-06-23)
+
+
+### Features
+
+* **building-rollup:** add rollup-index-html-plugin ([#510](https://github.com/open-wc/open-wc/issues/510)) ([2ac2d19](https://github.com/open-wc/open-wc/commit/2ac2d19))
+
+
+
+
+
 ## [0.5.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.5.6...@open-wc/building-rollup@0.5.7) (2019-06-18)
 
 **Note:** Version bump only for package @open-wc/building-rollup

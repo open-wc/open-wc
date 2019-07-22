@@ -314,6 +314,14 @@ describe('getDiffableHTML()', () => {
         '<div class="1 2 3">\n' + '</div>\n' + '<div class="4 a b z">\n' + '</div>\n',
       );
     });
+
+    it('removes empty class attributes', () => {
+      const html = getDiffableHTML(`
+        <div class=""></div>
+        <div class></div>
+        `);
+      expect(html).to.equal('<div>\n' + '</div>\n' + '<div>\n' + '</div>\n');
+    });
   });
 
   describe('special elements', () => {

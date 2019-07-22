@@ -10,6 +10,7 @@ coverage/
 
 ## npm
 node_modules
+!packages/es-dev-server/test/**/node_modules
 npm-debug.log
 yarn-error.log
 

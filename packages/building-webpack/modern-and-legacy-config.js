@@ -86,6 +86,7 @@ function createConfig(options, legacy) {
                     // doesn't affect most use cases. for example lit-html handles it: (https://github.com/Polymer/lit-html/issues/575)
                     exclude: legacy ? undefined : ['@babel/plugin-transform-template-literals'],
                     useBuiltIns: false,
+                    modules: false,
                   },
                 ],
               ],
@@ -150,8 +151,8 @@ module.exports = userOptions => {
   };
 
   if (development) {
-    return createConfig(options, legacy);
+    return [createConfig(options, legacy)];
   }
 
-  return [createConfig(options, false), createConfig(options, true)];
+  return [createConfig(options, true), createConfig(options, false)];
 };

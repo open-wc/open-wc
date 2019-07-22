@@ -24,9 +24,34 @@ module.exports = function(source) {
   const browserPath = toBrowserPath(relativePath);
 
   const fileName = this.resource.substring(this.resource.lastIndexOf(path.sep) + 1);
-  return source.replace(
-    regex,
-    () =>
-      `({ url: \`\${window.location.protocol}//\${window.location.host}/${browserPath}/${fileName}\` })`,
-  );
+
+  let found = false;
+  let rewrittenSource = source.replace(regex, () => {
+    found = true;
+    return `({ url: getAbsoluteUrl('${browserPath}/${fileName}') })`;
+  });
+
+  if (found) {
+    return `
+      function getAbsoluteUrl(relativeUrl) {
+        const publicPath = __webpack_public_path__;
+
+        let url = '';
+
+        if (!publicPath || publicPath.indexOf('://') < 0) {
+          url += \`\${window.location.protocol}//\${window.location.host}\`;
+        }
+
+        if (publicPath) {
+          url += publicPath;
+        } else {
+          url += '//';
+        }
+
+        return url + relativeUrl;
+      }
+${rewrittenSource}`;
+  } else {
+    return source;
+  }
 };

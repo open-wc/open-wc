@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-helpers",
-  "version": "1.0.1",
+  "version": "1.0.14",
   "description": "Testing Helpers following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -22,9 +22,9 @@
   "scripts": {
     "test": "karma start --coverage",
     "test:watch": "karma start --auto-watch=true --single-run=false",
-    "test:legacy": "karma start --legacy --coverage",
-    "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false",
-    "test:bs": "karma start karma.bs.conf.js --legacy --coverage",
+    "test:compatibility": "karma start --compatibility all --coverage",
+    "test:compatibility:watch": "karma start --compatibility all --auto-watch=true --single-run=false",
+    "test:bs": "karma start karma.bs.conf.js --compatibility --coverage",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "peerDependencies": {
@@ -32,8 +32,8 @@
   },
   "devDependencies": {
     "@bundled-es-modules/chai": "^4.2.0",
-    "@open-wc/testing-karma": "^2.0.6",
-    "@open-wc/testing-karma-bs": "^1.1.6",
+    "@open-wc/testing-karma": "^3.0.2",
+    "@open-wc/testing-karma-bs": "^1.1.19",
     "@open-wc/testing-wallaby": "^0.1.12",
     "accessibility-developer-tools": "^2.12.0",
     "lit-html": "^1.0.0",

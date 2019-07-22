@@ -11,6 +11,13 @@ const { createContentHash } = require('./utils');
 /** @typedef {import('parse5').ASTNode} ASTNode */
 
 /**
+ * @typedef {object} EntriesConfig
+ * @property {string} type
+ * @property {string[]} files
+ * @property {string[]} [preloadedFiles]
+ */
+
+/**
  * @typedef {object} FileResult
  * @property {string} path
  * @property {string} content
@@ -24,6 +31,7 @@ const { createContentHash } = require('./utils');
  * @property {string} hash
  * @property {string} sourcemap
  * @property {boolean} [nomodule]
+ * @property {boolean} [module]
  */
 
 /**
@@ -32,6 +40,7 @@ const { createContentHash } = require('./utils');
  * @property {string} path polyfill path
  * @property {string} [test] expression which should evaluate to true to load the polyfill
  * @property {boolean} [nomodule] whether to inject the polyfills as a script with nomodule attribute
+ * @property {boolean} [module] wether to load the polyfill with type module
  * @property {string} [sourcemapPath] polyfill sourcemaps path
  * @property {boolean} [noMinify] whether to minify the polyfills. default true if no sourcemap is given, false otherwise
  */
@@ -43,16 +52,21 @@ const { createContentHash } = require('./utils');
  * @property {boolean} [webcomponents] whether to polyfill webcomponents
  * @property {boolean} [fetch] whether to polyfill fetch
  * @property {boolean} [intersectionObserver] whether to polyfill intersection observer
+ * @property {boolean} [dynamicImport] whether to polyfill dynamic import
+ * @property {boolean} [systemJs] whether to polyfill systemjs
+ * @property {boolean} [systemJsExtended] whether to polyfill systemjs, extended version with import maps
+ * @property {boolean} [esModuleShims] whether to polyfill es modules using es module shims
  * @property {PolyfillInstruction[]} [customPolyfills] custom polyfills specified by the user
  */
 
 /**
  * @typedef {object} CreateIndexHTMLConfig
  * @property {PolyfillsConfig} polyfills
- * @property {string[]} entries
- * @property {string[]} [legacyEntries]
+ * @property {EntriesConfig} entries
+ * @property {EntriesConfig} [legacyEntries]
  * @property {false|object} minify minify configuration, or false to disable minification
  * @property {string} loader 'inline' | 'external'
+ * @property {boolean} preload
  */
 
 /** @type {Partial<CreateIndexHTMLConfig>} */
@@ -66,6 +80,7 @@ const defaultConfig = {
   },
   minify: defaultMinifyHTMLConfig,
   loader: 'inline',
+  preload: true,
 };
 
 /**
@@ -73,14 +88,28 @@ const defaultConfig = {
  * core-js polyfills with a 'nomodule' attribute, and the entry point if don't need to inject
  * a loader.
  *
+ * @param {PolyfillsConfig} polyfillsConfig
  * @param {Polyfill[]} polyfills
- * @param {string[]} entries
+ * @param {EntriesConfig} entries
  * @param {boolean} needsLoader
  * @returns {ASTNode[]}
  */
-function createStandaloneScripts(polyfills, entries, needsLoader) {
+function createScripts(polyfillsConfig, polyfills, entries, needsLoader) {
   /** @type {ASTNode[]} */
   const scripts = [];
+
+  /**
+   * If dynamic imports need to be polyfilled we need to feature detect them.
+   * import() is not a regular function, which makes polyfilling complex.
+   *
+   * This script will fail on browsers which don't support dynamic imports with
+   * a syntax error. On browsers which do support it, it will create a function
+   * which calls native import(). Later we can check if window.importShim
+   * is defined to know if it is natively supported.
+   */
+  if (polyfillsConfig.dynamicImport) {
+    scripts.push(createScript(null, 'window.importShim=s=>import(s)'));
+  }
 
   polyfills.forEach(polyfill => {
     if (polyfill.test) {
@@ -95,8 +124,10 @@ function createStandaloneScripts(polyfills, entries, needsLoader) {
   });
 
   if (!needsLoader) {
-    entries.forEach(entry => {
-      scripts.push(createScript({ src: entry }));
+    entries.files.forEach(entry => {
+      scripts.push(
+        createScript({ src: `./${entry}`, type: entries.type === 'module' ? 'module' : undefined }),
+      );
     });
   }
 
@@ -116,7 +147,7 @@ function createIndexHTML(baseIndex, config) {
     throw new Error('Missing baseIndex.');
   }
 
-  if (!localConfig.entries || !localConfig.entries.length) {
+  if (!localConfig.entries || !localConfig.entries.files.length) {
     throw new Error('Invalid config: missing config.entries');
   }
 
@@ -133,17 +164,36 @@ function createIndexHTML(baseIndex, config) {
 
   /** @type {FileResult[]} */
   const files = [];
-  const polyfills = getPolyfills(localConfig.polyfills);
+  const polyfills = getPolyfills(localConfig);
 
+  /**
+   * Check whether we need add a special loader script, or if we can load app
+   * code directly with a script tag. A loader is needed when:
+   * - We need to load polyfills conditonally
+   * - We are loading system, which can't be loaded with a script tag
+   * - We have a legacy build, so we need to conditionally load either modern or legacy
+   */
   const needsLoader =
-    !!polyfills.find(p => !!p.test) ||
-    (localConfig.legacyEntries && localConfig.legacyEntries.length > 0);
+    polyfills.some(p => Boolean(p.test)) ||
+    [localConfig.entries, localConfig.legacyEntries].some(c => c && c.type === 'system') ||
+    (localConfig.legacyEntries && localConfig.legacyEntries.files.length > 0);
 
-  const standaloneScripts = createStandaloneScripts(polyfills, localConfig.entries, needsLoader);
+  const scripts = createScripts(localConfig.polyfills, polyfills, localConfig.entries, needsLoader);
 
-  standaloneScripts.forEach(script => {
+  scripts.forEach(script => {
     append(body, script);
   });
+
+  const appendPreloadScript = href => {
+    if (localConfig.entries.type === 'module') {
+      append(
+        head,
+        createElement('link', { rel: 'preload', href, as: 'script', crossorigin: 'anonymous' }),
+      );
+    } else {
+      append(head, createElement('link', { rel: 'preload', href, as: 'script' }));
+    }
+  };
 
   let loaderCode;
   if (needsLoader) {
@@ -154,9 +204,9 @@ function createIndexHTML(baseIndex, config) {
       localConfig.loader === 'external',
     );
 
-    localConfig.entries.forEach(entry => {
-      append(head, createElement('link', { rel: 'preload', href: entry, as: 'script' }));
-    });
+    if (localConfig.preload) {
+      localConfig.entries.files.forEach(appendPreloadScript);
+    }
 
     if (localConfig.loader === 'inline') {
       append(body, createScript(null, loaderCode));
@@ -167,6 +217,10 @@ function createIndexHTML(baseIndex, config) {
     } else {
       throw new Error(`Unknown loader mode: ${localConfig.loader}`);
     }
+  }
+
+  if (localConfig.entries.preloadedFiles) {
+    localConfig.entries.preloadedFiles.forEach(appendPreloadScript);
   }
 
   const serialized = serialize(baseIndex);

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.2.5...@open-wc/webpack-import-meta-loader@0.3.0) (2019-07-14)
+
+
+### Features
+
+* **webpack-import-meta-loader:** support for __webpack_public_path__ ([#570](https://github.com/open-wc/open-wc/issues/570)) ([f072185](https://github.com/open-wc/open-wc/commit/f072185))
+
+
+
+
+
+## [0.2.5](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.2.4...@open-wc/webpack-import-meta-loader@0.2.5) (2019-07-08)
+
+
+### Bug Fixes
+
+* use file extensions for imports to support import maps ([c711b13](https://github.com/open-wc/open-wc/commit/c711b13))
+
+
+
+
+
 ## [0.2.4](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.2.3...@open-wc/webpack-import-meta-loader@0.2.4) (2019-06-05)
 
 **Note:** Version bump only for package @open-wc/webpack-import-meta-loader

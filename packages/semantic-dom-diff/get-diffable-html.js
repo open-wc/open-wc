@@ -1,4 +1,5 @@
 const DEFAULT_IGNORE_TAGS = ['script', 'style', 'svg'];
+const DEFAULT_EMPTY_ATTRS = ['class', 'id'];
 const VOID_ELEMENTS = [
   'area',
   'base',
@@ -32,6 +33,8 @@ const VOID_ELEMENTS = [
  * @property {string[]} [ignoreTags] array of tags to ignore, these tags are stripped from the output
  * @property {string[]} [ignoreChildren] array of tags whose children to ignore, the children of
  *   these tags are stripped from the output
+ * @property {string[]} [stripEmptyAttributes] array of attributes which should be removed when empty.
+ *   Be careful not to add any boolean attributes here (e.g. `hidden`) unless you know what you're doing
  */
 
 /**
@@ -65,6 +68,7 @@ export function getDiffableHTML(html, options = {}) {
     : []);
   const ignoreTags = [...(options.ignoreTags || []), ...DEFAULT_IGNORE_TAGS];
   const ignoreChildren = options.ignoreChildren || [];
+  const stripEmptyAttributes = options.stripEmptyAttributes || DEFAULT_EMPTY_ATTRS;
 
   let text = '';
   let depth = -1;
@@ -98,16 +102,30 @@ export function getDiffableHTML(html, options = {}) {
   }
 
   /**
+   * An element's classList, sorted, as string
+   * @param  {Element} el Element
+   * @return {String}
+   */
+  function getClassListValueString(el) {
+    // @ts-ignore
+    return [...el.classList.values()].sort().join(' ');
+  }
+
+  /**
    * @param {Element} el
    * @param {Attr} attr
    */
-  function getAttributeString(el, attr) {
-    if (attr.name === 'class') {
-      // @ts-ignore
-      const sortedClasses = [...el.classList.values()].sort().join(' ');
-      return ` class="${sortedClasses}"`;
-    }
-    return ` ${attr.name}="${attr.value}"`;
+  function getAttributeString(el, { name, value }) {
+    const shouldStripAttr = stripEmptyAttributes.includes(name) && value === '';
+    const isClassAttr = name === 'class';
+    return (
+      // eslint-disable-next-line no-nested-ternary
+      shouldStripAttr
+        ? ''
+        : isClassAttr
+        ? ` class="${getClassListValueString(el)}"`
+        : ` ${name}="${value}"`
+    );
   }
 
   /**

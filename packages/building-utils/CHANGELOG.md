@@ -3,6 +3,111 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.4.1...@open-wc/building-utils@2.4.2) (2019-07-15)
+
+
+### Bug Fixes
+
+* **building-utils:** polyfills loader script supports module support ([d10817d](https://github.com/open-wc/open-wc/commit/d10817d))
+
+
+
+
+
+## [2.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.4.0...@open-wc/building-utils@2.4.1) (2019-07-13)
+
+
+### Bug Fixes
+
+* **building-utils:** add missing dependencies ([#579](https://github.com/open-wc/open-wc/issues/579)) ([2d75124](https://github.com/open-wc/open-wc/commit/2d75124))
+
+
+
+
+
+# [2.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.3.3...@open-wc/building-utils@2.4.0) (2019-07-08)
+
+
+### Features
+
+* **rollup-plugin-index-html:** support inline modules ([#525](https://github.com/open-wc/open-wc/issues/525)) ([f79de32](https://github.com/open-wc/open-wc/commit/f79de32))
+
+
+
+
+
+## [2.3.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.3.2...@open-wc/building-utils@2.3.3) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/building-utils
+
+
+
+
+
+## [2.3.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.3.1...@open-wc/building-utils@2.3.2) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/building-utils
+
+
+
+
+
+## [2.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.3.0...@open-wc/building-utils@2.3.1) (2019-07-02)
+
+
+### Bug Fixes
+
+* only depend on polyfills in building-utils ([2568cdc](https://github.com/open-wc/open-wc/commit/2568cdc))
+* **es-dev-server:** don't call next on non-2xx response ([f3e865a](https://github.com/open-wc/open-wc/commit/f3e865a))
+
+
+
+
+
+# [2.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.2.0...@open-wc/building-utils@2.3.0) (2019-07-02)
+
+
+### Features
+
+* add es dev server ([2c6a0a8](https://github.com/open-wc/open-wc/commit/2c6a0a8))
+
+
+
+
+
+# [2.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.1.1...@open-wc/building-utils@2.2.0) (2019-06-30)
+
+
+### Features
+
+* **rollup-plugin-index-html:** support import maps ([#519](https://github.com/open-wc/open-wc/issues/519)) ([8c56540](https://github.com/open-wc/open-wc/commit/8c56540))
+
+
+
+
+
+## [2.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.1.0...@open-wc/building-utils@2.1.1) (2019-06-23)
+
+
+### Bug Fixes
+
+* add missing dependencies ([9abf373](https://github.com/open-wc/open-wc/commit/9abf373))
+
+
+
+
+
+# [2.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.0.1...@open-wc/building-utils@2.1.0) (2019-06-23)
+
+
+### Features
+
+* **building-rollup:** add rollup-index-html-plugin ([#510](https://github.com/open-wc/open-wc/issues/510)) ([2ac2d19](https://github.com/open-wc/open-wc/commit/2ac2d19))
+
+
+
+
+
 ## [2.0.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.0.0...@open-wc/building-utils@2.0.1) (2019-06-18)
 
 

@@ -3,6 +3,159 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.0.1...@open-wc/testing@2.0.2) (2019-07-17)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.0.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.0.0...@open-wc/testing@2.0.1) (2019-07-17)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+# [2.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.15...@open-wc/testing@2.0.0) (2019-07-16)
+
+
+### Features
+
+* **testing:** upgrade testing-karma to latest version ([2e1be09](https://github.com/open-wc/open-wc/commit/2e1be09))
+
+
+### BREAKING CHANGES
+
+* **testing:** Removed the legacy flag which used webpack on older
+browsers. We now use karma-esm everywhere which supports older
+browsers with a compatibility option. For more details please see
+the changelog of testing-karma and karma-esm.
+
+
+
+
+
+## [1.0.15](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.14...@open-wc/testing@1.0.15) (2019-07-16)
+
+
+### Bug Fixes
+
+* **testing:** bugfix release to keep non breaking testing-karma version ([99b4905](https://github.com/open-wc/open-wc/commit/99b4905))
+
+
+
+
+
+## [1.0.14](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.13...@open-wc/testing@1.0.14) (2019-07-15)
+
+
+### Bug Fixes
+
+* adopt to new testing-karma setup ([bdcc717](https://github.com/open-wc/open-wc/commit/bdcc717))
+
+
+
+
+
+## [1.0.13](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.12...@open-wc/testing@1.0.13) (2019-07-14)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [1.0.12](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.11...@open-wc/testing@1.0.12) (2019-07-13)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [1.0.11](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.10...@open-wc/testing@1.0.11) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [1.0.10](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.9...@open-wc/testing@1.0.10) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [1.0.9](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.8...@open-wc/testing@1.0.9) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [1.0.8](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.7...@open-wc/testing@1.0.8) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [1.0.7](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.6...@open-wc/testing@1.0.7) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [1.0.6](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.5...@open-wc/testing@1.0.6) (2019-07-02)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [1.0.5](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.4...@open-wc/testing@1.0.5) (2019-07-02)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [1.0.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.3...@open-wc/testing@1.0.4) (2019-06-30)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [1.0.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.2...@open-wc/testing@1.0.3) (2019-06-23)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [1.0.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.1...@open-wc/testing@1.0.2) (2019-06-23)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
 ## [1.0.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing@1.0.0...@open-wc/testing@1.0.1) (2019-06-18)
 
 **Note:** Version bump only for package @open-wc/testing

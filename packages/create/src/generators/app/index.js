@@ -2,7 +2,7 @@
 import prompts from 'prompts';
 import commandLineArgs from 'command-line-args';
 import { executeMixinGenerator } from '../../core.js';
-import LintingMixin from '../linting';
+import LintingMixin from '../linting/index.js';
 import TestingMixin from '../testing/index.js';
 import DemoingStorybookMixin from '../demoing-storybook/index.js';
 import BuildingRollupMixin from '../building-rollup/index.js';
@@ -62,8 +62,8 @@ export const AppMixin = subclass =>
           message: 'What would you like to scaffold?',
           choices: [
             { title: 'Web Component', value: 'wc' },
-            { title: 'Application', value: 'app' },
-            { title: 'Starter App', value: 'starter-app' },
+            { title: 'Basic Application   (barebone)', value: 'app' },
+            { title: 'Starter App         (linting/testing/building)', value: 'starter-app' },
           ],
         },
         {

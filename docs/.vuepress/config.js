@@ -10,9 +10,10 @@ const sidebar = [
       ['/developing/', 'Getting started'],
       ['/developing/ide', 'IDE'],
       '/developing/best-practices',
-      '/developing/owc-dev-server',
+      '/developing/es-dev-server',
       ['/init/', 'Generators'],
       '/developing/types',
+      '/developing/routing',
     ],
   },
   {
@@ -34,6 +35,7 @@ const sidebar = [
       '/testing/testing-chai-dom-equals',
       '/testing/semantic-dom-diff',
       '/testing/testing-karma',
+      '/testing/karma-esm',
       '/testing/testing-karma-bs',
       '/testing/testing-wallaby',
     ],
@@ -44,6 +46,7 @@ const sidebar = [
     children: [
       ['/building/', 'Getting started'],
       '/building/building-rollup',
+      '/building/rollup-plugin-index-html',
       '/building/building-webpack',
       '/building/webpack-index-html-plugin',
     ],

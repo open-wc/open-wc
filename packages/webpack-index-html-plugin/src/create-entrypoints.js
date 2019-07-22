@@ -29,7 +29,9 @@ function createEntrypoints(compiler, context, entry, config, createError) {
     );
   } else {
     if (!entry.endsWith('index.html')) {
-      throw createError('Entry must be a single index.html file');
+      throw createError(
+        'Entry must be a single index.html file. If you wish to use a javascript file as entrypoint you need to set a HTML template function.',
+      );
     }
     index = entry;
   }

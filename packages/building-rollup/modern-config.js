@@ -5,14 +5,21 @@ const { findSupportedBrowsers } = require('@open-wc/building-utils');
 const resolve = require('rollup-plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const babel = require('rollup-plugin-babel');
-const modernWeb = require('./plugins/rollup-plugin-modern-web/rollup-plugin-modern-web.js');
+const indexHTML = require('rollup-plugin-index-html');
 
 const production = !process.env.ROLLUP_WATCH;
+
+/**
+ * @typedef {ConfigOptions}
+ * @param {*} _options
+ * @param {*} legacy
+ */
 
 module.exports = function createBasicConfig(_options) {
   const options = {
     outputDir: 'dist',
     extensions: DEFAULT_EXTENSIONS,
+    indexHTMLPlugin: {},
     ..._options,
   };
 
@@ -23,10 +30,18 @@ module.exports = function createBasicConfig(_options) {
       dir: options.outputDir,
       format: 'esm',
       sourcemap: true,
+      dynamicImportFunction: 'importShim',
     },
     plugins: [
       // parse input index.html as input and feed any modules found to rollup
-      options.input.endsWith('.html') && modernWeb(),
+      indexHTML({
+        polyfills: {
+          ...((options.indexHTMLPlugin && options.indexHTMLPlugin.polyfills) || {}),
+          dynamicImport: true,
+          webcomponents: true,
+        },
+        ...(options.indexHTMLPlugin || {}),
+      }),
 
       // resolve bare import specifiers
       resolve({
@@ -68,6 +83,7 @@ module.exports = function createBasicConfig(_options) {
               // doesn't affect most use cases. for example lit-html handles it: (https://github.com/Polymer/lit-html/issues/575)
               exclude: ['@babel/plugin-transform-template-literals'],
               useBuiltIns: false,
+              modules: false,
             },
           ],
         ],

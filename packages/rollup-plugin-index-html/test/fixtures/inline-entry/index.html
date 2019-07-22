@@ -1,0 +1,39 @@
+
+<html lang="en-GB">
+<head>
+  <script type="importmap">
+    {
+      "imports": {
+        "foo": "./node_modules/foo/index.js",
+        "foo/": "./node_modules/foo/",
+        "bar": "./bar-fork/bar.js",
+        "lazy": "./node_modules/lazy/index.js"
+      }
+    }
+  </script>
+  <title>My app</title>
+  <script type="module">
+    /* eslint-disable import/no-extraneous-dependencies, import/no-unresolved */
+    import './shared.js';
+
+    import 'foo';
+    import 'foo/foo.js';
+    import 'bar';
+
+    console.log('my app');
+
+    import('lazy');
+  </script>
+</head>
+
+<body>
+  <script>
+    /* eslint-disable */
+    (function () {
+      const message = 'hello inline script';
+      console.log(message);
+    })();
+  </script>
+</body>
+
+</html>

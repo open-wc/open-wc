@@ -1,11 +1,10 @@
 {
   "scripts": {
-    "start:build": "owc-dev-server dist/ --open",
+    "start:build": "es-dev-server --app-index dist/index.html --open",
     "build": "webpack --mode production"
   },
   "devDependencies": {
-    "@open-wc/building-webpack": "^2.0.0",
-    "http-server": "^0.11.1",
+    "@open-wc/building-webpack": "^2.1.0",
     "webpack": "^4.28.0",
     "webpack-cli": "^3.3.4"
   }

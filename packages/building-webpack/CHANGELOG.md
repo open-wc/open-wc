@@ -3,6 +3,123 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.3.1...@open-wc/building-webpack@2.3.2) (2019-07-15)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.3.0...@open-wc/building-webpack@2.3.1) (2019-07-13)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+# [2.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.2.5...@open-wc/building-webpack@2.3.0) (2019-07-12)
+
+
+### Features
+
+* **create:** switch from owc-dev-server to es-dev-server ([#571](https://github.com/open-wc/open-wc/issues/571)) ([97a80d1](https://github.com/open-wc/open-wc/commit/97a80d1))
+
+
+
+
+
+## [2.2.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.2.4...@open-wc/building-webpack@2.2.5) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.2.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.2.3...@open-wc/building-webpack@2.2.4) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.2.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.2.2...@open-wc/building-webpack@2.2.3) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.2.1...@open-wc/building-webpack@2.2.2) (2019-07-02)
+
+
+### Bug Fixes
+
+* only depend on polyfills in building-utils ([2568cdc](https://github.com/open-wc/open-wc/commit/2568cdc))
+
+
+
+
+
+## [2.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.2.0...@open-wc/building-webpack@2.2.1) (2019-07-02)
+
+
+### Bug Fixes
+
+* **building-webpack:** always export an array of configs ([0eaff97](https://github.com/open-wc/open-wc/commit/0eaff97))
+
+
+
+
+
+# [2.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.1.2...@open-wc/building-webpack@2.2.0) (2019-07-02)
+
+
+### Features
+
+* add es dev server ([2c6a0a8](https://github.com/open-wc/open-wc/commit/2c6a0a8))
+
+
+
+
+
+## [2.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.1.1...@open-wc/building-webpack@2.1.2) (2019-06-30)
+
+
+### Bug Fixes
+
+* **webpack-index-html-plugin:** multi build now works on windows ([#522](https://github.com/open-wc/open-wc/issues/522)) ([b24723a](https://github.com/open-wc/open-wc/commit/b24723a))
+
+
+
+
+
+## [2.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.1.0...@open-wc/building-webpack@2.1.1) (2019-06-23)
+
+
+### Bug Fixes
+
+* add missing dependencies ([9abf373](https://github.com/open-wc/open-wc/commit/9abf373))
+
+
+
+
+
+# [2.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.0.3...@open-wc/building-webpack@2.1.0) (2019-06-23)
+
+
+### Features
+
+* **building-rollup:** add rollup-index-html-plugin ([#510](https://github.com/open-wc/open-wc/issues/510)) ([2ac2d19](https://github.com/open-wc/open-wc/commit/2ac2d19))
+
+
+
+
+
 ## [2.0.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.0.2...@open-wc/building-webpack@2.0.3) (2019-06-18)
 
 **Note:** Version bump only for package @open-wc/building-webpack

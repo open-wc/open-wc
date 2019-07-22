@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.10...@open-wc/create@0.13.0) (2019-07-12)
+
+
+### Features
+
+* **create:** switch from owc-dev-server to es-dev-server ([#571](https://github.com/open-wc/open-wc/issues/571)) ([97a80d1](https://github.com/open-wc/open-wc/commit/97a80d1))
+
+
+
+
+
+## [0.12.10](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.9...@open-wc/create@0.12.10) (2019-07-09)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+## [0.12.9](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.8...@open-wc/create@0.12.9) (2019-07-08)
+
+
+### Bug Fixes
+
+* use file extensions for imports to support import maps ([c711b13](https://github.com/open-wc/open-wc/commit/c711b13))
+
+
+
+
+
+## [0.12.8](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.7...@open-wc/create@0.12.8) (2019-06-23)
+
+
+### Bug Fixes
+
+* add missing dependencies ([9abf373](https://github.com/open-wc/open-wc/commit/9abf373))
+
+
+
+
+
+## [0.12.7](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.6...@open-wc/create@0.12.7) (2019-06-23)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+## [0.12.6](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.5...@open-wc/create@0.12.6) (2019-06-23)
+
+
+### Bug Fixes
+
+* **create:** improve clarity of init ([#497](https://github.com/open-wc/open-wc/issues/497)) ([ed5277e](https://github.com/open-wc/open-wc/commit/ed5277e))
+
+
+
+
+
 ## [0.12.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.4...@open-wc/create@0.12.5) (2019-06-18)
 
 
