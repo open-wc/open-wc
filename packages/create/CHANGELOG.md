@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.14.0...@open-wc/create@0.15.0) (2019-07-22)
+
+
+### Bug Fixes
+
+* **create:** update testing-karma and demoing-storybook dependencies ([90a44d0](https://github.com/open-wc/open-wc/commit/90a44d0))
+
+
+### Features
+
+* **create:** align outputs of app-lit and wc-lit ([04fe655](https://github.com/open-wc/open-wc/commit/04fe655))
+* **create:** move to a single app generator ([a3d8633](https://github.com/open-wc/open-wc/commit/a3d8633))
+
+
+
+
+
 # [0.14.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.13.0...@open-wc/create@0.14.0) (2019-07-22)
 
 
