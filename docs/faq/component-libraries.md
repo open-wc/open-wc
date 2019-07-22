@@ -4,7 +4,7 @@ The hardest part of any project is often getting content onto that first blank p
 
 - [AMP](https://amp.dev/documentation/components/)
 
-  The AMP HTML library consists of a basic runtime that brings the core functionalities of AMP to your page. If you want to add additional features you can do so by using one or more of the ready-to-use AMP components. 
+  The AMP HTML library consists of a basic runtime that brings the core functionalities of AMP to your page. If you want to add additional features you can do so by using one or more of the ready-to-use AMP components.
 - [Aybolit](https://web-padawan.github.io/aybolit/)
 
   A growing family of elements with default styling for Bootstrap, Bulma, and Material, as well as a solid white-label basis for extending the underlying functionality with your own custom designs.
@@ -12,7 +12,7 @@ The hardest part of any project is often getting content onto that first blank p
 
   A family of web components built with first-class participation in the Twig templating system for PHP in mind. This set is backed by an expansive catalog of usage variants.
 - [Clever Components](https://github.com/CleverCloud/clever-components)
-  
+
   A collection of low-level (atoms) and high-level (domain specific) Web Components made by Clever Cloud for its different Web UIs (public and internal).
 - [Elix](https://component.kitchen/elix)
 
@@ -22,13 +22,16 @@ The hardest part of any project is often getting content onto that first blank p
   The HelixUI library provides front-end developers a set of reusable CSS classes and HTML Custom Elements that adhere to Helix design standards, as outlined by Rackspace.
 - [Ink Components](https://components.ink/)
 
-  Web components for interactive scientific writing, reactive documents and explorable explanations. The Ink Components library can bring your math and science documents to the next level by breathing life into charts, equations, and variables that can be used throughout your application or content. 
+  Io is a UI framework for web applications and custom elements. It supports virtual DOM, reactive rendering and data binding. It includes a design system composed of UI elements ranging from simple input fields, to menu systems and responsive layouts. Its unique feature is the ability to create visually complex, yet fast and GPU-optimized elements using WebGL shaders.
+- [Io GUI](https://io-gui.dev/#page=elements)
+
+  Web components for interactive scientific writing, reactive documents and explorable explanations. The Ink Components library can bring your math and science documents to the next level by breathing life into charts, equations, and variables that can be used throughout your application or content.
 - [Ionic UI Components](https://ionicframework.com/docs/components)
 
   Take advantage of the component system that powers Ionic applications with a large ecosystem to choose from and in-depth usage instructions, no matter the framework you use.
 - [Lightning Web Components by SalesForce](https://developer.salesforce.com/docs/component-library/overview/components)
 
-  Lightning Web Components are now the go-to standard for developing applications in the SalesForce ecosystem, and with the power of web components, they can be the basis of applications outside of their ecosystem, too! 
+  Lightning Web Components are now the go-to standard for developing applications in the SalesForce ecosystem, and with the power of web components, they can be the basis of applications outside of their ecosystem, too!
 - [Material Web Components](https://material-components.github.io/material-components-web-components/demos/index.html)
 
   Material Design Components from Material Design team themselves. Stay as close as possible to the changing specification with these components from Google's own Material Design team.
