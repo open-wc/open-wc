@@ -26,11 +26,13 @@ describe('chaiA11yAxe', () => {
     it('accepts ignored rules list', async () => {
       const el = await fixture(
         html`
-          <div aria-labelledby="test-x"></div>
+          <div aria-labelledby="test-x">
+            <span role="button"></span>
+          </div>
         `,
       );
       await expect(el).to.be.accessible({
-        ignoredRules: ['aria-valid-attr-value'],
+        ignoredRules: ['aria-valid-attr-value', 'button-name'],
       });
     });
 
