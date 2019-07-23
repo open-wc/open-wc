@@ -1,4 +1,4 @@
-# Chai a11y axe
+# Chai A11y aXe
 
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
@@ -8,13 +8,13 @@ This module provides a Chai plugin to perform automated accessibility tests via 
 This is part of the default [open-wc testing](https://open-wc.org/testing/) recommendation
 :::
 
-## Test for accessibility
+## Testing for Accessibility
 
-### Expect library
+### Chai BDD UI
 
-The plugin provides `accessible()` function to perform accessibility test.
+The BDD UI works with chai's `expect` function.
 
-Because the test is asynchronous it has to be performed by returning the value from calling the function, by using async/await, or by using `done()` function that is accepted as an option.
+Because the test is asynchronous, you must either await its result or pass a `done` parameter in the plugin's options object.
 
 Rules can be ignored by passing `ignoredRules` with list of ignored rules as a configuration option.
 
@@ -48,12 +48,12 @@ it('accepts "done" option', (done) => {
 });
 ```
 
-### Assert library
+### Chai TDD UI
 
-The plugin provides `isAccessible()` and `isNotAccessible()` function on `assert` library.
+The `isAccessible()` and `isNotAccessible()` methods work on Chai's `assert` function.
 
 ```js
-import { fixture, expect, html } from '@open-wc/testing';
+import { fixture, assert, html } from '@open-wc/testing';
 
 it('passes axe accessible tests', async () => {
   const el = await fixture(html`<button>some light dom</button>`);
