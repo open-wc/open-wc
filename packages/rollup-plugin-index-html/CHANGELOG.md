@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.6](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.4.5...rollup-plugin-index-html@1.4.6) (2019-07-23)
+
+
+### Bug Fixes
+
+* **rollup-plugin-index-html:** linting error for console.log use ([#621](https://github.com/open-wc/open-wc/issues/621)) ([49fd5ac](https://github.com/open-wc/open-wc/commit/49fd5ac))
+
+
+
+
+
 ## [1.4.5](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.4.4...rollup-plugin-index-html@1.4.5) (2019-07-22)
 
 **Note:** Version bump only for package rollup-plugin-index-html
