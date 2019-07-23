@@ -15,7 +15,6 @@ export {
   fixture,
   fixtureSync,
   fixtureCleanup,
-  a11ySuite,
 } from '@open-wc/testing-helpers/index.js';
 
 export { chai, expect, should, assert } from '@bundled-es-modules/chai';

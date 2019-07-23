@@ -22,7 +22,10 @@ const pruneSnapshots = process.argv.find(arg => arg.includes('--prune-snapshots'
 module.exports = config => ({
   browsers: ['ChromeHeadlessNoSandbox'],
 
-  files: ['__snapshots__/**/*.md'],
+  files: [
+    '__snapshots__/**/*.md',
+    require.resolve('axe-core/axe.min.js')
+  ],
 
   customLaunchers: {
     ChromeHeadlessNoSandbox: {

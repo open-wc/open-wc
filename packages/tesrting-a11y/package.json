@@ -1,0 +1,33 @@
+{
+  "name": "@open-wc/testing-a11y",
+  "version": "1.0.0",
+  "description": "A11y tests for mocha",
+  "author": "open-wc",
+  "main": "index.js",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/testing-a11y"
+  },
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js"
+  },
+  "files": [
+    "*.js",
+    "src"
+  ],
+  "dependencies": {
+    "@open-wc/testing": "^2.0.6",
+    "@open-wc/testing-karma": "^3.0.6",
+    "axe-core": "^3.3.0"
+  },
+  "devDependencies": {},
+  "contributors": [
+    "Pawel Psztyc"
+  ]
+}

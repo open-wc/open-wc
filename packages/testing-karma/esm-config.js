@@ -34,7 +34,7 @@ module.exports = function createEsmConfig(config) {
     },
 
     files: [
-      'node_modules/accessibility-developer-tools/dist/js/axs_testing.js'
+      require.resolve('axe-core/axe.min.js')
     ],
   });
 };

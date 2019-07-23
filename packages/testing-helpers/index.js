@@ -13,4 +13,3 @@ export { stringFixture, stringFixtureSync } from './src/stringFixture.js';
 export { fixture, fixtureSync } from './src/fixture.js';
 export { cachedWrappers, fixtureWrapper, fixtureCleanup } from './src/fixtureWrapper.js';
 export { elementUpdated } from './src/elementUpdated.js';
-export { a11ySuite } from './src/a11y-suite.js';
