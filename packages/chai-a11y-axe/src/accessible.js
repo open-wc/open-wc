@@ -61,12 +61,18 @@ function processResults(negate, results, done) {
     messages[messages.length] = 'Accessibility Violations';
     messages[messages.length] = '---';
     violations.forEach(violation => {
-      messages[messages.length] = violation.help;
+      messages[messages.length] = `Rule: ${violation.id}`;
+      messages[messages.length] = `Impact: ${violation.impact}`;
+      messages[messages.length] = `${violation.help} (${violation.helpUrl})`;
       violation.nodes.forEach(node => {
-        if (node.failureSummary) {
-          messages[messages.length] = node.failureSummary;
+        messages[messages.length] = '';
+        if (node.target) {
+          messages[messages.length] = `Issue target: ${node.target}`;
         }
-        messages[messages.length] = node.html;
+        messages[messages.length] = `Context: ${node.html}`;
+        if (node.failureSummary) {
+          messages[messages.length] = `${node.failureSummary}`;
+        }
       });
       messages[messages.length] = '---';
     });
