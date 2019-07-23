@@ -28,6 +28,14 @@ export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibility
     ...[...inlineModules.keys()].map(e => `${e}?source=${encodeURIComponent(indexUrl)}`),
   ];
 
+  if (files.length === 0) {
+    return {
+      indexHTML: indexHTMLString,
+      inlineModules: new Map(),
+      polyfills: [],
+    };
+  }
+
   // create a new index.html with injected polyfills and loader script
   const createResult = createIndexHTML(resources.indexHTML, {
     entries: {

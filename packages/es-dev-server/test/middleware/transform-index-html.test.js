@@ -103,4 +103,20 @@ describe('transform-index-html middleware', () => {
       server.close();
     }
   });
+
+  it('handles pages without modules', async () => {
+    let server;
+    try {
+      ({ server } = startServer({
+        rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+        compatibilityMode: compatibilityModes.ESM,
+      }));
+
+      const indexResponse = await fetch(`${host}no-modules.html`);
+      expect(indexResponse.status).to.equal(200);
+      expect(await indexResponse.text()).to.include('<title>My app</title>');
+    } finally {
+      server.close();
+    }
+  });
 });
