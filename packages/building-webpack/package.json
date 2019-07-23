@@ -25,6 +25,7 @@
     "build:stats": "webpack --mode production --config demo/js/webpack.modern.config.js --profile --json > build-stats.json",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
+  "main": "index.js",
   "keywords": [
     "open-wc",
     "webpack"
