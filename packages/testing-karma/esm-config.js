@@ -33,8 +33,6 @@ module.exports = function createEsmConfig(config) {
       },
     },
 
-    files: [
-      require.resolve('axe-core/axe.min.js')
-    ],
+    files: [require.resolve('axe-core/axe.min.js')],
   });
 };

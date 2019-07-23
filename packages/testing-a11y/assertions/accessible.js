@@ -10,7 +10,7 @@ function getRules(ignored) {
     return undefined;
   }
   const result = {};
-  ignored.forEach((rule) => {
+  ignored.forEach(rule => {
     result[rule] = { enabled: false };
   });
   return result;
@@ -57,9 +57,9 @@ function processResults(negate, results, done) {
   if (violations.length) {
     messages[messages.length] = 'Accessibility Violations';
     messages[messages.length] = '---';
-    violations.forEach((violation) => {
+    violations.forEach(violation => {
       messages[messages.length] = violation.help;
-      violation.nodes.forEach((node) => {
+      violation.nodes.forEach(node => {
         if (node.failureSummary) {
           messages[messages.length] = node.failureSummary;
         }
@@ -86,7 +86,7 @@ export const a11y = (chai, utils) => {
     const rules = getRules(opts.ignoredRules);
 
     const testOpts = {
-      resultTypes: ['violations']
+      resultTypes: ['violations'],
     };
     if (rules) {
       testOpts.rules = rules;
@@ -95,8 +95,9 @@ export const a11y = (chai, utils) => {
     if (!done) {
       done = () => {};
     }
-    const result = runTestAsync(fixture, testOpts)
-    .then((results) => processResults(utils.flag(this, 'negate'), results, done));
+    const result = runTestAsync(fixture, testOpts).then(results =>
+      processResults(utils.flag(this, 'negate'), results, done),
+    );
     this.then = result.then.bind(result);
     return this;
   });

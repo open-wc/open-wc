@@ -8,7 +8,7 @@ module.exports = config => {
       files: [
         // allows running single tests with the --grep flag
         { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' },
-        require.resolve('axe-core/axe.min.js')
+        require.resolve('axe-core/axe.min.js'),
       ],
 
       // is a meta package with with just some smoke tests
