@@ -21,6 +21,7 @@
     "build:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
+  "main": "index.js",
   "keywords": [
     "open-wc",
     "web-components",
