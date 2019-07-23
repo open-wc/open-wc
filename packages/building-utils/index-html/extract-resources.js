@@ -1,4 +1,5 @@
 const { parse } = require('parse5');
+const { isUri } = require('valid-url');
 const { queryAll, predicates, getAttribute, remove } = require('../dom5-fork');
 
 /**
@@ -33,6 +34,11 @@ function extractResources(htmlString, options = {}) {
 
   moduleScripts.forEach(moduleScript => {
     const src = getAttribute(moduleScript, 'src');
+    // don't touch scripts which reference external resources
+    if (isUri(src)) {
+      return;
+    }
+
     if (src) {
       jsModules.push(src);
     } else if (moduleScript.childNodes && moduleScript.childNodes[0]) {

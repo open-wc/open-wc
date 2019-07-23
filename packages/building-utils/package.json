@@ -46,6 +46,7 @@
     "rimraf": "^2.6.3",
     "systemjs": "^4.0.1",
     "terser": "^4.0.0",
+    "valid-url": "^1.0.9",
     "whatwg-fetch": "^3.0.0",
     "whatwg-url": "^7.0.0"
   },
