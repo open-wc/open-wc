@@ -2,9 +2,6 @@
 
 The hardest part of any project is often getting content onto that first blank page. To make it easier to get your app off the ground quickly, we've collected a list of design systems which are based on web-components from which you can acquire elements or inspiration.
 
-- [AMP](https://amp.dev/documentation/components/)
-
-  The AMP HTML library consists of a basic runtime that brings the core functionalities of AMP to your page. If you want to add additional features you can do so by using one or more of the ready-to-use AMP components.
 - [Aybolit](https://web-padawan.github.io/aybolit/)
 
   A growing family of elements with default styling for Bootstrap, Bulma, and Material, as well as a solid white-label basis for extending the underlying functionality with your own custom designs.
