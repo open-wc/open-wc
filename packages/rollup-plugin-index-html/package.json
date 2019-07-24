@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-index-html",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "description": "Plugin for generating a index html with rollup",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -25,7 +25,7 @@
   ],
   "dependencies": {
     "@import-maps/resolve": "^0.1.2",
-    "@open-wc/building-utils": "^2.5.0",
+    "@open-wc/building-utils": "^2.5.1",
     "deepmerge": "^3.2.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.0",

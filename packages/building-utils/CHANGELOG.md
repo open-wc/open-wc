@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.5.0...@open-wc/building-utils@2.5.1) (2019-07-24)
+
+
+### Bug Fixes
+
+* **building-utils:** don't extract external resources ([e721590](https://github.com/open-wc/open-wc/commit/e721590))
+
+
+
+
+
 # [2.5.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.4.3...@open-wc/building-utils@2.5.0) (2019-07-22)
 
 
