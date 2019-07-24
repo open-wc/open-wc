@@ -33,10 +33,13 @@ npm i -D @open-wc/building-webpack webpack webpack-cli es-dev-server
 
 ```javascript
 const path = require('path');
-const createDefaultConfig = require('@open-wc/building-webpack/modern-config');
+const { createDefaultConfig } = require('@open-wc/building-webpack');
 
-// if you need to support IE11 use "modern-and-legacy-config" instead.
-// const createDefaultConfig = require('@open-wc/building-webpack/modern-and-legacy-config');
+// if you need to support IE11 use `createCompatibilityConfig` instead.
+// const { createCompatibilityConfig } = require('@open-wc/building-webpack');
+// module.exports = createCompatibilityConfig({
+//   input: path.resolve(__dirname, './index.html'),
+// });
 
 module.exports = createDefaultConfig({
   input: path.resolve(__dirname, './index.html'),
@@ -72,9 +75,9 @@ We use [webpack-index-html-plugin](https://open-wc.org/building/webpack-index-ht
 - `build` builds your app and outputs it in your `dist` directory
 
 ## Browser support
-`modern-config.js` creates a single build of your app for modern browsers (by default last 2 of major browsers). This is recommended if you only need to support modern browsers, otherwise you will need to ship compatibility code for browsers which don't need it.
+`createDefaultConfig` creates a single build of your app for modern browsers (by default last 2 of major browsers). This is recommended if you only need to support modern browsers, otherwise you will need to ship compatibility code for browsers which don't need it.
 
-`modern-and-legacy-config.js` creates two builds of your app. A modern build like the above, and a legacy build for IE11. Additional code is injected to load polyfills and the correct version of your app. This is recommended if you need to support IE11.
+`createCompatibilityConfig` creates two builds of your app. A modern build like the above, and a legacy build for IE11. Additional code is injected to load polyfills and the correct version of your app. This is recommended if you need to support IE11.
 
 ## Config features
 All configs:
@@ -83,11 +86,11 @@ All configs:
 - minify + treeshake js
 - minify html and css in template literals
 
-`modern-config.js`:
+`createDefaultConfig`:
 - single build output
 - compatible with any browser which supports Web Components
 
-`modern-and-legacy-config.js`:
+`createCompatibilityConfig`:
 - Two build outputs:
   - Modern:
     - compatible with modern browsers (default: last 2 chrome, firefox safari and edge)
@@ -126,7 +129,7 @@ You can adjust this by adding a [browserslist](https://github.com/browserslist/b
 A webpack config is an object. To extend it, we recommend using `webpack-merge` to ensure plugins are merged correctly. For example to adjust the output folder:
 ```javascript
 const merge = require('webpack-merge');
-const createDefaultConfig = require('@open-wc/building-webpack/modern-config');
+const { createDefaultConfig } = require('@open-wc/building-webpack');
 
 const config = createDefaultConfig({
   input: path.resolve(__dirname, './index.html'),
@@ -139,13 +142,13 @@ module.exports = merge(config, {
 });
 ```
 
-If you use `modern-and-legacy-config.js`, it is actually an array of configs so that webpack outputs a modern and a legacy build. Simply map over the array to adjust both configs:
+If you use `createCompatibilityConfig`, it is actually an array of configs so that webpack outputs a modern and a legacy build. Simply map over the array to adjust both configs:
 
 ```javascript
 const merge = require('webpack-merge');
-const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
+const { createCompatibilityConfig } = require('@open-wc/building-webpack');
 
-const configs = createDefaultConfigs({
+const configs = createCompatibilityConfig({
   input: path.resolve(__dirname, './index.html'),
 });
 
@@ -166,7 +169,7 @@ If you need to customize the output of your `index.html` you can pass extra opti
 
 ```javascript
 const merge = require('webpack-merge');
-const createDefaultConfig = require('@open-wc/building-webpack/modern-config');
+const { createDefaultConfig } = require('@open-wc/building-webpack');
 
 module.exports = createDefaultConfig({
   input: path.resolve(__dirname, './index.html'),
@@ -186,7 +189,7 @@ By default we look for an `index.html` as entrypoint. If want to use regular ent
 
 ```javascript
 const merge = require('webpack-merge');
-const createDefaultConfig = require('@open-wc/building-webpack/modern-config');
+const { createDefaultConfig } = require('@open-wc/building-webpack');
 
 module.exports = createDefaultConfig({
   input: path.resolve(__dirname, './my-app.js'),
@@ -206,7 +209,7 @@ By default we polyfill `core-js`, `webcomponentsjs` and `fetch`. It is possile t
 
 ```javascript
 const merge = require('webpack-merge');
-const createDefaultConfig = require('@open-wc/building-webpack/modern-config');
+const { createDefaultConfig } = require('@open-wc/building-webpack');
 
 module.exports = createDefaultConfig({
   input: path.resolve(__dirname, './index.html'),
@@ -237,9 +240,9 @@ Web apps often include assets such as css files and images. These are not part o
 const path = require('path');
 const merge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
+const { createCompatibilityConfig } = require('@open-wc/building-webpack');
 
-const configs = createDefaultConfigs({
+const configs = createCompatibilityConfig({
   input: path.resolve(__dirname, './index.html'),
 });
 
@@ -314,9 +317,9 @@ It is also possible to add the webpack typescript plugin, which does typecheckin
 ```javascript
 const path = require('path');
 const merge = require('webpack-merge');
-const createDefaultConfigs = require('@open-wc/building-webpack/modern-and-legacy-config');
+const { createCompatibilityConfig } = require('@open-wc/building-webpack');
 
-const configs = createDefaultConfigs({
+const configs = createCompatibilityConfig({
   input: path.resolve(__dirname, './index.html'),
 });
 
