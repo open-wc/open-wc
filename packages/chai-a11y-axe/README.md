@@ -10,6 +10,29 @@ This is part of the default [open-wc testing](https://open-wc.org/testing/) reco
 
 ## Testing for Accessibility
 
+With `chai-a11y-axe` you can easily test your web component for common accessibility problems. However, you should still run manual a11y audits to catch the kinds of problems that [automatic testing cannot](https://www.smashingmagazine.com/2018/09/importance-manual-accessibility-testing/).
+
+> ⚠️ Make sure to also run manualy accessibility audits on your components, as automated tests can't cover every issue.
+
+## Setup
+In order to run a11y tests, import `chai-a11y-axe` and register it with Chai
+
+If you use [open-wc's default config](https://open-wc.org/testing), `chai-a11y-axe` is already registered, so you can skip the rest of this section.
+
+```js
+import chai from 'chai';
+import chaiA11yAxe from 'chai-a11y-axe';
+chai.use(chaiA11yAxe);
+```
+If you are using karma, you an instead add this to your `karma.conf.js`:
+
+```js
+files: [
+  // ... existing files config
+  require.resolve('axe-core/axe.min.js'),
+],
+```
+
 ### Chai BDD UI
 
 The BDD UI works with chai's `expect` function.
