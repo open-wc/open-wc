@@ -1,6 +1,6 @@
 {
   "name": "chai-a11y-axe",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A11y tests for chai",
   "author": "open-wc",
   "main": "index.js",
@@ -24,7 +24,6 @@
   "dependencies": {
     "axe-core": "^3.3.0"
   },
-  "devDependencies": {},
   "contributors": [
     "Pawel Psztyc"
   ]

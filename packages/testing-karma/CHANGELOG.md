@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.0.7...@open-wc/testing-karma@3.1.0) (2019-07-24)
+
+
+### Features
+
+* **testing:** adding a11y testing via chai-a11y-axe plugin ([5f05b53](https://github.com/open-wc/open-wc/commit/5f05b53))
+
+
+
+
+
 ## [3.0.7](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.0.6...@open-wc/testing-karma@3.0.7) (2019-07-24)
 
 **Note:** Version bump only for package @open-wc/testing-karma
