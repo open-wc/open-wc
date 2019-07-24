@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.7.1...es-dev-server@1.7.2) (2019-07-24)
+
+
+### Bug Fixes
+
+* **es-dev-server:** handle html files without any modules ([#627](https://github.com/open-wc/open-wc/issues/627)) ([0610221](https://github.com/open-wc/open-wc/commit/0610221))
+
+
+
+
+
 ## [1.7.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.7.0...es-dev-server@1.7.1) (2019-07-22)
 
 
