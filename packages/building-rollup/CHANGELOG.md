@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.8.12...@open-wc/building-rollup@0.9.0) (2019-07-24)
+
+
+### Features
+
+* **building-rollup:** add main entry point ([86a305e](https://github.com/open-wc/open-wc/commit/86a305e))
+
+
+
+
+
 ## [0.8.12](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.8.11...@open-wc/building-rollup@0.8.12) (2019-07-24)
 
 **Note:** Version bump only for package @open-wc/building-rollup
