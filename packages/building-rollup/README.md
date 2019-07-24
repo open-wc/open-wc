@@ -32,10 +32,11 @@ npm i -D @open-wc/building-rollup rollup rimraf es-dev-server
 
 2. Create a `rollup.config.js` file and pass in your app's `index.html`:
 ```javascript
-import createDefaultConfig from '@open-wc/building-rollup/modern-config';
+import { createDefaultConfig } from '@open-wc/building-rollup';
 
-// if you need to support IE11 use "modern-and-legacy-config" instead.
-// import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
+// if you need to support IE11 use `createCompatibilityConfig` instead.
+// import { createCompatibilityConfig } from '@open-wc/building-rollup';
+// export default createCompatibilityConfig({ input: './index.html' });
 
 export default createDefaultConfig({ input: './index.html' });
 ```
@@ -69,12 +70,12 @@ We use [rollup-plugin-index-html](https://open-wc.org/building/rollup-plugin-ind
 - `build` builds your app and outputs it in your `dist` directory
 
 ## Supporting legacy browsers
-`modern-config.js` works for browsers which [support es modules](https://caniuse.com/#feat=es6-module). If you need to support older browsers such as IE11 you need to use our `modern-and-legacy-config.js` in your `rollup.config.js`:
+`createDefaultConfig` works for browsers which [support es modules](https://caniuse.com/#feat=es6-module). If you need to support older browsers such as IE11 you need to use our `createCompatibilityConfig` in your `rollup.config.js`:
 
 ```javascript
-import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
+import { createCompatibilityConfig } from '@open-wc/building-rollup';
 
-export default createDefaultConfig({ input: './index.html' });
+export default createCompatibilityConfig({ input: './index.html' });
 ```
 
 In addition to outputting a regular build of your app, it outputs a legacy build which is compatible with older browsers down to IE11.
@@ -82,7 +83,7 @@ In addition to outputting a regular build of your app, it outputs a legacy build
 At runtime we determine which version of your app should be loaded, so that legacy browsers don't force you to ship more and slower code to most users on modern browsers.
 
 ## Config features
-`modern-config.js`:
+`createDefaultConfig`:
 - compatible with browsers which [support es modules](https://caniuse.com/#feat=es6-module)
 - babel transform based on browser support (no es5 for all browsers)
 - load polyfills when needed:
@@ -93,7 +94,7 @@ At runtime we determine which version of your app should be loaded, so that lega
 - minify + treeshake js
 - minify html and css in template literals
 
-`modern-and-legacy-config.js`:
+`createCompatibilityConfig`:
 - Two build outputs:
   - Modern build:
     - es modules
@@ -139,7 +140,7 @@ For example to add support for class properties:
 ## Extending the rollup config
 A rollup config is just a plain object. It's easy to extend it using javascript:
 ```javascript
-import createDefaultConfig from '@open-wc/building-rollup/modern-config';
+import { createDefaultConfig } from '@open-wc/building-rollup';
 
 const config = createDefaultConfig({ input: './index.html' });
 
@@ -156,12 +157,12 @@ export default {
 };
 ```
 
-If you use `modern-and-legacy-config.js`, it is actually an array of configs so that rollup outputs a modern and a legacy build. Simply `map` over the array to adjust both configs:
+If you use `createCompatibilityConfig`, it is actually an array of configs so that rollup outputs a modern and a legacy build. Simply `map` over the array to adjust both configs:
 
 ```javascript
-import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
+import { createCompatibilityConfig } from '@open-wc/building-rollup';
 
-const configs = createDefaultConfig({ input: './index.html' });
+const configs = createCompatibilityConfig({ input: './index.html' });
 
 export default configs.map(config => ({
   ...config,
@@ -185,7 +186,7 @@ Some extensions or plugins add non-native or experimental features to your code.
 If you need to customize the output of your `index.html` you can pass extra options to [rollup-plugin-index-html](https://open-wc.org/building/rollup-plugin-index-html.html):
 
 ```javascript
-import createDefaultConfig from '@open-wc/building-rollup/modern-config';
+import { createDefaultConfig } from '@open-wc/building-rollup';
 
 export default createDefaultConfig({
   input: './index.html',
@@ -204,7 +205,7 @@ See the plugin docs for all options.
 By default we look for an `index.html` as entrypoint. If want to use regular entrypoints you will need to provide your `index.html` for output manually:
 
 ```javascript
-import createDefaultConfig from '@open-wc/building-rollup/modern-config';
+import { createDefaultConfig } from '@open-wc/building-rollup';
 
 export default createDefaultConfig({
   input: './my-app.js',
@@ -227,10 +228,10 @@ export default createDefaultConfig({
 CommonJS is the module format for NodeJS, and not suitable for the browser. Rollup only handles es modules by default, but sometimes it's necessary to be able to import a dependency. To do this, you can add [rollup-plugin-commonjs](https://github.com/rollup/rollup-plugin-commonjs):
 
 ```javascript
-import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
+import { createCompatibilityConfig } from '@open-wc/building-rollup';
 import commonjs from 'rollup-plugin-commonjs';
 
-const configs = createDefaultConfig({ input: './index.html' });
+const configs = createCompatibilityConfig({ input: './index.html' });
 
 // map if you use an array of configs, otherwise just extend the config
 export default configs.map(config => ({
@@ -249,9 +250,9 @@ Web apps often include assets such as CSS files and images. These are not part o
 
 ```javascript
 import cpy from 'rollup-plugin-cpy';
-import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
+import { createCompatibilityConfig } from '@open-wc/building-rollup';
 
-const config = createDefaultConfig({
+const config = createCompatibilityConfig({
   input: './index.html',
 });
 
@@ -321,9 +322,9 @@ This is the fastest method, as it strips away types during babel transformation 
 It is also possible to add the rollup typescript plugin, which does typechecking and compiling for you:
 ```javascript
 import typescript from 'rollup-plugin-typescript2';
-import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
+import { createCompatibilityConfig } from '@open-wc/building-rollup';
 
-const configs = createDefaultConfig({
+const configs = createCompatibilityConfig({
   input: './index.html',
 });
 
@@ -353,10 +354,10 @@ You can do this by setting the following options in `tsconfig.json`:
 To separate your lit-html styles in css files, you can use [rollup-plugin-lit-css](https://github.com/bennypowers/rollup-plugin-lit-css):
 
 ```javascript
-import createDefaultConfig from '@open-wc/building-rollup/modern-and-legacy-config';
+import { createCompatibilityConfig } from '@open-wc/building-rollup';
 import litcss from 'rollup-plugin-lit-css';
 
-const configs = createDefaultConfig({ input: './index.html' });
+const configs = createCompatibilityConfig({ input: './index.html' });
 
 // map if you use an array of configs, otherwise just extend the config
 export default configs.map(config => ({
