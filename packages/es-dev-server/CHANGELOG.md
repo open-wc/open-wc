@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.7.2...es-dev-server@1.8.0) (2019-07-24)
+
+
+### Features
+
+* **es-dev-server:** allow using the server as a library ([89c3d4d](https://github.com/open-wc/open-wc/commit/89c3d4d))
+
+
+
+
+
 ## [1.7.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.7.1...es-dev-server@1.7.2) (2019-07-24)
 
 
