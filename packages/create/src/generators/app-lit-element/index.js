@@ -13,10 +13,7 @@ const AppLitElementMixin = subclass =>
       );
 
       // write & rename el registration template
-      this.copyTemplate(
-        `${__dirname}/templates/_my-app.js`,
-        this.destinationPath(`src/${tagName}.js`),
-      );
+      this.copyTemplate(`${__dirname}/templates/_my-app.js`, this.destinationPath(`${tagName}.js`));
 
       this.copyTemplateJsonInto(
         `${__dirname}/templates/_package.json`,

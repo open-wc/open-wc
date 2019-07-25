@@ -12,10 +12,7 @@ const WcLitElementMixin = subclass =>
       );
 
       // write & rename el registration template
-      this.copyTemplate(
-        `${__dirname}/templates/_my-el.js`,
-        this.destinationPath(`src/${tagName}.js`),
-      );
+      this.copyTemplate(`${__dirname}/templates/_my-el.js`, this.destinationPath(`${tagName}.js`));
 
       this.copyTemplate(`${__dirname}/templates/_gitignore`, this.destinationPath(`.gitignore`));
 

@@ -1,7 +1,7 @@
 import { storiesOf, html, withKnobs, withClassPropertiesKnobs } from '@open-wc/demoing-storybook';
 
 import { <%= className %> } from '../src/<%= className %>.js';
-import '../src/<%= tagName %>.js';
+import '../<%= tagName %>.js';
 
 storiesOf('<%= tagName %>', module)
   .addDecorator(withKnobs)
