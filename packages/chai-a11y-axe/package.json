@@ -21,9 +21,6 @@
     "*.js",
     "src"
   ],
-  "dependencies": {
-    "axe-core": "^3.3.0"
-  },
   "contributors": [
     "Pawel Psztyc"
   ]

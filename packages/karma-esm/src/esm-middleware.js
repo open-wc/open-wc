@@ -21,14 +21,14 @@ function esmMiddlewareFactory(config, karmaEmitter) {
       compatibility: esmConfig.compatibility,
       // option used to be called `moduleDirectories`
       // @ts-ignore
-      moduleDirectories: esmConfig.moduleDirs || esmConfig.moduleDirectories,
-      readUserBabelConfig: esmConfig.babel,
+      moduleDirs: esmConfig.moduleDirs || esmConfig.moduleDirectories,
+      babel: esmConfig.babel,
       fileExtensions: esmConfig.fileExtensions,
       babelModernExclude: esmConfig.babelModernExclude,
       babelExclude: esmConfig.babelExclude,
       // option used to be called `customMiddlewares`
       // @ts-ignore
-      customMiddlewares: esmConfig.middlewares || esmConfig.customMiddlewares,
+      middlewares: esmConfig.middlewares || esmConfig.customMiddlewares,
       watch,
       babelConfig,
     });
