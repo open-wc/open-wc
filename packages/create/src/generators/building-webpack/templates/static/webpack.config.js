@@ -7,6 +7,6 @@ const { createDefaultConfig } = require('@open-wc/building-webpack');
 //   input: path.resolve(__dirname, './index.html'),
 // });
 
-module.exports = createConfig({
+module.exports = createDefaultConfig({
   input: path.resolve(__dirname, './index.html'),
 });

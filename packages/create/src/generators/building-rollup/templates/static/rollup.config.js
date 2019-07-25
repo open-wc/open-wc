@@ -4,4 +4,4 @@ import { createDefaultConfig } from '@open-wc/building-rollup';
 // import { createCompatibilityConfig } from '@open-wc/building-rollup';
 // export default createCompatibilityConfig({ input: './index.html' });
 
-export default createConfig({ input: './index.html' });
+export default createDefaultConfig({ input: './index.html' });
