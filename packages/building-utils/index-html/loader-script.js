@@ -1,4 +1,5 @@
 const Terser = require('terser');
+const { cleanImportPath } = require('./utils');
 
 /**
  * @typedef {import('./create-index-html').EntriesConfig} EntriesConfig
@@ -58,12 +59,12 @@ const entryLoaderCreators = {
  */
 function createEntriesLoaderFunction(entries, legacyEntries) {
   if (!legacyEntries) {
-    return `${entryLoaderCreators[entries.type](entries.files.map(f => `./${f}`))};`;
+    return `${entryLoaderCreators[entries.type](entries.files.map(cleanImportPath))};`;
   }
 
-  const load = entryLoaderCreators[entries.type](entries.files.map(f => `./${f}`));
+  const load = entryLoaderCreators[entries.type](entries.files.map(cleanImportPath));
   const loadLegacy = entryLoaderCreators[legacyEntries.type](
-    legacyEntries.files.map(f => `./${f}`),
+    legacyEntries.files.map(cleanImportPath),
   );
   return `'noModule' in HTMLScriptElement.prototype ? ${load} : ${loadLegacy};`;
 }

@@ -7,6 +7,7 @@ const { getPolyfills } = require('./polyfills');
 const { createLoaderScript } = require('./loader-script');
 const { minifyIndexHTML, defaultMinifyHTMLConfig } = require('./minify-index-html');
 const { createContentHash } = require('./utils');
+const { cleanImportPath } = require('./utils');
 
 /** @typedef {import('parse5').ASTNode} ASTNode */
 
@@ -126,7 +127,10 @@ function createScripts(polyfillsConfig, polyfills, entries, needsLoader) {
   if (!needsLoader) {
     entries.files.forEach(entry => {
       scripts.push(
-        createScript({ src: `./${entry}`, type: entries.type === 'module' ? 'module' : undefined }),
+        createScript({
+          src: cleanImportPath(entry),
+          type: entries.type === 'module' ? 'module' : undefined,
+        }),
       );
     });
   }
