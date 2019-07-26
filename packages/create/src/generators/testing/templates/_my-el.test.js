@@ -1,6 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 
-import '../src/<%= tagName %>.js';
+import '../<%= tagName %>.js';
 
 describe('<<%= tagName %>>', () => {
   it('has a default property title', async () => {
