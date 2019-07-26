@@ -128,4 +128,18 @@ describe('loader-script', () => {
       polyfills: defaultPolyfills,
     });
   });
+
+  it('generates a loader script with upwards file path', () => {
+    testSnapshot({
+      name: 'upwards-file-path',
+      entries: { type: 'module', files: ['../app.js'] },
+    });
+  });
+
+  it('generates a loader script with an absolute file path', () => {
+    testSnapshot({
+      name: 'absolute-file-path',
+      entries: { type: 'module', files: ['/app.js'] },
+    });
+  });
 });
