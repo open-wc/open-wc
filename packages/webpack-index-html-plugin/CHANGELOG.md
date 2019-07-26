@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.11](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.2.10...@open-wc/webpack-index-html-plugin@1.2.11) (2019-07-26)
+
+**Note:** Version bump only for package @open-wc/webpack-index-html-plugin
+
+
+
+
+
 ## [1.2.10](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.2.9...@open-wc/webpack-index-html-plugin@1.2.10) (2019-07-24)
 
 **Note:** Version bump only for package @open-wc/webpack-index-html-plugin
