@@ -12,6 +12,7 @@ export {
   fixture,
   fixtureSync,
   fixtureCleanup,
+  elementUpdated,
 } from '@open-wc/testing-helpers/index-no-side-effects.js';
 
 export { chai, expect, should, assert } from '@bundled-es-modules/chai';

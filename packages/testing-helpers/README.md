@@ -33,7 +33,7 @@ import { html, fixture } from '@open-wc/testing-helpers';
 it('can instantiate an element with properties', async () => {
   const el = await fixture(html`<my-el .foo=${'bar'}></my-el>`);
   expect(el.foo).to.equal('bar');
-}
+})
 ```
 
 ## Test a custom class
@@ -103,6 +103,30 @@ await nextFrame();
 Waits for `x` ms via `setTimeout`;
 ```js
 await aTimeout(10); // would wait 10ms
+```
+
+### elementUpdated
+
+If you want to test attribute and property changes, and an easy way to wait for those changes to propagate, you can import the `elementUpdated` helper (also available directly in the `testing` package)
+
+```js
+import { fixture, elementUpdated } from '@open-wc/testing-helpers';
+import '../my-component.js';
+
+describe('Attributes', () => {
+  describe('.title', () => {
+    //...
+    it('is bound to the `title` attribute', async () => {
+      const el = await fixture('<my-component title="test"></my-component>');
+      expect(el.title).to.eq('test');
+
+      el.title = "test 2"
+      await elementUpdated(el)
+      expect(el).dom.to.equal(`<my-component title="test 2"></my-component>`);
+    });
+    //...
+  })
+});
 ```
 
 ## Testing Events
