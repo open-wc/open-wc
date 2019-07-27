@@ -23,8 +23,7 @@ export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibility
   });
 
   const files = [
-    // remove leading ./
-    ...resources.jsModules.map(e => e.replace('./', '')),
+    ...resources.jsModules,
     ...[...inlineModules.keys()].map(e => `${e}?source=${encodeURIComponent(indexUrl)}`),
   ];
 

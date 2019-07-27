@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.8.1...es-dev-server@1.8.2) (2019-07-26)
+
+
+### Bug Fixes
+
+* **es-dev-server:** correctly handle absolute and upwards file paths ([#654](https://github.com/open-wc/open-wc/issues/654)) ([b7c67dd](https://github.com/open-wc/open-wc/commit/b7c67dd))
+
+
+
+
+
 ## [1.8.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.8.0...es-dev-server@1.8.1) (2019-07-24)
 
 **Note:** Version bump only for package es-dev-server

@@ -4,6 +4,13 @@
 
 <body>
 
+  <!-- relative path -->
+  
+
+  <!-- upwards path -->
+  
+
+  <!-- absolute path -->
   
 
 
@@ -26,7 +33,7 @@
   if ('noModule' in HTMLScriptElement.prototype) { polyfills.push(loadScript('polyfills/es-module-shims.c9fab74391a606424f346398bb048a79.js', true)) }
 
   function loadEntries() {
-    'noModule' in HTMLScriptElement.prototype ? window.importShim('./app.js') : System.import('./app.js');
+    'noModule' in HTMLScriptElement.prototype ? ['./app.js','../src/app.js','/src/app.js'].forEach(function (entry) { window.importShim(entry); }) : ['./app.js','../src/app.js','/src/app.js'].forEach(function (entry) { System.import(entry); });
   }
 
   polyfills.length ? Promise.all(polyfills).then(loadEntries) : loadEntries();
