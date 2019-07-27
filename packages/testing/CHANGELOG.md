@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.1.4...@open-wc/testing@2.2.0) (2019-07-27)
+
+
+### Features
+
+* expose elementUpdated testing-helper by default ([#653](https://github.com/open-wc/open-wc/issues/653)) ([55a165f](https://github.com/open-wc/open-wc/commit/55a165f))
+
+
+
+
+
 ## [2.1.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.1.3...@open-wc/testing@2.1.4) (2019-07-26)
 
 **Note:** Version bump only for package @open-wc/testing
