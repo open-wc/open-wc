@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.15.0...@open-wc/create@0.16.0) (2019-07-26)
+
+
+### Bug Fixes
+
+* **create:** add index.js entrypoint ([aa66639](https://github.com/open-wc/open-wc/commit/aa66639))
+* **create:** set custom element in root of the package as entrypoint ([9ab084f](https://github.com/open-wc/open-wc/commit/9ab084f))
+
+
+### Features
+
+* **create:** ensure that building-rollup/webpack use the latest exports ([b8211c9](https://github.com/open-wc/open-wc/commit/b8211c9))
+
+
+
+
+
 # [0.15.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.14.0...@open-wc/create@0.15.0) (2019-07-22)
 
 
