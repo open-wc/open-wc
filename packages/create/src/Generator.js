@@ -46,8 +46,8 @@ class Generator {
     copyTemplate(from, to, this.templateData);
   }
 
-  copyTemplateJsonInto(from, to) {
-    copyTemplateJsonInto(from, to, this.templateData);
+  copyTemplateJsonInto(from, to, options = { mode: 'merge' }) {
+    copyTemplateJsonInto(from, to, this.templateData, options);
   }
 
   async copyTemplates(from, to = this.destinationPath()) {

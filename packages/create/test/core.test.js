@@ -110,10 +110,31 @@ describe('copyTemplateJsonInto', () => {
     ]);
   });
 
-  it('overrides arrays', async () => {
+  it('merges arrays', async () => {
     writeFileToPath(`source/package.json`, '{ "array": [1, 2] }');
     writeFileToPath(`generator/package.json`, '{ "array": [3] }');
     copyTemplateJsonInto(`generator/package.json`, 'source/package.json');
+    deleteVirtualFile('generator/package.json'); // just used to make test easier
+
+    expect(virtualFiles).to.deep.equal([
+      {
+        path: 'source/package.json',
+        content: '{\n  "array": [\n    1,\n    2,\n    3\n  ]\n}',
+      },
+    ]);
+  });
+
+  it('can override arrays by setting { mode: "override" } ', async () => {
+    writeFileToPath(`source/package.json`, '{ "array": [1, 2] }');
+    writeFileToPath(`generator/package.json`, '{ "array": [3] }');
+    copyTemplateJsonInto(
+      `generator/package.json`,
+      'source/package.json',
+      {},
+      {
+        mode: 'override',
+      },
+    );
     deleteVirtualFile('generator/package.json'); // just used to make test easier
 
     expect(virtualFiles).to.deep.equal([

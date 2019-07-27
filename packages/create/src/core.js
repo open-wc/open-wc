@@ -281,7 +281,12 @@ export function copyTemplates(fromGlob, toDir = process.cwd(), data = {}) {
  * @param {string} toPath
  * @param {object} data
  */
-export function copyTemplateJsonInto(fromPath, toPath, data = {}) {
+export function copyTemplateJsonInto(
+  fromPath,
+  toPath,
+  data = {},
+  { mode = 'merge' } = { mode: 'merge' },
+) {
   const content = readFileFromPath(fromPath);
   if (content === false) {
     return;
@@ -291,10 +296,15 @@ export function copyTemplateJsonInto(fromPath, toPath, data = {}) {
 
   const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
 
+  const mergeOptions = {};
+  if (mode === 'override') {
+    mergeOptions.arrayMerge = overwriteMerge;
+  }
+
   let finalObj = mergeMeObj;
   const sourceContent = readFileFromPath(toPath);
   if (sourceContent) {
-    finalObj = deepmerge(JSON.parse(sourceContent), finalObj, { arrayMerge: overwriteMerge });
+    finalObj = deepmerge(JSON.parse(sourceContent), finalObj, mergeOptions);
   }
 
   writeFileToPath(toPath, JSON.stringify(finalObj, null, 2));

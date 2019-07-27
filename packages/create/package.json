@@ -20,7 +20,7 @@
     "starter-app"
   ],
   "scripts": {
-    "build": "babel src --out-dir dist --copy-files --include-dotfiles",
+    "build": "rimraf dist && babel src --out-dir dist --copy-files --include-dotfiles",
     "start": "npm run build && node ./dist/create.js",
     "test": "mocha --require @babel/register",
     "test:ci": "npm run test",
@@ -49,6 +49,7 @@
     "babel-plugin-transform-dynamic-import": "^2.1.0",
     "chai": "^4.2.0",
     "mocha": "^5.0.0",
-    "onchange": "^5.2.0"
+    "onchange": "^5.2.0",
+    "rimraf": "^2.6.3"
   }
 }
