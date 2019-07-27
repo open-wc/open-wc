@@ -1,6 +1,8 @@
+import CommonRepoMixin from '../common-repo/index.js';
+
 /* eslint-disable no-console */
 const WcLitElementMixin = subclass =>
-  class extends subclass {
+  class extends CommonRepoMixin(subclass) {
     async execute() {
       await super.execute();
       const { tagName, className } = this.templateData;
@@ -14,8 +16,7 @@ const WcLitElementMixin = subclass =>
       // write & rename el registration template
       this.copyTemplate(`${__dirname}/templates/_my-el.js`, this.destinationPath(`${tagName}.js`));
 
-      this.copyTemplate(`${__dirname}/templates/_gitignore`, this.destinationPath(`.gitignore`));
-
+      // write & rename package.json
       this.copyTemplateJsonInto(
         `${__dirname}/templates/_package.json`,
         this.destinationPath('package.json'),

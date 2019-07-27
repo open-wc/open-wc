@@ -1,6 +1,8 @@
+import CommonRepoMixin from '../common-repo/index.js';
+
 /* eslint-disable no-console */
 const AppLitElementMixin = subclass =>
-  class extends subclass {
+  class extends CommonRepoMixin(subclass) {
     async execute() {
       await super.execute();
 
