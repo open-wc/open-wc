@@ -2,15 +2,10 @@
 import prompts from 'prompts';
 import commandLineArgs from 'command-line-args';
 import { executeMixinGenerator } from '../../core.js';
-import LintingMixin from '../linting/index.js';
-import TestingMixin from '../testing/index.js';
-import DemoingStorybookMixin from '../demoing-storybook/index.js';
-import BuildingRollupMixin from '../building-rollup/index.js';
-import BuildingWebpackMixin from '../building-webpack/index.js';
-import AppLitElementMixin from '../app-lit-element/index.js';
-import WcLitElementMixin from '../wc-lit-element/index.js';
+import { AppLitElementMixin } from '../app-lit-element/index.js';
 
 import header from './header.js';
+import { gatherMixins } from './gatherMixins.js';
 
 /**
  * Allows to control the data via command line
@@ -133,44 +128,11 @@ export const AppMixin = subclass =>
         },
       });
 
-      const mixins = [];
-      if (this.options.type === 'scaffold') {
-        switch (this.options.scaffoldType) {
-          case 'wc':
-            mixins.push(WcLitElementMixin);
-            break;
-          case 'app':
-            mixins.push(AppLitElementMixin);
-            break;
-          // no default
-        }
+      const mixins = gatherMixins(this.options);
+      // app is separate to prevent circular imports
+      if (this.options.type === 'scaffold' && this.options.scaffoldType === 'app') {
+        mixins.push(AppLitElementMixin);
       }
-
-      if (this.options.features && this.options.features.length > 0) {
-        this.options.features.forEach(feature => {
-          if (feature === 'linting') {
-            mixins.push(LintingMixin);
-          }
-          if (feature === 'testing') {
-            mixins.push(TestingMixin);
-          }
-          if (feature === 'demoing') {
-            mixins.push(DemoingStorybookMixin);
-          }
-          if (feature === 'building') {
-            switch (this.options.buildingType) {
-              case 'rollup':
-                mixins.push(BuildingRollupMixin);
-                break;
-              case 'webpack':
-                mixins.push(BuildingWebpackMixin);
-                break;
-              // no default
-            }
-          }
-        });
-      }
-
       await executeMixinGenerator(mixins, this.options);
     }
   };

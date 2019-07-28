@@ -1,4 +1,4 @@
-const LintingPrettierMixin = subclass =>
+export const LintingPrettierMixin = subclass =>
   class extends subclass {
     async execute() {
       await super.execute();
@@ -9,5 +9,3 @@ const LintingPrettierMixin = subclass =>
       );
     }
   };
-
-export default LintingPrettierMixin;

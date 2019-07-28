@@ -1,4 +1,4 @@
-const LintingEsLintMixin = subclass =>
+export const LintingTypesJsMixin = subclass =>
   class extends subclass {
     async execute() {
       await super.execute();
@@ -11,5 +11,3 @@ const LintingEsLintMixin = subclass =>
       await this.copyTemplates(`${__dirname}/templates/static/**/*`);
     }
   };
-
-export default LintingEsLintMixin;

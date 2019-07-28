@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import LintingEsLint from '../linting-eslint/index.js';
-import LintingPrettierMixin from '../linting-prettier/index.js';
+import { LintingEsLintMixin } from '../linting-eslint/index.js';
+import { LintingPrettierMixin } from '../linting-prettier/index.js';
 
-const LintingMixin = subclass =>
-  class extends LintingPrettierMixin(LintingEsLint(subclass)) {
+export const LintingMixin = subclass =>
+  class extends LintingPrettierMixin(LintingEsLintMixin(subclass)) {
     async execute() {
       await super.execute();
 
@@ -14,5 +14,3 @@ const LintingMixin = subclass =>
       );
     }
   };
-
-export default LintingMixin;

@@ -1,4 +1,4 @@
-const TestingKarmaBsMixin = subclass =>
+export const TestingKarmaBsMixin = subclass =>
   class extends subclass {
     async execute() {
       await super.execute();
@@ -11,5 +11,3 @@ const TestingKarmaBsMixin = subclass =>
       await this.copyTemplates(`${__dirname}/templates/static/**/*`);
     }
   };
-
-export default TestingKarmaBsMixin;
