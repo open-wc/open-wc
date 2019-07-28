@@ -40,6 +40,7 @@ import { compatibilityModes } from './constants.js';
  * @property {string[]} [babelModernExclude] files excluded from babel on modern browser
  * @property {object} [babelConfig] babel config to use, this is useful when you want to provide a
  *   babel config from a tool, and don't want to require all users to use the same babel config
+ * @property {boolean} [logBabelErrors] whether to log errors thrown by babel, true by default
  */
 
 /**
@@ -75,6 +76,7 @@ import { compatibilityModes } from './constants.js';
  * @property {string[]} extraFileExtensions
  * @property {string[]} babelExclude
  * @property {string[]} babelModernExclude
+ * @property {boolean} logBabelErrors whether to log errors thrown by babel, true by default
  */
 
 /**
@@ -100,6 +102,7 @@ export function createConfig(config) {
     babelExclude = [],
     babelModernExclude = [],
     babelConfig,
+    logBabelErrors = true,
     logStartup,
   } = config;
 
@@ -163,5 +166,6 @@ export function createConfig(config) {
     watchExcludes,
     watchDebounce: 1000,
     customMiddlewares: middlewares,
+    logBabelErrors,
   };
 }
