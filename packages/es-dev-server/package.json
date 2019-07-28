@@ -74,7 +74,6 @@
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "^7.0.0",
-    "@types/deepmerge": "^2.2.0",
     "@types/koa": "^2.0.48",
     "@types/koa-static": "^4.0.1",
     "@types/lru-cache": "^5.1.0",
