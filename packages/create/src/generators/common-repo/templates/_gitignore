@@ -15,5 +15,6 @@
 ## temp folders
 /.tmp/
 
-# build hp
+# build
 /_site/
+/dist/

@@ -1,4 +1,4 @@
-const BuildingRollupMixin = subclass =>
+export const BuildingRollupMixin = subclass =>
   class extends subclass {
     async execute() {
       await super.execute();
@@ -11,5 +11,3 @@ const BuildingRollupMixin = subclass =>
       await this.copyTemplates(`${__dirname}/templates/static/**/*`);
     }
   };
-
-export default BuildingRollupMixin;

@@ -4,7 +4,6 @@ export class <%= className %> extends LitElement {
   static get styles() {
     return css`
       :host {
-        background: grey;
         display: block;
         padding: 25px;
       }
@@ -14,20 +13,24 @@ export class <%= className %> extends LitElement {
   static get properties() {
     return {
       title: { type: String },
+      counter: { type: Number },
     };
   }
 
   constructor() {
     super();
-    this.title = 'Hello world!';
+    this.title = 'Hey there';
+    this.counter = 5;
+  }
+
+  __increment() {
+    this.counter += 1;
   }
 
   render() {
     return html`
-      <h2>${this.title}</h2>
-      <div>
-        <slot></slot>
-      </div>
+      <h2>${this.title} Nr. ${this.counter}!</h2>
+      <button @click=${this.__increment}>increment</button>
     `;
   }
 }

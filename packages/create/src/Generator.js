@@ -19,8 +19,9 @@ function getClassName(tagName) {
 
 class Generator {
   constructor() {
-    this._destinationPath = process.cwd();
-    this.options = {};
+    this.options = {
+      destinationPath: 'auto',
+    };
     this.templateData = {};
     this.wantsNpmInstall = true;
     this.wantsWriteToDisk = true;
@@ -32,14 +33,18 @@ class Generator {
       const { tagName } = this.options;
       const className = getClassName(tagName);
       this.templateData = { ...this.templateData, tagName, className };
-      if (this.options.type === 'scaffold') {
-        this._destinationPath = path.join(process.cwd(), tagName);
+
+      if (this.options.destinationPath === 'auto') {
+        this.options.destinationPath = process.cwd();
+        if (this.options.type === 'scaffold') {
+          this.options.destinationPath = path.join(process.cwd(), tagName);
+        }
       }
     }
   }
 
   destinationPath(destination = '') {
-    return path.join(this._destinationPath, destination);
+    return path.join(this.options.destinationPath, destination);
   }
 
   copyTemplate(from, to) {
@@ -82,7 +87,7 @@ class Generator {
       this.options.installDependencies = answers.installDependencies;
       const { installDependencies } = this.options;
       if (installDependencies === 'yarn' || installDependencies === 'npm') {
-        await installNpm(this._destinationPath, installDependencies);
+        await installNpm(this.options.destinationPath, installDependencies);
       }
     }
 

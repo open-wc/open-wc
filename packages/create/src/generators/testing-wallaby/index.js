@@ -1,4 +1,4 @@
-const TestingWallabyMixin = subclass =>
+export const TestingWallabyMixin = subclass =>
   class extends subclass {
     async execute() {
       await super.execute();
@@ -11,5 +11,3 @@ const TestingWallabyMixin = subclass =>
       await this.copyTemplates(`${__dirname}/templates/static/**/*`);
     }
   };
-
-export default TestingWallabyMixin;

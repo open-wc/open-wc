@@ -1,4 +1,4 @@
-const DemoingStorybookMixin = subclass =>
+export const DemoingStorybookMixin = subclass =>
   class extends subclass {
     async execute() {
       await super.execute();
@@ -9,11 +9,13 @@ const DemoingStorybookMixin = subclass =>
       );
 
       await this.copyTemplates(`${__dirname}/templates/static/**/*`);
-
-      if (this.options.scaffoldFilesFor && this.options.scaffoldFilesFor.includes('demoing')) {
-        await this.copyTemplates(`${__dirname}/templates/static-scaffold/**/*`);
-      }
     }
   };
 
-export default DemoingStorybookMixin;
+export const DemoingStorybookScaffoldMixin = subclass =>
+  class extends subclass {
+    async execute() {
+      await super.execute();
+      await this.copyTemplates(`${__dirname}/templates/static-scaffold/**/*`);
+    }
+  };

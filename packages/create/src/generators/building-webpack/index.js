@@ -1,4 +1,4 @@
-const BuildingWebpackMixin = subclass =>
+export const BuildingWebpackMixin = subclass =>
   class extends subclass {
     async execute() {
       await super.execute();
@@ -11,5 +11,3 @@ const BuildingWebpackMixin = subclass =>
       await this.copyTemplates(`${__dirname}/templates/static/**/*`);
     }
   };
-
-export default BuildingWebpackMixin;

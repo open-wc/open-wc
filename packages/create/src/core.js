@@ -25,10 +25,12 @@ export async function executeMixinGenerator(mixins, options = {}, Base = Generat
 
   // class Do extends mixins(Base) {}
   const inst = new Start();
-  inst.options = options;
+  inst.options = { ...inst.options, ...options };
 
   await inst.execute();
-  await inst.end();
+  if (!options.noEnd) {
+    await inst.end();
+  }
 }
 
 export const virtualFiles = [];
@@ -296,7 +298,27 @@ export function copyTemplateJsonInto(
 
   const overwriteMerge = (destinationArray, sourceArray) => sourceArray;
 
-  const mergeOptions = {};
+  const emptyTarget = value => (Array.isArray(value) ? [] : {});
+  const clone = (value, options) => deepmerge(emptyTarget(value), value, options);
+
+  const combineMerge = (target, source, options) => {
+    const destination = target.slice();
+
+    source.forEach((item, index) => {
+      if (typeof destination[index] === 'undefined') {
+        const cloneRequested = options.clone !== false;
+        const shouldClone = cloneRequested && options.isMergeableObject(item);
+        destination[index] = shouldClone ? clone(item, options) : item;
+      } else if (options.isMergeableObject(item)) {
+        destination[index] = deepmerge(target[index], item, options);
+      } else if (target.indexOf(item) === -1) {
+        destination.push(item);
+      }
+    });
+    return destination;
+  };
+
+  const mergeOptions = { arrayMerge: combineMerge };
   if (mode === 'override') {
     mergeOptions.arrayMerge = overwriteMerge;
   }

@@ -1,4 +1,4 @@
-const CommonRepoMixin = subclass =>
+export const CommonRepoMixin = subclass =>
   class extends subclass {
     async execute() {
       await super.execute();
@@ -15,5 +15,3 @@ const CommonRepoMixin = subclass =>
       await this.copyTemplates(`${__dirname}/templates/static/**/*`);
     }
   };
-
-export default CommonRepoMixin;
