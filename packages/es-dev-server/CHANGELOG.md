@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.8.2...es-dev-server@1.8.3) (2019-07-28)
+
+
+### Bug Fixes
+
+* **es-dev-server:** remove @types/deepmerge dependency ([b2a7e90](https://github.com/open-wc/open-wc/commit/b2a7e90))
+
+
+
+
+
 ## [1.8.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.8.1...es-dev-server@1.8.2) (2019-07-26)
 
 

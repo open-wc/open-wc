@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.15](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.13.14...@open-wc/semantic-dom-diff@0.13.15) (2019-07-28)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
 ## [0.13.14](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.13.13...@open-wc/semantic-dom-diff@0.13.14) (2019-07-27)
 
 **Note:** Version bump only for package @open-wc/semantic-dom-diff

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.4](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.2.3...@open-wc/karma-esm@2.2.4) (2019-07-28)
+
+
+### Bug Fixes
+
+* **karma-esm:** remove @types/deepmerge dependency ([0150895](https://github.com/open-wc/open-wc/commit/0150895))
+
+
+
+
+
 ## [2.2.3](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.2.2...@open-wc/karma-esm@2.2.3) (2019-07-26)
 
 **Note:** Version bump only for package @open-wc/karma-esm
