@@ -29,7 +29,6 @@
   ],
   "dependencies": {
     "@open-wc/building-utils": "^2.5.2",
-    "@types/deepmerge": "^2.2.0",
     "babel-plugin-istanbul": "^5.1.4",
     "deepmerge": "^3.3.0",
     "es-dev-server": "^1.8.2",
