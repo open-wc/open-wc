@@ -4,7 +4,7 @@ import { createServer } from './create-server.js';
 
 /** @param {import('./config.js').InternalConfig} cfg */
 export function startServer(cfg) {
-  const fileWatcher = cfg.watch ? chokidar.watch([]) : undefined;
+  let fileWatcher = cfg.watch ? chokidar.watch([]) : undefined;
 
   const { app, server } = createServer(cfg, fileWatcher);
 
@@ -40,7 +40,19 @@ export function startServer(cfg) {
   server.addListener('close', () => {
     if (fileWatcher) {
       fileWatcher.close();
+      fileWatcher = undefined;
     }
+  });
+
+  // make sure we don't leave any OS file handles after exit
+  ['exit', 'SIGINT', 'uncaughtException'].forEach(event => {
+    // @ts-ignore
+    process.on(event, () => {
+      if (fileWatcher) {
+        fileWatcher.close();
+        fileWatcher = undefined;
+      }
+    });
   });
 
   return {
