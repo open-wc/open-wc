@@ -189,5 +189,8 @@ export function readCommandLineArgs(argv = process.argv) {
     ...options,
     open,
     logStartup: true,
+    // when used from the command line we log babel errors to the browser,
+    // not to the terminal for a better UX
+    logBabelErrors: false,
   };
 }

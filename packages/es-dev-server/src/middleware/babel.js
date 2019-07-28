@@ -1,5 +1,6 @@
 import minimatch from 'minimatch';
 import path from 'path';
+import stripAnsi from 'strip-ansi';
 import { getBodyAsString, toFilePath } from '../utils/utils.js';
 import { compatibilityModes, baseFileExtensions } from '../constants.js';
 import { sendMessageToActiveBrowsers } from './message-channel.js';
@@ -16,6 +17,7 @@ import createBabelCompiler from '../utils/babel-compiler.js';
  * @property {string[]} extraFileExtensions
  * @property {string[]} babelModernExclude patterns to exclude from modern babel compilation
  * @property {string[]} babelExclude patterns to exclude from all babel compilation
+ * @property {boolean} logBabelErrors
  */
 
 /**
@@ -116,12 +118,24 @@ export function createBabelMiddleware(cfg) {
       ctx.body = compiled;
       return undefined;
     } catch (error) {
+      let errorMessage = error.message;
+
+      // replace babel error messages file path with the request url for readability
+      if (errorMessage.startsWith(filePath)) {
+        errorMessage = errorMessage.replace(filePath, ctx.url);
+      }
+
       // send compile error to browser for logging
-      ctx.body = `Error compiling: ${error.message}`;
+      ctx.body = `Error compiling: ${errorMessage}`;
       ctx.status = 500;
-      sendMessageToActiveBrowsers('error-message', JSON.stringify(error.message));
-      /* eslint-disable-next-line no-console */
-      console.error(error);
+
+      // strip babel ansi color codes because they're not colored correctly for the browser terminal
+      sendMessageToActiveBrowsers('error-message', JSON.stringify(stripAnsi(errorMessage)));
+
+      if (cfg.logBabelErrors) {
+        /* eslint-disable-next-line no-console */
+        console.error(errorMessage);
+      }
     }
     return undefined;
   }
