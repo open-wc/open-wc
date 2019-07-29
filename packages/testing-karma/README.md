@@ -55,13 +55,13 @@ module.exports = config => {
         // npm run test -- --grep test/bar/*
         { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' }
       ],
-    }),
 
-    // see the karma-esm docs for all options
-    esm: {
-      // if you are using 'bare module imports' you will need this option
-      nodeResolve: true
-    }
+      // see the karma-esm docs for all options
+      esm: {
+        // if you are using 'bare module imports' you will need this option
+        nodeResolve: true
+      }
+    })
   );
   return config;
 };
