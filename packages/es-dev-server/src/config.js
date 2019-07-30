@@ -17,6 +17,9 @@ import { compatibilityModes } from './constants.js';
  *   can be an absolute file path, or a path relative to the root dir
  * @property {string} [rootDir] root directory to set up the web server, any served files must
  *   be within the scope of this folder
+ * @property {string} [basePath] Base path the app is served on. This path is only visible in
+ *   the browser, it is stripped from the request url before resolving files. Starts with a /
+ *   and ends with no/. For example: /my-app, /foo, /foo/bar
  * @property {import('koa').Middleware[]} [middlewares]
  * @property {boolean} logStartup whether to log server startup
  *
@@ -52,6 +55,7 @@ import { compatibilityModes } from './constants.js';
  *   appIndex file path
  * @property {string} [appIndexDir] app index browser directory, generated from
  *   appIndex file path and root dir
+ * @property {string} basePath
  * @property {string} rootDir
  * @property {boolean} logStartup whether to log a startup message
  * @property {import('koa').Middleware[]} customMiddlewares
@@ -84,6 +88,7 @@ export function createConfig(config) {
     hostname = '127.0.0.1',
     open = false,
     rootDir = process.cwd(),
+    basePath,
     watch = false,
     watchExcludes = [],
     http2 = false,
@@ -125,10 +130,9 @@ export function createConfig(config) {
     openPath = path.normalize(open);
   } else if (appIndex) {
     // if an appIndex was provided, use it's directory as open path
-    openPath = `${appIndexDir}/`;
+    openPath = `${basePath || ''}${appIndexDir}/`;
   } else {
-    // default to working directory root
-    openPath = '/';
+    openPath = basePath ? `${basePath}/` : '/';
   }
 
   // make sure path properly starts a /
@@ -142,6 +146,7 @@ export function createConfig(config) {
     rootDir,
     appIndexDir,
     appIndex,
+    basePath,
     moduleDirectories: moduleDirs,
     nodeResolve,
     readUserBabelConfig: babel,

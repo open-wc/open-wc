@@ -1,5 +1,6 @@
 import koaStatic from 'koa-static';
 import koaEtag from 'koa-etag';
+import { createBasePathMiddleware } from './middleware/base-path.js';
 import { createHistoryAPIFallbackMiddleware } from './middleware/history-api-fallback.js';
 import { createBabelMiddleware } from './middleware/babel.js';
 import { createReloadBrowserMiddleware } from './middleware/reload-browser.js';
@@ -22,6 +23,7 @@ export function createMiddlewares(config, fileWatcher) {
     rootDir,
     appIndex,
     appIndexDir,
+    basePath,
     moduleDirectories,
     nodeResolve,
     readUserBabelConfig,
@@ -60,6 +62,11 @@ export function createMiddlewares(config, fileWatcher) {
   const setupTransformIndexHTML = setupBabel || setupCompatibility;
   const setupHistoryFallback = appIndex;
   const setupMessageChanel = watch || setupBabel;
+
+  // strip application base path from requests
+  if (config.basePath) {
+    middlewares.push(createBasePathMiddleware({ basePath }));
+  }
 
   // add custom user's middlewares
   if (customMiddlewares && customMiddlewares.length > 0) {
