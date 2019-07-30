@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "Default configuration for working with rollup",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
