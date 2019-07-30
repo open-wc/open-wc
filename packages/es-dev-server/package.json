@@ -38,6 +38,8 @@
     "start:no-babel": "yarn build && node dist/cli.js --app-index demo/babel/index.html --open --http2 --watch",
     "start:typescript": "yarn build && node dist/cli.js --app-index demo/typescript/index.html --file-extensions .ts --node-resolve --open --watch --http2 --babel",
     "start:index-rewrite": "yarn build && node dist/cli.js --app-index demo/index-rewrite/index.html --config demo/index-rewrite/es-dev-server.config.js --node-resolve --open /",
+    "start:base-path": "yarn build && node dist/cli.js --app-index demo/base-path/index.html --base-path /my-base-path --node-resolve --http2 --watch --open",
+    "start:base-path-compat": "yarn build && node dist/cli.js --app-index demo/base-path/index.html --base-path /my-base-path --node-resolve --compatibility all --http2 --watch --open",
     "generate-certificates": "node scripts/generate-certificates.js",
     "prepublishOnly": "npm run build && ../../scripts/insert-header.js"
   },

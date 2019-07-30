@@ -54,6 +54,13 @@ export function readCommandLineArgs(argv = process.argv) {
         'The root directory to serve files from. Defaults to the current working directory.',
     },
     {
+      name: 'base-path',
+      type: String,
+      description:
+        'Base path the app is served on. This path is only visible in the browser, it is stripped from the request url before resolving files. ' +
+        'Starts with a / and ends with no/. For example: /my-app, /foo, /foo/bar',
+    },
+    {
       name: 'module-dirs',
       alias: 'm',
       type: String,
