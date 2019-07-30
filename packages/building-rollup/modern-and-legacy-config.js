@@ -37,6 +37,7 @@ function createConfig(_options, legacy) {
     },
     plugins: [
       indexHTML({
+        ...(options.indexHTMLPlugin || {}),
         // tell index-html-plugin that we are creating two builds
         multiBuild: true,
         // tell index-html-plugin whether this is the legacy config
@@ -50,7 +51,6 @@ function createConfig(_options, legacy) {
           systemJs: true,
           fetch: true,
         },
-        ...(options.indexHTMLPlugin || {}),
       }),
 
       // resolve bare import specifiers

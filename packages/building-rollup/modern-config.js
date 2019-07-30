@@ -36,12 +36,12 @@ module.exports = function createBasicConfig(_options) {
     plugins: [
       // parse input index.html as input and feed any modules found to rollup
       indexHTML({
+        ...(options.indexHTMLPlugin || {}),
         polyfills: {
           ...((options.indexHTMLPlugin && options.indexHTMLPlugin.polyfills) || {}),
           dynamicImport: true,
           webcomponents: true,
         },
-        ...(options.indexHTMLPlugin || {}),
       }),
 
       // resolve bare import specifiers
