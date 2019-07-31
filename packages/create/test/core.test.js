@@ -1,6 +1,7 @@
 /* eslint-disable no-template-curly-in-string */
 
 import chai from 'chai';
+import fs from 'fs';
 import {
   processTemplate,
   writeFileToPath,
@@ -12,6 +13,8 @@ import {
   executeMixinGenerator,
   filesToTree,
   optionsToCommand,
+  writeFileToPathOnDisk,
+  setOverrideAllFiles,
 } from '../src/core.js';
 
 const { expect } = chai;
@@ -61,6 +64,12 @@ describe('writeFileToPath', () => {
 describe('readFileFromPath', () => {
   beforeEach(() => {
     resetVirtualFiles();
+    fs.writeFileSync(`./__tmpfoo.txt`, 'content of foo');
+  });
+  afterEach(() => {
+    if (fs.existsSync(`./__tmpfoo.txt`)) {
+      fs.unlinkSync(`./__tmpfoo.txt`);
+    }
   });
 
   it('return false for non existing files', async () => {
@@ -68,12 +77,12 @@ describe('readFileFromPath', () => {
   });
 
   it('reads file from disk', async () => {
-    expect(readFileFromPath(`${__dirname}/assets/foo.txt`)).to.equal('content of foo');
+    expect(readFileFromPath(`./__tmpfoo.txt`)).to.equal('content of foo');
   });
 
   it('reads file from virtual then from disk', async () => {
-    writeFileToPath(`${__dirname}/assets/foo.txt`, 'virtual foo');
-    expect(readFileFromPath(`${__dirname}/assets/foo.txt`)).to.equal('virtual foo');
+    writeFileToPath(`./__tmpfoo.txt`, 'virtual foo');
+    expect(readFileFromPath(`./__tmpfoo.txt`)).to.equal('virtual foo');
   });
 });
 
@@ -88,6 +97,37 @@ describe('deleteVirtualFile', () => {
 
     deleteVirtualFile('foo/bar.js');
     expect(virtualFiles).to.deep.equal([]);
+  });
+});
+
+describe('writeFileToPathOnDisk', () => {
+  beforeEach(() => {
+    fs.writeFileSync(`./__tmpfoo.txt`, 'content of foo');
+  });
+  afterEach(() => {
+    if (fs.existsSync(`./__tmpfoo.txt`)) {
+      fs.unlinkSync(`./__tmpfoo.txt`);
+    }
+  });
+
+  it('will not override by default', async () => {
+    await writeFileToPathOnDisk(`./__tmpfoo.txt`, 'updatedfoofile', { ask: false });
+    expect(fs.readFileSync(`./__tmpfoo.txt`, 'utf-8')).to.equal('content of foo');
+  });
+
+  it('will override if set', async () => {
+    await writeFileToPathOnDisk(`./__tmpfoo.txt`, 'updatedfoofile', {
+      override: true,
+      ask: false,
+    });
+    expect(fs.readFileSync(`./__tmpfoo.txt`, 'utf-8')).to.equal('updatedfoofile');
+  });
+
+  it('will override if setOverrideAllFiles(true) is used', async () => {
+    setOverrideAllFiles(true);
+    await writeFileToPathOnDisk(`./__tmpfoo.txt`, 'updatedfoofile', { ask: false });
+    expect(fs.readFileSync(`./__tmpfoo.txt`, 'utf-8')).to.equal('updatedfoofile');
+    setOverrideAllFiles(false);
   });
 });
 
