@@ -111,17 +111,74 @@ export function deleteVirtualFile(filePath) {
   }
 }
 
+let overwriteAllFiles = false;
+
+/**
+ *
+ * @param {boolean} value
+ */
+export function setOverrideAllFiles(value) {
+  overwriteAllFiles = value;
+}
+
 /**
  *
  * @param {string} toPath
  * @param {string} fileContent
+ * @param {object} obj Options
  */
-export function writeFileToPathOnDisk(toPath, fileContent) {
+export async function writeFileToPathOnDisk(
+  toPath,
+  fileContent,
+  { override = false, ask = true } = {},
+) {
   const toPathDir = path.dirname(toPath);
   if (!fs.existsSync(toPathDir)) {
     fs.mkdirSync(toPathDir, { recursive: true });
   }
-  fs.writeFileSync(toPath, fileContent);
+  if (fs.existsSync(toPath)) {
+    if (override || overwriteAllFiles) {
+      fs.writeFileSync(toPath, fileContent);
+    } else if (ask) {
+      let wantOverride = overwriteAllFiles;
+      if (!wantOverride) {
+        const answers = await prompts(
+          [
+            {
+              type: 'select',
+              name: 'overwriteFile',
+              message: `Do you want to overwrite ${toPath}?`,
+              choices: [
+                { title: 'Yes', value: 'true' },
+                {
+                  title: 'Yes for all files',
+                  value: 'always',
+                },
+                { title: 'No', value: 'false' },
+              ],
+            },
+          ],
+          {
+            onCancel: () => {
+              process.exit();
+            },
+          },
+        );
+        if (answers.overwriteFile === 'always') {
+          setOverrideAllFiles(true);
+          wantOverride = true;
+        }
+        if (answers.overwriteFile === 'true') {
+          wantOverride = true;
+        }
+      }
+      if (wantOverride) {
+        fs.writeFileSync(toPath, fileContent);
+      }
+    }
+  } else {
+    fs.writeFileSync(toPath, fileContent);
+  }
 }
 
 /**
@@ -211,9 +268,11 @@ export async function writeFilesToDisk() {
   );
 
   if (answers.writeToDisk === 'true') {
-    virtualFiles.forEach(fileMeta => {
-      writeFileToPathOnDisk(fileMeta.path, fileMeta.content);
-    });
+    // eslint-disable-next-line no-restricted-syntax
+    for (const fileMeta of virtualFiles) {
+      // eslint-disable-next-line no-await-in-loop
+      await writeFileToPathOnDisk(fileMeta.path, fileMeta.content);
+    }
     console.log('Writing..... done');
   }
 
