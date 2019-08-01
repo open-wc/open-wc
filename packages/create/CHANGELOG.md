@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.0...@open-wc/create@0.18.1) (2019-08-01)
+
+
+### Bug Fixes
+
+* **create:** add check before overwriting files ([ee469c0](https://github.com/open-wc/open-wc/commit/ee469c0))
+
+
+
+
+
 # [0.18.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.17.0...@open-wc/create@0.18.0) (2019-08-01)
 
 
