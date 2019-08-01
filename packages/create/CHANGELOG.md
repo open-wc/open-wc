@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.17.0...@open-wc/create@0.18.0) (2019-08-01)
+
+
+### Features
+
+* **create:** app creates sub components ([6325861](https://github.com/open-wc/open-wc/commit/6325861))
+
+
+
+
+
 # [0.17.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.16.0...@open-wc/create@0.17.0) (2019-07-27)
 
 
