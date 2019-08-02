@@ -279,8 +279,8 @@ export async function writeFilesToDisk() {
   return answers.writeToDisk;
 }
 
-export function optionsToCommand(options) {
-  let command = 'npm init @open-wc ';
+export function optionsToCommand(options, generatorName = '@open-wc') {
+  let command = `npm init ${generatorName} `;
   Object.keys(options).forEach(key => {
     const value = options[key];
     if (typeof value === 'string') {
