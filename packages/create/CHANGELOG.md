@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.2...@open-wc/create@0.18.3) (2019-08-02)
+
+
+### Bug Fixes
+
+* **create:** allow subclassers to pass custom generator names ([#680](https://github.com/open-wc/open-wc/issues/680)) ([d19b7b9](https://github.com/open-wc/open-wc/commit/d19b7b9))
+
+
+
+
+
 ## [0.18.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.1...@open-wc/create@0.18.2) (2019-08-01)
 
 
