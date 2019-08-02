@@ -16496,6 +16496,10 @@ typescript@^3.3.3333:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.5.tgz#2d2618d10bb566572b8d7aad5180d84257d70a99"
   integrity sha512-YycBxUb49UUhdNMU5aJ7z5Ej2XGmaIBL0x34vZ82fn3hGvD+bgrMrVDpatgz2f7YxUMJxMkbWxJZeAvDxVe7Vw==
 
+"typescript@https://typescript.visualstudio.com/cf7ac146-d525-443c-b23c-0d58337efebc/_apis/build/builds/38559/artifacts?artifactName=tgz&fileId=6651122DC3B65DC6E5361D58210F56683D12455CF585713C3064D0EC82142E2D02&fileName=/typescript-3.6.0-insiders.20190802.tgz":
+  version "3.6.0-insiders.20190802"
+  resolved "https://typescript.visualstudio.com/cf7ac146-d525-443c-b23c-0d58337efebc/_apis/build/builds/38559/artifacts?artifactName=tgz&fileId=6651122DC3B65DC6E5361D58210F56683D12455CF585713C3064D0EC82142E2D02&fileName=/typescript-3.6.0-insiders.20190802.tgz#56b6f1807793a06325d5218888ce78ccd534e7ff"
+
 typical@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/typical/-/typical-2.6.1.tgz#5c080e5d661cbbe38259d2e70a3c7253e873881d"
