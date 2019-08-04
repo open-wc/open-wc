@@ -145,21 +145,21 @@ function getPolyfills(config) {
         'configured to pollyfill webcomponentsjs, but no polyfills found. Install with "npm i -D @webcomponents/webcomponentsjs"',
       );
     }
+  }
 
-    if (config.polyfills.esModuleShims) {
-      try {
-        instructions.push({
-          name: 'es-module-shims',
-          test: "'noModule' in HTMLScriptElement.prototype",
-          path: require.resolve('es-module-shims/dist/es-module-shims.min.js'),
-          sourcemapPath: require.resolve('es-module-shims/dist/es-module-shims.min.js.map'),
-          module: true,
-        });
-      } catch (error) {
-        throw new Error(
-          'configured to pollyfill es-module-shims, but no polyfills found. Install with "npm i -D es-module-shims"',
-        );
-      }
+  if (config.polyfills.esModuleShims) {
+    try {
+      instructions.push({
+        name: 'es-module-shims',
+        test: "'noModule' in HTMLScriptElement.prototype",
+        path: require.resolve('es-module-shims/dist/es-module-shims.min.js'),
+        sourcemapPath: require.resolve('es-module-shims/dist/es-module-shims.min.js.map'),
+        module: true,
+      });
+    } catch (error) {
+      throw new Error(
+        'configured to pollyfill es-module-shims, but no polyfills found. Install with "npm i -D es-module-shims"',
+      );
     }
   }
 
