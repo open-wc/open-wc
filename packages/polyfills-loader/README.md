@@ -2,6 +2,8 @@
 
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
+> This package is deprecated! We recommend using [es-dev-server](https://www.npmjs.com/package/es-dev-server) while developing. For your production build, we recommend [@open-wc/building-rollup](https://www.npmjs.com/package/@open-wc/building-rollup) and [@open-wc/building-webpack](https://www.npmjs.com/package/@open-wc/building-webpack). These packages will handle polyfills for you automatically.
+
 A modern loader for the web components polyfills.
 
 ## Why this loader
