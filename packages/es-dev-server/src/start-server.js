@@ -4,9 +4,11 @@ import { createServer } from './create-server.js';
 
 /** @param {import('./config.js').InternalConfig} cfg */
 export function startServer(cfg) {
-  const fileWatcher = cfg.watch ? chokidar.watch([]) : undefined;
+  let fileWatcher = cfg.watch ? chokidar.watch([]) : undefined;
 
-  const { app, server } = createServer(cfg, fileWatcher);
+  const result = createServer(cfg, fileWatcher);
+  const { app } = result;
+  let { server } = result;
 
   // start the server, open the browser and log messages
   server.listen({ port: cfg.port, host: cfg.hostname }, () => {
@@ -40,7 +42,18 @@ export function startServer(cfg) {
   server.addListener('close', () => {
     if (fileWatcher) {
       fileWatcher.close();
+      fileWatcher = undefined;
     }
+  });
+
+  ['exit', 'SIGINT', 'uncaughtException'].forEach(event => {
+    // @ts-ignore
+    process.on(event, () => {
+      if (server) {
+        server.close();
+        server = undefined;
+      }
+    });
   });
 
   return {
