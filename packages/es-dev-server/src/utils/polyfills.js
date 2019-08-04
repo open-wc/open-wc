@@ -1,9 +1,14 @@
 import { compatibilityModes } from '../constants.js';
 
 /** @type {import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig} */
-export const modernPolyfills = {
-  webcomponents: true,
+export const esmPolyfills = {
   esModuleShims: true,
+};
+
+/** @type {import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig} */
+export const modernPolyfills = {
+  ...esmPolyfills,
+  webcomponents: true,
 };
 
 /** @type {import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig} */
@@ -19,17 +24,14 @@ export const legacyPolyfills = {
  * @param {string} compatibilityMode
  */
 export function getPolyfills(compatibilityMode) {
-  if (!compatibilityMode || compatibilityMode === compatibilityModes.NONE) {
-    return {};
+  switch (compatibilityMode) {
+    case compatibilityModes.ESM:
+      return esmPolyfills;
+    case compatibilityModes.MODERN:
+      return modernPolyfills;
+    case compatibilityModes.ALL:
+      return legacyPolyfills;
+    default:
+      return {};
   }
-
-  if (compatibilityMode === compatibilityModes.ALL) {
-    return legacyPolyfills;
-  }
-
-  if ([compatibilityModes.MODERN, compatibilityModes.ESM].includes(compatibilityMode)) {
-    return modernPolyfills;
-  }
-
-  throw new Error(`Unknown compatibility mode: ${compatibilityMode}`);
 }

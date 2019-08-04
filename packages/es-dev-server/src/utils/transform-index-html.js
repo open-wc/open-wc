@@ -57,7 +57,9 @@ export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibility
   indexHTML = addPolyfilledImportMaps(indexHTML, compatibilityMode, resources);
 
   // inject systemjs resolver which appends a query param to trigger es5 compilation
-  indexHTML = indexHTML.replace('</body>', `${systemJsLegacyResolveScript}</body>`);
+  if (compatibilityMode === compatibilityModes.ALL) {
+    indexHTML = indexHTML.replace('</body>', `${systemJsLegacyResolveScript}</body>`);
+  }
 
   return {
     indexHTML,

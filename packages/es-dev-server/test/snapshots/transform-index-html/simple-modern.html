@@ -37,17 +37,6 @@
 
   polyfills.length ? Promise.all(polyfills).then(loadEntries) : loadEntries();
 })();</script>
-<script nomodule>
-  // appends a query param to each systemjs request to trigger es5 compilation
-  var originalResolve = System.constructor.prototype.resolve;
-  System.constructor.prototype.resolve = function () {
-    return Promise.resolve(originalResolve.apply(this, arguments))
-      .then(function (url) {
-        return url + '?legacy=true';
-      });
-  };
-</script>
-
   <script>
     // sets up a message channel with es-dev-server to receive events
     // for reloading the browser on file change or logging errors
