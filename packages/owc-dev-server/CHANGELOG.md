@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/open-wc/open-wc/compare/owc-dev-server@1.0.0...owc-dev-server@1.0.1) (2019-08-04)
+
+
+### Bug Fixes
+
+* **owc-dev-server:** deprecate package in favor of es-dev-server ([8b079d4](https://github.com/open-wc/open-wc/commit/8b079d4))
+
+
+
+
+
 # [1.0.0](https://github.com/open-wc/open-wc/compare/owc-dev-server@0.4.3...owc-dev-server@1.0.0) (2019-06-14)
 
 
