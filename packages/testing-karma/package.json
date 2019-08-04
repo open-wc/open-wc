@@ -15,12 +15,12 @@
     "directory": "packages/testing-karma"
   },
   "scripts": {
-    "test": "karma start demo/karma.conf.js --coverage --legacy",
-    "test:watch": "karma start demo/karma.conf.js --auto-watch=true --single-run=false",
-    "test:update-snapshots": "karma start demo/karma.conf.js --update-snapshots",
-    "test:prune-snapshots": "karma start demo/karma.conf.js --prune-snapshots",
-    "test:legacy": "karma start demo/karma.conf.js --legacy --coverage",
-    "test:bs": "karma start demo/karma.bs.conf.js --legacy --coverage",
+    "demo:test": "karma start demo/karma.conf.js --coverage --legacy",
+    "demo:test:watch": "karma start demo/karma.conf.js --auto-watch=true --single-run=false",
+    "demo:test:update-snapshots": "karma start demo/karma.conf.js --update-snapshots",
+    "demo:test:prune-snapshots": "karma start demo/karma.conf.js --prune-snapshots",
+    "demo:test:legacy": "karma start demo/karma.conf.js --legacy --coverage",
+    "demo:test:bs": "karma start demo/karma.bs.conf.js --legacy --coverage",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "files": [

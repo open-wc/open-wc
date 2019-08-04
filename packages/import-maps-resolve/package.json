@@ -20,8 +20,8 @@
   "scripts": {
     "build": "babel src --out-dir dist --copy-files --include-dotfiles",
     "start": "npm run build && node ./dist/index.js",
-    "test": "mocha --require @babel/register",
-    "test:ci": "npm run test",
+    "test": "npm run test:node",
+    "test:node": "mocha --require @babel/register",
     "test:watch": "onchange 'src/**/*.js' 'test/**/*.js' -- npm run test --silent",
     "prepublishOnly": "npm run build && ../../scripts/insert-header.js"
   },

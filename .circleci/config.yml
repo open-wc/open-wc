@@ -33,7 +33,7 @@ jobs:
       - run: npm run lint
 
       # run tests
-      - run: npm run test:ci
+      - run: npm run test:node
       - run: npm run test:bs
 
       - persist_to_workspace:

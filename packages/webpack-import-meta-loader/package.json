@@ -19,8 +19,8 @@
     "*.js"
   ],
   "scripts": {
-    "test": "mocha --require @babel/register",
-    "test:ci": "npm run test",
+    "test": "npm run test:node",
+    "test:node": "mocha --require @babel/register",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "devDependencies": {
