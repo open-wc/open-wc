@@ -13,11 +13,8 @@ Without any flags, `es-dev-server` acts as a simple static file server. Through 
 
 Compatibility mode enables bundle-free development with modern javascript, es modules and import maps on older browsers, including IE11.
 
-This is made possible by two great projects:
-- [es-module-shims](https://github.com/guybedford/es-module-shims) for shimming new module features
-- [systemjs](https://github.com/systemjs/systemjs) for polyfilling modules on older browser which don't support them
-
-[Read more about compatibility mode here.](#compatibility-mode)
+## Getting started
+We recommend [following this guide](https://dev.to/open-wc/developing-without-a-build-2-es-dev-server-1cf5) for a step by step overview of different workflows with `es-dev-server`.
 
 ## Installation
 ```bash
@@ -38,62 +35,58 @@ npm run start
 npx es-dev-server
 ```
 
-## Basic workflows
-### Static server
+## Command line flags and Configuration
+### Server configuration
+| name                 |  type          | description                                                                |
+| -------------------- | -------------- | -------------------------------------------------------------------------- |
+| port                 | number         | The port to use. Default: 8080                                             |
+| hostname             | string         | The hostname to use. Default: localhost                                    |
+| open                 | boolean/string | Opens the browser on app-index, root dir or a custom path                  |
+| app-index            | string         | The app's index.html file, sets up history API fallback for SPA routing    |
+| root-dir             | string         | The root directory to serve files from. Default: working directory         |
+| base-path            | string         | Base path the app is served on. Example: /my-app  |
+| config               | string         | The file to read configuration from (js or json)                           |
+| help                 | none           | See all options                                                            |
 
-This setup does no code transformation at all. Great for blazing fast development on the latest browsers or when running a production build of your app.
+### Development help
+| name                 |  type          | description                                                                |
+| -------------------- | -------------- | -------------------------------------------------------------------------- |
+| watch                | boolean        | Reload the browser when files are edited                                   |
+| http2                | number         | Serve files over HTTP2. Sets up HTTPS with self-signed certificates        |
 
-```bash
-npx es-dev-server --watch --open index.html
+### Code transformation
+| name                 |  type          | description                                                                |
+| -------------------- | -------------- | -------------------------------------------------------------------------- |
+| compatibility        | string         | Compatibility mode for older browsers. Can be: `esm`, `modern` or `all`    |
+| node-resolve         | number         | Resolve bare import imports using node resolve                             |
+| module-dirs          | string/array   | Directories to resolve modules from. Used by node-resolve                  |
+| babel                | boolean        | Transform served code through babel. Requires .babelrc                     |
+| file-extensions      | number/array   | Extra file extentions to use when transforming code.                       |
+| babel-exclude        | number/array   | Patterns of files to exclude from babel compilation.                       |
+| babel-modern-exclude | number/array   | Patterns of files to exclude from babel compilation on modern browsers.    |
+
+Most commands have an alias/shorthand. You can view them by using `--help`.
+
+### Configuration files
+We pick up an `es-dev-server.config.js` file automatically if it is present in the current working directory. You can specify a custom config path using the `config` flag.
+
+Configuration options are the same as command line flags, using their camelCased names. Example:
+```javascript
+module.exports = {
+  port: 8080,
+  watch: true,
+  nodeResolve: true,
+  appIndex: 'demo/index.html',
+  moduleDirs: ['node_modules', 'custom-modules']
+}
 ```
 
-HTTP/2 is useful when serving unbundled code as it is better at handling many concurrent requests. It requires a HTTPS connection, we do this using self-signed certificates. On first run the browser will prompt a warning, you will need to accept the certificates before proceeding. Since you are on localhost, this is safe to do.
+In addition to the command line flags, the configuration file accepts these additional options:
 
-```bash
-npx es-dev-server --watch --http2 --open index.html
-```
-
-### SPA Routing
-
-If your app does routing in front-end using the history API you can setup the server to serve your `index.html` on any route request. For this you need to pass the `--app-index` flag. If you set this flag, `--open` will open on that path automatically.
-
-```bash
-npx es-dev-server --app-index index.html --watch --http2 --open
-```
-
-If you use this option it's recommend to set up a `<base href="">` element with the base path of your application. This way all relative files resolved correctly also when changing paths. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
-
-### Resolve bare module imports
-
-If you are using "bare" module imports (`import foo from 'bar';`) without valid paths, the browser will not understand them.
-
-You can use the `node-resolve` flag to resolve your bare module imports before being served to the browser:
-
-```bash
-npx es-dev-server --app-index index.html --watch --http2 --node-resolve --open
-```
-
-[The import maps proposal](https://github.com/WICG/import-maps) aims to resolve the need for editing your source code before it is served to the browser but it is still experimental.
-
-### Use with new javascript syntax and features on older browsers
-
-Compatibility mode is a great way to use new features without requiring a bundler for developing or testing on different browsers. Turning on compatibility mode will cause `es-dev-server` to do the minimal required code transformation, and injects polyfills when necessary.
-
-There are three different compatibility modes you can use:
-
-```bash
-# esm: use dynamic import and import maps on all browsers that support modules
-npx es-dev-server --app-index index.html --watch --http2 --compatibility esm --open
-
-# modern: use latest javascript features and syntax on latest 2 chrome, safari, firefox and edge
-npx es-dev-server --app-index index.html --watch --http2 --compatibility modern --open
-
-# all: use latest javascript features and syntax on older browsers, down to IE11
-npx es-dev-server --app-index index.html --watch --http2 --compatibility all --open
-```
-
-Note that "latest javascript features and syntax" is a general term, not everything can be polyfilled/shimmed properly. [Read more here](#compatibility-mode) for full details on compatibility mode.
-
+| name                 |  type          | description                                                              |
+| -------------------- | -------------- | ------------------------------------------------------------------------ |
+| middlewares          | array          | Koa middlewares to add to the server, read more below.                   |
+| babelConfig          | object         | Babel config to run with the server                                      |
 ## Folder structure
 `es-dev-server` serves static files using the same structure as your file system. It cannot serve any files outside of the root of the web server. You need to make sure any files requested, including node modules, are accessible for the web server.
 
@@ -172,59 +165,6 @@ Click read more to view different strategies for setting up your project's folde
   If you use SPA routing, using a base element is highly recommended. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
 
 </details>
-
-## Command line flags and Configuration
-### Server configuration
-| name                 |  type          | description                                                                |
-| -------------------- | -------------- | -------------------------------------------------------------------------- |
-| port                 | number         | The port to use. Default: 8080                                             |
-| hostname             | string         | The hostname to use. Default: localhost                                    |
-| open                 | boolean/string | Opens the browser on app-index, root dir or a custom path                  |
-| app-index            | string         | The app's index.html file, sets up history API fallback for SPA routing    |
-| root-dir             | string         | The root directory to serve files from. Default: working directory         |
-| base-path            | string         | Base path the app is served on. Example: /my-app  |
-| config               | string         | The file to read configuration from (js or json)                           |
-| help                 | none           | See all options                                                            |
-
-### Development help
-| name                 |  type          | description                                                                |
-| -------------------- | -------------- | -------------------------------------------------------------------------- |
-| watch                | boolean        | Reload the browser when files are edited                                   |
-| http2                | number         | Serve files over HTTP2. Sets up HTTPS with self-signed certificates        |
-
-### Code transformation
-| name                 |  type          | description                                                                |
-| -------------------- | -------------- | -------------------------------------------------------------------------- |
-| compatibility        | string         | Compatibility mode for older browsers. Can be: `esm`, `modern` or `all`    |
-| node-resolve         | number         | Resolve bare import imports using node resolve                             |
-| module-dirs          | string/array   | Directories to resolve modules from. Used by node-resolve                  |
-| babel                | number         | Transform served code through babel. Requires .babelrc                     |
-| file-extensions      | number/array   | Extra file extentions to use when transforming code.                       |
-| babel-exclude        | number/array   | Patterns of files to exclude from babel compilation.                       |
-| babel-modern-exclude | number/array   | Patterns of files to exclude from babel compilation on modern browsers.    |
-
-Most commands have an alias/shorthand. You can view them by using `--help`.
-
-### Configuration files
-We pick up an `es-dev-server.config.js` file automatically if it is present in the current working directory. You can specify a custom config path using the `config` flag.
-
-Configuration options are the same as command line flags, using their camelCased names. Example:
-```javascript
-module.exports = {
-  port: 8080,
-  watch: true,
-  nodeResolve: true,
-  appIndex: 'demo/index.html',
-  moduleDirs: ['node_modules', 'custom-modules']
-}
-```
-
-In addition to the command line flags, the configuration file accepts these additional options:
-
-| name                 |  type          | description                                                              |
-| -------------------- | -------------- | ------------------------------------------------------------------------ |
-| middlewares          | array          | Koa middlewares to add to the server, read more below.                   |
-| babelConfig          | object         | Babel config to run with the server                                      |
 
 ## Advanced usage
 
