@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.9.0...es-dev-server@1.10.0) (2019-08-04)
+
+
+### Bug Fixes
+
+* **es-dev-server:** remove unnecessary polyfills in esm mode ([c3871b1](https://github.com/open-wc/open-wc/commit/c3871b1))
+
+
+### Features
+
+* **es-dev-server:** improve babel error logging ([c07db81](https://github.com/open-wc/open-wc/commit/c07db81))
+
+
+
+
+
 # [1.9.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.8.3...es-dev-server@1.9.0) (2019-08-04)
 
 

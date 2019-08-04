@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.5.2...@open-wc/building-utils@2.5.3) (2019-08-04)
+
+
+### Bug Fixes
+
+* **es-dev-server:** remove unnecessary polyfills in esm mode ([c3871b1](https://github.com/open-wc/open-wc/commit/c3871b1))
+
+
+
+
+
 ## [2.5.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.5.1...@open-wc/building-utils@2.5.2) (2019-07-26)
 
 
