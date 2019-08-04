@@ -14,11 +14,11 @@
     "directory": "packages/building-rollup"
   },
   "scripts": {
-    "start:build": "es-dev-server --app-index dist/index.html --open",
-    "build": "rimraf dist && rollup -c demo/js/rollup.config.js",
-    "build:modern": "rimraf dist && rollup -c demo/js/rollup.modern.config.js",
-    "build:ts": "rimraf dist && rollup -c demo/ts/rollup.config.js",
-    "build:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js",
+    "demo:start:build": "es-dev-server --app-index dist/index.html --open",
+    "demo:build": "rimraf dist && rollup -c demo/js/rollup.config.js",
+    "demo:build:modern": "rimraf dist && rollup -c demo/js/rollup.modern.config.js",
+    "demo:build:ts": "rimraf dist && rollup -c demo/ts/rollup.config.js",
+    "demo:build:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "main": "index.js",

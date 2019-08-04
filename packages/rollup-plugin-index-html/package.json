@@ -10,9 +10,9 @@
     "access": "public"
   },
   "scripts": {
-    "test": "mocha test/**/*.test.js test/*.test.js",
-    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots",
-    "test:ci": "npm run test"
+    "test": "npm run test:node",
+    "test:node": "mocha test/**/*.test.js test/*.test.js",
+    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
   },
   "repository": {
     "type": "git",

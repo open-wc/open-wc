@@ -20,13 +20,6 @@
     "register-chai-plugins.js"
   ],
   "scripts": {
-    "test": "karma start --coverage",
-    "test:watch": "karma start --auto-watch=true --single-run=false",
-    "test:compatibility": "karma start --compatibility all --coverage",
-    "test:compatibility:watch": "karma start --compatibility all --auto-watch=true --single-run=false",
-    "test:bs": "karma start karma.bs.conf.js --compatibility --coverage",
-    "test:update-snapshots": "karma start --update-snapshots",
-    "test:prune-snapshots": "karma start --prune-snapshots",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "dependencies": {
@@ -38,11 +31,5 @@
     "@types/mocha": "^5.0.0",
     "chai-a11y-axe": "^1.1.1",
     "mocha": "^5.0.0"
-  },
-  "devDependencies": {
-    "@open-wc/testing-karma": "^3.1.10",
-    "@open-wc/testing-karma-bs": "^1.1.35",
-    "@open-wc/testing-wallaby": "^0.1.12",
-    "webpack-merge": "^4.1.5"
   }
 }
