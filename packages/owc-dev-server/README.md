@@ -2,6 +2,8 @@
 
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
+> This packages is deprecated! We recommend using [es-dev-server](https://www.npmjs.com/package/es-dev-server) instead.
+
 A simple web server for simple web developers. Does the minimal amount of work required for web development on modern web browsers. Specifically designed to work with the native es module loader available in all major browsers.
 
 ### Resolves node-style module imports to browser-style
