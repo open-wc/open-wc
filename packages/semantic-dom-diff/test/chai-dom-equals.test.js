@@ -10,7 +10,9 @@ describe('dom', () => {
 
   it('passes along provided configuration', async () => {
     const el = await fixture('<div foo="bar"></div>');
+    // @ts-ignore
     expect(el).dom.to.equal('<div></div>', { ignoreAttributes: ['foo'] });
+    // @ts-ignore
     assert.dom.equal(el, '<div></div>', { ignoreAttributes: ['foo'] });
   });
 });
@@ -24,7 +26,9 @@ describe('lightDom', () => {
 
   it('passes along provided configuration', async () => {
     const el = await fixture('<div><p foo="bar">foo</p></div>');
+    // @ts-ignore
     expect(el).lightDom.to.equal('<p>foo</p>', { ignoreAttributes: ['foo'] });
+    // @ts-ignore
     assert.lightDom.equal(el, '<p>foo</p>', { ignoreAttributes: ['foo'] });
   });
 });

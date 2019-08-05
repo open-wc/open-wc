@@ -15703,6 +15703,11 @@ typeface-oswald@0.0.54:
   resolved "https://registry.yarnpkg.com/typeface-oswald/-/typeface-oswald-0.0.54.tgz#1e253011622cdd50f580c04e7d625e7f449763d7"
   integrity sha512-U1WMNp4qfy4/3khIfHMVAIKnNu941MXUfs3+H9R8PFgnoz42Hh9pboSFztWr86zut0eXC8byalmVhfkiKON/8Q==
 
+typescript-temporary-fork-for-jsdoc@^3.6.0-insiders.20190802:
+  version "3.6.0-insiders.20190802"
+  resolved "https://registry.yarnpkg.com/typescript-temporary-fork-for-jsdoc/-/typescript-temporary-fork-for-jsdoc-3.6.0-insiders.20190802.tgz#aece6f3f5d53c6e06e5e1c4af5a19183d7124ab6"
+  integrity sha512-j76opNh6ljAXDUDXr03+pOkITiATPbUlQlMp9pxD/SR3eNKAtIdHwOTf3dDspyGs8TGJQjQXMUiYqJr0gW+nCg==
+
 typescript@^3.3.3333:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.3.tgz#c830f657f93f1ea846819e929092f5fe5983e977"
