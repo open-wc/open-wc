@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.3...@open-wc/create@0.18.4) (2019-08-05)
+
+
+### Bug Fixes
+
+* **create:** allow extending Generator to override name ([#681](https://github.com/open-wc/open-wc/issues/681)) ([c08919b](https://github.com/open-wc/open-wc/commit/c08919b))
+
+
+
+
+
 ## [0.18.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.2...@open-wc/create@0.18.3) (2019-08-02)
 
 
