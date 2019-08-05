@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/open-wc/open-wc/compare/@import-maps/resolve@0.1.2...@import-maps/resolve@0.1.3) (2019-08-05)
+
+
+### Bug Fixes
+
+* cleanup package.json scripts ([be6bdb5](https://github.com/open-wc/open-wc/commit/be6bdb5))
+
+
+
+
+
 ## [0.1.2](https://github.com/open-wc/open-wc/compare/@import-maps/resolve@0.1.1...@import-maps/resolve@0.1.2) (2019-07-08)
 
 

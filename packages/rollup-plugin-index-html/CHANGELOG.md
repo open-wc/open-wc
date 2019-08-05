@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.10](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.4.9...rollup-plugin-index-html@1.4.10) (2019-08-05)
+
+
+### Bug Fixes
+
+* cleanup package.json scripts ([be6bdb5](https://github.com/open-wc/open-wc/commit/be6bdb5))
+
+
+
+
+
 ## [1.4.9](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.4.8...rollup-plugin-index-html@1.4.9) (2019-08-04)
 
 **Note:** Version bump only for package rollup-plugin-index-html
