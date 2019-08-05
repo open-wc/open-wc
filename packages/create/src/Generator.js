@@ -26,6 +26,7 @@ class Generator {
     this.wantsNpmInstall = true;
     this.wantsWriteToDisk = true;
     this.wantsRecreateInfo = true;
+    this.generatorName = '@open-wc';
   }
 
   execute() {
@@ -94,7 +95,7 @@ class Generator {
     if (this.wantsRecreateInfo) {
       console.log('');
       console.log('If you want to rerun this exact same generator you can do so by executing:');
-      console.log(optionsToCommand(this.options));
+      console.log(optionsToCommand(this.options, this.generatorName));
     }
   }
 }
