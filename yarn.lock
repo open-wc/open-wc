@@ -1964,30 +1964,6 @@
     "@open-wc/semantic-dom-diff" "^0.13.16"
     "@types/chai" "^4.1.7"
 
-"@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.1.31"
-  dependencies:
-    "@open-wc/testing-karma" "^3.1.6"
-    "@types/node" "^11.13.0"
-    karma-browserstack-launcher "^1.0.0"
-
-"@open-wc/testing-karma@file:./packages/testing-karma":
-  version "3.1.6"
-  dependencies:
-    "@open-wc/karma-esm" "^2.2.4"
-    axe-core "^3.3.1"
-    istanbul-instrumenter-loader "^3.0.0"
-    karma "^4.0.0"
-    karma-chrome-launcher "^2.0.0"
-    karma-coverage-istanbul-reporter "^2.0.0"
-    karma-mocha "^1.0.0"
-    karma-mocha-reporter "^2.0.0"
-    karma-mocha-snapshot "^0.2.1"
-    karma-snapshot "^0.6.0"
-    karma-source-map-support "^1.3.0"
-    karma-sourcemap-loader "^0.3.0"
-    mocha "^6.2.0"
-
 "@reach/router@^1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.2.1.tgz#34ae3541a5ac44fa7796e5506a5d7274a162be4e"
@@ -12809,6 +12785,15 @@ portfinder@^1.0.13, portfinder@^1.0.20:
   version "1.0.20"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.20.tgz#bea68632e54b2e13ab7b0c4775e9b41bf270e44a"
   integrity sha512-Yxe4mTyDzTd59PZJY4ojZR8F+E5e97iq2ZOHPz3HDgSvYC5siNad2tLooQ5y5QHyQhc3xVqvyk/eNA3wuoa7Sw==
+  dependencies:
+    async "^1.5.2"
+    debug "^2.2.0"
+    mkdirp "0.5.x"
+
+portfinder@^1.0.21:
+  version "1.0.21"
+  resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.21.tgz#60e1397b95ac170749db70034ece306b9a27e324"
+  integrity sha512-ESabpDCzmBS3ekHbmpAIiESq3udRsCBGiBZLsC+HgBKv2ezb0R4oG+7RnYEVZ/ZCfhel5Tx3UzdNWA0Lox2QCA==
   dependencies:
     async "^1.5.2"
     debug "^2.2.0"

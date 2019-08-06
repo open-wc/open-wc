@@ -1,8 +1,46 @@
 /* eslint-disable no-inner-declarations, no-console */
 const request = require('request');
 const minimatch = require('minimatch');
+const portfinder = require('portfinder');
 const { startServer, createConfig, messageChannelEndpoint } = require('es-dev-server');
 const { createEsmConfig } = require('./esm-config.js');
+
+async function setupDevServer(karmaConfig, esmConfig, watch, babelConfig, karmaEmitter) {
+  const devServerPort =
+    typeof esmConfig.port === 'number' ? esmConfig.port : await portfinder.getPortPromise();
+
+  const esDevServerConfig = createConfig({
+    port: devServerPort,
+    rootDir: karmaConfig.basePath,
+    nodeResolve: esmConfig.nodeResolve,
+    compatibility: esmConfig.compatibility,
+    // option used to be called `moduleDirectories`
+    // @ts-ignore
+    moduleDirs: esmConfig.moduleDirs || esmConfig.moduleDirectories,
+    babel: esmConfig.babel,
+    fileExtensions: esmConfig.fileExtensions,
+    babelModernExclude: esmConfig.babelModernExclude,
+    babelExclude: esmConfig.babelExclude,
+    // option used to be called `customMiddlewares`
+    // @ts-ignore
+    middlewares: esmConfig.middlewares || esmConfig.customMiddlewares,
+    watch,
+    babelConfig,
+  });
+
+  await startServer(esDevServerConfig);
+
+  if (watch) {
+    const messageChannel = request(`http://127.0.0.1:${devServerPort}${messageChannelEndpoint}`);
+    messageChannel.addListener('data', message => {
+      if (message.toString('utf-8').startsWith('event: file-changed')) {
+        karmaEmitter.refreshFiles();
+      }
+    });
+  }
+
+  return devServerPort;
+}
 
 function esmMiddlewareFactory(config, karmaEmitter) {
   try {
@@ -13,45 +51,34 @@ function esmMiddlewareFactory(config, karmaEmitter) {
       karmaConfig,
     );
 
-    const devServerPort = karmaConfig.port + 1;
-    const esDevServerConfig = createConfig({
-      port: devServerPort,
-      rootDir: karmaConfig.basePath,
-      nodeResolve: esmConfig.nodeResolve,
-      compatibility: esmConfig.compatibility,
-      // option used to be called `moduleDirectories`
-      // @ts-ignore
-      moduleDirs: esmConfig.moduleDirs || esmConfig.moduleDirectories,
-      babel: esmConfig.babel,
-      fileExtensions: esmConfig.fileExtensions,
-      babelModernExclude: esmConfig.babelModernExclude,
-      babelExclude: esmConfig.babelExclude,
-      // option used to be called `customMiddlewares`
-      // @ts-ignore
-      middlewares: esmConfig.middlewares || esmConfig.customMiddlewares,
-      watch,
-      babelConfig,
-    });
-    startServer(esDevServerConfig);
-
-    if (watch) {
-      const messageChannel = request(`http://127.0.0.1:${devServerPort}${messageChannelEndpoint}`);
-      messageChannel.addListener('data', message => {
-        if (message.toString('utf-8').startsWith('event: file-changed')) {
-          karmaEmitter.refreshFiles();
-        }
-      });
-    }
-
     function isExcluded(url) {
       const cleanUrl = url.split('#')[0].split('?')[0];
       return esmConfig.exclude.some(ex => minimatch(cleanUrl, ex));
     }
 
+    // setting up the server is async, but we need to synchronously return a middleware.
+    // set up the server and keep a promise that can be awaited
+    let devServerPort;
+    let setupServerPromise = setupDevServer(
+      karmaConfig,
+      esmConfig,
+      watch,
+      babelConfig,
+      karmaEmitter,
+    ).then(port => {
+      devServerPort = port;
+      setupServerPromise = null;
+    });
+
     /**
      * @type {import('connect').NextHandleFunction}
      */
-    function esmMiddleware(req, res, next) {
+    async function esmMiddleware(req, res, next) {
+      // wait for server to be set up if it hasn't yet
+      if (!setupServerPromise) {
+        await setupServerPromise;
+      }
+
       if (req.url.startsWith('/polyfills')) {
         const [name] = req.url.split('/')[2].split('.');
         const polyfill = polyfills.find(p => p.name === name);

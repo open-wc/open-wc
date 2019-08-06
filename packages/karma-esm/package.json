@@ -33,6 +33,7 @@
     "deepmerge": "^3.3.0",
     "es-dev-server": "^1.10.6",
     "minimatch": "^3.0.4",
+    "portfinder": "^1.0.21",
     "request": "^2.88.0"
   },
   "devDependencies": {
