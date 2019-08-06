@@ -6,10 +6,15 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const merge = require('webpack-merge');
 
-const development = !process.argv.find(arg => arg.includes('production'));
-const legacy = process.argv.find(arg => arg.includes('legacy'));
+function getDefaultMode() {
+  const indexOf = process.argv.indexOf('--mode');
+  return indexOf === -1 ? 'production' : process.argv[indexOf + 1];
+}
 
 const defaultOptions = {
+  // default mode is set based on --mode parameter, or default
+  // production. this can be overwritten manually in the config
+  mode: getDefaultMode(),
   input: './index.html',
 };
 
@@ -22,8 +27,9 @@ function createConfig(options, legacy) {
     );
   }
 
+  const production = options.mode === 'production';
   const inputPrefix = legacy ? 'legacy/' : '';
-  const outputFilename = `${inputPrefix}[name].${development ? '' : '[contenthash].'}js`;
+  const outputFilename = `${inputPrefix}[name].${!production ? '' : '[contenthash].'}js`;
 
   return {
     entry: options.input || options.entry,
@@ -34,7 +40,9 @@ function createConfig(options, legacy) {
       path: path.resolve(process.cwd(), `dist`),
     },
 
-    devtool: development ? 'cheap-module-source-map' : 'source-map',
+    mode: options.mode,
+
+    devtool: production ? 'source-map' : 'cheap-module-source-map',
 
     // don't polyfill any node built-in libraries
     node: false,
@@ -62,7 +70,7 @@ function createConfig(options, legacy) {
               plugins: [
                 '@babel/plugin-syntax-dynamic-import',
                 '@babel/plugin-syntax-import-meta',
-                !development && [
+                production && [
                   'template-html-minifier',
                   {
                     modules: {
@@ -102,7 +110,7 @@ function createConfig(options, legacy) {
 
     optimization: {
       minimizer: [
-        !development &&
+        production &&
           new TerserPlugin({
             terserOptions: {
               output: {
@@ -117,12 +125,12 @@ function createConfig(options, legacy) {
 
     plugins: [
       // @ts-ignore
-      !development && new CleanWebpackPlugin(),
+      production && new CleanWebpackPlugin(),
 
       new WebpackIndexHTMLPlugin(
         merge(
           {
-            multiBuild: !development,
+            multiBuild: production,
             legacy,
             polyfills: {
               coreJs: true,
@@ -153,10 +161,6 @@ module.exports = userOptions => {
     ...defaultOptions,
     ...userOptions,
   };
-
-  if (development) {
-    return [createConfig(options, legacy)];
-  }
 
   return [createConfig(options, true), createConfig(options, false)];
 };
