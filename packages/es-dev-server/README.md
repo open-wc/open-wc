@@ -8,7 +8,7 @@ Without any flags, `es-dev-server` acts as a simple static file server. Through 
 - reloading the browser on file changes
 - resolve bare module imports using node resolution
 - history API fallback for SPA routing
-- HTTP2 and smart caching to speed up file serving
+- Smart caching to speed up file serving
 - Compatibility mode for older browsers
 
 Compatibility mode enables bundle-free development with modern javascript, es modules and import maps on older browsers, including IE11.
@@ -52,7 +52,7 @@ npx es-dev-server
 | name                 |  type          | description                                                                |
 | -------------------- | -------------- | -------------------------------------------------------------------------- |
 | watch                | boolean        | Reload the browser when files are edited                                   |
-| http2                | number         | Serve files over HTTP2. Sets up HTTPS with self-signed certificates        |
+| http2                | boolean        | Serve files over HTTP2. Sets up HTTPS with self-signed certificates        |
 
 ### Code transformation
 | name                 |  type          | description                                                                |
