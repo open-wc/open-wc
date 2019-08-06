@@ -42,7 +42,7 @@ describe.skip('reload browser middleware', function describe() {
   this.timeout(60000);
   let server;
   beforeEach(async () => {
-    ({ server } = startServer({
+    ({ server } = await startServer({
       ...createConfig({
         rootDir: path.resolve(__dirname, '..', 'fixtures', 'reload'),
         watch: true,

@@ -9,9 +9,10 @@ const host = 'http://localhost:8080/';
 describe('babel middleware', () => {
   describe('no flags', () => {
     let server;
-    beforeEach(() => {
-      ({ server } = startServer(
+    beforeEach(async () => {
+      ({ server } = await startServer(
         createConfig({
+          port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
         }),
       ));
@@ -34,9 +35,10 @@ describe('babel middleware', () => {
 
   describe('node resolve', () => {
     let server;
-    beforeEach(() => {
-      ({ server } = startServer(
+    beforeEach(async () => {
+      ({ server } = await startServer(
         createConfig({
+          port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           nodeResolve: true,
           babelModernExclude: ['**/src/excluded-modern.js'],
@@ -108,8 +110,9 @@ describe('babel middleware', () => {
 
   describe('babel flag', () => {
     it('transforms code based on .babelrc from the user', async () => {
-      const { server } = startServer(
+      const { server } = await startServer(
         createConfig({
+          port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           babel: true,
         }),
@@ -127,8 +130,9 @@ describe('babel middleware', () => {
     });
 
     it('can handle any file extensions', async () => {
-      const { server } = startServer(
+      const { server } = await startServer(
         createConfig({
+          port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           fileExtensions: ['.html', '.foo'],
           babel: true,
@@ -153,9 +157,10 @@ describe('babel middleware', () => {
 
   describe('compatibility modern', () => {
     let server;
-    beforeEach(() => {
-      ({ server } = startServer(
+    beforeEach(async () => {
+      ({ server } = await startServer(
         createConfig({
+          port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
           compatibility: compatibilityModes.MODERN,
@@ -208,9 +213,10 @@ describe('babel middleware', () => {
 
   describe('compatibility all', () => {
     let server;
-    beforeEach(() => {
-      ({ server } = startServer(
+    beforeEach(async () => {
+      ({ server } = await startServer(
         createConfig({
+          port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
           compatibility: compatibilityModes.ALL,
@@ -308,9 +314,10 @@ describe('babel middleware', () => {
 
   describe('custom babel config', () => {
     let server;
-    beforeEach(() => {
-      ({ server } = startServer(
+    beforeEach(async () => {
+      ({ server } = await startServer(
         createConfig({
+          port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
           babelConfig: {
@@ -346,9 +353,10 @@ describe('babel middleware', () => {
 
   describe('typescript', () => {
     let server;
-    beforeEach(() => {
-      ({ server } = startServer(
+    beforeEach(async () => {
+      ({ server } = await startServer(
         createConfig({
+          port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'typescript'),
           appIndex: path.resolve(__dirname, '..', 'fixtures', 'typescript', 'index.html'),
           babel: true,
@@ -378,8 +386,9 @@ describe('babel middleware', () => {
   it('compiles inline modules', async () => {
     let server;
     try {
-      ({ server } = startServer(
+      ({ server } = await startServer(
         createConfig({
+          port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
           compatibility: compatibilityModes.ALL,
           nodeResolve: true,

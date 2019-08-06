@@ -11,9 +11,10 @@ const testFile = path.join(fixtureDir, 'cached-files.js');
 
 describe('cache middleware', () => {
   let server;
-  beforeEach(() => {
-    ({ server } = startServer(
+  beforeEach(async () => {
+    ({ server } = await startServer(
       createConfig({
+        port: 8080,
         rootDir: fixtureDir,
       }),
     ));

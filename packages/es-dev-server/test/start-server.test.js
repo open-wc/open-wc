@@ -9,9 +9,10 @@ const host = 'http://localhost:8080/';
 describe('server', () => {
   context('', () => {
     let server;
-    beforeEach(() => {
-      ({ server } = startServer(
+    beforeEach(async () => {
+      ({ server } = await startServer(
         createConfig({
+          port: 8080,
           rootDir: path.resolve(__dirname, 'fixtures', 'simple'),
         }),
       ));
@@ -52,10 +53,11 @@ describe('server', () => {
   });
 
   it('can configure the hostname', async () => {
-    const { server } = startServer(
+    const { server } = await startServer(
       createConfig({
         rootDir: path.resolve(__dirname, 'fixtures', 'simple'),
         hostname: '0.0.0.0',
+        port: 8080,
       }),
     );
     const response = await fetch(`http://0.0.0.0:8080/index.html`);
@@ -67,17 +69,17 @@ describe('server', () => {
   });
 
   it('can run multiple servers in parallel', async () => {
-    function createServer(port) {
-      return startServer(
+    async function createServer(port) {
+      return (await startServer(
         createConfig({
+          port,
           rootDir: path.resolve(__dirname, 'fixtures', 'simple'),
           hostname: '0.0.0.0',
-          port,
         }),
-      ).server;
+      )).server;
     }
 
-    const servers = [8080, 8081, 8082, 8083, 8084, 8085].map(createServer);
+    const servers = await Promise.all([8080, 8081, 8082, 8083, 8084, 8085].map(createServer));
     const requests = servers.map((server, i) => fetch(`http://0.0.0.0:808${i}/index.html`));
 
     for (const request of requests) {
@@ -95,8 +97,9 @@ describe('server', () => {
 
   it('can install custom middlewares', async () => {
     let requestURL;
-    const { server } = startServer(
+    const { server } = await startServer(
       createConfig({
+        port: 8080,
         rootDir: path.resolve(__dirname, 'fixtures', 'simple'),
         hostname: '0.0.0.0',
         middlewares: [
