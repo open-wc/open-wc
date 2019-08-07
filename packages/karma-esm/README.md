@@ -24,7 +24,7 @@ To manually setup this plugin, add it as a karma framework:
 {
   // define where your test files are, make sure to set type to module
   files: [
-    { pattern: 'test/**/*.test.js' type: 'module' }
+    { pattern: 'test/**/*.test.js', type: 'module' }
   ]
 
   plugins: [
