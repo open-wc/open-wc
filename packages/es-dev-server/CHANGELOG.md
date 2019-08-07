@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.4](https://github.com/open-wc/open-wc/compare/es-dev-server@1.10.3...es-dev-server@1.10.4) (2019-08-07)
+
+
+### Bug Fixes
+
+* **es-dev-server:** remove http2 option recommendation ([#689](https://github.com/open-wc/open-wc/issues/689)) ([4c18e61](https://github.com/open-wc/open-wc/commit/4c18e61))
+
+
+
+
+
 ## [1.10.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.10.2...es-dev-server@1.10.3) (2019-08-05)
 
 
