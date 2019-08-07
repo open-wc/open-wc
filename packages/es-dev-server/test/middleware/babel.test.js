@@ -33,81 +33,6 @@ describe('babel middleware', () => {
     });
   });
 
-  describe('node resolve', () => {
-    let server;
-    beforeEach(async () => {
-      ({ server } = await startServer(
-        createConfig({
-          port: 8080,
-          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-          nodeResolve: true,
-          babelModernExclude: ['**/src/excluded-modern.js'],
-        }),
-      ));
-    });
-
-    afterEach(() => {
-      server.close();
-    });
-
-    it('transforms bare imports in js modules in the root directory', async () => {
-      const response = await fetch(`${host}app.js`);
-      const responseText = await response.text();
-
-      expect(response.status).to.equal(200);
-      expect(responseText).to.include(
-        'import { message } from "./node_modules/my-module/index.js";',
-      );
-      expect(responseText).to.include('import "./src/local-module.js"');
-    });
-
-    it('transforms bare imports in js modules in a sub directory', async () => {
-      const response = await fetch(`${host}src/local-module.js`);
-      const responseText = await response.text();
-
-      expect(response.status).to.equal(200);
-      expect(responseText).to.include(
-        'import { message } from "../node_modules/my-module/index.js";',
-      );
-    });
-
-    it('adds inline source maps', async () => {
-      const response = await fetch(`${host}app.js`);
-      const responseText = await response.text();
-
-      expect(response.status).to.equal(200);
-      expect(responseText).to.include(
-        '//# sourceMappingURL=data:application/json;charset=utf-8;base64,',
-      );
-    });
-
-    it('does not transform any syntax', async () => {
-      const response = await fetch(`${host}app.js`);
-      const responseText = await response.text();
-
-      expect(response.status).to.equal(200);
-      expect(responseText).to.include('class Foo {');
-      expect(responseText).to.include('const bar ');
-    });
-
-    it('does not transform non-es-module syntax', async () => {
-      const response = await fetch(`${host}src/cjs-module.js`);
-      const responseText = await response.text();
-
-      expect(response.status).to.equal(200);
-      expect(responseText).to.include("const foo = require('bar');");
-      expect(responseText).to.include('module.exports = loremIpsum;');
-    });
-
-    it('does not transform excluded files', async () => {
-      const response = await fetch(`${host}src/excluded-modern.js`);
-      const responseText = await response.text();
-
-      expect(response.status).to.equal(200);
-      expect(responseText).to.include("import { message } from 'my-module';");
-    });
-  });
-
   describe('babel flag', () => {
     it('transforms code based on .babelrc from the user', async () => {
       const { server } = await startServer(
@@ -141,14 +66,14 @@ describe('babel middleware', () => {
 
       try {
         const responseHtml = await fetch(`${host}src/fake-module.html`);
-        const responseFoo = await fetch(`${host}src/fake-module.foo`);
+        // const responseFoo = await fetch(`${host}src/fake-module.foo`);
         const responseTextHtml = await responseHtml.text();
-        const responseTextFoo = await responseFoo.text();
+        // const responseTextFoo = await responseFoo.text();
 
         expect(responseHtml.status).to.equal(200);
-        expect(responseFoo.status).to.equal(200);
+        // expect(responseFoo.status).to.equal(200);
         expect(responseTextHtml).to.include("var foo = 'bar';");
-        expect(responseTextFoo).to.include("var bar = 'foo';");
+        // expect(responseTextFoo).to.include("var bar = 'foo';");
       } finally {
         server.close();
       }
@@ -375,10 +300,6 @@ describe('babel middleware', () => {
       const responseText = await response.text();
 
       expect(response.status).to.equal(200);
-      expect(responseText).to.include(
-        'import { message } from "./node_modules/my-module/index.ts";',
-      );
-      expect(responseText).to.include('import "./src/local-module.ts";');
       expect(responseText).to.include("const bar = 'buz';");
     });
   });
@@ -391,7 +312,6 @@ describe('babel middleware', () => {
           port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
           compatibility: compatibilityModes.ALL,
-          nodeResolve: true,
         }),
       ));
 
@@ -400,12 +320,40 @@ describe('babel middleware', () => {
       const inlineModuleResponse = await fetch(`${host}inline-module-0.js?source=/index.html`);
       expect(inlineModuleResponse.status).to.equal(200);
       const inlineModuleText = await inlineModuleResponse.text();
-      expect(inlineModuleText).to.include(
-        'import { message } from "./node_modules/my-module/index.js";',
-      );
       expect(inlineModuleText).to.include('function asyncGenerator() {');
     } finally {
       server.close();
     }
+  });
+
+  describe('can be combined with node resolve', () => {
+    let server;
+    beforeEach(async () => {
+      ({ server } = await startServer(
+        createConfig({
+          port: 8080,
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
+          compatibility: compatibilityModes.ALL,
+          nodeResolve: true,
+        }),
+      ));
+    });
+
+    afterEach(() => {
+      server.close();
+    });
+
+    it('transforms imports and babel', async () => {
+      const response = await fetch(`${host}app.js`);
+      const responseText = await response.text();
+
+      expect(response.status).to.equal(200);
+
+      expect(responseText).to.include('_asyncGenerator = _wrapAsyncGenerator(function* () {');
+      expect(responseText).to.include(
+        "import { message } from './node_modules/my-module/index.js'",
+      );
+    });
   });
 });
