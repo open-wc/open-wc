@@ -9,7 +9,7 @@ We recommend using [BDD](https://en.wikipedia.org/wiki/Behavior-driven_developme
 Using:
 - System via [mocha](https://mochajs.org/)
 - Assertions via [chai](https://www.chaijs.com/)
-  - Plugin [chai-dom-equals](https://www.npmjs.com/package/@open-wc/chai-dom-equals)
+  - Plugin [semantic-dom-diff](https://www.npmjs.com/package/@open-wc/semantic-dom-diff)
 - Mocks via [sinon](https://sinonjs.org/)
 
 ## Setup
@@ -29,7 +29,7 @@ import { expect } from '@open-wc/testing';
 ```
 
 This will have the following side effects:
-  - Use the plugin [chai-dom-equals](https://www.npmjs.com/package/@open-wc/chai-dom-equals)
+  - Use [semantic-dom-diff](https://www.npmjs.com/package/@open-wc/semantic-dom-diff) as a Chai plugin
   - Enables cleanup after each test for all `fixture`s
 
 ## Automating Tests
