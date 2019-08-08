@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.4.4...@open-wc/building-webpack@2.5.0) (2019-08-08)
+
+
+### Features
+
+* **building-webpack:** allow overriding mode through config ([#700](https://github.com/open-wc/open-wc/issues/700)) ([f2cc64c](https://github.com/open-wc/open-wc/commit/f2cc64c))
+
+
+
+
+
 ## [2.4.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.4.3...@open-wc/building-webpack@2.4.4) (2019-08-05)
 
 
