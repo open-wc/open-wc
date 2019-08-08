@@ -16,6 +16,7 @@
   "scripts": {
     "demo:start": "http-server dist -o",
     "demo:build": "webpack --mode production --config demo/js/webpack.config.js",
+    "demo:build:dev": "webpack --mode development --config demo/js/webpack.config.js",
     "demo:webpack-dev": "webpack-dev-server --mode development --config demo/js/webpack.config.js --open",
     "demo:webpack-dev:legacy": "webpack-dev-server --mode development --config demo/js/webpack.config.js --open --legacy",
     "demo:build:modern": "webpack --mode production --config demo/js/webpack.modern.config.js",

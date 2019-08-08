@@ -5,9 +5,15 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-const development = !process.argv.find(arg => arg.includes('production'));
+function getDefaultMode() {
+  const indexOf = process.argv.indexOf('--mode');
+  return indexOf === -1 ? 'production' : process.argv[indexOf + 1];
+}
 
 const defaultOptions = {
+  // default mode is set based on --mode parameter, or default
+  // production. this can be overwritten manually in the config
+  mode: getDefaultMode(),
   input: './index.html',
 };
 
@@ -17,6 +23,8 @@ module.exports = userOptions => {
     ...userOptions,
   };
 
+  const production = options.mode === 'production';
+
   if (options.entry) {
     /* eslint-disable-next-line no-console */
     console.warn(
@@ -24,7 +32,7 @@ module.exports = userOptions => {
     );
   }
 
-  const outputFilename = `[name].${development ? '' : '[contenthash].'}js`;
+  const outputFilename = `[name].${!production ? '' : '[contenthash].'}js`;
 
   return {
     entry: options.input || options.entry,
@@ -35,7 +43,9 @@ module.exports = userOptions => {
       path: path.resolve(process.cwd(), 'dist'),
     },
 
-    devtool: development ? 'cheap-module-source-map' : 'source-map',
+    mode: options.mode,
+
+    devtool: production ? 'source-map' : 'cheap-module-source-map',
 
     // don't polyfill any node built-in libraries
     node: false,
@@ -62,7 +72,7 @@ module.exports = userOptions => {
               plugins: [
                 '@babel/plugin-syntax-dynamic-import',
                 '@babel/plugin-syntax-import-meta',
-                !development && [
+                production && [
                   'template-html-minifier',
                   {
                     modules: {
@@ -102,7 +112,7 @@ module.exports = userOptions => {
 
     optimization: {
       minimizer: [
-        !development &&
+        production &&
           new TerserPlugin({
             terserOptions: {
               output: {
@@ -117,7 +127,7 @@ module.exports = userOptions => {
 
     plugins: [
       // @ts-ignore
-      !development && new CleanWebpackPlugin(),
+      production && new CleanWebpackPlugin(),
 
       new WebpackIndexHTMLPlugin(options.webpackIndexHTMLPlugin),
     ].filter(_ => !!_),
