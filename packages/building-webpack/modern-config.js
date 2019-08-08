@@ -4,11 +4,7 @@ const customMinifyCSS = require('@open-wc/building-utils/custom-minify-css');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-
-function getDefaultMode() {
-  const indexOf = process.argv.indexOf('--mode');
-  return indexOf === -1 ? 'production' : process.argv[indexOf + 1];
-}
+const getDefaultMode = require('./src/get-default-mode');
 
 const defaultOptions = {
   // default mode is set based on --mode parameter, or default
