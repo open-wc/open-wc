@@ -4,6 +4,7 @@
     "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore"
   },
   "devDependencies": {
+    "eslint": "^5.13.0",
     "@open-wc/eslint-config": "^1.0.0"
   },
   "eslintConfig": {
