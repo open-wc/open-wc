@@ -2,6 +2,8 @@
 
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
+> Note that we only support eslint v5, we are blocked on some of our dependencies updating. See https://github.com/airbnb/javascript/issues/2036 for progress.
+
 Use [ESLint](https://eslint.org/) to lint your es6 code.
 
 ## Setup
