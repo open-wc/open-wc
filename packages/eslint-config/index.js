@@ -1,5 +1,8 @@
 module.exports = {
-  extends: ['eslint-config-airbnb-base', 'plugin:wc/best-practice'],
+  extends: [
+    require.resolve('eslint-config-airbnb-base'),
+    require.resolve('./src/eslint-plugin-wc-export'),
+  ],
   parser: 'babel-eslint',
   env: {
     browser: true,
