@@ -4,13 +4,13 @@
 
 ## Manual Setup
 ```bash
-yarn add @open-wc/semantic-dom-diff --dev
+npm i -D @open-wc/semantic-dom-diff
 ```
-`semantic-dom-diff` allows diffing chunks of dom or HTML for semanticaly equality:
+`semantic-dom-diff` allows diffing chunks of dom or HTML for semantic equality:
 - whitespace and newlines are normalized
 - tags and attributes are printed on individual lines
 - comments are removed
-- style, script and svg contents are removed
+- style, script and SVG contents are removed
 - tags, attributes or element's light dom can be ignored through configuration
 
 ## Chai Plugin
@@ -75,7 +75,7 @@ it('my test', async () => {
 ```
 
 ### Manual diffing
-You can use the chai plugin to manually diff chunks of dom. The dom is diffed semantically: whitespace, newlines etc. are normalized.
+You can use the chai plugin to manually diff chunks of dom. The dom is diffed semantically: whitespace, newlines, etc. are normalized.
 
 ```javascript
 class MyElement extends HTMLElement {
@@ -151,7 +151,7 @@ describe('my-message', () => {
 });
 ```
 
-Snapshots are stored in the `__snapshots__` folder in your project, using the most top level `describe` as the name for your snapshots file.
+Snapshots are stored in the `__snapshots__` folder in your project, using the most top-level `describe` as the name for your snapshots file.
 
 #### Updating a snapshot
 
@@ -164,7 +164,7 @@ If the difference was an intended change, you can update the snapshots by passin
 
 #### Cleaning up unused snapshots
 
-After refactoring there might be leftover snapshot files which are unused. You can run karma with the `--prune-snapshots` flag to clean these up.
+After refactoring, there might be unused and leftover snapshot files. You can run karma with the `--prune-snapshots` flag to clean these up.
 
 **Ignoring tags and attributes**
 
@@ -177,7 +177,7 @@ it('renders correctly', async () => {
       Hey
     </div>
   `);
-  
+
   expect(el).dom.to.equal('<div>Hey</div>', {
     ignoreAttributes: ['my-random-attribute']
   });
@@ -239,7 +239,7 @@ it('renders correctly', async () => {
 
 **Ignoring children**
 
-When working with web components you may find that they sometimes render to their light dom, for example to meet some accessibility requirements. We don't want to ignore the tag completely, as we would then not be able to test if we did render the tag.
+When working with web components you may find that they sometimes render to their light dom, for example, to meet some accessibility requirements. We don't want to ignore the tag completely, as we would then not be able to test if we did render the tag.
 
 We can ignore just it's light dom:
 

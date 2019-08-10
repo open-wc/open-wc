@@ -31,8 +31,10 @@ const sidebar = [
     collapsable: true,
     children: [
       ['/testing/', 'Getting started'],
+      '/testing/testing',
       '/testing/testing-helpers',
       '/testing/testing-chai-a11y-axe',
+      '/testing/testing-sinon',
       '/testing/semantic-dom-diff',
       '/testing/testing-karma',
       '/testing/karma-esm',

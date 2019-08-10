@@ -9,12 +9,12 @@ Using:
 
 ## Setup
 ```bash
-npm init @open-wc testing-wallaby
+npm init @open-wc
 ```
 
 ### Manual
 1. Copy the [config](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/testing-wallaby/templates/static/wallaby.js) and save it as `wallaby.js` into your project root
-1. `yarn add @open-wc/testing-wallaby --dev`
+2. `npm i -D @open-wc/testing-wallaby`
 
 ## Usage
 Open your wallaby.js supported IDE and start with the provided config.
