@@ -4,11 +4,9 @@ Your IDE is your primary tool while working with code, we recommend the followin
 
 ## Visual Studio Code
 
-We recommend [VSCode](https://code.visualstudio.com/). For alternative IDEs see [here](alternatives.md).
+We recommend [VSCode](https://code.visualstudio.com/). For setup please visit the instructions on the Visual Studio Code [homepage](https://code.visualstudio.com/).
 
-For setup please visit the instructions on the Visual Studio Code [homepage](https://code.visualstudio.com/).
-
-## Configuration
+### Configuration
 
 We recommend the following user settings:
 ```json
@@ -27,15 +25,25 @@ We recommend the following user settings:
 
 ![VSCodeSettings](/ide-vscode-settings.gif)
 
-## Plugins
+### Plugins
 
 We recommend the following plugins:
 
-* [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)  
+* [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 Get ESLint feedback directly in your IDE => more details under [Linting](/linting/)
-* [lit-html](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html)  
+* [lit-html](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html)
 Highlights all your html tagged template literals
 * [lit-plugin](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin)
 Syntax highlighting, type checking and code completion for lit-html
-* [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)  
+* [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
 Highlights all your css tagged template literals
+
+## Atom
+
+An alternative to VSCode is [Atom](https://atom.io/), an IDE created by Github. It provides near-native support for working with web components and has great support for template literals.
+
+### Recomended plugins
+ - [atom-typescript](https://atom.io/packages/atom-typescript) - Typescript support
+ - [prettier-atom](https://atom.io/packages/prettier-atom) - Template literal highlighting and formatting
+ - [docblockr](https://atom.io/packages/docblockr) - Documentation helper
+ - [import-cost](https://atom.io/packages/atom-import-cost) - Displays import costs inline
