@@ -1,3 +1,3 @@
-import './chunk-6e98f23f.js';
+import './shared-6e98f23f.js';
 
 console.log('my lazy');

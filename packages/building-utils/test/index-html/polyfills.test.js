@@ -18,6 +18,7 @@ describe('polyfills', () => {
     const polyfills = getPolyfills(config);
     const polyfillsWithoutCode = polyfills.map(p => ({
       ...p,
+      hash: undefined,
       code: undefined,
       sourcemap: undefined,
     }));
@@ -25,8 +26,8 @@ describe('polyfills', () => {
     expect(polyfillsWithoutCode).to.eql([
       {
         code: undefined,
-        hash: '7ca91f6b0231c95b468b2436196952c1',
         name: 'core-js',
+        hash: undefined,
         module: false,
         nomodule: true,
         sourcemap: undefined,
@@ -34,8 +35,8 @@ describe('polyfills', () => {
       },
       {
         code: undefined,
-        hash: '25d91ed49dc86803b0aa17858b018737',
         name: 'fetch',
+        hash: undefined,
         module: false,
         nomodule: false,
         sourcemap: undefined,
@@ -43,8 +44,8 @@ describe('polyfills', () => {
       },
       {
         code: undefined,
-        hash: 'f670a123dee2998ae15ea330be2bea16',
         name: 'intersection-observer',
+        hash: undefined,
         module: false,
         nomodule: false,
         sourcemap: undefined,
@@ -53,8 +54,8 @@ describe('polyfills', () => {
       },
       {
         code: undefined,
-        hash: '88b4b5855ede008ecad6bbdd4a69e57d',
         name: 'webcomponents',
+        hash: undefined,
         module: false,
         nomodule: false,
         sourcemap: undefined,
@@ -62,8 +63,8 @@ describe('polyfills', () => {
       },
       {
         code: undefined,
-        hash: '551c76d38426de62c33d8c61995c1d0f',
         name: 'custom-elements-es5-adapter',
+        hash: undefined,
         module: false,
         nomodule: false,
         sourcemap: undefined,
@@ -91,6 +92,7 @@ describe('polyfills', () => {
     const polyfills = getPolyfills(config);
     const polyfillsWithoutCode = polyfills.map(p => ({
       ...p,
+      hash: undefined,
       code: undefined,
       sourcemap: undefined,
     }));
@@ -98,8 +100,8 @@ describe('polyfills', () => {
     expect(polyfillsWithoutCode).to.eql([
       {
         code: undefined,
-        hash: '99ae432d7df7b7916392294c3f66e08c',
         name: 'systemjs',
+        hash: undefined,
         module: false,
         nomodule: false,
         test: undefined,
@@ -122,6 +124,7 @@ describe('polyfills', () => {
     const polyfills = getPolyfills(config);
     const polyfillsWithoutCode = polyfills.map(p => ({
       ...p,
+      hash: undefined,
       code: undefined,
       sourcemap: undefined,
     }));
@@ -129,8 +132,8 @@ describe('polyfills', () => {
     expect(polyfillsWithoutCode).to.eql([
       {
         code: undefined,
-        hash: '99ae432d7df7b7916392294c3f66e08c',
         name: 'systemjs',
+        hash: undefined,
         module: false,
         nomodule: true,
         test: undefined,
@@ -168,6 +171,7 @@ describe('polyfills', () => {
     const polyfills = getPolyfills(config);
     const polyfillsWithoutCode = polyfills.map(p => ({
       ...p,
+      hash: undefined,
       code: undefined,
       sourcemap: undefined,
     }));
@@ -175,8 +179,8 @@ describe('polyfills', () => {
     expect(polyfillsWithoutCode).to.eql([
       {
         code: undefined,
-        hash: '612310cce7c28a680112cc9eff6ef77c',
         name: 'polyfill-a',
+        hash: undefined,
         module: false,
         nomodule: false,
         sourcemap: undefined,
@@ -184,8 +188,8 @@ describe('polyfills', () => {
       },
       {
         code: undefined,
-        hash: '053c9d2c677a96db83e06c1b41ce879c',
         name: 'polyfill-b',
+        hash: undefined,
         module: false,
         nomodule: true,
         sourcemap: undefined,
@@ -193,8 +197,8 @@ describe('polyfills', () => {
       },
       {
         code: undefined,
-        hash: '7ca91f6b0231c95b468b2436196952c1',
         name: 'core-js',
+        hash: undefined,
         module: false,
         nomodule: true,
         sourcemap: undefined,

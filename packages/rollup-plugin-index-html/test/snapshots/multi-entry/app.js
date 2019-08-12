@@ -1,4 +1,4 @@
-import './chunk-6e98f23f.js';
+import './shared-6e98f23f.js';
 
 // @ts-nocheck
 console.log('my app');
