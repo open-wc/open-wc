@@ -1,4 +1,5 @@
 import path from 'path';
+import { URLSearchParams } from 'url';
 import { getTransformedIndexHTML } from '../utils/transform-index-html.js';
 import { isIndexHTMLResponse, getBodyAsString, toBrowserPath } from '../utils/utils.js';
 
