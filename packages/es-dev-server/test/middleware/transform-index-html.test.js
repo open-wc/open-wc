@@ -45,8 +45,8 @@ describe('transform-index-html middleware', () => {
                 throw new Error(`No snapshot found for ${name}`);
               }
 
-              expect(fs.readFileSync(filePath, 'utf-8').replace(/\s/, '')).to.equal(
-                responseText.replace(/\s/, ''),
+              expect(fs.readFileSync(filePath, 'utf-8').replace(/\r\n/g, '\n')).to.equal(
+                responseText.replace(/\r\n/g, '\n'),
               );
             }
           } finally {
