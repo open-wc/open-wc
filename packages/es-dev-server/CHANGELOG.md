@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.6](https://github.com/open-wc/open-wc/compare/es-dev-server@1.10.5...es-dev-server@1.10.6) (2019-08-12)
+
+
+### Bug Fixes
+
+* **es-dev-server:** fix tests on windows ([#727](https://github.com/open-wc/open-wc/issues/727)) ([e23ad29](https://github.com/open-wc/open-wc/commit/e23ad29))
+
+
+
+
+
 ## [1.10.5](https://github.com/open-wc/open-wc/compare/es-dev-server@1.10.4...es-dev-server@1.10.5) (2019-08-12)
 
 
