@@ -24,7 +24,7 @@
   }
 
   var polyfills = [];
-  if ('noModule' in HTMLScriptElement.prototype) { polyfills.push(loadScript('polyfills/es-module-shims.c9fab74391a606424f346398bb048a79.js', true)) }
+  if ('noModule' in HTMLScriptElement.prototype) { polyfills.push(loadScript('polyfills/es-module-shims.fc77a8afb5629353b4ceabc144a351ee.js', true)) }
 
   function loadEntries() {
     ['./app.js','./inline-module-0.js?source=%2Findex.html','./inline-module-1.js?source=%2Findex.html'].forEach(function (entry) { window.importShim(entry); });

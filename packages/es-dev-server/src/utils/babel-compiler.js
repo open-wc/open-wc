@@ -143,6 +143,7 @@ export default function createBabelCompiler(cfg) {
       // cache result for later
       cache.set(filename, { code: compiledCode, lastModified });
       return compiledCode;
+      // eslint-disable-next-line no-useless-catch
     } catch (error) {
       throw error;
     } finally {
