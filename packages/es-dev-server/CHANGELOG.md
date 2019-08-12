@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.5](https://github.com/open-wc/open-wc/compare/es-dev-server@1.10.4...es-dev-server@1.10.5) (2019-08-12)
+
+
+### Bug Fixes
+
+* **es-dev-server:** import URLSearchParams for node v8 ([#726](https://github.com/open-wc/open-wc/issues/726)) ([9f1be41](https://github.com/open-wc/open-wc/commit/9f1be41))
+
+
+
+
+
 ## [1.10.4](https://github.com/open-wc/open-wc/compare/es-dev-server@1.10.3...es-dev-server@1.10.4) (2019-08-07)
 
 
