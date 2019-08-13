@@ -1,7 +1,15 @@
 import isStream from 'is-stream';
 import getStream from 'get-stream';
-import Stream, { Readable } from 'stream';
+import Stream from 'stream';
 import path from 'path';
+
+/**
+ * koa-static stores the original served file path on ctx.body.path,
+ * we need this path for file transformation but we overwrite body
+ * with a string, so we keep a reference with a weakmap
+ */
+/** @type {WeakMap<import('koa').Request, string>} */
+const filePathsForRequests = new WeakMap();
 
 const htmlTags = ['html', 'head', 'body'];
 
@@ -24,18 +32,19 @@ export async function getBodyAsString(ctx) {
   }
 
   if (isStream(ctx.body)) {
-    const originalStream = ctx.body;
-    const bodyString = await getStream(originalStream);
-
-    // create a new stream with the same non-standard path property
-    const copyStream = new Readable();
+    // cache request path, see above
     // @ts-ignore
-    copyStream.path = originalStream.path;
-    copyStream.push(bodyString, 'utf-8');
-    copyStream.push(null);
-    ctx.body = copyStream;
+    if (ctx.body.path) {
+      // @ts-ignore
+      filePathsForRequests.set(ctx.request, ctx.body.path);
+    }
 
-    return bodyString;
+    // a stream can only be read once, so after reading it assign
+    // the string response to the body so that it can be accessed
+    // again later
+    const body = await getStream(ctx.body);
+    ctx.body = body;
+    return body;
   }
 
   return ctx.body;
@@ -95,4 +104,25 @@ export async function isIndexHTMLResponse(ctx, appIndex) {
   return htmlTags.some(
     tag => indexHTMLString.includes(`<${tag}`) && indexHTMLString.includes(`</${tag}>`),
   );
+}
+
+/**
+ * @param {import('koa').Context} ctx
+ * @param {string} rootDir
+ * @returns {string}
+ */
+export function getRequestFilePath(ctx, rootDir) {
+  // inline module requests have the source in a query string
+  if (ctx.url.includes('/inline-module-') && ctx.url.includes('?source=')) {
+    const url = ctx.url.split('?')[0];
+    const indexPath = toFilePath(url);
+    return path.join(rootDir, indexPath);
+  }
+
+  // otherwise koa-static adds the original file path on the body
+  if (ctx.body && ctx.body.path) {
+    return ctx.body.path;
+  }
+
+  return filePathsForRequests.get(ctx.request);
 }
