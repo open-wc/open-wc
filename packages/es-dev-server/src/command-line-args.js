@@ -91,12 +91,6 @@ export function readCommandLineArgs(argv = process.argv) {
       description: 'Resolve bare import imports using node resolve.',
     },
     {
-      name: 'preserve-symlinks',
-      type: Boolean,
-      description:
-        'Preserve symlinks when resolving modules. Default false, which is the default node behavior.',
-    },
-    {
       name: 'babel',
       alias: 'b',
       type: Boolean,
@@ -195,8 +189,8 @@ export function readCommandLineArgs(argv = process.argv) {
     ...options,
     open,
     logStartup: true,
-    // when used from the command line we log compile errors to the browser,
+    // when used from the command line we log babel errors to the browser,
     // not to the terminal for a better UX
-    logCompileErrors: false,
+    logBabelErrors: false,
   };
 }

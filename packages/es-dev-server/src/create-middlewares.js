@@ -2,7 +2,6 @@ import koaStatic from 'koa-static';
 import koaEtag from 'koa-etag';
 import { createBasePathMiddleware } from './middleware/base-path.js';
 import { createHistoryAPIFallbackMiddleware } from './middleware/history-api-fallback.js';
-import { createNodeResolveMiddleware } from './middleware/node-resolve.js';
 import { createBabelMiddleware } from './middleware/babel.js';
 import { createReloadBrowserMiddleware } from './middleware/reload-browser.js';
 import { createTransformIndexHTMLMiddleware } from './middleware/transform-index-html.js';
@@ -27,7 +26,6 @@ export function createMiddlewares(config, fileWatcher) {
     basePath,
     moduleDirectories,
     nodeResolve,
-    preserveSymlinks,
     readUserBabelConfig,
     customBabelConfig,
     watch,
@@ -38,7 +36,7 @@ export function createMiddlewares(config, fileWatcher) {
     watchExcludes,
     watchDebounce,
     customMiddlewares,
-    logCompileErrors,
+    logBabelErrors,
   } = config;
 
   /** @type {import('koa').Middleware[]} */
@@ -58,12 +56,13 @@ export function createMiddlewares(config, fileWatcher) {
 
   const setupBabel =
     customBabelConfig ||
+    nodeResolve ||
     [compatibilityModes.ALL, compatibilityModes.MODERN].includes(compatibilityMode) ||
     readUserBabelConfig;
   const setupCompatibility = compatibilityMode && compatibilityMode !== compatibilityModes.NONE;
-  const setupTransformIndexHTML = nodeResolve || setupBabel || setupCompatibility;
+  const setupTransformIndexHTML = setupBabel || setupCompatibility;
   const setupHistoryFallback = appIndex;
-  const setupMessageChanel = nodeResolve || watch || setupBabel;
+  const setupMessageChanel = watch || setupBabel;
 
   // strip application base path from requests
   if (config.basePath) {
@@ -105,27 +104,14 @@ export function createMiddlewares(config, fileWatcher) {
       createBabelMiddleware({
         rootDir,
         moduleDirectories,
+        nodeResolve,
         readUserBabelConfig,
         compatibilityMode,
         extraFileExtensions,
         customBabelConfig,
         babelExclude,
         babelModernExclude,
-        logCompileErrors,
-      }),
-    );
-  }
-
-  if (nodeResolve) {
-    middlewares.push(
-      createNodeResolveMiddleware({
-        rootDir,
-        extraFileExtensions,
-        moduleDirectories,
-        preserveSymlinks,
-        // babel will cache as well, no need to do it here
-        cacheCompilation: !setupBabel,
-        logCompileErrors,
+        logBabelErrors,
       }),
     );
   }

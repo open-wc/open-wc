@@ -1,6 +1,7 @@
 import minimatch from 'minimatch';
+import path from 'path';
 import stripAnsi from 'strip-ansi';
-import { getBodyAsString, getRequestFilePath } from '../utils/utils.js';
+import { getBodyAsString, toFilePath } from '../utils/utils.js';
 import { compatibilityModes, baseFileExtensions } from '../constants.js';
 import { sendMessageToActiveBrowsers } from './message-channel.js';
 import createBabelCompiler from '../utils/babel-compiler.js';
@@ -9,13 +10,14 @@ import createBabelCompiler from '../utils/babel-compiler.js';
  * @typedef {object} BabelMiddlewareConfig
  * @property {string} rootDir
  * @property {string[]} moduleDirectories
+ * @property {boolean} nodeResolve
  * @property {boolean} readUserBabelConfig
  * @property {string} compatibilityMode
  * @property {object} [customBabelConfig]
  * @property {string[]} extraFileExtensions
  * @property {string[]} babelModernExclude patterns to exclude from modern babel compilation
  * @property {string[]} babelExclude patterns to exclude from all babel compilation
- * @property {boolean} logCompileErrors
+ * @property {boolean} logBabelErrors
  */
 
 /**
@@ -30,6 +32,21 @@ function shouldCompile(file, legacy, cfg) {
   }
 
   return legacy || !cfg.babelModernExclude.some(pattern => minimatch(file, pattern));
+}
+
+/**
+ * @param {import('koa').Context} ctx
+ * @param {BabelMiddlewareConfig} cfg
+ * @returns {string}
+ */
+function getFilePath(ctx, cfg) {
+  if (ctx.url.includes('/inline-module-') && ctx.url.includes('?source=')) {
+    const url = ctx.url.split('?')[0];
+    const indexPath = toFilePath(url);
+    return path.join(cfg.rootDir, indexPath);
+  }
+
+  return ctx.body && ctx.body.path;
 }
 
 /**
@@ -59,6 +76,7 @@ export function createBabelMiddleware(cfg) {
     if (baseURL.startsWith('/polyfills') || !fileExtensions.some(ext => baseURL.endsWith(ext))) {
       return next();
     }
+
     await next();
 
     // should be a 2xx response
@@ -66,7 +84,7 @@ export function createBabelMiddleware(cfg) {
       return undefined;
     }
 
-    const filePath = getRequestFilePath(ctx, cfg.rootDir);
+    const filePath = getFilePath(ctx, cfg);
     const lastModified = ctx.response.headers['last-modified'];
     if (!filePath || !lastModified) {
       return undefined;
@@ -114,9 +132,9 @@ export function createBabelMiddleware(cfg) {
       // strip babel ansi color codes because they're not colored correctly for the browser terminal
       sendMessageToActiveBrowsers('error-message', JSON.stringify(stripAnsi(errorMessage)));
 
-      if (cfg.logCompileErrors) {
+      if (cfg.logBabelErrors) {
         /* eslint-disable-next-line no-console */
-        console.error(error);
+        console.error(errorMessage);
       }
     }
     return undefined;

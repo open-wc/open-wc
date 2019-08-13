@@ -16,7 +16,7 @@ export default `
       });
 
       eventSource.addEventListener('error-message', function (e) {
-        console.error(JSON.parse(e.data));
+        console.log(JSON.parse(e.data));
       });
     }());
   </script>

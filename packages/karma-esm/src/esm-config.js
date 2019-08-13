@@ -56,32 +56,20 @@ function createEsmConfig(karmaConfig) {
   let babelConfig = esmConfig.babelConfig || esmConfig.customBabelConfig;
 
   if (esmConfig.coverage) {
-    const coverageExclude = [
-      '**/node_modules/**',
-      '**/test/**',
-      '**/spec/**',
-      '**/demo/**',
-      '**/stories/**',
-      ...(esmConfig.coverageExclude || []),
-    ];
-
-    // if we are only running babel for coverage, exclude none-instrumented
-    // files from babel to save computation time
-    if (
-      !babelConfig &&
-      !esmConfig.babel &&
-      (!esmConfig.compatibility || esmConfig.compatibility === compatibilityModes.NONE)
-    ) {
-      esmConfig.babelModernExclude = coverageExclude;
-    }
-
     babelConfig = deepmerge(
       {
         plugins: [
           [
             require.resolve('babel-plugin-istanbul'),
             {
-              exclude: coverageExclude,
+              exclude: [
+                '**/node_modules/**',
+                '**/test/**',
+                '**/spec/**',
+                '**/demo/**',
+                '**/stories/**',
+                ...(esmConfig.coverageExclude || []),
+              ],
             },
           ],
         ],
