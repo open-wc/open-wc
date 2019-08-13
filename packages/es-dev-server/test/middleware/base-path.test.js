@@ -7,9 +7,10 @@ const host = 'http://localhost:8080/';
 
 describe('base path middleware', () => {
   let server;
-  beforeEach(() => {
-    ({ server } = startServer(
+  beforeEach(async () => {
+    ({ server } = await startServer(
       createConfig({
+        port: 8080,
         rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
         appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
         basePath: '/foo',

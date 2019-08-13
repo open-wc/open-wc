@@ -25,8 +25,9 @@ describe('transform-index-html middleware', () => {
         it(`${name} matches the snapshot`, async () => {
           let server;
           try {
-            ({ server } = startServer(
+            ({ server } = await startServer(
               createConfig({
+                port: 8080,
                 rootDir: path.resolve(__dirname, '..', 'fixtures', fixture),
                 compatibility,
                 ...extraOptions,
@@ -60,8 +61,9 @@ describe('transform-index-html middleware', () => {
   it('serves polyfills', async () => {
     let server;
     try {
-      ({ server } = startServer(
+      ({ server } = await startServer(
         createConfig({
+          port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
           compatibility: compatibilityModes.ALL,
         }),
@@ -85,8 +87,9 @@ describe('transform-index-html middleware', () => {
   it('serves inline modules', async () => {
     let server;
     try {
-      ({ server } = startServer(
+      ({ server } = await startServer(
         createConfig({
+          port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
           compatibility: compatibilityModes.ESM,
         }),
@@ -113,8 +116,9 @@ describe('transform-index-html middleware', () => {
   it('handles pages without modules', async () => {
     let server;
     try {
-      ({ server } = startServer(
+      ({ server } = await startServer(
         createConfig({
+          port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           compatibility: compatibilityModes.ESM,
         }),

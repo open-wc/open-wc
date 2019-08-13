@@ -8,9 +8,10 @@ const host = 'http://localhost:8080/';
 describe('history api fallback middleware', () => {
   describe('index in root', () => {
     let server;
-    beforeEach(() => {
-      ({ server } = startServer(
+    beforeEach(async () => {
+      ({ server } = await startServer(
         createConfig({
+          port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
         }),
@@ -57,9 +58,10 @@ describe('history api fallback middleware', () => {
 
   describe('index not in root', () => {
     let server;
-    beforeEach(() => {
-      ({ server } = startServer(
+    beforeEach(async () => {
+      ({ server } = await startServer(
         createConfig({
+          port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'index-not-in-root'),
           appIndex: path.resolve(
             __dirname,

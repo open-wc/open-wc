@@ -70,6 +70,7 @@
     "lru-cache": "^5.1.1",
     "minimatch": "^3.0.4",
     "opn": "^5.4.0",
+    "portfinder": "^1.0.21",
     "strip-ansi": "^5.2.0"
   },
   "devDependencies": {

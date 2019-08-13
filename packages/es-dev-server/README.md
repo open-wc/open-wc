@@ -39,7 +39,7 @@ npx es-dev-server
 ### Server configuration
 | name                 |  type          | description                                                                |
 | -------------------- | -------------- | -------------------------------------------------------------------------- |
-| port                 | number         | The port to use. Default: 8080                                             |
+| port                 | number         | The port to use, uses a random free port if not set.                       |
 | hostname             | string         | The hostname to use. Default: localhost                                    |
 | open                 | boolean/string | Opens the browser on app-index, root dir or a custom path                  |
 | app-index            | string         | The app's index.html file, sets up history API fallback for SPA routing    |

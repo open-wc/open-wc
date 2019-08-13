@@ -50,18 +50,19 @@ To manually setup this plugin, add it as a karma framework:
 ## Configuration
 `karma-esm` can be configured with these options:
 
-| name              |  type   | description                                                     |
-| ----------------- | ------- | --------------------------------------------------------------- |
-| nodeResolve       | boolean | Transforms bare module imports using node resolve.              |
-| coverage          | boolean | Whether to report test code coverage.                           |
-| importMap         | string  | Path to import map used for testing.                            |
-| compatibility     | string  | Compatibility level to run the `es-dev-server` with.            |
-| coverageExclude   | array   | Extra glob patterns of tests to exclude from coverage.          |
-| babelConfig       | string  | Custom babel configuration file to run on served code.          |
-| moduleDirs        | string  | Directories to resolve modules from. Defaults to `node_modules` |
-| babel             | boolean | Whether to pick up a babel configuration file in your project.  |
-| fileExtensions    | array   | Custom file extensions to serve as es modules.                  |
-| polyfills         | object  | Polyfill configuration.                                         |
+| name              | type    | description                                                                                                   |
+| ----------------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+| nodeResolve       | boolean | Transforms bare module imports using node resolve.                                                            |
+| coverage          | boolean | Whether to report test code coverage.                                                                         |
+| importMap         | string  | Path to import map used for testing.                                                                          |
+| compatibility     | string  | Compatibility level to run the `es-dev-server` with.                                                          |
+| coverageExclude   | array   | Extra glob patterns of tests to exclude from coverage.                                                        |
+| babelConfig       | string  | Custom babel configuration file to run on served code.                                                        |
+| moduleDirs        | string  | Directories to resolve modules from. Defaults to `node_modules`                                               |
+| babel             | boolean | Whether to pick up a babel configuration file in your project.                                                |
+| fileExtensions    | array   | Custom file extensions to serve as es modules.                                                                |
+| polyfills         | object  | Polyfill configuration.                                                                                       |
+| devServerPort     | number  | port of server that serves the modules. Note that this is not the karma port. Picks a random port if not set. |
 
 ### nodeResolve
 Node resolve is necessary when you have 'bare imports' in your code, and are not using import maps to resolve them.

@@ -86,7 +86,7 @@ import { compatibilityModes } from './constants.js';
  */
 export function createConfig(config) {
   const {
-    port = 8080,
+    port,
     hostname = '127.0.0.1',
     open = false,
     rootDir = process.cwd(),
