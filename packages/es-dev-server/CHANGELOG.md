@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.10.6...es-dev-server@1.11.0) (2019-08-13)
+
+
+### Features
+
+* **es-dev-server:** improve node-resolve performance ([#704](https://github.com/open-wc/open-wc/issues/704)) ([3761a21](https://github.com/open-wc/open-wc/commit/3761a21))
+
+
+
+
+
 ## [1.10.6](https://github.com/open-wc/open-wc/compare/es-dev-server@1.10.5...es-dev-server@1.10.6) (2019-08-12)
 
 
