@@ -21,7 +21,7 @@ npm i -D es-dev-server lit-element
 <html>
   <head>
     <script type="module" src="./src/my-component.js"></script>
-    </head>
+  </head>
   <body>
     <my-component></my-component>
   </body>
