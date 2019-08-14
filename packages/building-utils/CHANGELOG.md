@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.6.1...@open-wc/building-utils@2.7.0) (2019-08-14)
+
+
+### Features
+
+* **eslint-config:** update dependencies ([52909e8](https://github.com/open-wc/open-wc/commit/52909e8))
+
+
+
+
+
 ## [2.6.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.6.0...@open-wc/building-utils@2.6.1) (2019-08-13)
 
 **Note:** Version bump only for package @open-wc/building-utils

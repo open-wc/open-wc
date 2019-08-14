@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/karma-esm",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "Karma plugin for testing with es modules",
   "author": "open-wc",
   "main": "./karma-esm.js",
@@ -28,10 +28,10 @@
     "*.js"
   ],
   "dependencies": {
-    "@open-wc/building-utils": "^2.6.1",
+    "@open-wc/building-utils": "^2.7.0",
     "babel-plugin-istanbul": "^5.1.4",
     "deepmerge": "^3.3.0",
-    "es-dev-server": "^1.11.1",
+    "es-dev-server": "^1.12.0",
     "minimatch": "^3.0.4",
     "portfinder": "^1.0.21",
     "request": "^2.88.0"

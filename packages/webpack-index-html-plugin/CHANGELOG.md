@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.2.15...@open-wc/webpack-index-html-plugin@1.3.0) (2019-08-14)
+
+
+### Features
+
+* **eslint-config:** update dependencies ([52909e8](https://github.com/open-wc/open-wc/commit/52909e8))
+
+
+
+
+
 ## [1.2.15](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.2.14...@open-wc/webpack-index-html-plugin@1.2.15) (2019-08-13)
 
 **Note:** Version bump only for package @open-wc/webpack-index-html-plugin

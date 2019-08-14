@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-utils",
-  "version": "2.6.1",
+  "version": "2.7.0",
   "description": "Utils for @open-wc packages that do build stuff",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",

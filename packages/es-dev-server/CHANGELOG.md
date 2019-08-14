@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.11.1...es-dev-server@1.12.0) (2019-08-14)
+
+
+### Features
+
+* **eslint-config:** update dependencies ([52909e8](https://github.com/open-wc/open-wc/commit/52909e8))
+
+
+
+
+
 ## [1.11.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.11.0...es-dev-server@1.11.1) (2019-08-13)
 
 **Note:** Version bump only for package es-dev-server

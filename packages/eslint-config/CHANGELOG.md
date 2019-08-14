@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@1.0.0...@open-wc/eslint-config@1.1.0) (2019-08-14)
+
+
+### Features
+
+* **eslint-config:** resolve extended linting configurations ([13ee4ba](https://github.com/open-wc/open-wc/commit/13ee4ba))
+* **eslint-config:** update dependencies ([52909e8](https://github.com/open-wc/open-wc/commit/52909e8))
+
+
+
+
+
 # [1.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.4.5...@open-wc/eslint-config@1.0.0) (2019-07-08)
 
 
