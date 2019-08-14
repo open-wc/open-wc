@@ -65,10 +65,12 @@ function esmMiddlewareFactory(config, karmaEmitter) {
       watch,
       babelConfig,
       karmaEmitter,
-    ).then(port => {
-      devServerPort = port;
-      setupServerPromise = null;
-    });
+    )
+      .then(port => {
+        devServerPort = port;
+        setupServerPromise = null;
+      })
+      .catch(console.error);
 
     /**
      * @type {import('connect').NextHandleFunction}
