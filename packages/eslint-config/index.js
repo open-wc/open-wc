@@ -10,6 +10,7 @@ module.exports = {
   },
   plugins: ['html'],
   rules: {
+    'arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
     'no-underscore-dangle': 'off',
     'import/extensions': ['error', 'always', { ignorePackages: true }],
     'import/prefer-default-export': 'off',
