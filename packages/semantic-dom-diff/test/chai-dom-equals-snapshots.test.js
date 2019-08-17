@@ -53,6 +53,35 @@ describe('component-a', () => {
       myElement.parentElement.removeChild(myElement);
     });
   });
+
+  describe('failed snapshots', () => {
+    it('throws an error when a snapshot does not match', () => {
+      const myElement = document.createElement('div');
+      myElement.textContent = `${Math.random()}`;
+      document.body.appendChild(myElement);
+
+      let thrownForExpect = false;
+      let thrownForAssert = false;
+      try {
+        expect(myElement).dom.to.equalSnapshot();
+      } catch (error) {
+        thrownForExpect = true;
+        expect(error.actual.startsWith('<div>')).to.be.true;
+        expect(error.expected.startsWith('<div>')).to.be.true;
+      }
+
+      try {
+        assert.dom.equalSnapshot(myElement);
+      } catch (error) {
+        thrownForAssert = true;
+        expect(error.actual.startsWith('<div>')).to.be.true;
+        expect(error.expected.startsWith('<div>')).to.be.true;
+      }
+
+      expect(thrownForExpect).to.be.true;
+      expect(thrownForAssert).to.be.true;
+    });
+  });
 });
 
 describe('component-b', () => {

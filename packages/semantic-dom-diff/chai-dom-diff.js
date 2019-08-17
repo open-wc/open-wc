@@ -122,27 +122,34 @@ export const chaiDomDiff = (chai, utils) => {
     } else {
       html = el;
     }
-    return assertHtmlEqualsSnapshot(html, options);
+    return assertHtmlEqualsSnapshot.call(this, html, options);
   }
 
   utils.addMethod(chai.Assertion.prototype, 'equalSnapshot', equalSnapshot);
 
   utils.addMethod(chai.assert, 'equalSnapshot', assertHtmlEqualsSnapshot);
   chai.assert.dom = {
-    equal: (actualEl, expectedHTML, options) =>
-      assertHtmlEquals(getDomHtml(actualEl), expectedHTML, options),
-    equalSnapshot: (actualEl, options) => assertHtmlEqualsSnapshot(actualEl, options),
+    equal(actualEl, expectedHTML, options) {
+      return assertHtmlEquals.call(this, getDomHtml(actualEl), expectedHTML, options);
+    },
+    equalSnapshot(actualEl, options) {
+      return assertHtmlEqualsSnapshot.call(this, actualEl, options);
+    },
   };
   chai.assert.lightDom = {
-    equal: (actualEl, expectedHTML, options) =>
-      assertHtmlEquals(getLightDomHtml(actualEl), expectedHTML, options),
-    equalSnapshot: (actualEl, options) =>
-      assertHtmlEqualsSnapshot(getLightDomHtml(actualEl), options),
+    equal(actualEl, expectedHTML, options) {
+      return assertHtmlEquals.call(this, getLightDomHtml(actualEl), expectedHTML, options);
+    },
+    equalSnapshot(actualEl, options) {
+      return assertHtmlEqualsSnapshot.call(this, getLightDomHtml(actualEl), options);
+    },
   };
   chai.assert.shadowDom = {
-    equal: (actualEl, expectedHTML, options) =>
-      assertHtmlEquals(getShadowDomHtml(actualEl), expectedHTML, options),
-    equalSnapshot: (actualEl, options) =>
-      assertHtmlEqualsSnapshot(getShadowDomHtml(actualEl), options),
+    equal(actualEl, expectedHTML, options) {
+      return assertHtmlEquals.call(this, getShadowDomHtml(actualEl), expectedHTML, options);
+    },
+    equalSnapshot(actualEl, options) {
+      return assertHtmlEqualsSnapshot.call(this, getShadowDomHtml(actualEl), options);
+    },
   };
 };
