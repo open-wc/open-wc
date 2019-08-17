@@ -44,6 +44,6 @@
     "karma-browserstack-launcher": "^1.5.1",
     "karma-coverage-istanbul-reporter": "^2.0.5",
     "lodash-es": "^4.17.11",
-    "sinon": "^7.3.2"
+    "sinon": "^7.4.1"
   }
 }
