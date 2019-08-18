@@ -15,9 +15,8 @@
   },
   "module": "index.js",
   "files": [
-    "index.js",
-    "index-no-side-effects.js",
-    "register-chai-plugins.js"
+    "*.js",
+    "*.d.ts"
   ],
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
