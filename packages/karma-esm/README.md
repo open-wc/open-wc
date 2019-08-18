@@ -4,7 +4,7 @@ Karma plugin for running tests with es modules on a wide range of browsers.
 
 Out the box es modules don't work with karma because they dynamically request their dependencies, which karma doesn't allow.
 
-The `karma-esm` plugin fixes this and spins up [es-dev-server](https://open-wc.org/developing/es-dev-server.html) behind the scenes. This lets you write tests using es mdodules, modern javascript syntax and features and have karma run them on all modern browsers and IE11.
+The `karma-esm` plugin fixes this and spins up [es-dev-server](https://open-wc.org/developing/es-dev-server.html) behind the scenes. This lets you write tests using es modules, modern javascript syntax and features, and have karma run them on all modern browsers and IE11.
 
 `karma-esm` takes care of loading the correct polyfills, and runs babel for older browsers if necessary. On modern browsers missing module features, such as import maps, are shimmed using [es-module-shims](https://github.com/guybedford/es-module-shims). On browsers without es module support, modules are polyfilled with [system-js](https://github.com/systemjs/systemjs).
 
@@ -14,14 +14,16 @@ See [the es-dev-server docs](https://open-wc.org/developing/es-dev-server.html) 
 We recommend the [testing-karma configuration](https://open-wc.org/testing/testing-karma.html) for a good default karma setup which includes `karma-esm` and many other good defaults.
 
 ### Manual setup
-To manually setup this plugin, add it as a karma framework:
+To manually set up this plugin, add it as a karma framework:
 
 1. Install the plugin
-`npm i --save @open-wc/karma-esm`
+```bash
+npm i -D @open-wc/karma-esm
+```
 
 2. Add to your karma config
 ```javascript
-{
+module.exports = {
   // define where your test files are, make sure to set type to module
   files: [
     { pattern: 'test/**/*.test.js', type: 'module' }
@@ -65,7 +67,7 @@ To manually setup this plugin, add it as a karma framework:
 | devServerPort     | number  | port of server that serves the modules. Note that this is not the karma port. Picks a random port if not set. |
 
 ### nodeResolve
-Node resolve is necessary when you have 'bare imports' in your code, and are not using import maps to resolve them.
+Node resolve is necessary when you have 'bare imports' in your code and are not using import maps to resolve them.
 
 It transforms: `import foo from 'bar'` to: `import foo from './node_modules/bar/bar.js`.
 
@@ -73,12 +75,12 @@ It transforms: `import foo from 'bar'` to: `import foo from './node_modules/bar/
 Due to a bug in karma, the test coverage reporter causes browser logs to appear twice which can be annoying
 
 ### compatibility
-The compatibility option makes your code compatible with older browsers. It loads polyfills and transform modern syntax where needed. For testing it's best to leave this at 'none' for no modifications, or 'all' for full compatibility.
+The compatibility option makes your code compatible with older browsers. It loads polyfills and transforms modern syntax where needed. For testing, it's best to leave this at 'none' for no modifications, or 'all' for full compatibility.
 
 See [the documentation of the dev server](https://open-wc.org/developing/es-dev-server.html) for information on all the different modes.
 
 ## Karma preprocessors
-Unfortunately, to make karma work with es modules regular karma preprocessors no longer work. You can however configure the `es-dev-server` to do code transoformations if needed.
+Unfortunately, to make karma work with es modules regular karma preprocessors no longer work. You can, however, configure the `es-dev-server` to do code transformations if needed.
 
 ## Custom babel plugins
 You can configure `karma-esm` to pick up the babel configuration files in your project:
@@ -126,7 +128,7 @@ npm i --save-dev @babel/preset-typescript
 }
 ```
 
-To add support for experimental features which are normally handled by the typescript compiler, you can add extra babel plugins. Because typescript implements the legacy decorators proposal, you need to add the legacy flag and add class properties in loose mode:
+To add support for experimental features that are normally handled by the typescript compiler, you can add extra babel plugins. Because typescript implements the legacy decorators proposal, you need to add the legacy flag and add class properties in loose mode:
 
   1. Install the plugins:
 ```bash

@@ -1,3 +1,4 @@
+import 'chai/chai.js';
 import './register-chai-plugins.js';
 
 export {
@@ -18,4 +19,5 @@ export {
   elementUpdated,
 } from '@open-wc/testing-helpers/index.js';
 
-export { chai, expect, should, assert } from '@bundled-es-modules/chai';
+// @ts-ignore
+export const { expect, should, assert } = window.chai;

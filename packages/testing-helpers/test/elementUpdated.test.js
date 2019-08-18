@@ -1,4 +1,4 @@
-import { expect } from '@bundled-es-modules/chai';
+import { expect } from './setup.js';
 import { elementUpdated } from '../src/elementUpdated.js';
 import { nextFrame } from '../src/helpers.js';
 

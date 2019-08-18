@@ -56,7 +56,7 @@ module.exports = config => ({
     babelModernExclude: [
       '**/node_modules/sinon/**/*',
       '**/node_modules/mocha/**/*',
-      '**/node_modules/@bundled-es-modules/chai/**/*',
+      '**/node_modules/chai/**/*',
       '**/node_modules/sinon/chai/**/*',
     ],
     polyfills: {

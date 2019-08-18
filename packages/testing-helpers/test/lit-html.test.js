@@ -1,4 +1,4 @@
-import { expect } from '@bundled-es-modules/chai';
+import { expect } from './setup.js';
 import { html, litFixture, unsafeStatic } from '../index.js';
 
 /**
