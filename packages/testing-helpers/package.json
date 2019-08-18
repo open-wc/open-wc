@@ -16,8 +16,8 @@
   "module": "index.js",
   "files": [
     "src",
-    "index.js",
-    "index-no-side-effects.js"
+    "*.js",
+    "*.d.ts"
   ],
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"

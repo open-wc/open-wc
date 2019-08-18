@@ -18,8 +18,9 @@
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "files": [
+    "src",
     "*.js",
-    "src"
+    "*.d.ts"
   ],
   "contributors": [
     "Pawel Psztyc"
