@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.3.0...@open-wc/testing@2.3.1) (2019-08-18)
+
+
+### Bug Fixes
+
+* include *.ts files in npm packages ([8087906](https://github.com/open-wc/open-wc/commit/8087906))
+
+
+
+
+
 # [2.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.2.8...@open-wc/testing@2.3.0) (2019-08-18)
 
 
