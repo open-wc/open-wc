@@ -1,3 +1,5 @@
+import 'chai/chai.js';
+
 export {
   html,
   unsafeStatic,
@@ -15,4 +17,5 @@ export {
   elementUpdated,
 } from '@open-wc/testing-helpers/index-no-side-effects.js';
 
-export { chai, expect, should, assert } from '@bundled-es-modules/chai';
+// @ts-ignore
+export const { expect, should, assert } = window.chai;
