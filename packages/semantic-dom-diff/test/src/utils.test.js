@@ -1,6 +1,6 @@
 import { expect } from '@bundled-es-modules/chai';
-import { fixture, defineCE } from '@open-wc/testing-helpers';
-import '../bdd-setup.js';
+import { defineCE } from '@open-wc/testing-helpers';
+import { fixture } from '../bdd-setup.js';
 import { getOuterHtml, getCleanedShadowDom } from '../../src/utils.js';
 
 describe('getOuterHtml', () => {

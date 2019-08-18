@@ -1,5 +1,6 @@
 import { expect } from '@bundled-es-modules/chai';
 import { html, litFixture, unsafeStatic } from '../index.js';
+import { cleanupFixture } from '../src/fixture-manager.js';
 
 /**
  * @typedef {Object} ChildType
@@ -17,6 +18,7 @@ describe('html', () => {
     expect(el.tagName).to.equal('MY-FOO');
     expect(el.myNumber).to.equal(4);
     expect(el.getAttribute('foo')).to.equal('bar');
+    cleanupFixture(el);
   });
 
   it('renders static templates', async () => {
@@ -24,6 +26,7 @@ describe('html', () => {
       <div></div>
     `);
     expect(el.tagName).to.equal('DIV');
+    cleanupFixture(el);
   });
 
   it('renders static templates with properties, attributes', async () => {
@@ -33,5 +36,6 @@ describe('html', () => {
     expect(el.tagName).to.equal('DIV');
     expect(el.myNumber).to.equal(4);
     expect(el.getAttribute('foo')).to.equal('bar');
+    cleanupFixture(el);
   });
 });

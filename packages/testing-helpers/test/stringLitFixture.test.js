@@ -3,6 +3,7 @@ import { stringFixture, stringFixtureSync } from '../src/stringFixture.js';
 import { litFixture, litFixtureSync } from '../src/litFixture.js';
 import { defineCE, nextFrame } from '../src/helpers.js';
 import { html, unsafeStatic } from '../src/lit-html.js';
+import { cleanupFixture } from '../src/fixture-manager.js';
 
 class TestComponent extends HTMLElement {}
 customElements.define('test-component', TestComponent);
@@ -15,6 +16,7 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
     function testElement(element) {
       expect(element).to.be.an.instanceof(TestComponent);
       expect(element.textContent).to.equal('Text content');
+      cleanupFixture(element);
     }
     [
       stringFixtureSync('<test-component>Text content</test-component>'),
@@ -40,7 +42,9 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
      */
     function testElement(element) {
       expect(element.parentNode).to.be.an.instanceof(HTMLDivElement);
-      expect(element.parentNode.parentNode).to.equal(document.body);
+      expect(element.parentNode.parentNode).to.be.an.instanceof(HTMLDivElement);
+      expect(element.parentNode.parentNode.parentNode).to.equal(document.body);
+      cleanupFixture(element);
     }
     [
       stringFixtureSync('<test-component></test-component>'),
@@ -67,7 +71,9 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
     function testElement(element) {
       expect(element).to.be.an.instanceof(TestComponent);
       expect(element.parentNode).to.be.an.instanceof(HTMLDivElement);
-      expect(element.parentNode.parentNode).to.equal(document.body);
+      expect(element.parentNode.parentNode).to.be.an.instanceof(HTMLDivElement);
+      expect(element.parentNode.parentNode.parentNode).to.equal(document.body);
+      cleanupFixture(element);
     }
     [
       stringFixtureSync('<test-component></test-component>'),
@@ -105,6 +111,7 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
      */
     function testElement(element) {
       expect(element).to.be.an.instanceof(TestComponent);
+      cleanupFixture(element);
     }
     [
       stringFixtureSync('<test-component/>'),
@@ -130,6 +137,7 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
      */
     function testElement(element) {
       expect(element).to.be.an.instanceof(TestComponent);
+      cleanupFixture(element);
     }
     [
       stringFixtureSync(`
@@ -161,14 +169,17 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
     nextFrame().then(() => {
       counter += 1;
     });
-    await stringFixture(`<${tag}></${tag}>`);
+    const elementA = await stringFixture(`<${tag}></${tag}>`);
     expect(counter).to.equal(1);
 
     nextFrame().then(() => {
       counter += 1;
     });
-    await litFixture(html`<${litTag}></${litTag}>`);
+    const elementB = await litFixture(html`<${litTag}></${litTag}>`);
     expect(counter).to.equal(2);
+
+    cleanupFixture(elementA);
+    cleanupFixture(elementB);
   });
 
   it('will wait for an updateComplete promise if it is available', async () => {
@@ -184,9 +195,12 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
     );
     const litTag = unsafeStatic(tag);
 
-    await stringFixture(`<${tag}></${tag}>`);
+    const elementA = await stringFixture(`<${tag}></${tag}>`);
     expect(counter).to.equal(1);
-    await litFixture(html`<${litTag}></${litTag}>`);
+    const elementB = await litFixture(html`<${litTag}></${litTag}>`);
     expect(counter).to.equal(2);
+
+    cleanupFixture(elementA);
+    cleanupFixture(elementB);
   });
 });

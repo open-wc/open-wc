@@ -18,6 +18,7 @@
     "test": "yarn test:browser && yarn test:node",
     "test:browser": "karma start --coverage",
     "test:browser:watch": "karma start --auto-watch=true --single-run=false",
+    "test:browser:debug": "karma start --single-run=false --browsers=Chrome",
     "test:browser:update-snapshots": "karma start --update-snapshots",
     "test:browser:prune-snapshots": "karma start --prune-snapshots",
     "test:browser:compatibility": "karma start --compatibility all --coverage",

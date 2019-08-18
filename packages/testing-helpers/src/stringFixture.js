@@ -1,4 +1,4 @@
-import { fixtureWrapper } from './fixtureWrapper.js';
+import { createFixtureWrapper } from './fixture-manager.js';
 import { elementUpdated } from './elementUpdated.js';
 
 /**
@@ -10,7 +10,7 @@ import { elementUpdated } from './elementUpdated.js';
  * @returns {T}
  */
 export function stringFixtureSync(template) {
-  const wrapper = fixtureWrapper();
+  const wrapper = createFixtureWrapper();
   wrapper.innerHTML = template;
   return /** @type {T} */ (wrapper.children[0]);
 }

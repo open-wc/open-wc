@@ -1,5 +1,6 @@
 import { expect } from '@bundled-es-modules/chai';
 import { defineCE, oneEvent, triggerFocusFor, triggerBlurFor, fixture } from '../index.js';
+import { cleanupFixture } from '../src/fixture-manager.js';
 
 describe('Helpers', () => {
   it('provides defineCE() to register a unique new element', async () => {
@@ -45,6 +46,8 @@ describe('Helpers', () => {
 
     await triggerFocusFor(el.inputElement);
     expect(el.focusCount).to.equal(1);
+
+    cleanupFixture(el);
   });
 
   it('provides triggerBlurFor() to await a blur event (for IE)', async () => {
@@ -67,5 +70,7 @@ describe('Helpers', () => {
     await triggerBlurFor(el.inputElement);
     expect(el.blurCount).to.be.within(0, 1);
     expect(el !== document.activeElement).to.be.true;
+
+    cleanupFixture(el);
   });
 });

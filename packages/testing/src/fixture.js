@@ -1,5 +1,30 @@
-import { stringFixture, stringFixtureSync } from './stringFixture.js';
-import { litFixture, litFixtureSync } from './litFixture.js';
+import {
+  fixture as originalFixture,
+  fixtureSync as originalFixtureSync,
+  cleanupFixture,
+} from '@open-wc/testing-helpers';
+
+/**
+ * @typedef {object} FixtureOptions
+ * @property {boolean} autoCleanup whether the fixture should automatically
+ *   register the fixture to be cleaned from the dom
+ */
+
+const defaultOptions = { autoCleanup: true };
+
+/**
+ * @param {Element} element
+ * @param {FixtureOptions} options
+ */
+function setupCleanup(element, options) {
+  if (options.autoCleanup) {
+    if ('afterEach' in window && typeof window.afterEach === 'function') {
+      afterEach(() => {
+        cleanupFixture(element);
+      });
+    }
+  }
+}
 
 /**
  * Renders a string/TemplateResult and puts it in the DOM via a fixtureWrapper.
@@ -9,14 +34,13 @@ import { litFixture, litFixtureSync } from './litFixture.js';
  *
  * @template {Element} T
  * @param {unknown} template Either a string or a valid lit-html render value.
+ * @param {FixtureOptions} options
  * @returns {T} First child of the rendered DOM
  */
-export function fixtureSync(template) {
-  if (typeof template === 'string') {
-    return stringFixtureSync(template);
-  }
-
-  return litFixtureSync(template);
+export function fixtureSync(template, options = defaultOptions) {
+  const element = originalFixtureSync(template);
+  setupCleanup(element, options);
+  return /** @type {T} */ (element);
 }
 
 /**
@@ -37,12 +61,11 @@ export function fixtureSync(template) {
  *
  * @template {Element} T
  * @param {string | unknown} template Either a string or a valid lit-html render value.
+ * @param {FixtureOptions} options
  * @returns {Promise<T>} A Promise that will resolve to the first child of the rendered DOM
  */
-export async function fixture(template) {
-  if (typeof template === 'string') {
-    return stringFixture(template);
-  }
-
-  return litFixture(template);
+export async function fixture(template, options = defaultOptions) {
+  const element = await originalFixture(template);
+  setupCleanup(element, options);
+  return /** @type {T} */ (element);
 }

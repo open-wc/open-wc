@@ -2,7 +2,7 @@
 import sinon from 'sinon';
 // @ts-ignore
 import { expect } from '@bundled-es-modules/chai';
-import { cachedWrappers } from '../src/fixtureWrapper.js';
+import { cleanupFixture } from '../src/fixture-manager.js';
 import { defineCE } from '../src/helpers.js';
 import { fixture, fixtureSync } from '../src/fixture.js';
 import { html, unsafeStatic } from '../src/lit-html.js';
@@ -14,6 +14,9 @@ describe('fixtureSync & fixture', () => {
 
     const elAsync = await fixture(`<div foo="${'bar'}"></div>`);
     expect(elAsync.getAttribute('foo')).to.equal('bar');
+
+    cleanupFixture(elSync);
+    cleanupFixture(elAsync);
   });
 
   it('supports lit-html TemplateResult with properties', async () => {
@@ -37,15 +40,14 @@ describe('fixtureSync & fixture', () => {
     // @ts-ignore
     testElement(elementSync);
 
-    const elementAsync = await fixture(html`
+    const element1sync = await fixture(html`
       <div .propNumber=${10} .propFunction=${myFunction}></div>
     `);
     // @ts-ignore
-    testElement(elementAsync);
-  });
+    testElement(element1sync);
 
-  it('will cleanup after each test', async () => {
-    expect(cachedWrappers.length).to.equal(0);
+    cleanupFixture(elementSync);
+    cleanupFixture(element1sync);
   });
 
   it('waits for updateComplete', async () => {
@@ -67,12 +69,15 @@ describe('fixtureSync & fixture', () => {
     }
 
     const tag = defineCE(Test);
-    await fixture(`<${tag}></${tag}>`);
+    const el = await fixture(`<${tag}></${tag}>`);
     expect(counter).to.equal(1);
 
     const litTag = unsafeStatic(tag);
-    await fixture(html`<${litTag}></${litTag}>`);
+    const litEl = await fixture(html`<${litTag}></${litTag}>`);
     expect(counter).to.equal(2);
+
+    cleanupFixture(el);
+    cleanupFixture(litEl);
   });
 
   it('ensures ShadyDOM finished its job', async () => {
@@ -85,12 +90,14 @@ describe('fixtureSync & fixture', () => {
     class Test extends HTMLElement {}
 
     const tag = defineCE(Test);
-    await fixture(`<${tag}></${tag}>`);
+    const el = await fixture(`<${tag}></${tag}>`);
     // @ts-ignore
     expect(window.ShadyDOM.flush.callCount).to.equal(1);
 
     // @ts-ignore
     window.ShadyDOM = originalShadyDOM;
+
+    cleanupFixture(el);
   });
 
   it('waits for componentOnReady', async () => {
@@ -116,11 +123,14 @@ describe('fixtureSync & fixture', () => {
     }
 
     const tag = defineCE(Test);
-    await fixture(`<${tag}></${tag}>`);
+    const el = await fixture(`<${tag}></${tag}>`);
     expect(counter).to.equal(1);
 
     const litTag = unsafeStatic(tag);
-    await fixture(html`<${litTag}></${litTag}>`);
+    const litEl = await fixture(html`<${litTag}></${litTag}>`);
     expect(counter).to.equal(2);
+
+    cleanupFixture(el);
+    cleanupFixture(litEl);
   });
 });

@@ -1,19 +1,15 @@
 /* istanbul ignore next */
 // do manual setup and not use testing to not have circle dependencies
+import { fixture as originalFixture, cleanupFixture } from '@open-wc/testing-helpers';
 import { chai } from '@bundled-es-modules/chai';
-import { cachedWrappers } from '@open-wc/testing-helpers/index-no-side-effects.js';
 import { chaiDomDiff } from '../chai-dom-diff.js';
 
-// register-cleanup
-if (afterEach) {
+export async function fixture(template) {
+  const element = await originalFixture(template);
   afterEach(() => {
-    if (cachedWrappers) {
-      cachedWrappers.forEach(wrapper => {
-        document.body.removeChild(wrapper);
-      });
-    }
-    cachedWrappers.length = 0; // reset it like this as we can't reassign it
+    cleanupFixture(element);
   });
+  return /** @type {T} */ (element);
 }
 
 // register-plugins

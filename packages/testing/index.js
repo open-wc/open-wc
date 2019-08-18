@@ -1,5 +1,6 @@
 import './register-chai-plugins.js';
 
+// all exports from testing-helpers, except fixture
 export {
   html,
   unsafeStatic,
@@ -10,12 +11,11 @@ export {
   defineCE,
   aTimeout,
   nextFrame,
-  litFixture,
-  litFixtureSync,
-  fixture,
-  fixtureSync,
-  fixtureCleanup,
+  cleanupFixture,
   elementUpdated,
-} from '@open-wc/testing-helpers/index.js';
+} from '@open-wc/testing-helpers';
+
+// wrapped fixture, with auto cleanup
+export * from './src/fixture.js';
 
 export { chai, expect, should, assert } from '@bundled-es-modules/chai';
