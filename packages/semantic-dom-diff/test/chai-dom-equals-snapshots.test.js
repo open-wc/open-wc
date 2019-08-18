@@ -1,5 +1,4 @@
-import { assert, expect } from '@bundled-es-modules/chai';
-import './bdd-setup.js';
+import { assert, expect } from './bdd-setup.js';
 
 customElements.define(
   'snapshotted-element',

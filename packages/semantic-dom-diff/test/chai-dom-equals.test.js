@@ -1,6 +1,5 @@
-import { assert, expect } from '@bundled-es-modules/chai';
-import './bdd-setup.js';
 import { fixture, defineCE } from '@open-wc/testing-helpers';
+import { assert, expect } from './bdd-setup.js';
 
 describe('dom', () => {
   it('can compare dom nodes', async () => {

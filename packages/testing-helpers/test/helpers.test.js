@@ -1,4 +1,4 @@
-import { expect } from '@bundled-es-modules/chai';
+import { expect } from './setup.js';
 import { defineCE, oneEvent, triggerFocusFor, triggerBlurFor, fixture } from '../index.js';
 
 describe('Helpers', () => {

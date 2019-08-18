@@ -38,8 +38,8 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.3.3",
-    "@bundled-es-modules/chai": "^4.2.1",
     "@types/lodash-es": "^4.17.3",
+    "chai": "^4.2.0",
     "karma": "^4.1.0",
     "karma-browserstack-launcher": "^1.5.1",
     "karma-coverage-istanbul-reporter": "^2.0.5",

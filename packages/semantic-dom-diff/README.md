@@ -21,10 +21,10 @@ While `semantic-dom-diff` can be used standalone (see below), it most commonly u
 
   > If you are using `@open-wc/testing` this is already done for you.
   ```javascript
-  import { chai } from '@bundled-es-modules/chai';
+  import 'chai/chai.js';
   import { chaiDomDiff } from '@open-wc/semantic-dom-diff';
 
-  chai.use(chaiDomDiff);
+  window.chai.use(chaiDomDiff);
   ```
 </details>
 
@@ -177,7 +177,7 @@ it('renders correctly', async () => {
       Hey
     </div>
   `);
-  
+
   expect(el).dom.to.equal('<div>Hey</div>', {
     ignoreAttributes: ['my-random-attribute']
   });

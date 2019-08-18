@@ -43,7 +43,7 @@
     "mocha": "^6.2.0"
   },
   "devDependencies": {
-    "@bundled-es-modules/chai": "^4.2.1",
+    "chai": "^4.2.0",
     "karma-browserstack-launcher": "^1.0.0"
   }
 }

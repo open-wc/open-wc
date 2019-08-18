@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-concat */
-import { expect } from '@bundled-es-modules/chai';
+import { expect } from './bdd-setup.js';
 import { getDiffableHTML } from '../index.js';
 
 describe('getDiffableHTML()', () => {

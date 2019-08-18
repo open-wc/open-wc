@@ -1,5 +1,5 @@
-import { expect } from '@bundled-es-modules/chai';
 import { stub } from 'sinon';
+import { expect } from './setup.js';
 import { add } from '../src/utils.js';
 
 describe('add()', () => {

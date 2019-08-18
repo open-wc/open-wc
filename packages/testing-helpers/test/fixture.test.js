@@ -1,7 +1,7 @@
 // @ts-ignore
 import sinon from 'sinon';
 // @ts-ignore
-import { expect } from '@bundled-es-modules/chai';
+import { expect } from './setup.js';
 import { cachedWrappers } from '../src/fixtureWrapper.js';
 import { defineCE } from '../src/helpers.js';
 import { fixture, fixtureSync } from '../src/fixture.js';
