@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.4](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.3.3...@open-wc/karma-esm@2.3.4) (2019-08-18)
+
+
+### Bug Fixes
+
+* align sinon version ([0d529bf](https://github.com/open-wc/open-wc/commit/0d529bf))
+* use chai instead of @bundled-es-modules/chai ([f9d19bb](https://github.com/open-wc/open-wc/commit/f9d19bb))
+
+
+
+
+
 ## [2.3.3](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.3.2...@open-wc/karma-esm@2.3.3) (2019-08-17)
 
 
