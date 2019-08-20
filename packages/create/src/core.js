@@ -403,7 +403,7 @@ function _install(command = 'npm', options) {
     });
 
     install.stderr.on('data', data => {
-      console.log(`Error: ${data}`);
+      console.log(`${command}: ${data}`);
     });
 
     install.on('close', () => {
