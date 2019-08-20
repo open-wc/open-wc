@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.13.0...es-dev-server@1.14.0) (2019-08-20)
+
+
+### Features
+
+* **es-dev-server:** support resolving dynamic imports with expressions ([9d75ed4](https://github.com/open-wc/open-wc/commit/9d75ed4))
+
+
+
+
+
 # [1.13.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.12.0...es-dev-server@1.13.0) (2019-08-20)
 
 

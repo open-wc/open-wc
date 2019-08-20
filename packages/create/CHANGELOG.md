@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.7](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.6...@open-wc/create@0.18.7) (2019-08-20)
+
+
+### Bug Fixes
+
+* **create:** change installation pkg manager logs prefix to name ([4e1a0ab](https://github.com/open-wc/open-wc/commit/4e1a0ab))
+
+
+
+
+
 ## [0.18.6](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.5...@open-wc/create@0.18.6) (2019-08-20)
 
 
