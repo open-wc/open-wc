@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.21](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.1.20...@open-wc/testing-karma@3.1.21) (2019-08-20)
+
+
+### Bug Fixes
+
+* do not destructure exports to support es-module-lexer ([3709413](https://github.com/open-wc/open-wc/commit/3709413))
+
+
+
+
+
 ## [3.1.20](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.1.19...@open-wc/testing-karma@3.1.20) (2019-08-18)
 
 

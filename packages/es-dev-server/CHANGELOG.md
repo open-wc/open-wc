@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.12.0...es-dev-server@1.13.0) (2019-08-20)
+
+
+### Features
+
+* **es-dev-server:** faster node-resolve via use of es-module-lexer ([9589e4e](https://github.com/open-wc/open-wc/commit/9589e4e))
+
+
+
+
+
 # [1.12.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.11.1...es-dev-server@1.12.0) (2019-08-14)
 
 

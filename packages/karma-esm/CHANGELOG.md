@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.3.4...@open-wc/karma-esm@2.4.0) (2019-08-20)
+
+
+### Bug Fixes
+
+* do not destructure exports to support es-module-lexer ([3709413](https://github.com/open-wc/open-wc/commit/3709413))
+
+
+### Features
+
+* **es-dev-server:** faster node-resolve via use of es-module-lexer ([9589e4e](https://github.com/open-wc/open-wc/commit/9589e4e))
+
+
+
+
+
 ## [2.3.4](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.3.3...@open-wc/karma-esm@2.3.4) (2019-08-18)
 
 
