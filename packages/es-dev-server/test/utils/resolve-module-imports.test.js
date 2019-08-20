@@ -189,6 +189,31 @@ describe('resolve-module-imports', () => {
     );
   });
 
+  it('resolves the package of dynamic imports with string concatenation', async () => {
+    await expectMatchesSnapshot(
+      'string-concatenation',
+      `const file = 'a';
+       import(\`@namespace/my-module-3/dynamic-files/\${file}.js\`);
+       import(\`my-module/dynamic-files/\${file}.js\`);
+       import('my-module/dynamic-files' + '/' + file + '.js');
+       import("my-module/dynamic-files/" + file + ".js");
+       import('my-module/dynamic-files'.concat(file).concat('.js'));
+    `,
+    );
+  });
+
+  it('does not throw an error when a dynamic import with string concatenation cannot be resolved', async () => {
+    await expectMatchesSnapshot(
+      'string-concat-errors',
+      `const file = 'a';
+       import(\`@namespace/non-existing/dynamic-files/\${file}.js\`);
+       import(\`non-existing/dynamic-files/\${file}.js\`);
+       import(totallyDynamic);
+       import(\`\${file}.js\`);
+    `,
+    );
+  });
+
   it('throws when it cannot find an import', async () => {
     let thrown = false;
 
