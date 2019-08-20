@@ -1986,17 +1986,22 @@
     "@open-wc/semantic-dom-diff" "^0.13.16"
     "@types/chai" "^4.1.7"
 
+"@open-wc/semantic-dom-diff@^0.13.16":
+  version "0.13.21"
+  resolved "https://registry.yarnpkg.com/@open-wc/semantic-dom-diff/-/semantic-dom-diff-0.13.21.tgz#718b9ec5f9a98935fc775e577ad094ae8d8b7dea"
+  integrity sha512-BONpjHcGX2zFa9mfnwBCLEmlDsOHzT+j6Qt1yfK3MzFXFtAykfzFjAgaxPetu0YbBlCfXuMlfxI4vlRGCGMvFg==
+
 "@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.1.43"
+  version "1.1.45"
   dependencies:
-    "@open-wc/testing-karma" "^3.1.18"
+    "@open-wc/testing-karma" "^3.1.20"
     "@types/node" "^11.13.0"
     karma-browserstack-launcher "^1.0.0"
 
 "@open-wc/testing-karma@file:./packages/testing-karma":
-  version "3.1.18"
+  version "3.1.20"
   dependencies:
-    "@open-wc/karma-esm" "^2.3.2"
+    "@open-wc/karma-esm" "^2.3.4"
     axe-core "^3.3.1"
     istanbul-instrumenter-loader "^3.0.0"
     karma "^4.0.0"
@@ -7049,6 +7054,11 @@ es-abstract@^1.10.0, es-abstract@^1.11.0, es-abstract@^1.12.0, es-abstract@^1.13
     is-regex "^1.0.4"
     object-keys "^1.0.12"
 
+es-module-lexer@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-0.2.0.tgz#b0e88d22dc270dc5f8c2d426e63a42252188eee9"
+  integrity sha512-HAcAIT+A5ugnSgC1pS+tgVWjlaIx8HZo8fI7xa90WdAjrJqXEZO0oszJQV3q04wCD4/ZQDlgu8nOLPxMWlaQ8g==
+
 es-module-shims@^0.2.13:
   version "0.2.15"
   resolved "https://registry.yarnpkg.com/es-module-shims/-/es-module-shims-0.2.15.tgz#6a03a86eded7e27913efd75b6235b91950721c3d"
@@ -10480,7 +10490,7 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
-lodash-es@^4.17.11:
+lodash-es@^4.17.11, lodash-es@^4.17.15:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
   integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
@@ -14031,7 +14041,7 @@ resolve@1.8.1:
   dependencies:
     path-parse "^1.0.5"
 
-resolve@^1.1.6, resolve@^1.10.0, resolve@^1.11.0, resolve@^1.11.1, resolve@^1.2.0, resolve@^1.3.2, resolve@^1.4.0, resolve@^1.5.0, resolve@^1.8.1:
+resolve@^1.1.6, resolve@^1.10.0, resolve@^1.11.0, resolve@^1.11.1, resolve@^1.12.0, resolve@^1.2.0, resolve@^1.3.2, resolve@^1.4.0, resolve@^1.5.0, resolve@^1.8.1:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.12.0.tgz#3fc644a35c84a48554609ff26ec52b66fa577df6"
   integrity sha512-B/dOmuoAik5bKcD6s6nXDCjzUKnaDvdkRyAk6rsmsKLipWj4797iothd7jmmUhWTfinVMU+wc56rYKsit2Qy4w==

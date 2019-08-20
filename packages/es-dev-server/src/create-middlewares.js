@@ -2,11 +2,13 @@ import koaStatic from 'koa-static';
 import koaEtag from 'koa-etag';
 import { createBasePathMiddleware } from './middleware/base-path.js';
 import { createHistoryAPIFallbackMiddleware } from './middleware/history-api-fallback.js';
-import { createBabelMiddleware } from './middleware/babel.js';
-import { createReloadBrowserMiddleware } from './middleware/reload-browser.js';
+import { createCompileMiddleware } from './middleware/compile-middleware.js';
+import { createWatchServedFilesMiddleware } from './middleware/watch-served-files.js';
 import { createTransformIndexHTMLMiddleware } from './middleware/transform-index-html.js';
 import { createMessageChannelMiddleware } from './middleware/message-channel.js';
-import { createCacheMiddleware } from './middleware/cache.js';
+import { createEtagCacheMiddleware } from './middleware/etag-cache-middleware.js';
+import { createResponseCacheMiddleware } from './middleware/response-cache-middleware.js';
+import { setupBrowserReload } from './utils/setup-browser-reload.js';
 import { compatibilityModes } from './constants.js';
 
 /**
@@ -14,8 +16,7 @@ import { compatibilityModes } from './constants.js';
  * used by a koa server using `app.use()`:
  *
  * @param {import('./config').InternalConfig} config the server configuration
- * @param {import('chokidar').FSWatcher} [fileWatcher] an optional chokidar file watcher instance
- *   this must be passed if watch is true
+ * @param {import('chokidar').FSWatcher} fileWatcher
  * @returns {import('koa').Middleware[]}
  */
 export function createMiddlewares(config, fileWatcher) {
@@ -26,6 +27,7 @@ export function createMiddlewares(config, fileWatcher) {
     basePath,
     moduleDirectories,
     nodeResolve,
+    preserveSymlinks,
     readUserBabelConfig,
     customBabelConfig,
     watch,
@@ -33,10 +35,9 @@ export function createMiddlewares(config, fileWatcher) {
     compatibilityMode,
     babelExclude,
     babelModernExclude,
-    watchExcludes,
     watchDebounce,
     customMiddlewares,
-    logBabelErrors,
+    logCompileErrors,
   } = config;
 
   /** @type {import('koa').Middleware[]} */
@@ -50,26 +51,21 @@ export function createMiddlewares(config, fileWatcher) {
     );
   }
 
-  if (watch && !fileWatcher) {
-    throw new Error('Must provide a fileWatcher if watch is true.');
-  }
-
   const setupBabel =
     customBabelConfig ||
-    nodeResolve ||
     [compatibilityModes.ALL, compatibilityModes.MODERN].includes(compatibilityMode) ||
     readUserBabelConfig;
   const setupCompatibility = compatibilityMode && compatibilityMode !== compatibilityModes.NONE;
-  const setupTransformIndexHTML = setupBabel || setupCompatibility;
+  const setupTransformIndexHTML = nodeResolve || setupBabel || setupCompatibility;
   const setupHistoryFallback = appIndex;
-  const setupMessageChanel = watch || setupBabel;
+  const setupMessageChanel = nodeResolve || watch || setupBabel;
 
-  // strip application base path from requests
+  // strips a base path from requests
   if (config.basePath) {
     middlewares.push(createBasePathMiddleware({ basePath }));
   }
 
-  // add custom user's middlewares
+  // adds custom user's middlewares
   if (customMiddlewares && customMiddlewares.length > 0) {
     customMiddlewares.forEach(customMiddleware => {
       middlewares.push(customMiddleware);
@@ -77,58 +73,65 @@ export function createMiddlewares(config, fileWatcher) {
   }
 
   // serves 304 responses if resource hasn't changed
-  middlewares.push(createCacheMiddleware());
+  middlewares.push(createEtagCacheMiddleware());
+
   // adds etag headers for caching
   middlewares.push(koaEtag());
 
-  // communicate with browser for reload or logging
+  if (fileWatcher) {
+    // caches (transformed) file contents for faster response times
+    middlewares.push(createResponseCacheMiddleware({ fileWatcher, rootDir, extraFileExtensions }));
+  }
+
+  // communicates with browser for reload or logging
   if (setupMessageChanel) {
     middlewares.push(createMessageChannelMiddleware({ rootDir, appIndex }));
   }
 
-  // watch files and reload browser
-  if (watch) {
-    middlewares.push(
-      createReloadBrowserMiddleware({
-        rootDir,
-        fileWatcher,
-        watchExcludes,
-        watchDebounce,
-      }),
-    );
-  }
+  // watches served files
+  middlewares.push(
+    createWatchServedFilesMiddleware({
+      rootDir,
+      fileWatcher,
+    }),
+  );
 
-  // run code through babel for compatibility with older browsers
-  if (setupBabel) {
+  // compile code using babel and/or resolve module imports
+  if (setupBabel || nodeResolve) {
     middlewares.push(
-      createBabelMiddleware({
+      createCompileMiddleware({
         rootDir,
         moduleDirectories,
-        nodeResolve,
         readUserBabelConfig,
         compatibilityMode,
         extraFileExtensions,
         customBabelConfig,
         babelExclude,
         babelModernExclude,
-        logBabelErrors,
+        logCompileErrors,
+        nodeResolve,
+        preserveSymlinks,
       }),
     );
   }
 
-  // inject polyfills and shims for compatibility with older browsers
+  // injects polyfills and shims for compatibility with older browsers
   if (setupTransformIndexHTML) {
     middlewares.push(
       createTransformIndexHTMLMiddleware({ compatibilityMode, appIndex, appIndexDir }),
     );
   }
 
-  // serve index.html for non-file requests for SPA routing
+  // serves index.html for non-file requests for SPA routing
   if (setupHistoryFallback) {
     middlewares.push(createHistoryAPIFallbackMiddleware({ appIndex, appIndexDir }));
   }
 
-  // serve ststic files
+  if (watch) {
+    setupBrowserReload({ fileWatcher, watchDebounce });
+  }
+
+  // serve sstatic files
   middlewares.push(
     koaStatic(rootDir, {
       setHeaders(res) {

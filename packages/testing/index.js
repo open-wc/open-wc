@@ -20,4 +20,5 @@ export {
 } from '@open-wc/testing-helpers/index.js';
 
 // @ts-ignore
-export const { expect, should, assert } = window.chai;
+const { expect, should, assert } = window.chai;
+export { expect, should, assert };
