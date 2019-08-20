@@ -18,4 +18,5 @@ export {
 } from '@open-wc/testing-helpers/index-no-side-effects.js';
 
 // @ts-ignore
-export const { expect, should, assert } = window.chai;
+const { expect, assert, should } = window.chai;
+export { expect, assert, should };

@@ -21,4 +21,5 @@ if (afterEach) {
 window.chai.use(chaiDomDiff);
 
 // @ts-ignore
-export const { expect, assert, should } = window.chai;
+const { expect, assert, should } = window.chai;
+export { expect, assert, should };
