@@ -6,6 +6,9 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
   "license": "MIT",
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "bin": {
     "es-dev-server": "./dist/cli.js"
   },
@@ -64,7 +67,7 @@
     "command-line-usage": "^5.0.5",
     "debounce": "^1.2.0",
     "deepmerge": "^3.3.0",
-    "es-module-lexer": "^0.2.0",
+    "es-module-lexer": "^0.3.5",
     "get-stream": "^5.1.0",
     "is-stream": "^2.0.0",
     "koa": "^2.7.0",
