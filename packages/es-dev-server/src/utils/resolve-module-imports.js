@@ -2,7 +2,9 @@
 import whatwgUrl from 'whatwg-url';
 import nodeResolve from 'resolve';
 import pathIsInside from 'path-is-inside';
-import analyzeModuleSyntax from 'es-module-lexer';
+// typescript can't resolve a .cjs file
+// @ts-ignore
+import { parse } from 'es-module-lexer';
 import path from 'path';
 import { toBrowserPath } from './utils.js';
 
@@ -159,7 +161,7 @@ async function resolveImport(rootDir, sourceFilePath, importPath, config, concat
 export async function resolveModuleImports(rootDir, sourceFilePath, source, config) {
   let imports;
   try {
-    [imports] = analyzeModuleSyntax(source);
+    [imports] = await parse(source);
   } catch (error) {
     throw new ResolveSyntaxError('Syntax error.');
   }

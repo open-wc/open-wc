@@ -35,6 +35,9 @@ npm run start
 npx es-dev-server
 ```
 
+## Node version
+es-dev-server requires node v10 or higher
+
 ## Command line flags and Configuration
 ### Server configuration
 | name                 |  type          | description                                                                |
