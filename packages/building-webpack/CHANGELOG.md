@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.5.6...@open-wc/building-webpack@2.5.7) (2019-08-21)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
 ## [2.5.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.5.5...@open-wc/building-webpack@2.5.6) (2019-08-20)
 
 **Note:** Version bump only for package @open-wc/building-webpack
