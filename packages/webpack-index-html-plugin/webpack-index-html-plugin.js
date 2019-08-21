@@ -70,15 +70,11 @@ class WebpackIndexHTMLPlugin {
         throw createError(`Some variations are missing a name property.`);
       }
     }
-
-    if (config.multiBuild && config.legacy) {
-      deferredLegacyBuildResult = createDeferredPromise();
-    }
   }
 
   apply(compiler) {
     /** @type {string[]} */
-    const entries = [];
+    let entries;
     /** @type {Map<string, string[]> | null} */
     let entryNamesForVariations = null;
     let baseIndex;
@@ -96,6 +92,14 @@ class WebpackIndexHTMLPlugin {
         return false;
       });
     }
+
+    compiler.hooks.beforeCompile.tap(PLUGIN_NAME, () => {
+      if (this._config.multiBuild && this._config.legacy) {
+        deferredLegacyBuildResult = createDeferredPromise();
+      }
+      this.emitted = false;
+      entries = [];
+    });
 
     compiler.hooks.emit.tapPromise(PLUGIN_NAME, async compilation => {
       // only emit once for performance
@@ -134,6 +138,7 @@ class WebpackIndexHTMLPlugin {
       }
       this.emitted = true;
       deferredLegacyBuildResult = null;
+      entryNamesForVariations = null;
     });
   }
 }
