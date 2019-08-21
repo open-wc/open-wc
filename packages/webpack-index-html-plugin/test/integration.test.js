@@ -4,10 +4,17 @@ const path = require('path');
 const fs = require('fs');
 const os = require('os');
 const { testSnapshots } = require('@open-wc/building-utils/testing-helpers/snapshots');
+const { PLUGIN_NAME } = require('../src/utils');
 
 const fixturesDir = path.join(__dirname, 'fixtures');
 
-function compileAsync(config) {
+function touchAppFile(name) {
+  const appPath = path.join(fixturesDir, name, 'app.js');
+  const now = new Date();
+  fs.utimesSync(appPath, now, now);
+}
+
+function compileAsync(config, addWatcher, name) {
   return new Promise((resolve, reject) => {
     const compiler = webpack({
       ...config,
@@ -16,18 +23,34 @@ function compileAsync(config) {
         path: os.tmpdir(),
       },
     });
-
-    compiler.run((err, stats) => {
+    let finished = !addWatcher;
+    let watching;
+    const cb = (err, stats) => {
       if (err) {
         reject(err);
-      } else {
+        watching && watching.close();
+      } else if (finished) {
         resolve(stats);
+        watching && watching.close();
       }
-    });
+    };
+
+    if (addWatcher) {
+      watching = compiler.watch({}, cb);
+      compiler.hooks.afterCompile.tap(PLUGIN_NAME, () => {
+        if (!finished) {
+          finished = true;
+          touchAppFile(name);
+        }
+        return true;
+      });
+    } else {
+      compiler.run(cb);
+    }
   });
 }
 
-async function testSnapshot(name, configFilePath) {
+async function testSnapshot(name, configFilePath, addWatcher = false) {
   const snapshotDir = path.join(__dirname, 'snapshots', name);
   const requireResult = require(configFilePath);
   const configs = Array.isArray(requireResult) ? requireResult : [requireResult];
@@ -39,7 +62,7 @@ async function testSnapshot(name, configFilePath) {
   // note: this should be sequential, not parallel
   /* eslint-disable no-restricted-syntax, no-await-in-loop */
   for (const config of configs) {
-    const stats = await compileAsync(config);
+    const stats = await compileAsync(config, addWatcher, name);
 
     Object.entries(stats.compilation.assets).forEach(([filePath, file]) => {
       outputFiles[filePath] = file.source();
@@ -61,6 +84,11 @@ describe('webpack-index-html-plugin integration test', () => {
     it(`test case ${name}`, async function it() {
       this.timeout(1000 * 10);
       await testSnapshot(name, configFilePath);
+    });
+
+    it(`test case ${name} with watcher`, async function it() {
+      this.timeout(1000 * 10);
+      await testSnapshot(name, configFilePath, true);
     });
   });
 });
