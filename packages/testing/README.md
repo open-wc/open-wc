@@ -88,7 +88,7 @@ files: [
 ]
 ```
 
-> and replacing in your test files where you `import { chai } from '@open-wc/testing` by referencing chai on window (if it applies).
+> If your test files use `import { chai } from '@open-wc/testing`, replace those imports with referencing chai on window.
 
 ```javascript
 window.chai.use(sinonChai);
