@@ -79,6 +79,21 @@ describe('Plugin: chai-dom', () => {
 });
 ```
 
+> **__NOTE:__** if you are using `karma-webpack` you have to add `chai/chai.js` to your files in the `karma.conf.js`
+
+```javascript
+files: [
+  { pattern: require.resolve('chai/chai.js' }, 
+  // other files
+]
+```
+
+> and replacing in your test files where you `import { chai } from '@open-wc/testing` by referencing chai on window (if it applies).
+
+```javascript
+window.chai.use(sinonChai);
+```
+
 <script>
   export default {
     mounted() {
