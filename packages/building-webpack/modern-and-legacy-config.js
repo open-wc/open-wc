@@ -126,7 +126,7 @@ function createConfig(options, legacy) {
       new WebpackIndexHTMLPlugin(
         merge(
           {
-            multiBuild: production,
+            multiBuild: true,
             legacy,
             polyfills: {
               coreJs: true,
