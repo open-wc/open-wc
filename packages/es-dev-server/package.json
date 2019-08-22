@@ -1,7 +1,7 @@
 {
   "name": "es-dev-server",
   "main": "./dist/es-dev-server.js",
-  "version": "1.14.1",
+  "version": "1.14.2",
   "description": "Development server for modern web apps",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
