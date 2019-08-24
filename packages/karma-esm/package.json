@@ -34,6 +34,7 @@
     "es-dev-server": "^1.14.2",
     "minimatch": "^3.0.4",
     "portfinder": "^1.0.21",
+    "chokidar": "^3.0.2",
     "request": "^2.88.0"
   },
   "devDependencies": {
