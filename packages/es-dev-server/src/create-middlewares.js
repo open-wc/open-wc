@@ -37,7 +37,6 @@ export function createMiddlewares(config, fileWatcher) {
     babelModernExclude,
     watchDebounce,
     customMiddlewares,
-    logCompileErrors,
   } = config;
 
   /** @type {import('koa').Middleware[]} */
@@ -108,7 +107,6 @@ export function createMiddlewares(config, fileWatcher) {
         customBabelConfig,
         babelExclude,
         babelModernExclude,
-        logCompileErrors,
         nodeResolve,
         preserveSymlinks,
       }),
