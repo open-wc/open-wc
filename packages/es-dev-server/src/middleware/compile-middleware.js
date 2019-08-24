@@ -1,4 +1,5 @@
 import minimatch from 'minimatch';
+import stripAnsi from 'strip-ansi';
 import { getBodyAsString, getRequestFilePath, isPolyfill } from '../utils/utils.js';
 import { compatibilityModes, baseFileExtensions } from '../constants.js';
 import { sendMessageToActiveBrowsers } from '../utils/message-channel.js';
@@ -16,7 +17,6 @@ import createBabelCompiler from '../utils/babel-compiler.js';
  * @property {string[]} extraFileExtensions
  * @property {string[]} babelModernExclude patterns to exclude from modern babel compilation
  * @property {string[]} babelExclude patterns to exclude from all babel compilation
- * @property {boolean} logCompileErrors
  * @property {boolean} preserveSymlinks
  */
 
@@ -58,16 +58,13 @@ function createBabelCompilers(cfg) {
 
 /**
  * @param {string} errorMessage
- * @param {boolean} logCompileErrors
  */
-function logError(errorMessage, logCompileErrors) {
+function logError(errorMessage) {
   // strip babel ansi color codes because they're not colored correctly for the browser terminal
-  sendMessageToActiveBrowsers('error-message', JSON.stringify(errorMessage));
+  sendMessageToActiveBrowsers('error-message', JSON.stringify(stripAnsi(errorMessage)));
 
-  if (logCompileErrors) {
-    /* eslint-disable-next-line no-console */
-    console.error(errorMessage);
-  }
+  /* eslint-disable-next-line no-console */
+  console.error(`\n${errorMessage}`);
 }
 
 /**
@@ -98,10 +95,7 @@ export function createCompileMiddleware(cfg) {
     // we use the legacy compiler if the request ends with a legacy paramter
     const legacy = ctx.url.endsWith('?legacy=true');
     if (legacy && !babelCompilers.legacy) {
-      logError(
-        `Set compatibility mode to 'all' to compile for legacy browsers.`,
-        cfg.logCompileErrors,
-      );
+      logError(`Set compatibility mode to 'all' to compile for legacy browsers.`);
       return undefined;
     }
 
@@ -138,9 +132,16 @@ export function createCompileMiddleware(cfg) {
       ctx.status = 200;
       return undefined;
     } catch (error) {
-      // if resolveModuleImports failed due to a syntax error we send over the code
-      // without transformation to let the browser handle it
+      // ResolveSyntaxError is thrown when resolveModuleImports runs into a syntax error from
+      // the lexer, but babel didn't see any errors. this means either a bug in the lexer, or
+      // some experimental syntax. log a message and return the module untransformed to the
+      // browser
       if (error instanceof ResolveSyntaxError) {
+        logError(
+          `Could not resolve module imports in ${
+            ctx.url
+          }: Unable to parse the module, this can be due to experimental syntax or a bug in the parser.`,
+        );
         return undefined;
       }
 
@@ -151,10 +152,12 @@ export function createCompileMiddleware(cfg) {
         errorMessage = errorMessage.replace(filePath, ctx.url);
       }
 
+      errorMessage = `Error compiling: ${errorMessage}`;
+
       // send compile error to browser for logging
-      ctx.body = `Error compiling: ${errorMessage}`;
+      ctx.body = errorMessage;
       ctx.status = 500;
-      logError(errorMessage, cfg.logCompileErrors);
+      logError(errorMessage);
     }
     return undefined;
   }
