@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.14.1...es-dev-server@1.14.2) (2019-08-22)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+## [1.14.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.14.0...es-dev-server@1.14.1) (2019-08-21)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+# [1.14.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.13.0...es-dev-server@1.14.0) (2019-08-20)
+
+
+### Features
+
+* **es-dev-server:** support resolving dynamic imports with expressions ([9d75ed4](https://github.com/open-wc/open-wc/commit/9d75ed4))
+
+
+
+
+
+# [1.13.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.12.0...es-dev-server@1.13.0) (2019-08-20)
+
+
+### Features
+
+* **es-dev-server:** faster node-resolve via use of es-module-lexer ([9589e4e](https://github.com/open-wc/open-wc/commit/9589e4e))
+
+
+
+
+
 # [1.12.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.11.1...es-dev-server@1.12.0) (2019-08-14)
 
 

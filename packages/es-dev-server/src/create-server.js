@@ -10,8 +10,7 @@ import { createMiddlewares } from './create-middlewares.js';
  * http server instances.
  *
  * @param {import('./config').InternalConfig} cfg the server configuration
- * @param {import('chokidar').FSWatcher} [fileWatcher] an optional chokidar file watcher instance
- *   this must be passed if watch is true
+ * @param {import('chokidar').FSWatcher} fileWatcher
  * @returns {{ app: import('koa'), server: import('http').Server | import('http2').Http2SecureServer }}
  */
 export function createServer(cfg, fileWatcher) {

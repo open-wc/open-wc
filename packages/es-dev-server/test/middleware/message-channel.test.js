@@ -5,7 +5,7 @@ import path from 'path';
 import { startServer, createConfig } from '../../src/es-dev-server.js';
 import { messageChannelEndpoint } from '../../src/constants.js';
 import { AsyncStream, timeout } from '../test-helpers.js';
-import { sendMessageToActiveBrowsers } from '../../src/middleware/message-channel.js';
+import { sendMessageToActiveBrowsers } from '../../src/utils/message-channel.js';
 import messageChannelScript from '../../src/browser-scripts/message-channel.js';
 
 const host = 'http://localhost:8080/';

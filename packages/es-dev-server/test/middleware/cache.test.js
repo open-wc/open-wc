@@ -2,63 +2,92 @@ import { expect } from 'chai';
 import fetch from 'node-fetch';
 import path from 'path';
 import fs from 'fs';
+import uuid from 'uuid/v4.js';
 import { startServer, createConfig } from '../../src/es-dev-server.js';
+import { createMockFileWatcher } from '../test-helpers.js';
 
 const host = 'http://localhost:8080/';
 
 const fixtureDir = path.resolve(__dirname, '..', 'fixtures', 'simple');
-const testFile = path.join(fixtureDir, 'cached-files.js');
+const testFileAName = 'cached-file-a.js';
+const testFileBName = 'cached-file-b.js';
+const testFileAPath = path.join(fixtureDir, testFileAName);
+const testFileBPath = path.join(fixtureDir, testFileBName);
 
 describe('cache middleware', () => {
+  let mockFileWatcher;
   let server;
+
   beforeEach(async () => {
+    mockFileWatcher = createMockFileWatcher();
     ({ server } = await startServer(
       createConfig({
         port: 8080,
         rootDir: fixtureDir,
       }),
+      // @ts-ignore
+      mockFileWatcher,
     ));
-
-    fs.writeFileSync(testFile, 'this file is cached', 'utf-8');
   });
 
   afterEach(() => {
     server.close();
-    fs.unlinkSync(testFile);
   });
 
-  it("returns 304 responses if file hasn't changed", async () => {
-    const initialResponse = await fetch(`${host}cached-files.js`);
-    const etag = initialResponse.headers.get('etag');
+  context('', () => {
+    beforeEach(() => {
+      fs.writeFileSync(testFileAPath, 'this file is cached', 'utf-8');
+    });
 
-    expect(initialResponse.status).to.equal(200);
-    expect(await initialResponse.text()).to.equal('this file is cached');
+    afterEach(() => {
+      fs.unlinkSync(testFileAPath);
+    });
 
-    expect(etag).to.be.a('string');
+    it("returns 304 responses if file hasn't changed", async () => {
+      const initialResponse = await fetch(`${host}${testFileAName}`);
+      const etag = initialResponse.headers.get('etag');
 
-    const headers = { headers: { 'if-none-match': etag } };
-    const cachedResponse = await fetch(`${host}cached-files.js`, headers);
+      expect(initialResponse.status).to.equal(200);
+      expect(await initialResponse.text()).to.equal('this file is cached');
 
-    expect(cachedResponse.status).to.equal(304);
-    expect(await cachedResponse.text()).to.equal('');
+      expect(etag).to.be.a('string');
+
+      const headers = { headers: { 'if-none-match': etag } };
+      const cachedResponse = await fetch(`${host}${testFileAName}`, headers);
+
+      expect(cachedResponse.status).to.equal(304);
+      expect(await cachedResponse.text()).to.equal('');
+    });
   });
 
-  it('returns 200 responses if file changed', async () => {
-    const initialResponse = await fetch(`${host}cached-files.js`);
-    const etag = initialResponse.headers.get('etag');
+  context('', () => {
+    beforeEach(() => {
+      fs.writeFileSync(testFileBPath, 'this file is cached', 'utf-8');
+    });
 
-    expect(initialResponse.status).to.equal(200);
-    expect(await initialResponse.text()).to.equal('this file is cached');
-    expect(etag).to.be.a('string');
+    afterEach(() => {
+      fs.unlinkSync(testFileBPath);
+    });
 
-    // file system is second-specific, so we need to wait 1sec
-    fs.writeFileSync(testFile, `the cache is busted${Math.random()}`, 'utf-8');
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    it('returns 200 responses if file changed', async () => {
+      fs.writeFileSync(testFileBPath, 'this file is cached', 'utf-8');
 
-    const headers = { headers: { 'if-none-match': etag } };
-    const cachedResponse = await fetch(`${host}cached-files.js`, headers);
+      const initialResponse = await fetch(`${host}${testFileBName}`);
+      const etag = initialResponse.headers.get('etag');
 
-    expect(cachedResponse.status).to.equal(200);
-    expect((await cachedResponse.text()).startsWith('the cache is busted')).to.equal(true);
+      expect(initialResponse.status).to.equal(200);
+      expect(await initialResponse.text()).to.equal('this file is cached');
+      expect(etag).to.be.a('string');
+
+      const fileContent = `the cache is busted${uuid()}`;
+      fs.writeFileSync(testFileBPath, fileContent, 'utf-8');
+      mockFileWatcher.dispatchEvent('change', testFileBPath);
+
+      const headers = { headers: { 'if-none-match': etag } };
+      const cachedResponse = await fetch(`${host}${testFileBName}`, headers);
+
+      expect(cachedResponse.status).to.equal(200);
+      expect(await cachedResponse.text()).to.equal(fileContent);
+    });
   });
 });

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["es2017", "dom"],
+    "declaration": true,
+    "allowJs": true,
+    "checkJs": true,
+    "emitDeclarationOnly": true,
+    "strict": false,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "types": ["node", "mocha", "chai"],
+    "esModuleInterop": true
+  },
+  "files": ["browser.d.ts"],
+  "include": [
+    "packages/testing-helpers/*.js",
+    "packages/semantic-dom-diff/get-diffable-html.js",
+    "packages/semantic-dom-diff/src/utils.js"
+  ]
+}

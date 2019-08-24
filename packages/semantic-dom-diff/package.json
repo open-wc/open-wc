@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/semantic-dom-diff",
-  "version": "0.13.21",
+  "version": "0.14.1",
   "description": "To compare dom and shadow dom trees. Part of open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -16,16 +16,15 @@
   "module": "index.js",
   "files": [
     "src",
-    "chai-dom-diff.js",
-    "get-diffable-html.js",
-    "index.js"
+    "*.js",
+    "*.d.ts"
   ],
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "devDependencies": {
-    "@bundled-es-modules/chai": "^4.2.0",
-    "@open-wc/testing-helpers": "^1.1.7",
+    "@open-wc/testing-helpers": "^1.2.1",
+    "chai": "^4.2.0",
     "mocha": "^5.0.0"
   }
 }

@@ -84,7 +84,7 @@ describe('transform-index-html middleware', () => {
     }
   });
 
-  it('serves inline modules', async () => {
+  it('serves inline module 0', async () => {
     let server;
     try {
       ({ server } = await startServer(
@@ -97,11 +97,30 @@ describe('transform-index-html middleware', () => {
 
       const indexResponse = await fetch(`${host}index.html`);
       expect(indexResponse.status).to.equal(200);
+
       const inlineModule0Response = await fetch(`${host}inline-module-0.js?source=/index.html`);
       expect(inlineModule0Response.status).to.equal(200);
       expect(inlineModule0Response.headers.get('content-type')).to.equal('text/javascript');
       expect(inlineModule0Response.headers.get('cache-control')).to.equal('no-cache');
       expect(await inlineModule0Response.text()).to.include("import './src/local-module.js';");
+    } finally {
+      server.close();
+    }
+  });
+
+  it('serves inline module 1', async () => {
+    let server;
+    try {
+      ({ server } = await startServer(
+        createConfig({
+          port: 8080,
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
+          compatibility: compatibilityModes.ESM,
+        }),
+      ));
+
+      const indexResponse = await fetch(`${host}index.html`);
+      expect(indexResponse.status).to.equal(200);
 
       const inlineModule1Response = await fetch(`${host}inline-module-1.js?source=/index.html`);
       expect(inlineModule1Response.status).to.equal(200);

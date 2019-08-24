@@ -43,7 +43,10 @@ Run the server:
 npm run start
 ```
 
-## Command-line flags and Configuration
+## Node version
+es-dev-server requires node v10 or higher
+
+## Command line flags and Configuration
 ### Server configuration
 | name                 |  type          | description                                                                |
 | -------------------- | -------------- | -------------------------------------------------------------------------- |
@@ -67,6 +70,7 @@ npm run start
 | -------------------- | -------------- | -------------------------------------------------------------------------- |
 | compatibility        | string         | Compatibility mode for older browsers. Can be: `esm`, `modern` or `all`    |
 | node-resolve         | number         | Resolve bare import imports using node resolve                             |
+| preserve-symlinks    | boolean        | Preserve symlinks when resolving modules. Default false.                   |
 | module-dirs          | string/array   | Directories to resolve modules from. Used by node-resolve                  |
 | babel                | boolean        | Transform served code through babel. Requires .babelrc                     |
 | file-extensions      | number/array   | Extra file extensions to use when transforming code.                       |

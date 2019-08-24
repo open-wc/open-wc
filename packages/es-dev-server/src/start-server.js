@@ -4,9 +4,7 @@ import portfinder from 'portfinder';
 import { createServer } from './create-server.js';
 
 /** @param {import('./config.js').InternalConfig} cfg */
-export async function startServer(cfg) {
-  let fileWatcher = cfg.watch ? chokidar.watch([]) : undefined;
-
+export async function startServer(cfg, fileWatcher = chokidar.watch([])) {
   const result = createServer(cfg, fileWatcher);
   const { app } = result;
   let { server } = result;
@@ -14,12 +12,15 @@ export async function startServer(cfg) {
   const port = typeof cfg.port === 'number' ? cfg.port : await portfinder.getPortPromise();
 
   // cleanup after quit
-  server.addListener('close', () => {
+  function closeFileWatcher() {
     if (fileWatcher) {
       fileWatcher.close();
+      /* eslint-disable-next-line no-param-reassign */
       fileWatcher = undefined;
     }
-  });
+  }
+
+  server.addListener('close', closeFileWatcher);
 
   function stopServer() {
     if (server) {

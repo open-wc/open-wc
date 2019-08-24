@@ -3,39 +3,47 @@
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
 ## Manual Setup
+
 ```bash
-yarn add @open-wc/semantic-dom-diff --dev
+npm i -D @open-wc/semantic-dom-diff
 ```
-`semantic-dom-diff` allows diffing chunks of dom or HTML for semanticaly equality:
+
+`semantic-dom-diff` allows diffing chunks of dom or HTML for semantic equality:
+
 - whitespace and newlines are normalized
 - tags and attributes are printed on individual lines
 - comments are removed
-- style, script and svg contents are removed
+- style, script and SVG contents are removed
 - tags, attributes or element's light dom can be ignored through configuration
 
 ## Chai Plugin
+
 While `semantic-dom-diff` can be used standalone (see below), it most commonly used as a Chai plugin.
 
 <details>
   <summary>Registering the plugin</summary>
 
-  > If you are using `@open-wc/testing` this is already done for you.
-  ```javascript
-  import { chai } from '@bundled-es-modules/chai';
-  import { chaiDomDiff } from '@open-wc/semantic-dom-diff';
+> If you are using `@open-wc/testing` this is already done for you.
 
-  chai.use(chaiDomDiff);
-  ```
+```javascript
+import 'chai/chai.js';
+import { chaiDomDiff } from '@open-wc/semantic-dom-diff';
+
+window.chai.use(chaiDomDiff);
+```
+
 </details>
 
 ### Assertion Styles
+
 The Chai plugin supports both the BDD (`expect`) and TDD (`assert`) APIs.
+
 ```javascript
 expect(el).dom.to.equal('<div></div>');
 assert.dom.equal(el, '<div></div>');
 
-expect(el).dom.to.equal('<div foo="bar"></div>', {ignoreAttributes: ['foo']});
-assert.dom.equal(el, '<div foo="bar"></div>', {ignoreAttributes: ['foo']});
+expect(el).dom.to.equal('<div foo="bar"></div>', { ignoreAttributes: ['foo'] });
+assert.dom.equal(el, '<div foo="bar"></div>', { ignoreAttributes: ['foo'] });
 
 expect(el).lightDom.to.equal('<div></div>');
 assert.lightDom.equal(el, '<div></div>');
@@ -45,6 +53,7 @@ assert.shadowDom.equal(el, '<div></div>');
 ```
 
 ### Setting up your dom for diffing
+
 You can set up our chai plugin to diff different types of DOM:
 
 ```javascript
@@ -68,14 +77,15 @@ it('my test', async () => {
     </my-element>
   `);
 
-  expect(el).dom // dom is <my-element><div>light dom content</div></my-element>
-  expect(el).lightDom // dom is <div>light dom content</div>
-  expect(el).shadowDom // dom is <p>shadow content</p>
+  expect(el).dom; // dom is <my-element><div>light dom content</div></my-element>
+  expect(el).lightDom; // dom is <div>light dom content</div>
+  expect(el).shadowDom; // dom is <p>shadow content</p>
 });
 ```
 
 ### Manual diffing
-You can use the chai plugin to manually diff chunks of dom. The dom is diffed semantically: whitespace, newlines etc. are normalized.
+
+You can use the chai plugin to manually diff chunks of dom. The dom is diffed semantically: whitespace, newlines, etc. are normalized.
 
 ```javascript
 class MyElement extends HTMLElement {
@@ -105,6 +115,7 @@ it('my test', async () => {
 ```
 
 ### Snapshot testing
+
 The most powerful feature of `semantic-dom-diff` is the ability to test and manage snapshots of your web components.
 
 > If you are not using `@open-wc/testing-karma`, you need to manually install [karma-snapshot](https://www.npmjs.com/package/karma-snapshot) and [karma-mocha-snapshot](https://www.npmjs.com/package/karma-mocha-snapshot).
@@ -151,7 +162,7 @@ describe('my-message', () => {
 });
 ```
 
-Snapshots are stored in the `__snapshots__` folder in your project, using the most top level `describe` as the name for your snapshots file.
+Snapshots are stored in the `__snapshots__` folder in your project, using the most top-level `describe` as the name for your snapshots file.
 
 #### Updating a snapshot
 
@@ -161,10 +172,9 @@ When your tests run for the first time the snapshot files are generated. On subs
 
 If the difference was an intended change, you can update the snapshots by passing the `--update-snapshots` flag.
 
-
 #### Cleaning up unused snapshots
 
-After refactoring there might be leftover snapshot files which are unused. You can run karma with the `--prune-snapshots` flag to clean these up.
+After refactoring, there might be unused and leftover snapshot files. You can run karma with the `--prune-snapshots` flag to clean these up.
 
 **Ignoring tags and attributes**
 
@@ -177,13 +187,13 @@ it('renders correctly', async () => {
       Hey
     </div>
   `);
-  
+
   expect(el).dom.to.equal('<div>Hey</div>', {
-    ignoreAttributes: ['my-random-attribute']
+    ignoreAttributes: ['my-random-attribute'],
   });
 
   expect(el).dom.to.equalSnapshot({
-    ignoreAttributes: ['my-random-attribute']
+    ignoreAttributes: ['my-random-attribute'],
   });
 });
 ```
@@ -200,15 +210,11 @@ it('renders correctly', async () => {
 
   // ignore id attributes on input elements
   expect(el).dom.to.equal('<div>Hey</div>', {
-    ignoreAttributes: [
-      { tags: ['input'], attributes: ['id'] }
-    ]
+    ignoreAttributes: [{ tags: ['input'], attributes: ['id'] }],
   });
 
   expect(el).dom.to.equalSnapshot({
-    ignoreAttributes: [
-      { tags: ['input'], attributes: ['id'] }
-    ]
+    ignoreAttributes: [{ tags: ['input'], attributes: ['id'] }],
   });
 });
 ```
@@ -228,18 +234,18 @@ it('renders correctly', async () => {
 
   // ignore id attributes on input elements
   expect(el).dom.to.equal('<div>Hey</div>', {
-    ignoreTags: ['my-custom-element']
+    ignoreTags: ['my-custom-element'],
   });
 
   expect(el).dom.to.equalSnapshot({
-    ignoreTags: ['my-custom-element']
+    ignoreTags: ['my-custom-element'],
   });
 });
 ```
 
 **Ignoring children**
 
-When working with web components you may find that they sometimes render to their light dom, for example to meet some accessibility requirements. We don't want to ignore the tag completely, as we would then not be able to test if we did render the tag.
+When working with web components you may find that they sometimes render to their light dom, for example, to meet some accessibility requirements. We don't want to ignore the tag completely, as we would then not be able to test if we did render the tag.
 
 We can ignore just it's light dom:
 
@@ -256,18 +262,43 @@ it('renders correctly', async () => {
   `);
 
   // ignore id attributes on input elements
-  expect(el).dom.to.equal(`
+  expect(el).dom.to.equal(
+    `
     <div>
       <my-custom-input id="myInput"></my-custom-input>
       foo
     </div>
-  `, { ignoreChildren: ['my-custom-element'] });
+  `,
+    { ignoreChildren: ['my-custom-element'] },
+  );
 
   expect(el).dom.to.equalSnapshot({
-    ignoreChildren: ['my-custom-element']
+    ignoreChildren: ['my-custom-element'],
   });
 });
 ```
+
+**TypeScript**
+
+When working with typescript you may notice that the types are not correct for
+
+```js
+expect(el).dom.to.equal('<div>Hey</div>', {
+  ignoreTags: ['my-custom-element'],
+});
+```
+
+e.g. the 2nd parameter is expected to be a string. Unfortunately, we currently can not change this.
+For now you will need to ignore types if you want to provide extra options.
+
+```js
+// @ts-ignore
+expect(el).dom.to.equal('<div>Hey</div>', {
+  ignoreTags: ['my-custom-element'],
+});
+```
+
+We plan to change and include it in the next [breaking testing release](https://github.com/open-wc/open-wc/projects/1).
 
 <script>
   export default {

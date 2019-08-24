@@ -4,6 +4,11 @@ const SingleEntryPlugin = require('webpack/lib/SingleEntryPlugin');
 const MultiEntryPlugin = require('webpack/lib/MultiEntryPlugin');
 const { extractResources } = require('@open-wc/building-utils/index-html');
 
+function getFilenameWithoutExtension(filePath) {
+  const filename = path.basename(filePath);
+  return filename.substring(0, filename.length - path.extname(filename).length);
+}
+
 function createEntrypoints(compiler, context, entry, config, createError) {
   let index;
   let nonAppEntryPoints;
@@ -52,7 +57,7 @@ function createEntrypoints(compiler, context, entry, config, createError) {
 
   const entries = resources.jsModules.map(jsModule => ({
     jsModule: path.resolve(indexFolder, jsModule),
-    entryName: jsModule.substring(jsModule.lastIndexOf(path.sep) + 1, jsModule.length - 3),
+    entryName: getFilenameWithoutExtension(jsModule),
   }));
 
   if (new Set(entries.map(e => e.entryName)).size !== entries.length) {

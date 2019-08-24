@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.2.0...@open-wc/testing-helpers@1.2.1) (2019-08-18)
+
+
+### Bug Fixes
+
+* include *.ts files in npm packages ([8087906](https://github.com/open-wc/open-wc/commit/8087906))
+
+
+
+
+
+# [1.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.1.7...@open-wc/testing-helpers@1.2.0) (2019-08-18)
+
+
+### Bug Fixes
+
+* align sinon version ([0d529bf](https://github.com/open-wc/open-wc/commit/0d529bf))
+* use chai instead of @bundled-es-modules/chai ([f9d19bb](https://github.com/open-wc/open-wc/commit/f9d19bb))
+
+
+### Features
+
+* add type definition files for testing ([462a29f](https://github.com/open-wc/open-wc/commit/462a29f))
+
+
+
+
+
 ## [1.1.7](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.1.6...@open-wc/testing-helpers@1.1.7) (2019-08-05)
 
 

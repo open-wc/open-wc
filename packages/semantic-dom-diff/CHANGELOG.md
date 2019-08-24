@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.1](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.14.0...@open-wc/semantic-dom-diff@0.14.1) (2019-08-18)
+
+
+### Bug Fixes
+
+* include *.ts files in npm packages ([8087906](https://github.com/open-wc/open-wc/commit/8087906))
+
+
+
+
+
+# [0.14.0](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.13.21...@open-wc/semantic-dom-diff@0.14.0) (2019-08-18)
+
+
+### Bug Fixes
+
+* use chai instead of @bundled-es-modules/chai ([f9d19bb](https://github.com/open-wc/open-wc/commit/f9d19bb))
+* **semantic-dom-diff:** fix snapshot error messages ([0656c1c](https://github.com/open-wc/open-wc/commit/0656c1c))
+
+
+### Features
+
+* add type definition files for testing ([462a29f](https://github.com/open-wc/open-wc/commit/462a29f))
+
+
+
+
+
 ## [0.13.21](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.13.20...@open-wc/semantic-dom-diff@0.13.21) (2019-08-05)
 
 

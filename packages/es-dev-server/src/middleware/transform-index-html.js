@@ -1,7 +1,12 @@
 import path from 'path';
 import { URLSearchParams } from 'url';
 import { getTransformedIndexHTML } from '../utils/transform-index-html.js';
-import { isIndexHTMLResponse, getBodyAsString, toBrowserPath } from '../utils/utils.js';
+import {
+  isIndexHTMLResponse,
+  getBodyAsString,
+  toBrowserPath,
+  isInlineModule,
+} from '../utils/utils.js';
 
 /**
  * @typedef {object} TransformIndexHTMLMiddlewareConfig
@@ -54,7 +59,7 @@ export function createTransformIndexHTMLMiddleware(cfg) {
      * of the inline module in that index.html. We use these to look up the correct code to
      * serve
      */
-    if (ctx.url.includes('/inline-module-') && ctx.url.includes('?source=')) {
+    if (isInlineModule(ctx.url)) {
       const [url, queryString] = ctx.url.split('?');
       const params = new URLSearchParams(queryString);
       const indexHTML = indexHTMLData.get(decodeURIComponent(params.get('source')));

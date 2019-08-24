@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/karma-esm",
-  "version": "2.3.3",
+  "version": "2.4.3",
   "description": "Karma plugin for testing with es modules",
   "author": "open-wc",
   "main": "./karma-esm.js",
@@ -28,22 +28,22 @@
     "*.js"
   ],
   "dependencies": {
-    "@open-wc/building-utils": "^2.7.0",
+    "@open-wc/building-utils": "^2.8.1",
     "babel-plugin-istanbul": "^5.1.4",
     "deepmerge": "^3.3.0",
-    "es-dev-server": "^1.12.0",
+    "es-dev-server": "^1.14.2",
     "minimatch": "^3.0.4",
     "portfinder": "^1.0.21",
     "request": "^2.88.0"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.3.3",
-    "@bundled-es-modules/chai": "^4.2.1",
     "@types/lodash-es": "^4.17.3",
+    "chai": "^4.2.0",
     "karma": "^4.1.0",
     "karma-browserstack-launcher": "^1.5.1",
     "karma-coverage-istanbul-reporter": "^2.0.5",
     "lodash-es": "^4.17.11",
-    "sinon": "^7.3.2"
+    "sinon": "^7.4.1"
   }
 }

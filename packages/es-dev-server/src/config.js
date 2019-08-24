@@ -25,12 +25,13 @@ import { compatibilityModes } from './constants.js';
  *
  * Development help
  * @property {boolean} [watch] whether to watch served files and reload the browser on change
- * @property {string[]} [watchExcludes] file glob patterns to exclude from watching
  * @property {boolean} [http2] whether to run the server in http2, sets up https as well
  *
  * Code transformation
  * @property {string} [compatibility] compatibility mode for older browsers. Can be: "esm", modern" or "all"
  * @property {boolean} [nodeResolve] whether to resolve bare module imports using node resolve
+ * @property {boolean} [preserveSymlinks] preserve symlinks when resolving modules. Default false,
+ *  which is the default node behavior.
  * @property {string[]} [moduleDirs] directories to resolve modules from when using nodeResolve
  *   should be directory names, not paths to directories as node resolve will try to recursively
  *   find directories with these names
@@ -40,7 +41,7 @@ import { compatibilityModes } from './constants.js';
  * @property {string[]} [babelModernExclude] files excluded from babel on modern browser
  * @property {object} [babelConfig] babel config to use, this is useful when you want to provide a
  *   babel config from a tool, and don't want to require all users to use the same babel config
- * @property {boolean} [logBabelErrors] whether to log errors thrown by babel, true by default
+ * @property {boolean} [logCompileErrors] whether to log errors thrown by a compiler, true by default
  */
 
 /**
@@ -63,20 +64,20 @@ import { compatibilityModes } from './constants.js';
  *
  * Development help
  * @property {boolean} watch
- * @property {string[]} watchExcludes
  * @property {number} watchDebounce
  * @property {boolean} http2
  *
  * Code transformation
  * @property {string[]} moduleDirectories
  * @property {boolean} nodeResolve
+ * @property {boolean} preserveSymlinks
  * @property {boolean} readUserBabelConfig same as babel option in command line args
  * @property {string} compatibilityMode
  * @property {object} customBabelConfig custom babel configuration to use when compiling
  * @property {string[]} extraFileExtensions
  * @property {string[]} babelExclude
  * @property {string[]} babelModernExclude
- * @property {boolean} logBabelErrors whether to log errors thrown by babel, true by default
+ * @property {boolean} logCompileErrors
  */
 
 /**
@@ -89,20 +90,19 @@ export function createConfig(config) {
     port,
     hostname = '127.0.0.1',
     open = false,
-    rootDir = process.cwd(),
     basePath,
     watch = false,
-    watchExcludes = [],
     http2 = false,
     compatibility = compatibilityModes.NONE,
     nodeResolve = false,
+    preserveSymlinks = false,
     moduleDirs = ['node_modules'],
     babel = false,
     fileExtensions = [],
     babelExclude = [],
     babelModernExclude = [],
     babelConfig,
-    logBabelErrors = true,
+    logCompileErrors = true,
     logStartup,
   } = config;
 
@@ -110,8 +110,12 @@ export function createConfig(config) {
   // @ts-ignore
   const middlewares = config.middlewares || config.customMiddlewares;
 
-  let { appIndex } = config;
+  let { appIndex, rootDir = process.cwd() } = config;
   let appIndexDir;
+
+  // ensure rootDir is a fully resolved path, for example if you set ../../
+  // in the config or cli, it's resolved relative to the current working directory
+  rootDir = path.resolve(rootDir);
 
   // resolve appIndex relative to rootDir and transform it to a browser path
   if (appIndex) {
@@ -152,6 +156,7 @@ export function createConfig(config) {
     basePath,
     moduleDirectories: moduleDirs,
     nodeResolve,
+    preserveSymlinks,
     readUserBabelConfig: babel,
     customBabelConfig: babelConfig,
     watch,
@@ -163,9 +168,8 @@ export function createConfig(config) {
     compatibilityMode: compatibility,
     babelExclude,
     babelModernExclude,
-    watchExcludes,
     watchDebounce: 1000,
     customMiddlewares: middlewares,
-    logBabelErrors,
+    logCompileErrors,
   };
 }

@@ -14,7 +14,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-       # Download and cache dependencies
+      # Download and cache dependencies
       - restore_cache:
           keys:
             - v3-dependencies-{{ checksum "package.json" }}
@@ -28,6 +28,9 @@ jobs:
 
       # build what needs to be build so we can use it in the next steps
       - run: npm run build
+
+      # auto build typescript definition files (not part of build as locally JsDoc alone is all we need)
+      - run: npm run build:types
 
       # run lint
       - run: npm run lint
@@ -48,7 +51,7 @@ jobs:
           at: ~/repo
       - add_ssh_keys:
           fingerprints:
-            - "3f:ea:54:b7:77:13:b6:cf:29:90:2b:19:bb:eb:b5:f1"
+            - '3f:ea:54:b7:77:13:b6:cf:29:90:2b:19:bb:eb:b5:f1'
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
