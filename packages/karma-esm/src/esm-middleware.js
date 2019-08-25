@@ -2,7 +2,8 @@
 const request = require('request');
 const minimatch = require('minimatch');
 const portfinder = require('portfinder');
-const { startServer, createConfig, messageChannelEndpoint } = require('es-dev-server');
+const chokidar = require('chokidar');
+const { startServer, createConfig } = require('es-dev-server');
 const { createEsmConfig } = require('./esm-config.js');
 
 async function setupDevServer(karmaConfig, esmConfig, watch, babelConfig, karmaEmitter) {
@@ -28,14 +29,12 @@ async function setupDevServer(karmaConfig, esmConfig, watch, babelConfig, karmaE
     babelConfig,
   });
 
-  await startServer(esDevServerConfig);
+  const fileWatcher = chokidar.watch([]);
+  await startServer(esDevServerConfig, fileWatcher);
 
   if (watch) {
-    const messageChannel = request(`http://127.0.0.1:${devServerPort}${messageChannelEndpoint}`);
-    messageChannel.addListener('data', message => {
-      if (message.toString('utf-8').startsWith('event: file-changed')) {
-        karmaEmitter.refreshFiles();
-      }
+    fileWatcher.addListener('change', () => {
+      karmaEmitter.refreshFiles();
     });
   }
 

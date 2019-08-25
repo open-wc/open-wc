@@ -1992,16 +1992,16 @@
   integrity sha512-BONpjHcGX2zFa9mfnwBCLEmlDsOHzT+j6Qt1yfK3MzFXFtAykfzFjAgaxPetu0YbBlCfXuMlfxI4vlRGCGMvFg==
 
 "@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.1.48"
+  version "1.1.49"
   dependencies:
-    "@open-wc/testing-karma" "^3.1.23"
+    "@open-wc/testing-karma" "^3.1.24"
     "@types/node" "^11.13.0"
     karma-browserstack-launcher "^1.0.0"
 
 "@open-wc/testing-karma@file:./packages/testing-karma":
-  version "3.1.23"
+  version "3.1.24"
   dependencies:
-    "@open-wc/karma-esm" "^2.4.2"
+    "@open-wc/karma-esm" "^2.4.3"
     axe-core "^3.3.1"
     istanbul-instrumenter-loader "^3.0.0"
     karma "^4.0.0"
@@ -5273,7 +5273,7 @@ chokidar@^2.0.0, chokidar@^2.0.2, chokidar@^2.0.3, chokidar@^2.0.4, chokidar@^2.
   optionalDependencies:
     fsevents "^1.2.7"
 
-chokidar@^3.0.0:
+chokidar@^3.0.0, chokidar@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.0.2.tgz#0d1cd6d04eb2df0327446188cd13736a3367d681"
   integrity sha512-c4PR2egjNjI1um6bamCQ6bUNPDiyofNQruHvKgHQ4gDUP/ITSVSzNsiI5OWtHOsX323i5ha/kk4YmOZ1Ktg7KA==
@@ -7054,10 +7054,10 @@ es-abstract@^1.10.0, es-abstract@^1.11.0, es-abstract@^1.12.0, es-abstract@^1.13
     is-regex "^1.0.4"
     object-keys "^1.0.12"
 
-es-module-lexer@^0.3.5:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-0.3.5.tgz#2372995cf994c75287bc3864899821c838867a67"
-  integrity sha512-iUGTeNPl4SO3v9jBTuMe/jfTsND3O2n0DnkMp9h6q/SEK1K1rwWXq06FqB1117pErRs28wCIaeeQukEDzHH+mg==
+es-module-lexer@^0.3.6:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-0.3.6.tgz#dabe3e3b2ca19e29b37d7df4008fe6107746777d"
+  integrity sha512-2pzyN7X1XOogdhTI9Yc6pHv9y1/Pq/yqD8XIFzR/2JlzNeFgOVo8cHgMFNDbFpL5xcAQGNUthgd8ED91gANUSQ==
 
 es-module-shims@^0.2.13:
   version "0.2.15"
