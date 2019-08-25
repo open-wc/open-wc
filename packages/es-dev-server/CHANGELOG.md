@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.15.0...es-dev-server@1.15.1) (2019-08-25)
+
+
+### Bug Fixes
+
+* **es-dev-server:** pin lexer version ([#764](https://github.com/open-wc/open-wc/issues/764)) ([0e288fc](https://github.com/open-wc/open-wc/commit/0e288fc))
+
+
+
+
+
 # [1.15.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.14.2...es-dev-server@1.15.0) (2019-08-25)
 
 
