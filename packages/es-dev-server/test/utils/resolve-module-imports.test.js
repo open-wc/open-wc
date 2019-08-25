@@ -218,7 +218,9 @@ describe('resolve-module-imports', () => {
       await resolveModuleImports(baseDir, sourceFileName, 'import "nope";', defaultConfig);
     } catch (error) {
       thrown = true;
-      expect(error.message).to.equal('Could not find module "nope".');
+      expect(error.message).to.equal(
+        `Could not resolve "import { ... } from 'nope';" in "./src/foo.js".`,
+      );
     }
 
     expect(thrown).to.equal(true);

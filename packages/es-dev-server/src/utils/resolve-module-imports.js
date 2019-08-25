@@ -160,7 +160,14 @@ async function resolveImport(rootDir, sourceFilePath, importPath, config, concat
   } catch (error) {
     // make module not found error message shorter
     if (error.code === 'MODULE_NOT_FOUND') {
-      throw new Error(`Could not find module "${importPath}".`);
+      const relativeImportFilePath = path.relative(rootDir, sourceFilePath);
+      const resolvedImportPath = toBrowserPath(relativeImportFilePath);
+      const realtivePathToErrorFile = resolvedImportPath.startsWith('.')
+        ? resolvedImportPath
+        : `./${resolvedImportPath}`;
+      throw new Error(
+        `Could not resolve "import { ... } from '${importPath}';" in "${realtivePathToErrorFile}".`,
+      );
     }
     throw error;
   }
