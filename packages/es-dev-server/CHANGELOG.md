@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.15.2...es-dev-server@1.15.3) (2019-08-26)
+
+
+### Bug Fixes
+
+* **es-dev-server:** correctly close previous message channel ([3c33625](https://github.com/open-wc/open-wc/commit/3c33625))
+
+
+
+
+
 ## [1.15.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.15.1...es-dev-server@1.15.2) (2019-08-26)
 
 **Note:** Version bump only for package es-dev-server
