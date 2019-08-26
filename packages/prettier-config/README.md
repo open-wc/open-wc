@@ -45,7 +45,7 @@ npm init @open-wc
 
 - Apply formatting to JS files
 - Apply formatting to HTML inside of `html` tagged template literals used by [lit-html](https://github.com/Polymer/lit-html)
-- Apply formatting to CSS inside of `css` tagged template literals used by [lit-css](https://github.com/lit-styles/lit-styles/tree/master/packages/lit-css)
+- Apply formatting to CSS inside of `css` tagged template literals used by [lit-element](https://lit-element.polymer-project.org/guide/styles#static-styles)
 - Integration with ESLint to prevent potentially conflicting rules
 
 ## Usage
