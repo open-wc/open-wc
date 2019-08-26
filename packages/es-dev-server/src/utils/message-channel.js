@@ -33,20 +33,17 @@ export function setupMessageChannel(ctx) {
 
     activeSocket = null;
     activeStream = null;
-    return;
   }
 
-  activeSocket = ctx.socket;
-  activeStream = new SSEStream();
+  const stream = new SSEStream();
+  activeStream = stream;
+  activeSocket = ctx.req.socket;
 
   function close() {
-    activeSocket.removeListener('error', close);
-    activeSocket.removeListener('close', close);
-    activeStream.end();
-    activeSocket.end();
-
-    activeSocket = null;
-    activeStream = null;
+    ctx.req.socket.removeListener('error', close);
+    ctx.req.socket.removeListener('close', close);
+    stream.end();
+    ctx.req.socket.end();
   }
 
   ctx.req.socket.setTimeout(0);
