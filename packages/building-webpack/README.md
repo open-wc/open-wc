@@ -298,16 +298,22 @@ This the fastest method, as it strips away types during babel transformormation 
   Please note that decorators will add [non standard syntax](https://open-wc.org/building/building-webpack.html#common-extensions) to your code.
   :::
 
-  > Due to the way Babel handles [decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) and class properties, you'll need to specify the plugins in a specific order with specific options. Here's what you'll need:
-  ```javascript
+  ```json
   {
-    "presets": ["@babel/preset-typescript"],
+    "presets": [
+      "@babel/preset-typescript"
+    ],
+    // for libraries that support babel decorators (lit-element) use:
     "plugins": [
       ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
       "@babel/plugin-proposal-class-properties"
     ]
+    // for libraries that only support typescript:
+    // "plugins": [
+    //   ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    //   ["@babel/plugin-proposal-class-properties", { "loose": true }]
+    // ],
   }
-
   ```
 </details>
 
