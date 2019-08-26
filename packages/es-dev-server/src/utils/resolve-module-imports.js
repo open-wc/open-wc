@@ -7,9 +7,16 @@ import pathIsInside from 'path-is-inside';
 import { parse } from 'es-module-lexer';
 import path from 'path';
 import { toBrowserPath } from './utils.js';
+import createBabelCompiler from './babel-compiler.js';
 
 const CONCAT_NO_PACKAGE_ERROR =
   'Dynamic import with a concatenated string should start with a valid full package name.';
+
+const babelCompile = createBabelCompiler({
+  readUserBabelConfig: false,
+  modern: false,
+  legacy: false,
+});
 
 export class ResolveSyntaxError extends Error {}
 
@@ -79,6 +86,13 @@ async function resolveConcatenatedImport(sourceFileDir, importPath, config) {
   return `${packageDir}${pathToAppend}`;
 }
 
+async function createSyntaxError(sourceFilename, source) {
+  // if es-module-lexer cannot parse the file, use babel to generate a user-friendly error message
+  await babelCompile(sourceFilename, source);
+  // if babel did not have any error, throw a syntax error
+  throw new ResolveSyntaxError();
+}
+
 /**
  * @typedef {object} ResolveConfig
  * @property {string[]} fileExtensions
@@ -146,7 +160,14 @@ async function resolveImport(rootDir, sourceFilePath, importPath, config, concat
   } catch (error) {
     // make module not found error message shorter
     if (error.code === 'MODULE_NOT_FOUND') {
-      throw new Error(`Could not find module "${importPath}".`);
+      const relativeImportFilePath = path.relative(rootDir, sourceFilePath);
+      const resolvedImportPath = toBrowserPath(relativeImportFilePath);
+      const realtivePathToErrorFile = resolvedImportPath.startsWith('.')
+        ? resolvedImportPath
+        : `./${resolvedImportPath}`;
+      throw new Error(
+        `Could not resolve "import { ... } from '${importPath}';" in "${realtivePathToErrorFile}".`,
+      );
     }
     throw error;
   }
@@ -163,7 +184,7 @@ export async function resolveModuleImports(rootDir, sourceFilePath, source, conf
   try {
     [imports] = await parse(source);
   } catch (error) {
-    throw new ResolveSyntaxError('Syntax error.');
+    await createSyntaxError(sourceFilePath, source);
   }
 
   let resolvedSource = '';

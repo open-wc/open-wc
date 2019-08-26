@@ -1,7 +1,11 @@
 import { SSEStream } from './utils.js';
 
-/** @type {Set<SSEStream>} */
-const channels = new Set();
+/** @type {SSEStream | null} */
+let activeStream;
+/** @type {import ('net').Socket} */
+let activeSocket;
+/** @type {Map<string, number>} */
+const pendingErrorMessages = new Map();
 
 /**
  * Sends event to all opened browsers.
@@ -10,25 +14,39 @@ const channels = new Set();
  * @param {string} [data]
  */
 export function sendMessageToActiveBrowsers(name, data) {
-  channels.forEach(channel => {
-    channel.sendMessage(name, data);
-  });
+  if (name === 'error-message') {
+    pendingErrorMessages.set(data, Date.now());
+  }
+
+  if (activeStream) {
+    activeStream.sendMessage(name, data);
+  }
 }
 
 /**
- * Injects message channel script to index.html
- *
  * @param {import('koa').Context} ctx
  */
 export function setupMessageChannel(ctx) {
-  const { socket } = ctx;
-  const channel = new SSEStream();
-  channels.add(channel);
+  if (activeStream && activeSocket) {
+    activeStream.end();
+    activeSocket.end();
+
+    activeSocket = null;
+    activeStream = null;
+    return;
+  }
+
+  activeSocket = ctx.socket;
+  activeStream = new SSEStream();
 
   function close() {
-    channels.delete(channel);
-    socket.removeListener('error', close);
-    socket.removeListener('close', close);
+    activeSocket.removeListener('error', close);
+    activeSocket.removeListener('close', close);
+    activeStream.end();
+    activeSocket.end();
+
+    activeSocket = null;
+    activeStream = null;
   }
 
   ctx.req.socket.setTimeout(0);
@@ -43,12 +61,23 @@ export function setupMessageChannel(ctx) {
     ctx.set('Connection', 'keep-alive');
   }
 
-  ctx.body = channel;
+  ctx.body = activeStream;
 
   ctx.req.setMaxListeners(100);
   ctx.req.addListener('error', close);
   ctx.req.addListener('close', close);
   ctx.req.addListener('finish', close);
 
-  channel.sendMessage('channel-opened');
+  activeStream.sendMessage('channel-opened');
+  const now = Date.now();
+
+  // send error messages that occurred within 1sec before opening the new
+  // message channel. this helps catch errors that happen while loading a
+  // page when the message channel is not set up yet
+  pendingErrorMessages.forEach((timestamp, message) => {
+    if (now - timestamp <= 1000) {
+      activeStream.sendMessage('error-message', message);
+    }
+  });
+  pendingErrorMessages.clear();
 }

@@ -14,8 +14,8 @@ const BABEL_DEOPTIMIZED_LENGTH = 500000;
  * @property {boolean} [systemJs]
  */
 
-/** @param {boolean} babelrc */
-function createDefaultConfig(babelrc) {
+/** @param {boolean} readUserBabelConfig */
+function createDefaultConfig(readUserBabelConfig) {
   return {
     caller: {
       name: 'es-dev-server',
@@ -26,9 +26,9 @@ function createDefaultConfig(babelrc) {
       require.resolve('@babel/plugin-syntax-import-meta'),
     ],
     sourceType: 'module',
-    // only read the user's babelrc if explicitly enabled
-    babelrc,
-    highlightCode: false,
+    // only read the user's babelrc and config if explicitly enabled
+    babelrc: readUserBabelConfig,
+    configFile: readUserBabelConfig,
   };
 }
 
@@ -76,11 +76,18 @@ export default function createBabelCompiler(cfg) {
 
   const babelConfig = deepmerge.all(babelConfigs);
 
-  return (filename, source) => {
+  /**
+   * @param {string} filename
+   * @param {string} source
+   * @returns {Promise<string>}
+   */
+  function compile(filename, source) {
     // babel runs out of memory when processing source maps for large files
     const sourceMaps = source.length > BABEL_DEOPTIMIZED_LENGTH ? false : 'inline';
     return transformAsync(source, { filename, sourceMaps, ...babelConfig }).then(
       result => result.code,
     );
-  };
+  }
+
+  return compile;
 }

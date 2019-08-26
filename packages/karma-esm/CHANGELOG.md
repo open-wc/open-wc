@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.1](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.5.0...@open-wc/karma-esm@2.5.1) (2019-08-25)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+# [2.5.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.4.3...@open-wc/karma-esm@2.5.0) (2019-08-25)
+
+
+### Features
+
+* **karma-esm:** use file watcher for reloading karma ([cf6346d](https://github.com/open-wc/open-wc/commit/cf6346d))
+
+
+
+
+
 ## [2.4.3](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.4.2...@open-wc/karma-esm@2.4.3) (2019-08-22)
 
 **Note:** Version bump only for package @open-wc/karma-esm

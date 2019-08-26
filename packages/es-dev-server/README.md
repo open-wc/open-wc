@@ -2,37 +2,45 @@
 
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
-A dev server for modern web development workflows.
+A web server for developing without a build step.
 
-Without any flags, `es-dev-server` acts as a simple static file server. Through flags different features can be enabled, such as:
+By default, `es-dev-server` acts as a simple static file server. Through flags, different features can be enabled, such as:
 - reloading the browser on file changes
 - resolve bare module imports using node resolution
 - history API fallback for SPA routing
 - Smart caching to speed up file serving
 - Compatibility mode for older browsers
 
-Compatibility mode enables bundle-free development with modern javascript, es modules and import maps on older browsers, including IE11.
+Compatibility mode enables bundle-free development with modern javascript, es modules and import maps on all major browsers and IE11.
 
 ## Getting started
 We recommend [following this guide](https://dev.to/open-wc/developing-without-a-build-2-es-dev-server-1cf5) for a step by step overview of different workflows with `es-dev-server`.
 
-## Installation
+## Setup
+With our project scaffolding you can set up a pre-configured project:
+```bash
+npm init @open-wc
+```
+
+### Manual
+You can also set up the dev server manually:
 ```bash
 npm i -D es-dev-server
 ```
 
-## Usage
-```
-// package.json
-"scripts": {
-  "start": "es-dev-server"
+Add scripts to your `package.json`, modify the flags as needed:
+```json
+{
+  "scripts": {
+    "start": "es-dev-server --app-index index.html --node-resolve --watch --open",
+    "start:compatibility": "es-dev-server --compatibility all --app-index index.html --node-resolve --watch --open"
+  }
 }
+```
 
-// bash
+Run the server:
+```bash
 npm run start
-
-// or via npx
-npx es-dev-server
 ```
 
 ## Node version
@@ -47,8 +55,8 @@ es-dev-server requires node v10 or higher
 | open                 | boolean/string | Opens the browser on app-index, root dir or a custom path                  |
 | app-index            | string         | The app's index.html file, sets up history API fallback for SPA routing    |
 | root-dir             | string         | The root directory to serve files from. Default: working directory         |
-| base-path            | string         | Base path the app is served on. Example: /my-app  |
-| config               | string         | The file to read configuration from (js or json)                           |
+| base-path            | string         | Base path the app is served on. Example: /my-app                           |
+| config               | string         | The file to read configuration from (JS or JSON)                           |
 | help                 | none           | See all options                                                            |
 
 ### Development help
@@ -65,7 +73,7 @@ es-dev-server requires node v10 or higher
 | preserve-symlinks    | boolean        | Preserve symlinks when resolving modules. Default false.                   |
 | module-dirs          | string/array   | Directories to resolve modules from. Used by node-resolve                  |
 | babel                | boolean        | Transform served code through babel. Requires .babelrc                     |
-| file-extensions      | number/array   | Extra file extentions to use when transforming code.                       |
+| file-extensions      | number/array   | Extra file extensions to use when transforming code.                       |
 | babel-exclude        | number/array   | Patterns of files to exclude from babel compilation.                       |
 | babel-modern-exclude | number/array   | Patterns of files to exclude from babel compilation on modern browsers.    |
 
@@ -85,14 +93,15 @@ module.exports = {
 }
 ```
 
-In addition to the command line flags, the configuration file accepts these additional options:
+In addition to the command-line flags, the configuration file accepts these additional options:
 
 | name                 |  type          | description                                                              |
 | -------------------- | -------------- | ------------------------------------------------------------------------ |
 | middlewares          | array          | Koa middlewares to add to the server, read more below.                   |
 | babelConfig          | object         | Babel config to run with the server                                      |
+
 ## Folder structure
-`es-dev-server` serves static files using the same structure as your file system. It cannot serve any files outside of the root of the web server. You need to make sure any files requested, including node modules, are accessible for the web server.
+`es-dev-server` serves static files using the same structure as your file system. It cannot serve any files outside of the root of the webserver. You need to make sure any files requested, including node modules, are accessible for the webserver.
 
 Click read more to view different strategies for setting up your project's folder structure.
 
@@ -100,6 +109,7 @@ Click read more to view different strategies for setting up your project's folde
   <summary>Read more</summary>
 
   ### index.html in root
+
   The simplest setup where all files are accessible is to place your index.html at the root of your project:
   ```
   node_modules/...
@@ -110,6 +120,7 @@ Click read more to view different strategies for setting up your project's folde
   If you run `es-dev-server` regularly from the root of this project, you can access your app at `/` or `/index.html` in the browser.
 
   ### index.html in a subfoolder
+
   If you move your `index.html` inside a subfolder:
   ```
   node_modules/...
@@ -132,11 +143,12 @@ Click read more to view different strategies for setting up your project's folde
   es-dev-server --root-dir src --open
   ```
 
-  Now your `index.html` is accessible at `/` or `/index.html`. However the dev server cannot serve any files outside of the root directory. So if your app uses any node modules, they will no longer because accessible.
+  Now your `index.html` is accessible at `/` or `/index.html`. However, the dev server cannot serve any files outside of the root directory. So if your app uses any node modules, they will no longer because accessible.
 
-  If you want your index in a sub folder without this being visible in the browser url, you can set up a file rewrite rule. [Read more here](#rewriting-file-requests)
+  If you want your index in a subfolder without this being visible in the browser URL, you can set up a file rewrite rule. [Read more here](#rewriting-file-requests)
 
   ### Monorepos
+
   If you are using `es-dev-server` in a monorepo, your node modules are in two different locations. In the package's folder and the repository root:
   ```
   node_modules/...
@@ -144,7 +156,7 @@ Click read more to view different strategies for setting up your project's folde
   packages/my-package/index.html
   ```
 
-  You will need make sure the root node_modules folder is accessible to the dev server.
+  You will need to make sure the root node_modules folder is accessible to the dev server.
 
   If your working directory is `packages/my-package` you can use this command:
 
@@ -164,7 +176,8 @@ Click read more to view different strategies for setting up your project's folde
   This is the same approach as serving an index.html in a subdirectory, so the section above applies here as well.
 
   ### Base element
-  You can set up a `<base href="">` element to modify how files are resolved relatively to your index.html. You can be very useful when your index.html is not in the root of your project.
+
+  You can set up a `<base href="">` element to modify how files are resolved relatively to your index.html. You can be very useful when your index.html is not at the root of your project.
 
   If you use SPA routing, using a base element is highly recommended. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
 
@@ -219,12 +232,12 @@ You can rewrite certain file requests using a simple custom middleware. This can
   };
   ```
 
-  This way from the browser you can request `/` or `/index.html` and it will serve `/src/index.html`. This middleware is run before the dev server's own file serving logic, which will use the rewritten url.
+  This way from the browser you can request `/` or `/index.html` and it will serve `/src/index.html`. This middleware is run before the dev server's file serving logic, which will use the rewritten URL.
 
 </details>
 
 ### Typescript support
-`es-dev-server` is based around developing without any build tools, however you can make it work with typescript as well.
+`es-dev-server` is based around developing without any build tools but you can make it work with typescript as well.
 
 <details>
   <summary>Read more</summary>
@@ -265,7 +278,7 @@ You can rewrite certain file requests using a simple custom middleware. This can
   es-dev-server --file-extensions .ts --node-resolve --babel --open
   ```
 
-  To add support for experimental features which are normally handled by the typescript compiler, you can add extra babel plugins. Because typescript implements the legacy decorators proposal, you need to add the legacy flag and add class properties in loose mode:
+  To add support for experimental features that are normally handled by the typescript compiler, you can add extra babel plugins. Because typescript implements the legacy decorators proposal, you need to add the legacy flag and add class properties in loose mode:
 
   1. Install the plugins:
   ```bash
@@ -295,25 +308,25 @@ Compatibility mode enables bundle-free development with features such as es modu
 
   <summary>Read more</summary>
 
-  If you want to make use of import maps, you can provide an import map in your `index.html`. To generate an import map, you can check out our package [import-maps-generate](https://github.com/open-wc/open-wc/tree/master/packages/import-maps-generate), or alternatively you can add one manually.
+  If you want to make use of import maps, you can provide an import map in your `index.html`. To generate an import map, you can check out our package [import-maps-generate](https://github.com/open-wc/open-wc/tree/master/packages/import-maps-generate), or you can add one manually.
 
-  There are three modes that can be enabled:
+  Three modes can be enabled:
   ### esm
   `esm` mode adds [es-module-shims](https://github.com/guybedford/es-module-shims) to enable new module features such as dynamic imports and import maps.
 
-  This mode has a neglible performance impact, and is great when working on modern browsers.
+  This mode has a negligible performance impact and is great when working on modern browsers.
 
   ### modern
   `modern` mode expands `esm` mode, adding a babel transform and a polyfill loader.
 
-  The babel transform uses the [present-env](https://babeljs.io/docs/en/babel-preset-env) plugin. This transforms standard syntax which isn't yet supported by all browsers. By default it targets latest two versions of Chrome, Safari, Firefox and Edge. This can be configured with a [browserslist configuration](https://www.npmjs.com/package/browserslist).
+  The babel transform uses the [present-env](https://babeljs.io/docs/en/babel-preset-env) plugin. This transforms standard syntax which isn't yet supported by all browsers. By default, it targets the latest two versions of Chrome, Safari, Firefox, and Edge. This can be configured with a [browserslist configuration](https://www.npmjs.com/package/browserslist).
 
-  The polyfill loader does lightweight feature detection to determine which polyills to load. By default it loads polyfills for webcomponents, these can be turned off or custom polyfills can be added in the configuration.
+  The polyfill loader does lightweight feature detection to determine which polyfills to load. By default it loads polyfills for web components, these can be turned off or custom polyfills can be added in the configuration.
 
   This mode has a moderate performance impact. Use this when using new javascript syntax that is not yet supported on all browsers.
 
   ### all
-  `all` mode expands `modern` mode by making your code compatible with browsers which don't yet support modules.
+  `all` mode expands `modern` mode by making your code compatible with browsers that don't yet support modules.
 
   In addition to the web component polyfills, it loads the general [core-js polyfills](https://www.npmjs.com/package/core-js) and a polyfill for [fetch](https://www.npmjs.com/package/whatwg-fetch)
 
@@ -321,7 +334,7 @@ Compatibility mode enables bundle-free development with features such as es modu
 
   The `es5` transformation is only done for browsers which don't support modules, so you can safely use this mode on modern browsers where it acts the same way as `modern` mode.
 
-  `all` mode has the same moderate impact as `modern` mode on browsers that support modules. On browsers which don't support modules it has a heavier impact. Use this mode if you want to verify if your code runs correctly on older browsers without having to run a build.
+  `all` mode has the same moderate impact as `modern` mode on browsers that support modules. On browsers that don't support modules, it has a heavier impact. Use this mode if you want to verify if your code runs correctly on older browsers without having to run a build.
 
 </details>
 
@@ -333,9 +346,10 @@ You can use different components from `es-dev-server` as a library and integrate
 <summary>Read more</summary>
 
 ### createConfig
+
 When using the server from javascript you are going to need a config object to tell the server what options to turn on and off. It's best to use `createConfig` for this as this converts the public API to an internal config structure and sets up default values.
 
-By default all options besides static file serving is turned off, so it's easy to configure based on your own requirements.
+By default, all options besides static file serving are turned off, so it's easy to configure based on your requirements.
 
 The config structure is the same as the configuration explained in the [configuration files section](#configuration-files)
 
@@ -350,7 +364,8 @@ const config = createConfig({
 ```
 
 ### createMiddlewares
-`createMiddlewares` creates the dev server's middlewares based on your configuration. You can use this to hook them up to your own koa server.
+
+`createMiddlewares` creates the dev server's middlewares based on your configuration. You can use this to hook them up to your koa server.
 
 Returns an array of koa middleware functions.
 
@@ -368,6 +383,7 @@ middlewares.forEach(middleware => {
 ```
 
 ### createServer
+
 `createServer` creates an instance of the dev server including all middlewares, but without starting the server. This is useful if you want to be in control of starting the server yourself.
 
 Returns the koa app and a node http or http2 server.
@@ -382,6 +398,7 @@ server.listen(3000);
 ```
 
 ### watch mode
+
 `createMiddlewares` and `createServer` requires a chokidar fileWatcher if watch mode is enabled. You need to pass this separately because the watcher needs to be killed explicitly when the server closes.
 
 ```javascript
@@ -402,6 +419,7 @@ fileWatcher.close();
 ```
 
 ### startServer
+
 `startServer` creates and starts the server, listening on the configured port. It opens the browser if configured and logs a startup message.
 
 Returns the koa app and a node http or http2 server.

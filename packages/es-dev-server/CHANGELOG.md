@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.15.0...es-dev-server@1.15.1) (2019-08-25)
+
+
+### Bug Fixes
+
+* **es-dev-server:** pin lexer version ([#764](https://github.com/open-wc/open-wc/issues/764)) ([0e288fc](https://github.com/open-wc/open-wc/commit/0e288fc))
+
+
+
+
+
+# [1.15.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.14.2...es-dev-server@1.15.0) (2019-08-25)
+
+
+### Bug Fixes
+
+* **es-dev-server:** improve failed bare module resolution error message ([d32befd](https://github.com/open-wc/open-wc/commit/d32befd))
+* **es-dev-server:** update es-module-lexer ([ef645b0](https://github.com/open-wc/open-wc/commit/ef645b0))
+* **es-dev-server:** watch any valid served file ([1030dbc](https://github.com/open-wc/open-wc/commit/1030dbc))
+
+
+### Features
+
+* **es-dev-server:** improve node resolve error logging ([829235d](https://github.com/open-wc/open-wc/commit/829235d))
+* **es-dev-server:** log compile errors during page load ([194527a](https://github.com/open-wc/open-wc/commit/194527a))
+* **es-dev-server:** log index.html reloads for better error tracking ([8a542fc](https://github.com/open-wc/open-wc/commit/8a542fc))
+
+
+
+
+
 ## [1.14.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.14.1...es-dev-server@1.14.2) (2019-08-22)
 
 **Note:** Version bump only for package es-dev-server

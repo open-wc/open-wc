@@ -1,10 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import { expect } from 'chai';
-import {
-  resolveModuleImports,
-  ResolveSyntaxError,
-} from '../../src/utils/resolve-module-imports.js';
+import { resolveModuleImports } from '../../src/utils/resolve-module-imports.js';
 
 const updateSnapshots = process.argv.includes('--update-snapshots');
 const snapshotsDir = path.resolve(__dirname, '..', 'snapshots', 'resolve-module-imports');
@@ -164,8 +161,7 @@ describe('resolve-module-imports', () => {
     );
   });
 
-  // Temporarily skipped until https://github.com/guybedford/es-module-lexer/issues/17 is fixed
-  it.skip('does not get confused by import in regular code', async () => {
+  it('does not get confused by import in regular code', async () => {
     await expectMatchesSnapshot(
       'import-in-code',
       `
@@ -222,21 +218,9 @@ describe('resolve-module-imports', () => {
       await resolveModuleImports(baseDir, sourceFileName, 'import "nope";', defaultConfig);
     } catch (error) {
       thrown = true;
-      expect(error.message).to.equal('Could not find module "nope".');
-    }
-
-    expect(thrown).to.equal(true);
-  });
-
-  it('throws a ResolveSyntaxError on invalid syntax', async () => {
-    let thrown = false;
-
-    try {
-      await resolveModuleImports(baseDir, sourceFileName, 'function() {', defaultConfig);
-    } catch (error) {
-      thrown = true;
-      expect(error.message).to.equal('Syntax error.');
-      expect(error).to.be.an.instanceOf(ResolveSyntaxError);
+      expect(error.message).to.equal(
+        `Could not resolve "import { ... } from 'nope';" in "./src/foo.js".`,
+      );
     }
 
     expect(thrown).to.equal(true);

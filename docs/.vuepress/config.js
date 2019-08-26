@@ -9,6 +9,8 @@ const sidebar = [
     children: [
       ['/developing/', 'Getting started'],
       ['/developing/ide', 'IDE'],
+      '/developing/lit-html',
+      '/developing/code-examples',
       '/developing/best-practices',
       '/developing/es-dev-server',
       ['/init/', 'Generators'],
