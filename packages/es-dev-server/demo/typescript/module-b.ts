@@ -1,11 +1,12 @@
 /* eslint-disable */
-import { html, LitElement, property, TemplateResult } from 'lit-element';
+import { html, LitElement, property, TemplateResult, customElement } from 'lit-element';
 
 export const foo = () => 'module b foo';
 
 console.log('module b');
 console.log('lit-html', html);
 
+@customElement('my-element')
 class MyElement extends LitElement {
 
   @property({ type: String })
@@ -18,7 +19,5 @@ class MyElement extends LitElement {
   }
 
 }
-
-customElements.define('my-element', MyElement);
 
 document.body.appendChild(document.createElement('my-element'));

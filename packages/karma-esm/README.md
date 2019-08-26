@@ -128,7 +128,7 @@ npm i --save-dev @babel/preset-typescript
 }
 ```
 
-To add support for experimental features that are normally handled by the typescript compiler, you can add extra babel plugins. Because typescript implements the legacy decorators proposal, you need to add the legacy flag and add class properties in loose mode:
+To add support for experimental features that are normally handled by the typescript compiler, you can add extra plugins:
 
   1. Install the plugins:
 ```bash
@@ -138,13 +138,21 @@ npm i --save-dev @babel/plugin-proposal-decorators @babel/plugin-proposal-class-
   2. Update your babel configuration:
 ```json
 {
-  "plugins": [
-    ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    ["@babel/plugin-proposal-class-properties", { "loose": true }]
-  ],
-  "presets": [
-    "@babel/preset-typescript"
-  ]
+  {
+    "presets": [
+      "@babel/preset-typescript"
+    ],
+    // for libraries that support babel decorators (lit-element) use:
+    "plugins": [
+      ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
+      "@babel/plugin-proposal-class-properties"
+    ]
+    // for libraries that only support typescript:
+    // "plugins": [
+    //   ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    //   ["@babel/plugin-proposal-class-properties", { "loose": true }]
+    // ],
+  }
 }
 ```
 
