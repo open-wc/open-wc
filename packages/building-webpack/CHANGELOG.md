@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.8](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.5.7...@open-wc/building-webpack@2.5.8) (2019-08-26)
+
+
+### Bug Fixes
+
+* **building-webpack:** always multi-build in dev mode ([#760](https://github.com/open-wc/open-wc/issues/760)) ([221a6c0](https://github.com/open-wc/open-wc/commit/221a6c0))
+
+
+
+
+
 ## [2.5.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.5.6...@open-wc/building-webpack@2.5.7) (2019-08-21)
 
 **Note:** Version bump only for package @open-wc/building-webpack
