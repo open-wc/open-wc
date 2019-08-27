@@ -26,14 +26,20 @@ function createConfig(options, legacy) {
   const firstConfig = legacy;
   const production = options.mode === 'production';
   const inputPrefix = legacy ? 'legacy/' : '';
-  const outputFilename = `${inputPrefix}[name].${!production ? '' : '[contenthash].'}js`;
+
+  const outputFilename = `${inputPrefix}${
+    production ? '[contenthash].js' : '[name].development.js'
+  }`;
+  const outputChunkFilename = `${inputPrefix}${
+    production ? '[contenthash].js' : 'chunk-[id].development.js'
+  }`;
 
   return {
     entry: options.input || options.entry,
 
     output: {
       filename: outputFilename,
-      chunkFilename: outputFilename,
+      chunkFilename: outputChunkFilename,
       path: path.resolve(process.cwd(), `dist`),
     },
 

@@ -28,14 +28,15 @@ module.exports = userOptions => {
     );
   }
 
-  const outputFilename = `[name].${!production ? '' : '[contenthash].'}js`;
+  const outputFilename = production ? '[contenthash].js' : '[name].development.js';
+  const outputChunkFilename = production ? '[contenthash].js' : 'chunk-[id].development.js';
 
   return {
     entry: options.input || options.entry,
 
     output: {
       filename: outputFilename,
-      chunkFilename: outputFilename,
+      chunkFilename: outputChunkFilename,
       path: path.resolve(process.cwd(), 'dist'),
     },
 
