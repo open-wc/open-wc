@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.15.3...es-dev-server@1.16.0) (2019-08-27)
+
+
+### Bug Fixes
+
+* **es-dev-server:** only skip resolve files with configured extension ([9368907](https://github.com/open-wc/open-wc/commit/9368907))
+
+
+### Features
+
+* **es-dev-server:** resolve .mjs over .js ([3ca2d94](https://github.com/open-wc/open-wc/commit/3ca2d94))
+
+
+
+
+
 ## [1.15.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.15.2...es-dev-server@1.15.3) (2019-08-26)
 
 
