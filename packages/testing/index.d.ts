@@ -1,3 +1,5 @@
+/// <reference path="./register-chai-plugins.d.ts" />
+
 export { html } from '@open-wc/testing-helpers/index.js';
 export { unsafeStatic } from '@open-wc/testing-helpers/index.js';
 export { triggerBlurFor } from '@open-wc/testing-helpers/index.js';
