@@ -34,7 +34,7 @@ async function expectMatchesSnapshot(name, source, configOverrides = {}) {
   }
 }
 
-describe.only('resolve-module-imports', () => {
+describe('resolve-module-imports', () => {
   it('resolves bare imports', async () => {
     await expectMatchesSnapshot(
       'basic-imports',
@@ -102,6 +102,15 @@ describe.only('resolve-module-imports', () => {
       'not-configured-extenions',
       `
       import './styles.css';
+    `,
+    );
+  });
+
+  it('favors .mjs over .js', async () => {
+    await expectMatchesSnapshot(
+      'mjs',
+      `
+      import './foo';
     `,
     );
   });
