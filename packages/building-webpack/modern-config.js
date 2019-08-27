@@ -123,7 +123,7 @@ module.exports = userOptions => {
 
     plugins: [
       // @ts-ignore
-      production && new CleanWebpackPlugin(),
+      new CleanWebpackPlugin(),
 
       new WebpackIndexHTMLPlugin(options.webpackIndexHTMLPlugin),
     ].filter(_ => !!_),
