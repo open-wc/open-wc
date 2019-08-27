@@ -23,6 +23,7 @@ function createConfig(options, legacy) {
     );
   }
 
+  const firstConfig = legacy;
   const production = options.mode === 'production';
   const inputPrefix = legacy ? 'legacy/' : '';
   const outputFilename = `${inputPrefix}[name].${!production ? '' : '[contenthash].'}js`;
@@ -121,7 +122,7 @@ function createConfig(options, legacy) {
 
     plugins: [
       // @ts-ignore
-      production && new CleanWebpackPlugin(),
+      firstConfig && new CleanWebpackPlugin(),
 
       new WebpackIndexHTMLPlugin(
         merge(
