@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.5.8...@open-wc/building-webpack@2.6.0) (2019-08-27)
+
+
+### Features
+
+* **building-webpack:** always clean output dir once ([8e8a3b6](https://github.com/open-wc/open-wc/commit/8e8a3b6))
+* **building-webpack:** always generate cheap module source maps ([23f8ef8](https://github.com/open-wc/open-wc/commit/23f8ef8))
+* **building-webpack:** optimize chunk output filenames ([bb95f0d](https://github.com/open-wc/open-wc/commit/bb95f0d))
+
+
+
+
+
 ## [2.5.8](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.5.7...@open-wc/building-webpack@2.5.8) (2019-08-26)
 
 

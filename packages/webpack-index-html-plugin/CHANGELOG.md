@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.3.3...@open-wc/webpack-index-html-plugin@1.4.0) (2019-08-27)
+
+
+### Features
+
+* **webpack-index-html-plugin:** enable the use of webpack watchers ([e4833eb](https://github.com/open-wc/open-wc/commit/e4833eb))
+
+
+
+
+
 ## [1.3.3](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.3.2...@open-wc/webpack-index-html-plugin@1.3.3) (2019-08-21)
 
 **Note:** Version bump only for package @open-wc/webpack-index-html-plugin
