@@ -113,11 +113,12 @@ async function resolveImport(rootDir, sourceFilePath, importPath, config, concat
     return importPath;
   }
 
-  // don't touch relative or absolute imports with a file extension
-  if (
-    (importPath.startsWith('.') || importPath.startsWith('/')) &&
-    path.extname(importPath) !== ''
-  ) {
+  const relativeImport = importPath.startsWith('.') || importPath.startsWith('/');
+  const jsFileImport = config.fileExtensions.includes(path.extname(importPath));
+
+  // for performance, don't resolve relative imports of js files. we only do this for js files,
+  // because an import like ./foo/bar.css might actually need to resolve to ./foo/bar.css.js
+  if (relativeImport && jsFileImport) {
     return importPath;
   }
 
