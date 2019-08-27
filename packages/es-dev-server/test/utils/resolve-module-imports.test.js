@@ -10,7 +10,7 @@ const baseDir = path.resolve(__dirname, '..', 'fixtures', 'simple');
 const sourceFileName = path.resolve(baseDir, 'src', 'foo.js');
 
 const defaultConfig = {
-  fileExtensions: ['.js', '.mjs'],
+  fileExtensions: ['.mjs', '.js'],
   moduleDirectories: ['node_modules'],
   preserveSymlinks: false,
 };
@@ -83,9 +83,9 @@ describe('resolve-module-imports', () => {
     );
   });
 
-  it('does not change non-bare imports', async () => {
+  it('does not resolve imports with configured file extensions', async () => {
     await expectMatchesSnapshot(
-      'non-bare',
+      'configured-extenions',
       `
       import './local-module.js';
       import '../local-module.js';
@@ -93,6 +93,24 @@ describe('resolve-module-imports', () => {
       import '../../local-module.js';
       import '/local-module.js';
       import 'my-module';
+    `,
+    );
+  });
+
+  it('does resolve imports with non-configured file extensions', async () => {
+    await expectMatchesSnapshot(
+      'not-configured-extenions',
+      `
+      import './styles.css';
+    `,
+    );
+  });
+
+  it('favors .mjs over .js', async () => {
+    await expectMatchesSnapshot(
+      'mjs',
+      `
+      import './foo';
     `,
     );
   });
