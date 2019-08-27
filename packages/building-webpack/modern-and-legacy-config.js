@@ -38,7 +38,7 @@ function createConfig(options, legacy) {
 
     mode: options.mode,
 
-    devtool: production ? 'source-map' : 'cheap-module-source-map',
+    devtool: 'cheap-module-source-map',
 
     // don't polyfill any node built-in libraries
     node: false,
