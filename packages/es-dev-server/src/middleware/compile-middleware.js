@@ -50,7 +50,7 @@ function createBabelCompilers(cfg) {
     ? createBabelCompiler({ ...cfg, modern: compileModern, legacy: false })
     : null;
   const legacy = compileLegacy
-    ? createBabelCompiler({ ...cfg, modern: false, legacy: true })
+    ? createBabelCompiler({ readUserBabelConfig: false, modern: false, legacy: true })
     : null;
 
   return { defaultCompiler, legacy };
