@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.16.0...es-dev-server@1.17.0) (2019-08-28)
+
+
+### Features
+
+* **es-dev-server:** update es-module-lexer ([91a9b59](https://github.com/open-wc/open-wc/commit/91a9b59))
+
+
+
+
+
 # [1.16.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.15.3...es-dev-server@1.16.0) (2019-08-27)
 
 
