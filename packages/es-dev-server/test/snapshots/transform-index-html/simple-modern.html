@@ -29,7 +29,7 @@
   var polyfills = [];
   if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) { polyfills.push(loadScript('polyfills/webcomponents.88b4b5855ede008ecad6bbdd4a69e57d.js', false)) }
   if (!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype) { polyfills.push(loadScript('polyfills/custom-elements-es5-adapter.01496319407efe7ef743b10afbb93714.js', false)) }
-  if ('noModule' in HTMLScriptElement.prototype) { polyfills.push(loadScript('polyfills/es-module-shims.fc77a8afb5629353b4ceabc144a351ee.js', true)) }
+  if ('noModule' in HTMLScriptElement.prototype) { polyfills.push(loadScript('polyfills/es-module-shims.b28f32d7d1a2872febb7f01ec8002d35.js', true)) }
 
   function loadEntries() {
     ['./app.js','../src/app.js','/src/app.js'].forEach(function (entry) { window.importShim(entry); });
