@@ -1,4 +1,4 @@
-/* eslint-disable no-await-in-loop, no-restricted-syntax */
+/* eslint-disable no-await-in-loop, no-restricted-syntax, no-console */
 import whatwgUrl from 'whatwg-url';
 import nodeResolve from 'resolve';
 import pathIsInside from 'path-is-inside';
@@ -86,10 +86,11 @@ async function resolveConcatenatedImport(sourceFileDir, importPath, config) {
   return `${packageDir}${pathToAppend}`;
 }
 
-async function createSyntaxError(sourceFilename, source) {
+async function createSyntaxError(sourceFilename, source, originalError) {
   // if es-module-lexer cannot parse the file, use babel to generate a user-friendly error message
   await babelCompile(sourceFilename, source);
-  // if babel did not have any error, throw a syntax error
+  // if babel did not have any error, throw a syntax error and log the original error
+  console.error(originalError);
   throw new ResolveSyntaxError();
 }
 
@@ -183,9 +184,9 @@ async function resolveImport(rootDir, sourceFilePath, importPath, config, concat
 export async function resolveModuleImports(rootDir, sourceFilePath, source, config) {
   let imports;
   try {
-    [imports] = await parse(source);
+    [imports] = await parse(source, sourceFilePath);
   } catch (error) {
-    await createSyntaxError(sourceFilePath, source);
+    await createSyntaxError(sourceFilePath, source, error);
   }
 
   let resolvedSource = '';
