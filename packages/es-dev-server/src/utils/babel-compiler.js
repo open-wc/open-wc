@@ -11,7 +11,7 @@ const BABEL_DEOPTIMIZED_LENGTH = 500000;
  * @property {boolean} modern
  * @property {object} [customBabelConfig]
  * @property {boolean} legacy
- * @property {boolean} [systemJs]
+ * @property {boolean} systemJs
  */
 
 /** @param {boolean} readUserBabelConfig */
@@ -39,7 +39,7 @@ const modernConfig = {
       {
         targets: findSupportedBrowsers(),
         useBuiltIns: false,
-        modules: false,
+        modules: false
       },
     ],
   ],
@@ -52,9 +52,15 @@ const legacyConfig = {
       {
         targets: ['ie 11'],
         useBuiltIns: false,
-        modules: 'systemjs',
+        modules: false,
       },
     ],
+  ],
+};
+
+const systemJsConfig = {
+  plugins: [
+    require.resolve('@babel/plugin-transform-modules-systemjs'),
   ],
 };
 
@@ -71,6 +77,7 @@ export default function createBabelCompiler(cfg) {
     createDefaultConfig(cfg.readUserBabelConfig),
     cfg.modern && modernConfig,
     cfg.legacy && legacyConfig,
+    cfg.systemJs && systemJsConfig,
     cfg.customBabelConfig,
   ].filter(Boolean);
 

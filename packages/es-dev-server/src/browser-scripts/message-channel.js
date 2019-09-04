@@ -13,15 +13,18 @@ export default `
       var reloading = false;
 
       eventSource.addEventListener('file-changed', function (e) {
-        reloading = true;
-        location.reload();
+        var changedFile = e.data;
+        console.log('hot reloading module: ', changedFile);
+        System.reload(changedFile);
+        // reloading = true;
+        // location.reload();
       });
 
       eventSource.addEventListener('error-message', function (e) {
         if (reloading) {
           return;
         }
-        
+
         console.error(JSON.parse(e.data));
       });
 

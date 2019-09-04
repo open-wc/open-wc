@@ -37,6 +37,7 @@ export function createMiddlewares(config, fileWatcher) {
     babelModernExclude,
     watchDebounce,
     customMiddlewares,
+    experimentalHmr,
   } = config;
 
   /** @type {import('koa').Middleware[]} */
@@ -53,9 +54,10 @@ export function createMiddlewares(config, fileWatcher) {
   const setupBabel =
     customBabelConfig ||
     [compatibilityModes.ALL, compatibilityModes.MODERN].includes(compatibilityMode) ||
+    experimentalHmr ||
     readUserBabelConfig;
   const setupCompatibility = compatibilityMode && compatibilityMode !== compatibilityModes.NONE;
-  const setupTransformIndexHTML = nodeResolve || setupBabel || setupCompatibility;
+  const setupTransformIndexHTML = experimentalHmr || nodeResolve || setupBabel || setupCompatibility;
   const setupHistoryFallback = appIndex;
   const setupMessageChanel = nodeResolve || watch || setupBabel;
 
@@ -109,6 +111,7 @@ export function createMiddlewares(config, fileWatcher) {
         babelModernExclude,
         nodeResolve,
         preserveSymlinks,
+        experimentalHmr,
       }),
     );
   }
@@ -125,8 +128,8 @@ export function createMiddlewares(config, fileWatcher) {
     middlewares.push(createHistoryAPIFallbackMiddleware({ appIndex, appIndexDir }));
   }
 
-  if (watch) {
-    setupBrowserReload({ fileWatcher, watchDebounce });
+  if (watch || experimentalHmr) {
+    setupBrowserReload({ fileWatcher, watchDebounce, rootDir });
   }
 
   // serve sstatic files

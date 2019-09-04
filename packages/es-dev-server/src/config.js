@@ -26,6 +26,7 @@ import { compatibilityModes } from './constants.js';
  * Development help
  * @property {boolean} [watch] whether to watch served files and reload the browser on change
  * @property {boolean} [http2] whether to run the server in http2, sets up https as well
+ * @property {boolean} [experimentalHmr] whether to enable hot module replacement
  *
  * Code transformation
  * @property {string} [compatibility] compatibility mode for older browsers. Can be: "esm", modern" or "all"
@@ -65,6 +66,7 @@ import { compatibilityModes } from './constants.js';
  * @property {boolean} watch
  * @property {number} watchDebounce
  * @property {boolean} http2
+ * @property {boolean} experimentalHmr
  *
  * Code transformation
  * @property {string[]} moduleDirectories
@@ -96,6 +98,7 @@ export function createConfig(config) {
     preserveSymlinks = false,
     moduleDirs = ['node_modules'],
     babel = false,
+    experimentalHmr = false,
     fileExtensions = [],
     babelExclude = [],
     babelModernExclude = [],
@@ -156,6 +159,7 @@ export function createConfig(config) {
     preserveSymlinks,
     readUserBabelConfig: babel,
     customBabelConfig: babelConfig,
+    experimentalHmr,
     watch,
     openBrowser: open === true || typeof open === 'string',
     openPath,
@@ -165,7 +169,7 @@ export function createConfig(config) {
     compatibilityMode: compatibility,
     babelExclude,
     babelModernExclude,
-    watchDebounce: 1000,
+    watchDebounce: 100,
     customMiddlewares: middlewares,
   };
 }

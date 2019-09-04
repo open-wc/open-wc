@@ -38,7 +38,7 @@ export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibility
   // create a new index.html with injected polyfills and loader script
   const createResult = createIndexHTML(resources.indexHTML, {
     entries: {
-      type: 'module',
+      type: 'system',
       files,
     },
     legacyEntries:
@@ -48,7 +48,7 @@ export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibility
             type: 'system',
             files,
           },
-    polyfills: getPolyfills(compatibilityMode),
+    polyfills: { systemJsExtended: true },
     minify: false,
     preload: false,
   });

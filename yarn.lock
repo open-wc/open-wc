@@ -1992,16 +1992,16 @@
   integrity sha512-BONpjHcGX2zFa9mfnwBCLEmlDsOHzT+j6Qt1yfK3MzFXFtAykfzFjAgaxPetu0YbBlCfXuMlfxI4vlRGCGMvFg==
 
 "@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.1.55"
+  version "1.1.56"
   dependencies:
-    "@open-wc/testing-karma" "^3.1.30"
+    "@open-wc/testing-karma" "^3.1.31"
     "@types/node" "^11.13.0"
     karma-browserstack-launcher "^1.0.0"
 
 "@open-wc/testing-karma@file:./packages/testing-karma":
-  version "3.1.30"
+  version "3.1.31"
   dependencies:
-    "@open-wc/karma-esm" "^2.5.5"
+    "@open-wc/karma-esm" "^2.5.6"
     axe-core "^3.3.1"
     istanbul-instrumenter-loader "^3.0.0"
     karma "^4.0.0"
@@ -6275,6 +6275,11 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
+custom-elements-hmr-polyfill@^1.0.0-beta.3:
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/custom-elements-hmr-polyfill/-/custom-elements-hmr-polyfill-1.0.0-beta.3.tgz#6c3494864c7d5805598175ac001c65f8b445b650"
+  integrity sha512-4tUPoKCC0oBKr7Y3pPJaTgoU2T0xY09iibLYY/JrAYGjM9AUXSMhFw1oPJROAbHtfBaFFFaYQI0B5GJg/z1Big==
+
 custom-event@~1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/custom-event/-/custom-event-1.0.1.tgz#5d02a46850adf1b4a317946a3928fccb5bfd0425"
@@ -10372,13 +10377,6 @@ listr@^0.14.3:
     p-map "^2.0.0"
     rxjs "^6.3.3"
 
-lit-element@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/lit-element/-/lit-element-2.0.0.tgz#b3a212aed812f859d3cf12cc67beaef851446b09"
-  integrity sha512-9Bo4ytRMEPa0CYMDayXUqxOcMu2u96eoUappCd2tklbzzLDVgQR4etEqnBtgHWdDZ4wCR52/a1ZZf42FxzAxOQ==
-  dependencies:
-    lit-html "^1.0.0-rc.2"
-
 lit-element@^2.0.1, lit-element@^2.2.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/lit-element/-/lit-element-2.2.1.tgz#79c94d8cfdc2d73b245656e37991bd1e4811d96f"
@@ -10391,7 +10389,7 @@ lit-html@0.14.0:
   resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-0.14.0.tgz#d6830e8f55fb923b0f5824decf7da082a1d22997"
   integrity sha512-+xqUPzzJGEDqb0F5DOnMXvL0jxpkKebAMlXycKZxFtzlmD+qePEmYrEUPF9XVXcc5eYBzYXTCOUcjSCod4YvgQ==
 
-lit-html@^1.0.0, lit-html@^1.0.0-rc.2, lit-html@^1.1.0:
+lit-html@^1.0.0, lit-html@^1.1.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-1.1.2.tgz#2e3560a7075210243649c888ad738eaf0daa8374"
   integrity sha512-FFlUMKHKi+qG1x1iHNZ1hrtc/zHmfYTyrSvs3/wBTvaNtpZjOZGWzU7efGYVpgp6KvWeKF6ql9/KsCq6Z/mEDA==

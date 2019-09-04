@@ -125,6 +125,11 @@ export function readCommandLineArgs(argv = process.argv) {
       type: String,
       description: 'Compatibility mode for older browsers. Can be: "esm", modern" or "all"',
     },
+    {
+      name: 'experimental-hmr',
+      type: Boolean,
+      description: '',
+    },
     { name: 'help', type: Boolean, description: 'See all options' },
   ];
 

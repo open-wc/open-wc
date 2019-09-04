@@ -18,6 +18,7 @@ import createBabelCompiler from '../utils/babel-compiler.js';
  * @property {string[]} babelModernExclude patterns to exclude from modern babel compilation
  * @property {string[]} babelExclude patterns to exclude from all babel compilation
  * @property {boolean} preserveSymlinks
+ * @property {boolean} experimentalHmr
  */
 
 /**
@@ -43,14 +44,14 @@ function createBabelCompilers(cfg) {
   const compileModern = [compatibilityModes.MODERN, compatibilityModes.ALL].includes(
     cfg.compatibilityMode,
   );
-  const compileDefault = compileModern || cfg.customBabelConfig || cfg.readUserBabelConfig;
+  const compileDefault = compileModern || cfg.customBabelConfig || cfg.readUserBabelConfig || cfg.experimentalHmr;
   const compileLegacy = cfg.compatibilityMode === compatibilityModes.ALL;
 
   const defaultCompiler = compileDefault
-    ? createBabelCompiler({ ...cfg, modern: compileModern, legacy: false })
+    ? createBabelCompiler({ ...cfg, modern: compileModern, legacy: false, systemJs: false})
     : null;
-  const legacy = compileLegacy
-    ? createBabelCompiler({ ...cfg, modern: false, legacy: true })
+  const legacy = compileLegacy || cfg.experimentalHmr
+    ? createBabelCompiler({ ...cfg, modern: false, legacy: compileLegacy, systemJs: true })
     : null;
 
   return { defaultCompiler, legacy };
@@ -124,7 +125,7 @@ export function createCompileMiddleware(cfg) {
 
       // if this is a legacy request, compile to systemjs and es5. this isn't done in the first
       // babel pass, because we need valid es module syntax to resolve module imports first
-      if (babelCompile && legacy) {
+      if (babelCompile && (legacy || cfg.experimentalHmr)) {
         code = await babelCompilers.legacy(filePath, code);
       }
 
