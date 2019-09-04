@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.17.1...es-dev-server@1.17.2) (2019-09-04)
+
+
+### Bug Fixes
+
+* **es-dev-server:** also watch index.html files fetched with / ([c492131](https://github.com/open-wc/open-wc/commit/c492131))
+
+
+
+
+
 ## [1.17.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.17.0...es-dev-server@1.17.1) (2019-08-29)
 
 
