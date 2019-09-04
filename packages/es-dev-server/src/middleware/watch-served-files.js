@@ -1,5 +1,4 @@
-import path from 'path';
-import { isInlineModule, isPolyfill, getRequestFilePath } from '../utils/utils.js';
+import { isGeneratedFile, getRequestFilePath } from '../utils/utils.js';
 
 /**
  * @typedef {object} WatchServedFilesMiddlewareConfig
@@ -12,19 +11,13 @@ import { isInlineModule, isPolyfill, getRequestFilePath } from '../utils/utils.j
  * @param {WatchServedFilesMiddlewareConfig} cfg
  */
 async function watchServedFile(ctx, cfg) {
-  // should be a file request
-  if (!path.extname(ctx.url)) {
-    return;
-  }
-
-  if (isInlineModule(ctx.url) || isPolyfill(ctx.url)) {
-    return;
-  }
-
   const filePath = getRequestFilePath(ctx, cfg.rootDir);
-  if (filePath) {
-    cfg.fileWatcher.add(filePath);
+
+  if (!filePath || isGeneratedFile(ctx.url)) {
+    return;
   }
+
+  cfg.fileWatcher.add(filePath);
 }
 
 /**
