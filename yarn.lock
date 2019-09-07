@@ -1992,16 +1992,16 @@
   integrity sha512-BONpjHcGX2zFa9mfnwBCLEmlDsOHzT+j6Qt1yfK3MzFXFtAykfzFjAgaxPetu0YbBlCfXuMlfxI4vlRGCGMvFg==
 
 "@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.1.55"
+  version "1.1.57"
   dependencies:
-    "@open-wc/testing-karma" "^3.1.30"
+    "@open-wc/testing-karma" "^3.1.32"
     "@types/node" "^11.13.0"
     karma-browserstack-launcher "^1.0.0"
 
 "@open-wc/testing-karma@file:./packages/testing-karma":
-  version "3.1.30"
+  version "3.1.32"
   dependencies:
-    "@open-wc/karma-esm" "^2.5.5"
+    "@open-wc/karma-esm" "^2.5.7"
     axe-core "^3.3.1"
     istanbul-instrumenter-loader "^3.0.0"
     karma "^4.0.0"
@@ -7054,15 +7054,15 @@ es-abstract@^1.10.0, es-abstract@^1.11.0, es-abstract@^1.12.0, es-abstract@^1.13
     is-regex "^1.0.4"
     object-keys "^1.0.12"
 
-es-module-lexer@0.3.9:
-  version "0.3.9"
-  resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-0.3.9.tgz#fbdbb35e1ad434fc71f5d83a887781fadbaca83a"
-  integrity sha512-beowXiBsaVS208GHoJckwOxlG/RpWLLz2ioJHwkUJ3RGFmW508E5RfntV21bMjzO3hQcwZOTHewUFwnGzrBtIg==
+es-module-lexer@^0.3.13:
+  version "0.3.13"
+  resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-0.3.13.tgz#b7f986efeb55a5d3ce0f3e482409ff43c462d398"
+  integrity sha512-8VCx4z2cIGFKx715cOvicAieDBjf2B6EYq58yzctIkKnXpKGEsd+qTf+LU1KuTkosWkWH6h1iDV7LWoKmdkaOQ==
 
-es-module-shims@^0.2.13:
-  version "0.2.15"
-  resolved "https://registry.yarnpkg.com/es-module-shims/-/es-module-shims-0.2.15.tgz#6a03a86eded7e27913efd75b6235b91950721c3d"
-  integrity sha512-KJt8AdAIauSa9DDY442VqfiMHtFd2bG2cUtKuqycQUR7/0q2Uw+iM7ckQuma6j82u64Hz1wIG0eH+4m8l+mliA==
+es-module-shims@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/es-module-shims/-/es-module-shims-0.4.2.tgz#262e8ba916fc3aa49345058f5a8a64a178e6b516"
+  integrity sha512-5gyCeZTwkmYNeGPzlSPlfMvxIeBRPaZyBy3uzz6ZOW/EZGJWtHBkJgZZhTCrLii37AvxTtx31GfTX2iWx3ohrA==
 
 es-to-primitive@^1.2.0:
   version "1.2.0"
@@ -15257,10 +15257,10 @@ symbol.prototype.description@^1.0.0:
   dependencies:
     has-symbols "^1.0.0"
 
-systemjs@^4.0.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-4.1.1.tgz#c90061456f9707478d487b47f3b92b9896032889"
-  integrity sha512-/0x3bcMrl1pxDCLw6sJWEKPVy0ZGEu7I0nItFSHxfPoDU2Lll6TUyB1wqltvbm7n5y5jVOoK4lei4oMpmW7XJQ==
+systemjs@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-6.0.0.tgz#167fdb7c15195ee2773e25c958cd9a0351ac85fe"
+  integrity sha512-Dc7TBShsS8baQKZBsh+bOZOHPS82V7IQWQ6IxR+HCWz4+jN2WSQjj+LIS2KbX0tdB2QAG/isSexgFFk40Z+UYg==
 
 table-layout@^0.4.3:
   version "0.4.5"

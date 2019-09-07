@@ -11,7 +11,7 @@ const host = 'http://localhost:8080/';
 const fixtures = ['simple', 'inline-module', 'import-map'];
 const snapshotsDir = path.join(__dirname, '..', 'snapshots', 'transform-index-html');
 
-describe('transform-index-html middleware', () => {
+describe.only('transform-index-html middleware', () => {
   fixtures.forEach(fixture => {
     Object.values(compatibilityModes).forEach(compatibility => {
       // inline-module + compat mode none doesn't trigger transform without running babel
