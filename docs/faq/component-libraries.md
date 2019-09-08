@@ -29,6 +29,9 @@ The hardest part of any project is often getting content onto that first blank p
 - [Lightning Web Components by SalesForce](https://developer.salesforce.com/docs/component-library/overview/components)
 
   Lightning Web Components are now the go-to standard for developing applications in the SalesForce ecosystem, and with the power of web components, they can be the basis of applications outside of their ecosystem, too!
+- [Lion Web Components by ING Bank](https://github.com/ing-bank/lion)
+
+  Lion web components is a set of highly performant, accessible and flexible Web Components. They provide an unopinionated, white label layer that can be extended to your own layer of components.
 - [Material Web Components](https://material-components.github.io/material-components-web-components/demos/index.html)
 
   Material Design Components from Material Design team themselves. Stay as close as possible to the changing specification with these components from Google's own Material Design team.
