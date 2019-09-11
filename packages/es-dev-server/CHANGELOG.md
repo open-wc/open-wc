@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.17.2...es-dev-server@1.18.0) (2019-09-11)
+
+
+### Features
+
+* **es-dev-server:** don't add custom plugins in legacy compile ([#776](https://github.com/open-wc/open-wc/issues/776)) ([d9b9572](https://github.com/open-wc/open-wc/commit/d9b9572))
+
+
+
+
+
 ## [1.17.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.17.1...es-dev-server@1.17.2) (2019-09-04)
 
 

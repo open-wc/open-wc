@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.8.1...@open-wc/building-utils@2.8.2) (2019-09-11)
+
+
+### Bug Fixes
+
+* **building-utils:** resolve dynamic imports ([#795](https://github.com/open-wc/open-wc/issues/795)) ([9ac1a4a](https://github.com/open-wc/open-wc/commit/9ac1a4a))
+
+
+
+
+
 ## [2.8.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.8.0...@open-wc/building-utils@2.8.1) (2019-08-21)
 
 

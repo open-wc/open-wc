@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.3](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.5.2...rollup-plugin-index-html@1.5.3) (2019-09-11)
+
+
+### Bug Fixes
+
+* **building-utils:** resolve dynamic imports ([#795](https://github.com/open-wc/open-wc/issues/795)) ([9ac1a4a](https://github.com/open-wc/open-wc/commit/9ac1a4a))
+
+
+
+
+
 ## [1.5.2](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.5.1...rollup-plugin-index-html@1.5.2) (2019-08-21)
 
 **Note:** Version bump only for package rollup-plugin-index-html
