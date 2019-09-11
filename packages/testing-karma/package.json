@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma",
-  "version": "3.1.29",
+  "version": "3.1.32",
   "description": "Testing with karma following open-wc recommendations",
   "author": "open-wc",
   "main": "testing-karma.js",
@@ -28,7 +28,7 @@
     "src"
   ],
   "dependencies": {
-    "@open-wc/karma-esm": "^2.5.4",
+    "@open-wc/karma-esm": "^2.5.7",
     "axe-core": "^3.3.1",
     "istanbul-instrumenter-loader": "^3.0.0",
     "karma": "^4.0.0",

@@ -1,7 +1,7 @@
 {
   "name": "es-dev-server",
   "main": "./dist/es-dev-server.js",
-  "version": "1.16.0",
+  "version": "1.17.2",
   "description": "Development server for modern web apps",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -67,7 +67,7 @@
     "command-line-usage": "^5.0.5",
     "debounce": "^1.2.0",
     "deepmerge": "^3.3.0",
-    "es-module-lexer": "0.3.6",
+    "es-module-lexer": "0.3.9",
     "get-stream": "^5.1.0",
     "is-stream": "^2.0.0",
     "koa": "^2.7.0",

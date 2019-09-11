@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.8](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.7...@open-wc/create@0.18.8) (2019-08-31)
+
+
+### Bug Fixes
+
+* **create:** bump version of testing to 2.x ([0710fb9](https://github.com/open-wc/open-wc/commit/0710fb9))
+
+
+
+
+
 ## [0.18.7](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.6...@open-wc/create@0.18.7) (2019-08-20)
 
 
