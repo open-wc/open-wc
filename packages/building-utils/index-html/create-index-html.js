@@ -109,7 +109,12 @@ function createScripts(polyfillsConfig, polyfills, entries, needsLoader) {
    * is defined to know if it is natively supported.
    */
   if (polyfillsConfig.dynamicImport) {
-    scripts.push(createScript(null, 'window.importShim=s=>import(s)'));
+    scripts.push(
+      createScript(
+        null,
+        "window.importShim = src => import(src.startsWith('.') ? new URL(src, document.baseURI) : src)",
+      ),
+    );
   }
 
   polyfills.forEach(polyfill => {
