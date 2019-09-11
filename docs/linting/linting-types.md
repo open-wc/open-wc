@@ -23,11 +23,11 @@ This is an OPTIONAL recommendation. You will need to opt-in by running the gener
 
 ## What you get
 
-For general information about types please see [develping/types](../developing/types).
+For general information about types please see [developing/types](../developing/types).
 
 - Awesome intellisense for @open-wc tools/helpers
 - Ability to jump directly to the source of @open-wc code via F12 (in vs code)
-- Type safety (To read more about why type safety can help you, go to: [develping/types](../developing/types)).
+- Type safety (To read more about why type safety can help you, go to: [developing/types](../developing/types)).
 
 ## Usage
 
