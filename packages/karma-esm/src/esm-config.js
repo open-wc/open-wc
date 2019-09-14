@@ -27,6 +27,7 @@ const polyfillPresets = {
  * @property {string[]} [exclude]
  * @property {string[]} [babelExclude]
  * @property {string[]} [babelModernExclude]
+ * @property {boolean} [preserveSymlinks]
  * @property {Partial<import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig>} polyfills
  */
 
