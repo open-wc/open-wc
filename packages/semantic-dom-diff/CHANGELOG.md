@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.2](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.14.1...@open-wc/semantic-dom-diff@0.14.2) (2019-09-15)
+
+
+### Bug Fixes
+
+* do not destructure exports to support es-module-lexer ([3709413](https://github.com/open-wc/open-wc/commit/3709413))
+* **semantic-dom-diff:** strip empty class attrs when diffing ([#799](https://github.com/open-wc/open-wc/issues/799)) ([f2eea9d](https://github.com/open-wc/open-wc/commit/f2eea9d))
+
+
+
+
+
 ## [0.14.1](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.14.0...@open-wc/semantic-dom-diff@0.14.1) (2019-08-18)
 
 
