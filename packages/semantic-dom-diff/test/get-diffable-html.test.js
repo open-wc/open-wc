@@ -317,10 +317,16 @@ describe('getDiffableHTML()', () => {
 
     it('removes empty class attributes', () => {
       const html = getDiffableHTML(`
-        <div class=""></div>
-        <div class></div>
+        <div id="with-quotes" class=""></div>
+        <div id="without-quotes" class></div>
         `);
-      expect(html).to.equal('<div>\n' + '</div>\n' + '<div>\n' + '</div>\n');
+      expect(html).to.equal(
+        `<div id="with-quotes">
+</div>
+<div id="without-quotes">
+</div>
+`,
+      );
     });
   });
 

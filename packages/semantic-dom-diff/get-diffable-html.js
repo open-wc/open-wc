@@ -20,6 +20,13 @@ const VOID_ELEMENTS = [
 ];
 
 /**
+ * Reverses the sense of a predicate
+ * @param  {(x: any) => Boolean} p predicate
+ * @return {(x: any) => Boolean}
+ */
+const not = p => (...args) => !p(...args);
+
+/**
  * @typedef IgnoreAttributesForTags
  * @property {string[]} tags tags on which to ignore the given attributes
  * @property {string[]} attributes attributes to ignore for the given tags
@@ -111,40 +118,39 @@ export function getDiffableHTML(html, options = {}) {
     return [...el.classList.values()].sort().join(' ');
   }
 
-  /**
-   * @param {Element} el
-   * @param {Attr} attr
-   */
-  function getAttributeString(el, { name, value }) {
-    const shouldStripAttr = stripEmptyAttributes.includes(name) && value === '';
-    const isClassAttr = name === 'class';
-    return (
-      // eslint-disable-next-line no-nested-ternary
-      shouldStripAttr
-        ? ''
-        : isClassAttr
-        ? ` class="${getClassListValueString(el)}"`
-        : ` ${name}="${value}"`
-    );
+  function shouldStripAttribute({ name, value }) {
+    return stripEmptyAttributes.includes(name) && value === '';
   }
 
   /**
    * @param {Element} el
    * @param {Attr} attr
    */
-  function isIgnoredAttribute(el, attr) {
-    if (ignoreAttributes.includes(attr.name)) {
-      return true;
-    }
+  function getAttributeString(el, { name, value }) {
+    if (shouldStripAttribute({ name, value })) return '';
+    if (name === 'class') return ` class="${getClassListValueString(el)}"`;
+    return ` ${name}="${value}"`;
+  }
 
-    return !!ignoreAttributesForTags.find(e => {
-      if (!e.tags || !e.attributes) {
-        throw new Error(
-          `An object entry to ignoreAttributes should contain a 'tags' and an 'attributes' property.`,
-        );
+  /**
+   * @param {Element} el
+   * @return {(attr: Attr) => Boolean}
+   */
+  function isIgnoredAttribute(el) {
+    return function isIgnoredElementAttibute(attr) {
+      if (ignoreAttributes.includes(attr.name) || shouldStripAttribute(attr)) {
+        return true;
       }
-      return e.tags.includes(el.nodeName.toLowerCase()) && e.attributes.includes(attr.name);
-    });
+
+      return !!ignoreAttributesForTags.find(e => {
+        if (!e.tags || !e.attributes) {
+          throw new Error(
+            `An object entry to ignoreAttributes should contain a 'tags' and an 'attributes' property.`,
+          );
+        }
+        return e.tags.includes(el.nodeName.toLowerCase()) && e.attributes.includes(attr.name);
+      });
+    };
   }
 
   const sortAttribute = (a, b) => a.name.localeCompare(b.name);
@@ -153,7 +159,7 @@ export function getDiffableHTML(html, options = {}) {
   function getAttributesString(el) {
     let attrStr = '';
     const attributes = Array.from(el.attributes)
-      .filter(attr => !isIgnoredAttribute(el, attr))
+      .filter(not(isIgnoredAttribute(el)))
       .sort(sortAttribute);
 
     if (attributes.length === 1) {
