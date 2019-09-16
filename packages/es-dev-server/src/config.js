@@ -26,6 +26,8 @@ import { compatibilityModes } from './constants.js';
  * Development help
  * @property {boolean} [watch] whether to watch served files and reload the browser on change
  * @property {boolean} [http2] whether to run the server in http2, sets up https as well
+ * @property {string} [key] path to local .key file to use for https
+ * @property {string} [cert] path to local .cert file to use for https
  *
  * Code transformation
  * @property {string} [compatibility] compatibility mode for older browsers. Can be: "esm", modern" or "all"
@@ -65,6 +67,8 @@ import { compatibilityModes } from './constants.js';
  * @property {boolean} watch
  * @property {number} watchDebounce
  * @property {boolean} http2
+ * @property {string} key
+ * @property {string} cert
  *
  * Code transformation
  * @property {string[]} moduleDirectories
