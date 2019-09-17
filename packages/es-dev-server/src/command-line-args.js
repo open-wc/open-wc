@@ -82,7 +82,8 @@ export function readCommandLineArgs(argv = process.argv) {
       name: 'http2',
       alias: 't',
       type: Boolean,
-      description: 'Serve files over HTTP2. Sets up HTTPS with self-signed certificates or optional custom certificates',
+      description:
+        'Serve files over HTTP2. Sets up HTTPS with self-signed certificates or optional custom certificates',
     },
     {
       name: 'key',

@@ -37,6 +37,7 @@
     "start:config": "yarn build && node dist/cli.js --config demo/static/es-dev-server.config.js --open demo/static/",
     "start:root-dir": "yarn build && node dist/cli.js --root-dir demo/static/ --open",
     "start:http1": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --watch --compatibility all",
+    "start:http2": "yarn build && node dist/cli.js --app-index demo/http2/index.html --config demo/http2/es-dev-server.config.js --open --watch --compatibility all",
     "start:no-watch": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --compatibility all",
     "start:babel": "yarn build && node dist/cli.js --app-index demo/babel/index.html --open --watch --babel",
     "start:no-babel": "yarn build && node dist/cli.js --app-index demo/babel/index.html --open --watch",
