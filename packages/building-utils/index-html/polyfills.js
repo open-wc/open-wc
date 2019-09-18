@@ -122,7 +122,7 @@ function getPolyfills(config) {
     }
   }
 
-  if (config.polyfills.webcomponents) {
+  if (config.polyfills.webcomponents && !config.polyfills.customStyles) {
     try {
       instructions.push({
         name: 'webcomponents',
@@ -163,29 +163,65 @@ function getPolyfills(config) {
     }
   }
 
+  if (config.polyfills.customStyles && !config.polyfills.webcomponents) {
+    // customStyles isn't going to work without webcomponents.
+    throw new Error(
+      'configured to polyfill custom-styles, which depends on webcomponents. add `webcomponents:true` to your polyfills config.',
+    );
+  }
+  if (config.polyfills.customStyles && config.polyfills.webcomponents) {
+    // customStyles polyfill *must* load after the webcomponents polyfill or it doesn't work.
+    // to get around that, concat the two together.
+    try {
+      instructions.push({
+        name: 'custom-styles',
+        test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)",
+        path: [
+          require.resolve('@webcomponents/webcomponentsjs/webcomponents-bundle.js'),
+          require.resolve('@webcomponents/shadycss/custom-style-interface.min.js'),
+        ],
+      });
+    } catch (error) {
+      throw new Error(
+        'configured to polyfill shadycss, but no pollyfills found. Install with "npm i -D @webcomponents/shadycss"',
+      );
+    }
+  }
+
   instructions.forEach(instruction => {
     if (!instruction.name || !instruction.path) {
       throw new Error(`A polyfill should have a name and a path property.`);
     }
-
-    const codePath = path.resolve(instruction.path);
-    if (!codePath || !fs.existsSync(codePath) || !fs.statSync(codePath).isFile()) {
-      throw new Error(`Could not find a file at ${instruction.path}`);
-    }
-
-    let code = fs.readFileSync(codePath, 'utf-8');
+    let code;
     let sourcemap;
-    if (instruction.sourcemapPath) {
-      const sourcemapPath = path.resolve(instruction.sourcemapPath);
-      if (!sourcemapPath || !fs.existsSync(sourcemapPath) || !fs.statSync(sourcemapPath).isFile()) {
-        throw new Error(`Could not find a file at ${instruction.sourcemapPath}`);
+    if (Array.isArray(instruction.path)) {
+      code = instruction.path.reduce((acc, p) => {
+        acc += `\n ${fs.readFileSync(p, 'utf-8')}`; // eslint-disable-line no-param-reassign
+        return acc;
+      }, '');
+    } else {
+      const codePath = path.resolve(instruction.path);
+      if (!codePath || !fs.existsSync(codePath) || !fs.statSync(codePath).isFile()) {
+        throw new Error(`Could not find a file at ${instruction.path}`);
       }
+      code = fs.readFileSync(codePath, 'utf-8');
 
-      sourcemap = fs.readFileSync(sourcemapPath, 'utf-8');
-      // minify only if there were no source maps, and if not disabled explicitly
-    } else if (!instruction.noMinify && config.minify) {
-      const minifyResult = Terser.minify(code, { sourceMap: true });
-      ({ code, map: sourcemap } = minifyResult);
+      if (instruction.sourcemapPath) {
+        const sourcemapPath = path.resolve(instruction.sourcemapPath);
+        if (
+          !sourcemapPath ||
+          !fs.existsSync(sourcemapPath) ||
+          !fs.statSync(sourcemapPath).isFile()
+        ) {
+          throw new Error(`Could not find a file at ${instruction.sourcemapPath}`);
+        }
+
+        sourcemap = fs.readFileSync(sourcemapPath, 'utf-8');
+        // minify only if there were no source maps, and if not disabled explicitly
+      } else if (!instruction.noMinify && config.minify) {
+        const minifyResult = Terser.minify(code, { sourceMap: true });
+        ({ code, map: sourcemap } = minifyResult);
+      }
     }
 
     polyfills.push({

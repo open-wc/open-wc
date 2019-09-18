@@ -34,6 +34,7 @@
     "parse5": "^5.1.0"
   },
   "devDependencies": {
+    "@webcomponents/shadycss": "^1.9.1",
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "chai": "^4.2.0",
     "intersection-observer": "^0.7.0",

@@ -38,7 +38,7 @@ const { cleanImportPath } = require('./utils');
 /**
  * @typedef {object} PolyfillInstruction
  * @property {string} name name of the polyfill
- * @property {string} path polyfill path
+ * @property {string|Array<string>} path polyfill path
  * @property {string} [test] expression which should evaluate to true to load the polyfill
  * @property {boolean} [nomodule] whether to inject the polyfills as a script with nomodule attribute
  * @property {boolean} [module] wether to load the polyfill with type module
@@ -51,6 +51,7 @@ const { cleanImportPath } = require('./utils');
  * @property {boolean} [coreJs] whether to polyfill core-js polyfills
  * @property {boolean} [regeneratorRuntime] whether to add regenerator runtime
  * @property {boolean} [webcomponents] whether to polyfill webcomponents
+ * @property {boolean} [customStyles] whether to polyfill customStyles
  * @property {boolean} [fetch] whether to polyfill fetch
  * @property {boolean} [intersectionObserver] whether to polyfill intersection observer
  * @property {boolean} [dynamicImport] whether to polyfill dynamic import

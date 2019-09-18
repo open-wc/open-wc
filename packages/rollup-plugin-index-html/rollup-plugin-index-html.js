@@ -81,7 +81,7 @@ module.exports = (pluginConfig = {}) => {
     },
 
     resolveId(source, importer) {
-      // if this is an inline entry keep it, load() will take ca,re of it
+      // if this is an inline entry keep it, load() will take care of it
       if (typeof findInlineEntryId(source) === 'number') {
         return source;
       }

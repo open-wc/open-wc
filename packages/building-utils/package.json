@@ -27,6 +27,7 @@
   "dependencies": {
     "@babel/core": "^7.3.3",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@webcomponents/shadycss": "^1.9.1",
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "arrify": "^2.0.1",
     "browserslist": "^4.5.6",
