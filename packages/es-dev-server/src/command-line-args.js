@@ -86,12 +86,12 @@ export function readCommandLineArgs(argv = process.argv) {
         'Serve files over HTTP2. Sets up HTTPS with self-signed certificates or optional custom certificates',
     },
     {
-      name: 'key',
+      name: 'ssl-key',
       type: String,
       description: 'Path to local .key file for https',
     },
     {
-      name: 'cert',
+      name: 'ssl-cert',
       type: String,
       description: 'Path to local .cert file for https',
     },
