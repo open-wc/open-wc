@@ -138,9 +138,7 @@ export function createCompileMiddleware(cfg) {
       // browser
       if (error instanceof ResolveSyntaxError) {
         logError(
-          `Could not resolve module imports in ${
-            ctx.url
-          }: Unable to parse the module, this can be due to experimental syntax or a bug in the parser.`,
+          `Could not resolve module imports in ${ctx.url}: Unable to parse the module, this can be due to experimental syntax or a bug in the parser.`,
         );
         return undefined;
       }
