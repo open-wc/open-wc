@@ -6,9 +6,7 @@ const { append, query, predicates } = require('../dom5-fork');
 const { getPolyfills } = require('./polyfills');
 const { createLoaderScript } = require('./loader-script');
 const { minifyIndexHTML, defaultMinifyHTMLConfig } = require('./minify-index-html');
-const { createContentHash } = require('./utils');
-const { cleanImportPath } = require('./utils');
-const { polyfillFilename } = require('./utils');
+const { createContentHash, cleanImportPath, polyfillFilename } = require('./utils');
 
 /** @typedef {import('parse5').ASTNode} ASTNode */
 
@@ -58,7 +56,7 @@ const { polyfillFilename } = require('./utils');
  * @property {boolean} [systemJs] whether to polyfill systemjs
  * @property {boolean} [systemJsExtended] whether to polyfill systemjs, extended version with import maps
  * @property {boolean} [esModuleShims] whether to polyfill es modules using es module shims
- * @property {boolean} [skipHash] whether to skip the content hash for the emitted file
+ * @property {boolean} [hashPolyfills] whether to append the content hash for the emitted polyfill
  * @property {PolyfillInstruction[]} [customPolyfills] custom polyfills specified by the user
  */
 
@@ -75,7 +73,7 @@ const { polyfillFilename } = require('./utils');
 /** @type {Partial<CreateIndexHTMLConfig>} */
 const defaultConfig = {
   polyfills: {
-    skipHash: false,
+    hashPolyfills: true,
     coreJs: false,
     regeneratorRuntime: false,
     webcomponents: false,

@@ -42,7 +42,7 @@ const defaultPolyfills = [
 ];
 
 const defaultPolyfillsConfig = {
-  skipHash: false,
+  hashPolyfills: true,
   coreJs: false,
   regeneratorRuntime: false,
   webcomponents: false,

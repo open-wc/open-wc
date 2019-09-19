@@ -12,7 +12,7 @@ module.exports = {
   plugins: [
     new WebpackIndexHTMLPlugin({
       polyfills: {
-        skipHash: true,
+        hashPolyfills: false,
         coreJs: true,
         regeneratorRuntime: true,
         webcomponents: true,
