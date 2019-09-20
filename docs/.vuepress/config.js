@@ -14,6 +14,7 @@ const sidebar = [
       '/developing/best-practices',
       '/developing/es-dev-server',
       ['/init/', 'Generators'],
+      '/developing/codelab',
       '/developing/types',
       '/developing/routing',
     ],
@@ -99,6 +100,25 @@ module.exports = {
             'unit-testing-custom-events',
             'unit-testing-init-error',
           ],
+        },
+      ],
+      '/codelab/': [
+        ['', 'Codelab'],
+        ['/codelab/getting-started', 'Getting started'],
+        {
+          title: 'lit-html',
+          collapsable: true,
+          children: ['template-literals', 'tagged-template-literals', 'lit-html'],
+        },
+        {
+          title: 'lit-element',
+          collapsable: true,
+          children: ['webcomponents', 'lifecycle', 'properties'],
+        },
+        {
+          title: 'Making a news app',
+          collapsable: true,
+          children: ['news-api', 'assignment-1', 'assignment-2'],
         },
       ],
       '/about/': [['/about/', 'About'], '/about/contact', '/about/rationales', '/about/blog'],

@@ -1,0 +1,3 @@
+# Properties
+
+LitElement has properties
