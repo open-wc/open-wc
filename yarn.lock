@@ -1992,16 +1992,16 @@
   integrity sha512-BONpjHcGX2zFa9mfnwBCLEmlDsOHzT+j6Qt1yfK3MzFXFtAykfzFjAgaxPetu0YbBlCfXuMlfxI4vlRGCGMvFg==
 
 "@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.1.55"
+  version "1.1.58"
   dependencies:
-    "@open-wc/testing-karma" "^3.1.30"
+    "@open-wc/testing-karma" "^3.1.33"
     "@types/node" "^11.13.0"
     karma-browserstack-launcher "^1.0.0"
 
 "@open-wc/testing-karma@file:./packages/testing-karma":
-  version "3.1.30"
+  version "3.1.33"
   dependencies:
-    "@open-wc/karma-esm" "^2.5.5"
+    "@open-wc/karma-esm" "^2.5.8"
     axe-core "^3.3.1"
     istanbul-instrumenter-loader "^3.0.0"
     karma "^4.0.0"
@@ -7059,10 +7059,10 @@ es-module-lexer@0.3.9:
   resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-0.3.9.tgz#fbdbb35e1ad434fc71f5d83a887781fadbaca83a"
   integrity sha512-beowXiBsaVS208GHoJckwOxlG/RpWLLz2ioJHwkUJ3RGFmW508E5RfntV21bMjzO3hQcwZOTHewUFwnGzrBtIg==
 
-es-module-shims@^0.2.13:
-  version "0.2.15"
-  resolved "https://registry.yarnpkg.com/es-module-shims/-/es-module-shims-0.2.15.tgz#6a03a86eded7e27913efd75b6235b91950721c3d"
-  integrity sha512-KJt8AdAIauSa9DDY442VqfiMHtFd2bG2cUtKuqycQUR7/0q2Uw+iM7ckQuma6j82u64Hz1wIG0eH+4m8l+mliA==
+es-module-shims@^0.4.5:
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/es-module-shims/-/es-module-shims-0.4.5.tgz#75b1768791d4f8acf897845755dcbd77be15b714"
+  integrity sha512-ZswOhFAZug93sma2ck7/YnqsfxV7SWLhXY7Rsw5reU12LTPuKmLkXzH8i6LXeP/lCj2yow70Sm3Po1n5TueOxQ==
 
 es-to-primitive@^1.2.0:
   version "1.2.0"
