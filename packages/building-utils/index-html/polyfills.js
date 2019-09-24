@@ -195,6 +195,7 @@ function getPolyfills(config) {
       nomodule: !!instruction.nomodule,
       module: !!instruction.module,
       code,
+      // @ts-ignore-next-line
       sourcemap,
     });
   });

@@ -29,6 +29,7 @@ async function testSnapshot(name, configFilePath) {
 
     output.forEach(file => {
       const filePath = path.join(config.output.dir, file.fileName);
+      // @ts-ignore-next-line
       outputFiles[filePath] = file.code;
     });
   }
