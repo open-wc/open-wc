@@ -22,6 +22,9 @@ addParameters({
 
 storiesOf('Demo|Example Element', module)
   .addDecorator(withKnobs)
+  .addParameters({
+    backgrounds: [{ name: 'lightgrey', value: '#d3d3d3' }, { name: 'teal', value: '#008080' }],
+  })
   .add(
     'Documentation',
     () =>

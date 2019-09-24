@@ -95,7 +95,7 @@ So with a configuration like this you will get this auto generated.
 
 
 For most types this works fine out of the box but if want to provide better knobs you can customize by overriding the
-properties definitions and using the [available knobs](https://github.com/storybooks/storybook/tree/5.0.0/addons/knobs#available-knobs).<br>
+properties definitions and using the [available knobs](https://github.com/storybookjs/storybook/tree/v5.2.0/addons/knobs#available-knobs).<br>
 It creates the knobs by reading `static get properties` (host properties) and `static get _classProperties` (inherited properties).<br>
 This is currently pretty specific to LitElement - However there is an attribute/properties documentation spec [in discussion](https://github.com/w3c/webcomponents/issues/776).
 ```js

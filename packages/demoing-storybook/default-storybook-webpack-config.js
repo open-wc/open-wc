@@ -1,7 +1,7 @@
 module.exports = ({ config, transpilePackages = ['lit-html', 'lit-element', '@open-wc'] }) => {
   config.module.rules.push({
     test: [/\.stories\.js$/, /index\.js$/],
-    loaders: [require.resolve('@storybook/addon-storysource/loader')],
+    loaders: [require.resolve('@storybook/source-loader')],
     enforce: 'pre',
   });
 

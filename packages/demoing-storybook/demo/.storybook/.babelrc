@@ -1,13 +1,11 @@
 {
-  "plugins": [
-    "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-proposal-object-rest-spread"
-  ],
+  "plugins": ["@babel/plugin-syntax-dynamic-import", "@babel/plugin-proposal-object-rest-spread"],
   "presets": [
     [
       "@babel/preset-env",
       {
-        "useBuiltIns": "entry"
+        "useBuiltIns": "entry",
+        "corejs": "2"
       }
     ]
   ]
