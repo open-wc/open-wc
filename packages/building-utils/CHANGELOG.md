@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.8.2...@open-wc/building-utils@2.8.3) (2019-09-22)
+
+
+### Bug Fixes
+
+* **building-utils:** ensure correct module load order on edge ([#812](https://github.com/open-wc/open-wc/issues/812)) ([0a1e490](https://github.com/open-wc/open-wc/commit/0a1e490)), closes [#781](https://github.com/open-wc/open-wc/issues/781)
+
+
+
+
+
 ## [2.8.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.8.1...@open-wc/building-utils@2.8.2) (2019-09-11)
 
 
