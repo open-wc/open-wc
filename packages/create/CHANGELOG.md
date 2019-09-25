@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.9](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.8...@open-wc/create@0.18.9) (2019-09-25)
+
+
+### Bug Fixes
+
+* **create:** don't display style nodes ([#816](https://github.com/open-wc/open-wc/issues/816)) ([b76282a](https://github.com/open-wc/open-wc/commit/b76282a))
+
+
+
+
+
 ## [0.18.8](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.7...@open-wc/create@0.18.8) (2019-08-31)
 
 
