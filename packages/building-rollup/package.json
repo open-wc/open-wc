@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "0.9.31",
+  "version": "0.9.32",
   "description": "Default configuration for working with rollup",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -51,7 +51,7 @@
     "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/plugin-proposal-decorators": "^7.3.0",
     "@babel/preset-typescript": "^7.3.3",
-    "es-dev-server": "^1.18.2",
+    "es-dev-server": "^1.18.3",
     "lit-element": "^2.0.1",
     "rimraf": "^2.6.3",
     "rollup": "^1.4.0",
