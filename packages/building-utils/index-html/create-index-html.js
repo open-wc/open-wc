@@ -6,8 +6,7 @@ const { append, query, predicates } = require('../dom5-fork');
 const { getPolyfills } = require('./polyfills');
 const { createLoaderScript } = require('./loader-script');
 const { minifyIndexHTML, defaultMinifyHTMLConfig } = require('./minify-index-html');
-const { createContentHash } = require('./utils');
-const { cleanImportPath } = require('./utils');
+const { createContentHash, cleanImportPath, polyfillFilename } = require('./utils');
 
 /** @typedef {import('parse5').ASTNode} ASTNode */
 
@@ -57,6 +56,7 @@ const { cleanImportPath } = require('./utils');
  * @property {boolean} [systemJs] whether to polyfill systemjs
  * @property {boolean} [systemJsExtended] whether to polyfill systemjs, extended version with import maps
  * @property {boolean} [esModuleShims] whether to polyfill es modules using es module shims
+ * @property {boolean} [hashPolyfills] whether to append the content hash for the emitted polyfill
  * @property {PolyfillInstruction[]} [customPolyfills] custom polyfills specified by the user
  */
 
@@ -73,6 +73,7 @@ const { cleanImportPath } = require('./utils');
 /** @type {Partial<CreateIndexHTMLConfig>} */
 const defaultConfig = {
   polyfills: {
+    hashPolyfills: true,
     coreJs: false,
     regeneratorRuntime: false,
     webcomponents: false,
@@ -122,7 +123,7 @@ function createScripts(polyfillsConfig, polyfills, entries, needsLoader) {
       return;
     }
 
-    const args = { src: `polyfills/${polyfill.name}.${polyfill.hash}.js` };
+    const args = { src: `polyfills/${polyfillFilename(polyfill, polyfillsConfig)}.js` };
     if (polyfill.nomodule) {
       args.nomodule = '';
     }
@@ -210,6 +211,7 @@ function createIndexHTML(baseIndex, config) {
       localConfig.entries,
       localConfig.legacyEntries,
       polyfills,
+      localConfig.polyfills,
       localConfig.loader === 'external',
     );
 
@@ -237,11 +239,11 @@ function createIndexHTML(baseIndex, config) {
 
   polyfills.forEach(polyfill => {
     files.push({
-      path: path.join('polyfills', `${polyfill.name}.${polyfill.hash}.js`),
+      path: path.join('polyfills', `${polyfillFilename(polyfill, localConfig.polyfills)}.js`),
       content: polyfill.code,
     });
     files.push({
-      path: path.join('polyfills', `${polyfill.name}.${polyfill.hash}.js.map`),
+      path: path.join('polyfills', `${polyfillFilename(polyfill, localConfig.polyfills)}.js.map`),
       content: polyfill.sourcemap,
     });
   });

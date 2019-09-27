@@ -95,10 +95,6 @@ export class <%= className %> extends LitElement {
           margin: 0 auto;
         }
 
-        :host > * {
-          display: flex;
-        }
-
         header {
           width: 100%;
           background: #fff;

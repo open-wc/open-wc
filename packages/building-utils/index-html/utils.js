@@ -19,7 +19,12 @@ function cleanImportPath(path) {
   return `./${path}`;
 }
 
+function polyfillFilename(polyfill, polyfillsConfig) {
+  return `${polyfill.name}${polyfillsConfig.hashPolyfills ? `.${polyfill.hash}` : ''}`;
+}
+
 module.exports = {
   createContentHash,
   cleanImportPath,
+  polyfillFilename,
 };
