@@ -60,6 +60,13 @@ module.exports = config => {
               exclude: ['**/node_modules/**', '**/*.test.ts'],
             },
           ],
+          [
+            '@babel/plugin-proposal-decorators',
+            {
+              decoratorsBeforeExport: true,
+            },
+          ],
+          '@babel/plugin-proposal-class-properties',
         ].filter(Boolean),
         presets: ['@babel/preset-typescript'],
       },
