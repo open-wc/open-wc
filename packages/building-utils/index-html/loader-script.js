@@ -1,5 +1,5 @@
 const Terser = require('terser');
-const { cleanImportPath } = require('./utils');
+const { cleanImportPath, polyfillFilename } = require('./utils');
 
 /**
  * @typedef {import('./create-index-html').EntriesConfig} EntriesConfig
@@ -99,8 +99,9 @@ function createEntriesLoader(entries, legacyEntries, polyfills) {
 
 /**
  * @param {import('@open-wc/building-utils/index-html/create-index-html').Polyfill[]} polyfills
+ * @param {import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig} polyfillsConfig
  */
-function createPolyfillsLoader(polyfills) {
+function createPolyfillsLoader(polyfills, polyfillsConfig) {
   if (!polyfills) {
     return '';
   }
@@ -112,9 +113,10 @@ function createPolyfillsLoader(polyfills) {
       return;
     }
 
-    code += `  if (${polyfill.test}) { polyfills.push(loadScript('polyfills/${polyfill.name}.${
-      polyfill.hash
-    }.js', ${Boolean(polyfill.module)})) }\n`;
+    code += `  if (${polyfill.test}) { polyfills.push(loadScript('polyfills/${polyfillFilename(
+      polyfill,
+      polyfillsConfig,
+    )}.js', ${Boolean(polyfill.module)})) }\n`;
   });
 
   return code;
@@ -126,13 +128,14 @@ function createPolyfillsLoader(polyfills) {
  * @param {EntriesConfig} entries
  * @param {EntriesConfig} legacyEntries
  * @param {import('@open-wc/building-utils/index-html/create-index-html').Polyfill[]} polyfills
+ * @param {import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig} polyfillsConfig
  */
-function createLoaderScript(entries, legacyEntries, polyfills, minified = true) {
+function createLoaderScript(entries, legacyEntries, polyfills, polyfillsConfig, minified = true) {
   /* eslint-disable prefer-template */
   const code =
     '(function() {' +
     createLoadScriptFunction(entries, legacyEntries, polyfills) +
-    createPolyfillsLoader(polyfills) +
+    createPolyfillsLoader(polyfills, polyfillsConfig) +
     createEntriesLoader(entries, legacyEntries, polyfills) +
     '})();';
 
@@ -142,12 +145,13 @@ function createLoaderScript(entries, legacyEntries, polyfills, minified = true) 
 /**
  * Creates a function that only loads polyfills, deferring entry loader to the caller
  * @param {import('@open-wc/building-utils/index-html/create-index-html').Polyfill[]} polyfills
+ * @param {import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig} polyfillsConfig
  */
-function createPolyfillsLoaderScript(polyfills, funcName = 'loadPolyfills') {
+function createPolyfillsLoaderScript(polyfills, polyfillsConfig, funcName = 'loadPolyfills') {
   return (
     `function ${funcName}() {` +
     loadScriptFunction +
-    createPolyfillsLoader(polyfills) +
+    createPolyfillsLoader(polyfills, polyfillsConfig) +
     'return Promise.all(polyfills);\n' +
     '}'
   );

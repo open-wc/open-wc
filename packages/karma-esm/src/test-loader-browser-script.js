@@ -30,9 +30,20 @@ const {
  * @param {import('@open-wc/building-utils/index-html/create-index-html').Polyfill[]} polyfills
  * @param {object | null} [importMap]
  */
+
+const defaultPolyfillsConfig = {
+  hashPolyfills: true,
+  coreJs: false,
+  regeneratorRuntime: false,
+  webcomponents: false,
+  intersectionObserver: false,
+  fetch: false,
+};
+
 function createTestLoaderBrowserScript(compatibilityMode, polyfills, importMap) {
   const loadPolyfillsWithFeatureDetectionScript = createPolyfillsLoaderScript(
     polyfills,
+    defaultPolyfillsConfig,
     'loadPolyfillsWithFeatureDetection',
   );
   // polyfills without a test don't require feature detection and are not included in the generic loader scriptˆ

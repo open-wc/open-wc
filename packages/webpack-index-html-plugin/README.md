@@ -82,6 +82,7 @@ To enable polyfills:
 ```js
 new WebpackIndexHTMLPlugin({
   polyfills: {
+    polyfillsHash: true,
     coreJs: true,
     regeneratorRuntime: true,
     webcomponents: true,
@@ -119,6 +120,8 @@ new WebpackIndexHTMLPlugin({
     ],
   },
 })
+
+You can disable the content hash in the distributed polyfill filenames by setting `polyfillsHash` to `false`.
 ```
 
 ### Multi (legacy and modern) build
