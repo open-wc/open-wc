@@ -26,6 +26,8 @@ import { compatibilityModes } from './constants.js';
  * Development help
  * @property {boolean} [watch] whether to watch served files and reload the browser on change
  * @property {boolean} [http2] whether to run the server in http2, sets up https as well
+ * @property {string} [sslKey] path to local .key file to use for https
+ * @property {string} [sslCert] path to local .cert file to use for https
  *
  * Code transformation
  * @property {string} [compatibility] compatibility mode for older browsers. Can be: "esm", modern" or "all"
@@ -65,6 +67,8 @@ import { compatibilityModes } from './constants.js';
  * @property {boolean} watch
  * @property {number} watchDebounce
  * @property {boolean} http2
+ * @property {string} sslKey
+ * @property {string} sslCert
  *
  * Code transformation
  * @property {string[]} moduleDirectories
@@ -91,6 +95,8 @@ export function createConfig(config) {
     basePath,
     watch = false,
     http2 = false,
+    sslKey,
+    sslCert,
     compatibility = compatibilityModes.NONE,
     nodeResolve = false,
     preserveSymlinks = false,
@@ -161,6 +167,8 @@ export function createConfig(config) {
     openPath,
     logStartup,
     http2,
+    sslKey,
+    sslCert,
     extraFileExtensions: fileExtensions,
     compatibilityMode: compatibility,
     babelExclude,

@@ -25,8 +25,12 @@ export function createServer(cfg, fileWatcher) {
   if (cfg.http2) {
     const dir = path.join(__dirname, '..');
     const options = {
-      key: fs.readFileSync(path.join(dir, '.self-signed-dev-server-ssl.key')),
-      cert: fs.readFileSync(path.join(dir, '.self-signed-dev-server-ssl.cert')),
+      key: fs.readFileSync(
+        cfg.sslKey ? cfg.sslKey : path.join(dir, '.self-signed-dev-server-ssl.key'),
+      ),
+      cert: fs.readFileSync(
+        cfg.sslCert ? cfg.sslCert : path.join(dir, '.self-signed-dev-server-ssl.cert'),
+      ),
       allowHTTP1: true,
     };
 
