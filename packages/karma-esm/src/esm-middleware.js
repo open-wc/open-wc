@@ -25,6 +25,7 @@ async function setupDevServer(karmaConfig, esmConfig, watch, babelConfig, karmaE
     // option used to be called `customMiddlewares`
     // @ts-ignore
     middlewares: esmConfig.middlewares || esmConfig.customMiddlewares,
+    preserveSymlinks: esmConfig.preserveSymlinks,
     watch,
     babelConfig,
   });
