@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.8.3...@open-wc/building-utils@2.9.0) (2019-09-27)
+
+
+### Features
+
+* **building-utils:** add option to polyfillsConfig to disable hashes in filenames ([#808](https://github.com/open-wc/open-wc/issues/808)) ([6763b83](https://github.com/open-wc/open-wc/commit/6763b83))
+
+
+
+
+
 ## [2.8.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.8.2...@open-wc/building-utils@2.8.3) (2019-09-22)
 
 
