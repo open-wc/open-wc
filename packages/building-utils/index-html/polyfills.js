@@ -122,7 +122,7 @@ function getPolyfills(config) {
     }
   }
 
-  if (config.polyfills.webcomponents && !config.polyfills.customStyles) {
+  if (config.polyfills.webcomponents && !config.polyfills.shadyCSS) {
     try {
       instructions.push({
         name: 'webcomponents',
@@ -163,27 +163,30 @@ function getPolyfills(config) {
     }
   }
 
-  if (config.polyfills.customStyles && !config.polyfills.webcomponents) {
-    // customStyles isn't going to work without webcomponents.
+  if (config.polyfills.shadyCSS && !config.polyfills.webcomponents) {
+    // shadyCSS isn't going to work without webcomponents.
     throw new Error(
       'configured to polyfill custom-styles, which depends on webcomponents. add `webcomponents:true` to your polyfills config.',
     );
   }
-  if (config.polyfills.customStyles && config.polyfills.webcomponents) {
-    // customStyles polyfill *must* load after the webcomponents polyfill or it doesn't work.
+  if (config.polyfills.shadyCSS && config.polyfills.webcomponents) {
+    // shadyCSS polyfill *must* load after the webcomponents polyfill or it doesn't work.
     // to get around that, concat the two together.
     try {
       instructions.push({
-        name: 'custom-styles',
+        name: 'shady-css',
         test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)",
         path: [
           require.resolve('@webcomponents/webcomponentsjs/webcomponents-bundle.js'),
           require.resolve('@webcomponents/shadycss/custom-style-interface.min.js'),
+          require.resolve(
+            '@webcomponents/shady-css-scoped-element/shady-css-scoped-element.min.js',
+          ),
         ],
       });
     } catch (error) {
       throw new Error(
-        'configured to polyfill shadycss, but no pollyfills found. Install with "npm i -D @webcomponents/shadycss"',
+        'configured to polyfill shadycss, but no pollyfills found. Install with "npm i -D @webcomponents/shadycss" and "npm i -D @webcomponents/shady-scoped-css-element"',
       );
     }
   }
