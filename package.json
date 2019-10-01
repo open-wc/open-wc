@@ -8,10 +8,10 @@
     "codelabs:build": "node codelabs/build.js",
     "format": "npm run format:eslint && npm run format:prettier",
     "format:eslint": "eslint --ext .js,.html . --fix",
-    "format:prettier": "prettier \"**/*.js\" \"**/package.json\" --write",
+    "format:prettier": "prettier \"**/*.{js,md}\" \"**/package.json\" --write",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint --ext .js,.html .",
-    "lint:prettier": "prettier \"**/*.js\" \"**/package.json\" --check",
+    "lint:prettier": "prettier \"**/*.{js,md}\" \"**/package.json\" --check",
     "lint:types": "tsc",
     "postinstall": "npm run build",
     "publish": "lerna publish --message 'chore: release new versions'",
@@ -57,6 +57,10 @@
   "lint-staged": {
     "*.js": [
       "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.md": [
       "prettier --write",
       "git add"
     ]
