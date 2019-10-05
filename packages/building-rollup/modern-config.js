@@ -7,6 +7,7 @@ const resolve = require('rollup-plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const babel = require('rollup-plugin-babel');
 const indexHTML = require('rollup-plugin-index-html');
+const entrypointHashmanifest = require('rollup-plugin-entrypoint-hashmanifest');
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -32,6 +33,8 @@ module.exports = function createBasicConfig(_options) {
       format: 'esm',
       sourcemap: true,
       dynamicImportFunction: 'importShim',
+      entryFileNames: '[name]-[hash].js',
+      chunkFileNames: '[name]-[hash].js',
     },
     plugins: [
       // parse input index.html as input and feed any modules found to rollup
@@ -92,6 +95,9 @@ module.exports = function createBasicConfig(_options) {
 
       // only minify if in production
       production && terser(),
+
+      // hash
+      entrypointHashmanifest(),
     ],
   };
 };
