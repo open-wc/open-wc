@@ -8,6 +8,7 @@ const resolve = require('rollup-plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const babel = require('rollup-plugin-babel');
 const indexHTML = require('rollup-plugin-index-html');
+const entrypointHashmanifest = require('rollup-plugin-entrypoint-hashmanifest');
 
 const production = !process.env.ROLLUP_WATCH;
 const prefix = '[owc-building-rollup]';
@@ -34,6 +35,8 @@ function createConfig(_options, legacy) {
       format: legacy ? 'system' : 'esm',
       sourcemap: true,
       dynamicImportFunction: !legacy && 'importShim',
+      entryFileNames: '[name]-[hash].js',
+      chunkFileNames: '[name]-[hash].js',
     },
     plugins: [
       indexHTML({
@@ -101,6 +104,9 @@ function createConfig(_options, legacy) {
 
       // only minify if in production
       production && terser(),
+
+      // hash
+      entrypointHashmanifest(),
     ],
   };
 }
