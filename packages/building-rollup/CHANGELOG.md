@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.9.33...@open-wc/building-rollup@0.10.0) (2019-10-05)
+
+
+### Features
+
+* **building-rollup:** add hash to legacy and modern config ([#838](https://github.com/open-wc/open-wc/issues/838)) ([0d90f66](https://github.com/open-wc/open-wc/commit/0d90f66))
+
+
+
+
+
 ## [0.9.33](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.9.32...@open-wc/building-rollup@0.9.33) (2019-09-27)
 
 **Note:** Version bump only for package @open-wc/building-rollup

@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "0.9.33",
+  "version": "0.10.0",
   "description": "Default configuration for working with rollup",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -43,10 +43,10 @@
     "babel-plugin-bundled-import-meta": "^0.3.0",
     "babel-plugin-template-html-minifier": "^3.0.0",
     "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-entrypoint-hashmanifest": "^0.1.2",
     "rollup-plugin-index-html": "^1.5.5",
     "rollup-plugin-node-resolve": "^4.0.1",
-    "rollup-plugin-terser": "^4.0.4",
-    "rollup-plugin-entrypoint-hashmanifest": "^0.1.2"
+    "rollup-plugin-terser": "^4.0.4"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.4",
