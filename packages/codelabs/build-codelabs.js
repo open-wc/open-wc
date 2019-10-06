@@ -69,6 +69,7 @@ async function main() {
   // read all codelab files
   for (const dirname of await fs.readdir(srcDir)) {
     const dir = path.join(srcDir, dirname);
+<<<<<<< HEAD
     if (!dir.startsWith('.') && (await fs.stat(dir)).isDirectory()) {
       for (const filename of await fs.readdir(dir)) {
         if (!filename.startsWith('.')) {
@@ -83,6 +84,20 @@ async function main() {
               html: await createCodelab(file),
             });
           }
+=======
+    if ((await fs.stat(dir)).isDirectory()) {
+      for (const filename of await fs.readdir(dir)) {
+        const file = path.join(dir, filename);
+        if ((await fs.stat(file)).isFile()) {
+          const assetsDir = path.join(dir, 'assets');
+
+          // turn codelab markdown into html
+          codelabs.push({
+            file: path.join(dirname, filename.replace('.md', '.html')),
+            assetsDir,
+            html: await createCodelab(file),
+          });
+>>>>>>> feat(codelabs): add codelabs
         }
       }
     }
