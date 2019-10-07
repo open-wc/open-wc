@@ -44,6 +44,7 @@ export function setupMessageChannel(ctx) {
     ctx.req.socket.removeListener('close', close);
     stream.end();
     ctx.req.socket.end();
+    activeStream = null;
   }
 
   ctx.req.socket.setTimeout(0);
