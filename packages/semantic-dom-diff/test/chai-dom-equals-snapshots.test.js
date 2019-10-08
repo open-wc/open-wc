@@ -81,6 +81,15 @@ describe('component-a', () => {
       expect(thrownForExpect).to.be.true;
       expect(thrownForAssert).to.be.true;
     });
+
+    it('does not throw an error when a snapshot does not match using negate', () => {
+      const myElement = document.createElement('div');
+      myElement.textContent = `${Math.random()}`;
+      document.body.appendChild(myElement);
+
+      expect(myElement).dom.to.not.equalSnapshot();
+      assert.dom.notEqualSnapshot(myElement);
+    });
   });
 });
 

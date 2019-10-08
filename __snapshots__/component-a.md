@@ -1,22 +1,5 @@
 # `component-a`
 
-## `failed snapshots`
-
-####   `throws an error when a snapshot does not match`
-
-```html
-<div>
-  0.6523866720855873
-</div>
-```
-
-```html
-<div>
-  0.1401241753470146
-</div>
-
-```
-
 ## `success states`
 
 ####   `matches a string snapshot`
@@ -89,5 +72,37 @@
 <span>
   B
 </span>
+```
+
+## `failed snapshots`
+
+####   `throws an error when a snapshot does not match`
+
+```html
+<div>
+  0.6523866720855873
+</div>
+```
+
+```html
+<div>
+  0.1401241753470146
+</div>
+```
+
+####   `does not throw an error when a snapshot does not match using negate`
+
+```html
+<div>
+  0.2129255588205312
+</div>
+
+```
+
+```html
+<div>
+  0.2129255588205312
+</div>
+
 ```
 
