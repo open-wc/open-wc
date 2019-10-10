@@ -25,7 +25,7 @@ Add a `karma.conf.bs.js`:
 
 ```javascript
 const merge = require('deepmerge');
-const bsSettings = require('@open-wc/testing-karma-bs/bs-settings.js');
+const bsSettings = require('@open-wc/testing-karma-bs').bsSettings;
 const createBaseConfig = require('./karma.conf.js');
 
 module.exports = config => {

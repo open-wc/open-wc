@@ -5,6 +5,7 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
   "license": "MIT",
+  "main": "index.js",
   "publishConfig": {
     "access": "public"
   },
