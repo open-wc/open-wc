@@ -369,6 +369,46 @@ export default configs.map(config => ({
 }));
 ```
 
+## Progressive Web App
+
+This configuration will by default generate a service worker for you, using [rollup-plugin-workbox](https://www.npmjs.com/package/rollup-plugin-workbox). The service worker will only be generated for production. To opt-in to using this service worker, you can add the following code snippet to your `index.html`:
+
+```html
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js');
+    });
+  }
+</script>
+```
+
+If you want to override the default config with your own workbox configuration, you can pass a `workbox` object to the `createBasicConfig` function:
+
+```js
+export default createBasicConfig({
+    input: './index.html', 
+    workbox: {
+        mode: 'injectManifest',
+        workboxConfig: require('./workbox-config.js')
+    } 
+});
+```
+
+`workbox-config.js`:
+```js
+const path = require('path');
+
+module.exports = {
+    swDest: path.join(__dirname, 'dist', 'sw.js'),
+    swSrc: path.join(__dirname, 'serviceWorker.js'),
+    globDirectory: path.join(__dirname, 'dist'),
+    globPatterns: ['**/*.{html,js,css}'],
+}
+```
+
+You can find the options for configuring Workbox [here](https://developers.google.com/web/tools/workbox/modules/workbox-build).
+
 <script>
   export default {
     mounted() {
