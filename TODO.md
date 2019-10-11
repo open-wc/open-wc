@@ -1,0 +1,6 @@
+- Add workbox to building-rollup
+- Add new 'default' configuration (js in -> js out, no indexhtml, no workbox)
+- Rename configs:
+    - `createSPAConfig` (?)
+    - `createCompatabilitySPAConfig` (?)
+    - `createDefaultConfig` (?)
