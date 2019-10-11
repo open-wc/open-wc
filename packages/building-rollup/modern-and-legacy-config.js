@@ -24,7 +24,12 @@ function createConfig(_options, legacy) {
   const options = {
     outputDir: 'dist',
     extensions: DEFAULT_EXTENSIONS,
-    workbox: {},
+    plugins: {
+      indexHTML: true,
+      workbox: true,
+      babel: true,
+      ...(_options.plugins || {}),
+    },
     ..._options,
   };
 
@@ -41,22 +46,21 @@ function createConfig(_options, legacy) {
       chunkFileNames: '[name]-[hash].js',
     },
     plugins: [
-      indexHTML({
-        ...(options.indexHTMLPlugin || {}),
-        // tell index-html-plugin that we are creating two builds
-        multiBuild: true,
-        // tell index-html-plugin whether this is the legacy config
-        legacy,
-        polyfills: {
-          ...((options.indexHTMLPlugin && options.indexHTMLPlugin.polyfills) || {}),
-          dynamicImport: true,
-          coreJs: true,
-          regeneratorRuntime: true,
-          webcomponents: true,
-          systemJs: true,
-          fetch: true,
-        },
-      }),
+      options.plugins.indexHTML &&
+        indexHTML({
+          // tell index-html-plugin that we are creating two builds
+          multiBuild: true,
+          // tell index-html-plugin whether this is the legacy config
+          legacy,
+          polyfills: {
+            dynamicImport: true,
+            coreJs: true,
+            regeneratorRuntime: true,
+            webcomponents: true,
+            systemJs: true,
+            fetch: true,
+          },
+        }),
 
       // resolve bare import specifiers
       resolve({
@@ -64,45 +68,46 @@ function createConfig(_options, legacy) {
       }),
 
       // run code through babel
-      babel({
-        extensions: options.extensions,
-        plugins: [
-          '@babel/plugin-syntax-dynamic-import',
-          '@babel/plugin-syntax-import-meta',
-          // rollup rewrites import.meta.url, but makes them point to the file location after bundling
-          // we want the location before bundling
-          ['bundled-import-meta', { importStyle: 'baseURI' }],
-          production && [
-            'template-html-minifier',
-            {
-              modules: {
-                'lit-html': ['html'],
-                'lit-element': ['html', { name: 'css', encapsulation: 'style' }],
+      options.plugins.babel &&
+        babel({
+          extensions: options.extensions,
+          plugins: [
+            '@babel/plugin-syntax-dynamic-import',
+            '@babel/plugin-syntax-import-meta',
+            // rollup rewrites import.meta.url, but makes them point to the file location after bundling
+            // we want the location before bundling
+            ['bundled-import-meta', { importStyle: 'baseURI' }],
+            production && [
+              'template-html-minifier',
+              {
+                modules: {
+                  'lit-html': ['html'],
+                  'lit-element': ['html', { name: 'css', encapsulation: 'style' }],
+                },
+                htmlMinifier: {
+                  collapseWhitespace: true,
+                  removeComments: true,
+                  caseSensitive: true,
+                  minifyCSS: customMinifyCss,
+                },
               },
-              htmlMinifier: {
-                collapseWhitespace: true,
-                removeComments: true,
-                caseSensitive: true,
-                minifyCSS: customMinifyCss,
-              },
-            },
-          ],
-        ].filter(_ => !!_),
+            ],
+          ].filter(_ => !!_),
 
-        presets: [
-          [
-            '@babel/preset-env',
-            {
-              targets: legacy ? ['ie 11'] : findSupportedBrowsers(),
-              // preset-env compiles template literals for safari 12 due to a small bug which
-              // doesn't affect most use cases. for example lit-html handles it: (https://github.com/Polymer/lit-html/issues/575)
-              exclude: legacy ? undefined : ['@babel/plugin-transform-template-literals'],
-              useBuiltIns: false,
-              modules: false,
-            },
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                targets: legacy ? ['ie 11'] : findSupportedBrowsers(),
+                // preset-env compiles template literals for safari 12 due to a small bug which
+                // doesn't affect most use cases. for example lit-html handles it: (https://github.com/Polymer/lit-html/issues/575)
+                exclude: legacy ? undefined : ['@babel/plugin-transform-template-literals'],
+                useBuiltIns: false,
+                modules: false,
+              },
+            ],
           ],
-        ],
-      }),
+        }),
 
       // only minify if in production
       production && terser(),
@@ -111,6 +116,7 @@ function createConfig(_options, legacy) {
       entrypointHashmanifest(),
 
       production &&
+        options.plugins.workbox &&
         workbox({
           mode: 'generateSW',
           workboxConfig: {
@@ -122,9 +128,7 @@ function createConfig(_options, legacy) {
             globDirectory: path.join(process.cwd(), 'dist'),
             // cache any html js and css by default
             globPatterns: ['**/*.{html,js,css}'],
-            ...((options.workbox && options.workbox.workboxConfig) || {}),
           },
-          ...(options.workbox || {}),
         }),
     ],
   };
