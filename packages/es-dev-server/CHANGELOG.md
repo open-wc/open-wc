@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.2...es-dev-server@1.18.3) (2019-09-27)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+## [1.18.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.1...es-dev-server@1.18.2) (2019-09-27)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+## [1.18.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.0...es-dev-server@1.18.1) (2019-09-22)
+
+
+### Bug Fixes
+
+* **building-utils:** ensure correct module load order on edge ([#812](https://github.com/open-wc/open-wc/issues/812)) ([0a1e490](https://github.com/open-wc/open-wc/commit/0a1e490)), closes [#781](https://github.com/open-wc/open-wc/issues/781)
+
+
+
+
+
 # [1.18.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.17.2...es-dev-server@1.18.0) (2019-09-11)
 
 

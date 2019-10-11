@@ -138,21 +138,19 @@ npm i --save-dev @babel/plugin-proposal-decorators @babel/plugin-proposal-class-
   2. Update your babel configuration:
 ```json
 {
-  {
-    "presets": [
-      "@babel/preset-typescript"
-    ],
-    // for libraries that support babel decorators (lit-element) use:
-    "plugins": [
-      ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
-      "@babel/plugin-proposal-class-properties"
-    ]
-    // for libraries that only support typescript:
-    // "plugins": [
-    //   ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    //   ["@babel/plugin-proposal-class-properties", { "loose": true }]
-    // ],
-  }
+  "presets": [
+    "@babel/preset-typescript"
+  ],
+  // for libraries that support babel decorators (lit-element) use:
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
+    "@babel/plugin-proposal-class-properties"
+  ]
+  // for libraries that only support typescript:
+  // "plugins": [
+  //   ["@babel/plugin-proposal-decorators", { "legacy": true }],
+  //   ["@babel/plugin-proposal-class-properties", { "loose": true }]
+  // ],
 }
 ```
 

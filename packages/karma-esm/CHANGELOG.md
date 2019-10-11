@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.1](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.7.0...@open-wc/karma-esm@2.7.1) (2019-09-27)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+# [2.7.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.6.1...@open-wc/karma-esm@2.7.0) (2019-09-27)
+
+
+### Features
+
+* **karma-esm:** allow configuring preserveSymlinks ([#798](https://github.com/open-wc/open-wc/issues/798)) ([18d8db8](https://github.com/open-wc/open-wc/commit/18d8db8))
+
+
+
+
+
+## [2.6.1](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.6.0...@open-wc/karma-esm@2.6.1) (2019-09-27)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+# [2.6.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.5.9...@open-wc/karma-esm@2.6.0) (2019-09-27)
+
+
+### Features
+
+* **building-utils:** add option to polyfillsConfig to disable hashes in filenames ([#808](https://github.com/open-wc/open-wc/issues/808)) ([6763b83](https://github.com/open-wc/open-wc/commit/6763b83))
+
+
+
+
+
+## [2.5.9](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.5.8...@open-wc/karma-esm@2.5.9) (2019-09-22)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
 ## [2.5.8](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.5.7...@open-wc/karma-esm@2.5.8) (2019-09-11)
 
 **Note:** Version bump only for package @open-wc/karma-esm

@@ -29,6 +29,7 @@
     "**/dist/**/*",
     "packages/**/test/**/snapshots",
     "packages/es-dev-server/test/fixtures/**/*",
+    "packages/karma-esm/demo/**/*",
     "packages/es-dev-server/demo/**/*"
   ]
 }

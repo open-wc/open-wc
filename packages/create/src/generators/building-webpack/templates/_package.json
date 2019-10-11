@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start:build": "cd dist && es-dev-server --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode=production"
   },
   "devDependencies": {
     "@open-wc/building-webpack": "^2.1.0",

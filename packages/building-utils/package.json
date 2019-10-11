@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-utils",
-  "version": "2.8.2",
+  "version": "2.9.0",
   "description": "Utils for @open-wc packages that do build stuff",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -35,7 +35,7 @@
     "clone": "^2.1.2",
     "core-js-bundle": "^3.1.4",
     "deepmerge": "^3.2.0",
-    "es-module-shims": "^0.2.13",
+    "es-module-shims": "^0.4.5",
     "html-minifier": "^4.0.0",
     "lru-cache": "^5.1.1",
     "minimatch": "^3.0.4",

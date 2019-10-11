@@ -49,7 +49,10 @@ export async function startServer(cfg, fileWatcher = chokidar.watch([])) {
         const msgs = [];
         msgs.push(`es-dev-server started on http${cfg.http2 ? 's' : ''}://${prettyHost}:${port}`);
         msgs.push(`  Serving files from '${cfg.rootDir}'.`);
-
+        if (cfg.sslKey && cfg.sslCert) {
+          msgs.push(`  using key '${cfg.sslKey}'`);
+          msgs.push(`  and cert '${cfg.sslCert}'`);
+        }
         if (cfg.openBrowser) {
           msgs.push(`  Opening browser on '${cfg.openPath}'`);
         }

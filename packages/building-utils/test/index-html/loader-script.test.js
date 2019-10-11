@@ -41,9 +41,24 @@ const defaultPolyfills = [
   },
 ];
 
+const defaultPolyfillsConfig = {
+  hashPolyfills: true,
+  coreJs: false,
+  regeneratorRuntime: false,
+  webcomponents: false,
+  intersectionObserver: false,
+  fetch: false,
+};
+
 function testSnapshot({ name, entries, legacyEntries = null, polyfills = null }) {
   const snapshotPath = path.join(__dirname, 'snapshots', 'loader-script', `${name}.js`);
-  const script = createLoaderScript(entries, legacyEntries, polyfills, false);
+  const script = createLoaderScript(
+    entries,
+    legacyEntries,
+    polyfills,
+    defaultPolyfillsConfig,
+    false,
+  );
 
   if (updateSnapshots) {
     fs.writeFileSync(snapshotPath, script, 'utf-8');

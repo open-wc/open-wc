@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.4.2...@open-wc/webpack-index-html-plugin@1.5.0) (2019-09-27)
+
+
+### Features
+
+* **building-utils:** add option to polyfillsConfig to disable hashes in filenames ([#808](https://github.com/open-wc/open-wc/issues/808)) ([6763b83](https://github.com/open-wc/open-wc/commit/6763b83))
+
+
+
+
+
+## [1.4.2](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.4.1...@open-wc/webpack-index-html-plugin@1.4.2) (2019-09-22)
+
+**Note:** Version bump only for package @open-wc/webpack-index-html-plugin
+
+
+
+
+
 ## [1.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.4.0...@open-wc/webpack-index-html-plugin@1.4.1) (2019-09-11)
 
 **Note:** Version bump only for package @open-wc/webpack-index-html-plugin
