@@ -468,6 +468,12 @@ export default createBasicConfig({
 });
 ```
 
+### A note on `skipWaiting`
+
+By default, the service worker generated will _not_ call `skipWaiting`. The reason for this is that it becomes very painful very quickly if you're lazyloading code in your application.
+
+If you want to add a user-friendly 'Add To Home Screen' experience, you can use the  [pwa-update-available](https://github.com/thepassle/pwa-helpers) web component.
+
 <script>
   export default {
     mounted() {
