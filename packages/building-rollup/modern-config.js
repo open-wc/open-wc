@@ -23,6 +23,7 @@ module.exports = function createBasicConfig(_options) {
   const options = {
     outputDir: 'dist',
     extensions: DEFAULT_EXTENSIONS,
+    indexHTMLPlugin: {},
     plugins: {
       indexHTML: true,
       workbox: true,
@@ -47,7 +48,9 @@ module.exports = function createBasicConfig(_options) {
       // parse input index.html as input and feed any modules found to rollup
       options.plugins.indexHTML &&
         indexHTML({
+          ...(options.indexHTMLPlugin || {}),
           polyfills: {
+            ...((options.indexHTMLPlugin && options.indexHTMLPlugin.polyfills) || {}),
             dynamicImport: true,
             webcomponents: true,
           },

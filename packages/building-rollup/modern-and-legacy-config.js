@@ -24,6 +24,7 @@ function createConfig(_options, legacy) {
   const options = {
     outputDir: 'dist',
     extensions: DEFAULT_EXTENSIONS,
+    indexHTMLPlugin: {},
     plugins: {
       indexHTML: true,
       workbox: true,
@@ -48,11 +49,13 @@ function createConfig(_options, legacy) {
     plugins: [
       options.plugins.indexHTML &&
         indexHTML({
+          ...(options.indexHTMLPlugin || {}),
           // tell index-html-plugin that we are creating two builds
           multiBuild: true,
           // tell index-html-plugin whether this is the legacy config
           legacy,
           polyfills: {
+            ...((options.indexHTMLPlugin && options.indexHTMLPlugin.polyfills) || {}),
             dynamicImport: true,
             coreJs: true,
             regeneratorRuntime: true,

@@ -187,16 +187,26 @@ If you need to customize the output of your `index.html` you can pass extra opti
 
 ```javascript
 import { createDefaultConfig } from '@open-wc/building-rollup';
+import { indexHTMLPlugin } from '@open-wc/rollup-plugin-index-html';
+import deepmerge from 'deepmerge';
 
-export default createDefaultConfig({
+const basicConfig = createDefaultConfig({
   input: './index.html',
-  indexHTMLPlugin: {
-    polyfills: {
-      fetch: false,
-      intersectionObserver: true,
-    },
-  }
+  plugins: [
+    indexHTML: false
+  ]
 });
+
+export default merge(basicConfig, {
+  plugins: [
+    indexHTMLPlugin({
+      polyfills: {
+        fetch: false,
+        intersectionObserver: true,
+      }
+    }),
+  ]
+})
 ```
 
 See the plugin docs for all options.
@@ -206,22 +216,38 @@ By default we look for an `index.html` as entrypoint. If want to use regular ent
 
 ```javascript
 import { createDefaultConfig } from '@open-wc/building-rollup';
+import { indexHTMLPlugin } from '@open-wc/rollup-plugin-index-html';
+import deepmerge from 'deepmerge';
 
-export default createDefaultConfig({
+const basicConfig = createDefaultConfig({
   input: './my-app.js',
-  indexHTMLPlugin: {
-    // inline
-    indexHTML: `
-      <html>
-        <head></head>
-        <body></body>
-      </html>
-    `,
-
-    // from file
-    indexHTML: fs.readFileSync('/path/to/index.html', 'utf-8'),
-  }
+  plugins: [
+    indexHTML: false
+  ]
 });
+
+export default merge(basicConfig, {
+  plugins: [
+    indexHTMLPlugin({
+      indexHTML: `
+        <html>
+          <head></head>
+          <body></body>
+        </html>
+      `,
+
+      // from file
+      indexHTML: fs.readFileSync('/path/to/index.html', 'utf-8'),
+
+      // other options:
+      polyfills: {
+        dynamicImport: true,
+        webcomponents: true,
+      }
+    })
+  ]
+})
+
 ```
 
 #### Resolve commonjs modules
@@ -371,6 +397,8 @@ export default configs.map(config => ({
 
 ## Progressive Web App
 
+### Enabling the service worker
+
 This configuration will by default generate a service worker for you, using [rollup-plugin-workbox](https://www.npmjs.com/package/rollup-plugin-workbox). The service worker will only be generated for production. To opt-in to using this service worker, you can add the following code snippet to your `index.html`:
 
 ```html
@@ -382,16 +410,29 @@ This configuration will by default generate a service worker for you, using [rol
   }
 </script>
 ```
+### Overriding the workbox config
 
-If you want to override the default config with your own workbox configuration, you can pass a `workbox` object to the `createBasicConfig` function:
+If you want to override the default config with your own workbox configuration, you can disable the default workbox configuration by setting `options.plugins.workbox` to false in the `options` object that you pass to  `createBasicConfig`, and then you can override the plugins 
 
 ```js
-export default createBasicConfig({
-    input: './index.html', 
-    workbox: {
-        mode: 'injectManifest',
-        workboxConfig: require('./workbox-config.js')
-    } 
+const { createBasicConfig } = require('@open-wc/building-rollup');
+const deepmerge = require('deepmerge');
+const workbox = require('rollup-plugin-workbox');
+
+const basicConfig = createBasicConfig({ 
+  input: './index.html',
+  plugins: {
+    workbox: false,
+  }
+});
+
+export default merge(basicConfig, {
+  plugins: [
+    workbox({
+      mode: 'injectManifest',
+      workboxConfig: require('./workbox-config.js')
+    }),
+  ]
 });
 ```
 
@@ -408,6 +449,19 @@ module.exports = {
 ```
 
 You can find the options for configuring Workbox [here](https://developers.google.com/web/tools/workbox/modules/workbox-build).
+
+### Disabling service worker generation
+
+To opt out of using workbox to generate a service worker, you can disabled it by overriding the options in the `createBasicConfig` function:
+
+```js
+export default createBasicConfig({
+    input: './index.html', 
+    plugins: {
+        workbox: false
+    } 
+});
+```
 
 <script>
   export default {
