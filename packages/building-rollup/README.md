@@ -192,9 +192,9 @@ import deepmerge from 'deepmerge';
 
 const basicConfig = createDefaultConfig({
   input: './index.html',
-  plugins: [
+  plugins: {
     indexHTML: false
-  ]
+  }
 });
 
 export default merge(basicConfig, {
@@ -221,9 +221,9 @@ import deepmerge from 'deepmerge';
 
 const basicConfig = createDefaultConfig({
   input: './my-app.js',
-  plugins: [
+  plugins: {
     indexHTML: false
-  ]
+  }
 });
 
 export default merge(basicConfig, {
