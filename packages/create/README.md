@@ -53,22 +53,10 @@ npm init @open-wc
   This generator scaffolds a starting point for a web component. We recommend using this generator when you want to develop and publish a single web component.
   <br/>
 
-- `Basic Application`<br/>
-  This generator scaffolds a minimal application for quick prototyping, and does not come with any linting, testing, or building configs.
-  <br/>
-
-- `Starter App`<br/>
+- `Application`<br/>
   This generator scaffolds a new starter application. We recommend using this generator at the start of your web component project.
-  <details>
-    <summary>More info</summary>
-    <br/>
-    This generator will internally select the following features for you:
-
-      - linting
-      - testing
-      - building rollup
-  </details>
   <br/>
+
 
 ## Features
 
@@ -82,7 +70,7 @@ npm init @open-wc
 # select "Upgrade an existing project" or add features while scaffolding
 ```
 
-### Available features
+### Available Upgrade features
 
 - `Linting`<br>
 This generator adds a complete linting setup with ESLint, Prettier, Husky and commitlint.
@@ -102,10 +90,6 @@ This generator adds a complete building setup with rollup.
 
 - `Building > Webpack`<br>
 This generator adds a complete building setup with webpack.
-  <br/>
-
-- `Automating`<br>
-This generator adds a complete automating setup with CircleCi.
   <br/>
 
 <script>
