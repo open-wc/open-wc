@@ -5,7 +5,9 @@ describe('dom', () => {
   it('can compare dom nodes', async () => {
     const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
     expect(el).dom.to.equal('<div><h1>Hey</h1></div>');
+    expect(el).dom.to.not.equal('<div><h2>Hey</h2></div>');
     assert.dom.equal(el, '<div><h1>Hey</h1></div>');
+    assert.dom.notEqual(el, '<div><h2>Hey</h2></div>');
   });
 
   it('passes along provided configuration', async () => {
@@ -21,7 +23,9 @@ describe('lightDom', () => {
   it('can compare lightDom nodes', async () => {
     const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
     expect(el).lightDom.to.equal('<h1>Hey</h1>');
+    expect(el).lightDom.to.not.equal('<h2>Hey</h2>');
     assert.lightDom.equal(el, '<h1>Hey</h1>');
+    assert.lightDom.notEqual(el, '<h2>Hey</h2>');
   });
 
   it('passes along provided configuration', async () => {
@@ -50,6 +54,10 @@ describe('shadowDom', () => {
     const el = await fixture(`<${tag}><span>  light content  </span></${tag}>`);
     expect(el).dom.to.equal(`<${tag}><span>light content</span></${tag}>`);
     assert.dom.equal(el, `<${tag}><span>light content</span></${tag}>`);
+
+    assert.shadowDom.equal(el, '<p>shadow content</p><slot>');
+    assert.shadowDom.notEqual(el, '<span>shadow content</span><slot>');
     expect(el).shadowDom.to.equal('<p>shadow content</p><slot>');
+    expect(el).shadowDom.to.not.equal('<span>shadow content</span><slot>');
   });
 });
