@@ -183,7 +183,7 @@ Some extensions or plugins add non-native or experimental features to your code.
 :::
 
 #### Customizing index.html output
-If you need to customize the output of your `index.html` you can pass extra options to [rollup-plugin-index-html](https://open-wc.org/building/rollup-plugin-index-html.html):
+If you need to customize the output of your `index.html` you can create a basic config object with `createDefaultConfig`, and use `deepmerge` to override and apply your customized options to [rollup-plugin-index-html](https://open-wc.org/building/rollup-plugin-index-html.html):
 
 ```javascript
 import { createDefaultConfig } from '@open-wc/building-rollup';
