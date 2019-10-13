@@ -118,7 +118,7 @@ At runtime we determine which version of your app should be loaded, so that lega
     - minify html and css in template literals
 
 ## Adjusting browser support for the modern build
-The legacy build targets IE11, which is the earliest browser supported by the webcomponents polyfill. For the modern build we target the lates 2 versions of the major browsers (chrome, firefox, safari and edge).
+The legacy build targets IE11, which is the earliest browser supported by the webcomponents polyfill. For the modern build we target the 2 most recent versions of the major browsers (chrome, firefox, safari and edge).
 
 You can adjust this by adding a [browserslist](https://github.com/browserslist/browserslist) configuration. For example by adding a `.browserslistrc` file to your project, or adding an entry to your package.json. See the [browserslist documentation](https://github.com/browserslist/browserslist) for more information.
 

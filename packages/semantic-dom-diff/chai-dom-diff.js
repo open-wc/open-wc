@@ -38,11 +38,16 @@ export const chaiDomDiff = (chai, utils) => {
   const getShadowDomHtml = el => getCleanedShadowDom(el);
 
   /** Base HTML assertion for `assert` interface. */
-  const assertHtmlEquals = (actual, expected, options) => {
+  const assertHtmlEquals = (actual, expected, options, negate = false) => {
     // use chai's built-in string comparison, log the updated snapshot on error
-    new chai.Assertion(getDiffableHTML(actual, options)).to.equal(
-      getDiffableHTML(expected, options),
-    );
+    const assertion = new chai.Assertion(getDiffableHTML(actual, options));
+    const expectedDiffableHTML = getDiffableHTML(expected, options);
+
+    if (negate) {
+      assertion.not.equal(expectedDiffableHTML);
+    } else {
+      assertion.equal(expectedDiffableHTML);
+    }
   };
 
   /** DOM assertion for `should` and `expect` interfaces. */
@@ -62,7 +67,7 @@ export const chaiDomDiff = (chai, utils) => {
           html = getDomHtml(this._obj);
         }
 
-        assertHtmlEquals(html, value, args[0]);
+        assertHtmlEquals(html, value, args[0], utils.flag(this, 'negate'));
       } else {
         _super.apply(this, [value, ...args]);
       }
@@ -76,7 +81,7 @@ export const chaiDomDiff = (chai, utils) => {
   const snapshotState = window.__snapshot__;
 
   /** Base HTML snapshot assertion for `assert` interface. */
-  function assertHtmlEqualsSnapshot(actual, options) {
+  function assertHtmlEqualsSnapshot(actual, options, negate = false) {
     const { index } = context;
     context.index += 1;
     let path;
@@ -96,17 +101,20 @@ export const chaiDomDiff = (chai, utils) => {
 
       if (!snapshot) {
         snapshotState.set(path, index, html, 'html');
-      } else if (!snapshotState.match(html, getDiffableHTML(snapshot.code, options))) {
-        /* istanbul ignore next */
-        throw new chai.AssertionError(
-          `Received value does not match stored snapshot ${index}`,
-          {
-            actual: html,
-            expected: snapshot.code,
-            showDiff: true,
-          },
-          chai.util.flag(this, 'ssfi'),
-        );
+      } else {
+        const isMatch = snapshotState.match(html, getDiffableHTML(snapshot.code, options));
+        if ((isMatch && negate) || (!isMatch && !negate)) {
+          /* istanbul ignore next */
+          throw new chai.AssertionError(
+            `Received value does not match stored snapshot ${index}`,
+            {
+              actual: html,
+              expected: snapshot.code,
+              showDiff: true,
+            },
+            chai.util.flag(this, 'ssfi'),
+          );
+        }
       }
     }
   }
@@ -122,34 +130,54 @@ export const chaiDomDiff = (chai, utils) => {
     } else {
       html = el;
     }
-    return assertHtmlEqualsSnapshot.call(this, html, options);
+    return assertHtmlEqualsSnapshot.call(this, html, options, utils.flag(this, 'negate'));
   }
 
   utils.addMethod(chai.Assertion.prototype, 'equalSnapshot', equalSnapshot);
+  utils.addMethod(chai.Assertion.prototype, 'notEqualSnapshot', equalSnapshot);
 
   utils.addMethod(chai.assert, 'equalSnapshot', assertHtmlEqualsSnapshot);
+  utils.addMethod(chai.assert, 'notEqualSnapshot', assertHtmlEqualsSnapshot);
   chai.assert.dom = {
     equal(actualEl, expectedHTML, options) {
       return assertHtmlEquals.call(this, getDomHtml(actualEl), expectedHTML, options);
     },
+    notEqual(actualEl, expectedHTML, options) {
+      return assertHtmlEquals.call(this, getDomHtml(actualEl), expectedHTML, options, true);
+    },
     equalSnapshot(actualEl, options) {
       return assertHtmlEqualsSnapshot.call(this, actualEl, options);
+    },
+    notEqualSnapshot(actualEl, options) {
+      return assertHtmlEqualsSnapshot.call(this, actualEl, options, true);
     },
   };
   chai.assert.lightDom = {
     equal(actualEl, expectedHTML, options) {
       return assertHtmlEquals.call(this, getLightDomHtml(actualEl), expectedHTML, options);
     },
+    notEqual(actualEl, expectedHTML, options) {
+      return assertHtmlEquals.call(this, getLightDomHtml(actualEl), expectedHTML, options, true);
+    },
     equalSnapshot(actualEl, options) {
       return assertHtmlEqualsSnapshot.call(this, getLightDomHtml(actualEl), options);
+    },
+    notEqualSnapshot(actualEl, options) {
+      return assertHtmlEqualsSnapshot.call(this, getLightDomHtml(actualEl), options, true);
     },
   };
   chai.assert.shadowDom = {
     equal(actualEl, expectedHTML, options) {
       return assertHtmlEquals.call(this, getShadowDomHtml(actualEl), expectedHTML, options);
     },
+    notEqual(actualEl, expectedHTML, options) {
+      return assertHtmlEquals.call(this, getShadowDomHtml(actualEl), expectedHTML, options, true);
+    },
     equalSnapshot(actualEl, options) {
       return assertHtmlEqualsSnapshot.call(this, getShadowDomHtml(actualEl), options);
+    },
+    notEqualSnapshot(actualEl, options) {
+      return assertHtmlEqualsSnapshot.call(this, getShadowDomHtml(actualEl), options, true);
     },
   };
 };
