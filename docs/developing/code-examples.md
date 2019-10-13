@@ -1,6 +1,11 @@
 # Code examples
 
 ## lit-html and lit-element
+
+A simple base class for creating fast, lightweight web components. 
+[LitElement documentation](https://lit-element.polymer-project.org)
+[lit-html documentation](https://lit-html.polymer-project.org)
+
 Click on the links below to view live code samples:
 
 * [Basic](https://open-wc-lit-demos.stackblitz.io/basic)
@@ -35,3 +40,28 @@ Click on the links below to view live code samples:
 	- [06 External template](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F06-external-template.js)
 	- [07 Template factories](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F07-template-factories.js)
 	- [08 Should update](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F08-should-update.js)
+
+
+## Haunted
+
+React's Hooks API implemented for web components 👻
+[Haunted documentation](https://github.com/matthewp/haunted)
+
+Click on the links below to view live code samples:
+
+* [Basic](https://open-wc-haunted-demos.stackblitz.io/basic)
+	- [01 Basic setup](https://stackblitz.com/edit/open-wc-haunted-demos?file=01-basic%2F01-basic-setup.js)
+	- [02 Manage properties](https://stackblitz.com/edit/open-wc-haunted-demos?file=01-basic%2F02-manage-properties.js)
+	- [03 Property changes](https://stackblitz.com/edit/open-wc-haunted-demos?file=01-basic%2F03-property-changes.js)
+	- [04 Handling attributes](https://stackblitz.com/edit/open-wc-haunted-demos?file=01-basic%2F04-handling-attributes.js)
+	- [05 Passing properties](https://stackblitz.com/edit/open-wc-haunted-demos?file=01-basic%2F05-passing-properties.js)
+	- [06 Handle events](https://stackblitz.com/edit/open-wc-haunted-demos?file=01-basic%2F06-handle-events.js)
+	- [07 Conditional rendering](https://stackblitz.com/edit/open-wc-haunted-demos?file=01-basic%2F07-conditional-rendering.js)
+	- [08 Repeated templates](https://stackblitz.com/edit/open-wc-haunted-demos?file=01-basic%2F08-repeated-templates.js)
+	- [09 Firing events](https://stackblitz.com/edit/open-wc-haunted-demos?file=01-basic%2F09-firing-events.js)
+	- [10 Virtual Components](https://stackblitz.com/edit/open-wc-haunted-demos?file=01-basic%2F10-virtual-components.js)
+* [Intermediate](https://open-wc-haunted-demos.stackblitz.io/intermediate)
+	- [01 Using state](https://stackblitz.com/edit/open-wc-haunted-demos?file=01-intermediate%2F01-using-state.js)
+	- [02 Using effects](https://stackblitz.com/edit/open-wc-haunted-demos?file=02-intermediate%2F02-using-effects.js)
+	- [03 Fetch data](https://stackblitz.com/edit/open-wc-haunted-demos?file=02-intermediate%2F03-fetch-data.js)
+	- [04 Using reducer](https://stackblitz.com/edit/open-wc-haunted-demos?file=02-intermediate%2F04-using-reducer.js)
