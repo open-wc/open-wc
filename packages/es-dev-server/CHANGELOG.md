@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.4](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.3...es-dev-server@1.18.4) (2019-10-13)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't send messages to a closed event stream ([#835](https://github.com/open-wc/open-wc/issues/835)) ([bf6b3ba](https://github.com/open-wc/open-wc/commit/bf6b3ba))
+
+
+
+
+
 ## [1.18.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.2...es-dev-server@1.18.3) (2019-09-27)
 
 **Note:** Version bump only for package es-dev-server
