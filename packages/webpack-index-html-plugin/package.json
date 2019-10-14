@@ -22,6 +22,12 @@
     "src",
     "*.js"
   ],
+  "keywords": [
+    "webpack",
+    "plugin",
+    "config",
+    "polyfills"
+  ],
   "dependencies": {
     "@open-wc/building-utils": "^2.9.0",
     "deepmerge": "^3.2.0",

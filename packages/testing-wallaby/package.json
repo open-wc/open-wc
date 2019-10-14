@@ -13,6 +13,12 @@
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/testing-wallaby"
   },
+  "keywords": [
+    "wallaby",
+    "testing",
+    "realtime",
+    "plugin"
+  ],
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
   },

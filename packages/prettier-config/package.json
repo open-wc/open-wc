@@ -14,6 +14,11 @@
     "directory": "packages/prettier-config"
   },
   "main": "prettier.config.js",
+  "keywords": [
+    "prettier",
+    "linting",
+    "formatting"
+  ],
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
   },

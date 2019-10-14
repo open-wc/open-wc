@@ -9,6 +9,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "keywords": [
+    "rollup-plugin",
+    "minify",
+    "polyfill"
+  ],
   "scripts": {
     "test": "npm run test:node",
     "test:node": "mocha test/**/*.test.js test/*.test.js",

@@ -18,6 +18,11 @@
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "main": "index.js",
+  "keywords": [
+    "demo",
+    "demo-states",
+    "testing"
+  ],
   "files": [
     "*.js"
   ],

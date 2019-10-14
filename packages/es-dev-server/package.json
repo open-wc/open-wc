@@ -20,6 +20,11 @@
     ".self-signed-dev-server-ssl.cert",
     "dist"
   ],
+  "keywords": [
+    "server",
+    "http-server",
+    "polyfill"
+  ],
   "scripts": {
     "build": "babel src --out-dir dist --copy-files --include-dotfiles",
     "test": "npm run test:node",

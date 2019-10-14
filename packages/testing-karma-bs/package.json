@@ -17,6 +17,12 @@
   "files": [
     "*.js"
   ],
+  "keywords": [
+    "testing",
+    "karma",
+    "browserstack",
+    "config"
+  ],
   "scripts": {
     "test": "karma start demo/karma.conf.js --coverage",
     "test:watch": "karma start demo/karma.conf.js --auto-watch=true --single-run=false",

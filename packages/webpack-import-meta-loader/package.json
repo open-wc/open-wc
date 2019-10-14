@@ -18,6 +18,11 @@
     "src",
     "*.js"
   ],
+  "keywords": [
+    "webpack",
+    "meta-loader",
+    "import-meta"
+  ],
   "scripts": {
     "test": "npm run test:node",
     "test:node": "mocha --require @babel/register",
