@@ -3,6 +3,7 @@ import prompts from 'prompts';
 import commandLineArgs from 'command-line-args';
 import { executeMixinGenerator } from '../../core.js';
 import { AppLitElementMixin } from '../app-lit-element/index.js';
+import { AppHauntedMixin } from '../app-haunted/index.js';
 
 import header from './header.js';
 import { gatherMixins } from './gatherMixins.js';
@@ -55,13 +56,19 @@ export const AppMixin = subclass =>
           name: 'scaffoldType',
           message: 'What would you like to scaffold?',
           choices: [
-            { title: 'Web Component', value: 'wc' },
-            { title: 'Application', value: 'app' },
+            { title: 'Web Component - LitElement', value: 'wc' },
+            { title: 'Application - LitElement', value: 'app' },
+            { title: 'Web Component - Haunted', value: 'wc-haunted' },
+            { title: 'Application - Haunted', value: 'app-haunted' },
           ],
         },
         {
           type: (prev, all) =>
-            all.scaffoldType === 'wc' || all.scaffoldType === 'app' || all.type === 'upgrade'
+            all.scaffoldType === 'wc' ||
+            all.scaffoldType === 'app' ||
+            all.type === 'upgrade' ||
+            all.scaffoldType === 'wc-haunted' ||
+            all.scaffoldType === 'app-haunted'
               ? 'multiselect'
               : null,
           name: 'features',
@@ -132,6 +139,8 @@ export const AppMixin = subclass =>
       // app is separate to prevent circular imports
       if (this.options.type === 'scaffold' && this.options.scaffoldType === 'app') {
         mixins.push(AppLitElementMixin);
+      } else if (this.options.type === 'scaffold' && this.options.scaffoldType === 'app-haunted') {
+        mixins.push(AppHauntedMixin);
       }
       await executeMixinGenerator(mixins, this.options);
     }

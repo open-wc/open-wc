@@ -1,4 +1,5 @@
 import { WcLitElementMixin, WcLitElementPackageMixin } from '../wc-lit-element/index.js';
+import { WcHauntedPackageMixin } from '../wc-haunted/index.js';
 import { LintingMixin } from '../linting/index.js';
 import { TestingMixin, TestingScaffoldMixin } from '../testing/index.js';
 import {
@@ -15,6 +16,10 @@ export function gatherMixins(options) {
     switch (options.scaffoldType) {
       case 'wc':
         mixins.push(WcLitElementPackageMixin);
+        considerScaffoldFilesFor = true;
+        break;
+      case 'wc-haunted':
+        mixins.push(WcHauntedPackageMixin);
         considerScaffoldFilesFor = true;
         break;
       case 'wc-lit-element':
