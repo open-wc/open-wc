@@ -19,6 +19,11 @@
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/webpack-index-html-plugin"
   },
+  "keywords": [
+    "rollup-plugin",
+    "minify",
+    "polyfill"
+  ],
   "files": [
     "src",
     "*.js"

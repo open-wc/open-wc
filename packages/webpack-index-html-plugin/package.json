@@ -18,6 +18,12 @@
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/webpack-index-html-plugin"
   },
+  "keywords": [
+    "webpack",
+    "plugin",
+    "config",
+    "polyfills"
+  ],
   "files": [
     "src",
     "*.js"

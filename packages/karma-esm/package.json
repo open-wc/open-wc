@@ -23,6 +23,11 @@
     "test:typescript:watch": "karma start demo/typescript/karma.config.js --auto-watch=true --single-run=false",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
+  "keywords": [
+    "karma",
+    "testing",
+    "polyfill"
+  ],
   "files": [
     "src",
     "*.js"
