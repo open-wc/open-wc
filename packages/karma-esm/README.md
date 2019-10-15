@@ -117,7 +117,7 @@ npm i --save-dev @babel/preset-typescript
 ```javascript
 {
   files: [
-    { pattern: '**/*.test.ts' }
+    { pattern: 'test/**/*.test.ts', type: 'module' }
   ],
 
   esm: {
