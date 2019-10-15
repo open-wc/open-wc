@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const merge = require('webpack-merge');
-const bsSettings = require('./packages/testing-karma-bs/bs-settings.js');
+const { bsSettings } = require('./packages/testing-karma-bs');
 const createBaseConfig = require('./karma.conf.js');
 
 module.exports = config => {

@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "description": "Testing following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@open-wc/chai-dom-equals": "^0.12.36",
-    "@open-wc/semantic-dom-diff": "^0.14.2",
+    "@open-wc/semantic-dom-diff": "^0.14.3",
     "@open-wc/testing-helpers": "^1.2.1",
     "@types/chai": "^4.1.7",
     "@types/chai-dom": "^0.0.8",

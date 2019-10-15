@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.9...@open-wc/create@0.19.0) (2019-10-13)
+
+
+### Bug Fixes
+
+* **create:** use standard webpack mode notation ([#839](https://github.com/open-wc/open-wc/issues/839)) ([ad99b17](https://github.com/open-wc/open-wc/commit/ad99b17))
+
+
+### Features
+
+* **testing-karma-bs:** add package main ([#714](https://github.com/open-wc/open-wc/issues/714)) ([1754976](https://github.com/open-wc/open-wc/commit/1754976))
+
+
+
+
+
 ## [0.18.9](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.8...@open-wc/create@0.18.9) (2019-09-25)
 
 
