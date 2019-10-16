@@ -39,7 +39,7 @@ module.exports = function(source) {
         let url = '';
 
         if (!publicPath || publicPath.indexOf('://') < 0) {
-          url += \`\${window.location.protocol}//\${window.location.host}\`;
+          url += window.location.protocol + '//' + window.location.host;
         }
 
         if (publicPath) {
