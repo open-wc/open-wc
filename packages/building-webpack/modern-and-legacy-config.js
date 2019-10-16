@@ -1,5 +1,6 @@
 const { findSupportedBrowsers } = require('@open-wc/building-utils');
 const customMinifyCSS = require('@open-wc/building-utils/custom-minify-css');
+const { GenerateSW } = require('workbox-webpack-plugin');
 const path = require('path');
 const WebpackIndexHTMLPlugin = require('@open-wc/webpack-index-html-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -12,6 +13,10 @@ const defaultOptions = {
   // production. this can be overwritten manually in the config
   mode: getDefaultMode(),
   input: './index.html',
+  plugins: {
+    indexHTML: true,
+    workbox: true,
+  },
 };
 
 /* eslint-disable-next-line no-shadow */
@@ -130,21 +135,30 @@ function createConfig(options, legacy) {
       // @ts-ignore
       firstConfig && new CleanWebpackPlugin(),
 
-      new WebpackIndexHTMLPlugin(
-        merge(
-          {
-            multiBuild: true,
-            legacy,
-            polyfills: {
-              coreJs: true,
-              regeneratorRuntime: true,
-              webcomponents: true,
-              fetch: true,
+      options.plugins.indexHTML &&
+        new WebpackIndexHTMLPlugin(
+          merge(
+            {
+              multiBuild: true,
+              legacy,
+              polyfills: {
+                coreJs: true,
+                regeneratorRuntime: true,
+                webcomponents: true,
+                fetch: true,
+              },
             },
-          },
-          options.webpackIndexHTMLPlugin,
+            options.webpackIndexHTMLPlugin,
+          ),
         ),
-      ),
+      production &&
+        options.plugins.workbox &&
+        new GenerateSW({
+          // for spa client side routing, always return index.html
+          navigateFallback: '/index.html',
+          // where to output the generated sw
+          swDest: 'sw.js',
+        }),
     ].filter(_ => !!_),
 
     devServer: {
@@ -163,6 +177,10 @@ module.exports = userOptions => {
   const options = {
     ...defaultOptions,
     ...userOptions,
+    plugins: {
+      ...defaultOptions.plugins,
+      ...(userOptions.plugins || {}),
+    },
   };
 
   return [createConfig(options, true), createConfig(options, false)];
