@@ -1,13 +1,9 @@
 function createStep(step) {
   return `
     <google-codelab-step label="${step.heading}">
-<<<<<<< HEAD
 
     ${step.html}
 
-=======
-    ${step.html}
->>>>>>> feat(codelabs): add codelabs
     </google-codelab-step>
   `;
 }
@@ -36,19 +32,11 @@ module.exports = function createIndex(codelab) {
     </head>
 
     <body>
-<<<<<<< HEAD
-
-=======
->>>>>>> feat(codelabs): add codelabs
       <google-codelab title="${
         codelab.heading
       }" feedback-link="https://github.com/open-wc/open-wc/issues">
 
-<<<<<<< HEAD
         ${codelab.steps.map(createStep).join('')}
-=======
-        ${codelab.steps.map(createStep)}
->>>>>>> feat(codelabs): add codelabs
 
       </google-codelab>
 

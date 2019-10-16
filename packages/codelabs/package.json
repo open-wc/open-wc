@@ -1,10 +1,6 @@
 {
   "name": "@open-wc/codelabs",
-<<<<<<< HEAD
   "version": "1.1.0",
-=======
-  "version": "1.0.0",
->>>>>>> feat(codelabs): add codelabs
   "description": "Open-wc codelabs",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -27,11 +23,7 @@
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.13",
-<<<<<<< HEAD
     "@types/fs-extra": "^8.0.1",
-=======
-    "@types/fs-extra": "^8.0.0",
->>>>>>> feat(codelabs): add codelabs
     "@types/marked": "^0.6.5",
     "cheerio": "^1.0.0-rc.3",
     "fs-extra": "^8.1.0",
