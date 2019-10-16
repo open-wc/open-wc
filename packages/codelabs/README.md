@@ -13,4 +13,8 @@ Possibles classes are: notice, special, warning, callout
 
 You can view the result of a codelab by running the codelab build. This will output the codelab index.html under `/docs/.vuepress/public/codelabs`. You can open it with any browser.
 
+<<<<<<< HEAD
 Codelabs are output using the Google Codelab tools. See https://github.com/googlecodelabs/tools for the full documentation.
+=======
+Codelabs are output using the Google Codelab tools. See https://github.com/googlecodelabs/tools for the full documentation.
+>>>>>>> feat(codelabs): add web component basics 1
