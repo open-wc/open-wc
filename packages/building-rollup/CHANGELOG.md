@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.11.1...@open-wc/building-rollup@0.11.2) (2019-10-17)
+
+
+### Bug Fixes
+
+* **building-rollup:** Generate the SW once with the createCompatibilityConfig ([#877](https://github.com/open-wc/open-wc/issues/877)) ([4caba62](https://github.com/open-wc/open-wc/commit/4caba62))
+
+
+
+
+
 ## [0.11.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.11.0...@open-wc/building-rollup@0.11.1) (2019-10-17)
 
 
