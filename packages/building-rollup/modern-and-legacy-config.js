@@ -25,13 +25,13 @@ function createConfig(_options, legacy) {
     outputDir: 'dist',
     extensions: DEFAULT_EXTENSIONS,
     indexHTMLPlugin: {},
+    ..._options,
     plugins: {
       indexHTML: true,
       workbox: true,
       babel: true,
       ...(_options.plugins || {}),
     },
-    ..._options,
   };
 
   return {
