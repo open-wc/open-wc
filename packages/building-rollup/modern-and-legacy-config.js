@@ -119,7 +119,8 @@ function createConfig(_options, legacy) {
       entrypointHashmanifest(),
 
       production &&
-        options.plugins.workbox && !legacy &&
+        options.plugins.workbox && 
+        !legacy &&
         workbox({
           mode: 'generateSW',
           workboxConfig: {
