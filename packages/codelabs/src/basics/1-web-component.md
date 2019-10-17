@@ -525,7 +525,7 @@ When you reload the page, all the texts on the page will have the new font.
 Web Components are being used in the wild by many projects and companies. Some examples:
 
 ### Github
-Github uses web component for various part of their website. They're using just the Custom Elements API, relying on global styling. They use them as a progressive enhancements, on browsers without support or when javascript is turned off, there is a fallback text that is dispalyed.
+Github uses web component for various part of their website. They're using just the Custom Elements API, relying on global styling. They use them as a progressive enhancements, on browsers without support or when javascript is turned off, there is a fallback text that is displayed.
 
 Their elements are open source, [you can find them here](https://github.com/github/time-elements).
 
