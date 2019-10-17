@@ -210,7 +210,7 @@ const basicConfig = createDefaultConfig({
   },
 });
 
-export default merge(basicConfig, {
+export default deepmerge(basicConfig, {
   plugins: [
     indexHTMLPlugin({
       polyfills: {
@@ -432,14 +432,14 @@ This configuration will by default generate a service worker for you, using [rol
 
 ### Overriding the workbox config
 
-If you want to override the default config with your own workbox configuration, you can disable the default workbox configuration by setting `options.plugins.workbox` to false in the `options` object that you pass to `createBasicConfig`, and then you can override the plugins
+If you want to override the default config with your own workbox configuration, you can disable the default workbox configuration by setting `options.plugins.workbox` to false in the `options` object that you pass to `createDefaultConfig`, and then you can override the plugins
 
 ```js
-const { createBasicConfig } = require('@open-wc/building-rollup');
+const { createDefaultConfig } = require('@open-wc/building-rollup');
 const deepmerge = require('deepmerge');
 const workbox = require('rollup-plugin-workbox');
 
-const basicConfig = createBasicConfig({
+const basicConfig = createDefaultConfig({
   input: './index.html',
   plugins: {
     workbox: false,
@@ -473,10 +473,10 @@ You can find the options for configuring Workbox [here](https://developers.googl
 
 ### Disabling service worker generation
 
-To opt out of using workbox to generate a service worker, you can disabled it by overriding the options in the `createBasicConfig` function:
+To opt out of using workbox to generate a service worker, you can disabled it by overriding the options in the `createDefaultConfig` function:
 
 ```js
-export default createBasicConfig({
+export default createDefaultConfig({
   input: './index.html',
   plugins: {
     workbox: false,
