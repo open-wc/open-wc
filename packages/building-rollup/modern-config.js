@@ -24,13 +24,13 @@ module.exports = function createBasicConfig(_options) {
     outputDir: 'dist',
     extensions: DEFAULT_EXTENSIONS,
     indexHTMLPlugin: {},
+    ..._options,
     plugins: {
       indexHTML: true,
       workbox: true,
       babel: true,
       ...(_options.plugins || {}),
     },
-    ..._options,
   };
 
   return {
