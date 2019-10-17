@@ -242,7 +242,7 @@ customElements.define('web-component-apis', WebComponentApis);
   <web-component-apis></web-component-apis>
 ```
 
-If you run this in the browser you should see `hello world` logged to the terminal.
+If you run this in the browser you should see `lit element connected` logged to the terminal.
 
 Now that we have our element based on LitElement, we can start adding our template. `lit-html` works by writing HTML inside of [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) which are strings that can span multiple lines:
 
