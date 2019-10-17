@@ -120,6 +120,7 @@ function createConfig(_options, legacy) {
 
       production &&
         options.plugins.workbox &&
+        !legacy &&
         workbox({
           mode: 'generateSW',
           workboxConfig: {
