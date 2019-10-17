@@ -222,7 +222,7 @@ LitElement is written and distributed as es modules, this means we can import it
 </html>
 ```
 
-Make sure you add type="module" to the script tag!
+Make sure you add `type="module"` to the script tag!
 
 Next, we need to define our class. Instead of extending `HTMLElement`, we are now extending `LitElement`. `LitElement` extends `HTMLElement` already, so we're still writing an actual web component:
 
