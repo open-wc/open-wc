@@ -1,5 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
+const toBrowserPath = require('./src/to-browser-path');
 const regex = /import\.meta/g;
 
 /**
@@ -13,15 +14,44 @@ const regex = /import\.meta/g;
  * // becomes: return ({ url: `${window.location.protocol}//${window.location.host}/relative/path/to/file.js` }).url;
  */
 module.exports = function(source) {
+  const path = require('path');
+
   const relativePath = this.context.substring(
     this.context.indexOf(this.rootContext) + this.rootContext.length + 1,
-    this.resource.lastIndexOf('/') + 1,
+    this.resource.lastIndexOf(path.sep) + 1,
   );
 
-  const fileName = this.resource.substring(this.resource.lastIndexOf('/') + 1);
-  return source.replace(
-    regex,
-    () =>
-      `({ url: \`\${window.location.protocol}//\${window.location.host}/${relativePath}/${fileName}\` })`,
-  );
+  const browserPath = toBrowserPath(relativePath);
+
+  const fileName = this.resource.substring(this.resource.lastIndexOf(path.sep) + 1);
+
+  let found = false;
+  let rewrittenSource = source.replace(regex, () => {
+    found = true;
+    return `({ url: getAbsoluteUrl('${browserPath}/${fileName}') })`;
+  });
+
+  if (found) {
+    return `
+      function getAbsoluteUrl(relativeUrl) {
+        const publicPath = __webpack_public_path__;
+
+        let url = '';
+
+        if (!publicPath || publicPath.indexOf('://') < 0) {
+          url += window.location.protocol + '//' + window.location.host;
+        }
+
+        if (publicPath) {
+          url += publicPath;
+        } else {
+          url += '//';
+        }
+
+        return url + relativeUrl;
+      }
+${rewrittenSource}`;
+  } else {
+    return source;
+  }
 };

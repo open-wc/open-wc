@@ -3,6 +3,456 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.9...@open-wc/create@0.19.0) (2019-10-13)
+
+
+### Bug Fixes
+
+* **create:** use standard webpack mode notation ([#839](https://github.com/open-wc/open-wc/issues/839)) ([ad99b17](https://github.com/open-wc/open-wc/commit/ad99b17))
+
+
+### Features
+
+* **testing-karma-bs:** add package main ([#714](https://github.com/open-wc/open-wc/issues/714)) ([1754976](https://github.com/open-wc/open-wc/commit/1754976))
+
+
+
+
+
+## [0.18.9](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.8...@open-wc/create@0.18.9) (2019-09-25)
+
+
+### Bug Fixes
+
+* **create:** don't display style nodes ([#816](https://github.com/open-wc/open-wc/issues/816)) ([b76282a](https://github.com/open-wc/open-wc/commit/b76282a))
+
+
+
+
+
+## [0.18.8](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.7...@open-wc/create@0.18.8) (2019-08-31)
+
+
+### Bug Fixes
+
+* **create:** bump version of testing to 2.x ([0710fb9](https://github.com/open-wc/open-wc/commit/0710fb9))
+
+
+
+
+
+## [0.18.7](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.6...@open-wc/create@0.18.7) (2019-08-20)
+
+
+### Bug Fixes
+
+* **create:** change installation pkg manager logs prefix to name ([4e1a0ab](https://github.com/open-wc/open-wc/commit/4e1a0ab))
+
+
+
+
+
+## [0.18.6](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.5...@open-wc/create@0.18.6) (2019-08-20)
+
+
+### Bug Fixes
+
+* **create:** add eslint dependency in create ([8d26f71](https://github.com/open-wc/open-wc/commit/8d26f71))
+
+
+
+
+
+## [0.18.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.4...@open-wc/create@0.18.5) (2019-08-05)
+
+
+### Bug Fixes
+
+* cleanup package.json scripts ([be6bdb5](https://github.com/open-wc/open-wc/commit/be6bdb5))
+
+
+
+
+
+## [0.18.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.3...@open-wc/create@0.18.4) (2019-08-05)
+
+
+### Bug Fixes
+
+* **create:** allow extending Generator to override name ([#681](https://github.com/open-wc/open-wc/issues/681)) ([c08919b](https://github.com/open-wc/open-wc/commit/c08919b))
+
+
+
+
+
+## [0.18.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.2...@open-wc/create@0.18.3) (2019-08-02)
+
+
+### Bug Fixes
+
+* **create:** allow subclassers to pass custom generator names ([#680](https://github.com/open-wc/open-wc/issues/680)) ([d19b7b9](https://github.com/open-wc/open-wc/commit/d19b7b9))
+
+
+
+
+
+## [0.18.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.1...@open-wc/create@0.18.2) (2019-08-01)
+
+
+### Bug Fixes
+
+* **create:** use compatibility flag in karma bs ([9d186b1](https://github.com/open-wc/open-wc/commit/9d186b1))
+
+
+
+
+
+## [0.18.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.0...@open-wc/create@0.18.1) (2019-08-01)
+
+
+### Bug Fixes
+
+* **create:** add check before overwriting files ([ee469c0](https://github.com/open-wc/open-wc/commit/ee469c0))
+
+
+
+
+
+# [0.18.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.17.0...@open-wc/create@0.18.0) (2019-08-01)
+
+
+### Features
+
+* **create:** app creates sub components ([6325861](https://github.com/open-wc/open-wc/commit/6325861))
+
+
+
+
+
+# [0.17.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.16.0...@open-wc/create@0.17.0) (2019-07-27)
+
+
+### Features
+
+* **create:** move configs into package.json, add common-repo generator ([f6efb7a](https://github.com/open-wc/open-wc/commit/f6efb7a))
+
+
+
+
+
+# [0.16.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.15.0...@open-wc/create@0.16.0) (2019-07-26)
+
+
+### Bug Fixes
+
+* **create:** add index.js entrypoint ([aa66639](https://github.com/open-wc/open-wc/commit/aa66639))
+* **create:** set custom element in root of the package as entrypoint ([9ab084f](https://github.com/open-wc/open-wc/commit/9ab084f))
+
+
+### Features
+
+* **create:** ensure that building-rollup/webpack use the latest exports ([b8211c9](https://github.com/open-wc/open-wc/commit/b8211c9))
+
+
+
+
+
+# [0.15.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.14.0...@open-wc/create@0.15.0) (2019-07-22)
+
+
+### Bug Fixes
+
+* **create:** update testing-karma and demoing-storybook dependencies ([90a44d0](https://github.com/open-wc/open-wc/commit/90a44d0))
+
+
+### Features
+
+* **create:** align outputs of app-lit and wc-lit ([04fe655](https://github.com/open-wc/open-wc/commit/04fe655))
+* **create:** move to a single app generator ([a3d8633](https://github.com/open-wc/open-wc/commit/a3d8633))
+
+
+
+
+
+# [0.14.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.13.0...@open-wc/create@0.14.0) (2019-07-22)
+
+
+### Features
+
+* **demoing-storybook:** add a11y addon to package and generator ([#605](https://github.com/open-wc/open-wc/issues/605)) ([60bd5f7](https://github.com/open-wc/open-wc/commit/60bd5f7))
+
+
+
+
+
+# [0.13.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.10...@open-wc/create@0.13.0) (2019-07-12)
+
+
+### Features
+
+* **create:** switch from owc-dev-server to es-dev-server ([#571](https://github.com/open-wc/open-wc/issues/571)) ([97a80d1](https://github.com/open-wc/open-wc/commit/97a80d1))
+
+
+
+
+
+## [0.12.10](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.9...@open-wc/create@0.12.10) (2019-07-09)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+## [0.12.9](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.8...@open-wc/create@0.12.9) (2019-07-08)
+
+
+### Bug Fixes
+
+* use file extensions for imports to support import maps ([c711b13](https://github.com/open-wc/open-wc/commit/c711b13))
+
+
+
+
+
+## [0.12.8](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.7...@open-wc/create@0.12.8) (2019-06-23)
+
+
+### Bug Fixes
+
+* add missing dependencies ([9abf373](https://github.com/open-wc/open-wc/commit/9abf373))
+
+
+
+
+
+## [0.12.7](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.6...@open-wc/create@0.12.7) (2019-06-23)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+## [0.12.6](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.5...@open-wc/create@0.12.6) (2019-06-23)
+
+
+### Bug Fixes
+
+* **create:** improve clarity of init ([#497](https://github.com/open-wc/open-wc/issues/497)) ([ed5277e](https://github.com/open-wc/open-wc/commit/ed5277e))
+
+
+
+
+
+## [0.12.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.4...@open-wc/create@0.12.5) (2019-06-18)
+
+
+### Bug Fixes
+
+* **create:** set app-index in component demo ([#503](https://github.com/open-wc/open-wc/issues/503)) ([847cb52](https://github.com/open-wc/open-wc/commit/847cb52))
+
+
+
+
+
+## [0.12.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.3...@open-wc/create@0.12.4) (2019-06-14)
+
+
+### Bug Fixes
+
+* align scripts and update create ([#494](https://github.com/open-wc/open-wc/issues/494)) ([96b62c7](https://github.com/open-wc/open-wc/commit/96b62c7))
+
+
+
+
+
+## [0.12.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.2...@open-wc/create@0.12.3) (2019-06-05)
+
+
+### Bug Fixes
+
+* **create:** use correct open path ([02cab4b](https://github.com/open-wc/open-wc/commit/02cab4b))
+
+
+
+
+
+## [0.12.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.1...@open-wc/create@0.12.2) (2019-05-20)
+
+
+### Bug Fixes
+
+* **create:** in wc-lit-element use correct attribute name in demo ([73cc787](https://github.com/open-wc/open-wc/commit/73cc787))
+
+
+
+
+
+## [0.12.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.12.0...@open-wc/create@0.12.1) (2019-05-11)
+
+
+### Bug Fixes
+
+* **create:** remove plain/direct browser tests use karma watch instead ([eb23c8f](https://github.com/open-wc/open-wc/commit/eb23c8f))
+
+
+
+
+
+# [0.12.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.11.2...@open-wc/create@0.12.0) (2019-05-11)
+
+
+### Bug Fixes
+
+* recommend putting index.html into the root folder ([b943f53](https://github.com/open-wc/open-wc/commit/b943f53))
+
+
+### Features
+
+* use latest eslint-plugin-lit ([0d90757](https://github.com/open-wc/open-wc/commit/0d90757))
+
+
+
+
+
+## [0.11.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.11.1...@open-wc/create@0.11.2) (2019-05-08)
+
+
+### Bug Fixes
+
+* **create:** use latest version of testing-karma ([7a68451](https://github.com/open-wc/open-wc/commit/7a68451))
+
+
+
+
+
+## [0.11.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.11.0...@open-wc/create@0.11.1) (2019-05-07)
+
+
+### Bug Fixes
+
+* **create:** add building-rollup to starter-app ([561f153](https://github.com/open-wc/open-wc/commit/561f153))
+
+
+
+
+
+# [0.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.10.1...@open-wc/create@0.11.0) (2019-05-07)
+
+
+### Features
+
+* **create:** remove browerslistrc ([1930660](https://github.com/open-wc/open-wc/commit/1930660))
+
+
+
+
+
+## [0.10.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.10.0...@open-wc/create@0.10.1) (2019-05-06)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+# [0.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.9.5...@open-wc/create@0.10.0) (2019-05-06)
+
+
+### Features
+
+* update to latest testing-karma config syntax ([465bfe0](https://github.com/open-wc/open-wc/commit/465bfe0))
+
+
+
+
+
+## [0.9.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.9.4...@open-wc/create@0.9.5) (2019-05-03)
+
+
+### Bug Fixes
+
+* **create:** fix tests in barebone-app ([b6a88cc](https://github.com/open-wc/open-wc/commit/b6a88cc))
+
+
+
+
+
+## [0.9.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.9.3...@open-wc/create@0.9.4) (2019-04-28)
+
+
+### Bug Fixes
+
+* **eslint-config:** loosen up rules for test and stories files ([#408](https://github.com/open-wc/open-wc/issues/408)) ([3fd251e](https://github.com/open-wc/open-wc/commit/3fd251e))
+
+
+
+
+
+## [0.9.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.9.2...@open-wc/create@0.9.3) (2019-04-28)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+## [0.9.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.9.1...@open-wc/create@0.9.2) (2019-04-27)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** remove warning by setting to use corejs 2 ([b42daba](https://github.com/open-wc/open-wc/commit/b42daba))
+
+
+
+
+
+## [0.9.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.9.0...@open-wc/create@0.9.1) (2019-04-23)
+
+
+### Bug Fixes
+
+* **create:** add index.html to starter-app generator ([44d412b](https://github.com/open-wc/open-wc/commit/44d412b))
+
+
+
+
+
+# [0.9.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.8.1...@open-wc/create@0.9.0) (2019-04-16)
+
+
+### Features
+
+* **create:** show tree of files to create ([aaa5bfb](https://github.com/open-wc/open-wc/commit/aaa5bfb))
+
+
+
+
+
+## [0.8.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.8.0...@open-wc/create@0.8.1) (2019-04-14)
+
+
+### Bug Fixes
+
+* **create:** fill templateData for upgrade generators ([6140652](https://github.com/open-wc/open-wc/commit/6140652))
+
+
+
+
+
+# [0.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.7.1...@open-wc/create@0.8.0) (2019-04-14)
+
+
+### Features
+
+* **create:** use prompts package and refactor flow ([16a22be](https://github.com/open-wc/open-wc/commit/16a22be))
+
+
+
+
+
 ## [0.7.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.7.0...@open-wc/create@0.7.1) (2019-04-08)
 
 

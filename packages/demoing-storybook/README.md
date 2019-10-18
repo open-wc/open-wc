@@ -18,7 +18,8 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Setup
 ```bash
-npm init @open-wc demoing
+npm init @open-wc
+# Upgrade > Demoing
 ```
 
 ### Manual
@@ -44,7 +45,7 @@ npm run storybook
 
 ### Create a Story
 
-Create an `*.story.js` (for example `index.stories.js`) file within the `stories` folder.
+Create an `*.stories.js` (for example `index.stories.js`) file within the `stories` folder.
 
 ```js
 import {

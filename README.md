@@ -37,7 +37,7 @@ For more details please visit us at [open-wc.org](https://open-wc.org).
 | [create](./packages/create) | [![create](https://img.shields.io/npm/v/@open-wc/create.svg)](https://www.npmjs.com/package/@open-wc/create) | Scaffold web components following open-wc recommendations. |
 | [demoing-storybook](./packages/demoing-storybook) | [![demoing-storybook](https://img.shields.io/npm/v/@open-wc/demoing-storybook.svg)](https://www.npmjs.com/package/@open-wc/demoing-storybook) | Storybook configuration following open-wc recommendations. |
 | [eslint-config](./packages/eslint-config) | [![eslint-config](https://img.shields.io/npm/v/@open-wc/eslint-config.svg)](https://www.npmjs.com/package/@open-wc/eslint-config) | Eslint configuration following open-wc recommendations. |
-| [owc-dev-server](./packages/owc-dev-server) | [![owc-dev-server](https://img.shields.io/npm/v/owc-dev-server.svg)](https://www.npmjs.com/package/owc-dev-server) | Development server for modern web apps. |
+| [es-dev-server](./packages/es-dev-server) | [![es-dev-server](https://img.shields.io/npm/v/es-dev-server.svg)](https://www.npmjs.com/package/es-dev-server) | Development server for modern web apps. |
 | [polyfills-loader](./packages/polyfills-loader) | [![polyfills-loader](https://img.shields.io/npm/v/@open-wc/polyfills-loader.svg)](https://www.npmjs.com/package/@open-wc/polyfills-loader) | Load web component polyfills using dynamic imports. |
 | [prettier-config](./packages/prettier-config) | [![prettier-config](https://img.shields.io/npm/v/@open-wc/prettier-config.svg)](https://www.npmjs.com/package/@open-wc/prettier-config) | Prettier configuration following open-wc recommendations. |
 | [semantic-dom-diff](./packages/semantic-dom-diff) | [![semantic-dom-diff](https://img.shields.io/npm/v/@open-wc/semantic-dom-diff.svg)](https://www.npmjs.com/package/@open-wc/semantic-dom-diff) | To compare dom and shadow dom trees. Part of open-wc recommendations. |
@@ -53,7 +53,7 @@ Feel free to reach out to us on [twitter](https://twitter.com/OpenWc) or create 
 
 You can also find us on the Polymer slack in the [#open-wc](https://polymer.slack.com/messages/CE6D9DN05) channel.
 
-You can join the Polymer slack by visiting [this link](https://join.slack.com/t/polymer/shared_invite/enQtNTAzNzg3NjU4ODM4LTkzZGVlOGIxMmNiMjMzZDM1YzYyMzdiYTk0YjQyOWZhZTMwN2RlNjM5ZDFmZjMxZWRjMWViMDA1MjNiYWFhZWM).
+You can join the Polymer slack by visiting [https://www.polymer-project.org/slack-invite](https://www.polymer-project.org/slack-invite).
 
 
 ## We Proudly Use

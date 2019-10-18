@@ -1,0 +1,44 @@
+{
+  "name": "@open-wc/webpack-index-html-plugin",
+  "version": "1.5.0",
+  "description": "Plugin for generating a index html with webpack",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "webpack-index-html-plugin.js",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "mocha test/**/*.test.js test/*.test.js",
+    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/webpack-index-html-plugin"
+  },
+  "files": [
+    "src",
+    "*.js"
+  ],
+  "dependencies": {
+    "@open-wc/building-utils": "^2.9.0",
+    "deepmerge": "^3.2.0",
+    "parse5": "^5.1.0"
+  },
+  "peerDependencies": {
+    "webpack": "^4.32.2"
+  },
+  "devDependencies": {
+    "@webcomponents/webcomponentsjs": "^2.2.10",
+    "chai": "^4.2.0",
+    "intersection-observer": "^0.7.0",
+    "memory-fs": "^0.4.1",
+    "mkdirp": "^0.5.1",
+    "mocha": "^6.1.4",
+    "rimraf": "^2.6.3",
+    "webpack": "^4.32.2",
+    "whatwg-fetch": "^3.0.0"
+  }
+}

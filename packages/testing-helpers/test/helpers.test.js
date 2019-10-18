@@ -1,4 +1,4 @@
-import { expect } from '@bundled-es-modules/chai';
+import { expect } from './setup.js';
 import { defineCE, oneEvent, triggerFocusFor, triggerBlurFor, fixture } from '../index.js';
 
 describe('Helpers', () => {
@@ -27,35 +27,45 @@ describe('Helpers', () => {
     expect(ev.detail).to.equal(detail);
   });
 
-  it('provides triggerFocusFor(), triggerBlurFor() to await a focus/blur event (for IE)', async () => {
-    const tag = defineCE(
-      class FocusElement extends HTMLElement {
-        connectedCallback() {
-          this.focusCount = 0;
-          this.blurCount = 0;
-          this.inputElement = this.querySelector('input');
-          this.inputElement.addEventListener('focus', () => {
-            this.focusCount += 1;
-          });
-          this.inputElement.addEventListener('blur', () => {
-            this.blurCount += 1;
-          });
-        }
-      },
-    );
+  it('provides triggerFocusFor() to await a focus event (for IE)', async () => {
+    class FocusElement extends HTMLElement {
+      connectedCallback() {
+        this.focusCount = 0;
+        this.inputElement = this.querySelector('input');
+        this.inputElement.addEventListener('focus', () => {
+          this.focusCount += 1;
+        });
+      }
+    }
+
+    const tag = defineCE(FocusElement);
+    /** @type {FocusElement} */
     const el = await fixture(`<${tag}><input></${tag}>`);
     expect(el.focusCount).to.equal(0);
-    expect(el.blurCount).to.equal(0);
 
     await triggerFocusFor(el.inputElement);
     expect(el.focusCount).to.equal(1);
+  });
+
+  it('provides triggerBlurFor() to await a blur event (for IE)', async () => {
+    class FocusElement extends HTMLElement {
+      connectedCallback() {
+        this.blurCount = 0;
+        this.inputElement = this.querySelector('input');
+        this.inputElement.addEventListener('blur', () => {
+          this.blurCount += 1;
+        });
+        this.inputElement.focus();
+      }
+    }
+
+    const tag = defineCE(FocusElement);
+    /** @type {FocusElement} */
+    const el = await fixture(`<${tag}><input></${tag}>`);
+    expect(el.blurCount).to.equal(0);
 
     await triggerBlurFor(el.inputElement);
-    expect(el.blurCount).to.equal(1);
-
-    await triggerFocusFor(el.inputElement);
-    await triggerBlurFor(el.inputElement);
-    expect(el.focusCount).to.equal(2);
-    expect(el.blurCount).to.equal(2);
+    expect(el.blurCount).to.be.within(0, 1);
+    expect(el !== document.activeElement).to.be.true;
   });
 });

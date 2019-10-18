@@ -1,4 +1,4 @@
-const LintingCommitlintMixin = subclass =>
+export const LintingCommitlintMixin = subclass =>
   class extends subclass {
     async execute() {
       await super.execute();
@@ -11,5 +11,3 @@ const LintingCommitlintMixin = subclass =>
       await this.copyTemplates(`${__dirname}/templates/static/**/*`);
     }
   };
-
-export default LintingCommitlintMixin;

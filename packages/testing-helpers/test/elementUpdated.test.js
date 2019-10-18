@@ -1,5 +1,4 @@
-/* eslint-disable class-methods-use-this */
-import { expect } from '@bundled-es-modules/chai';
+import { expect } from './setup.js';
 import { elementUpdated } from '../src/elementUpdated.js';
 import { nextFrame } from '../src/helpers.js';
 

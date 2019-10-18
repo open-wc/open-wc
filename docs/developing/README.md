@@ -1,100 +1,36 @@
 # Developing
-The web component ecosystem is evolving fast, with many libraries and solutions appearing. High level frameworks such as [Angular](https://angular.io/guide/elements), [Vue](https://github.com/vuejs/vue-web-component-wrapper) and [Stencil](https://stenciljs.com/) provide solutions which compile to web components.
 
-## Browser standards
-We strongly believe that staying close to browser standards will be the best long term investment for your code. It is the basis for all our recommendations, and it means that sometimes we will not recommend a popular feature or functionality. It also means we can be faster to adopt and recommend new browser standards.
+## Going buildless
+Browsers have improved a lot over the past years. It's now possible to do web development without requiring any build tools, using the native module loader of the browser. We think this is a great fit for web components, and we recommend this as a general starting point.
 
-## lit-html
-While there are other good libraries out there, to get started we recommend using the `lit-html` library with the `LitElement` base class for developing web components.
+Build tools can quickly add a lot of complexity to your code, and make your code reliant on a specific build setup. We think it's best to avoid them during development, or only add them for light transformations if you know what you're doing.
 
-Check out the official documentation for: [lit-html](https://lit-html.polymer-project.org/) and [lit-element](https://lit-element.polymer-project.org/) or check out our code-samples below.
+Read [this article](https://dev.to/open-wc/developing-without-a-build-1-introduction-26ao) to learn more about this approach.
 
-Follow these steps to get started:
-1. Install the required dependencies:
-```
-npm i -D owc-dev-server lit-element
-```
+## Development server
+We created [es-dev-server](https://open-wc.org/developing/es-dev-server.html) to help developing without build tools.
 
-2. Create a `index.html`
-```html
-<!doctype html>
-<html>
-  <head>
-    <script type="module" src="./my-component.js"></script>
-    </head>
-  <body>
-    <my-component></my-component>
-  </body>
-</html>
-```
+## Web component libraries
+You can write web components using just the basic web component APIs. This can be a great choice when you're looking to keep dependencies low. But generally, we recommend using lightweight libraries to help improve the developer experience and reduce boilerplate.
 
-3. Create a `my-component.js`
-```javascript
-import { LitElement, html } from 'lit-element';
+We recommend [lit-html](https://www.npmjs.com/package/lit-html) with the [lit-element](https://www.npmjs.com/package/lit-element) base class as a general-purpose library for building web components. `lit-html` is feature complete, extremely lightweight and offers a great development experience. Check out the [lit-html page](/developing/lit-html/) for code examples and more information.
 
-class MyComponent extends LitElement {
-  render() {
-    return html`
-      <p>Hello world!</p>
-    `;
-  }
-}
+In the code snippets throughout our documentation we use `lit-html` and `lit-element`, but our recommendations and tools are not specific to them. You should be able to use them with any web component library that follows browser standards. If you do run into issues, or have any questions, let us know about it!
 
-customElements.define('my-component', MyComponent);
-```
+### Alternative libraries
+Besides `lit-html`, there are other great options available:
 
-4. Add start scripts to your `package.json`:
-```json
-{
-  "scripts": {
-    "start": "owc-dev-server -o"
-  }
-}
-```
+- [haunted](https://www.npmjs.com/package/haunted) functional-style web components, with react-like hooks
+- [hybrids](https://www.npmjs.com/package/hybrids) another functional web component library
+- [SkateJS](https://skatejs.netlify.com/) wraps libraries like react, preact or lit-html in a web component
+- [slim.js](https://slimjs.com/) declarative web components
+- [stencil](https://stenciljs.com/) web component with typescript and JSX (requires a build step)
 
-5. Start your app:
-```bash
-npm start
-```
+## Code examples
+Check out the [code examples](/developing/code-examples/) page for a collection of best practices and design patterns.
 
-## Examples
-A collection of live code samples for `lit-html` and `LitElement` can be found on `Stackblitz`:
-
-* [Basic](https://open-wc-lit-demos.stackblitz.io/basic)
-	- [01 Basic setup](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F01-basic-setup.js)
-	- [02 Manage properties](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F02-manage-properties.js)
-	- [03 Property changes](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F03-property-changes.js)
-	- [04 Properties and attributes](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F04-properties-and-attributes.js)
-	- [05 Passing properties](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F05-passing-properties.js)
-	- [06 Handle events](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F06-handle-events.js)
-	- [07 Conditional rendering](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F07-conditional-rendering.js)
-	- [08 Repeated templates](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F08-repeated-templates.js)
-	- [09 Update arrays and objects](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F09-update-arrays-and-objects.js)
-	- [10 Render styles](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F10-render-styles.js)
-	- [11 Fetching data](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F11-fetching-data.js)
-	- [12 Firing events](https://stackblitz.com/edit/open-wc-lit-demos?file=01-basic%2F12-firing-events.js)
-* [Intermediate](https://open-wc-lit-demos.stackblitz.io/intermediate)
-	- [01 First updated](https://stackblitz.com/edit/open-wc-lit-demos?file=01-intermediate%2F01-first-updated.js)
-	- [02 Updated](https://stackblitz.com/edit/open-wc-lit-demos?file=02-intermediate%2F02-updated.js)
-	- [03 Lifecycle](https://stackblitz.com/edit/open-wc-lit-demos?file=02-intermediate%2F03-lifecycle.js)
-	- [04 Computed properties](https://stackblitz.com/edit/open-wc-lit-demos?file=02-intermediate%2F04-computed-properties.js)
-	- [05 Querying dom](https://stackblitz.com/edit/open-wc-lit-demos?file=02-intermediate%2F05-querying-dom.js)
-	- [06 Light dom](https://stackblitz.com/edit/open-wc-lit-demos?file=02-intermediate%2F06-light-dom.js)
-	- [07 Reflecting attributes](https://stackblitz.com/edit/open-wc-lit-demos?file=02-intermediate%2F07-reflecting-attributes.js)
-	- [08 Dynamic repeated templates](https://stackblitz.com/edit/open-wc-lit-demos?file=02-intermediate%2F08-dynamic-repeated-templates.js)
-	- [09 Slotting](https://stackblitz.com/edit/open-wc-lit-demos?file=02-intermediate%2F09-slotting.js)
-* [Advanced](https://open-wc-lit-demos.stackblitz.io/advanced)
-	- [01 Property setter observer](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F01-property-setter-observer.js)
-	- [02 Until directive](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F02-until-directive.js)
-	- [03 Template wrapping](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F03-template-wrapping.js)
-	- [04 Shared templates](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F04-shared-templates.js)
-	- [05 Shared styles](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F05-shared-styles.js)
-	- [06 External template](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F06-external-template.js)
-	- [07 Template factories](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F07-template-factories.js)
-	- [08 Should update](https://stackblitz.com/edit/open-wc-lit-demos?file=03-advanced%2F08-should-update.js)
-
-## Browser support
-Not all browsers adopt new features at the same rate. Depending on your browser support requirement, you might end up using features not yet available everywhere. In this case you will need to set up build tools to run your app during development. See `building` below for more.
+## Testing
+Check out our [testing documentation](/testing/) for help with setting up testing.
 
 ## Building
 When you are ready to ship your app to production, or when you need to test your app on older browsers, take a look at our [building documentation](/building/) to get you started.

@@ -16,6 +16,9 @@ export {
   color,
   array,
   boolean,
+  radios,
+  files,
+  optionsKnob,
 } from '@storybook/addon-knobs';
 
 export { withClassPropertiesKnobs } from './withClassPropertiesKnobs.js';

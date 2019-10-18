@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const createDefaultConfig = require('@open-wc/testing-karma/default-config.js');
+const { createDefaultConfig } = require('@open-wc/testing-karma');
 const merge = require('webpack-merge');
 
 module.exports = config => {
@@ -7,7 +7,7 @@ module.exports = config => {
     merge(createDefaultConfig(config), {
       files: [
         // allows running single tests with the --grep flag
-        config.grep ? config.grep : 'test/**/*.test.js',
+        { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' },
       ],
 
       // you custom config

@@ -1,5 +1,4 @@
-/* eslint-disable class-methods-use-this */
-import { expect } from '@bundled-es-modules/chai';
+import { expect } from './setup.js';
 import { stringFixture, stringFixtureSync } from '../src/stringFixture.js';
 import { litFixture, litFixtureSync } from '../src/litFixture.js';
 import { defineCE, nextFrame } from '../src/helpers.js';

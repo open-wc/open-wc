@@ -1,24 +1,22 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const merge = require('webpack-merge');
-const createDefaultConfig = require('./packages/testing-karma/default-config.js');
+const { createDefaultConfig } = require('./packages/testing-karma');
 
 module.exports = config => {
   config.set(
     merge(createDefaultConfig(config), {
       files: [
         // allows running single tests with the --grep flag
-        config.grep ? config.grep : 'packages/!(webpack-import-meta-loader)/test/*.test.js',
+        {
+          pattern: config.grep
+            ? config.grep
+            : 'packages/!(webpack-import-meta-loader|create|building-utils|webpack-index-html-plugin|rollup-plugin-index-html|import-maps-generate|import-maps-resolve|es-dev-server)/test/**/*.test.js',
+          type: 'module',
+        },
       ],
 
-      coverageIstanbulReporter: {
-        thresholds: {
-          global: {
-            statements: 80,
-            lines: 80,
-            branches: 80,
-            functions: 80,
-          },
-        },
+      esm: {
+        nodeResolve: true,
       },
     }),
   );

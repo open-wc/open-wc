@@ -2,193 +2,175 @@
 
 [//]: # (AUTO INSERT HEADER PREPUBLISH)
 
-## Browser testing
-Web Components are at the cutting edge of browser support. Testing solutions that run a simulated browser are often not suitable due to missing features. We therefore recommend running tests in a real browser. With headless Chrome and Firefox this is very convenient to set up and use, and will give more testing confidence as you can run the same tests across multiple browsers.
+We recommend karma as a general-purpose tool for testing code which runs in the browser. Karma can run a large range of browsers, including IE11. This way you are confident that your code runs correctly in all supported environments.
 
-Karma is a solid tool for running tests in the browser.
+During development you can run Chrome Headless, giving fast feedback in the terminal while writing your tests. In your CI you can run more browsers, and/or use a service like [Browserstack](https://www.browserstack.com/) or [Saucelabs](https://saucelabs.com/) for testing in all supported browsers.
 
-## Types of tests
-Karma can be used both for running unit tests, as well as for running more complex e2e/integration tests.
+Karma can be used both for running unit tests, as well as for running more complex e2e/integration tests in the DOM.
 
-## Karma config presets
-Configuration should be customized per project, We provide several presets that can be used as a starting point. You can copy paste the presets into your own project for full control, or you can extend them and add your project specific requirements.
+## Getting started
+Our configuration sets up karma to run tests based on es modules with the necessary polyfills and fallbacks for older browsers and convenient test reporting.
 
-The intention of the presets is to be able to write browser runnable code, with some exceptions such as bare module imports.
+This page explains how to set up `karma`, see the [testing overview](https://open-wc.org/testing/) for guides and libraries to get started with testing in general.
 
 ### Features
+- Runs tests with es modules
 - Serves static files
 - Runs tests through mocha
 - Deep object diffs in mocha errors
-- Test coverage through instanbul by passing the `coverage` flag
-- Resolves imports by bundling through webpack
-- Supports older browsers by passing the `legacy` flag
+- Test coverage through instanbul when passing the `coverage` flag
+- Supports older browsers (down to IE11) when passing the `compatibility` flag
 
-### Using
-- Runner via [karma](https://karma-runner.github.io/)
-- Building via [webpack](https://webpack.js.org/) via [karma-webpack](https://github.com/webpack-contrib/karma-webpack)
-- Test Coverage via [istanbul](https://istanbul.js.org/) via [istanbul-instrumenter-loader](https://github.com/webpack-contrib/istanbul-instrumenter-loader)
-
-### Setup
-Automated setup:
+## Setup
+With our project scaffolding you can set up a pre-configured project, or you can upgrade an existing project by choosing `Upgrade -> Testing`:
 ```bash
-npm init @open-wc testing-karma
+npm init @open-wc
 ```
 
-For manual setup, follow the steps at the bottom of this readme.
+### Manual
+Install:
+```bash
+npm i -D @open-wc/testing-karma deepmerge karma
+```
 
-### Workflow
+Create a `karma.conf.js`:
+```js
+const { createDefaultConfig } = require('@open-wc/testing-karma');
+const merge = require('deepmerge');
 
+module.exports = config => {
+  config.set(
+    merge(createDefaultConfig(config), {
+      files: [
+        // runs all files ending with .test in the test folder,
+        // can be overwritten by passing a --grep flag. examples:
+        //
+        // npm run test -- --grep test/foo/bar.test.js
+        // npm run test -- --grep test/bar/*
+        { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' }
+      ],
+
+      // see the karma-esm docs for all options
+      esm: {
+        // if you are using 'bare module imports' you will need this option
+        nodeResolve: true
+      }
+    })
+  );
+  return config;
+};
+```
+
+Add scripts to your package.json:
+```json
+{
+  "scripts": {
+    "test": "karma start --coverage",
+    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:update-snapshots": "karma start --update-snapshots",
+    "test:prune-snapshots": "karma start --prune-snapshots",
+    "test:compatibility": "karma start --compatibility all --auto-watch=true --single-run=false"
+  }
+}
+```
+
+## Workflow
 Commands explained:
-- `test`: does a single test run on the configured browsers (default headless chrome) and prints tests and coverage results
-- `test:watch`: does a single test run, and then re-runs on file changes. coverage is not analyzed for performance. in watch mode you can also debug in the browser, which is very convenient. visit http://localhost:9876/debug.html
-- `test:legacy`: like `test`, except that it compiles your code to es5 and adds [babel](https://babeljs.io/docs/en/babel-polyfill) and [web component](https://github.com/webcomponents/webcomponentsjs) polyfills for maximum compatibility.
-- `test:legacy:watch`: like `test:watch`, adding the same mentioned polyfills
+- `test`: does a single test run on the configured browsers (default headless chrome) and prints tests and coverage results.
+- `test:watch`: does a single test run, and then re-runs on file changes. coverage is not analyzed for performance. in watch mode you can also visit http://localhost:9876/debug.html to debug in the browser
 - `test:update-snapshots`: updates any snapshots files from `@open-wc/semantic-dom-diff`. Use this when your component's rendered HTML changed.
 - `test:prune-snapshots`: prunes any used snapshots files from `@open-wc/semantic-dom-diff`.
+- `test:compatibility`: like `test:watch`, except that it makes your tests compatible with older browsers (including IE11).
 
-### Testing single files or folders
-By default karma runs all your test files. To test a single file or folder, use the `--grep` flag. (If you did a manual setup, makes sure your config handles this flag).
+## Testing single files or folders
+By default, karma runs all your test files. To test a single file or folder, use the `--grep` flag. (If you did a manual setup, makes sure your config handles this flag).
 
 Pass which files to test to the grep flag: `npm run test -- --grep test/foo/bar.test.js`.
 
-### Watch mode
-Use `npm run test -- --auto-watch=true --single-run=false` to keep karma running. Any code changes will trigger a re-run of your tests.
-
-### Debugging in the browser
+## Debugging in the browser
 While testing, it can be useful to debug your tests in a real browser so that you can use the browser's dev tools.
 
-Use `npm run test:watch` to keep karma running. Then open the URL printed by karma when it boots up. By default this is `http://localhost:9876/`. Click the debug button in the top right corner, or go directly to `http://localhost:9876/debug.html`.
+Use `npm run test:watch` to keep karma running. Then open the URL printed by karma when it boots up. By default, this is `http://localhost:9876/`. Click the debug button in the top right corner, or go directly to `http://localhost:9876/debug.html`.
 
 You can bookmark this page for easy access.
 
 Adding `debugger` statements will allow you to debug using the browser's dev tools.
 
-### Testing on older browsers
-The default karma setup will work on any browsers supporting web component and `es2015`+ syntax. This is to ensure your tests run as fast as possible, with minimum processing.
+## Testing on older browsers
+By default, our configuration does not do any modifications to your code. It just runs it as is in the browser. Depending on which features you use, this should be fine for most major browsers.
 
-At the time of writing, this means it will work on the latest versions of Chrome, Safari and Firefox. You can run your tests with the `--legacy` flag to trigger legacy mode, which compile your code to `es5` and add the necessary web component polyfills. This will make your tests work as far back as IE 11.
+By passing the `compatibility` flag, we enable compatibility mode which makes your code run on older browsers as well. It loads polyfills and transforms modern syntax where needed. There are a few possible modes, but generally 'all' is sufficient for testing. This mode is powered by `karma-esm`. [Check out the documentaton](https://open-wc.org/testing/karma-esm.html) for more information.
 
-If you use browser features which are not yet supported in Chrome, Safari or Firefox you will similarly need to pass the `--legacy` flag to run your tests. A good workflow here can be to only work with features supported by at least one browser, and use that browser to develop your tests. Then only run tests on all browsers when you finish development.
 
-### Manual setup
-For a minimal setup, extend the base config and specify where your tests are:
+## Why don't you recommend testing tool X?
+Sometimes people ask why we recommend Karma and not other popular testing tools. We're always on the lookout for improving our recommendations, so if you think we can do better please let us know. What's important for us is that the testing tool is robust, simple to use, does not require any building and runs in a real browser.
 
-- Install the required dependencies:
-```bash
-npm i --save @open-wc/testing-karma webpack-merge karma
-```
+Testing tools that don't use a real browser but something like jsdom constantly need to keep up with the latest browser standards, so you need to wait for your testing tool to update before you can use a new feature. It doesn't give the same confidence as testing in a real browser, and with Headless Chrome and Puppeteer it hardly seems necessary anymore.
 
-- Create a `karma.conf.js`
-  ```js
-  const createDefaultConfig = require('@open-wc/testing-karma/default-config.js');
-  const merge = require('webpack-merge');
+## Extending the config
 
-  module.exports = config => {
-    config.set(
-      merge(createDefaultConfig(config), {
-        files: [
-          // runs all files ending with .test in the test folder,
-          // can be overwritten by passing a --grep flag. examples:
-          //
-          // npm run test -- --grep test/foo/bar.test.js
-          // npm run test -- --grep test/bar/*
-          config.grep ? config.grep : 'test/**/*.test.js',
-        ],
-      }),
-    );
-    return config;
-  };
-  ```
-  <details>
-    <summary>Extending the config</summary>
+To extend the karma config, we recommend using `deepmerge`. This will do smart merging of complex objects. You can extend any of the configuration. For example to set your own test coverage threshold:
 
-    To extend the karma config, we recommend using `webpack-merge`. This will do smart merging of complex objects. You can extend any of the configuration. For example to set your own test coverage:
+```js
+const { createDefaultConfig } = require('@open-wc/testing-karma');
+const merge = require('deepmerge');
 
-    ```js
-    const createDefaultConfig = require('@open-wc/testing-karma/default-config.js');
-    const merge = require('webpack-merge');
+module.exports = config => {
+  config.set(
+    deepmerge(createDefaultConfig(config), {
+      files: [
+        // runs all files ending with .test in the test folder,
+        // can be overwritten by passing a --grep flag. examples:
+        //
+        // npm run test -- --grep test/foo/bar.test.js
+        // npm run test -- --grep test/bar/*
+        { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' }
+      ],
 
-    module.exports = config => {
-      config.set(
-        merge(createDefaultConfig(config), {
-          files: [
-            // runs all files ending with .test in the test folder,
-            // can be overwritten by passing a --grep flag. examples:
-            //
-            // npm run test -- --grep test/foo/bar.test.js
-            // npm run test -- --grep test/bar/*
-            config.grep ? config.grep : 'test/**/*.test.js',
-          ],
-
-          coverageIstanbulReporter: {
-            thresholds: {
-              global: {
-                statements: 50,
-                lines: 50,
-                branches: 50,
-                functions: 50,
-              },
-            },
+      coverageIstanbulReporter: {
+        thresholds: {
+          global: {
+            statements: 50,
+            lines: 50,
+            branches: 50,
+            functions: 50,
           },
-        }),
-      );
-      return config;
-    };
-    ```
-
-  </details>
-
-  <details>
-    <summary>Replacing Default Settings Instead of Merging</summary>
-
-    In some cases you'll want `your custom config` to include config values that replace, rather than extend, the defaults provided. To make this possible you can make advanced usage of webpack-merge to set a [merge strategy](https://github.com/survivejs/webpack-merge#mergestrategy-field-prependappendreplaceconfiguration-configuration) to follow when joining the defaults and your custom config. See below for an example that uses `replace` to change the `reports` used by `coverageIstanbulReporter`.
-
-    ```js
-    module.exports = config => {
-      config.set(
-        merge.strategy(
-          {
-            'coverageIstanbulReporter.reports': 'replace',
-          }
-        )(defaultSettings(config), {
-          files: [
-            // allows running single tests with the --grep flag
-            config.grep ? config.grep : 'test/**/*.test.js',
-          ],
-          // your custom config
-          coverageIstanbulReporter: {
-            reports: ['html', 'lcovonly', 'text']
-          }
-        })
-      );
-      return config;
-    };
-    ```
-  </details>
-
-- If you only want to run tests on modern browsers, add these scripts:
-```json
-"scripts": {
-  "test": "karma start --coverage",
-  "test:watch": "karma start --auto-watch=true --single-run=false",
-  "test:update-snapshots": "karma start --update-snapshots",
-  "test:prune-snapshots": "karma start --prune-snapshots"
-},
+        },
+      },
+    }),
+  );
+  return config;
+};
 ```
-- If you want to run tests on legacy browsers as well, add these scripts:
-```json
-"scripts": {
-  "test": "karma start --coverage",
-  "test:watch": "karma start --auto-watch=true --single-run=false",
-  "test:update-snapshots": "karma start --update-snapshots",
-  "test:prune-snapshots": "karma start --prune-snapshots",
-  "test:legacy": "karma start --legacy --coverage",
-  "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false"
-},
-```
-- Run via `npm run <command>`
 
-- See the top of the readme for workflow recommendations.
+### Custom babel plugins or typescript support
+`karma-esm` supports custom babel configurations and typescript. [Check out the documentaton](https://open-wc.org/testing/karma-esm.html) for more information.
+
+### Testing in a monorepository
+When testing without a bundler you will be serving every imported module straight from the file system. Karma cannot serve files outside the path of the webserver, which by default starts from the directory of your karma config.
+
+In a monorepo dependencies are often two levels higher in the root of the repository. To run tests in a monorepository you either have to put your config in the root of the repository, or adjust the basePath in your karma config:
+
+### Other configuration
+`karma-esm` is the plugin powering our configuration, and it supports a few more for advanced use cases. [Check out the documentaton](https://open-wc.org/testing/karma-esm.html) for more information.
+
+```js
+const { createDefaultConfig } = require('@open-wc/testing-karma');
+const merge = require('deepmerge');
+
+module.exports = config => {
+  config.set(
+    merge(createDefaultConfig(config), {
+      files: [
+        { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' }
+      ],
+
+      basePath: '../../',
+    }),
+  );
+  return config;
+};
+```
 
 <script>
   export default {

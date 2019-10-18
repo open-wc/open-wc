@@ -1,7 +1,7 @@
 // @ts-ignore
 import sinon from 'sinon';
 // @ts-ignore
-import { expect } from '@bundled-es-modules/chai';
+import { expect } from './setup.js';
 import { cachedWrappers } from '../src/fixtureWrapper.js';
 import { defineCE } from '../src/helpers.js';
 import { fixture, fixtureSync } from '../src/fixture.js';
@@ -34,11 +34,13 @@ describe('fixtureSync & fixture', () => {
     const elementSync = fixtureSync(html`
       <div .propNumber=${10} .propFunction=${myFunction}></div>
     `);
+    // @ts-ignore
     testElement(elementSync);
 
     const elementAsync = await fixture(html`
       <div .propNumber=${10} .propFunction=${myFunction}></div>
     `);
+    // @ts-ignore
     testElement(elementAsync);
   });
 

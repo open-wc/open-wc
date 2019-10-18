@@ -1,103 +1,139 @@
 /* eslint-disable no-console */
-import qoa from 'qoa';
+import prompts from 'prompts';
+import commandLineArgs from 'command-line-args';
 import { executeMixinGenerator } from '../../core.js';
-import LintingMixin from '../linting';
-import TestingMixin from '../testing/index.js';
-import DemoingMixin from '../demoing/index.js';
-import BuildingMixin from '../building/index.js';
-import StarterAppMixin from '../starter-app/index.js';
-import BareboneAppMixin from '../barebone-app/index.js';
-import WcLitElementMixin from '../wc-lit-element/index.js';
+import { AppLitElementMixin } from '../app-lit-element/index.js';
 
-const AppMixin = subclass =>
+import header from './header.js';
+import { gatherMixins } from './gatherMixins.js';
+
+/**
+ * Allows to control the data via command line
+ *
+ * example:
+ * npm init @open-wc --type scaffold --scaffoldType app --tagName foo-bar --installDependencies false
+ * npm init @open-wc --type upgrade --features linting demoing --tagName foo-bar --scaffoldFilesFor demoing --installDependencies false
+ */
+const optionDefinitions = [
+  { name: 'type', type: String }, // scaffold, upgrade
+  { name: 'scaffoldType', type: String }, // wc, app
+  { name: 'features', type: String, multiple: true }, // linting, testing, demoing, building
+  { name: 'buildingType', type: String }, // rollup, webpack
+  { name: 'scaffoldFilesFor', type: String, multiple: true }, // testing, demoing, building
+  { name: 'tagName', type: String },
+  { name: 'installDependencies', type: String }, // yarn, npm, false
+  { name: 'writeToDisk', type: String }, // true, false
+];
+const overrides = commandLineArgs(optionDefinitions);
+prompts.override(overrides);
+
+export const AppMixin = subclass =>
   // eslint-disable-next-line no-shadow
   class AppMixin extends subclass {
     constructor() {
       super();
       this.wantsNpmInstall = false;
+      this.wantsWriteToDisk = false;
+      this.wantsRecreateInfo = false;
     }
 
     async execute() {
-      const { rootMenu } = await qoa.prompt([
+      console.log(header);
+      const scaffoldOptions = [];
+      const questions = [
         {
-          type: 'interactive',
-          query: 'What would you like to do today?',
-          handle: 'rootMenu',
-          symbol: '>',
-          menu: [
-            'Scaffold a new project',
-            'Upgrade an existing project',
-            'Nah, I am fine thanks! => exit',
+          type: 'select',
+          name: 'type',
+          message: 'What would you like to do today?',
+          choices: [
+            { title: 'Scaffold a new project', value: 'scaffold' },
+            { title: 'Upgrade an existing project', value: 'upgrade' },
           ],
         },
-      ]);
-      if (rootMenu === 'Scaffold a new project') {
-        await this._promptScaffold();
-      }
-      if (rootMenu === 'Upgrade an existing project') {
-        await this._promptUpgrade();
-      }
-    }
-
-    // eslint-disable-next-line class-methods-use-this
-    async _promptScaffold() {
-      const { scaffold } = await qoa.prompt([
         {
-          type: 'interactive',
-          query: 'What would you like to scaffold?\nNote: Content will be written in a new folder.',
-          handle: 'scaffold',
-          symbol: '>',
-          menu: [
-            'Barebone App',
-            'Starter App',
-            'Enterprise App (if you feel lost use the Starter App first)',
-            'Lit Element Web Component',
-            'Mono Repo for web components',
+          type: (prev, all) => (all.type === 'scaffold' ? 'select' : null),
+          name: 'scaffoldType',
+          message: 'What would you like to scaffold?',
+          choices: [
+            { title: 'Web Component', value: 'wc' },
+            { title: 'Application', value: 'app' },
           ],
         },
-      ]);
-      switch (scaffold) {
-        case 'Barebone App':
-          await executeMixinGenerator(BareboneAppMixin);
-          break;
-        case 'Starter App':
-          await executeMixinGenerator(StarterAppMixin);
-          break;
-        case 'Lit Element Web Component':
-          await executeMixinGenerator(WcLitElementMixin);
-          break;
-        default:
-          console.log('Sorry not yet implemented - visit us on https://github.com/open-wc/open-wc');
-      }
-    }
-
-    // eslint-disable-next-line class-methods-use-this
-    async _promptUpgrade() {
-      const { upgrade } = await qoa.prompt([
         {
-          type: 'interactive',
-          query:
-            'What would you like to upgrade?\nNote: Files will be written to the current folder (existing files will be overwritten)',
-          handle: 'upgrade',
-          symbol: '>',
-          menu: ['Linting', 'Testing', 'Demoing', 'Building'],
+          type: (prev, all) =>
+            all.scaffoldType === 'wc' || all.scaffoldType === 'app' || all.type === 'upgrade'
+              ? 'multiselect'
+              : null,
+          name: 'features',
+          message: 'What would you like to add?',
+          choices: (prev, all) =>
+            [
+              { title: 'Linting', value: 'linting' },
+              { title: 'Testing', value: 'testing' },
+              { title: 'Demoing', value: 'demoing' },
+              all.scaffoldType !== 'wc' && { title: 'Building', value: 'building' },
+            ].filter(_ => !!_),
+          onState: state => {
+            state.value.forEach(meta => {
+              if (meta.selected === true && meta.value !== 'linting') {
+                scaffoldOptions.push({
+                  title: meta.title,
+                  value: meta.value,
+                });
+              }
+            });
+          },
         },
-      ]);
-      switch (upgrade) {
-        case 'Linting':
-          await executeMixinGenerator(LintingMixin);
-          break;
-        case 'Testing':
-          await executeMixinGenerator(TestingMixin);
-          break;
-        case 'Demoing':
-          await executeMixinGenerator(DemoingMixin);
-          break;
-        case 'Building':
-          await executeMixinGenerator(BuildingMixin);
-          break;
-        default:
+        {
+          type: (prev, all) =>
+            all.features && all.features.includes('building') ? 'select' : null,
+          name: 'buildingType',
+          message: 'What would you like to use for Building?',
+          choices: [
+            { title: 'Rollup (recommended)', value: 'rollup' },
+            { title: 'Webpack', value: 'webpack' },
+          ],
+        },
+        {
+          type: () => (scaffoldOptions.length > 0 ? 'multiselect' : null),
+          name: 'scaffoldFilesFor',
+          message: 'Would you like to scaffold examples files for?',
+          choices: scaffoldOptions,
+        },
+        {
+          type: 'text',
+          name: 'tagName',
+          message: 'What is the tag name of your application/web component?',
+          validate: tagName =>
+            !/^([a-z])(?!.*[<>])(?=.*-).+$/.test(tagName)
+              ? 'You need a minimum of two words separated by dashes (e.g. foo-bar)'
+              : true,
+        },
+      ];
+
+      /**
+       * {
+       *   type: 'scaffold',
+       *   scaffoldType: 'wc',
+       *   features: [ 'testing', 'building' ],
+       *   buildingType: 'rollup',
+       *   scaffoldFilesFor: [ 'testing' ],
+       *   tagName: 'foo-bar',
+       *   installDependencies: 'false'
+       * }
+       */
+      this.options = await prompts(questions, {
+        onCancel: () => {
+          process.exit();
+        },
+      });
+
+      const mixins = gatherMixins(this.options);
+      // app is separate to prevent circular imports
+      if (this.options.type === 'scaffold' && this.options.scaffoldType === 'app') {
+        mixins.push(AppLitElementMixin);
       }
+      await executeMixinGenerator(mixins, this.options);
     }
   };
 

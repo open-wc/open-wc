@@ -3,6 +3,421 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.2.0...@open-wc/testing-helpers@1.2.1) (2019-08-18)
+
+
+### Bug Fixes
+
+* include *.ts files in npm packages ([8087906](https://github.com/open-wc/open-wc/commit/8087906))
+
+
+
+
+
+# [1.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.1.7...@open-wc/testing-helpers@1.2.0) (2019-08-18)
+
+
+### Bug Fixes
+
+* align sinon version ([0d529bf](https://github.com/open-wc/open-wc/commit/0d529bf))
+* use chai instead of @bundled-es-modules/chai ([f9d19bb](https://github.com/open-wc/open-wc/commit/f9d19bb))
+
+
+### Features
+
+* add type definition files for testing ([462a29f](https://github.com/open-wc/open-wc/commit/462a29f))
+
+
+
+
+
+## [1.1.7](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.1.6...@open-wc/testing-helpers@1.1.7) (2019-08-05)
+
+
+### Bug Fixes
+
+* cleanup package.json scripts ([be6bdb5](https://github.com/open-wc/open-wc/commit/be6bdb5))
+
+
+
+
+
+## [1.1.6](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.1.5...@open-wc/testing-helpers@1.1.6) (2019-08-04)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.1.5](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.1.4...@open-wc/testing-helpers@1.1.5) (2019-08-04)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.1.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.1.3...@open-wc/testing-helpers@1.1.4) (2019-08-04)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.1.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.1.2...@open-wc/testing-helpers@1.1.3) (2019-08-04)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.1.1...@open-wc/testing-helpers@1.1.2) (2019-07-30)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.1.0...@open-wc/testing-helpers@1.1.1) (2019-07-28)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+# [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.24...@open-wc/testing-helpers@1.1.0) (2019-07-27)
+
+
+### Features
+
+* expose elementUpdated testing-helper by default ([#653](https://github.com/open-wc/open-wc/issues/653)) ([55a165f](https://github.com/open-wc/open-wc/commit/55a165f))
+
+
+
+
+
+## [1.0.24](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.23...@open-wc/testing-helpers@1.0.24) (2019-07-26)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.23](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.22...@open-wc/testing-helpers@1.0.23) (2019-07-25)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.22](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.21...@open-wc/testing-helpers@1.0.22) (2019-07-24)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.21](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.20...@open-wc/testing-helpers@1.0.21) (2019-07-24)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.20](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.19...@open-wc/testing-helpers@1.0.20) (2019-07-24)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.19](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.18...@open-wc/testing-helpers@1.0.19) (2019-07-24)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.18](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.17...@open-wc/testing-helpers@1.0.18) (2019-07-22)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.17](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.16...@open-wc/testing-helpers@1.0.17) (2019-07-22)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.16](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.15...@open-wc/testing-helpers@1.0.16) (2019-07-19)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.15](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.14...@open-wc/testing-helpers@1.0.15) (2019-07-17)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.14](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.13...@open-wc/testing-helpers@1.0.14) (2019-07-17)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.13](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.12...@open-wc/testing-helpers@1.0.13) (2019-07-17)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.12](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.11...@open-wc/testing-helpers@1.0.12) (2019-07-15)
+
+
+### Bug Fixes
+
+* adopt to new testing-karma setup ([bdcc717](https://github.com/open-wc/open-wc/commit/bdcc717))
+
+
+
+
+
+## [1.0.11](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.10...@open-wc/testing-helpers@1.0.11) (2019-07-13)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.10](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.9...@open-wc/testing-helpers@1.0.10) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.9](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.8...@open-wc/testing-helpers@1.0.9) (2019-07-08)
+
+
+### Bug Fixes
+
+* use file extensions for imports to support import maps ([c711b13](https://github.com/open-wc/open-wc/commit/c711b13))
+
+
+
+
+
+## [1.0.8](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.7...@open-wc/testing-helpers@1.0.8) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.7](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.6...@open-wc/testing-helpers@1.0.7) (2019-07-08)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.6](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.5...@open-wc/testing-helpers@1.0.6) (2019-07-02)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.5](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.4...@open-wc/testing-helpers@1.0.5) (2019-07-02)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.3...@open-wc/testing-helpers@1.0.4) (2019-06-30)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.2...@open-wc/testing-helpers@1.0.3) (2019-06-23)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.1...@open-wc/testing-helpers@1.0.2) (2019-06-23)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.0.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.0.0...@open-wc/testing-helpers@1.0.1) (2019-06-18)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+# [1.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.9.6...@open-wc/testing-helpers@1.0.0) (2019-06-14)
+
+
+### Features
+
+* utils and webpack plugin for an index.html entrypoint ([#474](https://github.com/open-wc/open-wc/issues/474)) ([c382cc7](https://github.com/open-wc/open-wc/commit/c382cc7))
+
+
+### BREAKING CHANGES
+
+* Replaced webpack html plugin with index html plugin
+
+
+
+
+
+## [0.9.6](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.9.5...@open-wc/testing-helpers@0.9.6) (2019-06-08)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.9.5](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.9.4...@open-wc/testing-helpers@0.9.5) (2019-05-25)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.9.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.9.3...@open-wc/testing-helpers@0.9.4) (2019-05-19)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.9.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.9.2...@open-wc/testing-helpers@0.9.3) (2019-05-14)
+
+
+### Bug Fixes
+
+* **testing-helpers:** more work for IE11 flaky focus/blur ([29bedd1](https://github.com/open-wc/open-wc/commit/29bedd1))
+
+
+
+
+
+## [0.9.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.9.1...@open-wc/testing-helpers@0.9.2) (2019-05-14)
+
+
+### Bug Fixes
+
+* **testing-helpers:** force focus/blur for IE ([#457](https://github.com/open-wc/open-wc/issues/457)) ([e06b5ce](https://github.com/open-wc/open-wc/commit/e06b5ce))
+
+
+
+
+
+## [0.9.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.9.0...@open-wc/testing-helpers@0.9.1) (2019-05-06)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+# [0.9.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.10...@open-wc/testing-helpers@0.9.0) (2019-05-06)
+
+
+### Features
+
+* update to latest testing-karma config syntax ([465bfe0](https://github.com/open-wc/open-wc/commit/465bfe0))
+
+
+
+
+
+## [0.8.10](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.9...@open-wc/testing-helpers@0.8.10) (2019-05-03)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [0.8.9](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.8...@open-wc/testing-helpers@0.8.9) (2019-04-28)
+
+
+### Bug Fixes
+
+* **eslint-config:** loosen up rules for test and stories files ([#408](https://github.com/open-wc/open-wc/issues/408)) ([3fd251e](https://github.com/open-wc/open-wc/commit/3fd251e))
+
+
+
+
+
+## [0.8.8](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.7...@open-wc/testing-helpers@0.8.8) (2019-04-14)
+
+
+### Bug Fixes
+
+* update generator usage ([5d284d4](https://github.com/open-wc/open-wc/commit/5d284d4))
+
+
+
+
+
+## [0.8.7](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.6...@open-wc/testing-helpers@0.8.7) (2019-04-13)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
 ## [0.8.6](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@0.8.5...@open-wc/testing-helpers@0.8.6) (2019-04-08)
 
 **Note:** Version bump only for package @open-wc/testing-helpers

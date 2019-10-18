@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-concat */
-import { expect } from '@bundled-es-modules/chai';
+import { expect } from './bdd-setup.js';
 import { getDiffableHTML } from '../index.js';
 
 describe('getDiffableHTML()', () => {
@@ -312,6 +312,20 @@ describe('getDiffableHTML()', () => {
         `);
       expect(html).to.equal(
         '<div class="1 2 3">\n' + '</div>\n' + '<div class="4 a b z">\n' + '</div>\n',
+      );
+    });
+
+    it('removes empty class attributes', () => {
+      const html = getDiffableHTML(`
+        <div id="with-quotes" class=""></div>
+        <div id="without-quotes" class></div>
+        `);
+      expect(html).to.equal(
+        `<div id="with-quotes">
+</div>
+<div id="without-quotes">
+</div>
+`,
       );
     });
   });

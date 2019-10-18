@@ -1,10 +1,10 @@
-/* eslint-disable no-unused-expressions */
 import { html, fixture, litFixture, expect } from '../../index.js';
 
 import '../src/get-result.js';
 
 describe('True Checking', () => {
   it('is false by default', async () => {
+    /** @type {import('../src/get-result.js').GetResult} */
     const el = await fixture('<get-result></get-result>');
     expect(el.success).to.be.false;
   });

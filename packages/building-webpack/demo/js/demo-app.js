@@ -35,6 +35,15 @@ function forOf() {
 forOf();
 console.log('forOf function compiled to: ', forOf.toString());
 
+// partial css trips up the minifier
+const fontSize = css`
+  16
+`;
+
+const fontMd = css`
+  font-size: ${fontSize}px;
+`;
+
 class DemoApp extends LitElement {
   static get properties() {
     return {
@@ -47,6 +56,7 @@ class DemoApp extends LitElement {
       display: block;
       color: black;
       background-color: white;
+      ${fontMd};
     }
   `;
 
@@ -66,7 +76,7 @@ class DemoApp extends LitElement {
       <p>Hello world ${this.foo}</p>
 
       <button @click="${this._lazyLoad}">Lazy load</button>
-      <demo-component></demo-component>
+      <demo-component .myProperty=${'Hello world'}></demo-component>
 
       ${this._myElementLoaded
         ? html`

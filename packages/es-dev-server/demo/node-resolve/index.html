@@ -1,0 +1,47 @@
+<html>
+
+<head>
+  <base href="/demo/node-resolve/">
+</head>
+
+<body>
+  <img width="100" src="../logo.png">
+
+  <h1>Demo app</h1>
+
+  <p>
+
+    <a href="foo/">Foo</a>
+  </p>
+
+  <p>
+    <a href="bar/">Bar</a>
+  </p>
+
+  <div id="app"></div>
+  <div id="inlineApp"></div>
+</body>
+
+<script type="module">
+  /* eslint-disable */
+  import { html, render } from 'lit-html';
+  import { foo } from './module-b.js';
+
+  console.log('inline module 0', foo());
+
+  render(
+    html`
+      <strong>inline module 0 loaded correctlyX</strong>
+    `,
+    document.getElementById('inlineApp'),
+  );
+</script>
+
+<script type="module" src="./module-a.js"></script>
+
+<script type="module">
+  /* eslint-disable */
+  console.log('inline module 1');
+</script>
+
+</html>

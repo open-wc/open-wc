@@ -27,7 +27,7 @@ Best practices/recommendations and examples may change and evolve over time.
 
 ### Why Web Components
 
-We believe that web components provide a standards-based solution to problems like reusability, interopability, and encapsulation.
+We believe that web components provide a standards-based solution to problems like reusability, interoperability, and encapsulation.
 
 #### Historical Background
 
@@ -56,4 +56,4 @@ The web components standards are fairly low-level, letting library authors build
 
 ## Contribute
 
-Feel free to critique, ask questions and join the conversation, we'd love to hear your opinions and feedback. You can reach us by creating an issue on our [github](https://github.com/open-wc) or on the [#open-wc](https://polymer.slack.com/messages/CE6D9DN05) channel in the [Polymer slack](https://join.slack.com/t/polymer/shared_invite/enQtNTAzNzg3NjU4ODM4LTkzZGVlOGIxMmNiMjMzZDM1YzYyMzdiYTk0YjQyOWZhZTMwN2RlNjM5ZDFmZjMxZWRjMWViMDA1MjNiYWFhZWM).
+Feel free to critique, ask questions and join the conversation, we'd love to hear your opinions and feedback. You can reach us by creating an issue on our [github](https://github.com/open-wc) or on the [#open-wc](https://polymer.slack.com/messages/CE6D9DN05) channel in the [Polymer slack](https://www.polymer-project.org/slack-invite).

@@ -1,9 +1,15 @@
 {
   "scripts": {
-    "lint:eslint": "eslint --ext .js,.html .",
-    "format:eslint": "eslint --ext .js,.html . --fix"
+    "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
+    "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore"
   },
   "devDependencies": {
-    "@open-wc/eslint-config": "^0.4.1"
+    "eslint": "^6.1.0",
+    "@open-wc/eslint-config": "^1.0.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@open-wc/eslint-config"
+    ]
   }
 }

@@ -1,18 +1,11 @@
-/* eslint-disable no-console */
-import path from 'path';
-import { askTagInfo } from '../../helpers';
+import { CommonRepoMixin } from '../common-repo/index.js';
 
-const WcLitElementMixin = subclass =>
+/* eslint-disable no-console */
+export const WcLitElementMixin = subclass =>
   class extends subclass {
     async execute() {
-      // before super to also affect the Mixin it applies
-      const { tagName, className } = await askTagInfo();
-      this.templateData = { ...this.templateData, tagName, className };
-
-      this._destinationPath = path.join(process.cwd(), tagName);
-
-      console.log('Setup lit-element web component...');
       await super.execute();
+      const { tagName, className } = this.templateData;
 
       // write & rename el class template
       this.copyTemplate(
@@ -21,17 +14,21 @@ const WcLitElementMixin = subclass =>
       );
 
       // write & rename el registration template
-      this.copyTemplate(
-        `${__dirname}/templates/_my-el.js`,
-        this.destinationPath(`src/${tagName}.js`),
-      );
+      this.copyTemplate(`${__dirname}/templates/_my-el.js`, this.destinationPath(`${tagName}.js`));
 
+      await this.copyTemplates(`${__dirname}/templates/static/**/*`);
+    }
+  };
+
+export const WcLitElementPackageMixin = subclass =>
+  class extends CommonRepoMixin(WcLitElementMixin(subclass)) {
+    async execute() {
+      await super.execute();
+      // write & rename package.json
       this.copyTemplateJsonInto(
         `${__dirname}/templates/_package.json`,
         this.destinationPath('package.json'),
       );
-
-      await this.copyTemplates(`${__dirname}/templates/static/**/*`);
     }
 
     async end() {
@@ -45,5 +42,3 @@ const WcLitElementMixin = subclass =>
       console.log('');
     }
   };
-
-export default WcLitElementMixin;

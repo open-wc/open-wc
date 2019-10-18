@@ -1,9 +1,12 @@
-const { resolve } = require('path');
-const createDefaultConfig = require('@open-wc/building-webpack/modern-and-legacy-config');
+const path = require('path');
+const { createDefaultConfig } = require('@open-wc/building-webpack');
 
-// If you don't need IE11 support, use the modern-config instead
-// import createDefaultConfig from '@open-wc/building-webpack/modern-config';
+// if you need to support IE11 use "modern-and-legacy-config" instead.
+// const { createCompatibilityConfig } = require('@open-wc/building-webpack');
+// module.exports = createCompatibilityConfig({
+//   input: path.resolve(__dirname, './index.html'),
+// });
 
 module.exports = createDefaultConfig({
-  input: resolve(__dirname, './src/index.html'),
+  input: path.resolve(__dirname, './index.html'),
 });

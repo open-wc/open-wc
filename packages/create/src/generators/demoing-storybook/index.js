@@ -1,6 +1,4 @@
-import { askYesNo, askTagInfo } from '../../helpers.js';
-
-const DemoingStorybookMixin = subclass =>
+export const DemoingStorybookMixin = subclass =>
   class extends subclass {
     async execute() {
       await super.execute();
@@ -11,15 +9,13 @@ const DemoingStorybookMixin = subclass =>
       );
 
       await this.copyTemplates(`${__dirname}/templates/static/**/*`);
-
-      const wantsScaffolding = await askYesNo('Should we scaffold some story files as well?');
-      if (wantsScaffolding) {
-        const { tagName, className } = await askTagInfo();
-        this.templateData = { ...this.templateData, tagName, className };
-
-        await this.copyTemplates(`${__dirname}/templates/static-scaffold/**/*`);
-      }
     }
   };
 
-export default DemoingStorybookMixin;
+export const DemoingStorybookScaffoldMixin = subclass =>
+  class extends subclass {
+    async execute() {
+      await super.execute();
+      await this.copyTemplates(`${__dirname}/templates/static-scaffold/**/*`);
+    }
+  };

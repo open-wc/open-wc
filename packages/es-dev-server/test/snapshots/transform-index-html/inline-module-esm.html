@@ -1,0 +1,34 @@
+<html><head>
+  <title>My app</title>
+</head>
+
+<body>
+
+  
+
+  
+
+  
+
+
+
+<script>(function() {
+  function loadScript(src, module) {
+    return new Promise(function (resolve, reject) {
+      document.head.appendChild(Object.assign(
+        document.createElement('script'),
+        { src: src, onload: resolve, onerror: reject },
+        module ? { type: 'module' } : undefined
+      ));
+    });
+  }
+
+  var polyfills = [];
+  if ('noModule' in HTMLScriptElement.prototype) { polyfills.push(loadScript('polyfills/es-module-shims.eb2529466e6458528ad13c7d46e47a52.js', true)) }
+
+  function loadEntries() {
+    ['./app.js','./inline-module-0.js?source=%2Findex.html','./inline-module-1.js?source=%2Findex.html'].forEach(function (entry) { window.importShim(entry); });
+  }
+
+  polyfills.length ? Promise.all(polyfills).then(loadEntries) : loadEntries();
+})();</script></body></html>

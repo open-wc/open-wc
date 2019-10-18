@@ -21,6 +21,7 @@ module.exports = ({ config, transpilePackages = ['lit-html', 'lit-element', '@op
             '@babel/preset-env',
             {
               useBuiltIns: 'entry',
+              corejs: '2',
             },
           ],
         ],

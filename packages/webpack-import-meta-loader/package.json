@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/webpack-import-meta-loader",
-  "version": "0.2.0",
+  "version": "0.3.2",
   "description": "Webpack configuration following open-wc recommendations",
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
@@ -15,11 +15,12 @@
     "directory": "packages/webpack-import-meta-loader"
   },
   "files": [
+    "src",
     "*.js"
   ],
   "scripts": {
-    "test": "mocha --require @babel/register",
-    "test:ci": "npm run test",
+    "test": "npm run test:node",
+    "test:node": "mocha --require @babel/register",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "devDependencies": {

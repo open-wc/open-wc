@@ -6,7 +6,8 @@ Use [ESLint](https://eslint.org/) to lint your es6 code.
 
 ## Setup
 ```bash
-npm init @open-wc linting-eslint
+npm init @open-wc
+# Upgrade > Linting
 ```
 
 ::: tip

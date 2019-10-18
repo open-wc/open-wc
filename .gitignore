@@ -10,6 +10,7 @@ coverage/
 
 ## npm
 node_modules
+!packages/es-dev-server/test/**/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -33,5 +34,11 @@ build-stats.json
 stats.html
 .rpt2_cache
 
-##
+## we already store snapshots globally
 packages/**/__snapshots__
+
+## browserstack
+local.log
+
+## generated codelabs
+docs/.vuepress/public/codelabs

@@ -10,7 +10,8 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Setup
 ```bash
-npm init @open-wc linting-prettier
+npm init @open-wc
+# Upgrade > Linting
 ```
 
 ## Manual
@@ -44,7 +45,7 @@ npm init @open-wc linting-prettier
 
 - Apply formatting to JS files
 - Apply formatting to HTML inside of `html` tagged template literals used by [lit-html](https://github.com/Polymer/lit-html)
-- Apply formatting to CSS inside of `css` tagged template literals used by [lit-css](https://github.com/lit-styles/lit-styles/tree/master/packages/lit-css)
+- Apply formatting to CSS inside of `css` tagged template literals used by [lit-element](https://lit-element.polymer-project.org/guide/styles#static-styles)
 - Integration with ESLint to prevent potentially conflicting rules
 
 ## Usage

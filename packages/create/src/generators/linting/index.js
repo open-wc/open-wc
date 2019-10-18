@@ -1,10 +1,9 @@
 /* eslint-disable no-console */
-import LintingEsLint from '../linting-eslint/index.js';
-import LintingPrettierMixin from '../linting-prettier/index.js';
-import LintingCommitlintMixin from '../linting-commitlint/index.js';
+import { LintingEsLintMixin } from '../linting-eslint/index.js';
+import { LintingPrettierMixin } from '../linting-prettier/index.js';
 
-const LintingMixin = subclass =>
-  class extends LintingCommitlintMixin(LintingPrettierMixin(LintingEsLint(subclass))) {
+export const LintingMixin = subclass =>
+  class extends LintingPrettierMixin(LintingEsLintMixin(subclass)) {
     async execute() {
       await super.execute();
 
@@ -13,12 +12,5 @@ const LintingMixin = subclass =>
         `${__dirname}/templates/_package.json`,
         this.destinationPath('package.json'),
       );
-
-      // write everything else
-      await this.copyTemplates(`${__dirname}/templates/static/**/*`);
-
-      console.log('... Linting done');
     }
   };
-
-export default LintingMixin;

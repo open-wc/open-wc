@@ -2,8 +2,8 @@
 
 Our recommendations must fulfill certain criteria before we publish them.
 
-1. Language or platform features/APIs must be released without a flag in the stable version of a least one browser
-1. Libraries must offer an es module version
+1. Language or platform features/APIs must be released without a flag in the stable version of at least one browser
+1. Libraries must offer an ES module version
 
 **Note**: <a name="bare-specifiers"></a>We currently have ONE exception to this rule and that is 'bare modules'.
 This is such a powerful and widely-used pattern in the current JavaScript ecosystem, that if you don't use it you basically need to implement everything yourself.
@@ -21,8 +21,8 @@ You are encouraged to freely switch between them depending on what you are worki
 The ideal development environment uses no tools, just an up-to-date browser and a simple HTTP server.
 
 ::: warning
-Unfortunately we are not fully there yet, because of the [bare modules exception](#bare-specifiers) you will need to have a server that at least supports them.
-We recommend our [Open Web Components Dev Server](../developing/owc-dev-server.html) as it does nothing more/nothing less.
+Unfortunately we are not fully there yet, because of the [bare modules exception](#bare-specifiers) you will still need to have a server that at least supports them.
+We recommend our [ES Dev Server](../developing/es-dev-server.html) as it does nothing more/nothing less.
 :::
 
 When would you choose this workflow:
@@ -50,7 +50,7 @@ Why would you choose it:
 
 ### Production Workflow
 
-Once you're happy with your web components, it's time to put them somewhere more useful. 
+Once you're happy with your web components, it's time to put them somewhere more useful.
 Most likely a publicly available web server.
 Before you do that let's apply all the optimizations magic we can cook up.
 
