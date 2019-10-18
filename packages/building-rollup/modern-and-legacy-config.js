@@ -11,6 +11,8 @@ const indexHTML = require('rollup-plugin-index-html');
 const entrypointHashmanifest = require('rollup-plugin-entrypoint-hashmanifest');
 const workbox = require('rollup-plugin-workbox');
 
+const getWorkboxConfig = require('@open-wc/building-utils/get-workbox-config');
+
 const production = !process.env.ROLLUP_WATCH;
 const prefix = '[owc-building-rollup]';
 
@@ -123,16 +125,7 @@ function createConfig(_options, legacy) {
         !legacy &&
         workbox({
           mode: 'generateSW',
-          workboxConfig: {
-            // for spa client side routing, always return index.html
-            navigateFallback: '/index.html',
-            // where to output the generated sw
-            swDest: path.join(process.cwd(), 'dist', 'sw.js'),
-            // directory to match patterns against to be precached
-            globDirectory: path.join(process.cwd(), 'dist'),
-            // cache any html js and css by default
-            globPatterns: ['**/*.{html,js,css}'],
-          },
+          workboxConfig: getWorkboxConfig(),
         }),
     ],
   };
