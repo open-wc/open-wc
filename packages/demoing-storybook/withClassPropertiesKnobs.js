@@ -32,7 +32,8 @@ export function withClassPropertiesKnobs(Klass, { overrides: overrideFunction, t
   if (template) {
     const wrapper = document.createElement('div');
     render(template, wrapper);
-    el = Array.from(wrapper.children).filter((node) => node.tagName.includes('-'))[0];
+    // eslint-disable-next-line prefer-destructuring
+    el = Array.from(wrapper.children).filter(node => node.tagName.includes('-'))[0];
   } else {
     el = new Klass();
   }
