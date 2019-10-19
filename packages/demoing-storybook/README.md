@@ -126,7 +126,7 @@ import {
 By default it will create one simple node from the given Class.
 However for a nicer demo it may be needed to set properties or add more lightdom.
 You can do so by providing a template. The template must render the custom element
-to be tested as first root node.
+to be tested before other custom elements.
 ```js
 () => withClassPropertiesKnobs(MyEl, {
   template: html`
