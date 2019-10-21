@@ -119,7 +119,7 @@ export function getDiffableHTML(html, options = {}) {
   }
 
   function shouldStripAttribute({ name, value }) {
-    return stripEmptyAttributes.includes(name) && value === '';
+    return stripEmptyAttributes.includes(name) && value.trim() === '';
   }
 
   /**
