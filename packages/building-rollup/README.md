@@ -437,7 +437,8 @@ If you want to override the default config with your own workbox configuration, 
 ```js
 const { createDefaultConfig } = require('@open-wc/building-rollup');
 const deepmerge = require('deepmerge');
-const workbox = require('rollup-plugin-workbox');
+const { injectManifest, /* generateSW */ } = require('rollup-plugin-workbox');
+
 
 const basicConfig = createDefaultConfig({
   input: './index.html',
@@ -446,12 +447,11 @@ const basicConfig = createDefaultConfig({
   },
 });
 
+const workboxConfig = require('./workbox-config.js');
+
 export default merge(basicConfig, {
   plugins: [
-    workbox({
-      mode: 'injectManifest',
-      workboxConfig: require('./workbox-config.js'),
-    }),
+    injectManifest(workboxConfig),
   ],
 });
 ```

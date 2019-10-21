@@ -9,7 +9,7 @@ const { terser } = require('rollup-plugin-terser');
 const babel = require('rollup-plugin-babel');
 const indexHTML = require('rollup-plugin-index-html');
 const entrypointHashmanifest = require('rollup-plugin-entrypoint-hashmanifest');
-const workbox = require('rollup-plugin-workbox');
+const { generateSW } = require('rollup-plugin-workbox');
 
 const getWorkboxConfig = require('@open-wc/building-utils/get-workbox-config');
 
@@ -120,13 +120,7 @@ function createConfig(_options, legacy) {
       // hash
       entrypointHashmanifest(),
 
-      production &&
-        options.plugins.workbox &&
-        !legacy &&
-        workbox({
-          mode: 'generateSW',
-          workboxConfig: getWorkboxConfig(),
-        }),
+      production && options.plugins.workbox && !legacy && generateSW(getWorkboxConfig()),
     ],
   };
 }
