@@ -47,7 +47,7 @@
     "rollup-plugin-index-html": "^1.5.5",
     "rollup-plugin-node-resolve": "^4.0.1",
     "rollup-plugin-terser": "^4.0.4",
-    "rollup-plugin-workbox": "^3.0.0"
+    "rollup-plugin-workbox": "^4.0.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.4",
