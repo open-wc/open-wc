@@ -7,9 +7,10 @@ const resolve = require('rollup-plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const babel = require('rollup-plugin-babel');
 const indexHTML = require('rollup-plugin-index-html');
-const { generateSW } = require('rollup-plugin-workbox');
-const path = require('path');
 const entrypointHashmanifest = require('rollup-plugin-entrypoint-hashmanifest');
+const { generateSW } = require('rollup-plugin-workbox');
+
+const getWorkboxConfig = require('@open-wc/building-utils/get-workbox-config');
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -109,17 +110,7 @@ module.exports = function createBasicConfig(_options) {
       // hash
       entrypointHashmanifest(),
 
-      production &&
-        options.plugins.workbox &&
-        generateSW({
-          navigateFallback: '/index.html',
-          // where to output the generated sw
-          swDest: path.join(process.cwd(), 'dist', 'sw.js'),
-          // directory to match patterns against to be precached
-          globDirectory: path.join(process.cwd(), 'dist'),
-          // cache any html js and css by default
-          globPatterns: ['**/*.{html,js,css}'],
-        }),
+      production && options.plugins.workbox && generateSW(getWorkboxConfig()),
     ],
   };
 };
