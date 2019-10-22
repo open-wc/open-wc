@@ -432,7 +432,9 @@ This configuration will by default generate a service worker for you, using [rol
 
 ### Overriding the workbox config
 
-If you want to override the default config with your own workbox configuration, you can disable the default workbox configuration by setting `options.plugins.workbox` to false in the `options` object that you pass to `createDefaultConfig`, and then you can override the plugins
+If you want to override the default config with your own workbox configuration, you can simply create a `workbox-config.js` in the root of the project.
+
+And if you want to further customize, you can disable the default workbox configuration by setting `options.plugins.workbox` to false in the `options` object that you pass to `createDefaultConfig`, and then you can override the plugins
 
 ```js
 const { createDefaultConfig } = require('@open-wc/building-rollup');
