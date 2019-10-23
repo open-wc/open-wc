@@ -41,25 +41,11 @@ Webpack plugin to make webpack understand your index.html.
 
 3. Outputs the same index.html with updated file hashes and all inline HTML, CSS and JS minified:
 
+<!-- prettier-ignore-start -->
 ```html
-<html lang="en-GB">
-  <head>
-    <title>My app</title>
-    <style>
-      my-app {
-        display: block;
-      }
-    </style>
-  </head>
-  <body>
-    <h1><span>Hello world!</span></h1>
-    <my-app></my-app
-    ><script>
-      console.log('hello inline script');</script
-    ><script src="app.202933f045cc9f6cdf51.js"></script>
-  </body>
-</html>
+<html lang="en-GB"><head><title>My app</title><style>my-app{display:block}</style></head><body><h1><span>Hello world!</span></h1><my-app></my-app><script>console.log("hello inline script");</script><script src="app.202933f045cc9f6cdf51.js"></script></body></html>
 ```
+<!-- prettier-ignore-end -->
 
 4. Optionally adds a loader script for conditionally loading polyfills and/or a separate build for older browsers.
 
