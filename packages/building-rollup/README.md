@@ -439,8 +439,7 @@ Alternatively, you can create a `workbox-config.js` in the root of your project,
 ```js
 const { createDefaultConfig } = require('@open-wc/building-rollup');
 const deepmerge = require('deepmerge');
-const { injectManifest, /* generateSW */ } = require('rollup-plugin-workbox');
-
+const { injectManifest /* generateSW */ } = require('rollup-plugin-workbox');
 
 const basicConfig = createDefaultConfig({
   input: './index.html',
@@ -452,9 +451,7 @@ const basicConfig = createDefaultConfig({
 const workboxConfig = require('./workbox-config.js');
 
 export default merge(basicConfig, {
-  plugins: [
-    injectManifest(workboxConfig),
-  ],
+  plugins: [injectManifest(workboxConfig)],
 });
 ```
 

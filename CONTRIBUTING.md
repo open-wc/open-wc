@@ -31,7 +31,7 @@ Make your changes to the project. Commits are linted using precommit hooks, mean
 # Committing Your Changes
 
 Open WC uses [commitlint](https://github.com/marionebl/commitlint) to standardize commit messages in the project. Commit messages must follow the [conventional commit format](https://www.conventionalcommits.org/en/v1.0.0-beta.2/)
-Open WC uses package name as scope. So for example if you fix a *terrible bug* in the package `@open-wc/testing`, the commit message should look like this:
+Open WC uses package name as scope. So for example if you fix a _terrible bug_ in the package `@open-wc/testing`, the commit message should look like this:
 
 ```
 fix(testing): fix terrible bug

@@ -1,18 +1,20 @@
 # Testing Event Listeners in lifecycle events
 
 Let's say you have a mixin that dispatches an event on `firstUpdated` and `connectedCallback`:
-```js
-const mixin = superclass => class extends superclass {
-  firstUpdated() {
-    super.firstUpdated();
-    this.dispatchEvent(new CustomEvent('first-updated'));
-  }
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.dispatchEvent(new CustomEvent('connected-callback'));
-  }
-};
+```js
+const mixin = superclass =>
+  class extends superclass {
+    firstUpdated() {
+      super.firstUpdated();
+      this.dispatchEvent(new CustomEvent('first-updated'));
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+      this.dispatchEvent(new CustomEvent('connected-callback'));
+    }
+  };
 ```
 
 These are the suggested ways of testing these events:
@@ -31,7 +33,6 @@ it('dispatches a custom event on firstUpdated', async () => {
   expect(ev).to.exist;
 });
 ```
-
 
 #### connectedCallback
 
