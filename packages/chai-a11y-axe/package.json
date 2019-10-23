@@ -17,6 +17,12 @@
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
   },
+  "keywords": [
+    "chai",
+    "accessibility",
+    "A11Y",
+    "testing"
+  ],
   "files": [
     "src",
     "*.js",

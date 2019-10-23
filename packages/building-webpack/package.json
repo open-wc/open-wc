@@ -29,7 +29,8 @@
   "main": "index.js",
   "keywords": [
     "open-wc",
-    "webpack"
+    "webpack",
+    "config"
   ],
   "files": [
     "dom5-fork",

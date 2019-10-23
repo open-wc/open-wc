@@ -15,6 +15,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "keywords": [
+    "server",
+    "http-server",
+    "polyfill"
+  ],
   "files": [
     ".self-signed-dev-server-ssl.key",
     ".self-signed-dev-server-ssl.cert",
