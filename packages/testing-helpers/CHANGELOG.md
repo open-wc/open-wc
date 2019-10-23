@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.2.1...@open-wc/testing-helpers@1.2.2) (2019-10-23)
+
+
+### Bug Fixes
+
+* add package keywords ([#859](https://github.com/open-wc/open-wc/issues/859)) ([cd78405](https://github.com/open-wc/open-wc/commit/cd78405))
+* do not destructure exports to support es-module-lexer ([3709413](https://github.com/open-wc/open-wc/commit/3709413))
+
+
+
+
+
 ## [1.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.2.0...@open-wc/testing-helpers@1.2.1) (2019-08-18)
 
 

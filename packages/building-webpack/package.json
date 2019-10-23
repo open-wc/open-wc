@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-webpack",
-  "version": "2.7.1",
+  "version": "2.7.2",
   "publishConfig": {
     "access": "public"
   },
@@ -42,8 +42,8 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
     "@babel/preset-env": "^7.0.0",
-    "@open-wc/building-utils": "^2.10.0",
-    "@open-wc/webpack-index-html-plugin": "^1.5.1",
+    "@open-wc/building-utils": "^2.10.1",
+    "@open-wc/webpack-index-html-plugin": "^1.5.2",
     "babel-loader": "^8.0.0",
     "babel-plugin-bundled-import-meta": "^0.3.0",
     "babel-plugin-template-html-minifier": "^3.0.0",

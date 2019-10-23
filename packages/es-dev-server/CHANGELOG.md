@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.6](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.5...es-dev-server@1.18.6) (2019-10-23)
+
+
+### Bug Fixes
+
+* add package keywords ([#859](https://github.com/open-wc/open-wc/issues/859)) ([cd78405](https://github.com/open-wc/open-wc/commit/cd78405))
+
+
+
+
+
 ## [1.18.5](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.4...es-dev-server@1.18.5) (2019-10-22)
 
 **Note:** Version bump only for package es-dev-server
