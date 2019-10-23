@@ -107,7 +107,7 @@
     "lit-element": "2.0.0",
     "lit-html": "0.14.0",
     "lodash-es": "^4.17.15",
-    "mocha": "^5.0.0",
+    "mocha": "^6.0.0",
     "node-fetch": "^2.6.0",
     "request": "^2.88.0",
     "selfsigned": "^1.10.4",
