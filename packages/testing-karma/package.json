@@ -1,37 +1,37 @@
 {
   "name": "@open-wc/testing-karma",
   "version": "3.1.41",
-  "description": "Testing with karma following open-wc recommendations",
-  "author": "open-wc",
-  "main": "testing-karma.js",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Testing with karma following open-wc recommendations",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/testing-karma"
   },
-  "keywords": [
-    "testing",
-    "karma",
-    "mocha",
-    "compatibility"
-  ],
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "testing-karma.js",
   "scripts": {
     "demo:test": "karma start demo/karma.conf.js --coverage --legacy",
-    "demo:test:watch": "karma start demo/karma.conf.js --auto-watch=true --single-run=false",
-    "demo:test:update-snapshots": "karma start demo/karma.conf.js --update-snapshots",
-    "demo:test:prune-snapshots": "karma start demo/karma.conf.js --prune-snapshots",
-    "demo:test:legacy": "karma start demo/karma.conf.js --legacy --coverage",
     "demo:test:bs": "karma start demo/karma.bs.conf.js --legacy --coverage",
+    "demo:test:legacy": "karma start demo/karma.conf.js --legacy --coverage",
+    "demo:test:prune-snapshots": "karma start demo/karma.conf.js --prune-snapshots",
+    "demo:test:update-snapshots": "karma start demo/karma.conf.js --update-snapshots",
+    "demo:test:watch": "karma start demo/karma.conf.js --auto-watch=true --single-run=false",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "files": [
     "*.js",
     "src"
+  ],
+  "keywords": [
+    "testing",
+    "karma",
+    "mocha",
+    "compatibility"
   ],
   "dependencies": {
     "@open-wc/karma-esm": "^2.7.3",

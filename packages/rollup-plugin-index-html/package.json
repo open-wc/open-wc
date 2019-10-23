@@ -1,32 +1,32 @@
 {
   "name": "rollup-plugin-index-html",
   "version": "1.5.6",
-  "description": "Plugin for generating a index html with rollup",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "main": "rollup-plugin-index-html.js",
-  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "test": "npm run test:node",
-    "test:node": "mocha test/**/*.test.js test/*.test.js",
-    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
-  },
+  "description": "Plugin for generating a index html with rollup",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/webpack-index-html-plugin"
   },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "rollup-plugin-index-html.js",
+  "scripts": {
+    "test": "npm run test:node",
+    "test:node": "mocha test/**/*.test.js test/*.test.js",
+    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
+  },
+  "files": [
+    "*.js",
+    "src"
+  ],
   "keywords": [
     "rollup-plugin",
     "minify",
     "polyfill"
-  ],
-  "files": [
-    "src",
-    "*.js"
   ],
   "dependencies": {
     "@import-maps/resolve": "^0.1.3",

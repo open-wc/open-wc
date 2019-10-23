@@ -1,30 +1,29 @@
 {
   "name": "@open-wc/testing",
   "version": "2.3.6",
-  "description": "Testing following open-wc recommendations",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Testing following open-wc recommendations",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/testing"
   },
-  "module": "index.js",
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js"
+  },
+  "files": [
+    "*.d.ts",
+    "*.js"
+  ],
   "keywords": [
     "testing",
     "chai"
   ],
-  "files": [
-    "*.js",
-    "*.d.ts"
-  ],
-  "scripts": {
-    "prepublishOnly": "../../scripts/insert-header.js"
-  },
   "dependencies": {
     "@open-wc/chai-dom-equals": "^0.12.36",
     "@open-wc/semantic-dom-diff": "^0.15.0",
@@ -41,5 +40,6 @@
   },
   "devDependencies": {
     "sinon": "^7.4.1"
-  }
+  },
+  "module": "index.js"
 }
