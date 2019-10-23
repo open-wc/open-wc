@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.3](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.7.2...@open-wc/karma-esm@2.7.3) (2019-10-22)
+
+
+### Bug Fixes
+
+* **karma-esm:** fix type in readme ([9b8f01e](https://github.com/open-wc/open-wc/commit/9b8f01e))
+
+
+
+
+
 ## [2.7.2](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.7.1...@open-wc/karma-esm@2.7.2) (2019-10-13)
 
 **Note:** Version bump only for package @open-wc/karma-esm

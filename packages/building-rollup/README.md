@@ -434,10 +434,13 @@ This configuration will by default generate a service worker for you, using [rol
 
 If you want to override the default config with your own workbox configuration, you can disable the default workbox configuration by setting `options.plugins.workbox` to false in the `options` object that you pass to `createDefaultConfig`, and then you can override the plugins
 
+Alternatively, you can create a `workbox-config.js` in the root of your project, and it will be automatically be picked up by the configuration if available. Do note that this only works for `generateSW` mode.
+
 ```js
 const { createDefaultConfig } = require('@open-wc/building-rollup');
 const deepmerge = require('deepmerge');
-const workbox = require('rollup-plugin-workbox');
+const { injectManifest, /* generateSW */ } = require('rollup-plugin-workbox');
+
 
 const basicConfig = createDefaultConfig({
   input: './index.html',
@@ -446,12 +449,11 @@ const basicConfig = createDefaultConfig({
   },
 });
 
+const workboxConfig = require('./workbox-config.js');
+
 export default merge(basicConfig, {
   plugins: [
-    workbox({
-      mode: 'injectManifest',
-      workboxConfig: require('./workbox-config.js'),
-    }),
+    injectManifest(workboxConfig),
   ],
 });
 ```
