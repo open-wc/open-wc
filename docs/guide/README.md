@@ -14,19 +14,19 @@ npm init @open-wc
 
 ## Available Recommendations
 - [Developing](/docs/developing)
-- [Linting](/linting/)
-- [Testing](/testing/)
-- [Building](/building/)
-- [Demoing](/demoing/)
-- [Publishing](/publishing/)
-- [Automating](/automating/)
+- [Linting](/docs/linting/)
+- [Testing](/docs/testing/)
+- [Building](/docs/building/)
+- [Demoing](/docs/demoing/)
+- [Publishing](/docs/publishing/)
+- [Automating](/docs/automating/)
 
 ## Our Philosophy
 
-You can read all about our motivation and our philosophy [here](/about/).
+You can read all about our motivation and our philosophy [here](/docs/about/).
 
 ## FAQ
-- [FAQ](/faq/)
+- [FAQ](/docs/faq/)
 
 ## Example
 The [Set-Game Example](https://github.com/open-wc/example-vanilla-set-game/) uses all the above recommendations.
