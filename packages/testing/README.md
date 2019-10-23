@@ -1,6 +1,6 @@
 # Testing
 
-[//]: # (AUTO INSERT HEADER PREPUBLISH)
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 An opinionated package that combines and configures testing libraries to minimize the amount of ceremony required when writing tests.
 

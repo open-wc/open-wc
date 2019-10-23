@@ -1,6 +1,6 @@
 # Semantic Dom Diff
 
-[//]: # (AUTO INSERT HEADER PREPUBLISH)
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ## Manual Setup
 

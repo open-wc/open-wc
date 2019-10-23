@@ -3,12 +3,14 @@
 Linting can help you write consistent code, and easily prevent mistakes. Open-wc recommends the following tools:
 
 We recommend
+
 - [ESLint](https://eslint.org/) to lint your es6 code
 - [Prettier](https://prettier.io/) to auto format your code
 - [lint-staged](https://www.npmjs.com/package/lint-staged) to apply linting fixed only to changed files
 - [commitlint](https://www.npmjs.com/package/@commitlint/cli) so commit messages follow a certain flow
 
 ## Setup
+
 ```bash
 npm init @open-wc
 # Upgrade > Linting
@@ -19,6 +21,7 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 :::
 
 ### Manual
+
 - `yarn add --dev @open-wc/eslint-config @open-wc/prettier-config lint-staged husky @commitlint/cli @commitlint/config-conventional`
 - Copy [.eslintignore](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/linting-eslint/templates/static/.eslintignore) to `.eslintignore`
 - Copy [.eslintrc.js](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/linting-prettier/templates/static/.eslintrc.js) to `.eslintrc.js`
@@ -54,6 +57,7 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 ## Usage
 
 Run:
+
 - `npm run lint` to check if any file is correctly formatted
 - `npm run format` to auto format your files
 

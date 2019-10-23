@@ -13,6 +13,7 @@ npm init @open-wc
 ```
 
 ## Available Recommendations
+
 - [Developing](/developing/)
 - [Linting](/linting/)
 - [Testing](/testing/)
@@ -26,8 +27,10 @@ npm init @open-wc
 You can read all about our motivation and our philosophy [here](/about/).
 
 ## FAQ
+
 - [FAQ](/faq/)
 
 ## Example
+
 The [Set-Game Example](https://github.com/open-wc/example-vanilla-set-game/) uses all the above recommendations.
 You can find a published storybook here: [https://example-set-game-open-wc.netlify.com/](https://example-set-game-open-wc.netlify.com/).
