@@ -1,41 +1,41 @@
 {
   "name": "@open-wc/building-webpack",
   "version": "2.7.1",
-  "description": "Default configuration for working with webpack",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Default configuration for working with webpack",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/building-webpack"
   },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "index.js",
   "scripts": {
-    "demo:start": "http-server dist -o",
     "demo:build": "webpack --mode production --config demo/js/webpack.config.js",
     "demo:build:dev": "webpack --mode development --config demo/js/webpack.config.js",
+    "demo:build:modern": "webpack --mode=production --config demo/js/webpack.modern.config.js",
+    "demo:build:stats": "webpack --mode=production --config demo/js/webpack.modern.config.js --profile --json > build-stats.json",
+    "demo:build:ts": "webpack --mode=production --config demo/ts/webpack.config.js",
+    "demo:build:ts-babel": "webpack --mode=production --config demo/ts-babel/webpack.config.js",
+    "demo:start": "http-server dist -o",
     "demo:webpack-dev": "webpack-dev-server --mode=development --config demo/js/webpack.config.js --open",
     "demo:webpack-dev:legacy": "webpack-dev-server --mode=development --config demo/js/webpack.config.js --open --legacy",
-    "demo:build:modern": "webpack --mode=production --config demo/js/webpack.modern.config.js",
     "demo:webpack-dev:modern": "webpack-dev-server --mode=development --config demo/js/webpack.modern.config.js --open",
-    "demo:build:ts-babel": "webpack --mode=production --config demo/ts-babel/webpack.config.js",
-    "demo:build:ts": "webpack --mode=production --config demo/ts/webpack.config.js",
-    "demo:build:stats": "webpack --mode=production --config demo/js/webpack.modern.config.js --profile --json > build-stats.json",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
-  "main": "index.js",
+  "files": [
+    "*.js",
+    "dom5-fork",
+    "src"
+  ],
   "keywords": [
     "open-wc",
     "webpack",
     "config"
-  ],
-  "files": [
-    "dom5-fork",
-    "src",
-    "*.js"
   ],
   "dependencies": {
     "@babel/core": "^7.3.3",

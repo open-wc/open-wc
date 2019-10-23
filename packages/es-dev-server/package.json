@@ -1,65 +1,65 @@
 {
   "name": "es-dev-server",
-  "main": "./dist/es-dev-server.js",
   "version": "1.18.5",
-  "description": "Development server for modern web apps",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "bin": {
-    "es-dev-server": "./dist/cli.js"
-  },
   "publishConfig": {
     "access": "public"
   },
-  "keywords": [
-    "server",
-    "http-server",
-    "polyfill"
-  ],
-  "files": [
-    ".self-signed-dev-server-ssl.key",
-    ".self-signed-dev-server-ssl.cert",
-    "dist"
-  ],
-  "scripts": {
-    "build": "babel src --out-dir dist --copy-files --include-dotfiles",
-    "test": "npm run test:node",
-    "test:node": "mocha test/**/*.test.js test/*.test.js --require @babel/register",
-    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --require @babel/register --update-snapshots",
-    "start": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --watch",
-    "start:compat-esm": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --watch --compatibility esm",
-    "start:compat-modern": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --watch --compatibility modern",
-    "start:compat-all": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --watch --compatibility all",
-    "start:node": "yarn build && node dist/cli.js --app-index demo/node-resolve/index.html --node-resolve --open --watch",
-    "start:node-compat-modern": "yarn build && node dist/cli.js --app-index demo/node-resolve/index.html --open --watch --node-resolve --compatibility modern",
-    "start:node-compat-all": "yarn build && node dist/cli.js --app-index demo/node-resolve/index.html --open --watch --node-resolve --compatibility all",
-    "start:static": "yarn build && node dist/cli.js --open demo/static/",
-    "start:monorepo": "yarn build && node dist/cli.js --root-dir ../../ --app-index packages/es-dev-server/demo/monorepo/index.html --node-resolve --open --watch",
-    "start:config": "yarn build && node dist/cli.js --config demo/static/es-dev-server.config.js --open demo/static/",
-    "start:root-dir": "yarn build && node dist/cli.js --root-dir demo/static/ --open",
-    "start:http1": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --watch --compatibility all",
-    "start:http2": "yarn build && node dist/cli.js --app-index demo/http2/index.html --config demo/http2/es-dev-server.config.js --open --watch --compatibility all",
-    "start:no-watch": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --compatibility all",
-    "start:babel": "yarn build && node dist/cli.js --app-index demo/babel/index.html --open --watch --babel",
-    "start:no-babel": "yarn build && node dist/cli.js --app-index demo/babel/index.html --open --watch",
-    "start:typescript": "yarn build && node dist/cli.js --app-index demo/typescript/index.html --file-extensions .ts --node-resolve --open --watch --babel",
-    "start:index-rewrite": "yarn build && node dist/cli.js --app-index demo/index-rewrite/index.html --config demo/index-rewrite/es-dev-server.config.js --node-resolve --open /",
-    "start:base-path": "yarn build && node dist/cli.js --app-index demo/base-path/index.html --base-path /my-base-path --node-resolve --watch --open",
-    "start:base-path-compat": "yarn build && node dist/cli.js --app-index demo/base-path/index.html --base-path /my-base-path --node-resolve --compatibility all --watch --open",
-    "start:performance": "yarn build && node dist/cli.js --root-dir ../../ --app-index packages/es-dev-server/demo/performance/index.html --node-resolve --watch",
-    "start:performance:compat-esm": "yarn build && node dist/cli.js --root-dir ../../ --app-index packages/es-dev-server/demo/performance/index.html --node-resolve --compatibility esm --watch",
-    "generate-certificates": "node scripts/generate-certificates.js",
-    "prepublishOnly": "npm run build && ../../scripts/insert-header.js"
-  },
+  "description": "Development server for modern web apps",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/es-dev-server"
   },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "./dist/es-dev-server.js",
+  "bin": {
+    "es-dev-server": "./dist/cli.js"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "build": "babel src --out-dir dist --copy-files --include-dotfiles",
+    "generate-certificates": "node scripts/generate-certificates.js",
+    "prepublishOnly": "npm run build && ../../scripts/insert-header.js",
+    "start": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --watch",
+    "start:babel": "yarn build && node dist/cli.js --app-index demo/babel/index.html --open --watch --babel",
+    "start:base-path": "yarn build && node dist/cli.js --app-index demo/base-path/index.html --base-path /my-base-path --node-resolve --watch --open",
+    "start:base-path-compat": "yarn build && node dist/cli.js --app-index demo/base-path/index.html --base-path /my-base-path --node-resolve --compatibility all --watch --open",
+    "start:compat-all": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --watch --compatibility all",
+    "start:compat-esm": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --watch --compatibility esm",
+    "start:compat-modern": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --watch --compatibility modern",
+    "start:config": "yarn build && node dist/cli.js --config demo/static/es-dev-server.config.js --open demo/static/",
+    "start:http1": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --watch --compatibility all",
+    "start:http2": "yarn build && node dist/cli.js --app-index demo/http2/index.html --config demo/http2/es-dev-server.config.js --open --watch --compatibility all",
+    "start:index-rewrite": "yarn build && node dist/cli.js --app-index demo/index-rewrite/index.html --config demo/index-rewrite/es-dev-server.config.js --node-resolve --open /",
+    "start:monorepo": "yarn build && node dist/cli.js --root-dir ../../ --app-index packages/es-dev-server/demo/monorepo/index.html --node-resolve --open --watch",
+    "start:no-babel": "yarn build && node dist/cli.js --app-index demo/babel/index.html --open --watch",
+    "start:no-watch": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --compatibility all",
+    "start:node": "yarn build && node dist/cli.js --app-index demo/node-resolve/index.html --node-resolve --open --watch",
+    "start:node-compat-all": "yarn build && node dist/cli.js --app-index demo/node-resolve/index.html --open --watch --node-resolve --compatibility all",
+    "start:node-compat-modern": "yarn build && node dist/cli.js --app-index demo/node-resolve/index.html --open --watch --node-resolve --compatibility modern",
+    "start:performance": "yarn build && node dist/cli.js --root-dir ../../ --app-index packages/es-dev-server/demo/performance/index.html --node-resolve --watch",
+    "start:performance:compat-esm": "yarn build && node dist/cli.js --root-dir ../../ --app-index packages/es-dev-server/demo/performance/index.html --node-resolve --compatibility esm --watch",
+    "start:root-dir": "yarn build && node dist/cli.js --root-dir demo/static/ --open",
+    "start:static": "yarn build && node dist/cli.js --open demo/static/",
+    "start:typescript": "yarn build && node dist/cli.js --app-index demo/typescript/index.html --file-extensions .ts --node-resolve --open --watch --babel",
+    "test": "npm run test:node",
+    "test:node": "mocha test/**/*.test.js test/*.test.js --require @babel/register",
+    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --require @babel/register --update-snapshots"
+  },
+  "files": [
+    ".self-signed-dev-server-ssl.cert",
+    ".self-signed-dev-server-ssl.key",
+    "dist"
+  ],
+  "keywords": [
+    "server",
+    "http-server",
+    "polyfill"
+  ],
   "dependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-syntax-import-meta": "^7.2.0",

@@ -1,32 +1,32 @@
 {
   "name": "@open-wc/building-utils",
   "version": "2.10.0",
-  "description": "Utils for @open-wc packages that do build stuff",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "test": "npm run test:node",
-    "test:node": "mocha test/**/*.test.js test/*.test.js",
-    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
-  },
+  "description": "Utils for @open-wc packages that do build stuff",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/building-utils"
   },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "scripts": {
+    "test": "npm run test:node",
+    "test:node": "mocha test/**/*.test.js test/*.test.js",
+    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
+  },
+  "files": [
+    "*.js",
+    "dom5-fork",
+    "index-html",
+    "src"
+  ],
   "keywords": [
     "building",
     "utils"
-  ],
-  "files": [
-    "src",
-    "index-html",
-    "dom5-fork",
-    "*.js"
   ],
   "dependencies": {
     "@babel/core": "^7.3.3",
