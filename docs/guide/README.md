@@ -13,7 +13,7 @@ npm init @open-wc
 ```
 
 ## Available Recommendations
-- [Developing](/developing/)
+- [Developing](/docs/developing)
 - [Linting](/linting/)
 - [Testing](/testing/)
 - [Building](/building/)
