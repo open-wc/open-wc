@@ -1,26 +1,26 @@
 {
   "name": "@open-wc/codelabs",
   "version": "1.1.0",
-  "description": "Open-wc codelabs",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Open-wc codelabs",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/codelabs"
+  },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "scripts": {
+    "build": "node build-codelabs.js"
   },
   "keywords": [
     "open-wc",
     "owc",
     "codelabs"
   ],
-  "scripts": {
-    "build": "node build-codelabs.js"
-  },
   "devDependencies": {
     "@types/cheerio": "^0.22.13",
     "@types/fs-extra": "^8.0.1",

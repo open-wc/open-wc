@@ -1,37 +1,37 @@
 {
   "name": "@import-maps/generate",
   "version": "0.1.6",
-  "description": "Generate an import map based on your production dependencies",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Generate an import map based on your production dependencies",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/import-maps-generate"
   },
-  "keywords": [
-    "import-map",
-    "import-maps"
-  ],
-  "scripts": {
-    "build": "babel src --out-dir dist --copy-files --include-dotfiles",
-    "start": "npm run build && node ./dist/generate.js",
-    "test": "npm run test:node",
-    "test:node": "mocha --require @babel/register",
-    "test:watch": "onchange 'src/**/*.js' 'test/**/*.js' -- npm run test --silent",
-    "prepublishOnly": "npm run build && ../../scripts/insert-header.js"
-  },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "dist/generate.js",
   "bin": {
     "generate": "./dist/generate.js",
     "generate-import-map": "./dist/generate.js"
   },
-  "main": "dist/generate.js",
+  "scripts": {
+    "build": "babel src --out-dir dist --copy-files --include-dotfiles",
+    "prepublishOnly": "npm run build && ../../scripts/insert-header.js",
+    "start": "npm run build && node ./dist/generate.js",
+    "test": "npm run test:node",
+    "test:node": "mocha --require @babel/register",
+    "test:watch": "onchange 'src/**/*.js' 'test/**/*.js' -- npm run test --silent"
+  },
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "import-map",
+    "import-maps"
   ],
   "dependencies": {
     "@yarnpkg/lockfile": "^1.1.0",

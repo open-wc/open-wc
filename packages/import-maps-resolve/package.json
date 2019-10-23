@@ -1,34 +1,34 @@
 {
   "name": "@import-maps/resolve",
   "version": "0.1.3",
-  "description": "Read and resolve urls via an import map",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Read and resolve urls via an import map",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/import-maps-resolve"
   },
-  "keywords": [
-    "import-map",
-    "import-maps"
-  ],
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "dist/index.js",
   "scripts": {
     "build": "babel src --out-dir dist --copy-files --include-dotfiles",
+    "prepublishOnly": "npm run build && ../../scripts/insert-header.js",
     "start": "npm run build && node ./dist/index.js",
     "test": "npm run test:node",
     "test:node": "mocha --require @babel/register",
-    "test:watch": "onchange 'src/**/*.js' 'test/**/*.js' -- npm run test --silent",
-    "prepublishOnly": "npm run build && ../../scripts/insert-header.js"
+    "test:watch": "onchange 'src/**/*.js' 'test/**/*.js' -- npm run test --silent"
   },
   "files": [
     "dist"
   ],
-  "main": "dist/index.js",
+  "keywords": [
+    "import-map",
+    "import-maps"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.3",

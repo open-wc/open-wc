@@ -1,32 +1,35 @@
 {
   "name": "@open-wc/demoing-storybook",
   "version": "0.3.0",
-  "description": "Storybook configuration following open-wc recommendations",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Storybook configuration following open-wc recommendations",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/building-storybook"
   },
-  "scripts": {
-    "storybook": "start-storybook -p 9001 -c demo/.storybook",
-    "prepublishOnly": "../../scripts/insert-header.js"
-  },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
   "main": "index.js",
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js",
+    "storybook": "start-storybook -p 9001 -c demo/.storybook"
+  },
+  "files": [
+    "*.js"
+  ],
   "keywords": [
     "storybook",
     "demo",
     "demo-states",
     "testing"
   ],
-  "files": [
-    "*.js"
-  ],
+  "peerDependencies": {
+    "lit-html": "^1.0.0"
+  },
   "dependencies": {
     "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
@@ -49,9 +52,6 @@
     "babel-loader": "^8.0.0",
     "moment": "^2.0.0",
     "polymer-webpack-loader": "^2.0.0"
-  },
-  "peerDependencies": {
-    "lit-html": "^1.0.0"
   },
   "devDependencies": {
     "lit-element": "^2.0.1",

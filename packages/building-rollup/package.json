@@ -1,38 +1,38 @@
 {
   "name": "@open-wc/building-rollup",
   "version": "0.12.0",
-  "description": "Default configuration for working with rollup",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Default configuration for working with rollup",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/building-rollup"
   },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "index.js",
   "scripts": {
-    "demo:start:build": "es-dev-server --app-index dist/index.html --open",
     "demo:build": "rimraf dist && rollup -c demo/js/rollup.config.js",
     "demo:build:modern": "rimraf dist && rollup -c demo/js/rollup.modern.config.js",
     "demo:build:ts": "rimraf dist && rollup -c demo/ts/rollup.config.js",
     "demo:build:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js",
+    "demo:start:build": "es-dev-server --app-index dist/index.html --open",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
-  "main": "index.js",
+  "files": [
+    "*.js",
+    "dom5-fork",
+    "plugins",
+    "src"
+  ],
   "keywords": [
     "open-wc",
     "web-components",
     "modules",
     "rollup"
-  ],
-  "files": [
-    "dom5-fork",
-    "plugins",
-    "src",
-    "*.js"
   ],
   "dependencies": {
     "@babel/core": "^7.3.3",

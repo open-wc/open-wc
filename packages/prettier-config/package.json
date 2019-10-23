@@ -1,28 +1,28 @@
 {
   "name": "@open-wc/prettier-config",
   "version": "0.1.10",
-  "description": "Prettier config following open-wc recommendations",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Prettier config following open-wc recommendations",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/prettier-config"
   },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
   "main": "prettier.config.js",
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js"
+  },
   "keywords": [
     "prettier",
     "linting",
     "formatting",
     "config"
   ],
-  "scripts": {
-    "prepublishOnly": "../../scripts/insert-header.js"
-  },
   "dependencies": {
     "eslint-config-prettier": "^3.3.0",
     "prettier": "^1.15.0"
