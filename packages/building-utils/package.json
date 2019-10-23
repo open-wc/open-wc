@@ -18,6 +18,10 @@
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/building-utils"
   },
+  "keywords": [
+    "building",
+    "utils"
+  ],
   "files": [
     "src",
     "index-html",
