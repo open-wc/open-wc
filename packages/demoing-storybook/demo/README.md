@@ -11,6 +11,7 @@
 This example element display some information about...
 
 ## Features:
+
 - bigger then you would expect
 - still fast
 - awesome to learn something
@@ -18,6 +19,7 @@ This example element display some information about...
 ## How to use
 
 ### Installation
+
 ```bash
 yarn add @foo/my-el
 ```

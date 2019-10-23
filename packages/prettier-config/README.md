@@ -1,6 +1,6 @@
 # Linting Prettier
 
-[//]: # (AUTO INSERT HEADER PREPUBLISH)
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 Use [Prettier](https://prettier.io) to format your JS, CSS and HTML code.
 
@@ -9,6 +9,7 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 :::
 
 ## Setup
+
 ```bash
 npm init @open-wc
 # Upgrade > Linting
@@ -34,10 +35,7 @@ npm init @open-wc
 - Update your `.eslintrc.js` to look like this:
   ```js
   module.exports = {
-    extends: [
-      '@open-wc/eslint-config',
-      'eslint-config-prettier'
-    ].map(require.resolve),
+    extends: ['@open-wc/eslint-config', 'eslint-config-prettier'].map(require.resolve),
   };
   ```
 
@@ -51,6 +49,7 @@ npm init @open-wc
 ## Usage
 
 Run:
+
 - `npm run lint:prettier` to check if your files are correctly formatted
 - `npm run format:prettier` to auto format your files
 

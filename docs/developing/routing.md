@@ -10,5 +10,5 @@ In alphabetical order:
 - [lit-router](https://github.com/danevans/lit-router)
 - [pwa-helpers router](https://github.com/Polymer/pwa-helpers#routerjs)
 - [redux first routing](https://github.com/mksarge/redux-first-routing)
-- [simplr-router](https://github.com/Matsuuu/simplr-router)  
+- [simplr-router](https://github.com/Matsuuu/simplr-router)
 - [vaadin-router](https://github.com/vaadin/vaadin-router)

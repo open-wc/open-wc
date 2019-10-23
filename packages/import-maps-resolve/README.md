@@ -1,6 +1,6 @@
 # Resolve import-maps
 
-[//]: # (AUTO INSERT HEADER PREPUBLISH)
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 This will allow you to parse and resolve urls by a given [import-map](https://github.com/WICG/import-maps).
 
@@ -40,16 +40,19 @@ function myResolve(specifier) {
 
 The 3rd parameter of `resolve` is the "baseUrl/basePath" and it's format is `/path/to/root::/subdir/foo`.
 You can compare it with an url `http://example.com/subdir/foo`.
+
 - Everything before the `::` is sort of the `domain` e.g. `http://example.com/`
 - Everything after is the path/directory to your appliaction
 
 Such a path is needed as import maps support relative pathes as values.
 
 ## Acknowledgments
+
 This implementation is heavily based on the [import-maps reference implementation](https://github.com/WICG/import-maps/tree/master/reference-implementation).
 Thanks to @domenic and @guybedford for sharing that prototype.
 
 Some adjustments have been made
+
 - Allow to process/resolve node pathes besides urls
 - Use mocha/chai for testing (already available in our setup)
 

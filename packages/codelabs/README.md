@@ -1,6 +1,7 @@
 # Open-wc codelabs
 
 ## Contributing
+
 Codelabs are written in markdown, h1 (`#`) indicates the codelab title and each h2 (`##`) indicates a codelab step. You can embed links, images and code snippets. See `example-codelabs` for more info.
 
 To display notifications, you can use a aside:
