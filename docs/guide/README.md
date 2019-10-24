@@ -14,9 +14,9 @@ npm init @open-wc
 
 ## Available Recommendations
 
-- [Developing](/docs/developing/)
-- [Linting](/docs/linting/)
-- [Testing](/docs/testing/)
+- [Developing](../developing/)
+- [Linting](../linting/)
+- [Testing](../testing/)
 - [Building](/docs/building/)
 - [Demoing](/docs/demoing/)
 - [Publishing](/docs/publishing/)
