@@ -13,7 +13,8 @@ npm init @open-wc
 ```
 
 ## Available Recommendations
-- [Developing](/docs/developing)
+
+- [Developing](/docs/developing/)
 - [Linting](/docs/linting/)
 - [Testing](/docs/testing/)
 - [Building](/docs/building/)
@@ -21,14 +22,13 @@ npm init @open-wc
 - [Publishing](/docs/publishing/)
 - [Automating](/docs/automating/)
 
-
 ## Our Philosophy
 
 You can read all about our motivation and our philosophy [here](/docs/about/).
 
 ## FAQ
-- [FAQ](/docs/faq/)
 
+- [FAQ](/docs/faq/)
 
 ## Example
 
