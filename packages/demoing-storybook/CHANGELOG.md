@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.3.0...@open-wc/demoing-storybook@0.3.1) (2019-10-23)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** allow <style> tag before custom element ([#887](https://github.com/open-wc/open-wc/issues/887)) ([4971cb6](https://github.com/open-wc/open-wc/commit/4971cb6))
+* add package keywords ([#859](https://github.com/open-wc/open-wc/issues/859)) ([cd78405](https://github.com/open-wc/open-wc/commit/cd78405))
+
+
+
+
+
 # [0.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.2.5...@open-wc/demoing-storybook@0.3.0) (2019-07-22)
 
 

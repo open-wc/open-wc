@@ -1,6 +1,6 @@
 # Create Open Web Components
 
-[//]: # (AUTO INSERT HEADER PREPUBLISH)
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ## Usage
 
@@ -13,6 +13,7 @@ npm init @open-wc
 :::
 
 This will kickstart a menu guiding you through all available actions.
+
 ```
 $ npm init @open-wc
 npx: installed 14 in 4.074s
@@ -42,6 +43,7 @@ These generators help you kickstart a new app or web component.
 They will create a new folder and set up everything you need to get started immediately.
 
 Example usage:
+
 ```bash
 npm init @open-wc
 # Select "Scaffold a new project"
@@ -57,13 +59,13 @@ npm init @open-wc
   This generator scaffolds a new starter application. We recommend using this generator at the start of your web component project.
   <br/>
 
-
 ## Features
 
 The above generators are the perfect playgrounds to prototype.
 Add linting, testing, demoing and building whenever the need arises.
 
 Example usage:
+
 ```bash
 cd existing-web-component
 npm init @open-wc
@@ -73,23 +75,23 @@ npm init @open-wc
 ### Available Upgrade features
 
 - `Linting`<br>
-This generator adds a complete linting setup with ESLint, Prettier, Husky and commitlint.
+  This generator adds a complete linting setup with ESLint, Prettier, Husky and commitlint.
   <br/>
 
 - `Testing`<br>
-This generator adds a complete testing setup with Karma, and Karma Browserstack.
+  This generator adds a complete testing setup with Karma, and Karma Browserstack.
   <br/>
 
 - `Demoing`<br>
-This generator adds a complete demoing setup with Storybook.
+  This generator adds a complete demoing setup with Storybook.
   <br/>
 
 - `Building > Rollup`<br>
-This generator adds a complete building setup with rollup.
+  This generator adds a complete building setup with rollup.
   <br/>
 
 - `Building > Webpack`<br>
-This generator adds a complete building setup with webpack.
+  This generator adds a complete building setup with webpack.
   <br/>
 
 <script>

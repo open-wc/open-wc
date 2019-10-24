@@ -1,22 +1,27 @@
 {
   "name": "@open-wc/eslint-config",
-  "version": "1.1.1",
-  "description": "Eslint config following open-wc recommendations",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
+  "version": "1.1.2",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Eslint config following open-wc recommendations",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/eslint-config"
   },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
   "main": "index.js",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
   },
+  "keywords": [
+    "lint",
+    "eslint",
+    "config"
+  ],
   "dependencies": {
     "babel-eslint": "^10.0.0",
     "eslint": "^6.1.0",

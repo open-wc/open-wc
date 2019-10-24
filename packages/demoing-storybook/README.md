@@ -1,6 +1,6 @@
 # Demoing via storybook
 
-[//]: # (AUTO INSERT HEADER PREPUBLISH)
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 For demoing and showcasing different states of your Web Component, we recommend using [storybook](https://storybook.js.org/).
 
@@ -9,24 +9,27 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 :::
 
 # Features
+
 - Create API documentation/playground
 - Show documentation (from markdown) with your element
 - Show your source code to copy/paste
 - Helper to setup transpilation for dependencies
 - Setup that works down to IE11
 
-
 ## Setup
+
 ```bash
 npm init @open-wc
 # Upgrade > Demoing
 ```
 
 ### Manual
+
 - `yarn add @open-wc/demoing-storybook --dev`
 - Copy at minimum the [.storybook](https://github.com/daKmoR/create-open-wc/tree/master/src/generators/demoing-storybook/templates/static/.storybook) folder to `.storybook`
 - If you want to bring along the examples, you may also copy the `stories` folder.
 - Add the following scripts to your package.json
+
 ```js
 "scripts": {
   "storybook": "start-storybook -p 9001",
@@ -48,18 +51,14 @@ npm run storybook
 Create an `*.stories.js` (for example `index.stories.js`) file within the `stories` folder.
 
 ```js
-import {
-  storiesOf,
-  html,
-} from '@open-wc/demoing-storybook';
+import { storiesOf, html } from '@open-wc/demoing-storybook';
 
-storiesOf('Demo|Example Element', module)
-  .add(
-    'Alternative Header',
-    () => html`
-      <my-el .header=${'Something else'}></my-el>
-    `,
-  );
+storiesOf('Demo|Example Element', module).add(
+  'Alternative Header',
+  () => html`
+    <my-el .header=${'Something else'}></my-el>
+  `,
+);
 ```
 
 ### Create API documentation/playground
@@ -70,6 +69,7 @@ So this should probably be your default story to gives users documentation, api 
 For additional edge cases you should add more stories.
 
 Features:
+
 - Show your README.md without leaving storybook
 - On the canvas the "knobs" panel is pre selected
 - All the knobs are auto generated from your JavaScript Class
@@ -82,22 +82,21 @@ import readme from '../README.md';
 
 storiesOf('Demo|Example Element', module)
   .addDecorator(withKnobs)
-  .add(
-    'Documentation',
-    () => withClassPropertiesKnobs(MyEl),
-    { notes: { markdown: readme }, options: { selectedPanel: 'storybooks/knobs/panel' } },
-  )
+  .add('Documentation', () => withClassPropertiesKnobs(MyEl), {
+    notes: { markdown: readme },
+    options: { selectedPanel: 'storybooks/knobs/panel' },
+  });
 ```
 
 So with a configuration like this you will get this auto generated.
 
 <img src="https://raw.githubusercontent.com/open-wc/open-wc/master/packages/demoing-storybook/dev_assets/storybook.gif" alt="storybook demo animation" />
 
-
 For most types this works fine out of the box but if want to provide better knobs you can customize by overriding the
 properties definitions and using the [available knobs](https://github.com/storybooks/storybook/tree/5.0.0/addons/knobs#available-knobs).<br>
 It creates the knobs by reading `static get properties` (host properties) and `static get _classProperties` (inherited properties).<br>
 This is currently pretty specific to LitElement - However there is an attribute/properties documentation spec [in discussion](https://github.com/w3c/webcomponents/issues/776).
+
 ```js
 import {
   withClassPropertiesKnobs,
@@ -126,7 +125,8 @@ import {
 By default it will create one simple node from the given Class.
 However for a nicer demo it may be needed to set properties or add more lightdom.
 You can do so by providing a template. The template must render the custom element
-to be tested as first root node.
+to be tested before other custom elements.
+
 ```js
 () => withClassPropertiesKnobs(MyEl, {
   template: html`
@@ -166,15 +166,19 @@ module.exports = ({ config }) => {
 ```
 
 ### Additional middleware config like a proxy
+
 If you need additional configuration for the storybook dev server you can provide them via a config file `.storybook/middleware.js`.
+
 ```js
 // example for a proxy middleware to use an api for fetching data to display
 const proxy = require('http-proxy-middleware');
 
 module.exports = function(app) {
-  app.use(proxy('/api/', {
-    target: 'http://localhost:9010/',
-  }));
+  app.use(
+    proxy('/api/', {
+      target: 'http://localhost:9010/',
+    }),
+  );
 };
 ```
 

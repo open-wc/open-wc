@@ -21,6 +21,7 @@ npm init @open-wc
 - [Publishing](/docs/publishing/)
 - [Automating](/docs/automating/)
 
+
 ## Our Philosophy
 
 You can read all about our motivation and our philosophy [here](/docs/about/).
@@ -28,6 +29,8 @@ You can read all about our motivation and our philosophy [here](/docs/about/).
 ## FAQ
 - [FAQ](/docs/faq/)
 
+
 ## Example
+
 The [Set-Game Example](https://github.com/open-wc/example-vanilla-set-game/) uses all the above recommendations.
 You can find a published storybook here: [https://example-set-game-open-wc.netlify.com/](https://example-set-game-open-wc.netlify.com/).

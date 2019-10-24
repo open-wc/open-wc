@@ -1,6 +1,6 @@
 # Testing
 
-[//]: # (AUTO INSERT HEADER PREPUBLISH)
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 Testing is an important part of any software project. We have collected a set of libraries, tools and best practices to get you started with testing.
 

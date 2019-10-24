@@ -1,38 +1,43 @@
 {
   "name": "@open-wc/karma-esm",
-  "version": "2.7.3",
-  "description": "Karma plugin for testing with es modules",
-  "author": "open-wc",
-  "main": "./karma-esm.js",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
+  "version": "2.7.4",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Karma plugin for testing with es modules",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/karma-esm"
   },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "./karma-esm.js",
   "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js",
     "test": "karma start demo/basic/karma.config.js --coverage",
-    "test:watch": "karma start demo/basic/karma.config.js --auto-watch=true --single-run=false",
     "test:import-map": "karma start demo/import-map/karma.config.js --coverage",
     "test:import-map:watch": "karma start demo/import-map/karma.config.js --auto-watch=true --single-run=false",
     "test:typescript": "karma start demo/typescript/karma.config.js --coverage",
     "test:typescript:watch": "karma start demo/typescript/karma.config.js --auto-watch=true --single-run=false",
-    "prepublishOnly": "../../scripts/insert-header.js"
+    "test:watch": "karma start demo/basic/karma.config.js --auto-watch=true --single-run=false"
   },
   "files": [
-    "src",
-    "*.js"
+    "*.js",
+    "src"
+  ],
+  "keywords": [
+    "karma",
+    "testing",
+    "polyfill"
   ],
   "dependencies": {
-    "@open-wc/building-utils": "^2.10.0",
+    "@open-wc/building-utils": "^2.10.1",
     "babel-plugin-istanbul": "^5.1.4",
     "chokidar": "^3.0.2",
     "deepmerge": "^3.3.0",
-    "es-dev-server": "^1.18.5",
+    "es-dev-server": "^1.18.6",
     "minimatch": "^3.0.4",
     "portfinder": "^1.0.21",
     "request": "^2.88.0"

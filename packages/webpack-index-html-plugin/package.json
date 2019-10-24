@@ -1,34 +1,40 @@
 {
   "name": "@open-wc/webpack-index-html-plugin",
-  "version": "1.5.1",
-  "description": "Plugin for generating a index html with webpack",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "main": "webpack-index-html-plugin.js",
-  "license": "MIT",
+  "version": "1.5.2",
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "test": "mocha test/**/*.test.js test/*.test.js",
-    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
-  },
+  "description": "Plugin for generating a index html with webpack",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/webpack-index-html-plugin"
   },
-  "files": [
-    "src",
-    "*.js"
-  ],
-  "dependencies": {
-    "@open-wc/building-utils": "^2.10.0",
-    "deepmerge": "^3.2.0",
-    "parse5": "^5.1.0"
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "webpack-index-html-plugin.js",
+  "scripts": {
+    "test": "mocha test/**/*.test.js test/*.test.js",
+    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
   },
+  "files": [
+    "*.js",
+    "src"
+  ],
+  "keywords": [
+    "webpack",
+    "plugin",
+    "config",
+    "polyfills"
+  ],
   "peerDependencies": {
     "webpack": "^4.32.2"
+  },
+  "dependencies": {
+    "@open-wc/building-utils": "^2.10.1",
+    "deepmerge": "^3.2.0",
+    "parse5": "^5.1.0"
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.10",

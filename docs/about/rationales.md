@@ -10,7 +10,6 @@ This is such a powerful and widely-used pattern in the current JavaScript ecosys
 We want to help you build your apps as easily and efficiently as possible, so for now we've adopted this practice as our only exception to the above rules.
 The [import maps](https://github.com/WICG/import-maps) proposal aims to bring bare modules to the web browser. You can follow that repository to stay up to date.
 
-
 ## Workflows
 
 We recommend implementing the following three workflows for specific tasks while developing your component or application.
@@ -26,9 +25,11 @@ We recommend our [ES Dev Server](../developing/es-dev-server.html) as it does no
 :::
 
 When would you choose this workflow:
+
 - When developing new features
 
 Why would you choose this:
+
 - Simple to setup
 - As fast as it gets
 
@@ -38,15 +39,16 @@ Chances are that the web components you're building will need to run in more tha
 In these cases it's time to open your toolbox and make sure everything works in all supported browsers.
 
 When would you choose this workflow:
+
 - To verify everything works in all supported browsers
 - To debug legacy browsers
 
 We recommend our [Open Web Components Building Setup](../building).
 
 Why would you choose it:
+
 - As good as it gets when you need to work with legacy browsers
 - Auto-bundling/reloading
-
 
 ### Production Workflow
 
@@ -55,11 +57,13 @@ Most likely a publicly available web server.
 Before you do that let's apply all the optimizations magic we can cook up.
 
 When would you use this:
+
 - Optimize your build
 - Publishing to production
 
 We recommend our [Open Web Components Building Setup](../building).
 
 Why would you choose it:
+
 - Multiple bundles for differential serving
 - Conditional auto-loader for those bundles (without a special server)

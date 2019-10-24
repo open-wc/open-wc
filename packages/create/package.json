@@ -1,37 +1,37 @@
 {
   "name": "@open-wc/create",
-  "version": "0.19.0",
-  "description": "Easily setup all the tools of Open Web Components.",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
+  "version": "0.19.1",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Easily setup all the tools of Open Web Components.",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/create"
   },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "bin": {
+    "create-open-wc": "./dist/create.js"
+  },
+  "scripts": {
+    "build": "rimraf dist && babel src --out-dir dist --copy-files --include-dotfiles",
+    "prepublishOnly": "npm run build && ../../scripts/insert-header.js",
+    "start": "npm run build && node ./dist/create.js",
+    "test": "npm run test:node",
+    "test:node": "mocha --require @babel/register",
+    "test:watch": "onchange 'src/**/*.js' 'test/**/*.js' -- npm run test --silent"
+  },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "open-wc",
     "owc",
     "generator",
     "starter-app"
-  ],
-  "scripts": {
-    "build": "rimraf dist && babel src --out-dir dist --copy-files --include-dotfiles",
-    "start": "npm run build && node ./dist/create.js",
-    "test": "npm run test:node",
-    "test:node": "mocha --require @babel/register",
-    "test:watch": "onchange 'src/**/*.js' 'test/**/*.js' -- npm run test --silent",
-    "prepublishOnly": "npm run build && ../../scripts/insert-header.js"
-  },
-  "bin": {
-    "create-open-wc": "./dist/create.js"
-  },
-  "files": [
-    "dist"
   ],
   "dependencies": {
     "chalk": "^2.4.2",

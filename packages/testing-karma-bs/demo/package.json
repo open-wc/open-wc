@@ -1,10 +1,10 @@
 {
   "scripts": {
     "test": "karma start --coverage",
-    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:bs": "karma start karma.bs.conf.js --legacy --coverage",
     "test:legacy": "karma start --legacy --coverage",
     "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false",
-    "test:bs": "karma start karma.bs.conf.js --legacy --coverage"
+    "test:watch": "karma start --auto-watch=true --single-run=false"
   },
   "devDependencies": {
     "@open-wc/testing-karma": "^0.3.0",
