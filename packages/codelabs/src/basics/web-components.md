@@ -1,6 +1,7 @@
 # Web Components basics
 
 ## Introduction
+
 Web components are a set of low-level browser APIs that allow us to write modular, reusable and encapsulated HTML elements. And the best thing about them: since they're based on web standards, we don't have to install any framework or library to start using them. You can start writing web components anywhere using vanilla javascript, right now!
 
 The web component APIs align with the way browsers have always worked, so they're pretty low level and imperative. We expect that for most uses cases we will still use libraries or frameworks for most projects. But instead of each framework inventing their own component model, they will use the ones baked into the browser instead.
@@ -8,12 +9,15 @@ The web component APIs align with the way browsers have always worked, so they'r
 Web components have a multitude of use cases. The most obvious use case is to use them for UI component libraries which can then be reused within multiple other front-end frameworks. But you can also use web components all the way up the tree to compose your entire application out of them. Web components are also a perfect fit for static/server-rendered pages to add interactivity later on.
 
 Browsers are moving pretty fast, adding new APIs all the time. In this codelab you will learn about the three most important ones:
+
 - Custom Elements
 - Templates
 - Shadow DOM
 
 ## Setup
+
 For this codelab you will need:
+
 - A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
 - Basic knowledge of HTML, CSS, and Javascript.
 - A coding environment that can display a static HTML page, we recommend an online editor like [jsbin](https://jsbin.com/?html,output).
@@ -34,6 +38,7 @@ To get started, let's create a basic HTML page:
 If you run this in the browser and see hello world, you're good to go!
 
 ## Custom Elements
+
 First, we will take a look at the most important web component API: custom elements.
 
 Modify your HTML page to wrap the "Hello world" message in an element called `<cool-heading>`:
@@ -96,9 +101,11 @@ customElements.define('cool-heading', CoolHeading);
   </body>
 </html>
 ```
+
 </details>
 
 ## Customizing our element
+
 <aside class="notice">
   We show examples using imperative DOM manipulation to make it easy to understand the basics. Unless you are building super portable components, you will likely use some helper libraries for templating/rendering. We will look into that later in the codelab.
 </aside>
@@ -198,9 +205,11 @@ If we run this code in the browser, the element should turn blue on click.
   </body>
 </html>
 ```
+
 </details>
 
 ## Templating
+
 The second Web Components API we will look into is HTML templates. When writing web components, we usually need to do more than just setting some styles or text. We often need to render larger pieces of HTML as part of our component and update parts of it when the user interacts with the page.
 
 To do this efficiently, browsers have a template element. This allows us to define the structure of a piece of HTML once upfront, and efficiently clone this each time the element is rendered on the page. This is a lot faster than recreating the same HTML structure each time. Writing and cloning templates is (intentionally) pretty low level, you will usually not want to do this manually. You can read more about the basic API [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template).
@@ -216,7 +225,6 @@ LitElement is written and distributed as es modules, this means we can import it
   <body>
     <script type="module">
       import { LitElement } from 'https://unpkg.com/lit-element?module';
-
     </script>
   </body>
 </html>
@@ -238,28 +246,28 @@ customElements.define('web-component-apis', WebComponentApis);
 ```
 
 ```html
-  <web-component-apis></web-component-apis>
+<web-component-apis></web-component-apis>
 ```
 
 If you run this in the browser you should see `lit element connected` logged to the terminal.
 
 Now that we have our element based on LitElement, we can start adding our template. `lit-html` works by writing HTML inside of [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) which are strings that can span multiple lines:
 
- ```js
+```js
 const template = `
-  <h1>Hello world</h1>
+ <h1>Hello world</h1>
 `;
- ```
+```
 
- In order to create an actual `lit-html` template, we prefix the template literal with a special HTML tag:
+In order to create an actual `lit-html` template, we prefix the template literal with a special HTML tag:
 
- ```js
+```js
 import { html } from 'https://unpkg.com/lit-element?module';
 
 const template = html`
   <h1>Hello world</h1>
 `;
- ```
+```
 
 This is using a feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates), where `html` tag is a function which returns the prepared template ready for rendering. We won't go into details of how it works exactly, but by using this syntax `lit-html` can very efficiently update the dynamic parts of your template when your element re-renders.
 
@@ -331,9 +339,11 @@ LitElement offers a lot more features than just rendering templates. We will loo
   </body>
 </html>
 ```
+
 </details>
 
 ## Shadow DOM
+
 The last important web component API we will look into is Shadow DOM. Traditionally, HTML and CSS have always been global. This scales pretty badly, we need to make sure that ids are unique on the page and CSS selector can get pretty complex. This is why many front-end frameworks offer some form of encapsulation. With Shadow DOM, this capability is now built into the browser.
 
 The best way to visualize this is to inspect the element we created in the previous step. In the DOM inspector you will see that the children rendered by our element are not direct children of our element, but are wrapped inside of a shadow root:
@@ -396,7 +406,9 @@ Next, let's add the same HTML outside our component on the page:
 
     <web-component-apis></web-component-apis>
 
-    <script type="module">...</script>
+    <script type="module">
+      ...
+    </script>
   </body>
 </html>
 ```
@@ -433,7 +445,9 @@ Next, we can define some global styles outside our component:
 
     <web-component-apis></web-component-apis>
 
-    <script type="module">...</script>
+    <script type="module">
+      ...
+    </script>
   </body>
 </html>
 ```
@@ -518,12 +532,15 @@ When you reload the page, all the texts on the page will have the new font.
   </body>
 </html>
 ```
+
 </details>
 
 ## Web Components in the wild
+
 Web Components are being used in the wild by many projects and companies. Some examples:
 
 ### Github
+
 Github uses web component for various part of their website. They're using just the Custom Elements API, relying on global styling. They use them as a progressive enhancements, on browsers without support or when javascript is turned off, there is a fallback text that is displayed.
 
 Their elements are open source, [you can find them here](https://github.com/github/time-elements).
@@ -533,6 +550,7 @@ Their elements are open source, [you can find them here](https://github.com/gith
 ![Example github web component](./assets/github-example-2.png)
 
 ### Twitter
+
 Twitter utilizes Web Components for embedding tweets. They're using both Custom Elements and Shadow DOM, because they need to ensure the styling of the tweet is consistent across pages and the styling of the component doesn't interfere with the styling of the page.
 
 On browsers which don't support Web Components, twitter uses an iframe to achieve a similar functionality (with a much higher cost).
@@ -542,6 +560,7 @@ On browsers which don't support Web Components, twitter uses an iframe to achiev
 ![Example twitter web component code](./assets/twitter-example-2.png)
 
 ### Video
+
 The `<video>` element is built into the browser, and it's actually also using Shadow DOM. When you place a video element on the page it actually renders a lot more UI for the controls.
 
 You can inspect the Shadow DOM of these elements on most browser after enabling a setting in your DevTools.
