@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+  <input type="checkbox" onchange="e => { debugger; }">
+
+  <todo-app></todo-app>
+
+  <script type="module">
+    import { LitElement, nothing, html, css } from 'https://unpkg.com/lit-element?module';
+
+    class TodoList extends LitElement {
+      static get properties() {
+        return {
+          todos: { type: Array },
+        };
+      }
+
+      static get styles() {
+        return css`
+          ul {
+            list-style: none;
+            padding: 0;
+          }
+
+          button {
+            background-color: transparent;
+            border: none;
+          }
+        `;
+      }
+
+      render() {
+        if (!this.todos) {
+          return nothing;
+        }
+
+        return html`
+          <ol>
+          ${this.todos.map(item => html`
+            <li>
+              <input type="checkbox" .checked=${item.finished} @change=${e => this._itemCheckedChanged(e, item)}>
+              <span>${item.text}</span>
+              <button @click=${() => this._removeItem(item)}>X</button>
+            </li>
+          `)}
+          </ol>
+        `;
+      }
+
+      _itemCheckedChanged(item) {
+        this.dispatchEvent(new CustomEvent('item-checked-changed', { detail: item }));
+      }
+
+      _removeItem(item) {
+        this.dispatchEvent(new CustomEvent('remove-item', { detail: item }));
+      }
+    }
+
+    customElements.define('todo-list', TodoList);
+
+    class TodoApp extends LitElement {
+      static get properties() {
+        return {
+          todos: { type: Array },
+        };
+      }
+
+      constructor() {
+        super();
+
+        this.todos = [
+          { text: 'Learn about LitElement 1', finished: false },
+          { text: 'Learn about LitElement 2', finished: false },
+          { text: 'Learn about LitElement 3', finished: false },
+          { text: 'Learn about LitElement 4', finished: false },
+        ];
+      }
+
+      render() {
+        return html`
+          <h1>Todo list</h1>
+
+          <input id="nameInput" placeholder="Name"><button @click=${this._addTodo}>Add TODO</button>
+
+          <todo-list
+            .todos=${this.todos}
+            @item-checked-changed=${this._itemCheckedChanged}
+            @remove-item=${this._removeItem}
+          ></todo-list>
+
+          <p>Total finished: ${this._finishedCount}</p>
+          <p>Total unfinished: ${this._unfinishedCount}</p>
+        `;
+      }
+
+      update(changed) {
+        if (changed.has('todos')) {
+          this._onTodosChanged();
+        }
+
+        super.update(changed);
+      }
+
+      _onTodosChanged() {
+        this._finishedCount = this.todos.filter(e => e.checked).length;
+        this._unfinishedCount = this.todos.length - this._finishedCount;
+      }
+
+      _itemCheckedChanged(e, item) {
+        this.todos = this.todos.map((todoItem) => {
+          if (todoItem !== item) {
+            return item;
+          }
+          return { ...item, finished: e.target.checked };
+        });
+      }
+
+      _addTodo() {
+        const nameInput = this.shadowRoot.getElementById('nameInput');
+        const text = nameInput.value;
+        nameInput.value = '';
+
+        this.todos = [
+          ...this.todos,
+          { text, finished: false },
+        ];
+      }
+
+      _removeItem(item) {
+        this.todos = this.todos.filter(e => e !== item);
+      }
+    }
+
+    window.customElements.define('todo-app', TodoApp);
+  </script>
+</body>
+
+</html>
