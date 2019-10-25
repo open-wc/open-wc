@@ -779,7 +779,7 @@ Ok so the structure of the class should be pretty familiar now, there is a `todo
 
 The parent element is still in charge, and we expect it to pass along the todos list to this component. This means that we cannot assume the list to always be there when we do a render. If we don't take care of this somehow, our component will crash because you cannot run a `map` function on `undefined.` Adding early returns in your render function is a simple way to do this, it's easy to see which properties are required for rendering.
 
-Next, we need to somehow let the parent element know that the user clicked on the checkbox or remove the button. We can do this using DOM events. DOM events are great because the structure and hierarchy of our application are reflected in the DOM, so when a component fires an event only it's parent components can receive them. This creates an automatic scoped system.
+Next, we need to somehow let the parent element know that the user clicked on the checkbox or remove the button. We can do this using DOM events. DOM events are great because the structure and hierarchy of our application are reflected in the DOM, so when a component fires an event only its parent components can receive them. This creates an automatic scoped system.
 
 Let's add the events we want to fire:
 
