@@ -32,7 +32,6 @@ module.exports = function createIndex(codelab) {
     </head>
 
     <body>
-
       <google-codelab title="${
         codelab.heading
       }" feedback-link="https://github.com/open-wc/open-wc/issues">
