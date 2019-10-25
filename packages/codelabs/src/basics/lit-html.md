@@ -90,7 +90,7 @@ We defined the tag name for our element as `todo-app`, now we need to add this t
 If you run this in the browser you should see `lit element connected` logged to the terminal.
 
 <aside class="notice">
-  Because LitElement also does some work in the connectedCallback, we must always call super.connectedCallback. This is a common source of confusion, so make sure to remember!
+  Because LitElement also does some work in the `connectedCallback`, we must always call `super.connectedCallback()`. This is a common source of confusion, so make sure to remember!
 </aside>
 
 Now that we have defined our element, we can start adding a template. lit-element uses lit-html to handle the templating. lit-html works by writing HTML inside of [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) which are strings that can span multiple lines:
