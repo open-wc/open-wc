@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.43](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.1.42...@open-wc/testing-karma@3.1.43) (2019-10-25)
+
+
+### Bug Fixes
+
+* align used mocha version ([#901](https://github.com/open-wc/open-wc/issues/901)) ([3606381](https://github.com/open-wc/open-wc/commit/3606381))
+
+
+
+
+
 ## [3.1.42](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.1.41...@open-wc/testing-karma@3.1.42) (2019-10-23)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.2.2...@open-wc/testing-helpers@1.2.3) (2019-10-25)
+
+
+### Bug Fixes
+
+* align used mocha version ([#901](https://github.com/open-wc/open-wc/issues/901)) ([3606381](https://github.com/open-wc/open-wc/commit/3606381))
+
+
+
+
+
 ## [1.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.2.1...@open-wc/testing-helpers@1.2.2) (2019-10-23)
 
 

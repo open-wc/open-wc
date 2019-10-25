@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-index-html",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "publishConfig": {
     "access": "public"
   },
@@ -29,8 +29,8 @@
     "polyfill"
   ],
   "dependencies": {
-    "@import-maps/resolve": "^0.1.4",
-    "@open-wc/building-utils": "^2.10.1",
+    "@import-maps/resolve": "^0.1.5",
+    "@open-wc/building-utils": "^2.10.2",
     "deepmerge": "^3.2.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.0",

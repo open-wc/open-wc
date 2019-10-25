@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.3](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.5.2...@open-wc/webpack-index-html-plugin@1.5.3) (2019-10-25)
+
+
+### Bug Fixes
+
+* align used mocha version ([#901](https://github.com/open-wc/open-wc/issues/901)) ([3606381](https://github.com/open-wc/open-wc/commit/3606381))
+
+
+
+
+
 ## [1.5.2](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.5.1...@open-wc/webpack-index-html-plugin@1.5.2) (2019-10-23)
 
 

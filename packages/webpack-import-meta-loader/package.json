@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/webpack-import-meta-loader",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "publishConfig": {
     "access": "public"
   },

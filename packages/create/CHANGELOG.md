@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.19.1...@open-wc/create@0.19.2) (2019-10-25)
+
+
+### Bug Fixes
+
+* align used mocha version ([#901](https://github.com/open-wc/open-wc/issues/901)) ([3606381](https://github.com/open-wc/open-wc/commit/3606381))
+
+
+
+
+
 ## [0.19.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.19.0...@open-wc/create@0.19.1) (2019-10-23)
 
 **Note:** Version bump only for package @open-wc/create
