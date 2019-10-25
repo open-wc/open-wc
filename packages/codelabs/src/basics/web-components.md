@@ -1,4 +1,4 @@
-# Basics: Web Component
+# Web Components basics
 
 ## Introduction
 Web components are a set of low-level browser APIs that allow us to write modular, reusable and encapsulated HTML elements. And the best thing about them: since they're based on web standards, we don't have to install any framework or library to start using them. You can start writing web components anywhere using vanilla javascript, right now!
@@ -229,7 +229,6 @@ Next, we need to define our class. Instead of extending `HTMLElement`, we are no
 ```js
 class WebComponentApis extends LitElement {
   connectedCallback() {
-    // make
     super.connectedCallback();
     console.log('lit element connected');
   }
