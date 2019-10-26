@@ -2,13 +2,20 @@
 
 ## Introduction
 
-In this codelab you will learn the basics of what web components are, and how they work.
+In this codelab, you will learn the basics of what web components are and how they work.
 
-Web components are a set of low-level browser APIs that allow us to write modular, reusable and encapsulated HTML elements. Because they're based on web standards, web components don't require a lot of complex setup, and work anywhere that supports basic HTML and javascript.
+Web components are a set of low-level browser APIs that allow us to write modular, reusable and encapsulated HTML elements. They are based on web standards, and therefore don't require a lot of complex setup to get started. Web components work in any environment that supports basic HTML and javascript.
 
 The web component APIs align with the way browsers have always worked, so they're pretty low level and imperative. We expect that for most use cases we will still use libraries or frameworks for most projects. But instead of each framework inventing their own component model, they will use the ones baked into the browser instead.
 
-Web components have a multitude of use cases. The most obvious use case is to use them for UI component libraries which can then be reused within multiple other front-end frameworks. But you can also use web components all the way up the tree to compose your entire application out of them. Web components are also a perfect fit for static/server-rendered pages to add interactivity later on.
+Web components have a multitude of use cases. The most obvious is to use them for UI component libraries, where these UI components can be reused within applications built with different technologies. But you can also use web components all the way up the tree and compose entire applications out of them. Web components are also a perfect fit for static/server-rendered pages, where the components just add interactivity after the initial render.
+
+**What you need:**
+
+- A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
+- Basic knowledge of HTML, CSS, and Javascript.
+
+**What you'll learn**
 
 Browsers are moving pretty fast, adding new APIs all the time. In this codelab you will learn about the three most important ones:
 
@@ -16,14 +23,15 @@ Browsers are moving pretty fast, adding new APIs all the time. In this codelab y
 - Templates
 - Shadow DOM
 
+**How it works**
+
+This codelab will go step by step, explaining each code change. At the bottom of each section, there is a "View final result" button where you can see the final code result you should end up with. The codelab is sequential, results from the previous step carry on to the next step.
+
+At the bottom of each step, there is a final code snippet to make sure you're still on the right track or to help you when you get stuck.
+
 ## Setup
 
-For this codelab you will need:
-
-- A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
-- Basic knowledge of HTML, CSS, and Javascript.
-- A coding environment that can display a static HTML page, we recommend an online editor like [jsbin](https://jsbin.com/?html,output).
-- If using a local editor, any simple web server will work. For example [es-dev-server](https://open-wc.org/developing/es-dev-server.html#getting-started).
+You can follow this codelab using anything that can display a simple HTML page. We recommend using an [online code editor like jsbin](https://jsbin.com/?html,output), but you could also create a basic html page using your IDE.
 
 To get started, let's create a basic HTML page:
 
@@ -149,6 +157,8 @@ class CoolHeading extends HTMLElement {
 }
 ```
 
+The text in our element should now appear blue.
+
 To respond to user input, we can add an event listener to our element or one of its children. Let's add one to change the color of our element on click:
 
 ```js
@@ -234,7 +244,7 @@ LitElement is written and distributed as es modules, this means we can import it
 
 Make sure you add `type="module"` to the script tag!
 
-Next, we need to define our class. Instead of extending `HTMLElement`, we are now extending `LitElement`. `LitElement` extends `HTMLElement` already, so we're still writing an actual web component:
+Next, we need to define our class. Instead of extending `HTMLElement`, we are now extending `LitElement`. `LitElement` extends `HTMLElement` already, so we're still creating an actual custom element:
 
 ```js
 class WebComponentApis extends LitElement {
@@ -253,7 +263,7 @@ customElements.define('web-component-apis', WebComponentApis);
 
 If you run this in the browser you should see `lit element connected` logged to the terminal.
 
-Now that we have our element based on LitElement, we can start adding our template. lit-html works by writing HTML inside of [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) which are strings that can span multiple lines:
+Now that we have our element based on LitElement, we can start adding our template. lit-html works by writing HTML inside of template literals. These are a type of strings which can span multiple lines, ideal for writing HTML:
 
 ```js
 const template = `
@@ -261,7 +271,7 @@ const template = `
 `;
 ```
 
-In order to create an actual lit-html template, we prefix the template literal with a special HTML tag:
+In order to create an actual lit-html template, we need to prefix the template literal with a special HTML tag:
 
 ```js
 import { html } from 'https://unpkg.com/lit-element?module';
@@ -271,11 +281,11 @@ const template = html`
 `;
 ```
 
-This is a native browser feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates), where the `html` tag is a function which returns the prepared template ready for rendering. We won't go into details of how it works exactly, but by using this syntax `lit-html` can very efficiently update the dynamic parts of your template when your element re-renders.
+This is a native browser feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates). The `html` tag is just a function that gets called with information about template literal it's attached to. We won't go into details of how it works exactly, but by using this syntax `lit-html` can very efficiently create templates and update only the parts that change when re-rendering.
 
 Most popular IDEs support syntax highlighting of HTML inside template literals, but for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
 
-lit-element works with a `render` function, which is called each time the element is updated. From this function, we return the template which is rendered to the page.
+lit-element works with a `render` function, which is called each time the element is updated. From this function, we need to return the template we want to render to the page.
 
 Let's take the list of Web Component APIs we saw in the previous step, and add it as a lit-html template:
 
@@ -306,7 +316,7 @@ customElements.define('web-component-apis', WebComponentApis);
 After you've added your component to the page, you see the template we added rendered on the screen.
 
 <aside class="notice">
-LitElement offers a lot more features than just rendering templates. We will look into those in the next codelab.
+LitElement offers a lot more features than just rendering templates, check out our <a href="https://open-wc.org/codelabs/">other codelabs</a> for that.
 </aside>
 
 <details>
@@ -393,7 +403,7 @@ customElements.define('web-component-apis', WebComponentApis);
 
 When we refresh the page, our element should now be styled.
 
-Next, let's add the same HTML outside our component on the page:
+To see the encapsulation in action, we can add the same content of our template to the page outside our component:
 
 ```html
 <!DOCTYPE html>
@@ -417,11 +427,11 @@ Next, let's add the same HTML outside our component on the page:
 </html>
 ```
 
-If we refresh the page again, we should see that the HTML inside our element's shadow root is styled according to the element's styles but the HTML outside it is not:
+If we refresh the page again, we should see that the styles inside our component do not affect the HTML outside of it.
 
 ![Shadow DOM example](./assets/shadow-dom-2.png)
 
-Next, we can define some global styles outside our component:
+Similarly we can add styles to the main page, and you will see that it doesn't affect the HTML inside our component:
 
 ```html
 <!DOCTYPE html>
@@ -456,9 +466,9 @@ Next, we can define some global styles outside our component:
 </html>
 ```
 
-You will see in the browser that these only affect the DOM outside of our web component, it did not change any styles inside our component.
+Not all CSS properties are encapsulated in this way. Inherited properties such as fonts and color do inherit through the shadow root when they are applied to a parent element.
 
-Not all CSS properties are blocked, inherited CSS properties link fonts do inherit through a shadow root. For example we can change the front of our page:
+For example we can change the front of our page and it will affect the text inside our component as well:
 
 ```html
 <style>
@@ -476,8 +486,6 @@ Not all CSS properties are blocked, inherited CSS properties link fonts do inher
   }
 </style>
 ```
-
-When you reload the page, all the texts on the page will have the new font.
 
 <details>
   <summary>
