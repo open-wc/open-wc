@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.8...es-dev-server@1.19.0) (2019-10-26)
+
+
+### Features
+
+* **es-dev-server:** allow listening to own ip address ([#906](https://github.com/open-wc/open-wc/issues/906)) ([d8fbf3f](https://github.com/open-wc/open-wc/commit/d8fbf3f))
+
+
+
+
+
 ## [1.18.8](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.7...es-dev-server@1.18.8) (2019-10-26)
 
 
