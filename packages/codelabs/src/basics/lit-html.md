@@ -147,7 +147,7 @@ const template = html`
 `;
 ```
 
-This is a native browser feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates). The `html` tag is just a function that gets called with information about template literal it's attached to. We won't go into details of how it works exactly, but by using this syntax `lit-html` can very efficiently create templates and update only the parts that change when re-rendeirng.
+This is a native browser feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates). The `html` tag is just a function that gets called with information about template literal it's attached to. We won't go into details of how it works exactly, but by using this syntax `lit-html` can very efficiently create templates and update only the parts that change when re-rendering.
 
 Most popular IDEs support syntax highlighting of HTML inside template literals, but for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
 
