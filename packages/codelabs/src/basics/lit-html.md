@@ -893,8 +893,8 @@ In HTML, a boolean attribute is 'true' when it's present, no matter the content.
 <div hidden="hidden"></div>
 <div hidden="not-hidden"></div>
 <div hidden="true"></div>
+<!-- surprise! even a value of "false" evaluates to true -->
 <div hidden="false"></div>
-<!-- surprise! still evaluates to true -->
 ```
 
 and only in this case, hidden is false:
