@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this codelab, you will learn the basics of building web components with lit-element and lit-html.
+In this codelab, you will learn the basics of building web components with lit-html and lit-element.
 
 [lit-html](https://github.com/Polymer/lit-html) is a javascript library for writing HTML templates, and then efficiently render and re-render those templates together with data to create and update DOM.
 
@@ -25,7 +25,8 @@ In this codelab, you will learn the basics of building web components with lit-e
 - Creating child components
 
 **How it works**
-This codelab will go step by step, explaining each code change. At the bottom of each section, there is a "View final result" button where you can see the final code result you should end up with. The codelab is sequential, so results from the previous step carry on to the next step.
+
+This codelab will go step by step, explaining each code change. At the bottom of each section, there is a "View final result" button where you can see the final code result you should end up with. The codelab is sequential, results from the previous step carry on to the next step.
 
 At the bottom of each step, there is a final code snippet to make sure you're still on the right track or to help you when you get stuck.
 
@@ -126,7 +127,9 @@ If you run this in the browser you should see `lit element connected` logged to 
 
 ## Hello world
 
-Now that we have defined our element, we can start adding a template. lit-element uses lit-html to handle the templating. lit-html works by writing HTML inside of [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) which are strings that can span multiple lines:
+Now that we have defined our element, we can start adding a template. lit-element uses lit-html to handle the templating.
+
+lit-html works by writing HTML inside of template literals. These are a type of strings which can span multiple lines, ideal for writing HTML:
 
 ```js
 const template = `
@@ -134,7 +137,7 @@ const template = `
 `;
 ```
 
-In order to create an actual lit-html template, we prefix the template literal with a special HTML tag which we import from the lit-element package:
+In order to create an actual lit-html template, we need prefix the template literal with a special HTML tag:
 
 ```js
 import { html } from 'https://unpkg.com/lit-element?module';
@@ -144,11 +147,11 @@ const template = html`
 `;
 ```
 
-This is a native browser feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates), where the `html` tag is a function which returns the prepared template ready for rendering. We won't go into details of how it works exactly, but by using this syntax `lit-html` can very efficiently update the dynamic parts of your template when your element re-renders.
+This is a native browser feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates). The `html` tag is just a function that gets called with information about template literal it's attached to. We won't go into details of how it works exactly, but by using this syntax `lit-html` can very efficiently create templates and update only the parts that change when re-rendeirng.
 
 Most popular IDEs support syntax highlighting of HTML inside template literals, but for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
 
-lit-element works with a `render` function, which is called each time the element is updated. From this function, we return the template which is rendered to the page.
+lit-element works with a `render` function, which is called each time the element is updated. From this function, we need to return the template we want to render to the page.
 
 Let's start by displaying the title of our app:
 
@@ -254,7 +257,7 @@ const footerTemplate = html`
 `;
 ```
 
-When embedding variables like this, lit-html creates static and dynamic parts of your template. When re-rendering the same template you can change the value of these variables, and lit-html will know how to only update the parts that changed. This makes it very efficient!
+When embedding variables like this, lit-html remembers which part of your template are static and which parts are dynamic. When re-rendering the same template you can change the value of these variables, and lit-html will know how to only update the parts that changed. This makes it very efficient!
 
 <aside class="notice">
 It's important to keep in mind that whatever you're writing must still be valid HTML, you cannot arbitrarily concatenate strings to build HTML. This is to enable efficient updates, and for security to protect you from XSS attacks.
@@ -511,7 +514,7 @@ html`
 `;
 ```
 
-The value of an event listener should be a function. In this case, we reference a method on our component, which we should now implement:
+This is just syntax sugar for using `addEventListener` on the element, and can be used to listen to any kind of event. The value of an event listener should be a function. In this case, we reference a method on our component, which we should now implement:
 
 ```js
 _addTodo() {
@@ -524,7 +527,7 @@ _addTodo() {
 }
 ```
 
-When this event handler is called, we create a new todo item and add it to the array of todos. Because we're mutating the todos array, `LitElement` is not able to pick up that we changed something. We can let `LitElement` know about this by calling the `requestUpdate` which exists on any element that extends from `LitElement`.
+When this event handler is called, we create a new todo item and add it to the array of todos. Now we need to trigger a re-render so that we can display the new todo item on the screen. We can do this by calling the `requestUpdate` method which exists on any element that extends from `LitElement`.
 
 When you click add, you should see the new element appear on the screen.
 
@@ -532,7 +535,9 @@ This allows us to observe the power of lit-html in action. If you inspect the DO
 
 ![todo](./assets/add-todo.gif)
 
-When something in the DOM inspector flashes, it means that the browser is doing actual work to update the DOM tree. This is very expensive work, things like styles and layout need to be recalculated up and down the tree, so you want to minimize this as much as possible. Due to the way lit-html templating works it knows precisely what changed where and it will update only that part, without requiring a lot of from the developer.
+When something in the DOM inspector flashes, it means that the browser is doing actual work to update the DOM tree. This is very expensive work, things like styles and layout need to be recalculated up and down the tree, so you want to minimize this as much as possible. lit-html knows exactly what changed where and it will update only that part efficiently.
+
+In the inspector you also see comment nodes between different parts of your template. These are markers created by lit-html to track locations of dom nodes, they can be ignored safely.
 
 <details>
   <summary>View final result</summary>
@@ -601,11 +606,11 @@ When something in the DOM inspector flashes, it means that the browser is doing 
 
 ## Reactive property changes
 
-Right now we're triggering an update manually when we make a change. This is fine for some use cases, but it can get pretty cumbersome to do this manually all the time and we are nto able to respond to changes triggered by parent components.
+Right now we're triggering updates manually whenever we make a change. This is fine for some use cases, but it can get pretty cumbersome and we are not able to respond to changes triggered by parent components.
 
-It's better to let `LitElement` observe data changes for us, and trigger updates when necessary. We can do this by defining `todos` as a property of our element.
+It's better to let `LitElement` observe data changes for us, and trigger the updates when necessary. We can do this by defining `todos` as a property of our element.
 
-Start by adding a static properties object to our element, and add `todos` as an array property:
+Start by adding a static properties field, and add `todos` as an array property:
 
 ```js
 static get properties() {
@@ -615,7 +620,7 @@ static get properties() {
 }
 ```
 
-When defining a property in the static `properties` object, `LitElement` creates javascript getters and setters on your class. Under the hood it looks somewhat like this:
+For each property that you've defined, `LitElement` generates something similar to this:
 
 ```js
 class TodosApp extends LitElement {
@@ -636,11 +641,11 @@ class TodosApp extends LitElement {
 }
 ```
 
-As you can see, it will only trigger an update if it passes a simple equality check. This is great for performance, and for strings, numbers and booleans this will work without any problems.
+This way when you change the property on your element, it goes through a custom getter/setter function which triggers an update only when the new value passes a simple equality check.
 
-With arrays and objects this does not detect mutations to an existing object, like the array `push` we are using right now. We need to use immutable data patterns, where a new object is created each time. This is a common pattern in front-end to simplify data flow and make change detection easier.
+For strings, numbers and booleans this will work without any problems. However, if you are using arrays or objects and mutate them it will not trigger any update. This is because the actual array or object itself did not change. We need to use immutable data patterns, where a new object is created for each change. This is a common pattern in front-end to simplify data flow and make change detection easier.
 
-Instead of using push, we can copy the existing list of todos using array spread, and add our new todo to the new array:
+In our case we are using array `push`, which mutates the existing `todos` array. Instead of using push, we can copy the existing list of todos using array spread, and add our new todo in there:
 
 ```js
 _addTodo() {
@@ -750,7 +755,7 @@ html`
 
 We need to pass along the item we want to delete to the event handler, so instead of referencing the method directly we are using an arrow function and we call it with the item of the current iteration of our map function.
 
-Next, we add the event handler which deleted the todo item:
+Next, we add the event handler which deletes the todo item:
 
 ```js
 _removeTodo(todo) {
@@ -839,7 +844,7 @@ The delete button should now be fully functional. Because filter returns a new a
 
 ## Finishing a todo
 
-A todo list is useless if we can't keep track of which ones we've finished and which ones we have not. We need to add a way to mark todo items as finished or unfinished.
+A todo list is useless if we can't keep track of which ones we've finished, and which ones we have not. We need to add a way to manage this status.
 
 First, let's replace our finished/unfinished text with a checkbox:
 
@@ -1209,9 +1214,9 @@ customElements.define('todo-list', TodoList);
 
 Ok so the structure of the class should be pretty familiar now, there is a `todos` property and a template to render. The template looks almost the same as the previous, except that now there is an if statement at the start. We need this because unlike before, our todo list isn't the one in charge of the data.
 
-The parent element is still in charge, and we expect it to pass along the todos list to this component. This means that we cannot assume the list to always be there when we do a render. If we don't take care of this somehow, our component will crash because you cannot run a `map` function on `undefined.` Adding early returns in your render function is a simple way to do this, it's easy to see which properties are required for rendering.
+The parent element is still in charge, and we expect it to pass along the todos list to this component. This means that we cannot assume the list to always be there when we do a render. If we don't take care of this somehow, our component will crash because you cannot run a `map` function on `undefined`. Adding early returns in your render function is a simple way to do this, and makes it easy to see which properties are required for rendering.
 
-Next, we need to somehow let the parent element know that the user clicked on the checkbox or remove the button. We can do this using DOM events. DOM events are great because the structure and hierarchy of our application are reflected in the DOM, so when a component fires an event only its parent components can receive them. This creates an automatic scoped system.
+Next, we need to somehow let the parent element know that the user clicked on the checkbox or the remove button. We can do this using DOM events. DOM events are great because the structure and hierarchy of our application is reflected in the DOM, so when a component fires an event only its parent components can receive them. This way we have an automatic scoped communication system.
 
 Let's add the events we want to fire:
 
