@@ -18,7 +18,7 @@ const sidebar = [
       '/developing/routing',
     ],
   },
-  // ['/codelabs/', 'Codelabs'],
+  ['/codelabs/', 'Codelabs'],
   {
     title: 'Linting',
     collapsable: true,
