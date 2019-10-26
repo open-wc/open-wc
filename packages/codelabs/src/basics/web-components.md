@@ -271,7 +271,7 @@ const template = `
 `;
 ```
 
-In order to create an actual lit-html template, we need prefix the template literal with a special HTML tag:
+In order to create an actual lit-html template, we need to prefix the template literal with a special HTML tag:
 
 ```js
 import { html } from 'https://unpkg.com/lit-element?module';
