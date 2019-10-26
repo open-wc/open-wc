@@ -81,7 +81,7 @@ module.exports = {
     sidebarDepth: 2,
     sidebar: {
       '/guide/': sidebar,
-      // '/codelabs/': sidebar,
+      '/codelabs/': sidebar,
       '/init/': sidebar,
       '/developing/': sidebar,
       '/linting/': sidebar,
