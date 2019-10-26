@@ -11,7 +11,7 @@ In this codelab, you will learn the basics of building web components with lit-e
 **What you need:**
 
 - Intermediate knowledge of HTML and Javascript
-- Basic knowledge of web components.
+- Basic knowledge of web components, see our [basics workshop](https://open-wc.org/codelabs/basics/web-components.html) to get you started.
 - A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
 
 **What you'll learn:**
@@ -937,7 +937,7 @@ After this, your application should work just like before but not with the code 
 
 We've covered the basics of templating and managing data with lit-element. The last remaining topic we need to look into is styling. This isn't a codelab on CSS, so we will only look at some of the specifics of working with styling in lit-element.
 
-For styling, lit-element uses shadow DOM. If you're not familiar with shadow DOM, I recommend following the web component basics codelab.
+For styling, lit-element uses shadow DOM. If you're not familiar with shadow DOM, I recommend following the [web component basics](https://open-wc.org/codelabs/basics/web-components.html) codelab.
 
 To define the styles of your element, we need to import the `css` tag and add a static styles property on our element. Let's add styles to the todo list:
 
@@ -1137,7 +1137,19 @@ The styles we define here only apply to our element. This is a guarantee built i
 
 </detail>
 
-## TODO
+## Wrapping up
 
-- Further reading page
-- Link to wc codelab in different places
+And that's it! We've gone through the basics of lit-element and lit-html. Hopefully from here onwards you will be able to move forward working with lit-element and lit-html with confidence.
+
+If you're eager to learn more, you can take a look at the resources:
+
+- [lit-html official docs](https://lit-html.polymer-project.org/)
+- [lit-element official docs](https://lit-element.polymer-project.org/)
+- [open-wc code samples](https://open-wc.org/developing/code-examples.html)
+- [IDE help](https://open-wc.org/developing/ide.html)
+
+To get started with your own project we recommen using the open-wc project scaffolding, it's easy to set it up using this command:
+
+```bash
+npm init @open-wc
+```
