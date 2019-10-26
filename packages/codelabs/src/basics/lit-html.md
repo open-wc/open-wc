@@ -101,7 +101,7 @@ const template = `
 `;
 ```
 
-In order to create an actual `lit-html` template, we prefix the template literal with a special HTML tag:
+In order to create an actual lit-html template, we prefix the template literal with a special HTML tag:
 
 ```js
 import { html } from 'https://unpkg.com/lit-element?module';
@@ -111,7 +111,11 @@ const template = html`
 `;
 ```
 
+<<<<<<< HEAD
 This is a native browser feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates), where the `html` tag is a function which returns the prepared template ready for rendering. We won't go into details of how it works exactly, but by using this syntax `lit-html` can very efficiently update the dynamic parts of your template when your element re-renders.
+=======
+This is using a feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates), where the `html` tag is a function which returns the prepared template ready for rendering. We won't go into details of how it works exactly, but by using this syntax lit-html can very efficiently update the dynamic parts of your template when your element re-renders.
+>>>>>>> chore(codelabs): process review comments
 
 Most popular IDEs support syntax highlighting of HTML inside template literals, but for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
 
@@ -933,7 +937,7 @@ After this, your application should work just like before but not with the code 
 
 We've covered the basics of templating and managing data with lit-element. The last remaining topic we need to look into is styling. This isn't a codelab on CSS, so we will only look at some of the specifics of working with styling in lit-element.
 
-For styling, lit-element uses shadow dom. If you're not familiar with shadow dom, I recommend following the web component basics codelab.
+For styling, lit-element uses shadow DOM. If you're not familiar with shadow DOM, I recommend following the web component basics codelab.
 
 To define the styles of your element, we need to import the `css` tag and add a static styles property on our element. Let's add styles to the todo list:
 

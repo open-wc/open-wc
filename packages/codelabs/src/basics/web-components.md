@@ -251,7 +251,7 @@ customElements.define('web-component-apis', WebComponentApis);
 
 If you run this in the browser you should see `lit element connected` logged to the terminal.
 
-Now that we have our element based on LitElement, we can start adding our template. `lit-html` works by writing HTML inside of [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) which are strings that can span multiple lines:
+Now that we have our element based on LitElement, we can start adding our template. lit-html works by writing HTML inside of [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) which are strings that can span multiple lines:
 
 ```js
 const template = `
@@ -259,7 +259,7 @@ const template = `
 `;
 ```
 
-In order to create an actual `lit-html` template, we prefix the template literal with a special HTML tag:
+In order to create an actual lit-html template, we prefix the template literal with a special HTML tag:
 
 ```js
 import { html } from 'https://unpkg.com/lit-element?module';
@@ -269,7 +269,7 @@ const template = html`
 `;
 ```
 
-This is using a feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates), where `html` tag is a function which returns the prepared template ready for rendering. We won't go into details of how it works exactly, but by using this syntax `lit-html` can very efficiently update the dynamic parts of your template when your element re-renders.
+This is using a feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates), where `html` tag is a function which returns the prepared template ready for rendering. We won't go into details of how it works exactly, but by using this syntax lit-html can very efficiently update the dynamic parts of your template when your element re-renders.
 
 Most popular IDEs support syntax highlighting of HTML inside template literals, for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
 
@@ -344,7 +344,7 @@ LitElement offers a lot more features than just rendering templates. We will loo
 
 ## Shadow DOM
 
-The last important web component API we will look into is Shadow DOM. Traditionally, HTML and CSS have always been global. This scales pretty badly, we need to make sure that ids are unique on the page and CSS selector can get pretty complex. This is why many front-end frameworks offer some form of encapsulation. With Shadow DOM, this capability is now built into the browser.
+The last important web component API we will look into is shadow DOM. Traditionally, HTML and CSS have always been global. This scales pretty badly, we need to make sure that ids are unique on the page and CSS selector can get pretty complex. This is why many front-end frameworks offer some form of encapsulation. With shadow DOM, this capability is now built into the browser.
 
 The best way to visualize this is to inspect the element we created in the previous step. In the DOM inspector you will see that the children rendered by our element are not direct children of our element, but are wrapped inside of a shadow root:
 
@@ -551,7 +551,7 @@ Their elements are open source, [you can find them here](https://github.com/gith
 
 ### Twitter
 
-Twitter utilizes Web Components for embedding tweets. They're using both Custom Elements and Shadow DOM, because they need to ensure the styling of the tweet is consistent across pages and the styling of the component doesn't interfere with the styling of the page.
+Twitter utilizes Web Components for embedding tweets. They're using both Custom Elements and shadow DOM, because they need to ensure the styling of the tweet is consistent across pages and the styling of the component doesn't interfere with the styling of the page.
 
 On browsers which don't support Web Components, twitter uses an iframe to achieve a similar functionality (with a much higher cost).
 
@@ -561,9 +561,9 @@ On browsers which don't support Web Components, twitter uses an iframe to achiev
 
 ### Video
 
-The `<video>` element is built into the browser, and it's actually also using Shadow DOM. When you place a video element on the page it actually renders a lot more UI for the controls.
+The `<video>` element is built into the browser, and it's actually also using shadow DOM. When you place a video element on the page it actually renders a lot more UI for the controls.
 
-You can inspect the Shadow DOM of these elements on most browser after enabling a setting in your DevTools.
+You can inspect the shadow DOM of these elements on most browser after enabling a setting in your DevTools.
 
 ![Example video element shadow dom](./assets/video-example-1.png)
 
