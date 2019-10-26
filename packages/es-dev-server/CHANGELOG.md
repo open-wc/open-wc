@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.8](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.7...es-dev-server@1.18.8) (2019-10-26)
+
+
+### Bug Fixes
+
+* **es-dev-server:** properly close server on exit ([0c99d3b](https://github.com/open-wc/open-wc/commit/0c99d3b))
+
+
+
+
+
 ## [1.18.7](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.6...es-dev-server@1.18.7) (2019-10-25)
 
 
