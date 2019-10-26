@@ -71,7 +71,7 @@ async function main() {
     const dir = path.join(srcDir, dirname);
     if (!dir.startsWith('.') && (await fs.stat(dir)).isDirectory()) {
       for (const filename of await fs.readdir(dir)) {
-        if (!filename.startsWith('.')) {
+        if (filename.endsWith('.md')) {
           const file = path.join(dir, filename);
           if ((await fs.stat(file)).isFile()) {
             const assetsDir = path.join(dir, 'assets');
