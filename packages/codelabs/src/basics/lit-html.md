@@ -35,7 +35,7 @@ In this codelab, we will build a simple todo app, a great showcase for learning 
 
 You can follow this codelab using anything that can display a simple HTML page. We recommend using an [online code editor like jsbin](https://jsbin.com/?html,output), but you could also create a basic html page using your IDE.
 
-To get started, create a simple webpage:
+To get started, create a simple web page:
 
 ```html
 <!DOCTYPE html>
@@ -68,6 +68,10 @@ lit-element is written and distributed as es modules, this means we can import i
 
 Make sure you add `type="module"` to the script tag.
 
+<aside class="notice">
+In this example we are using `unpkg`, a CDN where we can easily import any module available on NPM. When working on a real project, you will probably want to use an actual package manager like NPM or yarn.
+</aside>
+
 Next, we need to define our web component. When writing a vanilla web component we would extend from `HTMLElement`. With lit-element we need to import and extend from `LitElement`, which itself is an extension of `HTMLElement`.
 
 ```js
@@ -93,6 +97,35 @@ If you run this in the browser you should see `lit element connected` logged to 
   Because LitElement also does some work in the `connectedCallback`, we must always call `super.connectedCallback()`. This is a common source of confusion, so make sure to remember!
 </aside>
 
+<details>
+  <summary>View final result</summary>
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <todo-app></todo-app>
+
+    <script type="module">
+      import { LitElement } from 'https://unpkg.com/lit-element?module';
+
+      class TodoApp extends LitElement {
+        connectedCallback() {
+          super.connectedCallback();
+          console.log('lit element connected');
+        }
+      }
+
+      customElements.define('todo-app', TodoApp);
+    </script>
+  </body>
+</html>
+```
+
+</details>
+
+## Hello world
+
 Now that we have defined our element, we can start adding a template. lit-element uses lit-html to handle the templating. lit-html works by writing HTML inside of [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) which are strings that can span multiple lines:
 
 ```js
@@ -101,7 +134,7 @@ const template = `
 `;
 ```
 
-In order to create an actual lit-html template, we prefix the template literal with a special HTML tag:
+In order to create an actual lit-html template, we prefix the template literal with a special HTML tag which we import from the lit-element package:
 
 ```js
 import { html } from 'https://unpkg.com/lit-element?module';
@@ -120,6 +153,8 @@ lit-element works with a `render` function, which is called each time the elemen
 Let's start by displaying the title of our app:
 
 ```js
+import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+
 class TodoApp extends LitElement {
   render() {
     return html`
@@ -133,37 +168,47 @@ customElements.define('todo-app', TodoApp);
 
 If you refresh the browser, you should see the title displayed on the page.
 
-<detail>
+<details>
   <summary>View final result</summary>
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head></head>
-
   <body>
     <todo-app></todo-app>
 
     <script type="module">
-      ...code sample goes here...
+      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+
+      class TodoApp extends LitElement {
+        render() {
+          return html`
+            <h1>Todo app</h1>
+          `;
+        }
+      }
+
+      customElements.define('todo-app', TodoApp);
     </script>
   </body>
 </html>
 ```
 
-</detail>
+</details>
 
 ## Templating basics
 
 Templates are just javascript variables, we can also create them outside the context of our component. For example to share pieces of a template between different components.
 
-Let's add a footer to our application. First, create the template for the footer. You can add your name and website in there as author:
+Let's add a footer to our application. First, create the template for the footer:
 
 ```js
 const footerTemplate = html`
   <footer>Made with love by <a href="https://open-wc.org/">open-wc</a></footer>
 `;
 ```
+
+You can add your own name and website in there as author.
 
 Template literals can contain placeholders. These are indicated by a dollar sign with curly braces: `${expression}`. For example, a common way to use it is to build error messages:
 
@@ -174,7 +219,7 @@ console.error('An error occurred: ' + message);
 console.error(`An error occurred: ${message}`);
 ```
 
-lit-html takes advantage of this feature to compose templates and to create dynamic parts of your templates. For example, we can add the footer to our app's template by simply embedding it:
+lit-html takes advantage of this feature to compose templates and to create dynamic parts inside your templates. For example, we can add the footer to our app's template by simply embedding it:
 
 ```js
 class TodoApp extends LitElement {
@@ -229,25 +274,41 @@ const footerTemplate = html`
 
 </aside>
 
-<detail>
+<details>
   <summary>View final result</summary>
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head></head>
-
   <body>
     <todo-app></todo-app>
 
     <script type="module">
-      ...code sample goes here...
+      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+
+      const author = 'open-wc';
+      const homepage = 'https://open-wc.org/';
+      const footerTemplate = html`
+        <footer>Made with love by <a href="${homepage}">${author}</a></footer>
+      `;
+
+      class TodoApp extends LitElement {
+        render() {
+          return html`
+            <h1>Todo app</h1>
+
+            ${footerTemplate}
+          `;
+        }
+      }
+
+      customElements.define('todo-app', TodoApp);
     </script>
   </body>
 </html>
 ```
 
-</detail>
+</details>
 
 ## Displaying todos
 
@@ -325,7 +386,7 @@ class TodoApp extends LitElement {
     this.todos = [
       { text: 'Do A', finished: true },
       { text: 'Do B', finished: false },
-      { text: 'Do C', finished: false }
+      { text: 'Do C', finished: false },
     ];
   }
 
@@ -334,9 +395,11 @@ class TodoApp extends LitElement {
       <h1>Todo app</h1>
 
       <ol>
-      ${this.todos.map(todo => html`
-        <li>${todo.text} (${this.finished ? 'Finished' : 'Unfinished')})</li>
-      `)}
+        ${this.todos.map(
+          todo => html`
+            <li>${todo.text} (${todo.finished ? 'Finished' : 'Unfinished'})</li>
+          `,
+        )}
       </ol>
 
       ${footerTemplate}
@@ -349,25 +412,58 @@ Because template literals allow us to place any expression inside the curly brac
 
 You should now see three todo items on the screen, where the first one is already finished.
 
-<detail>
+<details>
   <summary>View final result</summary>
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head></head>
-
   <body>
     <todo-app></todo-app>
 
     <script type="module">
-      ...code sample goes here...
+      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+
+      const author = 'open-wc';
+      const homepage = 'https://open-wc.org/';
+      const footerTemplate = html`
+        <footer>Made with love by <a href="${homepage}">${author}</a></footer>
+      `;
+
+      class TodoApp extends LitElement {
+        constructor() {
+          super();
+          this.todos = [
+            { text: 'Do A', finished: true },
+            { text: 'Do B', finished: false },
+            { text: 'Do C', finished: false },
+          ];
+        }
+
+        render() {
+          return html`
+            <h1>Todo app</h1>
+
+            <ol>
+              ${this.todos.map(
+                todo => html`
+                  <li>${todo.text} (${todo.finished ? 'Finished' : 'Unfinished'})</li>
+                `,
+              )}
+            </ol>
+
+            ${footerTemplate}
+          `;
+        }
+      }
+
+      customElements.define('todo-app', TodoApp);
     </script>
   </body>
 </html>
 ```
 
-</detail>
+</details>
 
 ## Adding a todo
 
@@ -410,7 +506,9 @@ class TodoApp extends LitElement {
 On the add button, we added an event listener for the `click` event. This is done by prefixing the event name with a `@`:
 
 ```js
-<button @click=${this._addTodo}>
+html`
+  <button @click=${this._addTodo}></button>
+`;
 ```
 
 The value of an event listener should be a function. In this case, we reference a method on our component, which we should now implement:
@@ -436,31 +534,76 @@ This allows us to observe the power of lit-html in action. If you inspect the DO
 
 When something in the DOM inspector flashes, it means that the browser is doing actual work to update the DOM tree. This is very expensive work, things like styles and layout need to be recalculated up and down the tree, so you want to minimize this as much as possible. Due to the way lit-html templating works it knows precisely what changed where and it will update only that part, without requiring a lot of from the developer.
 
-<detail>
+<details>
   <summary>View final result</summary>
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head></head>
-
   <body>
     <todo-app></todo-app>
 
     <script type="module">
-      ...code sample goes here...
+      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+
+      const author = 'open-wc';
+      const homepage = 'https://open-wc.org/';
+      const footerTemplate = html`
+        <footer>Made with love by <a href="${homepage}">${author}</a></footer>
+      `;
+
+      class TodoApp extends LitElement {
+        constructor() {
+          super();
+          this.todos = [
+            { text: 'Do A', finished: true },
+            { text: 'Do B', finished: false },
+            { text: 'Do C', finished: false },
+          ];
+        }
+
+        render() {
+          return html`
+            <h1>Todo app</h1>
+
+            <input id="addTodoInput" placeholder="Name" />
+            <button @click=${this._addTodo}>Add</button>
+
+            <ol>
+              ${this.todos.map(
+                todo => html`
+                  <li>${todo.text} (${todo.finished ? 'Finished' : 'Unfinished'})</li>
+                `,
+              )}
+            </ol>
+
+            ${footerTemplate}
+          `;
+        }
+
+        _addTodo() {
+          const input = this.shadowRoot.getElementById('addTodoInput');
+          const text = input.value;
+          input.value = '';
+
+          this.todos.push({ text, finished: false });
+          this.requestUpdate();
+        }
+      }
+
+      customElements.define('todo-app', TodoApp);
     </script>
   </body>
 </html>
 ```
 
-</detail>
+</details>
 
 ## Reactive property changes
 
-Right now we're triggering an update manually when we make a change. This is fine for some use cases, but it can get pretty cumbersome to do this manually all the time and you will not be able to respond updated triggered by a parent element.
+Right now we're triggering an update manually when we make a change. This is fine for some use cases, but it can get pretty cumbersome to do this manually all the time and we are nto able to respond to changes triggered by parent components.
 
-It's better to let `LitElement` observe data changes and trigger updates for us. We can do this by defining `todos` as a property of our element.
+It's better to let `LitElement` observe data changes for us, and trigger updates when necessary. We can do this by defining `todos` as a property of our element.
 
 Start by adding a static properties object to our element, and add `todos` as an array property:
 
@@ -472,9 +615,32 @@ static get properties() {
 }
 ```
 
-Because we're mutating the todos array using `push`, `LitElement` is not able to pick up the change. `LitElement` change detection is based on immutability, it only detects a change if you create a new array with your changes added. This is a common pattern in front-end to simplify data flow and make change detection easier.
+When defining a property in the static `properties` object, `LitElement` creates javascript getters and setters on your class. Under the hood it looks somewhat like this:
 
-Instead of using push, we can easily copy the existing list of todos using array spread, and add our new todo to the new array:
+```js
+class TodosApp extends LitElement {
+  set todos(newTodos) {
+    if (this._todos === newTodos) {
+      // no change, don't do any work
+      return;
+    }
+
+    // value changed, trigger an update
+    this._todos = newTodos;
+    this.requestUpdate();
+  }
+
+  get todos() {
+    return this._todos;
+  }
+}
+```
+
+As you can see, it will only trigger an update if it passes a simple equality check. This is great for performance, and for strings, numbers and booleans this will work without any problems.
+
+With arrays and objects this does not detect mutations to an existing object, like the array `push` we are using right now. We need to use immutable data patterns, where a new object is created each time. This is a common pattern in front-end to simplify data flow and make change detection easier.
+
+Instead of using push, we can copy the existing list of todos using array spread, and add our new todo to the new array:
 
 ```js
 _addTodo() {
@@ -491,25 +657,75 @@ _addTodo() {
 
 The list should now still update like before.
 
-<detail>
+<details>
   <summary>View final result</summary>
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head></head>
-
   <body>
     <todo-app></todo-app>
 
     <script type="module">
-      ...code sample goes here...
+      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+
+      const author = 'open-wc';
+      const homepage = 'https://open-wc.org/';
+      const footerTemplate = html`
+        <footer>Made with love by <a href="${homepage}">${author}</a></footer>
+      `;
+
+      class TodoApp extends LitElement {
+        static get properties() {
+          return {
+            todos: { type: Array },
+          };
+        }
+
+        constructor() {
+          super();
+          this.todos = [
+            { text: 'Do A', finished: true },
+            { text: 'Do B', finished: false },
+            { text: 'Do C', finished: false },
+          ];
+        }
+
+        render() {
+          return html`
+            <h1>Todo app</h1>
+
+            <input id="addTodoInput" placeholder="Name" />
+            <button @click=${this._addTodo}>Add</button>
+
+            <ol>
+              ${this.todos.map(
+                todo => html`
+                  <li>${todo.text} (${todo.finished ? 'Finished' : 'Unfinished'})</li>
+                `,
+              )}
+            </ol>
+
+            ${footerTemplate}
+          `;
+        }
+
+        _addTodo() {
+          const input = this.shadowRoot.getElementById('addTodoInput');
+          const text = input.value;
+          input.value = '';
+
+          this.todos = [...this.todos, { text, finished: false }];
+        }
+      }
+
+      customElements.define('todo-app', TodoApp);
     </script>
   </body>
 </html>
 ```
 
-</detail>
+</details>
 
 ## Deleting a todo
 
@@ -524,7 +740,7 @@ html`
       todo => html`
         <li>
           ${todo.text} (${todo.finished ? 'Finished' : 'Unfinished'})
-          <button @click=${() => this._removeTodo(item)}>X</button>
+          <button @click=${() => this._removeTodo(todo)}>X</button>
         </li>
       `,
     )}
@@ -537,32 +753,89 @@ We need to pass along the item we want to delete to the event handler, so instea
 Next, we add the event handler which deleted the todo item:
 
 ```js
-_removeTodo(item) {
-  this.todos = this.todos.filter(e => e !== item);
+_removeTodo(todo) {
+  this.todos = this.todos.filter(e => e !== todo);
 }
 ```
 
 The delete button should now be fully functional. Because filter returns a new array, `LitElement` will automatically detect the changes and re-render our component.
 
-<detail>
+<details>
   <summary>View final result</summary>
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head></head>
-
   <body>
     <todo-app></todo-app>
 
     <script type="module">
-      ...code sample goes here...
+      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+
+      const author = 'open-wc';
+      const homepage = 'https://open-wc.org/';
+      const footerTemplate = html`
+        <footer>Made with love by <a href="${homepage}">${author}</a></footer>
+      `;
+
+      class TodoApp extends LitElement {
+        static get properties() {
+          return {
+            todos: { type: Array },
+          };
+        }
+
+        constructor() {
+          super();
+          this.todos = [
+            { text: 'Do A', finished: true },
+            { text: 'Do B', finished: false },
+            { text: 'Do C', finished: false },
+          ];
+        }
+
+        render() {
+          return html`
+            <h1>Todo app</h1>
+
+            <input id="addTodoInput" placeholder="Name" />
+            <button @click=${this._addTodo}>Add</button>
+
+            <ol>
+              ${this.todos.map(
+                todo => html`
+                  <li>
+                    ${todo.text} (${todo.finished ? 'Finished' : 'Unfinished'})
+                    <button @click=${() => this._removeTodo(todo)}>X</button>
+                  </li>
+                `,
+              )}
+            </ol>
+
+            ${footerTemplate}
+          `;
+        }
+
+        _addTodo() {
+          const input = this.shadowRoot.getElementById('addTodoInput');
+          const text = input.value;
+          input.value = '';
+
+          this.todos = [...this.todos, { text, finished: false }];
+        }
+
+        _removeTodo(todo) {
+          this.todos = this.todos.filter(e => e !== todo);
+        }
+      }
+
+      customElements.define('todo-app', TodoApp);
     </script>
   </body>
 </html>
 ```
 
-</detail>
+</details>
 
 ## Finishing a todo
 
@@ -616,15 +889,12 @@ Notice that we prefixed the `checked` attribute on the checkbox with a `?`. Chec
 In HTML, a boolean attribute is 'true' when it's present, no matter the content. It's only false when it's not present. So in all these cases, hidden is true:
 
 ```html
-<div hidden>
-  <div hidden="hidden">
-    <div hidden="not-hidden">
-      <div hidden="true">
-        <div hidden="false"></div>
-      </div>
-    </div>
-  </div>
-</div>
+<div hidden></div>
+<div hidden="hidden"></div>
+<div hidden="not-hidden"></div>
+<div hidden="true"></div>
+<div hidden="false"></div>
+<!-- surprise! still evaluates to true -->
 ```
 
 and only in this case, hidden is false:
@@ -632,6 +902,8 @@ and only in this case, hidden is false:
 ```html
 <div></div>
 ```
+
+A big exception to this are the `aria-` attributes, which do use literal "true" and "false" values. How lovely inconsistent :)
 
 </aside>
 
@@ -652,25 +924,98 @@ _changeTodoFinished(e, changedTodo) {
 }
 ```
 
-<detail>
+<details>
   <summary>View final result</summary>
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head></head>
-
   <body>
     <todo-app></todo-app>
 
     <script type="module">
-      ...code sample goes here...
+      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+
+      const author = 'open-wc';
+      const homepage = 'https://open-wc.org/';
+      const footerTemplate = html`
+        <footer>Made with love by <a href="${homepage}">${author}</a></footer>
+      `;
+
+      class TodoApp extends LitElement {
+        static get properties() {
+          return {
+            todos: { type: Array },
+          };
+        }
+
+        constructor() {
+          super();
+          this.todos = [
+            { text: 'Do A', finished: true },
+            { text: 'Do B', finished: false },
+            { text: 'Do C', finished: false },
+          ];
+        }
+
+        render() {
+          return html`
+            <h1>Todo app</h1>
+
+            <input id="addTodoInput" placeholder="Name" />
+            <button @click=${this._addTodo}>Add</button>
+
+            <ol>
+              ${this.todos.map(
+                todo => html`
+                  <li>
+                    <input
+                      type="checkbox"
+                      ?checked=${todo.finished}
+                      @change=${e => this._changeTodoFinished(e, todo)}
+                    />
+                    ${todo.text}
+                    <button @click=${() => this._removeTodo(todo)}>X</button>
+                  </li>
+                `,
+              )}
+            </ol>
+
+            ${footerTemplate}
+          `;
+        }
+
+        _addTodo() {
+          const input = this.shadowRoot.getElementById('addTodoInput');
+          const text = input.value;
+          input.value = '';
+
+          this.todos = [...this.todos, { text, finished: false }];
+        }
+
+        _removeTodo(todo) {
+          this.todos = this.todos.filter(e => e !== todo);
+        }
+
+        _changeTodoFinished(e, changedTodo) {
+          const finished = e.target.checked;
+
+          this.todos = this.todos.map(todo => {
+            if (todo !== changedTodo) {
+              return todo;
+            }
+            return { ...changedTodo, finished };
+          });
+        }
+      }
+
+      customElements.define('todo-app', TodoApp);
     </script>
   </body>
 </html>
 ```
 
-</detail>
+</details>
 
 ## Displaying totals
 
@@ -684,27 +1029,31 @@ Let's add our calculations to the render function, and display the calculated am
 
 ```js
 render() {
-  const finishedCount = this.todos.filter(e => e.checked).length;
+  const finishedCount = this.todos.filter(e => e.finished).length;
   const unfinishedCount = this.todos.length - finishedCount;
 
   return html`
     <h1>Todo app</h1>
 
-    <input id="addTodoInput" placeholder="Name">
-    <button @click=${this._addTodo}>Add TODO</button>
+    <input id="addTodoInput" placeholder="Name" />
+    <button @click=${this._addTodo}>Add</button>
 
     <ol>
     ${this.todos.map(todo => html`
       <li>
-        <input type="checkbox" ?checked=${todo.finished} @change=${e => this._changeTodoFinished(e, item)}>
+        <input
+          type="checkbox"
+          ?checked=${todo.finished}
+          @change=${e => this._changeTodoFinished(e, todo)}
+        />
         ${todo.text}
-        <button @click=${() => this._removeTodo(item)}>X</button>
+        <button @click=${() => this._removeTodo(todo)}>X</button>
       </li>
     `)}
     </ol>
 
-    <p>Total finished: ${finishedCount}</p>
-    <p>Total unfinished: ${finishedCount}</p>
+    <div>Total finished: ${finishedCount}</div>
+    <div>Total unfinished: ${unfinishedCount}</div>
 
     ${footerTemplate}
   `;
@@ -713,25 +1062,104 @@ render() {
 
 Remember that the render function can be called quite often. If the computations are pretty expensive it's better to only do them once and cache the results.
 
-<detail>
+<details>
   <summary>View final result</summary>
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head></head>
-
   <body>
     <todo-app></todo-app>
 
     <script type="module">
-      ...code sample goes here...
+      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+
+      const author = 'open-wc';
+      const homepage = 'https://open-wc.org/';
+      const footerTemplate = html`
+        <footer>Made with love by <a href="${homepage}">${author}</a></footer>
+      `;
+
+      class TodoApp extends LitElement {
+        static get properties() {
+          return {
+            todos: { type: Array },
+          };
+        }
+
+        constructor() {
+          super();
+          this.todos = [
+            { text: 'Do A', finished: true },
+            { text: 'Do B', finished: false },
+            { text: 'Do C', finished: false },
+          ];
+        }
+
+        render() {
+          const finishedCount = this.todos.filter(e => e.finished).length;
+          const unfinishedCount = this.todos.length - finishedCount;
+
+          return html`
+            <h1>Todo app</h1>
+
+            <input id="addTodoInput" placeholder="Name" />
+            <button @click=${this._addTodo}>Add</button>
+
+            <ol>
+              ${this.todos.map(
+                todo => html`
+                  <li>
+                    <input
+                      type="checkbox"
+                      ?checked=${todo.finished}
+                      @change=${e => this._changeTodoFinished(e, todo)}
+                    />
+                    ${todo.text}
+                    <button @click=${() => this._removeTodo(todo)}>X</button>
+                  </li>
+                `,
+              )}
+            </ol>
+
+            <div>Total finished: ${finishedCount}</div>
+            <div>Total unfinished: ${unfinishedCount}</div>
+
+            ${footerTemplate}
+          `;
+        }
+
+        _addTodo() {
+          const input = this.shadowRoot.getElementById('addTodoInput');
+          const text = input.value;
+          input.value = '';
+
+          this.todos = [...this.todos, { text, finished: false }];
+        }
+
+        _removeTodo(todo) {
+          this.todos = this.todos.filter(e => e !== todo);
+        }
+
+        _changeTodoFinished(e, changedTodo) {
+          const finished = e.target.checked;
+
+          this.todos = this.todos.map(todo => {
+            if (todo !== changedTodo) {
+              return todo;
+            }
+            return { ...changedTodo, finished };
+          });
+        }
+      }
+
+      customElements.define('todo-app', TodoApp);
     </script>
   </body>
 </html>
 ```
 
-</detail>
+</details>
 
 ## Create a child component
 
@@ -794,31 +1222,153 @@ _changeTodoFinished(e, changedTodo) {
 }
 
 _removeTodo(item) {
-  this.dispatchEvent(new CustomEvent('remove-item', { detail: item }));
+  this.dispatchEvent(new CustomEvent('remove-todo', { detail: item }));
 }
 ```
 
 The parent element will need to listen to these events, and update the data structure accordingly. We will look into that in the next step.
 
-<detail>
+<details>
   <summary>View final result</summary>
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head></head>
-
   <body>
     <todo-app></todo-app>
 
     <script type="module">
-      ...code sample goes here...
+      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+
+      class TodoList extends LitElement {
+        static get properties() {
+          return {
+            todos: { type: Array },
+          };
+        }
+
+        render() {
+          if (!this.todos) {
+            return html``;
+          }
+
+          return html`
+            <ol>
+              ${this.todos.map(
+                todo => html`
+                  <li>
+                    <input
+                      type="checkbox"
+                      .checked=${todo.finished}
+                      @change=${e => this._changeTodoFinished(e, todo)}
+                    />
+                    ${todo.text}
+                    <button @click=${() => this._removeTodo(todo)}>X</button>
+                  </li>
+                `,
+              )}
+            </ol>
+          `;
+        }
+
+        _changeTodoFinished(e, changedTodo) {
+          const eventDetails = { changedTodo, finished: e.target.checked };
+          this.dispatchEvent(new CustomEvent('change-todo-finished', { detail: eventDetails }));
+        }
+
+        _removeTodo(item) {
+          this.dispatchEvent(new CustomEvent('remove-todo', { detail: item }));
+        }
+      }
+
+      customElements.define('todo-list', TodoList);
+
+      const author = 'open-wc';
+      const homepage = 'https://open-wc.org/';
+      const footerTemplate = html`
+        <footer>Made with love by <a href="${homepage}">${author}</a></footer>
+      `;
+
+      class TodoApp extends LitElement {
+        static get properties() {
+          return {
+            todos: { type: Array },
+          };
+        }
+
+        constructor() {
+          super();
+          this.todos = [
+            { text: 'Do A', finished: true },
+            { text: 'Do B', finished: false },
+            { text: 'Do C', finished: false },
+          ];
+        }
+
+        render() {
+          const finishedCount = this.todos.filter(e => e.finished).length;
+          const unfinishedCount = this.todos.length - finishedCount;
+
+          return html`
+            <h1>Todo app</h1>
+
+            <input id="addTodoInput" placeholder="Name" />
+            <button @click=${this._addTodo}>Add</button>
+
+            <ol>
+              ${this.todos.map(
+                todo => html`
+                  <li>
+                    <input
+                      type="checkbox"
+                      ?checked=${todo.finished}
+                      @change=${e => this._changeTodoFinished(e, todo)}
+                    />
+                    ${todo.text}
+                    <button @click=${() => this._removeTodo(todo)}>X</button>
+                  </li>
+                `,
+              )}
+            </ol>
+
+            <div>Total finished: ${finishedCount}</div>
+            <div>Total unfinished: ${unfinishedCount}</div>
+
+            ${footerTemplate}
+          `;
+        }
+
+        _addTodo() {
+          const input = this.shadowRoot.getElementById('addTodoInput');
+          const text = input.value;
+          input.value = '';
+
+          this.todos = [...this.todos, { text, finished: false }];
+        }
+
+        _removeTodo(todo) {
+          this.todos = this.todos.filter(e => e !== todo);
+        }
+
+        _changeTodoFinished(e, changedTodo) {
+          const finished = e.target.checked;
+
+          this.todos = this.todos.map(todo => {
+            if (todo !== changedTodo) {
+              return todo;
+            }
+            return { ...changedTodo, finished };
+          });
+        }
+      }
+
+      customElements.define('todo-app', TodoApp);
     </script>
   </body>
 </html>
 ```
 
-</detail>
+</details>
 
 ## Implement a child element
 
@@ -834,15 +1384,21 @@ To render our child component, we simply replace the existing template with the 
 
 ```js
 render() {
-  return html`
-    <h1>Todo list</h1>
+  const finishedCount = this.todos.filter(e => e.finished).length;
+  const unfinishedCount = this.todos.length - finishedCount;
 
-    <input id="addTodoInput" placeholder="Name"><button @click=${this._addTodo}>Add TODO</button>
+  return html`
+    <h1>Todo app</h1>
+
+    <input id="addTodoInput" placeholder="Name" />
+    <button @click=${this._addTodo}>Add</button>
 
     <todo-list .todos=${this.todos}></todo-list>
 
-    <p>Total finished: ${this._finishedCount}</p>
-    <p>Total unfinished: ${this._unfinishedCount}</p>
+    <div>Total finished: ${finishedCount}</div>
+    <div>Total unfinished: ${unfinishedCount}</div>
+
+    ${footerTemplate}
   `;
 }
 ```
@@ -892,9 +1448,13 @@ html`
 `;
 ```
 
-The events are calling the existing methods we are already have on our element. However, we will need to update the event handlers slightly to handle these new events:
+The events are calling the existing methods we already have on our element. However, we will need to update the event handlers slightly to handle these new events:
 
 ```js
+_removeTodo(e) {
+  this.todos = this.todos.filter(todo => todo !== e.detail);
+}
+
 _changeTodoFinished(e) {
   const { changedTodo, finished } = e.detail;
 
@@ -905,15 +1465,11 @@ _changeTodoFinished(e) {
     return { ...changedTodo, finished };
   });
 }
-
-_removeTodo(e) {
-  this.todos = this.todos.filter(todo => todo !== e.detail);
-}
 ```
 
 After this, your application should work just like before but not with the code spread out a bit more.
 
-<detail>
+<details>
   <summary>View final result</summary>
 
 ```html
@@ -931,7 +1487,7 @@ After this, your application should work just like before but not with the code 
 </html>
 ```
 
-</detail>
+</details>
 
 ## Styling
 
@@ -953,6 +1509,10 @@ class TodoList extends LitElement {
 
   static get styles() {
     return css`
+      :host {
+        color: blue;
+      }
+
       ul {
         list-style: none;
         padding: 0;
@@ -995,14 +1555,16 @@ customElements.define('todo-list', TodoList);
 
 The styles we define here only apply to our element. This is a guarantee built into the browser because we're using shadow DOM, lit-element does not need to do any extra work for that. This means we can write simple CSS selectors, and not need to worry about creating conflicts with styles defined elsewhere on the page.
 
-<detail>
+<aside class="notice">
+`:host` is a special selector, which selects the host of the shadow dom the styles are associated with. In our case that's our own custom element.
+</aside>
+
+<details>
   <summary>View final result</summary>
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head></head>
-
   <body>
     <todo-app></todo-app>
 
@@ -1018,6 +1580,10 @@ The styles we define here only apply to our element. This is a guarantee built i
 
         static get styles() {
           return css`
+            :host {
+              color: blue;
+            }
+
             ul {
               list-style: none;
               padding: 0;
@@ -1059,12 +1625,18 @@ The styles we define here only apply to our element. This is a guarantee built i
           this.dispatchEvent(new CustomEvent('change-todo-finished', { detail: eventDetails }));
         }
 
-        _removeTodo(todo) {
-          this.dispatchEvent(new CustomEvent('remove-todo', { detail: todo }));
+        _removeTodo(item) {
+          this.dispatchEvent(new CustomEvent('remove-todo', { detail: item }));
         }
       }
 
       customElements.define('todo-list', TodoList);
+
+      const author = 'open-wc';
+      const homepage = 'https://open-wc.org/';
+      const footerTemplate = html`
+        <footer>Made with love by <a href="${homepage}">${author}</a></footer>
+      `;
 
       class TodoApp extends LitElement {
         static get properties() {
@@ -1075,7 +1647,6 @@ The styles we define here only apply to our element. This is a guarantee built i
 
         constructor() {
           super();
-
           this.todos = [
             { text: 'Do A', finished: true },
             { text: 'Do B', finished: false },
@@ -1084,15 +1655,14 @@ The styles we define here only apply to our element. This is a guarantee built i
         }
 
         render() {
-          const finishedCount = this.todos.filter(t => t.finished).length;
+          const finishedCount = this.todos.filter(e => e.finished).length;
           const unfinishedCount = this.todos.length - finishedCount;
 
           return html`
-            <h1>Todo list</h1>
+            <h1>Todo app</h1>
 
-            <input id="addTodoInput" placeholder="Name" /><button @click=${this._addTodo}>
-              Add todo
-            </button>
+            <input id="addTodoInput" placeholder="Name" />
+            <button @click=${this._addTodo}>Add</button>
 
             <todo-list
               .todos=${this.todos}
@@ -1100,20 +1670,11 @@ The styles we define here only apply to our element. This is a guarantee built i
               @remove-todo=${this._removeTodo}
             ></todo-list>
 
-            <p>Total finished: ${finishedCount}</p>
-            <p>Total unfinished: ${unfinishedCount}</p>
+            <div>Total finished: ${finishedCount}</div>
+            <div>Total unfinished: ${unfinishedCount}</div>
+
+            ${footerTemplate}
           `;
-        }
-
-        _changeTodoFinished(e) {
-          const { changedTodo, finished } = e.detail;
-
-          this.todos = this.todos.map(todo => {
-            if (todo !== changedTodo) {
-              return todo;
-            }
-            return { ...changedTodo, finished };
-          });
         }
 
         _addTodo() {
@@ -1127,6 +1688,17 @@ The styles we define here only apply to our element. This is a guarantee built i
         _removeTodo(e) {
           this.todos = this.todos.filter(todo => todo !== e.detail);
         }
+
+        _changeTodoFinished(e) {
+          const { changedTodo, finished } = e.detail;
+
+          this.todos = this.todos.map(todo => {
+            if (todo !== changedTodo) {
+              return todo;
+            }
+            return { ...changedTodo, finished };
+          });
+        }
       }
 
       customElements.define('todo-app', TodoApp);
@@ -1135,7 +1707,7 @@ The styles we define here only apply to our element. This is a guarantee built i
 </html>
 ```
 
-</detail>
+</details>
 
 ## Wrapping up
 
@@ -1148,7 +1720,7 @@ If you're eager to learn more, you can take a look at the resources:
 - [open-wc code samples](https://open-wc.org/developing/code-examples.html)
 - [IDE help](https://open-wc.org/developing/ide.html)
 
-To get started with your own project we recommen using the open-wc project scaffolding, it's easy to set it up using this command:
+To get started with your own project we recommend using the open-wc project scaffolding, it's easy to set it up using this command:
 
 ```bash
 npm init @open-wc
