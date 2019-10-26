@@ -111,15 +111,13 @@ const template = html`
 `;
 ```
 
-<<<<<<< HEAD
 This is a native browser feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates), where the `html` tag is a function which returns the prepared template ready for rendering. We won't go into details of how it works exactly, but by using this syntax `lit-html` can very efficiently update the dynamic parts of your template when your element re-renders.
-=======
-This is using a feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates), where the `html` tag is a function which returns the prepared template ready for rendering. We won't go into details of how it works exactly, but by using this syntax lit-html can very efficiently update the dynamic parts of your template when your element re-renders.
->>>>>>> chore(codelabs): process review comments
 
 Most popular IDEs support syntax highlighting of HTML inside template literals, but for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
 
-lit-element works with a `render` function, which is called each time the element is updated. From this function, we return the template which is rendered to the page. Let's start by displaying the title of our app:
+lit-element works with a `render` function, which is called each time the element is updated. From this function, we return the template which is rendered to the page.
+
+Let's start by displaying the title of our app:
 
 ```js
 class TodoApp extends LitElement {
@@ -162,7 +160,7 @@ Templates are just javascript variables, we can also create them outside the con
 Let's add a footer to our application. First, create the template for the footer. You can add your name and website in there as author:
 
 ```js
-const footTemplate = html`
+const footerTemplate = html`
   <footer>Made with love by <a href="https://open-wc.org/">open-wc</a></footer>
 `;
 ```
@@ -196,7 +194,7 @@ lit-html supports embedding different types of variables. In the example above w
 
 ```js
 const author = 'open-wc';
-const footTemplate = html`
+const footerTemplate = html`
   <footer>Made with love by <a href="https://open-wc.org/">${author}</a></footer>
 `;
 ```
@@ -206,7 +204,7 @@ We can also extract the link to a separate variable, and set the href attribute 
 ```js
 const author = 'open-wc';
 const homepage = 'https://open-wc.org/';
-const footTemplate = html`
+const footerTemplate = html`
   <footer>Made with love by <a href="${homepage}">${author}</a></footer>
 `;
 ```
@@ -222,7 +220,7 @@ For example you cannot set tagnames or attribute keys dynamically:
 const attributes = `href="https://open-wc.org/"`;
 const tagname = 'footer';
 // this does not work
-const footTemplate = html`
+const footerTemplate = html`
   <${tagname}>
     Made with love by <a ${attributes}></a>
   </${tagname}>
@@ -384,7 +382,7 @@ class TodoApp extends LitElement {
     this.todos = [
       { text: 'Do A', finished: true },
       { text: 'Do B', finished: false },
-      { text: 'Do C', finished: false }
+      { text: 'Do C', finished: false },
     ];
   }
 
@@ -392,13 +390,15 @@ class TodoApp extends LitElement {
     return html`
       <h1>Todo app</h1>
 
-      <input id="addTodoInput" placeholder="Name">
+      <input id="addTodoInput" placeholder="Name" />
       <button @click=${this._addTodo}>Add</button>
 
       <ol>
-      ${this.todos.map(todo => html`
-        <li>${todo.text} (${todo.finished ? 'Finished' : 'Unfinished')})</li>
-      `)}
+        ${this.todos.map(
+          todo => html`
+            <li>${todo.text} (${todo.finished ? 'Finished' : 'Unfinished'})</li>
+          `,
+        )}
       </ol>
 
       ${footerTemplate}
@@ -421,7 +421,7 @@ _addTodo() {
   const text = input.value;
   input.value = '';
 
-  this.todos.push([{ text, finished: false }]);
+  this.todos.push({ text, finished: false });
   this.requestUpdate();
 }
 ```
@@ -432,9 +432,7 @@ When you click add, you should see the new element appear on the screen.
 
 This allows us to observe the power of lit-html in action. If you inspect the DOM while adding a todo item, you will see that only the new todo item is actually flashing:
 
-TODO: add img
-
-![todo](./assets/foo.png)
+![todo](./assets/add-todo.gif)
 
 When something in the DOM inspector flashes, it means that the browser is doing actual work to update the DOM tree. This is very expensive work, things like styles and layout need to be recalculated up and down the tree, so you want to minimize this as much as possible. Due to the way lit-html templating works it knows precisely what changed where and it will update only that part, without requiring a lot of from the developer.
 
@@ -522,14 +520,16 @@ Let's add a delete button to the template of a todo item:
 ```js
 html`
   <ol>
-  ${this.todos.map(todo => html`
-    <li>
-      ${todo.text} (${todo.finished ? 'Finished' : 'Unfinished')})
-      <button @click=${() => this._removeTodo(item)}>X</button>
-    </li>
-  `)}
+    ${this.todos.map(
+      todo => html`
+        <li>
+          ${todo.text} (${todo.finished ? 'Finished' : 'Unfinished'})
+          <button @click=${() => this._removeTodo(item)}>X</button>
+        </li>
+      `,
+    )}
   </ol>
-`
+`;
 ```
 
 We need to pass along the item we want to delete to the event handler, so instead of referencing the method directly we are using an arrow function and we call it with the item of the current iteration of our map function.
