@@ -1,0 +1,75 @@
+import { Story, Preview, Meta, Props } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { html } from 'lit-html';
+import '../demo-wc-card.js';
+
+<Meta title="Card|Docs" />
+
+# Demo Web Component Card
+
+A component mend to display small information with additional data on the back.
+
+## Features:
+
+- looks like a game card
+- content in the front
+- data in the back
+
+## How to use
+
+### Installation
+
+```bash
+yarn add @foo/demo-wc-card
+```
+
+```js
+import '@foo/demo-wc-card/demo-wc-card.js';
+```
+
+<Preview withToolbar>
+  <Story name="Simple" height="220px">
+    {html`
+      <demo-wc-card>Hello World</demo-wc-card>
+    `}
+  </Story>
+</Preview>
+
+## API
+
+<Props of="demo-wc-card" />
+
+## Playground
+
+Please select "Card Playground" story and open the knobs panel.
+
+### Variations
+
+###### Header
+
+<Story name="Custom Header" height="220px">
+  {html`
+    <demo-wc-card header="Harry Potter">A character that is part of a book series...</demo-wc-card>
+  `}
+</Story>
+
+###### Back Side
+
+<Story name="Show Back" height="220px">
+  {html`
+    <demo-wc-card back-side>Hello World</demo-wc-card>
+  `}
+</Story>
+
+###### Providing Rows
+
+<Story name="Provide Rows" height="220px">
+  {() => {
+    const rows = [{ header: 'health', value: '200' }, { header: 'mana', value: '100' }];
+    return html`
+      <demo-wc-card back-side .rows=${rows}>
+        A card with data on the back
+      </demo-wc-card>
+    `;
+  }}
+</Story>
