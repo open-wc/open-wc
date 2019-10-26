@@ -30,6 +30,10 @@ Besides `lit-html`, there are other great options available:
 - [slim.js](https://slimjs.com/) declarative web components
 - [stencil](https://stenciljs.com/) web component with typescript and JSX (requires a build step)
 
+## Codelabs
+
+See the [codelabs](/codelabs/) page for step by step tutorials for development.
+
 ## Code examples
 
 Check out the [code examples](/developing/code-examples/) page for a collection of best practices and design patterns.

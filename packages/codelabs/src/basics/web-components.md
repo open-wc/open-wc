@@ -2,9 +2,11 @@
 
 ## Introduction
 
-Web components are a set of low-level browser APIs that allow us to write modular, reusable and encapsulated HTML elements. And the best thing about them: since they're based on web standards, we don't have to install any framework or library to start using them. You can start writing web components anywhere using vanilla javascript, right now!
+In this codelab you will learn the basics of what web components are, and how they work.
 
-The web component APIs align with the way browsers have always worked, so they're pretty low level and imperative. We expect that for most uses cases we will still use libraries or frameworks for most projects. But instead of each framework inventing their own component model, they will use the ones baked into the browser instead.
+Web components are a set of low-level browser APIs that allow us to write modular, reusable and encapsulated HTML elements. Because they're based on web standards, web components don't require a lot of complex setup, and work anywhere that supports basic HTML and javascript.
+
+The web component APIs align with the way browsers have always worked, so they're pretty low level and imperative. We expect that for most use cases we will still use libraries or frameworks for most projects. But instead of each framework inventing their own component model, they will use the ones baked into the browser instead.
 
 Web components have a multitude of use cases. The most obvious use case is to use them for UI component libraries which can then be reused within multiple other front-end frameworks. But you can also use web components all the way up the tree to compose your entire application out of them. Web components are also a perfect fit for static/server-rendered pages to add interactivity later on.
 
@@ -251,7 +253,7 @@ customElements.define('web-component-apis', WebComponentApis);
 
 If you run this in the browser you should see `lit element connected` logged to the terminal.
 
-Now that we have our element based on LitElement, we can start adding our template. `lit-html` works by writing HTML inside of [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) which are strings that can span multiple lines:
+Now that we have our element based on LitElement, we can start adding our template. lit-html works by writing HTML inside of [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) which are strings that can span multiple lines:
 
 ```js
 const template = `
@@ -259,7 +261,7 @@ const template = `
 `;
 ```
 
-In order to create an actual `lit-html` template, we prefix the template literal with a special HTML tag:
+In order to create an actual lit-html template, we prefix the template literal with a special HTML tag:
 
 ```js
 import { html } from 'https://unpkg.com/lit-element?module';
@@ -269,11 +271,13 @@ const template = html`
 `;
 ```
 
-This is using a feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates), where `html` tag is a function which returns the prepared template ready for rendering. We won't go into details of how it works exactly, but by using this syntax `lit-html` can very efficiently update the dynamic parts of your template when your element re-renders.
+This is a native browser feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates), where the `html` tag is a function which returns the prepared template ready for rendering. We won't go into details of how it works exactly, but by using this syntax `lit-html` can very efficiently update the dynamic parts of your template when your element re-renders.
 
-Most popular IDEs support syntax highlighting of HTML inside template literals, for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
+Most popular IDEs support syntax highlighting of HTML inside template literals, but for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
 
-`LitElement` works with a `render` function, which is called each time the element is updated. From this function, we return the template which is rendered to the page. Let's take the list of Web Component APIs we saw in the previous step, and add it as a lit-html template:
+lit-element works with a `render` function, which is called each time the element is updated. From this function, we return the template which is rendered to the page.
+
+Let's take the list of Web Component APIs we saw in the previous step, and add it as a lit-html template:
 
 ```js
 import { LitElement, html } from 'https://unpkg.com/lit-element?module';
@@ -344,7 +348,7 @@ LitElement offers a lot more features than just rendering templates. We will loo
 
 ## Shadow DOM
 
-The last important web component API we will look into is Shadow DOM. Traditionally, HTML and CSS have always been global. This scales pretty badly, we need to make sure that ids are unique on the page and CSS selector can get pretty complex. This is why many front-end frameworks offer some form of encapsulation. With Shadow DOM, this capability is now built into the browser.
+The last important web component API we will look into is shadow DOM. Traditionally, HTML and CSS have always been global. This scales pretty badly, we need to make sure that ids are unique on the page and CSS selector can get pretty complex. This is why many front-end frameworks offer some form of encapsulation. With shadow DOM, this capability is now built into the browser.
 
 The best way to visualize this is to inspect the element we created in the previous step. In the DOM inspector you will see that the children rendered by our element are not direct children of our element, but are wrapped inside of a shadow root:
 
@@ -551,7 +555,7 @@ Their elements are open source, [you can find them here](https://github.com/gith
 
 ### Twitter
 
-Twitter utilizes Web Components for embedding tweets. They're using both Custom Elements and Shadow DOM, because they need to ensure the styling of the tweet is consistent across pages and the styling of the component doesn't interfere with the styling of the page.
+Twitter utilizes Web Components for embedding tweets. They're using both Custom Elements and shadow DOM, because they need to ensure the styling of the tweet is consistent across pages and the styling of the component doesn't interfere with the styling of the page.
 
 On browsers which don't support Web Components, twitter uses an iframe to achieve a similar functionality (with a much higher cost).
 
@@ -561,9 +565,9 @@ On browsers which don't support Web Components, twitter uses an iframe to achiev
 
 ### Video
 
-The `<video>` element is built into the browser, and it's actually also using Shadow DOM. When you place a video element on the page it actually renders a lot more UI for the controls.
+The `<video>` element is built into the browser, and it's actually also using shadow DOM. When you place a video element on the page it actually renders a lot more UI for the controls.
 
-You can inspect the Shadow DOM of these elements on most browser after enabling a setting in your DevTools.
+You can inspect the shadow DOM of these elements on most browser after enabling a setting in your DevTools.
 
 ![Example video element shadow dom](./assets/video-example-1.png)
 
