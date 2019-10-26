@@ -113,7 +113,7 @@ const template = html`
 
 This is a native browser feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates), where the `html` tag is a function which returns the prepared template ready for rendering. We won't go into details of how it works exactly, but by using this syntax `lit-html` can very efficiently update the dynamic parts of your template when your element re-renders.
 
-Most popular IDEs support syntax highlighting of HTML inside template literals, for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
+Most popular IDEs support syntax highlighting of HTML inside template literals, but for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
 
 lit-element works with a `render` function, which is called each time the element is updated. From this function, we return the template which is rendered to the page. Let's start by displaying the title of our app:
 
