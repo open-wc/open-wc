@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.8...es-dev-server@1.19.0) (2019-10-26)
+
+
+### Features
+
+* **es-dev-server:** allow listening to own ip address ([#906](https://github.com/open-wc/open-wc/issues/906)) ([d8fbf3f](https://github.com/open-wc/open-wc/commit/d8fbf3f))
+
+
+
+
+
+## [1.18.8](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.7...es-dev-server@1.18.8) (2019-10-26)
+
+
+### Bug Fixes
+
+* **es-dev-server:** properly close server on exit ([0c99d3b](https://github.com/open-wc/open-wc/commit/0c99d3b))
+
+
+
+
+
+## [1.18.7](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.6...es-dev-server@1.18.7) (2019-10-25)
+
+
+### Bug Fixes
+
+* align used mocha version ([#901](https://github.com/open-wc/open-wc/issues/901)) ([3606381](https://github.com/open-wc/open-wc/commit/3606381))
+
+
+
+
+
+## [1.18.6](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.5...es-dev-server@1.18.6) (2019-10-23)
+
+
+### Bug Fixes
+
+* add package keywords ([#859](https://github.com/open-wc/open-wc/issues/859)) ([cd78405](https://github.com/open-wc/open-wc/commit/cd78405))
+
+
+
+
+
 ## [1.18.5](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.4...es-dev-server@1.18.5) (2019-10-22)
 
 **Note:** Version bump only for package es-dev-server

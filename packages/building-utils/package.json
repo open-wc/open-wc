@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-utils",
-  "version": "2.10.0",
+  "version": "2.10.2",
   "publishConfig": {
     "access": "public"
   },
@@ -58,6 +58,6 @@
     "@types/lru-cache": "^5.1.0",
     "@types/rimraf": "^2.0.2",
     "chai": "^4.2.0",
-    "mocha": "^6.1.4"
+    "mocha": "^6.0.0"
   }
 }

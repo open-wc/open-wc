@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.8.1...@open-wc/karma-esm@2.9.0) (2019-10-26)
+
+
+### Features
+
+* **karma-esm:** fail test run when tests can't be loaded ([#904](https://github.com/open-wc/open-wc/issues/904)) ([221120e](https://github.com/open-wc/open-wc/commit/221120e))
+
+
+
+
+
+## [2.8.1](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.8.0...@open-wc/karma-esm@2.8.1) (2019-10-26)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+# [2.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.7.5...@open-wc/karma-esm@2.8.0) (2019-10-26)
+
+
+### Features
+
+* **karma-esm:** log 404 requests ([f0e28a3](https://github.com/open-wc/open-wc/commit/f0e28a3))
+
+
+
+
+
+## [2.7.5](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.7.4...@open-wc/karma-esm@2.7.5) (2019-10-25)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.7.4](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.7.3...@open-wc/karma-esm@2.7.4) (2019-10-23)
+
+
+### Bug Fixes
+
+* add package keywords ([#859](https://github.com/open-wc/open-wc/issues/859)) ([cd78405](https://github.com/open-wc/open-wc/commit/cd78405))
+
+
+
+
+
 ## [2.7.3](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.7.2...@open-wc/karma-esm@2.7.3) (2019-10-22)
 
 

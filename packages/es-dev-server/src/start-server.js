@@ -27,6 +27,7 @@ export async function startServer(cfg, fileWatcher = chokidar.watch([])) {
       server.close();
       server = undefined;
     }
+    process.exit(0);
   }
 
   ['exit', 'SIGINT'].forEach(event => {
@@ -43,7 +44,7 @@ export async function startServer(cfg, fileWatcher = chokidar.watch([])) {
   // start the server, open the browser and log messages
   await new Promise(resolve =>
     server.listen({ port, host: cfg.hostname }, () => {
-      const prettyHost = cfg.hostname === '127.0.0.1' ? 'localhost' : cfg.hostname;
+      const prettyHost = cfg.hostname || 'localhost';
 
       if (cfg.logStartup) {
         const msgs = [];

@@ -51,7 +51,7 @@ import { compatibilityModes } from './constants.js';
  *
  * Server configuration
  * @property {number} port
- * @property {string} hostname
+ * @property {string} [hostname]
  * @property {boolean} openBrowser whether to open the browser
  * @property {string} openPath path to open the browser on
  * @property {string} [appIndex] app index browser path, generated from
@@ -90,7 +90,7 @@ import { compatibilityModes } from './constants.js';
 export function createConfig(config) {
   const {
     port,
-    hostname = '127.0.0.1',
+    hostname,
     open = false,
     basePath,
     watch = false,
