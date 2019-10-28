@@ -523,9 +523,22 @@ For example we can change the front of our page and it will affect the text insi
     <web-component-apis></web-component-apis>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html, css } from 'https://unpkg.com/lit-element?module';
 
       class WebComponentApis extends LitElement {
+        static get styles() {
+          return css`
+            h1 {
+              color: red;
+            }
+
+            ul {
+              color: blue;
+              list-style-type: upper-roman;
+            }
+          `;
+        }
+
         render() {
           return html`
             <h1>Basic Web Components APIs</h1>
