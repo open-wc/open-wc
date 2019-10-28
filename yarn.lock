@@ -2031,16 +2031,16 @@
   integrity sha512-BONpjHcGX2zFa9mfnwBCLEmlDsOHzT+j6Qt1yfK3MzFXFtAykfzFjAgaxPetu0YbBlCfXuMlfxI4vlRGCGMvFg==
 
 "@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.2.3"
+  version "1.2.7"
   dependencies:
-    "@open-wc/testing-karma" "^3.1.42"
+    "@open-wc/testing-karma" "^3.1.46"
     "@types/node" "^11.13.0"
     karma-browserstack-launcher "^1.0.0"
 
 "@open-wc/testing-karma@file:./packages/testing-karma":
-  version "3.1.42"
+  version "3.1.46"
   dependencies:
-    "@open-wc/karma-esm" "^2.7.4"
+    "@open-wc/karma-esm" "^2.9.0"
     axe-core "^3.3.1"
     karma "^4.0.0"
     karma-chrome-launcher "^2.0.0"
@@ -7228,6 +7228,11 @@ eslint-plugin-import@^2.18.0:
     object.values "^1.1.0"
     read-pkg-up "^2.0.0"
     resolve "^1.11.0"
+
+eslint-plugin-no-only-tests@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-no-only-tests/-/eslint-plugin-no-only-tests-2.3.1.tgz#7b24a4df55b818d0838410aa96b24a5a4a072262"
+  integrity sha512-LzCzeQrlkNjEwUWEoGhfjz+Kgqe0080W6qC8I8eFwSMXIsr1zShuIQnRuSZc4Oi7k1vdUaNGDc+/GFvg6IHSHA==
 
 eslint-plugin-wc@^1.2.0:
   version "1.2.0"
