@@ -8,10 +8,11 @@ module.exports = {
     browser: true,
     mocha: true,
   },
-  plugins: ['html'],
+  plugins: ['html', 'no-only-tests'],
   rules: {
     'arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
     'no-underscore-dangle': 'off',
+    'no-only-tests/no-only-tests': 'error',
     'import/extensions': ['error', 'always', { ignorePackages: true }],
     'import/prefer-default-export': 'off',
     'import/no-extraneous-dependencies': [
