@@ -17,6 +17,7 @@ export function createServer(cfg, fileWatcher) {
   const middlewares = createMiddlewares(cfg, fileWatcher);
 
   const app = new Koa();
+
   middlewares.forEach(middleware => {
     app.use(middleware);
   });
