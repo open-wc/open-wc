@@ -1,0 +1,44 @@
+import { Story, Preview, Meta, Props } from '@storybook/addon-docs/blocks';
+import { html } from 'lit-html';
+
+import '../<%= tagName %>.js';
+
+<Meta title="Card|Docs" />
+
+# <%= className %>
+
+A component for...
+
+## Features:
+
+- a
+- b
+- ...
+
+## How to use
+
+### Installation
+
+```bash
+yarn add <%= tagName %>
+```
+
+```js
+import '<%= tagName %>/<%= tagName %>.js';
+```
+
+<Preview withToolbar>
+  <Story name="Simple" height="220px">
+    {html`
+      <<%= tagName %>></<%= tagName %>>
+    `}
+  </Story>
+</Preview>
+
+## API
+
+<Props of="<%= tagName %>" />
+
+## Playground
+
+Please select "Card Playground" story and open the knobs panel.

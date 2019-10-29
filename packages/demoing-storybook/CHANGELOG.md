@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.3.1...@open-wc/demoing-storybook@0.4.0) (2019-10-29)
+
+
+### Features
+
+* **demoing-storybook:** storybook 5.3 with docs mode - see MIGRATION.md ([9000b92](https://github.com/open-wc/open-wc/commit/9000b92))
+
+
+
+
+
 ## [0.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.3.0...@open-wc/demoing-storybook@0.3.1) (2019-10-23)
 
 
