@@ -45,7 +45,7 @@ npm init @open-wc
 
 ### Migration
 
-If you area already using `@open-wc/storybook` be sure to check out the [Migration Guide](/demoing/MIGRATION.md).
+If you are already using `@open-wc/storybook` be sure to check out the [Migration Guide](/demoing/MIGRATION.md).
 
 ## Usage
 
@@ -57,7 +57,7 @@ npm run storybook
 
 ### Create documentation
 
-Create an `*.stories.mdx` (for example `card.stories.mdx`) file within the `stories` folder.
+Create a `*.stories.mdx` (for example `card.stories.mdx`) file within the `stories` folder.
 
 ```md
 import { Story, Preview, Meta, Props } from '@storybook/addon-docs/blocks';
@@ -68,7 +68,7 @@ import '../demo-wc-card.js';
 
 # Demo Web Component Card
 
-A component mend to display small information with additional data on the back.
+A component meant to display small information with additional data on the back.
 // [...] use markdown to format your text
 
 <Preview withToolbar>
@@ -90,7 +90,7 @@ The api table will show the data of "demo-wc-card" in your `custom-elements.json
 
 ### Create stories in CSF (Component story format)
 
-Create an `*.stories.js` (for example `card-variations.stories.js`) file within the `stories` folder.
+Create a `*.stories.js` (for example `card-variations.stories.js`) file within the `stories` folder.
 
 ```js
 export default {
@@ -163,7 +163,7 @@ onlyFirstComponent.story = {
 
 - `demo-wc-card:nth-of-type(1)` will only show knobs for the first element
 - `demo-wc-card:nth-of-type(2)` will only show knobs for the second element
-- `*` will knobs for all known\* custom elements
+- `*` will add knobs for all known\* custom elements
 - `.content *` will add knobs to all known\* custom elements within the `.content` element
 - `div` will throw as no valid custom element can be selected
 
@@ -172,7 +172,7 @@ onlyFirstComponent.story = {
 ### custom-elements.json
 
 In order to get documentation for web-components you will need to have a [custom-elements.json](https://github.com/webcomponents/custom-elements-json) file.
-You can hand write it or better generate it. Depending on the web components sugar you are choosing your milage may vary.
+You can hand write it or better generate it. Depending on the web components sugar you are choosing your mileage may vary.
 Please not that the details of the file are still being discussed so we may adopt to changes in `custom-elements.json` without a breaking release.
 
 Known analyzers that output `custom-elements.json`:
