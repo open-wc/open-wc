@@ -20,6 +20,7 @@ import { compatibilityModes } from './constants.js';
  * @property {string} [basePath] Base path the app is served on. This path is only visible in
  *   the browser, it is stripped from the request url before resolving files. Starts with a /
  *   and ends with no/. For example: /my-app, /foo, /foo/bar
+ * @property {boolean|CompressOptions} [compress=true] Whether the server should compress responses.
  * @property {import('koa').Middleware[]} [middlewares]
  * @property {boolean} logStartup whether to log server startup
  *
@@ -43,6 +44,13 @@ import { compatibilityModes } from './constants.js';
  * @property {string[]} [babelModernExclude] files excluded from babel on modern browser
  * @property {object} [babelConfig] babel config to use, this is useful when you want to provide a
  *   babel config from a tool, and don't want to require all users to use the same babel config
+ */
+
+/**
+ * Config object for Koa compress middleware
+ * @typedef {object} CompressOptions
+ * @property {number} [threshold=1024] Minimum response size in bytes to compress. Default 1024 bytes or 1kb.
+ * @property {function} [filter] An optional function that checks the response content type to decide whether to compress. By default, it uses compressible.
  */
 
 /**
@@ -76,6 +84,7 @@ import { compatibilityModes } from './constants.js';
  * @property {boolean} preserveSymlinks
  * @property {boolean} readUserBabelConfig same as babel option in command line args
  * @property {string} compatibilityMode
+ * @property {boolean|CompressOptions} compress Whether the server should compress responses.
  * @property {object} customBabelConfig custom babel configuration to use when compiling
  * @property {string[]} extraFileExtensions
  * @property {string[]} babelExclude
@@ -89,24 +98,25 @@ import { compatibilityModes } from './constants.js';
  */
 export function createConfig(config) {
   const {
-    port,
-    hostname,
-    open = false,
-    basePath,
-    watch = false,
-    http2 = false,
-    sslKey,
-    sslCert,
-    compatibility = compatibilityModes.NONE,
-    nodeResolve = false,
-    preserveSymlinks = false,
-    moduleDirs = ['node_modules'],
     babel = false,
-    fileExtensions = [],
+    babelConfig,
     babelExclude = [],
     babelModernExclude = [],
-    babelConfig,
+    basePath,
+    compatibility = compatibilityModes.NONE,
+    compress = true,
+    fileExtensions = [],
+    hostname,
+    http2 = false,
     logStartup,
+    moduleDirs = ['node_modules'],
+    nodeResolve = false,
+    open = false,
+    port,
+    preserveSymlinks = false,
+    sslCert,
+    sslKey,
+    watch = false,
   } = config;
 
   // middlewares used to be called customMiddlewares
@@ -151,29 +161,30 @@ export function createConfig(config) {
   }
 
   return {
-    port,
-    hostname,
-    rootDir,
-    appIndexDir,
     appIndex,
-    basePath,
-    moduleDirectories: moduleDirs,
-    nodeResolve,
-    preserveSymlinks,
-    readUserBabelConfig: babel,
-    customBabelConfig: babelConfig,
-    watch,
-    openBrowser: open === true || typeof open === 'string',
-    openPath,
-    logStartup,
-    http2,
-    sslKey,
-    sslCert,
-    extraFileExtensions: fileExtensions,
-    compatibilityMode: compatibility,
+    appIndexDir,
     babelExclude,
     babelModernExclude,
-    watchDebounce: 1000,
+    basePath,
+    compatibilityMode: compatibility,
+    compress,
+    customBabelConfig: babelConfig,
     customMiddlewares: middlewares,
+    extraFileExtensions: fileExtensions,
+    hostname,
+    http2,
+    logStartup,
+    moduleDirectories: moduleDirs,
+    nodeResolve,
+    openBrowser: open === true || typeof open === 'string',
+    openPath,
+    port,
+    preserveSymlinks,
+    readUserBabelConfig: babel,
+    rootDir,
+    sslCert,
+    sslKey,
+    watch,
+    watchDebounce: 1000,
   };
 }
