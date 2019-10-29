@@ -1,6 +1,6 @@
 # Demo Web Component Card
 
-A component mend to display small information with additional data on the back.
+A component meant to display small information with additional data on the back.
 
 ## Features:
 
