@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.19.0...es-dev-server@1.20.0) (2019-10-30)
+
+
+### Features
+
+* **es-dev-server:** enable compression ([0d06b02](https://github.com/open-wc/open-wc/commit/0d06b02)), closes [#723](https://github.com/open-wc/open-wc/issues/723)
+
+
+
+
+
 # [1.19.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.8...es-dev-server@1.19.0) (2019-10-26)
 
 
