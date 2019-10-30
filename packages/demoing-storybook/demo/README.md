@@ -1,40 +1,31 @@
-# Example Element
+# Demo Web Component Card
 
-<style>
-  iframe {
-    width: 100%;
-    border: 1px solid rgba(0,0,0,.1);
-    min-height: 300px;
-  }
-</style>
-
-This example element display some information about...
+A component meant to display small information with additional data on the back.
 
 ## Features:
 
-- bigger then you would expect
-- still fast
-- awesome to learn something
+- looks like a game card
+- content in the front
+- data in the back
 
 ## How to use
 
 ### Installation
 
 ```bash
-yarn add @foo/my-el
+yarn add @foo/demo-wc-card
 ```
 
 ```js
-import '@foo/my-el/my-el.js';
+import '@foo/demo-wc-card/demo-wc-card.js';
 ```
 
-### Example:
+## Detailed Docs
 
-<iframe src="iframe.html?id=demo-example-element--documentation"></iframe>
-```html
-<my-el></my-el>
-```
+For detailed docs please go to our [docs](https://open-wc.org/demoing-storybook/?path=/docs/card-docs--simple).
 
 ## API
 
-Please look at "Canvas" and select "Knobs" in the addon bar (usually to the right) to see all available properties.
+| Property | Attribute | Description                              |
+| -------- | --------- | ---------------------------------------- |
+| backSide | back-side | Boolean to switch between front and back |

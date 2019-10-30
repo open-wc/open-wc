@@ -1,0 +1,62 @@
+{
+  "version": 2,
+  "tags": [
+    {
+      "name": "demo-wc-card",
+      "description": "This is a container looking like a card with a back and front side you can switch",
+      "properties": [
+        {
+          "name": "header",
+          "type": "String",
+          "attribute": "header",
+          "description": "Shown at the top of the card",
+          "default": "Your Message"
+        },
+        {
+          "name": "rows",
+          "type": "Array",
+          "attribute": "rows",
+          "description": "Tabular data shown on the back of the card",
+          "default": []
+        },
+        {
+          "name": "backSide",
+          "type": "Boolean",
+          "attribute": "back-side",
+          "reflect": true,
+          "description": "Indicates that the back of the card is shown",
+          "default": false
+        }
+      ],
+      "events": [
+        {
+          "name": "side-changed",
+          "description": "Fires whenever it switches between front/back"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Content inside the card gets displayed on the front page"
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--demo-wc-card-header-font-size",
+          "description": "Header Font size",
+          "type": "Length"
+        },
+        {
+          "name": "--demo-wc-card-front-color",
+          "description": "Font color for the front",
+          "type": "Color"
+        },
+        {
+          "name": "--demo-wc-card-back-color",
+          "description": "Font color for the back",
+          "type": "Color"
+        }
+      ]
+    }
+  ]
+}

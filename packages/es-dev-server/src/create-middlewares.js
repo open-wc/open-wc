@@ -1,5 +1,6 @@
 import koaStatic from 'koa-static';
 import koaEtag from 'koa-etag';
+import koaCompress from 'koa-compress';
 import { createBasePathMiddleware } from './middleware/base-path.js';
 import { createHistoryAPIFallbackMiddleware } from './middleware/history-api-fallback.js';
 import { createCompileMiddleware } from './middleware/compile-middleware.js';
@@ -21,26 +22,32 @@ import { compatibilityModes } from './constants.js';
  */
 export function createMiddlewares(config, fileWatcher) {
   const {
-    rootDir,
     appIndex,
     appIndexDir,
+    babelExclude,
+    babelModernExclude,
     basePath,
+    compatibilityMode,
+    compress,
+    customBabelConfig,
+    customMiddlewares,
+    extraFileExtensions,
     moduleDirectories,
     nodeResolve,
     preserveSymlinks,
     readUserBabelConfig,
-    customBabelConfig,
+    rootDir,
     watch,
-    extraFileExtensions,
-    compatibilityMode,
-    babelExclude,
-    babelModernExclude,
     watchDebounce,
-    customMiddlewares,
   } = config;
 
   /** @type {import('koa').Middleware[]} */
   const middlewares = [];
+
+  if (compress) {
+    const options = typeof compress === 'object' ? compress : undefined;
+    middlewares.push(koaCompress(options));
+  }
 
   if (!Object.values(compatibilityModes).includes(compatibilityMode)) {
     throw new Error(
