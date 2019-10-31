@@ -178,7 +178,7 @@ class CoolHeading extends HTMLElement {
 ```
 
 <aside class="notice">
-We are adding the event listener in the constructor, because the `connectedCallback` method can be called multiple times during the lifecycle of our element. For example when using drag and drop, an element is disconnected from one location and connected again in another. That would cause the event listener to be registered multiple times, a common source of bugs.
+We're adding the event listener in the constructor, because the `connectedCallback` method can be called multiple times during the lifecycle of our element, for example when using drag and drop, or when an element is disconnected from one location and connected again in another. That would cause the event listener to be registered multiple times, a common source of bugs.
 </aside>
 
 If we run this code in the browser, the element should turn blue when clicked on.
