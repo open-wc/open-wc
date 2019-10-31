@@ -366,7 +366,7 @@ The best way to visualize this is to inspect the element we created in the previ
 
 This shadow root is a special type of DOM node which encapsulates the elements inside of it. Styles defined inside this shadow root do not leak out, and styles defined outside the shadow root do not reach in, hence encapsulation. Also, it's not possible to use `querySelector` to select elements inside or outside the shadow root. This way we can build reusable components and gives us the confidence that they will always work the same way, no matter the environment.
 
-Let's test this out by adding some styles to our component. In `LitElement`, we can add styles to our component using a static `styles` field:
+Let's try this out by adding some styles to our component. In `LitElement`, we can add styles to our component using a static `styles` field:
 
 ```js
 import { LitElement, html, css } from 'https://unpkg.com/lit-element?module';
