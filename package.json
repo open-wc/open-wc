@@ -5,7 +5,7 @@
   "scripts": {
     "build": "lerna run build",
     "build:types": "tsc -p tsconfig.build.types.json",
-    "codelabs:build": "node codelabs/build.js",
+    "codelabs:build": "node ./packages/codelabs/build-codelabs.js",
     "format": "npm run format:eslint && npm run format:prettier",
     "format:eslint": "eslint --ext .js,.html . --fix",
     "format:prettier": "prettier \"**/*.{js,md}\" \"**/package.json\" --write",
