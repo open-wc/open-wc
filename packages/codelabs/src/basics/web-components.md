@@ -222,7 +222,7 @@ If we run this code in the browser, the element should turn blue when clicked on
 
 ## Templating
 
-The second API in Web Components that we will look into is HTML templates. When writing web components,we usually need to do more than just setting some styles or text. We often need to render larger pieces of HTML as part of our component and update parts of it when the user interacts with the page.
+The second Web Components API that we will look into is HTML templates. When writing web components,we usually need to do more than just setting some styles or text. We often need to render larger pieces of HTML as part of our component and update parts of it when the user interacts with the page.
 
 To do this efficiently, the browser provides us with a template element. This template allows us to define the structure of a piece of HTML upfront, and efficiently clones this each time the element is rendered on the page. This is a lot faster than recreating the same HTML structure each time. Writing and cloning templates is (intentionally) pretty low level, you will usually not want to do this manually. You can read more about the basic API [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template).
 
