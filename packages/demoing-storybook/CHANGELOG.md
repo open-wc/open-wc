@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.4.0...@open-wc/demoing-storybook@0.4.1) (2019-10-30)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** add missing babel-loader dependency ([1d5d438](https://github.com/open-wc/open-wc/commit/1d5d438))
+
+
+
+
+
 # [0.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.3.1...@open-wc/demoing-storybook@0.4.0) (2019-10-29)
 
 
