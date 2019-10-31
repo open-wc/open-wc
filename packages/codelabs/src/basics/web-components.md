@@ -358,7 +358,7 @@ LitElement offers a lot more features than just rendering templates, check out o
 
 ## Shadow DOM
 
-The last important API in Web Components we will look into is Shadow DOM. Traditionally, the context of HTML and CSS have always been global. This scales pretty badly, because we then constantly need to make sure that the id's of all the elements are unique and often CSS selectors can get pretty complex. This is why many front-end frameworks offer some form of encapsulation. Web Components provides us with this capability using `Shadow DOM`, this capability is now also built into the browser.
+The last important Web Components API we will look into is Shadow DOM. Traditionally, the context of HTML and CSS have always been global. This scales pretty badly, because we constantly need to make sure that the id's of all the elements are unique and often CSS selectors can get pretty complex. This is why many front-end frameworks offer some form of encapsulation. Web Components provides us with this capability using `Shadow DOM`, this capability is now built into the browser.
 
 The best way to visualize this is to inspect the element we created in the previous step. In the DOM inspector you will see that the children rendered are not direct children of our element, but rather they are wrapped inside of a shadow root:
 
