@@ -49,7 +49,7 @@ If you run this in the browser and see hello world, you're good to go!
 
 ## Custom Elements
 
-First, we will take a look at the most important web component API: `Custom Elements`.
+First, we will take a look at the most important web component API: Custom Elements.
 
 Modify your HTML to wrap the "Hello world" message in an element called `<cool-heading>`:
 
