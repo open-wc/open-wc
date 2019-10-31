@@ -45,7 +45,7 @@ To get started, let's create a basic HTML page:
 </html>
 ```
 
-If you run this in the browser and see hello world, then you're good to go!
+If you run this in the browser and see hello world, you're good to go!
 
 ## Custom Elements
 
