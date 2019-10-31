@@ -244,7 +244,7 @@ LitElement is written and distributed as ES Modules, this means we can import it
 
 Make sure you add `type="module"` to the script tag!
 
-Next, we need to define our class. Instead of extending `HTMLElement`, we are now extending `LitElement`. `LitElement` extends `HTMLElement` already, so we are still creating an actual custom element:
+Next, we need to define our class. Instead of extending `HTMLElement`, we are now extending `LitElement`. `LitElement` extends `HTMLElement` already, so we're still creating an actual custom element:
 
 ```js
 class WebComponentApis extends LitElement {
