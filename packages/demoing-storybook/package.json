@@ -16,8 +16,9 @@
   "main": "index.js",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js",
+    "site:build": "build-storybook -c demo/.storybook -o ../../_site/demoing-storybook",
     "storybook": "start-storybook -p 9001 -c demo/.storybook",
-    "storybook:build": "build-storybook -c demo/.storybook -o ../../_site/demoing-storybook"
+    "storybook:build": "build-storybook -c demo/.storybook"
   },
   "files": [
     "*.js",

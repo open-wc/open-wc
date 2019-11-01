@@ -5,7 +5,7 @@ const markedSync = require('marked');
 const cheerio = require('cheerio');
 const createCodelabIndex = require('./createCodelabIndex');
 
-const outputDir = path.join(__dirname, '..', '..', 'docs', '.vuepress', 'public', 'codelabs');
+const outputDir = path.join(__dirname, '..', '..', '_site', 'codelabs');
 
 /**
  * @param {string} src
@@ -88,8 +88,8 @@ async function main() {
     }
   }
 
-  // clear output directory
-  await fs.remove(outputDir);
+  // do not clear output directory - as it's pre populated by vuepress
+  // await fs.remove(outputDir);
   await fs.ensureDir(outputDir);
 
   // write codelabs
