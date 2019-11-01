@@ -1,6 +1,6 @@
 {
   "name": "es-dev-server",
-  "version": "1.19.0",
+  "version": "1.20.1",
   "publishConfig": {
     "access": "public"
   },
@@ -77,6 +77,7 @@
     "get-stream": "^5.1.0",
     "is-stream": "^2.0.0",
     "koa": "^2.7.0",
+    "koa-compress": "^3.0.0",
     "koa-etag": "^3.0.0",
     "koa-static": "^5.0.0",
     "lru-cache": "^5.1.1",

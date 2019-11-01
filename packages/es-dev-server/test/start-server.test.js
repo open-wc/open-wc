@@ -14,6 +14,7 @@ describe('server', () => {
         createConfig({
           port: 8080,
           rootDir: path.resolve(__dirname, 'fixtures', 'simple'),
+          compress: { threshold: 1 },
         }),
       ));
     });
@@ -49,6 +50,13 @@ describe('server', () => {
 
       expect(response.status).to.equal(200);
       expect(response.headers.get('cache-control')).to.equal('no-cache');
+    });
+
+    it('compresses responses by default', async () => {
+      const headers = { 'Accept-Encoding': 'gzip' };
+      const response = await fetch(`${host}index.html`, { headers });
+
+      expect(response.headers.get('content-encoding')).to.equal('gzip');
     });
   });
 

@@ -27,7 +27,6 @@ export async function startServer(cfg, fileWatcher = chokidar.watch([])) {
       server.close();
       server = undefined;
     }
-    process.exit(0);
   }
 
   ['exit', 'SIGINT'].forEach(event => {

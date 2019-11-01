@@ -10,7 +10,7 @@ export const AppLitElementMixin = subclass =>
 
       const { tagName, className } = this.templateData;
 
-      // user choosen tag name for app
+      // user chosen tag name for app
       const appMainOptions = {
         ...this.options,
         scaffoldType: 'wc-lit-element',

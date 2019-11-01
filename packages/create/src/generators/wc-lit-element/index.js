@@ -51,6 +51,10 @@ export const WcLitElementPackageMixin = subclass =>
         `${__dirname}/templates/_package.json`,
         this.destinationPath('package.json'),
       );
+      this.copyTemplate(
+        `${__dirname}/templates/custom-elements.json`,
+        this.destinationPath('custom-elements.json'),
+      );
     }
 
     async end() {
