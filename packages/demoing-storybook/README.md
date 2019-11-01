@@ -45,7 +45,7 @@ npm init @open-wc
 
 ### Migration
 
-If you are already using `@open-wc/storybook` be sure to check out the [Migration Guide](/demoing/MIGRATION.md).
+If you are already using `@open-wc/storybook` be sure to check out the [Migration Guide](./MIGRATION.md).
 
 ## Usage
 
