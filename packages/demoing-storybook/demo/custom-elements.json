@@ -14,7 +14,7 @@
         },
         {
           "name": "rows",
-          "type": "Array",
+          "type": "Array<Object>",
           "attribute": "rows",
           "description": "Tabular data shown on the back of the card",
           "default": []
@@ -55,6 +55,18 @@
           "name": "--demo-wc-card-back-color",
           "description": "Font color for the back",
           "type": "Color"
+        }
+      ]
+    },
+    {
+      "name": "fake-input",
+      "description": "A fake input implementation purely for demo perposes",
+      "properties": [
+        {
+          "name": "focused",
+          "type": "Boolean",
+          "description": "Is the input focused",
+          "default": false
         }
       ]
     }
