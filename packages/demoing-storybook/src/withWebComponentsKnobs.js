@@ -5,14 +5,14 @@ import { array, boolean, color, date, text, number, object } from '@storybook/ad
 import { manager } from '@storybook/addon-knobs/dist/registerKnobs.js';
 
 function getType(meta) {
-  let type = 'String';
+  let type = 'string';
   if (meta.type) {
     type = meta.type;
   }
   if (meta.storybookKnobs && meta.storybookKnobs.type) {
     type = meta.storybookKnobs.type;
   }
-  return type;
+  return type.toLowerCase();
 }
 
 function getGroupName(
@@ -58,22 +58,23 @@ function propertiesToKnobs({ el, elIndex, metaData, hasMultiple, filterPropertie
 
       if (type) {
         switch (type) {
-          case 'String':
+          case 'string':
             el[propName] = text(label, el[propName], group);
             break;
-          case 'Number':
+          case 'number':
             el[propName] = number(label, el[propName], {}, group);
             break;
-          case 'Array':
+          case 'array':
             el[propName] = array(label, el[propName], ',', group);
             break;
-          case 'Boolean':
+          case 'boolean':
             el[propName] = boolean(label, el[propName], group);
             break;
-          case 'Object':
+          case 'object':
+          case 'array<object>':
             el[propName] = object(label, el[propName], group);
             break;
-          case 'Date':
+          case 'date':
             el[propName] = new Date(date(label, el[propName], group));
             break;
           default:
@@ -89,17 +90,18 @@ function cssPropertiesToKnobs(el, i, cssVariables, multiple) {
     const type = getType(varMeta);
     const group = getGroupName(varMeta, i, 'CSS', multiple);
 
-    const validTypes = ['String', 'Color'];
+    const validTypes = ['length', 'string', 'color'];
 
     if (validTypes.includes(type)) {
       let value;
       const style = window.getComputedStyle(el);
       const defaultValue = style.getPropertyValue(cssName);
       switch (type) {
-        case 'String':
+        case 'string':
+        case 'length':
           value = text(cssName, defaultValue, group);
           break;
-        case 'Color':
+        case 'color':
           value = color(cssName, defaultValue, group);
           break;
         /* no default */

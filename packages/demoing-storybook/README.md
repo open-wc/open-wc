@@ -17,6 +17,7 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Demo
 
+::: tip
 Don't take our word for it but look at [the documentation of a demo card](/demoing-storybook/?path=/docs/demo-card-docs--simple) and [the documentation of the knobs decorator](/demoing-storybook/?path=/docs/decorators-withwebcomponentknobs--example-output).
 :::
 

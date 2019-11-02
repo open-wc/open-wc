@@ -14,7 +14,7 @@
         },
         {
           "name": "rows",
-          "type": "Array",
+          "type": "Array<Object>",
           "attribute": "rows",
           "description": "Tabular data shown on the back of the card",
           "default": []
