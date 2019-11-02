@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.4.1...@open-wc/demoing-storybook@0.4.2) (2019-11-01)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** docs mode scroll behavior ([d9a94a6](https://github.com/open-wc/open-wc/commit/d9a94a6))
+
+
+
+
+
 ## [0.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.4.0...@open-wc/demoing-storybook@0.4.1) (2019-10-30)
 
 

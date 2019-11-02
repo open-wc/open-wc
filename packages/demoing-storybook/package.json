@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/demoing-storybook",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "publishConfig": {
     "access": "public"
   },
@@ -16,8 +16,9 @@
   "main": "index.js",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js",
+    "site:build": "build-storybook -c demo/.storybook -o ../../_site/demoing-storybook",
     "storybook": "start-storybook -p 9001 -c demo/.storybook",
-    "storybook:build": "build-storybook -c demo/.storybook -o ../../_site/demoing-storybook"
+    "storybook:build": "build-storybook -c demo/.storybook"
   },
   "files": [
     "*.js",
@@ -34,16 +35,16 @@
   },
   "dependencies": {
     "@open-wc/testing-helpers": "^1.2.2",
-    "@storybook/addon-a11y": "5.3.0-alpha.33",
-    "@storybook/addon-actions": "5.3.0-alpha.33",
-    "@storybook/addon-backgrounds": "5.3.0-alpha.33",
+    "@storybook/addon-a11y": "5.3.0-alpha.35",
+    "@storybook/addon-actions": "5.3.0-alpha.35",
+    "@storybook/addon-backgrounds": "5.3.0-alpha.35",
     "@storybook/addon-console": "^1.1.0",
-    "@storybook/addon-docs": "5.3.0-alpha.33",
-    "@storybook/addon-knobs": "5.3.0-alpha.33",
-    "@storybook/addon-links": "5.3.0-alpha.33",
-    "@storybook/addon-storysource": "5.3.0-alpha.33",
-    "@storybook/addon-viewport": "5.3.0-alpha.33",
-    "@storybook/web-components": "5.3.0-alpha.33",
+    "@storybook/addon-docs": "5.3.0-alpha.35",
+    "@storybook/addon-knobs": "5.3.0-alpha.35",
+    "@storybook/addon-links": "5.3.0-alpha.35",
+    "@storybook/addon-storysource": "5.3.0-alpha.35",
+    "@storybook/addon-viewport": "5.3.0-alpha.35",
+    "@storybook/web-components": "5.3.0-alpha.35",
     "babel-loader": "^8.0.0"
   },
   "devDependencies": {

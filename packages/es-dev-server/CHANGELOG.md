@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.20.1...es-dev-server@1.20.2) (2019-11-02)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't compress event stream ([#934](https://github.com/open-wc/open-wc/issues/934)) ([f151081](https://github.com/open-wc/open-wc/commit/f151081))
+
+
+
+
+
 ## [1.20.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.20.0...es-dev-server@1.20.1) (2019-10-31)
 
 
