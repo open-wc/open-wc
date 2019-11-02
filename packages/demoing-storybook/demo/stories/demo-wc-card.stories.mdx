@@ -1,9 +1,16 @@
 import { Story, Preview, Meta, Props } from '@storybook/addon-docs/blocks';
 import { action } from '@storybook/addon-actions';
 import { html } from 'lit-html';
+import { withKnobs, text, number } from '@storybook/addon-knobs';
+import { withWebComponentsKnobs } from '../../index.js';
+
 import '../demo-wc-card.js';
 
-<Meta title="Card|Docs" />
+<Meta
+  title="Demo Card|Docs"
+  decorators={[withKnobs, withWebComponentsKnobs]}
+  parameters={{ component: 'demo-wc-card', options: { selectedPanel: 'storybookjs/knobs/panel' } }}
+/>
 
 # Demo Web Component Card
 
@@ -41,7 +48,8 @@ import '@foo/demo-wc-card/demo-wc-card.js';
 
 ## Playground
 
-Please select "Card Playground" story and open the knobs panel.
+For each story you see here you have a menu point on the left.
+Click on canvas and then knobs to see and modify the public api.
 
 ### Variations
 
