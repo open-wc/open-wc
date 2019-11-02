@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.2.3...@open-wc/testing-helpers@1.3.0) (2019-11-02)
+
+
+### Features
+
+* **testing-helpers:** allow rendering non-TemplateResult ([#910](https://github.com/open-wc/open-wc/issues/910)) ([15345c7](https://github.com/open-wc/open-wc/commit/15345c7))
+
+
+
+
+
 ## [1.2.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.2.2...@open-wc/testing-helpers@1.2.3) (2019-10-25)
 
 
