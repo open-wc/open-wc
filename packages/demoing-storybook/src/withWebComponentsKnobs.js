@@ -2,6 +2,7 @@
 import { render } from 'lit-html';
 import { elementUpdated } from '@open-wc/testing-helpers/index-no-side-effects.js';
 import { array, boolean, color, date, text, number, object } from '@storybook/addon-knobs';
+import { manager } from '@storybook/addon-knobs/dist/registerKnobs.js';
 
 function getType(meta) {
   let type = 'String';
@@ -14,7 +15,16 @@ function getType(meta) {
   return type;
 }
 
-function getGroupName(meta, tagName, index, defaultGroup = 'Properties', multiple = false) {
+function getGroupName(
+  meta,
+  index,
+  defaultGroup = 'Properties',
+  multiple = false,
+  filterProperties,
+) {
+  if (filterProperties) {
+    return 'Debug';
+  }
   let group = defaultGroup;
   if (meta.storybookKnobs && meta.storybookKnobs.group) {
     group = meta.storybookKnobs.group;
@@ -27,43 +37,57 @@ function getGroupName(meta, tagName, index, defaultGroup = 'Properties', multipl
   return group;
 }
 
-function propertiesToKnobs(el, i, properties, tagName, multiple) {
-  properties.forEach(prop => {
-    const propName = prop.name;
-    const type = getType(prop);
-    const group = getGroupName(prop, tagName, i, 'Properties', multiple);
-
-    if (type) {
-      switch (type) {
-        case 'String':
-          el[propName] = text(propName, el[propName], group);
-          break;
-        case 'Number':
-          el[propName] = number(propName, el[propName], {}, group);
-          break;
-        case 'Array':
-          el[propName] = array(propName, el[propName], ',', group);
-          break;
-        case 'Boolean':
-          el[propName] = boolean(propName, el[propName], group);
-          break;
-        case 'Object':
-          el[propName] = object(propName, el[propName], group);
-          break;
-        case 'Date':
-          el[propName] = new Date(date(propName, el[propName], group));
-          break;
-        default:
-      }
-    }
-  });
+function getLabel({ meta, elIndex, filterProperties }) {
+  if (filterProperties) {
+    return `${elIndex}: ${meta.name}`;
+  }
+  return meta.name;
 }
 
-function cssPropertiesToKnobs(el, i, cssVariables, tagName, multiple) {
+function propertiesToKnobs({ el, elIndex, metaData, hasMultiple, filterProperties }) {
+  if (metaData && metaData.properties) {
+    const properties = filterProperties
+      ? metaData.properties.filter(prop => filterProperties.includes(prop.name))
+      : metaData.properties;
+
+    properties.forEach(prop => {
+      const propName = prop.name;
+      const type = getType(prop);
+      const group = getGroupName(prop, elIndex, 'Properties', hasMultiple, filterProperties);
+      const label = getLabel({ meta: prop, elIndex, filterProperties });
+
+      if (type) {
+        switch (type) {
+          case 'String':
+            el[propName] = text(label, el[propName], group);
+            break;
+          case 'Number':
+            el[propName] = number(label, el[propName], {}, group);
+            break;
+          case 'Array':
+            el[propName] = array(label, el[propName], ',', group);
+            break;
+          case 'Boolean':
+            el[propName] = boolean(label, el[propName], group);
+            break;
+          case 'Object':
+            el[propName] = object(label, el[propName], group);
+            break;
+          case 'Date':
+            el[propName] = new Date(date(label, el[propName], group));
+            break;
+          default:
+        }
+      }
+    });
+  }
+}
+
+function cssPropertiesToKnobs(el, i, cssVariables, multiple) {
   cssVariables.forEach(varMeta => {
     const cssName = varMeta.name;
     const type = getType(varMeta);
-    const group = getGroupName(varMeta, tagName, i, 'CSS', multiple);
+    const group = getGroupName(varMeta, i, 'CSS', multiple);
 
     const validTypes = ['String', 'Color'];
 
@@ -108,6 +132,32 @@ function isValidMetaData(customElements) {
     See the readme of addon-docs for web components for more details.`);
 }
 
+function syncElToKnobs(el, elIndex, metaData, multiple, filterProperties) {
+  if (metaData.properties) {
+    const properties = filterProperties
+      ? metaData.properties.filter(prop => filterProperties.includes(prop.name))
+      : metaData.properties;
+    properties.forEach(property => {
+      const group = getGroupName(property, elIndex, 'Properties', multiple, filterProperties);
+      const label = getLabel({ meta: property, elIndex, filterProperties });
+      const knobsName = `${label}_${group}`;
+      manager.knobStore.update(knobsName, { value: el[property.name] });
+    });
+  }
+  // // TODO: find a way to update css
+  // if (metaData.cssProperties) {
+  //   metaData.cssProperties.forEach(property => {
+  //     const group = getGroupName(property, '', elIndex, 'CSS', multiple);
+  //     const knobsName = `${property.name}_${group}`;
+  //     const style = window.getComputedStyle(el);
+  //     const value = style.getPropertyValue(property);
+
+  //     manager.knobStore.update(knobsName, { value });
+  //   });
+  // }
+  manager._mayCallChannel();
+}
+
 export function withWebComponentsKnobs(storyFn, data) {
   // @ts-ignore
   let customElements = window.__STORYBOOK_CUSTOM_ELEMENTS__;
@@ -120,6 +170,7 @@ export function withWebComponentsKnobs(storyFn, data) {
     if (customElements.queryString) {
       queryString = customElements.queryString;
     }
+    const { filterProperties } = customElements;
 
     const wrapper = document.createElement('div');
     render(storyFn(), wrapper);
@@ -135,16 +186,27 @@ export function withWebComponentsKnobs(storyFn, data) {
 
     const hasMultiple = wcTags.length > 1;
 
-    wcTags.forEach((el, i) => {
+    wcTags.forEach((el, elIndex) => {
       const metaData = customElements.tags.find(tag => tag.name.toUpperCase() === el.tagName);
       elementUpdated(el).then(() => {
         if (metaData && metaData.properties) {
-          propertiesToKnobs(el, i, metaData.properties, metaData.name, hasMultiple);
+          propertiesToKnobs({ el, elIndex, metaData, hasMultiple, filterProperties });
         }
-        if (metaData && metaData.cssProperties) {
-          cssPropertiesToKnobs(el, i, metaData.cssProperties, metaData.name, hasMultiple);
+        if (!filterProperties && metaData && metaData.cssProperties) {
+          cssPropertiesToKnobs(el, elIndex, metaData.cssProperties, hasMultiple);
         }
       });
+
+      if (metaData) {
+        const defaultEventNames = ['click', 'focusin', 'focusout', 'keyup'];
+        const userEventNames = metaData.events ? metaData.events.map(item => item.name) : [];
+        const uniqueEventNames = [...new Set([...defaultEventNames, ...userEventNames])];
+        uniqueEventNames.forEach(evName => {
+          el.addEventListener(evName, () => {
+            syncElToKnobs(el, elIndex, metaData, hasMultiple, filterProperties);
+          });
+        });
+      }
     });
     return wrapper;
   }

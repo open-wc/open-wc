@@ -57,6 +57,18 @@
           "type": "Color"
         }
       ]
+    },
+    {
+      "name": "fake-input",
+      "description": "A fake input implementation purely for demo perposes",
+      "properties": [
+        {
+          "name": "focused",
+          "type": "Boolean",
+          "description": "Is the input focused",
+          "default": false
+        }
+      ]
     }
   ]
 }
