@@ -12,6 +12,13 @@ import { createResponseCacheMiddleware } from './middleware/response-cache-middl
 import { setupBrowserReload } from './utils/setup-browser-reload.js';
 import { compatibilityModes } from './constants.js';
 
+const defaultCompressOptions = {
+  filter(contentType) {
+    // event stream doesn't like compression
+    return contentType !== 'text/event-stream';
+  },
+};
+
 /**
  * Creates middlewares based on the given configuration. The middlewares can be
  * used by a koa server using `app.use()`:
@@ -45,7 +52,7 @@ export function createMiddlewares(config, fileWatcher) {
   const middlewares = [];
 
   if (compress) {
-    const options = typeof compress === 'object' ? compress : undefined;
+    const options = typeof compress === 'object' ? compress : defaultCompressOptions;
     middlewares.push(koaCompress(options));
   }
 
