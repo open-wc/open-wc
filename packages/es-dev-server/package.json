@@ -45,6 +45,7 @@
     "start:performance:compat-esm": "yarn build && node dist/cli.js --root-dir ../../ --app-index packages/es-dev-server/demo/performance/index.html --node-resolve --compatibility esm --watch",
     "start:root-dir": "yarn build && node dist/cli.js --root-dir demo/static/ --open",
     "start:static": "yarn build && node dist/cli.js --open demo/static/",
+    "start:transformers": "yarn build && node dist/cli.js --app-index demo/response-transformers/index.html --config demo/response-transformers/config.js --node-resolve --open --watch",
     "start:typescript": "yarn build && node dist/cli.js --app-index demo/typescript/index.html --file-extensions .ts --node-resolve --open --watch --babel",
     "test": "npm run test:node",
     "test:node": "mocha test/**/*.test.js test/*.test.js --require @babel/register",
@@ -112,6 +113,7 @@
     "node-fetch": "^2.6.0",
     "request": "^2.88.0",
     "selfsigned": "^1.10.4",
+    "sinon": "^7.5.0",
     "uuid": "^3.3.2"
   }
 }
