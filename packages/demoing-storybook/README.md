@@ -17,8 +17,7 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Demo
 
-::: tip
-Don't take our word for it but look at [the demo documentation](/demoing-storybook/?path=/docs/card-docs--simple) and [the demo API playground](/demoing-storybook/?path=/story/card-playground--single-component).
+Don't take our word for it but look at [the documentation of a demo card](/demoing-storybook/?path=/docs/demo-card-docs--simple) and [the documentation of the knobs decorator](/demoing-storybook/?path=/docs/decorators-withwebcomponentknobs--example-output).
 :::
 
 ## Setup
@@ -121,13 +120,37 @@ it('has a header', async () => {
 
 ### Create API playground
 
+::: tip
+You can find a more interactive version of this in the [withWebComponentsKnobs docs](/demoing-storybook/?path=/docs/decorators-withwebcomponentknobs--example-output).
+:::
+
 Base on the data in [custom-elements.json](./#custom-elementsjson) we can automatically generate knobs for your stories.
 
 To enable this feature you will need to add an additional decorator.
 
+**MDX**
+
+```md
+import { withKnobs, withWebComponentsKnobs } from '@open-wc/demoing-storybook';
+
+<Meta
+  title="WithWebComponentsKnobs|Docs"
+  decorators={[withKnobs, withWebComponentsKnobs]}
+  parameters={{ component: 'demo-wc-card', options: { selectedPanel: 'storybookjs/knobs/panel' } }}
+/>
+
+<Story name="Custom Header" height="220px">
+  {html`
+    <demo-wc-card header="Harry Potter">A character that is part of a book series...</demo-wc-card>
+  `}
+</Story>
+```
+
+**CSF**
+
 ```js
 import { html } from 'lit-html';
-import { withKnobs, withWebComponentsKnobs } from '../../index.js';
+import { withKnobs, withWebComponentsKnobs } from '@open-wc/demoing-storybook';
 
 import '../demo-wc-card.js';
 
@@ -143,31 +166,14 @@ export const singleComponent = () => html`
 `;
 ```
 
-By default it will show knobs for all elements of the current "component".
-You can however override `parameters.customElements.queryString`.
+For additional features like
 
-```js
-export const onlyFirstComponent = () => html`
-  <demo-wc-card></demo-wc-card>
-  <demo-wc-card></demo-wc-card>
-`;
+- define which components to show knobs for
+- showing knobs for multiple different components
+- syncing components states to knobs
+- Filtering properties and debugging states
 
-onlyFirstComponent.story = {
-  parameters: {
-    customElements: {
-      queryString: 'demo-wc-card:nth-of-type(1)',
-    },
-  },
-};
-```
-
-- `demo-wc-card:nth-of-type(1)` will only show knobs for the first element
-- `demo-wc-card:nth-of-type(2)` will only show knobs for the second element
-- `*` will add knobs for all known\* custom elements
-- `.content *` will add knobs to all known\* custom elements within the `.content` element
-- `div` will throw as no valid custom element can be selected
-
-\* listed in `custom-elements.jon`
+please see the official [documentation of the knobs for web components decorator](/demoing-storybook/?path=/docs/decorators-withwebcomponentknobs--example-output).
 
 ### custom-elements.json
 

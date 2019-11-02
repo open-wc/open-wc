@@ -163,24 +163,24 @@ export function withWebComponentsKnobs(storyFn, data) {
   let customElements = window.__STORYBOOK_CUSTOM_ELEMENTS__;
 
   if (isValidComponent(data.parameters.component) && isValidMetaData(customElements)) {
-    let queryString = data.parameters.component;
+    let querySelectorAll = data.parameters.component;
     if (data.parameters.customElements) {
       customElements = { ...customElements, ...data.parameters.customElements };
     }
-    if (customElements.queryString) {
-      queryString = customElements.queryString;
+    if (customElements.querySelectorAll) {
+      querySelectorAll = customElements.querySelectorAll;
     }
     const { filterProperties } = customElements;
 
     const wrapper = document.createElement('div');
     render(storyFn(), wrapper);
 
-    const wcTags = Array.from(wrapper.querySelectorAll(queryString)).filter(node =>
+    const wcTags = Array.from(wrapper.querySelectorAll(querySelectorAll)).filter(node =>
       node.tagName.includes('-'),
     );
 
     if (wcTags.length === 0) {
-      throw new Error(`The provided querySelectorString "${queryString}" did
+      throw new Error(`The provided querySelectorString "${querySelectorAll}" did
         not select any custom elements (with a "-" in the tag name)`);
     }
 
