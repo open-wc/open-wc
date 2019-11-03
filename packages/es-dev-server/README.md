@@ -265,7 +265,7 @@ You can rewrite certain file requests using the `responseTransformers` property.
 
 A response transformer is a function which receives the original response and returns an optionally modified response. This transformation happens before any other built-in transformations such as node resolve, babel or compatibility. You can register multiple transformers, they are called in order.
 
-The funtions can be sync or async, the full signature:
+The functions can be sync or async, see the full signature below:
 
 ```typescript
 ({ url: string, status: number, contentType: string, body: string }) => Promise<{ body?: string, contentType?: string } | null>
