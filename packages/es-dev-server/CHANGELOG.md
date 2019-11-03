@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.20.2...es-dev-server@1.21.0) (2019-11-02)
+
+
+### Features
+
+* **es-dev-server:** reduce default debounce time ([#935](https://github.com/open-wc/open-wc/issues/935)) ([0963e06](https://github.com/open-wc/open-wc/commit/0963e06))
+
+
+
+
+
 ## [1.20.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.20.1...es-dev-server@1.20.2) (2019-11-02)
 
 

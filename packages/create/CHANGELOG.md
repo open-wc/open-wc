@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.21.0...@open-wc/create@0.21.1) (2019-11-02)
+
+
+### Bug Fixes
+
+* **create:** regression in app scaffolding when no options are selected ([#940](https://github.com/open-wc/open-wc/issues/940)) ([dea14cd](https://github.com/open-wc/open-wc/commit/dea14cd))
+
+
+
+
+
+# [0.21.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.20.1...@open-wc/create@0.21.0) (2019-11-02)
+
+
+### Features
+
+* **create:** dynamic READMEs ([#919](https://github.com/open-wc/open-wc/issues/919)) ([ca8623f](https://github.com/open-wc/open-wc/commit/ca8623f))
+
+
+
+
+
 ## [0.20.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.20.0...@open-wc/create@0.20.1) (2019-10-30)
 
 

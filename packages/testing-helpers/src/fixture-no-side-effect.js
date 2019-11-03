@@ -1,6 +1,6 @@
-import { TemplateResult } from 'lit-html';
 import { stringFixture, stringFixtureSync } from './stringFixture.js';
 import { litFixture, litFixtureSync } from './litFixture.js';
+import { isValidRenderArg } from './lib.js';
 
 /**
  * Renders a string/TemplateResult and puts it in the DOM via a fixtureWrapper.
@@ -9,17 +9,19 @@ import { litFixture, litFixtureSync } from './litFixture.js';
  * const el = fixtureSync('<my-el><span></span></my-el>');
  *
  * @template {Element} T
- * @param {string | TemplateResult} template Either a string or lit-html TemplateResult
+ * @param {import('./litFixture').LitHTMLRenderable} template Either a string or lit-html TemplateResult
  * @returns {T} First child of the rendered DOM
  */
 export function fixtureSync(template) {
   if (typeof template === 'string') {
     return stringFixtureSync(template);
   }
-  if (template instanceof TemplateResult) {
+  if (isValidRenderArg(template)) {
     return litFixtureSync(template);
   }
-  throw new Error('Invalid template provided - string or lit-html TemplateResult is supported');
+  throw new Error(
+    'Invalid template provided - string, number, boolean, Node, TemplateResult, or array or iterable thereof are supported',
+  );
 }
 
 /**
@@ -39,14 +41,14 @@ export function fixtureSync(template) {
  * expect(el.fullyRendered).to.be.true;
  *
  * @template {Element} T
- * @param {string | TemplateResult} template Either a string or lit-html TemplateResult
+ * @param {import('./litFixture').LitHTMLRenderable} template Either a string or lit-html TemplateResult
  * @returns {Promise<T>} A Promise that will resolve to the first child of the rendered DOM
  */
 export async function fixture(template) {
   if (typeof template === 'string') {
     return stringFixture(template);
   }
-  if (template instanceof TemplateResult) {
+  if (isValidRenderArg(template)) {
     return litFixture(template);
   }
   throw new Error('Invalid template provided - string or lit-html TemplateResult is supported');

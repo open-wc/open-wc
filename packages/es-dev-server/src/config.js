@@ -189,6 +189,6 @@ export function createConfig(config) {
     sslCert,
     sslKey,
     watch,
-    watchDebounce: 1000,
+    watchDebounce: 100,
   };
 }
