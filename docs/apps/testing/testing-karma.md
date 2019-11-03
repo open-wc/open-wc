@@ -1,1 +1,1 @@
-/Users/Passle/open-wc/packages/testing-karma/README.md
+../../../packages/testing-karma/README.md

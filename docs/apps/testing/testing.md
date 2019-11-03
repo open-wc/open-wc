@@ -1,1 +1,1 @@
-/Users/Passle/open-wc/packages/testing/README.md
+../../../packages/testing/README.md

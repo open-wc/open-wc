@@ -1,1 +1,1 @@
-/Users/Passle/open-wc/docs/linting/README.md
+../../docs/linting/README.md

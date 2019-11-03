@@ -1,1 +1,1 @@
-/Users/Passle/open-wc/packages/prettier-config/README.md
+../../../packages/prettier-config/README.md

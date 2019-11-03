@@ -1,1 +1,1 @@
-/Users/Passle/open-wc/docs/linting/linting-types.md
+../../docs/linting/linting-types.md
