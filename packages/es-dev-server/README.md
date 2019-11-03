@@ -343,6 +343,8 @@ module.exports = {
 };
 ```
 
+</details>
+
 ### Typescript support
 
 `es-dev-server` is based around developing without any build tools but you can make it work with typescript as well.
