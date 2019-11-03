@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.21.0...es-dev-server@1.22.0) (2019-11-03)
+
+
+### Bug Fixes
+
+* align versions within the monorepo ([fa2ad9f](https://github.com/open-wc/open-wc/commit/fa2ad9f))
+
+
+### Features
+
+* **es-dev-server:** add response transformers ([#939](https://github.com/open-wc/open-wc/issues/939)) ([0ffdb5b](https://github.com/open-wc/open-wc/commit/0ffdb5b))
+* **es-dev-server:** check last changed timestamp when caching ([73d926b](https://github.com/open-wc/open-wc/commit/73d926b))
+
+
+
+
+
 # [1.21.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.20.2...es-dev-server@1.21.0) (2019-11-02)
 
 
