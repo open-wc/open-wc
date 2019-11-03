@@ -1,12 +1,134 @@
 // .vuepress/config.js
 
 const sidebar = [
+  ['/guide/', 'Introduction'],
+  {
+    title: 'General',
+    collapsable: true,
+    children: [
+      ['/developing/', 'Getting started'],
+      ['/developing/ide', 'IDE'],
+      '/developing/lit-html',
+      '/developing/code-examples',
+      '/developing/best-practices',
+      '/developing/es-dev-server',
+      ['/init/', 'Generators'],
+      '/developing/types',
+      '/developing/routing',
+    ],
+  },
+  {
+    title: 'Application',
+    collapsable: true,
+    children: [
+      ['/developing/', 'Getting started'],
+      {
+        title: 'Linting',
+        collapsable: true,
+        children: [
+          ['/apps/linting/', 'Getting started'],
+          ['/apps/linting/linting-eslint', 'Linting ESLint'],
+          ['/apps/linting/linting-prettier', 'Linting Prettier'],
+          ['/apps/linting/linting-types', 'Linting Types'],
+        ],
+      },
+      {
+        title: 'Building',
+        collapsable: true,
+        children: [
+          ['/apps/building/', 'Getting started'],
+          ['/apps/building/building-rollup', 'Rollup'],
+          ['/apps/building/building-webpack', 'Webpack'],
+        ],
+      },
+      {
+        title: 'Testing',
+        collapsable: true,
+        children: [
+          ['/apps/testing/', 'Getting started'],
+          '/apps/testing/testing',
+          '/apps/testing/testing-karma',
+          '/apps/testing/testing-sinon',
+          '/apps/testing/testing-karma-bs',
+          '/apps/testing/testing-wallaby',
+        ],
+      },
+      { title: 'Publishing', collapsable: true, children: [['/apps/publishing/', 'Netlify']] },
+    ],
+  },
+  {
+    title: 'Web Component',
+    collapsable: true,
+    children: [
+      ['/developing/', 'Getting started'],
+      {
+        title: 'Linting',
+        collapsable: true,
+        children: [
+          ['/web-component/linting/', 'Getting started'],
+          ['/web-component/linting/linting-eslint', 'Linting ESLint'],
+          ['/web-component/linting/linting-prettier', 'Linting Prettier'],
+          ['/web-component/linting/linting-types', 'Linting Types'],
+        ],
+      },
+      {
+        title: 'Building',
+        collapsable: true,
+        children: [['/web-component/building/', 'Getting started']],
+      },
+      {
+        title: 'Testing',
+        collapsable: true,
+        children: [
+          ['/web-component/testing/', 'Getting started'],
+          '/web-component/testing/testing',
+          '/web-component/testing/testing-karma',
+          '/web-component/testing/testing-sinon',
+          '/web-component/testing/testing-karma-bs',
+          '/web-component/testing/testing-wallaby',
+        ],
+      },
+      { title: 'Publishing', collapsable: true, children: [['/web-component/publishing/', 'npm']] },
+    ],
+  },
+  {
+    title: 'Tools',
+    collapsable: true,
+    children: [
+      {
+        title: 'Building',
+        collapsable: true,
+        children: [
+          ['/tools/rollup-plugin-index-html', 'Rollup Plugin Index HTML'],
+          ['/tools/webpack-index-html-plugin', 'Webpack Index HTML Plugin'],
+        ],
+      },
+      {
+        title: 'Testing',
+        collapsable: true,
+        children: [
+          ['/tools/testing-helpers', 'Testing Helpers'],
+          ['/tools/semantic-dom-diff', 'Semantic Dom Diff'],
+          ['/tools/karma-esm', 'Karma ESM'],
+          ['/tools/testing-chai-a11y-axe', 'Testing Chai A11y Axe'],
+        ],
+      },
+    ],
+  },
+];
+
+const sidebar2 = [
   ['/', 'Home'],
   ['/guide/', 'Introduction'],
   {
     title: 'Developing',
     collapsable: true,
     children: [
+      {
+        title: 'Linting',
+        collapsable: true,
+        children: [['/developing/ide', 'Getting started'], ['/developing/code-examples', 'asd']],
+      },
       ['/developing/', 'Getting started'],
       ['/developing/ide', 'IDE'],
       '/developing/lit-html',
@@ -33,7 +155,7 @@ const sidebar = [
     title: 'Testing',
     collapsable: true,
     children: [
-      ['/testing/', 'Getting started'],
+      ['/app/testing/', 'Getting started'],
       '/testing/testing',
       '/testing/testing-helpers',
       '/testing/testing-chai-a11y-axe',
@@ -80,12 +202,14 @@ module.exports = {
     displayAllHeaders: false,
     sidebarDepth: 2,
     sidebar: {
+      '/tools/': sidebar,
+      '/apps/': sidebar,
+      '/web-component/': sidebar,
       '/guide/': sidebar,
       '/codelabs/': sidebar,
       '/init/': sidebar,
       '/developing/': sidebar,
       '/linting/': sidebar,
-      '/testing/': sidebar,
       '/building/': sidebar,
       '/demoing/': sidebar,
       '/publishing/': sidebar,

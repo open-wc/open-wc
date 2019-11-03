@@ -1,0 +1,1 @@
+/Users/Passle/open-wc/packages/eslint-config/README.md
