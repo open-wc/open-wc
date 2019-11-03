@@ -110,10 +110,11 @@ module.exports = {
 
 In addition to the command-line flags, the configuration file accepts these additional options:
 
-| name        | type   | description                                            |
-| ----------- | ------ | ------------------------------------------------------ |
-| middlewares | array  | Koa middlewares to add to the server, read more below. |
-| babelConfig | object | Babel config to run with the server                    |
+| name                 | type   | description                                            |
+| -------------------- | ------ | ------------------------------------------------------ |
+| middlewares          | array  | Koa middlewares to add to the server, read more below. |
+| responseTransformers | array  | Functions which transform the server's response.       |
+| babelConfig          | object | Babel config to run with the server                    |
 
 ## Folder structure
 
@@ -230,14 +231,14 @@ module.exports = {
 
 </details>
 
-### Rewriting file requests
+### Rewriting request urls
 
-You can rewrite certain file requests using a simple custom middleware. This can be useful for example to serve your `index.html` from a different file location.
+You can rewrite certain file requests using a simple custom middleware. This can be useful for example to serve your `index.html` from a different file location or to alias a module.
 
 <details>
   <summary>Read more</summary>
 
-Set up a configuration file with a custom middleware:
+Serve `/index.html` from `/src/index.html`:
 
 ```javascript
 module.exports = {
@@ -253,9 +254,94 @@ module.exports = {
 };
 ```
 
-This way from the browser you can request `/` or `/index.html` and it will serve `/src/index.html`. This middleware is run before the dev server's file serving logic, which will use the rewritten URL.
-
 </details>
+
+### Response transformers
+
+You can rewrite certain file requests using the `responseTransformers` property. With this you can adjust served files or serve virtual non-existing files programmatically.
+
+<details>
+  <summary>Read more</summary>
+
+A response transformer is a function which receives the original response and returns an optionally modified response. This transformation happens before any other built-in transformations such as node resolve, babel or compatibility. You can register multiple transformers, they are called in order.
+
+The functions can be sync or async, see the full signature below:
+
+```typescript
+({ url: string, status: number, contentType: string, body: string }) => Promise<{ body?: string, contentType?: string } | null>
+```
+
+Some examples:
+
+Rewrite the base path of your `index.html`:
+
+```javascript
+module.exports = {
+  responseTransformers: [
+    function rewriteBasePath({ url, status, contentType, body }) {
+      if (url === '/' || url === '/index.html') {
+        const rewritten = body.replace(/<base href=".*">/, '<base href="/foo/">');
+        return { body: rewritten };
+      }
+    },
+  ],
+};
+```
+
+Serve a virtual file, for example an auto generated `index.html`:
+
+```javascript
+const indexHTML = generateIndexHTML();
+
+module.exports = {
+  responseTransformers: [
+    function serveIndex({ url, status, contentType, body }) {
+      if (url === '/' || url === '/index.html') {
+        return { body: indexHTML, contentType: 'text/html' };
+      }
+    },
+  ],
+};
+```
+
+Transform markdown to HTML:
+
+```javascript
+const markdownToHTML = require('markdown-to-html-library');
+
+module.exports = {
+  responseTransformers: [
+    async function transformMarkdown({ url, status, contentType, body }) {
+      if (url === '/readme.md') {
+        const html = await markdownToHTML(body);
+        return {
+          body: html,
+          contentType: 'text/html',
+        };
+      }
+    },
+  ],
+};
+```
+
+Polyfill CSS modules in JS:
+
+```javascript
+module.exports = {
+  responseTransformers: [
+    async function transformCSS({ url, status, contentType, body }) {
+      if (url.endsWith('.css')) {
+        const transformedBody = `
+          const stylesheet = new CSSStyleSheet();
+          stylesheet.replaceSync(${JSON.stringify(body)});
+          export default stylesheet;
+        `;
+        return { body: transformedBody, contentType: 'application/javascript' };
+      }
+    },
+  ],
+};
+```
 
 ### Typescript support
 

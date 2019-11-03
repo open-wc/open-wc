@@ -51,12 +51,12 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.4",
-    "@babel/plugin-proposal-decorators": "^7.3.0",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/preset-typescript": "^7.3.3",
     "es-dev-server": "^1.21.0",
     "lit-element": "^2.0.1",
     "rimraf": "^2.6.3",
-    "rollup": "^1.4.0",
+    "rollup": "^1.15.6",
     "rollup-plugin-cpy": "^1.1.0",
     "rollup-plugin-typescript2": "^0.19.3",
     "rollup-plugin-visualizer": "^1.0.2"

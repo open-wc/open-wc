@@ -35,23 +35,23 @@
   "dependencies": {
     "@open-wc/building-utils": "^2.10.2",
     "babel-plugin-istanbul": "^5.1.4",
-    "chokidar": "^3.0.2",
-    "deepmerge": "^3.3.0",
+    "chokidar": "^3.0.0",
+    "deepmerge": "^3.2.0",
     "es-dev-server": "^1.21.0",
     "minimatch": "^3.0.4",
     "portfinder": "^1.0.21",
     "request": "^2.88.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/preset-typescript": "^7.3.3",
     "@types/lodash-es": "^4.17.3",
     "chai": "^4.2.0",
     "karma": "^4.1.0",
-    "karma-browserstack-launcher": "^1.5.1",
-    "karma-coverage-istanbul-reporter": "^2.0.5",
-    "lodash-es": "^4.17.11",
+    "karma-browserstack-launcher": "^1.0.0",
+    "karma-coverage-istanbul-reporter": "^2.0.0",
+    "lodash-es": "^4.17.15",
     "sinon": "^7.4.1"
   }
 }
