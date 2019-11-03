@@ -11,6 +11,7 @@ import { createEtagCacheMiddleware } from './middleware/etag-cache-middleware.js
 import { createResponseCacheMiddleware } from './middleware/response-cache-middleware.js';
 import { setupBrowserReload } from './utils/setup-browser-reload.js';
 import { compatibilityModes } from './constants.js';
+import { createTransformResponseMiddleware } from './middleware/transform-response.js';
 
 const defaultCompressOptions = {
   filter(contentType) {
@@ -38,6 +39,7 @@ export function createMiddlewares(config, fileWatcher) {
     compress,
     customBabelConfig,
     customMiddlewares,
+    responseTransformers,
     extraFileExtensions,
     moduleDirectories,
     nodeResolve,
@@ -141,6 +143,10 @@ export function createMiddlewares(config, fileWatcher) {
 
   if (watch) {
     setupBrowserReload({ fileWatcher, watchDebounce });
+  }
+
+  if (responseTransformers) {
+    middlewares.push(createTransformResponseMiddleware({ responseTransformers }));
   }
 
   // serve sstatic files
