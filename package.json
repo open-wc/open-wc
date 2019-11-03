@@ -13,6 +13,7 @@
     "lint:eslint": "eslint --ext .js,.html .",
     "lint:prettier": "prettier \"**/*.{js,md}\" \"**/package.json\" --check",
     "lint:types": "tsc",
+    "lint:versions": "node ./scripts/lint-versions.js",
     "postinstall": "npm run build",
     "publish": "lerna publish --message 'chore: release new versions'",
     "site:build": "npm run vuepress:build && lerna run site:build",
