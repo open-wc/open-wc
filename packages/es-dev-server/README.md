@@ -258,7 +258,7 @@ module.exports = {
 
 ### Response transformers
 
-With the `responseTransformers` property, you can transform the server's response before it is sent to the browser. This is useful for injecting code to your index.html, performing transformations on files or to serve virtual files programmatically.
+With the `responseTransformers` property, you can transform the server's response before it is sent to the browser. This is useful for injecting code into your index.html, performing transformations on files or to serve virtual files programmatically.
 
 <details>
   <summary>Read more</summary>
