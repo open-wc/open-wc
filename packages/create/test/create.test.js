@@ -161,3 +161,5 @@ describe('create component', () => {
 	  .catch(error => console.log(error));
   }).timeout(300000);
 });
+
+//guide: https://medium.com/@zorrodg/integration-tests-on-node-js-cli-part-2-testing-interaction-user-input-6f345d4b713a
