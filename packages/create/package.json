@@ -49,6 +49,7 @@
     "@babel/register": "^7.0.0",
     "babel-plugin-transform-dynamic-import": "^2.1.0",
     "chai": "^4.2.0",
+    "concat-stream": "2.0.0",
     "mocha": "^6.0.0",
     "onchange": "^5.2.0",
     "rimraf": "^2.6.3"
