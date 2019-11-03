@@ -23,23 +23,32 @@ function readPackageJson(filePath) {
 
 function compareVersions(versionsA, versionsB) {
   let output = '';
-  Object.keys(versionsA).forEach(dep => {
+  const newVersions = { ...versionsA };
+  Object.keys(versionsB).forEach(dep => {
     if (versionsA[dep] && versionsB[dep] && versionsA[dep] !== versionsB[dep]) {
-      output += `  - "${dep}": "${versionsA[dep]}" !== "${versionsB[dep]}"`;
+      output += `  - "${dep}": "${versionsA[dep]}" !== "${versionsB[dep]}"\n`;
+    }
+    if (!newVersions[dep]) {
+      newVersions[dep] = versionsB[dep];
     }
   });
-  return output;
+
+  return {
+    output,
+    newVersions,
+  };
 }
 
-const currentVersions = readPackageJson('./package.json');
+let currentVersions = readPackageJson('./package.json');
 let endReturn = 0;
 getDirectories('./packages').forEach(subPackage => {
   const filePath = `./packages/${subPackage}/package.json`;
   const subPackageVersions = readPackageJson(filePath);
-  const result = compareVersions(currentVersions, subPackageVersions);
-  if (result) {
-    console.log(`Version miss matches found in "${filePath}":`);
-    console.log(result);
+  const { output, newVersions } = compareVersions(currentVersions, subPackageVersions);
+  currentVersions = { ...newVersions };
+  if (output) {
+    console.log(`Version mismatches found in "${filePath}":`);
+    console.log(output);
     console.log();
     endReturn = 1;
   }
