@@ -1,1 +1,1 @@
-../../../packages/testing/README.md
+README.md

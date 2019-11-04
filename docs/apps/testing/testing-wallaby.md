@@ -1,1 +1,1 @@
-../../../packages/testing-wallaby/README.md
+README.md

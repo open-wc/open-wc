@@ -1,1 +1,1 @@
-../../../packages/eslint-config/README.md
+../../packages/eslint-config/README.md

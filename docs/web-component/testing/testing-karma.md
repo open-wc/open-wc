@@ -1,1 +1,1 @@
-../../../packages/testing-karma/README.md
+README.md
