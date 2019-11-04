@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.22.0...es-dev-server@1.23.0) (2019-11-04)
+
+
+### Features
+
+* **es-dev-server:** allow reloading multiple browsers in watch mode ([922b616](https://github.com/open-wc/open-wc/commit/922b616))
+
+
+
+
+
 # [1.22.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.21.0...es-dev-server@1.22.0) (2019-11-03)
 
 
