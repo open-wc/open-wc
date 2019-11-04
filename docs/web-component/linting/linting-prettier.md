@@ -1,1 +1,1 @@
-../../packages/prettier-config/README.md
+README.md
