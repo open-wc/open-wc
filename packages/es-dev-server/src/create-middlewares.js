@@ -152,6 +152,7 @@ export function createMiddlewares(config, fileWatcher) {
   // serve sstatic files
   middlewares.push(
     koaStatic(rootDir, {
+      hidden: true,
       setHeaders(res) {
         res.setHeader('cache-control', 'no-cache');
       },
