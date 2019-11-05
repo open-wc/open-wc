@@ -26,17 +26,15 @@ In this codelab, you will learn the basics of building web components with lit-h
 
 **How it works**
 
-This codelab will go step by step, explaining each code change. At the bottom of each section, there is a "View final result" button where you can see the final code result you should end up with. The codelab is sequential, results from the previous step carry on to the next step.
-
-At the bottom of each step, there is a final code snippet to make sure you're still on the right track or to help you when you get stuck.
+This codelab will go step by step, explaining each code change. At the bottom of each section there is a "View final result" button, this will show you the correct code that you should end up with incase you get stuck. The steps are sequential, thus results from the previous steps carry over to the next step.
 
 ## Setup
 
-In this codelab, we will build a simple todo app, a great showcase for learning the basics of lit-html and lit-element.
+In this codelab, we will build a simple todo app, which is a great showcase for learning the basics of lit-html and lit-element.
 
-You can follow this codelab using anything that can display a simple HTML page. We recommend using an [online code editor like jsbin](https://jsbin.com/?html,output), but you could also create a basic html page using your IDE.
+You can follow this codelab using anything that is able to display a simple HTML page. We recommend using an [online code editor like jsbin](https://jsbin.com/?html,output), but you can also create your own html page using your favorite IDE.
 
-To get started, create a simple web page:
+To get started, let's create a basic HTML page:
 
 ```html
 <!DOCTYPE html>
@@ -47,11 +45,11 @@ To get started, create a simple web page:
 </html>
 ```
 
-If you run this in the browser and see the message on the screen, you're good to go.
+If you run this in the browser and see '_My todo app_' on the screen, you're good to go.
 
 ## lit-element setup
 
-lit-element takes care of most of the boilerplate when writing components, providing a great developer experience while staying close to the browser platform. It does not require any build step to run in the browser, and it's only 7kb. This makes it an ideal lightweight choice.
+lit-element takes care of most of the boilerplate when creating components. This provides a great developer experience while staying close to the browser platform. It does not require any build steps to run in the browser. It's a mere 7kb in size and makes it the ideal choice if you are aiming at lightweight components.
 
 lit-element is written and distributed as es modules, this means we can import it using the browser's native module loader. Let's create a module script, and import LitElement from a CDN:
 
@@ -67,13 +65,13 @@ lit-element is written and distributed as es modules, this means we can import i
 </html>
 ```
 
-Make sure you add `type="module"` to the script tag.
+Make sure that you add `type="module"` to the script tag.
 
 <aside class="notice">
-In this example we are using `unpkg`, a CDN where we can easily import any module available on NPM. When working on a real project, you will probably want to use an actual package manager like NPM or yarn.
+In this example we are using `unpkg`, a CDN where we can easily import any module that is available on NPM. When working on a real project, it is a good idea to use an actual package manager like NPM or yarn.
 </aside>
 
-Next, we need to define our web component. When writing a vanilla web component we would extend from `HTMLElement`. With lit-element we need to import and extend from `LitElement`, which itself is an extension of `HTMLElement`.
+Next, we need to define our web component. When writing a vanilla web component we extend from the native `HTMLElement` class. With lit-element we need to import and extend from `LitElement` class which, in turn, is and extension of the `HTMLElement` class.
 
 ```js
 class TodoApp extends LitElement {
@@ -95,7 +93,7 @@ We defined the tag name for our element as `todo-app`, now we need to add this t
 If you run this in the browser you should see `lit element connected` logged to the terminal.
 
 <aside class="notice">
-  Because LitElement also does some work in the `connectedCallback`, we must always call `super.connectedCallback()`. This is a common source of confusion, so make sure to remember!
+  Because LitElement also does some work in the `connectedCallback`, we must always call `super.connectedCallback()`. This is a common source of bugs and confusion, so make sure to remember this!
 </aside>
 
 <details>
@@ -127,9 +125,7 @@ If you run this in the browser you should see `lit element connected` logged to 
 
 ## Hello world
 
-Now that we have defined our element, we can start adding a template. lit-element uses lit-html to handle the templating.
-
-lit-html works by writing HTML inside of template literals. These are a type of strings which can span multiple lines, ideal for writing HTML:
+Now that we defined our element we can start adding a template. lit-element uses lit-html to handle the templating. lit-html works by writing HTML inside of template literals. Template literals are a type of strings which can span multiple lines, ideal for writing HTML:
 
 ```js
 const template = `
@@ -147,11 +143,11 @@ const template = html`
 `;
 ```
 
-This is a native browser feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates). The `html` tag is just a function that gets called with information about template literal it's attached to. We won't go into details of how it works exactly, but by using this syntax `lit-html` can very efficiently create templates and update only the parts that change when re-rendering.
+This is a native browser feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates). The `html` tag is just a function that gets called with information about the template literal that it's attached to. We won't go into details of how it works exactly. By using this syntax, `lit-html` can very efficiently create templates and update only the parts that changed when re-rendering.
 
-Most popular IDEs support syntax highlighting of HTML inside template literals, but for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
+Most popular IDEs support the highlighting of HTML inside template literals, but for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
 
-lit-element works with a `render` function, which is called each time the element is updated. From this function, we need to return the template we want to render to the page.
+lit-element works with a `render` function that is called each time the element is updated. Inside this function, we need to return the template that we want to render on the page.
 
 Let's start by displaying the title of our app:
 
@@ -201,7 +197,7 @@ If you refresh the browser, you should see the title displayed on the page.
 
 ## Templating basics
 
-Templates are just javascript variables, we can also create them outside the context of our component. For example to share pieces of a template between different components.
+Templates are just javascript variables, we can also create them outside of our component's context. A typical example is when you want to share pieces of a template between different components.
 
 Let's add a footer to our application. First, create the template for the footer:
 
@@ -213,7 +209,7 @@ const footerTemplate = html`
 
 You can add your own name and website in there as author.
 
-Template literals can contain placeholders. These are indicated by a dollar sign with curly braces: `${expression}`. For example, a common way to use it is to build error messages:
+Template literals can contain placeholders. These are indicated by a dollar sign with curly braces: `${expression}`. For example when building error messages:
 
 ```js
 // regular string
@@ -222,7 +218,7 @@ console.error('An error occurred: ' + message);
 console.error(`An error occurred: ${message}`);
 ```
 
-lit-html takes advantage of this feature to compose templates and to create dynamic parts inside your templates. For example, we can add the footer to our app's template by simply embedding it:
+lit-html takes advantage of this feature in order to compose templates and to create dynamic parts inside your templates. For example, we can add the footer to our app's template by simply embedding it:
 
 ```js
 class TodoApp extends LitElement {
@@ -238,7 +234,7 @@ class TodoApp extends LitElement {
 
 You should now see both the app's title and footer on the page.
 
-lit-html supports embedding different types of variables. In the example above we embedded a template in another template, but we can also embed strings. Let's extract the link text to a separate variable, and embed this in the template:
+lit-html supports embedding different types of variables. In the example above, we embedded a template inside of another template, but we can also embed strings inside of another template. Let's extract the link text to a separate variable and then embed it in the template:
 
 ```js
 const author = 'open-wc';
@@ -257,10 +253,10 @@ const footerTemplate = html`
 `;
 ```
 
-When embedding variables like this, lit-html remembers which part of your template are static and which parts are dynamic. When re-rendering the same template you can change the value of these variables, and lit-html will know how to only update the parts that changed. This makes it very efficient!
+When embedding variables like this, lit-html remembers which parts of your template are static and which parts are dynamic. When re-rendering the same template you can change the value of these variables and lit-html will know how to only update the parts that changed. This makes it very efficient!
 
 <aside class="notice">
-It's important to keep in mind that whatever you're writing must still be valid HTML, you cannot arbitrarily concatenate strings to build HTML. This is to enable efficient updates, and for security to protect you from XSS attacks.
+It's important to keep in mind that whatever you're writing must still be valid HTML and you cannot arbitrarily concatenate strings to build HTML. This is to enable efficient updates, and for security to protect you from XSS attacks.
 
 For example you cannot set tagnames or attribute keys dynamically:
 
@@ -315,7 +311,7 @@ const footerTemplate = html`
 
 ## Displaying todos
 
-Now that you know how to compose templates within lit-html, we can start adding a list of todos to our application.
+Now that you know how to compose templates with lit-html, we can start adding a list of todos to our application.
 
 Let's start by creating an array of todos in the constructor of our component:
 
@@ -378,7 +374,7 @@ class TodoApp extends LitElement {
 }
 ```
 
-Besides displaying the text of a todo item, we need to indicate whether the todo item is finished or not.
+Apart from displaying the text of a todo item, we need to indicate whether the todo item is finished or not.
 
 Let's update our data structure from strings to objects and display the finished state on the screen:
 
@@ -413,7 +409,7 @@ class TodoApp extends LitElement {
 
 Because template literals allow us to place any expression inside the curly braces, we can use ternary operators for quick conditional logic.
 
-You should now see three todo items on the screen, where the first one is already finished.
+You should now see three todo items on the screen and the first one is already finished.
 
 <details>
   <summary>View final result</summary>
@@ -506,7 +502,7 @@ class TodoApp extends LitElement {
 }
 ```
 
-On the add button, we added an event listener for the `click` event. This is done by prefixing the event name with a `@`:
+On the add button we added an event listener that listens for the `click` event. This is done by prefixing the event name with a `@`:
 
 ```js
 html`
@@ -514,7 +510,7 @@ html`
 `;
 ```
 
-This is just syntax sugar for using `addEventListener` on the element, and can be used to listen to any kind of event. The value of an event listener should be a function. In this case, we reference a method on our component, which we should now implement:
+This is just syntactical sugar for adding the `addEventListener` to the element that cam be used to listen to all kinds of events. The value given to an event listener should be a function. In this case, we reference a method on our component, which we should now implement:
 
 ```js
 _addTodo() {
@@ -527,17 +523,17 @@ _addTodo() {
 }
 ```
 
-When this event handler is called, we create a new todo item and add it to the array of todos. Now we need to trigger a re-render so that we can display the new todo item on the screen. We can do this by calling the `requestUpdate` method which exists on any element that extends from `LitElement`.
+When this event handler is called, we create a new todo item and add it to the array of todos. Next we need to trigger a re-render so that we can display the new todo item on the screen. We can do this by calling the `requestUpdate` method which exists on any element that extends from the `LitElement` class.
 
 When you click add, you should see the new element appear on the screen.
 
-This allows us to observe the power of lit-html in action. If you inspect the DOM while adding a todo item, you will see that only the new todo item is actually flashing:
+This allows us to observe the awesome power of lit-html in action. If you inspect the DOM while adding a new todo item, you will notice that only the new todo item is flashing:
 
 ![todo](./assets/add-todo.gif)
 
-When something in the DOM inspector flashes, it means that the browser is doing actual work to update the DOM tree. This is very expensive work, things like styles and layout need to be recalculated up and down the tree, so you want to minimize this as much as possible. lit-html knows exactly what changed where and it will update only that part efficiently.
+When something in the DOM inspector flashes, it means that the browser is doing actual work to update the DOM tree. This is very expensive, things like styles and layout need to be recalculated up and down the element tree, so you want to minimize this as much as possible. lit-html knows exactly what changed where and it will update only that part, making it much more efficient.
 
-In the inspector you also see comment nodes between different parts of your template. These are markers created by lit-html to track locations of dom nodes, they can be ignored safely.
+In the inspector you also see comment nodes between different parts of your template. These are markers created by `lit-html` to track locations of dom nodes, they can be ignored safely.
 
 <details>
   <summary>View final result</summary>
@@ -608,7 +604,7 @@ In the inspector you also see comment nodes between different parts of your temp
 
 Right now we're triggering updates manually whenever we make a change. This is fine for some use cases, but it can get pretty cumbersome and we are not able to respond to changes triggered by parent components.
 
-It's better to let `LitElement` observe data changes for us, and trigger the updates when necessary. We can do this by defining `todos` as a property of our element.
+It's better to let `LitElement` observe data changes for us and then trigger the updates were necessary. We can do this by defining `todos` as a property of our element.
 
 Start by adding a static properties field, and add `todos` as an array property:
 
@@ -645,7 +641,7 @@ This way when you change the property on your element, it goes through a custom 
 
 For strings, numbers and booleans this will work without any problems. However, if you are using arrays or objects and mutate them it will not trigger any update. This is because the actual array or object itself did not change. We need to use immutable data patterns, where a new object is created for each change. This is a common pattern in front-end to simplify data flow and make change detection easier.
 
-In our case we are using array `push`, which mutates the existing `todos` array. Instead of using push, we can copy the existing list of todos using array spread, and add our new todo in there:
+In our case we are using array `push`, which mutates the existing `todos` array. Instead of using `push`, we can copy the existing list of todos using array spread, and add our new todo in there:
 
 ```js
 _addTodo() {
@@ -763,7 +759,7 @@ _removeTodo(todo) {
 }
 ```
 
-The delete button should now be fully functional. Because filter returns a new array, `LitElement` will automatically detect the changes and re-render our component.
+The delete button should now be fully functional. Due to the fact that filter returns a new array, `LitElement` will automatically detect the changes and then re-render our component.
 
 <details>
   <summary>View final result</summary>
@@ -844,7 +840,7 @@ The delete button should now be fully functional. Because filter returns a new a
 
 ## Finishing a todo
 
-A todo list is useless if we can't keep track of which ones we've finished, and which ones we have not. We need to add a way to manage this status.
+A todo list is useless if we can't keep track of which todos we've finished, and which todos we have not. We need to add a way to manage this status.
 
 First, let's replace our finished/unfinished text with a checkbox:
 
@@ -888,7 +884,7 @@ class TodoApp extends LitElement {
 }
 ```
 
-Notice that we prefixed the `checked` attribute on the checkbox with a `?`. Checked is a boolean attribute, and this is special lit-html syntax to conditionally set the attribute based on the value that's passed to it.
+Notice that we prefixed the `checked` attribute on the checkbox with a `?`. Checked is a boolean attribute, and this is special lit-html syntax that can be used to conditionally set the attribute based on the value that's passed to it.
 
 <aside class="notice">
 In HTML, a boolean attribute is 'true' when it's present, no matter the content. It's only false when it's not present. So in all these cases, hidden is true:
@@ -908,11 +904,11 @@ and only in this case, hidden is false:
 <div></div>
 ```
 
-A big exception to this are the `aria-` attributes, which do use literal "true" and "false" values. How lovely inconsistent :)
+A big exception to this is `aria-` attributes, which do use literal "true" and "false" values. Notice the inconsistency, how lovely :)
 
 </aside>
 
-We're listening to the input's `change` event to update our data when the checkbox value was changed. Besides the todo object, we are also passing along the event object itself. We need this to get the value of the checkbox.
+We're listening to the input's `change` event, and then update our data when the checkbox value is changed. Besides the todo object, we are also passing along the event object itself. We need this to be able to get the value of the checkbox.
 
 In the event handler, we can use a map function to update the finished property of our todo:
 
@@ -1026,11 +1022,11 @@ _changeTodoFinished(e, changedTodo) {
 
 Now that we can manage our todo items, it's pretty easy to display some more information about our list. For example, we can add the total amount of finished and unfinished items.
 
-These are not new sources of data, but rather a simple calculation based on existing data. We could do these calculations inline in our template where we want to display them, but this can get messy pretty quickly.
+These are not new sources of data, but rather a simple calculation based on existing data. We could do these calculations inline in our template where we want to display them, but this can get messy, pretty quickly.
 
-A good practice is to use the top of your render function as a place to prepare variables with some meaningful names and to use those in your template for best readability.
+Good practice is to use the top of your render function as a place to prepare variables with some meaningful names and then use them in your template. This provides the best readability.
 
-Let's add our calculations to the render function, and display the calculated amounts in the template:
+Let's add our calculations to the render function, and then display the calculated amounts in the template:
 
 ```js
 render() {
@@ -1065,7 +1061,7 @@ render() {
 }
 ```
 
-Remember that the render function can be called quite often. If the computations are pretty expensive it's better to only do them once and cache the results.
+Remember that the render function can be called quite frequently. If the computations are expensive, it's better to only do them once and then cache the results.
 
 <details>
   <summary>View final result</summary>
@@ -1168,11 +1164,11 @@ Remember that the render function can be called quite often. If the computations
 
 ## Create a child component
 
-It looks like we're feature complete! We can display a list of todos, add or remove them and check them off as we finish them.
+It looks like we're feature complete! We can display a list of todos, add or remove them and check them off once completed.
 
-However we've been putting everything into one component, and it's starting to get crowded. It's better to split things up into separate components, we're building web components after all.
+However we've been putting everything inside only one component, and it's starting to get crowded. It's better to split things up into separate components, we're building web components after all.
 
-The todo list would be an ideal candidate for moving into a separate component. Let's go ahead and define the basic structure of our element. If you're working in an online editor, it's probably easiest to do this in the same file. If you're using a local editor, it's best to create a separate file for this.
+The todo list is an ideal candidate to be moved into a separate component. Let's go ahead and define the basic structure of our element. If you're working in an online editor, it's probably easier to do this in the same file. If you're using a local editor, it's best to create a separate file for this.
 
 If you use a separate file, don't forget to import `LitElement` and `html` for that module as well.
 
@@ -1212,13 +1208,13 @@ class TodoList extends LitElement {
 customElements.define('todo-list', TodoList);
 ```
 
-Ok so the structure of the class should be pretty familiar now, there is a `todos` property and a template to render. The template looks almost the same as the previous, except that now there is an if statement at the start. We need this because unlike before, our todo list isn't the one in charge of the data.
+The structure of the class should be pretty familiar now. It has a `todos` property and a template to render. The template looks almost the same as the previous, except that now there is an if statement at the start. We need this because unlike before, our todo list is not in charge of the data.
 
-The parent element is still in charge, and we expect it to pass along the todos list to this component. This means that we cannot assume the list to always be there when we do a render. If we don't take care of this somehow, our component will crash because you cannot run a `map` function on `undefined`. Adding early returns in your render function is a simple way to do this, and makes it easy to see which properties are required for rendering.
+The parent element is still in charge, and we expect that it will pass along the todos list to this component. This means that we can't assume that the list will always be there when rendered. If we don't take care of this, our component will crash because you can't run a `map` function on `undefined`. Adding an early return to the render function is a simple way to do this. It makes it easy to see which properties are required for rendering.
 
-Next, we need to somehow let the parent element know that the user clicked on the checkbox or the remove button. We can do this using DOM events. DOM events are great because the structure and hierarchy of our application is reflected in the DOM, so when a component fires an event only its parent components can receive them. This way we have an automatic scoped communication system.
+Next, we need to somehow let the parent element know that the user clicked on the checkbox or the remove button. We can do this by using DOM events. DOM events are great because the structure and hierarchy of our application is reflected in the DOM. This means that when a component fires an event, only its parent components can receive them. This way we have an automatically scoped communication system.
 
-Let's add the events we want to fire:
+Let's add the events that we want to fire:
 
 ```js
 _changeTodoFinished(e, changedTodo) {
@@ -1231,7 +1227,7 @@ _removeTodo(item) {
 }
 ```
 
-The parent element will need to listen to these events, and update the data structure accordingly. We will look into that in the next step.
+The parent element will need to listen to these events and update the data structure accordingly. We will look into that in the next step.
 
 <details>
   <summary>View final result</summary>
@@ -1377,7 +1373,7 @@ The parent element will need to listen to these events, and update the data stru
 
 ## Implement a child element
 
-Now that we've created our child element, we need to implement it in the parent element. If you created your child component in a separate file, you will need to import it in the parent element:
+Now that we've created our child element, we need to implement it in the parent element. If you created your child element in a separate file, you will need to import it in the parent element:
 
 ```js
 import './todos-list.js';
@@ -1408,7 +1404,7 @@ render() {
 }
 ```
 
-If you refresh, the UI should remain unchanged. Congratulations, you're already composing elements like a pro :)
+If you refresh, the UI should remain unchanged. If that is the case, congratulations! Now you're composing elements like a pro :)
 
 In the template we added, we're seeing something different than before. We're passing along our list of todos to the `todo-list` using an attribute with a `.` in front of it:
 
@@ -1418,7 +1414,7 @@ html`
 `;
 ```
 
-This is a special lit-html syntax, where instead of setting an attribute it will set a property on the element. The differences between attributes and properties are something that confuses a lot of people, but it's a very simple concept.
+This is lit-html specific syntax that allows you to set a property on the element instead of an attribute. The differences between attributes and properties often confuses a lot of people, but it's actually a very simple concept to graps.
 
 Attribute are how we can assign data in HTML:
 
@@ -1439,9 +1435,9 @@ lit-html allows setting properties through markup by prefixing the key with a `.
 <input .value="foo" />
 ```
 
-It's up to each element how (and if) to keep properties and attributes in sync, a common practice is to sync changes to an attribute to a property of the same name but not to reflect changes to properties to an attribute of the same name.
+It's up to each element how (and if) to keep properties and attributes in sync. Common practice is to sync changes to an attribute to a property of the same name but not to reflect changes to properties to an attribute of the same name.
 
-Next, we need to listen to the new events we just created:
+Next, we need to listen to the new events that we have just created:
 
 ```js
 html`
@@ -1453,7 +1449,7 @@ html`
 `;
 ```
 
-The events are calling the existing methods we already have on our element. However, we will need to update the event handlers slightly to handle these new events:
+The events are calling the existing methods that we already have defined in our element. However, we will need to update the event handlers slightly to handle these new events:
 
 ```js
 _removeTodo(e) {
@@ -1472,7 +1468,7 @@ _changeTodoFinished(e) {
 }
 ```
 
-After this, your application should work just like before but not with the code spread out a bit more.
+After this, your application should work just like before, but the code is not as spread out as much.
 
 <details>
   <summary>View final result</summary>
@@ -1500,7 +1496,7 @@ We've covered the basics of templating and managing data with lit-element. The l
 
 For styling, lit-element uses shadow DOM. If you're not familiar with shadow DOM, I recommend following the [web component basics](https://open-wc.org/codelabs/basics/web-components.html) codelab.
 
-To define the styles of your element, we need to import the `css` tag and add a static styles property on our element. Let's add styles to the todo list:
+To define the styles of your element we need to import the `css` tag and add a static styles property on our element. Let's add styles to the todo list:
 
 ```js
 import { LitElement, css } from 'https://unpkg.com/lit-element?module';
@@ -1558,10 +1554,10 @@ class TodoList extends LitElement {
 customElements.define('todo-list', TodoList);
 ```
 
-The styles we define here only apply to our element. This is a guarantee built into the browser because we're using shadow DOM, lit-element does not need to do any extra work for that. This means we can write simple CSS selectors, and not need to worry about creating conflicts with styles defined elsewhere on the page.
+The styles we define here only apply to our element. This is guaranteed, because we are using shadow DOM the is built in the browser and lit-element does not need to do any extra work. This means we can write simple CSS selectors, and we don't need to worry about causing conflicts with styles defined elsewhere on the page.
 
 <aside class="notice">
-`:host` is a special selector, which selects the host of the shadow dom the styles are associated with. In our case that's our own custom element.
+`:host` is a special selector, which selects the host of the shadow dom that these styles are associated with. In our case that's our own custom element.
 </aside>
 
 <details>
@@ -1718,14 +1714,14 @@ The styles we define here only apply to our element. This is a guarantee built i
 
 And that's it! We've gone through the basics of lit-element and lit-html. Hopefully from here onwards you will be able to move forward working with lit-element and lit-html with confidence.
 
-If you're eager to learn more, you can take a look at the resources:
+If you're eager to learn more, you can take a look at the following resources:
 
 - [lit-html official docs](https://lit-html.polymer-project.org/)
 - [lit-element official docs](https://lit-element.polymer-project.org/)
 - [open-wc code samples](https://open-wc.org/developing/code-examples.html)
 - [IDE help](https://open-wc.org/developing/ide.html)
 
-To get started with your own project we recommend using the open-wc project scaffolding, it's easy to set it up using this command:
+To get started with your own project we recommend using open-wc's project scaffolding, it's easy to set it up using this command:
 
 ```bash
 npm init @open-wc
