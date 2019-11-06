@@ -759,7 +759,7 @@ _removeTodo(todo) {
 }
 ```
 
-The delete button should now be fully functional. Due to the fact that filter returns a new array, `LitElement` will automatically detect the changes and then re-render our component.
+The delete button should now be fully functional. Because filter returns a new array, `LitElement` will automatically detect the changes and re-render our component.
 
 <details>
   <summary>View final result</summary>
