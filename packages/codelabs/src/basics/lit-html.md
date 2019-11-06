@@ -409,7 +409,7 @@ class TodoApp extends LitElement {
 
 Because template literals allow us to place any expression inside of the curly braces, we can use ternary operators for quick and easy conditional logic.
 
-You should now see three todo items on the screen and the first one is already finished.
+You should now see three todo items on the screen, where the first one is already finished.
 
 <details>
   <summary>View final result</summary>
