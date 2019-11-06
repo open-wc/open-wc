@@ -93,7 +93,7 @@ We defined the tag name for our element as `todo-app`, now we need to add this t
 If you run this in the browser you should see `lit element connected` logged to the terminal.
 
 <aside class="notice">
-  Because the LitElement class also does some work in the `connectedCallback` method, so we should always call `super.connectedCallback()`. This is a common source of bugs and confusion, so make sure to remember this!
+  Because the LitElement class also does some work in the `connectedCallback` method, we should always call `super.connectedCallback()`. This is a common source of bugs and confusion, so make sure to remember this!
 </aside>
 
 <details>
