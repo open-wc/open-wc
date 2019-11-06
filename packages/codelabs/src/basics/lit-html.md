@@ -68,7 +68,7 @@ If you run this in the browser and see '_My todo app_' on the screen, you're goo
 Make sure that you add `type="module"` to the script tag.
 
 <aside class="notice">
-In this example we are using `unpkg`, a CDN where we can easily import any modules that are available on NPM. When working on a real project, it is a good idea to rather use an actual package manager such as NPM or yarn.
+In this example we are using `unpkg`, a CDN where we can easily import any modules that are available on NPM. When working on a real project, it is a good idea to use an actual package manager such as NPM or yarn.
 </aside>
 
 Next, we need to define our web component. When writing a vanilla web component we extend from the native `HTMLElement` class that is already in your browser. With lit-element we need to import and extend from the `LitElement` class which, in turn, extends from the `HTMLElement` class.
