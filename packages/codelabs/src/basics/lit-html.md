@@ -908,7 +908,7 @@ A big exception to this is `aria-` attributes, which do use literal "true" and "
 
 </aside>
 
-We're listening to the input's `change` event, and then update our data when the checkbox value is changed. Besides the todo object, we are also passing along the event object itself. We need this to be able to get the value of the checkbox.
+We're listening to the input's `change` event to update our data when the checkbox value is changed. Besides the todo object, we are also passing along the event object itself. We need this to be able to get the value of the checkbox.
 
 In the event handler, we can use a map function to update the finished property of our todo:
 
