@@ -1414,7 +1414,7 @@ html`
 `;
 ```
 
-This is lit-html specific syntax that allows you to set a property on the element instead of an attribute. The differences between attributes and properties often confuses a lot of people, but it's actually a very simple concept to grasp.
+This is lit-html specific syntax that allows you to set a property on the element instead of an attribute. The differences between attributes and properties often confuses a lot of people, but it's a very simple concept.
 
 Attributes are how we assign data in HTML:
 
