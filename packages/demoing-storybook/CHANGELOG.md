@@ -3,6 +3,83 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.5](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.4.4...@open-wc/demoing-storybook@0.4.5) (2019-11-06)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** display stories inline in docs mode ([227b837](https://github.com/open-wc/open-wc/commit/227b837))
+
+
+
+
+
+## [0.4.4](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.4.3...@open-wc/demoing-storybook@0.4.4) (2019-11-02)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [0.4.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.4.2...@open-wc/demoing-storybook@0.4.3) (2019-11-02)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** docu in mdx format ([2c062a7](https://github.com/open-wc/open-wc/commit/2c062a7))
+* **demoing-storybook:** sync state to knobs + debug filtering ([9b65bcb](https://github.com/open-wc/open-wc/commit/9b65bcb))
+* **demoing-storybook:** types should be case insensitive ([75f8077](https://github.com/open-wc/open-wc/commit/75f8077))
+
+
+
+
+
+## [0.4.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.4.1...@open-wc/demoing-storybook@0.4.2) (2019-11-01)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** docs mode scroll behavior ([d9a94a6](https://github.com/open-wc/open-wc/commit/d9a94a6))
+
+
+
+
+
+## [0.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.4.0...@open-wc/demoing-storybook@0.4.1) (2019-10-30)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** add missing babel-loader dependency ([1d5d438](https://github.com/open-wc/open-wc/commit/1d5d438))
+
+
+
+
+
+# [0.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.3.1...@open-wc/demoing-storybook@0.4.0) (2019-10-29)
+
+
+### Features
+
+* **demoing-storybook:** storybook 5.3 with docs mode - see MIGRATION.md ([9000b92](https://github.com/open-wc/open-wc/commit/9000b92))
+
+
+
+
+
+## [0.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.3.0...@open-wc/demoing-storybook@0.3.1) (2019-10-23)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** allow <style> tag before custom element ([#887](https://github.com/open-wc/open-wc/issues/887)) ([4971cb6](https://github.com/open-wc/open-wc/commit/4971cb6))
+* add package keywords ([#859](https://github.com/open-wc/open-wc/issues/859)) ([cd78405](https://github.com/open-wc/open-wc/commit/cd78405))
+
+
+
+
+
 # [0.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.2.5...@open-wc/demoing-storybook@0.3.0) (2019-07-22)
 
 

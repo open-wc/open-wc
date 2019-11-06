@@ -38,8 +38,6 @@ export function createTransformIndexHTMLMiddleware(cfg) {
   /** @type {Map<string, IndexHTMLData>} */
   const indexHTMLData = new Map();
 
-  const served = new Set();
-
   /** @type {import('koa').Middleware} */
   async function transformIndexHTMLMiddleware(ctx, next) {
     // serve polyfill from memory if url matches
@@ -84,14 +82,6 @@ export function createTransformIndexHTMLMiddleware(cfg) {
     // check if we are serving an index.html
     if (!(await isIndexHTMLResponse(ctx, cfg.appIndex))) {
       return;
-    }
-
-    // log a index.html reload, but not on first serve
-    if (served.has(ctx.url)) {
-      console.log('');
-      console.log(`Reloading ${ctx.url}`);
-    } else {
-      served.add(ctx.url);
     }
 
     const lastModified = ctx.response.headers['last-modified'];

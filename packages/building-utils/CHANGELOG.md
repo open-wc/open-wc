@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.1...@open-wc/building-utils@2.10.2) (2019-10-25)
+
+
+### Bug Fixes
+
+* align used mocha version ([#901](https://github.com/open-wc/open-wc/issues/901)) ([3606381](https://github.com/open-wc/open-wc/commit/3606381))
+
+
+
+
+
+## [2.10.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.0...@open-wc/building-utils@2.10.1) (2019-10-23)
+
+
+### Bug Fixes
+
+* add package keywords ([#859](https://github.com/open-wc/open-wc/issues/859)) ([cd78405](https://github.com/open-wc/open-wc/commit/cd78405))
+
+
+
+
+
+# [2.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.9.0...@open-wc/building-utils@2.10.0) (2019-10-22)
+
+
+### Features
+
+* Use the workbox-config.js as default config ([#884](https://github.com/open-wc/open-wc/issues/884)) ([cd58619](https://github.com/open-wc/open-wc/commit/cd58619))
+
+
+
+
+
 # [2.9.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.8.3...@open-wc/building-utils@2.9.0) (2019-09-27)
 
 

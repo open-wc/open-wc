@@ -3,6 +3,153 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.11](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.10...@open-wc/building-rollup@0.12.11) (2019-11-06)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.12.10](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.9...@open-wc/building-rollup@0.12.10) (2019-11-04)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.12.9](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.8...@open-wc/building-rollup@0.12.9) (2019-11-03)
+
+
+### Bug Fixes
+
+* align versions within the monorepo ([fa2ad9f](https://github.com/open-wc/open-wc/commit/fa2ad9f))
+
+
+
+
+
+## [0.12.8](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.7...@open-wc/building-rollup@0.12.8) (2019-11-02)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.12.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.6...@open-wc/building-rollup@0.12.7) (2019-11-02)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.12.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.5...@open-wc/building-rollup@0.12.6) (2019-10-31)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.12.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.4...@open-wc/building-rollup@0.12.5) (2019-10-30)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.12.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.3...@open-wc/building-rollup@0.12.4) (2019-10-26)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.12.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.2...@open-wc/building-rollup@0.12.3) (2019-10-26)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.12.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.1...@open-wc/building-rollup@0.12.2) (2019-10-25)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.12.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.0...@open-wc/building-rollup@0.12.1) (2019-10-23)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+# [0.12.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.11.3...@open-wc/building-rollup@0.12.0) (2019-10-22)
+
+
+### Features
+
+* Use the workbox-config.js as default config ([#884](https://github.com/open-wc/open-wc/issues/884)) ([cd58619](https://github.com/open-wc/open-wc/commit/cd58619))
+
+
+
+
+
+## [0.11.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.11.2...@open-wc/building-rollup@0.11.3) (2019-10-21)
+
+
+### Bug Fixes
+
+* **building-rollup:** update rollup-workbox-plugin to 4.0.0 ([#891](https://github.com/open-wc/open-wc/issues/891)) ([bf3c680](https://github.com/open-wc/open-wc/commit/bf3c680))
+
+
+
+
+
+## [0.11.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.11.1...@open-wc/building-rollup@0.11.2) (2019-10-17)
+
+
+### Bug Fixes
+
+* **building-rollup:** Generate the SW once with the createCompatibilityConfig ([#877](https://github.com/open-wc/open-wc/issues/877)) ([4caba62](https://github.com/open-wc/open-wc/commit/4caba62))
+
+
+
+
+
+## [0.11.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.11.0...@open-wc/building-rollup@0.11.1) (2019-10-17)
+
+
+### Bug Fixes
+
+* **building-rollup:** Fix allow Workbox disable ([#876](https://github.com/open-wc/open-wc/issues/876)) ([98e376b](https://github.com/open-wc/open-wc/commit/98e376b))
+* **building-rollup:** use unscoped rollup-plugin-index-html; format ([0026564](https://github.com/open-wc/open-wc/commit/0026564))
+
+
+
+
+
+# [0.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.10.1...@open-wc/building-rollup@0.11.0) (2019-10-13)
+
+
+### Features
+
+* **building-rollup:** add workbox ([#845](https://github.com/open-wc/open-wc/issues/845)) ([5507144](https://github.com/open-wc/open-wc/commit/5507144))
+
+
+
+
+
 ## [0.10.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.10.0...@open-wc/building-rollup@0.10.1) (2019-10-13)
 
 **Note:** Version bump only for package @open-wc/building-rollup

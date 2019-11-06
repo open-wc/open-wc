@@ -1,6 +1,6 @@
 # Building utils
 
-[//]: # (AUTO INSERT HEADER PREPUBLISH)
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 Utils for `@open-wc` building packages.
 

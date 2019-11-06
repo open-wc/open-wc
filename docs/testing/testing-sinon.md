@@ -24,7 +24,7 @@ describe('my component', () => {
     const myFunctionStub = stub(el, 'myFunction');
 
     // click a button
-    el.shadowRoot.getElementByid('myButton').click();
+    el.shadowRoot.getElementById('myButton').click();
 
     // check if the function was called
     expect(myFunctionStub).to.have.callCount(1);

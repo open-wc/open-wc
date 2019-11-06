@@ -1,37 +1,42 @@
 {
   "name": "@open-wc/testing-karma",
-  "version": "3.1.39",
-  "description": "Testing with karma following open-wc recommendations",
-  "author": "open-wc",
-  "main": "testing-karma.js",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
+  "version": "3.1.53",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Testing with karma following open-wc recommendations",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/testing-karma"
   },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "testing-karma.js",
   "scripts": {
     "demo:test": "karma start demo/karma.conf.js --coverage --legacy",
-    "demo:test:watch": "karma start demo/karma.conf.js --auto-watch=true --single-run=false",
-    "demo:test:update-snapshots": "karma start demo/karma.conf.js --update-snapshots",
-    "demo:test:prune-snapshots": "karma start demo/karma.conf.js --prune-snapshots",
-    "demo:test:legacy": "karma start demo/karma.conf.js --legacy --coverage",
     "demo:test:bs": "karma start demo/karma.bs.conf.js --legacy --coverage",
+    "demo:test:legacy": "karma start demo/karma.conf.js --legacy --coverage",
+    "demo:test:prune-snapshots": "karma start demo/karma.conf.js --prune-snapshots",
+    "demo:test:update-snapshots": "karma start demo/karma.conf.js --update-snapshots",
+    "demo:test:watch": "karma start demo/karma.conf.js --auto-watch=true --single-run=false",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "files": [
     "*.js",
     "src"
   ],
+  "keywords": [
+    "testing",
+    "karma",
+    "mocha",
+    "compatibility"
+  ],
   "dependencies": {
-    "@open-wc/karma-esm": "^2.7.2",
+    "@open-wc/karma-esm": "^2.9.7",
     "axe-core": "^3.3.1",
-    "istanbul-instrumenter-loader": "^3.0.0",
-    "karma": "^4.0.0",
+    "karma": "^4.1.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage-istanbul-reporter": "^2.0.0",
     "karma-mocha": "^1.0.0",
@@ -39,8 +44,7 @@
     "karma-mocha-snapshot": "^0.2.1",
     "karma-snapshot": "^0.6.0",
     "karma-source-map-support": "^1.3.0",
-    "karma-sourcemap-loader": "^0.3.0",
-    "mocha": "^6.2.0"
+    "mocha": "^6.0.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",

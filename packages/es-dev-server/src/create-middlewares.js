@@ -1,5 +1,6 @@
 import koaStatic from 'koa-static';
 import koaEtag from 'koa-etag';
+import koaCompress from 'koa-compress';
 import { createBasePathMiddleware } from './middleware/base-path.js';
 import { createHistoryAPIFallbackMiddleware } from './middleware/history-api-fallback.js';
 import { createCompileMiddleware } from './middleware/compile-middleware.js';
@@ -10,6 +11,14 @@ import { createEtagCacheMiddleware } from './middleware/etag-cache-middleware.js
 import { createResponseCacheMiddleware } from './middleware/response-cache-middleware.js';
 import { setupBrowserReload } from './utils/setup-browser-reload.js';
 import { compatibilityModes } from './constants.js';
+import { createTransformResponseMiddleware } from './middleware/transform-response.js';
+
+const defaultCompressOptions = {
+  filter(contentType) {
+    // event stream doesn't like compression
+    return contentType !== 'text/event-stream';
+  },
+};
 
 /**
  * Creates middlewares based on the given configuration. The middlewares can be
@@ -21,26 +30,33 @@ import { compatibilityModes } from './constants.js';
  */
 export function createMiddlewares(config, fileWatcher) {
   const {
-    rootDir,
     appIndex,
     appIndexDir,
+    babelExclude,
+    babelModernExclude,
     basePath,
+    compatibilityMode,
+    compress,
+    customBabelConfig,
+    customMiddlewares,
+    responseTransformers,
+    extraFileExtensions,
     moduleDirectories,
     nodeResolve,
     preserveSymlinks,
     readUserBabelConfig,
-    customBabelConfig,
+    rootDir,
     watch,
-    extraFileExtensions,
-    compatibilityMode,
-    babelExclude,
-    babelModernExclude,
     watchDebounce,
-    customMiddlewares,
   } = config;
 
   /** @type {import('koa').Middleware[]} */
   const middlewares = [];
+
+  if (compress) {
+    const options = typeof compress === 'object' ? compress : defaultCompressOptions;
+    middlewares.push(koaCompress(options));
+  }
 
   if (!Object.values(compatibilityModes).includes(compatibilityMode)) {
     throw new Error(
@@ -129,9 +145,14 @@ export function createMiddlewares(config, fileWatcher) {
     setupBrowserReload({ fileWatcher, watchDebounce });
   }
 
+  if (responseTransformers) {
+    middlewares.push(createTransformResponseMiddleware({ responseTransformers }));
+  }
+
   // serve sstatic files
   middlewares.push(
     koaStatic(rootDir, {
+      hidden: true,
       setHeaders(res) {
         res.setHeader('cache-control', 'no-cache');
       },

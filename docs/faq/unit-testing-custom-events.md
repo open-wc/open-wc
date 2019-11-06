@@ -1,18 +1,46 @@
-# Testing Event Listeners in lifecycle events
+# Unit Testing Events
+
+Testing events can be tricky; the test needs to set up it's own test-specific event listener before the event fires. In most cases, this can be easily accomplished with the `oneEvent` helper.
+
+```js
+it('throws an event with the expected value', async () => {
+  const listener = oneEvent(component, 'change');
+  component.shadowRoot.querySelector('button').click();
+  const { detail } = await listener;
+  expect(detail).to.equal('expected value');
+});
+```
+
+Note that the return type of `oneEvent` is `Promise<Event>`. In the above snippet, we first define the promise, then execute the user action (`click`), then finally `await` the promise' resolution. We could also accomplish that by cueing the action up in a `setTimeout` callback.
+
+```js
+it('throws an event with the expected value', async () => {
+  const clickButton = () => component.shadowRoot.querySelector('button').click();
+  setTimeout(clickButton);
+  const { detail } = await oneEvent(component, 'change');
+  expect(detail).to.equal('expected value');
+});
+```
+
+That's how we can easily test events fired as a result of user actions. Now we'll modify the above technique for events which are fired automatically during lifecycle callbacks.
+
+## Events Fired from Lifecycle Callbacks
 
 Let's say you have a mixin that dispatches an event on `firstUpdated` and `connectedCallback`:
-```js
-const mixin = superclass => class extends superclass {
-  firstUpdated() {
-    super.firstUpdated();
-    this.dispatchEvent(new CustomEvent('first-updated'));
-  }
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.dispatchEvent(new CustomEvent('connected-callback'));
-  }
-};
+```js
+const mixin = superclass =>
+  class extends superclass {
+    firstUpdated() {
+      super.firstUpdated();
+      this.dispatchEvent(new CustomEvent('first-updated'));
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+      this.dispatchEvent(new CustomEvent('connected-callback'));
+    }
+  };
 ```
 
 These are the suggested ways of testing these events:
@@ -31,7 +59,6 @@ it('dispatches a custom event on firstUpdated', async () => {
   expect(ev).to.exist;
 });
 ```
-
 
 #### connectedCallback
 

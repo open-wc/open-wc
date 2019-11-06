@@ -5,10 +5,13 @@ We recommend [lit-html](https://www.npmjs.com/package/lit-html) with the [lit-el
 Under the hood new Web Component APIs such as [Constructable Stylesheets](https://developers.google.com/web/updates/2019/02/constructable-stylesheets) are used when they are available. As browser support improves, you get performance improvements for free.
 
 ## Getting started
+
 To get started, we recommend using our project scaffolding:
+
 ```bash
 npm init @open-wc
 ```
 
 ## Examples
+
 Check out the [code examples](/developing/code-examples/) page for a collection of best practices and design patterns.

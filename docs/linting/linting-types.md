@@ -3,6 +3,7 @@
 Use [TypeScript](https://www.typescriptlang.org/) to type lint your es6 JSDoc annotated code.
 
 ## Setup
+
 ```bash
 npm init @open-wc linting-types-js
 ```
@@ -12,6 +13,7 @@ This is an OPTIONAL recommendation. You will need to opt-in by running the gener
 :::
 
 ## Manual
+
 - `yarn add --dev typescript`
 - Copy [tsconfig.json](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/linting-types-js/templates/static/tsconfig.json) to `tsconfig.json`
 - Add these scripts to your package.json
@@ -32,6 +34,7 @@ For general information about types please see [developing/types](../developing/
 ## Usage
 
 Run:
+
 - `npm run lint:types` to check if you have type errors
 
 ## Type linting error example

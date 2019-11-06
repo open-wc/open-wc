@@ -2,8 +2,8 @@
   "name": "@example/a",
   "version": "0.0.0",
   "private": true,
+  "main": "./a.js",
   "dependencies": {
     "lit-element": "^2.0.1"
-  },
-  "main": "./a.js"
+  }
 }

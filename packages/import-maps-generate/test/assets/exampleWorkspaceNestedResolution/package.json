@@ -1,12 +1,12 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "importMap": {
     "resolutions": {
       "lit-html": "0.14.0"
     }
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

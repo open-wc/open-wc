@@ -39,3 +39,6 @@ packages/**/__snapshots__
 
 ## browserstack
 local.log
+
+## generated codelabs
+docs/.vuepress/public/codelabs
