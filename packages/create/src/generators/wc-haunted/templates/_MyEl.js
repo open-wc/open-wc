@@ -3,7 +3,7 @@ import { component, useEffect, useState } from 'haunted';
 
 const defaultTitle = 'Hey there';
 
-function <%= className %>() {
+function <%= className %>Element() {
   const [count, setCount] = useState(this.counter || 5);
   useEffect(() => {
     if (!this.hasAttribute('title')) {
@@ -26,6 +26,6 @@ function <%= className %>() {
   `;
 }
 
-<%= className %>.observedAttributes = ['title'];
+<%= className %>Element.observedAttributes = ['title'];
 
-export const <%= className %>Element = component(<%= className %>);
+export const <%= className %> = component(<%= className %>Element);

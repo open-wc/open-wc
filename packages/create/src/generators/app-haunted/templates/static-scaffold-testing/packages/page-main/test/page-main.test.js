@@ -7,8 +7,10 @@ describe('PageMain', () => {
     const el = await fixture(html`
       <page-main></page-main>
     `);
+    const shadow = el.shadowRoot;
+    const h1 = shadow.querySelector('h1');
 
-    expect(el.title).to.equal('Hello open-wc world!');
+    expect(h1.textContent).to.equal('Hello open-wc world!');
   });
 
   it('can override the title via attribute', async () => {

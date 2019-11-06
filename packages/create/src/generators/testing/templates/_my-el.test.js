@@ -1,4 +1,4 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { html, fixture, expect, nextFrame } from '@open-wc/testing';
 
 import '../<%= tagName %>.js';
 
@@ -28,7 +28,7 @@ describe('<%= className %>', () => {
       <<%= tagName %>></<%= tagName %>>
     `);
     el.shadowRoot.querySelector('button').click();
-
+    await nextFrame();
     expect(el.counter).to.equal(6);
   });
 

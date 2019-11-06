@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import { component } from 'haunted';
 
-function PageMain() {
+function PageMainElement() {
   const title = this.title || 'Hello open-wc world!';
   const logo = this.logo || html``;
 
@@ -38,4 +38,4 @@ function PageMain() {
   `;
 }
 
-export const PageMainElement = component(PageMain);
+export const PageMain = component(PageMainElement);

@@ -1,4 +1,4 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { html, fixture, expect, nextFrame } from '@open-wc/testing';
 
 import '../<%= tagName %>.js';
 
@@ -8,8 +8,12 @@ describe('<%= className %>', () => {
       <<%= tagName %>></<%= tagName %>>
     `);
 
-    expect(el.page).to.equal('main');
-    expect(el.shadowRoot.querySelector('main')).lightDom.to.equal(`
+    const shadow = el.shadowRoot;
+    const main = shadow.querySelector('main');
+    const { page } = main.dataset;
+
+    expect(page).to.equal('main');
+    expect(main).lightDom.to.equal(`
       <page-main></page-main>
     `);
   });
@@ -19,7 +23,7 @@ describe('<%= className %>', () => {
       <<%= tagName %> page="pageOne"></<%= tagName %>>
     `);
     expect(el.shadowRoot.querySelector('main')).lightDom.to.equal(`
-      <page-one></page-one>
+      <page-one title="Hey there"></page-one>
     `);
   });
 
@@ -28,7 +32,11 @@ describe('<%= className %>', () => {
       <<%= tagName %>></<%= tagName %>>
     `);
     el.shadowRoot.querySelectorAll('header a')[2].click();
+    await nextFrame();
+    const shadow = el.shadowRoot;
+    const main = shadow.querySelector('main');
+    const { page } = main.dataset;
 
-    expect(el.page).to.equal('about');
+    expect(page).to.equal('about');
   });
 });

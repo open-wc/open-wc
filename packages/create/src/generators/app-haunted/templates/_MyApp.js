@@ -88,7 +88,7 @@ function styles() {
   `;
 }
 
-const <%= className %> = el => {
+const <%= className %>Element = el => {
   const [page, setPage] = useState(el.page || 'main');
 
   function clickPageLink(ev) {
@@ -123,6 +123,6 @@ const <%= className %> = el => {
   `;
 };
 
-<%= className %>.observedAttributes = ['page'];
+<%= className %>Element.observedAttributes = ['page'];
 
-export const <%= className %>Element = component(<%= className %>);
+export const <%= className %> = component(<%= className %>Element);
