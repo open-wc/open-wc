@@ -35,7 +35,7 @@ function createDefaultConfig(readUserBabelConfig) {
 const modernConfig = {
   presets: [
     [
-      '@babel/preset-env',
+      require.resolve('@babel/preset-env'),
       {
         targets: findSupportedBrowsers(),
         useBuiltIns: false,
@@ -48,7 +48,7 @@ const modernConfig = {
 const legacyConfig = {
   presets: [
     [
-      '@babel/preset-env',
+      require.resolve('@babel/preset-env'),
       {
         targets: ['ie 11'],
         useBuiltIns: false,
