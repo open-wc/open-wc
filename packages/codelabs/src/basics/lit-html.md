@@ -502,7 +502,7 @@ class TodoApp extends LitElement {
 }
 ```
 
-To the add button we attached an event listener that listens for the `click` event. This is done by prefixing the event name with a `@`:
+On the add button we attached an event listener that listens for the `click` event. This is done by prefixing the event name with a `@`:
 
 ```js
 html`
