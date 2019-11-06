@@ -4,22 +4,22 @@
 
 In this codelab, you will learn about the basics of web components and how they work.
 
-Web components are a set of low-level browser APIs that allow us to write modular, encapsulated and reusable HTML elements. Web components are based on web standards and work in any environment that supports basic HTML and JavaScript. This means that there is no complex setup required in order for you to get started.
+Web components are a set of low-level browser features that allow us to write modular, encapsulated and reusable HTML elements. Web components are based on web standards and work in any environment that supports basic HTML and JavaScript. This means that there is no complex setup required for you to get started.
 
-The APIs of web components align well with the way that browsers work and have always worked. This means that they are pretty low level and straightforward. For most projects, libraries or frameworks will still be used, but instead of each framework developing their own component model, they can preferably use the components that are baked into the browser.
+The features of web components align well with the way that browsers work and have always worked. This means that they are pretty low level and straightforward. For most projects, libraries or frameworks will still be used, but instead of each framework developing their own component model, they can preferably use the component technology that is baked into the browser.
 
-Web components are quite flexible and have a multitude of possible use cases. The more prominent use case is to build a UI component libraries using web components. This is especially powerful, for the reason that the UI components can be reused in applications that are built with different technologies.
+Web components are quite flexible and have a multitude of possible use cases. The more prominent use case is to build a UI component using web components. This is especially powerful, for the reason that UI components can be reused in applications that are built with different technologies.
 
 Furthermore, web components can also be used to compose entire applications and are also a perfect fit for static/server-rendered pages where the components just add interactivity after the initial render.
 
-**What you need:**
+**What you need**
 
 - A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
 - Basic knowledge of HTML, CSS, and Javascript.
 
 **What you'll learn**
 
-Browsers are moving pretty fast, and new APIs are being added all the time. In this codelab you will learn about the three most important ones:
+Browsers are moving pretty fast, and new features and APIs are being added all the time. In this codelab you will learn about the three main browser features that Web Components consist of:
 
 - Custom Elements
 - Templates
@@ -27,11 +27,11 @@ Browsers are moving pretty fast, and new APIs are being added all the time. In t
 
 **How it works**
 
-This codelab will take you through web components step by step, explaining each section as you go along. At the bottom of each section there is a "View final result" button, this will show you the correct code that you should end up with incase you get stuck. The steps are sequential, thus results from the previous steps carry over to the next step.
+This codelab will take you through web components step by step, explaining each section as you go along. At the bottom of each section, there is a "View final result" button. This will show you the correct code that you should end up with in case you get stuck. The steps are sequential, thus results from the previous steps carry over to the next step.
 
 ## Setup
 
-You can follow this codelab using anything that is able to display a simple HTML page. We recommend using an [online code editor like jsbin](https://jsbin.com/?html,output), but you can also create your own html page using your favorite IDE.
+You can follow this codelab using anything that is able to display a simple HTML page. We recommend using an [online code editor like jsbin](https://jsbin.com/?html,output), but you can also create your own HTML page using your favorite IDE.
 
 To get started, let's create a basic HTML page:
 
@@ -49,7 +49,7 @@ If you run this in the browser and see hello world, you're good to go!
 
 ## Custom Elements
 
-First, we will take a look at the most important web component API: Custom Elements.
+First, we will take a look at the most important web component browser feature: Custom Elements.
 
 Modify your HTML to wrap the "Hello world" message in an element called `<cool-heading>`:
 
@@ -59,7 +59,7 @@ Modify your HTML to wrap the "Hello world" message in an element called `<cool-h
 </cool-heading>
 ```
 
-Currently your browser does not recognize the `<cool-heading>` tag. When the browser encounters an unknown HTML tag like `<cool-heading>`, it will just render it as an inline element and move on. With the custom elements API, we can tell the browser what to do with the HTML tag that we have just created.
+Currently, your browser does not recognize the `<cool-heading>` tag. When the browser encounters an unknown HTML tag like `<cool-heading>`, it will just render it as an inline element and move on. With the custom elements API, we can tell the browser what to do with the HTML tag that we have just created.
 
 We need to do this in javascript, so let's add a script tag to the bottom of our `<body>` element:
 
@@ -102,7 +102,7 @@ customElements.define('cool-heading', CoolHeading);
     <script>
       class CoolHeading extends HTMLElement {
         connectedCallback() {
-          console.log('cool heading custom element connected!');
+          console.log('cool heading connected!');
         }
       }
 
@@ -145,7 +145,7 @@ class MyElement extends HTMLElement {
 }
 ```
 
-Because our element extends from the `HTMLElement` class, when it is instantiated the class instance is an actual live DOM element. All the methods and properties we are familiar with from the regular DOM element exist here as well.
+Because our element extends from the `HTMLElement` class, when it gets instantiated, the class instance is an actual live DOM element. All the methods and properties we are familiar with from a regular DOM element exist here as well.
 
 For example, let's add some styles to our element:
 
@@ -178,7 +178,7 @@ class CoolHeading extends HTMLElement {
 ```
 
 <aside class="notice">
-We're adding the event listener in the constructor, because the `connectedCallback` method can be called multiple times during the lifecycle of our element, for example when using drag and drop, or when an element is disconnected from one location and connected again in another. That would cause the event listener to be registered multiple times, a common source of bugs.
+We're adding the event listener in the constructor, because the <code>connectedCallback()</code> method can be called multiple times during the lifecycle of our element, for example when using drag and drop, or when an element is disconnected from one location and connected again in another. That would cause the event listener to be registered multiple times, a common source of bugs.
 </aside>
 
 If we run this code in the browser, the element should turn blue when clicked on.
@@ -222,13 +222,13 @@ If we run this code in the browser, the element should turn blue when clicked on
 
 ## Templating
 
-The second Web Components API that we will look into is HTML templates. When writing web components,we usually need to do more than just setting some styles or text. We often need to render larger pieces of HTML as part of our component and update parts of it when the user interacts with the page.
+The second Web Components browser feature that we will look into is HTML templates. When writing web components, we usually need to do more than just setting some styles or text. We often need to render larger pieces of HTML as part of our component and update parts of it when the user interacts with it.
 
-To do this efficiently, the browser provides us with a template element. This template allows us to define the structure of a piece of HTML upfront, and efficiently clones this each time the element is rendered on the page. This is a lot faster than recreating the same HTML structure each time. Writing and cloning templates is (intentionally) pretty low level, you will usually not want to do this manually. You can read more about the basic API [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template).
+To do this efficiently, the browser provides us with a `<template>` element. This element allows us to define the structure of a piece of a HTML upfront, and efficiently clone it when needed. This is a lot faster than recreating the same HTML structure each time. Using and cloning templates is (intentionally) pretty low level, you will usually not want to do this manually. You can read more about the basic API [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template).
 
-For writing templates, we recommend the [lit-html](https://github.com/Polymer/lit-html) library. We will use [lit-element](https://github.com/Polymer/lit-element), which makes it easy to use it in a web component.
+For writing templates, we recommend the [lit-html](https://github.com/Polymer/lit-html) library. We will use [lit-element](https://github.com/Polymer/lit-element), which makes it easy to use the library in a web component.
 
-LitElement is written and distributed as ES Modules, this means we can import it using the browser's native module loader. Let's create a module script, and import `LitElement` from a CDN:
+LitElement is written and distributed as an ES Module. This means we can import it using the browser's native module loader. Let's create a module script, and import `LitElement` from a CDN:
 
 ```html
 <!DOCTYPE html>
@@ -358,7 +358,7 @@ LitElement offers a lot more features than just rendering templates, check out o
 
 ## Shadow DOM
 
-The last important Web Components API we will look into is Shadow DOM. Traditionally, the context of HTML and CSS have always been global. This scales pretty badly, because we constantly need to make sure that the id's of all the elements are unique and often CSS selectors can get pretty complex. This is why many front-end frameworks offer some form of encapsulation. Web Components provides us with this capability using `Shadow DOM`, this capability is now built into the browser.
+The last important Web Components browser feature we will look into is Shadow DOM. Traditionally, the context of HTML and CSS have always been global. This scales pretty badly, because we constantly need to make sure that the id's of all the elements are unique and often CSS selectors can get pretty complex. This is why many front-end frameworks offer some form of encapsulation. Web Components provides us with this capability using a "Shadow DOM", this capability is now built into the browser.
 
 The best way to visualize this is to inspect the element we created in the previous step. In the DOM inspector you will see that the children rendered are not direct children of our element, but rather they are wrapped inside of a shadow root:
 
@@ -564,9 +564,17 @@ For example we can change the front of our page and it will affect the text insi
 
 Web Components are being used in the wild by many companies and in many projects. Some examples:
 
+### YouTube
+
+YouTube is one of the most popular sites on the internet. Their main website is built with custom elements to split up the different parts of their page in components. Additionally, they are using Polymer behaviors to work with attributes and properties.
+
+On older browsers, they load a plain old HTML site.
+
+![Example YouTube web component](./assets/youtube-example.png)
+
 ### Github
 
-Github uses web component for various part of their website. They're using just the Custom Elements API, relying on global styling. They use them as a progressive enhancements, on browsers without support or when javascript is turned off, there is a fallback text that is displayed.
+Github uses web components for various parts of their website. They're using just the Custom Elements API, relying on global styling. They use them as a progressive enhancement. On browsers without support for Custom Elements (or when javascript is turned off), there is a fallback text that is displayed.
 
 Their elements are open source, [you can find them here](https://github.com/github/time-elements).
 
@@ -576,9 +584,9 @@ Their elements are open source, [you can find them here](https://github.com/gith
 
 ### Twitter
 
-Twitter utilizes Web Components for embedding tweets. They're using both Custom Elements and shadow DOM, because they need to ensure the styling of the tweet is consistent across pages and the styling of the component doesn't interfere with the styling of the page.
+Twitter utilizes Web Components for embedding tweets. They're using both Custom Elements and Shadow DOM, because they need to ensure the styling of the tweet is consistent across pages and the styling of the component doesn't interfere with the styling of the page.
 
-On browsers which don't support Web Components, twitter uses an iframe to achieve a similar functionality (with a much higher cost).
+On browsers which don't support Web Components, Twitter uses an iframe to achieve similar functionality (albeit with a much higher cost).
 
 ![Example twitter web component](./assets/twitter-example-1.png)
 
@@ -586,9 +594,9 @@ On browsers which don't support Web Components, twitter uses an iframe to achiev
 
 ### Video
 
-The `<video>` element is built into the browser, and it's actually also using shadow DOM. When you place a video element on the page it actually renders a lot more UI for the controls.
+The `<video>` element is built into the browser, and it's actually also using Shadow DOM. When you put a video element on a page the component renders extra UI for the controls in the Shadow DOM.
 
-You can inspect the shadow DOM of these elements on most browser after enabling a setting in your DevTools.
+You can inspect the Shadow DOM of these elements on most browsers after enabling a setting in your DevTools.
 
 ![Example video element shadow dom](./assets/video-example-1.png)
 
