@@ -227,7 +227,7 @@ The second Web Components browser feature that we will look into is HTML templat
 To do this efficiently, the browser provides us with a `<template>` element. This element allows us to define the structure of a piece of a HTML upfront, and efficiently clone it when needed. This is a lot faster than recreating the same HTML structure each time. Using and cloning templates is (intentionally) pretty low level. You can read more about the basic API [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template).
 
 <aside class="notice">
-Usually you will not want to write and use templates directly using the low level API. For writing templates, we recommend the [lit-html](https://github.com/Polymer/lit-html) library. Next to this base library we also recommend [lit-element](https://github.com/Polymer/lit-element), which makes it easy to use this library in a web component. We will discuss lit-element in a following <a href="https://open-wc.org/codelabs/">codelab</a>.
+Usually you will not want to write and use templates directly using the low level API. For writing templates, we recommend the <a href="https://github.com/Polymer/lit-html">lit-html</a> library. Next to this base library we also recommend <a href="https://github.com/Polymer/lit-element">lit-element</a>, which makes it easy to use this library in a web component. We will discuss lit-element in a following <a href="https://open-wc.org/codelabs/">codelab</a>.
 </aside>
 
 Let's create a `<template>` inside the body of our previous excercise.
