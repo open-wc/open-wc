@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.5](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.4.4...@open-wc/demoing-storybook@0.4.5) (2019-11-06)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** display stories inline in docs mode ([227b837](https://github.com/open-wc/open-wc/commit/227b837))
+
+
+
+
+
 ## [0.4.4](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.4.3...@open-wc/demoing-storybook@0.4.4) (2019-11-02)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
