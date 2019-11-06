@@ -1061,7 +1061,7 @@ render() {
 }
 ```
 
-Remember that the render function sometimes gets called quite frequently. If the computations are expensive, it's better to only do them once and then cache the results.
+Remember that the render function can be called quite often. If the computations are expensive, it's better to only do them once and cache the results.
 
 <details>
   <summary>View final result</summary>
