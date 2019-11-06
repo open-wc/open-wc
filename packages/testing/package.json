@@ -1,41 +1,45 @@
 {
   "name": "@open-wc/testing",
-  "version": "2.3.5",
-  "description": "Testing following open-wc recommendations",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
+  "version": "2.3.9",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Testing following open-wc recommendations",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/testing"
   },
-  "module": "index.js",
-  "files": [
-    "*.js",
-    "*.d.ts"
-  ],
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
   },
+  "files": [
+    "*.d.ts",
+    "*.js"
+  ],
+  "keywords": [
+    "testing",
+    "chai"
+  ],
   "dependencies": {
     "@open-wc/chai-dom-equals": "^0.12.36",
-    "@open-wc/semantic-dom-diff": "^0.14.3",
-    "@open-wc/testing-helpers": "^1.2.1",
+    "@open-wc/semantic-dom-diff": "^0.15.3",
+    "@open-wc/testing-helpers": "^1.3.0",
     "@types/chai": "^4.1.7",
     "@types/chai-dom": "^0.0.8",
     "@types/mocha": "^5.0.0",
     "@types/sinon-chai": "^3.2.3",
     "chai": "^4.2.0",
-    "chai-a11y-axe": "^1.2.1",
+    "chai-a11y-axe": "^1.2.2",
     "chai-dom": "^1.8.1",
-    "mocha": "^5.0.0",
+    "mocha": "^6.0.0",
     "sinon-chai": "^3.3.0"
   },
   "devDependencies": {
     "sinon": "^7.4.1"
-  }
+  },
+  "module": "index.js"
 }

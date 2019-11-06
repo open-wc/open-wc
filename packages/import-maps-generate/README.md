@@ -1,6 +1,6 @@
 # Generate Import Map
 
-[//]: # (AUTO INSERT HEADER PREPUBLISH)
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 This will allow you to generate a flat [import-map](https://github.com/WICG/import-maps).
 It allows you to fix the "nested" npm problem for front end development.
@@ -14,6 +14,7 @@ This is still in early beta (Windows paths are not supported yet)
 :::
 
 ## Features
+
 - Generates a flat import-map
 - Prompts the user when there are version conflicts that are not automatically resolvable
 - Supports resolutions, overrides, and deletions via the `importMap` property in package.json
@@ -46,6 +47,7 @@ npx @import-map/generate
 You can add a `importMap` key in your `package.json` file to specify overrides, deletions or resolutions.
 
 `package.json`:
+
 ```
 {
   "name": "my-package",
@@ -64,7 +66,7 @@ You can add a `importMap` key in your `package.json` file to specify overrides, 
 
 ### Overrides
 
-There may be times where you'll want to override certain imports. For example, if you're using the built-in `std:kv-storage` module along with `kv-storage-polyfill` for nonsupporting browsers, then `kv-storage-polyfill`  will be in your lockfile. The generated import map will look like this:
+There may be times where you'll want to override certain imports. For example, if you're using the built-in `std:kv-storage` module along with `kv-storage-polyfill` for nonsupporting browsers, then `kv-storage-polyfill` will be in your lockfile. The generated import map will look like this:
 
 ```json
 {
@@ -87,10 +89,7 @@ You can achieve that via an override in your `package.json`'s `importMap` config
   "importMap": {
     "overrides": {
       "imports": {
-        "kv-storage-polyfill": [
-          "std:kv-storage",
-          "/node_modules/kv-storage-polyfill/index.js"
-        ]
+        "kv-storage-polyfill": ["std:kv-storage", "/node_modules/kv-storage-polyfill/index.js"]
       }
     },
     "deletions": ["kv-storage-polyfill/"]
@@ -103,18 +102,17 @@ Note that if you apply overrides, you may also need to specify deletions for the
 :::
 
 Which will result in the following import map:
+
 ```json
 {
   "imports": {
-    "std:kv-storage": [
-      "std:kv-storage",
-      "/node_modules/kv-storage-polyfill/index.js"
-    ]
+    "std:kv-storage": ["std:kv-storage", "/node_modules/kv-storage-polyfill/index.js"]
   }
 }
 ```
 
 Overrides may be useful for:
+
 - Polyfilling
 - Fixing a dependency with a local fork
 - Getting a dependency from a CDN instead
@@ -135,12 +133,12 @@ You can also override entire scopes:
 }
 ```
 
-
 ### Deletions
 
 You can apply deletions to the generated import map by adding a `deletions` property to your package.json:
 
 `package.json`:
+
 ```json
 {
   "importMap": {
@@ -159,6 +157,7 @@ There may be times where you have conflicting versions of the same package in yo
 Alternatively, you can specify your own resolutions in your package.json.
 
 `package.json`:
+
 ```json
 {
   "importMap": {
@@ -170,11 +169,13 @@ Alternatively, you can specify your own resolutions in your package.json.
 ```
 
 ## Command line flags overview
+
 ### Development help
-| name            |  type          | description                                                              |
-| --------------- | -------------- | ------------------------------------------------------------------------ |
-| inject-to       | string         | Injects the import map to the specified html file                        |
-    
+
+| name      | type   | description                                       |
+| --------- | ------ | ------------------------------------------------- |
+| inject-to | string | Injects the import map to the specified html file |
+
 <script>
   export default {
     mounted() {

@@ -328,6 +328,13 @@ describe('getDiffableHTML()', () => {
 `,
       );
     });
+
+    it('removes class attributes that contains only whitespaces', () => {
+      const html = getDiffableHTML(`
+        <div class="  "></div>
+        `);
+      expect(html).to.equal('<div>\n</div>\n');
+    });
   });
 
   describe('special elements', () => {

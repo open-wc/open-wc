@@ -3,6 +3,91 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.21.2...@open-wc/create@0.21.3) (2019-11-03)
+
+
+### Bug Fixes
+
+* **create:** rename packages to components ([#945](https://github.com/open-wc/open-wc/issues/945)) ([6f08241](https://github.com/open-wc/open-wc/commit/6f08241))
+
+
+
+
+
+## [0.21.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.21.1...@open-wc/create@0.21.2) (2019-11-03)
+
+
+### Bug Fixes
+
+* align versions within the monorepo ([fa2ad9f](https://github.com/open-wc/open-wc/commit/fa2ad9f))
+
+
+
+
+
+## [0.21.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.21.0...@open-wc/create@0.21.1) (2019-11-02)
+
+
+### Bug Fixes
+
+* **create:** regression in app scaffolding when no options are selected ([#940](https://github.com/open-wc/open-wc/issues/940)) ([dea14cd](https://github.com/open-wc/open-wc/commit/dea14cd))
+
+
+
+
+
+# [0.21.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.20.1...@open-wc/create@0.21.0) (2019-11-02)
+
+
+### Features
+
+* **create:** dynamic READMEs ([#919](https://github.com/open-wc/open-wc/issues/919)) ([ca8623f](https://github.com/open-wc/open-wc/commit/ca8623f))
+
+
+
+
+
+## [0.20.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.20.0...@open-wc/create@0.20.1) (2019-10-30)
+
+
+### Bug Fixes
+
+* **create:** add basic custom-elements.json ([1db9e6e](https://github.com/open-wc/open-wc/commit/1db9e6e))
+
+
+
+
+
+# [0.20.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.19.2...@open-wc/create@0.20.0) (2019-10-29)
+
+
+### Features
+
+* **demoing-storybook:** storybook 5.3 with docs mode - see MIGRATION.md ([9000b92](https://github.com/open-wc/open-wc/commit/9000b92))
+
+
+
+
+
+## [0.19.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.19.1...@open-wc/create@0.19.2) (2019-10-25)
+
+
+### Bug Fixes
+
+* align used mocha version ([#901](https://github.com/open-wc/open-wc/issues/901)) ([3606381](https://github.com/open-wc/open-wc/commit/3606381))
+
+
+
+
+
+## [0.19.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.19.0...@open-wc/create@0.19.1) (2019-10-23)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
 # [0.19.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.18.9...@open-wc/create@0.19.0) (2019-10-13)
 
 

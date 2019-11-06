@@ -1,34 +1,39 @@
 {
   "name": "@open-wc/webpack-import-meta-loader",
-  "version": "0.3.1",
-  "description": "Webpack configuration following open-wc recommendations",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
+  "version": "0.3.4",
   "publishConfig": {
     "access": "public"
   },
-  "main": "webpack-import-meta-loader.js",
+  "description": "Webpack configuration following open-wc recommendations",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/webpack-import-meta-loader"
   },
-  "files": [
-    "src",
-    "*.js"
-  ],
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "webpack-import-meta-loader.js",
   "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js",
     "test": "npm run test:node",
-    "test:node": "mocha --require @babel/register",
-    "prepublishOnly": "../../scripts/insert-header.js"
+    "test:node": "mocha --require @babel/register"
   },
+  "files": [
+    "*.js",
+    "src"
+  ],
+  "keywords": [
+    "webpack",
+    "meta-loader",
+    "import-meta"
+  ],
   "devDependencies": {
     "@babel/register": "^7.0.0",
     "babel-preset-env": "^1.7.0",
     "chai": "^4.2.0",
     "memory-fs": "^0.4.1",
-    "mocha": "^5.0.0",
+    "mocha": "^6.0.0",
     "webpack": "^4.28.0"
   }
 }

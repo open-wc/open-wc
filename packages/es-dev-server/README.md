@@ -1,10 +1,11 @@
 # ES dev server
 
-[//]: # (AUTO INSERT HEADER PREPUBLISH)
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 A web server for developing without a build step.
 
 By default, `es-dev-server` acts as a simple static file server. Through flags, different features can be enabled, such as:
+
 - reloading the browser on file changes
 - resolve bare module imports using node resolution
 - history API fallback for SPA routing
@@ -14,21 +15,27 @@ By default, `es-dev-server` acts as a simple static file server. Through flags, 
 Compatibility mode enables bundle-free development with modern javascript, es modules and import maps on all major browsers and IE11.
 
 ## Getting started
+
 We recommend [following this guide](https://dev.to/open-wc/developing-without-a-build-2-es-dev-server-1cf5) for a step by step overview of different workflows with `es-dev-server`.
 
 ## Setup
+
 With our project scaffolding you can set up a pre-configured project:
+
 ```bash
 npm init @open-wc
 ```
 
 ### Manual
+
 You can also set up the dev server manually:
+
 ```bash
 npm i -D es-dev-server
 ```
 
 Add scripts to your `package.json`, modify the flags as needed:
+
 ```json
 {
   "scripts": {
@@ -39,68 +46,78 @@ Add scripts to your `package.json`, modify the flags as needed:
 ```
 
 Run the server:
+
 ```bash
 npm run start
 ```
 
 ## Node version
+
 es-dev-server requires node v10 or higher
 
 ## Command line flags and Configuration
+
 ### Server configuration
-| name                 |  type          | description                                                                |
-| -------------------- | -------------- | -------------------------------------------------------------------------- |
-| port                 | number         | The port to use, uses a random free port if not set.                       |
-| hostname             | string         | The hostname to use. Default: localhost                                    |
-| open                 | boolean/string | Opens the browser on app-index, root dir or a custom path                  |
-| app-index            | string         | The app's index.html file, sets up history API fallback for SPA routing    |
-| root-dir             | string         | The root directory to serve files from. Default: working directory         |
-| base-path            | string         | Base path the app is served on. Example: /my-app                           |
-| config               | string         | The file to read configuration from (JS or JSON)                           |
-| help                 | none           | See all options                                                            |
+
+| name      | type           | description                                                             |
+| --------- | -------------- | ----------------------------------------------------------------------- |
+| port      | number         | The port to use, uses a random free port if not set.                    |
+| hostname  | string         | The hostname to use. Default: localhost                                 |
+| open      | boolean/string | Opens the browser on app-index, root dir or a custom path               |
+| app-index | string         | The app's index.html file, sets up history API fallback for SPA routing |
+| root-dir  | string         | The root directory to serve files from. Default: working directory      |
+| base-path | string         | Base path the app is served on. Example: /my-app                        |
+| config    | string         | The file to read configuration from (JS or JSON)                        |
+| help      | none           | See all options                                                         |
 
 ### Development help
-| name                 |  type          | description                                                                |
-| -------------------- | -------------- | -------------------------------------------------------------------------- |
-| watch                | boolean        | Reload the browser when files are edited                                   |
-| http2                | boolean        | Serve files over HTTP2. Sets up HTTPS with self-signed certificates        |
+
+| name  | type    | description                                                         |
+| ----- | ------- | ------------------------------------------------------------------- |
+| watch | boolean | Reload the browser when files are edited                            |
+| http2 | boolean | Serve files over HTTP2. Sets up HTTPS with self-signed certificates |
 
 ### Code transformation
-| name                 |  type          | description                                                                |
-| -------------------- | -------------- | -------------------------------------------------------------------------- |
-| compatibility        | string         | Compatibility mode for older browsers. Can be: `esm`, `modern` or `all`    |
-| node-resolve         | number         | Resolve bare import imports using node resolve                             |
-| preserve-symlinks    | boolean        | Preserve symlinks when resolving modules. Default false.                   |
-| module-dirs          | string/array   | Directories to resolve modules from. Used by node-resolve                  |
-| babel                | boolean        | Transform served code through babel. Requires .babelrc                     |
-| file-extensions      | number/array   | Extra file extensions to use when transforming code.                       |
-| babel-exclude        | number/array   | Patterns of files to exclude from babel compilation.                       |
-| babel-modern-exclude | number/array   | Patterns of files to exclude from babel compilation on modern browsers.    |
+
+| name                 | type         | description                                                             |
+| -------------------- | ------------ | ----------------------------------------------------------------------- |
+| compatibility        | string       | Compatibility mode for older browsers. Can be: `esm`, `modern` or `all` |
+| node-resolve         | number       | Resolve bare import imports using node resolve                          |
+| preserve-symlinks    | boolean      | Preserve symlinks when resolving modules. Default false.                |
+| module-dirs          | string/array | Directories to resolve modules from. Used by node-resolve               |
+| babel                | boolean      | Transform served code through babel. Requires .babelrc                  |
+| file-extensions      | number/array | Extra file extensions to use when transforming code.                    |
+| babel-exclude        | number/array | Patterns of files to exclude from babel compilation.                    |
+| babel-modern-exclude | number/array | Patterns of files to exclude from babel compilation on modern browsers. |
 
 Most commands have an alias/shorthand. You can view them by using `--help`.
 
 ### Configuration files
+
 We pick up an `es-dev-server.config.js` file automatically if it is present in the current working directory. You can specify a custom config path using the `config` flag.
 
 Configuration options are the same as command line flags, using their camelCased names. Example:
+
 ```javascript
 module.exports = {
   port: 8080,
   watch: true,
   nodeResolve: true,
   appIndex: 'demo/index.html',
-  moduleDirs: ['node_modules', 'custom-modules']
-}
+  moduleDirs: ['node_modules', 'custom-modules'],
+};
 ```
 
 In addition to the command-line flags, the configuration file accepts these additional options:
 
-| name                 |  type          | description                                                              |
-| -------------------- | -------------- | ------------------------------------------------------------------------ |
-| middlewares          | array          | Koa middlewares to add to the server, read more below.                   |
-| babelConfig          | object         | Babel config to run with the server                                      |
+| name                 | type   | description                                            |
+| -------------------- | ------ | ------------------------------------------------------ |
+| middlewares          | array  | Koa middlewares to add to the server, read more below. |
+| responseTransformers | array  | Functions which transform the server's response.       |
+| babelConfig          | object | Babel config to run with the server                    |
 
 ## Folder structure
+
 `es-dev-server` serves static files using the same structure as your file system. It cannot serve any files outside of the root of the webserver. You need to make sure any files requested, including node modules, are accessible for the webserver.
 
 Click read more to view different strategies for setting up your project's folder structure.
@@ -108,78 +125,81 @@ Click read more to view different strategies for setting up your project's folde
 <details>
   <summary>Read more</summary>
 
-  ### index.html in root
+### index.html in root
 
-  The simplest setup where all files are accessible is to place your index.html at the root of your project:
-  ```
-  node_modules/...
-  src/...
-  index.html
-  ```
+The simplest setup where all files are accessible is to place your index.html at the root of your project:
 
-  If you run `es-dev-server` regularly from the root of this project, you can access your app at `/` or `/index.html` in the browser.
+```
+node_modules/...
+src/...
+index.html
+```
 
-  ### index.html in a subfoolder
+If you run `es-dev-server` regularly from the root of this project, you can access your app at `/` or `/index.html` in the browser.
 
-  If you move your `index.html` inside a subfolder:
-  ```
-  node_modules/...
-  src/...
-  src/index.html
-  ```
+### index.html in a subfoolder
 
-  You can access your app in the browser at `/src/` or `/src/index.html`. You can tell `es-dev-server` to explicitly open at this path:
+If you move your `index.html` inside a subfolder:
 
-  ```bash
-  # with app-index flag
-  es-dev-server --app-index src/index.html --open
-  # without app-index flag
-  es-dev-server --open src/
-  ```
+```
+node_modules/...
+src/...
+src/index.html
+```
 
-  You can also change the root directory of the dev server:
+You can access your app in the browser at `/src/` or `/src/index.html`. You can tell `es-dev-server` to explicitly open at this path:
 
-  ```bash
-  es-dev-server --root-dir src --open
-  ```
+```bash
+# with app-index flag
+es-dev-server --app-index src/index.html --open
+# without app-index flag
+es-dev-server --open src/
+```
 
-  Now your `index.html` is accessible at `/` or `/index.html`. However, the dev server cannot serve any files outside of the root directory. So if your app uses any node modules, they will no longer because accessible.
+You can also change the root directory of the dev server:
 
-  If you want your index in a subfolder without this being visible in the browser URL, you can set up a file rewrite rule. [Read more here](#rewriting-file-requests)
+```bash
+es-dev-server --root-dir src --open
+```
 
-  ### Monorepos
+Now your `index.html` is accessible at `/` or `/index.html`. However, the dev server cannot serve any files outside of the root directory. So if your app uses any node modules, they will no longer because accessible.
 
-  If you are using `es-dev-server` in a monorepo, your node modules are in two different locations. In the package's folder and the repository root:
-  ```
-  node_modules/...
-  packages/my-package/node_modules/...
-  packages/my-package/index.html
-  ```
+If you want your index in a subfolder without this being visible in the browser URL, you can set up a file rewrite rule. [Read more here](#rewriting-file-requests)
 
-  You will need to make sure the root node_modules folder is accessible to the dev server.
+### Monorepos
 
-  If your working directory is `packages/my-package` you can use this command:
+If you are using `es-dev-server` in a monorepo, your node modules are in two different locations. In the package's folder and the repository root:
 
-  ```bash
-  # with app-index
-  es-dev-server --root-dir ../../ --app-index packages/my-package/index.html --open
-  # without app-index
-  es-dev-server --root-dir ../../ --open packages/my-package/index.html
-  ```
+```
+node_modules/...
+packages/my-package/node_modules/...
+packages/my-package/index.html
+```
 
-  If your working directory is the root of the repository you can use this command:
+You will need to make sure the root node_modules folder is accessible to the dev server.
 
-  ```bash
-  es-dev-server --app-index packages/my-package/index.html --open
-  ```
+If your working directory is `packages/my-package` you can use this command:
 
-  This is the same approach as serving an index.html in a subdirectory, so the section above applies here as well.
+```bash
+# with app-index
+es-dev-server --root-dir ../../ --app-index packages/my-package/index.html --open
+# without app-index
+es-dev-server --root-dir ../../ --open packages/my-package/index.html
+```
 
-  ### Base element
+If your working directory is the root of the repository you can use this command:
 
-  You can set up a `<base href="">` element to modify how files are resolved relatively to your index.html. You can be very useful when your index.html is not at the root of your project.
+```bash
+es-dev-server --app-index packages/my-package/index.html --open
+```
 
-  If you use SPA routing, using a base element is highly recommended. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
+This is the same approach as serving an index.html in a subdirectory, so the section above applies here as well.
+
+### Base element
+
+You can set up a `<base href="">` element to modify how files are resolved relatively to your index.html. You can be very useful when your index.html is not at the root of your project.
+
+If you use SPA routing, using a base element is highly recommended. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
 
 </details>
 
@@ -192,117 +212,209 @@ You can install custom middlewares, using the `middlewares` property.
 <details>
   <summary>Read more</summary>
 
-  The middleware should be a standard koa middleware. [Read more about koa here.](https://koajs.com/)
+The middleware should be a standard koa middleware. [Read more about koa here.](https://koajs.com/)
 
-  You can use custom middlewares to set up a proxy, for example:
-  ```javascript
-  const proxy = require('koa-proxies');
+You can use custom middlewares to set up a proxy, for example:
 
-  module.exports = {
-    port: 9000,
-    middlewares: [
-      proxy('/api', {
-        target: 'http://localhost:9001',
-      })
-    ],
-  };
-  ```
+```javascript
+const proxy = require('koa-proxies');
+
+module.exports = {
+  port: 9000,
+  middlewares: [
+    proxy('/api', {
+      target: 'http://localhost:9001',
+    }),
+  ],
+};
+```
+
 </details>
 
-### Rewriting file requests
+### Rewriting request urls
 
-You can rewrite certain file requests using a simple custom middleware. This can be useful for example to serve your `index.html` from a different file location.
+You can rewrite certain file requests using a simple custom middleware. This can be useful for example to serve your `index.html` from a different file location or to alias a module.
 
 <details>
   <summary>Read more</summary>
 
-  Set up a configuration file with a custom middleware:
+Serve `/index.html` from `/src/index.html`:
 
-  ```javascript
-  module.exports = {
-    middlewares: [
-      function rewriteIndex(context, next) {
-        if (context.url === '/' || context.url === '/index.html') {
-          context.url = '/src/index.html';
-        }
-
-        return next();
+```javascript
+module.exports = {
+  middlewares: [
+    function rewriteIndex(context, next) {
+      if (context.url === '/' || context.url === '/index.html') {
+        context.url = '/src/index.html';
       }
-    ],
-  };
-  ```
 
-  This way from the browser you can request `/` or `/index.html` and it will serve `/src/index.html`. This middleware is run before the dev server's file serving logic, which will use the rewritten URL.
+      return next();
+    },
+  ],
+};
+```
+
+</details>
+
+### Response transformers
+
+With the `responseTransformers` property, you can transform the server's response before it is sent to the browser. This is useful for injecting code into your index.html, performing transformations on files or to serve virtual files programmatically.
+
+<details>
+  <summary>Read more</summary>
+
+A response transformer is a function which receives the original response and returns an optionally modified response. This transformation happens before any other built-in transformations such as node resolve, babel or compatibility. You can register multiple transformers, they are called in order.
+
+The functions can be sync or async, see the full signature below:
+
+```typescript
+({ url: string, status: number, contentType: string, body: string }) => Promise<{ body?: string, contentType?: string } | null>
+```
+
+Some examples:
+
+Rewrite the base path of your `index.html`:
+
+```javascript
+module.exports = {
+  responseTransformers: [
+    function rewriteBasePath({ url, status, contentType, body }) {
+      if (url === '/' || url === '/index.html') {
+        const rewritten = body.replace(/<base href=".*">/, '<base href="/foo/">');
+        return { body: rewritten };
+      }
+    },
+  ],
+};
+```
+
+Serve a virtual file, for example an auto generated `index.html`:
+
+```javascript
+const indexHTML = generateIndexHTML();
+
+module.exports = {
+  responseTransformers: [
+    function serveIndex({ url, status, contentType, body }) {
+      if (url === '/' || url === '/index.html') {
+        return { body: indexHTML, contentType: 'text/html' };
+      }
+    },
+  ],
+};
+```
+
+Transform markdown to HTML:
+
+```javascript
+const markdownToHTML = require('markdown-to-html-library');
+
+module.exports = {
+  responseTransformers: [
+    async function transformMarkdown({ url, status, contentType, body }) {
+      if (url === '/readme.md') {
+        const html = await markdownToHTML(body);
+        return {
+          body: html,
+          contentType: 'text/html',
+        };
+      }
+    },
+  ],
+};
+```
+
+Polyfill CSS modules in JS:
+
+```javascript
+module.exports = {
+  responseTransformers: [
+    async function transformCSS({ url, status, contentType, body }) {
+      if (url.endsWith('.css')) {
+        const transformedBody = `
+          const stylesheet = new CSSStyleSheet();
+          stylesheet.replaceSync(${JSON.stringify(body)});
+          export default stylesheet;
+        `;
+        return { body: transformedBody, contentType: 'application/javascript' };
+      }
+    },
+  ],
+};
+```
 
 </details>
 
 ### Typescript support
+
 `es-dev-server` is based around developing without any build tools but you can make it work with typescript as well.
 
 <details>
   <summary>Read more</summary>
 
-  The easiest way to use the server with typescript is to compile your typescript to javascript before running the server. Just run `tsc` in watch mode and include the compiled js files from your `index.html`.
+The easiest way to use the server with typescript is to compile your typescript to javascript before running the server. Just run `tsc` in watch mode and include the compiled js files from your `index.html`.
 
-  You can also configure the dev server to consume your typescript files directly. This is done by running the server with a babel plugin to compile your typescript files to javascript.
+You can also configure the dev server to consume your typescript files directly. This is done by running the server with a babel plugin to compile your typescript files to javascript.
 
-  Note that when compiling typescript with babel it does not do any type checking or special typescript compilation such as decorators, class fields and enums. You can configure babel to cover most of these, but not all. [Read more about babel typescript here](https://babeljs.io/docs/en/babel-plugin-transform-typescript).
+Note that when compiling typescript with babel it does not do any type checking or special typescript compilation such as decorators, class fields and enums. You can configure babel to cover most of these, but not all. [Read more about babel typescript here](https://babeljs.io/docs/en/babel-plugin-transform-typescript).
 
-  1. Install the preset:
-  ```bash
-  npm i --save-dev @babel/preset-typescript
-  ```
+1. Install the preset:
 
-  2. Add a `babel.config.js` or `.babelrc` to your project:
-  ```json
-  {
-    "presets": [
-      "@babel/preset-typescript"
-    ]
-  }
-  ```
+```bash
+npm i --save-dev @babel/preset-typescript
+```
 
-  3. Import a typescript file from your `index.html`
-  ```html
-  <html>
-    <head></head>
+2. Add a `babel.config.js` or `.babelrc` to your project:
 
-    <body>
-      <script type="module" src="./my-app.ts"></script>
-    </body>
-  </html>
-  ```
+```json
+{
+  "presets": ["@babel/preset-typescript"]
+}
+```
 
-  4. Run `es-dev-server` with these flags:
-  ```bash
-  es-dev-server --file-extensions .ts --node-resolve --babel --open
-  ```
+3. Import a typescript file from your `index.html`
 
-  To add support for experimental features that are normally handled by the typescript compiler, you can add extra babel plugins:
+```html
+<html>
+  <head></head>
 
-  1. Install the plugins:
-  ```bash
-  npm i --save-dev @babel/plugin-proposal-decorators @babel/plugin-proposal-class-properties
-  ```
+  <body>
+    <script type="module" src="./my-app.ts"></script>
+  </body>
+</html>
+```
 
-  2. Update your babel configuration:
-  ```json
-  {
-    "presets": [
-      "@babel/preset-typescript"
-    ],
-    // for libraries that support babel decorators (lit-element) use:
-    "plugins": [
-      ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
-      "@babel/plugin-proposal-class-properties"
-    ]
-    // for libraries that only support typescript:
-    // "plugins": [
-    //   ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    //   ["@babel/plugin-proposal-class-properties", { "loose": true }]
-    // ],
-  }
-  ```
+4. Run `es-dev-server` with these flags:
+
+```bash
+es-dev-server --file-extensions .ts --node-resolve --babel --open
+```
+
+To add support for experimental features that are normally handled by the typescript compiler, you can add extra babel plugins:
+
+1. Install the plugins:
+
+```bash
+npm i --save-dev @babel/plugin-proposal-decorators @babel/plugin-proposal-class-properties
+```
+
+2. Update your babel configuration:
+
+```json
+{
+  "presets": ["@babel/preset-typescript"],
+  // for libraries that support babel decorators (lit-element) use:
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
+    "@babel/plugin-proposal-class-properties"
+  ]
+  // for libraries that only support typescript:
+  // "plugins": [
+  //   ["@babel/plugin-proposal-decorators", { "legacy": true }],
+  //   ["@babel/plugin-proposal-class-properties", { "loose": true }]
+  // ],
+}
+```
 
 </details>
 
@@ -314,37 +426,42 @@ Compatibility mode enables bundle-free development with features such as es modu
 
   <summary>Read more</summary>
 
-  If you want to make use of import maps, you can provide an import map in your `index.html`. To generate an import map, you can check out our package [import-maps-generate](https://github.com/open-wc/open-wc/tree/master/packages/import-maps-generate), or you can add one manually.
+If you want to make use of import maps, you can provide an import map in your `index.html`. To generate an import map, you can check out our package [import-maps-generate](https://github.com/open-wc/open-wc/tree/master/packages/import-maps-generate), or you can add one manually.
 
-  Three modes can be enabled:
-  ### esm
-  `esm` mode adds [es-module-shims](https://github.com/guybedford/es-module-shims) to enable new module features such as dynamic imports and import maps.
+Three modes can be enabled:
 
-  This mode has a negligible performance impact and is great when working on modern browsers.
+### esm
 
-  ### modern
-  `modern` mode expands `esm` mode, adding a babel transform and a polyfill loader.
+`esm` mode adds [es-module-shims](https://github.com/guybedford/es-module-shims) to enable new module features such as dynamic imports and import maps.
 
-  The babel transform uses the [present-env](https://babeljs.io/docs/en/babel-preset-env) plugin. This transforms standard syntax which isn't yet supported by all browsers. By default, it targets the latest two versions of Chrome, Safari, Firefox, and Edge. This can be configured with a [browserslist configuration](https://www.npmjs.com/package/browserslist).
+This mode has a negligible performance impact and is great when working on modern browsers.
 
-  The polyfill loader does lightweight feature detection to determine which polyfills to load. By default it loads polyfills for web components, these can be turned off or custom polyfills can be added in the configuration.
+### modern
 
-  This mode has a moderate performance impact. Use this when using new javascript syntax that is not yet supported on all browsers.
+`modern` mode expands `esm` mode, adding a babel transform and a polyfill loader.
 
-  ### all
-  `all` mode expands `modern` mode by making your code compatible with browsers that don't yet support modules.
+The babel transform uses the [present-env](https://babeljs.io/docs/en/babel-preset-env) plugin. This transforms standard syntax which isn't yet supported by all browsers. By default, it targets the latest two versions of Chrome, Safari, Firefox, and Edge. This can be configured with a [browserslist configuration](https://www.npmjs.com/package/browserslist).
 
-  In addition to the web component polyfills, it loads the general [core-js polyfills](https://www.npmjs.com/package/core-js) and a polyfill for [fetch](https://www.npmjs.com/package/whatwg-fetch)
+The polyfill loader does lightweight feature detection to determine which polyfills to load. By default it loads polyfills for web components, these can be turned off or custom polyfills can be added in the configuration.
 
-  When loading your application it detects module support. If it is not supported, your app is loaded through [system-js](https://github.com/systemjs/systemjs) and your code is transformed to `es5`.
+This mode has a moderate performance impact. Use this when using new javascript syntax that is not yet supported on all browsers.
 
-  The `es5` transformation is only done for browsers which don't support modules, so you can safely use this mode on modern browsers where it acts the same way as `modern` mode.
+### all
 
-  `all` mode has the same moderate impact as `modern` mode on browsers that support modules. On browsers that don't support modules, it has a heavier impact. Use this mode if you want to verify if your code runs correctly on older browsers without having to run a build.
+`all` mode expands `modern` mode by making your code compatible with browsers that don't yet support modules.
+
+In addition to the web component polyfills, it loads the general [core-js polyfills](https://www.npmjs.com/package/core-js) and a polyfill for [fetch](https://www.npmjs.com/package/whatwg-fetch)
+
+When loading your application it detects module support. If it is not supported, your app is loaded through [system-js](https://github.com/systemjs/systemjs) and your code is transformed to `es5`.
+
+The `es5` transformation is only done for browsers which don't support modules, so you can safely use this mode on modern browsers where it acts the same way as `modern` mode.
+
+`all` mode has the same moderate impact as `modern` mode on browsers that support modules. On browsers that don't support modules, it has a heavier impact. Use this mode if you want to verify if your code runs correctly on older browsers without having to run a build.
 
 </details>
 
 ## Using es-dev-server programmatically
+
 You can use different components from `es-dev-server` as a library and integrate it with other tools:
 
 <details>
@@ -379,7 +496,7 @@ Returns an array of koa middleware functions.
 import Koa from 'koa';
 import { createConfig, createMiddlewares } from 'es-dev-server';
 
-const config = createConfig({ });
+const config = createConfig({});
 const middlewares = createMiddlewares(config);
 
 const app = new Koa();

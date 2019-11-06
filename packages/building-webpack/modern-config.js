@@ -1,6 +1,7 @@
 const { findSupportedBrowsers } = require('@open-wc/building-utils');
 const WebpackIndexHTMLPlugin = require('@open-wc/webpack-index-html-plugin');
 const customMinifyCSS = require('@open-wc/building-utils/custom-minify-css');
+const { GenerateSW } = require('workbox-webpack-plugin');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -11,12 +12,20 @@ const defaultOptions = {
   // production. this can be overwritten manually in the config
   mode: getDefaultMode(),
   input: './index.html',
+  plugins: {
+    indexHTML: true,
+    workbox: true,
+  },
 };
 
 module.exports = userOptions => {
   const options = {
     ...defaultOptions,
     ...userOptions,
+    plugins: {
+      ...defaultOptions.plugins,
+      ...(userOptions.plugins || {}),
+    },
   };
 
   const production = options.mode === 'production';
@@ -127,6 +136,14 @@ module.exports = userOptions => {
       new CleanWebpackPlugin(),
 
       new WebpackIndexHTMLPlugin(options.webpackIndexHTMLPlugin),
+      production &&
+        options.plugins.workbox &&
+        new GenerateSW({
+          // for spa client side routing, always return index.html
+          navigateFallback: '/index.html',
+          // where to output the generated sw
+          swDest: 'sw.js',
+        }),
     ].filter(_ => !!_),
 
     devServer: {

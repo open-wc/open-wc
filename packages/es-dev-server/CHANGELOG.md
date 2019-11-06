@@ -3,6 +3,142 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.23.0...es-dev-server@1.23.1) (2019-11-06)
+
+
+### Bug Fixes
+
+* **es-dev-server:** allow serving hidden files ([ae0d9d1](https://github.com/open-wc/open-wc/commit/ae0d9d1))
+* **es-dev-server:** resolve @babel/preset-env relative to es-dev-server location ([#956](https://github.com/open-wc/open-wc/issues/956)) ([a9e122c](https://github.com/open-wc/open-wc/commit/a9e122c))
+
+
+
+
+
+# [1.23.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.22.0...es-dev-server@1.23.0) (2019-11-04)
+
+
+### Features
+
+* **es-dev-server:** allow reloading multiple browsers in watch mode ([922b616](https://github.com/open-wc/open-wc/commit/922b616))
+
+
+
+
+
+# [1.22.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.21.0...es-dev-server@1.22.0) (2019-11-03)
+
+
+### Bug Fixes
+
+* align versions within the monorepo ([fa2ad9f](https://github.com/open-wc/open-wc/commit/fa2ad9f))
+
+
+### Features
+
+* **es-dev-server:** add response transformers ([#939](https://github.com/open-wc/open-wc/issues/939)) ([0ffdb5b](https://github.com/open-wc/open-wc/commit/0ffdb5b))
+* **es-dev-server:** check last changed timestamp when caching ([73d926b](https://github.com/open-wc/open-wc/commit/73d926b))
+
+
+
+
+
+# [1.21.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.20.2...es-dev-server@1.21.0) (2019-11-02)
+
+
+### Features
+
+* **es-dev-server:** reduce default debounce time ([#935](https://github.com/open-wc/open-wc/issues/935)) ([0963e06](https://github.com/open-wc/open-wc/commit/0963e06))
+
+
+
+
+
+## [1.20.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.20.1...es-dev-server@1.20.2) (2019-11-02)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't compress event stream ([#934](https://github.com/open-wc/open-wc/issues/934)) ([f151081](https://github.com/open-wc/open-wc/commit/f151081))
+
+
+
+
+
+## [1.20.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.20.0...es-dev-server@1.20.1) (2019-10-31)
+
+
+### Bug Fixes
+
+* **es-dev-server:** only exit process when used from cli ([#928](https://github.com/open-wc/open-wc/issues/928)) ([42dbf66](https://github.com/open-wc/open-wc/commit/42dbf66))
+
+
+
+
+
+# [1.20.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.19.0...es-dev-server@1.20.0) (2019-10-30)
+
+
+### Features
+
+* **es-dev-server:** enable compression ([0d06b02](https://github.com/open-wc/open-wc/commit/0d06b02)), closes [#723](https://github.com/open-wc/open-wc/issues/723)
+
+
+
+
+
+# [1.19.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.8...es-dev-server@1.19.0) (2019-10-26)
+
+
+### Features
+
+* **es-dev-server:** allow listening to own ip address ([#906](https://github.com/open-wc/open-wc/issues/906)) ([d8fbf3f](https://github.com/open-wc/open-wc/commit/d8fbf3f))
+
+
+
+
+
+## [1.18.8](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.7...es-dev-server@1.18.8) (2019-10-26)
+
+
+### Bug Fixes
+
+* **es-dev-server:** properly close server on exit ([0c99d3b](https://github.com/open-wc/open-wc/commit/0c99d3b))
+
+
+
+
+
+## [1.18.7](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.6...es-dev-server@1.18.7) (2019-10-25)
+
+
+### Bug Fixes
+
+* align used mocha version ([#901](https://github.com/open-wc/open-wc/issues/901)) ([3606381](https://github.com/open-wc/open-wc/commit/3606381))
+
+
+
+
+
+## [1.18.6](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.5...es-dev-server@1.18.6) (2019-10-23)
+
+
+### Bug Fixes
+
+* add package keywords ([#859](https://github.com/open-wc/open-wc/issues/859)) ([cd78405](https://github.com/open-wc/open-wc/commit/cd78405))
+
+
+
+
+
+## [1.18.5](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.4...es-dev-server@1.18.5) (2019-10-22)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
 ## [1.18.4](https://github.com/open-wc/open-wc/compare/es-dev-server@1.18.3...es-dev-server@1.18.4) (2019-10-13)
 
 

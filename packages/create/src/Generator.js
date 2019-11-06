@@ -11,6 +11,21 @@ import {
   optionsToCommand,
 } from './core.js';
 
+/**
+ * Options for the generator
+ * @typedef {object} GeneratorOptions
+ * @property {string} [tagName] the dash-case tag name
+ * @property {string} [destinationPath='auto'] path to output to. default value 'auto' will output to current working directory
+ * @property {'scaffold'} [type='scaffold'] path to output to. default value 'auto' will output to current working directory
+ * @property {'true'|'false'} [writeToDisk] whether to write to disk
+ * @property {'yarn'|'npm'|'false'} [installDependencies] whether and with which tool to install dependencies
+ */
+
+/**
+ * dash-case to PascalCase
+ * @param  {string} tagName dash-case tag name
+ * @return {string}         PascalCase class name
+ */
 function getClassName(tagName) {
   return tagName
     .split('-')
@@ -19,6 +34,9 @@ function getClassName(tagName) {
 
 class Generator {
   constructor() {
+    /**
+     * @type {GeneratorOptions}
+     */
     this.options = {
       destinationPath: 'auto',
     };

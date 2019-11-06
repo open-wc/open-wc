@@ -1,0 +1,198 @@
+import { Story, Preview, Meta, Props } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { html } from 'lit-html';
+import { withKnobs, text, number } from '@storybook/addon-knobs';
+import { withWebComponentsKnobs } from '../../index.js';
+
+import '../demo-wc-card.js';
+import '../fake-input.js';
+
+<Meta
+  title="Decorators|WithWebComponentKnobs"
+  decorators={[withKnobs, withWebComponentsKnobs]}
+  parameters={{ component: 'demo-wc-card', options: { selectedPanel: 'storybookjs/knobs/panel' } }}
+/>
+
+# WithWebComponentsKnobs
+
+Base on the data in custom-elements.json we can automatically generate knobs for your stories.
+
+To enable this feature you will need to add an additional decorator.
+
+**MDX**
+
+```md
+import { withKnobs, withWebComponentsKnobs } from '@open-wc/demoing-storybook';
+
+<Meta
+  title="WithWebComponentsKnobs|Docs"
+  decorators={[withKnobs, withWebComponentsKnobs]}
+  parameters={{ component: 'demo-wc-card', options: { selectedPanel: 'storybookjs/knobs/panel' } }}
+/>
+
+<Story name="Custom Header" height="220px">
+  {html`
+    <demo-wc-card header="Harry Potter">A character that is part of a book series...</demo-wc-card>
+  `}
+</Story>
+```
+
+**CSF**
+
+```js
+import { html } from 'lit-html';
+import { withKnobs, withWebComponentsKnobs } from '@open-wc/demoing-storybook';
+
+import '../demo-wc-card.js';
+
+export default {
+  title: 'Card|Playground',
+  component: 'demo-wc-card',
+  decorators: [withKnobs, withWebComponentsKnobs],
+  parameters: { options: { selectedPanel: 'storybookjs/knobs/panel' } },
+};
+
+export const singleComponent = () => html`
+  <demo-wc-card></demo-wc-card>
+`;
+```
+
+## Example output
+
+Don't forget to switch to Canvas if you wanna see the knobs.
+
+<Story name="Example output" height="220px">
+  {html`
+    <demo-wc-card header="Harry Potter">
+      A character that is part of a book series...
+    </demo-wc-card>
+  `}
+</Story>
+
+## Provide own light dom
+
+By adding knobs within the template you can provide additional knobs for this content.
+
+<Preview withToolbar>
+  <Story name="Provide own light dom" height="220px">
+    {html`
+      <demo-wc-card>
+        <p>${text('Content', 'Some text', 'Properties')}</p>
+      </demo-wc-card>
+    `}
+  </Story>
+</Preview>
+
+## Knobs for current component
+
+By default it will show knobs for all elements of the current "component".
+
+You can set the component for the whole file via
+
+```js
+<Meta parameters={{ component: 'demo-wc-card' }} />
+```
+
+or per story
+
+```js
+<Story name="Card" parameters={{ component: 'demo-wc-card' }}>
+```
+
+That means even if you have multiple components in your dom you will have knobs for all of them.
+
+<Story name="Knobs for current Component" height="220px">
+  {html`
+    <demo-wc-card header="Harry Potter">The main character</demo-wc-card>
+    <demo-wc-card header="Lord Voldemort">An evil wizard</demo-wc-card>
+  `}
+</Story>
+
+That means however that it will only shown knobs for the same elements.
+
+## Provide own querySelectorAll
+
+If you have different elements or want to show knobs for a specific element you can provide your own querySelectorAll.
+
+The parameter is `parameters.customElements.querySelectorAll`.
+
+```js
+<Story
+  name="My story"
+  parameters={{ customElements: { querySelectorAll: 'demo-wc-card:nth-of-type(1)' } }}
+>
+```
+
+<Story
+  name="Provide own querySelectorAll"
+  height="220px"
+  parameters={{ customElements: { querySelectorAll: 'demo-wc-card:nth-of-type(1)' } }}
+>
+  {html`
+    <demo-wc-card header="Harry Potter">The main character</demo-wc-card>
+    <demo-wc-card header="Lord Voldemort">An evil wizard</demo-wc-card>
+  `}
+</Story>
+
+This is a full querySelectorAll string so here are some examples of what it will look like
+
+- `demo-wc-card:nth-of-type(1)` will only show knobs for the first element
+- `demo-wc-card:nth-of-type(2)` will only show knobs for the second element
+- `*` will add knobs for all known\* custom elements
+- `.content *` will add knobs to all known\* custom elements within the `.content` element
+- `div` will throw as no valid custom element can be selected
+
+\* listed in `custom-elements.json`
+
+## State gets reflected back to knobs
+
+When the state of your web component changes then the knobs get updated automatically.
+It does this by listening to the following event
+
+- `click`
+- `focusin`
+- `focusout`
+- `keyup`
+
+Additionally it will listen to every event defined in the `custom-elements.json` for this particular element.
+For your own events the name does not matter as long as an event gets fired when the state changes it will be picked up.
+
+Whenever a registered event fires all properties are read from the element and synced to the knobs.
+
+This can be very handy when you need to see specific states of elements.
+
+## Debugging helper
+
+Focus for example is quite annoying to debug as when you want to look it up in the Developer Tools the focus already changed.
+With displaying the state in the knobs you can see the value while interacting with your component.
+
+However this brings us to another "problem". By default each components properties and css gets it's own tab within the knobs.
+Which can be hindering when you want to see how state changes when tabbing through inputs for example.
+
+So you can filter which properties you wanna show and these states for all elements will then be displayed on one page.
+
+The parameter is `parameters.customElements.filterProperties`.
+
+```js
+<Story
+  name="My story"
+  parameters={{ customElements: { filterProperties: ['focused'] } }}
+>
+```
+
+<Story
+  name="Debugging helper"
+  height="220px"
+  parameters={{
+    customElements: { filterProperties: ['focused'], querySelectorAll: 'fake-input' },
+  }}
+>
+  {html`
+    First Name:
+    <fake-input></fake-input><br />
+    Last Name:
+    <fake-input></fake-input><br />
+    Age:
+    <fake-input></fake-input><br />
+  `}
+</Story>

@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.9](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.3.8...@open-wc/testing@2.3.9) (2019-11-02)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.3.8](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.3.7...@open-wc/testing@2.3.8) (2019-10-25)
+
+
+### Bug Fixes
+
+* align used mocha version ([#901](https://github.com/open-wc/open-wc/issues/901)) ([3606381](https://github.com/open-wc/open-wc/commit/3606381))
+
+
+
+
+
+## [2.3.7](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.3.6...@open-wc/testing@2.3.7) (2019-10-23)
+
+
+### Bug Fixes
+
+* add package keywords ([#859](https://github.com/open-wc/open-wc/issues/859)) ([cd78405](https://github.com/open-wc/open-wc/commit/cd78405))
+
+
+
+
+
+## [2.3.6](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.3.5...@open-wc/testing@2.3.6) (2019-10-22)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
 ## [2.3.5](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.3.4...@open-wc/testing@2.3.5) (2019-10-13)
 
 **Note:** Version bump only for package @open-wc/testing

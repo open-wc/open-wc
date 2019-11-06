@@ -9,3 +9,5 @@ packages/**/test/**/snapshots
 /packages/karma-esm/src/test-loader-browser-script.js
 /packages/karma-esm/src/esm-debug.html
 /packages/karma-esm/src/esm-context.html
+CHANGELOG.md
+__snapshots__/

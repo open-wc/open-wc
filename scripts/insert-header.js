@@ -8,7 +8,7 @@ function escapeRegExp(text) {
 }
 
 const filePath = `${process.cwd()}/README.md`;
-const findPattern = escapeRegExp('[//]: # (AUTO INSERT HEADER PREPUBLISH)');
+const findPattern = escapeRegExp("[//]: # 'AUTO INSERT HEADER PREPUBLISH'");
 const text = `
 > Part of [Open Web Components](https://github.com/open-wc/open-wc/)
 

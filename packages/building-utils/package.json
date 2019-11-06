@@ -1,28 +1,32 @@
 {
   "name": "@open-wc/building-utils",
-  "version": "2.9.0",
-  "description": "Utils for @open-wc packages that do build stuff",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
+  "version": "2.10.2",
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "test": "npm run test:node",
-    "test:node": "mocha test/**/*.test.js test/*.test.js",
-    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
-  },
+  "description": "Utils for @open-wc packages that do build stuff",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/building-utils"
   },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "scripts": {
+    "test": "npm run test:node",
+    "test:node": "mocha test/**/*.test.js test/*.test.js",
+    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
+  },
   "files": [
-    "src",
-    "index-html",
+    "*.js",
     "dom5-fork",
-    "*.js"
+    "index-html",
+    "src"
+  ],
+  "keywords": [
+    "building",
+    "utils"
   ],
   "dependencies": {
     "@babel/core": "^7.3.3",
@@ -54,6 +58,6 @@
     "@types/lru-cache": "^5.1.0",
     "@types/rimraf": "^2.0.2",
     "chai": "^4.2.0",
-    "mocha": "^6.1.4"
+    "mocha": "^6.0.0"
   }
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.13](https://github.com/open-wc/open-wc/compare/@open-wc/testing-wallaby@0.1.12...@open-wc/testing-wallaby@0.1.13) (2019-10-23)
+
+
+### Bug Fixes
+
+* add package keywords ([#859](https://github.com/open-wc/open-wc/issues/859)) ([cd78405](https://github.com/open-wc/open-wc/commit/cd78405))
+
+
+
+
+
 ## [0.1.12](https://github.com/open-wc/open-wc/compare/@open-wc/testing-wallaby@0.1.11...@open-wc/testing-wallaby@0.1.12) (2019-03-24)
 
 

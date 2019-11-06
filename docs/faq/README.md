@@ -6,20 +6,20 @@ In this section you can find answers to frequently asked questions regarding jav
 [[toc]]
 
 **Deep dives:**
+
 - [Component Libraries](./component-libraries.html)
 - [Rerender not triggered](./rerender.html)
 - [Unit testing custom events](./unit-testing-custom-events.html)
 - [Unit testing initialization error](./unit-testing-init-error.html)
 
-
 ## Custom elements render life cycle
 
 <iframe src="https://andyogo.github.io/custom-element-reactions-diagram/" style="width: 940px; border: none;margin-left: -100px; height: 1350px;"></iframe>
 
-
 ## How can I set `:host` width via a property?
 
 The following example features 3 variations:
+
 - `disabled` style differently if a property is set
 - `type` style if type has a certain value
 - `width` map a property to a css variable
@@ -71,15 +71,15 @@ Many elements reflect their properties as attributes, and vice versa, like for e
 ```
 
 ```js
-console.log(myButton.disabled) // true
-console.log(myButton.hasAttribute('disabled')) // true
+console.log(myButton.disabled); // true
+console.log(myButton.hasAttribute('disabled')); // true
 ```
 
 If we set the property to false, it'll _reflect_ it to an attribute. (In this case, because it's a boolean attribute, it'll be omitted)
 
 ```js
 myButton.disabled = false;
-console.log(myButton.hasAttribute('disabled')) // false
+console.log(myButton.hasAttribute('disabled')); // false
 ```
 
 This concept is called attribute reflection.
@@ -91,6 +91,7 @@ However, this is not true for the `checked` attribute on an input element of typ
 ```
 
 It will only set the property the first time:
+
 ```js
 console.log(mycheck.checked); // true
 ```

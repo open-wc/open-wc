@@ -125,12 +125,12 @@ function createLoadImportMapScript(compatibilityMode, importMap) {
  * @returns {Promise<void>}
  */
 function loadElement(tagName, props) {
-  return new Promise(function (resolve) {
+  return new Promise(function (resolve, reject) {
     document.head.appendChild(
       Object.assign(document.createElement(tagName), {
-        onload: resolve, onerror: function (e) {
-          console.error('failed to load element ' + props.src || props.href);
-          resolve();
+        onload: resolve,
+        onerror: function () {
+          reject(new Error('failed to load file: ' + props.src || props.href));
         }
       }, props)
     );
@@ -208,7 +208,11 @@ function loadLibsAndPolyfills(compatibilityMode, polyfillsWithoutFeatureDetectio
     if (i !== libsAndPolyfills.length) {
       var e = libsAndPolyfills[i];
       i += 1;
-      loadElement(e.tagName, e.props).then(loadNextLibOrPolyfills);
+      loadElement(e.tagName, e.props)
+        .then(loadNextLibOrPolyfills)
+        .catch(function (error) {
+          __karma__.error(error.message);
+        });
     } else {
       onLibsAndPolyfillsFinished();
     }
@@ -265,9 +269,13 @@ function loadTests(compatibilityMode, testModules) {
   }
 
   // signal karma after all modules are loaded
-  Promise.all(importModules).then(function () {
-    window.__karma__.loaded();
-  });
+  Promise.all(importModules)
+    .then(function () {
+      window.__karma__.loaded();
+    })
+    .catch(function (error) {
+      __karma__.error(error.message);
+    });
 }
 
 module.exports = {

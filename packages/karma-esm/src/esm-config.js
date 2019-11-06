@@ -20,7 +20,7 @@ const polyfillPresets = {
  * @property {object} babelConfig
  * @property {string} [compatibility]
  * @property {string[]} [moduleDirs]
- * @property {Function[]} [middlewars]
+ * @property {Function[]} [middlewares]
  * @property {boolean} [babel]
  * @property {string[]} [fileExtensions]
  * @property {string} [importMap]
@@ -55,6 +55,16 @@ function createEsmConfig(karmaConfig) {
   // the option used to be called `customBabelConfig`, remain backwards compatible for now
   // @ts-ignore
   let babelConfig = esmConfig.babelConfig || esmConfig.customBabelConfig;
+
+  esmConfig.middlewares = [
+    ...(esmConfig.middlewares || []),
+    async function log404(ctx, next) {
+      await next();
+      if (ctx.status === 404 && path.extname(ctx.url)) {
+        console.warn(`[karma-esm]: Could not find requested file: ${ctx.url}`);
+      }
+    },
+  ];
 
   if (esmConfig.coverage) {
     const coverageExclude = [

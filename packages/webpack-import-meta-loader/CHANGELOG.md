@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.3.3...@open-wc/webpack-import-meta-loader@0.3.4) (2019-10-25)
+
+
+### Bug Fixes
+
+* align used mocha version ([#901](https://github.com/open-wc/open-wc/issues/901)) ([3606381](https://github.com/open-wc/open-wc/commit/3606381))
+
+
+
+
+
+## [0.3.3](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.3.2...@open-wc/webpack-import-meta-loader@0.3.3) (2019-10-23)
+
+
+### Bug Fixes
+
+* add package keywords ([#859](https://github.com/open-wc/open-wc/issues/859)) ([cd78405](https://github.com/open-wc/open-wc/commit/cd78405))
+
+
+
+
+
+## [0.3.2](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.3.1...@open-wc/webpack-import-meta-loader@0.3.2) (2019-10-16)
+
+
+### Bug Fixes
+
+* **webpack-import-meta-loader:** transform template literals to js ([#872](https://github.com/open-wc/open-wc/issues/872)) ([2efd727](https://github.com/open-wc/open-wc/commit/2efd727))
+
+
+
+
+
 ## [0.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.3.0...@open-wc/webpack-import-meta-loader@0.3.1) (2019-08-05)
 
 

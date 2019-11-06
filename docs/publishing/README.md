@@ -12,12 +12,14 @@ To publish your Web Component we recommend [netlify](https://www.netlify.com/).
 Head over to [netlify](https://www.netlify.com/) and register.
 Select your github account and repository.
 If you follow these recommendations all you need to do is
+
 - Build command: `npm run site:build`
 - Publish directory: `_site`
 
 And you're all set up.
 
 ## Example
+
 The [Set-Game Example](https://github.com/open-wc/example-vanilla-set-game/) has the default publishing via storybook on netlify.
 You can see the finished page here: [https://example-set-game-open-wc.netlify.com/](https://example-set-game-open-wc.netlify.com/).
 
@@ -28,6 +30,7 @@ If you're using our [build configuration](http://open-wc.org/building), the `dis
 - Build command: `npm run build`
 - Copy the `dist` directory to your desired location: `sudo cp -R dist /Library/WebServer/Documents/myapp`
 - Add a `<VirtualHost>` directive to `httpd.conf`, either directly or by an `Include` directive:
+
 ```
 <VirtualHost *:80>
     DocumentRoot "/Library/WebServer/Documents/myapp"
@@ -40,6 +43,7 @@ If you're using our [build configuration](http://open-wc.org/building), the `dis
     </Directory>
 </VirtualHost>
 ```
+
 - Restart Apache: `sudo /usr/sbin/apachectl restart`
 - Open the page in your browser using the URL `http://mypwa.localhost/`
 

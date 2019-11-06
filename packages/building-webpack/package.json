@@ -1,55 +1,57 @@
 {
   "name": "@open-wc/building-webpack",
-  "version": "2.6.3",
-  "description": "Default configuration for working with webpack",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
+  "version": "2.7.4",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Default configuration for working with webpack",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/building-webpack"
   },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "index.js",
   "scripts": {
-    "demo:start": "http-server dist -o",
     "demo:build": "webpack --mode production --config demo/js/webpack.config.js",
     "demo:build:dev": "webpack --mode development --config demo/js/webpack.config.js",
+    "demo:build:modern": "webpack --mode=production --config demo/js/webpack.modern.config.js",
+    "demo:build:stats": "webpack --mode=production --config demo/js/webpack.modern.config.js --profile --json > build-stats.json",
+    "demo:build:ts": "webpack --mode=production --config demo/ts/webpack.config.js",
+    "demo:build:ts-babel": "webpack --mode=production --config demo/ts-babel/webpack.config.js",
+    "demo:start": "http-server dist -o",
     "demo:webpack-dev": "webpack-dev-server --mode=development --config demo/js/webpack.config.js --open",
     "demo:webpack-dev:legacy": "webpack-dev-server --mode=development --config demo/js/webpack.config.js --open --legacy",
-    "demo:build:modern": "webpack --mode=production --config demo/js/webpack.modern.config.js",
     "demo:webpack-dev:modern": "webpack-dev-server --mode=development --config demo/js/webpack.modern.config.js --open",
-    "demo:build:ts-babel": "webpack --mode=production --config demo/ts-babel/webpack.config.js",
-    "demo:build:ts": "webpack --mode=production --config demo/ts/webpack.config.js",
-    "demo:build:stats": "webpack --mode=production --config demo/js/webpack.modern.config.js --profile --json > build-stats.json",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
-  "main": "index.js",
+  "files": [
+    "*.js",
+    "dom5-fork",
+    "src"
+  ],
   "keywords": [
     "open-wc",
-    "webpack"
-  ],
-  "files": [
-    "dom5-fork",
-    "src",
-    "*.js"
+    "webpack",
+    "config"
   ],
   "dependencies": {
     "@babel/core": "^7.3.3",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
     "@babel/preset-env": "^7.0.0",
-    "@open-wc/building-utils": "^2.9.0",
-    "@open-wc/webpack-index-html-plugin": "^1.5.0",
+    "@open-wc/building-utils": "^2.10.2",
+    "@open-wc/webpack-index-html-plugin": "^1.5.4",
     "babel-loader": "^8.0.0",
     "babel-plugin-bundled-import-meta": "^0.3.0",
     "babel-plugin-template-html-minifier": "^3.0.0",
     "clean-webpack-plugin": "^2.0.0",
     "copy-webpack-plugin": "^5.0.1",
     "terser-webpack-plugin": "^1.2.1",
-    "webpack-merge": "^4.1.5"
+    "webpack-merge": "^4.1.5",
+    "workbox-webpack-plugin": "^4.3.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.4",
@@ -60,7 +62,7 @@
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.3333",
     "webpack-bundle-analyzer": "^3.0.3",
-    "webpack-cli": "^3.3.3",
+    "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.7.1"
   }
 }

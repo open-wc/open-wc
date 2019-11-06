@@ -27,11 +27,9 @@ This method should be called before the first render when the element gets attac
 ## The test case
 
 ```js
-it("should throw when missing definition property", async () => {
+it('should throw when missing definition property', async () => {
   const el = new StringField();
-  expect(() => el.checkProperties()).to.throw(
-    'property "definition" required'
-  );
+  expect(() => el.checkProperties()).to.throw('property "definition" required');
 });
 ```
 
@@ -45,7 +43,7 @@ it('checkProperties gets called', async () => {
       checkProperties() {
         checkCalled = true;
       }
-    }
+    },
   );
   await fixture(`<${tag}></${tag}>`);
   expect(checkCalled).to.be.true;

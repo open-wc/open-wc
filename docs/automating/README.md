@@ -3,6 +3,7 @@
 Having continuous integration in your project can provide valuable insights, and we consider it an essential in your projects.
 
 ## Circle ci
+
 If you use the default generator you will already have CircleCi setup with a .circleci folder.
 It also contains a config that takes care of linting and testing.
 
@@ -11,13 +12,14 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation.
 :::
 
 ## Setup
+
 ```bash
 npm init @open-wc automating
 ```
 
 ### Manual Setup
-- copy [.circleci/config.yml](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/tools-circleci/templates/static/.circleci/config.yml) to  `.circleci/config.yml`
 
+- copy [.circleci/config.yml](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/tools-circleci/templates/static/.circleci/config.yml) to `.circleci/config.yml`
 
 ## Usage
 
@@ -36,5 +38,5 @@ npm init @open-wc automating
 - Look for "Automate", and write down the "Access Key" and "Username"
 - Open your [circleci App](https://circleci.com/dashboard) or direclty via https://circleci.com/gh/{groupname}/{reponame}/edit
 - Go to the project settings -> Environment Variables
-- Add Variable: BROWSER_STACK_USERNAME + ${username from url above}
-- Add Variable: BROWSER_STACK_ACCESS_KEY + ${key from url above}
+- Add Variable: BROWSER_STACK_USERNAME + \${username from url above}
+- Add Variable: BROWSER_STACK_ACCESS_KEY + \${key from url above}

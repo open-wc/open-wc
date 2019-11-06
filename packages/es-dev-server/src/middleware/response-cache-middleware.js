@@ -1,7 +1,11 @@
 /* eslint-disable no-restricted-syntax */
 import LRUCache from 'lru-cache';
+import fs from 'fs';
+import { promisify } from 'util';
 import { baseFileExtensions } from '../constants.js';
 import { getBodyAsString, getRequestFilePath, isGeneratedFile } from '../utils/utils.js';
+
+const stat = promisify(fs.stat);
 
 /**
  * @typedef {object} ResponseCacheMiddlewareConfig
@@ -15,7 +19,20 @@ import { getBodyAsString, getRequestFilePath, isGeneratedFile } from '../utils/u
  * @property {string} body
  * @property {object} headers
  * @property {string} filePath
+ * @property {number} lastModified
  */
+
+/**
+ * @param {string} path
+ * @returns {Promise<number>}
+ */
+async function getLastModified(path) {
+  try {
+    return (await stat(path)).mtimeMs;
+  } catch (error) {
+    return -1;
+  }
+}
 
 /**
  * Returns 304 response for cacheable requests if etag matches
@@ -56,10 +73,18 @@ export function createResponseCacheMiddleware(cfg) {
   async function responseCacheMiddleware(ctx, next) {
     const cached = cache.get(ctx.url);
     if (cached) {
-      ctx.body = cached.body;
-      ctx.response.set(cached.headers);
-      ctx.status = 200;
-      return;
+      // we watch files, and remove them on change, but there can be edge cases
+      // where these events do not come through properly (the file system is a 'live' system)
+      // we double check the last modified timestamp first
+      if (cached.lastModified === (await getLastModified(cached.filePath))) {
+        ctx.body = cached.body;
+        ctx.response.set(cached.headers);
+        ctx.status = 200;
+        return;
+      }
+
+      // remove file from cache if it changed in the meantime, and serve regularly
+      cache.del(ctx.url);
     }
 
     await next();
@@ -80,7 +105,12 @@ export function createResponseCacheMiddleware(cfg) {
     const body = await getBodyAsString(ctx);
     const filePath = getRequestFilePath(ctx, cfg.rootDir);
     urlForFilePaths.set(filePath, ctx.url);
-    cache.set(ctx.url, { body, headers: ctx.response.headers, filePath });
+    cache.set(ctx.url, {
+      body,
+      headers: ctx.response.headers,
+      filePath,
+      lastModified: await getLastModified(filePath),
+    });
   }
 
   return responseCacheMiddleware;
