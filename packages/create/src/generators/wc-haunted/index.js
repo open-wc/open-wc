@@ -21,7 +21,6 @@ function featureReadme(acc, feature, i, a) {
 
 const safeFeatureReadme = safeReduce(featureReadme, '');
 
-
 /* eslint-disable no-console */
 export const WcHauntedMixin = subclass =>
   class extends subclass {
