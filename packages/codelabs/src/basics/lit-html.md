@@ -49,7 +49,7 @@ If you run this in the browser and see '_My todo app_' on the screen, you're goo
 
 ## lit-element setup
 
-[lit-element](https://github.com/Polymer/lit-element) takes care of most of the boilerplating when creating components. This provides a great developer experience while staying close to the browser platform and does not require any build steps to run in the browser. It's a mere 7kb in size and makes it the ideal choice if you care about performance.
+[lit-element](https://github.com/Polymer/lit-element) takes care of most of the boilerplating when creating components. This provides a great developer experience while staying close to the browser platform and does not require any build steps to run in the browser. It's a mere 7kb in size which makes it an ideal lightweight choice.
 
 [lit-element](https://github.com/Polymer/lit-element) is written and distributed as es modules. This means that we can import it using the browser's native module loader. Let's create a module script and import LitElement from a CDN:
 
