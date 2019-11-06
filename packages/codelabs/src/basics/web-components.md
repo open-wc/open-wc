@@ -224,100 +224,43 @@ If we run this code in the browser, the element should turn blue when clicked on
 
 The second Web Components browser feature that we will look into is HTML templates. When writing web components, we usually need to do more than just setting some styles or text. We often need to render larger pieces of HTML as part of our component and update parts of it when the user interacts with it.
 
-To do this efficiently, the browser provides us with a `<template>` element. This element allows us to define the structure of a piece of a HTML upfront, and efficiently clone it when needed. This is a lot faster than recreating the same HTML structure each time. Using and cloning templates is (intentionally) pretty low level, you will usually not want to do this manually. You can read more about the basic API [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template).
-
-For writing templates, we recommend the [lit-html](https://github.com/Polymer/lit-html) library. We will use [lit-element](https://github.com/Polymer/lit-element), which makes it easy to use the library in a web component.
-
-LitElement is written and distributed as an ES Module. This means we can import it using the browser's native module loader. Let's create a module script, and import `LitElement` from a CDN:
-
-```html
-<!DOCTYPE html>
-
-<html>
-  <body>
-    <script type="module">
-      import { LitElement } from 'https://unpkg.com/lit-element?module';
-    </script>
-  </body>
-</html>
-```
-
-Make sure you add `type="module"` to the script tag!
-
-Next, we need to define our class. Instead of extending `HTMLElement`, we are now extending `LitElement`. `LitElement` extends `HTMLElement` already, so we're still creating an actual custom element:
-
-```js
-class WebComponentApis extends LitElement {
-  connectedCallback() {
-    super.connectedCallback();
-    console.log('lit element connected');
-  }
-}
-
-customElements.define('web-component-apis', WebComponentApis);
-```
-
-```html
-<web-component-apis></web-component-apis>
-```
-
-If you run this in the browser you should see `lit element connected` logged to the terminal.
-
-Now that we have our element based on LitElement, we can start adding our template. lit-html works by writing HTML inside of template literals. These are a type of strings which can span multiple lines, ideal for writing HTML:
-
-```js
-const template = `
- <h1>Hello world</h1>
-`;
-```
-
-In order to create an actual lit-html template, we need to prefix the template literal with a special HTML tag:
-
-```js
-import { html } from 'https://unpkg.com/lit-element?module';
-
-const template = html`
-  <h1>Hello world</h1>
-`;
-```
-
-This is a native browser feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates). The `html` tag is just a function that gets called with information about template literal it is attached to. We won't go into the details of how it works exactly, but by using this syntax `lit-html` we can very efficiently create templates and update only the parts that change when re-rendering.
-
-Most popular IDEs support syntax highlighting of HTML inside template literals, but for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
-
-The `LitElement` class has a `render` method which is called each time the element is updated. From this method, we need to return the template we want to render to the page.
-
-Let's take the list of Web Component APIs we saw in the previous step, and add it as a lit-html template:
-
-```js
-import { LitElement, html } from 'https://unpkg.com/lit-element?module';
-
-class WebComponentApis extends LitElement {
-  render() {
-    return html`
-      <h1>Basic Web Components APIs</h1>
-
-      <ul>
-        <li>Custom Elements</li>
-        <li>Templates</li>
-        <li>Shadow DOM</li>
-      </ul>
-    `;
-  }
-}
-
-customElements.define('web-component-apis', WebComponentApis);
-```
-
-```html
-<web-component-apis></web-component-apis>
-```
-
-After you've added your component to the page, you should see the template rendered on the screen.
+To do this efficiently, the browser provides us with a `<template>` element. This element allows us to define the structure of a piece of a HTML upfront, and efficiently clone it when needed. This is a lot faster than recreating the same HTML structure each time. Using and cloning templates is (intentionally) pretty low level. You can read more about the basic API [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template).
 
 <aside class="notice">
-LitElement offers a lot more features than just rendering templates, check out our <a href="https://open-wc.org/codelabs/">other codelabs</a> for that.
+Usually you will not want to write and use templates directly using the low level API. For writing templates, we recommend the [lit-html](https://github.com/Polymer/lit-html) library. Next to this base library we also recommend [lit-element](https://github.com/Polymer/lit-element), which makes it easy to use this library in a web component. We will discuss lit-element in a following <a href="https://open-wc.org/codelabs/">codelab</a>.
 </aside>
+
+Let's create a `<template>` inside the body of our previous excercise.
+
+```html
+<template></template>
+```
+
+Next, we'll move the inner HTML of `<cool-heading>` to the template:
+
+```html
+<template>
+  <h1>Hello world!</h1>
+</template>
+```
+
+Notice that "Hello World" is not rendered anymore. As the HTML is now a child of a template, the browser interprets it as a HTML Fragment, which is not part of the page's DOM.
+
+![Template example](./assets/template.png)
+
+In the `connectedCallback()` function we can now retrieve the template and use it. We clone its content by doing a deep import and add the cloned element to the children of the component.
+
+```js
+connectedCallback() {
+  const template = document.querySelector('template');
+  const clone = document.importNode(template.content, true);
+  this.appendChild(clone);
+}
+```
+
+You should see the template rendered on the screen.
+
+In order to avoid writing this boiler plate code over and over again, you can use libraries to do the heavy lifting. `lit-element` is a base element that will allow you to easily use templates and much more. We will use this library in a follow-up [codelab](https://open-wc.org/codelabs/).
 
 <details>
   <summary>
@@ -329,26 +272,30 @@ LitElement offers a lot more features than just rendering templates, check out o
 
 <html>
   <body>
-    <web-component-apis></web-component-apis>
+    <template>
+      <h1>Hello world!</h1>
+    </template>
 
-    <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+    <cool-heading></cool-heading>
 
-      class WebComponentApis extends LitElement {
-        render() {
-          return html`
-            <h1>Basic Web Components APIs</h1>
+    <script>
+      class CoolHeading extends HTMLElement {
+        constructor() {
+          super();
 
-            <ul>
-              <li>Custom Elements</li>
-              <li>Templates</li>
-              <li>Shadow DOM</li>
-            </ul>
-          `;
+          this.addEventListener('click', () => {
+            this.style.color = 'red';
+          });
+        }
+
+        connectedCallback() {
+          const template = document.querySelector('template');
+          const clone = document.importNode(template.content, true);
+          this.appendChild(clone);
         }
       }
 
-      customElements.define('web-component-apis', WebComponentApis);
+      customElements.define('cool-heading', CoolHeading);
     </script>
   </body>
 </html>
@@ -358,47 +305,43 @@ LitElement offers a lot more features than just rendering templates, check out o
 
 ## Shadow DOM
 
-The last important Web Components browser feature we will look into is Shadow DOM. Traditionally, the context of HTML and CSS have always been global. This scales pretty badly, because we constantly need to make sure that the id's of all the elements are unique and often CSS selectors can get pretty complex. This is why many front-end frameworks offer some form of encapsulation. Web Components provides us with this capability using a "Shadow DOM", this capability is now built into the browser.
+The last important Web Components browser feature we will look into is Shadow DOM. Traditionally, the context of HTML and CSS have always been global. This scales pretty badly, because we constantly need to make sure that the id's of all the elements are unique and often CSS selectors can get pretty complex. This is why many front-end frameworks offer some form of encapsulation. Web Components provide us with this capability using a "Shadow DOM", this capability is now built into the browser. When adding child elements to a Shadow DOM of a component, they will not be direct children of our element, but rather they are wrapped inside of a _shadow root_.
 
-The best way to visualize this is to inspect the element we created in the previous step. In the DOM inspector you will see that the children rendered are not direct children of our element, but rather they are wrapped inside of a shadow root:
+This shadow root is a special type of DOM node which encapsulates the elements inside of it. Styles defined inside this shadow root do not leak out, and styles defined outside the shadow root do not reach in, hence encapsulation. Also, it's not possible to use a regular `querySelector()` to select elements inside or outside the shadow root. This way we can build reusable components and gives us the confidence that they will always work the same way, no matter the environment.
 
-![Shadow DOM example](./assets/shadow-dom-1.png)
-
-This shadow root is a special type of DOM node which encapsulates the elements inside of it. Styles defined inside this shadow root do not leak out, and styles defined outside the shadow root do not reach in, hence encapsulation. Also, it's not possible to use `querySelector` to select elements inside or outside the shadow root. This way we can build reusable components and gives us the confidence that they will always work the same way, no matter the environment.
-
-Let's try this out by adding some styles to our component. In `LitElement`, we can add styles to our component using a static `styles` field:
+Let's try this out by attaching a new, open, shadow root to our component. An open shadow root is still queryable by Javascript. This will instantiate `this.shadowRoot` as a valid property.
 
 ```js
-import { LitElement, html, css } from 'https://unpkg.com/lit-element?module';
-
-class WebComponentApis extends LitElement {
-  static get styles() {
-    return css`
-      h1 {
-        color: red;
-      }
-
-      ul {
-        color: blue;
-        list-style-type: upper-roman;
-      }
-    `;
-  }
-
-  render() {
-    return html`
-      <h1>Basic Web Components APIs</h1>
-
-      <ul>
-        <li>Custom Elements</li>
-        <li>Templates</li>
-        <li>Shadow DOM</li>
-      </ul>
-    `;
-  }
+connectedCallback() {
+  const template = document.querySelector('template');
+  const clone = document.importNode(template.content, true);
+  this.attachShadow({mode: 'open'});
+  this.appendChild(clone);
 }
+```
 
-customElements.define('web-component-apis', WebComponentApis);
+Now, instead of adding the cloned content to the direct children, we add the content to the shadow root's children.
+
+```js
+connectedCallback() {
+  const template = document.querySelector('template');
+  const clone = document.importNode(template.content, true);
+  this.attachShadow({mode: 'open'});
+  this.shadowRoot.appendChild(clone);
+}
+```
+
+To test the encapsulation of to our component, let's add some styles to the `<template>` element:
+
+```html
+<template>
+  <style>
+    h1 {
+      color: red;
+    }
+  </style>
+  <h1>Hello world!</h1>
+</template>
 ```
 
 When we refresh the page, our element should now be styled.
@@ -410,15 +353,13 @@ To see the encapsulation in action, we can add the same content of our template 
 
 <html>
   <body>
-    <h1>Basic Web Components APIs</h1>
+    <template>
+      ...
+    </template>
 
-    <ul>
-      <li>Custom Elements</li>
-      <li>Templates</li>
-      <li>Shadow DOM</li>
-    </ul>
+    <h1>Hello world!</h1>
 
-    <web-component-apis></web-component-apis>
+    <cool-heading></cool-heading>
 
     <script type="module">
       ...
@@ -429,7 +370,7 @@ To see the encapsulation in action, we can add the same content of our template 
 
 If we refresh the page again, we should see that the styles inside our component do not affect the HTML outside of it.
 
-![Shadow DOM example](./assets/shadow-dom-2.png)
+![Shadow DOM example](./assets/shadow-dom.png)
 
 Similarly we can add styles to the main page, and you will see that it doesn't affect the HTML inside our component:
 
@@ -438,26 +379,19 @@ Similarly we can add styles to the main page, and you will see that it doesn't a
 
 <html>
   <body>
+    <template>
+      ...
+    </template>
+
     <style>
       h1 {
         color: pink;
       }
-
-      ul {
-        font-weight: bold;
-        list-style-type: decimal;
-      }
     </style>
 
-    <h1>Basic Web Components APIs</h1>
+    <h1>Hello world!</h1>
 
-    <ul>
-      <li>Custom Elements</li>
-      <li>Templates</li>
-      <li>Shadow DOM</li>
-    </ul>
-
-    <web-component-apis></web-component-apis>
+    <cool-heading></cool-heading>
 
     <script type="module">
       ...
@@ -478,11 +412,6 @@ For example we can change the front of our page and it will affect the text insi
 
   h1 {
     color: pink;
-  }
-
-  ul {
-    font-weight: bold;
-    list-style-type: decimal;
   }
 </style>
 ```
@@ -505,54 +434,40 @@ For example we can change the front of our page and it will affect the text insi
       h1 {
         color: pink;
       }
-
-      ul {
-        font-weight: bold;
-        list-style-type: decimal;
-      }
     </style>
 
-    <h1>Basic Web Components APIs</h1>
+    <template>
+      <style>
+        h1 {
+          color: red;
+        }
+      </style>
+      <h1>Hello world!</h1>
+    </template>
 
-    <ul>
-      <li>Custom Elements</li>
-      <li>Templates</li>
-      <li>Shadow DOM</li>
-    </ul>
+    <h1>Hello world</h1>
 
-    <web-component-apis></web-component-apis>
+    <cool-heading></cool-heading>
 
-    <script type="module">
-      import { LitElement, html, css } from 'https://unpkg.com/lit-element?module';
+    <script>
+      class CoolHeading extends HTMLElement {
+        constructor() {
+          super();
 
-      class WebComponentApis extends LitElement {
-        static get styles() {
-          return css`
-            h1 {
-              color: red;
-            }
-
-            ul {
-              color: blue;
-              list-style-type: upper-roman;
-            }
-          `;
+          this.addEventListener('click', () => {
+            this.style.color = 'red';
+          });
         }
 
-        render() {
-          return html`
-            <h1>Basic Web Components APIs</h1>
-
-            <ul>
-              <li>Custom Elements</li>
-              <li>Templates</li>
-              <li>Shadow DOM</li>
-            </ul>
-          `;
+        connectedCallback() {
+          const template = document.querySelector('template');
+          const clone = document.importNode(template.content, true);
+          this.attachShadow({ mode: 'open' });
+          this.shadowRoot.appendChild(clone);
         }
       }
 
-      customElements.define('web-component-apis', WebComponentApis);
+      customElements.define('cool-heading', CoolHeading);
     </script>
   </body>
 </html>
