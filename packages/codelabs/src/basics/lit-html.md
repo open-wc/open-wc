@@ -2,11 +2,11 @@
 
 ## Introduction
 
-In this codelab, you will learn the basics of building web components with lit-html and lit-element.
+In this codelab, you will learn the basics of building web components using lit-html and lit-element.
 
-[lit-html](https://github.com/Polymer/lit-html) is a javascript library for writing HTML templates, and then efficiently render and re-render those templates together with data to create and update DOM.
+[lit-html](https://github.com/Polymer/lit-html) is an efficient, expressive and extensible HTML templating library for JavaScript. It lets you write HTML templates in JavaScript, then efficiently render and re-render those templates together with data to create and update DOM:
 
-[lit-element](https://github.com/Polymer/lit-element) makes it easy to use lit-html with web components, and manage properties and styles for your components.
+[lit-element](https://github.com/Polymer/lit-element) is a simple base class for creating fast and lightweight web components with lit-html.
 
 **What you need:**
 
@@ -22,17 +22,17 @@ In this codelab, you will learn the basics of building web components with lit-h
 - Conditional rendering
 - Handling events
 - Managing data
-- Creating child components
+- Creating encapsulated components
 
 **How it works**
 
-This codelab will go step by step, explaining each code change. At the bottom of each section there is a "View final result" button, this will show you the correct code that you should end up with incase you get stuck. The steps are sequential, thus results from the previous steps carry over to the next step.
+This codelab will go step by step, explaining each code change. At the bottom of each section there is a "View final result" button, this will show you the correct code that you should end up with, incase you get stuck. The steps are sequential, thus results from the previous steps carry over to the next step.
 
 ## Setup
 
-In this codelab, we will build a simple todo app, which is a great showcase for learning the basics of lit-html and lit-element.
+In this codelab, we will build a simple todo app. This is a great exercise for learn the basics of lit-html and lit-element.
 
-You can follow this codelab using anything that is able to display a simple HTML page. We recommend using an [online code editor like jsbin](https://jsbin.com/?html,output), but you can also create your own html page using your favorite IDE.
+You can follow this codelab using anything that is able to display a simple HTML page. We recommend using an [online code editor like jsbin](https://jsbin.com/?html,output), but you can also create your own html page in your favorite IDE.
 
 To get started, let's create a basic HTML page:
 
@@ -49,9 +49,9 @@ If you run this in the browser and see '_My todo app_' on the screen, you're goo
 
 ## lit-element setup
 
-lit-element takes care of most of the boilerplate when creating components. This provides a great developer experience while staying close to the browser platform. It does not require any build steps to run in the browser. It's a mere 7kb in size and makes it the ideal choice if you are aiming at lightweight components.
+[lit-element](https://github.com/Polymer/lit-element) takes care of most of the boilerplating when creating components. This provides a great developer experience while staying close to the browser platform and does not require any build steps to run in the browser. It's a mere 7kb in size and makes it the ideal choice if you care about performance.
 
-lit-element is written and distributed as es modules, this means we can import it using the browser's native module loader. Let's create a module script, and import LitElement from a CDN:
+[lit-element](https://github.com/Polymer/lit-element) is written and distributed as es modules. This means that we can import it using the browser's native module loader. Let's create a module script and import LitElement from a CDN:
 
 ```html
 <!DOCTYPE html>
@@ -68,10 +68,10 @@ lit-element is written and distributed as es modules, this means we can import i
 Make sure that you add `type="module"` to the script tag.
 
 <aside class="notice">
-In this example we are using `unpkg`, a CDN where we can easily import any module that is available on NPM. When working on a real project, it is a good idea to use an actual package manager like NPM or yarn.
+In this example we are using `unpkg`, a CDN where we can easily import any modules that are available on NPM. When working on a real project, it is a good idea to rather use an actual package manager such as NPM or yarn.
 </aside>
 
-Next, we need to define our web component. When writing a vanilla web component we extend from the native `HTMLElement` class. With lit-element we need to import and extend from `LitElement` class which, in turn, is and extension of the `HTMLElement` class.
+Next, we need to define our web component. When writing a vanilla web component we extend from the native `HTMLElement` class that is already in your browser. With lit-element we need to import and extend from the `LitElement` class which, in turn, extends from the `HTMLElement` class.
 
 ```js
 class TodoApp extends LitElement {
@@ -93,7 +93,7 @@ We defined the tag name for our element as `todo-app`, now we need to add this t
 If you run this in the browser you should see `lit element connected` logged to the terminal.
 
 <aside class="notice">
-  Because LitElement also does some work in the `connectedCallback`, we must always call `super.connectedCallback()`. This is a common source of bugs and confusion, so make sure to remember this!
+  Because the LitElement class also does some work in the `connectedCallback` method, so we should always call `super.connectedCallback()`. This is a common source of bugs and confusion, so make sure to remember this!
 </aside>
 
 <details>
@@ -129,7 +129,7 @@ Now that we defined our element we can start adding a template. lit-element uses
 
 ```js
 const template = `
- <h1>Hello world</h1>
+  <h1>Hello world</h1>
 `;
 ```
 
@@ -147,7 +147,7 @@ This is a native browser feature called [tagged template literals](https://devel
 
 Most popular IDEs support the highlighting of HTML inside template literals, but for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
 
-lit-element works with a `render` function that is called each time the element is updated. Inside this function, we need to return the template that we want to render on the page.
+lit-element has a `render` function that is called each time the element is updated. Inside this function, we need to return the template that we want to be render on the page.
 
 Let's start by displaying the title of our app:
 
@@ -197,9 +197,9 @@ If you refresh the browser, you should see the title displayed on the page.
 
 ## Templating basics
 
-Templates are just javascript variables, we can also create them outside of our component's context. A typical example is when you want to share pieces of a template between different components.
+Templates are just javascript variables. We can also create them outside of our component's context. A good example of this is when you want to share pieces of a template between different components.
 
-Let's add a footer to our application. First, create the template for the footer:
+Let's add a footer to our application. First, let's create the template for the footer:
 
 ```js
 const footerTemplate = html`
@@ -234,7 +234,7 @@ class TodoApp extends LitElement {
 
 You should now see both the app's title and footer on the page.
 
-lit-html supports embedding different types of variables. In the example above, we embedded a template inside of another template, but we can also embed strings inside of another template. Let's extract the link text to a separate variable and then embed it in the template:
+lit-html supports embedding different types of variables. In the example above, we embedded a template inside of another template, but we can also embed strings inside of a template. Let's extract the link text to a separate variable and then embed it in the template:
 
 ```js
 const author = 'open-wc';
@@ -253,10 +253,10 @@ const footerTemplate = html`
 `;
 ```
 
-When embedding variables like this, lit-html remembers which parts of your template are static and which parts are dynamic. When re-rendering the same template you can change the value of these variables and lit-html will know how to only update the parts that changed. This makes it very efficient!
+When embedding variables like this, lit-html remembers which parts of your template are static and which parts are dynamic. When re-rendering the same template you can change the value of these variables and lit-html will know to only update the parts that changed. This makes it very efficient!
 
 <aside class="notice">
-It's important to keep in mind that whatever you're writing must still be valid HTML and you cannot arbitrarily concatenate strings to build HTML. This is to enable efficient updates, and for security to protect you from XSS attacks.
+It's important to keep in mind that whatever you're writing must still be valid HTML and you cannot arbitrarily concatenate strings to build HTML. This is important to enable efficient updates, as well as for security to protect you from XSS attacks.
 
 For example you cannot set tagnames or attribute keys dynamically:
 
@@ -407,7 +407,7 @@ class TodoApp extends LitElement {
 }
 ```
 
-Because template literals allow us to place any expression inside the curly braces, we can use ternary operators for quick conditional logic.
+Because template literals allow us to place any expression inside of the curly braces, we can use ternary operators for quick and easy conditional logic.
 
 You should now see three todo items on the screen and the first one is already finished.
 
@@ -502,7 +502,7 @@ class TodoApp extends LitElement {
 }
 ```
 
-On the add button we added an event listener that listens for the `click` event. This is done by prefixing the event name with a `@`:
+To the add button we attached an event listener that listens for the `click` event. This is done by prefixing the event name with a `@`:
 
 ```js
 html`
@@ -510,7 +510,7 @@ html`
 `;
 ```
 
-This is just syntactical sugar for adding the `addEventListener` to the element that cam be used to listen to all kinds of events. The value given to an event listener should be a function. In this case, we reference a method on our component, which we should now implement:
+This is just syntactical sugar used for attaching the `addEventListener` to the element so that we can listen to all kinds of events. The value given to an event listener should be a function. In this case, we reference a method in our component, which we should now implement:
 
 ```js
 _addTodo() {
@@ -531,9 +531,9 @@ This allows us to observe the awesome power of lit-html in action. If you inspec
 
 ![todo](./assets/add-todo.gif)
 
-When something in the DOM inspector flashes, it means that the browser is doing actual work to update the DOM tree. This is very expensive, things like styles and layout need to be recalculated up and down the element tree, so you want to minimize this as much as possible. lit-html knows exactly what changed where and it will update only that part, making it much more efficient.
+When something in the DOM inspector flashes, it means that the browser is doing actual work to update the DOM tree. This is very expensive, things like the styles and layout need to be recalculated up and down the element tree, so it is wise to minimize this as much as possible. lit-html knows exactly what changed where and it will update only that part, making it much more efficient.
 
-In the inspector you also see comment nodes between different parts of your template. These are markers created by `lit-html` to track locations of dom nodes, they can be ignored safely.
+In the inspector you also see comment nodes between different parts of your template. These are markers created by `lit-html` to track the locations of DOM nodes, they can be ignored safely.
 
 <details>
   <summary>View final result</summary>
@@ -639,7 +639,7 @@ class TodosApp extends LitElement {
 
 This way when you change the property on your element, it goes through a custom getter/setter function which triggers an update only when the new value passes a simple equality check.
 
-For strings, numbers and booleans this will work without any problems. However, if you are using arrays or objects and mutate them it will not trigger any update. This is because the actual array or object itself did not change. We need to use immutable data patterns, where a new object is created for each change. This is a common pattern in front-end to simplify data flow and make change detection easier.
+For strings, numbers and booleans this will work without any problems. However, if you are using arrays or objects and mutate them it will not trigger any update. This is because the actual array or object itself did not change. We need to use an immutable data patterns, where a new object is created for each change. This is a common pattern in front-end to simplify data flow and make change detection easier.
 
 In our case we are using array `push`, which mutates the existing `todos` array. Instead of using `push`, we can copy the existing list of todos using array spread, and add our new todo in there:
 
@@ -840,7 +840,7 @@ The delete button should now be fully functional. Due to the fact that filter re
 
 ## Finishing a todo
 
-A todo list is useless if we can't keep track of which todos we've finished, and which todos we have not. We need to add a way to manage this status.
+A todo list is useless if we can't keep track of which todos we've finished, and which todos we have not. What we need is a way to manage status.
 
 First, let's replace our finished/unfinished text with a checkbox:
 
@@ -1061,7 +1061,7 @@ render() {
 }
 ```
 
-Remember that the render function can be called quite frequently. If the computations are expensive, it's better to only do them once and then cache the results.
+Remember that the render function sometimes gets called quite frequently. If the computations are expensive, it's better to only do them once and then cache the results.
 
 <details>
   <summary>View final result</summary>
@@ -1381,7 +1381,7 @@ import './todos-list.js';
 
 Some online editors automatically include separate files.
 
-To render our child component, we simply replace the existing template with the tag for the child component:
+To render our child component, we simply replace the existing template with the tag of the child component:
 
 ```js
 render() {
@@ -1404,9 +1404,9 @@ render() {
 }
 ```
 
-If you refresh, the UI should remain unchanged. If that is the case, congratulations! Now you're composing elements like a pro :)
+If you refresh, the UI should remain unchanged. If that is the case, congratulations! You're now composing elements like a pro :)
 
-In the template we added, we're seeing something different than before. We're passing along our list of todos to the `todo-list` using an attribute with a `.` in front of it:
+In the template that we added we're seeing something different than before. We're passing along our list of todos to the `todo-list` using an attribute with a `.` in front of it:
 
 ```js
 html`
@@ -1414,15 +1414,15 @@ html`
 `;
 ```
 
-This is lit-html specific syntax that allows you to set a property on the element instead of an attribute. The differences between attributes and properties often confuses a lot of people, but it's actually a very simple concept to graps.
+This is lit-html specific syntax that allows you to set a property on the element instead of an attribute. The differences between attributes and properties often confuses a lot of people, but it's actually a very simple concept to grasp.
 
-Attribute are how we can assign data in HTML:
+Attributes are how we assign data in HTML:
 
 ```html
 <input value="foo" />
 ```
 
-Properties are how we can assign data in javascript, on the actual DOM element in javascript:
+Properties are how we assign data in javascript, on the actual DOM element in javascript:
 
 ```js
 const input = /* get a reference to the input element */;
@@ -1468,7 +1468,7 @@ _changeTodoFinished(e) {
 }
 ```
 
-After this, your application should work just like before, but the code is not as spread out as much.
+After this, your application should work just like before, but the code is not as spread out anymore.
 
 <details>
   <summary>View final result</summary>

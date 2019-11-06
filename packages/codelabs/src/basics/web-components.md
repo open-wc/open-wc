@@ -27,7 +27,7 @@ Browsers are moving pretty fast, and new APIs are being added all the time. In t
 
 **How it works**
 
-This codelab will take you through web components step by step, explaining each section as you go along. At the bottom of each section there is a "View final result" button, this will show you the correct code that you should end up with incase you get stuck. The steps are sequential, thus results from the previous steps carry over to the next step.
+This codelab will take you through web components step by step, explaining each section as you go along. At the bottom of each section there is a "View final result" button, this will show you the correct code that you should end up with, incase you get stuck. The steps are sequential, thus results from the previous steps carry over to the next step.
 
 ## Setup
 
