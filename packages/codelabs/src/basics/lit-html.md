@@ -1406,7 +1406,7 @@ render() {
 
 If you refresh, the UI should remain unchanged. If that is the case, congratulations! You're now composing elements like a pro :)
 
-In the template that we added we're seeing something different than before. We're passing along our list of todos to the `todo-list` using an attribute with a `.` in front of it:
+In the template we added, we're seeing something different than before. We're passing along our list of todos to the `todo-list` using an attribute with a `.` in front of it:
 
 ```js
 html`
