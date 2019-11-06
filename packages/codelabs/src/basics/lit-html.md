@@ -1554,7 +1554,7 @@ class TodoList extends LitElement {
 customElements.define('todo-list', TodoList);
 ```
 
-The styles we define here only apply to our element. This is guaranteed, because we are using shadow DOM the is built in the browser and lit-element does not need to do any extra work. This means we can write simple CSS selectors, and we don't need to worry about causing conflicts with styles defined elsewhere on the page.
+The styles we define here only apply to our element. This is guaranteed, because we are using shadow DOM which is built in the browser and because of that, lit-element doesn't need to do any extra work. This means we can write simple CSS selectors, and we don't need to worry about causing conflicts with styles defined elsewhere on the page.
 
 <aside class="notice">
 `:host` is a special selector, which selects the host of the shadow dom that these styles are associated with. In our case that's our own custom element.
