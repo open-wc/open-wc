@@ -1026,7 +1026,7 @@ These are not new sources of data, but rather a simple calculation based on exis
 
 Good practice is to use the top of your render function as a place to prepare variables with some meaningful names and then use them in your template. This provides the best readability.
 
-Let's add our calculations to the render function, and then display the calculated amounts in the template:
+Let's add our calculations to the render function, and display the calculated amounts in the template:
 
 ```js
 render() {
