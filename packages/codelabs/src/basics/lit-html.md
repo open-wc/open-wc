@@ -1024,7 +1024,7 @@ Now that we can manage our todo items, it's pretty easy to display some more inf
 
 These are not new sources of data, but rather a simple calculation based on existing data. We could do these calculations inline in our template where we want to display them, but this can get messy, pretty quickly.
 
-Good practice is to use the top of your render function as a place to prepare variables with some meaningful names and then use them in your template. This provides the best readability.
+Good practice is to use the top of your render function as a place to prepare variables with some meaningful names to use them in your template. This provides the best readability.
 
 Let's add our calculations to the render function, and display the calculated amounts in the template:
 
