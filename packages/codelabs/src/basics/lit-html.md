@@ -147,7 +147,7 @@ This is a native browser feature called [tagged template literals](https://devel
 
 Most popular IDEs support syntax highlighting of HTML inside template literals, but for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
 
-lit-element has a `render` function that is called each time the element is updated. Inside this function, we need to return the template that we want to be render on the page.
+lit-element has a `render` function that is called each time the element is updated. Inside this function, we need to return the template that we want to render to the page.
 
 Let's start by displaying the title of our app:
 
