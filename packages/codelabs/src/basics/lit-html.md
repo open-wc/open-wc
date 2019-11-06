@@ -22,7 +22,7 @@ In this codelab, you will learn the basics of building web components using lit-
 - Conditional rendering
 - Handling events
 - Managing data
-- Creating encapsulated components
+- Creating child components
 
 **How it works**
 
