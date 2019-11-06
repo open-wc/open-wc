@@ -61,7 +61,7 @@ function createEsmConfig(karmaConfig) {
     async function log404(ctx, next) {
       await next();
       if (ctx.status === 404 && path.extname(ctx.url)) {
-        console.warn(`[karma-esm]: Could not find requested file: ${ctx.url}`);
+        console.warn(`[karma-esm]: Could not find requested file: ${ctx.url}`); // eslint-disable-line no-console
       }
     },
   ];
