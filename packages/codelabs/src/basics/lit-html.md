@@ -604,7 +604,7 @@ In the inspector you also see comment nodes between different parts of your temp
 
 Right now we're triggering updates manually whenever we make a change. This is fine for some use cases, but it can get pretty cumbersome and we are not able to respond to changes triggered by parent components.
 
-It's better to let `LitElement` observe data changes for us and then trigger the updates were necessary. We can do this by defining `todos` as a property of our element.
+It's better to let `LitElement` observe data changes for us and, trigger updates when necessary. We can do this by defining `todos` as a property of our element.
 
 Start by adding a static properties field, and add `todos` as an array property:
 
