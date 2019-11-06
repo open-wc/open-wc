@@ -531,7 +531,7 @@ This allows us to observe the awesome power of lit-html in action. If you inspec
 
 ![todo](./assets/add-todo.gif)
 
-When something in the DOM inspector flashes, it means that the browser is doing actual work to update the DOM tree. This is very expensive, things like the styles and layout need to be recalculated up and down the element tree, so it is wise to minimize this as much as possible. lit-html knows exactly what changed where and it will update only that part, making it much more efficient.
+When something in the DOM inspector flashes, it means that the browser is doing actual work to update the DOM tree. This is very expensive, things like the styles and layout need to be recalculated up and down the element tree, so it is wise to minimize this as much as possible. lit-html knows exactly what changed where and it will update only that part, making it super efficient.
 
 In the inspector you also see comment nodes between different parts of your template. These are markers created by `lit-html` to track the locations of DOM nodes, they can be ignored safely.
 
