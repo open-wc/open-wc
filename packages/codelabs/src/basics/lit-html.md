@@ -639,7 +639,7 @@ class TodosApp extends LitElement {
 
 This way when you change the property on your element, it goes through a custom getter/setter function which triggers an update only when the new value passes a simple equality check.
 
-For strings, numbers and booleans this will work without any problems. However, if you are using arrays or objects and mutate them it will not trigger any update. This is because the actual array or object itself did not change. We need to use an immutable data patterns, where a new object is created for each change. This is a common pattern in front-end to simplify data flow and make change detection easier.
+For strings, numbers and booleans this will work without any problems. However, if you are using arrays or objects and mutate them it will not trigger any update. This is because the actual array or object itself did not change. We need to use immutable data patterns, where a new object is created for each change. This is a common pattern in front-end to simplify data flow and make change detection easier.
 
 In our case we are using array `push`, which mutates the existing `todos` array. Instead of using `push`, we can copy the existing list of todos using array spread, and add our new todo in there:
 
