@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "0.12.11",
+  "version": "0.12.12",
   "publishConfig": {
     "access": "public"
   },
@@ -17,6 +17,7 @@
   "scripts": {
     "demo:build": "rimraf dist && rollup -c demo/js/rollup.config.js",
     "demo:build:modern": "rimraf dist && rollup -c demo/js/rollup.modern.config.js",
+    "demo:build:modern:js": "rimraf dist && rollup -c demo/js/rollup.modern.no-index.config.js",
     "demo:build:ts": "rimraf dist && rollup -c demo/ts/rollup.config.js",
     "demo:build:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js",
     "demo:start:build": "es-dev-server --app-index dist/index.html --open",
