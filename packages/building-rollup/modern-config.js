@@ -27,7 +27,7 @@ module.exports = function createBasicConfig(_options) {
     indexHTMLPlugin: {},
     ..._options,
     plugins: {
-      indexHTML: true,
+      indexHTML: _options.input.endsWith('.html'),
       workbox: true,
       babel: true,
       ...(_options.plugins || {}),
@@ -48,7 +48,6 @@ module.exports = function createBasicConfig(_options) {
     plugins: [
       // parse input index.html as input and feed any modules found to rollup
       options.plugins.indexHTML &&
-        options.input.endsWith('.html') &&
         indexHTML({
           ...(options.indexHTMLPlugin || {}),
           polyfills: {
