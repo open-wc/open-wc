@@ -326,7 +326,7 @@ Now, instead of adding the cloned content to the direct children, we add the con
 connectedCallback() {
   const template = document.querySelector('template');
   const clone = document.importNode(template.content, true);
-  this.attachShadow({mode: 'open'});
+  this.attachShadow({ mode: 'open' });
   this.shadowRoot.appendChild(clone);
 }
 ```
