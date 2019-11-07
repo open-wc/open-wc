@@ -1,4 +1,4 @@
-# Web Components basics
+# Web Components: Basics
 
 ## Introduction
 
@@ -27,7 +27,7 @@ Browsers are moving pretty fast, and new features and APIs are being added all t
 
 **How it works**
 
-This codelab will take you through Web Components step by step, explaining each section as you go along. At the bottom of each section, there is a "View final result" button. This will show you the correct code that you should end up with in case you get stuck. The steps are sequential, thus results from the previous steps carry over to the next step.
+This codelab will take you through Web Components step by step, explaining each section as you go along. At the bottom of each section, there is a "View final result" button. This will show you the correct code that you should end up with, in case you get stuck. The steps are sequential, thus results from the previous steps carry over to the next step.
 
 ## Setup
 

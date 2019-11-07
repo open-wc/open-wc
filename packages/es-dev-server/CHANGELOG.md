@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.23.0...es-dev-server@1.23.1) (2019-11-06)
+
+
+### Bug Fixes
+
+* **es-dev-server:** allow serving hidden files ([ae0d9d1](https://github.com/open-wc/open-wc/commit/ae0d9d1))
+* **es-dev-server:** resolve @babel/preset-env relative to es-dev-server location ([#956](https://github.com/open-wc/open-wc/issues/956)) ([a9e122c](https://github.com/open-wc/open-wc/commit/a9e122c))
+
+
+
+
+
 # [1.23.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.22.0...es-dev-server@1.23.0) (2019-11-04)
 
 
