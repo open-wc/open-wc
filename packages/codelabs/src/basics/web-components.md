@@ -244,7 +244,7 @@ Next, we'll move the inner HTML of `<cool-heading>` to the template:
 </template>
 ```
 
-Notice that "Hello World" is not rendered anymore. As the HTML is now a child of a template, the browser interprets it as a HTML Fragment, which is not part of the page's DOM.
+Notice that "Hello World" is no longer rendered on the page. This is because the content of a `<template>` elements is inert. Nothing inside it is displayed, images don't get downloaded and scripts don't run.
 
 ![Template example](./assets/template.png)
 
