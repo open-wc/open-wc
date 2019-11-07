@@ -8,7 +8,7 @@ Web components are a set of low-level browser features that allow us to write mo
 
 Web components align with the way that browsers have always worked, they are pretty low level and straightforward. For most projects you will still want to use libraries or frameworks. But instead of each framework developing their own component model, they can use the features that are already baked into the browser.
 
-Web components are quite flexible and have a multitude of possible use cases. The more prominent use case is to build a UI component using web components. This is especially powerful, for the reason that UI components can be reused in applications that are built with different technologies.
+Web components are quite flexible and have a multitude of possible use cases. The more prominent use case is to build reusable UI components. This is especially powerful, for the reason that UI components can be reused in applications that are built with different technologies.
 
 Furthermore, web components can also be used to compose entire applications and are also a perfect fit for static/server-rendered pages where the components just add interactivity after the initial render.
 
