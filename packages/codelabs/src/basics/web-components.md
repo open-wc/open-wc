@@ -309,7 +309,7 @@ The last important Web Components browser feature we will look into is Shadow DO
 
 This shadow root is a special type of DOM node which encapsulates the elements inside of it. Styles defined inside this shadow root do not leak out, and styles defined outside the shadow root do not reach in, hence encapsulation. Also, it's not possible to use a regular `querySelector()` to select elements inside or outside the shadow root. This way we can build reusable components and gives us the confidence that they will always work the same way, no matter the environment.
 
-Let's try this out by attaching a new, open, shadow root to our component. An open shadow root is still queryable by Javascript. This will instantiate `this.shadowRoot` as a valid property.
+Let's try this out by attaching a shadow root to our component, making it available as a property called `shadowRoot`.
 
 ```js
 connectedCallback() {
