@@ -2,15 +2,15 @@
 
 ## Introduction
 
-In this codelab, you will learn about the basics of web components and how they work.
+In this codelab, you will learn about the basics of Web Cmponents and how they work.
 
-Web components are a set of low-level browser features that allow us to write modular, encapsulated and reusable HTML elements. Web components are based on web standards and work in any environment that supports basic HTML and JavaScript. This means that there is no complex setup required for you to get started.
+Web Components are a set of low-level browser features that allow us to write modular, encapsulated and reusable HTML elements. Web Components are based on web standards and work in any environment that supports basic HTML and JavaScript. This means that there is no complex setup required for you to get started.
 
-Web components align with the way that browsers have always worked, they are pretty low level and straightforward. For most projects you will still want to use libraries or frameworks. But instead of each framework developing their own component model, they can use the features that are already baked into the browser.
+Web Components align with the way that browsers have always worked, they are pretty low level and straightforward. For most projects you will still want to use libraries or frameworks. But instead of each framework developing their own component model, they can use the features that are already baked into the browser.
 
 Web components are quite flexible and have a multitude of possible use cases. The more prominent use case is to build reusable UI components. This is especially powerful, for the reason that UI components can be reused in applications that are built with different technologies.
 
-Furthermore, web components can also be used to compose entire applications and are also a perfect fit for static/server-rendered pages where the components just add interactivity after the initial render.
+Furthermore, Web Components can also be used to compose entire applications and are also a perfect fit for static/server-rendered pages where the components just add interactivity after the initial render.
 
 **What you need**
 
@@ -27,7 +27,7 @@ Browsers are moving pretty fast, and new features and APIs are being added all t
 
 **How it works**
 
-This codelab will take you through web components step by step, explaining each section as you go along. At the bottom of each section, there is a "View final result" button. This will show you the correct code that you should end up with in case you get stuck. The steps are sequential, thus results from the previous steps carry over to the next step.
+This codelab will take you through Web Components step by step, explaining each section as you go along. At the bottom of each section, there is a "View final result" button. This will show you the correct code that you should end up with in case you get stuck. The steps are sequential, thus results from the previous steps carry over to the next step.
 
 ## Setup
 
@@ -49,7 +49,7 @@ If you run this in the browser and see hello world, you're good to go!
 
 ## Custom Elements
 
-First, we will take a look at the most important web component browser feature: Custom Elements.
+First, we will take a look at the most important Web Component feature: Custom Elements.
 
 Modify your HTML to wrap the "Hello world" message in an element called `<cool-heading>`:
 
@@ -222,7 +222,7 @@ If we run this code in the browser, the element should turn blue when clicked on
 
 ## Templating
 
-The second Web Components browser feature that we will look into is HTML templates. When writing web components, we usually need to do more than just setting some styles or text. We often need to render larger pieces of HTML as part of our component and update parts of it when the user interacts with it.
+The second Web Components feature that we will look into is HTML templates. When writing Web Components, we usually need to do more than just setting some styles or text. We often need to render larger pieces of HTML as part of our component and update parts of it when the user interacts with it.
 
 To do this efficiently, the browser provides us with a `<template>` element. This element allows us to define the structure of a piece of a HTML upfront, and efficiently clone it when needed. This is a lot faster than recreating the same HTML structure each time. Using and cloning templates is (intentionally) pretty low level. You can read more about the basic API [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template).
 
@@ -305,7 +305,7 @@ In order to avoid writing this boiler plate code over and over again, you can us
 
 ## Shadow DOM
 
-The last important Web Components browser feature we will look into is Shadow DOM. Traditionally, the context of HTML and CSS have always been global. This scales pretty badly, because we constantly need to make sure that the id's of all the elements are unique and often CSS selectors can get pretty complex. This is why many front-end frameworks offer some form of encapsulation. Web Components provide us with this capability using a "Shadow DOM", this capability is now built into the browser. When adding child elements to a Shadow DOM of a component, they will not be direct children of our element, but rather they are wrapped inside of a _shadow root_.
+The last important Web Component feature we will look into is Shadow DOM. Traditionally, the context of HTML and CSS have always been global. This scales pretty badly, because we constantly need to make sure that the id's of all the elements are unique and often CSS selectors can get pretty complex. This is why many front-end frameworks offer some form of encapsulation. Web Components provide us with this capability using a "Shadow DOM", this capability is now built into the browser. When adding child elements to a Shadow DOM of a component, they will not be direct children of our element, but rather they are wrapped inside of a _shadow root_.
 
 This shadow root is a special type of DOM node which encapsulates the elements inside of it. Styles defined inside this shadow root do not leak out, and styles defined outside the shadow root do not reach in, hence encapsulation. Also, it's not possible to use a regular `querySelector()` to select elements inside or outside the shadow root. This way we can build reusable components and gives us the confidence that they will always work the same way, no matter the environment.
 
@@ -489,7 +489,7 @@ On older browsers, they load a plain old HTML site.
 
 ### Github
 
-Github uses web components for various parts of their website. They're using just the Custom Elements API, relying on global styling. They use them as a progressive enhancement. On browsers without support for Custom Elements (or when javascript is turned off), there is a fallback text that is displayed.
+Github uses Web Components for various parts of their website. They're using just the Custom Elements API, relying on global styling. They use them as a progressive enhancement. On browsers without support for Custom Elements (or when javascript is turned off), there is a fallback text that is displayed.
 
 Their elements are open source, [you can find them here](https://github.com/github/time-elements).
 
