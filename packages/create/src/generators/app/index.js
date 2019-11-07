@@ -95,10 +95,14 @@ export const AppMixin = subclass =>
           ],
         },
         {
-          type: () => (scaffoldOptions.length > 0 ? 'multiselect' : null),
+          type: () =>
+            scaffoldOptions.length > 0 || overrides.scaffoldFilesFor.length > 0
+              ? 'multiselect'
+              : null,
           name: 'scaffoldFilesFor',
           message: 'Would you like to scaffold examples files for?',
           choices: scaffoldOptions,
+          initial: overrides.scaffoldFilesFor,
         },
         {
           type: 'text',
