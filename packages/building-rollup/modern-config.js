@@ -27,7 +27,7 @@ module.exports = function createBasicConfig(_options) {
     indexHTMLPlugin: {},
     ..._options,
     plugins: {
-      indexHTML: true,
+      indexHTML: _options.input.endsWith('.html'),
       workbox: true,
       babel: true,
       ...(_options.plugins || {}),
