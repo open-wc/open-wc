@@ -47,7 +47,8 @@ module.exports = function createBasicConfig(_options) {
     },
     plugins: [
       // parse input index.html as input and feed any modules found to rollup
-      options.plugins.indexHTML && options.input.endsWith('.html') &&
+      options.plugins.indexHTML &&
+        options.input.endsWith('.html') &&
         indexHTML({
           ...(options.indexHTMLPlugin || {}),
           polyfills: {
