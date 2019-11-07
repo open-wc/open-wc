@@ -6,7 +6,7 @@ In this codelab, you will learn about the basics of web components and how they 
 
 Web components are a set of low-level browser features that allow us to write modular, encapsulated and reusable HTML elements. Web components are based on web standards and work in any environment that supports basic HTML and JavaScript. This means that there is no complex setup required for you to get started.
 
-The features of web components align well with the way that browsers work and have always worked. This means that they are pretty low level and straightforward. For most projects, libraries or frameworks will still be used, but instead of each framework developing their own component model, they can preferably use the component technology that is baked into the browser.
+Web components align with the way that browsers have always worked, they are pretty low level and straightforward. For most projects you will still want to use libraries or frameworks. But instead of each framework developing their own component model, they can use the features that are already baked into the browser.
 
 Web components are quite flexible and have a multitude of possible use cases. The more prominent use case is to build a UI component using web components. This is especially powerful, for the reason that UI components can be reused in applications that are built with different technologies.
 
