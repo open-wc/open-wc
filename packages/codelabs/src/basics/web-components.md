@@ -481,7 +481,7 @@ Web Components are being used in the wild by many companies and in many projects
 
 ### YouTube
 
-YouTube is one of the most popular sites on the internet. Their main website is built with custom elements to split up the different parts of their page in components. Additionally, they are using Polymer behaviors to work with attributes and properties.
+YouTube is one of the most popular sites on the internet. Their main website is built with custom elements to split up the different parts of their page in components.
 
 On older browsers, they load a plain old HTML site.
 
