@@ -315,7 +315,7 @@ Let's try this out by attaching a shadow root to our component, making it availa
 connectedCallback() {
   const template = document.querySelector('template');
   const clone = document.importNode(template.content, true);
-  this.attachShadow({mode: 'open'});
+  this.attachShadow({ mode: 'open' });
   this.appendChild(clone);
 }
 ```
