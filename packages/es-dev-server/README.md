@@ -122,10 +122,10 @@ In addition to the command-line flags, the configuration file accepts these addi
 
 Click read more to view different strategies for setting up your project's folder structure.
 
+### index.html in root
+
 <details>
   <summary>Read more</summary>
-
-### index.html in root
 
 The simplest setup where all files are accessible is to place your index.html at the root of your project:
 
@@ -137,9 +137,14 @@ index.html
 
 If you run `es-dev-server` regularly from the root of this project, you can access your app at `/` or `/index.html` in the browser.
 
+</details>
+
 ### index.html in a subfoolder
 
 If you move your `index.html` inside a subfolder:
+
+<details>
+  <summary>Read more</summary>
 
 ```
 node_modules/...
@@ -166,7 +171,12 @@ Now your `index.html` is accessible at `/` or `/index.html`. However, the dev se
 
 If you want your index in a subfolder without this being visible in the browser URL, you can set up a file rewrite rule. [Read more here](#rewriting-file-requests)
 
+</details>
+
 ### Monorepos
+
+<details>
+  <summary>Read more</summary>
 
 If you are using `es-dev-server` in a monorepo, your node modules are in two different locations. In the package's folder and the repository root:
 
@@ -195,9 +205,14 @@ es-dev-server --app-index packages/my-package/index.html --open
 
 This is the same approach as serving an index.html in a subdirectory, so the section above applies here as well.
 
+</details>
+
 ### Base element
 
-You can set up a `<base href="">` element to modify how files are resolved relatively to your index.html. You can be very useful when your index.html is not at the root of your project.
+<details>
+  <summary>Read more</summary>
+
+You can set up a `<base href="">` element to modify how files are resolved relatively to your index.html. This can be very useful when your index.html is not at the root of your project.
 
 If you use SPA routing, using a base element is highly recommended. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
 
