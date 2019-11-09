@@ -6,13 +6,13 @@ const concat = require('concat-stream');
 
 const PATH = process.env.PATH;
 
-//guide: https://medium.com/@zorrodg/integration-tests-on-node-js-cli-part-2-testing-interaction-user-input-6f345d4b713a
+// guide: https://medium.com/@zorrodg/integration-tests-on-node-js-cli-part-2-testing-interaction-user-input-6f345d4b713a
 
 // Key codes
-export const UP = {code: '\x1B\x5B\x41', name: 'UP'},
-  DOWN = {code: '\x1B\x5B\x42', name: 'DOWN'},
-  ENTER = {code: '\x0D', name: 'ENTER'},
-  SPACE = {code: '\x20', name: 'SPACE'};
+export const UP = { code: '\x1B\x5B\x41', name: 'UP' };
+export const DOWN = { code: '\x1B\x5B\x42', name: 'DOWN' };
+export const ENTER = { code: '\x0D', name: 'ENTER' };
+export const SPACE = { code: '\x20', name: 'SPACE' };
 
 /**
  * Creates a child process with script path
@@ -31,14 +31,14 @@ function createProcess(processPath, args = [], env = null) {
   // This works for node based CLIs, but can easily be adjusted to
   // any other process installed in the system
   return spawn('node', args, {
-    env: Object.assign(
-      {
+    env: {
+      ...{
         NODE_ENV: 'test',
         preventAutoStart: false,
         PATH, // This is needed in order to get all the binaries in your current terminal
       },
-      env,
-    ),
+      ...env,
+    },
     stdio: [null, null, null, 'ipc'], // This enables interprocess communication (IPC)
   });
 }
@@ -120,7 +120,7 @@ export function executeWithInput(processPath, args = [], inputs = [], opts = {})
         clearTimeout(currentInputTimeout);
         inputs = [];
       }
-      reject("Step:" + inputs[0].description + ", error: " + err.toString());
+      reject(new Error(`Step: ${inputs[0].description}, error: ${err.toString()}`));
     });
 
     childProcess.on('error', reject);

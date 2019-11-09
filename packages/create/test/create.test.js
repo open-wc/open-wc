@@ -1,12 +1,12 @@
 import chai from 'chai';
-
-import { executeWithInput, ENTER } from './cmd/cmd';
 import fs from 'fs';
+
+import { executeWithInput, ENTER } from './cmd/cmd.js';
 
 const { expect } = chai;
 
 const workingDirName = 'test-work-dir';
-const workingDirPath = './' + workingDirName;
+const workingDirPath = `./${workingDirName}`;
 
 afterEach(() => {
   if (fs.existsSync(workingDirPath)) {
@@ -15,7 +15,7 @@ afterEach(() => {
 });
 
 describe('create component', () => {
-  it('use default options', function(done) {
+  it('use default options', done => {
     executeWithInput(
       '.\\dist\\create.js',
       [],
