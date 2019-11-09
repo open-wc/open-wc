@@ -115,11 +115,12 @@ export function executeWithInput(processPath, args = [], inputs = [], opts = {})
     childProcess.stderr.once('data', err => {
       childProcess.stdin.end();
 
+      const error = new Error(`Step: ${inputs[0].description}, error: ${err.toString()}`);
       if (currentInputTimeout) {
         clearTimeout(currentInputTimeout);
+        inputs.splice(0, inputs.length);
       }
-      reject(new Error(`Step: ${inputs[0].description}, error: ${err.toString()}`));
-      inputs.splice(0, inputs.length);
+      reject(error);
     });
 
     childProcess.on('error', reject);
