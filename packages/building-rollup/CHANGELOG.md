@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.12](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.11...@open-wc/building-rollup@0.12.12) (2019-11-07)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.12.11](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.10...@open-wc/building-rollup@0.12.11) (2019-11-06)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.12.10](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.9...@open-wc/building-rollup@0.12.10) (2019-11-04)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.12.9](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.8...@open-wc/building-rollup@0.12.9) (2019-11-03)
+
+
+### Bug Fixes
+
+* align versions within the monorepo ([fa2ad9f](https://github.com/open-wc/open-wc/commit/fa2ad9f))
+
+
+
+
+
+## [0.12.8](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.7...@open-wc/building-rollup@0.12.8) (2019-11-02)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
 ## [0.12.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.12.6...@open-wc/building-rollup@0.12.7) (2019-11-02)
 
 **Note:** Version bump only for package @open-wc/building-rollup

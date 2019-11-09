@@ -29,7 +29,7 @@ function createConfig(_options, legacy) {
     indexHTMLPlugin: {},
     ..._options,
     plugins: {
-      indexHTML: true,
+      indexHTML: _options.input.endsWith('.html'),
       workbox: true,
       babel: true,
       ...(_options.plugins || {}),

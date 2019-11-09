@@ -22,6 +22,7 @@ import { compatibilityModes } from './constants.js';
  *   and ends with no/. For example: /my-app, /foo, /foo/bar
  * @property {boolean|CompressOptions} [compress=true] Whether the server should compress responses.
  * @property {import('koa').Middleware[]} [middlewares]
+ * @property {import('./middleware/transform-response').ResponseTransformer[]} responseTransformers
  * @property {boolean} logStartup whether to log server startup
  *
  * Development help
@@ -70,6 +71,7 @@ import { compatibilityModes } from './constants.js';
  * @property {string} rootDir
  * @property {boolean} logStartup whether to log a startup message
  * @property {import('koa').Middleware[]} customMiddlewares
+ * @property {import('./middleware/transform-response').ResponseTransformer[]} responseTransformers
  *
  * Development help
  * @property {boolean} watch
@@ -117,6 +119,7 @@ export function createConfig(config) {
     sslCert,
     sslKey,
     watch = false,
+    responseTransformers,
   } = config;
 
   // middlewares used to be called customMiddlewares
@@ -170,6 +173,7 @@ export function createConfig(config) {
     compress,
     customBabelConfig: babelConfig,
     customMiddlewares: middlewares,
+    responseTransformers,
     extraFileExtensions: fileExtensions,
     hostname,
     http2,
@@ -185,6 +189,6 @@ export function createConfig(config) {
     sslCert,
     sslKey,
     watch,
-    watchDebounce: 1000,
+    watchDebounce: 100,
   };
 }

@@ -1,6 +1,6 @@
 {
   "name": "es-dev-server",
-  "version": "1.20.2",
+  "version": "1.23.1",
   "publishConfig": {
     "access": "public"
   },
@@ -38,13 +38,14 @@
     "start:monorepo": "yarn build && node dist/cli.js --root-dir ../../ --app-index packages/es-dev-server/demo/monorepo/index.html --node-resolve --open --watch",
     "start:no-babel": "yarn build && node dist/cli.js --app-index demo/babel/index.html --open --watch",
     "start:no-watch": "yarn build && node dist/cli.js --app-index demo/import-map/index.html --open --compatibility all",
-    "start:node": "yarn build && node dist/cli.js --app-index demo/node-resolve/index.html --node-resolve --open --watch",
-    "start:node-compat-all": "yarn build && node dist/cli.js --app-index demo/node-resolve/index.html --open --watch --node-resolve --compatibility all",
-    "start:node-compat-modern": "yarn build && node dist/cli.js --app-index demo/node-resolve/index.html --open --watch --node-resolve --compatibility modern",
+    "start:node": "yarn build && node dist/cli.js -c demo/node-resolve/server.js",
+    "start:node-compat-all": "yarn build && node dist/cli.js -c demo/node-resolve/server.js --compatibility all",
+    "start:node-compat-modern": "yarn build && node dist/cli.js -c demo/node-resolve/server.js --compatibility modern",
     "start:performance": "yarn build && node dist/cli.js --root-dir ../../ --app-index packages/es-dev-server/demo/performance/index.html --node-resolve --watch",
     "start:performance:compat-esm": "yarn build && node dist/cli.js --root-dir ../../ --app-index packages/es-dev-server/demo/performance/index.html --node-resolve --compatibility esm --watch",
     "start:root-dir": "yarn build && node dist/cli.js --root-dir demo/static/ --open",
     "start:static": "yarn build && node dist/cli.js --open demo/static/",
+    "start:transformers": "yarn build && node dist/cli.js --app-index demo/response-transformers/index.html --config demo/response-transformers/config.js --node-resolve --open --watch",
     "start:typescript": "yarn build && node dist/cli.js --app-index demo/typescript/index.html --file-extensions .ts --node-resolve --open --watch --babel",
     "test": "npm run test:node",
     "test:node": "mocha test/**/*.test.js test/*.test.js --require @babel/register",
@@ -61,9 +62,9 @@
     "polyfill"
   ],
   "dependencies": {
-    "@babel/core": "^7.4.5",
+    "@babel/core": "^7.3.3",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-env": "^7.0.0",
     "@open-wc/building-utils": "^2.10.2",
     "@types/minimatch": "^3.0.3",
     "babel-plugin-bare-import-rewrite": "^1.5.1",
@@ -72,7 +73,7 @@
     "command-line-args": "^5.0.2",
     "command-line-usage": "^5.0.5",
     "debounce": "^1.2.0",
-    "deepmerge": "^3.3.0",
+    "deepmerge": "^3.2.0",
     "es-module-lexer": "0.3.9",
     "get-stream": "^5.1.0",
     "is-stream": "^2.0.0",
@@ -85,13 +86,13 @@
     "opn": "^5.4.0",
     "path-is-inside": "^1.0.2",
     "portfinder": "^1.0.21",
-    "resolve": "^1.12.0",
+    "resolve": "^1.11.1",
     "strip-ansi": "^5.2.0",
     "whatwg-url": "^7.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/plugin-transform-modules-systemjs": "^7.5.0",
     "@babel/preset-typescript": "^7.3.3",
@@ -105,13 +106,14 @@
     "babel-preset-typescript": "^7.0.0-alpha.19",
     "chai": "^4.2.0",
     "koa-proxies": "^0.8.1",
-    "lit-element": "2.0.0",
-    "lit-html": "0.14.0",
+    "lit-element": "^2.0.1",
+    "lit-html": "^1.0.0",
     "lodash-es": "^4.17.15",
     "mocha": "^6.0.0",
     "node-fetch": "^2.6.0",
     "request": "^2.88.0",
     "selfsigned": "^1.10.4",
+    "sinon": "^7.4.1",
     "uuid": "^3.3.2"
   }
 }

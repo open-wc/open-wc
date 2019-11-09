@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.9](https://github.com/open-wc/open-wc/compare/@import-maps/generate@0.1.8...@import-maps/generate@0.1.9) (2019-11-03)
+
+
+### Bug Fixes
+
+* align versions within the monorepo ([fa2ad9f](https://github.com/open-wc/open-wc/commit/fa2ad9f))
+
+
+
+
+
 ## [0.1.8](https://github.com/open-wc/open-wc/compare/@import-maps/generate@0.1.7...@import-maps/generate@0.1.8) (2019-10-25)
 
 
