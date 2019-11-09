@@ -1,5 +1,6 @@
 import chai from 'chai';
 import fs from 'fs';
+import rimraf from 'rimraf';
 
 import { executeWithInput, ENTER } from './cmd/cmd.js';
 
@@ -10,7 +11,7 @@ const workingDirPath = `./${workingDirName}`;
 
 afterEach(() => {
   if (fs.existsSync(workingDirPath)) {
-    fs.rmdirSync(workingDirPath, { recursive: true });
+    rimraf.sync(workingDirPath);
   }
 });
 

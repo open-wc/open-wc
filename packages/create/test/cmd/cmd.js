@@ -1,6 +1,5 @@
 import { spawn } from 'child_process';
 import { existsSync } from 'fs';
-import { constants } from 'os';
 
 const concat = require('concat-stream');
 
@@ -80,7 +79,7 @@ export function executeWithInput(processPath, args = [], inputs = [], opts = {})
       // maxTimeout to respond, kill the childProcess and notify user
       killIOTimeout = setTimeout(() => {
         console.error('Error: Reached I/O timeout');
-        childProcess.kill(constants.signals.SIGTERM);
+        childProcess.kill('SIGTERM');
       }, maxTimeout);
 
       return;
@@ -138,10 +137,6 @@ export function executeWithInput(processPath, args = [], inputs = [], opts = {})
       }),
     );
   });
-
-  // Appending the process to the promise, in order to
-  // add additional parameters or behavior (such as IPC communication)
-  promise.attachedProcess = childProcess;
 
   return promise;
 }
