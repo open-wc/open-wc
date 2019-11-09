@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "0.12.7",
+  "version": "0.12.12",
   "publishConfig": {
     "access": "public"
   },
@@ -17,6 +17,7 @@
   "scripts": {
     "demo:build": "rimraf dist && rollup -c demo/js/rollup.config.js",
     "demo:build:modern": "rimraf dist && rollup -c demo/js/rollup.modern.config.js",
+    "demo:build:modern:js": "rimraf dist && rollup -c demo/js/rollup.modern.no-index.config.js",
     "demo:build:ts": "rimraf dist && rollup -c demo/ts/rollup.config.js",
     "demo:build:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js",
     "demo:start:build": "es-dev-server --app-index dist/index.html --open",
@@ -44,19 +45,19 @@
     "babel-plugin-template-html-minifier": "^3.0.0",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-entrypoint-hashmanifest": "^0.1.2",
-    "rollup-plugin-index-html": "^1.5.8",
+    "rollup-plugin-index-html": "^1.5.9",
     "rollup-plugin-node-resolve": "^4.0.1",
     "rollup-plugin-terser": "^4.0.4",
     "rollup-plugin-workbox": "^4.0.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.4",
-    "@babel/plugin-proposal-decorators": "^7.3.0",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/preset-typescript": "^7.3.3",
-    "es-dev-server": "^1.20.2",
+    "es-dev-server": "^1.23.1",
     "lit-element": "^2.0.1",
     "rimraf": "^2.6.3",
-    "rollup": "^1.4.0",
+    "rollup": "^1.15.6",
     "rollup-plugin-cpy": "^1.1.0",
     "rollup-plugin-typescript2": "^0.19.3",
     "rollup-plugin-visualizer": "^1.0.2"

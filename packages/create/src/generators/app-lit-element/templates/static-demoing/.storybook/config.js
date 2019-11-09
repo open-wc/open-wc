@@ -2,7 +2,7 @@ import { configure, addDecorator } from '@storybook/polymer';
 import { withA11y } from '@storybook/addon-a11y';
 import '@storybook/addon-console';
 
-const req = require.context('../packages', true, /\.stories\.js$/);
+const req = require.context('../components', true, /\.stories\.js$/);
 function loadStories() {
   req.keys().forEach(filename => req(filename));
 }

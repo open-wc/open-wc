@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-index-html",
-  "version": "1.5.8",
+  "version": "1.5.9",
   "publishConfig": {
     "access": "public"
   },
@@ -32,8 +32,8 @@
     "@import-maps/resolve": "^0.1.5",
     "@open-wc/building-utils": "^2.10.2",
     "deepmerge": "^3.2.0",
-    "lit-element": "^2.2.0",
-    "lit-html": "^1.1.0",
+    "lit-element": "^2.0.1",
+    "lit-html": "^1.0.0",
     "md5": "^2.2.1",
     "mkdirp": "^0.5.1",
     "parse5": "^5.1.0"

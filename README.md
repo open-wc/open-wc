@@ -79,7 +79,7 @@ npm run lint
 npm run test
 
 # testing via browserstack
-npm run test:es5:bs
+npm run test:bs
 
 # run commands only for a specific scope
 lerna run <command> --scope @open-wc/<package-name> --stream

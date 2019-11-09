@@ -31,6 +31,11 @@ describe('server', () => {
       expect(responseText).to.include('<title>My app</title>');
     });
 
+    it('returns hidden files', async () => {
+      const response = await fetch(`${host}.babelrc.js`);
+      expect(response.status).to.equal(200);
+    });
+
     it('returns static files in a nested path', async () => {
       const response = await fetch(`${host}text-files/hello-world.txt`);
       const responseText = await response.text();

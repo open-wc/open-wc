@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import debounce from 'debounce';
 import { sendMessageToActiveBrowsers } from './message-channel.js';
 
@@ -8,6 +9,8 @@ import { sendMessageToActiveBrowsers } from './message-channel.js';
  */
 
 function onFileChanged() {
+  console.log('Reloading connected browsers...');
+  console.log('');
   sendMessageToActiveBrowsers('file-changed');
 }
 

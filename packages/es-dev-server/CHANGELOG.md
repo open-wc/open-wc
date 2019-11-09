@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.23.0...es-dev-server@1.23.1) (2019-11-06)
+
+
+### Bug Fixes
+
+* **es-dev-server:** allow serving hidden files ([ae0d9d1](https://github.com/open-wc/open-wc/commit/ae0d9d1))
+* **es-dev-server:** resolve @babel/preset-env relative to es-dev-server location ([#956](https://github.com/open-wc/open-wc/issues/956)) ([a9e122c](https://github.com/open-wc/open-wc/commit/a9e122c))
+
+
+
+
+
+# [1.23.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.22.0...es-dev-server@1.23.0) (2019-11-04)
+
+
+### Features
+
+* **es-dev-server:** allow reloading multiple browsers in watch mode ([922b616](https://github.com/open-wc/open-wc/commit/922b616))
+
+
+
+
+
+# [1.22.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.21.0...es-dev-server@1.22.0) (2019-11-03)
+
+
+### Bug Fixes
+
+* align versions within the monorepo ([fa2ad9f](https://github.com/open-wc/open-wc/commit/fa2ad9f))
+
+
+### Features
+
+* **es-dev-server:** add response transformers ([#939](https://github.com/open-wc/open-wc/issues/939)) ([0ffdb5b](https://github.com/open-wc/open-wc/commit/0ffdb5b))
+* **es-dev-server:** check last changed timestamp when caching ([73d926b](https://github.com/open-wc/open-wc/commit/73d926b))
+
+
+
+
+
+# [1.21.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.20.2...es-dev-server@1.21.0) (2019-11-02)
+
+
+### Features
+
+* **es-dev-server:** reduce default debounce time ([#935](https://github.com/open-wc/open-wc/issues/935)) ([0963e06](https://github.com/open-wc/open-wc/commit/0963e06))
+
+
+
+
+
 ## [1.20.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.20.1...es-dev-server@1.20.2) (2019-11-02)
 
 
