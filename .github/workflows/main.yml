@@ -1,0 +1,30 @@
+name:  NPM CI Workflow
+on:
+  push:
+    paths-ignore:
+      - "docs/**"
+    pull_request:
+      branches:
+        - master
+jobs:
+  build-job:
+    name: "YARN Install"
+    runs-on: ubuntu-latest
+    steps:
+      # This step uses GitHub's hello-world-javascript-action: https://github.com/actions/hello-world-javascript-action
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.16'
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install --frozen-lockfile
+        id: "yarn_install"
+      - name: "Echo YARN's install time"
+        run: echo 'The time was ${{ steps.yarn_install.outputs.time }}.'
+      - run: npm install
+      - run: npm run build:types
+      - run: npm run lint
+      - run: npm run test:node
+      - run: npm run test:bs
+    
