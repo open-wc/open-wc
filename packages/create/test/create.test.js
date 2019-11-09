@@ -56,5 +56,5 @@ describe('create component', () => {
         done();
       })
       .catch(err => done(err));
-  }).timeout(300000);
+  }).timeout(20000);
 });
