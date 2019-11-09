@@ -19,8 +19,37 @@ describe('create component', () => {
     executeWithInput(
       '.\\dist\\create.js',
       [],
-      [ENTER, ENTER, ENTER, workingDirName, ENTER, ENTER, ENTER],
-      { timeout: 1000, maxTimeout: 300000 },
+      [
+        {
+          key: ENTER,
+          description: 'Scaffold a new project',
+        },
+        {
+          key: ENTER,
+          description: 'Select component template',
+        },
+        {
+          key: ENTER,
+          description: "Don't add anything",
+        },
+        {
+          key: { code: workingDirName, name: 'Component name' },
+          description: 'Enter component name',
+        },
+        {
+          key: ENTER,
+          description: 'Confirm name',
+        },
+        {
+          key: ENTER,
+          description: 'Write structure to disk',
+        },
+        {
+          key: ENTER,
+          description: 'Do not install dependencies',
+        },
+      ],
+      { env: { DEBUG: true }, timeout: 1000, maxTimeout: 10000 },
     )
       .then(() => {
         expect(fs.existsSync(workingDirPath)).to.be.true;

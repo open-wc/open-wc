@@ -9,10 +9,10 @@ const PATH = process.env.PATH;
 //guide: https://medium.com/@zorrodg/integration-tests-on-node-js-cli-part-2-testing-interaction-user-input-6f345d4b713a
 
 // Key codes
-export const UP = '\x1B\x5B\x41',
-  DOWN = '\x1B\x5B\x42',
-  ENTER = '\x0D',
-  SPACE = '\x20';
+export const UP = {code: '\x1B\x5B\x41', name: 'UP'},
+  DOWN = {code: '\x1B\x5B\x42', name: 'DOWN'},
+  ENTER = {code: '\x0D', name: 'ENTER'},
+  SPACE = {code: '\x20', name: 'SPACE'};
 
 /**
  * Creates a child process with script path
@@ -87,10 +87,10 @@ export function executeWithInput(processPath, args = [], inputs = [], opts = {})
     }
 
     currentInputTimeout = setTimeout(() => {
-      childProcess.stdin.write(inputs[0]);
+      childProcess.stdin.write(inputs[0].key.code);
       // Log debug I/O statements on tests
       if (env && env.DEBUG) {
-        console.log('input:', inputs[0]);
+        console.log('input:', inputs[0].key.name);
       }
       loop(inputs.slice(1));
     }, timeout);
@@ -120,7 +120,7 @@ export function executeWithInput(processPath, args = [], inputs = [], opts = {})
         clearTimeout(currentInputTimeout);
         inputs = [];
       }
-      reject(err.toString());
+      reject("Step:" + inputs[0].description + ", error: " + err.toString());
     });
 
     childProcess.on('error', reject);
