@@ -54,7 +54,7 @@ function createProcess(processPath, args = [], env = null) {
  */
 export function executeWithInput(processPath, args = [], inputs = [], opts = {}) {
   if (!Array.isArray(inputs)) {
-    throw new Error(`Only arrays supported: ${inputs}`)
+    throw new Error(`Only arrays supported: ${inputs}`);
   }
 
   const { env = null, timeout = 100, maxTimeout = 10000 } = opts;
@@ -118,8 +118,8 @@ export function executeWithInput(processPath, args = [], inputs = [], opts = {})
       if (currentInputTimeout) {
         clearTimeout(currentInputTimeout);
       }
-	  reject(new Error(`Step: ${inputs[0].description}, error: ${err.toString()}`));
-	  inputs.length = 0;
+      reject(new Error(`Step: ${inputs[0].description}, error: ${err.toString()}`));
+      inputs.splice(0, inputs.length);
     });
 
     childProcess.on('error', reject);
