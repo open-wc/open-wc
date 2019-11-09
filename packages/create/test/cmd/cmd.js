@@ -4,7 +4,7 @@ import { constants } from 'os';
 
 const concat = require('concat-stream');
 
-const PATH = process.env.PATH;
+const { PATH } = process.env;
 
 // guide: https://medium.com/@zorrodg/integration-tests-on-node-js-cli-part-2-testing-interaction-user-input-6f345d4b713a
 
@@ -26,11 +26,11 @@ function createProcess(processPath, args = [], env = null) {
     throw new Error('Invalid process path');
   }
 
-  args = [processPath].concat(args);
+  const pArgs = [processPath, ...args];
 
   // This works for node based CLIs, but can easily be adjusted to
   // any other process installed in the system
-  return spawn('node', args, {
+  return spawn('node', pArgs, {
     env: {
       ...{
         NODE_ENV: 'test',
@@ -55,25 +55,25 @@ function createProcess(processPath, args = [], env = null) {
  */
 export function executeWithInput(processPath, args = [], inputs = [], opts = {}) {
   if (!Array.isArray(inputs)) {
-    opts = inputs;
-    inputs = [];
+    throw new Error(`Only arrays supported: ${inputs}`)
   }
 
   const { env = null, timeout = 100, maxTimeout = 10000 } = opts;
   const childProcess = createProcess(processPath, args, env);
   childProcess.stdin.setDefaultEncoding('utf-8');
 
-  let currentInputTimeout, killIOTimeout;
+  let currentInputTimeout;
+  let killIOTimeout;
 
   // Creates a loop to feed user inputs to the child process in order to get results from the tool
   // This code is heavily inspired (if not blantantly copied) from inquirer-test:
   // https://github.com/ewnd9/inquirer-test/blob/6e2c40bbd39a061d3e52a8b1ee52cdac88f8d7f7/index.js#L14
-  const loop = inputs => {
+  const loop = consoleInputs => {
     if (killIOTimeout) {
       clearTimeout(killIOTimeout);
     }
 
-    if (!inputs.length) {
+    if (!consoleInputs.length) {
       childProcess.stdin.end();
 
       // Set a timeout to wait for CLI response. If CLI takes longer than
@@ -87,12 +87,12 @@ export function executeWithInput(processPath, args = [], inputs = [], opts = {})
     }
 
     currentInputTimeout = setTimeout(() => {
-      childProcess.stdin.write(inputs[0].key.code);
+      childProcess.stdin.write(consoleInputs[0].key.code);
       // Log debug I/O statements on tests
       if (env && env.DEBUG) {
-        console.log('input:', inputs[0].key.name);
+        console.log('input:', consoleInputs[0].key.name);
       }
-      loop(inputs.slice(1));
+      loop(consoleInputs.slice(1));
     }, timeout);
   };
 
@@ -118,9 +118,9 @@ export function executeWithInput(processPath, args = [], inputs = [], opts = {})
 
       if (currentInputTimeout) {
         clearTimeout(currentInputTimeout);
-        inputs = [];
       }
-      reject(new Error(`Step: ${inputs[0].description}, error: ${err.toString()}`));
+	  reject(new Error(`Step: ${inputs[0].description}, error: ${err.toString()}`));
+	  inputs.length = 0;
     });
 
     childProcess.on('error', reject);
