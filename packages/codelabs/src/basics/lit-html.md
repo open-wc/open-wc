@@ -839,7 +839,7 @@ We can also access or set attribute data in Javascript.
 
 ```js
 const input = /* get a reference to the input element */;
-input.getAttribute('value', 'foo');
+input.setAttribute('value', 'foo');
 ```
 
 The concept of attributes and properties of a HTML element confuses a lot of people, as it is sometimes thought to represent the same data and to be interchangeable. It's up to each element on how (and if) to keep the value of properties and attributes in sync. A common practice is to sync changes to an attribute to a property of the same name but not to reflect changes to properties to an attribute of the same name.
