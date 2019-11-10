@@ -27,6 +27,7 @@ function createProcess(processPath, args = [], env = null) {
 
   const pArgs = ['-r', 'esm', processPath, ...args];
 
+  console.log(`Working dir path: ${workDirPath} process: ${processPath}`);
   // This works for node based CLIs, but can easily be adjusted to
   // any other process installed in the system
   return spawn('node', pArgs, {
