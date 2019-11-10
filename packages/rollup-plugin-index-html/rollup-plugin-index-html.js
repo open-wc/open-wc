@@ -19,11 +19,13 @@ const { createError } = require('./src/utils');
 /**
  * @typedef {object} RollupPluginIndexHTMLConfig
  * @property {(data: TemplateData) => string} [template]
+ * @property {string} [indexFilename]
  * @property {boolean} [legacy]
  * @property {boolean} [multiBuild]
  * @property {boolean} [inject]
  * @property {string} [legacyDir]
  * @property {string} [indexHTML]
+ * @property {string} [indexHTMLString]
  * @property {string} [rootDir] Path to the root of your application
  * @property {import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig} [polyfills]
  * @property {false|object} [minify] minify configuration, or false to disable minification
@@ -75,7 +77,7 @@ module.exports = (pluginConfig = {}) => {
         return inputConfig;
       }
 
-      const result = processEntryHtml(inputConfig);
+      const result = processEntryHtml(pluginConfig, inputConfig);
       ({ outputIndexHTML, inlineImportMaps, inlineModules, rollupOptions } = result);
       return result.rollupOptions;
     },
