@@ -1,14 +1,20 @@
-import { Story, Preview, Meta, Props } from '@storybook/addon-docs/blocks';
-import { action } from '@storybook/addon-actions';
-import { html } from 'lit-html';
-import { withKnobs, text, number } from '@storybook/addon-knobs';
-import { withWebComponentsKnobs } from '../../index.js';
+import {
+  withWebComponentsKnobs,
+  Story,
+  Preview,
+  Meta,
+  Props,
+  action,
+  withKnobs,
+  text,
+  number,
+  html,
+} from '../../index.js';
 
 import '../demo-wc-card.js';
 
 <Meta
   title="Demo Card|Docs"
-  decorators={[withKnobs, withWebComponentsKnobs]}
   parameters={{ component: 'demo-wc-card', options: { selectedPanel: 'storybookjs/knobs/panel' } }}
 />
 
@@ -35,7 +41,7 @@ import '@foo/demo-wc-card/demo-wc-card.js';
 ```
 
 <Preview withToolbar>
-  <Story name="Simple" height="220px">
+  <Story name="Simple">
     {html`
       <demo-wc-card>Hello World</demo-wc-card>
     `}
@@ -55,7 +61,7 @@ Click on canvas and then knobs to see and modify the public api.
 
 ###### Header
 
-<Story name="Custom Header" height="220px">
+<Story name="Custom Header">
   {html`
     <demo-wc-card header="Harry Potter">A character that is part of a book series...</demo-wc-card>
   `}
@@ -63,7 +69,7 @@ Click on canvas and then knobs to see and modify the public api.
 
 ###### Back Side
 
-<Story name="Show Back" height="220px">
+<Story name="Show Back">
   {html`
     <demo-wc-card back-side>Hello World</demo-wc-card>
   `}
@@ -71,9 +77,12 @@ Click on canvas and then knobs to see and modify the public api.
 
 ###### Providing Rows
 
-<Story name="Provide Rows" height="220px">
+<Story name="Provide Rows">
   {() => {
-    const rows = [{ header: 'health', value: '200' }, { header: 'mana', value: '100' }];
+    const rows = [
+      { header: 'health', value: '200' },
+      { header: 'mana', value: '100' },
+    ];
     return html`
       <demo-wc-card back-side .rows=${rows}>
         A card with data on the back
