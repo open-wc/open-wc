@@ -33,11 +33,11 @@ function createProcess(processPath, args = [], env = null) {
     env: {
       ...{
         NODE_ENV: 'test',
-        preventAutoStart: false
+        preventAutoStart: false,
       },
       ...env,
-	},
-	cwd: workDirPath,
+    },
+    cwd: workDirPath,
     stdio: [null, null, null, 'ipc'], // This enables interprocess communication (IPC)
   });
 }
