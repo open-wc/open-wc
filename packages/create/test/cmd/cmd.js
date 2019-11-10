@@ -1,9 +1,8 @@
 import { spawn } from 'child_process';
 import { existsSync } from 'fs';
+import * as path from 'path';
 
 const concat = require('concat-stream');
-
-const { PATH } = process.env;
 
 // guide: https://medium.com/@zorrodg/integration-tests-on-node-js-cli-part-2-testing-interaction-user-input-6f345d4b713a
 
@@ -20,12 +19,13 @@ export const SPACE = { code: '\x20', name: 'SPACE' };
  * @param {Object} env (optional) Environment variables
  */
 function createProcess(processPath, args = [], env = null) {
+  const workDirPath = `${__dirname}${path.sep}..${path.sep}..${path.sep}src`;
   // Ensure that path exists
-  if (!processPath || !existsSync(processPath)) {
-    throw new Error('Invalid process path');
+  if (!processPath || !existsSync(path.join(workDirPath, processPath))) {
+    throw new Error(`Invalid process path, working dir: ${workDirPath}, process: ${processPath}`);
   }
 
-  const pArgs = [processPath, ...args];
+  const pArgs = ['-r', 'esm', processPath, ...args];
 
   // This works for node based CLIs, but can easily be adjusted to
   // any other process installed in the system
@@ -33,11 +33,11 @@ function createProcess(processPath, args = [], env = null) {
     env: {
       ...{
         NODE_ENV: 'test',
-        preventAutoStart: false,
-        PATH, // This is needed in order to get all the binaries in your current terminal
+        preventAutoStart: false
       },
       ...env,
-    },
+	},
+	cwd: workDirPath,
     stdio: [null, null, null, 'ipc'], // This enables interprocess communication (IPC)
   });
 }

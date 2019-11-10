@@ -7,7 +7,7 @@ import { executeWithInput, ENTER } from './cmd/cmd.js';
 const { expect } = chai;
 
 const workingDirName = 'test-work-dir';
-const workingDirPath = `./${workingDirName}`;
+const workingDirPath = `${__dirname}/../src/${workingDirName}`;
 
 afterEach(() => {
   if (fs.existsSync(workingDirPath)) {
@@ -18,7 +18,7 @@ afterEach(() => {
 describe('create component', () => {
   it('use default options', done => {
     executeWithInput(
-      '.\\dist\\create.js',
+      'create.js',
       [],
       [
         {
