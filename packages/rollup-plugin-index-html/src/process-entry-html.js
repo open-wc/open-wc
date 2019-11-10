@@ -12,14 +12,17 @@ const createInlineModule = dir => (_, i) => path.join(dir, `inline-entry.${i}.js
  *
  * Returns the index html so that it can be used for output processing.
  */
-function processEntryHtml(inputConfig) {
-  if (typeof inputConfig.input !== 'string' || !inputConfig.input.endsWith('index.html')) {
+function processEntryHtml(pluginConfig, inputConfig) {
+  if (
+    typeof pluginConfig.indexHTMLString !== 'string' &&
+    (typeof inputConfig.input !== 'string' || !inputConfig.input.endsWith('index.html'))
+  ) {
     throw createError('Input must be an index.html file, or an indexHTML option must be provided.');
   }
 
   const indexFolder = path.dirname(inputConfig.input);
-
-  const indexHTMLString = fs.readFileSync(inputConfig.input, 'utf-8');
+  const indexHTMLString =
+    pluginConfig.indexHTMLString || fs.readFileSync(inputConfig.input, 'utf-8');
   const {
     jsModules,
     inlineModules,

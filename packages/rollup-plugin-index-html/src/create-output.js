@@ -90,14 +90,14 @@ function injectIntoIndexHTML(pluginConfig, inputIndexHTML, entries, legacyEntrie
       legacyEntries,
     });
 
-    return [{ path: 'index.html', content: result.indexHTML }, ...result.files];
+    return [{ path: pluginConfig.indexFilename, content: result.indexHTML }, ...result.files];
   }
 
   /**
    * If injection is disabled the user takes control, probably with it's own template.
    */
   const serialized = serialize(inputIndexHTML);
-  return [{ path: 'index.html', content: minifyIndexHTML(serialized) }];
+  return [{ path: pluginConfig.indexFilename, content: minifyIndexHTML(serialized) }];
 }
 
 /**
@@ -109,8 +109,10 @@ function injectIntoIndexHTML(pluginConfig, inputIndexHTML, entries, legacyEntrie
  * @returns {OutputResult[]}
  */
 function createOutput(pluginConfig, outputConfig, inputIndexHTML, entries, legacyEntries) {
-  const indexHTML = getOutputIndexHTML(pluginConfig, inputIndexHTML, entries, legacyEntries);
-  const files = injectIntoIndexHTML(pluginConfig, indexHTML, entries, legacyEntries);
+  const mergedPluginConfig = { indexFilename: 'index.html', ...pluginConfig };
+
+  const indexHTML = getOutputIndexHTML(mergedPluginConfig, inputIndexHTML, entries, legacyEntries);
+  const files = injectIntoIndexHTML(mergedPluginConfig, indexHTML, entries, legacyEntries);
 
   const outputDir = path.join(outputConfig.dir);
   return files.map(file => ({
