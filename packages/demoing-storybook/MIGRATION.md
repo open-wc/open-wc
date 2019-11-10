@@ -1,7 +1,9 @@
 # Migration
 
 - [Migration](#migration)
-  - [From version 0.3.x to 0.4.x](#from-version-03x-to-04x)
+  - [From version 0.4.x to 1.0.0](#from-version-04x-to-100)
+    - [Config/Webpack changes](#configwebpack-changes)
+  - [From version 0.3.x to 0.4.0](#from-version-03x-to-040)
     - [Storybook Upgrade from 5.1.x to 5.3.x](#storybook-upgrade-from-51x-to-53x)
     - [Dependency changes](#dependency-changes)
     - [Removed `default-storybook-webpack-config.js`](#removed-default-storybook-webpack-configjs)
@@ -14,7 +16,75 @@ npm init @open-wc
 # Upgrade > Demoing
 ```
 
-## From version 0.3.x to 0.4.x
+## From version 0.4.x to 1.0.0
+
+With 1.0.0 we replaced the storybook default webpack setup with:
+
+- Prebuilt storybook UI (for a fast startup)
+- Uses es-dev-server (serve modern code while developing)
+- Completely separate storybook UI from your code
+
+This means if you want to use custom plugins that you have to prebuilt your own version of storybook.
+
+**Prebuilt Storybook comes with**
+
+- [@storybook/web-components](https://github.com/storybookjs/storybook/tree/next/app/web-components)
+- [@storybook/addon-a11y](https://github.com/storybookjs/storybook/tree/next/addons/a11y)
+- [@storybook/addon-actions](https://github.com/storybookjs/storybook/tree/next/addons/actions)
+- [@storybook/addon-backgrounds](https://github.com/storybookjs/storybook/tree/next/addons/backgrounds)
+- [@storybook/addon-console](https://github.com/storybookjs/storybook-addon-console)
+- [@storybook/addon-docs](https://github.com/storybookjs/storybook/tree/next/addons/docs)
+- [@storybook/addon-links](https://github.com/storybookjs/storybook/tree/next/addons/links)
+- [@storybook/addon-knobs](https://github.com/storybookjs/storybook/tree/next/addons/knobs)
+- [@storybook/addon-viewport](https://github.com/storybookjs/storybook/tree/next/addons/viewport)
+- storybook-addon-web-components-knobs
+
+Note that [@storybook/addon-storysource](https://github.com/storybookjs/storybook/tree/next/addons/storysource) is NOT part of this prebuilt.
+It is a feature that only worked with webpack and as of now there is no replacement available.
+However the code snippet feature of mdx stories still works as expected.
+Furthermore with mdx it may make more sense to show hand crafted code snippets to the user.
+
+### Config/Webpack changes
+
+The configuration files in `.storybook` will need to be adjusted
+
+If you used any webpack features/plugins within your story this will be no longer supported.
+Most likely you will need to rewrite the functionality via an [es-dev-server middleware](https://open-wc.org/developing/es-dev-server.html#custom-middlewares-proxy)
+
+- `config.js` got renamed to `preview.js`
+- delete `addons.js`, `presets.js`, `webpack.config.js` as they no longer have any effect as storybook UI is prebuilt. If you want to use custom plugins or presets then you will need to prebuilt your own version of storybook
+- delete `middleware.js` and replace it with an [es-dev-server middleware](https://open-wc.org/developing/es-dev-server.html#custom-middlewares-proxy)
+
+**Changes to `preview.js`**
+
+- The webpack specific `require.context` function which was used to define which stories to load has been replaced with a command line argument
+- The webpack specific `module.hot` reload has been replaced by es-dev-server default reload mode
+
+Remove the following code from you `preview.js`.
+
+```js
+// force full reload to not reregister web components
+const req = require.context('../some/path/to/stories', true, /\.stories\.(js|mdx)$/);
+configure(req, module);
+if (module.hot) {
+  module.hot.accept(req.id, () => {
+    const currentLocationHref = window.location.href;
+    window.history.pushState(null, null, currentLocationHref);
+    window.location.reload();
+  });
+}
+```
+
+If you had a custom `require.context` which is different to the default `./stories/\*.stories.{js,mdx}` then adjust your `package.json` scripts
+
+```json
+"scripts": {
+  "storybook": "start-storybook --stories 'some/path/to/stories/*.stories.{js,mdx}' --node-resolve --watch --open",
+  "storybook:build": "build-storybook --stories 'some/path/to/stories/*.stories.{js,mdx}'"
+},
+```
+
+## From version 0.3.x to 0.4.0
 
 ### Storybook Upgrade from 5.1.x to 5.3.x
 
