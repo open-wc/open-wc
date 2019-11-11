@@ -1,0 +1,73 @@
+
+        _.,,,,,,,,,._
+     .d''           ``b.       Open Web Components Recommendations
+   .p'      Open       `q.
+ .d'    Web Components  `b.    Start or upgrade your web component project with
+ .d'                     `b.   ease. All our recommendations at your fingertips.
+ ::   .................   ::
+ `p.                     .q'   See more details at https://open-wc.org/init/
+  `p.    open-wc.org    .q'
+   `b.     @openWc     .d'
+     `q..            ..,'      Note: you can exit any time with Ctrl+C or Esc
+        '',,,,,,,,,,''
+
+
+
+./
+├── scaffold-app/
+│   ├── .storybook/
+│   │   ├── addons.js
+│   │   ├── config.js
+│   │   └── presets.js
+│   ├── components/
+│   │   ├── page-main/
+│   │   │   ├── /
+│   │   │   │   ├── demo/
+│   │   │   │   │   └── index.html
+│   │   │   │   ├── index.js
+│   │   │   │   └── README.md
+│   │   │   ├── src/
+│   │   │   │   └── PageMain.js
+│   │   │   └── page-main.js
+│   │   ├── page-one/
+│   │   │   ├── /
+│   │   │   │   ├── demo/
+│   │   │   │   │   └── index.html
+│   │   │   │   ├── index.js
+│   │   │   │   └── README.md
+│   │   │   ├── src/
+│   │   │   │   └── PageOne.js
+│   │   │   └── page-one.js
+│   │   ├── scaffold-app/
+│   │   │   ├── demo/
+│   │   │   │   └── index.html
+│   │   │   ├── src/
+│   │   │   │   ├── open-wc-logo.js
+│   │   │   │   ├── ScaffoldApp.js
+│   │   │   │   └── templateAbout.js
+│   │   │   ├── test/
+│   │   │   │   └── scaffold-app.test.js
+│   │   │   ├── index.js
+│   │   │   ├── README.md
+│   │   │   └── scaffold-app.js
+│   ├── .editorconfig
+│   ├── .gitignore
+│   ├── index.html
+│   ├── karma.bs.config.js
+│   ├── karma.conf.js
+│   ├── LICENSE
+│   ├── package.json
+│   ├── README.md
+│   └── rollup.config.js
+
+Writing..... done
+
+If you want to rerun this exact same generator you can do so by executing:
+npm init @open-wc --destinationPath /path/to/open-wc/scaffold-app --type scaffold --scaffoldType app --features linting testing demoing building --buildingType rollup --tagName scaffold-app --writeToDisk true --installDependencies false 
+
+You are all set up now!
+
+All you need to do is run:
+  cd scaffold-app
+  npm run start
+

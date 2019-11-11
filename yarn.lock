@@ -2232,16 +2232,16 @@
   integrity sha512-BONpjHcGX2zFa9mfnwBCLEmlDsOHzT+j6Qt1yfK3MzFXFtAykfzFjAgaxPetu0YbBlCfXuMlfxI4vlRGCGMvFg==
 
 "@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.2.13"
+  version "1.2.14"
   dependencies:
-    "@open-wc/testing-karma" "^3.1.52"
+    "@open-wc/testing-karma" "^3.1.53"
     "@types/node" "^11.13.0"
     karma-browserstack-launcher "^1.0.0"
 
 "@open-wc/testing-karma@file:./packages/testing-karma":
-  version "3.1.52"
+  version "3.1.53"
   dependencies:
-    "@open-wc/karma-esm" "^2.9.6"
+    "@open-wc/karma-esm" "^2.9.7"
     axe-core "^3.3.1"
     karma "^4.1.0"
     karma-chrome-launcher "^2.0.0"
@@ -2809,6 +2809,14 @@
   integrity sha512-F5vAuz2hp7VY+0UmkFLgTwyeHDddIw1c/JbAQZp2lgpZOd3ujlHFijWO4sHdo7sun9HrzwnSJlZfINdKrUwI+w==
   dependencies:
     "@types/chai" "*"
+
+"@types/chai-fs@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@types/chai-fs/-/chai-fs-2.0.2.tgz#1abcb8d6fe52246e4a9a8b512abc5ca4b466b356"
+  integrity sha512-nS385nRPNvi9UjSUCDE7f84IXZnIzooPh7Ky88kdRfSFk72juvQENqrqyrKkJeXJsN9bMG9/5zVGr06GcBRB5g==
+  dependencies:
+    "@types/chai" "*"
+    "@types/node" "*"
 
 "@types/chai@*", "@types/chai@^4.1.7":
   version "4.2.0"
@@ -3934,6 +3942,14 @@ array-equal@^1.0.0:
   resolved "https://registry.yarnpkg.com/array-equal/-/array-equal-1.0.0.tgz#8c2a5ef2472fd9ea742b04c77a75093ba2757c93"
   integrity sha1-jCpe8kcv2ep0KwTHenUJO6J1fJM=
 
+array-events@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/array-events/-/array-events-0.2.0.tgz#ff42ac53e66f485d6f883234c32252bc2286130e"
+  integrity sha1-/0KsU+ZvSF1viDI0wyJSvCKGEw4=
+  dependencies:
+    async-arrays "*"
+    extended-emitter "*"
+
 array-find-index@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/array-find-index/-/array-find-index-1.0.2.tgz#df010aa1287e164bbda6f9723b0a96a1ec4187a1"
@@ -4080,6 +4096,13 @@ astral-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/astral-regex/-/astral-regex-1.0.0.tgz#6c8c3fb827dd43ee3918f27b82782ab7658a6fd9"
   integrity sha512-+Ryf6g3BKoRc7jfp7ad8tM4TtMiaWvbF/1/sQcZPkkS7ag3D5nMBCe2UfOTONtAkaG0tO0ij3C5Lwmf1EiyjHg==
+
+async-arrays@*:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/async-arrays/-/async-arrays-1.0.1.tgz#347af2b70f2a7a5767a2d5679cc42bbf1c220fd9"
+  integrity sha1-NHrytw8qeldnotVnnMQrvxwiD9k=
+  dependencies:
+    sift "*"
 
 async-each@^1.0.1:
   version "1.0.3"
@@ -5125,6 +5148,13 @@ binary-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.0.0.tgz#23c0df14f6a88077f5f986c0d167ec03c3d5537c"
   integrity sha512-Phlt0plgpIIBOGTT/ehfFnbNlfsDEiqmzE2KRXoX1bLIlir4X/MR+zSyBEkL05ffWgnRSf/DXv+WrUAVr93/ow==
 
+bit-mask@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/bit-mask/-/bit-mask-1.0.2.tgz#42f708362119611d6223cd53202c79428bf70b81"
+  integrity sha512-UGtq08LSiazxL4zVmBzrhdCWnT4RWx3JhhD/3crhfv8xxjnVHxf/WoVjEstjSUaZeZRP7kZrWNqup1VvUClCaQ==
+  dependencies:
+    array-events "^0.2.0"
+
 blob@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/blob/-/blob-0.0.5.tgz#d680eeef25f8cd91ad533f5b01eed48e64caf683"
@@ -5700,6 +5730,14 @@ chai-dom@^1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/chai-dom/-/chai-dom-1.8.1.tgz#ce7978ac93d623314742aeb6ada86c9e4d8736de"
   integrity sha512-ysWinPU3fc+Bp+xMn/u2/PQyk65jnnCZl0alWupUuFFMGaG+KxrUnsoYOgjMDhSKPkm3WqE/5RTnOowIb7asMg==
+
+chai-fs@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/chai-fs/-/chai-fs-2.0.0.tgz#35ae039fbbb0710f5122aae17faba1e8f41107c6"
+  integrity sha1-Na4Dn7uwcQ9RIqrhf6uh6PQRB8Y=
+  dependencies:
+    bit-mask "^1.0.1"
+    readdir-enhanced "^1.4.0"
 
 chai@^4.2.0:
   version "4.2.0"
@@ -8127,6 +8165,14 @@ extend@^3.0.0, extend@~3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
   integrity sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==
+
+extended-emitter@*:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/extended-emitter/-/extended-emitter-1.0.3.tgz#ea1014882a9cd29f2e11cc781b1b56fa10d5ab64"
+  integrity sha512-gdaWWszJmr2oq6rKSxPmuclQtEwfzt4JwmGrEqTnE89GQHqZyvPZ/NWj6fBgK3IKufvRyJDnLZviUFPrrJf36Q==
+  dependencies:
+    sift "*"
+    wolfy87-eventemitter "*"
 
 external-editor@^3.0.3:
   version "3.1.0"
@@ -14733,6 +14779,15 @@ read@1, read@~1.0.1:
     string_decoder "^1.1.1"
     util-deprecate "^1.0.1"
 
+readdir-enhanced@^1.4.0:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/readdir-enhanced/-/readdir-enhanced-1.5.2.tgz#61463048690ac6a455b75b62fa78a88f8dc85e53"
+  integrity sha1-YUYwSGkKxqRVt1ti+nioj43IXlM=
+  dependencies:
+    call-me-maybe "^1.0.1"
+    es6-promise "^4.1.0"
+    glob-to-regexp "^0.3.0"
+
 readdir-scoped-modules@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/readdir-scoped-modules/-/readdir-scoped-modules-1.1.0.tgz#8d45407b4f870a0dcaebc0e28670d18e74514309"
@@ -15714,6 +15769,11 @@ shelljs@^0.8.3:
     glob "^7.0.0"
     interpret "^1.0.0"
     rechoir "^0.6.2"
+
+sift@*:
+  version "8.5.1"
+  resolved "https://registry.yarnpkg.com/sift/-/sift-8.5.1.tgz#22a29e1a3332e8f8d372dc5999f5cc3093778fe8"
+  integrity sha512-um2rEdXrc4YcRMzIliuip4i2o92mJONh5W1VD9vJlm1e0apVqMK4P2ZUijz8BIe1/oYLWmXwXaKFM+fOaO3Ysg==
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
@@ -18099,6 +18159,11 @@ with@^5.0.0:
   dependencies:
     acorn "^3.1.0"
     acorn-globals "^3.0.0"
+
+wolfy87-eventemitter@*:
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/wolfy87-eventemitter/-/wolfy87-eventemitter-5.2.8.tgz#fb7fff095cb972aa2a246b25e15b2764688c18a7"
+  integrity sha512-Z+wAU9SyuOZgFj22zBl8sg0auJOkrKBZl8TTlEM5dRDDs2zPtlm72vPJUIlf6tUJ4w2JLgrF7VznRnQHP+Rn/Q==
 
 wordwrap@0.0.2:
   version "0.0.2"
