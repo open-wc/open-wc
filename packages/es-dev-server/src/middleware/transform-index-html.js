@@ -8,6 +8,8 @@ import {
   toBrowserPath,
   isInlineModule,
 } from '../utils/utils.js';
+import { getUserAgentCompat } from '../utils/user-agent-compat.js';
+import { compatibilityModes } from '../constants.js';
 
 /**
  * @typedef {object} TransformIndexHTMLMiddlewareConfig
@@ -40,6 +42,11 @@ export function createTransformIndexHTMLMiddleware(cfg) {
 
   /** @type {import('koa').Middleware} */
   async function transformIndexHTMLMiddleware(ctx, next) {
+    const uaCompat = getUserAgentCompat(ctx);
+    if (cfg.compatibilityMode === compatibilityModes.AUTO && uaCompat.modern) {
+      return next();
+    }
+
     // serve polyfill from memory if url matches
     const polyfill = polyfills.get(ctx.url);
     if (polyfill) {
@@ -47,7 +54,7 @@ export function createTransformIndexHTMLMiddleware(cfg) {
       // aggresively cache polyfills, they are hashed so content changes bust the cache
       ctx.response.set('cache-control', 'public, max-age=31536000');
       ctx.response.set('content-type', 'text/javascript');
-      return;
+      return undefined;
     }
 
     /**
@@ -74,14 +81,14 @@ export function createTransformIndexHTMLMiddleware(cfg) {
       ctx.response.set('content-type', 'text/javascript');
       ctx.response.set('cache-control', 'no-cache');
       ctx.response.set('last-modified', indexHTML.lastModified);
-      return;
+      return undefined;
     }
 
     await next();
 
     // check if we are serving an index.html
     if (!(await isIndexHTMLResponse(ctx, cfg.appIndex))) {
-      return;
+      return undefined;
     }
 
     const lastModified = ctx.response.headers['last-modified'];
@@ -90,7 +97,7 @@ export function createTransformIndexHTMLMiddleware(cfg) {
     const data = indexHTMLData.get(ctx.url);
     if (data && data.lastModified === lastModified) {
       ctx.body = data.indexHTML;
-      return;
+      return undefined;
     }
 
     // transforms index.html to make the code load correctly with the right polyfills and shims
@@ -99,6 +106,7 @@ export function createTransformIndexHTMLMiddleware(cfg) {
       ctx.url,
       indexHTMLString,
       cfg.compatibilityMode,
+      uaCompat,
     );
 
     // add new index.html
@@ -115,6 +123,7 @@ export function createTransformIndexHTMLMiddleware(cfg) {
       }
       polyfills.set(`${root}${toBrowserPath(p.path)}`, p.content);
     });
+    return undefined;
   }
 
   return transformIndexHTMLMiddleware;

@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-syntax */
 import LRUCache from 'lru-cache';
 import fs from 'fs';
+import { DEFAULT_EXTENSIONS } from '@babel/core';
 import { promisify } from 'util';
-import { baseFileExtensions } from '../constants.js';
 import { getBodyAsString, getRequestFilePath, isGeneratedFile } from '../utils/utils.js';
 
 const stat = promisify(fs.stat);
@@ -23,6 +23,14 @@ const stat = promisify(fs.stat);
  */
 
 /**
+ * Cache by user agent + file path, so that there can be unique transforms
+ * per browser.
+ */
+function createCacheKey(ctx) {
+  return `${ctx.get('user-agent')}${ctx.url}`;
+}
+
+/**
  * @param {string} path
  * @returns {Promise<number>}
  */
@@ -39,10 +47,10 @@ async function getLastModified(path) {
  * @param {ResponseCacheMiddlewareConfig} cfg
  */
 export function createResponseCacheMiddleware(cfg) {
-  const fileExtensions = [...baseFileExtensions, ...cfg.extraFileExtensions];
+  const fileExtensions = [...DEFAULT_EXTENSIONS, ...cfg.extraFileExtensions];
 
   /** @type {Map<String, String>} */
-  const urlForFilePaths = new Map();
+  const cacheKeysForFilePaths = new Map();
 
   /** @type {import('lru-cache')<string, CacheEntry>} */
   const cache = new LRUCache({
@@ -51,10 +59,10 @@ export function createResponseCacheMiddleware(cfg) {
     // don't call dispose on overwriting
     noDisposeOnSet: true,
     // remove file path -> url mapping when we are no longer caching it
-    dispose(url) {
-      for (const [filePath, urlForFilePath] of urlForFilePaths.entries()) {
-        if (urlForFilePath === url) {
-          urlForFilePaths.delete(filePath);
+    dispose(cacheKey) {
+      for (const [filePath, cacheKeyForFilePath] of cacheKeysForFilePaths.entries()) {
+        if (cacheKeyForFilePath === cacheKey) {
+          cacheKeysForFilePaths.delete(filePath);
           return;
         }
       }
@@ -63,15 +71,16 @@ export function createResponseCacheMiddleware(cfg) {
 
   // remove file from cache on change
   cfg.fileWatcher.addListener('change', e => {
-    const filePath = urlForFilePaths.get(e);
-    if (filePath) {
-      cache.del(filePath);
+    const cacheKey = cacheKeysForFilePaths.get(e);
+    if (cacheKey) {
+      cache.del(cacheKey);
     }
   });
 
   /** @type {import('koa').Middleware} */
   async function responseCacheMiddleware(ctx, next) {
-    const cached = cache.get(ctx.url);
+    const cacheKey = createCacheKey(ctx);
+    const cached = cache.get(cacheKey);
     if (cached) {
       // we watch files, and remove them on change, but there can be edge cases
       // where these events do not come through properly (the file system is a 'live' system)
@@ -84,7 +93,7 @@ export function createResponseCacheMiddleware(cfg) {
       }
 
       // remove file from cache if it changed in the meantime, and serve regularly
-      cache.del(ctx.url);
+      cache.del(cacheKey);
     }
 
     await next();
@@ -104,8 +113,8 @@ export function createResponseCacheMiddleware(cfg) {
 
     const body = await getBodyAsString(ctx);
     const filePath = getRequestFilePath(ctx, cfg.rootDir);
-    urlForFilePaths.set(filePath, ctx.url);
-    cache.set(ctx.url, {
+    cacheKeysForFilePaths.set(filePath, ctx.url);
+    cache.set(cacheKey, {
       body,
       headers: ctx.response.headers,
       filePath,

@@ -2,21 +2,23 @@
 import whatwgUrl from 'whatwg-url';
 import nodeResolve from 'resolve';
 import pathIsInside from 'path-is-inside';
+import deepmerge from 'deepmerge';
 // typescript can't resolve a .cjs file
 // @ts-ignore
 import { parse } from 'es-module-lexer';
 import path from 'path';
 import { toBrowserPath } from './utils.js';
-import createBabelCompiler from './babel-compiler.js';
+import { createBabelTransform, defaultConfig } from './babel-transform.js';
 
 const CONCAT_NO_PACKAGE_ERROR =
   'Dynamic import with a concatenated string should start with a valid full package name.';
 
-const babelCompile = createBabelCompiler({
-  readUserBabelConfig: false,
-  modern: false,
-  legacy: false,
-});
+const babelTransform = createBabelTransform(
+  deepmerge(defaultConfig, {
+    babelrc: false,
+    configFile: false,
+  }),
+);
 
 export class ResolveSyntaxError extends Error {}
 
@@ -88,7 +90,7 @@ async function resolveConcatenatedImport(sourceFileDir, importPath, config) {
 
 async function createSyntaxError(sourceFilename, source, originalError) {
   // if es-module-lexer cannot parse the file, use babel to generate a user-friendly error message
-  await babelCompile(sourceFilename, source);
+  await babelTransform(sourceFilename, source);
   // if babel did not have any error, throw a syntax error and log the original error
   console.error(originalError);
   throw new ResolveSyntaxError();

@@ -1,8 +1,7 @@
 import { extractResources, createIndexHTML } from '@open-wc/building-utils/index-html/index.js';
-import { compatibilityModes } from '../constants.js';
-import systemJsLegacyResolveScript from '../browser-scripts/system-js-legacy-resolve.js';
-import { getPolyfills } from './polyfills.js';
+import { polyfills } from './polyfills.js';
 import { addPolyfilledImportMaps } from './import-maps.js';
+import { compatibilityModes, virtualFilePrefix } from '../constants.js';
 
 /**
  * transforms index.html, extracting any modules and import maps and adds them back
@@ -11,8 +10,13 @@ import { addPolyfilledImportMaps } from './import-maps.js';
  * @param {string} indexUrl
  * @param {string} indexHTMLString
  * @param {string} compatibilityMode
+ * @param {import('./user-agent-compat').UserAgentCompat} uaCompat
  */
-export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibilityMode) {
+export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibilityMode, uaCompat) {
+  const polyfillModules =
+    (compatibilityMode === compatibilityModes.AUTO && !uaCompat.supportsEsm) ||
+    compatibilityMode === compatibilityModes.MAX;
+
   // extract input files from index.html
   const resources = extractResources(indexHTMLString, { removeImportMaps: false });
   /** @type {Map<string, string>} */
@@ -24,7 +28,9 @@ export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibility
 
   const files = [
     ...resources.jsModules,
-    ...[...inlineModules.keys()].map(e => `${e}?source=${encodeURIComponent(indexUrl)}`),
+    ...[...inlineModules.keys()].map(
+      e => `${virtualFilePrefix}${e}?source=${encodeURIComponent(indexUrl)}`,
+    ),
   ];
 
   if (files.length === 0) {
@@ -38,27 +44,24 @@ export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibility
   // create a new index.html with injected polyfills and loader script
   const createResult = createIndexHTML(resources.indexHTML, {
     entries: {
-      type: 'module',
+      type: polyfillModules ? 'system' : 'module',
       files,
     },
-    legacyEntries:
-      compatibilityMode !== compatibilityModes.ALL
-        ? undefined
-        : {
-            type: 'system',
-            files,
-          },
-    polyfills: getPolyfills(compatibilityMode),
+    polyfills,
     minify: false,
     preload: false,
   });
 
   let { indexHTML } = createResult;
-  indexHTML = addPolyfilledImportMaps(indexHTML, compatibilityMode, resources);
-
-  // inject systemjs resolver which appends a query param to trigger es5 compilation
-  if (compatibilityMode === compatibilityModes.ALL) {
-    indexHTML = indexHTML.replace('</body>', `${systemJsLegacyResolveScript}</body>`);
+  if (polyfillModules) {
+    indexHTML = addPolyfilledImportMaps(indexHTML, resources);
+  } else {
+    // this is needed because @open-wc/building-utils uses importShim to import the main app
+    // but we don't use modules on browsers without dynamic imports, so we can just alias it
+    indexHTML = indexHTML.replace(
+      '<script>',
+      '<script>window.importShim = s => import(s);</script><script>',
+    );
   }
 
   return {

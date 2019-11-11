@@ -1,10 +1,10 @@
 export const compatibilityModes = {
   NONE: 'none',
-  ESM: 'esm',
-  MODERN: 'modern',
-  ALL: 'all',
+  AUTO: 'auto',
+  MIN: 'min',
+  MAX: 'max',
 };
 
-export const messageChannelEndpoint = '/__es-dev-server-message-channel__';
+export const virtualFilePrefix = '/__es-dev-server__/';
 
-export const baseFileExtensions = ['.mjs', '.js'];
+export const messageChannelEndpoint = `${virtualFilePrefix}message-channel`;
