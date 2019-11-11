@@ -1,6 +1,6 @@
 import { fixture, expect } from '../index.js';
 
-describe('Plugin: semantic-dom-diff', () => {
+describe('Plugin - semantic-dom-diff', () => {
   it('can semantically compare full dom trees', async () => {
     const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
     expect(el).dom.to.equal('<div><h1>Hey</h1></div>');
