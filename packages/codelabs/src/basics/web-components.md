@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this codelab, you will learn about the basics of Web Cmponents and how they work.
+In this codelab, you will learn about the basics of Web Components and how they work.
 
 Web Components are a set of low-level browser features that allow us to write modular, encapsulated and reusable HTML elements. Web Components are based on web standards and work in any environment that supports basic HTML and JavaScript. This means that there is no complex setup required for you to get started.
 
