@@ -15,6 +15,8 @@
     "lint:types": "tsc",
     "lint:versions": "node ./scripts/lint-versions.js",
     "postinstall": "npm run build",
+    "prevuepress:build": "npm run vuepress:copy-static",
+    "prevuepress:start": "npm run vuepress:copy-static",
     "publish": "lerna publish --message 'chore: release new versions'",
     "site:build": "npm run vuepress:build && lerna run site:build",
     "site:start": "npm run vuepress:start",
@@ -29,6 +31,7 @@
     "test:node": "lerna run test:node",
     "test:update-snapshots": "lerna run test:update-snapshots",
     "vuepress:build": "vuepress build docs",
+    "vuepress:copy-static": "cp -f packages/demoing-storybook/demo/custom-elements.json docs/.vuepress/public/demoing/demo/custom-elements.json",
     "vuepress:start": "vuepress dev docs"
   },
   "devDependencies": {

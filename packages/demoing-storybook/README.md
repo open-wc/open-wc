@@ -33,7 +33,7 @@ npm init @open-wc
 - `yarn add @open-wc/demoing-storybook --dev`
 - Copy at minimum the [.storybook](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/demoing-storybook/templates/static/.storybook/addons.js) folder to `.storybook`
 - If you want to bring along the examples, you may also copy the `stories` folder.
-- Be sure you have a [custom-elements.json](./#custom-elementsjson) file.
+- Be sure you have a [custom-elements.json](#custom-elements-json) file.
 - Add the following scripts to your package.json
 
 ```js
