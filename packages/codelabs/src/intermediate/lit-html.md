@@ -164,7 +164,7 @@ class NewsApp extends LitElement {
 </details>
 
 <details>
-<summary>Example render articles as JSON</summary>
+<summary>Example of articles rendered as JSON</summary>
 
 ```js
 render() {
