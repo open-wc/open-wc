@@ -29,6 +29,9 @@ class MyElement extends LitElement {
    *
    * You might need to make sure your setup work runs only once, or you can clean
    * it up in the disconnectedCallback.
+   *
+   * Because LitElement does some work in the connectedCallback, you must always
+   * call super.connectedCallback. This one is easy to miss!
    */
   connectedCallback() {
     super.connectedCallback();

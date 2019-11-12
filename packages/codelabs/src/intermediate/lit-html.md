@@ -2,7 +2,6 @@
 
 ## TODO
 
-- make sure all code works
 - What you'll learn section
 
 ## Introduction
@@ -22,7 +21,11 @@ This codelab is a followup from the [lit-html & lit-element basics](https://open
 
 **What you'll learn**
 
-- TODO
+- Making HTTP requests
+- Handling asynchronous rendering
+- Complex templating
+- Using third-party components
+- Creating lit-html template functions
 
 **How it works**
 
