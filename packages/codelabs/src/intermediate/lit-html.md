@@ -541,7 +541,7 @@ With lit-html, you can add event listeners using the `@` syntax, which is just s
 ```js
 render() {
  return html`
- <button @click=${this._onClick}></button>
+   <button @click=${this._onClick}></button>
  `;
 }
 
