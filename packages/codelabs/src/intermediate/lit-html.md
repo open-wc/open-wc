@@ -70,7 +70,7 @@ You should already know how to create a web component using `LitElement`. Go ahe
     <todo-app></todo-app>
 
     <script type="module">
-      import { LitElement } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
 
       class NewsApp extends LitElement {
         render() {
