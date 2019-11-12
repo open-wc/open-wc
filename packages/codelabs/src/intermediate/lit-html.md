@@ -512,7 +512,7 @@ render() {
 }
 ```
 
-If the logic is a bit more complex, separating this into a pure function is very useful. The advantage here is that we can use regular if statement, so we don't need to squash everything into a single expression:
+If the logic is a bit more complex, separating this into a pure function is very useful. The advantage here is that we can use regular if statements, so we don't need to squash everything into a single expression:
 
 ```js
 function readStatus(read) {
