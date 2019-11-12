@@ -1,4 +1,4 @@
-# `Plugin: semantic-dom-diff`
+# `Plugin - semantic-dom-diff`
 
 #### `can compare against a snapshot`
 
@@ -10,4 +10,3 @@
 </div>
 
 ```
-

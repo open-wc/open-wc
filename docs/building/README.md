@@ -41,7 +41,7 @@ Our [default configuration](/building/building-rollup.html) gets your started wi
 
 ## Webpack
 
-[Webpack](https://webpack.js.org/) is a popular and flexible build tool, with a large ecosystem of plugins. Out of the box, webpack handles different module formats, such as esm, commonjs, amd and umd. It is not able to output native es modules, relying instead on it's own module loader.
+[Webpack](https://webpack.js.org/) is a popular and flexible build tool, with a large ecosystem of plugins. Out of the box, webpack handles different module formats, such as esm, commonjs, amd and umd. It is not able to output native es modules, relying instead on its own module loader.
 
 Compared to rollup it is a more complex tool, with more options for composing and managing complex projects. It also comes with a dev server with features such as auto-reload and hot module reloading.
 
