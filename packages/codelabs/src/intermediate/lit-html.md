@@ -1,9 +1,5 @@
 # lit-html & lit-element: intermediate
 
-## TODO
-
-- What you'll learn section
-
 ## Introduction
 
 This codelab is a followup from the [lit-html & lit-element basics](https://open-wc.org/codelabs/#web-components-basics) codelab.
@@ -1364,3 +1360,18 @@ html`
 ```
 
 </details>
+
+## Wrapping up
+
+That's the end of the intermediate lit-html & lit-element codelab! If you're eager to learn more, you can take a look at the following resources:
+
+- [lit-html official docs](https://lit-html.polymer-project.org/)
+- [lit-element official docs](https://lit-element.polymer-project.org/)
+- [open-wc code samples](https://open-wc.org/developing/code-examples.html)
+- [IDE help](https://open-wc.org/developing/ide.html)
+
+To get started with your own project we recommend using open-wc's project scaffolding, it's easy to set it up using this command:
+
+```bash
+npm init @open-wc
+```
