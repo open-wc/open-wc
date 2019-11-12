@@ -17,7 +17,7 @@ This codelab is a followup from the [lit-html & lit-element basics](https://open
 
 **What you'll learn**
 
-- Making HTTP requests
+- Connecting you web component to an API
 - Handling asynchronous rendering
 - Complex templating
 - Using third-party components
@@ -94,7 +94,7 @@ For this codelab, we will be fetching live data from the google news API. You wi
 - Go to https://newsapi.org/
 - Click 'Get API key'
 - Register for an account.
-- **tip**: you don't need to use an actual valid e-mail address
+  - **tip**: you don't need to use an actual valid e-mail address
 - Remember your API key
 
 When you have your API key, you can construct the URL needed to fetch news articles using the following format:
@@ -121,7 +121,7 @@ We could trigger our `fetch` in the constructor since it's run only once. But be
 
 <details>
  <summary>Using fetch</summary>
-`fetch` is a browser API for making HTTP requests. It's promise based, and it returns a streaming response. We can turn the the stream into JSON using the `json` function:
+<code>fetch</code> is a browser API for making HTTP requests. It's promise based, and it returns a streaming response. We can turn the the stream into JSON using the <code>json</code> function:
 
 ```js
 async fetchArticles() {
@@ -535,7 +535,7 @@ class MyElement extends LitElement {
 
 <details>
  <summary>Adding event listeners</summary>
-With lit-html, you can add event listeners using the `@` syntax, which is just syntax sugar for `addEventListener`:
+With lit-html, you can add event listeners using the <code>@</code> syntax, which is just syntax sugar for `addEventListener`:
 
 ```js
 render() {
@@ -855,10 +855,9 @@ If the functionality is small, like in our example application, we can keep it i
 ### Tasks to complete this step
 
 - Add three buttons to the `news-app` component:
-
-- A button which displays only read articles
-- A button which displays only unread articles
-- A button which displays all articles
+  - A button which displays only read articles
+  - A button which displays only unread articles
+  - A button which displays all articles
 
 ### Tips
 
