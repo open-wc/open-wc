@@ -1,4 +1,4 @@
-# lit-html & lit-element: Basics
+# lit-html & lit-element: basics
 
 ## Introduction
 
@@ -11,7 +11,7 @@ In this codelab, you will learn the basics of building web components using lit-
 **What you need**
 
 - Intermediate knowledge of HTML and Javascript
-- Basic knowledge of web components, see our [basics workshop](https://open-wc.org/codelabs/basics/web-components.html) to get you started.
+- Basic knowledge of web components, see our [basics codelab](https://open-wc.org/codelabs/#web-components-basics) to get you started.
 - A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
 
 **What you'll learn**

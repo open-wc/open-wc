@@ -100,6 +100,7 @@ module.exports = {
             'rerender',
             'unit-testing-custom-events',
             'unit-testing-init-error',
+            'lit-element-lifecycle',
           ],
         },
       ],

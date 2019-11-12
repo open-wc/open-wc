@@ -1,4 +1,4 @@
-# Web Components: Basics
+# Web Components: basics
 
 ## Introduction
 
