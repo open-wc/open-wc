@@ -536,7 +536,7 @@ class MyElement extends LitElement {
 
 <details>
  <summary>Adding event listeners</summary>
-You can add event listeners using the `@` syntax. It is just sugar for `addEventListener`:
+With lit-html, you can add event listeners using the `@` syntax, which is just syntax sugar for `addEventListener`:
 
 ```js
 render() {
