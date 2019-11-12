@@ -43,7 +43,7 @@ class MyElement extends LitElement {
   }
 
   /**
-   * Called when an update was trigger, before rendering. Receives a Map of changed
+   * Called when an update was triggered, before rendering. Receives a Map of changed
    * properties, and their previous values. This can be used for modifying or setting
    * new properties before a render occurs.
    */
