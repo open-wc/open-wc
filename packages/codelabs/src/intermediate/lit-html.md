@@ -125,9 +125,9 @@ We could trigger our `fetch` in the constructor since it's run only once. But be
 
 ```js
 async fetchArticles() {
- const response = await fetch('https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}');
- const jsonResponse = await response.json();
- this.articles = jsonResponse.articles;
+  const response = await fetch('https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}');
+  const jsonResponse = await response.json();
+  this.articles = jsonResponse.articles;
 }
 ```
 
@@ -135,11 +135,11 @@ If you're not familiar with [async await](https://developer.mozilla.org/en-US/do
 
 ```js
 fetchArticles() {
- fetch('https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}')
- .then(response => response.json())
- .then((jsonResponse) => {
- this.articles = jsonResponse.articles;
- });
+  fetch('https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}')
+    .then(response => response.json())
+    .then((jsonResponse) => {
+      this.articles = jsonResponse.articles;
+    });
 }
 ```
 
@@ -167,9 +167,9 @@ class NewsApp extends LitElement {
 
 ```js
 render() {
- return html`
- <pre>${JSON.stringify(this.articles, null, 2)}</pre>
- `;
+  return html`
+    <pre>${JSON.stringify(this.articles, null, 2)}</pre>
+  `;
 }
 ```
 
@@ -243,11 +243,11 @@ We can cover this scenario by preventing the rendering of our main content until
 
 ```js
 async fetchArticles() {
- this.loading = true;
- const response = await fetch('https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}');
- const jsonResponse = await response.json();
- this.articles = jsonResponse.articles;
- this.loading = false;
+  this.loading = true;
+  const response = await fetch('https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}');
+  const jsonResponse = await response.json();
+  this.articles = jsonResponse.articles;
+  this.loading = false;
 }
 ```
 
@@ -258,13 +258,13 @@ async fetchArticles() {
 
 ```js
 render() {
- if (this.loading) {
- return html`<p>Loading...</p>`;
- }
+  if (this.loading) {
+    return html`<p>Loading...</p>`;
+  }
 
- return html`
- <pre>${JSON.stringify(this.articles, null, 2)}</pre>
- `;
+  return html`
+    <pre>${JSON.stringify(this.articles, null, 2)}</pre>
+  `;
 }
 ```
 
@@ -372,20 +372,20 @@ customElements.define('news-article', NewsArticle);
 
 ```js
 render() {
- return html`
- <ul>
- ${this.articles.map(
- article => html`
- <li>
- <news-article
- .title=${article.title}
- .description=${article.description}
- ></news-article>
- </li>
- `,
- )}
- </ul>
- `;
+  return html`
+    <ul>
+      ${this.articles.map(
+        article => html`
+          <li>
+            <news-article
+              .title=${article.title}
+              .description=${article.description}
+            ></news-article>
+          </li>
+        `,
+      )}
+    </ul>
+  `;
 }
 ```
 
@@ -505,9 +505,9 @@ You can conditionally render something using any valid javascript expression. Fo
 
 ```js
 render() {
- return html`
- <h3>${this.title} (${this.read ? 'read' : 'unread'})</h3>
- `;
+  return html`
+    <h3>${this.title} (${this.read ? 'read' : 'unread'})</h3>
+  `;
 }
 ```
 
@@ -676,7 +676,7 @@ Remember that with `LitElement`, you need to use immutable data patterns. Otherw
 
 ```js
 _toggleReadStatus() {
- this.dispatchEvent(new CustomEvent('toggle-read-status'));
+  this.dispatchEvent(new CustomEvent('toggle-read-status'));
 }
 ```
 
@@ -708,11 +708,9 @@ To update the read status, we need to use immutable data update patterns. This m
 
 ```js
 _toggleReadStatus(articleToUpdate) {
- this.articles = this.articles.map(article => {
- return article === articleToUpdate
- ? { ...article, read: !article.read }
- : article;
- });
+  this.articles = this.articles.map(article => {
+    return article === articleToUpdate ? { ...article, read: !article.read } : article;
+  });
 }
 ```
 
