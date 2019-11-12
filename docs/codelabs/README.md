@@ -17,3 +17,11 @@ A kickstart to building web components with lit-html and lit-element. Goes throu
 <a href="/codelabs/basics/lit-html.html?index=/codelabs/" target="_blank">
   > Go to the codelab
 </a>
+
+## lit-html & lit-element: intermediate
+
+A further deep dive into lit-html and lit-element. Handles data fetching, loading states and complex templating.
+
+<a href="/codelabs/intermediate/lit-html.html?index=/codelabs/" target="_blank">
+  > Go to the codelab
+</a>
