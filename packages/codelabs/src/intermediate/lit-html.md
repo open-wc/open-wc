@@ -659,7 +659,7 @@ In this example, we register an event listener for the `click` event, and call t
 
 Now that the user can mark articles as read/unread, we want to display the total amount of read and unread items in the app. This counter should be displayed in the `news-app`, but we're storing the read/unread status in the `news-article` component. We need to think of a better way to solve this...
 
-It's best to keep the data in your application flowing in one direction from to bottom. Parent components are responsible for data of child components, including changing this data.
+It's best to keep the data in your application flowing in one direction from top to bottom. Parent components are responsible for data of child components, including changing this data.
 
 In our case, the `news-article` component can fire an event to the `news-app` component to request a change in the read/unread status.
 
