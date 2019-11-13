@@ -5,6 +5,7 @@ import { exec as _exec } from 'child_process';
 import { promisify } from 'util';
 import { lstatSync, readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
+import { CLIEngine } from 'eslint';
 
 const exec = promisify(_exec);
 
@@ -13,6 +14,8 @@ const rimraf = promisify(_rimraf);
 const { expect } = chai;
 
 chai.use(chaiFs);
+
+const getFileMessages = ({ messages, filePath }) => `${filePath}:\n${messages.join('\n')}`;
 
 const COMMAND_PATH = join(__dirname, '../src/create.js');
 
@@ -61,42 +64,65 @@ function checkSnapshotContents(expectedPath, actualPath) {
   });
 }
 
+let stdout;
+let stderr;
+let EXPECTED_OUTPUT;
+
+const generate = ({ command, expectedPath }) =>
+  async function generateTestProject() {
+    ({ stdout, stderr } = await exec(command));
+    const EXPECTED_PATH = join(expectedPath, '../fully-loaded-app.output.txt');
+    EXPECTED_OUTPUT = readFileSync(EXPECTED_PATH, 'utf-8');
+  };
+
 describe('create', () => {
   // For some reason, this doesn't do anything
   const destinationPath = join(__dirname, './output');
 
-  beforeEach(deleteGenerated);
-  afterEach(deleteGenerated);
+  const expectedPath = join(__dirname, './snapshots/fully-loaded-app');
 
-  it('generates a fully loaded app project', async () => {
-    const EXPECTED_PATH = join(__dirname, './snapshots/fully-loaded-app');
+  const command = `node -r @babel/register \
+    ${COMMAND_PATH} \
+      --destinationPath ${destinationPath} \
+      --type scaffold \
+      --scaffoldType app \
+      --features linting testing demoing building \
+      --buildingType rollup \
+      --scaffoldFilesFor testing demoing building \
+      --tagName scaffold-app \
+      --writeToDisk true \
+      --installDependencies false
+  `;
 
-    const EXPECTED_OUTPUT = readFileSync(
-      join(EXPECTED_PATH, '../fully-loaded-app.output.txt'),
-      'utf-8',
-    );
+  before(generate({ command, expectedPath }));
 
-    const { stdout } = await exec(` \
-      node -r @babel/register ${COMMAND_PATH} \
-        --destinationPath ${destinationPath} \
-        --type scaffold \
-        --scaffoldType app \
-        --features linting testing demoing building \
-        --buildingType rollup \
-        --scaffoldFilesFor testing demoing building \
-        --tagName scaffold-app \
-        --writeToDisk true \
-        --installDependencies false
-    `);
+  after(deleteGenerated);
 
+  it('scaffolds a fully loaded app project', async () => {
     // Check that all files exist, without checking their contents
     expect(ACTUAL_PATH)
       .to.be.a.directory()
-      .and.deep.equal(EXPECTED_PATH);
+      .and.deep.equal(expectedPath);
+  });
 
-    // check file contents
-    checkSnapshotContents(EXPECTED_PATH, ACTUAL_PATH);
+  it('generates expected file contents', () => {
+    // Check recursively all file contents
+    checkSnapshotContents(expectedPath, ACTUAL_PATH);
+  });
 
+  it('outputs expected message', () => {
     expect(stripUserDir(stdout)).to.equal(stripUserDir(EXPECTED_OUTPUT));
+  });
+
+  it('does not exit with an error', () => {
+    expect(stderr).to.not.be.ok;
+  });
+
+  it('generates a project which passes linting', async () => {
+    const cli = new CLIEngine({ useEslintrc: true });
+    const { errorCount, warningCount, messages = [] } = cli.executeOnFiles([ACTUAL_PATH]);
+    const prettyOutput = messages.map(getFileMessages).join('\n\n');
+    expect(errorCount).to.equal(0, prettyOutput);
+    expect(warningCount).to.equal(0, prettyOutput);
   });
 });
