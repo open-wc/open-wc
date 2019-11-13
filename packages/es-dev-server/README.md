@@ -210,7 +210,7 @@ This is the same approach as serving an index.html in a subdirectory, so the sec
 ### Base Element
 
 <details>
-  <summary>Read more</summary>
+  <summary>Use platform features to specify your web root, e.g. in <abbr title="Single Page Applications">SPAs</abbr></summary>
 
 You can set up a `<base href="">` element to modify how files are resolved relatively to your index.html. This can be very useful when your index.html is not at the root of your project.
 
