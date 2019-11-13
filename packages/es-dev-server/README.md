@@ -120,7 +120,7 @@ In addition to the command-line flags, the configuration file accepts these addi
 
 `es-dev-server` serves static files using the same structure as your file system. It cannot serve any files outside of the root of the webserver. You need to make sure any files requested, including node modules, are accessible for the webserver.
 
-Click read more to view different strategies for setting up your project's folder structure.
+Outside of that one requirement, however, `es-dev-server` does not have any opinions on how you should scaffold your project. The following are examples of a variety of different suggested strategies for setting up your project's folder structure.
 
 ### index.html in root
 
