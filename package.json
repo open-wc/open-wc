@@ -40,6 +40,7 @@
     "@commitlint/config-lerna-scopes": "7.2.1",
     "@open-wc/testing-karma": "file:./packages/testing-karma",
     "@open-wc/testing-karma-bs": "file:./packages/testing-karma-bs",
+    "@types/chai-fs": "^2.0.2",
     "@vuepress/plugin-google-analytics": "^1.0.0-alpha.30",
     "babel-eslint": "^10.0.0",
     "core-js": "2.6.10",
