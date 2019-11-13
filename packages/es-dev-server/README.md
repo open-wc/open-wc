@@ -144,7 +144,7 @@ If you run the `es-dev-server` command from the root of the project, you can acc
 If you move your `index.html` inside a subfolder:
 
 <details>
-  <summary>Read more</summary>
+  <summary>Use the `--open` parameter for when you'd like to keep you index.html in a subfolder.</summary>
 
 ```
 node_modules/...
