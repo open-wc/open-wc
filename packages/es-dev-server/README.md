@@ -127,7 +127,7 @@ Outside of that one requirement, however, `es-dev-server` does not have any opin
 <details>
   <summary>The simplest setup, making sure that all files are accessible, is to place your index.html at the root of your project</summary>
 
-The simplest setup where all files are accessible is to place your index.html at the root of your project:
+Consider this example directory structure in the web root:
 
 ```
 node_modules/...
