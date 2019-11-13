@@ -207,7 +207,7 @@ This is the same approach as serving an index.html in a subdirectory, so the sec
 
 </details>
 
-### Base element
+### Base Element
 
 <details>
   <summary>Read more</summary>
