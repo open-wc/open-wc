@@ -135,7 +135,7 @@ src/...
 index.html
 ```
 
-If you run `es-dev-server` regularly from the root of this project, you can access your app at `/` or `/index.html` in the browser.
+If you run the `es-dev-server` command from the root of the project, you can access your app at `/` or `/index.html` in the browser.
 
 </details>
 
