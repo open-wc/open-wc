@@ -2232,16 +2232,16 @@
   integrity sha512-BONpjHcGX2zFa9mfnwBCLEmlDsOHzT+j6Qt1yfK3MzFXFtAykfzFjAgaxPetu0YbBlCfXuMlfxI4vlRGCGMvFg==
 
 "@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.2.14"
+  version "1.2.15"
   dependencies:
-    "@open-wc/testing-karma" "^3.1.53"
+    "@open-wc/testing-karma" "^3.1.54"
     "@types/node" "^11.13.0"
     karma-browserstack-launcher "^1.0.0"
 
 "@open-wc/testing-karma@file:./packages/testing-karma":
-  version "3.1.53"
+  version "3.1.54"
   dependencies:
-    "@open-wc/karma-esm" "^2.9.7"
+    "@open-wc/karma-esm" "^2.9.8"
     axe-core "^3.3.1"
     karma "^4.1.0"
     karma-chrome-launcher "^2.0.0"
