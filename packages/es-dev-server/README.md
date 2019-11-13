@@ -176,7 +176,7 @@ If you want your index in a subfolder without this being visible in the browser 
 ### Monorepos
 
 <details>
-  <summary>Read more</summary>
+  <summary>Use `--app-index` or `--root-dir` when your index.html and web root are in different places, e.g.. in a monorepo setup.</summary>
 
 If you are using `es-dev-server` in a monorepo, your node modules are in two different locations. In the package's folder and the repository root:
 
