@@ -214,7 +214,7 @@ This is the same approach as serving an index.html in a subdirectory, so the sec
 
 You can set up a `<base href="">` element to modify how files are resolved relatively to your index.html. This can be very useful when your index.html is not at the root of your project.
 
-If you use SPA routing, using a base element is highly recommended. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
+If you use <abbr title="Single Page Application">SPA</abbr> routing, using a base element is highly recommended. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
 
 </details>
 
