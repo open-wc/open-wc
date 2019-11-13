@@ -139,7 +139,7 @@ If you run `es-dev-server` regularly from the root of this project, you can acce
 
 </details>
 
-### index.html in a subfoolder
+### index.html in a Subfolder
 
 If you move your `index.html` inside a subfolder:
 
