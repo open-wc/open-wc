@@ -33,7 +33,7 @@ Exposes chai as an es module with useful plugins pre-configured:
 ```javascript
 import { expect, fixture, html } from '@open-wc/testing';
 
-describe('Plugin: semantic-dom-diff', () => {
+describe('Plugin - semantic-dom-diff', () => {
   it('can semantically compare full dom trees', async () => {
     const el = await fixture(`<div><!-- comment --><h1>${'Hey'}  </h1>  </div>`);
     expect(el).dom.to.equal('<div><h1>Hey</h1></div>');
@@ -71,7 +71,7 @@ describe('my-test', () => {
 ```js
 import { fixture, expect } from '@open-wc/testing';
 
-describe('Plugin: chai-dom', () => {
+describe('Plugin - chai-dom', () => {
   it('can check for an exiting css class', async () => {
     const el = await fixture(`<div class="foo bar"></div>`);
     expect(el).to.have.class('foo');

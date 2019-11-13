@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/codelabs@1.3.1...@open-wc/codelabs@1.4.0) (2019-11-11)
+
+
+### Features
+
+* **codelabs:** improve codelab 2 ([#962](https://github.com/open-wc/open-wc/issues/962)) ([1f7ea0c](https://github.com/open-wc/open-wc/commit/1f7ea0c))
+* **codelabs:** improve web-components codelab ([#957](https://github.com/open-wc/open-wc/issues/957)) ([9a38dd5](https://github.com/open-wc/open-wc/commit/9a38dd5))
+
+
+
+
+
 ## [1.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/codelabs@1.3.0...@open-wc/codelabs@1.3.1) (2019-11-01)
 
 

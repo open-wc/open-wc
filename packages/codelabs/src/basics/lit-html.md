@@ -1,4 +1,4 @@
-# lit-html & lit-element: Basics
+# lit-html & lit-element: basics
 
 ## Introduction
 
@@ -11,7 +11,7 @@ In this codelab, you will learn the basics of building web components using lit-
 **What you need**
 
 - Intermediate knowledge of HTML and Javascript
-- Basic knowledge of web components, see our [basics workshop](https://open-wc.org/codelabs/basics/web-components.html) to get you started.
+- Basic knowledge of web components, see our [basics codelab](https://open-wc.org/codelabs/#web-components-basics) to get you started.
 - A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
 
 **What you'll learn**
@@ -839,7 +839,7 @@ We can also access or set attribute data in Javascript.
 
 ```js
 const input = /* get a reference to the input element */;
-input.getAttribute('value', 'foo');
+input.setAttribute('value', 'foo');
 ```
 
 The concept of attributes and properties of a HTML element confuses a lot of people, as it is sometimes thought to represent the same data and to be interchangeable. It's up to each element on how (and if) to keep the value of properties and attributes in sync. A common practice is to sync changes to an attribute to a property of the same name but not to reflect changes to properties to an attribute of the same name.
