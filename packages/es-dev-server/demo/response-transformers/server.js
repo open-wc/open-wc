@@ -1,4 +1,8 @@
 module.exports = {
+  appIndex: 'demo/response-transformers/index.html',
+  nodeResolve: true,
+  open: true,
+  watch: true,
   responseTransformers: [
     function serveIndex({ url }) {
       if (url === '/demo/response-transformers/index.html') {

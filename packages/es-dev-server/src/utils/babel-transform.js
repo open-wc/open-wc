@@ -107,17 +107,18 @@ export function createMaxCompatibilityBabelTransform(cfg) {
 }
 
 /**
- * config for only polyfilling modules, this should be run after the compatibility
+ * transform for only polyfilling modules, this should be run after the compatibility
  * config where all js is already compiled to a compatible format. we therefore don't
  * include any extra plugins or user configuration
  */
-const polyfillModulesConfig = deepmerge(defaultConfig, {
-  plugins: [
-    require.resolve('@babel/plugin-proposal-dynamic-import'),
-    require.resolve('@babel/plugin-transform-modules-systemjs'),
-  ],
-  babelrc: false,
-  configFile: false,
-});
-
-export const polyfillModulesTransform = createBabelTransform(polyfillModulesConfig);
+export const polyfillModulesTransform = createBabelTransform(
+  {},
+  {
+    plugins: [
+      require.resolve('@babel/plugin-proposal-dynamic-import'),
+      require.resolve('@babel/plugin-transform-modules-systemjs'),
+    ],
+    babelrc: false,
+    configFile: false,
+  },
+);
