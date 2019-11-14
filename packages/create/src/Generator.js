@@ -1,38 +1,77 @@
+/* eslint-disable no-console, import/no-cycle */
+import prompts from 'prompts';
 import path from 'path';
-import commandLineArgs from 'command-line-args';
 
-import { copyTemplates, copyTemplate, copyTemplateJsonInto, installNpm } from './core.js';
-import { parseCliOptions } from './helpers.js';
+import {
+  copyTemplates,
+  copyTemplate,
+  copyTemplateJsonInto,
+  installNpm,
+  writeFilesToDisk,
+  optionsToCommand,
+} from './core.js';
 
-const optionDefinitions = [
-  { name: 'tag-name', type: String, defaultValue: '' },
-  { name: 'npm-install', type: String, defaultValue: 'true' }, // set to emptry string later
-  { name: 'scaffold', type: String, defaultValue: '' },
-];
+/**
+ * Options for the generator
+ * @typedef {object} GeneratorOptions
+ * @property {string} [tagName] the dash-case tag name
+ * @property {string} [destinationPath='auto'] path to output to. default value 'auto' will output to current working directory
+ * @property {'scaffold'} [type='scaffold'] path to output to. default value 'auto' will output to current working directory
+ * @property {'true'|'false'} [writeToDisk] whether to write to disk
+ * @property {'yarn'|'npm'|'false'} [installDependencies] whether and with which tool to install dependencies
+ */
 
-export const cliOptions = commandLineArgs(optionDefinitions, { partial: true });
+/**
+ * dash-case to PascalCase
+ * @param  {string} tagName dash-case tag name
+ * @return {string}         PascalCase class name
+ */
+function getClassName(tagName) {
+  return tagName
+    .split('-')
+    .reduce((previous, part) => previous + part.charAt(0).toUpperCase() + part.slice(1), '');
+}
 
 class Generator {
   constructor() {
-    this._destinationPath = process.cwd();
+    /**
+     * @type {GeneratorOptions}
+     */
+    this.options = {
+      destinationPath: 'auto',
+    };
     this.templateData = {};
-    this.wantsNpmInstall = '';
-    this.cliOptions = parseCliOptions(cliOptions);
+    this.wantsNpmInstall = true;
+    this.wantsWriteToDisk = true;
+    this.wantsRecreateInfo = true;
+    this.generatorName = '@open-wc';
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  execute() {}
+  execute() {
+    if (this.options.tagName) {
+      const { tagName } = this.options;
+      const className = getClassName(tagName);
+      this.templateData = { ...this.templateData, tagName, className };
+
+      if (this.options.destinationPath === 'auto') {
+        this.options.destinationPath = process.cwd();
+        if (this.options.type === 'scaffold') {
+          this.options.destinationPath = path.join(process.cwd(), tagName);
+        }
+      }
+    }
+  }
 
   destinationPath(destination = '') {
-    return path.join(this._destinationPath, destination);
+    return path.join(this.options.destinationPath, destination);
   }
 
   copyTemplate(from, to) {
     copyTemplate(from, to, this.templateData);
   }
 
-  copyTemplateJsonInto(from, to) {
-    copyTemplateJsonInto(from, to, this.templateData);
+  copyTemplateJsonInto(from, to, options = { mode: 'merge' }) {
+    copyTemplateJsonInto(from, to, this.templateData, options);
   }
 
   async copyTemplates(from, to = this.destinationPath()) {
@@ -40,14 +79,41 @@ class Generator {
   }
 
   async end() {
-    if (this.cliOptions['npm-install'] === '') {
-      // this.wantsNpmInstall = await askYesNo('Do you want to run npm install?'); // eslint-disable-line
-    } else {
-      this.wantsNpmInstall = this.cliOptions['npm-install'];
+    if (this.wantsWriteToDisk) {
+      this.options.writeToDisk = await writeFilesToDisk();
     }
 
     if (this.wantsNpmInstall) {
-      await installNpm(this._destinationPath);
+      const answers = await prompts(
+        [
+          {
+            type: 'select',
+            name: 'installDependencies',
+            message: 'Do you want to install dependencies?',
+            choices: [
+              { title: 'No', value: 'false' },
+              { title: 'Yes, with yarn', value: 'yarn' },
+              { title: 'Yes, with npm', value: 'npm' },
+            ],
+          },
+        ],
+        {
+          onCancel: () => {
+            process.exit();
+          },
+        },
+      );
+      this.options.installDependencies = answers.installDependencies;
+      const { installDependencies } = this.options;
+      if (installDependencies === 'yarn' || installDependencies === 'npm') {
+        await installNpm(this.options.destinationPath, installDependencies);
+      }
+    }
+
+    if (this.wantsRecreateInfo) {
+      console.log('');
+      console.log('If you want to rerun this exact same generator you can do so by executing:');
+      console.log(optionsToCommand(this.options, this.generatorName));
     }
   }
 }

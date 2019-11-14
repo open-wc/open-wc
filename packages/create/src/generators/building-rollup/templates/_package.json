@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "start:build": "cd dist && es-dev-server --open",
+    "build": "rimraf dist && rollup -c rollup.config.js"
+  },
+  "devDependencies": {
+    "@open-wc/building-rollup": "^0.9.0",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.15.4"
+  }
+}

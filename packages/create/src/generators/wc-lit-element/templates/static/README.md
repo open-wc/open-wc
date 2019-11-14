@@ -16,22 +16,15 @@ npm i <%= tagName %>
 <<%= tagName %>></<%= tagName %>>
 ```
 
-## Testing using karma (if applied by author)
-```bash
-npm run test
-```
+<%= featureReadmes %>
 
-## Testing using karma via browserstack (if applied by author)
+## Local Demo with `es-dev-server`
 ```bash
-npm run test:es5:bs
+npm start
 ```
+To run a local development server that serves the basic demo located in `demo/index.html`
 
-## Demoing using storybook (if applied by author)
 ```bash
-npm run storybook
+npm start:compatibility
 ```
-
-## Linting (if applied by author)
-```bash
-npm run lint
-```
+To run a local development server in compatibility mode for older browsers that serves the basic demo located in `demo/index.html`

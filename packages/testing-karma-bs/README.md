@@ -1,41 +1,67 @@
 # Testing via Browserstack
 
-[//]: # (AUTO INSERT HEADER PREPUBLISH)
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
-This will run your local test via Browserstack browsers/devices.
-You will need to have a Browserstack automate account.
+To make sure your project is production-ready, we recommend running tests in all the browsers you want to support.
 
-Using:
-- Karma via `@open-wc/testing-karma`
-- Testing via [Browserstack](https://www.browserstack.com/) via [karma-browserstack-launcher](https://github.com/karma-runner/karma-browserstack-launcher)
+If you do not have access to all browsers, we recommend using a service like [Browserstack](https://www.browserstack.com/) to make sure your project works as intended.
+Browserstack offers free accounts for [open source projects](https://www.browserstack.com/open-source).
 
-::: tip
-This is part of the default [open-wc](https://open-wc.org/) recommendation
-:::
+The `testing-karma-bs` configuration helps setting up karma with Browserstack. To set it up you need to use the configuration in your project, and follow the instructions below to set up a user account
 
 ## Setup
-```bash
-npm init @open-wc testing-karma-bs
 
-# follow Setup user + key
+With our project scaffolding you can set up a pre-configured project, or you can upgrade an existing project by choosing `Upgrade -> Testing`:
+
+```bash
+npm init @open-wc
 ```
 
 ### Manual
-- `yarn add @open-wc/testing-karma-bs --dev`
-- Copy [karma.es5.bs.config.js](https://github.com/open-wc/open-wc/blob/master/packages/generator-open-wc/generators/testing-karma-bs/templates/static/karma.es5.bs.config.js) to `karma.es5.bs.config.js`
-- Add these scripts to your package.json
-  ```js
+
+Install:
+
+```bash
+npm i -D @open-wc/testing-karma-bs deepmerge
+```
+
+Add a `karma.conf.bs.js`:
+
+```javascript
+const merge = require('deepmerge');
+const { bsSettings } = require('@open-wc/testing-karma-bs');
+const createBaseConfig = require('./karma.conf.js');
+
+module.exports = config => {
+  config.set(
+    merge(bsSettings(config), createBaseConfig(config), {
+      browserStack: {
+        project: 'your-name',
+      },
+    }),
+  );
+
+  return config;
+};
+```
+
+Add a script to your `package.json`:
+
+```json
+{
   "scripts": {
-    "test:es5:bs": "karma start karma.es5.bs.config.js"
-  },
-  ```
+    "test:bs": "karma start karma.bs.config.js --compatibility all --coverage"
+  }
+}
+```
 
 ### Setup user + key
-- Go to https://www.browserstack.com/accounts/settings
+
+- Go to [https://www.browserstack.com/accounts/settings](https://www.browserstack.com/accounts/settings)
 - Look for "Automate" and write down your "Access Key" and "Username"
 
 ```bash
-# for one time use only
+# for one-time use only
 export BROWSER_STACK_USERNAME=xxx
 export BROWSER_STACK_ACCESS_KEY=xxx
 
@@ -49,8 +75,9 @@ echo "Key: $BROWSER_STACK_ACCESS_KEY"
 ```
 
 ### Usage
+
 ```bash
-npm run test:es5:bs
+npm run test:bs
 ```
 
 <script>

@@ -4,19 +4,21 @@ const sidebar = [
   ['/', 'Home'],
   ['/guide/', 'Introduction'],
   {
-    title: 'IDE',
-    collapsable: true,
-    children: [['/ide/', 'Getting started']],
-  },
-  {
     title: 'Developing',
     collapsable: true,
     children: [
       ['/developing/', 'Getting started'],
-      '/developing/owc-dev-server',
-      ['/developing/create', 'Generators'],
+      ['/developing/ide', 'IDE'],
+      '/developing/lit-html',
+      '/developing/code-examples',
+      '/developing/best-practices',
+      '/developing/es-dev-server',
+      ['/init/', 'Generators'],
+      '/developing/types',
+      '/developing/routing',
     ],
   },
+  ['/codelabs/', 'Codelabs'],
   {
     title: 'Linting',
     collapsable: true,
@@ -24,6 +26,7 @@ const sidebar = [
       ['/linting/', 'Getting started'],
       '/linting/linting-eslint',
       '/linting/linting-prettier',
+      '/linting/linting-types',
     ],
   },
   {
@@ -31,9 +34,13 @@ const sidebar = [
     collapsable: true,
     children: [
       ['/testing/', 'Getting started'],
+      '/testing/testing',
       '/testing/testing-helpers',
-      '/testing/testing-chai-dom-equals',
+      '/testing/testing-chai-a11y-axe',
+      '/testing/testing-sinon',
+      '/testing/semantic-dom-diff',
       '/testing/testing-karma',
+      '/testing/karma-esm',
       '/testing/testing-karma-bs',
       '/testing/testing-wallaby',
     ],
@@ -44,8 +51,9 @@ const sidebar = [
     children: [
       ['/building/', 'Getting started'],
       '/building/building-rollup',
+      '/building/rollup-plugin-index-html',
       '/building/building-webpack',
-      '/building/polyfills-loader',
+      '/building/webpack-index-html-plugin',
     ],
   },
   {
@@ -73,7 +81,8 @@ module.exports = {
     sidebarDepth: 2,
     sidebar: {
       '/guide/': sidebar,
-      '/ide/': sidebar,
+      '/codelabs/': sidebar,
+      '/init/': sidebar,
       '/developing/': sidebar,
       '/linting/': sidebar,
       '/testing/': sidebar,
@@ -81,7 +90,20 @@ module.exports = {
       '/demoing/': sidebar,
       '/publishing/': sidebar,
       '/automating/': sidebar,
-      '/faq/': ['', 'rerender'],
+      '/faq/': [
+        ['', 'Faq'],
+        {
+          title: 'Deep dives',
+          collapsable: true,
+          children: [
+            'component-libraries',
+            'rerender',
+            'unit-testing-custom-events',
+            'unit-testing-init-error',
+            'lit-element-lifecycle',
+          ],
+        },
+      ],
       '/about/': [['/about/', 'About'], '/about/contact', '/about/rationales', '/about/blog'],
     },
     nav: [
@@ -100,6 +122,7 @@ module.exports = {
   plugins: ['@vuepress/google-analytics'],
   ga: 'UA-131782693-1',
   head: [
+    ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
     [
       'meta',
       {

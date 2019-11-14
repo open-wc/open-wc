@@ -1,5 +1,6 @@
-import createDefaultConfig from '../../modern-and-legacy-config';
+const createDefaultConfig = require('../../modern-and-legacy-config');
 
-export default createDefaultConfig({
+module.exports = createDefaultConfig({
   input: './demo/ts-babel/index.html',
+  extensions: ['.js', '.mjs', '.ts'],
 });

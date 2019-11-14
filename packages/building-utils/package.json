@@ -1,0 +1,63 @@
+{
+  "name": "@open-wc/building-utils",
+  "version": "2.10.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Utils for @open-wc packages that do build stuff",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/building-utils"
+  },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "scripts": {
+    "test": "npm run test:node",
+    "test:node": "mocha test/**/*.test.js test/*.test.js",
+    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
+  },
+  "files": [
+    "*.js",
+    "dom5-fork",
+    "index-html",
+    "src"
+  ],
+  "keywords": [
+    "building",
+    "utils"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@webcomponents/webcomponentsjs": "^2.2.10",
+    "arrify": "^2.0.1",
+    "browserslist": "^4.5.6",
+    "chokidar": "^3.0.0",
+    "clean-css": "^4.2.1",
+    "clone": "^2.1.2",
+    "core-js-bundle": "^3.1.4",
+    "deepmerge": "^3.2.0",
+    "es-module-shims": "^0.4.5",
+    "html-minifier": "^4.0.0",
+    "lru-cache": "^5.1.1",
+    "minimatch": "^3.0.4",
+    "parse5": "^5.1.0",
+    "path-is-inside": "^1.0.2",
+    "regenerator-runtime": "^0.13.2",
+    "resolve": "^1.11.1",
+    "rimraf": "^2.6.3",
+    "systemjs": "^4.0.1",
+    "terser": "^4.0.0",
+    "valid-url": "^1.0.9",
+    "whatwg-fetch": "^3.0.0",
+    "whatwg-url": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/lru-cache": "^5.1.0",
+    "@types/rimraf": "^2.0.2",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.0"
+  }
+}

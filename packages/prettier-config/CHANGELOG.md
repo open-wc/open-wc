@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.12](https://github.com/open-wc/open-wc/compare/@open-wc/prettier-config@0.1.11...@open-wc/prettier-config@0.1.12) (2019-11-03)
+
+
+### Bug Fixes
+
+* align versions ([42f05f4](https://github.com/open-wc/open-wc/commit/42f05f4))
+
+
+
+
+
+## [0.1.11](https://github.com/open-wc/open-wc/compare/@open-wc/prettier-config@0.1.10...@open-wc/prettier-config@0.1.11) (2019-10-23)
+
+
+### Bug Fixes
+
+* add package keywords ([#859](https://github.com/open-wc/open-wc/issues/859)) ([cd78405](https://github.com/open-wc/open-wc/commit/cd78405))
+
+
+
+
+
+## [0.1.10](https://github.com/open-wc/open-wc/compare/@open-wc/prettier-config@0.1.9...@open-wc/prettier-config@0.1.10) (2019-04-14)
+
+
+### Bug Fixes
+
+* update generator usage ([5d284d4](https://github.com/open-wc/open-wc/commit/5d284d4))
+
+
+
+
+
+## [0.1.9](https://github.com/open-wc/open-wc/compare/@open-wc/prettier-config@0.1.8...@open-wc/prettier-config@0.1.9) (2019-03-13)
+
+
+### Bug Fixes
+
+* **create:** generated prettier scripts should work on windows ([438a319](https://github.com/open-wc/open-wc/commit/438a319))
+
+
+
+
+
 ## [0.1.8](https://github.com/open-wc/open-wc/compare/@open-wc/prettier-config@0.1.7...@open-wc/prettier-config@0.1.8) (2019-03-08)
 
 **Note:** Version bump only for package @open-wc/prettier-config

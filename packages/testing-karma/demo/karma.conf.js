@@ -1,15 +1,25 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const merge = require('webpack-merge');
-const defaultSettings = require('../default-settings.js');
+const { defaultConfig } = require('../testing-karma');
 
 module.exports = config => {
   config.set(
-    merge(defaultSettings(config), {
+    merge(defaultConfig(config), {
+      basePath: '../../../',
+
       files: [
-        // allows running single tests with the --grep flag
-        config.grep ? config.grep : 'test/**/*.test.js',
+        // runs all files ending with .test in the test folder,
+        // can be overwritten by passing a --grep flag. examples:
+        //
+        // npm run test -- --grep test/foo/bar.test.js
+        // npm run test -- --grep test/bar/*
+        {
+          pattern: config.grep ? config.grep : 'packages/testing-karma/demo/test/**/*.test.js',
+          type: 'module',
+        },
       ],
-      // additional custom config here
+
+      // you can overwrite/extend the config further
     }),
   );
   return config;

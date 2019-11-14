@@ -1,19 +1,15 @@
 {
-  "name": "<%= tagName %>",
-  "version": "0.0.0",
-  "description": "Webcomponent <%= tagName %> following open-wc recommendations",
-  "author": "<%= tagName %>",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
-  "repository": "https://github.com/open-wc/open-wc/",
+  "main": "index.js",
+  "module": "index.js",
   "scripts": {
-    "start": "owc-dev-server --open demo"
+    "start": "es-dev-server --app-index demo/index.html --node-resolve --open --watch",
+    "start:compatibility": "es-dev-server --app-index demo/index.html --compatibility all --node-resolve --open --watch"
   },
   "dependencies": {
     "lit-html": "^1.0.0",
     "lit-element": "^2.0.1"
   },
   "devDependencies": {
-    "owc-dev-server": "^0.2.0"
+    "es-dev-server": "^1.5.0"
   }
 }

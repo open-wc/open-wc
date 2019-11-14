@@ -23,11 +23,11 @@ Many web developers have experienced the dreaded "Javascript Fatigue". With our 
 
 We want web component development to be accessible and approachable for everyone, regardless of their background. Therefore, our recommendations aim to be easy to use, be ready to use, and provide that "it just works" developer experience we all crave for the various aspects of web component development.
 
-Best practices/recommendations and examples may change and evolve over time.	
+Best practices/recommendations and examples may change and evolve over time.
 
 ### Why Web Components
 
-We believe that web components provide a standards-based solution to problems like reusability, interopability, and encapsulation.
+We believe that web components provide a standards-based solution to problems like reusability, interoperability, and encapsulation.
 
 #### Historical Background
 
@@ -46,14 +46,17 @@ What if you could remove code, gain performance, and streamline implementation a
 - Write using a streamlined component API that combines the best bits of popular libraries and frameworks!
 
 ##### Performance
+
 Just like `querySelector` reduces developers' dependence on jQuery, the web components standards reduces the size and complexity of component libraries and frameworks. This ultimately benefits users by decreasing page load times and increasing app performance.
 
 ##### Future Proofing
+
 Using the browser's standards-based component model will increase the longevity of your application. The web has an extremely strong tradition of backwards-compatibility. Standards bodies have consistently gone out of their way to maintain legacy APIs.
 
 ##### Flexibility
+
 The web components standards are fairly low-level, letting library authors build upon them with innovative APIs. By using such libraries you can build your app in the style you want while still leveraging built-in browser features.
 
 ## Contribute
 
-Feel free to critique, ask questions and join the conversation, we'd love to hear your opinions and feedback. You can reach us by creating an issue on our [github](https://github.com/open-wc) or on the [#open-wc](https://polymer.slack.com/messages/CE6D9DN05) channel in the [Polymer slack](https://join.slack.com/t/polymer/shared_invite/enQtNTAzNzg3NjU4ODM4LTkzZGVlOGIxMmNiMjMzZDM1YzYyMzdiYTk0YjQyOWZhZTMwN2RlNjM5ZDFmZjMxZWRjMWViMDA1MjNiYWFhZWM).
+Feel free to critique, ask questions and join the conversation, we'd love to hear your opinions and feedback. You can reach us by creating an issue on our [github](https://github.com/open-wc) or on the [#open-wc](https://polymer.slack.com/messages/CE6D9DN05) channel in the [Polymer slack](https://www.polymer-project.org/slack-invite).

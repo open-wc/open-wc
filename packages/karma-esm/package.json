@@ -1,0 +1,57 @@
+{
+  "name": "@open-wc/karma-esm",
+  "version": "2.9.8",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Karma plugin for testing with es modules",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/karma-esm"
+  },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "./karma-esm.js",
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js",
+    "test": "karma start demo/basic/karma.config.js --coverage",
+    "test:import-map": "karma start demo/import-map/karma.config.js --coverage",
+    "test:import-map:watch": "karma start demo/import-map/karma.config.js --auto-watch=true --single-run=false",
+    "test:typescript": "karma start demo/typescript/karma.config.js --coverage",
+    "test:typescript:watch": "karma start demo/typescript/karma.config.js --auto-watch=true --single-run=false",
+    "test:watch": "karma start demo/basic/karma.config.js --auto-watch=true --single-run=false"
+  },
+  "files": [
+    "*.js",
+    "src"
+  ],
+  "keywords": [
+    "karma",
+    "testing",
+    "polyfill"
+  ],
+  "dependencies": {
+    "@open-wc/building-utils": "^2.10.2",
+    "babel-plugin-istanbul": "^5.1.4",
+    "chokidar": "^3.0.0",
+    "deepmerge": "^3.2.0",
+    "es-dev-server": "^1.23.1",
+    "minimatch": "^3.0.4",
+    "portfinder": "^1.0.21",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/lodash-es": "^4.17.3",
+    "chai": "^4.2.0",
+    "karma": "^4.1.0",
+    "karma-browserstack-launcher": "^1.0.0",
+    "karma-coverage-istanbul-reporter": "^2.0.0",
+    "lodash-es": "^4.17.15",
+    "sinon": "^7.4.1"
+  }
+}

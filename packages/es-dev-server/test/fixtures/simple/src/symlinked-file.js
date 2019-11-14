@@ -1,0 +1,1 @@
+../symlinked-dir/foo.js

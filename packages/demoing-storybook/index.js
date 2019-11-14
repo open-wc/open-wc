@@ -1,9 +1,18 @@
 export { html } from 'lit-html';
 
-export { storiesOf, addParameters } from '@storybook/polymer';
+export {
+  storiesOf,
+  addParameters,
+  addDecorator,
+  setCustomElements,
+  getCustomElements,
+  isValidComponent,
+  isValidMetaData,
+  configure,
+} from '@storybook/web-components';
 export { action } from '@storybook/addon-actions';
+export { withA11y } from '@storybook/addon-a11y';
 export { linkTo } from '@storybook/addon-links';
-export { withNotes } from '@storybook/addon-notes';
 export { document } from 'global';
 export {
   withKnobs,
@@ -16,6 +25,9 @@ export {
   color,
   array,
   boolean,
+  radios,
+  files,
+  optionsKnob,
 } from '@storybook/addon-knobs';
 
-export { withClassPropertiesKnobs } from './withClassPropertiesKnobs.js';
+export { withWebComponentsKnobs } from './src/withWebComponentsKnobs.js';

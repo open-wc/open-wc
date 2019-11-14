@@ -1,21 +1,26 @@
 {
   "name": "@open-wc/testing-wallaby",
-  "version": "0.1.11",
-  "description": "Testing with wallaby following open-wc recommendations",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
+  "version": "0.1.13",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Testing with wallaby following open-wc recommendations",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/testing-wallaby"
   },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
   },
+  "keywords": [
+    "wallaby",
+    "testing",
+    "realtime"
+  ],
   "dependencies": {
     "wallaby-webpack": "^3.0.0",
     "webpack": "^4.28.0"

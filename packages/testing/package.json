@@ -1,38 +1,45 @@
 {
   "name": "@open-wc/testing",
-  "version": "0.9.25",
-  "description": "Testing following open-wc recommendations",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
+  "version": "2.3.9",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Testing following open-wc recommendations",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/testing"
   },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
   "scripts": {
-    "test": "karma start",
-    "test:watch": "karma start --auto-watch=true --single-run=false",
-    "test:demo": "karma start demo/karma.conf.js",
-    "test:es5": "karma start karma.es5.config.js",
-    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false",
-    "test:es5:bs": "karma start karma.es5.bs.config.js",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
+  "files": [
+    "*.d.ts",
+    "*.js"
+  ],
+  "keywords": [
+    "testing",
+    "chai"
+  ],
   "dependencies": {
-    "@bundled-es-modules/chai": "^4.2.0",
-    "@open-wc/chai-dom-equals": "^0.9.23",
-    "@open-wc/testing-helpers": "^0.7.22",
+    "@open-wc/chai-dom-equals": "^0.12.36",
+    "@open-wc/semantic-dom-diff": "^0.15.3",
+    "@open-wc/testing-helpers": "^1.3.0",
     "@types/chai": "^4.1.7",
-    "mocha": "^5.0.0"
+    "@types/chai-dom": "^0.0.8",
+    "@types/mocha": "^5.0.0",
+    "@types/sinon-chai": "^3.2.3",
+    "chai": "^4.2.0",
+    "chai-a11y-axe": "^1.2.2",
+    "chai-dom": "^1.8.1",
+    "mocha": "^6.0.0",
+    "sinon-chai": "^3.3.0"
   },
   "devDependencies": {
-    "@open-wc/testing-karma": "^0.4.14",
-    "@open-wc/testing-karma-bs": "^0.2.15",
-    "@open-wc/testing-wallaby": "^0.1.11",
-    "webpack-merge": "^4.1.5"
-  }
+    "sinon": "^7.4.1"
+  },
+  "module": "index.js"
 }

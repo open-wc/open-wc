@@ -1,33 +1,39 @@
 import { html, css, LitElement } from 'lit-element';
 
-export default class <%= className %> extends LitElement {
+export class <%= className %> extends LitElement {
   static get styles() {
     return css`
       :host {
-        background: grey;
+        --<%= tagName %>-text-color: #000;
+
         display: block;
         padding: 25px;
+        color: var(--<%= tagName %>-text-color);
       }
     `;
   }
 
   static get properties() {
     return {
-      header: { type: String }
-    }
+      title: { type: String },
+      counter: { type: Number },
+    };
   }
 
   constructor() {
     super();
-    this.header = 'My Example';
+    this.title = 'Hey there';
+    this.counter = 5;
+  }
+
+  __increment() {
+    this.counter += 1;
   }
 
   render() {
     return html`
-      <h2>${this.header}</h2>
-      <div>
-        <slot></slot>
-      </div>
+      <h2>${this.title} Nr. ${this.counter}!</h2>
+      <button @click=${this.__increment}>increment</button>
     `;
   }
 }

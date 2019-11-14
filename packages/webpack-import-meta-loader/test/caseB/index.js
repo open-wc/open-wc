@@ -1,3 +1,3 @@
-import './caseBsub/caseBsub';
+import './caseBsub/caseBsub.js';
 
-window.foo = new URL('./', import.meta.url);
+export const foo = new URL('./', import.meta.url);

@@ -1,5 +1,10 @@
 node_modules
 coverage/
-/packages/create/src/generators/*/templates/**/*
 dist
 stats.html
+/packages/create/src/generators/*/templates/**/*
+/packages/import-maps-generate/test/assets/**/node_modules
+/packages/**/test/**/snapshots
+/packages/es-dev-server/test/fixtures/**/*
+/packages/karma-esm/src/esm-debug.html
+/packages/karma-esm/src/esm-context.html

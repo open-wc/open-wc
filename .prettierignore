@@ -3,3 +3,11 @@ coverage/
 /packages/create/src/generators/*/templates/**/*
 dist
 stats.html
+packages/semantic-dom-diff/bundle/get-diffable-html.js
+packages/**/test/**/snapshots
+/packages/es-dev-server/test/fixtures/**/*
+/packages/karma-esm/src/test-loader-browser-script.js
+/packages/karma-esm/src/esm-debug.html
+/packages/karma-esm/src/esm-context.html
+CHANGELOG.md
+__snapshots__/

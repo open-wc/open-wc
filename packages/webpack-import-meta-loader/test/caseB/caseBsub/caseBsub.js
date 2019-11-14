@@ -1,1 +1,1 @@
-window.bar = new URL('./', import.meta.url);
+export const bar = new URL('./', import.meta.url);

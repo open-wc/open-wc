@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["es2017", "dom"],
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "strict": false,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "types": ["node", "mocha"],
+    "esModuleInterop": true,
+  },
+  "files": [
+    "browser.d.ts"
+  ],
+  "include": [
+    "packages"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*",
+    "**/coverage/*",
+    "packages/create/src/generators/*/templates/**/*",
+    "packages/webpack-index-html-plugin/demo/**/*",
+    "packages/building-utils/test/custom-polyfils/**/*",
+    "**/dist/**/*",
+    "packages/**/test/**/snapshots",
+    "packages/es-dev-server/test/fixtures/**/*",
+    "packages/karma-esm/demo/**/*",
+    "packages/es-dev-server/demo/**/*"
+  ]
+}

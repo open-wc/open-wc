@@ -1,52 +1,51 @@
 {
   "name": "@open-wc/demoing-storybook",
-  "version": "0.1.1",
-  "description": "Storybook configuration following open-wc recommendations",
-  "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
-  "license": "MIT",
+  "version": "0.4.5",
   "publishConfig": {
     "access": "public"
   },
+  "description": "Storybook configuration following open-wc recommendations",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
     "directory": "packages/building-storybook"
   },
-  "scripts": {
-    "storybook": "start-storybook -p 9001 -c demo/.storybook",
-    "prepublishOnly": "../../scripts/insert-header.js"
-  },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
   "main": "index.js",
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js",
+    "site:build": "build-storybook -c demo/.storybook -o ../../_site/demoing-storybook",
+    "storybook": "start-storybook -p 9001 -c demo/.storybook",
+    "storybook:build": "build-storybook -c demo/.storybook"
+  },
   "files": [
     "*.js",
-    "*.ts"
+    "src"
   ],
-  "dependencies": {
-    "@babel/core": "^7.3.3",
-    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/preset-env": "^7.0.0",
-    "@storybook/addon-actions": "^5.0.0",
-    "@storybook/addon-console": "^1.1.0",
-    "@storybook/addon-knobs": "^5.0.0",
-    "@storybook/addon-links": "^5.0.0",
-    "@storybook/addon-notes": "^5.0.0",
-    "@storybook/addon-storysource": "^5.0.0",
-    "@storybook/addon-viewport": "^5.0.0",
-    "@storybook/polymer": "^5.0.0",
-    "@types/storybook__addon-actions": "^3.4.1",
-    "@types/storybook__addon-backgrounds": "^3.2.1",
-    "@types/storybook__addon-knobs": "^3.4.1",
-    "@types/storybook__addon-links": "^3.3.3",
-    "@types/storybook__addon-notes": "^3.3.3",
-    "@webcomponents/webcomponentsjs": "^2.2.0",
-    "babel-loader": "^8.0.0",
-    "moment": "^2.0.0",
-    "polymer-webpack-loader": "^2.0.0"
-  },
+  "keywords": [
+    "storybook",
+    "demo",
+    "demo-states",
+    "testing"
+  ],
   "peerDependencies": {
     "lit-html": "^1.0.0"
+  },
+  "dependencies": {
+    "@open-wc/testing-helpers": "^1.3.0",
+    "@storybook/addon-a11y": "5.3.0-alpha.40",
+    "@storybook/addon-actions": "5.3.0-alpha.40",
+    "@storybook/addon-backgrounds": "5.3.0-alpha.40",
+    "@storybook/addon-console": "^1.1.0",
+    "@storybook/addon-docs": "5.3.0-alpha.40",
+    "@storybook/addon-knobs": "5.3.0-alpha.40",
+    "@storybook/addon-links": "5.3.0-alpha.40",
+    "@storybook/addon-storysource": "5.3.0-alpha.40",
+    "@storybook/addon-viewport": "5.3.0-alpha.40",
+    "@storybook/web-components": "5.3.0-alpha.40",
+    "babel-loader": "^8.0.0"
   },
   "devDependencies": {
     "lit-element": "^2.0.1",

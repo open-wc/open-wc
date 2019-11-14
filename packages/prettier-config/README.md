@@ -1,6 +1,6 @@
 # Linting Prettier
 
-[//]: # (AUTO INSERT HEADER PREPUBLISH)
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 Use [Prettier](https://prettier.io) to format your JS, CSS and HTML code.
 
@@ -9,8 +9,10 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 :::
 
 ## Setup
+
 ```bash
-npm init @open-wc linting-prettier
+npm init @open-wc
+# Upgrade > Linting
 ```
 
 ## Manual
@@ -26,17 +28,14 @@ npm init @open-wc linting-prettier
 - Add the following scripts to your package.json
   ```js
   "scripts": {
-    "lint:prettier": "prettier '**/*.js' --list-different || (echo '↑↑ these files are not prettier formatted ↑↑' && exit 1)",
-    "format:prettier": "prettier '**/*.js' --write",
+    "lint:prettier": "prettier \"**/*.js\" --list-different || (echo '↑↑ these files are not prettier formatted ↑↑' && exit 1)",
+    "format:prettier": "prettier \"**/*.js\" --write",
   },
   ```
 - Update your `.eslintrc.js` to look like this:
   ```js
   module.exports = {
-    extends: [
-      '@open-wc/eslint-config',
-      'eslint-config-prettier'
-    ].map(require.resolve),
+    extends: ['@open-wc/eslint-config', 'eslint-config-prettier'].map(require.resolve),
   };
   ```
 
@@ -44,12 +43,13 @@ npm init @open-wc linting-prettier
 
 - Apply formatting to JS files
 - Apply formatting to HTML inside of `html` tagged template literals used by [lit-html](https://github.com/Polymer/lit-html)
-- Apply formatting to CSS inside of `css` tagged template literals used by [lit-css](https://github.com/lit-styles/lit-styles/tree/master/packages/lit-css)
+- Apply formatting to CSS inside of `css` tagged template literals used by [lit-element](https://lit-element.polymer-project.org/guide/styles#static-styles)
 - Integration with ESLint to prevent potentially conflicting rules
 
 ## Usage
 
 Run:
+
 - `npm run lint:prettier` to check if your files are correctly formatted
 - `npm run format:prettier` to auto format your files
 

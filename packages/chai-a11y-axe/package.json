@@ -1,0 +1,34 @@
+{
+  "name": "chai-a11y-axe",
+  "version": "1.2.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "A11y tests for chai",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/chai-a11y-axe"
+  },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "index.js",
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js"
+  },
+  "files": [
+    "*.d.ts",
+    "*.js",
+    "src"
+  ],
+  "keywords": [
+    "chai",
+    "accessibility",
+    "A11Y",
+    "testing"
+  ],
+  "contributors": [
+    "Pawel Psztyc"
+  ]
+}

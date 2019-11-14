@@ -1,0 +1,53 @@
+{
+  "name": "@import-maps/generate",
+  "version": "0.1.9",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Generate an import map based on your production dependencies",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/import-maps-generate"
+  },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "dist/generate.js",
+  "bin": {
+    "generate": "./dist/generate.js",
+    "generate-import-map": "./dist/generate.js"
+  },
+  "scripts": {
+    "build": "babel src --out-dir dist --copy-files --include-dotfiles",
+    "prepublishOnly": "npm run build && ../../scripts/insert-header.js",
+    "start": "npm run build && node ./dist/generate.js",
+    "test": "npm run test:node",
+    "test:node": "mocha --require @babel/register",
+    "test:watch": "onchange 'src/**/*.js' 'test/**/*.js' -- npm run test --silent"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "import-map",
+    "import-maps"
+  ],
+  "dependencies": {
+    "@yarnpkg/lockfile": "^1.1.0",
+    "command-line-args": "^5.0.2",
+    "glob": "^7.1.3",
+    "prompts": "^2.1.0",
+    "semver": "^6.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-plugin-transform-dynamic-import": "^2.1.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.0",
+    "onchange": "^5.2.0"
+  }
+}

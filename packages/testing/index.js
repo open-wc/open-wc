@@ -1,3 +1,4 @@
+import 'chai/chai.js';
 import './register-chai-plugins.js';
 
 export {
@@ -15,6 +16,9 @@ export {
   fixture,
   fixtureSync,
   fixtureCleanup,
+  elementUpdated,
 } from '@open-wc/testing-helpers/index.js';
 
-export { chai, expect, should, assert } from '@bundled-es-modules/chai';
+// @ts-ignore
+const { expect, should, assert } = window.chai;
+export { expect, should, assert };
