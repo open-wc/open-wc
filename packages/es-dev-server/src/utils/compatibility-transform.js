@@ -5,6 +5,7 @@ import {
   createMinCompatibilityBabelTransform,
   createMaxCompatibilityBabelTransform,
   polyfillModulesTransform,
+  createBabelTransform,
 } from './babel-transform.js';
 import { resolveModuleImports } from './resolve-module-imports.js';
 import { compatibilityModes } from '../constants.js';
@@ -78,6 +79,8 @@ export function createCompatibilityTransform(cfg) {
         return minCompatibilityTransform;
       case compatibilityModes.MAX:
         return maxCompatibilityTransform;
+      case compatibilityModes.NONE:
+        return createBabelTransform(cfg);
       default:
         throw new Error(`Unknown compatibility mode: ${cfg.compatibilityMode}`);
     }
@@ -90,7 +93,10 @@ export function createCompatibilityTransform(cfg) {
     const isExcluded = cfg.babelExclude.some(pattern => minimatch(file.filePath, pattern));
     // Modern browsers don't need any transformation, so we avoid parsing with babel for performance.
     const skipBabelTransform =
-      cfg.compatibilityMode === compatibilityModes.AUTO && file.uaCompat.modern;
+      !cfg.customBabelConfig &&
+      !cfg.readUserBabelConfig &&
+      cfg.compatibilityMode === compatibilityModes.AUTO &&
+      file.uaCompat.modern;
 
     /**
      * Transform code to a compatible format based on the compatibility setting. We keep ESM syntax

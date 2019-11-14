@@ -107,7 +107,7 @@
     "@babel/traverse" "^7.7.0"
     "@babel/types" "^7.7.0"
 
-"@babel/helper-create-class-features-plugin@^7.7.0":
+"@babel/helper-create-class-features-plugin@^7.6.0", "@babel/helper-create-class-features-plugin@^7.7.0":
   version "7.7.0"
   resolved "https://registry.yarnpkg.com/@babel/helper-create-class-features-plugin/-/helper-create-class-features-plugin-7.7.0.tgz#bcdc223abbfdd386f94196ae2544987f8df775e8"
   integrity sha512-MZiB5qvTWoyiFOgootmRSDV1udjIqJW/8lmxgzKq6oDqxdmHUjeP2ZUOmgHdYjmUVNABqRrHjYAYRvj8Eox/UA==
@@ -323,6 +323,14 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-syntax-json-strings" "^7.2.0"
 
+"@babel/plugin-proposal-nullish-coalescing-operator@^7.4.4":
+  version "7.4.4"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-nullish-coalescing-operator/-/plugin-proposal-nullish-coalescing-operator-7.4.4.tgz#41c360d59481d88e0ce3a3f837df10121a769b39"
+  integrity sha512-Amph7Epui1Dh/xxUxS2+K22/MUi6+6JVTvy3P58tja3B6yKTSjwwx0/d83rF7551D6PVSSoplQb8GCwqec7HRw==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+    "@babel/plugin-syntax-nullish-coalescing-operator" "^7.2.0"
+
 "@babel/plugin-proposal-object-rest-spread@7.6.2", "@babel/plugin-proposal-object-rest-spread@^7.3.2", "@babel/plugin-proposal-object-rest-spread@^7.3.4", "@babel/plugin-proposal-object-rest-spread@^7.6.2":
   version "7.6.2"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-object-rest-spread/-/plugin-proposal-object-rest-spread-7.6.2.tgz#8ffccc8f3a6545e9f78988b6bf4fe881b88e8096"
@@ -338,6 +346,22 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-syntax-optional-catch-binding" "^7.2.0"
+
+"@babel/plugin-proposal-optional-chaining@^7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-optional-chaining/-/plugin-proposal-optional-chaining-7.6.0.tgz#e9bf1f9b9ba10c77c033082da75f068389041af8"
+  integrity sha512-kj4gkZ6qUggkprRq3Uh5KP8XnE1MdIO0J7MhdDX8+rAbB6dJ2UrensGIS+0NPZAaaJ1Vr0PN6oLUgXMU1uMcSg==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+    "@babel/plugin-syntax-optional-chaining" "^7.2.0"
+
+"@babel/plugin-proposal-private-methods@^7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-private-methods/-/plugin-proposal-private-methods-7.6.0.tgz#19ddc493c7b5d47afdd4291e740c609a83c9fae4"
+  integrity sha512-G/qjXbdYXxQfDPPu2h7L48SkgO2H2MXoFkCPg+9nFFyMXRCN+ASm/iOT8o/2i3+YhnjFiz5tie+F5Xswvfm/LQ==
+  dependencies:
+    "@babel/helper-create-class-features-plugin" "^7.6.0"
+    "@babel/helper-plugin-utils" "^7.0.0"
 
 "@babel/plugin-proposal-unicode-property-regex@^7.2.0", "@babel/plugin-proposal-unicode-property-regex@^7.7.0":
   version "7.7.0"
@@ -2171,28 +2195,6 @@
   version "0.13.21"
   resolved "https://registry.yarnpkg.com/@open-wc/semantic-dom-diff/-/semantic-dom-diff-0.13.21.tgz#718b9ec5f9a98935fc775e577ad094ae8d8b7dea"
   integrity sha512-BONpjHcGX2zFa9mfnwBCLEmlDsOHzT+j6Qt1yfK3MzFXFtAykfzFjAgaxPetu0YbBlCfXuMlfxI4vlRGCGMvFg==
-
-"@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.2.15"
-  dependencies:
-    "@open-wc/testing-karma" "^3.1.54"
-    "@types/node" "^11.13.0"
-    karma-browserstack-launcher "^1.0.0"
-
-"@open-wc/testing-karma@file:./packages/testing-karma":
-  version "3.1.54"
-  dependencies:
-    "@open-wc/karma-esm" "^2.9.8"
-    axe-core "^3.3.1"
-    karma "^4.1.0"
-    karma-chrome-launcher "^2.0.0"
-    karma-coverage-istanbul-reporter "^2.0.0"
-    karma-mocha "^1.0.0"
-    karma-mocha-reporter "^2.0.0"
-    karma-mocha-snapshot "^0.2.1"
-    karma-snapshot "^0.6.0"
-    karma-source-map-support "^1.3.0"
-    mocha "^6.0.0"
 
 "@reach/router@^1.2.1":
   version "1.2.1"
