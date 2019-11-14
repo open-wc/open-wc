@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.21.4...@open-wc/create@0.21.5) (2019-11-14)
+
+
+### Bug Fixes
+
+* **create:** rename directory of page-main test ([84c3607](https://github.com/open-wc/open-wc/commit/84c3607)), closes [#945](https://github.com/open-wc/open-wc/issues/945) [#987](https://github.com/open-wc/open-wc/issues/987)
+
+
+
+
+
 ## [0.21.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.21.3...@open-wc/create@0.21.4) (2019-11-13)
 
 **Note:** Version bump only for package @open-wc/create
