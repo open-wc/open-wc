@@ -4,7 +4,7 @@ import path from 'path';
 import fs from 'fs';
 import uuid from 'uuid/v4.js';
 import { startServer, createConfig, compatibilityModes } from '../../src/es-dev-server.js';
-import { createMockFileWatcher } from '../test-helpers.js';
+import { createMockFileWatcher, timeout } from '../test-helpers.js';
 
 const host = 'http://localhost:8080/';
 
@@ -37,7 +37,7 @@ describe('etag cache middleware', () => {
 
   context('', () => {
     beforeEach(() => {
-      fs.writeFileSync(testFileAPath, 'this file is cached', 'utf-8');
+      fs.writeFileSync(testFileAPath, '// this file is cached', 'utf-8');
     });
 
     afterEach(() => {
@@ -49,7 +49,7 @@ describe('etag cache middleware', () => {
       const etag = initialResponse.headers.get('etag');
 
       expect(initialResponse.status).to.equal(200);
-      expect(await initialResponse.text()).to.equal('this file is cached');
+      expect(await initialResponse.text()).to.equal('// this file is cached');
 
       expect(etag).to.be.a('string');
 
@@ -63,7 +63,7 @@ describe('etag cache middleware', () => {
 
   context('', () => {
     beforeEach(() => {
-      fs.writeFileSync(testFileBPath, 'this file is cached', 'utf-8');
+      fs.writeFileSync(testFileBPath, '// this file is cached', 'utf-8');
     });
 
     afterEach(() => {
@@ -71,16 +71,17 @@ describe('etag cache middleware', () => {
     });
 
     it('returns 200 responses if file changed', async () => {
-      fs.writeFileSync(testFileBPath, 'this file is cached', 'utf-8');
+      fs.writeFileSync(testFileBPath, '// this file is cached', 'utf-8');
 
       const initialResponse = await fetch(`${host}${testFileBName}`);
       const etag = initialResponse.headers.get('etag');
 
       expect(initialResponse.status).to.equal(200);
-      expect(await initialResponse.text()).to.equal('this file is cached');
+      expect(await initialResponse.text()).to.equal('// this file is cached');
       expect(etag).to.be.a('string');
 
-      const fileContent = `the cache is busted${uuid()}`;
+      await timeout(1000);
+      const fileContent = `// the cache is busted${uuid()}`;
       fs.writeFileSync(testFileBPath, fileContent, 'utf-8');
       mockFileWatcher.dispatchEvent('change', testFileBPath);
 
