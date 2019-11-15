@@ -7,7 +7,7 @@ import { createCompatibilityTransform } from '../utils/compatibility-transform.j
 import { getUserAgentCompat } from '../utils/user-agent-compat.js';
 
 /**
- * @typedef {object} CompatibilityMiddlewareConfig
+ * @typedef {object} CompatibilityTransformMiddleware
  * @property {string} rootDir
  * @property {string[]} moduleDirectories
  * @property {boolean} readUserBabelConfig
@@ -34,9 +34,9 @@ function logError(errorMessage) {
  * Sets up a middleware which runs all served js code through babel. Different babel configs
  * are loaded based on the server's configuration.
  *
- * @param {CompatibilityMiddlewareConfig} cfg
+ * @param {CompatibilityTransformMiddleware} cfg
  */
-export function createCompatibilityMiddleware(cfg) {
+export function createCompatibilityTransformMiddleware(cfg) {
   const fileExtensions = [...DEFAULT_EXTENSIONS, ...cfg.extraFileExtensions];
   const compatibilityTransform = createCompatibilityTransform(cfg);
 

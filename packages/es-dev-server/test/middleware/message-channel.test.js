@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import AbortController from 'abort-controller';
 import path from 'path';
 import { startServer, createConfig } from '../../src/es-dev-server.js';
-import { messageChannelEndpoint } from '../../src/constants.js';
+import { messageChannelEndpoint, compatibilityModes } from '../../src/constants.js';
 import { AsyncStream, timeout } from '../test-helpers.js';
 import { sendMessageToActiveBrowsers } from '../../src/utils/message-channel.js';
 import messageChannelScript from '../../src/browser-scripts/message-channel.js';
@@ -26,6 +26,7 @@ describe.skip('message channel middleware', () => {
           port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'reload'),
           appIndex: path.resolve(__dirname, '..', 'fixtures', 'reload', 'index.html'),
+          compatibility: compatibilityModes.NONE,
         }),
       ));
     });

@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import path from 'path';
 import fs from 'fs';
 import uuid from 'uuid/v4.js';
-import { startServer, createConfig } from '../../src/es-dev-server.js';
+import { startServer, createConfig, compatibilityModes } from '../../src/es-dev-server.js';
 import { createMockFileWatcher } from '../test-helpers.js';
 
 const host = 'http://localhost:8080/';
@@ -24,6 +24,7 @@ describe('cache middleware', () => {
       createConfig({
         port: 8080,
         rootDir: fixtureDir,
+        compatibility: compatibilityModes.NONE,
       }),
       // @ts-ignore
       mockFileWatcher,

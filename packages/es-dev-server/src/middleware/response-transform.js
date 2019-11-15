@@ -20,17 +20,17 @@ import { getBodyAsString } from '../utils/utils.js';
  */
 
 /**
- * @typedef {object} TransformResponseMiddlewareConfig
+ * @typedef {object} ResponseTransformMiddlewareConfig
  * @property {ResponseTransformer[]} responseTransformers
  */
 
 /**
  *
- * @param {TransformResponseMiddlewareConfig} config
+ * @param {ResponseTransformMiddlewareConfig} config
  */
-export function createTransformResponseMiddleware(config) {
+export function createResponseTransformMiddleware(config) {
   /** @type {import('koa').Middleware} */
-  async function transformResponseMiddleware(ctx, next) {
+  async function responseTransformMiddlewareConfig(ctx, next) {
     await next();
 
     const body = await getBodyAsString(ctx);
@@ -77,5 +77,5 @@ export function createTransformResponseMiddleware(config) {
     }
   }
 
-  return transformResponseMiddleware;
+  return responseTransformMiddlewareConfig;
 }

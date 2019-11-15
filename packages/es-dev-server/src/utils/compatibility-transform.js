@@ -97,6 +97,11 @@ export function createCompatibilityTransform(cfg) {
       !cfg.readUserBabelConfig &&
       cfg.compatibilityMode === compatibilityModes.AUTO &&
       file.uaCompat.modern;
+    const transformModules =
+      (!skipBabelTransform &&
+        cfg.compatibilityMode === compatibilityModes.AUTO &&
+        !file.uaCompat.supportsEsm) ||
+      cfg.compatibilityMode === compatibilityModes.MAX;
 
     /**
      * Transform code to a compatible format based on the compatibility setting. We keep ESM syntax
@@ -122,7 +127,7 @@ export function createCompatibilityTransform(cfg) {
     /**
      * If this browser doesn't support es modules, compile it to systemjs using babel.
      */
-    if (!file.uaCompat.supportsEsm || cfg.compatibilityMode === compatibilityModes.MAX) {
+    if (transformModules) {
       transformedCode = await polyfillModulesTransform(file.filePath, transformedCode);
     }
 

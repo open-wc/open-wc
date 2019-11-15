@@ -1,6 +1,6 @@
 import path from 'path';
 import { toBrowserPath } from './utils/utils.js';
-import { compatibilityModes } from './constants.js';
+import { compatibilityModes, polyfillsModes } from './constants.js';
 
 /**
  * Public config, to be defined by the user.
@@ -32,7 +32,9 @@ import { compatibilityModes } from './constants.js';
  * @property {string} [sslCert] path to local .cert file to use for https
  *
  * Code transformation
- * @property {string} [compatibility] compatibility mode for older browsers. Can be: "esm", modern" or "all"
+ * @property {string} [compatibility] compatibility mode for older browsers. Can be: "auto", "min",
+ *  "max" or "none". Defaults to "auto"
+ * @property {string} [polyfills] polyfills mode, can be "auto" or "none". Defaults to "auto".
  * @property {boolean} [nodeResolve] whether to resolve bare module imports using node resolve
  * @property {boolean} [preserveSymlinks] preserve symlinks when resolving modules. Default false,
  *  which is the default node behavior.
@@ -86,6 +88,7 @@ import { compatibilityModes } from './constants.js';
  * @property {boolean} preserveSymlinks
  * @property {boolean} readUserBabelConfig same as babel option in command line args
  * @property {string} compatibilityMode
+ * @property {string} polyfillsMode
  * @property {boolean|CompressOptions} compress Whether the server should compress responses.
  * @property {object} customBabelConfig custom babel configuration to use when compiling
  * @property {string[]} extraFileExtensions
@@ -118,6 +121,7 @@ export function createConfig(config) {
     sslCert,
     sslKey,
     watch = false,
+    polyfills = polyfillsModes.AUTO,
     responseTransformers,
   } = config;
 
@@ -180,6 +184,7 @@ export function createConfig(config) {
     babelModernExclude,
     basePath,
     compatibilityMode: compatibility,
+    polyfillsMode: polyfills,
     compress,
     customBabelConfig: babelConfig,
     customMiddlewares: middlewares,

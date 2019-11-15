@@ -1,21 +1,32 @@
 <html><head>
+    <script type="systemjs-importmap">
+    {
+      "imports": {
+        "foo": "/node_modules/foo/foo.js",
+        "bar": "/node_modules/bar/bar.js"
+      }
+    }
+  </script>
+
   <title>My app</title>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "foo": "/node_modules/foo/foo.js",
+        "bar": "/node_modules/bar/bar.js"
+      }
+    }
+  </script>
 </head>
 
 <body>
 
-  <!-- relative path -->
-  
-
-  <!-- upwards path -->
-  
-
-  <!-- absolute path -->
   
 
 
 
-<script>(function() {
+<script src="polyfills/core-js.77da473353460b142f5e09e540324336.js" nomodule=""></script><script src="polyfills/systemjs.dd4729ef25f652d7d05aed80a2ea00e7.js"></script><script src="polyfills/regenerator-runtime.45f8b90cc0fac37d446d8da4b68e27f5.js" nomodule=""></script><script>(function() {
   function loadScript(src, module) {
     return new Promise(function (resolve, reject) {
       document.head.appendChild(Object.assign(
@@ -27,12 +38,12 @@
   }
 
   var polyfills = [];
-  if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) { polyfills.push(loadScript('polyfills/webcomponents.88b4b5855ede008ecad6bbdd4a69e57d.js', false)) }
-  if (!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype) { polyfills.push(loadScript('polyfills/custom-elements-es5-adapter.01496319407efe7ef743b10afbb93714.js', false)) }
-  if ('noModule' in HTMLScriptElement.prototype) { polyfills.push(loadScript('polyfills/es-module-shims.eb2529466e6458528ad13c7d46e47a52.js', true)) }
+  if (!('fetch' in window)) { polyfills.push(loadScript('polyfills/fetch.8c78815e37189a88a5ccc668ab31698f.js', false)) }
+  if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) { polyfills.push(loadScript('polyfills/webcomponents.cc3976af76b5e726e2a7e86686c930f1.js', false)) }
+  if (!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype) { polyfills.push(loadScript('polyfills/custom-elements-es5-adapter.0ec040d16c6fd1b9220084b0b925cbe0.js', false)) }
 
   function loadEntries() {
-    ['./app.js','../src/app.js','/src/app.js'].forEach(function (entry) { window.importShim(entry); });
+    System.import('./app.js');
   }
 
   polyfills.length ? Promise.all(polyfills).then(loadEntries) : loadEntries();
@@ -45,7 +56,7 @@
         return;
       }
 
-      var eventSource = new EventSource('/__es-dev-server-message-channel__');
+      var eventSource = new EventSource('/__es-dev-server__/message-channel');
       var reloading = false;
 
       eventSource.addEventListener('file-changed', function (e) {

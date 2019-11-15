@@ -28,6 +28,7 @@
     "start:compatibility": "yarn build && node dist/cli.js -c demo/compatibility/server.js",
     "start:compatibility:min": "yarn build && node dist/cli.js -c demo/compatibility/server.js --compatibility min",
     "start:compatibility:max": "yarn build && node dist/cli.js -c demo/compatibility/server.js --compatibility max",
+    "start:compatibility:no-polyfills": "yarn build && node dist/cli.js -c demo/compatibility/server.js --compatibility min --polyfills none",
     "start:import-map": "yarn build && node dist/cli.js -c demo/import-map/server.js",
     "start:babel": "yarn build && node dist/cli.js -c demo/babel/server.js",
     "start:base-path": "yarn build && node dist/cli.js -c demo/base-path/server.js",

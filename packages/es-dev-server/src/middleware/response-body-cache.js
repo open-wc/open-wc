@@ -8,7 +8,7 @@ import { getBodyAsString, getRequestFilePath, isGeneratedFile } from '../utils/u
 const stat = promisify(fs.stat);
 
 /**
- * @typedef {object} ResponseCacheMiddlewareConfig
+ * @typedef {object} ResponseBodyCacheMiddleware
  * @property {import('chokidar').FSWatcher} fileWatcher
  * @property {string} rootDir
  * @property {string[]} extraFileExtensions
@@ -44,9 +44,9 @@ async function getLastModified(path) {
 
 /**
  * Returns 304 response for cacheable requests if etag matches
- * @param {ResponseCacheMiddlewareConfig} cfg
+ * @param {ResponseBodyCacheMiddleware} cfg
  */
-export function createResponseCacheMiddleware(cfg) {
+export function createResponseBodyCacheMiddleware(cfg) {
   const fileExtensions = [...DEFAULT_EXTENSIONS, ...cfg.extraFileExtensions];
 
   /** @type {Map<String, String>} */
@@ -78,7 +78,7 @@ export function createResponseCacheMiddleware(cfg) {
   });
 
   /** @type {import('koa').Middleware} */
-  async function responseCacheMiddleware(ctx, next) {
+  async function responseBodyCacheMiddleware(ctx, next) {
     const cacheKey = createCacheKey(ctx);
     const cached = cache.get(cacheKey);
     if (cached) {
@@ -122,5 +122,5 @@ export function createResponseCacheMiddleware(cfg) {
     });
   }
 
-  return responseCacheMiddleware;
+  return responseBodyCacheMiddleware;
 }

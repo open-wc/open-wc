@@ -121,7 +121,6 @@ function calcUserAgentCompat(userAgent) {
       supportsEsm,
     };
   } catch (error) {
-    console.error(error);
     let message = '\n';
     if (!resolvedUA) {
       message = `Unable to resolve user agent: ${userAgent}.`;

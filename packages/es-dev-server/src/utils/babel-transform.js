@@ -41,18 +41,16 @@ export const defaultConfig = {
  * @param {object} [baseConfig]
  */
 export function createBabelTransform(cfg, baseConfig) {
-  const config = deepmerge(
+  const config = deepmerge.all([
     defaultConfig,
     baseConfig || {},
     // @ts-ignore
-    deepmerge(
-      {
-        babelrc: cfg.readUserBabelConfig,
-        configFile: cfg.readUserBabelConfig,
-      },
-      cfg.customBabelConfig || {},
-    ),
-  );
+    {
+      babelrc: cfg.readUserBabelConfig,
+      configFile: cfg.readUserBabelConfig,
+    },
+    cfg.customBabelConfig || {},
+  ]);
 
   return async function transform(filename, source) {
     // babel runs out of memory when processing source maps for large files

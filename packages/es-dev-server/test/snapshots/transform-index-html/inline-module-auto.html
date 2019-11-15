@@ -1,18 +1,40 @@
-<html><head>
+<html>
+
+<head>
   <title>My app</title>
 </head>
 
 <body>
 
-  
+  <script type="module">
+    import { message } from 'my-module';
+    import './src/local-module.js';
 
-  
+    console.log(`The message is: ${message}`);
 
-  
+    // class is compiled by legacy build
+    class Foo {
+
+    }
+
+    // class is compiled by legacy build
+    const bar = 'buz';
+
+    async function* asyncGenerator() {
+      await Promise.resolve();
+      yield 0;
+      await Promise.resolve();
+      yield 1;
+    }
+  </script>
+
+  <script type="module">
+    console.log('hello world');
+  </script>
+
+  <script type="module" src="./app.js"></script>
 
 
-
-<script src="./app.js" type="module"></script><script src="/__es-dev-server__/inline-module-0.js?source=%2Findex.html" type="module"></script><script src="/__es-dev-server__/inline-module-1.js?source=%2Findex.html" type="module"></script>
   <script>
     // sets up a message channel with es-dev-server to receive events
     // for reloading the browser on file change or logging errors
@@ -48,4 +70,6 @@
     }());
   </script>
 </body>
+
+
 </html>

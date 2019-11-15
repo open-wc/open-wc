@@ -16,6 +16,7 @@ import { compatibilityModes } from '../constants.js';
  * @property {string} appIndex
  * @property {string} appIndexDir
  * @property {string} compatibilityMode
+ * @property {string} polyfillsMode
  */
 
 /**
@@ -70,7 +71,9 @@ export function createTransformIndexHTMLMiddleware(cfg) {
     if (isInlineModule(ctx.url)) {
       const [url, queryString] = ctx.url.split('?');
       const params = new URLSearchParams(queryString);
-      const indexHTML = indexHTMLData.get(decodeURIComponent(params.get('source')));
+      const indexHTML = indexHTMLData.get(
+        uaCompat.browserTarget + decodeURIComponent(params.get('source')),
+      );
       const name = path.basename(url);
       const inlineModule = indexHTML.inlineModules.get(name);
       if (!inlineModule) {
@@ -94,7 +97,7 @@ export function createTransformIndexHTMLMiddleware(cfg) {
     const lastModified = ctx.response.headers['last-modified'];
 
     // return cached index.html if it did not change
-    const data = indexHTMLData.get(ctx.url);
+    const data = indexHTMLData.get(uaCompat.browserTarget + ctx.url);
     if (data && data.lastModified === lastModified) {
       ctx.body = data.indexHTML;
       return undefined;
@@ -102,18 +105,19 @@ export function createTransformIndexHTMLMiddleware(cfg) {
 
     // transforms index.html to make the code load correctly with the right polyfills and shims
     const indexHTMLString = await getBodyAsString(ctx);
-    const transformResult = getTransformedIndexHTML(
-      ctx.url,
+    const transformResult = getTransformedIndexHTML({
+      indexUrl: ctx.url,
       indexHTMLString,
-      cfg.compatibilityMode,
+      compatibilityMode: cfg.compatibilityMode,
+      polyfillsMode: cfg.polyfillsMode,
       uaCompat,
-    );
+    });
 
     // add new index.html
     ctx.body = transformResult.indexHTML;
 
     // cache index for later use
-    indexHTMLData.set(ctx.url, { ...transformResult, lastModified });
+    indexHTMLData.set(uaCompat.browserTarget + ctx.url, { ...transformResult, lastModified });
 
     // cache polyfills for serving
     transformResult.polyfills.forEach(p => {
