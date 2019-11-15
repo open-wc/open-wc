@@ -14,7 +14,7 @@ const testFileBName = 'cached-file-b.js';
 const testFileAPath = path.join(fixtureDir, testFileAName);
 const testFileBPath = path.join(fixtureDir, testFileBName);
 
-describe('cache middleware', () => {
+describe('etag cache middleware', () => {
   let mockFileWatcher;
   let server;
 

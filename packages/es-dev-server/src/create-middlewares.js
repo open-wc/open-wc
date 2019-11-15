@@ -7,7 +7,7 @@ import { createCompatibilityTransformMiddleware } from './middleware/compatibili
 import { createWatchServedFilesMiddleware } from './middleware/watch-served-files.js';
 import { createTransformIndexHTMLMiddleware } from './middleware/transform-index-html.js';
 import { createMessageChannelMiddleware } from './middleware/message-channel.js';
-import { createEtagCacheMiddleware } from './middleware/etag-cache-middleware.js';
+import { createEtagCacheMiddleware } from './middleware/etag-cache.js';
 import { createResponseBodyCacheMiddleware } from './middleware/response-body-cache.js';
 import { setupBrowserReload } from './utils/setup-browser-reload.js';
 import { compatibilityModes } from './constants.js';
