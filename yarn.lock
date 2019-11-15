@@ -17944,17 +17944,15 @@ with@^5.0.0:
     acorn "^3.1.0"
     acorn-globals "^3.0.0"
 
-<<<<<<< HEAD
 wolfy87-eventemitter@*:
   version "5.2.8"
   resolved "https://registry.yarnpkg.com/wolfy87-eventemitter/-/wolfy87-eventemitter-5.2.8.tgz#fb7fff095cb972aa2a246b25e15b2764688c18a7"
   integrity sha512-Z+wAU9SyuOZgFj22zBl8sg0auJOkrKBZl8TTlEM5dRDDs2zPtlm72vPJUIlf6tUJ4w2JLgrF7VznRnQHP+Rn/Q==
-=======
+
 word-wrap@~1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
->>>>>>> feat(es-dev-server): add auto compatibility mode
 
 wordwrap@0.0.2:
   version "0.0.2"
