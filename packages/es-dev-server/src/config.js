@@ -22,7 +22,7 @@ import { compatibilityModes, polyfillsModes } from './constants.js';
  *   and ends with no/. For example: /my-app, /foo, /foo/bar
  * @property {boolean|CompressOptions} [compress=true] Whether the server should compress responses.
  * @property {import('koa').Middleware[]} [middlewares]
- * @property {import('./middleware/transform-response').ResponseTransformer[]} responseTransformers
+ * @property {import('./middleware/response-transform').ResponseTransformer[]} responseTransformers
  * @property {boolean} logStartup whether to log server startup
  *
  * Development help
@@ -73,7 +73,7 @@ import { compatibilityModes, polyfillsModes } from './constants.js';
  * @property {string} rootDir
  * @property {boolean} logStartup whether to log a startup message
  * @property {import('koa').Middleware[]} customMiddlewares
- * @property {import('./middleware/transform-response').ResponseTransformer[]} responseTransformers
+ * @property {import('./middleware/response-transform').ResponseTransformer[]} responseTransformers
  *
  * Development help
  * @property {boolean} watch
@@ -134,6 +134,14 @@ export function createConfig(config) {
         '"auto" mode is turned on by default.',
     );
     compatibility = compatibilityModes.AUTO;
+  }
+
+  if (!Object.values(compatibilityModes).includes(compatibility)) {
+    throw new Error(`Unknown compatibility mode: ${compatibility}`);
+  }
+
+  if (!Object.values(polyfillsModes).includes(polyfills)) {
+    throw new Error(`Unknown compatibility mode: ${polyfills}`);
   }
 
   // middlewares used to be called customMiddlewares
