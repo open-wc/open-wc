@@ -22,6 +22,7 @@ import { compatibilityModes } from '../constants.js';
  * @property {object} [customBabelConfig]
  * @property {string[]} extraFileExtensions
  * @property {string[]} babelExclude
+ * @property {string[]} babelModernExclude
  * @property {boolean} preserveSymlinks
  */
 
@@ -85,29 +86,66 @@ export function createCompatibilityTransform(cfg) {
         throw new Error(`Unknown compatibility mode: ${cfg.compatibilityMode}`);
     }
   }
+
+  /**
+   * Returns whether we should do a babel transform, we try to minimize this for performance.
+   * @param {FileData} file
+   * @returns {boolean}
+   */
+  function shouldTransformBabel(file) {
+    const customUserTransform = cfg.customBabelConfig || cfg.readUserBabelConfig;
+    const autoModernTransform =
+      cfg.compatibilityMode === compatibilityModes.AUTO && file.uaCompat.modern;
+
+    // auto transform can be skipped for modern browsers if there is no user-defined config
+    if (!customUserTransform && autoModernTransform) {
+      return false;
+    }
+
+    const excludeFromModern = cfg.babelModernExclude.some(pattern =>
+      minimatch(file.filePath, pattern),
+    );
+    const modernTransform = autoModernTransform || cfg.compatibilityMode !== compatibilityModes.MAX;
+
+    // if this is a modern transform, we can skip it if this file is excluded
+    if (modernTransform && excludeFromModern) {
+      return false;
+    }
+
+    // we need to run babel if compatibility mode is not none, or the user has defined a custom config
+    return cfg.compatibilityMode !== compatibilityModes.NONE || customUserTransform;
+  }
+
+  /**
+   * Returns whether we should transform modules to systemjs
+   * @param {FileData} file
+   * @returns {boolean}
+   */
+  function shouldTransformModules(file) {
+    switch (cfg.compatibilityMode) {
+      case compatibilityModes.AUTO:
+        return !file.uaCompat.supportsEsm;
+      case compatibilityModes.MAX:
+        return true;
+      default:
+        return false;
+    }
+  }
+
   /**
    * @param {FileData} file
    */
   async function compatibilityTransform(file) {
+    const excludeFromBabel = cfg.babelExclude.some(pattern => minimatch(file.filePath, pattern));
+    const transformBabel = !excludeFromBabel && shouldTransformBabel(file);
+    const transformModules = !excludeFromBabel && shouldTransformModules(file);
     let transformedCode = file.code;
-    const isExcluded = cfg.babelExclude.some(pattern => minimatch(file.filePath, pattern));
-    // Modern browsers don't need any transformation, so we avoid parsing with babel for performance.
-    const skipBabelTransform =
-      !cfg.customBabelConfig &&
-      !cfg.readUserBabelConfig &&
-      cfg.compatibilityMode === compatibilityModes.AUTO &&
-      file.uaCompat.modern;
-    const transformModules =
-      (!skipBabelTransform &&
-        cfg.compatibilityMode === compatibilityModes.AUTO &&
-        !file.uaCompat.supportsEsm) ||
-      cfg.compatibilityMode === compatibilityModes.MAX;
 
     /**
      * Transform code to a compatible format based on the compatibility setting. We keep ESM syntax
      * in this step, this will be transformed later if necessary.
      */
-    if (!isExcluded && !skipBabelTransform) {
+    if (transformBabel) {
       const compatTransform = getCompatibilityBabelTranform(file);
       transformedCode = await compatTransform(file.filePath, transformedCode);
     }
