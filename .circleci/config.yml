@@ -18,8 +18,6 @@ jobs:
       - restore_cache:
           keys:
             - v4-dependencies-{{ checksum "yarn.lock" }}
-            # fallback to using the latest cache if no exact match is found
-            - v4-dependencies-
       - run:
           name: Do `yarn install` on cache miss
           command: |
