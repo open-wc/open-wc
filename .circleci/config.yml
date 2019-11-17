@@ -20,7 +20,15 @@ jobs:
             - v4-dependencies-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
             - v4-dependencies-
-      - run: ./.circleci/conditional-yarn-install.sh
+      - run:
+          name: do yarn install on cache miss
+          command: |
+            if [ -d "./node_modules" ]; then
+              echo "Restored node_modules from cache";
+            else
+              echo "Fill node_modules via yarn install";
+              yarn install --frozen-lockfile
+            fi
       - save_cache:
           paths:
             - node_modules
