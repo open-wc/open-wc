@@ -10,6 +10,7 @@ describe('my-element', () => {
     );
     // @ts-ignore
     await element.getMessage();
+    // @ts-ignore
     await element.updateComplete;
 
     expect(element).shadowDom.to.equalSnapshot();
