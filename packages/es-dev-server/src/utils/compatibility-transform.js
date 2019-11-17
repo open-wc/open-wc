@@ -93,6 +93,10 @@ export function createCompatibilityTransform(cfg) {
    * @returns {boolean}
    */
   function shouldTransformBabel(file) {
+    if (cfg.compatibilityMode === compatibilityModes.NONE) {
+      return false;
+    }
+
     const customUserTransform = cfg.customBabelConfig || cfg.readUserBabelConfig;
     const autoModernTransform =
       cfg.compatibilityMode === compatibilityModes.AUTO && file.uaCompat.modern;
@@ -105,7 +109,8 @@ export function createCompatibilityTransform(cfg) {
     const excludeFromModern = cfg.babelModernExclude.some(pattern =>
       minimatch(file.filePath, pattern),
     );
-    const modernTransform = autoModernTransform || cfg.compatibilityMode !== compatibilityModes.MAX;
+    const modernTransform =
+      file.uaCompat.modern && cfg.compatibilityMode !== compatibilityModes.MAX;
 
     // if this is a modern transform, we can skip it if this file is excluded
     if (modernTransform && excludeFromModern) {

@@ -48,6 +48,7 @@ export function createMiddlewares(config, fileWatcher) {
     readUserBabelConfig,
     rootDir,
     watch,
+    logErrorsToBrowser,
     watchDebounce,
   } = config;
 
@@ -72,7 +73,7 @@ export function createMiddlewares(config, fileWatcher) {
   const setupCompatibility = compatibilityMode && compatibilityMode !== compatibilityModes.NONE;
   const setupTransformIndexHTML = nodeResolve || setupBabel || setupCompatibility;
   const setupHistoryFallback = appIndex;
-  const setupMessageChanel = nodeResolve || watch || setupBabel;
+  const setupMessageChanel = watch || (logErrorsToBrowser && (setupBabel || nodeResolve));
 
   // strips a base path from requests
   if (config.basePath) {
