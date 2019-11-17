@@ -185,7 +185,8 @@ function getPolyfills(config) {
       // minify only if there were no source maps, and if not disabled explicitly
     } else if (!instruction.noMinify && config.minify) {
       const minifyResult = Terser.minify(code, { sourceMap: true });
-      ({ code, map: sourcemap } = minifyResult);
+      ({ code } = minifyResult);
+      sourcemap = /** @type {string} */ (minifyResult.map);
     }
 
     polyfills.push({

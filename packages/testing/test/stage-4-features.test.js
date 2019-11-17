@@ -1,4 +1,4 @@
-import { expect } from '@open-wc/testing';
+import { expect } from '../index.js';
 import { bar, asyncFunction, power, Foo, messageTemplate } from '../demo/stage-4-features.js';
 
 describe('stage-4-features', () => {

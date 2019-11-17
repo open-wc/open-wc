@@ -1,4 +1,4 @@
-import { fixture, expect, html } from '@open-wc/testing';
+import { fixture, expect, html } from '../index.js';
 import '../demo/my-element.js';
 
 describe('my-element', () => {

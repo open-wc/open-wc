@@ -15,12 +15,6 @@
   "homepage": "https://github.com/open-wc/open-wc/",
   "main": "testing-karma.js",
   "scripts": {
-    "demo:test": "karma start demo/karma.conf.js --coverage --legacy",
-    "demo:test:bs": "karma start demo/karma.bs.conf.js --legacy --coverage",
-    "demo:test:legacy": "karma start demo/karma.conf.js --legacy --coverage",
-    "demo:test:prune-snapshots": "karma start demo/karma.conf.js --prune-snapshots",
-    "demo:test:update-snapshots": "karma start demo/karma.conf.js --update-snapshots",
-    "demo:test:watch": "karma start demo/karma.conf.js --auto-watch=true --single-run=false",
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "files": [
@@ -35,7 +29,6 @@
   ],
   "dependencies": {
     "@open-wc/karma-esm": "^2.9.8",
-    "@open-wc/testing": "^2.3.9",
     "axe-core": "^3.3.1",
     "karma": "^4.1.0",
     "karma-chrome-launcher": "^2.0.0",
