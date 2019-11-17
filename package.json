@@ -2,6 +2,7 @@
   "name": "@open-wc/root",
   "private": true,
   "license": "MIT",
+  "author": "none",
   "scripts": {
     "build": "lerna run build",
     "build:types": "tsc -p tsconfig.build.types.json",
