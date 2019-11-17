@@ -21,7 +21,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v4-dependencies-
       - run:
-          name: do yarn install on cache miss
+          name: Do `yarn install` on cache miss
           command: |
             if [ -d "./node_modules" ]; then
               echo "Restored node_modules from cache";
