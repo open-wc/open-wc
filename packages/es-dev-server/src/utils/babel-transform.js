@@ -24,6 +24,7 @@ export const defaultConfig = {
    * it only ensures that babel does not crash when you're using them.
    */
   plugins: [
+    require.resolve('@babel/plugin-syntax-dynamic-import'),
     require.resolve('@babel/plugin-syntax-import-meta'),
     require.resolve('@babel/plugin-syntax-class-properties'),
     require.resolve('@babel/plugin-syntax-nullish-coalescing-operator'),
