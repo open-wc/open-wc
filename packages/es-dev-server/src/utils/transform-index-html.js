@@ -72,6 +72,7 @@ export function getTransformedIndexHTML(cfg) {
   const createResult = createIndexHTML(resources.indexHTML, {
     entries: {
       type: polyfillModules ? 'system' : 'module',
+      polyfillDynamicImport: false,
       files,
     },
     polyfills: getPolyfills(cfg),
@@ -82,13 +83,6 @@ export function getTransformedIndexHTML(cfg) {
   let { indexHTML } = createResult;
   if (polyfillModules) {
     indexHTML = addPolyfilledImportMaps(indexHTML, resources);
-  } else {
-    // this is needed because @open-wc/building-utils uses importShim to import the main app
-    // but we don't use modules on browsers without dynamic imports, so we can just alias it
-    indexHTML = indexHTML.replace(
-      '<script>',
-      '<script>window.importShim = s => import(s);</script><script>',
-    );
   }
 
   return {

@@ -15,6 +15,7 @@ const { createContentHash, cleanImportPath, polyfillFilename } = require('./util
  * @property {string} type
  * @property {string[]} files
  * @property {string[]} [preloadedFiles]
+ * @property {boolean} [polyfillDynamicImport=true]
  */
 
 /**
