@@ -17,7 +17,7 @@
 
 
 
-<script src="polyfills/core-js.77da473353460b142f5e09e540324336.js" nomodule=""></script><script src="polyfills/regenerator-runtime.45f8b90cc0fac37d446d8da4b68e27f5.js" nomodule=""></script><script>window.importShim = s => import(s);</script><script>(function() {
+<script src="polyfills/core-js.77da473353460b142f5e09e540324336.js" nomodule=""></script><script src="polyfills/regenerator-runtime.45f8b90cc0fac37d446d8da4b68e27f5.js" nomodule=""></script><script>(function() {
   function loadScript(src, module) {
     return new Promise(function (resolve, reject) {
       document.head.appendChild(Object.assign(
@@ -34,7 +34,7 @@
   if (!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype) { polyfills.push(loadScript('polyfills/custom-elements-es5-adapter.0ec040d16c6fd1b9220084b0b925cbe0.js', false)) }
 
   function loadEntries() {
-    window.importShim('./app.js');
+    import('./app.js');
   }
 
   polyfills.length ? Promise.all(polyfills).then(loadEntries) : loadEntries();
