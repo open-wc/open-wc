@@ -2,22 +2,6 @@
 # yarn lockfile v1
 
 
-"@babel/cli@^7.7.0":
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.7.0.tgz#8d10c9acb2acb362d7614a9493e1791c69100d89"
-  integrity sha512-jECEqAq6Ngf3pOhLSg7od9WKyrIacyh1oNNYtRXNn+ummSHCTXBamGywOAtiae34Vk7zKuQNnLvo2BKTMCoV4A==
-  dependencies:
-    commander "^2.8.1"
-    convert-source-map "^1.1.0"
-    fs-readdir-recursive "^1.1.0"
-    glob "^7.0.0"
-    lodash "^4.17.13"
-    make-dir "^2.1.0"
-    slash "^2.0.0"
-    source-map "^0.5.0"
-  optionalDependencies:
-    chokidar "^2.1.8"
-
 "@babel/code-frame@7.5.5", "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.5.5.tgz#bc0782f6d69f7b7d49531219699b988f669a8f9d"
