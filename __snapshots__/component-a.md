@@ -8,12 +8,14 @@
 <div>
   A
 </div>
+
 ```
 
 ```html
 <div>
   A
 </div>
+
 ```
 
 ####   `matches a dom element snapshot`
@@ -22,12 +24,14 @@
 <div>
   B
 </div>
+
 ```
 
 ```html
 <div>
   B
 </div>
+
 ```
 
 ####   `matches a dom element snapshot, using .dom`
@@ -36,12 +40,14 @@
 <div>
   C
 </div>
+
 ```
 
 ```html
 <div>
   C
 </div>
+
 ```
 
 ## `error states`
@@ -52,12 +58,14 @@
 <span>
   A
 </span>
+
 ```
 
 ```html
 <span>
   A
 </span>
+
 ```
 
 ####   `matches shadow dom snapshot`
@@ -66,12 +74,14 @@
 <span>
   B
 </span>
+
 ```
 
 ```html
 <span>
   B
 </span>
+
 ```
 
 ## `failed snapshots`
@@ -80,28 +90,30 @@
 
 ```html
 <div>
-  0.6523866720855873
+  0.15723879259035956
 </div>
+
 ```
 
 ```html
 <div>
-  0.1401241753470146
+  0.15723879259035956
 </div>
+
 ```
 
 ####   `does not throw an error when a snapshot does not match using negate`
 
 ```html
 <div>
-  0.2129255588205312
+  0.5959025306605419
 </div>
 
 ```
 
 ```html
 <div>
-  0.2129255588205312
+  0.5959025306605419
 </div>
 
 ```
