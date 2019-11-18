@@ -95,14 +95,30 @@ async function setupDevServer(karmaConfig, esmConfig, watch, babelConfig, karmaE
     babelConfig,
   });
 
-  const fileWatcher = chokidar.watch([]);
-  await startServer(esDevServerConfig, fileWatcher);
+  let fileWatcher = chokidar.watch([]);
+  let { server } = await startServer(esDevServerConfig, fileWatcher);
 
   if (watch) {
     fileWatcher.addListener('change', () => {
       karmaEmitter.refreshFiles();
     });
   }
+
+  ['exit', 'SIGINT'].forEach(event => {
+    // @ts-ignore
+    process.on(event, () => {
+      console.log('exit process');
+      if (fileWatcher) {
+        fileWatcher.close();
+        fileWatcher = null;
+      }
+
+      if (server) {
+        server.close();
+        server = null;
+      }
+    });
+  });
 
   return devServerHost;
 }
