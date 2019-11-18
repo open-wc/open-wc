@@ -1295,6 +1295,11 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
+"@github/clipboard-copy-element@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@github/clipboard-copy-element/-/clipboard-copy-element-1.1.1.tgz#5d58f970ab89a5ee86b402b04f7765e324b8089b"
+  integrity sha512-+kIpoWk2INRk8r22q/8GPgS6KG+YyWwmIfSbKuMgzKXt0cyt6m5K3HG2sZiVVWSVqZ458cLU74JrOJRevXvxQA==
+
 "@hapi/address@2.x.x":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.2.tgz#1c794cd6dbf2354d1eb1ef10e0303f573e1c7222"
