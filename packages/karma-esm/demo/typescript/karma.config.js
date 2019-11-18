@@ -2,7 +2,7 @@ const path = require('path');
 
 function getCompatibility() {
   const indexOf = process.argv.indexOf('--compatibility');
-  return indexOf === -1 ? 'none' : process.argv[indexOf + 1];
+  return indexOf === -1 ? 'auto' : process.argv[indexOf + 1];
 }
 
 const coverage = process.argv.includes('--coverage');
