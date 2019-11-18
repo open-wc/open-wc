@@ -66,11 +66,11 @@ async function expectCompatibilityTransform(userAgent, features = {}) {
   );
 }
 
-async function expectSupportStage3() {
-  const classFields = await fetchText('stage-3-class-fields.js');
-  const optionalChaining = await fetchText('stage-3-optional-chaining.js');
-  const nullishCoalesc = await fetchText('stage-3-nullish-coalesc.js');
-  const privateFields = await fetchText('stage-3-private-class-fields.js');
+async function expectSupportStage3(userAgent) {
+  const classFields = await fetchText('stage-3-class-fields.js', userAgent);
+  const optionalChaining = await fetchText('stage-3-optional-chaining.js', userAgent);
+  const nullishCoalesc = await fetchText('stage-3-nullish-coalesc.js', userAgent);
+  const privateFields = await fetchText('stage-3-private-class-fields.js', userAgent);
 
   expect(classFields).to.include("myField = 'foo';");
   expect(optionalChaining).to.include('foo?.bar?.buz');
@@ -94,7 +94,7 @@ describe('compatibility transform middleware', () => {
     });
 
     it('does not do any transformation for stage 3 features', async () => {
-      await expectSupportStage3();
+      await expectSupportStage3(userAgents['Chrome 78']);
     });
   });
 
@@ -118,7 +118,7 @@ describe('compatibility transform middleware', () => {
 
     /** NOTE: this test can fail over time as browser support improves */
     it('does not crash and does not transform stage 3 features', async () => {
-      await expectSupportStage3();
+      await expectSupportStage3(userAgents['Chrome 78']);
     });
   });
 
