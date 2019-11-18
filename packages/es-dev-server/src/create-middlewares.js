@@ -3,7 +3,7 @@ import koaEtag from 'koa-etag';
 import koaCompress from 'koa-compress';
 import { createBasePathMiddleware } from './middleware/base-path.js';
 import { createHistoryAPIFallbackMiddleware } from './middleware/history-api-fallback.js';
-import { createCompileMiddleware } from './middleware/compile-middleware.js';
+import { createCompatibilityMiddleware } from './middleware/compatibility-middleware.js';
 import { createWatchServedFilesMiddleware } from './middleware/watch-served-files.js';
 import { createTransformIndexHTMLMiddleware } from './middleware/transform-index-html.js';
 import { createMessageChannelMiddleware } from './middleware/message-channel.js';
@@ -33,7 +33,6 @@ export function createMiddlewares(config, fileWatcher) {
     appIndex,
     appIndexDir,
     babelExclude,
-    babelModernExclude,
     basePath,
     compatibilityMode,
     compress,
@@ -67,9 +66,7 @@ export function createMiddlewares(config, fileWatcher) {
   }
 
   const setupBabel =
-    customBabelConfig ||
-    [compatibilityModes.ALL, compatibilityModes.MODERN].includes(compatibilityMode) ||
-    readUserBabelConfig;
+    customBabelConfig || compatibilityMode !== compatibilityModes.NONE || readUserBabelConfig;
   const setupCompatibility = compatibilityMode && compatibilityMode !== compatibilityModes.NONE;
   const setupTransformIndexHTML = nodeResolve || setupBabel || setupCompatibility;
   const setupHistoryFallback = appIndex;
@@ -114,7 +111,7 @@ export function createMiddlewares(config, fileWatcher) {
   // compile code using babel and/or resolve module imports
   if (setupBabel || nodeResolve) {
     middlewares.push(
-      createCompileMiddleware({
+      createCompatibilityMiddleware({
         rootDir,
         moduleDirectories,
         readUserBabelConfig,
@@ -122,7 +119,6 @@ export function createMiddlewares(config, fileWatcher) {
         extraFileExtensions,
         customBabelConfig,
         babelExclude,
-        babelModernExclude,
         nodeResolve,
         preserveSymlinks,
       }),

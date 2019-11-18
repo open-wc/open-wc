@@ -2,6 +2,7 @@ import isStream from 'is-stream';
 import getStream from 'get-stream';
 import Stream from 'stream';
 import path from 'path';
+import { virtualFilePrefix } from '../constants.js';
 
 /**
  * koa-static stores the original served file path on ctx.body.path,
@@ -117,7 +118,7 @@ export function isPolyfill(url) {
  * @param {string} url
  */
 export function isInlineModule(url) {
-  return url.includes('/inline-module-') && url.includes('?source=');
+  return url.includes(`${virtualFilePrefix}inline-module-`) && url.includes('?source=');
 }
 
 /**
@@ -125,7 +126,7 @@ export function isInlineModule(url) {
  * @param {string} url
  */
 export function isGeneratedFile(url) {
-  return isPolyfill(url) || isInlineModule(url);
+  return url.startsWith(virtualFilePrefix) || isPolyfill(url) || isInlineModule(url);
 }
 
 /**
