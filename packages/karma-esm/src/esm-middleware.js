@@ -66,7 +66,10 @@ function esmMiddlewareFactory(config, karmaEmitter) {
           !urlsForKarma.some(u => url.startsWith(u));
 
         if (proxyToDevServer) {
-          const forwardRequest = request(`${devServerHost}${req.url.replace('/base', '')}`);
+          const proxyUrl = `${devServerHost}${req.url.replace('/base', '')}`;
+          const forwardRequest = request(proxyUrl).on('error', () => {
+            // don't log proxy errors
+          });
           req.pipe(forwardRequest);
           forwardRequest.pipe(res);
         } else {
