@@ -179,6 +179,27 @@ describe('resolve-module-imports', () => {
     );
   });
 
+  it('handles imports with query params or hashes', async () => {
+    await expectMatchesSnapshot(
+      'query-params-and-hashes',
+      `
+      import 'my-module?foo=bar';
+      import 'my-module#foo';
+      import 'my-module?foo=bar#bar';
+      import './local-module.js?foo=bar';
+      import './local-module.js#foo';
+      import './local-module.js?foo=bar#bar';
+
+      import('my-module?foo=bar');
+      import('my-module#foo');
+      import('my-module?foo=bar#bar');
+      import('./local-module.js?foo=bar');
+      import('./local-module.js#foo');
+      import('./local-module.js?foo=bar#bar');
+    `,
+    );
+  });
+
   it('does not get confused by import in regular code', async () => {
     await expectMatchesSnapshot(
       'import-in-code',

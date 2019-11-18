@@ -1,24 +1,51 @@
 import { extractResources, createIndexHTML } from '@open-wc/building-utils/index-html/index.js';
-import { polyfills } from './polyfills.js';
+import { polyfillsPresets } from './polyfills-presets.js';
 import { addPolyfilledImportMaps } from './import-maps.js';
-import { compatibilityModes, virtualFilePrefix } from '../constants.js';
+import { compatibilityModes, virtualFilePrefix, polyfillsModes } from '../constants.js';
+
+/**
+ * @typedef {object} TransformIndexHTMLConfig
+ * @property {string} indexUrl
+ * @property {string} indexHTMLString
+ * @property {string} compatibilityMode
+ * @property {string} polyfillsMode
+ * @property {import('./user-agent-compat').UserAgentCompat} uaCompat
+ */
+
+/**
+ * @param {TransformIndexHTMLConfig} cfg
+ */
+function getPolyfills(cfg) {
+  if (cfg.polyfillsMode === polyfillsModes.NONE) {
+    return {};
+  }
+
+  switch (cfg.compatibilityMode) {
+    case compatibilityModes.MAX:
+      return polyfillsPresets.allWithSystemjs;
+    case compatibilityModes.MIN:
+      return polyfillsPresets.all;
+    case compatibilityModes.AUTO:
+      return cfg.uaCompat.supportsEsm ? polyfillsPresets.all : polyfillsPresets.allWithSystemjs;
+    default:
+      return {};
+  }
+}
 
 /**
  * transforms index.html, extracting any modules and import maps and adds them back
  * with the appropriate polyfills, shims and a script loader so that they can be loaded
  * at the right time
- * @param {string} indexUrl
- * @param {string} indexHTMLString
- * @param {string} compatibilityMode
- * @param {import('./user-agent-compat').UserAgentCompat} uaCompat
+ *
+ * @param {TransformIndexHTMLConfig} cfg
  */
-export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibilityMode, uaCompat) {
+export function getTransformedIndexHTML(cfg) {
   const polyfillModules =
-    (compatibilityMode === compatibilityModes.AUTO && !uaCompat.supportsEsm) ||
-    compatibilityMode === compatibilityModes.MAX;
+    (cfg.compatibilityMode === compatibilityModes.AUTO && !cfg.uaCompat.supportsEsm) ||
+    cfg.compatibilityMode === compatibilityModes.MAX;
 
   // extract input files from index.html
-  const resources = extractResources(indexHTMLString, { removeImportMaps: false });
+  const resources = extractResources(cfg.indexHTMLString, { removeImportMaps: false });
   /** @type {Map<string, string>} */
   const inlineModules = new Map();
 
@@ -29,13 +56,13 @@ export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibility
   const files = [
     ...resources.jsModules,
     ...[...inlineModules.keys()].map(
-      e => `${virtualFilePrefix}${e}?source=${encodeURIComponent(indexUrl)}`,
+      e => `${virtualFilePrefix}${e}?source=${encodeURIComponent(cfg.indexUrl)}`,
     ),
   ];
 
   if (files.length === 0) {
     return {
-      indexHTML: indexHTMLString,
+      indexHTML: cfg.indexHTMLString,
       inlineModules: new Map(),
       polyfills: [],
     };
@@ -45,9 +72,10 @@ export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibility
   const createResult = createIndexHTML(resources.indexHTML, {
     entries: {
       type: polyfillModules ? 'system' : 'module',
+      polyfillDynamicImport: false,
       files,
     },
-    polyfills,
+    polyfills: getPolyfills(cfg),
     minify: false,
     preload: false,
   });
@@ -55,13 +83,6 @@ export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibility
   let { indexHTML } = createResult;
   if (polyfillModules) {
     indexHTML = addPolyfilledImportMaps(indexHTML, resources);
-  } else {
-    // this is needed because @open-wc/building-utils uses importShim to import the main app
-    // but we don't use modules on browsers without dynamic imports, so we can just alias it
-    indexHTML = indexHTML.replace(
-      '<script>',
-      '<script>window.importShim = s => import(s);</script><script>',
-    );
   }
 
   return {

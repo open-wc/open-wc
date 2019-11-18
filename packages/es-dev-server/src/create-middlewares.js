@@ -3,15 +3,15 @@ import koaEtag from 'koa-etag';
 import koaCompress from 'koa-compress';
 import { createBasePathMiddleware } from './middleware/base-path.js';
 import { createHistoryAPIFallbackMiddleware } from './middleware/history-api-fallback.js';
-import { createCompatibilityMiddleware } from './middleware/compatibility-middleware.js';
+import { createCompatibilityTransformMiddleware } from './middleware/compatibility-transform.js';
 import { createWatchServedFilesMiddleware } from './middleware/watch-served-files.js';
 import { createTransformIndexHTMLMiddleware } from './middleware/transform-index-html.js';
 import { createMessageChannelMiddleware } from './middleware/message-channel.js';
-import { createEtagCacheMiddleware } from './middleware/etag-cache-middleware.js';
-import { createResponseCacheMiddleware } from './middleware/response-cache-middleware.js';
+import { createEtagCacheMiddleware } from './middleware/etag-cache.js';
+import { createResponseBodyCacheMiddleware } from './middleware/response-body-cache.js';
 import { setupBrowserReload } from './utils/setup-browser-reload.js';
 import { compatibilityModes } from './constants.js';
-import { createTransformResponseMiddleware } from './middleware/transform-response.js';
+import { createResponseTransformMiddleware } from './middleware/response-transform.js';
 
 const defaultCompressOptions = {
   filter(contentType) {
@@ -33,8 +33,10 @@ export function createMiddlewares(config, fileWatcher) {
     appIndex,
     appIndexDir,
     babelExclude,
+    babelModernExclude,
     basePath,
     compatibilityMode,
+    polyfillsMode,
     compress,
     customBabelConfig,
     customMiddlewares,
@@ -46,6 +48,7 @@ export function createMiddlewares(config, fileWatcher) {
     readUserBabelConfig,
     rootDir,
     watch,
+    logErrorsToBrowser,
     watchDebounce,
   } = config;
 
@@ -70,7 +73,7 @@ export function createMiddlewares(config, fileWatcher) {
   const setupCompatibility = compatibilityMode && compatibilityMode !== compatibilityModes.NONE;
   const setupTransformIndexHTML = nodeResolve || setupBabel || setupCompatibility;
   const setupHistoryFallback = appIndex;
-  const setupMessageChanel = nodeResolve || watch || setupBabel;
+  const setupMessageChanel = watch || (logErrorsToBrowser && (setupBabel || nodeResolve));
 
   // strips a base path from requests
   if (config.basePath) {
@@ -92,7 +95,9 @@ export function createMiddlewares(config, fileWatcher) {
 
   if (fileWatcher) {
     // caches (transformed) file contents for faster response times
-    middlewares.push(createResponseCacheMiddleware({ fileWatcher, rootDir, extraFileExtensions }));
+    middlewares.push(
+      createResponseBodyCacheMiddleware({ fileWatcher, rootDir, extraFileExtensions }),
+    );
   }
 
   // communicates with browser for reload or logging
@@ -111,7 +116,7 @@ export function createMiddlewares(config, fileWatcher) {
   // compile code using babel and/or resolve module imports
   if (setupBabel || nodeResolve) {
     middlewares.push(
-      createCompatibilityMiddleware({
+      createCompatibilityTransformMiddleware({
         rootDir,
         moduleDirectories,
         readUserBabelConfig,
@@ -119,6 +124,7 @@ export function createMiddlewares(config, fileWatcher) {
         extraFileExtensions,
         customBabelConfig,
         babelExclude,
+        babelModernExclude,
         nodeResolve,
         preserveSymlinks,
       }),
@@ -128,7 +134,12 @@ export function createMiddlewares(config, fileWatcher) {
   // injects polyfills and shims for compatibility with older browsers
   if (setupTransformIndexHTML) {
     middlewares.push(
-      createTransformIndexHTMLMiddleware({ compatibilityMode, appIndex, appIndexDir }),
+      createTransformIndexHTMLMiddleware({
+        compatibilityMode,
+        polyfillsMode,
+        appIndex,
+        appIndexDir,
+      }),
     );
   }
 
@@ -142,7 +153,7 @@ export function createMiddlewares(config, fileWatcher) {
   }
 
   if (responseTransformers) {
-    middlewares.push(createTransformResponseMiddleware({ responseTransformers }));
+    middlewares.push(createResponseTransformMiddleware({ responseTransformers }));
   }
 
   // serve sstatic files
