@@ -46,6 +46,7 @@ import { compatibilityModes, polyfillsModes } from './constants.js';
  * @property {string[]} [fileExtensions] file extensions to run babel on
  * @property {string[]} [babelExclude] files excluded from all babel compilation
  * @property {string[]} [babelModernExclude] files excluded from babel on modern browser
+ * @property {string[]} [babelModuleExclude] files excluded from module transfomration
  * @property {object} [babelConfig] babel config to use, this is useful when you want to provide a
  *   babel config from a tool, and don't want to require all users to use the same babel config
  */
@@ -96,6 +97,7 @@ import { compatibilityModes, polyfillsModes } from './constants.js';
  * @property {string[]} extraFileExtensions
  * @property {string[]} babelExclude
  * @property {string[]} babelModernExclude
+ * @property {string[]} babelModuleExclude
  */
 
 /**
@@ -109,6 +111,7 @@ export function createConfig(config) {
     babelConfig,
     babelExclude = [],
     babelModernExclude = [],
+    babelModuleExclude = [],
     basePath,
     compress = true,
     fileExtensions = [],
@@ -193,6 +196,7 @@ export function createConfig(config) {
     appIndexDir,
     babelExclude,
     babelModernExclude,
+    babelModuleExclude,
     basePath,
     compatibilityMode: compatibility,
     polyfillsMode: polyfills,

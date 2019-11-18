@@ -1,6 +1,5 @@
 const path = require('path');
 const deepmerge = require('deepmerge');
-const { compatibilityModes } = require('es-dev-server');
 
 /**
  * @typedef {object} KarmaEsmConfig
@@ -16,6 +15,7 @@ const { compatibilityModes } = require('es-dev-server');
  * @property {string[]} [exclude]
  * @property {string[]} [babelExclude]
  * @property {string[]} [babelModernExclude]
+ * @property {string[]} [babelModuleExclude]
  * @property {boolean} [preserveSymlinks]
  * @property {Partial<import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig>} polyfills
  */
@@ -42,13 +42,13 @@ function createEsmConfig(karmaConfig) {
     },
   ];
 
-  esmConfig.babelExclude = [
-    ...(esmConfig.babelExclude || []),
-    // exclude regular test scripts/libs from babel
-    ...karmaConfig.files
-      .filter(f => f.pattern.endsWith('.js') && f.type !== 'module')
-      .map(f => f.pattern),
-  ];
+  // exclude regular test scripts/libs from babel
+  const karmaLibs = karmaConfig.files
+    .filter(f => f.pattern.endsWith('.js') && f.type !== 'module')
+    .map(f => f.pattern);
+
+  esmConfig.babelExclude = [...(esmConfig.babelExclude || []), ...karmaLibs];
+  esmConfig.babelModuleExclude = [...(esmConfig.babelModuleExclude || []), ...karmaLibs];
 
   if (esmConfig.coverage) {
     const coverageExclude = [
@@ -62,12 +62,8 @@ function createEsmConfig(karmaConfig) {
 
     // if we are only running babel for coverage, exclude none-instrumented
     // files from babel to save computation time
-    if (
-      !babelConfig &&
-      !esmConfig.babel &&
-      (!esmConfig.compatibility || esmConfig.compatibility === compatibilityModes.NONE)
-    ) {
-      esmConfig.babelModernExclude = coverageExclude;
+    if (!babelConfig && !esmConfig.babel) {
+      esmConfig.babelModernExclude = [...(esmConfig.babelModernExclude || []), ...coverageExclude];
     }
 
     babelConfig = deepmerge(
