@@ -10,10 +10,16 @@ module.exports = config => {
         {
           pattern: config.grep
             ? config.grep
-            : 'packages/!(webpack-import-meta-loader|create|building-utils|webpack-index-html-plugin|rollup-plugin-index-html|import-maps-generate|import-maps-resolve|es-dev-server)/test/**/*.test.js',
+            : 'packages/!(webpack-import-meta-loader|create|building-utils|webpack-index-html-plugin|rollup-plugin-index-html|import-maps-generate|import-maps-resolve|es-dev-server|karma-esm)/test/**/*.test.js',
           type: 'module',
         },
       ],
+
+      client: {
+        mocha: {
+          timeout: 20000,
+        },
+      },
 
       esm: {
         nodeResolve: true,

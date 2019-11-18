@@ -5,10 +5,7 @@ import { processTemplate, readFileFromPath } from '../../core.js';
 const compose = (...fns) => fns.reduce((f, g) => (...args) => f(g(...args)));
 const safeReduce = (f, initial) => xs => (Array.isArray(xs) ? xs.reduce(f, initial) : xs);
 
-const getTemplatePart = compose(
-  processTemplate,
-  readFileFromPath,
-);
+const getTemplatePart = compose(processTemplate, readFileFromPath);
 
 function featureReadmeBlurb(feature) {
   const path = join(__dirname, `./templates/partials/README.${feature}.md`);
