@@ -14,22 +14,6 @@ const BABEL_DEOPTIMIZED_LENGTH = 500000;
 
 /** @typedef {(filename: string, source: string) => Promise<string>} BabelTransform  */
 
-/**
- * Creates a babel compiler backed by an in-memory last-read-out cache. Sets up configuration
- * based on a number of presets.
- *
- * @returns {BabelTransform}
- */
-export function createBabelTransform(babelConfig) {
-  return async function transform(filename, source) {
-    // babel runs out of memory when processing source maps for large files
-    const sourceMaps = source.length > BABEL_DEOPTIMIZED_LENGTH ? false : 'inline';
-
-    const result = await transformAsync(source, { filename, sourceMaps, ...babelConfig });
-    return result.code;
-  };
-}
-
 export const defaultConfig = {
   caller: {
     name: 'es-dev-server',
@@ -40,6 +24,7 @@ export const defaultConfig = {
    * it only ensures that babel does not crash when you're using them.
    */
   plugins: [
+    require.resolve('@babel/plugin-syntax-dynamic-import'),
     require.resolve('@babel/plugin-syntax-import-meta'),
     require.resolve('@babel/plugin-syntax-class-properties'),
     require.resolve('@babel/plugin-syntax-nullish-coalescing-operator'),
@@ -50,32 +35,51 @@ export const defaultConfig = {
 };
 
 /**
+ * Creates a babel compiler backed by an in-memory last-read-out cache. Sets up configuration
+ * based on a number of presets.
+ *
+ * @param {CreateBabelTransformConfig} cfg
+ * @param {object} [baseConfig]
+ */
+export function createBabelTransform(cfg, baseConfig) {
+  const config = deepmerge.all([
+    defaultConfig,
+    baseConfig || {},
+    // @ts-ignore
+    {
+      babelrc: cfg.readUserBabelConfig,
+      configFile: cfg.readUserBabelConfig,
+    },
+    cfg.customBabelConfig || {},
+  ]);
+
+  return async function transform(filename, source) {
+    // babel runs out of memory when processing source maps for large files
+    const sourceMaps = source.length > BABEL_DEOPTIMIZED_LENGTH ? false : 'inline';
+
+    const result = await transformAsync(source, { filename, sourceMaps, ...config });
+    return result.code;
+  };
+}
+
+/**
  * @param {CreateBabelTransformConfig} cfg
  * @returns
  */
 export function createCompatibilityBabelTransform(cfg) {
-  const config = deepmerge(
-    defaultConfig,
-    {
-      presets: [
-        [
-          require.resolve('@babel/preset-env'),
-          {
-            targets: Array.isArray(cfg.browserTarget) ? cfg.browserTarget : [cfg.browserTarget],
-            useBuiltIns: false,
-            shippedProposals: true,
-            modules: false,
-          },
-        ],
+  return createBabelTransform(cfg, {
+    presets: [
+      [
+        require.resolve('@babel/preset-env'),
+        {
+          targets: Array.isArray(cfg.browserTarget) ? cfg.browserTarget : [cfg.browserTarget],
+          useBuiltIns: false,
+          shippedProposals: true,
+          modules: false,
+        },
       ],
-      // only read the user's babelrc and config if explicitly enabled
-      babelrc: cfg.readUserBabelConfig,
-      configFile: cfg.readUserBabelConfig,
-    },
-    cfg.customBabelConfig,
-  );
-
-  return createBabelTransform(config);
+    ],
+  });
 }
 
 /** @param {CreateBabelTransformConfig} cfg */
@@ -102,17 +106,18 @@ export function createMaxCompatibilityBabelTransform(cfg) {
 }
 
 /**
- * config for only polyfilling modules, this should be run after the compatibility
+ * transform for only polyfilling modules, this should be run after the compatibility
  * config where all js is already compiled to a compatible format. we therefore don't
  * include any extra plugins or user configuration
  */
-const polyfillModulesConfig = deepmerge(defaultConfig, {
-  plugins: [
-    require.resolve('@babel/plugin-proposal-dynamic-import'),
-    require.resolve('@babel/plugin-transform-modules-systemjs'),
-  ],
-  babelrc: false,
-  configFile: false,
-});
-
-export const polyfillModulesTransform = createBabelTransform(polyfillModulesConfig);
+export const polyfillModulesTransform = createBabelTransform(
+  {},
+  {
+    plugins: [
+      require.resolve('@babel/plugin-proposal-dynamic-import'),
+      require.resolve('@babel/plugin-transform-modules-systemjs'),
+    ],
+    babelrc: false,
+    configFile: false,
+  },
+);

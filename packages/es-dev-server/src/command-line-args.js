@@ -134,7 +134,13 @@ export function readCommandLineArgs(argv = process.argv) {
     {
       name: 'compatibility',
       type: String,
-      description: 'Compatibility mode for older browsers. Can be: "esm", modern" or "all"',
+      description:
+        'Compatibility mode for older browsers. Can be: "auto", "min", "max" or "none". Default "auto"',
+    },
+    {
+      name: 'polyfills',
+      type: String,
+      description: 'Polyfills to load for older browsers. Can be "auto" or "none". Default "auto"',
     },
     { name: 'help', type: Boolean, description: 'See all options' },
   ];

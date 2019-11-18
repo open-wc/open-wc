@@ -1,6 +1,6 @@
 import path from 'path';
 import { toBrowserPath } from './utils/utils.js';
-import { compatibilityModes } from './constants.js';
+import { compatibilityModes, polyfillsModes } from './constants.js';
 
 /**
  * Public config, to be defined by the user.
@@ -22,17 +22,20 @@ import { compatibilityModes } from './constants.js';
  *   and ends with no/. For example: /my-app, /foo, /foo/bar
  * @property {boolean|CompressOptions} [compress=true] Whether the server should compress responses.
  * @property {import('koa').Middleware[]} [middlewares]
- * @property {import('./middleware/transform-response').ResponseTransformer[]} responseTransformers
+ * @property {import('./middleware/response-transform').ResponseTransformer[]} responseTransformers
  * @property {boolean} logStartup whether to log server startup
  *
  * Development help
  * @property {boolean} [watch] whether to watch served files and reload the browser on change
+ * @property {boolean} [logErrorsToBrowser] whether to log errors to the browser
  * @property {boolean} [http2] whether to run the server in http2, sets up https as well
  * @property {string} [sslKey] path to local .key file to use for https
  * @property {string} [sslCert] path to local .cert file to use for https
  *
  * Code transformation
- * @property {string} [compatibility] compatibility mode for older browsers. Can be: "esm", modern" or "all"
+ * @property {string} [compatibility] compatibility mode for older browsers. Can be: "auto", "min",
+ *  "max" or "none". Defaults to "auto"
+ * @property {string} [polyfills] polyfills mode, can be "auto" or "none". Defaults to "auto".
  * @property {boolean} [nodeResolve] whether to resolve bare module imports using node resolve
  * @property {boolean} [preserveSymlinks] preserve symlinks when resolving modules. Default false,
  *  which is the default node behavior.
@@ -71,10 +74,11 @@ import { compatibilityModes } from './constants.js';
  * @property {string} rootDir
  * @property {boolean} logStartup whether to log a startup message
  * @property {import('koa').Middleware[]} customMiddlewares
- * @property {import('./middleware/transform-response').ResponseTransformer[]} responseTransformers
+ * @property {import('./middleware/response-transform').ResponseTransformer[]} responseTransformers
  *
  * Development help
  * @property {boolean} watch
+ * @property {boolean} logErrorsToBrowser
  * @property {number} watchDebounce
  * @property {boolean} http2
  * @property {string} sslKey
@@ -86,6 +90,7 @@ import { compatibilityModes } from './constants.js';
  * @property {boolean} preserveSymlinks
  * @property {boolean} readUserBabelConfig same as babel option in command line args
  * @property {string} compatibilityMode
+ * @property {string} polyfillsMode
  * @property {boolean|CompressOptions} compress Whether the server should compress responses.
  * @property {object} customBabelConfig custom babel configuration to use when compiling
  * @property {string[]} extraFileExtensions
@@ -118,6 +123,8 @@ export function createConfig(config) {
     sslCert,
     sslKey,
     watch = false,
+    logErrorsToBrowser = false,
+    polyfills = polyfillsModes.AUTO,
     responseTransformers,
   } = config;
 
@@ -130,6 +137,14 @@ export function createConfig(config) {
         '"auto" mode is turned on by default.',
     );
     compatibility = compatibilityModes.AUTO;
+  }
+
+  if (!Object.values(compatibilityModes).includes(compatibility)) {
+    throw new Error(`Unknown compatibility mode: ${compatibility}`);
+  }
+
+  if (!Object.values(polyfillsModes).includes(polyfills)) {
+    throw new Error(`Unknown compatibility mode: ${polyfills}`);
   }
 
   // middlewares used to be called customMiddlewares
@@ -180,6 +195,7 @@ export function createConfig(config) {
     babelModernExclude,
     basePath,
     compatibilityMode: compatibility,
+    polyfillsMode: polyfills,
     compress,
     customBabelConfig: babelConfig,
     customMiddlewares: middlewares,
@@ -199,6 +215,7 @@ export function createConfig(config) {
     sslCert,
     sslKey,
     watch,
+    logErrorsToBrowser,
     watchDebounce: 100,
   };
 }

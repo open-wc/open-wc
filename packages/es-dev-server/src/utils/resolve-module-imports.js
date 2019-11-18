@@ -14,6 +14,7 @@ const CONCAT_NO_PACKAGE_ERROR =
   'Dynamic import with a concatenated string should start with a valid full package name.';
 
 const babelTransform = createBabelTransform(
+  // @ts-ignore
   deepmerge(defaultConfig, {
     babelrc: false,
     configFile: false,
@@ -177,6 +178,12 @@ async function resolveImport(rootDir, sourceFilePath, importPath, config, concat
   }
 }
 
+function getImportPath(importPath) {
+  const [withoutParams, params] = importPath.split('?');
+  const [withoutHash, hash] = withoutParams.split('#');
+  return [withoutHash, `${params ? `?${params}` : ''}${hash ? `#${hash}` : ''}`];
+}
+
 /**
  * @param {string} rootDir
  * @param {string} sourceFilePath
@@ -199,17 +206,22 @@ export async function resolveModuleImports(rootDir, sourceFilePath, source, conf
 
     if (dynamicImportIndex === -1) {
       // static import
-      const importPath = source.substring(start, end);
+      const [importPath, importPathSuffix] = getImportPath(source.substring(start, end));
       const resolvedImportPath = await resolveImport(rootDir, sourceFilePath, importPath, config);
 
-      resolvedSource += `${source.substring(lastIndex, start)}${resolvedImportPath}`;
+      resolvedSource += `${source.substring(
+        lastIndex,
+        start,
+      )}${resolvedImportPath}${importPathSuffix}`;
       lastIndex = end;
     } else if (dynamicImportIndex >= 0) {
       // dynamic import
       const dynamicStart = start + 1;
       const dynamicEnd = end - 1;
 
-      const importPath = source.substring(dynamicStart, dynamicEnd);
+      const [importPath, importPathSuffix] = getImportPath(
+        source.substring(dynamicStart, dynamicEnd),
+      );
       const stringSymbol = source[dynamicStart - 1];
       const isStringLiteral = [`\``, "'", '"'].includes(stringSymbol);
       const dynamicString =
@@ -218,7 +230,10 @@ export async function resolveModuleImports(rootDir, sourceFilePath, source, conf
         ? await resolveImport(rootDir, sourceFilePath, importPath, config, dynamicString)
         : importPath;
 
-      resolvedSource += `${source.substring(lastIndex, dynamicStart)}${resolvedImportPath}`;
+      resolvedSource += `${source.substring(
+        lastIndex,
+        dynamicStart,
+      )}${resolvedImportPath}${importPathSuffix}`;
       lastIndex = dynamicEnd;
     }
   }
