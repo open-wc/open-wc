@@ -105,7 +105,6 @@ export function createConfig(config) {
     babelExclude = [],
     babelModernExclude = [],
     basePath,
-    compatibility = compatibilityModes.NONE,
     compress = true,
     fileExtensions = [],
     hostname,
@@ -121,6 +120,17 @@ export function createConfig(config) {
     watch = false,
     responseTransformers,
   } = config;
+
+  let { compatibility = compatibilityModes.AUTO } = config;
+
+  if (compatibility === 'modern' || compatibility === 'all') {
+    /* eslint-disable-next-line no-console */
+    console.warn(
+      '[es-dev-server] Compatibility mode "modern" and "all" are deprecated, and combined into "auto".' +
+        '"auto" mode is turned on by default.',
+    );
+    compatibility = compatibilityModes.AUTO;
+  }
 
   // middlewares used to be called customMiddlewares
   // @ts-ignore
