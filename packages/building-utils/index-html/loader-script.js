@@ -43,10 +43,13 @@ const entryLoaderCreators = {
     files.length === 1
       ? `loadScript('${files[0]}')`
       : `${asArrayLiteral(files)}.forEach(function (entry) { loadScript(entry); })`,
-  module: files =>
-    files.length === 1
-      ? `window.importShim('${files[0]}')`
-      : `${asArrayLiteral(files)}.forEach(function (entry) { window.importShim(entry); })`,
+  module: (files, polyfillDynamicImport) => {
+    const importFunction = polyfillDynamicImport === false ? 'import' : 'window.importShim';
+
+    return files.length === 1
+      ? `${importFunction}('${files[0]}')`
+      : `${asArrayLiteral(files)}.forEach(function (entry) { ${importFunction}(entry); })`;
+  },
   system: files =>
     files.length === 1
       ? `System.import('${files[0]}')`
@@ -59,10 +62,16 @@ const entryLoaderCreators = {
  */
 function createEntriesLoaderFunction(entries, legacyEntries) {
   if (!legacyEntries) {
-    return `${entryLoaderCreators[entries.type](entries.files.map(cleanImportPath))};`;
+    return `${entryLoaderCreators[entries.type](
+      entries.files.map(cleanImportPath),
+      entries.polyfillDynamicImport,
+    )};`;
   }
 
-  const load = entryLoaderCreators[entries.type](entries.files.map(cleanImportPath));
+  const load = entryLoaderCreators[entries.type](
+    entries.files.map(cleanImportPath),
+    entries.polyfillDynamicImport,
+  );
   const loadLegacy = entryLoaderCreators[legacyEntries.type](
     legacyEntries.files.map(cleanImportPath),
   );
