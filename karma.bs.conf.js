@@ -10,6 +10,12 @@ module.exports = config => {
         project: 'open-wc',
       },
 
+      client: {
+        mocha: {
+          timeout: 20000,
+        },
+      },
+
       // How long does Karma wait for a browser to reconnect
       browserDisconnectTimeout: 60000,
       // How long will Karma wait for a message from a browser before disconnecting from it

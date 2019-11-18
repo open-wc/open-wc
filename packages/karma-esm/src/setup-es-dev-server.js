@@ -86,6 +86,7 @@ async function setupDevServer(karmaConfig, esmConfig, watch, babelConfig, karmaE
     fileExtensions: esmConfig.fileExtensions,
     babelModernExclude: esmConfig.babelModernExclude,
     babelExclude: esmConfig.babelExclude,
+    babelModuleExclude: esmConfig.babelModuleExclude,
     // option used to be called `customMiddlewares`
     // @ts-ignore
     middlewares: esmConfig.middlewares || esmConfig.customMiddlewares,
@@ -107,7 +108,6 @@ async function setupDevServer(karmaConfig, esmConfig, watch, babelConfig, karmaE
   ['exit', 'SIGINT'].forEach(event => {
     // @ts-ignore
     process.on(event, () => {
-      console.log('exit process');
       if (fileWatcher) {
         fileWatcher.close();
         fileWatcher = null;
