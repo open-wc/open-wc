@@ -53,12 +53,14 @@ module.exports = config => ({
   esm: {
     coverage,
     compatibility,
-    babelModernExclude: [
-      '**/node_modules/sinon/**/*',
+    babelExclude: [
       '**/node_modules/mocha/**/*',
       '**/node_modules/chai/**/*',
-      '**/node_modules/sinon/chai/**/*',
+      '**/node_modules/sinon-chai/**/*',
+      '**/node_modules/chai-dom/**/*',
+      '**/node_modules/core-js-bundle/**/*',
     ],
+    babelModernExclude: ['**/node_modules/sinon/**/*'],
     polyfills: {
       webcomponents: true,
       fetch: true,

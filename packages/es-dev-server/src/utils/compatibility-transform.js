@@ -146,6 +146,7 @@ export function createCompatibilityTransform(cfg) {
   async function compatibilityTransform(file) {
     const excludeFromBabel = cfg.babelExclude.some(pattern => minimatch(file.filePath, pattern));
     const transformBabel = !excludeFromBabel && shouldTransformBabel(file);
+    const transformModuleImports = !excludeFromBabel && cfg.nodeResolve;
     const transformModules = !excludeFromBabel && shouldTransformModules(file);
     let transformedCode = file.code;
 
@@ -162,7 +163,7 @@ export function createCompatibilityTransform(cfg) {
      * Resolve module imports. This isn't a babel plugin because if only node-resolve is configured,
      * we don't need to run babel which makes it a lot faster
      */
-    if (cfg.nodeResolve) {
+    if (transformModuleImports) {
       transformedCode = await resolveModuleImports(cfg.rootDir, file.filePath, transformedCode, {
         fileExtensions,
         moduleDirectories: cfg.moduleDirectories,

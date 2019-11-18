@@ -2,7 +2,7 @@ const { serialize } = require('parse5');
 const path = require('path');
 const deepmerge = require('deepmerge');
 const { createScript, createElement } = require('../dom5-utils');
-const { append, query, predicates } = require('../dom5-fork');
+const { append, insertBefore, query, predicates } = require('../dom5-fork');
 const { getPolyfills } = require('./polyfills');
 const { createLoaderScript } = require('./loader-script');
 const { minifyIndexHTML, defaultMinifyHTMLConfig } = require('./minify-index-html');
@@ -173,6 +173,8 @@ function createIndexHTML(baseIndex, config) {
     throw new Error(`Invalid index.html: missing <body>`);
   }
 
+  const firstScript = query(body, predicates.hasTagName('script'));
+
   /** @type {FileResult[]} */
   const files = [];
   const polyfills = getPolyfills(localConfig);
@@ -190,10 +192,15 @@ function createIndexHTML(baseIndex, config) {
     (localConfig.legacyEntries && localConfig.legacyEntries.files.length > 0);
 
   const scripts = createScripts(localConfig.polyfills, polyfills, localConfig.entries, needsLoader);
-
-  scripts.forEach(script => {
-    append(body, script);
-  });
+  if (firstScript) {
+    scripts.forEach(script => {
+      insertBefore(body, firstScript, script);
+    });
+  } else {
+    scripts.forEach(script => {
+      append(body, script);
+    });
+  }
 
   const appendPreloadScript = href => {
     if (localConfig.entries.type === 'module') {
