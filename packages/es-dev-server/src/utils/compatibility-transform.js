@@ -23,6 +23,7 @@ import { compatibilityModes } from '../constants.js';
  * @property {string[]} extraFileExtensions
  * @property {string[]} babelExclude
  * @property {string[]} babelModernExclude
+ * @property {string[]} babelModuleExclude
  * @property {boolean} preserveSymlinks
  */
 
@@ -111,9 +112,7 @@ export function createCompatibilityTransform(cfg) {
       minimatch(file.filePath, pattern),
     );
     const onlyModernTransform =
-      !customUserTransform &&
-      file.uaCompat.modern &&
-      cfg.compatibilityMode !== compatibilityModes.MAX;
+      file.uaCompat.modern && cfg.compatibilityMode !== compatibilityModes.MAX;
 
     // if this is only a modern transform, we can skip it if this file is excluded
     if (onlyModernTransform && excludeFromModern) {
@@ -130,6 +129,10 @@ export function createCompatibilityTransform(cfg) {
    * @returns {boolean}
    */
   function shouldTransformModules(file) {
+    if (cfg.babelModuleExclude.some(pattern => minimatch(file.filePath, pattern))) {
+      return false;
+    }
+
     switch (cfg.compatibilityMode) {
       case compatibilityModes.AUTO:
         return !file.uaCompat.supportsEsm;
@@ -147,7 +150,7 @@ export function createCompatibilityTransform(cfg) {
     const excludeFromBabel = cfg.babelExclude.some(pattern => minimatch(file.filePath, pattern));
     const transformBabel = !excludeFromBabel && shouldTransformBabel(file);
     const transformModuleImports = !excludeFromBabel && cfg.nodeResolve;
-    const transformModules = !excludeFromBabel && shouldTransformModules(file);
+    const transformModules = shouldTransformModules(file);
     let transformedCode = file.code;
 
     /**

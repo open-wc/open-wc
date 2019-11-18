@@ -53,6 +53,7 @@ module.exports = config => ({
   esm: {
     coverage,
     compatibility,
+    // prevent compiling es5 libs
     babelExclude: [
       '**/node_modules/mocha/**/*',
       '**/node_modules/chai/**/*',
@@ -60,7 +61,10 @@ module.exports = config => ({
       '**/node_modules/chai-dom/**/*',
       '**/node_modules/core-js-bundle/**/*',
     ],
+    // sinon is not completely es5...
     babelModernExclude: ['**/node_modules/sinon/**/*'],
+    // prevent compiling non-module libs
+    babelModuleExclude: ['**/node_modules/mocha/**/*', '**/node_modules/core-js-bundle/**/*'],
     polyfills: {
       webcomponents: true,
       fetch: true,

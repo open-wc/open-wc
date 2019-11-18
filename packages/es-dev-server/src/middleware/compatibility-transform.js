@@ -17,6 +17,7 @@ import { getUserAgentCompat } from '../utils/user-agent-compat.js';
  * @property {string[]} extraFileExtensions
  * @property {string[]} babelExclude
  * @property {string[]} babelModernExclude
+ * @property {string[]} babelModuleExclude
  * @property {boolean} preserveSymlinks
  */
 
