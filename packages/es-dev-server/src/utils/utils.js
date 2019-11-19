@@ -118,7 +118,7 @@ export function isPolyfill(url) {
  * @param {string} url
  */
 export function isInlineModule(url) {
-  return url.includes(`${virtualFilePrefix}inline-module-`) && url.includes('?source=');
+  return url.includes(`inline-module-`) && url.includes('?source=');
 }
 
 /**

@@ -9,7 +9,6 @@ import {
   isInlineModule,
 } from '../utils/utils.js';
 import { getUserAgentCompat } from '../utils/user-agent-compat.js';
-import { compatibilityModes } from '../constants.js';
 
 /**
  * @typedef {object} TransformIndexHTMLMiddlewareConfig
@@ -43,11 +42,6 @@ export function createTransformIndexHTMLMiddleware(cfg) {
 
   /** @type {import('koa').Middleware} */
   async function transformIndexHTMLMiddleware(ctx, next) {
-    const uaCompat = getUserAgentCompat(ctx);
-    if (cfg.compatibilityMode === compatibilityModes.AUTO && uaCompat.modern) {
-      return next();
-    }
-
     // serve polyfill from memory if url matches
     const polyfill = polyfills.get(ctx.url);
     if (polyfill) {
@@ -57,6 +51,7 @@ export function createTransformIndexHTMLMiddleware(cfg) {
       ctx.response.set('content-type', 'text/javascript');
       return undefined;
     }
+    const uaCompat = getUserAgentCompat(ctx);
 
     /**
      * serve extracted inline module if url matches. an inline module requests has this

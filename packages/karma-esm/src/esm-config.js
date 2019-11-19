@@ -57,7 +57,7 @@ function createEsmConfig(karmaConfig) {
       '**/spec/**',
       '**/demo/**',
       '**/stories/**',
-      '**/__es-dev-server__/**',
+      '**/inline-module-*',
       ...(esmConfig.coverageExclude || []),
     ];
 
