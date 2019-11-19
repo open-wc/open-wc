@@ -2,7 +2,9 @@
   "name": "<%= tagName %>",
   "license": "MIT",
   "scripts": {
-    "start": "es-dev-server --app-index index.html --node-resolve --open --watch"
+    "start": "es-dev-server --app-index index.html --node-resolve --open --watch",
+    "storybook": "start-storybook --stories 'components/*/stories/*.stories.{js,mdx}' --node-resolve --watch --open",
+    "storybook:build": "build-storybook --stories 'components/*/stories/*.stories.{js,mdx}'"
   },
   "dependencies": {
     "lit-html": "^1.0.0",
