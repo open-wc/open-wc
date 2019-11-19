@@ -10,4 +10,4 @@ console.log('Loaded: /bar-fork/bar.js');
 
 console.log('my app');
 
-import('./index-bcce6317.js');
+import('./index-2778b37a.js');

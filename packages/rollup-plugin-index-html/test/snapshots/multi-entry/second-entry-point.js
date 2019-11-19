@@ -1,3 +1,3 @@
-import './shared-6e98f23f.js';
+import './shared-ed942ddb.js';
 
 console.log('second entry point');

@@ -14,6 +14,18 @@ describe('ScaffoldApp', () => {
     `);
   });
 
+  it('renders default fallback content', async () => {
+    const el = await fixture(html`
+      <scaffold-app></scaffold-app>
+    `);
+    el.page = undefined;
+
+    expect(el.page).to.equal(undefined);
+    expect(el.shadowRoot.querySelector('main')).lightDom.to.equal(`
+      <page-main></page-main>
+    `);
+  });
+
   it('renders page-one if page property is set to pageOne', async () => {
     const el = await fixture(html`
       <scaffold-app page="pageOne"></scaffold-app>

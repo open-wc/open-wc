@@ -2,21 +2,24 @@
 import whatwgUrl from 'whatwg-url';
 import nodeResolve from 'resolve';
 import pathIsInside from 'path-is-inside';
+import deepmerge from 'deepmerge';
 // typescript can't resolve a .cjs file
 // @ts-ignore
 import { parse } from 'es-module-lexer';
 import path from 'path';
 import { toBrowserPath } from './utils.js';
-import createBabelCompiler from './babel-compiler.js';
+import { createBabelTransform, defaultConfig } from './babel-transform.js';
 
 const CONCAT_NO_PACKAGE_ERROR =
   'Dynamic import with a concatenated string should start with a valid full package name.';
 
-const babelCompile = createBabelCompiler({
-  readUserBabelConfig: false,
-  modern: false,
-  legacy: false,
-});
+const babelTransform = createBabelTransform(
+  // @ts-ignore
+  deepmerge(defaultConfig, {
+    babelrc: false,
+    configFile: false,
+  }),
+);
 
 export class ResolveSyntaxError extends Error {}
 
@@ -88,7 +91,7 @@ async function resolveConcatenatedImport(sourceFileDir, importPath, config) {
 
 async function createSyntaxError(sourceFilename, source, originalError) {
   // if es-module-lexer cannot parse the file, use babel to generate a user-friendly error message
-  await babelCompile(sourceFilename, source);
+  await babelTransform(sourceFilename, source);
   // if babel did not have any error, throw a syntax error and log the original error
   console.error(originalError);
   throw new ResolveSyntaxError();
@@ -175,6 +178,12 @@ async function resolveImport(rootDir, sourceFilePath, importPath, config, concat
   }
 }
 
+function getImportPath(importPath) {
+  const [withoutParams, params] = importPath.split('?');
+  const [withoutHash, hash] = withoutParams.split('#');
+  return [withoutHash, `${params ? `?${params}` : ''}${hash ? `#${hash}` : ''}`];
+}
+
 /**
  * @param {string} rootDir
  * @param {string} sourceFilePath
@@ -197,17 +206,22 @@ export async function resolveModuleImports(rootDir, sourceFilePath, source, conf
 
     if (dynamicImportIndex === -1) {
       // static import
-      const importPath = source.substring(start, end);
+      const [importPath, importPathSuffix] = getImportPath(source.substring(start, end));
       const resolvedImportPath = await resolveImport(rootDir, sourceFilePath, importPath, config);
 
-      resolvedSource += `${source.substring(lastIndex, start)}${resolvedImportPath}`;
+      resolvedSource += `${source.substring(
+        lastIndex,
+        start,
+      )}${resolvedImportPath}${importPathSuffix}`;
       lastIndex = end;
     } else if (dynamicImportIndex >= 0) {
       // dynamic import
       const dynamicStart = start + 1;
       const dynamicEnd = end - 1;
 
-      const importPath = source.substring(dynamicStart, dynamicEnd);
+      const [importPath, importPathSuffix] = getImportPath(
+        source.substring(dynamicStart, dynamicEnd),
+      );
       const stringSymbol = source[dynamicStart - 1];
       const isStringLiteral = [`\``, "'", '"'].includes(stringSymbol);
       const dynamicString =
@@ -216,7 +230,10 @@ export async function resolveModuleImports(rootDir, sourceFilePath, source, conf
         ? await resolveImport(rootDir, sourceFilePath, importPath, config, dynamicString)
         : importPath;
 
-      resolvedSource += `${source.substring(lastIndex, dynamicStart)}${resolvedImportPath}`;
+      resolvedSource += `${source.substring(
+        lastIndex,
+        dynamicStart,
+      )}${resolvedImportPath}${importPathSuffix}`;
       lastIndex = dynamicEnd;
     }
   }

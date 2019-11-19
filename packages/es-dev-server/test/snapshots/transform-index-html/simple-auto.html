@@ -1,0 +1,39 @@
+<html><head>
+  <title>My app</title>
+</head>
+
+<body>
+
+  <!-- relative path -->
+  
+
+  <!-- upwards path -->
+  
+
+  <!-- absolute path -->
+  
+
+
+
+<script src="polyfills/core-js.77da473353460b142f5e09e540324336.js" nomodule=""></script><script src="polyfills/regenerator-runtime.45f8b90cc0fac37d446d8da4b68e27f5.js" nomodule=""></script><script>(function() {
+  function loadScript(src, module) {
+    return new Promise(function (resolve, reject) {
+      document.head.appendChild(Object.assign(
+        document.createElement('script'),
+        { src: src, onload: resolve, onerror: reject },
+        module ? { type: 'module' } : undefined
+      ));
+    });
+  }
+
+  var polyfills = [];
+  if (!('fetch' in window)) { polyfills.push(loadScript('polyfills/fetch.8c78815e37189a88a5ccc668ab31698f.js', false)) }
+  if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) { polyfills.push(loadScript('polyfills/webcomponents.cc3976af76b5e726e2a7e86686c930f1.js', false)) }
+  if (!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype) { polyfills.push(loadScript('polyfills/custom-elements-es5-adapter.0ec040d16c6fd1b9220084b0b925cbe0.js', false)) }
+
+  function loadEntries() {
+    ['./app.js','../src/app.js','/src/app.js'].forEach(function (entry) { import(entry); });
+  }
+
+  polyfills.length ? Promise.all(polyfills).then(loadEntries) : loadEntries();
+})();</script></body></html>

@@ -8,12 +8,14 @@ import {
   toBrowserPath,
   isInlineModule,
 } from '../utils/utils.js';
+import { getUserAgentCompat } from '../utils/user-agent-compat.js';
 
 /**
  * @typedef {object} TransformIndexHTMLMiddlewareConfig
  * @property {string} appIndex
  * @property {string} appIndexDir
  * @property {string} compatibilityMode
+ * @property {string} polyfillsMode
  */
 
 /**
@@ -47,8 +49,9 @@ export function createTransformIndexHTMLMiddleware(cfg) {
       // aggresively cache polyfills, they are hashed so content changes bust the cache
       ctx.response.set('cache-control', 'public, max-age=31536000');
       ctx.response.set('content-type', 'text/javascript');
-      return;
+      return undefined;
     }
+    const uaCompat = getUserAgentCompat(ctx);
 
     /**
      * serve extracted inline module if url matches. an inline module requests has this
@@ -63,7 +66,9 @@ export function createTransformIndexHTMLMiddleware(cfg) {
     if (isInlineModule(ctx.url)) {
       const [url, queryString] = ctx.url.split('?');
       const params = new URLSearchParams(queryString);
-      const indexHTML = indexHTMLData.get(decodeURIComponent(params.get('source')));
+      const indexHTML = indexHTMLData.get(
+        uaCompat.browserTarget + decodeURIComponent(params.get('source')),
+      );
       const name = path.basename(url);
       const inlineModule = indexHTML.inlineModules.get(name);
       if (!inlineModule) {
@@ -74,38 +79,40 @@ export function createTransformIndexHTMLMiddleware(cfg) {
       ctx.response.set('content-type', 'text/javascript');
       ctx.response.set('cache-control', 'no-cache');
       ctx.response.set('last-modified', indexHTML.lastModified);
-      return;
+      return undefined;
     }
 
     await next();
 
     // check if we are serving an index.html
     if (!(await isIndexHTMLResponse(ctx, cfg.appIndex))) {
-      return;
+      return undefined;
     }
 
     const lastModified = ctx.response.headers['last-modified'];
 
     // return cached index.html if it did not change
-    const data = indexHTMLData.get(ctx.url);
+    const data = indexHTMLData.get(uaCompat.browserTarget + ctx.url);
     if (data && data.lastModified === lastModified) {
       ctx.body = data.indexHTML;
-      return;
+      return undefined;
     }
 
     // transforms index.html to make the code load correctly with the right polyfills and shims
     const indexHTMLString = await getBodyAsString(ctx);
-    const transformResult = getTransformedIndexHTML(
-      ctx.url,
+    const transformResult = getTransformedIndexHTML({
+      indexUrl: ctx.url,
       indexHTMLString,
-      cfg.compatibilityMode,
-    );
+      compatibilityMode: cfg.compatibilityMode,
+      polyfillsMode: cfg.polyfillsMode,
+      uaCompat,
+    });
 
     // add new index.html
     ctx.body = transformResult.indexHTML;
 
     // cache index for later use
-    indexHTMLData.set(ctx.url, { ...transformResult, lastModified });
+    indexHTMLData.set(uaCompat.browserTarget + ctx.url, { ...transformResult, lastModified });
 
     // cache polyfills for serving
     transformResult.polyfills.forEach(p => {
@@ -115,6 +122,7 @@ export function createTransformIndexHTMLMiddleware(cfg) {
       }
       polyfills.set(`${root}${toBrowserPath(p.path)}`, p.content);
     });
+    return undefined;
   }
 
   return transformIndexHTMLMiddleware;

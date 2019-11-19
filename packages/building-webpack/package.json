@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-webpack",
-  "version": "2.7.4",
+  "version": "2.8.0",
   "publishConfig": {
     "access": "public"
   },
@@ -38,12 +38,12 @@
     "config"
   ],
   "dependencies": {
-    "@babel/core": "^7.3.3",
+    "@babel/core": "^7.7.2",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
-    "@babel/preset-env": "^7.0.0",
-    "@open-wc/building-utils": "^2.10.2",
-    "@open-wc/webpack-index-html-plugin": "^1.5.4",
+    "@babel/preset-env": "^7.7.1",
+    "@open-wc/building-utils": "^2.10.3",
+    "@open-wc/webpack-index-html-plugin": "^1.5.5",
     "babel-loader": "^8.0.0",
     "babel-plugin-bundled-import-meta": "^0.3.0",
     "babel-plugin-template-html-minifier": "^3.0.0",
@@ -54,9 +54,9 @@
     "workbox-webpack-plugin": "^4.3.1"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.3.4",
-    "@babel/preset-typescript": "^7.3.3",
-    "@babel/register": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/preset-typescript": "^7.7.2",
+    "@babel/register": "^7.7.0",
     "http-server": "^0.11.1",
     "lit-element": "^2.0.1",
     "ts-loader": "^5.3.3",

@@ -83,13 +83,15 @@ describe('server', () => {
 
   it('can run multiple servers in parallel', async () => {
     async function createServer(port) {
-      return (await startServer(
-        createConfig({
-          port,
-          rootDir: path.resolve(__dirname, 'fixtures', 'simple'),
-          hostname: '0.0.0.0',
-        }),
-      )).server;
+      return (
+        await startServer(
+          createConfig({
+            port,
+            rootDir: path.resolve(__dirname, 'fixtures', 'simple'),
+            hostname: '0.0.0.0',
+          }),
+        )
+      ).server;
     }
 
     const servers = await Promise.all([8080, 8081, 8082, 8083, 8084, 8085].map(createServer));
