@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.24.0...es-dev-server@1.24.1) (2019-11-19)
+
+
+### Bug Fixes
+
+* **es-dev-server:** resolve imports in inline modules ([#997](https://github.com/open-wc/open-wc/issues/997)) ([98322e4](https://github.com/open-wc/open-wc/commit/98322e4f5551c4f5d90efb2c0a305599fe3bfbbf))
+
+
+
+
+
 # [1.24.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.23.1...es-dev-server@1.24.0) (2019-11-19)
 
 

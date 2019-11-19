@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.1](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.10.0...@open-wc/karma-esm@2.10.1) (2019-11-19)
+
+
+### Bug Fixes
+
+* **es-dev-server:** resolve imports in inline modules ([#997](https://github.com/open-wc/open-wc/issues/997)) ([98322e4](https://github.com/open-wc/open-wc/commit/98322e4f5551c4f5d90efb2c0a305599fe3bfbbf))
+
+
+
+
+
 # [2.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.9.8...@open-wc/karma-esm@2.10.0) (2019-11-19)
 
 
