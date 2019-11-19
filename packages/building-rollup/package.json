@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "0.13.1",
+  "version": "0.13.2",
   "publishConfig": {
     "access": "public"
   },
@@ -45,7 +45,7 @@
     "babel-plugin-template-html-minifier": "^3.0.0",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-entrypoint-hashmanifest": "^0.1.2",
-    "rollup-plugin-index-html": "^1.6.0",
+    "rollup-plugin-index-html": "^1.7.0",
     "rollup-plugin-node-resolve": "^4.0.1",
     "rollup-plugin-terser": "^4.0.4",
     "rollup-plugin-workbox": "^4.0.0"

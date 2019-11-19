@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.4.6...@open-wc/demoing-storybook@1.0.0) (2019-11-19)
+
+
+### Features
+
+* **demoing-storybook:** storybook powered by es-dev-server ([558525e](https://github.com/open-wc/open-wc/commit/558525ecaaedea73ee3b4b322dc5a3a57b5323a3))
+
+
+### BREAKING CHANGES
+
+* **demoing-storybook:** replace webpack with es-dev-server
+See MIGRATION.md for more details
+
+
+
+
+
 ## [0.4.6](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.4.5...@open-wc/demoing-storybook@0.4.6) (2019-11-15)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
