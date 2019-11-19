@@ -1,7 +1,7 @@
 import { extractResources, createIndexHTML } from '@open-wc/building-utils/index-html/index.js';
 import { polyfillsPresets } from './polyfills-presets.js';
 import { addPolyfilledImportMaps } from './import-maps.js';
-import { compatibilityModes, virtualFilePrefix, polyfillsModes } from '../constants.js';
+import { compatibilityModes, polyfillsModes } from '../constants.js';
 
 /**
  * @typedef {object} TransformIndexHTMLConfig
@@ -55,9 +55,7 @@ export function getTransformedIndexHTML(cfg) {
 
   const files = [
     ...resources.jsModules,
-    ...[...inlineModules.keys()].map(
-      e => `${virtualFilePrefix}${e}?source=${encodeURIComponent(cfg.indexUrl)}`,
-    ),
+    ...[...inlineModules.keys()].map(e => `${e}?source=${encodeURIComponent(cfg.indexUrl)}`),
   ];
 
   if (files.length === 0) {

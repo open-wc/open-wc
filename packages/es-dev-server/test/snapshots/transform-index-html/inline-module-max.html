@@ -29,7 +29,7 @@
   if (!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype) { polyfills.push(loadScript('polyfills/custom-elements-es5-adapter.0ec040d16c6fd1b9220084b0b925cbe0.js', false)) }
 
   function loadEntries() {
-    ['./app.js','/__es-dev-server__/inline-module-0.js?source=%2Findex.html','/__es-dev-server__/inline-module-1.js?source=%2Findex.html'].forEach(function (entry) { System.import(entry); });
+    ['./app.js','./inline-module-0.js?source=%2Findex.html','./inline-module-1.js?source=%2Findex.html'].forEach(function (entry) { System.import(entry); });
   }
 
   polyfills.length ? Promise.all(polyfills).then(loadEntries) : loadEntries();
