@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.22.0...@open-wc/create@0.22.1) (2019-11-19)
+
+
+### Bug Fixes
+
+* **create:** adjust storybook config for app generator ([#1003](https://github.com/open-wc/open-wc/issues/1003)) ([de76353](https://github.com/open-wc/open-wc/commit/de76353f76441602071aa73d090457105f110efe))
+
+
+
+
+
 # [0.22.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.21.5...@open-wc/create@0.22.0) (2019-11-19)
 
 
