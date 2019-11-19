@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "storybook": "start-storybook -p 9001",
-    "storybook:build": "build-storybook -o _site -s storybook-static"
+    "storybook": "start-storybook --node-resolve --watch --open",
+    "storybook:build": "build-storybook"
   },
   "devDependencies": {
-    "@open-wc/demoing-storybook": "^0.4.0"
+    "@open-wc/demoing-storybook": "^1.0.1"
   }
 }

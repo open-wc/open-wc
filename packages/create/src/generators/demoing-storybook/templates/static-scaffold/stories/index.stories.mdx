@@ -1,0 +1,55 @@
+import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
+
+import '../<%= tagName %>.js';
+
+<Meta 
+  title="<%= className %>"
+  parameters={{
+    component: "<%= tagName %>",
+    options: { selectedPanel: "storybookjs/knobs/panel" }
+  }}
+/>
+
+# <%= className %>
+
+A component for...
+
+## Features:
+
+- a
+- b
+- ...
+
+## How to use
+
+### Installation
+
+```bash
+yarn add <%= tagName %>
+```
+
+```js
+import '<%= tagName %>/<%= tagName %>.js';
+```
+
+<Preview withToolbar>
+  <Story name="Simple">
+    {html`
+      <<%= tagName %>></<%= tagName %>>
+    `}
+  </Story>
+</Preview>
+
+## API
+
+<Props of="<%= tagName %>" />
+
+## Variations
+
+###### Custom Title
+
+<Story name="Custom Title">
+  {html`
+    <<%= tagName %> .title=${'Hello World'}></<%= tagName %>>
+  `}
+</Story>

@@ -16,9 +16,7 @@
 ./
 ├── scaffold-app/
 │   ├── .storybook/
-│   │   ├── addons.js
-│   │   ├── config.js
-│   │   └── presets.js
+│   │   └── preview.js
 │   ├── components/
 │   │   ├── page-main/
 │   │   │   ├── /
