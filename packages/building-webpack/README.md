@@ -71,7 +71,7 @@ We use [webpack-index-html-plugin](https://open-wc.org/building/webpack-index-ht
 ```json
 {
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack --mode=production",
     "start:build": "es-dev-server --app-index dist/index.html --open"
   }
 }

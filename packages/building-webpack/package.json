@@ -15,8 +15,8 @@
   "homepage": "https://github.com/open-wc/open-wc/",
   "main": "index.js",
   "scripts": {
-    "demo:build": "webpack --mode production --config demo/js/webpack.config.js",
-    "demo:build:dev": "webpack --mode development --config demo/js/webpack.config.js",
+    "demo:build": "webpack --mode=production --config demo/js/webpack.config.js",
+    "demo:build:dev": "webpack --mode=development --config demo/js/webpack.config.js",
     "demo:build:modern": "webpack --mode=production --config demo/js/webpack.modern.config.js",
     "demo:build:stats": "webpack --mode=production --config demo/js/webpack.modern.config.js --profile --json > build-stats.json",
     "demo:build:ts": "webpack --mode=production --config demo/ts/webpack.config.js",
