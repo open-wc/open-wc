@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.21.5...@open-wc/create@0.22.0) (2019-11-19)
+
+
+### Bug Fixes
+
+* use es-dev-server auto compatibility ([df6fe21](https://github.com/open-wc/open-wc/commit/df6fe2151b3f22d068f0acd94880a43c1fb828a7))
+
+
+### Features
+
+* update to use auto compatibility of es-dev-server ([f6d085e](https://github.com/open-wc/open-wc/commit/f6d085eda5a05391d1a464b9e49222c78194b0d9))
+
+
+
+
+
 ## [0.21.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.21.4...@open-wc/create@0.21.5) (2019-11-14)
 
 

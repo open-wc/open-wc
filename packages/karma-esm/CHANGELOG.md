@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.9.8...@open-wc/karma-esm@2.10.0) (2019-11-19)
+
+
+### Features
+
+* update testing to use auto compatibility of es-dev-server ([7d5ea56](https://github.com/open-wc/open-wc/commit/7d5ea56a1cb911fb31228bec18dc38ea8826b1f4))
+
+
+
+
+
 ## [2.9.8](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.9.7...@open-wc/karma-esm@2.9.8) (2019-11-07)
 
 **Note:** Version bump only for package @open-wc/karma-esm
