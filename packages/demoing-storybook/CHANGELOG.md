@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.0...@open-wc/demoing-storybook@1.0.1) (2019-11-19)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** align with official start/build-storybook bin ([3071e4d](https://github.com/open-wc/open-wc/commit/3071e4d0445aefa96d8aed8ad43ae681ec3db0fb))
+
+
+
+
+
 # [1.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@0.4.6...@open-wc/demoing-storybook@1.0.0) (2019-11-19)
 
 
