@@ -15,8 +15,8 @@
   "homepage": "https://github.com/open-wc/open-wc/",
   "main": "index.js",
   "bin": {
-    "storybook-start": "src/start/cli.js",
-    "storybook-build": "src/build/cli.js"
+    "start-storybook": "src/start/cli.js",
+    "build-storybook": "src/build/cli.js"
   },
   "scripts": {
     "build:start": "es-dev-server --root-dir static-storybook --app-index index.html --open",
