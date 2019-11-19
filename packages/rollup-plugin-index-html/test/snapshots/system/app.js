@@ -6,7 +6,7 @@ System.register([], function (exports, module) {
 			// @ts-nocheck
 			/* eslint-disable */
 			console.log('my app');
-			module.import('./lazy-ab69e3de.js');
+			module.import('./lazy-9a97a738.js');
 
 		}
 	};

@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/demoing-storybook",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "publishConfig": {
     "access": "public"
   },
@@ -16,9 +16,9 @@
   "main": "index.js",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js",
-    "site:build": "build-storybook -c demo/.storybook -o ../../_site/demoing-storybook",
-    "storybook": "start-storybook -p 9001 -c demo/.storybook",
-    "storybook:build": "build-storybook -c demo/.storybook"
+    "site:build": "build-storybook -c demo/.storybook -s ./demo -o ../../_site/demoing-storybook",
+    "storybook": "start-storybook -p 9001 -c demo/.storybook -s ./demo",
+    "storybook:build": "build-storybook -c demo/.storybook -s ./demo"
   },
   "files": [
     "*.js",

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.0...@open-wc/testing-karma-bs@1.3.1) (2019-11-19)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
+# [1.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.2.15...@open-wc/testing-karma-bs@1.3.0) (2019-11-19)
+
+
+### Bug Fixes
+
+* use es-dev-server auto compatibility ([df6fe21](https://github.com/open-wc/open-wc/commit/df6fe2151b3f22d068f0acd94880a43c1fb828a7))
+
+
+### Features
+
+* update testing to use auto compatibility of es-dev-server ([7d5ea56](https://github.com/open-wc/open-wc/commit/7d5ea56a1cb911fb31228bec18dc38ea8826b1f4))
+
+
+
+
+
 ## [1.2.15](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.2.14...@open-wc/testing-karma-bs@1.2.15) (2019-11-07)
 
 **Note:** Version bump only for package @open-wc/testing-karma-bs

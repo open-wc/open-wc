@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.24.0...es-dev-server@1.24.1) (2019-11-19)
+
+
+### Bug Fixes
+
+* **es-dev-server:** resolve imports in inline modules ([#997](https://github.com/open-wc/open-wc/issues/997)) ([98322e4](https://github.com/open-wc/open-wc/commit/98322e4f5551c4f5d90efb2c0a305599fe3bfbbf))
+
+
+
+
+
+# [1.24.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.23.1...es-dev-server@1.24.0) (2019-11-19)
+
+
+### Bug Fixes
+
+* sub-sections of folder structure are not accessible via url ([459db23](https://github.com/open-wc/open-wc/commit/459db23165c2485758eff9d0d0c4bca138e382ca))
+* use es-dev-server auto compatibility ([df6fe21](https://github.com/open-wc/open-wc/commit/df6fe2151b3f22d068f0acd94880a43c1fb828a7))
+
+
+### Features
+
+* **es-dev-server:** add auto compatibilty ([9a79caf](https://github.com/open-wc/open-wc/commit/9a79caf1739fe73774f032c9b2d5c9fc997c1b80))
+
+
+
+
+
 ## [1.23.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.23.0...es-dev-server@1.23.1) (2019-11-06)
 
 

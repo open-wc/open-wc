@@ -53,10 +53,11 @@ Rollup plugin to make rollup understand your index.html.
   </head>
   <body>
     <h1><span>Hello world!</span></h1>
-    <my-app></my-app
-    ><script>
-      console.log('hello inline script');</script
-    ><script src="app.202933f045cc9f6cdf51.js"></script>
+    <my-app></my-app>
+    <script>
+      console.log('hello inline script');
+    </script>
+    <script src="app.202933f045cc9f6cdf51.js"></script>
   </body>
 </html>
 ```

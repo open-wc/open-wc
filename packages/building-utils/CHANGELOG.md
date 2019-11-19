@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.2...@open-wc/building-utils@2.10.3) (2019-11-19)
+
+
+### Bug Fixes
+
+* **building-utils:** add polyfill scripts before first script tag ([5768ab5](https://github.com/open-wc/open-wc/commit/5768ab57a9a9c104078cd8b5739528a7e9dc9ed1))
+
+
+
+
+
 ## [2.10.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.1...@open-wc/building-utils@2.10.2) (2019-10-25)
 
 

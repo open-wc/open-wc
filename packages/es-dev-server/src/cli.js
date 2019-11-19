@@ -2,7 +2,7 @@
 import { startServer, createConfig } from './es-dev-server.js';
 import { readCommandLineArgs } from './command-line-args.js';
 
-const config = createConfig(readCommandLineArgs());
+const config = createConfig({ ...readCommandLineArgs(), logErrorsToBrowser: true });
 startServer(config);
 
 ['exit', 'SIGINT'].forEach(event => {
