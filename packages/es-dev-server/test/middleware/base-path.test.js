@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import fetch from 'node-fetch';
 import path from 'path';
-import { startServer, createConfig } from '../../src/es-dev-server.js';
+import { startServer, createConfig, compatibilityModes } from '../../src/es-dev-server.js';
 
 const host = 'http://localhost:8080/';
 
@@ -14,6 +14,7 @@ describe('base path middleware', () => {
         rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
         appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
         basePath: '/foo',
+        compatibility: compatibilityModes.NONE,
       }),
     ));
   });

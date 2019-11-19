@@ -257,7 +257,10 @@ export async function writeFilesToDisk() {
         type: 'select',
         name: 'writeToDisk',
         message: 'Do you want to write this file structure to disk?',
-        choices: [{ title: 'Yes', value: 'true' }, { title: 'No', value: 'false' }],
+        choices: [
+          { title: 'Yes', value: 'true' },
+          { title: 'No', value: 'false' },
+        ],
       },
     ],
     {

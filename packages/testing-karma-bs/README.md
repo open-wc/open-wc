@@ -50,7 +50,7 @@ Add a script to your `package.json`:
 ```json
 {
   "scripts": {
-    "test:bs": "karma start karma.bs.config.js --compatibility all --coverage"
+    "test:bs": "karma start karma.bs.config.js --coverage"
   }
 }
 ```

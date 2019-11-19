@@ -1,4 +1,4 @@
-System.register(['./shared-aa836e1a.js'], function (exports, module) {
+System.register(['./shared-37ad104a.js'], function (exports, module) {
 	'use strict';
 	return {
 		setters: [function () {}],
@@ -6,7 +6,7 @@ System.register(['./shared-aa836e1a.js'], function (exports, module) {
 
 			console.log('my app');
 
-			module.import('./lazy-3299e79e.js');
+			module.import('./lazy-80ba0959.js');
 
 		}
 	};

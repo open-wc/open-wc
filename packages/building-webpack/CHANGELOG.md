@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.7.4...@open-wc/building-webpack@2.8.0) (2019-11-19)
+
+
+### Features
+
+* update to use auto compatibility of es-dev-server ([f6d085e](https://github.com/open-wc/open-wc/commit/f6d085eda5a05391d1a464b9e49222c78194b0d9))
+
+
+
+
+
 ## [2.7.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.7.3...@open-wc/building-webpack@2.7.4) (2019-11-03)
 
 **Note:** Version bump only for package @open-wc/building-webpack

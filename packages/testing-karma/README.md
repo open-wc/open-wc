@@ -76,8 +76,7 @@ Add scripts to your package.json:
     "test": "karma start --coverage",
     "test:watch": "karma start --auto-watch=true --single-run=false",
     "test:update-snapshots": "karma start --update-snapshots",
-    "test:prune-snapshots": "karma start --prune-snapshots",
-    "test:compatibility": "karma start --compatibility all --auto-watch=true --single-run=false"
+    "test:prune-snapshots": "karma start --prune-snapshots"
   }
 }
 ```
@@ -90,7 +89,6 @@ Commands explained:
 - `test:watch`: does a single test run, and then re-runs on file changes. coverage is not analyzed for performance. in watch mode you can also visit http://localhost:9876/debug.html to debug in the browser
 - `test:update-snapshots`: updates any snapshots files from `@open-wc/semantic-dom-diff`. Use this when your component's rendered HTML changed.
 - `test:prune-snapshots`: prunes any used snapshots files from `@open-wc/semantic-dom-diff`.
-- `test:compatibility`: like `test:watch`, except that it makes your tests compatible with older browsers (including IE11).
 
 ## Testing single files or folders
 

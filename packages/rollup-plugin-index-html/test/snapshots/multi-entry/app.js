@@ -1,5 +1,5 @@
-import './shared-6e98f23f.js';
+import './shared-ed942ddb.js';
 
 // @ts-nocheck
 console.log('my app');
-import('./lazy-99ef5fe0.js');
+import('./lazy-ad0cfec5.js');

@@ -7,7 +7,7 @@ console.log('module b');
 console.log('lit-html', html);
 
 function defineClass() {
-  class MyClass {
+  return class MyClass {
     myField = '123';
 
     static myStaticField = '456';
@@ -15,6 +15,16 @@ function defineClass() {
     myArrowFunc = () => {
       console.log('hello world');
     };
+
+    #privateField = 'private field';
+
+    #privateMethods() {
+      return 'private method';
+    }
+
+    publicMethod() {
+      console.log(this.#privateField, this.#privateMethods());
+    }
   }
 }
 
@@ -22,3 +32,5 @@ render(
   html`Class fields compiled to: <pre>${defineClass.toString()}<pre>`,
   document.getElementById('app'),
 );
+
+console.log(new (defineClass())().publicMethod())

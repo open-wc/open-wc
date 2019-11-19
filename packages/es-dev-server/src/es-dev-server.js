@@ -5,4 +5,3 @@ export * from './create-server.js';
 export * from './start-server.js';
 
 export * from './constants.js';
-export * from './utils/polyfills.js';
