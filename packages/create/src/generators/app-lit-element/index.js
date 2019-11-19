@@ -63,6 +63,11 @@ export const AppLitElementMixin = subclass =>
 
       await this.copyTemplates(`${__dirname}/templates/static/**/*`);
 
+      this.copyTemplate(
+        `${__dirname}/templates/custom-elements.json`,
+        this.destinationPath('custom-elements.json'),
+      );
+
       if (this.options.features && this.options.features.includes('testing')) {
         this.copyTemplate(
           `${__dirname}/templates/_my-app.test.js`,
