@@ -6,7 +6,6 @@ const resolve = require('rollup-plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const babel = require('rollup-plugin-babel');
 const indexHTML = require('rollup-plugin-index-html');
-const entrypointHashmanifest = require('rollup-plugin-entrypoint-hashmanifest');
 const { generateSW } = require('rollup-plugin-workbox');
 
 const getWorkboxConfig = require('@open-wc/building-utils/get-workbox-config');
@@ -105,9 +104,6 @@ module.exports = function createBasicConfig(_options) {
 
       // only minify if in production
       production && terser(),
-
-      // hash
-      entrypointHashmanifest(),
 
       production && options.plugins.workbox && generateSW(getWorkboxConfig()),
     ],
