@@ -52,7 +52,7 @@ module.exports = function getAssets({ storybookConfigDir, storyUrls }) {
         import { configure } from '@open-wc/demoing-storybook';
 
         Promise.all([
-          ${storyUrls.map(url => `import('./${url}')`).join(',\n')}
+          ${storyUrls.map(url => `import('${url}')`).join(',\n')}
         ]).then(stories => {
           configure(() => stories, {});
         });
