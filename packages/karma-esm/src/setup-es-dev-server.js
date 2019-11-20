@@ -79,12 +79,12 @@ function createServeKarmaHtml(karmaHost) {
 async function setupDevServer(karmaConfig, esmConfig, watch, babelConfig, karmaEmitter) {
   const devServerPort =
     typeof esmConfig.port === 'number' ? esmConfig.port : await portfinder.getPortPromise();
-  const karmaHost = `${karmaConfig.protocol}//${karmaConfig.listenAddress}:${karmaConfig.port}`;
-  const devServerHost = `${karmaConfig.protocol}//${karmaConfig.listenAddress}:${devServerPort}`;
+  const karmaHost = `${karmaConfig.protocol}//${karmaConfig.hostname}:${karmaConfig.port}`;
+  const devServerHost = `${karmaConfig.protocol}//${karmaConfig.hostname}:${devServerPort}`;
 
   const esDevServerConfig = createConfig({
     port: devServerPort,
-    hostname: karmaConfig.listenAddress,
+    hostname: karmaConfig.hostname,
     rootDir: karmaConfig.basePath,
     nodeResolve: esmConfig.nodeResolve,
     compatibility: esmConfig.compatibility,
