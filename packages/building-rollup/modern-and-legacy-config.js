@@ -1,7 +1,6 @@
 // @ts-nocheck
 
-const { DEFAULT_EXTENSIONS } = require('@babel/core');
-const { findSupportedBrowsers } = require('@open-wc/building-utils');
+const { findSupportedBrowsers, defaultFileExtensions } = require('@open-wc/building-utils');
 const customMinifyCss = require('@open-wc/building-utils/custom-minify-css');
 const path = require('path');
 const resolve = require('rollup-plugin-node-resolve');
@@ -25,7 +24,7 @@ const prefix = '[owc-building-rollup]';
 function createConfig(_options, legacy) {
   const options = {
     outputDir: 'dist',
-    extensions: DEFAULT_EXTENSIONS,
+    extensions: defaultFileExtensions,
     indexHTMLPlugin: {},
     ..._options,
     plugins: {
