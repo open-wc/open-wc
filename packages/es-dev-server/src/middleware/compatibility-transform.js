@@ -56,6 +56,10 @@ export function createCompatibilityTransformMiddleware(cfg) {
     }
 
     const filePath = getRequestFilePath(ctx, cfg.rootDir);
+    // if there is no file path, this file was not served statically
+    if (!filePath) {
+      return undefined;
+    }
 
     // Ensure we respond with js content type
     ctx.response.set('content-type', 'text/javascript');
