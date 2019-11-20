@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.22.1...@open-wc/create@0.23.0) (2019-11-20)
+
+
+### Features
+
+* **create:** align with new storybook ([770cb83](https://github.com/open-wc/open-wc/commit/770cb8326aee788616a5e2b6d950f738598b0518))
+
+
+
+
+
 ## [0.22.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.22.0...@open-wc/create@0.22.1) (2019-11-19)
 
 
