@@ -4,7 +4,7 @@
  * @property {string} rootDir
  */
 
-import { isIndexHTMLResponse, getBodyAsString } from '../utils/utils.js';
+import { isIndexHTMLResponse, getBodyAsString, RequestCancelledError } from '../utils/utils.js';
 import { setupMessageChannel } from '../utils/message-channel.js';
 import { messageChannelEndpoint } from '../constants.js';
 import messageChannelScript from '../browser-scripts/message-channel.js';
@@ -15,9 +15,16 @@ import messageChannelScript from '../browser-scripts/message-channel.js';
  * @param {import('koa').Context} ctx
  */
 async function injectMessageChannelScript(ctx) {
-  const bodyString = await getBodyAsString(ctx);
-  const reloadInjected = bodyString.replace('</body>', messageChannelScript);
-  ctx.body = reloadInjected;
+  try {
+    const bodyString = await getBodyAsString(ctx);
+    const reloadInjected = bodyString.replace('</body>', messageChannelScript);
+    ctx.body = reloadInjected;
+  } catch (error) {
+    if (error instanceof RequestCancelledError) {
+      return;
+    }
+    throw error;
+  }
 }
 
 /**
