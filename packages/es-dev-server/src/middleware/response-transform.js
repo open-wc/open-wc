@@ -1,5 +1,5 @@
 /* eslint-disable no-await-in-loop, no-restricted-syntax */
-import { getBodyAsString } from '../utils/utils.js';
+import { getBodyAsString, RequestCancelledError } from '../utils/utils.js';
 
 /**
  * @typedef {object} ResponseTransformerArgs
@@ -33,7 +33,16 @@ export function createResponseTransformMiddleware(config) {
   async function responseTransformMiddlewareConfig(ctx, next) {
     await next();
 
-    const body = await getBodyAsString(ctx);
+    let body;
+    try {
+      body = await getBodyAsString(ctx);
+    } catch (error) {
+      if (error instanceof RequestCancelledError) {
+        return;
+      }
+      throw error;
+    }
+
     let newBody = body;
     let newContentType = ctx.response.get('content-type');
     let changedBody = false;
