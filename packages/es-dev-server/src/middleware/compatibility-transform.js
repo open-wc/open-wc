@@ -1,5 +1,5 @@
 import stripAnsi from 'strip-ansi';
-import { DEFAULT_EXTENSIONS } from '@babel/core';
+import { defaultFileExtensions } from '@open-wc/building-utils';
 import { getBodyAsString, getRequestFilePath, isPolyfill } from '../utils/utils.js';
 import { sendMessageToActiveBrowsers } from '../utils/message-channel.js';
 import { ResolveSyntaxError } from '../utils/resolve-module-imports.js';
@@ -39,7 +39,7 @@ function logError(errorMessage) {
  * @param {CompatibilityTransformMiddleware} cfg
  */
 export function createCompatibilityTransformMiddleware(cfg) {
-  const fileExtensions = [...DEFAULT_EXTENSIONS, ...cfg.extraFileExtensions];
+  const fileExtensions = [...cfg.extraFileExtensions, ...defaultFileExtensions];
   const compatibilityTransform = createCompatibilityTransform(cfg);
 
   /** @type {import('koa').Middleware} */

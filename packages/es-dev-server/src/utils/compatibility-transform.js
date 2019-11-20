@@ -1,5 +1,5 @@
 import minimatch from 'minimatch';
-import { DEFAULT_EXTENSIONS } from '@babel/core';
+import { defaultFileExtensions } from '@open-wc/building-utils';
 import {
   createCompatibilityBabelTransform,
   createMinCompatibilityBabelTransform,
@@ -38,7 +38,7 @@ import { compatibilityModes } from '../constants.js';
  * @param {CompatibilityTransformConfig} cfg
  */
 export function createCompatibilityTransform(cfg) {
-  const fileExtensions = [...DEFAULT_EXTENSIONS, ...cfg.extraFileExtensions];
+  const fileExtensions = [...cfg.extraFileExtensions, ...defaultFileExtensions];
   /** @type {Map<string, BabelTransform>} */
   const babelTransforms = new Map();
   const minCompatibilityTransform = createMinCompatibilityBabelTransform(cfg);
