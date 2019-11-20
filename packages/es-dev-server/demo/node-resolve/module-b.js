@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { html, render } from 'lit-html';
+import './module-c';
 
 export const foo = () => 'module b foo';
 
