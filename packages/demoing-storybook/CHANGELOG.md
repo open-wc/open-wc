@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.2...@open-wc/demoing-storybook@1.0.3) (2019-11-20)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** escape quotes in Storybook scripts ([35dfc70](https://github.com/open-wc/open-wc/commit/35dfc700e387cece89b1533898f93cdfcc3d4fd5))
+* **demoing-storybook:** properly resolve files relative to root dir ([01852be](https://github.com/open-wc/open-wc/commit/01852bee5696d5d3d948fc1bdda8ba168c2fbffe))
+
+
+
+
+
 ## [1.0.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.1...@open-wc/demoing-storybook@1.0.2) (2019-11-20)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook

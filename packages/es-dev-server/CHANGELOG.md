@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.25.0...es-dev-server@1.25.1) (2019-11-20)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't throw on cancelled requests ([e078741](https://github.com/open-wc/open-wc/commit/e0787419400adf0947af299eeb1f2d8fb2e17f19))
+
+
+
+
+
 # [1.25.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.24.1...es-dev-server@1.25.0) (2019-11-20)
 
 

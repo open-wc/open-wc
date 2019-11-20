@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.0...@open-wc/building-rollup@0.14.1) (2019-11-20)
+
+
+### Bug Fixes
+
+* **building-rollup:** remove hash manifest ([8cebba6](https://github.com/open-wc/open-wc/commit/8cebba64b1f4026845cddd107afcdd652727a3ce))
+
+
+
+
+
 # [0.14.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.13.2...@open-wc/building-rollup@0.14.0) (2019-11-20)
 
 
