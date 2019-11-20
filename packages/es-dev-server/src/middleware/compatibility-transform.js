@@ -1,6 +1,11 @@
 import stripAnsi from 'strip-ansi';
 import { defaultFileExtensions } from '@open-wc/building-utils';
-import { getBodyAsString, getRequestFilePath, isPolyfill } from '../utils/utils.js';
+import {
+  getBodyAsString,
+  getRequestFilePath,
+  isPolyfill,
+  RequestCancelledError,
+} from '../utils/utils.js';
 import { sendMessageToActiveBrowsers } from '../utils/message-channel.js';
 import { ResolveSyntaxError } from '../utils/resolve-module-imports.js';
 import { createCompatibilityTransform } from '../utils/compatibility-transform.js';
@@ -76,6 +81,10 @@ export function createCompatibilityTransformMiddleware(cfg) {
       ctx.status = 200;
       return undefined;
     } catch (error) {
+      if (error instanceof RequestCancelledError) {
+        return undefined;
+      }
+
       // ResolveSyntaxError is thrown when resolveModuleImports runs into a syntax error from
       // the lexer, but babel didn't see any errors. this means either a bug in the lexer, or
       // some experimental syntax. log a message and return the module untransformed to the

@@ -4,6 +4,8 @@ import Stream from 'stream';
 import path from 'path';
 import { virtualFilePrefix } from '../constants.js';
 
+export class RequestCancelledError extends Error {}
+
 /**
  * koa-static stores the original served file path on ctx.body.path,
  * we need this path for file transformation but we overwrite body
@@ -24,6 +26,11 @@ const htmlTags = ['html', 'head', 'body'];
  * @returns {Promise<string>}
  */
 export async function getBodyAsString(ctx) {
+  let requestCanceled;
+  ctx.req.on('close', () => {
+    requestCanceled = true;
+  });
+
   if (Buffer.isBuffer(ctx.body)) {
     return ctx.body.toString();
   }
@@ -43,9 +50,16 @@ export async function getBodyAsString(ctx) {
     // a stream can only be read once, so after reading it assign
     // the string response to the body so that it can be accessed
     // again later
-    const body = await getStream(ctx.body);
-    ctx.body = body;
-    return body;
+    try {
+      const body = await getStream(ctx.body);
+      ctx.body = body;
+      return body;
+    } catch (error) {
+      if (requestCanceled) {
+        throw new RequestCancelledError();
+      }
+      throw error;
+    }
   }
 
   return ctx.body;
@@ -101,10 +115,17 @@ export async function isIndexHTMLResponse(ctx, appIndex) {
     return false;
   }
 
-  const indexHTMLString = await getBodyAsString(ctx);
-  return htmlTags.some(
-    tag => indexHTMLString.includes(`<${tag}`) && indexHTMLString.includes(`</${tag}>`),
-  );
+  try {
+    const indexHTMLString = await getBodyAsString(ctx);
+    return htmlTags.some(
+      tag => indexHTMLString.includes(`<${tag}`) && indexHTMLString.includes(`</${tag}>`),
+    );
+  } catch (error) {
+    if (error instanceof RequestCancelledError) {
+      return false;
+    }
+    throw error;
+  }
 }
 
 /**
