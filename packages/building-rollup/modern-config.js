@@ -14,6 +14,8 @@ const getWorkboxConfig = require('@open-wc/building-utils/get-workbox-config');
 
 const production = !process.env.ROLLUP_WATCH;
 
+const DEFAULT_DEDUPE_MODULES = ['lit-html', 'lit-element'];
+
 /**
  * @typedef {ConfigOptions}
  * @param {*} _options
@@ -25,6 +27,7 @@ module.exports = function createBasicConfig(_options) {
     outputDir: 'dist',
     extensions: DEFAULT_EXTENSIONS,
     indexHTMLPlugin: {},
+    dedupeModules: [],
     ..._options,
     plugins: {
       indexHTML: _options.input.endsWith('.html'),
@@ -33,6 +36,20 @@ module.exports = function createBasicConfig(_options) {
       ...(_options.plugins || {}),
     },
   };
+
+  const { dedupeModules, extensions } = options;
+
+  // Disabling linting for this tabular ternary.
+  // predicates on the left, results on the right, followed by the default.
+  /* eslint-disable no-nested-ternary */
+  // prettier-ignore
+  const dedupe =
+      Array.isArray(dedupeModules) ? [...DEFAULT_DEDUPE_MODULES, ...dedupeModules]
+    : dedupeModules === 'all' ? () => true
+    : dedupeModules === false ? []
+    : typeof dedupeModules === 'function' ? dedupeModules
+    : DEFAULT_DEDUPE_MODULES
+  /* eslint-enable no-nested-ternary */
 
   return {
     input: options.input,
@@ -59,7 +76,8 @@ module.exports = function createBasicConfig(_options) {
 
       // resolve bare import specifiers
       resolve({
-        extensions: options.extensions,
+        dedupe,
+        extensions,
       }),
 
       // run code through babel

@@ -13,20 +13,20 @@ The input for rollup is the same `index.html` you use for development. Any modul
 
 ## Setup
 
-### New project
+### New Project
 
 ```bash
 npm init @open-wc
 ```
 
-### Existing project
+### Existing Project
 
 ```bash
 npm init @open-wc
 # Upgrade > Building > Rollup
 ```
 
-### Manual setup
+### Manual Setup
 
 1. Install the required dependencies:
 
@@ -77,7 +77,7 @@ We use [rollup-plugin-index-html](https://open-wc.org/building/rollup-plugin-ind
 - `start:build` runs your app after it has been built using the build command
 - `build` builds your app and outputs it in your `dist` directory
 
-## Supporting legacy browsers
+## Supporting Legacy Browsers
 
 `createDefaultConfig` works for browsers which [support es modules](https://caniuse.com/#feat=es6-module). If you need to support older browsers such as IE11 you need to use our `createCompatibilityConfig` in your `rollup.config.js`:
 
@@ -91,7 +91,7 @@ In addition to outputting a regular build of your app, it outputs a legacy build
 
 At runtime we determine which version of your app should be loaded, so that legacy browsers don't force you to ship more and slower code to most users on modern browsers.
 
-## Config features
+## Config Features
 
 `createDefaultConfig`:
 
@@ -132,7 +132,7 @@ At runtime we determine which version of your app should be loaded, so that lega
     - minify + treeshake js
     - minify html and css in template literals
 
-## Adjusting browser support for the modern build
+## Adjusting Browser Support for the Modern Build
 
 The legacy build targets IE11, which is the earliest browser supported by the webcomponents polyfill. For the modern build we target the 2 most recent versions of the major browsers (chrome, firefox, safari and edge).
 
@@ -140,7 +140,7 @@ You can adjust this by adding a [browserslist](https://github.com/browserslist/b
 
 > Warning: you should not add IE11 or other very early browsers as a target in your browserslist, as it would result in a broken modern build because it makes some assumptions around browser support. Use the `--legacy` flag for legacy builds.
 
-## Customizing the babel config
+## Customizing the Babel Config
 
 You can define your own babel plugins by adding a `.babelrc` or `babel.config.js` to your project. See [babeljs config](https://babeljs.io/docs/en/configuration) for more information.
 
@@ -152,7 +152,7 @@ For example to add support for class properties:
 }
 ```
 
-## Extending the rollup config
+## Extending the Rollup Config
 
 A rollup config is just a plain object. It's easy to extend it using javascript:
 
@@ -188,13 +188,13 @@ export default configs.map(config => ({
 }));
 ```
 
-### Common extensions
+### Common Extensions
 
 ::: warning
 Some extensions or plugins add non-native or experimental features to your code. This can be bad for the maintenance of your code in the long term, we therefore don't recommend it unless you know what you're doing.
 :::
 
-#### Customizing index.html output
+#### Customizing index.html Output
 
 If you need to customize the output of your `index.html` you can create a basic config object with `createDefaultConfig`, and use `deepmerge` to override and apply your customized options to [rollup-plugin-index-html](https://open-wc.org/building/rollup-plugin-index-html.html):
 
@@ -224,7 +224,7 @@ export default deepmerge(basicConfig, {
 
 See the plugin docs for all options.
 
-#### non index.html entrypoint
+#### Non-index.html Entrypoint
 
 By default we look for an `index.html` as entrypoint. If want to use regular entrypoints you will need to provide your `index.html` for output manually:
 
@@ -263,7 +263,38 @@ export default merge(basicConfig, {
 });
 ```
 
-#### Resolve commonjs modules
+#### Deduplicating Node Modules
+
+Rollup uses the browser's standard means of resolving modules by URL. That means that by default, bare module specifiers are not supported. As mentioned [above](#config-features), Both the modern and legacy open-wc configs apply `rollup-plugin-node-resolve` which allows you to use bare specifiers in your source files.
+
+Node module resolution is fundamentally different to browser behaviour. Node resolution allows - and in fact encourages - multiple copies of single modules to exist in your app's module graph. This can cause issues for libraries which expect to be loaded only once by the browser. `lit-html` is one such library, which uses [`instanceof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof) extensively throughout the source. If it's loaded twice, [bugs can occur](https://github.com/Polymer/lit-html/issues/320#issuecomment-390768466).
+
+To avoid this problem, we've included `lit-html` in the [list of packages for `rollup-plugin-node-resolve` to deduplicate](https://github.com/rollup/rollup-plugin-node-resolve/pull/201). You can customize this list yourself by adding your module names to the `dedupeModules` option of the config generator.
+
+```js
+import { createDefaultConfig } from '@open-wc/building-rollup';
+
+export default createDefaultConfig({
+  input: './my-app.js',
+  dedupeModules: ['my-singleton'],
+});
+```
+
+Note that the config will always dedupe `lit-html`, whether you specify it or not. If for some reason you don't want that, pass `dedupeModules: false`.
+
+```js
+import { createDefaultConfig } from '@open-wc/building-rollup';
+import resolve from 'rollup-plugin-node-resolve';
+
+const { plugins, ...config } = createDefaultConfig({
+  input: './my-app.js',
+  dedupeModules: false,
+});
+```
+
+The `dedupeModules` option can also take a unary predicate function which takes the importee name (string) as it's parameter.
+
+#### Resolve CommonJS Modules
 
 CommonJS is the module format for NodeJS, and not suitable for the browser. Rollup only handles es modules by default, but sometimes it's necessary to be able to import a dependency. To do this, you can add [rollup-plugin-commonjs](https://github.com/rollup/rollup-plugin-commonjs):
 
@@ -280,7 +311,7 @@ export default configs.map(config => ({
 }));
 ```
 
-### Copy assets
+### Copy Assets
 
 Web apps often include assets such as CSS files and images. These are not part of your regular dependency graph (see above), so they need to be copied into the build directory. Other files you might need to copy this way are e.g. fonts, JSON files, sound or video files, and HTML files (other than the `index.html` referenced in the `input` option) etc.
 
@@ -319,7 +350,7 @@ export default [
 ];
 ```
 
-### Support typescript
+### Support Typescript
 
 To import a typescript file, use the `.ts` extension in your `index.html`:
 
@@ -378,7 +409,7 @@ export default configs.map(config => ({
 }));
 ```
 
-#### Disable typescript compilation
+#### Disable Typescript Compilation
 
 We already mentioned this above, but this is _really important_: Make sure to prevent any compilation done by the typescript compiler (`tsc`). If you use one of the options above, you put babel or rollup in charge of the compilation of typescript. In no case do you want multiple compilers to interfere with each other.
 
@@ -393,7 +424,7 @@ You can do this by setting the following options in `tsconfig.json`:
 }
 ```
 
-#### Import CSS files in lit-html
+#### Import CSS Files in lit-html
 
 To separate your lit-html styles in css files, you can use [rollup-plugin-lit-css](https://github.com/bennypowers/rollup-plugin-lit-css):
 
@@ -412,11 +443,11 @@ export default configs.map(config => ({
 
 ## Progressive Web App
 
-### Making your app installable
+### Making your App Installable
 
 Make sure your PWA meets the installable criteria, which you can find [here](https://developers.google.com/web/fundamentals/app-install-banners/). You can find a tool to generate your `manifest.json` [here](https://www.pwabuilder.com/generate). When your app has a service worker with a `fetch` handler (generated by this configuration), a `manifest.json`, and is served over HTTPS, your app is ready to be installed.
 
-### Enabling the service worker
+### Enabling the Service Worker
 
 This configuration will by default generate a service worker for you, using [rollup-plugin-workbox](https://www.npmjs.com/package/rollup-plugin-workbox). The service worker will only be generated for production. To opt-in to using this service worker, you can add the following code snippet to your `index.html`:
 
@@ -430,7 +461,7 @@ This configuration will by default generate a service worker for you, using [rol
 </script>
 ```
 
-### Overriding the workbox config
+### Overriding the Workbox Config
 
 If you want to override the default config with your own workbox configuration, you can disable the default workbox configuration by setting `options.plugins.workbox` to false in the `options` object that you pass to `createDefaultConfig`, and then you can override the plugins
 
@@ -470,7 +501,7 @@ module.exports = {
 
 You can find the options for configuring Workbox [here](https://developers.google.com/web/tools/workbox/modules/workbox-build).
 
-### Disabling service worker generation
+### Disabling Service Worker Generation
 
 To opt out of using workbox to generate a service worker, you can disabled it by overriding the options in the `createDefaultConfig` function:
 
@@ -483,7 +514,7 @@ export default createDefaultConfig({
 });
 ```
 
-### A note on `skipWaiting`
+### A Note on `skipWaiting`
 
 By default, the service worker generated will _not_ call `skipWaiting`. The reason for this is that it becomes very painful very quickly if you're lazyloading code in your application.
 
