@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.3...@open-wc/building-utils@2.10.4) (2019-11-20)
+
+
+### Bug Fixes
+
+* **es-dev-server:** prefer .mjs over. js files ([27b5a9f](https://github.com/open-wc/open-wc/commit/27b5a9f58d45e213588b1440c53546e0a45d1ac4))
+
+
+
+
+
 ## [2.10.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.2...@open-wc/building-utils@2.10.3) (2019-11-19)
 
 

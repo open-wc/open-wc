@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.24.1...es-dev-server@1.25.0) (2019-11-20)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't handle requests without a file path ([bb265b9](https://github.com/open-wc/open-wc/commit/bb265b9cbd90386f916663e3471ae8efb4e4eff7))
+* **es-dev-server:** prefer .mjs over. js files ([27b5a9f](https://github.com/open-wc/open-wc/commit/27b5a9f58d45e213588b1440c53546e0a45d1ac4))
+
+
+### Features
+
+* **building-rollup:** use shared extensions config ([39da78b](https://github.com/open-wc/open-wc/commit/39da78bcad70aaf1aa04cfe34a649b837f56d1ab))
+
+
+
+
+
 ## [1.24.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.24.0...es-dev-server@1.24.1) (2019-11-19)
 
 

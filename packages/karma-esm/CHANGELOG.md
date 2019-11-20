@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.2](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.10.1...@open-wc/karma-esm@2.10.2) (2019-11-20)
+
+
+### Bug Fixes
+
+* **karma-esm:** use hostname instead of listenaddress ([7391682](https://github.com/open-wc/open-wc/commit/7391682481c7d7e256e93181bdb5314f028f3d62))
+
+
+
+
+
 ## [2.10.1](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.10.0...@open-wc/karma-esm@2.10.1) (2019-11-19)
 
 

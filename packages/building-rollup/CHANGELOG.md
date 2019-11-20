@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.13.2...@open-wc/building-rollup@0.14.0) (2019-11-20)
+
+
+### Features
+
+* **building-rollup:** use shared extensions config ([39da78b](https://github.com/open-wc/open-wc/commit/39da78bcad70aaf1aa04cfe34a649b837f56d1ab))
+
+
+
+
+
 ## [0.13.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.13.1...@open-wc/building-rollup@0.13.2) (2019-11-19)
 
 **Note:** Version bump only for package @open-wc/building-rollup
