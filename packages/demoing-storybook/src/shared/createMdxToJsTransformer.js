@@ -1,13 +1,15 @@
 const mdx = require('@mdx-js/mdx');
+const path = require('path');
 const { transformAsync } = require('@babel/core');
 const createCompiler = require('@storybook/addon-docs/mdx-compiler-plugin');
+const toBrowserPath = require('./toBrowserPath');
 
 const compilers = [createCompiler({})];
 
-module.exports = function createMdxToJsTransformer(relativeToCwd = true) {
+module.exports = function createMdxToJsTransformer(rootDir) {
   let urlToPrebuilt = require.resolve('@open-wc/storybook-prebuilt/dist/preview.js');
-  if (relativeToCwd) {
-    urlToPrebuilt = urlToPrebuilt.replace(process.cwd(), '');
+  if (rootDir) {
+    urlToPrebuilt = toBrowserPath(`/${path.relative(rootDir, urlToPrebuilt)}`);
   }
 
   return async function transformMdxToJs(filePath, body) {
