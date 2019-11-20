@@ -25,7 +25,10 @@ async function testSnapshot(name, configFilePath) {
   /* eslint-disable no-restricted-syntax, no-await-in-loop, no-loop-func */
   for (const config of configs) {
     const bundle = await rollup.rollup(config);
-    const { output } = await bundle.generate(config);
+    const { output } = await bundle.generate({
+      ...config,
+      plugins: undefined,
+    });
 
     output.forEach(file => {
       const filePath = path.join(config.output.dir, file.fileName);
