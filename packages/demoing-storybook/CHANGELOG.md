@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.3...@open-wc/demoing-storybook@1.0.4) (2019-11-21)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** build needs to take rootDir into account ([cc8e74f](https://github.com/open-wc/open-wc/commit/cc8e74fe1277ee33f32380196533b6aa38501ca4))
+
+
+
+
+
 ## [1.0.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.2...@open-wc/demoing-storybook@1.0.3) (2019-11-20)
 
 
