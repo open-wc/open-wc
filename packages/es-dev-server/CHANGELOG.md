@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.25.1...es-dev-server@1.26.0) (2019-11-21)
+
+
+### Features
+
+* **es-dev-server:** don't do compat transform with custom config ([a7a9a90](https://github.com/open-wc/open-wc/commit/a7a9a909dc43efaec16f4a7d5e57b5cce9be1791))
+
+
+
+
+
 ## [1.25.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.25.0...es-dev-server@1.25.1) (2019-11-20)
 
 
