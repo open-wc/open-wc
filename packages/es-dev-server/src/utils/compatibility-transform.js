@@ -66,17 +66,32 @@ export function createCompatibilityTransform(cfg) {
   }
 
   /**
+   * @param {FileData} file
+   * @returns {boolean}
+   */
+  function isAutoModernTransform(file) {
+    return cfg.compatibilityMode === compatibilityModes.AUTO && file.uaCompat.modern;
+  }
+
+  /**
    * Gets the compatibility transform function based on the compatibility
    * mode.
    * @param {FileData} file
    */
   function getCompatibilityBabelTranform(file) {
     switch (cfg.compatibilityMode) {
-      case compatibilityModes.AUTO:
+      case compatibilityModes.AUTO: {
+        // if this is an auto modern transform, we can skip compatibility transformation
+        // and just do the custom user transformation
+        if (isAutoModernTransform(file)) {
+          return createBabelTransform(cfg);
+        }
+
         return file.uaCompat.browserTarget
           ? getAutoCompatibilityBabelTranform(file)
           : // fall back to max if browser target couldn't be found
             maxCompatibilityTransform;
+      }
       case compatibilityModes.MIN:
         return minCompatibilityTransform;
       case compatibilityModes.MAX:
@@ -100,11 +115,8 @@ export function createCompatibilityTransform(cfg) {
       return false;
     }
 
-    const autoModernTransform =
-      cfg.compatibilityMode === compatibilityModes.AUTO && file.uaCompat.modern;
-
     // auto transform can be skipped for modern browsers if there is no user-defined config
-    if (!customUserTransform && autoModernTransform) {
+    if (!customUserTransform && isAutoModernTransform(file)) {
       return false;
     }
 
