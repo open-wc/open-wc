@@ -42,7 +42,7 @@
     "@babel/core": "^7.7.2",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@mdx-js/mdx": "^1.5.1",
-    "@open-wc/building-rollup": "^0.12.12",
+    "@open-wc/building-rollup": "^0.14.1",
     "@open-wc/storybook-prebuilt": "^0.0.5",
     "@storybook/addon-docs": "^5.2.5",
     "command-line-args": "^5.0.2",
