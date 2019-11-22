@@ -26,7 +26,13 @@ function getPolyfills(cfg) {
     case compatibilityModes.MIN:
       return polyfillsPresets.all;
     case compatibilityModes.AUTO:
-      return cfg.uaCompat.supportsEsm ? polyfillsPresets.all : polyfillsPresets.allWithSystemjs;
+      if (cfg.uaCompat.modern) {
+        return {};
+      }
+      if (cfg.uaCompat.supportsEsm) {
+        return polyfillsPresets.all;
+      }
+      return polyfillsPresets.allWithSystemjs;
     default:
       return {};
   }
