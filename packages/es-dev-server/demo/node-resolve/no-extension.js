@@ -4,5 +4,5 @@ render(
   html`
     <p>Module imported without extension ✓</p>
   `,
-  document.getElementById('demo'),
+  document.getElementById('no-extension'),
 );

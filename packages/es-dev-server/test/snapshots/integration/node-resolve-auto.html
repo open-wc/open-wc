@@ -1,0 +1,36 @@
+<html><head>
+  <base href="/packages/es-dev-server/demo/node-resolve/">
+</head>
+
+<body>
+  <img width="100" src="../logo.png">
+
+  <h1>Node resolve demo</h1>
+  <p>A demo which resolves bare module imports</p>
+
+  <div id="inline-demo"><!---->
+        <p>Bare imports are resolved in inline modules ✓</p>
+      <!----></div>
+  <div id="demo"><!---->
+    <p>Bare imports are resolved in modules ✓</p>
+    <my-element></my-element>
+  <!----></div>
+  <div id="web-component"><!---->
+        <p>Web component instantiated ✓</p>
+      <!----></div>
+  <div id="no-extension"><!---->
+    <p>Module imported without extension ✓</p>
+  <!----></div>
+  <div id="extension-priority"><!---->
+    <p>.mjs takes priority over .js ✓</p>
+  <!----></div>
+
+  
+
+  
+
+  
+
+
+
+<script src="./module.js" type="module"></script><script src="./inline-module-0.js?source=%2Fpackages%2Fes-dev-server%2Fdemo%2Fnode-resolve%2Findex.html" type="module"></script><script src="./inline-module-1.js?source=%2Fpackages%2Fes-dev-server%2Fdemo%2Fnode-resolve%2Findex.html" type="module"></script></body></html>

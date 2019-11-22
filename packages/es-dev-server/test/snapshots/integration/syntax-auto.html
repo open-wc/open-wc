@@ -1,0 +1,31 @@
+<html><head>
+  <base href="/packages/es-dev-server/demo/syntax/">
+</head>
+
+<body>
+  <img width="100" src="../logo.png">
+
+  <h1>Syntax demo</h1>
+  <p>A demo which showcases different types of syntax being handled by es-dev-server</p>
+
+  <div id="module-features"><!---->
+      <p>Module features don't throw any syntax errors ✓</p>
+      <p>import.meta.url works correctly: /packages/es-dev-server/demo/syntax/module-features.js ✓</p>
+    <!----></div>
+  <div id="stage-4"><!---->
+    <p>Stage 4 features don't throw any syntax errors ✓</p>
+  <!----></div>
+  <div id="inline-stage-4"><!---->
+        <p>Stage 4 features don't throw any syntax errors in an inline module ✓</p>
+      <!----></div>
+
+  
+  
+
+  <!-- stage 3 features can't be tested in integration tests, since they change over time and per browser -->
+  
+
+  
+
+
+<script src="./module-features.js" type="module"></script><script src="./stage-4-features.js" type="module"></script><script src="./stage-3-features.js" type="module"></script><script src="./inline-module-0.js?source=%2Fpackages%2Fes-dev-server%2Fdemo%2Fsyntax%2Findex.html" type="module"></script></body></html>

@@ -4,5 +4,5 @@ render(
   html`
     <p>.mjs takes priority over .js ✓</p>
   `,
-  document.getElementById('mjs'),
+  document.getElementById('extension-priority'),
 );
