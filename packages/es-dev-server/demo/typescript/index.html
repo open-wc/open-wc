@@ -7,19 +7,16 @@
 <body>
   <img width="100" src="../logo.png">
 
-  <h1>Demo app</h1>
+  <h1>Demo showcasing a typescript project</h1>
 
-  <p>
-    <a href="foo/">Foo</a>
-  </p>
+  <div id="module"></div>
+  <div id="web-component"></div>
+  <div id="ts-extension"></div>
 
-  <p>
-    <a href="bar/">Bar</a>
-  </p>
-
-  <div id="app"></div>
+  <script type="module" src="./module.ts"></script>
+  <script type="module">
+    import './ts-extension-priority';
+  </script>
 </body>
-
-<script type="module" src="./module-a.ts"></script>
 
 </html>

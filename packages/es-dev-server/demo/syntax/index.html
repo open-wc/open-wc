@@ -1,0 +1,61 @@
+<html>
+
+<head>
+  <base href="/packages/es-dev-server/demo/syntax/">
+</head>
+
+<body>
+  <img width="100" src="../logo.png">
+
+  <h1>Syntax demo</h1>
+  <p>A demo which showcases different types of syntax being handled by es-dev-server</p>
+
+  <div id="module-features"></div>
+  <div id="stage-4"></div>
+  <div id="inline-stage-4"></div>
+
+  <script type="module" src="./module-features.js"></script>
+  <script type="module" src="./stage-4-features.js"></script>
+
+  <!-- stage 3 features can't be tested in integration tests, since they change over time and per browser -->
+  <script type="module" src="./stage-3-features.js"></script>
+
+  <script type="module">
+    import { html, render } from 'lit-html';
+    /* eslint-disable */
+
+    // object rest/spread
+    const foo = { a: 1 };
+    const bar = { ...foo };
+    console.log(bar);
+
+    // async function
+    async function asyncFunction() {
+      console.log('async function');
+    }
+    asyncFunction();
+
+    // exponentiation
+    console.log(2 ** 4);
+
+    // classes
+    class Foo {
+      constructor() {
+        console.log('foo class');
+      }
+    }
+    new Foo();
+
+    // template literal
+    console.log(`template ${'literal'}`);
+
+    render(
+      html`
+        <p>Stage 4 features don't throw any syntax errors in an inline module ✓</p>
+      `,
+      document.getElementById('inline-stage-4'),
+    );
+  </script>
+</body>
+
+</html>
