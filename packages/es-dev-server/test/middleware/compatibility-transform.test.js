@@ -12,7 +12,7 @@ async function setupServer(compatibility) {
     createConfig({
       port: 8080,
       compatibility,
-      rootDir: path.resolve(__dirname, '..', '..', 'demo', 'compatibility'),
+      rootDir: path.resolve(__dirname, '..', '..', 'demo', 'syntax'),
     }),
   );
   return server;
@@ -51,18 +51,12 @@ async function expectCompatibilityTransform(userAgent, features = {}) {
 
   expect(esModules).to.include(
     features.esModules
-      ? 'System.register(["./module-features-a.js"], function (_export, _context) {'
+      ? 'System.register(["lit-html", "./module-features-a.js"]'
       : "import './module-features-a.js';",
   );
+  expect(esModules).to.include("import('./module-features-b.js')");
   expect(esModules).to.include(
-    features.esModules
-      ? "_context.import('./module-features-b.js');"
-      : "import('./module-features-b.js');",
-  );
-  expect(esModules).to.include(
-    features.esModules
-      ? "console.log('import.meta.url', _context.meta.url);"
-      : "console.log('import.meta.url', import.meta.url);",
+    features.esModules ? 'meta.url' : "console.log('import.meta.url', import.meta.url);",
   );
 }
 
