@@ -43,4 +43,20 @@ describe('ScaffoldApp', () => {
 
     expect(el.page).to.equal('about');
   });
+
+  it('matches the snapshot', async () => {
+    const el = await fixture(html`
+      <scaffold-app></scaffold-app>
+    `);
+
+    expect(el).shadowDom.to.equalSnapshot();
+  });
+
+  it('passes the a11y audit', async () => {
+    const el = await fixture(html`
+      <scaffold-app></scaffold-app>
+    `);
+
+    await expect(el).shadowDom.to.be.accessible();
+  });
 });
