@@ -13,8 +13,8 @@ Head over to [netlify](https://www.netlify.com/) and register.
 Select your github account and repository.
 If you follow these recommendations all you need to do is
 
-- Build command: `npm run site:build`
-- Publish directory: `_site`
+- Build command: `npm run build`
+- Publish directory: `dist`
 
 And you're all set up.
 
