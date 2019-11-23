@@ -18,4 +18,20 @@ describe('PageMain', () => {
 
     expect(el.title).to.equal('attribute title');
   });
+
+  it('matches the snapshot', async () => {
+    const el = await fixture(html`
+      <<%= tagName %>></<%= tagName %>>
+    `);
+
+    expect(el).shadowDom.to.equalSnapshot();
+  });
+
+  it('passes the a11y audit', async () => {
+    const el = await fixture(html`
+      <<%= tagName %>></<%= tagName %>>
+    `);
+
+    await expect(el).shadowDom.to.be.accessible();
+  });
 });
