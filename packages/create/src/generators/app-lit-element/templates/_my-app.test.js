@@ -43,4 +43,20 @@ describe('<%= className %>', () => {
 
     expect(el.page).to.equal('about');
   });
+
+  it('matches the snapshot', async () => {
+    const el = await fixture(html`
+      <<%= tagName %>></<%= tagName %>>
+    `);
+
+    expect(el).shadowDom.to.equalSnapshot();
+  });
+
+  it('passes the a11y audit', async () => {
+    const el = await fixture(html`
+      <<%= tagName %>></<%= tagName %>>
+    `);
+
+    await expect(el).shadowDom.to.be.accessible();
+  });
 });
