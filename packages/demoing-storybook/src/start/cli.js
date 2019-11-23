@@ -15,7 +15,9 @@ const listFiles = require('../shared/listFiles');
 
 async function run() {
   const config = readCommandLineArgs();
-  const rootDir = path.resolve(process.cwd(), config.esDevServerConfig.rootDir);
+  const rootDir = config.esDevServerConfig.rootDir
+    ? path.resolve(process.cwd(), config.esDevServerConfig.rootDir)
+    : process.cwd();
 
   const storybookConfigDir = config.storybookServerConfig['config-dir'];
   const storiesPattern = `${rootDir}/${config.storybookServerConfig.stories}`;
