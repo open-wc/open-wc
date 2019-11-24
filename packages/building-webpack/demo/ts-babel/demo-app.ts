@@ -1,5 +1,5 @@
-import { LitElement, html, css } from 'lit-element';
-import './demo-component.js';
+import { LitElement, html, css, customElement } from 'lit-element';
+import './demo-component.ts';
 
 // partial css trips up the minifier
 const fontSize = css`
@@ -10,17 +10,16 @@ const fontMd = css`
   font-size: ${fontSize}px;
 `;
 
+@customElement('demo-app')
 class DemoApp extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        display: block;
-        color: black;
-        background-color: white;
-        ${fontMd}
-      }
-    `;
-  }
+  static styles = css`
+    :host {
+      display: block;
+      color: black;
+      background-color: white;
+      ${fontMd}
+    }
+  `;
 
   render() {
     return html`
@@ -31,13 +30,11 @@ class DemoApp extends LitElement {
   }
 }
 
-customElements.define('demo-app', DemoApp);
-
 const cssText = DemoApp.styles.cssText.replace(/\s/g, '');
 
 window.__partialCSS = cssText.includes('font-size:16px') && cssText.includes('display:block');
 window.__litElement = (async () => {
-  await import('./lazy-component.js');
+  await import('./lazy-component.ts');
   const app = document.body.querySelector('demo-app');
   const demoComponent = app.shadowRoot.querySelector('demo-component');
   const lazyComponent = app.shadowRoot.querySelector('lazy-component');
