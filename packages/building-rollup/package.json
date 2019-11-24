@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "0.14.2",
+  "version": "0.14.3",
   "publishConfig": {
     "access": "public"
   },
@@ -42,11 +42,11 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
     "@babel/preset-env": "^7.7.1",
-    "@open-wc/building-utils": "^2.10.4",
+    "@open-wc/building-utils": "^2.10.5",
     "babel-plugin-bundled-import-meta": "^0.3.0",
     "babel-plugin-template-html-minifier": "^3.0.0",
     "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-index-html": "^1.7.1",
+    "rollup-plugin-index-html": "^1.7.2",
     "rollup-plugin-node-resolve": "^4.0.1",
     "rollup-plugin-terser": "^4.0.4",
     "rollup-plugin-workbox": "^4.0.0"
@@ -56,7 +56,7 @@
     "@babel/plugin-proposal-decorators": "^7.7.0",
     "@babel/preset-typescript": "^7.7.2",
     "chai": "^4.2.0",
-    "es-dev-server": "^1.26.0",
+    "es-dev-server": "^1.26.1",
     "lit-element": "^2.0.1",
     "mocha": "^6.2.2",
     "puppeteer": "^2.0.0",
