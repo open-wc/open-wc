@@ -33,7 +33,7 @@
     "babel-preset-env": "^1.7.0",
     "chai": "^4.2.0",
     "memory-fs": "^0.4.1",
-    "mocha": "^6.0.0",
+    "mocha": "^6.2.2",
     "webpack": "^4.28.0"
   }
 }
