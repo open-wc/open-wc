@@ -21,7 +21,9 @@
     "demo:build:ts": "rimraf dist && rollup -c demo/ts/rollup.config.js",
     "demo:build:ts-babel": "rimraf dist && rollup -c demo/ts-babel/rollup.config.js",
     "demo:start:build": "es-dev-server --app-index dist/index.html --open",
-    "prepublishOnly": "../../scripts/insert-header.js"
+    "prepublishOnly": "../../scripts/insert-header.js",
+    "test": "npm run test:node",
+    "test:node": "mocha test/**/*.test.js test/*.test.js"
   },
   "files": [
     "*.js",
@@ -53,12 +55,13 @@
     "@babel/plugin-proposal-class-properties": "^7.7.0",
     "@babel/plugin-proposal-decorators": "^7.7.0",
     "@babel/preset-typescript": "^7.7.2",
+    "chai": "^4.2.0",
     "es-dev-server": "^1.26.0",
     "lit-element": "^2.0.1",
-    "rimraf": "^2.6.3",
+    "mocha": "^6.2.2",
+    "puppeteer": "^2.0.0",
+    "rimraf": "^3.0.0",
     "rollup": "^1.15.6",
-    "rollup-plugin-cpy": "^1.1.0",
-    "rollup-plugin-typescript2": "^0.19.3",
-    "rollup-plugin-visualizer": "^1.0.2"
+    "rollup-plugin-typescript2": "^0.19.3"
   }
 }
