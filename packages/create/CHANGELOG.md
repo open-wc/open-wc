@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.2...@open-wc/create@0.24.3) (2019-11-24)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+## [0.24.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.1...@open-wc/create@0.24.2) (2019-11-24)
+
+
+### Bug Fixes
+
+* **create:** update building rollup version ([#1039](https://github.com/open-wc/open-wc/issues/1039)) ([8d2e0a8](https://github.com/open-wc/open-wc/commit/8d2e0a89bb5b34b4abaa4c6a5f695037f8cc6f1a))
+
+
+
+
+
 ## [0.24.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.0...@open-wc/create@0.24.1) (2019-11-24)
 
 **Note:** Version bump only for package @open-wc/create
