@@ -21,7 +21,7 @@ describe('PageMain', () => {
 
   it('matches the snapshot', async () => {
     const el = await fixture(html`
-      <<%= tagName %>></<%= tagName %>>
+      <page-main title="attribute title"></page-main>
     `);
 
     expect(el).shadowDom.to.equalSnapshot();
@@ -29,7 +29,7 @@ describe('PageMain', () => {
 
   it('passes the a11y audit', async () => {
     const el = await fixture(html`
-      <<%= tagName %>></<%= tagName %>>
+      <page-main title="attribute title"></page-main>
     `);
 
     await expect(el).shadowDom.to.be.accessible();
