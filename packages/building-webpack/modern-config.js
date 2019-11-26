@@ -87,6 +87,7 @@ module.exports = userOptions => {
                     },
                     htmlMinifier: {
                       collapseWhitespace: true,
+                      conservativeCollapse: true,
                       removeComments: true,
                       caseSensitive: true,
                       minifyCSS: customMinifyCSS,
