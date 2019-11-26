@@ -164,6 +164,23 @@ When testing without a bundler you will be serving every imported module straigh
 
 In a monorepo dependencies are often two levels higher in the root of the repository. To run tests in a monorepository you either have to put your config in the root of the repository, or adjust the basePath in your karma config:
 
+### Preserving symlinks
+
+When using a tool that relies on symlinks such as `npm link` or `lerna`, the `es-dev-server` that runs under the hood of `karma-esm` plugin needs to be ran with `--preserve-symlinks` option.
+
+You can pass this option via the `esm` plugin configuration:
+
+```js
+  ...
+  esm: {
+    nodeResolve: true,
+    preserveSymlinks: true,
+  },
+  ...
+```
+
+[Check out the documentaton](https://open-wc.org/testing/karma-esm.html) for more information.
+
 ### Other configuration
 
 `karma-esm` is the plugin powering our configuration, and it supports a few more for advanced use cases. [Check out the documentaton](https://open-wc.org/testing/karma-esm.html) for more information.
