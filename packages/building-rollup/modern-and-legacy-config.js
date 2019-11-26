@@ -89,6 +89,7 @@ function createConfig(_options, legacy) {
                 },
                 htmlMinifier: {
                   collapseWhitespace: true,
+                  conservativeCollapse: true,
                   removeComments: true,
                   caseSensitive: true,
                   minifyCSS: customMinifyCss,
