@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/demoing-storybook",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "publishConfig": {
     "access": "public"
   },
@@ -42,7 +42,7 @@
     "@babel/core": "^7.7.2",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@mdx-js/mdx": "^1.5.1",
-    "@open-wc/building-rollup": "^0.14.3",
+    "@open-wc/building-rollup": "^0.14.4",
     "@open-wc/storybook-prebuilt": "^0.0.6",
     "@storybook/addon-docs": "^5.2.5",
     "command-line-args": "^5.0.2",
