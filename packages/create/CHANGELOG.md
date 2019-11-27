@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.3...@open-wc/create@0.24.4) (2019-11-27)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
 ## [0.24.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.2...@open-wc/create@0.24.3) (2019-11-24)
 
 **Note:** Version bump only for package @open-wc/create
