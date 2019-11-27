@@ -155,9 +155,26 @@ module.exports = {
     lastUpdated: 'Last Updated',
   },
   dest: '_site',
-  plugins: ['@vuepress/google-analytics'],
+  plugins: [
+    '@vuepress/google-analytics',
+    [
+      '@vuepress/pwa',
+      {
+        serviceWorker: true,
+        updatePopup: false,
+        generateSWConfig: {
+          swDest: '_site/service-worker.js',
+          skipWaiting: true,
+          clientsClaim: true,
+          globDirectory: '_site',
+          globPatterns: ['**/*.{html,js,css,png,gif}'],
+        },
+      },
+    ],
+  ],
   ga: 'UA-131782693-1',
   head: [
+    ['link', { rel: 'manifest', href: '/manifest.json' }],
     ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
     [
       'meta',
