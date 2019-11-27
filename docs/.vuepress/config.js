@@ -119,9 +119,19 @@ module.exports = {
     lastUpdated: 'Last Updated',
   },
   dest: '_site',
-  plugins: ['@vuepress/google-analytics'],
+  plugins: [
+    '@vuepress/google-analytics',
+    [
+      '@vuepress/pwa',
+      {
+        serviceWorker: true,
+        updatePopup: true,
+      },
+    ],
+  ],
   ga: 'UA-131782693-1',
   head: [
+    ['link', { rel: 'manifest', href: '/manifest.json' }],
     ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
     [
       'meta',
@@ -143,10 +153,4 @@ module.exports = {
     ['meta', { name: 'twitter:card', content: 'summary' }],
     ['meta', { name: 'twitter:title', content: 'Open Web Components' }],
   ],
-  // temporary set to develop mode as Terser seems to have a problem :/
-  configureWebpack: (config, isServer) => {
-    if (!isServer) {
-      config.mode = 'development';
-    }
-  },
 };
