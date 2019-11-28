@@ -184,7 +184,7 @@ export function createConfig(config) {
   let openPath;
   if (typeof open === 'string' && open !== '') {
     // user-provided open path
-    openPath = path.normalize(open);
+    openPath = open;
   } else if (appIndex) {
     // if an appIndex was provided, use it's directory as open path
     openPath = `${basePath || ''}${appIndexDir}/`;
