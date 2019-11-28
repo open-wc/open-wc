@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-index-html",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "publishConfig": {
     "access": "public"
   },
@@ -29,8 +29,8 @@
     "polyfill"
   ],
   "dependencies": {
-    "@import-maps/resolve": "^0.2.0",
-    "@open-wc/building-utils": "^2.10.4",
+    "@import-maps/resolve": "^0.2.1",
+    "@open-wc/building-utils": "^2.10.5",
     "deepmerge": "^3.2.0",
     "lit-element": "^2.0.1",
     "lit-html": "^1.0.0",
@@ -42,8 +42,8 @@
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "chai": "^4.2.0",
     "intersection-observer": "^0.7.0",
-    "mocha": "^6.0.0",
-    "rimraf": "^2.6.3",
+    "mocha": "^6.2.2",
+    "rimraf": "^3.0.0",
     "rollup": "^1.15.6",
     "whatwg-fetch": "^3.0.0"
   }

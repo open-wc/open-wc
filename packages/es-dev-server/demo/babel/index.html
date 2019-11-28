@@ -7,19 +7,20 @@
 <body>
   <img width="100" src="../logo.png">
 
-  <h1>Demo app</h1>
+  <h1>Demo showcasing a custom babel config</h1>
 
-  <p>
-    <a href="foo/">Foo</a>
-  </p>
+  <div id="test"></div>
 
-  <p>
-    <a href="bar/">Bar</a>
-  </p>
+  <script type="module">
+    import './class-fields.js';
+    import './optional-nullish.js';
 
-  <div id="app"></div>
+    window.__tests = {
+      classFields: window.__classFields || false,
+      optionalNullish: window.__optionalNullish || false,
+    };
+    document.getElementById('test').innerHTML = `<pre>${JSON.stringify(window.__tests, null, 2)}</pre>`;
+  </script>
 </body>
-
-<script type="module" src="./module-a.js"></script>
 
 </html>

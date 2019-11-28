@@ -72,13 +72,18 @@ npm run storybook
 
 ### CLI configuration
 
+#### Storybook specific
+
 | name       | type   | description                                                                                            |
 | ---------- | ------ | ------------------------------------------------------------------------------------------------------ |
 | stories    | string | A glob which stories to include. Be sure to wrap it in `'`. Default: `'./stories/\*.stories.{js,mdx}'` |
 | config-dir | string | Where the storybook config files are. Default: ./.storybook                                            |
-| ...        | ...    | See all further options from [es-dev-server](https://open-wc.org/developing/es-dev-server.html)        |
 |            |        | Build only                                                                                             |
 | output-dir | string | Rollup build output directory. Default: ./static-storybook                                             |
+
+#### Dev server
+
+The storybook server is based on [es-dev-server](https://open-wc.org/developing/es-dev-server.html), see the docs of the dev server for any additional command options.
 
 ### Create documentation
 
@@ -239,47 +244,11 @@ It basically looks like this:
 
 For a full example see the [./demo/custom-elements.json](./demo/custom-elements.json).
 
-# Setup es6/7 dependencies
-
-By default storybook only works with precompiled es5 code but as most web components themselves and their libs are distributed as es7 you will need to manually mark those packages as "needs transpilation".
-
-For example if you have a library called `my-library` which is in es7 then you can add it like so
-
-```js
-// .storybook/webpack.config.js
-
-module.exports = ({ config }) => {
-  // find web-components rule for extra transpilation
-  const webComponentsRule = config.module.rules.find(
-    rule => rule.use && rule.use.options && rule.use.options.babelrc === false,
-  );
-  // add your own `my-library`
-  webComponentsRule.test.push(new RegExp(`node_modules(\\/|\\\\)my-library(.*)\\.js$`));
-
-  return config;
-};
-```
-
-By default the following folders are included
-
-- `src/*.js`
-- `packages/*/src/*.js`
-- `node_modules/lit-html/*.js`
-- `node_modules/lit-element/*.js`
-- `node_modules/@open-wc/*.js`
-- `node_modules/@polymer/*.js`
-- `node_modules/@vaadin/*.js`
-
-As you can see the `src` folder is also included.
-The reason for that is as it has some extra configuration to allow for example `import.meta`.
-If you use a different folder you will need to make sure webpack/babel can handle it.
-
 ### Additional middleware config like an api proxy
 
-As we are using [es-dev-server](https://open-wc.org/developing/es-dev-server.html) under the hood you can use all it's power.
-You can provide your own config via `start storybook -c /path/to/config.js`.
-The middleware should be a standard koa middleware. [Read more about koa here.](https://koajs.com/)
-You can use custom middlewares to set up a proxy, for example:
+As we are using [es-dev-server](https://open-wc.org/developing/es-dev-server.html) under the hood you can use all it's power. You can use the regular command line flags, or provide your own config via `start storybook -c /path/to/config.js`.
+
+To set up a proxy, you can set up a koa middleware. [Read more about koa here.](https://koajs.com/)
 
 ```javascript
 const proxy = require('koa-proxies');

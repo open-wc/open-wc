@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.3...@open-wc/create@0.24.4) (2019-11-27)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+## [0.24.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.2...@open-wc/create@0.24.3) (2019-11-24)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+## [0.24.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.1...@open-wc/create@0.24.2) (2019-11-24)
+
+
+### Bug Fixes
+
+* **create:** update building rollup version ([#1039](https://github.com/open-wc/open-wc/issues/1039)) ([8d2e0a8](https://github.com/open-wc/open-wc/commit/8d2e0a89bb5b34b4abaa4c6a5f695037f8cc6f1a))
+
+
+
+
+
+## [0.24.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.0...@open-wc/create@0.24.1) (2019-11-24)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+# [0.24.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.23.0...@open-wc/create@0.24.0) (2019-11-23)
+
+
+### Features
+
+* **create:** add a11y and snapshot tests ([a128621](https://github.com/open-wc/open-wc/commit/a128621340a8b8c6e89b4a054365f671c00fe9e8))
+* **create:** improve app scaffold formatting ([b4b3233](https://github.com/open-wc/open-wc/commit/b4b32338cff864d1e00e94efd15bc5d8023062ef))
+
+
+
+
+
 # [0.23.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.22.1...@open-wc/create@0.23.0) (2019-11-20)
 
 

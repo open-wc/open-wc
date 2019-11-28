@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.26.1...es-dev-server@1.26.2) (2019-11-27)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+## [1.26.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.26.0...es-dev-server@1.26.1) (2019-11-24)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't inject polyfills if not needed ([8240883](https://github.com/open-wc/open-wc/commit/8240883f181754e9d3bdc6537d1361fc9dc45ef6))
+
+
+
+
+
 # [1.26.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.25.1...es-dev-server@1.26.0) (2019-11-21)
 
 
