@@ -67,7 +67,7 @@
     "caniuse-lite": "^1.0.30001008",
     "chokidar": "^3.0.0",
     "command-line-args": "^5.0.2",
-    "command-line-usage": "^5.0.5",
+    "command-line-usage": "^6.1.0",
     "debounce": "^1.2.0",
     "deepmerge": "^3.2.0",
     "es-module-lexer": "0.3.9",
