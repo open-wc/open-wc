@@ -5,6 +5,7 @@ import path from 'path';
 import camelcase from 'camelcase';
 import fs from 'fs';
 import deepmerge from 'deepmerge';
+import { setDebug, logDebug } from './utils/utils.js';
 
 /**
  * Reads command line args from arguments array. Defaults to `process.argv`.
@@ -142,6 +143,11 @@ export function readCommandLineArgs(argv = process.argv) {
       type: String,
       description: 'Polyfills to load for older browsers. Can be "auto" or "none". Default "auto"',
     },
+    {
+      name: 'debug',
+      type: Boolean,
+      description: 'Whether to log debug messages',
+    },
     { name: 'help', type: Boolean, description: 'See all options' },
   ];
 
@@ -154,6 +160,10 @@ export function readCommandLineArgs(argv = process.argv) {
     acc[camelcase(key)] = dashesArgs[key];
     return acc;
   }, {});
+
+  if (args.debug) {
+    setDebug(true);
+  }
 
   if ('help' in args) {
     /* eslint-disable-next-line no-console */
@@ -187,15 +197,18 @@ export function readCommandLineArgs(argv = process.argv) {
 
     const fileConfig = require(configPath);
     options = deepmerge(fileConfig, args);
+    logDebug(`Found a config file at ${configPath}`);
   } else {
     // read default config if present
     const defaultConfigPath = path.join(process.cwd(), 'es-dev-server.config.js');
     if (fs.existsSync(defaultConfigPath) && fs.statSync(defaultConfigPath).isFile()) {
       const fileConfig = require(defaultConfigPath);
       options = deepmerge(fileConfig, args);
+      logDebug(`Found a default config file at ${defaultConfigPath}`);
     } else {
       // no file config, just command line args
       options = args;
+      logDebug(`Did not find a default config file at ${defaultConfigPath}`);
     }
   }
 
