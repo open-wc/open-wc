@@ -192,11 +192,6 @@ export function createConfig(config) {
     openPath = basePath ? `${basePath}/` : '/';
   }
 
-  // make sure path properly starts a /
-  if (!openPath.startsWith('/')) {
-    openPath = `/${openPath}`;
-  }
-
   return {
     appIndex,
     appIndexDir,
