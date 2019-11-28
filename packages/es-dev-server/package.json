@@ -103,6 +103,7 @@
     "@types/node-fetch": "^2.3.7",
     "@types/puppeteer": "^2.0.0",
     "@types/request": "^2.48.1",
+    "@types/whatwg-url": "^6.4.0",
     "abort-controller": "^3.0.0",
     "chai": "^4.2.0",
     "koa-proxies": "^0.8.1",
