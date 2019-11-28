@@ -212,7 +212,7 @@ export async function resolveModuleImports(rootDir, sourceFilePath, source, conf
       resolvedSource += `${source.substring(
         lastIndex,
         start,
-      )}${resolvedImportPath}${importPathSuffix}`;
+      )}${resolvedImportPath}${importPathSuffix}?asmodule`;
       lastIndex = end;
     } else if (dynamicImportIndex >= 0) {
       // dynamic import
@@ -233,7 +233,7 @@ export async function resolveModuleImports(rootDir, sourceFilePath, source, conf
       resolvedSource += `${source.substring(
         lastIndex,
         dynamicStart,
-      )}${resolvedImportPath}${importPathSuffix}`;
+      )}${resolvedImportPath}${importPathSuffix}?asmodule`;
       lastIndex = dynamicEnd;
     }
   }

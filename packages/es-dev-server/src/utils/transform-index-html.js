@@ -60,8 +60,10 @@ export function getTransformedIndexHTML(cfg) {
   });
 
   const files = [
-    ...resources.jsModules,
-    ...[...inlineModules.keys()].map(e => `${e}?source=${encodeURIComponent(cfg.indexUrl)}`),
+    ...resources.jsModules.map(e => `${e}?asmodule`),
+    ...[...inlineModules.keys()].map(
+      e => `${e}?source=${encodeURIComponent(cfg.indexUrl)}&asmodule`,
+    ),
   ];
 
   if (files.length === 0) {

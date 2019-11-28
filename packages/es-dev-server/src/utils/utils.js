@@ -138,6 +138,13 @@ export function isPolyfill(url) {
 /**
  * @param {string} url
  */
+export function asModule(url) {
+  return url.includes('asmodule');
+}
+
+/**
+ * @param {string} url
+ */
 export function isInlineModule(url) {
   return url.includes(`inline-module-`) && url.includes('?source=');
 }
