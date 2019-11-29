@@ -125,7 +125,14 @@ module.exports = {
       '@vuepress/pwa',
       {
         serviceWorker: true,
-        updatePopup: true,
+        updatePopup: false,
+        generateSWConfig: {
+          swDest: '_site/service-worker.js',
+          skipWaiting: true,
+          clientsClaim: true,
+          globDirectory: '_site',
+          globPatterns: ['**/*.{html,js,css,png,gif}'],
+        },
       },
     ],
   ],
