@@ -10,9 +10,15 @@ In this codelab, you will learn the basics of building web components using lit-
 
 **What you need**
 
+- A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
 - Intermediate knowledge of HTML and Javascript
 - Basic knowledge of web components, see our [basics codelab](https://open-wc.org/codelabs/#web-components-basics) to get you started.
-- A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
+- Familiarity with the following concepts:
+  - [Javascript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+  - [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+  - [Array filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+  - [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+  - [Object & array spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
 **What you'll learn**
 

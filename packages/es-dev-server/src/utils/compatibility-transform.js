@@ -9,6 +9,7 @@ import {
 } from './babel-transform.js';
 import { resolveModuleImports } from './resolve-module-imports.js';
 import { compatibilityModes } from '../constants.js';
+import { logDebug } from './utils.js';
 
 /** @typedef {import('./babel-transform.js').BabelTransform} BabelTransform */
 
@@ -164,6 +165,13 @@ export function createCompatibilityTransform(cfg) {
     const transformModuleImports = !excludeFromBabel && cfg.nodeResolve;
     const transformModules = shouldTransformModules(file);
     let transformedCode = file.code;
+
+    logDebug(
+      `Compatibility transform babel: ${transformBabel}, ` +
+        `imports: ${transformModuleImports}, ` +
+        `modules: ${transformModules} ` +
+        `for request: ${file.filePath}`,
+    );
 
     /**
      * Transform code to a compatible format based on the compatibility setting. We keep ESM syntax
