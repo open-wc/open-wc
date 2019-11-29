@@ -1,5 +1,5 @@
 import path from 'path';
-import { toBrowserPath } from './utils/utils.js';
+import { toBrowserPath, setDebug } from './utils/utils.js';
 import { compatibilityModes, polyfillsModes } from './constants.js';
 
 /**
@@ -24,6 +24,7 @@ import { compatibilityModes, polyfillsModes } from './constants.js';
  * @property {import('koa').Middleware[]} [middlewares]
  * @property {import('./middleware/response-transform').ResponseTransformer[]} responseTransformers
  * @property {boolean} logStartup whether to log server startup
+ * @property {boolean} debug whether to log debug messages
  *
  * Development help
  * @property {boolean} [watch] whether to watch served files and reload the browser on change
@@ -129,7 +130,12 @@ export function createConfig(config) {
     logErrorsToBrowser = false,
     polyfills = polyfillsModes.AUTO,
     responseTransformers,
+    debug = false,
   } = config;
+
+  if (debug) {
+    setDebug(true);
+  }
 
   let { compatibility = compatibilityModes.AUTO } = config;
 

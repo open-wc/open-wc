@@ -1,8 +1,21 @@
+/* eslint-disable no-console */
 import isStream from 'is-stream';
 import getStream from 'get-stream';
 import Stream from 'stream';
 import path from 'path';
 import { virtualFilePrefix } from '../constants.js';
+
+let _debug = false;
+
+export function setDebug(debug) {
+  _debug = debug;
+}
+
+export function logDebug(...messages) {
+  if (_debug) {
+    console.log('[es-dev-server]: ', ...messages);
+  }
+}
 
 export class RequestCancelledError extends Error {}
 
