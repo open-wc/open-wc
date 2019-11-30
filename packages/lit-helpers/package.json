@@ -1,0 +1,41 @@
+{
+  "name": "@open-wc/lit-helpers",
+  "version": "0.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Helpers and utils for lit-html and lit-element.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/lit-helpers"
+  },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js"
+  },
+  "files": [
+    "*.d.ts",
+    "*.js",
+    "src"
+  ],
+  "keywords": [
+    "lit-html",
+    "lit-element",
+    "web components",
+    "utils",
+    "helpers"
+  ],
+  "peerDependencies": {
+    "lit-html": "^1.0.0"
+  },
+  "dependencies": {
+    "@open-wc/testing": "^2.4.1"
+  },
+  "devDependencies": {
+    "sinon": "^7.4.1"
+  },
+  "module": "index.js"
+}
