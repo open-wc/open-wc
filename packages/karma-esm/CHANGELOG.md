@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.10.6...@open-wc/karma-esm@2.11.0) (2019-11-30)
+
+
+### Features
+
+* **es-dev-server:** add debug logging option ([#1052](https://github.com/open-wc/open-wc/issues/1052)) ([879e997](https://github.com/open-wc/open-wc/commit/879e99787464f218e52d834daa0760ba1319aab3))
+
+
+
+
+
 ## [2.10.6](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.10.5...@open-wc/karma-esm@2.10.6) (2019-11-27)
 
 **Note:** Version bump only for package @open-wc/karma-esm

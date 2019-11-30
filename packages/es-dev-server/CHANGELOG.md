@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.27.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.26.2...es-dev-server@1.27.0) (2019-11-30)
+
+
+### Features
+
+* **es-dev-server:** add debug logging option ([#1052](https://github.com/open-wc/open-wc/issues/1052)) ([879e997](https://github.com/open-wc/open-wc/commit/879e99787464f218e52d834daa0760ba1319aab3))
+
+
+
+
+
 ## [1.26.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.26.1...es-dev-server@1.26.2) (2019-11-27)
 
 **Note:** Version bump only for package es-dev-server
