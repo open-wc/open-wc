@@ -126,7 +126,8 @@ function getPolyfills(config) {
     try {
       instructions.push({
         name: 'webcomponents',
-        test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)",
+        test:
+          "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)",
         path: require.resolve('@webcomponents/webcomponentsjs/webcomponents-bundle.js'),
         sourcemapPath: require.resolve(
           '@webcomponents/webcomponentsjs/webcomponents-bundle.js.map',
