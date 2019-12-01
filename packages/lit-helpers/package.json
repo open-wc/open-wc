@@ -31,10 +31,8 @@
   "peerDependencies": {
     "lit-html": "^1.0.0"
   },
-  "dependencies": {
-    "@open-wc/testing": "^2.4.1"
-  },
   "devDependencies": {
+    "@open-wc/testing": "^2.4.1",
     "sinon": "^7.4.1"
   },
   "module": "index.js"

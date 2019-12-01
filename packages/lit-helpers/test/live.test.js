@@ -3,19 +3,21 @@ import { spy } from 'sinon';
 import { render } from 'lit-html';
 import { live } from '../src/live.js';
 
-class MyElement extends HTMLElement {
-  set myProp(value) {
-    this._myProp = value;
-  }
-
-  get myProp() {
-    return this._myProp;
-  }
-}
-
-customElements.define('my-element', MyElement);
-
 describe('live', () => {
+  before(() => {
+    class LitHelpers extends HTMLElement {
+      set myProp(value) {
+        this._myProp = value;
+      }
+
+      get myProp() {
+        return this._myProp;
+      }
+    }
+
+    customElements.define('lit-helpers', LitHelpers);
+  });
+
   describe('property bindings', () => {
     let wrapper;
     beforeEach(async () => {
@@ -25,7 +27,7 @@ describe('live', () => {
     function renderLive(value) {
       render(
         html`
-          <my-element .myProp="${live(value)}"></my-element>
+          <lit-helpers .myProp="${live(value)}"></lit-helpers>
         `,
         wrapper,
       );
