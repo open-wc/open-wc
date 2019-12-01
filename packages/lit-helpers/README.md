@@ -95,6 +95,20 @@ renderSpread({ foo: 'buz' });
 renderSpread({ foo: undefined' });
 ```
 
+## Live binding
+
+For efficiency, lit-html does not set properties or attributes if they did not change since the previous render. This can cause problems when the properties are changed outside of lit-html's control. The `live` directive can be used to dirty check the element's live value, and set the property or attribute if it changed.
+
+A great example for this, is the DOM element's `scrollTop` property which changes without lit-html knowing about it when the user scrolls.
+
+By using the `live` directive, you can make sure it is always in sync with the value renderd by `lit-html`:
+
+```js
+html`
+  <my-element .scrollTop=${live(scrollTop)}></my-element>
+`;
+```
+
 <script>
   export default {
     mounted() {
