@@ -1,7 +1,16 @@
 import opn from 'opn';
 import chokidar from 'chokidar';
 import portfinder from 'portfinder';
+import { URL } from 'url';
 import { createServer } from './create-server.js';
+
+function isValidURL(str) {
+  try {
+    return !!new URL(str);
+  } catch (error) {
+    return false;
+  }
+}
 
 /** @param {import('./config.js').InternalConfig} cfg */
 export async function startServer(cfg, fileWatcher = chokidar.watch([])) {
@@ -68,7 +77,15 @@ export async function startServer(cfg, fileWatcher = chokidar.watch([])) {
       }
 
       if (cfg.openBrowser) {
-        opn(`http${cfg.http2 ? 's' : ''}://${prettyHost}:${port}${cfg.openPath}`);
+        const openPath = (() => {
+          if (isValidURL(cfg.openPath)) {
+            return cfg.openPath;
+          }
+
+          return new URL(cfg.openPath, `http${cfg.http2 ? 's' : ''}://${prettyHost}:${port}`).href;
+        })();
+
+        opn(openPath);
       }
 
       resolve();

@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.12...@open-wc/demoing-storybook@1.1.0) (2019-12-02)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** typing in inputs shall not change storybook ui ([8c95d97](https://github.com/open-wc/open-wc/commit/8c95d9779671e95a35efae55aab46084b74c4c1e))
+
+
+### Features
+
+* **demoing-storybook:** add storybook-start help command ([4eebd38](https://github.com/open-wc/open-wc/commit/4eebd3896f6c0d4f7fb02417ec373d5d2429f79b))
+
+
+
+
+
+## [1.0.12](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.11...@open-wc/demoing-storybook@1.0.12) (2019-12-01)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.0.11](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.10...@open-wc/demoing-storybook@1.0.11) (2019-11-30)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
 ## [1.0.10](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.9...@open-wc/demoing-storybook@1.0.10) (2019-11-27)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook

@@ -1,6 +1,6 @@
 {
   "name": "es-dev-server",
-  "version": "1.26.2",
+  "version": "1.28.0",
   "publishConfig": {
     "access": "public"
   },
@@ -58,7 +58,7 @@
     "@babel/plugin-syntax-numeric-separator": "^7.2.0",
     "@babel/plugin-syntax-optional-chaining": "^7.2.0",
     "@babel/preset-env": "^7.7.1",
-    "@open-wc/building-utils": "^2.10.5",
+    "@open-wc/building-utils": "^2.10.6",
     "@types/minimatch": "^3.0.3",
     "browserslist": "^4.7.2",
     "browserslist-useragent": "^3.0.2",
@@ -67,7 +67,7 @@
     "caniuse-lite": "^1.0.30001008",
     "chokidar": "^3.0.0",
     "command-line-args": "^5.0.2",
-    "command-line-usage": "^5.0.5",
+    "command-line-usage": "^6.1.0",
     "debounce": "^1.2.0",
     "deepmerge": "^3.2.0",
     "es-module-lexer": "0.3.9",
@@ -103,6 +103,7 @@
     "@types/node-fetch": "^2.3.7",
     "@types/puppeteer": "^2.0.0",
     "@types/request": "^2.48.1",
+    "@types/whatwg-url": "^6.4.0",
     "abort-controller": "^3.0.0",
     "chai": "^4.2.0",
     "koa-proxies": "^0.8.1",

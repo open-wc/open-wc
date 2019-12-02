@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.27.1...es-dev-server@1.28.0) (2019-12-02)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't normalize file path on a browser path ([90cdeaf](https://github.com/open-wc/open-wc/commit/90cdeaf742a942e1c9f59f4be7dc2937b8becb95))
+
+
+### Features
+
+* **demoing-storybook:** add storybook-start help command ([4eebd38](https://github.com/open-wc/open-wc/commit/4eebd3896f6c0d4f7fb02417ec373d5d2429f79b))
+* **es-dev-server:** allow opening on full URL ([6d47e56](https://github.com/open-wc/open-wc/commit/6d47e5644a2093d8266fdebc51df4beb53df620e))
+
+
+
+
+
+## [1.27.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.27.0...es-dev-server@1.27.1) (2019-12-01)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+# [1.27.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.26.2...es-dev-server@1.27.0) (2019-11-30)
+
+
+### Features
+
+* **es-dev-server:** add debug logging option ([#1052](https://github.com/open-wc/open-wc/issues/1052)) ([879e997](https://github.com/open-wc/open-wc/commit/879e99787464f218e52d834daa0760ba1319aab3))
+
+
+
+
+
 ## [1.26.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.26.1...es-dev-server@1.26.2) (2019-11-27)
 
 **Note:** Version bump only for package es-dev-server
