@@ -43,7 +43,7 @@
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@mdx-js/mdx": "^1.5.1",
     "@open-wc/building-rollup": "^0.14.7",
-    "@open-wc/storybook-prebuilt": "^0.0.6",
+    "@open-wc/storybook-prebuilt": "^0.0.7",
     "@storybook/addon-docs": "^5.2.5",
     "command-line-args": "^5.0.2",
     "command-line-usage": "^6.1.0",
