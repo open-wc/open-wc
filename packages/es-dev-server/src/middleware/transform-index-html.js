@@ -70,6 +70,11 @@ export function createTransformIndexHTMLMiddleware(cfg) {
       const indexHTML = indexHTMLData.get(
         uaCompat.browserTarget + decodeURIComponent(params.get('source')),
       );
+
+      if (!indexHTML) {
+        return undefined;
+      }
+
       const name = path.basename(url);
       const inlineModule = indexHTML.inlineModules.get(name);
       if (!inlineModule) {

@@ -6,6 +6,6 @@ stats.html
 /packages/import-maps-generate/test/assets/**/node_modules
 /packages/**/test/**/snapshots
 /packages/es-dev-server/test/fixtures/**/*
-/packages/es-dev-server/demo/**/*
 /packages/karma-esm/src/esm-debug.html
 /packages/karma-esm/src/esm-context.html
+/packages/**/demo/**/*

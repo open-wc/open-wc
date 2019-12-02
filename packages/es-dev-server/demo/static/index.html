@@ -1,25 +1,26 @@
 <html>
 
 <head>
-  <base href="/demo/static/">
 </head>
 
 <body>
-  <img width="100" src="../logo.png">
+  <img width="100" src="/logo.png">
 
-  <h1>Demo app</h1>
+  <h1>Static demo</h1>
+  <p>A demo without any custom flags.</p>
+  <div id="test"></div>
 
-  <p>
-    <a href="foo/">Foo</a>
-  </p>
+  <script type="module" src="/module.js"></script>
 
-  <p>
-    <a href="bar/">Bar</a>
-  </p>
+  <script type="module">
+    import '/module.js';
 
-  <div id="app"></div>
+    window.__tests = {
+      moduleLoaded: window.__moduleLoaded || false,
+    };
+    document.getElementById('test').innerHTML = `<pre>${JSON.stringify(window.__tests, null, 2)}</pre>`;
+  </script>
+
 </body>
-
-<script type="module" src="./module-a.js"></script>
 
 </html>

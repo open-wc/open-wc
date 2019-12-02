@@ -8,6 +8,7 @@ import {
   getRequestFilePath,
   isGeneratedFile,
   RequestCancelledError,
+  logDebug,
 } from '../utils/utils.js';
 
 const stat = promisify(fs.stat);
@@ -94,6 +95,7 @@ export function createResponseBodyCacheMiddleware(cfg) {
         ctx.body = cached.body;
         ctx.response.set(cached.headers);
         ctx.status = 200;
+        logDebug(`Serving from response body cache: ${ctx.url}`);
         return;
       }
 
@@ -126,6 +128,7 @@ export function createResponseBodyCacheMiddleware(cfg) {
         filePath,
         lastModified: await getLastModified(filePath),
       });
+      logDebug(`Adding to response body cache: ${ctx.url}`);
     } catch (error) {
       if (error instanceof RequestCancelledError) {
         return;

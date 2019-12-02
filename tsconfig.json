@@ -11,14 +11,10 @@
     "noImplicitThis": true,
     "alwaysStrict": true,
     "types": ["node", "mocha"],
-    "esModuleInterop": true,
+    "esModuleInterop": true
   },
-  "files": [
-    "browser.d.ts"
-  ],
-  "include": [
-    "packages"
-  ],
+  "files": ["browser.d.ts"],
+  "include": ["packages"],
   "exclude": [
     "node_modules",
     "**/node_modules/*",
@@ -29,7 +25,6 @@
     "**/dist/**/*",
     "packages/**/test/**/snapshots",
     "packages/es-dev-server/test/fixtures/**/*",
-    "packages/karma-esm/demo/**/*",
-    "packages/es-dev-server/demo/**/*"
+    "packages/**/demo/**/*"
   ]
 }

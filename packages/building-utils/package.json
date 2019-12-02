@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-utils",
-  "version": "2.10.4",
+  "version": "2.10.6",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +47,7 @@
     "path-is-inside": "^1.0.2",
     "regenerator-runtime": "^0.13.2",
     "resolve": "^1.11.1",
-    "rimraf": "^2.6.3",
+    "rimraf": "^3.0.0",
     "systemjs": "^4.0.1",
     "terser": "^4.0.0",
     "valid-url": "^1.0.9",
@@ -58,6 +58,6 @@
     "@types/lru-cache": "^5.1.0",
     "@types/rimraf": "^2.0.2",
     "chai": "^4.2.0",
-    "mocha": "^6.0.0"
+    "mocha": "^6.2.2"
   }
 }

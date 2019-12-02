@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-webpack",
-  "version": "2.8.1",
+  "version": "2.8.6",
   "publishConfig": {
     "access": "public"
   },
@@ -21,11 +21,13 @@
     "demo:build:stats": "webpack --mode=production --config demo/js/webpack.modern.config.js --profile --json > build-stats.json",
     "demo:build:ts": "webpack --mode=production --config demo/ts/webpack.config.js",
     "demo:build:ts-babel": "webpack --mode=production --config demo/ts-babel/webpack.config.js",
-    "demo:start": "http-server dist -o",
+    "demo:start": "es-dev-server --root-dir dist --open",
     "demo:webpack-dev": "webpack-dev-server --mode=development --config demo/js/webpack.config.js --open",
     "demo:webpack-dev:legacy": "webpack-dev-server --mode=development --config demo/js/webpack.config.js --open --legacy",
     "demo:webpack-dev:modern": "webpack-dev-server --mode=development --config demo/js/webpack.modern.config.js --open",
-    "prepublishOnly": "../../scripts/insert-header.js"
+    "prepublishOnly": "../../scripts/insert-header.js",
+    "test": "npm run test:node",
+    "test:node": "mocha test/**/*.test.js test/*.test.js"
   },
   "files": [
     "*.js",
@@ -42,13 +44,14 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
     "@babel/preset-env": "^7.7.1",
-    "@open-wc/building-utils": "^2.10.4",
-    "@open-wc/webpack-index-html-plugin": "^1.5.6",
+    "@open-wc/building-utils": "^2.10.6",
+    "@open-wc/webpack-index-html-plugin": "^1.5.8",
     "babel-loader": "^8.0.0",
     "babel-plugin-bundled-import-meta": "^0.3.0",
     "babel-plugin-template-html-minifier": "^3.0.0",
     "clean-webpack-plugin": "^2.0.0",
     "copy-webpack-plugin": "^5.0.1",
+    "es-dev-server": "^1.27.1",
     "terser-webpack-plugin": "^1.2.1",
     "webpack-merge": "^4.1.5",
     "workbox-webpack-plugin": "^4.3.1"
@@ -57,10 +60,15 @@
     "@babel/plugin-proposal-class-properties": "^7.7.0",
     "@babel/preset-typescript": "^7.7.2",
     "@babel/register": "^7.7.0",
+    "chai": "^4.2.0",
     "http-server": "^0.11.1",
     "lit-element": "^2.0.1",
+    "mocha": "^6.2.2",
+    "puppeteer": "^2.0.0",
+    "rimraf": "^3.0.0",
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.3333",
+    "webpack": "^4.28.0",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.7.1"
