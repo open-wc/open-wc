@@ -14,7 +14,7 @@ module.exports = function readCommandLineArgs() {
       name: 'output-dir',
       alias: 'o',
       type: String,
-      defaultValue: path.join(process.cwd(), 'static-storybook'),
+      defaultValue: path.join(process.cwd(), 'storybook-static'),
       description: 'Rollup build output directory',
     },
     {
