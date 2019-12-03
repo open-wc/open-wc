@@ -32,7 +32,7 @@ import { compatibilityModes } from '../constants.js';
  * @property {import('./user-agent-compat.js').UserAgentCompat} uaCompat
  * @property {string} filePath
  * @property {string} code
- * @property {boolean} needModule
+ * @property {boolean} transformModule
  */
 
 /**
@@ -148,9 +148,9 @@ export function createCompatibilityTransform(cfg) {
 
     switch (cfg.compatibilityMode) {
       case compatibilityModes.AUTO:
-        return !file.uaCompat.supportsEsm && file.needModule;
+        return !file.uaCompat.supportsEsm && file.transformModule;
       case compatibilityModes.MAX:
-        return true && file.needModule;
+        return true && file.transformModule;
       default:
         return false;
     }

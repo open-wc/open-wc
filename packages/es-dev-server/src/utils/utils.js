@@ -138,8 +138,8 @@ export function isPolyfill(url) {
 /**
  * @param {string} url
  */
-export function asModule(url) {
-  return url.includes('asmodule');
+export function shoudlTransformToModule(url) {
+  return url.includes('transform-module');
 }
 
 /**
