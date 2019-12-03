@@ -15,7 +15,6 @@ const sidebar2 = [
       '/developing/es-dev-server',
       ['/init/', 'Generators'],
       '/developing/lit-helpers',
-      '/developing/types',
       '/developing/routing',
     ],
   },
@@ -131,7 +130,7 @@ const sidebar = [
         ],
       },
       {
-        title: 'Publishing apps',
+        title: 'Deploying apps',
         collapsable: true,
         children: [['/publishing/', 'Getting started']],
       },
