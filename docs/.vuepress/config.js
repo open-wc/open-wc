@@ -1,6 +1,6 @@
 // .vuepress/config.js
 
-const sidebar = [
+const sidebar2 = [
   ['/', 'Home'],
   ['/guide/', 'Introduction'],
   {
@@ -73,6 +73,103 @@ const sidebar = [
     children: [['/automating/', 'Getting started']],
   },
 ];
+
+const sidebar = [
+  ['/', 'Home'],
+  ['/guide/', 'Introduction'],
+  {
+    title: 'Guides & Docs',
+    collapsable: true,
+    children: [
+      ['/developing/', 'Getting started'],
+      ['/developing/ide', 'IDE'],
+      '/developing/lit-html',
+      '/developing/code-examples',
+      '/developing/best-practices',
+      '/developing/types',
+      '/developing/routing',
+      ['/codelabs/', 'Codelabs'],
+    ],
+  },
+  {
+    title: 'Configs & Recommendations',
+    collapsable: true,
+    children: [
+      {
+        title: 'Developing',
+        collapsable: true,
+        children: [
+          '/developing/es-dev-server',
+          ['/init/', 'Generators'],
+          '/developing/lit-helpers',
+        ],
+      },
+
+      {
+        title: 'Testing',
+        collapsable: true,
+        children: [
+          ['/testing/', 'Getting started'],
+          '/testing/testing',
+          '/testing/testing-karma',
+          '/testing/testing-karma-bs',
+          '/testing/testing-wallaby',
+        ],
+      },
+      {
+        title: 'Building apps for production',
+        collapsable: true,
+        children: [
+          ['/building/', 'Getting started'],
+          '/building/building-rollup',
+          '/building/building-webpack',
+        ],
+      },
+      {
+        title: 'Publishing apps',
+        collapsable: true,
+        children: [['/publishing/', 'Getting started']],
+      },
+      {
+        title: 'Demoing',
+        collapsable: true,
+        children: [['/demoing/', 'Getting started']],
+      },
+    ],
+  },
+  {
+    title: 'Tools',
+    collapsable: true,
+    children: [
+      {
+        title: 'Developing',
+        collapsable: true,
+        children: [
+          '/developing/es-dev-server',
+          ['/init/', 'Generators'],
+          '/developing/lit-helpers',
+        ],
+      },
+      {
+        title: 'Testing',
+        collapsable: true,
+        children: [
+          '/testing/testing-helpers',
+          '/testing/testing-chai-a11y-axe',
+          '/testing/testing-sinon',
+          '/testing/semantic-dom-diff',
+          '/testing/karma-esm',
+        ],
+      },
+      {
+        title: 'Building',
+        collapsable: true,
+        children: ['/building/rollup-plugin-index-html', '/building/webpack-index-html-plugin'],
+      },
+    ],
+  },
+];
+
 module.exports = {
   title: 'open-wc',
   description: 'Open Web Component Recommendations',
