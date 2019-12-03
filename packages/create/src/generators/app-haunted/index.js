@@ -15,7 +15,7 @@ export const AppHauntedMixin = subclass =>
         ...this.options,
         scaffoldType: 'wc-haunted',
         tagName,
-        destinationPath: path.join(process.cwd(), tagName, 'packages', tagName),
+        destinationPath: path.join(process.cwd(), tagName, 'components', tagName),
         noEnd: true,
       };
       delete appMainOptions.features;
@@ -26,7 +26,7 @@ export const AppHauntedMixin = subclass =>
       const pageMainOptions = {
         ...appMainOptions,
         tagName: 'page-main',
-        destinationPath: path.join(process.cwd(), tagName, 'packages/page-main/'),
+        destinationPath: path.join(process.cwd(), tagName, 'components/page-main/'),
       };
 
       await executeViaOptions(pageMainOptions);
@@ -35,7 +35,7 @@ export const AppHauntedMixin = subclass =>
       const pageOneOptions = {
         ...appMainOptions,
         tagName: 'page-one',
-        destinationPath: path.join(process.cwd(), tagName, 'packages/page-one/'),
+        destinationPath: path.join(process.cwd(), tagName, 'components/page-one/'),
       };
 
       await executeViaOptions(pageOneOptions);
@@ -43,17 +43,17 @@ export const AppHauntedMixin = subclass =>
       // write & rename el class template
       this.copyTemplate(
         `${__dirname}/templates/_MyApp.js`,
-        this.destinationPath(`packages/${tagName}/src/${className}.js`),
+        this.destinationPath(`components/${tagName}/src/${className}.js`),
       );
 
       this.copyTemplate(
         `${__dirname}/templates/_open-wc-logo.js`,
-        this.destinationPath(`packages/${tagName}/src/open-wc-logo.js`),
+        this.destinationPath(`components/${tagName}/src/open-wc-logo.js`),
       );
 
       this.copyTemplate(
         `${__dirname}/templates/_templateAbout.js`,
-        this.destinationPath(`packages/${tagName}/src/templateAbout.js`),
+        this.destinationPath(`components/${tagName}/src/templateAbout.js`),
       );
 
       this.copyTemplateJsonInto(
@@ -66,7 +66,7 @@ export const AppHauntedMixin = subclass =>
       if (this.options.features && this.options.features.includes('testing')) {
         this.copyTemplate(
           `${__dirname}/templates/_my-app.test.js`,
-          this.destinationPath(`packages/${tagName}/test/${tagName}.test.js`),
+          this.destinationPath(`components/${tagName}/test/${tagName}.test.js`),
         );
 
         await this.copyTemplates(`${__dirname}/templates/static-testing/**/*`);

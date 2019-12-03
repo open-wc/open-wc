@@ -17,6 +17,7 @@ describe('<%= className %>', () => {
       <<%= tagName %>></<%= tagName %>>
     `);
     el.shadowRoot.querySelector('button').click();
+    await nextFrame();
 
     expect(el.counter).to.equal(6);
   });
