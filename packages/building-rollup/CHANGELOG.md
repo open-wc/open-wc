@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.8](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.7...@open-wc/building-rollup@0.14.8) (2019-12-02)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.14.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.6...@open-wc/building-rollup@0.14.7) (2019-12-01)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.14.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.5...@open-wc/building-rollup@0.14.6) (2019-11-30)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.14.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.4...@open-wc/building-rollup@0.14.5) (2019-11-27)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.14.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.3...@open-wc/building-rollup@0.14.4) (2019-11-27)
+
+
+### Bug Fixes
+
+* **building-rollup:** maintain whitespace with  "conservativeCollapse" ([354a5e6](https://github.com/open-wc/open-wc/commit/354a5e635dc762807643e1ead29964c6bae6b26c))
+
+
+
+
+
 ## [0.14.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.2...@open-wc/building-rollup@0.14.3) (2019-11-24)
 
 **Note:** Version bump only for package @open-wc/building-rollup

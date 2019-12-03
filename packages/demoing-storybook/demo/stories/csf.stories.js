@@ -10,6 +10,7 @@ export default {
 export const heading = () =>
   html`
     <h1>Hello World</h1>
+    <input type="text" />
   `;
 
 export const card = () =>

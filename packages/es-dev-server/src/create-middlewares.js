@@ -12,6 +12,7 @@ import { createResponseBodyCacheMiddleware } from './middleware/response-body-ca
 import { setupBrowserReload } from './utils/setup-browser-reload.js';
 import { compatibilityModes } from './constants.js';
 import { createResponseTransformMiddleware } from './middleware/response-transform.js';
+import { logDebug } from './utils/utils.js';
 
 const defaultCompressOptions = {
   filter(contentType) {
@@ -56,6 +57,11 @@ export function createMiddlewares(config, fileWatcher) {
   /** @type {import('koa').Middleware[]} */
   const middlewares = [];
 
+  middlewares.push((ctx, next) => {
+    logDebug(`Receiving request: ${ctx.url}`);
+    return next();
+  });
+
   if (compress) {
     const options = typeof compress === 'object' ? compress : defaultCompressOptions;
     middlewares.push(koaCompress(options));
@@ -87,6 +93,11 @@ export function createMiddlewares(config, fileWatcher) {
       middlewares.push(customMiddleware);
     });
   }
+
+  middlewares.push(async (ctx, next) => {
+    await next();
+    logDebug(`Serving request: ${ctx.url} with status: ${ctx.status}`);
+  });
 
   // serves 304 responses if resource hasn't changed
   middlewares.push(createEtagCacheMiddleware());

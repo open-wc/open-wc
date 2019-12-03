@@ -14,6 +14,7 @@ const sidebar = [
       '/developing/best-practices',
       '/developing/es-dev-server',
       ['/init/', 'Generators'],
+      '/developing/lit-helpers',
       '/developing/types',
       '/developing/routing',
     ],

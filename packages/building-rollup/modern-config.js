@@ -79,6 +79,7 @@ module.exports = function createBasicConfig(_options) {
                 },
                 htmlMinifier: {
                   collapseWhitespace: true,
+                  conservativeCollapse: true,
                   removeComments: true,
                   caseSensitive: true,
                   minifyCSS: customMinifyCss,

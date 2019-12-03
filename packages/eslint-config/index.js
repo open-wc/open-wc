@@ -8,7 +8,7 @@ module.exports = {
     browser: true,
     mocha: true,
   },
-  plugins: ['html', 'no-only-tests'],
+  plugins: ['lit', 'html', 'no-only-tests'],
   rules: {
     'arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
     'no-underscore-dangle': 'off',
@@ -59,6 +59,19 @@ module.exports = {
         ],
       },
     ],
+
+    // eslint-plugin-lit
+    'lit/no-template-bind': 'error',
+    'lit/no-duplicate-template-bindings': 'error',
+    'lit/no-useless-template-literals': 'error',
+    'lit/attribute-value-entities': 'error',
+    'lit/binding-positions': 'error',
+    'lit/no-property-change-update': 'error',
+    'lit/no-invalid-html': 'error',
+    'lit/no-value-attribute': 'error',
+    'lit/no-invalid-escape-sequences': 'error',
+    'lit/no-legacy-template-syntax': 'error',
+    'lit/no-private-properties': 'error',
   },
   overrides: [
     {
@@ -67,6 +80,15 @@ module.exports = {
         'no-console': 'off',
         'no-unused-expressions': 'off',
         'class-methods-use-this': 'off',
+
+        // loosen templating restrictions in tests and demos
+        'lit/no-template-bind': 'off',
+        'lit/no-duplicate-template-bindings': 'off',
+        'lit/no-useless-template-literals': 'off',
+        'lit/binding-positions': 'off',
+        'lit/no-property-change-update': 'off',
+        'lit/no-invalid-html': 'off',
+        'lit/no-private-properties': 'off',
       },
     },
   ],
