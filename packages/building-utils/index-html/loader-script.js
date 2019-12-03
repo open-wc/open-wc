@@ -132,6 +132,22 @@ function createPolyfillsLoader(polyfills, polyfillsConfig) {
 }
 
 /**
+ * Creates code to hook into System.Resolve in order to request ad-hoc transformation of Javascript request to modules
+ */
+function createResolveHook() {
+  return `
+    // appends a query param to each systemjs request to trigger es5 compilation
+    var originalResolve = System.constructor.prototype.resolve;
+    System.constructor.prototype.resolve = function () {
+      return Promise.resolve(originalResolve.apply(this, arguments))
+        .then(function (url) {
+          return url + (url.indexOf('?') > 0 ? '&' : '?') + 'transform-module';
+        });
+    };
+    `;
+}
+
+/**
  * Creates a loader script that executed immediately.
  *
  * @param {EntriesConfig} entries
@@ -146,6 +162,7 @@ function createLoaderScript(entries, legacyEntries, polyfills, polyfillsConfig, 
     createLoadScriptFunction(entries, legacyEntries, polyfills) +
     createPolyfillsLoader(polyfills, polyfillsConfig) +
     createEntriesLoader(entries, legacyEntries, polyfills) +
+    createResolveHook() +
     '})();';
 
   return minified ? Terser.minify(code).code : code;
