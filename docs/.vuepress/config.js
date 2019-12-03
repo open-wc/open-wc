@@ -81,14 +81,13 @@ const sidebar = [
     title: 'Guides & Docs',
     collapsable: true,
     children: [
-      ['/developing/', 'Getting started'],
-      ['/developing/ide', 'IDE'],
-      '/developing/lit-html',
-      '/developing/code-examples',
       '/developing/best-practices',
+      ['/codelabs/', 'Codelabs'],
+      '/developing/code-examples',
+      '/developing/lit-html',
       '/developing/types',
       '/developing/routing',
-      ['/codelabs/', 'Codelabs'],
+      ['/developing/ide', 'IDE'],
     ],
   },
   {
@@ -98,11 +97,7 @@ const sidebar = [
       {
         title: 'Developing',
         collapsable: true,
-        children: [
-          '/developing/es-dev-server',
-          ['/init/', 'Generators'],
-          '/developing/lit-helpers',
-        ],
+        children: ['/developing/'],
       },
 
       {
