@@ -3,6 +3,102 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.9](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.8...@open-wc/testing-karma@3.2.9) (2019-12-02)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
+## [3.2.8](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.7...@open-wc/testing-karma@3.2.8) (2019-12-01)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
+## [3.2.7](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.6...@open-wc/testing-karma@3.2.7) (2019-11-30)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
+## [3.2.6](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.5...@open-wc/testing-karma@3.2.6) (2019-11-27)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
+## [3.2.5](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.4...@open-wc/testing-karma@3.2.5) (2019-11-24)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
+## [3.2.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.3...@open-wc/testing-karma@3.2.4) (2019-11-21)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
+## [3.2.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.2...@open-wc/testing-karma@3.2.3) (2019-11-20)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
+## [3.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.1...@open-wc/testing-karma@3.2.2) (2019-11-20)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
+## [3.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.0...@open-wc/testing-karma@3.2.1) (2019-11-19)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
+# [3.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.1.54...@open-wc/testing-karma@3.2.0) (2019-11-19)
+
+
+### Bug Fixes
+
+* use es-dev-server auto compatibility ([df6fe21](https://github.com/open-wc/open-wc/commit/df6fe2151b3f22d068f0acd94880a43c1fb828a7))
+
+
+### Features
+
+* update testing to use auto compatibility of es-dev-server ([7d5ea56](https://github.com/open-wc/open-wc/commit/7d5ea56a1cb911fb31228bec18dc38ea8826b1f4))
+
+
+
+
+
+## [3.1.54](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.1.53...@open-wc/testing-karma@3.1.54) (2019-11-07)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
 ## [3.1.53](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.1.52...@open-wc/testing-karma@3.1.53) (2019-11-06)
 
 **Note:** Version bump only for package @open-wc/testing-karma

@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing",
-  "version": "2.3.9",
+  "version": "2.4.1",
   "publishConfig": {
     "access": "public"
   },
@@ -26,8 +26,8 @@
   ],
   "dependencies": {
     "@open-wc/chai-dom-equals": "^0.12.36",
-    "@open-wc/semantic-dom-diff": "^0.15.3",
-    "@open-wc/testing-helpers": "^1.3.0",
+    "@open-wc/semantic-dom-diff": "^0.15.4",
+    "@open-wc/testing-helpers": "^1.4.0",
     "@types/chai": "^4.1.7",
     "@types/chai-dom": "^0.0.8",
     "@types/mocha": "^5.0.0",
@@ -35,7 +35,7 @@
     "chai": "^4.2.0",
     "chai-a11y-axe": "^1.2.2",
     "chai-dom": "^1.8.1",
-    "mocha": "^6.0.0",
+    "mocha": "^6.2.2",
     "sinon-chai": "^3.3.0"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/create",
-  "version": "0.21.3",
+  "version": "0.24.4",
   "publishConfig": {
     "access": "public"
   },
@@ -22,6 +22,7 @@
     "start": "npm run build && node ./dist/create.js",
     "test": "npm run test:node",
     "test:node": "mocha --require @babel/register",
+    "test:update-snapshots": "node -r @babel/register ./test/update-snapshots.js",
     "test:watch": "onchange 'src/**/*.js' 'test/**/*.js' -- npm run test --silent"
   },
   "files": [
@@ -43,14 +44,16 @@
     "semver": "^6.1.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.3",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/register": "^7.0.0",
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/register": "^7.7.0",
     "babel-plugin-transform-dynamic-import": "^2.1.0",
     "chai": "^4.2.0",
-    "mocha": "^6.0.0",
+    "chai-fs": "^2.0.0",
+    "eslint": "^6.1.0",
+    "mocha": "^6.2.2",
     "onchange": "^5.2.0",
-    "rimraf": "^2.6.3"
+    "rimraf": "^3.0.0"
   }
 }

@@ -16,6 +16,7 @@ import { gatherMixins } from './gatherMixins.js';
  * npm init @open-wc --type upgrade --features linting demoing --tagName foo-bar --scaffoldFilesFor demoing --installDependencies false
  */
 const optionDefinitions = [
+  { name: 'destinationPath', type: String }, // path
   { name: 'type', type: String }, // scaffold, upgrade
   { name: 'scaffoldType', type: String }, // wc, app
   { name: 'features', type: String, multiple: true }, // linting, testing, demoing, building

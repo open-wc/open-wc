@@ -19,3 +19,7 @@ by [Westbrook Johnson](https://github.com/westbrook)
 ## [Web Components: spoils of the browser wars](https://www.andrewzigler.com/blog/2019/02/28/web-components-spoils-of-the-browser-wars/)
 
 by [Andrew Zigler](https://github.com/azigler)
+
+## [Shared Behaviors best practices with Mocha](https://dev.to/open-wc/shared-behaviors-best-practices-with-mocha-519d)
+
+by [Noël Macé](https://github.com/noelmace)

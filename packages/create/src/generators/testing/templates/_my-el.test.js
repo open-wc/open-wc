@@ -12,23 +12,12 @@ describe('<%= className %>', () => {
     expect(el.counter).to.equal(5);
   });
 
-  it('shows initially the text "hey there Nr. 5!" and an "increment" button', async () => {
-    const el = await fixture(html`
-      <<%= tagName %>></<%= tagName %>>
-    `);
-
-    expect(el).shadowDom.to.equal(`
-      <h2>Hey there Nr. 5!</h2>
-      <button>increment</button>
-    `);
-  });
-
   it('increases the counter on button click', async () => {
     const el = await fixture(html`
       <<%= tagName %>></<%= tagName %>>
     `);
     el.shadowRoot.querySelector('button').click();
-    await nextFrame();
+
     expect(el.counter).to.equal(6);
   });
 
@@ -38,5 +27,22 @@ describe('<%= className %>', () => {
     `);
 
     expect(el.title).to.equal('attribute title');
+  });
+
+  it('shows initially the text "hey there Nr. 5!" and an "increment" button', async () => {
+    const el = await fixture(html`
+      <<%= tagName %>></<%= tagName %>>
+    `);
+    el.shadowRoot.querySelector('button').click();
+    await nextFrame();
+    expect(el.counter).to.equal(6);
+  });
+
+  it('passes the a11y audit', async () => {
+    const el = await fixture(html`
+      <<%= tagName %>></<%= tagName %>>
+    `);
+
+    await expect(el).shadowDom.to.be.accessible();
   });
 });

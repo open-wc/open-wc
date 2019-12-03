@@ -3,6 +3,128 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.27.1...es-dev-server@1.28.0) (2019-12-02)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't normalize file path on a browser path ([90cdeaf](https://github.com/open-wc/open-wc/commit/90cdeaf742a942e1c9f59f4be7dc2937b8becb95))
+
+
+### Features
+
+* **demoing-storybook:** add storybook-start help command ([4eebd38](https://github.com/open-wc/open-wc/commit/4eebd3896f6c0d4f7fb02417ec373d5d2429f79b))
+* **es-dev-server:** allow opening on full URL ([6d47e56](https://github.com/open-wc/open-wc/commit/6d47e5644a2093d8266fdebc51df4beb53df620e))
+
+
+
+
+
+## [1.27.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.27.0...es-dev-server@1.27.1) (2019-12-01)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+# [1.27.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.26.2...es-dev-server@1.27.0) (2019-11-30)
+
+
+### Features
+
+* **es-dev-server:** add debug logging option ([#1052](https://github.com/open-wc/open-wc/issues/1052)) ([879e997](https://github.com/open-wc/open-wc/commit/879e99787464f218e52d834daa0760ba1319aab3))
+
+
+
+
+
+## [1.26.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.26.1...es-dev-server@1.26.2) (2019-11-27)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+## [1.26.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.26.0...es-dev-server@1.26.1) (2019-11-24)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't inject polyfills if not needed ([8240883](https://github.com/open-wc/open-wc/commit/8240883f181754e9d3bdc6537d1361fc9dc45ef6))
+
+
+
+
+
+# [1.26.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.25.1...es-dev-server@1.26.0) (2019-11-21)
+
+
+### Features
+
+* **es-dev-server:** don't do compat transform with custom config ([a7a9a90](https://github.com/open-wc/open-wc/commit/a7a9a909dc43efaec16f4a7d5e57b5cce9be1791))
+
+
+
+
+
+## [1.25.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.25.0...es-dev-server@1.25.1) (2019-11-20)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't throw on cancelled requests ([e078741](https://github.com/open-wc/open-wc/commit/e0787419400adf0947af299eeb1f2d8fb2e17f19))
+
+
+
+
+
+# [1.25.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.24.1...es-dev-server@1.25.0) (2019-11-20)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't handle requests without a file path ([bb265b9](https://github.com/open-wc/open-wc/commit/bb265b9cbd90386f916663e3471ae8efb4e4eff7))
+* **es-dev-server:** prefer .mjs over. js files ([27b5a9f](https://github.com/open-wc/open-wc/commit/27b5a9f58d45e213588b1440c53546e0a45d1ac4))
+
+
+### Features
+
+* **building-rollup:** use shared extensions config ([39da78b](https://github.com/open-wc/open-wc/commit/39da78bcad70aaf1aa04cfe34a649b837f56d1ab))
+
+
+
+
+
+## [1.24.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.24.0...es-dev-server@1.24.1) (2019-11-19)
+
+
+### Bug Fixes
+
+* **es-dev-server:** resolve imports in inline modules ([#997](https://github.com/open-wc/open-wc/issues/997)) ([98322e4](https://github.com/open-wc/open-wc/commit/98322e4f5551c4f5d90efb2c0a305599fe3bfbbf))
+
+
+
+
+
+# [1.24.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.23.1...es-dev-server@1.24.0) (2019-11-19)
+
+
+### Bug Fixes
+
+* sub-sections of folder structure are not accessible via url ([459db23](https://github.com/open-wc/open-wc/commit/459db23165c2485758eff9d0d0c4bca138e382ca))
+* use es-dev-server auto compatibility ([df6fe21](https://github.com/open-wc/open-wc/commit/df6fe2151b3f22d068f0acd94880a43c1fb828a7))
+
+
+### Features
+
+* **es-dev-server:** add auto compatibilty ([9a79caf](https://github.com/open-wc/open-wc/commit/9a79caf1739fe73774f032c9b2d5c9fc997c1b80))
+
+
+
+
+
 ## [1.23.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.23.0...es-dev-server@1.23.1) (2019-11-06)
 
 

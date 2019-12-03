@@ -1,7 +1,23 @@
+/* eslint-disable no-console */
 import isStream from 'is-stream';
 import getStream from 'get-stream';
 import Stream from 'stream';
 import path from 'path';
+import { virtualFilePrefix } from '../constants.js';
+
+let _debug = false;
+
+export function setDebug(debug) {
+  _debug = debug;
+}
+
+export function logDebug(...messages) {
+  if (_debug) {
+    console.log('[es-dev-server]: ', ...messages);
+  }
+}
+
+export class RequestCancelledError extends Error {}
 
 /**
  * koa-static stores the original served file path on ctx.body.path,
@@ -23,6 +39,11 @@ const htmlTags = ['html', 'head', 'body'];
  * @returns {Promise<string>}
  */
 export async function getBodyAsString(ctx) {
+  let requestCanceled;
+  ctx.req.on('close', () => {
+    requestCanceled = true;
+  });
+
   if (Buffer.isBuffer(ctx.body)) {
     return ctx.body.toString();
   }
@@ -42,9 +63,16 @@ export async function getBodyAsString(ctx) {
     // a stream can only be read once, so after reading it assign
     // the string response to the body so that it can be accessed
     // again later
-    const body = await getStream(ctx.body);
-    ctx.body = body;
-    return body;
+    try {
+      const body = await getStream(ctx.body);
+      ctx.body = body;
+      return body;
+    } catch (error) {
+      if (requestCanceled) {
+        throw new RequestCancelledError();
+      }
+      throw error;
+    }
   }
 
   return ctx.body;
@@ -100,10 +128,17 @@ export async function isIndexHTMLResponse(ctx, appIndex) {
     return false;
   }
 
-  const indexHTMLString = await getBodyAsString(ctx);
-  return htmlTags.some(
-    tag => indexHTMLString.includes(`<${tag}`) && indexHTMLString.includes(`</${tag}>`),
-  );
+  try {
+    const indexHTMLString = await getBodyAsString(ctx);
+    return htmlTags.some(
+      tag => indexHTMLString.includes(`<${tag}`) && indexHTMLString.includes(`</${tag}>`),
+    );
+  } catch (error) {
+    if (error instanceof RequestCancelledError) {
+      return false;
+    }
+    throw error;
+  }
 }
 
 /**
@@ -117,7 +152,7 @@ export function isPolyfill(url) {
  * @param {string} url
  */
 export function isInlineModule(url) {
-  return url.includes('/inline-module-') && url.includes('?source=');
+  return url.includes(`inline-module-`) && url.includes('?source=');
 }
 
 /**
@@ -125,7 +160,7 @@ export function isInlineModule(url) {
  * @param {string} url
  */
 export function isGeneratedFile(url) {
-  return isPolyfill(url) || isInlineModule(url);
+  return url.startsWith(virtualFilePrefix) || isPolyfill(url) || isInlineModule(url);
 }
 
 /**

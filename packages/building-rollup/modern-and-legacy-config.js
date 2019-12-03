@@ -1,14 +1,12 @@
 // @ts-nocheck
 
-const { DEFAULT_EXTENSIONS } = require('@babel/core');
-const { findSupportedBrowsers } = require('@open-wc/building-utils');
+const { findSupportedBrowsers, defaultFileExtensions } = require('@open-wc/building-utils');
 const customMinifyCss = require('@open-wc/building-utils/custom-minify-css');
 const path = require('path');
 const resolve = require('rollup-plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const babel = require('rollup-plugin-babel');
 const indexHTML = require('rollup-plugin-index-html');
-const entrypointHashmanifest = require('rollup-plugin-entrypoint-hashmanifest');
 const { generateSW } = require('rollup-plugin-workbox');
 
 const getWorkboxConfig = require('@open-wc/building-utils/get-workbox-config');
@@ -25,11 +23,11 @@ const prefix = '[owc-building-rollup]';
 function createConfig(_options, legacy) {
   const options = {
     outputDir: 'dist',
-    extensions: DEFAULT_EXTENSIONS,
+    extensions: defaultFileExtensions,
     indexHTMLPlugin: {},
     ..._options,
     plugins: {
-      indexHTML: true,
+      indexHTML: _options.input.endsWith('.html'),
       workbox: true,
       babel: true,
       ...(_options.plugins || {}),
@@ -91,6 +89,7 @@ function createConfig(_options, legacy) {
                 },
                 htmlMinifier: {
                   collapseWhitespace: true,
+                  conservativeCollapse: true,
                   removeComments: true,
                   caseSensitive: true,
                   minifyCSS: customMinifyCss,
@@ -116,9 +115,6 @@ function createConfig(_options, legacy) {
 
       // only minify if in production
       production && terser(),
-
-      // hash
-      entrypointHashmanifest(),
 
       production && options.plugins.workbox && !legacy && generateSW(getWorkboxConfig()),
     ],

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/open-wc/open-wc/compare/@import-maps/generate@0.2.0...@import-maps/generate@0.2.1) (2019-11-24)
+
+**Note:** Version bump only for package @import-maps/generate
+
+
+
+
+
+# [0.2.0](https://github.com/open-wc/open-wc/compare/@import-maps/generate@0.1.9...@import-maps/generate@0.2.0) (2019-11-19)
+
+
+### Features
+
+* update to use auto compatibility of es-dev-server ([f6d085e](https://github.com/open-wc/open-wc/commit/f6d085eda5a05391d1a464b9e49222c78194b0d9))
+
+
+
+
+
 ## [0.1.9](https://github.com/open-wc/open-wc/compare/@import-maps/generate@0.1.8...@import-maps/generate@0.1.9) (2019-11-03)
 
 

@@ -8,3 +8,4 @@ stats.html
 /packages/es-dev-server/test/fixtures/**/*
 /packages/karma-esm/src/esm-debug.html
 /packages/karma-esm/src/esm-context.html
+/packages/**/demo/**/*

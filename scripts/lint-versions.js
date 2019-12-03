@@ -6,7 +6,7 @@ const getDirectories = source =>
     .filter(pathMeta => pathMeta.isDirectory())
     .map(pathMeta => pathMeta.name);
 
-function readPackageJson(filePath) {
+function readPackageJsonDeps(filePath) {
   if (existsSync(filePath)) {
     const jsonData = JSON.parse(readFileSync(filePath, 'utf-8'));
     const merged = { ...jsonData.dependencies, ...jsonData.devDependencies };
@@ -21,12 +21,22 @@ function readPackageJson(filePath) {
   return {};
 }
 
+function readPackageJsonNameVersion(filePath) {
+  if (existsSync(filePath)) {
+    const jsonData = JSON.parse(readFileSync(filePath, 'utf-8'));
+    const result = {};
+    result[jsonData.name] = `^${jsonData.version}`;
+    return result;
+  }
+  return {};
+}
+
 function compareVersions(versionsA, versionsB) {
   let output = '';
   const newVersions = { ...versionsA };
   Object.keys(versionsB).forEach(dep => {
     if (versionsA[dep] && versionsB[dep] && versionsA[dep] !== versionsB[dep]) {
-      output += `  - "${dep}": "${versionsA[dep]}" !== "${versionsB[dep]}"\n`;
+      output += `  - "${dep}" should be "${versionsA[dep]}" but is "${versionsB[dep]}"\n`;
     }
     if (!newVersions[dep]) {
       newVersions[dep] = versionsB[dep];
@@ -39,11 +49,19 @@ function compareVersions(versionsA, versionsB) {
   };
 }
 
-let currentVersions = readPackageJson('./package.json');
+let currentVersions = readPackageJsonDeps('./package.json');
 let endReturn = 0;
+
+// find all versions in the monorepo
 getDirectories('./packages').forEach(subPackage => {
   const filePath = `./packages/${subPackage}/package.json`;
-  const subPackageVersions = readPackageJson(filePath);
+  currentVersions = { ...currentVersions, ...readPackageJsonNameVersion(filePath) };
+});
+
+// lint all versions in packages
+getDirectories('./packages').forEach(subPackage => {
+  const filePath = `./packages/${subPackage}/package.json`;
+  const subPackageVersions = readPackageJsonDeps(filePath);
   const { output, newVersions } = compareVersions(currentVersions, subPackageVersions);
   currentVersions = { ...newVersions };
   if (output) {
@@ -53,5 +71,9 @@ getDirectories('./packages').forEach(subPackage => {
     endReturn = 1;
   }
 });
+
+if (endReturn === 0) {
+  console.log('All versions are aligned 💪');
+}
 
 process.exit(endReturn);

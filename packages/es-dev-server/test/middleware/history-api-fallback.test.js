@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import fetch from 'node-fetch';
 import path from 'path';
-import { startServer, createConfig } from '../../src/es-dev-server.js';
+import { startServer, createConfig, compatibilityModes } from '../../src/es-dev-server.js';
 
 const host = 'http://localhost:8080/';
 
@@ -14,6 +14,7 @@ describe('history api fallback middleware', () => {
           port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
+          compatibility: compatibilityModes.NONE,
         }),
       ));
     });
@@ -62,6 +63,7 @@ describe('history api fallback middleware', () => {
       ({ server } = await startServer(
         createConfig({
           port: 8080,
+          compatibility: compatibilityModes.NONE,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'index-not-in-root'),
           appIndex: path.resolve(
             __dirname,

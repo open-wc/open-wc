@@ -3,6 +3,110 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.3...@open-wc/create@0.24.4) (2019-11-27)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+## [0.24.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.2...@open-wc/create@0.24.3) (2019-11-24)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+## [0.24.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.1...@open-wc/create@0.24.2) (2019-11-24)
+
+
+### Bug Fixes
+
+* **create:** update building rollup version ([#1039](https://github.com/open-wc/open-wc/issues/1039)) ([8d2e0a8](https://github.com/open-wc/open-wc/commit/8d2e0a89bb5b34b4abaa4c6a5f695037f8cc6f1a))
+
+
+
+
+
+## [0.24.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.0...@open-wc/create@0.24.1) (2019-11-24)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+# [0.24.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.23.0...@open-wc/create@0.24.0) (2019-11-23)
+
+
+### Features
+
+* **create:** add a11y and snapshot tests ([a128621](https://github.com/open-wc/open-wc/commit/a128621340a8b8c6e89b4a054365f671c00fe9e8))
+* **create:** improve app scaffold formatting ([b4b3233](https://github.com/open-wc/open-wc/commit/b4b32338cff864d1e00e94efd15bc5d8023062ef))
+
+
+
+
+
+# [0.23.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.22.1...@open-wc/create@0.23.0) (2019-11-20)
+
+
+### Features
+
+* **create:** align with new storybook ([770cb83](https://github.com/open-wc/open-wc/commit/770cb8326aee788616a5e2b6d950f738598b0518))
+
+
+
+
+
+## [0.22.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.22.0...@open-wc/create@0.22.1) (2019-11-19)
+
+
+### Bug Fixes
+
+* **create:** adjust storybook config for app generator ([#1003](https://github.com/open-wc/open-wc/issues/1003)) ([de76353](https://github.com/open-wc/open-wc/commit/de76353f76441602071aa73d090457105f110efe))
+
+
+
+
+
+# [0.22.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.21.5...@open-wc/create@0.22.0) (2019-11-19)
+
+
+### Bug Fixes
+
+* use es-dev-server auto compatibility ([df6fe21](https://github.com/open-wc/open-wc/commit/df6fe2151b3f22d068f0acd94880a43c1fb828a7))
+
+
+### Features
+
+* update to use auto compatibility of es-dev-server ([f6d085e](https://github.com/open-wc/open-wc/commit/f6d085eda5a05391d1a464b9e49222c78194b0d9))
+
+
+
+
+
+## [0.21.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.21.4...@open-wc/create@0.21.5) (2019-11-14)
+
+
+### Bug Fixes
+
+* **create:** rename directory of page-main test ([84c3607](https://github.com/open-wc/open-wc/commit/84c3607)), closes [#945](https://github.com/open-wc/open-wc/issues/945) [#987](https://github.com/open-wc/open-wc/issues/987)
+
+
+
+
+
+## [0.21.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.21.3...@open-wc/create@0.21.4) (2019-11-13)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
 ## [0.21.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.21.2...@open-wc/create@0.21.3) (2019-11-03)
 
 

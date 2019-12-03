@@ -1,6 +1,6 @@
 import path from 'path';
-import { toBrowserPath } from './utils/utils.js';
-import { compatibilityModes } from './constants.js';
+import { toBrowserPath, setDebug } from './utils/utils.js';
+import { compatibilityModes, polyfillsModes } from './constants.js';
 
 /**
  * Public config, to be defined by the user.
@@ -22,17 +22,21 @@ import { compatibilityModes } from './constants.js';
  *   and ends with no/. For example: /my-app, /foo, /foo/bar
  * @property {boolean|CompressOptions} [compress=true] Whether the server should compress responses.
  * @property {import('koa').Middleware[]} [middlewares]
- * @property {import('./middleware/transform-response').ResponseTransformer[]} responseTransformers
+ * @property {import('./middleware/response-transform').ResponseTransformer[]} responseTransformers
  * @property {boolean} logStartup whether to log server startup
+ * @property {boolean} debug whether to log debug messages
  *
  * Development help
  * @property {boolean} [watch] whether to watch served files and reload the browser on change
+ * @property {boolean} [logErrorsToBrowser] whether to log errors to the browser
  * @property {boolean} [http2] whether to run the server in http2, sets up https as well
  * @property {string} [sslKey] path to local .key file to use for https
  * @property {string} [sslCert] path to local .cert file to use for https
  *
  * Code transformation
- * @property {string} [compatibility] compatibility mode for older browsers. Can be: "esm", modern" or "all"
+ * @property {string} [compatibility] compatibility mode for older browsers. Can be: "auto", "min",
+ *  "max" or "none". Defaults to "auto"
+ * @property {string} [polyfills] polyfills mode, can be "auto" or "none". Defaults to "auto".
  * @property {boolean} [nodeResolve] whether to resolve bare module imports using node resolve
  * @property {boolean} [preserveSymlinks] preserve symlinks when resolving modules. Default false,
  *  which is the default node behavior.
@@ -43,6 +47,7 @@ import { compatibilityModes } from './constants.js';
  * @property {string[]} [fileExtensions] file extensions to run babel on
  * @property {string[]} [babelExclude] files excluded from all babel compilation
  * @property {string[]} [babelModernExclude] files excluded from babel on modern browser
+ * @property {string[]} [babelModuleExclude] files excluded from module transfomration
  * @property {object} [babelConfig] babel config to use, this is useful when you want to provide a
  *   babel config from a tool, and don't want to require all users to use the same babel config
  */
@@ -71,10 +76,11 @@ import { compatibilityModes } from './constants.js';
  * @property {string} rootDir
  * @property {boolean} logStartup whether to log a startup message
  * @property {import('koa').Middleware[]} customMiddlewares
- * @property {import('./middleware/transform-response').ResponseTransformer[]} responseTransformers
+ * @property {import('./middleware/response-transform').ResponseTransformer[]} responseTransformers
  *
  * Development help
  * @property {boolean} watch
+ * @property {boolean} logErrorsToBrowser
  * @property {number} watchDebounce
  * @property {boolean} http2
  * @property {string} sslKey
@@ -86,11 +92,13 @@ import { compatibilityModes } from './constants.js';
  * @property {boolean} preserveSymlinks
  * @property {boolean} readUserBabelConfig same as babel option in command line args
  * @property {string} compatibilityMode
+ * @property {string} polyfillsMode
  * @property {boolean|CompressOptions} compress Whether the server should compress responses.
  * @property {object} customBabelConfig custom babel configuration to use when compiling
  * @property {string[]} extraFileExtensions
  * @property {string[]} babelExclude
  * @property {string[]} babelModernExclude
+ * @property {string[]} babelModuleExclude
  */
 
 /**
@@ -104,8 +112,8 @@ export function createConfig(config) {
     babelConfig,
     babelExclude = [],
     babelModernExclude = [],
+    babelModuleExclude = [],
     basePath,
-    compatibility = compatibilityModes.NONE,
     compress = true,
     fileExtensions = [],
     hostname,
@@ -119,8 +127,34 @@ export function createConfig(config) {
     sslCert,
     sslKey,
     watch = false,
+    logErrorsToBrowser = false,
+    polyfills = polyfillsModes.AUTO,
     responseTransformers,
+    debug = false,
   } = config;
+
+  if (debug) {
+    setDebug(true);
+  }
+
+  let { compatibility = compatibilityModes.AUTO } = config;
+
+  if (compatibility === 'modern' || compatibility === 'all') {
+    /* eslint-disable-next-line no-console */
+    console.warn(
+      '[es-dev-server] Compatibility mode "modern" and "all" are deprecated, and combined into "auto".' +
+        '"auto" mode is turned on by default.',
+    );
+    compatibility = compatibilityModes.AUTO;
+  }
+
+  if (!Object.values(compatibilityModes).includes(compatibility)) {
+    throw new Error(`Unknown compatibility mode: ${compatibility}`);
+  }
+
+  if (!Object.values(polyfillsModes).includes(polyfills)) {
+    throw new Error(`Unknown compatibility mode: ${polyfills}`);
+  }
 
   // middlewares used to be called customMiddlewares
   // @ts-ignore
@@ -150,7 +184,7 @@ export function createConfig(config) {
   let openPath;
   if (typeof open === 'string' && open !== '') {
     // user-provided open path
-    openPath = path.normalize(open);
+    openPath = open;
   } else if (appIndex) {
     // if an appIndex was provided, use it's directory as open path
     openPath = `${basePath || ''}${appIndexDir}/`;
@@ -158,18 +192,15 @@ export function createConfig(config) {
     openPath = basePath ? `${basePath}/` : '/';
   }
 
-  // make sure path properly starts a /
-  if (!openPath.startsWith('/')) {
-    openPath = `/${openPath}`;
-  }
-
   return {
     appIndex,
     appIndexDir,
     babelExclude,
     babelModernExclude,
+    babelModuleExclude,
     basePath,
     compatibilityMode: compatibility,
+    polyfillsMode: polyfills,
     compress,
     customBabelConfig: babelConfig,
     customMiddlewares: middlewares,
@@ -189,6 +220,7 @@ export function createConfig(config) {
     sslCert,
     sslKey,
     watch,
+    logErrorsToBrowser,
     watchDebounce: 100,
   };
 }

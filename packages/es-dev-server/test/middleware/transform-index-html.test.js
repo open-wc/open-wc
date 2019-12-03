@@ -3,7 +3,8 @@ import fetch from 'node-fetch';
 import path from 'path';
 import fs from 'fs';
 import { startServer, createConfig } from '../../src/es-dev-server.js';
-import { compatibilityModes } from '../../src/constants.js';
+import { compatibilityModes, virtualFilePrefix } from '../../src/constants.js';
+import { userAgents } from '../user-agents.js';
 
 const update = process.argv.includes('--update-snapshots');
 const host = 'http://localhost:8080/';
@@ -34,7 +35,11 @@ describe('transform-index-html middleware', () => {
               }),
             ));
 
-            const response = await fetch(`${host}index.html`);
+            const response = await fetch(`${host}index.html`, {
+              headers: {
+                'user-agent': userAgents['Chrome 78'],
+              },
+            });
             expect(response.status).to.equal(200);
             const responseText = await response.text();
             const filePath = path.join(snapshotsDir, `${name}.html`);
@@ -65,7 +70,7 @@ describe('transform-index-html middleware', () => {
         createConfig({
           port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
-          compatibility: compatibilityModes.ALL,
+          compatibility: compatibilityModes.MIN,
         }),
       ));
 
@@ -91,14 +96,16 @@ describe('transform-index-html middleware', () => {
         createConfig({
           port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
-          compatibility: compatibilityModes.ESM,
+          compatibility: compatibilityModes.MIN,
         }),
       ));
 
       const indexResponse = await fetch(`${host}index.html`);
       expect(indexResponse.status).to.equal(200);
 
-      const inlineModule0Response = await fetch(`${host}inline-module-0.js?source=/index.html`);
+      const inlineModule0Response = await fetch(
+        `${host}${virtualFilePrefix}inline-module-0.js?source=/index.html`,
+      );
       expect(inlineModule0Response.status).to.equal(200);
       expect(inlineModule0Response.headers.get('content-type')).to.equal('text/javascript');
       expect(inlineModule0Response.headers.get('cache-control')).to.equal('no-cache');
@@ -115,14 +122,16 @@ describe('transform-index-html middleware', () => {
         createConfig({
           port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
-          compatibility: compatibilityModes.ESM,
+          compatibility: compatibilityModes.MIN,
         }),
       ));
 
       const indexResponse = await fetch(`${host}index.html`);
       expect(indexResponse.status).to.equal(200);
 
-      const inlineModule1Response = await fetch(`${host}inline-module-1.js?source=/index.html`);
+      const inlineModule1Response = await fetch(
+        `${host}${virtualFilePrefix}inline-module-1.js?source=/index.html`,
+      );
       expect(inlineModule1Response.status).to.equal(200);
       expect(inlineModule1Response.headers.get('content-type')).to.equal('text/javascript');
       expect(inlineModule1Response.headers.get('cache-control')).to.equal('no-cache');
@@ -139,7 +148,7 @@ describe('transform-index-html middleware', () => {
         createConfig({
           port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-          compatibility: compatibilityModes.ESM,
+          compatibility: compatibilityModes.NONE,
         }),
       ));
 

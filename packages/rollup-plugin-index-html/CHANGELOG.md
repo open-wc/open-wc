@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.3](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.7.2...rollup-plugin-index-html@1.7.3) (2019-12-01)
+
+
+### Bug Fixes
+
+* **building-utils:** update snapshots ([5fc118a](https://github.com/open-wc/open-wc/commit/5fc118af6c19412cc7f782e73e6006234aa892d0))
+
+
+
+
+
+## [1.7.2](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.7.1...rollup-plugin-index-html@1.7.2) (2019-11-24)
+
+**Note:** Version bump only for package rollup-plugin-index-html
+
+
+
+
+
+## [1.7.1](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.7.0...rollup-plugin-index-html@1.7.1) (2019-11-20)
+
+**Note:** Version bump only for package rollup-plugin-index-html
+
+
+
+
+
+# [1.7.0](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.6.0...rollup-plugin-index-html@1.7.0) (2019-11-19)
+
+
+### Features
+
+* **rollup-plugin-index-html:** configurable indexFilename ([d121e06](https://github.com/open-wc/open-wc/commit/d121e06b58f22880409621999783748606541cba))
+
+
+
+
+
+# [1.6.0](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.5.9...rollup-plugin-index-html@1.6.0) (2019-11-19)
+
+
+### Features
+
+* update to use auto compatibility of es-dev-server ([f6d085e](https://github.com/open-wc/open-wc/commit/f6d085eda5a05391d1a464b9e49222c78194b0d9))
+
+
+
+
+
 ## [1.5.9](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.5.8...rollup-plugin-index-html@1.5.9) (2019-11-03)
 
 

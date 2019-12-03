@@ -47,17 +47,27 @@ An alternative to VSCode is [Atom](https://atom.io/), an IDE created by Github. 
 
 ### Recommended plugins
 
-- [atom-typescript](https://atom.io/packages/atom-typescript) - Typescript support
+- [atom-typescript](https://atom.io/packages/atom-typescript) - TypeScript support
 - [prettier-atom](https://atom.io/packages/prettier-atom) - Template literal highlighting and formatting
 - [docblockr](https://atom.io/packages/docblockr) - Documentation helper
 - [import-cost](https://atom.io/packages/atom-import-cost) - Displays import costs inline
 
 ## [Intellij IDEA](https://www.jetbrains.com/idea/) and other Jetbrains variants
 
-Another possible alternative for development is IntelliJ IDEA. Intellij is a Java integrated development environment (IDE) for developing computer software. It is developed by JetBrains (formerly known as IntelliJ), and is available as an Apache 2 Licensed community edition and in a proprietary commercial edition.
+Another possible alternative for development is IntelliJ IDEA. IntelliJ is a Java integrated development environment (IDE) for developing computer software. It is developed by JetBrains (formerly known as IntelliJ), and is available as an Apache 2 Licensed community edition and in a proprietary commercial edition.
 
 Syntax highlighting from html and css in template literals should be supported out of the box. Generic web components related functionalitites such as Custom Elements support and completion is also available. You can read more about it [here](https://blog.jetbrains.com/phpstorm/2013/10/phpstorm-7-web-toolkit-javascript-templates-web-components-support/).
 
 ![intellij-syntax0-highlighting](/intellij-syntax-highlighting.png)
 
 Due to the support available directly in the IDE, the ecosystem for plugins is very limited and we do not recommend any.
+
+## [Sublime Text 3](https://www.sublimetext.com/3)
+
+Officially called a text editor Sublime Text features plugins which give it a lot of the possibilities of the IDE's listed above. It is available for Windows, Linux and OSX and can be evaluated for free.
+
+### Recommended plugins
+
+- [Lit Element Syntax Highlighting](https://packagecontrol.io/packages/LitElement%20Syntax%20Highlighting) - Syntax highlighting
+- [docblockr](https://packagecontrol.io/packages/DocBlockr) - Documentation helper
+- [TypeScript](https://packagecontrol.io/packages/TypeScript) - TypeScript support

@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import fetch from 'node-fetch';
 import path from 'path';
 import { stub } from 'sinon';
-import { startServer, createConfig } from '../../src/es-dev-server.js';
+import { startServer, createConfig, compatibilityModes } from '../../src/es-dev-server.js';
 
 const host = 'http://localhost:8080/';
 
@@ -14,6 +14,7 @@ describe('transform response middleware', () => {
       ({ server } = await startServer(
         createConfig({
           port: 8080,
+          compatibility: compatibilityModes.NONE,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
         }),
       ));
@@ -34,6 +35,7 @@ describe('transform response middleware', () => {
       ({ server } = await startServer(
         createConfig({
           port: 8080,
+          compatibility: compatibilityModes.NONE,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           responseTransformers: [transformer],
         }),
@@ -67,6 +69,7 @@ describe('transform response middleware', () => {
       ({ server } = await startServer(
         createConfig({
           port: 8080,
+          compatibility: compatibilityModes.NONE,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           responseTransformers: [transformer],
         }),
@@ -91,6 +94,7 @@ describe('transform response middleware', () => {
       ({ server } = await startServer(
         createConfig({
           port: 8080,
+          compatibility: compatibilityModes.NONE,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           responseTransformers: [transformer],
         }),
@@ -113,6 +117,7 @@ describe('transform response middleware', () => {
       ({ server } = await startServer(
         createConfig({
           port: 8080,
+          compatibility: compatibilityModes.NONE,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           responseTransformers: [transformer],
         }),
@@ -143,6 +148,7 @@ describe('transform response middleware', () => {
       ({ server } = await startServer(
         createConfig({
           port: 8080,
+          compatibility: compatibilityModes.NONE,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           responseTransformers: [transformer],
         }),
@@ -167,6 +173,7 @@ describe('transform response middleware', () => {
       ({ server } = await startServer(
         createConfig({
           port: 8080,
+          compatibility: compatibilityModes.NONE,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           responseTransformers: [transformer1, transformer2, transformer3],
         }),
@@ -194,6 +201,7 @@ describe('transform response middleware', () => {
       ({ server } = await startServer(
         createConfig({
           port: 8080,
+          compatibility: compatibilityModes.NONE,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           responseTransformers: [
             () => ({

@@ -1,20 +1,57 @@
 import { extractResources, createIndexHTML } from '@open-wc/building-utils/index-html/index.js';
-import { compatibilityModes } from '../constants.js';
-import systemJsLegacyResolveScript from '../browser-scripts/system-js-legacy-resolve.js';
-import { getPolyfills } from './polyfills.js';
+import { polyfillsPresets } from './polyfills-presets.js';
 import { addPolyfilledImportMaps } from './import-maps.js';
+import { compatibilityModes, polyfillsModes } from '../constants.js';
+
+/**
+ * @typedef {object} TransformIndexHTMLConfig
+ * @property {string} indexUrl
+ * @property {string} indexHTMLString
+ * @property {string} compatibilityMode
+ * @property {string} polyfillsMode
+ * @property {import('./user-agent-compat').UserAgentCompat} uaCompat
+ */
+
+/**
+ * @param {TransformIndexHTMLConfig} cfg
+ */
+function getPolyfills(cfg) {
+  if (cfg.polyfillsMode === polyfillsModes.NONE) {
+    return {};
+  }
+
+  switch (cfg.compatibilityMode) {
+    case compatibilityModes.MAX:
+      return polyfillsPresets.allWithSystemjs;
+    case compatibilityModes.MIN:
+      return polyfillsPresets.all;
+    case compatibilityModes.AUTO:
+      if (cfg.uaCompat.modern) {
+        return {};
+      }
+      if (cfg.uaCompat.supportsEsm) {
+        return polyfillsPresets.all;
+      }
+      return polyfillsPresets.allWithSystemjs;
+    default:
+      return {};
+  }
+}
 
 /**
  * transforms index.html, extracting any modules and import maps and adds them back
  * with the appropriate polyfills, shims and a script loader so that they can be loaded
  * at the right time
- * @param {string} indexUrl
- * @param {string} indexHTMLString
- * @param {string} compatibilityMode
+ *
+ * @param {TransformIndexHTMLConfig} cfg
  */
-export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibilityMode) {
+export function getTransformedIndexHTML(cfg) {
+  const polyfillModules =
+    (cfg.compatibilityMode === compatibilityModes.AUTO && !cfg.uaCompat.supportsEsm) ||
+    cfg.compatibilityMode === compatibilityModes.MAX;
+
   // extract input files from index.html
-  const resources = extractResources(indexHTMLString, { removeImportMaps: false });
+  const resources = extractResources(cfg.indexHTMLString, { removeImportMaps: false });
   /** @type {Map<string, string>} */
   const inlineModules = new Map();
 
@@ -24,12 +61,12 @@ export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibility
 
   const files = [
     ...resources.jsModules,
-    ...[...inlineModules.keys()].map(e => `${e}?source=${encodeURIComponent(indexUrl)}`),
+    ...[...inlineModules.keys()].map(e => `${e}?source=${encodeURIComponent(cfg.indexUrl)}`),
   ];
 
   if (files.length === 0) {
     return {
-      indexHTML: indexHTMLString,
+      indexHTML: cfg.indexHTMLString,
       inlineModules: new Map(),
       polyfills: [],
     };
@@ -38,27 +75,18 @@ export function getTransformedIndexHTML(indexUrl, indexHTMLString, compatibility
   // create a new index.html with injected polyfills and loader script
   const createResult = createIndexHTML(resources.indexHTML, {
     entries: {
-      type: 'module',
+      type: polyfillModules ? 'system' : 'module',
+      polyfillDynamicImport: false,
       files,
     },
-    legacyEntries:
-      compatibilityMode !== compatibilityModes.ALL
-        ? undefined
-        : {
-            type: 'system',
-            files,
-          },
-    polyfills: getPolyfills(compatibilityMode),
+    polyfills: getPolyfills(cfg),
     minify: false,
     preload: false,
   });
 
   let { indexHTML } = createResult;
-  indexHTML = addPolyfilledImportMaps(indexHTML, compatibilityMode, resources);
-
-  // inject systemjs resolver which appends a query param to trigger es5 compilation
-  if (compatibilityMode === compatibilityModes.ALL) {
-    indexHTML = indexHTML.replace('</body>', `${systemJsLegacyResolveScript}</body>`);
+  if (polyfillModules) {
+    indexHTML = addPolyfilledImportMaps(indexHTML, resources);
   }
 
   return {

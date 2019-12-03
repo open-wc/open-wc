@@ -24,14 +24,16 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
         `,
       ),
     ].forEach(testElement);
-    (await Promise.all([
-      stringFixture('<test-component>Text content</test-component>'),
-      litFixture(
-        html`
-          <test-component>Text content</test-component>
-        `,
-      ),
-    ])).forEach(testElement);
+    (
+      await Promise.all([
+        stringFixture('<test-component>Text content</test-component>'),
+        litFixture(
+          html`
+            <test-component>Text content</test-component>
+          `,
+        ),
+      ])
+    ).forEach(testElement);
   });
 
   it('wraps element into a div attached to the body', async () => {
@@ -50,14 +52,16 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
         `,
       ),
     ].forEach(testElement);
-    (await Promise.all([
-      stringFixture('<test-component></test-component>'),
-      litFixture(
-        html`
-          <test-component></test-component>
-        `,
-      ),
-    ])).forEach(testElement);
+    (
+      await Promise.all([
+        stringFixture('<test-component></test-component>'),
+        litFixture(
+          html`
+            <test-component></test-component>
+          `,
+        ),
+      ])
+    ).forEach(testElement);
   });
 
   it('allows to create several fixtures in one test', async () => {
@@ -83,20 +87,22 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
         `,
       ),
     ].forEach(testElement);
-    (await Promise.all([
-      stringFixture('<test-component></test-component>'),
-      stringFixture('<test-component></test-component>'),
-      litFixture(
-        html`
-          <test-component></test-component>
-        `,
-      ),
-      litFixture(
-        html`
-          <test-component></test-component>
-        `,
-      ),
-    ])).forEach(testElement);
+    (
+      await Promise.all([
+        stringFixture('<test-component></test-component>'),
+        stringFixture('<test-component></test-component>'),
+        litFixture(
+          html`
+            <test-component></test-component>
+          `,
+        ),
+        litFixture(
+          html`
+            <test-component></test-component>
+          `,
+        ),
+      ])
+    ).forEach(testElement);
   });
 
   it('handles self closing tags', async () => {
@@ -114,14 +120,16 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
         `,
       ),
     ].forEach(testElement);
-    (await Promise.all([
-      stringFixture('<test-component/>'),
-      litFixture(
-        html`
-          <test-component />
-        `,
-      ),
-    ])).forEach(testElement);
+    (
+      await Promise.all([
+        stringFixture('<test-component/>'),
+        litFixture(
+          html`
+            <test-component />
+          `,
+        ),
+      ])
+    ).forEach(testElement);
   });
 
   it('always returns first child element ignoring whitespace and other elements', async () => {
@@ -141,16 +149,18 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
         <div></div>
       `),
     ].forEach(testElement);
-    (await Promise.all([
-      stringFixture(`
+    (
+      await Promise.all([
+        stringFixture(`
         <test-component></test-component>
         <div></div>
       `),
-      litFixture(html`
-        <test-component></test-component>
-        <div></div>
-      `),
-    ])).forEach(testElement);
+        litFixture(html`
+          <test-component></test-component>
+          <div></div>
+        `),
+      ])
+    ).forEach(testElement);
   });
 
   it('will wait for one frame', async () => {

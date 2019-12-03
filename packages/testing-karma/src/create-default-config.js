@@ -8,7 +8,7 @@ function getCompatibility() {
   }
 
   const indexOf = process.argv.indexOf('--compatibility');
-  return indexOf === -1 ? 'none' : process.argv[indexOf + 1];
+  return indexOf === -1 ? 'auto' : process.argv[indexOf + 1];
 }
 
 const compatibility = getCompatibility();
@@ -53,12 +53,18 @@ module.exports = config => ({
   esm: {
     coverage,
     compatibility,
-    babelModernExclude: [
-      '**/node_modules/sinon/**/*',
+    // prevent compiling es5 libs
+    babelExclude: [
       '**/node_modules/mocha/**/*',
       '**/node_modules/chai/**/*',
-      '**/node_modules/sinon/chai/**/*',
+      '**/node_modules/sinon-chai/**/*',
+      '**/node_modules/chai-dom/**/*',
+      '**/node_modules/core-js-bundle/**/*',
     ],
+    // sinon is not completely es5...
+    babelModernExclude: ['**/node_modules/sinon/**/*'],
+    // prevent compiling non-module libs
+    babelModuleExclude: ['**/node_modules/mocha/**/*', '**/node_modules/core-js-bundle/**/*'],
     polyfills: {
       webcomponents: true,
       fetch: true,

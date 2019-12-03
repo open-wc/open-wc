@@ -17,14 +17,22 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v3-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v3-dependencies-
+            - v4-dependencies-{{ checksum "yarn.lock" }}
+      # - run:
+      #     name: Do `yarn install` on cache miss
+      #     command: |
+      #       if [ -d "./node_modules" ]; then
+      #         echo "Restored node_modules from cache";
+      #       else
+      #         echo "Fill node_modules via yarn install";
+      #         yarn install --frozen-lockfile
+      #       fi
+      # seems we always need to run yarn for mono repos to get nested dependencies and bin links
       - run: yarn install --frozen-lockfile
       - save_cache:
           paths:
             - node_modules
-          key: v2-dependencies-{{ checksum "package.json" }}
+          key: v4-dependencies-{{ checksum "yarn.lock" }}
 
       # build what needs to be build so we can use it in the next steps
       - run: npm run build

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.4.0...@open-wc/testing@2.4.1) (2019-11-24)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+# [2.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.3.9...@open-wc/testing@2.4.0) (2019-11-19)
+
+
+### Bug Fixes
+
+* **testing:** cut illegal char in snapshot names ([e952abd](https://github.com/open-wc/open-wc/commit/e952abdace3cef6d48d1f48c2285d51fdb67e73e)), closes [#963](https://github.com/open-wc/open-wc/issues/963)
+
+
+### Features
+
+* update testing to use auto compatibility of es-dev-server ([7d5ea56](https://github.com/open-wc/open-wc/commit/7d5ea56a1cb911fb31228bec18dc38ea8826b1f4))
+
+
+
+
+
 ## [2.3.9](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.3.8...@open-wc/testing@2.3.9) (2019-11-02)
 
 **Note:** Version bump only for package @open-wc/testing

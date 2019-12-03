@@ -33,6 +33,7 @@ dist
 build-stats.json
 stats.html
 .rpt2_cache
+static-storybook
 
 ## we already store snapshots globally
 packages/**/__snapshots__

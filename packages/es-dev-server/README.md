@@ -2,17 +2,21 @@
 
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
-A web server for developing without a build step.
+A web server for development without bundling, utilizing the browser's standard module loader and efficient browser caching for simple and fast web development.
 
-By default, `es-dev-server` acts as a simple static file server. Through flags, different features can be enabled, such as:
+```bash
+npx es-dev-server --node-resolve --watch
+```
 
-- reloading the browser on file changes
-- resolve bare module imports using node resolution
-- history API fallback for SPA routing
-- Smart caching to speed up file serving
-- Compatibility mode for older browsers
+**Quick overview**
 
-Compatibility mode enables bundle-free development with modern javascript, es modules and import maps on all major browsers and IE11.
+- efficient browser caching for fast reloads
+- [transform code on older browsers for compatibility](#Compatibility%20mode)
+- [resolve bare module imports for use in the browser](#Node%20resolve) (`--node-resolve`)
+- auto reload the browser on file changes with the (`--watch`)
+- history API fallback for SPA routing with the (`--app-index index.html`)
+
+[See all commands](#Command%20line%20flags%20and%20Configuration)
 
 ## Getting started
 
@@ -39,8 +43,7 @@ Add scripts to your `package.json`, modify the flags as needed:
 ```json
 {
   "scripts": {
-    "start": "es-dev-server --app-index index.html --node-resolve --watch --open",
-    "start:compatibility": "es-dev-server --compatibility all --app-index index.html --node-resolve --watch --open"
+    "start": "es-dev-server --app-index index.html --node-resolve --watch --open"
   }
 }
 ```
@@ -79,16 +82,17 @@ es-dev-server requires node v10 or higher
 
 ### Code transformation
 
-| name                 | type         | description                                                             |
-| -------------------- | ------------ | ----------------------------------------------------------------------- |
-| compatibility        | string       | Compatibility mode for older browsers. Can be: `esm`, `modern` or `all` |
-| node-resolve         | number       | Resolve bare import imports using node resolve                          |
-| preserve-symlinks    | boolean      | Preserve symlinks when resolving modules. Default false.                |
-| module-dirs          | string/array | Directories to resolve modules from. Used by node-resolve               |
-| babel                | boolean      | Transform served code through babel. Requires .babelrc                  |
-| file-extensions      | number/array | Extra file extensions to use when transforming code.                    |
-| babel-exclude        | number/array | Patterns of files to exclude from babel compilation.                    |
-| babel-modern-exclude | number/array | Patterns of files to exclude from babel compilation on modern browsers. |
+| name                 | type         | description                                                                                                                     |
+| -------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| compatibility        | string       | Compatibility mode for older browsers. Can be: `auto`, `min`, `max` or `none` Default `auto`                                    |
+| node-resolve         | number       | Resolve bare import imports using node resolve                                                                                  |
+| preserve-symlinks    | boolean      | Preserve symlinks when resolving modules. Set to true, if using tools that rely on symlinks, such as `npm link`. Default false. |
+| module-dirs          | string/array | Directories to resolve modules from. Used by node-resolve                                                                       |
+| babel                | boolean      | Transform served code through babel. Requires .babelrc                                                                          |
+| file-extensions      | number/array | Extra file extensions to use when transforming code.                                                                            |
+| babel-exclude        | number/array | Patterns of files to exclude from babel compilation.                                                                            |
+| babel-modern-exclude | number/array | Patterns of files to exclude from babel compilation on modern browsers.                                                         |
+| babel-module-exclude | number/array | Patterns of files to exclude from babel compilation for modules only.                                                           |
 
 Most commands have an alias/shorthand. You can view them by using `--help`.
 
@@ -116,18 +120,36 @@ In addition to the command-line flags, the configuration file accepts these addi
 | responseTransformers | array  | Functions which transform the server's response.       |
 | babelConfig          | object | Babel config to run with the server                    |
 
+## Node resolve
+
+"Bare imports" are imports which don't specify a full path to a file:
+
+```js
+import foo from 'bar';
+```
+
+The browser doesn't know where to find this file called `bar`. The `--node-resolve` flag resolves this bare import to the actual file path before serving it to the browser:
+
+```js
+import foo from './node_modules/bar/bar.js';
+```
+
+Because we use [es-module-lexer](https://github.com/guybedford/es-module-lexer) for blazing fast analysis, we can do this without noticeable impact on performance.
+
+In future, we are hoping that [import maps](https://github.com/WICG/import-maps) will make this step unnecessary.
+
 ## Folder structure
 
 `es-dev-server` serves static files using the same structure as your file system. It cannot serve any files outside of the root of the webserver. You need to make sure any files requested, including node modules, are accessible for the webserver.
 
-Click read more to view different strategies for setting up your project's folder structure.
+Outside of that one requirement, however, `es-dev-server` does not have any opinions on how you should scaffold your project. The following are examples of a variety of different suggested strategies for setting up your project's folder structure.
+
+### index.html in the Root
 
 <details>
-  <summary>Read more</summary>
+  <summary>The simplest setup, making sure that all files are accessible, is to place your index.html at the root of your project</summary>
 
-### index.html in root
-
-The simplest setup where all files are accessible is to place your index.html at the root of your project:
+Consider this example directory structure in the web root:
 
 ```
 node_modules/...
@@ -135,11 +157,16 @@ src/...
 index.html
 ```
 
-If you run `es-dev-server` regularly from the root of this project, you can access your app at `/` or `/index.html` in the browser.
+If you run the `es-dev-server` command from the root of the project, you can access your app at `/` or `/index.html` in the browser.
 
-### index.html in a subfoolder
+</details>
+
+### index.html in a Subfolder
 
 If you move your `index.html` inside a subfolder:
+
+<details>
+  <summary>Use the `--open` parameter for when you'd like to keep you index.html in a subfolder.</summary>
 
 ```
 node_modules/...
@@ -166,7 +193,12 @@ Now your `index.html` is accessible at `/` or `/index.html`. However, the dev se
 
 If you want your index in a subfolder without this being visible in the browser URL, you can set up a file rewrite rule. [Read more here](#rewriting-file-requests)
 
+</details>
+
 ### Monorepos
+
+<details>
+  <summary>Use `--app-index` or `--root-dir` when your index.html and web root are in different places, e.g.. in a monorepo setup.</summary>
 
 If you are using `es-dev-server` in a monorepo, your node modules are in two different locations. In the package's folder and the repository root:
 
@@ -195,11 +227,16 @@ es-dev-server --app-index packages/my-package/index.html --open
 
 This is the same approach as serving an index.html in a subdirectory, so the section above applies here as well.
 
-### Base element
+</details>
 
-You can set up a `<base href="">` element to modify how files are resolved relatively to your index.html. You can be very useful when your index.html is not at the root of your project.
+### Base Element
 
-If you use SPA routing, using a base element is highly recommended. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
+<details>
+  <summary>Use platform features to specify your web root, e.g. in <abbr title="Single Page Applications">SPAs</abbr></summary>
+
+You can set up a `<base href="">` element to modify how files are resolved relatively to your index.html. This can be very useful when your index.html is not at the root of your project.
+
+If you use <abbr title="Single Page Application">SPA</abbr> routing, using a base element is highly recommended. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
 
 </details>
 
@@ -420,43 +457,38 @@ npm i --save-dev @babel/plugin-proposal-decorators @babel/plugin-proposal-class-
 
 ## Compatibility mode
 
-Compatibility mode enables bundle-free development with features such as es modules and import maps on older browsers, including IE11.
+Compatibility mode enables bundle-free development using modern browsers features on older browsers. Automatic compatibility mode is enabled by default.
 
 <details>
 
   <summary>Read more</summary>
 
-If you want to make use of import maps, you can provide an import map in your `index.html`. To generate an import map, you can check out our package [import-maps-generate](https://github.com/open-wc/open-wc/tree/master/packages/import-maps-generate), or you can add one manually.
+Compatibility mode can be configured using the `--compatibility` flag. The possible options are: `auto`, `min`, `max` and `none`. The default is mode is `auto`.
 
-Three modes can be enabled:
+**auto**
+`auto` compatibility looks at the current browser to determine the level of compatibility to enable. On the latest 2 versions of the major browsers, it doesn't do any work. This keeps the server as fast as possible in the general case.
 
-### esm
+On older browsers, the server uses the browser's user agent and [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env) to do a targeted transformation for that specific browser and version. If the browser does not support es module scripts, dynamic imports or `import.meta.url` es modules are transformed to [system-js](https://github.com/systemjs/systemjs).
 
-`esm` mode adds [es-module-shims](https://github.com/guybedford/es-module-shims) to enable new module features such as dynamic imports and import maps.
+This works down to at least IE11. Depending on what browser features you are using, it might work with earlier version too but this is not tested.
 
-This mode has a negligible performance impact and is great when working on modern browsers.
+**min**
+`min` compatibility forces the same level of compatibility on all browsers. It makes code compatible with the latest two versions of the major browsers, and does not transform es modules.
 
-### modern
+**max**
+`max` compatibility forces the same level of compatibility on all browsers. It compiles everything to es5 and [system-js](https://github.com/systemjs/systemjs).
 
-`modern` mode expands `esm` mode, adding a babel transform and a polyfill loader.
+**none**
+`none` disables compatibility mode entirely.
 
-The babel transform uses the [present-env](https://babeljs.io/docs/en/babel-preset-env) plugin. This transforms standard syntax which isn't yet supported by all browsers. By default, it targets the latest two versions of Chrome, Safari, Firefox, and Edge. This can be configured with a [browserslist configuration](https://www.npmjs.com/package/browserslist).
+**polyfills**
+Compatibility mode injects polyfills for popular browser features. We plan to make this behavior configurable.
 
-The polyfill loader does lightweight feature detection to determine which polyfills to load. By default it loads polyfills for web components, these can be turned off or custom polyfills can be added in the configuration.
+Features which are polyfilled:
 
-This mode has a moderate performance impact. Use this when using new javascript syntax that is not yet supported on all browsers.
-
-### all
-
-`all` mode expands `modern` mode by making your code compatible with browsers that don't yet support modules.
-
-In addition to the web component polyfills, it loads the general [core-js polyfills](https://www.npmjs.com/package/core-js) and a polyfill for [fetch](https://www.npmjs.com/package/whatwg-fetch)
-
-When loading your application it detects module support. If it is not supported, your app is loaded through [system-js](https://github.com/systemjs/systemjs) and your code is transformed to `es5`.
-
-The `es5` transformation is only done for browsers which don't support modules, so you can safely use this mode on modern browsers where it acts the same way as `modern` mode.
-
-`all` mode has the same moderate impact as `modern` mode on browsers that support modules. On browsers that don't support modules, it has a heavier impact. Use this mode if you want to verify if your code runs correctly on older browsers without having to run a build.
+- [core-js (js polyfills)](https://github.com/zloirock/core-js)
+- [webcomponents](https://github.com/webcomponents/webcomponentsjs)
+- [fetch](https://github.com/github/fetch)
 
 </details>
 

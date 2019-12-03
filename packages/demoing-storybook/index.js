@@ -1,4 +1,4 @@
-export { html } from 'lit-html';
+export { html } from '@open-wc/storybook-prebuilt';
 
 export {
   storiesOf,
@@ -9,11 +9,11 @@ export {
   isValidComponent,
   isValidMetaData,
   configure,
-} from '@storybook/web-components';
-export { action } from '@storybook/addon-actions';
-export { withA11y } from '@storybook/addon-a11y';
-export { linkTo } from '@storybook/addon-links';
-export { document } from 'global';
+} from '@open-wc/storybook-prebuilt';
+export { action } from '@open-wc/storybook-prebuilt';
+export { withA11y } from '@open-wc/storybook-prebuilt';
+export { linkTo } from '@open-wc/storybook-prebuilt';
+
 export {
   withKnobs,
   text,
@@ -28,6 +28,15 @@ export {
   radios,
   files,
   optionsKnob,
-} from '@storybook/addon-knobs';
+} from '@open-wc/storybook-prebuilt';
 
-export { withWebComponentsKnobs } from './src/withWebComponentsKnobs.js';
+export { withWebComponentsKnobs } from '@open-wc/storybook-prebuilt';
+
+export {
+  Meta,
+  Props,
+  Story,
+  DocsContainer,
+  DocsPage,
+  Preview,
+} from '@open-wc/storybook-prebuilt/dist/preview.js';

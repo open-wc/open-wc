@@ -15,12 +15,6 @@ class DemoComponent extends LitElement {
       <p>Demo component</p>
     `;
   }
-
-  firstUpdated() {
-    this.shadowRoot
-      .querySelector('p')
-      .dispatchEvent(new CustomEvent('foo-event', { bubbles: true, composed: true }));
-  }
 }
 
 customElements.define('demo-component', DemoComponent);

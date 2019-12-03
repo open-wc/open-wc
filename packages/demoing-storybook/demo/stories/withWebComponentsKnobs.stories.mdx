@@ -1,8 +1,15 @@
-import { Story, Preview, Meta, Props } from '@storybook/addon-docs/blocks';
-import { action } from '@storybook/addon-actions';
-import { html } from 'lit-html';
-import { withKnobs, text, number } from '@storybook/addon-knobs';
-import { withWebComponentsKnobs } from '../../index.js';
+import {
+  withWebComponentsKnobs,
+  Story,
+  Preview,
+  Meta,
+  Props,
+  action,
+  withKnobs,
+  text,
+  number,
+  html,
+} from '../../index.js';
 
 import '../demo-wc-card.js';
 import '../fake-input.js';
@@ -30,7 +37,7 @@ import { withKnobs, withWebComponentsKnobs } from '@open-wc/demoing-storybook';
   parameters={{ component: 'demo-wc-card', options: { selectedPanel: 'storybookjs/knobs/panel' } }}
 />
 
-<Story name="Custom Header" height="220px">
+<Story name="Custom Header">
   {html`
     <demo-wc-card header="Harry Potter">A character that is part of a book series...</demo-wc-card>
   `}
@@ -61,7 +68,7 @@ export const singleComponent = () => html`
 
 Don't forget to switch to Canvas if you wanna see the knobs.
 
-<Story name="Example output" height="220px">
+<Story name="Example output">
   {html`
     <demo-wc-card header="Harry Potter">
       A character that is part of a book series...
@@ -74,7 +81,7 @@ Don't forget to switch to Canvas if you wanna see the knobs.
 By adding knobs within the template you can provide additional knobs for this content.
 
 <Preview withToolbar>
-  <Story name="Provide own light dom" height="220px">
+  <Story name="Provide own light dom">
     {html`
       <demo-wc-card>
         <p>${text('Content', 'Some text', 'Properties')}</p>
@@ -101,7 +108,7 @@ or per story
 
 That means even if you have multiple components in your dom you will have knobs for all of them.
 
-<Story name="Knobs for current Component" height="220px">
+<Story name="Knobs for current Component">
   {html`
     <demo-wc-card header="Harry Potter">The main character</demo-wc-card>
     <demo-wc-card header="Lord Voldemort">An evil wizard</demo-wc-card>
@@ -125,7 +132,6 @@ The parameter is `parameters.customElements.querySelectorAll`.
 
 <Story
   name="Provide own querySelectorAll"
-  height="220px"
   parameters={{ customElements: { querySelectorAll: 'demo-wc-card:nth-of-type(1)' } }}
 >
   {html`
@@ -182,7 +188,6 @@ The parameter is `parameters.customElements.filterProperties`.
 
 <Story
   name="Debugging helper"
-  height="220px"
   parameters={{
     customElements: { filterProperties: ['focused'], querySelectorAll: 'fake-input' },
   }}

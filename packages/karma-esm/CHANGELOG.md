@@ -3,6 +3,106 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.2](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.11.1...@open-wc/karma-esm@2.11.2) (2019-12-02)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.11.1](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.11.0...@open-wc/karma-esm@2.11.1) (2019-12-01)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+# [2.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.10.6...@open-wc/karma-esm@2.11.0) (2019-11-30)
+
+
+### Features
+
+* **es-dev-server:** add debug logging option ([#1052](https://github.com/open-wc/open-wc/issues/1052)) ([879e997](https://github.com/open-wc/open-wc/commit/879e99787464f218e52d834daa0760ba1319aab3))
+
+
+
+
+
+## [2.10.6](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.10.5...@open-wc/karma-esm@2.10.6) (2019-11-27)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.10.5](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.10.4...@open-wc/karma-esm@2.10.5) (2019-11-24)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.10.4](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.10.3...@open-wc/karma-esm@2.10.4) (2019-11-21)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.10.3](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.10.2...@open-wc/karma-esm@2.10.3) (2019-11-20)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.10.2](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.10.1...@open-wc/karma-esm@2.10.2) (2019-11-20)
+
+
+### Bug Fixes
+
+* **karma-esm:** use hostname instead of listenaddress ([7391682](https://github.com/open-wc/open-wc/commit/7391682481c7d7e256e93181bdb5314f028f3d62))
+
+
+
+
+
+## [2.10.1](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.10.0...@open-wc/karma-esm@2.10.1) (2019-11-19)
+
+
+### Bug Fixes
+
+* **es-dev-server:** resolve imports in inline modules ([#997](https://github.com/open-wc/open-wc/issues/997)) ([98322e4](https://github.com/open-wc/open-wc/commit/98322e4f5551c4f5d90efb2c0a305599fe3bfbbf))
+
+
+
+
+
+# [2.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.9.8...@open-wc/karma-esm@2.10.0) (2019-11-19)
+
+
+### Features
+
+* update testing to use auto compatibility of es-dev-server ([7d5ea56](https://github.com/open-wc/open-wc/commit/7d5ea56a1cb911fb31228bec18dc38ea8826b1f4))
+
+
+
+
+
+## [2.9.8](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.9.7...@open-wc/karma-esm@2.9.8) (2019-11-07)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
 ## [2.9.7](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.9.6...@open-wc/karma-esm@2.9.7) (2019-11-06)
 
 **Note:** Version bump only for package @open-wc/karma-esm

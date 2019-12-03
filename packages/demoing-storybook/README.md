@@ -12,8 +12,23 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 - Create API documentation/playground
 - Use Storybook docs mode to showcase your elements within the normal text flow
-- Show your source code to copy/paste
-- Setup that works down to IE11
+- Works down to IE11
+- Prebuilt storybook UI (for a fast startup)
+- Uses es-dev-server (serve modern code while developing)
+- Completely separate storybook UI from your code
+
+**Prebuilt Storybook comes with**
+
+- [@storybook/web-components](https://github.com/storybookjs/storybook/tree/next/app/web-components)
+- [@storybook/addon-a11y](https://github.com/storybookjs/storybook/tree/next/addons/a11y)
+- [@storybook/addon-actions](https://github.com/storybookjs/storybook/tree/next/addons/actions)
+- [@storybook/addon-backgrounds](https://github.com/storybookjs/storybook/tree/next/addons/backgrounds)
+- [@storybook/addon-console](https://github.com/storybookjs/storybook-addon-console)
+- [@storybook/addon-docs](https://github.com/storybookjs/storybook/tree/next/addons/docs)
+- [@storybook/addon-links](https://github.com/storybookjs/storybook/tree/next/addons/links)
+- [@storybook/addon-knobs](https://github.com/storybookjs/storybook/tree/next/addons/knobs)
+- [@storybook/addon-viewport](https://github.com/storybookjs/storybook/tree/next/addons/viewport)
+- storybook-addon-web-components-knobs
 
 ## Demo
 
@@ -33,13 +48,13 @@ npm init @open-wc
 - `yarn add @open-wc/demoing-storybook --dev`
 - Copy at minimum the [.storybook](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/demoing-storybook/templates/static/.storybook/addons.js) folder to `.storybook`
 - If you want to bring along the examples, you may also copy the `stories` folder.
-- Be sure you have a [custom-elements.json](./#custom-elementsjson) file.
+- Be sure you have a [custom-elements.json](#custom-elements-json) file.
 - Add the following scripts to your package.json
 
-```js
+```json
 "scripts": {
-  "storybook": "start-storybook -p 9001",
-  "storybook:build": "build-storybook -o _site -s storybook-static",
+  "storybook": "start-storybook --node-resolve --watch --open",
+  "storybook:build": "build-storybook"
 },
 ```
 
@@ -54,6 +69,21 @@ Create documentation/stories within the `stories` folder.
 ```bash
 npm run storybook
 ```
+
+### CLI configuration
+
+#### Storybook specific
+
+| name       | type   | description                                                                                            |
+| ---------- | ------ | ------------------------------------------------------------------------------------------------------ |
+| stories    | string | A glob which stories to include. Be sure to wrap it in `'`. Default: `'./stories/\*.stories.{js,mdx}'` |
+| config-dir | string | Where the storybook config files are. Default: ./.storybook                                            |
+|            |        | Build only                                                                                             |
+| output-dir | string | Rollup build output directory. Default: ./static-storybook                                             |
+
+#### Dev server
+
+The storybook server is based on [es-dev-server](https://open-wc.org/developing/es-dev-server.html), see the docs of the dev server for any additional command options.
 
 ### Create documentation
 
@@ -214,55 +244,22 @@ It basically looks like this:
 
 For a full example see the [./demo/custom-elements.json](./demo/custom-elements.json).
 
-# Setup es6/7 dependencies
-
-By default storybook only works with precompiled es5 code but as most web components themselves and their libs are distributed as es7 you will need to manually mark those packages as "needs transpilation".
-
-For example if you have a library called `my-library` which is in es7 then you can add it like so
-
-```js
-// .storybook/webpack.config.js
-
-module.exports = ({ config }) => {
-  // find web-components rule for extra transpilation
-  const webComponentsRule = config.module.rules.find(
-    rule => rule.use && rule.use.options && rule.use.options.babelrc === false,
-  );
-  // add your own `my-library`
-  webComponentsRule.test.push(new RegExp(`node_modules(\\/|\\\\)my-library(.*)\\.js$`));
-
-  return config;
-};
-```
-
-By default the following folders are included
-
-- `src/*.js`
-- `packages/*/src/*.js`
-- `node_modules/lit-html/*.js`
-- `node_modules/lit-element/*.js`
-- `node_modules/@open-wc/*.js`
-- `node_modules/@polymer/*.js`
-- `node_modules/@vaadin/*.js`
-
-As you can see the `src` folder is also included.
-The reason for that is as it has some extra configuration to allow for example `import.meta`.
-If you use a different folder you will need to make sure webpack/babel can handle it.
-
 ### Additional middleware config like an api proxy
 
-If you need additional configuration for the storybook dev server you can provide them via a config file `.storybook/middleware.js`.
+As we are using [es-dev-server](https://open-wc.org/developing/es-dev-server.html) under the hood you can use all it's power. You can use the regular command line flags, or provide your own config via `start storybook -c /path/to/config.js`.
 
-```js
-// example for a proxy middleware to use an api for fetching data to display
-const proxy = require('http-proxy-middleware');
+To set up a proxy, you can set up a koa middleware. [Read more about koa here.](https://koajs.com/)
 
-module.exports = function(app) {
-  app.use(
-    proxy('/api/', {
-      target: 'http://localhost:9010/',
+```javascript
+const proxy = require('koa-proxies');
+
+module.exports = {
+  port: 9000,
+  middlewares: [
+    proxy('/api', {
+      target: 'http://localhost:9001',
     }),
-  );
+  ],
 };
 ```
 
