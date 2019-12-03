@@ -95,6 +95,16 @@ const sidebar = [
     collapsable: true,
     children: [
       {
+        title: 'Linting',
+        collapsable: true,
+        children: [
+          ['/linting/', 'Getting started'],
+          '/linting/linting-eslint',
+          '/linting/linting-prettier',
+          '/linting/linting-types',
+        ],
+      },
+      {
         title: 'Developing',
         collapsable: true,
         children: ['/developing/'],
