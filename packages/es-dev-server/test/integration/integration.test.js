@@ -38,7 +38,7 @@ const testCases = [
 
 describe('integration tests', () => {
   testCases.forEach(testCase => {
-    ['auto', 'min', 'always'].forEach(compatibility => {
+    ['auto', 'always', 'min', 'max'].forEach(compatibility => {
       describe(`testcase ${testCase.name}-${compatibility}`, () => {
         let server;
         let serverConfig;

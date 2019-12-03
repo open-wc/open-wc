@@ -4,6 +4,8 @@ import { polyfillsPresets } from './polyfills-presets.js';
 import { addPolyfilledImportMaps } from './import-maps.js';
 import { compatibilityModes, polyfillsModes } from '../constants.js';
 
+const regexpSystemJs = /(<script src=["|']polyfills\/system.*?><\/script>)/g;
+
 /**
  * @typedef {object} TransformIndexHTMLConfig
  * @property {string} indexUrl
@@ -23,7 +25,7 @@ function getPolyfills(cfg) {
 
   switch (cfg.compatibilityMode) {
     case compatibilityModes.MAX:
-      return polyfillsPresets.allWithSystemjs;
+      return polyfillsPresets.max;
     case compatibilityModes.MIN:
       return polyfillsPresets.all;
     case compatibilityModes.AUTO:
@@ -95,7 +97,8 @@ export function getTransformedIndexHTML(cfg) {
 
   // inject systemjs resolver which appends a query param to trigger es5 compilation
   if (polyfillModules) {
-    indexHTML = indexHTML.replace('</body>', `${systemJsLegacyResolveScript}</body>`);
+    // inject resolver right after system js script, to make sure it's loaded before and systemjs imports
+    indexHTML = indexHTML.replace(regexpSystemJs, `$1 \n${systemJsLegacyResolveScript}`);
   }
 
   return {

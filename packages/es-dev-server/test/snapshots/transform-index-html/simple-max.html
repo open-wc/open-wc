@@ -15,7 +15,21 @@
 
 
 
-<script src="polyfills/core-js.77da473353460b142f5e09e540324336.js" nomodule=""></script><script src="polyfills/systemjs.dd4729ef25f652d7d05aed80a2ea00e7.js"></script><script src="polyfills/regenerator-runtime.45f8b90cc0fac37d446d8da4b68e27f5.js" nomodule=""></script><script>(function() {
+<script src="polyfills/core-js.77da473353460b142f5e09e540324336.js" nomodule=""></script><script src="polyfills/systemjs.dd4729ef25f652d7d05aed80a2ea00e7.js"></script> 
+
+<script>
+  (function() {
+    // appends a query param to each systemjs request to trigger es5 compilation
+    var originalResolve = System.constructor.prototype.resolve;
+    System.constructor.prototype.resolve = function () {
+      return Promise.resolve(originalResolve.apply(this, arguments))
+        .then(function (url) {
+          return url + (url.indexOf('?') > 0 ? '&' : '?') + 'transform-module';
+        });
+    };
+  })()
+</script>
+<script src="polyfills/regenerator-runtime.45f8b90cc0fac37d446d8da4b68e27f5.js"></script><script>(function() {
   function loadScript(src, module) {
     return new Promise(function (resolve, reject) {
       document.head.appendChild(Object.assign(
@@ -36,17 +50,4 @@
   }
 
   polyfills.length ? Promise.all(polyfills).then(loadEntries) : loadEntries();
-})();</script>
-<script>
-  (function() {
-    // appends a query param to each systemjs request to trigger es5 compilation
-    var originalResolve = System.constructor.prototype.resolve;
-    System.constructor.prototype.resolve = function () {
-      return Promise.resolve(originalResolve.apply(this, arguments))
-        .then(function (url) {
-          return url + (url.indexOf('?') > 0 ? '&' : '?') + 'transform-module';
-        });
-    };
-  })()
-</script>
-</body></html>
+})();</script></body></html>
