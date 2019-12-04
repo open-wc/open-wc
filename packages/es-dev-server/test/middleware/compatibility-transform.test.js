@@ -19,7 +19,7 @@ async function setupServer(compatibility) {
 }
 
 async function fetchText(url, userAgent) {
-  const response = await fetch(`${host}${url}`, {
+  const response = await fetch(`${host}${url}?transform-modules`, {
     headers: { 'user-agent': userAgent },
   });
 
@@ -55,9 +55,7 @@ async function expectCompatibilityTransform(userAgent, features = {}) {
       : "import module from './module-features-a.js';",
   );
   expect(esModules).to.include("import('./module-features-b.js')");
-  expect(esModules).to.include(
-    features.esModules ? 'meta.url.endsWith' : 'import.meta.url.endsWith',
-  );
+  expect(esModules).to.include(features.esModules ? 'meta.url.indexOf' : 'import.meta.url.indexOf');
 }
 
 async function expectSupportStage3(userAgent) {
@@ -396,7 +394,7 @@ describe('compatibility transform middleware', () => {
       );
 
       try {
-        const response = await fetch(`${host}app.js`);
+        const response = await fetch(`${host}app.js?transform-modules`);
         const responseText = await response.text();
         expect(response.status).to.equal(200);
         expect(responseText).to.include(
@@ -460,7 +458,7 @@ describe('compatibility transform middleware', () => {
     });
 
     it('transforms properly', async () => {
-      const response = await fetch(`${host}app.ts`);
+      const response = await fetch(`${host}app.ts?transform-modules`);
       const responseText = await response.text();
 
       expect(response.status).to.equal(200);
