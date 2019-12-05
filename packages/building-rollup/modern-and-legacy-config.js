@@ -116,7 +116,10 @@ function createConfig(_options, legacy) {
       // only minify if in production
       production && terser(),
 
-      production && options.plugins.workbox && !legacy && generateSW(getWorkboxConfig()),
+      production &&
+        options.plugins.workbox &&
+        !legacy &&
+        generateSW(getWorkboxConfig(options.outputDir)),
     ],
   };
 }
