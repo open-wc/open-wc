@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.1.0...@open-wc/demoing-storybook@1.1.1) (2019-12-03)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** default build folder should be storybook-static ([17624a7](https://github.com/open-wc/open-wc/commit/17624a73d65f1d76a6cdd4fc9fc1f71977359a50))
+* **demoing-storybook:** export Anchor, Description, Heading doc blocks ([3cca3c9](https://github.com/open-wc/open-wc/commit/3cca3c92a1db893bef3e27533f363390c36a43fd))
+
+
+
+
+
 # [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.12...@open-wc/demoing-storybook@1.1.0) (2019-12-02)
 
 
