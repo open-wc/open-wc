@@ -106,7 +106,7 @@ module.exports = function createBasicConfig(_options) {
       // only minify if in production
       production && terser(),
 
-      production && options.plugins.workbox && generateSW(getWorkboxConfig()),
+      production && options.plugins.workbox && generateSW(getWorkboxConfig(options.outputDir)),
     ],
   };
 };
