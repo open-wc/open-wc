@@ -8,11 +8,6 @@ class MyElement extends LitElement {
     };
   }
 
-  async getMessage() {
-    const response = await fetch(new URL('./my-file.txt', import.meta.url).toString());
-    this.message = await response.text();
-  }
-
   render() {
     return html`
       <h1>My Element</h1>
