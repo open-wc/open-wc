@@ -5,6 +5,7 @@ import {
   getRequestFilePath,
   isPolyfill,
   RequestCancelledError,
+  shoudlTransformToModule,
 } from '../utils/utils.js';
 import { sendMessageToActiveBrowsers } from '../utils/message-channel.js';
 import { ResolveSyntaxError } from '../utils/resolve-module-imports.js';
@@ -60,6 +61,7 @@ export function createCompatibilityTransformMiddleware(cfg) {
       return undefined;
     }
 
+    const transformModule = shoudlTransformToModule(ctx.url);
     const filePath = getRequestFilePath(ctx, cfg.rootDir);
     // if there is no file path, this file was not served statically
     if (!filePath) {
@@ -76,6 +78,7 @@ export function createCompatibilityTransformMiddleware(cfg) {
         uaCompat,
         filePath,
         code,
+        transformModule,
       });
       ctx.body = transformedCode;
       ctx.status = 200;

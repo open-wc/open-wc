@@ -151,6 +151,13 @@ export function isPolyfill(url) {
 /**
  * @param {string} url
  */
+export function shoudlTransformToModule(url) {
+  return url.includes('transform-module');
+}
+
+/**
+ * @param {string} url
+ */
 export function isInlineModule(url) {
   return url.includes(`inline-module-`) && url.includes('?source=');
 }
