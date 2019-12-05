@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.10](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.9...@open-wc/building-rollup@0.14.10) (2019-12-05)
+
+
+### Bug Fixes
+
+* **building-rollup:** respect output dir for sw.js ([#1082](https://github.com/open-wc/open-wc/issues/1082)) ([a71ed9d](https://github.com/open-wc/open-wc/commit/a71ed9d7162ef3bdddc70ca763f073b8853d31ce))
+
+
+
+
+
 ## [0.14.9](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.8...@open-wc/building-rollup@0.14.9) (2019-12-05)
 
 **Note:** Version bump only for package @open-wc/building-rollup

@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-webpack",
-  "version": "2.8.8",
+  "version": "2.8.9",
   "publishConfig": {
     "access": "public"
   },
@@ -44,14 +44,14 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
     "@babel/preset-env": "^7.7.1",
-    "@open-wc/building-utils": "^2.10.6",
-    "@open-wc/webpack-index-html-plugin": "^1.5.8",
+    "@open-wc/building-utils": "^2.10.7",
+    "@open-wc/webpack-index-html-plugin": "^1.5.9",
     "babel-loader": "^8.0.0",
     "babel-plugin-bundled-import-meta": "^0.3.0",
     "babel-plugin-template-html-minifier": "^3.0.0",
     "clean-webpack-plugin": "^2.0.0",
     "copy-webpack-plugin": "^5.0.1",
-    "es-dev-server": "^1.28.1",
+    "es-dev-server": "^1.28.2",
     "terser-webpack-plugin": "^1.2.1",
     "webpack-merge": "^4.1.5",
     "workbox-webpack-plugin": "^4.3.1"
