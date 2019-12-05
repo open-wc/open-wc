@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+// @ts-nocheck
 import { LitElement, html } from 'lit-element';
 
 class MyElement extends LitElement {
