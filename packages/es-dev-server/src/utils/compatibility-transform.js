@@ -33,6 +33,7 @@ import { logDebug } from './utils.js';
  * @property {import('./user-agent-compat.js').UserAgentCompat} uaCompat
  * @property {string} filePath
  * @property {string} code
+ * @property {boolean} transformModule
  */
 
 /**
@@ -148,9 +149,9 @@ export function createCompatibilityTransform(cfg) {
 
     switch (cfg.compatibilityMode) {
       case compatibilityModes.AUTO:
-        return !file.uaCompat.supportsEsm;
+        return !file.uaCompat.supportsEsm && file.transformModule;
       case compatibilityModes.MAX:
-        return true;
+        return true && file.transformModule;
       default:
         return false;
     }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.28.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.28.0...es-dev-server@1.28.1) (2019-12-05)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't transform non-modules ([#1067](https://github.com/open-wc/open-wc/issues/1067)) ([8ad6d03](https://github.com/open-wc/open-wc/commit/8ad6d039105b506029ede0f6473e2d1a764b0870))
+
+
+
+
+
 # [1.28.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.27.1...es-dev-server@1.28.0) (2019-12-02)
 
 

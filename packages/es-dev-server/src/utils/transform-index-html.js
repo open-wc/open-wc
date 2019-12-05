@@ -1,4 +1,5 @@
 import { extractResources, createIndexHTML } from '@open-wc/building-utils/index-html/index.js';
+import systemJsLegacyResolveScript from '../browser-scripts/system-js-legacy-resolve.js';
 import { polyfillsPresets } from './polyfills-presets.js';
 import { addPolyfilledImportMaps } from './import-maps.js';
 import { compatibilityModes, polyfillsModes } from '../constants.js';
@@ -87,6 +88,11 @@ export function getTransformedIndexHTML(cfg) {
   let { indexHTML } = createResult;
   if (polyfillModules) {
     indexHTML = addPolyfilledImportMaps(indexHTML, resources);
+  }
+
+  // inject systemjs resolver which appends a query param to trigger es5 compilation
+  if (polyfillModules) {
+    indexHTML = indexHTML.replace('</body>', `${systemJsLegacyResolveScript}</body>`);
   }
 
   return {

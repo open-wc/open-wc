@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+// @ts-nocheck
 import { LitElement, html } from 'lit-element';
 
 class MyElement extends LitElement {
@@ -6,11 +7,6 @@ class MyElement extends LitElement {
     return {
       message: { type: String },
     };
-  }
-
-  async getMessage() {
-    const response = await fetch(new URL('./my-file.txt', import.meta.url).toString());
-    this.message = await response.text();
   }
 
   render() {
