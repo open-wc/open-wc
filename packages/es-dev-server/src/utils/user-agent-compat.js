@@ -2,6 +2,7 @@
 import { resolveUserAgent, matchesUA } from 'browserslist-useragent';
 import * as browserslist from 'browserslist';
 import * as caniuse from 'caniuse-api';
+import { logDebug } from './utils.js';
 
 /**
  * @typedef {object} UserAgentCompat
@@ -150,6 +151,7 @@ export function getUserAgentCompat(ctx) {
   if (!compat) {
     compat = calcUserAgentCompat(userAgent);
     cache.set(userAgent, compat);
+    logDebug(`User agent: ${userAgent} detected as compatibility:`, compat);
   }
 
   return compat;

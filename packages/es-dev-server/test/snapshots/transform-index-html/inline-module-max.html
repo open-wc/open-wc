@@ -25,7 +25,7 @@
 
   var polyfills = [];
   if (!('fetch' in window)) { polyfills.push(loadScript('polyfills/fetch.8c78815e37189a88a5ccc668ab31698f.js', false)) }
-  if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) { polyfills.push(loadScript('polyfills/webcomponents.cc3976af76b5e726e2a7e86686c930f1.js', false)) }
+  if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)) { polyfills.push(loadScript('polyfills/webcomponents.cc3976af76b5e726e2a7e86686c930f1.js', false)) }
   if (!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype) { polyfills.push(loadScript('polyfills/custom-elements-es5-adapter.0ec040d16c6fd1b9220084b0b925cbe0.js', false)) }
 
   function loadEntries() {
