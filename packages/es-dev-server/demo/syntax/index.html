@@ -60,6 +60,7 @@
         importMeta: window.__importMeta || false,
         staticImports: window.__staticImports || false,
         dynamicImports: await window.__dynamicImports || false,
+        dynamicImportsString: await window.__dynamicImportsString || false,
       };
       document.getElementById('test').innerHTML = `<pre>${JSON.stringify(window.__tests, null, 2)}</pre>`;
     })();
