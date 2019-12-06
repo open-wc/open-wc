@@ -57,6 +57,7 @@
     "@babel/plugin-syntax-nullish-coalescing-operator": "^7.2.0",
     "@babel/plugin-syntax-numeric-separator": "^7.2.0",
     "@babel/plugin-syntax-optional-chaining": "^7.2.0",
+    "@babel/plugin-transform-template-literals": "^7.7.4",
     "@babel/preset-env": "^7.7.1",
     "@open-wc/building-utils": "^2.10.7",
     "@types/minimatch": "^3.0.3",

@@ -116,6 +116,9 @@ export const polyfillModulesTransform = createBabelTransform(
     plugins: [
       require.resolve('@babel/plugin-proposal-dynamic-import'),
       require.resolve('@babel/plugin-transform-modules-systemjs'),
+      // systemjs adds template literals, we do systemjs after (potential)
+      // es5 compilation so we need to ensure it stays es5
+      require.resolve('@babel/plugin-transform-template-literals'),
     ],
     babelrc: false,
     configFile: false,

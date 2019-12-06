@@ -11,7 +11,13 @@ const testCases = [
   },
   {
     name: 'syntax',
-    tests: ['inlineStage4', 'importMeta', 'staticImports', 'dynamicImports'],
+    tests: [
+      'inlineStage4',
+      'importMeta',
+      'staticImports',
+      'dynamicImports',
+      'dynamicImportsString',
+    ],
   },
   {
     name: 'node-resolve',

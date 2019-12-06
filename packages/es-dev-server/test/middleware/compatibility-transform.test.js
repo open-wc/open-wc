@@ -31,8 +31,14 @@ async function fetchText(url, userAgent) {
 }
 
 async function expectCompatibilityTransform(userAgent, features = {}) {
-  const stage4Features = await fetchText('stage-4-features.js?transform-modules', userAgent);
-  const esModules = await fetchText('module-features.js?transform-modules', userAgent);
+  const stage4Features = await fetchText(
+    `stage-4-features.js${features.esModules ? '?transform-modules' : ''}`,
+    userAgent,
+  );
+  const esModules = await fetchText(
+    `module-features.js${features.esModules ? '?transform-modules' : ''}`,
+    userAgent,
+  );
 
   expect(stage4Features).to.include(
     features.objectSpread ? '_objectSpread({}, foo);' : 'bar = { ...foo',
@@ -152,12 +158,14 @@ describe('compatibility transform middleware', () => {
     it('transforms for Chrome 62', async () => {
       await expectCompatibilityTransform(userAgents['Chrome 62'], {
         esModules: true,
+        templateLiteral: true,
       });
     });
 
     it('transforms for Chrome 63', async () => {
       await expectCompatibilityTransform(userAgents['Chrome 63'], {
         esModules: true,
+        templateLiteral: true,
       });
     });
 
@@ -188,6 +196,7 @@ describe('compatibility transform middleware', () => {
       await expectCompatibilityTransform(userAgents['Edge 18'], {
         objectSpread: true,
         esModules: true,
+        templateLiteral: true,
       });
     });
 
