@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.10...@open-wc/building-rollup@0.15.0) (2019-12-08)
+
+
+### Features
+
+* **building-rollup:** support optional chaining and nullish coalescing ([43ccef7](https://github.com/open-wc/open-wc/commit/43ccef7297277ff7ad60e9c4344b8d7059d2cce3))
+
+
+
+
+
 ## [0.14.10](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.9...@open-wc/building-rollup@0.14.10) (2019-12-05)
 
 

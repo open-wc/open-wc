@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.4...@open-wc/create@0.25.0) (2019-12-08)
+
+
+### Features
+
+* **create:** update linting config ([#1090](https://github.com/open-wc/open-wc/issues/1090)) ([795449d](https://github.com/open-wc/open-wc/commit/795449de3e49153004626a648bb59e25dc61bba8))
+
+
+
+
+
 ## [0.24.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.3...@open-wc/create@0.24.4) (2019-11-27)
 
 **Note:** Version bump only for package @open-wc/create

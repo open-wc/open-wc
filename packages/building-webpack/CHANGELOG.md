@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.8.9...@open-wc/building-webpack@2.9.0) (2019-12-08)
+
+
+### Features
+
+* **building-webpack:** support optional chaining and nullish coalescing ([2e5fac9](https://github.com/open-wc/open-wc/commit/2e5fac99484004ff048e07c5843ec15dc165fa2b))
+
+
+
+
+
 ## [2.8.9](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.8.8...@open-wc/building-webpack@2.8.9) (2019-12-05)
 
 **Note:** Version bump only for package @open-wc/building-webpack

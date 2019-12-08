@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.28.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.28.2...es-dev-server@1.28.3) (2019-12-08)
+
+
+### Bug Fixes
+
+* **es-dev-server:** compile generated systemjs template literals ([5eb1bd4](https://github.com/open-wc/open-wc/commit/5eb1bd4a32af859257c4f355d0e4a34e01cb97cd))
+
+
+
+
+
 ## [1.28.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.28.1...es-dev-server@1.28.2) (2019-12-05)
 
 **Note:** Version bump only for package es-dev-server
