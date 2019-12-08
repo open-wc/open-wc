@@ -129,7 +129,7 @@ export const commandLineOptions = [
     name: 'compatibility',
     type: String,
     description:
-      'Compatibility mode for older browsers. Can be: "auto", "min", "max" or "none". Default "auto"',
+      'Compatibility mode for older browsers. Can be: "auto", "always", "min", "max" or "none". Default "auto"',
   },
   {
     name: 'polyfills',

@@ -12,12 +12,6 @@
 
   <div id="test"></div>
 
-  <script type="module" src="./module-features.js"></script>
-  <script type="module" src="./stage-4-features.js"></script>
-
-  <!-- stage 3 features can't be tested in integration tests, since they change over time and per browser -->
-  <script type="module" src="./stage-3-features.js"></script>
-
   <script type="module">
     import { html, render } from 'lit-html';
 
@@ -50,18 +44,51 @@
   </script>
 
   <script type="module">
-    import './module-features.js';
-    import './stage-4-features.js';
-    import './stage-3-features.js';
+    window.__tests = {
+      stage4: false,
+      inlineStage4: false,
+      importMeta: false,
+      staticImports: false,
+      dynamicImports: false,
+      optionalChaining: false,
+      nullishCoalescing: false,
+    };
+
+    async function stage4Features() {
+      try {
+        await import('./stage-4-features.js');
+        window.__tests.stage4 = window.__stage4 || false;
+      } catch {
+        return;
+      }
+    }
+
+    async function moduleFeatures() {
+      try {
+        await import('./module-features.js');
+        window.__tests.importMeta = window.__importMeta || false;
+        window.__tests.staticImports = window.__staticImports || false;
+        window.__tests.dynamicImports = await window.__dynamicImports || false;
+      } catch {
+        return;
+      }
+    }
+
+    async function notImplementedStage4Features() {
+      try {
+        await import('./stage-4-no-modern-browser-impl.js');
+        window.__tests.optionalChaining = await window.__optionalChaining || false;
+        window.__tests.nullishCoalescing = await window.__optionalChaining || false;
+      } catch {
+        return;
+      }
+    }
 
     (async () => {
-      window.__tests = {
-        inlineStage4: window.__inlineStage4 || false,
-        importMeta: window.__importMeta || false,
-        staticImports: window.__staticImports || false,
-        dynamicImports: await window.__dynamicImports || false,
-        dynamicImportsString: await window.__dynamicImportsString || false,
-      };
+      await stage4Features();
+      await moduleFeatures();
+      await notImplementedStage4Features();
+
       document.getElementById('test').innerHTML = `<pre>${JSON.stringify(window.__tests, null, 2)}</pre>`;
     })();
   </script>

@@ -153,7 +153,7 @@ export function createConfig(config) {
   }
 
   if (!Object.values(polyfillsModes).includes(polyfills)) {
-    throw new Error(`Unknown compatibility mode: ${polyfills}`);
+    throw new Error(`Unknown polyfills mode: ${polyfills}`);
   }
 
   // middlewares used to be called customMiddlewares

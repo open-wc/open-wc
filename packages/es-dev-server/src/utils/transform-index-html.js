@@ -27,9 +27,11 @@ function getPolyfills(cfg) {
     case compatibilityModes.MIN:
       return polyfillsPresets.all;
     case compatibilityModes.AUTO:
-      if (cfg.uaCompat.modern) {
+    case compatibilityModes.ALWAYS:
+      if (cfg.compatibilityMode === compatibilityModes.AUTO && cfg.uaCompat.modern) {
         return {};
       }
+
       if (cfg.uaCompat.supportsEsm) {
         return polyfillsPresets.all;
       }
@@ -48,7 +50,8 @@ function getPolyfills(cfg) {
  */
 export function getTransformedIndexHTML(cfg) {
   const polyfillModules =
-    (cfg.compatibilityMode === compatibilityModes.AUTO && !cfg.uaCompat.supportsEsm) ||
+    ([compatibilityModes.AUTO, compatibilityModes.ALWAYS].includes(cfg.compatibilityMode) &&
+      !cfg.uaCompat.supportsEsm) ||
     cfg.compatibilityMode === compatibilityModes.MAX;
 
   // extract input files from index.html
