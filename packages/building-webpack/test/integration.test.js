@@ -92,6 +92,8 @@ describe('integration tests', () => {
             importMeta2: true,
             asyncFunction: true,
             forOf: true,
+            optionalChaining: true,
+            nullishCoalescing: true,
           });
         });
 
