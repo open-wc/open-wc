@@ -3,6 +3,7 @@ import chokidar from 'chokidar';
 import portfinder from 'portfinder';
 import { URL } from 'url';
 import { createServer } from './create-server.js';
+import { compatibilityModes } from './constants.js';
 
 function isValidURL(str) {
   try {
@@ -58,6 +59,7 @@ export async function startServer(cfg, fileWatcher = chokidar.watch([])) {
         const msgs = [];
         msgs.push(`es-dev-server started on http${cfg.http2 ? 's' : ''}://${prettyHost}:${port}`);
         msgs.push(`  Serving files from '${cfg.rootDir}'.`);
+
         if (cfg.sslKey && cfg.sslCert) {
           msgs.push(`  using key '${cfg.sslKey}'`);
           msgs.push(`  and cert '${cfg.sslCert}'`);
@@ -68,7 +70,37 @@ export async function startServer(cfg, fileWatcher = chokidar.watch([])) {
 
         if (cfg.appIndex) {
           msgs.push(
-            `  Using history API fallback, redirecting non-file requests to '${cfg.appIndex}'`,
+            `  Using history API fallback, redirecting route requests to '${cfg.appIndex}'`,
+          );
+        }
+
+        if (cfg.compatibilityMode === compatibilityModes.AUTO) {
+          msgs.push(
+            `  Using auto compatibility mode, transforming code on older browsers based on user agent.`,
+          );
+        } else if (cfg.compatibilityMode === compatibilityModes.ALWAYS) {
+          msgs.push(`  Using always compatibility mode, transforming code based on user agent.`);
+        } else if (cfg.compatibilityMode === compatibilityModes.MIN) {
+          msgs.push(
+            `  Using minimum compatibility mode, always transforming code for compatiblity with modern browsers.`,
+          );
+        } else if (cfg.compatibilityMode === compatibilityModes.MAX) {
+          msgs.push(
+            `  Using maximum compatibility mode, always transforming code to es5 for compatiblity with older browsers.`,
+          );
+        }
+
+        const hasBabel = cfg.readUserBabelConfig || cfg.customBabelConfig;
+        if (hasBabel) {
+          msgs.push(`  Using a custom babel configuration.`);
+        }
+
+        if (
+          hasBabel ||
+          ![compatibilityModes.NONE, compatibilityModes.AUTO].includes(cfg.compatibilityMode)
+        ) {
+          msgs.push(
+            `  \nes-dev-server is configured to always compile code. For the fastest dev experience, use compatibility auto without any custom babel configuration.`,
           );
         }
 
