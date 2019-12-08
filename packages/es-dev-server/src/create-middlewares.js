@@ -46,6 +46,7 @@ export function createMiddlewares(config, fileWatcher) {
     extraFileExtensions,
     moduleDirectories,
     nodeResolve,
+    dedupeModules,
     preserveSymlinks,
     readUserBabelConfig,
     rootDir,
@@ -139,6 +140,7 @@ export function createMiddlewares(config, fileWatcher) {
         babelModernExclude,
         babelModuleExclude,
         nodeResolve,
+        dedupeModules,
         preserveSymlinks,
       }),
     );

@@ -11,8 +11,9 @@ npx es-dev-server --node-resolve --watch
 **Quick overview**
 
 - efficient browser caching for fast reloads
-- [transform code on older browsers for compatibility](#Compatibility%20mode)
-- [resolve bare module imports for use in the browser](#Node%20resolve) (`--node-resolve`)
+- [transform code on older browsers for compatibility](#compatibility-mode)
+- [resolve bare module imports for use in the browser](#node-resolve) (`--node-resolve`)
+- [deduplicate multiple installations of the same package](#dedupe)
 - auto reload the browser on file changes with the (`--watch`)
 - history API fallback for SPA routing with the (`--app-index index.html`)
 
@@ -43,7 +44,7 @@ Add scripts to your `package.json`, modify the flags as needed:
 ```json
 {
   "scripts": {
-    "start": "es-dev-server --app-index index.html --node-resolve --watch --open"
+    "start": "es-dev-server --app-index index.html --node-resolve --dedupe --watch --open"
   }
 }
 ```
@@ -82,17 +83,18 @@ es-dev-server requires node v10 or higher
 
 ### Code transformation
 
-| name                 | type         | description                                                                                                                     |
-| -------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| compatibility        | string       | Compatibility mode for older browsers. Can be: `auto`, `always`, `min`, `max` or `none` Default `auto`                          |
-| node-resolve         | number       | Resolve bare import imports using node resolve                                                                                  |
-| preserve-symlinks    | boolean      | Preserve symlinks when resolving modules. Set to true, if using tools that rely on symlinks, such as `npm link`. Default false. |
-| module-dirs          | string/array | Directories to resolve modules from. Used by node-resolve                                                                       |
-| babel                | boolean      | Transform served code through babel. Requires .babelrc                                                                          |
-| file-extensions      | number/array | Extra file extensions to use when transforming code.                                                                            |
-| babel-exclude        | number/array | Patterns of files to exclude from babel compilation.                                                                            |
-| babel-modern-exclude | number/array | Patterns of files to exclude from babel compilation on modern browsers.                                                         |
-| babel-module-exclude | number/array | Patterns of files to exclude from babel compilation for modules only.                                                           |
+| name                 | type          | description                                                                                                                     |
+| -------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| compatibility        | string        | Compatibility mode for older browsers. Can be: `auto`, `always`, `min`, `max` or `none` Default `auto`                          |
+| node-resolve         | boolean       | Resolve bare import imports using node resolve                                                                                  |
+| dedupe               | boolean/array | Deduplicates all or specified packages' modules                                                                                 |
+| preserve-symlinks    | boolean       | Preserve symlinks when resolving modules. Set to true, if using tools that rely on symlinks, such as `npm link`. Default false. |
+| module-dirs          | string/array  | Directories to resolve modules from. Used by node-resolve                                                                       |
+| babel                | boolean       | Transform served code through babel. Requires .babelrc                                                                          |
+| file-extensions      | number/array  | Extra file extensions to use when transforming code.                                                                            |
+| babel-exclude        | number/array  | Patterns of files to exclude from babel compilation.                                                                            |
+| babel-modern-exclude | number/array  | Patterns of files to exclude from babel compilation on modern browsers.                                                         |
+| babel-module-exclude | number/array  | Patterns of files to exclude from babel compilation for modules only.                                                           |
 
 Most commands have an alias/shorthand. You can view them by using `--help`.
 
@@ -137,6 +139,26 @@ import foo from './node_modules/bar/bar.js';
 Because we use [es-module-lexer](https://github.com/guybedford/es-module-lexer) for blazing fast analysis, we can do this without noticeable impact on performance.
 
 In future, we are hoping that [import maps](https://github.com/WICG/import-maps) will make this step unnecessary.
+
+## Dedupe
+
+When your dependencies depend on different versions of the same package, package managers like yarn or npm may end up installing multiple versions of the same package with nested `node_modules` directories. This can create problems when modules expect to be singletons on the page, or when it includes side-effects such as custom element registration which can only be run once.
+
+You can use the `dedupe` option to ensure a particular package is only loaded once by resolving from the root of the package instead of relative to the originating module.
+
+When `dedupe` is a boolean, all packages are deduplicated:
+
+```bash
+es-dev-server --dedupe
+```
+
+When it is an array, only the specified packages are deduplicated. An array can only be set from a config:
+
+```javascript
+module.exports = {
+  dedupe: ['foo', 'bar'],
+};
+```
 
 ## Folder structure
 

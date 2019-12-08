@@ -18,6 +18,7 @@ import { getUserAgentCompat } from '../utils/user-agent-compat.js';
  * @property {string[]} moduleDirectories
  * @property {boolean} readUserBabelConfig
  * @property {boolean} nodeResolve
+ * @property {(path: string) => boolean} dedupeModules
  * @property {string} compatibilityMode
  * @property {object} [customBabelConfig]
  * @property {string[]} extraFileExtensions

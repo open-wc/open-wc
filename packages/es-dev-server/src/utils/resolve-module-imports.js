@@ -46,12 +46,12 @@ function nodeResolveAsync(importPath, options) {
  * Resolving is done by taking the package name and resolving that, then prefixing the resolves package
  * to the import. This requires the full package name to be present in the string.
  *
- * @param {string} sourceFileDir
+ * @param {string} basedir
  * @param {string} importPath
  * @param {object} config
  * @returns {Promise<string>}
  */
-async function resolveConcatenatedImport(sourceFileDir, importPath, config) {
+async function resolveConcatenatedImport(basedir, importPath, config) {
   let pathToResolve = importPath;
   let pathToAppend = '';
 
@@ -73,7 +73,7 @@ async function resolveConcatenatedImport(sourceFileDir, importPath, config) {
   }
 
   const resolvedPackage = await nodeResolveAsync(`${pathToResolve}/package.json`, {
-    basedir: sourceFileDir,
+    basedir,
     extensions: config.fileExtensions,
     moduleDirectory: config.moduleDirectories,
     preserveSymlinks: config.preserveSymlinks,
@@ -102,6 +102,7 @@ async function createSyntaxError(sourceFilename, source, originalError) {
  * @property {string[]} fileExtensions
  * @property {string[]} moduleDirectories
  * @property {boolean} preserveSymlinks
+ * @property {(path: string) => boolean} dedupeModules
  */
 
 /**
@@ -127,19 +128,21 @@ async function resolveImport(rootDir, sourceFilePath, importPath, config, concat
   }
 
   const sourceFileDir = path.dirname(sourceFilePath);
+  const basedir = !relativeImport && config.dedupeModules(importPath) ? rootDir : sourceFileDir;
+
   try {
     let resolvedImportFilePath;
 
     if (concatenated) {
       // if this dynamic import is a concatenated string, try our best to resolve. Otherwise leave it untouched and resolve it at runtime.
       try {
-        resolvedImportFilePath = await resolveConcatenatedImport(sourceFileDir, importPath, config);
+        resolvedImportFilePath = await resolveConcatenatedImport(basedir, importPath, config);
       } catch (error) {
         return importPath;
       }
     } else {
       resolvedImportFilePath = await nodeResolveAsync(importPath, {
-        basedir: sourceFileDir,
+        basedir,
         extensions: config.fileExtensions,
         moduleDirectory: config.moduleDirectories,
         preserveSymlinks: config.preserveSymlinks,
