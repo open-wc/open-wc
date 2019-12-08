@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.29.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.28.3...es-dev-server@1.29.0) (2019-12-08)
+
+
+### Features
+
+* **es-dev-server:** add 'always' compatibility mode ([f260638](https://github.com/open-wc/open-wc/commit/f260638843d24b084c81774c901199a5c2d0d410))
+* **es-dev-server:** add more startup logging ([8b1c2ba](https://github.com/open-wc/open-wc/commit/8b1c2ba208debb9a9dddde40286adf19e72b5813))
+
+
+
+
+
 ## [1.28.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.28.2...es-dev-server@1.28.3) (2019-12-08)
 
 
