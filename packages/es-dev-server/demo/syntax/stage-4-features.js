@@ -25,4 +25,4 @@ class Foo {
 // template literal
 const templateLiteral = `template ${'literal'}`;
 
-window.__inlineStage4 = new Foo().foo === 'bar' && templateLiteral === 'template literal' && bar.a === 1 && asyncFunction() instanceof Promise;
+window.__stage4 = new Foo().foo === 'bar' && templateLiteral === 'template literal' && bar.a === 1 && asyncFunction() instanceof Promise;

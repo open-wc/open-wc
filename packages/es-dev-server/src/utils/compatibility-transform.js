@@ -82,10 +82,11 @@ export function createCompatibilityTransform(cfg) {
    */
   function getCompatibilityBabelTranform(file) {
     switch (cfg.compatibilityMode) {
-      case compatibilityModes.AUTO: {
+      case compatibilityModes.AUTO:
+      case compatibilityModes.ALWAYS: {
         // if this is an auto modern transform, we can skip compatibility transformation
         // and just do the custom user transformation
-        if (isAutoModernTransform(file)) {
+        if (cfg.compatibilityMode === compatibilityModes.AUTO && isAutoModernTransform(file)) {
           return createBabelTransform(cfg);
         }
 
@@ -147,14 +148,7 @@ export function createCompatibilityTransform(cfg) {
       return false;
     }
 
-    switch (cfg.compatibilityMode) {
-      case compatibilityModes.AUTO:
-        return !file.uaCompat.supportsEsm && file.transformModule;
-      case compatibilityModes.MAX:
-        return true && file.transformModule;
-      default:
-        return false;
-    }
+    return file.transformModule;
   }
 
   /**

@@ -3,6 +3,4 @@ console.log(
 );
 
 import('./stage-3-class-fields.js');
-import('./stage-3-optional-chaining.js');
 import('./stage-3-private-class-fields.js');
-import('./stage-3-nullish-coalesc.js');
