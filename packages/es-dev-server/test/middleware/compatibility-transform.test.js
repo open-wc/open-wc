@@ -192,6 +192,7 @@ describe('compatibility transform middleware', () => {
     it('transforms for Chrome 64', async () => {
       await expectCompatibilityTransform(userAgents['Chrome 64'], {
         esModules: true,
+        templateLiteral: true,
         optionalChaining: true,
         nullishCoalescing: true,
       });
@@ -224,6 +225,7 @@ describe('compatibility transform middleware', () => {
       await expectCompatibilityTransform(userAgents['Edge 18'], {
         objectSpread: true,
         esModules: true,
+        templateLiteral: true,
         optionalChaining: true,
         nullishCoalescing: true,
       });
@@ -273,6 +275,7 @@ describe('compatibility transform middleware', () => {
     it('transforms for Chrome 62', async () => {
       await expectCompatibilityTransform(userAgents['Chrome 62'], {
         esModules: true,
+        templateLiteral: true,
         optionalChaining: true,
         nullishCoalescing: true,
       });
@@ -281,6 +284,7 @@ describe('compatibility transform middleware', () => {
     it('transforms for Chrome 63', async () => {
       await expectCompatibilityTransform(userAgents['Chrome 63'], {
         esModules: true,
+        templateLiteral: true,
         optionalChaining: true,
         nullishCoalescing: true,
       });
