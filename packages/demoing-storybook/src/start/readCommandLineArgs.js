@@ -1,3 +1,4 @@
+const path = require('path');
 const commandLineArgs = require('command-line-args');
 const commandLineUsage = require('command-line-usage');
 const {
@@ -51,7 +52,9 @@ module.exports = function readCommandLineArgs() {
     process.exit();
   }
 
-  const esDevServerConfig = esDevServerCommandLineArgs(storybookServerConfig._unknown || []);
+  const esDevServerConfig = esDevServerCommandLineArgs(storybookServerConfig._unknown || [], {
+    defaultConfigDir: path.join(process.cwd(), storybookServerConfig['config-dir']),
+  });
 
   return { storybookServerConfig, esDevServerConfig };
 };
