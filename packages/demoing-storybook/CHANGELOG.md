@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.1.6...@open-wc/demoing-storybook@1.2.0) (2019-12-09)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** fix serving mdx with module transform ([ceb4f08](https://github.com/open-wc/open-wc/commit/ceb4f08ee2f453c6177864212b33829db8639777))
+
+
+### Features
+
+* **demoing-storybook:** use config-dir for resolving default config ([c7361fe](https://github.com/open-wc/open-wc/commit/c7361fec86f9114048ab5e9e102681d7345c985b))
+
+
+
+
+
 ## [1.1.6](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.1.5...@open-wc/demoing-storybook@1.1.6) (2019-12-09)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook

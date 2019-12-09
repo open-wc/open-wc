@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.31.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.30.0...es-dev-server@1.31.0) (2019-12-09)
+
+
+### Features
+
+* **demoing-storybook:** use config-dir for resolving default config ([c7361fe](https://github.com/open-wc/open-wc/commit/c7361fec86f9114048ab5e9e102681d7345c985b))
+
+
+
+
+
 # [1.30.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.29.0...es-dev-server@1.30.0) (2019-12-09)
 
 
