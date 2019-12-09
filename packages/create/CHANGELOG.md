@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.25.0...@open-wc/create@0.26.0) (2019-12-09)
+
+
+### Features
+
+* **create:** update building-rollup dependency ([2c83603](https://github.com/open-wc/open-wc/commit/2c836039743356c0b4be02edbae7a6addbeaf8ac))
+
+
+
+
+
 # [0.25.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.4...@open-wc/create@0.25.0) (2019-12-08)
 
 

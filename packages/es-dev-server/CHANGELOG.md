@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.30.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.29.0...es-dev-server@1.30.0) (2019-12-09)
+
+
+### Features
+
+* **es-dev-server:** allow max compat on modern browsers ([dbb2928](https://github.com/open-wc/open-wc/commit/dbb2928ddc97e567d1751b7c34bf0542036298c3))
+
+
+
+
+
 # [1.29.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.28.3...es-dev-server@1.29.0) (2019-12-08)
 
 
