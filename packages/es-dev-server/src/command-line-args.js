@@ -148,9 +148,11 @@ export const commandLineOptions = [
  * Reads command line args from arguments array. Defaults to `process.argv`.
  *
  * @param {string[]} [argv]
+ * @param {{ defaultConfigDir?: string }} config
  * @returns {import('./config.js').Config}
  */
-export function readCommandLineArgs(argv = process.argv) {
+export function readCommandLineArgs(argv = process.argv, config = {}) {
+  const { defaultConfigDir = process.cwd() } = config;
   const dashesArgs = commandLineArgs(commandLineOptions, { argv, partial: true });
   const openInCommandLineArgs = 'open' in dashesArgs;
 
@@ -200,7 +202,7 @@ export function readCommandLineArgs(argv = process.argv) {
     logDebug(`Found a config file at ${configPath}`);
   } else {
     // read default config if present
-    const defaultConfigPath = path.join(process.cwd(), 'es-dev-server.config.js');
+    const defaultConfigPath = path.join(defaultConfigDir, 'es-dev-server.config.js');
     if (fs.existsSync(defaultConfigPath) && fs.statSync(defaultConfigPath).isFile()) {
       const fileConfig = require(defaultConfigPath);
       options = deepmerge(fileConfig, args);
