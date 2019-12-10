@@ -3008,7 +3008,7 @@
   dependencies:
     global "^4.3.2"
 
-"@storybook/addon-docs@^5.3.0-beta.20":
+"@storybook/addon-docs@5.3.0-beta.20", "@storybook/addon-docs@^5.3.0-beta.20":
   version "5.3.0-beta.20"
   resolved "https://registry.yarnpkg.com/@storybook/addon-docs/-/addon-docs-5.3.0-beta.20.tgz#2ee16f7f3c76ecdad71d8835189d7f6d9ec9c395"
   integrity sha512-HMqKX98JnJoPU2VT1opi2EMl63HdaBO21t/CfALQuNrntcbxMr95LWF7U+UTn8sQT4VlXJPqtCrO34EORjqGeg==
