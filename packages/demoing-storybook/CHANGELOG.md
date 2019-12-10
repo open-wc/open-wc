@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.0...@open-wc/demoing-storybook@1.3.1) (2019-12-10)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** hardcode addon-docs version ([6e4996b](https://github.com/open-wc/open-wc/commit/6e4996bb8fd15ea17b7346a38097de69418d2678))
+* **storybook-addon-web-components-knobs:** hardcode version ([a3dfbf6](https://github.com/open-wc/open-wc/commit/a3dfbf60b9c8c9f022f79dc59ec3ca6caf9757b3))
+
+
+
+
+
 # [1.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.2.0...@open-wc/demoing-storybook@1.3.0) (2019-12-10)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "storybook-addon-web-components-knobs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Storybook knobs for web-components based on custom-elements.json",
   "license": "MIT",
   "repository": {
