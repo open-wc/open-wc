@@ -29,7 +29,7 @@ render(
     <div
       ...=${spread({
         'my-attribute': 'foo',
-        '?my-boolean-attribute': true
+        '?my-boolean-attribute': true,
         '.myProperty': { foo: 'bar' },
         '@my-event': () => console.log('my-event fired'),
       })}
@@ -92,7 +92,7 @@ renderSpread({ foo: 'buz', lorem: 'ipsum' });
 renderSpread({ foo: 'buz' });
 
 // result: <div>
-renderSpread({ foo: undefined' });
+renderSpread({ foo: undefined });
 ```
 
 ## Live binding
