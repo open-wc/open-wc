@@ -58,7 +58,7 @@ In order to get type linting in a JavaScript project using VS Code all you need 
 
 ### Setup for TypeScript
 
-If you wish to use our typings in TypeScript you will to do a little more.
+If you wish to use our typings in TypeScript you will need to do a little more.
 
 You will need to add to this to your `tsconfig.json`.
 
