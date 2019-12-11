@@ -76,6 +76,7 @@
     "es-module-lexer": "0.3.9",
     "get-stream": "^5.1.0",
     "is-stream": "^2.0.0",
+    "isbinaryfile": "^4.0.2",
     "koa": "^2.7.0",
     "koa-compress": "^3.0.0",
     "koa-etag": "^3.0.0",

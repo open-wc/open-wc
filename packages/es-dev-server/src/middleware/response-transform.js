@@ -1,5 +1,5 @@
 /* eslint-disable no-await-in-loop, no-restricted-syntax */
-import { getBodyAsString, RequestCancelledError } from '../utils/utils.js';
+import { getBodyAsString, RequestCancelledError, IsBinaryFileError } from '../utils/utils.js';
 
 /**
  * @typedef {object} ResponseTransformerArgs
@@ -38,6 +38,10 @@ export function createResponseTransformMiddleware(config) {
       body = await getBodyAsString(ctx);
     } catch (error) {
       if (error instanceof RequestCancelledError) {
+        return;
+      }
+
+      if (error instanceof IsBinaryFileError) {
         return;
       }
       throw error;
