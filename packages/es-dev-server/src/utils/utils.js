@@ -3,6 +3,7 @@ import isStream from 'is-stream';
 import getStream from 'get-stream';
 import Stream from 'stream';
 import path from 'path';
+import { isBinaryFile } from 'isbinaryfile';
 import { virtualFilePrefix } from '../constants.js';
 
 let _debug = false;
@@ -18,6 +19,7 @@ export function logDebug(...messages) {
 }
 
 export class RequestCancelledError extends Error {}
+export class IsBinaryFileError extends Error {}
 
 /**
  * koa-static stores the original served file path on ctx.body.path,
@@ -64,9 +66,17 @@ export async function getBodyAsString(ctx) {
     // the string response to the body so that it can be accessed
     // again later
     try {
-      const body = await getStream(ctx.body);
-      ctx.body = body;
-      return body;
+      const bodyBuffer = await getStream.buffer(ctx.body);
+      const contentLength = Number(ctx.response.get('content-length'));
+
+      if (await isBinaryFile(bodyBuffer, contentLength)) {
+        ctx.body = bodyBuffer;
+        throw new IsBinaryFileError();
+      }
+
+      const bodyString = bodyBuffer.toString();
+      ctx.body = bodyString;
+      return bodyString;
     } catch (error) {
       if (requestCanceled) {
         throw new RequestCancelledError();
