@@ -9,7 +9,7 @@
 ## Setup
 
 ```bash
-npm i storybook-addon-web-components-knobs
+npm i storybook-addon-web-components-knobs @storybook/addon-docs
 ```
 
 ### Create API playground
@@ -113,7 +113,7 @@ For a full example see the [./demo/custom-elements.json](./demo/custom-elements.
       const editLink = document.querySelector('.edit-link a');
       if (editLink) {
         const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/building-storybook/README.md';
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/storybook-addon-web-components-knobs/README.md';
       }
     }
   }
