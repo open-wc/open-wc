@@ -65,7 +65,7 @@ module.exports = {
 | compatibility    | string  | Compatibility level to run the `es-dev-server` with.                                                          |
 | coverageExclude  | array   | Extra glob patterns of tests to exclude from coverage.                                                        |
 | babelConfig      | string  | Custom babel configuration file to run on served code.                                                        |
-| moduleDirs       | string  | Directories to resolve modules from. Defaults to `node_modules`                                               |
+| moduleDirs       | array  | Directories to resolve modules from. Defaults to `['node_modules']`                                               |
 | babel            | boolean | Whether to pick up a babel configuration file in your project.                                                |
 | fileExtensions   | array   | Custom file extensions to serve as es modules.                                                                |
 | polyfills        | object  | Polyfill configuration.                                                                                       |
