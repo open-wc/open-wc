@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.0...@open-wc/create@0.26.1) (2019-12-12)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** use " for stories glob to support windows ([20d9db0](https://github.com/open-wc/open-wc/commit/20d9db0b7419414aa7f8fa0956834015518fe27f))
+
+
+
+
+
 # [0.26.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.25.0...@open-wc/create@0.26.0) (2019-12-09)
 
 
