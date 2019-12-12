@@ -51,7 +51,7 @@
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-index-html": "^1.7.5",
     "rollup-plugin-node-resolve": "^4.0.1",
-    "rollup-plugin-terser": "^4.0.4",
+    "rollup-plugin-terser": "^5.1.0",
     "rollup-plugin-workbox": "^4.0.0"
   },
   "devDependencies": {
