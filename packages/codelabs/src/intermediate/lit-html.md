@@ -619,6 +619,7 @@ In this example, we register an event listener for the `click` event, and call t
                     <news-article
                       .title=${article.title}
                       .description=${article.description}
+                      .read=${article.read}
                     ></news-article>
                   </li>
                 `,
