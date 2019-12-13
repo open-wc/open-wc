@@ -81,7 +81,8 @@ async function fetchKarmaHTML(karmaHost, name, importMap) {
         .join(',')}])
         .then(() => window.__karma__.loaded())
         .catch(() => window.__karma__.error())
-    </script>`,
+    </script>
+    </body>`,
   );
   return { body };
 }
