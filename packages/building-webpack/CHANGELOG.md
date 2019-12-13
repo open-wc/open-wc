@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.9.4...@open-wc/building-webpack@2.10.0) (2019-12-13)
+
+
+### Features
+
+* **building-webpack:** update version of terser ([f537e47](https://github.com/open-wc/open-wc/commit/f537e475e73b31e81cafbaa920de7ca3f2a05e01))
+
+
+
+
+
 ## [2.9.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.9.3...@open-wc/building-webpack@2.9.4) (2019-12-11)
 
 **Note:** Version bump only for package @open-wc/building-webpack

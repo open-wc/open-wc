@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.15.4...@open-wc/building-rollup@0.16.0) (2019-12-13)
+
+
+### Features
+
+* **building-rollup:** update version of rollup-plugin-terser ([abda5e8](https://github.com/open-wc/open-wc/commit/abda5e84188eaa508a2666a5acdff4ea9bb70904))
+* **building-webpack:** update version of terser ([f537e47](https://github.com/open-wc/open-wc/commit/f537e475e73b31e81cafbaa920de7ca3f2a05e01))
+
+
+
+
+
 ## [0.15.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.15.3...@open-wc/building-rollup@0.15.4) (2019-12-11)
 
 **Note:** Version bump only for package @open-wc/building-rollup
