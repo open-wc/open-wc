@@ -51,7 +51,8 @@ async function fetchKarmaHTML(karmaHost, name) {
         .join(',')}])
         .then(() => window.__karma__.loaded())
         .catch(() => window.__karma__.error())
-    </script>`,
+    </script>
+    </body>`,
   );
   return { body };
 }
