@@ -1,17 +1,17 @@
-/** @type Array<Element> */
+/** @type Array<Node> */
 export const cachedWrappers = [];
 
 /**
  * Creates a wrapper as a direct child of `<body>` to put the tested element into.
  * Need to be in the DOM to test for example `connectedCallback()` on elements.
  *
- * @returns {Element}
+ * @param {Element} [parentNode]
+ * @returns {Element} wrapping node
  */
-export function fixtureWrapper() {
-  const wrapper = document.createElement('div');
-  document.body.appendChild(wrapper);
-  cachedWrappers.push(wrapper);
-  return wrapper;
+export function fixtureWrapper(parentNode = document.createElement('div')) {
+  document.body.appendChild(parentNode);
+  cachedWrappers.push(parentNode);
+  return parentNode;
 }
 
 /**

@@ -30,10 +30,11 @@ const isUsefulNode = ({ nodeType, textContent }) => {
  *
  * @template {Element} T - Is an element or a node
  * @param {LitHTMLRenderable} template
+ * @param {import('./fixture-no-side-effect.js').FixtureOptions} [options]
  * @returns {T}
  */
-export function litFixtureSync(template) {
-  const wrapper = fixtureWrapper();
+export function litFixtureSync(template, options = {}) {
+  const wrapper = fixtureWrapper(options.parentNode);
   render(template, wrapper);
   if (template instanceof TemplateResult) {
     return /** @type {T} */ (wrapper.firstElementChild);
@@ -48,10 +49,11 @@ export function litFixtureSync(template) {
  *
  * @template {Element} T - Is an element or a node
  * @param {LitHTMLRenderable} template
+ * @param {import('./fixture-no-side-effect.js').FixtureOptions} [options]
  * @returns {Promise<T>}
  */
-export async function litFixture(template) {
-  const el = litFixtureSync(template);
+export async function litFixture(template, options) {
+  const el = litFixtureSync(template, options);
   await elementUpdated(el);
   // @ts-ignore
   return el;

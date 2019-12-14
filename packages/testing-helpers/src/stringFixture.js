@@ -7,12 +7,13 @@ import { elementUpdated } from './elementUpdated.js';
  *
  * @template {Element} T - Is an element or a node
  * @param {string} template
+ * @param {import('./fixture-no-side-effect.js').FixtureOptions} [options={}]
  * @returns {T}
  */
-export function stringFixtureSync(template) {
-  const wrapper = fixtureWrapper();
-  wrapper.innerHTML = template;
-  return /** @type {T} */ (wrapper.children[0]);
+export function stringFixtureSync(template, options = {}) {
+  const parentNode = fixtureWrapper(options.parentNode);
+  parentNode.innerHTML = template;
+  return /** @type {T} */ (parentNode.children[0]);
 }
 
 /**
@@ -21,10 +22,11 @@ export function stringFixtureSync(template) {
  *
  * @template {Element} T - Is an element or a node
  * @param {string} template
+ * @param {import('./fixture-no-side-effect.js').FixtureOptions} [options]
  * @returns {Promise<T>}
  */
-export async function stringFixture(template) {
-  const el = stringFixtureSync(template);
+export async function stringFixture(template, options) {
+  const el = stringFixtureSync(template, options);
   await elementUpdated(el);
   // @ts-ignore
   return el;
