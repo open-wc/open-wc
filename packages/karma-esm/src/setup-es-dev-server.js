@@ -1,4 +1,5 @@
 const fs = require('fs');
+const util = require('util');
 const portfinder = require('portfinder');
 const chokidar = require('chokidar');
 const fetch = require('node-fetch');
@@ -8,25 +9,21 @@ const regexpKarmaLoaded = /window\.__karma__\.loaded\(\);/gm;
 const regexpScriptSrcGlobal = /<script type="module"[^>]*src="([^"]*)"/gm;
 const regexpScriptSrc = /<script type="module"[^>]*src="([^"]*)"/m;
 
+const readFileAsync = util.promisify(fs.readFile);
+
 /**
  * Load importMap content from a filepath
  * @param {string} path
  * @returns {Promise<string>}
  */
 async function loadImportMap(path) {
-  return new Promise((resolve, reject) => {
-    if (!path) {
-      resolve('');
-      return;
-    }
-    fs.readFile(path, 'utf8', (err, data) => {
-      if (err) {
-        reject(new Error(`Unable to load importMap: ${err}`));
-        return;
-      }
-      resolve(data);
-    });
-  });
+  let result;
+  try {
+    result = await readFileAsync(path, 'utf8');
+  } catch (error) {
+    console.warn(`Unable to load importMap from "${path}": ${error}`); // eslint-disable-line no-console
+  }
+  return result;
 }
 
 /**
@@ -114,7 +111,7 @@ async function setupDevServer(karmaConfig, esmConfig, watch, babelConfig, karmaE
     typeof esmConfig.port === 'number' ? esmConfig.port : await portfinder.getPortPromise();
   const karmaHost = `${karmaConfig.protocol}//${karmaConfig.hostname}:${karmaConfig.port}`;
   const devServerHost = `${karmaConfig.protocol}//${karmaConfig.hostname}:${devServerPort}`;
-  const importMap = await loadImportMap(esmConfig.importMap);
+  const importMap = esmConfig.importMap ? await loadImportMap(esmConfig.importMap) : null;
 
   const esDevServerConfig = createConfig({
     port: devServerPort,
