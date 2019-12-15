@@ -12,3 +12,4 @@ In alphabetical order:
 - [redux first routing](https://github.com/mksarge/redux-first-routing)
 - [simplr-router](https://github.com/Matsuuu/simplr-router)
 - [vaadin-router](https://github.com/vaadin/vaadin-router)
+- [zensen-router](https://github.com/travistrue2008/zensen-router)
