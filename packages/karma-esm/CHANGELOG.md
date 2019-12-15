@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.10](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.11.9...@open-wc/karma-esm@2.11.10) (2019-12-15)
+
+
+### Bug Fixes
+
+* **karma-esm:** Implement import map support ([#1130](https://github.com/open-wc/open-wc/issues/1130)) ([dbe0975](https://github.com/open-wc/open-wc/commit/dbe0975d61f6516749a2ecf3263a1cc11348d4e4))
+
+
+
+
+
 ## [2.11.9](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.11.8...@open-wc/karma-esm@2.11.9) (2019-12-11)
 
 **Note:** Version bump only for package @open-wc/karma-esm
