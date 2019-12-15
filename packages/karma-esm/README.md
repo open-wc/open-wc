@@ -65,7 +65,7 @@ module.exports = {
 | compatibility    | string  | Compatibility level to run the `es-dev-server` with.                                                          |
 | coverageExclude  | array   | Extra glob patterns of tests to exclude from coverage.                                                        |
 | babelConfig      | string  | Custom babel configuration file to run on served code.                                                        |
-| moduleDirs       | string  | Directories to resolve modules from. Defaults to `node_modules`                                               |
+| moduleDirs       | array   | Directories to resolve modules from. Defaults to `node_modules`                                               |
 | babel            | boolean | Whether to pick up a babel configuration file in your project.                                                |
 | fileExtensions   | array   | Custom file extensions to serve as es modules.                                                                |
 | polyfills        | object  | Polyfill configuration.                                                                                       |
@@ -81,6 +81,26 @@ It transforms: `import foo from 'bar'` to: `import foo from './node_modules/bar/
 ### coverage
 
 Due to a bug in karma, the test coverage reporter causes browser logs to appear twice which can be annoying
+
+### importMap
+
+Allows to control the behavior of ES imports according to the (in progress) [spec](https://github.com/WICG/import-maps).
+Since this feature is not enabled by default, is necessary to launch Chrome with `--enable-experimental-web-platform-features` flag.
+
+In karma.config.js add:
+
+```js
+customLaunchers: {
+  ChromeHeadlessNoSandbox: {
+    base: 'ChromeHeadless',
+    flags: [
+      '--no-sandbox', //default karma-esm configuration
+      '--disable-setuid-sandbox', //default karma-esm configuration
+      '--enable-experimental-web-platform-features' // necessary when using importMap option
+    ],
+  },
+}
+```
 
 ### compatibility
 
