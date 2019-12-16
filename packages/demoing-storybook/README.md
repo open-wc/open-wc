@@ -90,7 +90,7 @@ The storybook server is based on [es-dev-server](https://open-wc.org/developing/
 Create a `*.stories.mdx` (for example `card.stories.mdx`) file within the `stories` folder.
 
 ```md
-import { Story, Preview, Meta, Props } from '@storybook/addon-docs/blocks';
+import { Story, Preview, Meta, Props } from '@open-wc/demoing-storybook';
 import { html } from 'lit-html';
 import '../demo-wc-card.js';
 
