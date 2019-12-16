@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/karma-esm",
-  "version": "2.11.10",
+  "version": "2.11.11",
   "publishConfig": {
     "access": "public"
   },

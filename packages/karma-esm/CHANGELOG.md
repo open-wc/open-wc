@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.11](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.11.10...@open-wc/karma-esm@2.11.11) (2019-12-16)
+
+
+### Bug Fixes
+
+* **karma-esm:** add close body tag when injecting code to import tests ([5843b82](https://github.com/open-wc/open-wc/commit/5843b827618931bf61c82dc64d5d282f71d1d9db))
+
+
+
+
+
 ## [2.11.10](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.11.9...@open-wc/karma-esm@2.11.10) (2019-12-15)
 
 
