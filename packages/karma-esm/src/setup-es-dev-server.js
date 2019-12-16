@@ -132,7 +132,10 @@ async function setupDevServer(karmaConfig, esmConfig, watch, babelConfig, karmaE
     // @ts-ignore
     middlewares: esmConfig.middlewares || esmConfig.customMiddlewares,
     preserveSymlinks: esmConfig.preserveSymlinks,
-    responseTransformers: [createServeKarmaHtml(karmaHost, importMap)],
+    responseTransformers: [
+      createServeKarmaHtml(karmaHost, importMap),
+      ...(esmConfig.responseTransformers || []),
+    ],
     debug: esmConfig.debug,
     watch: false,
     babelConfig,
