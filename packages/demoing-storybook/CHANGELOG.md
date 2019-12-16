@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.5](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.4...@open-wc/demoing-storybook@1.3.5) (2019-12-16)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** Encode HTML as UTF-8 ([1b88895](https://github.com/open-wc/open-wc/commit/1b8889582328a3d6217d41009fd88092936a0ee9))
+
+
+
+
+
 ## [1.3.4](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.3...@open-wc/demoing-storybook@1.3.4) (2019-12-13)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
