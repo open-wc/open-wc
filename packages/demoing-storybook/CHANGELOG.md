@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.6](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.5...@open-wc/demoing-storybook@1.3.6) (2019-12-16)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** set default stories value in build ([6c317ba](https://github.com/open-wc/open-wc/commit/6c317ba3d5317d6e066df860dae7b91e927f0e37))
+
+
+
+
+
 ## [1.3.5](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.4...@open-wc/demoing-storybook@1.3.5) (2019-12-16)
 
 
