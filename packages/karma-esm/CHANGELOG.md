@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.12](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.11.11...@open-wc/karma-esm@2.11.12) (2019-12-16)
+
+
+### Bug Fixes
+
+* **karma-esm:** include user defined response transformers ([c471ffc](https://github.com/open-wc/open-wc/commit/c471ffc48090ed389a1ae47fc141a51111f1296a))
+
+
+
+
+
 ## [2.11.11](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.11.10...@open-wc/karma-esm@2.11.11) (2019-12-16)
 
 
