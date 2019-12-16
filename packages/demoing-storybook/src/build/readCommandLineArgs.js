@@ -20,6 +20,7 @@ module.exports = function readCommandLineArgs() {
     {
       name: 'stories',
       alias: 's',
+      defaultValue: './stories/*.stories.{js,mdx}',
       description: 'List of story files e.g. --stories stories/*.stories.{js,mdx}',
     },
   ];
