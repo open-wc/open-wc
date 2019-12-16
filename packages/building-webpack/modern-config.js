@@ -78,6 +78,14 @@ module.exports = userOptions => {
               plugins: [
                 '@babel/plugin-syntax-dynamic-import',
                 '@babel/plugin-syntax-import-meta',
+                /**
+                 * This can be removed when https://github.com/babel/babel/pull/10811 is released
+                 */
+                [
+                  require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'),
+                  { loose: true },
+                ],
+                [require.resolve('@babel/plugin-proposal-optional-chaining'), { loose: true }],
                 production && [
                   'template-html-minifier',
                   {
@@ -87,6 +95,7 @@ module.exports = userOptions => {
                     },
                     htmlMinifier: {
                       collapseWhitespace: true,
+                      conservativeCollapse: true,
                       removeComments: true,
                       caseSensitive: true,
                       minifyCSS: customMinifyCSS,

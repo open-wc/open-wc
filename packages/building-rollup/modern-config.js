@@ -1,13 +1,11 @@
 // @ts-nocheck
 
-const { DEFAULT_EXTENSIONS } = require('@babel/core');
-const { findSupportedBrowsers } = require('@open-wc/building-utils');
+const { findSupportedBrowsers, defaultFileExtensions } = require('@open-wc/building-utils');
 const customMinifyCss = require('@open-wc/building-utils/custom-minify-css');
 const resolve = require('rollup-plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const babel = require('rollup-plugin-babel');
 const indexHTML = require('rollup-plugin-index-html');
-const entrypointHashmanifest = require('rollup-plugin-entrypoint-hashmanifest');
 const { generateSW } = require('rollup-plugin-workbox');
 
 const getWorkboxConfig = require('@open-wc/building-utils/get-workbox-config');
@@ -23,7 +21,7 @@ const production = !process.env.ROLLUP_WATCH;
 module.exports = function createBasicConfig(_options) {
   const options = {
     outputDir: 'dist',
-    extensions: DEFAULT_EXTENSIONS,
+    extensions: defaultFileExtensions,
     indexHTMLPlugin: {},
     ..._options,
     plugins: {
@@ -69,6 +67,14 @@ module.exports = function createBasicConfig(_options) {
           plugins: [
             '@babel/plugin-syntax-dynamic-import',
             '@babel/plugin-syntax-import-meta',
+            /**
+             * This can be removed when https://github.com/babel/babel/pull/10811 is released
+             */
+            [
+              require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'),
+              { loose: true },
+            ],
+            [require.resolve('@babel/plugin-proposal-optional-chaining'), { loose: true }],
             // rollup rewrites import.meta.url, but makes them point to the file location after bundling
             // we want the location before bundling
             'bundled-import-meta',
@@ -81,6 +87,7 @@ module.exports = function createBasicConfig(_options) {
                 },
                 htmlMinifier: {
                   collapseWhitespace: true,
+                  conservativeCollapse: true,
                   removeComments: true,
                   caseSensitive: true,
                   minifyCSS: customMinifyCss,
@@ -107,10 +114,7 @@ module.exports = function createBasicConfig(_options) {
       // only minify if in production
       production && terser(),
 
-      // hash
-      entrypointHashmanifest(),
-
-      production && options.plugins.workbox && generateSW(getWorkboxConfig()),
+      production && options.plugins.workbox && generateSW(getWorkboxConfig(options.outputDir)),
     ],
   };
 };

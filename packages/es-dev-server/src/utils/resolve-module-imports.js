@@ -155,7 +155,7 @@ async function resolveImport(rootDir, sourceFilePath, importPath, config, concat
       throw new Error(
         `Import "${importPath}" resolved to the file "${resolvedImportFilePath}" which is outside the root directory. ` +
           'Install the module locally in the current project, or expand the root directory. If this is a symlink or if you used npm link, ' +
-          ' you can use the preserveSymlinks option',
+          ' you can run es-dev-server with the --preserve-symlinks option',
       );
     }
 

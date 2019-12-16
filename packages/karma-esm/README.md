@@ -57,19 +57,20 @@ module.exports = {
 
 `karma-esm` can be configured with these options:
 
-| name            | type    | description                                                                                                   |
-| --------------- | ------- | ------------------------------------------------------------------------------------------------------------- |
-| nodeResolve     | boolean | Transforms bare module imports using node resolve.                                                            |
-| coverage        | boolean | Whether to report test code coverage.                                                                         |
-| importMap       | string  | Path to import map used for testing.                                                                          |
-| compatibility   | string  | Compatibility level to run the `es-dev-server` with.                                                          |
-| coverageExclude | array   | Extra glob patterns of tests to exclude from coverage.                                                        |
-| babelConfig     | string  | Custom babel configuration file to run on served code.                                                        |
-| moduleDirs      | string  | Directories to resolve modules from. Defaults to `node_modules`                                               |
-| babel           | boolean | Whether to pick up a babel configuration file in your project.                                                |
-| fileExtensions  | array   | Custom file extensions to serve as es modules.                                                                |
-| polyfills       | object  | Polyfill configuration.                                                                                       |
-| devServerPort   | number  | port of server that serves the modules. Note that this is not the karma port. Picks a random port if not set. |
+| name             | type    | description                                                                                                   |
+| ---------------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+| nodeResolve      | boolean | Transforms bare module imports using node resolve.                                                            |
+| coverage         | boolean | Whether to report test code coverage.                                                                         |
+| importMap        | string  | Path to import map used for testing.                                                                          |
+| compatibility    | string  | Compatibility level to run the `es-dev-server` with.                                                          |
+| coverageExclude  | array   | Extra glob patterns of tests to exclude from coverage.                                                        |
+| babelConfig      | string  | Custom babel configuration file to run on served code.                                                        |
+| moduleDirs       | array   | Directories to resolve modules from. Defaults to `node_modules`                                               |
+| babel            | boolean | Whether to pick up a babel configuration file in your project.                                                |
+| fileExtensions   | array   | Custom file extensions to serve as es modules.                                                                |
+| polyfills        | object  | Polyfill configuration.                                                                                       |
+| devServerPort    | number  | Port of server that serves the modules. Note that this is not the karma port. Picks a random port if not set. |
+| preserveSymlinks | boolean | Run the `es-dev-server` with the `--preserve-symlinks` option.                                                |
 
 ### nodeResolve
 
@@ -81,11 +82,37 @@ It transforms: `import foo from 'bar'` to: `import foo from './node_modules/bar/
 
 Due to a bug in karma, the test coverage reporter causes browser logs to appear twice which can be annoying
 
+### importMap
+
+Allows to control the behavior of ES imports according to the (in progress) [spec](https://github.com/WICG/import-maps).
+Since this feature is not enabled by default, is necessary to launch Chrome with `--enable-experimental-web-platform-features` flag.
+
+In karma.config.js add:
+
+```js
+customLaunchers: {
+  ChromeHeadlessNoSandbox: {
+    base: 'ChromeHeadless',
+    flags: [
+      '--no-sandbox', //default karma-esm configuration
+      '--disable-setuid-sandbox', //default karma-esm configuration
+      '--enable-experimental-web-platform-features' // necessary when using importMap option
+    ],
+  },
+}
+```
+
 ### compatibility
 
 The compatibility option makes your code compatible with older browsers. It loads polyfills and transforms modern syntax where needed. For testing, it's best to leave this at 'none' for no modifications, or 'all' for full compatibility.
 
 See [the documentation of the dev server](https://open-wc.org/developing/es-dev-server.html) for information on all the different modes.
+
+### preserveSymlinks
+
+The `es-dev-server` by default resolves the symlinks in the dependency directory. This can cause problem when you're using `npm link` command or other tools which rely on them. This option will make `es-dev-server` preserve symlinks.
+
+See [the documentation of the dev server](https://open-wc.org/developing/es-dev-server.html) for more information.
 
 ## Karma preprocessors
 

@@ -10,10 +10,18 @@ This codelab is a followup from the [lit-html & lit-element basics](https://open
 
 **What you need**
 
+- A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
 - Intermediate knowledge of HTML and Javascript
 - Basic knowledge of web components, see our [basics codelab](https://open-wc.org/codelabs/#web-components-basics) to get you started.
 - Basic knowledge of lit-html & lit-element, see our [basics codelab](https://open-wc.org/codelabs/#lit-html-lit-element-basics)
-- A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
+- Familiarity with the following concepts:
+  - [Javascript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+  - [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+  - [Array filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+  - [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+  - [Object & array spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+  - [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+  - [Async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
 
 **What you'll learn**
 
@@ -33,7 +41,7 @@ At the bottom of each section, there is a "View final result" button, this will 
 
 In this codelab, we will build a news app. This is a great exercise to learn the intermediate parts of lit-html and lit-element.
 
-You can follow this codelab using anything that can display a simple HTML page. For the best editing experience, we recommend setting this up using your favorite IDE. Alternatively, you can use an [online code editor like jsbin](https://jsbin.com/?html,output).
+You can follow this codelab using anything that can display a simple HTML page. For the best editing experience, we recommend setting this up using your favorite IDE. Alternatively, you can use an online code editor like [jsbin](https://jsbin.com/?html,output), [stackblitz](https://stackblitz.com/) or [webcomponents.dev](https://webcomponents.dev/).
 
 Let's create a basic HTML page with a module script, and import LitElement from a CDN:
 
@@ -611,6 +619,7 @@ In this example, we register an event listener for the `click` event, and call t
                     <news-article
                       .title=${article.title}
                       .description=${article.description}
+                      .read=${article.read}
                     ></news-article>
                   </li>
                 `,

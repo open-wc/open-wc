@@ -1,5 +1,5 @@
 import path from 'path';
-import { toBrowserPath } from './utils/utils.js';
+import { toBrowserPath, setDebug } from './utils/utils.js';
 import { compatibilityModes, polyfillsModes } from './constants.js';
 
 /**
@@ -24,6 +24,7 @@ import { compatibilityModes, polyfillsModes } from './constants.js';
  * @property {import('koa').Middleware[]} [middlewares]
  * @property {import('./middleware/response-transform').ResponseTransformer[]} responseTransformers
  * @property {boolean} logStartup whether to log server startup
+ * @property {boolean} debug whether to log debug messages
  *
  * Development help
  * @property {boolean} [watch] whether to watch served files and reload the browser on change
@@ -129,7 +130,12 @@ export function createConfig(config) {
     logErrorsToBrowser = false,
     polyfills = polyfillsModes.AUTO,
     responseTransformers,
+    debug = false,
   } = config;
+
+  if (debug) {
+    setDebug(true);
+  }
 
   let { compatibility = compatibilityModes.AUTO } = config;
 
@@ -147,7 +153,7 @@ export function createConfig(config) {
   }
 
   if (!Object.values(polyfillsModes).includes(polyfills)) {
-    throw new Error(`Unknown compatibility mode: ${polyfills}`);
+    throw new Error(`Unknown polyfills mode: ${polyfills}`);
   }
 
   // middlewares used to be called customMiddlewares
@@ -178,17 +184,12 @@ export function createConfig(config) {
   let openPath;
   if (typeof open === 'string' && open !== '') {
     // user-provided open path
-    openPath = path.normalize(open);
+    openPath = open;
   } else if (appIndex) {
     // if an appIndex was provided, use it's directory as open path
     openPath = `${basePath || ''}${appIndexDir}/`;
   } else {
     openPath = basePath ? `${basePath}/` : '/';
-  }
-
-  // make sure path properly starts a /
-  if (!openPath.startsWith('/')) {
-    openPath = `/${openPath}`;
   }
 
   return {

@@ -1,39 +1,5 @@
-/* eslint-disable */
 import { LitElement, html, css } from 'lit-element';
 import './demo-component.js';
-import './meta-url-test.js';
-
-console.log('file name should end with demo/demo-app.js', import.meta.url);
-
-// some simple tests to see if compilation worked
-if (!'foo'.startsWith('foo')) {
-  throw new Error('startsWith failed');
-}
-
-if (!'foo'.endsWith('foo')) {
-  throw new Error('startsWith failed');
-}
-
-if (new Map().set('foo', 'bar').get('foo') !== 'bar') {
-  throw new Error('map failed');
-}
-
-async function asyncFunction() {
-  await new Promise(resolve => setTimeout(resolve, 500));
-}
-asyncFunction();
-console.log('async function compiled to: ', asyncFunction.toString());
-
-function forOf() {
-  const map = new Map();
-  map.set('a', 1);
-  map.set('2', 2);
-  for (const [k, v] of map) {
-    console.log(k, v);
-  }
-}
-forOf();
-console.log('forOf function compiled to: ', forOf.toString());
 
 // partial css trips up the minifier
 const fontSize = css`
@@ -45,51 +11,44 @@ const fontMd = css`
 `;
 
 class DemoApp extends LitElement {
-  static get properties() {
-    return {
-      _myElementLoaded: { type: Boolean },
-    };
-  }
-
-  static styles = css`
-    :host {
-      display: block;
-      color: black;
-      background-color: white;
-      ${fontMd};
-    }
-  `;
-
-  foo = '123';
-
-  constructor() {
-    super();
-
-    this._myElementLoaded = false;
-    this.addEventListener('foo-event', e => {
-      console.log('foo event fired through multiple shadow roots', e.composedPath());
-    });
+  static get styles() {
+    return css`
+      :host {
+        display: block;
+        color: black;
+        background-color: white;
+        ${fontMd}
+      }
+    `;
   }
 
   render() {
     return html`
-      <p>Hello world ${this.foo}</p>
-
-      <button @click="${this._lazyLoad}">Lazy load</button>
-      <demo-component .myProperty=${'Hello world'}></demo-component>
-
-      ${this._myElementLoaded
-        ? html`
-            <lazy-component></lazy-component>
-          `
-        : ''}
+      <p>Demo app</p>
+      <demo-component></demo-component>
+      <lazy-component></lazy-component>
     `;
-  }
-
-  async _lazyLoad() {
-    await import('./lazy/lazy-component.js');
-    this._myElementLoaded = true;
   }
 }
 
 customElements.define('demo-app', DemoApp);
+
+const cssText = DemoApp.styles.cssText.replace(/\s/g, '');
+const foo = { bar: 'lorem ipsum' };
+const loremIpsum = undefined;
+
+window.__optionalChaining = foo?.bar === 'lorem ipsum' && foo?.bar?.loremIpsum === undefined;
+window.__nullishCoalescing = (loremIpsum ?? 'lorem ipsum') === 'lorem ipsum';
+window.__partialCSS = cssText.includes('font-size:16px') && cssText.includes('display:block');
+window.__litElement = (async () => {
+  await import('./lazy-component.js');
+  const app = document.body.querySelector('demo-app');
+  const demoComponent = app.shadowRoot.querySelector('demo-component');
+  const lazyComponent = app.shadowRoot.querySelector('lazy-component');
+
+  return (
+    app.shadowRoot.innerHTML.includes('<p>Demo app</p>') &&
+    demoComponent.shadowRoot.innerHTML.includes('<p>Demo component</p>') &&
+    lazyComponent.shadowRoot.innerHTML.includes('<p>Lazy component</p>')
+  );
+})();

@@ -1,7 +1,10 @@
 import { extractResources, createIndexHTML } from '@open-wc/building-utils/index-html/index.js';
+import systemJsLegacyResolveScript from '../browser-scripts/system-js-legacy-resolve.js';
 import { polyfillsPresets } from './polyfills-presets.js';
 import { addPolyfilledImportMaps } from './import-maps.js';
 import { compatibilityModes, polyfillsModes } from '../constants.js';
+
+const regexpSystemJs = /(<script src=["|']polyfills\/system.*?><\/script>)/g;
 
 /**
  * @typedef {object} TransformIndexHTMLConfig
@@ -22,11 +25,19 @@ function getPolyfills(cfg) {
 
   switch (cfg.compatibilityMode) {
     case compatibilityModes.MAX:
-      return polyfillsPresets.allWithSystemjs;
+      return polyfillsPresets.max;
     case compatibilityModes.MIN:
       return polyfillsPresets.all;
     case compatibilityModes.AUTO:
-      return cfg.uaCompat.supportsEsm ? polyfillsPresets.all : polyfillsPresets.allWithSystemjs;
+    case compatibilityModes.ALWAYS:
+      if (cfg.compatibilityMode === compatibilityModes.AUTO && cfg.uaCompat.modern) {
+        return {};
+      }
+
+      if (cfg.uaCompat.supportsEsm) {
+        return polyfillsPresets.all;
+      }
+      return polyfillsPresets.allWithSystemjs;
     default:
       return {};
   }
@@ -41,7 +52,8 @@ function getPolyfills(cfg) {
  */
 export function getTransformedIndexHTML(cfg) {
   const polyfillModules =
-    (cfg.compatibilityMode === compatibilityModes.AUTO && !cfg.uaCompat.supportsEsm) ||
+    ([compatibilityModes.AUTO, compatibilityModes.ALWAYS].includes(cfg.compatibilityMode) &&
+      !cfg.uaCompat.supportsEsm) ||
     cfg.compatibilityMode === compatibilityModes.MAX;
 
   // extract input files from index.html
@@ -81,6 +93,12 @@ export function getTransformedIndexHTML(cfg) {
   let { indexHTML } = createResult;
   if (polyfillModules) {
     indexHTML = addPolyfilledImportMaps(indexHTML, resources);
+  }
+
+  // inject systemjs resolver which appends a query param to trigger es5 compilation
+  if (polyfillModules) {
+    // inject resolver right after system js script, to make sure it's loaded before and systemjs imports
+    indexHTML = indexHTML.replace(regexpSystemJs, `$1 \n${systemJsLegacyResolveScript}`);
   }
 
   return {

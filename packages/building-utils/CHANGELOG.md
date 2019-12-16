@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.7...@open-wc/building-utils@2.11.0) (2019-12-09)
+
+
+### Features
+
+* **es-dev-server:** allow max compat on modern browsers ([dbb2928](https://github.com/open-wc/open-wc/commit/dbb2928ddc97e567d1751b7c34bf0542036298c3))
+
+
+
+
+
+## [2.10.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.6...@open-wc/building-utils@2.10.7) (2019-12-05)
+
+
+### Bug Fixes
+
+* **building-rollup:** respect output dir for sw.js ([#1082](https://github.com/open-wc/open-wc/issues/1082)) ([a71ed9d](https://github.com/open-wc/open-wc/commit/a71ed9d7162ef3bdddc70ca763f073b8853d31ce))
+
+
+
+
+
+## [2.10.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.5...@open-wc/building-utils@2.10.6) (2019-12-01)
+
+
+### Bug Fixes
+
+* **building-utils:** check ShadyDOM.force in polyfills ([077f799](https://github.com/open-wc/open-wc/commit/077f7997dcee0b7d56bd66daffad155e9980ee3c))
+* **building-utils:** fix wcs test ([8d5eed7](https://github.com/open-wc/open-wc/commit/8d5eed73b77cae7b82b0b477960c3788c32dc174))
+* **building-utils:** update snapshots ([5fc118a](https://github.com/open-wc/open-wc/commit/5fc118af6c19412cc7f782e73e6006234aa892d0))
+
+
+
+
+
+## [2.10.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.4...@open-wc/building-utils@2.10.5) (2019-11-24)
+
+**Note:** Version bump only for package @open-wc/building-utils
+
+
+
+
+
+## [2.10.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.3...@open-wc/building-utils@2.10.4) (2019-11-20)
+
+
+### Bug Fixes
+
+* **es-dev-server:** prefer .mjs over. js files ([27b5a9f](https://github.com/open-wc/open-wc/commit/27b5a9f58d45e213588b1440c53546e0a45d1ac4))
+
+
+
+
+
 ## [2.10.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.2...@open-wc/building-utils@2.10.3) (2019-11-19)
 
 

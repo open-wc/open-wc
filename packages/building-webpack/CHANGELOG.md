@@ -3,6 +3,135 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.9.4...@open-wc/building-webpack@2.10.0) (2019-12-13)
+
+
+### Features
+
+* **building-webpack:** update version of terser ([f537e47](https://github.com/open-wc/open-wc/commit/f537e475e73b31e81cafbaa920de7ca3f2a05e01))
+
+
+
+
+
+## [2.9.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.9.3...@open-wc/building-webpack@2.9.4) (2019-12-11)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.9.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.9.2...@open-wc/building-webpack@2.9.3) (2019-12-09)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.9.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.9.1...@open-wc/building-webpack@2.9.2) (2019-12-09)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.9.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.9.0...@open-wc/building-webpack@2.9.1) (2019-12-08)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+# [2.9.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.8.9...@open-wc/building-webpack@2.9.0) (2019-12-08)
+
+
+### Features
+
+* **building-webpack:** support optional chaining and nullish coalescing ([2e5fac9](https://github.com/open-wc/open-wc/commit/2e5fac99484004ff048e07c5843ec15dc165fa2b))
+
+
+
+
+
+## [2.8.9](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.8.8...@open-wc/building-webpack@2.8.9) (2019-12-05)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.8.8](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.8.7...@open-wc/building-webpack@2.8.8) (2019-12-05)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.8.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.8.6...@open-wc/building-webpack@2.8.7) (2019-12-02)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.8.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.8.5...@open-wc/building-webpack@2.8.6) (2019-12-01)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.8.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.8.4...@open-wc/building-webpack@2.8.5) (2019-11-30)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.8.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.8.3...@open-wc/building-webpack@2.8.4) (2019-11-27)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.8.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.8.2...@open-wc/building-webpack@2.8.3) (2019-11-27)
+
+
+### Bug Fixes
+
+* **building-webpack:** maintain whitespace with  "conservativeCollapse" ([d3eff0b](https://github.com/open-wc/open-wc/commit/d3eff0bea1f7710407db7da47f4d3bdbb959a272))
+
+
+
+
+
+## [2.8.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.8.1...@open-wc/building-webpack@2.8.2) (2019-11-24)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.8.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.8.0...@open-wc/building-webpack@2.8.1) (2019-11-20)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
 # [2.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.7.4...@open-wc/building-webpack@2.8.0) (2019-11-19)
 
 

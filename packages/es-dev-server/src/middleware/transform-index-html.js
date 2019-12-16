@@ -7,6 +7,7 @@ import {
   getBodyAsString,
   toBrowserPath,
   isInlineModule,
+  RequestCancelledError,
 } from '../utils/utils.js';
 import { getUserAgentCompat } from '../utils/user-agent-compat.js';
 
@@ -69,6 +70,11 @@ export function createTransformIndexHTMLMiddleware(cfg) {
       const indexHTML = indexHTMLData.get(
         uaCompat.browserTarget + decodeURIComponent(params.get('source')),
       );
+
+      if (!indexHTML) {
+        return undefined;
+      }
+
       const name = path.basename(url);
       const inlineModule = indexHTML.inlineModules.get(name);
       if (!inlineModule) {
@@ -98,30 +104,37 @@ export function createTransformIndexHTMLMiddleware(cfg) {
       return undefined;
     }
 
-    // transforms index.html to make the code load correctly with the right polyfills and shims
-    const indexHTMLString = await getBodyAsString(ctx);
-    const transformResult = getTransformedIndexHTML({
-      indexUrl: ctx.url,
-      indexHTMLString,
-      compatibilityMode: cfg.compatibilityMode,
-      polyfillsMode: cfg.polyfillsMode,
-      uaCompat,
-    });
+    try {
+      // transforms index.html to make the code load correctly with the right polyfills and shims
+      const indexHTMLString = await getBodyAsString(ctx);
+      const transformResult = getTransformedIndexHTML({
+        indexUrl: ctx.url,
+        indexHTMLString,
+        compatibilityMode: cfg.compatibilityMode,
+        polyfillsMode: cfg.polyfillsMode,
+        uaCompat,
+      });
 
-    // add new index.html
-    ctx.body = transformResult.indexHTML;
+      // add new index.html
+      ctx.body = transformResult.indexHTML;
 
-    // cache index for later use
-    indexHTMLData.set(uaCompat.browserTarget + ctx.url, { ...transformResult, lastModified });
+      // cache index for later use
+      indexHTMLData.set(uaCompat.browserTarget + ctx.url, { ...transformResult, lastModified });
 
-    // cache polyfills for serving
-    transformResult.polyfills.forEach(p => {
-      let root = ctx.url.endsWith('/') ? ctx.url : path.posix.dirname(ctx.url);
-      if (!root.endsWith('/')) {
-        root = `${root}/`;
+      // cache polyfills for serving
+      transformResult.polyfills.forEach(p => {
+        let root = ctx.url.endsWith('/') ? ctx.url : path.posix.dirname(ctx.url);
+        if (!root.endsWith('/')) {
+          root = `${root}/`;
+        }
+        polyfills.set(`${root}${toBrowserPath(p.path)}`, p.content);
+      });
+    } catch (error) {
+      if (error instanceof RequestCancelledError) {
+        return undefined;
       }
-      polyfills.set(`${root}${toBrowserPath(p.path)}`, p.content);
-    });
+      throw error;
+    }
     return undefined;
   }
 

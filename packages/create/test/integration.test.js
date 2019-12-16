@@ -6,6 +6,7 @@ import { promisify } from 'util';
 import { lstatSync, readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { CLIEngine } from 'eslint';
+import { generateCommand } from './generate-command.js';
 
 const exec = promisify(_exec);
 
@@ -16,8 +17,6 @@ const { expect } = chai;
 chai.use(chaiFs);
 
 const getFileMessages = ({ messages, filePath }) => `${filePath}:\n${messages.join('\n')}`;
-
-const COMMAND_PATH = join(__dirname, '../src/create.js');
 
 const ACTUAL_PATH = join(process.cwd(), './scaffold-app');
 
@@ -75,24 +74,15 @@ const generate = ({ command, expectedPath }) =>
     EXPECTED_OUTPUT = readFileSync(EXPECTED_PATH, 'utf-8');
   };
 
-describe('create', () => {
+describe('create', function create() {
+  this.timeout(10000);
+
   // For some reason, this doesn't do anything
   const destinationPath = join(__dirname, './output');
 
   const expectedPath = join(__dirname, './snapshots/fully-loaded-app');
 
-  const command = `node -r @babel/register \
-    ${COMMAND_PATH} \
-      --destinationPath ${destinationPath} \
-      --type scaffold \
-      --scaffoldType app \
-      --features linting testing demoing building \
-      --buildingType rollup \
-      --scaffoldFilesFor testing demoing building \
-      --tagName scaffold-app \
-      --writeToDisk true \
-      --installDependencies false
-  `;
+  const command = generateCommand({ destinationPath });
 
   before(generate({ command, expectedPath }));
 

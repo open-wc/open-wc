@@ -1,0 +1,51 @@
+{
+  "name": "storybook-addon-web-components-knobs",
+  "version": "0.2.2",
+  "description": "Storybook knobs for web-components based on custom-elements.json",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/storybook-addon-web-components-knobs"
+  },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/",
+  "main": "index.js",
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js",
+    "site:build": "build-storybook -c demo/.storybook -o ../../_site/demoing-storybook",
+    "storybook": "start-storybook -p 9001 -c demo/.storybook",
+    "storybook:build": "build-storybook -c demo/.storybook"
+  },
+  "files": [
+    "*.js",
+    "src"
+  ],
+  "keywords": [
+    "storybook",
+    "demo",
+    "demo-states",
+    "testing"
+  ],
+  "peerDependencies": {
+    "@storybook/addon-knobs": "^5.3.0-beta.20",
+    "lit-html": "^1.0.0"
+  },
+  "dependencies": {
+    "@open-wc/testing-helpers": "^1.4.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^5.3.0-beta.20",
+    "@storybook/addon-actions": "^5.3.0-beta.20",
+    "@storybook/addon-backgrounds": "^5.3.0-beta.20",
+    "@storybook/addon-console": "^1.1.0",
+    "@storybook/addon-docs": "5.3.0-beta.20",
+    "@storybook/addon-knobs": "^5.3.0-beta.20",
+    "@storybook/addon-links": "^5.3.0-beta.20",
+    "@storybook/addon-viewport": "^5.3.0-beta.20",
+    "@storybook/web-components": "^5.3.0-beta.20",
+    "babel-loader": "^8.0.0",
+    "lit-element": "^2.0.1",
+    "lit-html": "^1.0.0"
+  }
+}

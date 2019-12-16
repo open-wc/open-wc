@@ -72,7 +72,12 @@ function getPolyfills(config) {
       instructions.push({
         name: 'regenerator-runtime',
         path: require.resolve('regenerator-runtime/runtime'),
-        nomodule: true,
+        /**
+         * Regenerator runtime is necessary when compiling to es5, which we generally only do on browsers
+         * which don't support modules. Using the nomodule flag means we don't need to load the library on
+         * other browsers. This can be overwritten by setting the value to 'always'
+         */
+        nomodule: config.polyfills.regeneratorRuntime !== 'always',
       });
     } catch (error) {
       throw new Error(
@@ -126,7 +131,8 @@ function getPolyfills(config) {
     try {
       instructions.push({
         name: 'webcomponents',
-        test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)",
+        test:
+          "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)",
         path: require.resolve('@webcomponents/webcomponentsjs/webcomponents-bundle.js'),
         sourcemapPath: require.resolve(
           '@webcomponents/webcomponentsjs/webcomponents-bundle.js.map',

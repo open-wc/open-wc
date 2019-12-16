@@ -1,6 +1,12 @@
 import stripAnsi from 'strip-ansi';
-import { DEFAULT_EXTENSIONS } from '@babel/core';
-import { getBodyAsString, getRequestFilePath, isPolyfill } from '../utils/utils.js';
+import { defaultFileExtensions } from '@open-wc/building-utils';
+import {
+  getBodyAsString,
+  getRequestFilePath,
+  isPolyfill,
+  RequestCancelledError,
+  shoudlTransformToModule,
+} from '../utils/utils.js';
 import { sendMessageToActiveBrowsers } from '../utils/message-channel.js';
 import { ResolveSyntaxError } from '../utils/resolve-module-imports.js';
 import { createCompatibilityTransform } from '../utils/compatibility-transform.js';
@@ -39,7 +45,7 @@ function logError(errorMessage) {
  * @param {CompatibilityTransformMiddleware} cfg
  */
 export function createCompatibilityTransformMiddleware(cfg) {
-  const fileExtensions = [...DEFAULT_EXTENSIONS, ...cfg.extraFileExtensions];
+  const fileExtensions = [...cfg.extraFileExtensions, ...defaultFileExtensions];
   const compatibilityTransform = createCompatibilityTransform(cfg);
 
   /** @type {import('koa').Middleware} */
@@ -55,7 +61,12 @@ export function createCompatibilityTransformMiddleware(cfg) {
       return undefined;
     }
 
+    const transformModule = shoudlTransformToModule(ctx.url);
     const filePath = getRequestFilePath(ctx, cfg.rootDir);
+    // if there is no file path, this file was not served statically
+    if (!filePath) {
+      return undefined;
+    }
 
     // Ensure we respond with js content type
     ctx.response.set('content-type', 'text/javascript');
@@ -67,11 +78,16 @@ export function createCompatibilityTransformMiddleware(cfg) {
         uaCompat,
         filePath,
         code,
+        transformModule,
       });
       ctx.body = transformedCode;
       ctx.status = 200;
       return undefined;
     } catch (error) {
+      if (error instanceof RequestCancelledError) {
+        return undefined;
+      }
+
       // ResolveSyntaxError is thrown when resolveModuleImports runs into a syntax error from
       // the lexer, but babel didn't see any errors. this means either a bug in the lexer, or
       // some experimental syntax. log a message and return the module untransformed to the

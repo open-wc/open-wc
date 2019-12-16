@@ -3,7 +3,13 @@ import LRUCache from 'lru-cache';
 import fs from 'fs';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import { promisify } from 'util';
-import { getBodyAsString, getRequestFilePath, isGeneratedFile } from '../utils/utils.js';
+import {
+  getBodyAsString,
+  getRequestFilePath,
+  isGeneratedFile,
+  RequestCancelledError,
+  logDebug,
+} from '../utils/utils.js';
 
 const stat = promisify(fs.stat);
 
@@ -89,6 +95,7 @@ export function createResponseBodyCacheMiddleware(cfg) {
         ctx.body = cached.body;
         ctx.response.set(cached.headers);
         ctx.status = 200;
+        logDebug(`Serving from response body cache: ${ctx.url}`);
         return;
       }
 
@@ -111,15 +118,23 @@ export function createResponseBodyCacheMiddleware(cfg) {
       return;
     }
 
-    const body = await getBodyAsString(ctx);
-    const filePath = getRequestFilePath(ctx, cfg.rootDir);
-    cacheKeysForFilePaths.set(filePath, ctx.url);
-    cache.set(cacheKey, {
-      body,
-      headers: ctx.response.headers,
-      filePath,
-      lastModified: await getLastModified(filePath),
-    });
+    try {
+      const body = await getBodyAsString(ctx);
+      const filePath = getRequestFilePath(ctx, cfg.rootDir);
+      cacheKeysForFilePaths.set(filePath, ctx.url);
+      cache.set(cacheKey, {
+        body,
+        headers: ctx.response.headers,
+        filePath,
+        lastModified: await getLastModified(filePath),
+      });
+      logDebug(`Adding to response body cache: ${ctx.url}`);
+    } catch (error) {
+      if (error instanceof RequestCancelledError) {
+        return;
+      }
+      throw error;
+    }
   }
 
   return responseBodyCacheMiddleware;

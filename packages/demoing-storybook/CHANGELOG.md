@@ -3,6 +3,241 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.4](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.3...@open-wc/demoing-storybook@1.3.4) (2019-12-13)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.3.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.2...@open-wc/demoing-storybook@1.3.3) (2019-12-12)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** use " for stories glob to support windows ([20d9db0](https://github.com/open-wc/open-wc/commit/20d9db0b7419414aa7f8fa0956834015518fe27f))
+
+
+
+
+
+## [1.3.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.1...@open-wc/demoing-storybook@1.3.2) (2019-12-11)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.0...@open-wc/demoing-storybook@1.3.1) (2019-12-10)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** hardcode addon-docs version ([6e4996b](https://github.com/open-wc/open-wc/commit/6e4996bb8fd15ea17b7346a38097de69418d2678))
+* **storybook-addon-web-components-knobs:** hardcode version ([a3dfbf6](https://github.com/open-wc/open-wc/commit/a3dfbf60b9c8c9f022f79dc59ec3ca6caf9757b3))
+
+
+
+
+
+# [1.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.2.0...@open-wc/demoing-storybook@1.3.0) (2019-12-10)
+
+
+### Features
+
+* **demoing-storybook:** update to storybook 5.3.0-beta.20 ([5c2e4d5](https://github.com/open-wc/open-wc/commit/5c2e4d540ae54b4136d50360892a2bad58dd1e35))
+
+
+
+
+
+# [1.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.1.6...@open-wc/demoing-storybook@1.2.0) (2019-12-09)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** fix serving mdx with module transform ([ceb4f08](https://github.com/open-wc/open-wc/commit/ceb4f08ee2f453c6177864212b33829db8639777))
+
+
+### Features
+
+* **demoing-storybook:** use config-dir for resolving default config ([c7361fe](https://github.com/open-wc/open-wc/commit/c7361fec86f9114048ab5e9e102681d7345c985b))
+
+
+
+
+
+## [1.1.6](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.1.5...@open-wc/demoing-storybook@1.1.6) (2019-12-09)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.1.5](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.1.4...@open-wc/demoing-storybook@1.1.5) (2019-12-08)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.1.4](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.1.3...@open-wc/demoing-storybook@1.1.4) (2019-12-08)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.1.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.1.2...@open-wc/demoing-storybook@1.1.3) (2019-12-05)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.1.1...@open-wc/demoing-storybook@1.1.2) (2019-12-05)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.1.0...@open-wc/demoing-storybook@1.1.1) (2019-12-03)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** default build folder should be storybook-static ([17624a7](https://github.com/open-wc/open-wc/commit/17624a73d65f1d76a6cdd4fc9fc1f71977359a50))
+* **demoing-storybook:** export Anchor, Description, Heading doc blocks ([3cca3c9](https://github.com/open-wc/open-wc/commit/3cca3c92a1db893bef3e27533f363390c36a43fd))
+
+
+
+
+
+# [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.12...@open-wc/demoing-storybook@1.1.0) (2019-12-02)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** typing in inputs shall not change storybook ui ([8c95d97](https://github.com/open-wc/open-wc/commit/8c95d9779671e95a35efae55aab46084b74c4c1e))
+
+
+### Features
+
+* **demoing-storybook:** add storybook-start help command ([4eebd38](https://github.com/open-wc/open-wc/commit/4eebd3896f6c0d4f7fb02417ec373d5d2429f79b))
+
+
+
+
+
+## [1.0.12](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.11...@open-wc/demoing-storybook@1.0.12) (2019-12-01)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.0.11](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.10...@open-wc/demoing-storybook@1.0.11) (2019-11-30)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.0.10](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.9...@open-wc/demoing-storybook@1.0.10) (2019-11-27)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.0.9](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.8...@open-wc/demoing-storybook@1.0.9) (2019-11-27)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.0.8](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.7...@open-wc/demoing-storybook@1.0.8) (2019-11-24)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.0.7](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.6...@open-wc/demoing-storybook@1.0.7) (2019-11-23)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** show api table in docs mode ([d9c244e](https://github.com/open-wc/open-wc/commit/d9c244e4d2af1072634eafdff93aed1c34db52fe))
+
+
+
+
+
+## [1.0.6](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.5...@open-wc/demoing-storybook@1.0.6) (2019-11-23)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** default root-dir to cwd ([e5a25e8](https://github.com/open-wc/open-wc/commit/e5a25e8c63e275b8c6d0bfd2779c7c4e08032158))
+
+
+
+
+
+## [1.0.5](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.4...@open-wc/demoing-storybook@1.0.5) (2019-11-21)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.0.4](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.3...@open-wc/demoing-storybook@1.0.4) (2019-11-21)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** build needs to take rootDir into account ([cc8e74f](https://github.com/open-wc/open-wc/commit/cc8e74fe1277ee33f32380196533b6aa38501ca4))
+
+
+
+
+
+## [1.0.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.2...@open-wc/demoing-storybook@1.0.3) (2019-11-20)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** escape quotes in Storybook scripts ([35dfc70](https://github.com/open-wc/open-wc/commit/35dfc700e387cece89b1533898f93cdfcc3d4fd5))
+* **demoing-storybook:** properly resolve files relative to root dir ([01852be](https://github.com/open-wc/open-wc/commit/01852bee5696d5d3d948fc1bdda8ba168c2fbffe))
+
+
+
+
+
+## [1.0.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.1...@open-wc/demoing-storybook@1.0.2) (2019-11-20)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
 ## [1.0.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.0.0...@open-wc/demoing-storybook@1.0.1) (2019-11-19)
 
 

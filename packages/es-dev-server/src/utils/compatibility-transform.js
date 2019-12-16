@@ -1,5 +1,5 @@
 import minimatch from 'minimatch';
-import { DEFAULT_EXTENSIONS } from '@babel/core';
+import { defaultFileExtensions } from '@open-wc/building-utils';
 import {
   createCompatibilityBabelTransform,
   createMinCompatibilityBabelTransform,
@@ -9,6 +9,7 @@ import {
 } from './babel-transform.js';
 import { resolveModuleImports } from './resolve-module-imports.js';
 import { compatibilityModes } from '../constants.js';
+import { logDebug } from './utils.js';
 
 /** @typedef {import('./babel-transform.js').BabelTransform} BabelTransform */
 
@@ -32,13 +33,14 @@ import { compatibilityModes } from '../constants.js';
  * @property {import('./user-agent-compat.js').UserAgentCompat} uaCompat
  * @property {string} filePath
  * @property {string} code
+ * @property {boolean} transformModule
  */
 
 /**
  * @param {CompatibilityTransformConfig} cfg
  */
 export function createCompatibilityTransform(cfg) {
-  const fileExtensions = [...DEFAULT_EXTENSIONS, ...cfg.extraFileExtensions];
+  const fileExtensions = [...cfg.extraFileExtensions, ...defaultFileExtensions];
   /** @type {Map<string, BabelTransform>} */
   const babelTransforms = new Map();
   const minCompatibilityTransform = createMinCompatibilityBabelTransform(cfg);
@@ -66,6 +68,14 @@ export function createCompatibilityTransform(cfg) {
   }
 
   /**
+   * @param {FileData} file
+   * @returns {boolean}
+   */
+  function isAutoModernTransform(file) {
+    return cfg.compatibilityMode === compatibilityModes.AUTO && file.uaCompat.modern;
+  }
+
+  /**
    * Gets the compatibility transform function based on the compatibility
    * mode.
    * @param {FileData} file
@@ -73,10 +83,18 @@ export function createCompatibilityTransform(cfg) {
   function getCompatibilityBabelTranform(file) {
     switch (cfg.compatibilityMode) {
       case compatibilityModes.AUTO:
+      case compatibilityModes.ALWAYS: {
+        // if this is an auto modern transform, we can skip compatibility transformation
+        // and just do the custom user transformation
+        if (cfg.compatibilityMode === compatibilityModes.AUTO && isAutoModernTransform(file)) {
+          return createBabelTransform(cfg);
+        }
+
         return file.uaCompat.browserTarget
           ? getAutoCompatibilityBabelTranform(file)
           : // fall back to max if browser target couldn't be found
             maxCompatibilityTransform;
+      }
       case compatibilityModes.MIN:
         return minCompatibilityTransform;
       case compatibilityModes.MAX:
@@ -100,11 +118,8 @@ export function createCompatibilityTransform(cfg) {
       return false;
     }
 
-    const autoModernTransform =
-      cfg.compatibilityMode === compatibilityModes.AUTO && file.uaCompat.modern;
-
     // auto transform can be skipped for modern browsers if there is no user-defined config
-    if (!customUserTransform && autoModernTransform) {
+    if (!customUserTransform && isAutoModernTransform(file)) {
       return false;
     }
 
@@ -133,14 +148,7 @@ export function createCompatibilityTransform(cfg) {
       return false;
     }
 
-    switch (cfg.compatibilityMode) {
-      case compatibilityModes.AUTO:
-        return !file.uaCompat.supportsEsm;
-      case compatibilityModes.MAX:
-        return true;
-      default:
-        return false;
-    }
+    return file.transformModule;
   }
 
   /**
@@ -152,6 +160,13 @@ export function createCompatibilityTransform(cfg) {
     const transformModuleImports = !excludeFromBabel && cfg.nodeResolve;
     const transformModules = shouldTransformModules(file);
     let transformedCode = file.code;
+
+    logDebug(
+      `Compatibility transform babel: ${transformBabel}, ` +
+        `imports: ${transformModuleImports}, ` +
+        `modules: ${transformModules} ` +
+        `for request: ${file.filePath}`,
+    );
 
     /**
      * Transform code to a compatible format based on the compatibility setting. We keep ESM syntax

@@ -3,6 +3,161 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.15.4...@open-wc/building-rollup@0.16.0) (2019-12-13)
+
+
+### Features
+
+* **building-rollup:** update version of rollup-plugin-terser ([abda5e8](https://github.com/open-wc/open-wc/commit/abda5e84188eaa508a2666a5acdff4ea9bb70904))
+* **building-webpack:** update version of terser ([f537e47](https://github.com/open-wc/open-wc/commit/f537e475e73b31e81cafbaa920de7ca3f2a05e01))
+
+
+
+
+
+## [0.15.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.15.3...@open-wc/building-rollup@0.15.4) (2019-12-11)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.15.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.15.2...@open-wc/building-rollup@0.15.3) (2019-12-09)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.15.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.15.1...@open-wc/building-rollup@0.15.2) (2019-12-09)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.15.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.15.0...@open-wc/building-rollup@0.15.1) (2019-12-08)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+# [0.15.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.10...@open-wc/building-rollup@0.15.0) (2019-12-08)
+
+
+### Features
+
+* **building-rollup:** support optional chaining and nullish coalescing ([43ccef7](https://github.com/open-wc/open-wc/commit/43ccef7297277ff7ad60e9c4344b8d7059d2cce3))
+
+
+
+
+
+## [0.14.10](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.9...@open-wc/building-rollup@0.14.10) (2019-12-05)
+
+
+### Bug Fixes
+
+* **building-rollup:** respect output dir for sw.js ([#1082](https://github.com/open-wc/open-wc/issues/1082)) ([a71ed9d](https://github.com/open-wc/open-wc/commit/a71ed9d7162ef3bdddc70ca763f073b8853d31ce))
+
+
+
+
+
+## [0.14.9](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.8...@open-wc/building-rollup@0.14.9) (2019-12-05)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.14.8](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.7...@open-wc/building-rollup@0.14.8) (2019-12-02)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.14.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.6...@open-wc/building-rollup@0.14.7) (2019-12-01)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.14.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.5...@open-wc/building-rollup@0.14.6) (2019-11-30)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.14.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.4...@open-wc/building-rollup@0.14.5) (2019-11-27)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.14.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.3...@open-wc/building-rollup@0.14.4) (2019-11-27)
+
+
+### Bug Fixes
+
+* **building-rollup:** maintain whitespace with  "conservativeCollapse" ([354a5e6](https://github.com/open-wc/open-wc/commit/354a5e635dc762807643e1ead29964c6bae6b26c))
+
+
+
+
+
+## [0.14.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.2...@open-wc/building-rollup@0.14.3) (2019-11-24)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.14.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.1...@open-wc/building-rollup@0.14.2) (2019-11-21)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.14.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.0...@open-wc/building-rollup@0.14.1) (2019-11-20)
+
+
+### Bug Fixes
+
+* **building-rollup:** remove hash manifest ([8cebba6](https://github.com/open-wc/open-wc/commit/8cebba64b1f4026845cddd107afcdd652727a3ce))
+
+
+
+
+
+# [0.14.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.13.2...@open-wc/building-rollup@0.14.0) (2019-11-20)
+
+
+### Features
+
+* **building-rollup:** use shared extensions config ([39da78b](https://github.com/open-wc/open-wc/commit/39da78bcad70aaf1aa04cfe34a649b837f56d1ab))
+
+
+
+
+
 ## [0.13.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.13.1...@open-wc/building-rollup@0.13.2) (2019-11-19)
 
 **Note:** Version bump only for package @open-wc/building-rollup

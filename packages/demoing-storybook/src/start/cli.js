@@ -3,22 +3,28 @@
 /* eslint-disable no-console, no-param-reassign */
 
 const { createConfig, startServer } = require('es-dev-server');
+const path = require('path');
 
 const readCommandLineArgs = require('./readCommandLineArgs');
 const createServeManagerMiddleware = require('./middleware/createServeManagerMiddleware');
 const createServePreviewTransformer = require('./transformers/createServePreviewTransformer');
-const mdxToJSTransformer = require('./transformers/mdxToJS');
+const createMdxToJs = require('./transformers/createMdxToJs');
+const toBrowserPath = require('../shared/toBrowserPath');
 const getAssets = require('../shared/getAssets');
 const listFiles = require('../shared/listFiles');
 
 async function run() {
   const config = readCommandLineArgs();
+  const rootDir = config.esDevServerConfig.rootDir
+    ? path.resolve(process.cwd(), config.esDevServerConfig.rootDir)
+    : process.cwd();
 
   const storybookConfigDir = config.storybookServerConfig['config-dir'];
-  const storiesPattern = `${process.cwd()}/${config.storybookServerConfig.stories}`;
-  const storyUrls = (await listFiles(storiesPattern)).map(path =>
-    path.replace(`${process.cwd()}/`, ''),
-  );
+  const storiesPattern = `${rootDir}/${config.storybookServerConfig.stories}`;
+  const storyUrls = (await listFiles(storiesPattern, rootDir)).map(filePath => {
+    const relativeFilePath = path.relative(rootDir, filePath);
+    return `/${toBrowserPath(relativeFilePath)}`;
+  });
 
   const assets = getAssets({ storybookConfigDir, storyUrls });
   config.esDevServerConfig.babelExclude = [
@@ -33,7 +39,7 @@ async function run() {
 
   config.esDevServerConfig.fileExtensions = [
     ...(config.esDevServerConfig.fileExtensions || []),
-    'mdx',
+    '.mdx',
   ];
 
   if (storyUrls.length === 0) {
@@ -48,7 +54,7 @@ async function run() {
   ];
 
   config.esDevServerConfig.responseTransformers = [
-    mdxToJSTransformer,
+    createMdxToJs(rootDir),
     createServePreviewTransformer(assets),
     ...(config.esDevServerConfig.responseTransformers || []),
   ];

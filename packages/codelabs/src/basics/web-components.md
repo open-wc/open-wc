@@ -16,6 +16,9 @@ Furthermore, Web Components can also be used to compose entire applications and 
 
 - A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
 - Basic knowledge of HTML, CSS, and Javascript.
+- Familiarity with the following concepts:
+  - [Javascript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+  - [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
 **What you'll learn**
 

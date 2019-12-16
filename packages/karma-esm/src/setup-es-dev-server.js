@@ -1,3 +1,5 @@
+const fs = require('fs');
+const util = require('util');
 const portfinder = require('portfinder');
 const chokidar = require('chokidar');
 const fetch = require('node-fetch');
@@ -7,14 +9,32 @@ const regexpKarmaLoaded = /window\.__karma__\.loaded\(\);/gm;
 const regexpScriptSrcGlobal = /<script type="module"[^>]*src="([^"]*)"/gm;
 const regexpScriptSrc = /<script type="module"[^>]*src="([^"]*)"/m;
 
+const readFileAsync = util.promisify(fs.readFile);
+
+/**
+ * Load importMap content from a filepath
+ * @param {string} path
+ * @returns {Promise<string>}
+ */
+async function loadImportMap(path) {
+  let result;
+  try {
+    result = await readFileAsync(path, 'utf8');
+  } catch (error) {
+    console.warn(`Unable to load importMap from "${path}": ${error}`); // eslint-disable-line no-console
+  }
+  return result;
+}
+
 /**
  * Fetches the original test HTML file from karma and injects code to ensure all tests
  * are loaded before running karma.
  * @param {string} karmaHost
  * @param {string} name
+ * @param {string} importMap
  * @returns {Promise<{ body: string}>}
  */
-async function fetchKarmaHTML(karmaHost, name) {
+async function fetchKarmaHTML(karmaHost, name, importMap) {
   // fetch the original html source from karma, so that it injects test files
   // @ts-ignore
   const response = await fetch(`${karmaHost}/${name}.html?bypass-es-dev-server`);
@@ -25,6 +45,16 @@ async function fetchKarmaHTML(karmaHost, name) {
     regexpKarmaLoaded,
     '// disabled by karma-esm\n // window.__karma__.loaded();',
   );
+
+  if (importMap) {
+    body = body.replace(
+      '</head>',
+      `<script type="importmap">
+      ${importMap}
+    </script>
+    </head>`,
+    );
+  }
 
   // extract all test file sources
   const matches = body.match(regexpScriptSrcGlobal);
@@ -51,7 +81,8 @@ async function fetchKarmaHTML(karmaHost, name) {
         .join(',')}])
         .then(() => window.__karma__.loaded())
         .catch(() => window.__karma__.error())
-    </script>`,
+    </script>
+    </body>`,
   );
   return { body };
 }
@@ -62,14 +93,14 @@ async function fetchKarmaHTML(karmaHost, name) {
  * es-dev-server serving logic, so that modules are resolved and babel or compatibility mode
  * can process the html and test files.
  */
-function createServeKarmaHtml(karmaHost) {
+function createServeKarmaHtml(karmaHost, importMap) {
   return async function serveKarmaHtml({ url }) {
     if (url.startsWith('/context.html')) {
-      return fetchKarmaHTML(karmaHost, 'context');
+      return fetchKarmaHTML(karmaHost, 'context', importMap);
     }
 
     if (url.startsWith('/debug.html')) {
-      return fetchKarmaHTML(karmaHost, 'debug');
+      return fetchKarmaHTML(karmaHost, 'debug', importMap);
     }
 
     return null;
@@ -79,12 +110,13 @@ function createServeKarmaHtml(karmaHost) {
 async function setupDevServer(karmaConfig, esmConfig, watch, babelConfig, karmaEmitter) {
   const devServerPort =
     typeof esmConfig.port === 'number' ? esmConfig.port : await portfinder.getPortPromise();
-  const karmaHost = `${karmaConfig.protocol}//${karmaConfig.listenAddress}:${karmaConfig.port}`;
-  const devServerHost = `${karmaConfig.protocol}//${karmaConfig.listenAddress}:${devServerPort}`;
+  const karmaHost = `${karmaConfig.protocol}//${karmaConfig.hostname}:${karmaConfig.port}`;
+  const devServerHost = `${karmaConfig.protocol}//${karmaConfig.hostname}:${devServerPort}`;
+  const importMap = esmConfig.importMap ? await loadImportMap(esmConfig.importMap) : null;
 
   const esDevServerConfig = createConfig({
     port: devServerPort,
-    hostname: karmaConfig.listenAddress,
+    hostname: karmaConfig.hostname,
     rootDir: karmaConfig.basePath,
     nodeResolve: esmConfig.nodeResolve,
     compatibility: esmConfig.compatibility,
@@ -100,7 +132,8 @@ async function setupDevServer(karmaConfig, esmConfig, watch, babelConfig, karmaE
     // @ts-ignore
     middlewares: esmConfig.middlewares || esmConfig.customMiddlewares,
     preserveSymlinks: esmConfig.preserveSymlinks,
-    responseTransformers: [createServeKarmaHtml(karmaHost)],
+    responseTransformers: [createServeKarmaHtml(karmaHost, importMap)],
+    debug: esmConfig.debug,
     watch: false,
     babelConfig,
   });

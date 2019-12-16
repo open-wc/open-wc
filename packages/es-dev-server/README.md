@@ -82,17 +82,17 @@ es-dev-server requires node v10 or higher
 
 ### Code transformation
 
-| name                 | type         | description                                                                                  |
-| -------------------- | ------------ | -------------------------------------------------------------------------------------------- |
-| compatibility        | string       | Compatibility mode for older browsers. Can be: `auto`, `min`, `max` or `none` Default `auto` |
-| node-resolve         | number       | Resolve bare import imports using node resolve                                               |
-| preserve-symlinks    | boolean      | Preserve symlinks when resolving modules. Default false.                                     |
-| module-dirs          | string/array | Directories to resolve modules from. Used by node-resolve                                    |
-| babel                | boolean      | Transform served code through babel. Requires .babelrc                                       |
-| file-extensions      | number/array | Extra file extensions to use when transforming code.                                         |
-| babel-exclude        | number/array | Patterns of files to exclude from babel compilation.                                         |
-| babel-modern-exclude | number/array | Patterns of files to exclude from babel compilation on modern browsers.                      |
-| babel-module-exclude | number/array | Patterns of files to exclude from babel compilation for modules only.                        |
+| name                 | type         | description                                                                                                                     |
+| -------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| compatibility        | string       | Compatibility mode for older browsers. Can be: `auto`, `always`, `min`, `max` or `none` Default `auto`                          |
+| node-resolve         | number       | Resolve bare import imports using node resolve                                                                                  |
+| preserve-symlinks    | boolean      | Preserve symlinks when resolving modules. Set to true, if using tools that rely on symlinks, such as `npm link`. Default false. |
+| module-dirs          | string/array | Directories to resolve modules from. Used by node-resolve                                                                       |
+| babel                | boolean      | Transform served code through babel. Requires .babelrc                                                                          |
+| file-extensions      | number/array | Extra file extensions to use when transforming code.                                                                            |
+| babel-exclude        | number/array | Patterns of files to exclude from babel compilation.                                                                            |
+| babel-modern-exclude | number/array | Patterns of files to exclude from babel compilation on modern browsers.                                                         |
+| babel-module-exclude | number/array | Patterns of files to exclude from babel compilation for modules only.                                                           |
 
 Most commands have an alias/shorthand. You can view them by using `--help`.
 
@@ -468,9 +468,14 @@ Compatibility mode can be configured using the `--compatibility` flag. The possi
 **auto**
 `auto` compatibility looks at the current browser to determine the level of compatibility to enable. On the latest 2 versions of the major browsers, it doesn't do any work. This keeps the server as fast as possible in the general case.
 
-On older browsers, the server uses the browser's user agent and [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env) to do a targeted transformation for that specific browser and version. If the browser does not support es module scripts, dynamic imports or `import.meta.url` es modules are transformed to [system-js](https://github.com/systemjs/systemjs).
+On older browsers, the server uses the browser's user agent and [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env) to do a targeted transformation for that specific browser and version. `@babel/preset-env` only works with with stage 4 javascript features, they should become an official standard before they can be used.
+
+If the browser does not support es module scripts, dynamic imports or `import.meta.url` es modules are transformed to [system-js](https://github.com/systemjs/systemjs).
 
 This works down to at least IE11. Depending on what browser features you are using, it might work with earlier version too but this is not tested.
+
+**always**
+`always` compatibility is the same as `auto`, except that it doesn't skip compiling on the latest 2 versions of the major browsers. This makes it a bit slower on modern browsers, but allows you to use new features before they are implemented in the browser.
 
 **min**
 `min` compatibility forces the same level of compatibility on all browsers. It makes code compatible with the latest two versions of the major browsers, and does not transform es modules.

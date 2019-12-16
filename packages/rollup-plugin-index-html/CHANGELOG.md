@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.5](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.7.4...rollup-plugin-index-html@1.7.5) (2019-12-09)
+
+**Note:** Version bump only for package rollup-plugin-index-html
+
+
+
+
+
+## [1.7.4](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.7.3...rollup-plugin-index-html@1.7.4) (2019-12-05)
+
+**Note:** Version bump only for package rollup-plugin-index-html
+
+
+
+
+
+## [1.7.3](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.7.2...rollup-plugin-index-html@1.7.3) (2019-12-01)
+
+
+### Bug Fixes
+
+* **building-utils:** update snapshots ([5fc118a](https://github.com/open-wc/open-wc/commit/5fc118af6c19412cc7f782e73e6006234aa892d0))
+
+
+
+
+
+## [1.7.2](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.7.1...rollup-plugin-index-html@1.7.2) (2019-11-24)
+
+**Note:** Version bump only for package rollup-plugin-index-html
+
+
+
+
+
+## [1.7.1](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.7.0...rollup-plugin-index-html@1.7.1) (2019-11-20)
+
+**Note:** Version bump only for package rollup-plugin-index-html
+
+
+
+
+
 # [1.7.0](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.6.0...rollup-plugin-index-html@1.7.0) (2019-11-19)
 
 

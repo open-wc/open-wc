@@ -11,15 +11,15 @@
     "test:update-snapshots": "karma start --update-snapshots",
     "test:prune-snapshots": "karma start --prune-snapshots",
     "test:bs": "karma start karma.bs.config.js --coverage",
-    "storybook": "start-storybook --stories 'components/*/stories/*.stories.{js,mdx}' --node-resolve --watch --open",
-    "storybook:build": "build-storybook --stories 'components/*/stories/*.stories.{js,mdx}'",
+    "storybook": "start-storybook --stories \"components/*/stories/*.stories.{js,mdx}\" --node-resolve --watch --open",
+    "storybook:build": "build-storybook --stories \"components/*/stories/*.stories.{js,mdx}\"",
     "start:build": "cd dist && es-dev-server --open",
     "build": "rimraf dist && rollup -c rollup.config.js",
     "start": "es-dev-server --app-index index.html --node-resolve --open --watch"
   },
   "devDependencies": {
     "eslint": "^6.1.0",
-    "@open-wc/eslint-config": "^1.0.0",
+    "@open-wc/eslint-config": "^2.0.0",
     "@open-wc/prettier-config": "^0.1.10",
     "husky": "^1.0.0",
     "lint-staged": "^8.0.0",
@@ -28,7 +28,7 @@
     "@open-wc/testing-karma-bs": "^1.0.0",
     "@open-wc/testing": "^2.0.0",
     "@open-wc/demoing-storybook": "^1.0.1",
-    "@open-wc/building-rollup": "^0.9.0",
+    "@open-wc/building-rollup": "^0.15.1",
     "rimraf": "^2.6.3",
     "rollup": "^1.15.4",
     "es-dev-server": "^1.5.0"
