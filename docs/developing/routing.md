@@ -6,9 +6,33 @@ There are many roads that lead to Rome, and different apps have different requir
 
 In alphabetical order:
 
+<hr>
+
 - [lit-element-router](https://github.com/hamedasemi/lit-element-router)
+  <NpmUsage routerName="lit-element-router"/>
+
+  <hr>
+
 - [lit-router](https://github.com/danevans/lit-router)
+  <NpmUsage routerName="lit-router"/>
+
+  <hr>
+
 - [pwa-helpers router](https://github.com/Polymer/pwa-helpers#routerjs)
+  <NpmUsage routerName="pwa-helpers"/>
+
+  <hr>
+
 - [redux first routing](https://github.com/mksarge/redux-first-routing)
+  <NpmUsage routerName="redux-first-routing"/>
+
+  <hr>
+
 - [simplr-router](https://github.com/Matsuuu/simplr-router)
+  <NpmUsage routerName="simplr-router"/>
+
+  <hr>
+
 - [vaadin-router](https://github.com/vaadin/vaadin-router)
+  <NpmUsage routerName="@vaadin/router"/>
+  <hr>
