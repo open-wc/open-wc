@@ -13,14 +13,20 @@ const defaultConfig = {
   fileExtensions: ['.mjs', '.js'],
   moduleDirectories: ['node_modules'],
   preserveSymlinks: false,
+  dedupeModules: () => false,
 };
 
 async function expectMatchesSnapshot(name, source, configOverrides = {}) {
   const file = path.resolve(snapshotsDir, `${name}.js`);
-  const resolvedSource = await resolveModuleImports(baseDir, sourceFileName, source, {
-    ...defaultConfig,
-    ...configOverrides,
-  });
+  const resolvedSource = await resolveModuleImports(
+    baseDir,
+    configOverrides.sourceFileName || sourceFileName,
+    source,
+    {
+      ...defaultConfig,
+      ...configOverrides,
+    },
+  );
 
   if (updateSnapshots) {
     fs.writeFileSync(file, resolvedSource, 'utf-8');
@@ -257,11 +263,62 @@ describe('resolve-module-imports', () => {
       await resolveModuleImports(baseDir, sourceFileName, 'import "nope";', defaultConfig);
     } catch (error) {
       thrown = true;
-      expect(error.message).to.equal(
-        `Could not resolve "import { ... } from 'nope';" in "./src/foo.js".`,
-      );
+      expect(error.message).to.equal(`Could not resolve import "nope" in "./src/foo.js".`);
     }
 
     expect(thrown).to.equal(true);
+  });
+
+  it('resolves nested node_modules', async () => {
+    await expectMatchesSnapshot(
+      'nested-node_modules',
+      `
+      import 'my-module';
+      import 'my-module/bar/index.js';
+    `,
+      {
+        sourceFileName: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
+      },
+    );
+  });
+
+  it('resolves from root node_modules when dedupe is enabled', async () => {
+    await expectMatchesSnapshot(
+      'deduped-node_modules',
+      `
+      import 'my-module';
+      import 'my-module/bar/index.js';
+    `,
+      {
+        sourceFileName: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
+        dedupeModules: () => true,
+      },
+    );
+  });
+
+  it('does not resolve relative imports from root when dedupe is enabled', async () => {
+    await expectMatchesSnapshot(
+      'relative-deduped-node_modules',
+      `
+      import './my-module-2';
+    `,
+      {
+        sourceFileName: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
+        dedupeModules: () => true,
+      },
+    );
+  });
+
+  it('falls back to resolving relatively when a module could not be resolved from root', async () => {
+    await expectMatchesSnapshot(
+      'none-dedupable',
+      `
+      import 'non-dedupable';
+    `,
+      {
+        sourceFileName: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
+        dedupeModules: () => true,
+      },
+    );
   });
 });

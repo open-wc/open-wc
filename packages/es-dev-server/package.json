@@ -26,6 +26,7 @@
     "prepublishOnly": "npm run build && ../../scripts/insert-header.js",
     "start:babel": "yarn build && node dist/cli.js -c demo/babel/server.js --open --watch",
     "start:base-path": "yarn build && node dist/cli.js -c demo/base-path/server.js",
+    "start:dedupe": "yarn build && node dist/cli.js -c demo/dedupe/server.js --open --watch",
     "start:http2": "yarn build && node dist/cli.js -c demo/http2/server.js",
     "start:import-map": "yarn build && node dist/cli.js -c demo/import-map/server.js",
     "start:node-resolve": "yarn build && node dist/cli.js -c demo/node-resolve/server.js --open --watch",

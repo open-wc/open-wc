@@ -38,6 +38,8 @@ import { compatibilityModes, polyfillsModes } from './constants.js';
  *  "max" or "none". Defaults to "auto"
  * @property {string} [polyfills] polyfills mode, can be "auto" or "none". Defaults to "auto".
  * @property {boolean} [nodeResolve] whether to resolve bare module imports using node resolve
+ * @property {string[] | ((path: string) => boolean) | boolean} dedupeModules dedupe ensures only one
+ *   version of a module is ever resolved by resolving it from the root node_modules.
  * @property {boolean} [preserveSymlinks] preserve symlinks when resolving modules. Default false,
  *  which is the default node behavior.
  * @property {string[]} [moduleDirs] directories to resolve modules from when using nodeResolve
@@ -89,6 +91,7 @@ import { compatibilityModes, polyfillsModes } from './constants.js';
  * Code transformation
  * @property {string[]} moduleDirectories
  * @property {boolean} nodeResolve
+ * @property {((path: string) => boolean)} dedupeModules
  * @property {boolean} preserveSymlinks
  * @property {boolean} readUserBabelConfig same as babel option in command line args
  * @property {string} compatibilityMode
@@ -121,6 +124,7 @@ export function createConfig(config) {
     logStartup,
     moduleDirs = ['node_modules'],
     nodeResolve = false,
+    dedupeModules: dedupeModulesArg,
     open = false,
     port,
     preserveSymlinks = false,
@@ -192,6 +196,24 @@ export function createConfig(config) {
     openPath = basePath ? `${basePath}/` : '/';
   }
 
+  const dedupeModules = (() => {
+    if (dedupeModulesArg) {
+      if (Array.isArray(dedupeModulesArg)) {
+        /** @param {string} importPath  */
+        const dedupe = importPath => dedupeModulesArg.includes(importPath);
+        return dedupe;
+      }
+
+      if (dedupeModulesArg === true) {
+        return () => true;
+      }
+
+      throw Error(`Invalid dedupeModules value: ${dedupeModulesArg}`);
+    } else {
+      return () => false;
+    }
+  })();
+
   return {
     appIndex,
     appIndexDir,
@@ -211,6 +233,7 @@ export function createConfig(config) {
     logStartup,
     moduleDirectories: moduleDirs,
     nodeResolve,
+    dedupeModules,
     openBrowser: open === true || typeof open === 'string',
     openPath,
     port,
