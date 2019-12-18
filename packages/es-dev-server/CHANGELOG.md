@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.32.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.31.1...es-dev-server@1.32.0) (2019-12-18)
+
+
+### Features
+
+* **es-dev-server:** add module dedupe option ([#1097](https://github.com/open-wc/open-wc/issues/1097)) ([38bc654](https://github.com/open-wc/open-wc/commit/38bc654cb629920ebd816d8d6323c885450b1990))
+* **es-dev-server:** bump version of es-module-lexer ([#1146](https://github.com/open-wc/open-wc/issues/1146)) ([634b32e](https://github.com/open-wc/open-wc/commit/634b32ec013d5124975cf9f72b4c8b8a27a4b0d9))
+
+
+
+
+
 ## [1.31.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.31.0...es-dev-server@1.31.1) (2019-12-11)
 
 

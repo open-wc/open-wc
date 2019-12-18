@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.16.0...@open-wc/building-rollup@0.17.0) (2019-12-18)
+
+
+### Features
+
+* **building-rollup:** use new node-resolve plugin name ([#1137](https://github.com/open-wc/open-wc/issues/1137)) ([2f72252](https://github.com/open-wc/open-wc/commit/2f7225291662c163eeb7ad1202f8daa3dd84f067))
+
+
+
+
+
 # [0.16.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.15.4...@open-wc/building-rollup@0.16.0) (2019-12-13)
 
 
