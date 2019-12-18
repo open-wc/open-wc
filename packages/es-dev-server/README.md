@@ -87,7 +87,7 @@ es-dev-server requires node v10 or higher
 | -------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | compatibility        | string        | Compatibility mode for older browsers. Can be: `auto`, `always`, `min`, `max` or `none` Default `auto`                          |
 | node-resolve         | boolean       | Resolve bare import imports using node resolve                                                                                  |
-| dedupe               | boolean/array | Deduplicates all or specified packages' modules                                                                                 |
+| dedupe               | boolean/array | Deduplicates all modules, or modules from specified packages if the value is an array                                           |
 | preserve-symlinks    | boolean       | Preserve symlinks when resolving modules. Set to true, if using tools that rely on symlinks, such as `npm link`. Default false. |
 | module-dirs          | string/array  | Directories to resolve modules from. Used by node-resolve                                                                       |
 | babel                | boolean       | Transform served code through babel. Requires .babelrc                                                                          |

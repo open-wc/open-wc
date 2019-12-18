@@ -1,13 +1,13 @@
 /* eslint-disable no-await-in-loop, no-restricted-syntax, no-console */
 import whatwgUrl from 'whatwg-url';
-import nodeResolve from 'resolve';
+import nodeResolveWithCallback from 'resolve';
 import pathIsInside from 'path-is-inside';
 import deepmerge from 'deepmerge';
 // typescript can't resolve a .cjs file
 // @ts-ignore
 import { parse } from 'es-module-lexer';
 import path from 'path';
-import { toBrowserPath } from './utils.js';
+import { toBrowserPath, logDebug } from './utils.js';
 import { createBabelTransform, defaultConfig } from './babel-transform.js';
 
 const CONCAT_NO_PACKAGE_ERROR =
@@ -30,7 +30,7 @@ export class ResolveSyntaxError extends Error {}
  */
 function nodeResolveAsync(importPath, options) {
   return new Promise((resolve, reject) =>
-    nodeResolve(importPath, options, (error, result) => {
+    nodeResolveWithCallback(importPath, options, (error, result) => {
       if (error) {
         reject(error);
       } else {
@@ -41,17 +41,63 @@ function nodeResolveAsync(importPath, options) {
 }
 
 /**
+ * @param {string} rootDir
+ * @param {string} sourceFilePath
+ * @param {string} importPath
+ * @param {ResolveConfig} cfg
+ * @returns {Promise<string>}
+ */
+async function nodeResolve(rootDir, sourceFilePath, importPath, cfg) {
+  const relativeImport = importPath.startsWith('.') || importPath.startsWith('/');
+  const sourceFileDir = path.dirname(sourceFilePath);
+  const dedupe = !relativeImport && cfg.dedupeModules(importPath);
+  if (dedupe) {
+    logDebug(`Deduplicating import ${importPath} from ${sourceFilePath}`);
+  }
+
+  const options = {
+    basedir: dedupe ? rootDir : sourceFileDir,
+    extensions: cfg.fileExtensions,
+    moduleDirectory: cfg.moduleDirectories,
+    preserveSymlinks: cfg.preserveSymlinks,
+    packageFilter(packageJson) {
+      /* eslint-disable no-param-reassign */
+      packageJson.main = packageJson.module || packageJson.main;
+      return packageJson;
+    },
+  };
+  try {
+    return await nodeResolveAsync(importPath, options);
+  } catch (error) {
+    if (!dedupe) {
+      throw error;
+    }
+
+    logDebug(
+      `Could not dedupe import ${importPath} from ${sourceFilePath}, falling back to a relative resolve.`,
+    );
+    // if we are deduping and resolving from root did not work, resolve relative
+    // original file instead
+    return nodeResolveAsync(importPath, {
+      ...options,
+      basedir: sourceFileDir,
+    });
+  }
+}
+
+/**
  * Resolves an import which is a concatenated string (for ex. import('my-package/files/${filename}'))
  *
  * Resolving is done by taking the package name and resolving that, then prefixing the resolves package
  * to the import. This requires the full package name to be present in the string.
  *
- * @param {string} basedir
+ * @param {string} rootDir
+ * @param {string} sourceFilePath
  * @param {string} importPath
- * @param {object} config
+ * @param {ResolveConfig} config
  * @returns {Promise<string>}
  */
-async function resolveConcatenatedImport(basedir, importPath, config) {
+async function resolveConcatenatedImport(rootDir, sourceFilePath, importPath, config) {
   let pathToResolve = importPath;
   let pathToAppend = '';
 
@@ -72,18 +118,12 @@ async function resolveConcatenatedImport(basedir, importPath, config) {
     pathToAppend = parts.slice(1, parts.length).join('/');
   }
 
-  const resolvedPackage = await nodeResolveAsync(`${pathToResolve}/package.json`, {
-    basedir,
-    extensions: config.fileExtensions,
-    moduleDirectory: config.moduleDirectories,
-    preserveSymlinks: config.preserveSymlinks,
-
-    packageFilter(packageJson) {
-      /* eslint-disable no-param-reassign */
-      packageJson.main = packageJson.module || packageJson['jsnext:main'] || packageJson.main;
-      return packageJson;
-    },
-  });
+  const resolvedPackage = await nodeResolve(
+    rootDir,
+    sourceFilePath,
+    `${pathToResolve}/package.json`,
+    config,
+  );
 
   const packageDir = resolvedPackage.substring(0, resolvedPackage.length - 'package.json'.length);
   return `${packageDir}${pathToAppend}`;
@@ -128,7 +168,6 @@ async function resolveImport(rootDir, sourceFilePath, importPath, config, concat
   }
 
   const sourceFileDir = path.dirname(sourceFilePath);
-  const basedir = !relativeImport && config.dedupeModules(importPath) ? rootDir : sourceFileDir;
 
   try {
     let resolvedImportFilePath;
@@ -136,29 +175,24 @@ async function resolveImport(rootDir, sourceFilePath, importPath, config, concat
     if (concatenated) {
       // if this dynamic import is a concatenated string, try our best to resolve. Otherwise leave it untouched and resolve it at runtime.
       try {
-        resolvedImportFilePath = await resolveConcatenatedImport(basedir, importPath, config);
+        resolvedImportFilePath = await resolveConcatenatedImport(
+          rootDir,
+          sourceFilePath,
+          importPath,
+          config,
+        );
       } catch (error) {
         return importPath;
       }
     } else {
-      resolvedImportFilePath = await nodeResolveAsync(importPath, {
-        basedir,
-        extensions: config.fileExtensions,
-        moduleDirectory: config.moduleDirectories,
-        preserveSymlinks: config.preserveSymlinks,
-        packageFilter(packageJson) {
-          /* eslint-disable no-param-reassign */
-          packageJson.main = packageJson.module || packageJson['jsnext:main'] || packageJson.main;
-          return packageJson;
-        },
-      });
+      resolvedImportFilePath = await nodeResolve(rootDir, sourceFilePath, importPath, config);
     }
 
     if (!pathIsInside(resolvedImportFilePath, rootDir)) {
       throw new Error(
-        `Import "${importPath}" resolved to the file "${resolvedImportFilePath}" which is outside the root directory. ` +
-          'Install the module locally in the current project, or expand the root directory. If this is a symlink or if you used npm link, ' +
-          ' you can run es-dev-server with the --preserve-symlinks option',
+        `Import "${importPath}" resolved to the file "${resolvedImportFilePath}" which is outside the web server root, and cannot be served ` +
+          'by es-dev-server. Install the module locally in the current project, or expand the root directory. ' +
+          'If this is a symlink or if you used npm link, you can run es-dev-server with the --preserve-symlinks option',
       );
     }
 
@@ -173,9 +207,7 @@ async function resolveImport(rootDir, sourceFilePath, importPath, config, concat
       const realtivePathToErrorFile = resolvedImportPath.startsWith('.')
         ? resolvedImportPath
         : `./${resolvedImportPath}`;
-      throw new Error(
-        `Could not resolve "import { ... } from '${importPath}';" in "${realtivePathToErrorFile}".`,
-      );
+      throw new Error(`Could not resolve import "${importPath}" in "${realtivePathToErrorFile}".`);
     }
     throw error;
   }

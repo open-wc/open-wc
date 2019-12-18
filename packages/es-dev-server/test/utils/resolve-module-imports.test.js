@@ -263,9 +263,7 @@ describe('resolve-module-imports', () => {
       await resolveModuleImports(baseDir, sourceFileName, 'import "nope";', defaultConfig);
     } catch (error) {
       thrown = true;
-      expect(error.message).to.equal(
-        `Could not resolve "import { ... } from 'nope';" in "./src/foo.js".`,
-      );
+      expect(error.message).to.equal(`Could not resolve import "nope" in "./src/foo.js".`);
     }
 
     expect(thrown).to.equal(true);
@@ -303,6 +301,19 @@ describe('resolve-module-imports', () => {
       'relative-deduped-node_modules',
       `
       import './my-module-2';
+    `,
+      {
+        sourceFileName: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
+        dedupeModules: () => true,
+      },
+    );
+  });
+
+  it('falls back to resolving relatively when a module could not be resolved from root', async () => {
+    await expectMatchesSnapshot(
+      'none-dedupable',
+      `
+      import 'non-dedupable';
     `,
       {
         sourceFileName: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
