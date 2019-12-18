@@ -3,7 +3,7 @@
 const { findSupportedBrowsers, defaultFileExtensions } = require('@open-wc/building-utils');
 const customMinifyCss = require('@open-wc/building-utils/custom-minify-css');
 const path = require('path');
-const resolve = require('rollup-plugin-node-resolve');
+const resolve = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const babel = require('rollup-plugin-babel');
 const indexHTML = require('rollup-plugin-index-html');
