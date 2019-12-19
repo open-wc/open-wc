@@ -75,8 +75,8 @@ function createConfig(_options, legacy) {
         babel({
           extensions: options.extensions,
           plugins: [
-            '@babel/plugin-syntax-dynamic-import',
-            '@babel/plugin-syntax-import-meta',
+            require.resolve('@babel/plugin-syntax-dynamic-import'),
+            require.resolve('@babel/plugin-syntax-import-meta'),
             /**
              * This can be removed when https://github.com/babel/babel/pull/10811 is released
              */
@@ -87,9 +87,9 @@ function createConfig(_options, legacy) {
             [require.resolve('@babel/plugin-proposal-optional-chaining'), { loose: true }],
             // rollup rewrites import.meta.url, but makes them point to the file location after bundling
             // we want the location before bundling
-            ['bundled-import-meta', { importStyle: 'baseURI' }],
+            [require.resolve('babel-plugin-bundled-import-meta'), { importStyle: 'baseURI' }],
             production && [
-              'template-html-minifier',
+              require.resolve('babel-plugin-template-html-minifier'),
               {
                 modules: {
                   'lit-html': ['html'],
@@ -108,7 +108,7 @@ function createConfig(_options, legacy) {
 
           presets: [
             [
-              '@babel/preset-env',
+              require.resolve('@babel/preset-env'),
               {
                 targets: legacy ? ['ie 11'] : findSupportedBrowsers(),
                 // preset-env compiles template literals for safari 12 due to a small bug which
