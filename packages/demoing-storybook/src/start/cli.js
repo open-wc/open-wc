@@ -20,7 +20,7 @@ async function run() {
     : process.cwd();
 
   const storybookConfigDir = config.storybookServerConfig['config-dir'];
-  const storiesPattern = `${rootDir}/${config.storybookServerConfig.stories}`;
+  const storiesPattern = config.storybookServerConfig.stories;
   const storyUrls = (await listFiles(storiesPattern, rootDir)).map(filePath => {
     const relativeFilePath = path.relative(rootDir, filePath);
     return `/${toBrowserPath(relativeFilePath)}`;
