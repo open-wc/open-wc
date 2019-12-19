@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.17.0...@open-wc/building-rollup@0.17.1) (2019-12-19)
+
+
+### Bug Fixes
+
+* **building-rollup:** fixes module resolution in config ([1343d83](https://github.com/open-wc/open-wc/commit/1343d83702c64982e8d2f7f8531d8dc6081fa957))
+
+
+
+
+
 # [0.17.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.16.0...@open-wc/building-rollup@0.17.0) (2019-12-18)
 
 
