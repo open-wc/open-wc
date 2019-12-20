@@ -1,4 +1,5 @@
 /* eslint-disable no-inner-declarations, no-console */
+const path = require('path');
 const request = require('request');
 const { virtualFilePrefix } = require('es-dev-server');
 const { createEsmConfig } = require('./esm-config.js');
@@ -55,8 +56,16 @@ function esmMiddlewareFactory(config, karmaEmitter) {
           '/inline-module-',
           virtualFilePrefix,
         ];
-        // for some files we need to overwrite and serve from karma instead
-        const urlsForKarma = ['/base/__snapshots__'];
+
+        // snapshot files should be served from karma
+        let snapshotPath = '/base/__snapshots__';
+        // if we have a snapshot config which lets us resolve paths, use it instead of the default
+        if (karmaConfig.snapshot && karmaConfig.snapshot.pathResolver) {
+          snapshotPath = path.dirname(karmaConfig.snapshot.pathResolver('/base', 'fake-suite'));
+        }
+
+        // some files we need to overwrite and serve from karma instead
+        const urlsForKarma = [snapshotPath];
 
         const [url, params] = req.url.split('?');
 
