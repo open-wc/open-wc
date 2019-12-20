@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.14](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.11.13...@open-wc/karma-esm@2.11.14) (2019-12-20)
+
+
+### Bug Fixes
+
+* **karma-esm:** modifies snapshot path to use pathResolver if configured ([cdfbcfe](https://github.com/open-wc/open-wc/commit/cdfbcfe86a8f4ce9fd48a11adfda049cb07c7a0b))
+
+
+
+
+
 ## [2.11.13](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.11.12...@open-wc/karma-esm@2.11.13) (2019-12-18)
 
 **Note:** Version bump only for package @open-wc/karma-esm
