@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.10](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.9...@open-wc/demoing-storybook@1.3.10) (2019-12-21)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** fixes story file listing ([b8af8f7](https://github.com/open-wc/open-wc/commit/b8af8f7c7f0b8c7b097610e16fb09ba903cb685e))
+
+
+
+
+
 ## [1.3.9](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.8...@open-wc/demoing-storybook@1.3.9) (2019-12-19)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
