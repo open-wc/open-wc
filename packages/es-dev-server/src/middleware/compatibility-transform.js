@@ -1,5 +1,17 @@
+/**
+ * @typedef {object} CompatibilityTransformMiddleware
+ * @property {string} rootDir
+ * @property {boolean} readUserBabelConfig
+ * @property {boolean | import('@rollup/plugin-node-resolve').Options} nodeResolve
+ * @property {string} compatibilityMode
+ * @property {object} [customBabelConfig]
+ * @property {string[]} fileExtensions
+ * @property {string[]} babelExclude
+ * @property {string[]} babelModernExclude
+ * @property {string[]} babelModuleExclude
+ */
+
 import stripAnsi from 'strip-ansi';
-import { defaultFileExtensions } from '@open-wc/building-utils';
 import {
   getBodyAsString,
   getRequestFilePath,
@@ -8,25 +20,9 @@ import {
   shoudlTransformToModule,
 } from '../utils/utils.js';
 import { sendMessageToActiveBrowsers } from '../utils/message-channel.js';
-import { ResolveSyntaxError } from '../utils/resolve-module-imports.js';
+import { createResolveModuleImports, ResolveSyntaxError } from '../utils/resolve-module-imports.js';
 import { createCompatibilityTransform } from '../utils/compatibility-transform.js';
 import { getUserAgentCompat } from '../utils/user-agent-compat.js';
-
-/**
- * @typedef {object} CompatibilityTransformMiddleware
- * @property {string} rootDir
- * @property {string[]} moduleDirectories
- * @property {boolean} readUserBabelConfig
- * @property {boolean} nodeResolve
- * @property {(path: string) => boolean} dedupeModules
- * @property {string} compatibilityMode
- * @property {object} [customBabelConfig]
- * @property {string[]} extraFileExtensions
- * @property {string[]} babelExclude
- * @property {string[]} babelModernExclude
- * @property {string[]} babelModuleExclude
- * @property {boolean} preserveSymlinks
- */
 
 /**
  * @param {string} errorMessage
@@ -46,13 +42,19 @@ function logError(errorMessage) {
  * @param {CompatibilityTransformMiddleware} cfg
  */
 export function createCompatibilityTransformMiddleware(cfg) {
-  const fileExtensions = [...cfg.extraFileExtensions, ...defaultFileExtensions];
-  const compatibilityTransform = createCompatibilityTransform(cfg);
+  const resolveModuleImports = cfg.nodeResolve
+    ? createResolveModuleImports(
+        cfg.rootDir,
+        cfg.fileExtensions,
+        typeof cfg.nodeResolve === 'boolean' ? undefined : cfg.nodeResolve,
+      )
+    : undefined;
+  const compatibilityTransform = createCompatibilityTransform(cfg, resolveModuleImports);
 
   /** @type {import('koa').Middleware} */
   async function compatibilityMiddleware(ctx, next) {
     const baseURL = ctx.url.split('?')[0].split('#')[0];
-    if (isPolyfill(ctx.url) || !fileExtensions.some(ext => baseURL.endsWith(ext))) {
+    if (isPolyfill(ctx.url) || !cfg.fileExtensions.some(ext => baseURL.endsWith(ext))) {
       return next();
     }
     await next();
@@ -85,6 +87,7 @@ export function createCompatibilityTransformMiddleware(cfg) {
       ctx.status = 200;
       return undefined;
     } catch (error) {
+      console.error(error);
       if (error instanceof RequestCancelledError) {
         return undefined;
       }
