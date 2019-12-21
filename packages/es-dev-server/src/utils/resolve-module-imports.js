@@ -62,7 +62,7 @@ async function nodeResolve(rootDir, sourceFilePath, importPath, cfg) {
     preserveSymlinks: cfg.preserveSymlinks,
     packageFilter(packageJson) {
       /* eslint-disable no-param-reassign */
-      packageJson.main = packageJson.module || packageJson.main;
+      packageJson.main = packageJson.module || packageJson['jsnext:main'] || packageJson.main;
       return packageJson;
     },
   };
