@@ -1,32 +1,36 @@
+/**
+ * @typedef {object} TestResolveOverrides
+ * @property {string} [baseDir]
+ * @property {string[]} [fileExtensions]
+ * @property {string} [importer]
+ * @property {import('@rollup/plugin-node-resolve').Options} [resolveOptions]
+ */
+
 import path from 'path';
 import fs from 'fs';
 import { expect } from 'chai';
-import { resolveModuleImports } from '../../src/utils/resolve-module-imports.js';
+import { createResolveModuleImports } from '../../src/utils/resolve-module-imports.js';
 
 const updateSnapshots = process.argv.includes('--update-snapshots');
 const snapshotsDir = path.resolve(__dirname, '..', 'snapshots', 'resolve-module-imports');
 
 const baseDir = path.resolve(__dirname, '..', 'fixtures', 'simple');
-const sourceFileName = path.resolve(baseDir, 'src', 'foo.js');
+const importer = path.resolve(baseDir, 'src', 'foo.js');
 
-const defaultConfig = {
-  fileExtensions: ['.mjs', '.js'],
-  moduleDirectories: ['node_modules'],
-  preserveSymlinks: false,
-  dedupeModules: () => false,
-};
-
-async function expectMatchesSnapshot(name, source, configOverrides = {}) {
+/**
+ * @param {string} name
+ * @param {string} source
+ * @param {TestResolveOverrides} ovr
+ */
+async function expectMatchesSnapshot(name, source, ovr = {}) {
   const file = path.resolve(snapshotsDir, `${name}.js`);
-  const resolvedSource = await resolveModuleImports(
-    baseDir,
-    configOverrides.sourceFileName || sourceFileName,
-    source,
-    {
-      ...defaultConfig,
-      ...configOverrides,
-    },
+  const resolveModuleImports = createResolveModuleImports(
+    ovr.baseDir || baseDir,
+    ovr.fileExtensions || ['.mjs', '.js'],
+    ovr.resolveOptions,
   );
+
+  const resolvedSource = await resolveModuleImports(ovr.importer || importer, source);
 
   if (updateSnapshots) {
     fs.writeFileSync(file, resolvedSource, 'utf-8');
@@ -260,7 +264,8 @@ describe('resolve-module-imports', () => {
     let thrown = false;
 
     try {
-      await resolveModuleImports(baseDir, sourceFileName, 'import "nope";', defaultConfig);
+      const resolveModuleImports = createResolveModuleImports(baseDir, ['.mjs', '.js'], {});
+      await resolveModuleImports(importer, 'import "nope";');
     } catch (error) {
       thrown = true;
       expect(error.message).to.equal(`Could not resolve import "nope" in "./src/foo.js".`);
@@ -277,7 +282,7 @@ describe('resolve-module-imports', () => {
       import 'my-module/bar/index.js';
     `,
       {
-        sourceFileName: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
+        importer: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
       },
     );
   });
@@ -290,8 +295,10 @@ describe('resolve-module-imports', () => {
       import 'my-module/bar/index.js';
     `,
       {
-        sourceFileName: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
-        dedupeModules: () => true,
+        importer: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
+        resolveOptions: {
+          dedupe: importee => !['.', '/'].includes(importee[0]),
+        },
       },
     );
   });
@@ -303,22 +310,31 @@ describe('resolve-module-imports', () => {
       import './my-module-2';
     `,
       {
-        sourceFileName: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
-        dedupeModules: () => true,
+        importer: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
+        resolveOptions: {
+          dedupe: importee => !['.', '/'].includes(importee[0]),
+        },
       },
     );
   });
 
-  it('falls back to resolving relatively when a module could not be resolved from root', async () => {
+  it('does not preserve symlinks when false', async () => {
     await expectMatchesSnapshot(
-      'none-dedupable',
+      'preserve-symlinks-false',
       `
-      import 'non-dedupable';
+      import 'symlinked-package';
     `,
-      {
-        sourceFileName: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
-        dedupeModules: () => true,
-      },
+      { resolveOptions: { customResolveOptions: { preserveSymlinks: false } } },
+    );
+  });
+
+  it('does preserve symlinks when true', async () => {
+    await expectMatchesSnapshot(
+      'preserve-symlinks-true',
+      `
+      import 'symlinked-package';
+    `,
+      { resolveOptions: { customResolveOptions: { preserveSymlinks: true } } },
     );
   });
 });

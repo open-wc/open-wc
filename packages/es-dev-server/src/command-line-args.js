@@ -223,7 +223,7 @@ export function readCommandLineArgs(argv = process.argv, config = {}) {
 
   let { open } = options;
 
-  if ('dedupe' in options) {
+  if (options.dedupe) {
     options.dedupeModules = options.dedupe;
     delete options.dedupe;
   }

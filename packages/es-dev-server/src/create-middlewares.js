@@ -43,11 +43,8 @@ export function createMiddlewares(config, fileWatcher) {
     customBabelConfig,
     customMiddlewares,
     responseTransformers,
-    extraFileExtensions,
-    moduleDirectories,
+    fileExtensions,
     nodeResolve,
-    dedupeModules,
-    preserveSymlinks,
     readUserBabelConfig,
     rootDir,
     watch,
@@ -108,9 +105,7 @@ export function createMiddlewares(config, fileWatcher) {
 
   if (fileWatcher) {
     // caches (transformed) file contents for faster response times
-    middlewares.push(
-      createResponseBodyCacheMiddleware({ fileWatcher, rootDir, extraFileExtensions }),
-    );
+    middlewares.push(createResponseBodyCacheMiddleware({ fileWatcher, rootDir, fileExtensions }));
   }
 
   // communicates with browser for reload or logging
@@ -131,17 +126,14 @@ export function createMiddlewares(config, fileWatcher) {
     middlewares.push(
       createCompatibilityTransformMiddleware({
         rootDir,
-        moduleDirectories,
         readUserBabelConfig,
         compatibilityMode,
-        extraFileExtensions,
+        fileExtensions,
         customBabelConfig,
         babelExclude,
         babelModernExclude,
         babelModuleExclude,
         nodeResolve,
-        dedupeModules,
-        preserveSymlinks,
       }),
     );
   }

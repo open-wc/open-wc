@@ -1,7 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import LRUCache from 'lru-cache';
 import fs from 'fs';
-import { DEFAULT_EXTENSIONS } from '@babel/core';
 import { promisify } from 'util';
 import {
   getBodyAsString,
@@ -17,7 +16,7 @@ const stat = promisify(fs.stat);
  * @typedef {object} ResponseBodyCacheMiddleware
  * @property {import('chokidar').FSWatcher} fileWatcher
  * @property {string} rootDir
- * @property {string[]} extraFileExtensions
+ * @property {string[]} fileExtensions
  */
 
 /**
@@ -53,8 +52,6 @@ async function getLastModified(path) {
  * @param {ResponseBodyCacheMiddleware} cfg
  */
 export function createResponseBodyCacheMiddleware(cfg) {
-  const fileExtensions = [...DEFAULT_EXTENSIONS, ...cfg.extraFileExtensions];
-
   /** @type {Map<String, String>} */
   const cacheKeysForFilePaths = new Map();
 
@@ -114,7 +111,7 @@ export function createResponseBodyCacheMiddleware(cfg) {
     }
 
     const strippedUrl = ctx.url.split('?')[0].split('#')[0];
-    if (isGeneratedFile(ctx.url) || !fileExtensions.some(ext => strippedUrl.endsWith(ext))) {
+    if (isGeneratedFile(ctx.url) || !cfg.fileExtensions.some(ext => strippedUrl.endsWith(ext))) {
       return;
     }
 

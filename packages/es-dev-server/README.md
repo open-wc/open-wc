@@ -136,7 +136,39 @@ The browser doesn't know where to find this file called `bar`. The `--node-resol
 import foo from './node_modules/bar/bar.js';
 ```
 
-Because we use [es-module-lexer](https://github.com/guybedford/es-module-lexer) for blazing fast analysis, we can do this without noticeable impact on performance.
+Because we use [es-module-lexer](https://github.com/guybedford/es-module-lexer) for blazing fast analysis to find the imports in a file without booting up a full-blown parser like babel, we can do this without noticeable impact on performance.
+
+For the actual resolve logic, we internally use [@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve) so that you can keep the resolve logic in sync between development and production. When using a config file, the `nodeResolve` can also be an object which accepts the same options as the rollup plugin. options.
+
+<details>
+<summary>Example config</summary>
+
+See [the rollup docs](https://github.com/rollup/plugins/tree/master/packages/node-resolve) for all options and what they do.
+
+Some options like `dedupe`, `fileExtensions`, `preserveSymlinks` and `moduleDirs` are mapped to options for `nodeResolve` internally. You can overwrite them with your custom config.
+
+```js
+module.exports = {
+  nodeResolve: {
+    jsnext: true,
+    browser: true,
+    // set default to false because es-dev-server always
+    // runs in the browser
+    preferBuiltins: true,
+    // will overwrite es-dev-server's fileExtensions option
+    extensions: ['.mjs', '.js'],
+    // will overwrite es-dev-server's dedupe option
+    dedupe: ['lit-html'],
+    customResolveOptions: {
+      // will overwrite es-dev-server's moduleDirs option
+      moduleDirectory: ['node_modules'],
+      preserveSymlinks: true,
+    },
+  },
+};
+```
+
+</details>
 
 In future, we are hoping that [import maps](https://github.com/WICG/import-maps) will make this step unnecessary.
 
@@ -262,9 +294,7 @@ If you use <abbr title="Single Page Application">SPA</abbr> routing, using a bas
 
 </details>
 
-## Advanced usage
-
-### Custom middlewares / proxy
+## Custom middlewares / proxy
 
 You can install custom middlewares, using the `middlewares` property.
 
@@ -290,7 +320,7 @@ module.exports = {
 
 </details>
 
-### Rewriting request urls
+## Rewriting request urls
 
 You can rewrite certain file requests using a simple custom middleware. This can be useful for example to serve your `index.html` from a different file location or to alias a module.
 
@@ -315,7 +345,7 @@ module.exports = {
 
 </details>
 
-### Response transformers
+## Response transformers
 
 With the `responseTransformers` property, you can transform the server's response before it is sent to the browser. This is useful for injecting code into your index.html, performing transformations on files or to serve virtual files programmatically.
 
@@ -404,7 +434,7 @@ module.exports = {
 
 </details>
 
-### Typescript support
+## Typescript support
 
 `es-dev-server` is based around developing without any build tools but you can make it work with typescript as well.
 
