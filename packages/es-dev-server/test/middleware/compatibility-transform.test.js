@@ -448,6 +448,54 @@ describe('compatibility transform middleware', () => {
     });
   });
 
+  describe('node resolve flag', () => {
+    it('transforms module imports', async () => {
+      const { server } = await startServer(
+        createConfig({
+          compatibility: compatibilityModes.NONE,
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          port: 8080,
+          nodeResolve: true,
+        }),
+      );
+
+      try {
+        const response = await fetch(`${host}app.js`);
+        const responseText = await response.text();
+
+        expect(response.status).to.equal(200);
+        expect(responseText).to.include(
+          "import { message } from './node_modules/my-module/index.js';",
+        );
+        expect(responseText).to.include('async function* asyncGenerator()');
+      } finally {
+        server.close();
+      }
+    });
+
+    it('transforms module imports when compiling to systemjs', async () => {
+      const { server } = await startServer(
+        createConfig({
+          compatibility: compatibilityModes.MAX,
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          port: 8080,
+          nodeResolve: true,
+        }),
+      );
+
+      try {
+        const response = await fetch(`${host}app.js?transform-modules`);
+        const responseText = await response.text();
+        expect(response.status).to.equal(200);
+        expect(responseText).to.include(
+          'System.register(["./node_modules/my-module/index.js", "./src/local-module.js"], function',
+        );
+      } finally {
+        server.close();
+      }
+    });
+  });
+
   describe('typescript', () => {
     let server;
     beforeEach(async () => {
@@ -499,54 +547,6 @@ describe('compatibility transform middleware', () => {
     } finally {
       server.close();
     }
-  });
-
-  describe('node resolve flag', () => {
-    it('transforms module imports', async () => {
-      const { server } = await startServer(
-        createConfig({
-          compatibility: compatibilityModes.NONE,
-          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-          port: 8080,
-          nodeResolve: true,
-        }),
-      );
-
-      try {
-        const response = await fetch(`${host}app.js`);
-        const responseText = await response.text();
-
-        expect(response.status).to.equal(200);
-        expect(responseText).to.include(
-          "import { message } from './node_modules/my-module/index.js';",
-        );
-        expect(responseText).to.include('async function* asyncGenerator()');
-      } finally {
-        server.close();
-      }
-    });
-
-    it('transforms module imports when compiling to systemjs', async () => {
-      const { server } = await startServer(
-        createConfig({
-          compatibility: compatibilityModes.MAX,
-          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-          port: 8080,
-          nodeResolve: true,
-        }),
-      );
-
-      try {
-        const response = await fetch(`${host}app.js?transform-modules`);
-        const responseText = await response.text();
-        expect(response.status).to.equal(200);
-        expect(responseText).to.include(
-          'System.register(["./node_modules/my-module/index.js", "./src/local-module.js"], function',
-        );
-      } finally {
-        server.close();
-      }
-    });
   });
 
   describe('combining node resolve and compatibility', () => {
