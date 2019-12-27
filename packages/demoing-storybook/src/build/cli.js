@@ -12,7 +12,8 @@ const toBrowserPath = require('../shared/toBrowserPath');
   const rootDir = process.cwd();
   const config = readCommandLineArgs();
   const storiesPattern = `${process.cwd()}/${config.stories}`;
-  const storyUrls = (await listFiles(storiesPattern, rootDir)).map(filePath => {
+  const storyFiles = await listFiles(storiesPattern, rootDir);
+  const storyUrls = storyFiles.map(filePath => {
     const relativeFilePath = path.relative(rootDir, filePath);
     return `./${toBrowserPath(relativeFilePath)}`;
   });
@@ -25,6 +26,7 @@ const toBrowserPath = require('../shared/toBrowserPath');
 
   await build({
     storybookConfigDir: config.configDir,
+    storyFiles,
     storyUrls,
     outputDir: config.outputDir,
     managerPath: require.resolve(config.managerPath),
