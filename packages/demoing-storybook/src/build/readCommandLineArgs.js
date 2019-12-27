@@ -1,5 +1,4 @@
 const commandLineArgs = require('command-line-args');
-const path = require('path');
 
 module.exports = function readCommandLineArgs() {
   const optionDefinitions = [
@@ -14,7 +13,7 @@ module.exports = function readCommandLineArgs() {
       name: 'output-dir',
       alias: 'o',
       type: String,
-      defaultValue: path.join(process.cwd(), 'storybook-static'),
+      defaultValue: 'storybook-static',
       description: 'Rollup build output directory',
     },
     {
@@ -25,6 +24,6 @@ module.exports = function readCommandLineArgs() {
     },
   ];
   const storybookServerConfig = commandLineArgs(optionDefinitions);
-
+  console.log('storybookServerConfig', storybookServerConfig);
   return storybookServerConfig;
 };
