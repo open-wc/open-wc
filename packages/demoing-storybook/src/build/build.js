@@ -27,12 +27,10 @@ async function buildManager(outputDir, assets) {
 async function buildPreview(outputDir, assets) {
   const configs = createCompatibilityConfig({
     input: 'noop',
+    outputDir,
     extensions: [...DEFAULT_EXTENSIONS, 'mdx'],
     plugins: { indexHTML: false },
   });
-
-  configs[0].output.dir = path.join(outputDir, 'legacy');
-  configs[1].output.dir = outputDir;
 
   configs[0].plugins.unshift(
     indexHTML({
