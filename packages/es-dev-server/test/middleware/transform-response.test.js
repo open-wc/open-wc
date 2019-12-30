@@ -40,20 +40,19 @@ describe('transform response middleware', () => {
           responseTransformers: [transformer],
         }),
       ));
-      const response = await fetch(`${host}text-files/hello-world.txt`);
+      const response = await fetch(`${host}text-files/hello-world.txt`, {
+        headers: { 'x-foo': 'bar' },
+      });
       const responseText = await response.text();
 
       expect(response.status).to.equal(200);
       expect(responseText).to.equal('transformed response');
       expect(transformer.callCount).to.equal(1);
-      expect(transformer.getCall(0).args).to.eql([
-        {
-          status: 200,
-          url: '/text-files/hello-world.txt',
-          contentType: 'text/plain; charset=utf-8',
-          body: 'Hello world!',
-        },
-      ]);
+      expect(transformer.getCall(0).args[0].status).to.equal(200);
+      expect(transformer.getCall(0).args[0].url).to.equal('/text-files/hello-world.txt');
+      expect(transformer.getCall(0).args[0].contentType).to.equal('text/plain; charset=utf-8');
+      expect(transformer.getCall(0).args[0].body).to.equal('Hello world!');
+      expect(transformer.getCall(0).args[0].headers['x-foo']).to.be.equal('bar');
     } finally {
       server.close();
     }
@@ -128,14 +127,6 @@ describe('transform response middleware', () => {
       expect(response.status).to.equal(200);
       expect(responseText).to.equal('transformed response');
       expect(transformer.callCount).to.equal(1);
-      expect(transformer.getCall(0).args).to.eql([
-        {
-          status: 200,
-          url: '/text-files/hello-world.txt',
-          contentType: 'text/plain; charset=utf-8',
-          body: 'Hello world!',
-        },
-      ]);
     } finally {
       server.close();
     }

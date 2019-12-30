@@ -4,6 +4,7 @@ import { getBodyAsString, RequestCancelledError, IsBinaryFileError } from '../ut
 /**
  * @typedef {object} ResponseTransformerArgs
  * @property {string} url
+ * @property {Record<string, string>} headers
  * @property {number} status
  * @property {string} contentType
  * @property {string} body
@@ -56,6 +57,7 @@ export function createResponseTransformMiddleware(config) {
     for (const transformer of config.responseTransformers) {
       const result = await transformer({
         url: ctx.url,
+        headers: ctx.headers,
         status: ctx.status,
         contentType: newContentType,
         body: newBody,
