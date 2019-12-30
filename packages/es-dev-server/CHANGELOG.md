@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.34.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.33.1...es-dev-server@1.34.0) (2019-12-30)
+
+
+### Features
+
+* **es-dev-server:** pass headers to response transformers ([f57e42f](https://github.com/open-wc/open-wc/commit/f57e42f6611fe0618740744613e370156c78a35a))
+
+
+
+
+
 ## [1.33.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.33.0...es-dev-server@1.33.1) (2019-12-30)
 
 
