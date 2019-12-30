@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.33.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.32.0...es-dev-server@1.33.0) (2019-12-30)
+
+
+### Features
+
+* **es-dev-server:** use rollup node resolve plugin ([bc22242](https://github.com/open-wc/open-wc/commit/bc222427b7ae9bd4b29f0f06f70071b4c0812aca))
+
+
+
+
+
 # [1.32.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.31.1...es-dev-server@1.32.0) (2019-12-18)
 
 

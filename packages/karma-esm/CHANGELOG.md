@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.11.14...@open-wc/karma-esm@2.12.0) (2019-12-30)
+
+
+### Bug Fixes
+
+* **karma-esm:** handle configs without module scripts ([860b552](https://github.com/open-wc/open-wc/commit/860b552442cf12ab3b783e75cedbf45c6652485f))
+
+
+### Features
+
+* **karma-esm:** add dedupe option from es-dev-server ([5a2f680](https://github.com/open-wc/open-wc/commit/5a2f680db3a5a851e90877d6aef2cd93965814a5))
+
+
+
+
+
 ## [2.11.14](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.11.13...@open-wc/karma-esm@2.11.14) (2019-12-20)
 
 

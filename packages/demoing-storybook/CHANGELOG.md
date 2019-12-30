@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.11](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.10...@open-wc/demoing-storybook@1.3.11) (2019-12-30)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** pass outputdir to config generator ([53637b6](https://github.com/open-wc/open-wc/commit/53637b60ddfca7a895332e80d430b98f641eec2a))
+
+
+
+
+
 ## [1.3.10](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.9...@open-wc/demoing-storybook@1.3.10) (2019-12-21)
 
 
