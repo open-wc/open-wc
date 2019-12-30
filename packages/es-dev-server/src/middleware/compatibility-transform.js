@@ -87,7 +87,6 @@ export function createCompatibilityTransformMiddleware(cfg) {
       ctx.status = 200;
       return undefined;
     } catch (error) {
-      console.error(error);
       if (error instanceof RequestCancelledError) {
         return undefined;
       }
