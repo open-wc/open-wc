@@ -21,6 +21,16 @@ module.exports = function createServeManagerMiddleware(assets) {
       ctx.response.set('cache-control', 'public, max-age=31536000');
       return null;
     }
+
+    if (cleanURL === assets.managerSourceMapUrl) {
+      ctx.body = assets.managerSourceMap;
+      ctx.status = 200;
+      ctx.response.set('content-type', 'application/octet-stream');
+      // the manager code is hashed, so we can cache it forever
+      ctx.response.set('cache-control', 'public, max-age=31536000');
+      return null;
+    }
+
     return next();
   };
 };

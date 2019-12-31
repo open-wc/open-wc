@@ -16,10 +16,18 @@ module.exports = function getAssets({ storybookConfigDir, managerPath, storyUrls
   const previewBodyPath = path.join(process.cwd(), storybookConfigDir, 'preview-body.html');
   const previewHeadPath = path.join(process.cwd(), storybookConfigDir, 'preview-head.html');
 
-  const managerCode = fs.readFileSync(managerPath, 'utf-8');
+  let managerCode = fs.readFileSync(require.resolve(managerPath), 'utf-8');
+  const managerSourceMap = fs.readFileSync(require.resolve(`${managerPath}.map`), 'utf-8');
+
   const managerHash = createContentHash(managerCode);
   const managerScriptUrl = `/storybook-manager-${managerHash}.js`;
+  const managerSourceMapUrl = `/storybook-manager-${managerHash}.js.map`;
   const managerScriptSrc = `.${managerScriptUrl}`;
+
+  managerCode = managerCode.replace(
+    '//# sourceMappingURL=manager.js.map',
+    `//# sourceMappingURL=${managerSourceMapUrl}`,
+  );
 
   let indexHTML = fs.readFileSync(managerIndexPath, 'utf-8');
   if (fs.existsSync(managerHeadPath)) {
@@ -61,6 +69,8 @@ module.exports = function getAssets({ storybookConfigDir, managerPath, storyUrls
     managerCode,
     managerScriptSrc,
     managerScriptUrl,
+    managerSourceMap,
+    managerSourceMapUrl,
     indexHTML,
     iframeHTML,
   };
