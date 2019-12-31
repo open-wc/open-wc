@@ -120,9 +120,6 @@ ReferenceError: process is not defined
       at node_modules/redux/es/redux.js:657:1
 ```
 
-The reason for this is that Redux ships CommonJS by default, and expects `process.env.NODE_ENV` to be set. In the browser, this is not the case. There are two ways to go about this:
-
-1. Set the `process.env.NODE_ENV` variable on the `window` object
-2. Use the ESM build of Redux instead. It's importable from <a href="https://unpkg.com/browse/redux@4.0.5/es/redux.mjs">`node_modules/redux/es/redux.mjs`</a>. Note that the `.js` version still expects `process.env.NODE_ENV`, but the `.mjs` version does _not_. You'll want to use the `.mjs` version.
+The reason for this is that Redux ships CommonJS by default, and expects `process.env.NODE_ENV` to be set. In the browser, this is not the case. The solution for this is to use the ESM build of Redux instead. It's importable from <a href="https://unpkg.com/browse/redux@4.0.5/es/redux.mjs">`node_modules/redux/es/redux.mjs`</a>. Note that the `.js` version still expects `process.env.NODE_ENV`, but the `.mjs` version does _not_. You'll want to use the `.mjs` version.
 
 And everything should run in the browser as expected.
