@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.10.4...@open-wc/building-webpack@2.10.5) (2019-12-30)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.10.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.10.3...@open-wc/building-webpack@2.10.4) (2019-12-30)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.10.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.10.2...@open-wc/building-webpack@2.10.3) (2019-12-30)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.10.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.10.1...@open-wc/building-webpack@2.10.2) (2019-12-19)
+
+
+### Bug Fixes
+
+* **building-webpack:** fixes module resolution in config ([a82d75d](https://github.com/open-wc/open-wc/commit/a82d75d1951e937d84d071628bcb6a57b91b3439))
+
+
+
+
+
+## [2.10.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.10.0...@open-wc/building-webpack@2.10.1) (2019-12-18)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
 # [2.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.9.4...@open-wc/building-webpack@2.10.0) (2019-12-13)
 
 

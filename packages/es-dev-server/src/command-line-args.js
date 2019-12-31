@@ -96,6 +96,13 @@ export const commandLineOptions = [
     description: 'Resolve bare import imports using node resolve.',
   },
   {
+    name: 'dedupe',
+    alias: 'd',
+    type: Boolean,
+    description:
+      'Dedupe modules by resolving them always from the root, ensuring only one version of a package is ever resolved.',
+  },
+  {
     name: 'preserve-symlinks',
     type: Boolean,
     description:
@@ -215,6 +222,11 @@ export function readCommandLineArgs(argv = process.argv, config = {}) {
   }
 
   let { open } = options;
+
+  if (options.dedupe) {
+    options.dedupeModules = options.dedupe;
+    delete options.dedupe;
+  }
 
   // open can be a boolean nor a string. if it's a boolean from command line args,
   // it's passed as null. so if it's not a string or boolean type, we check for the

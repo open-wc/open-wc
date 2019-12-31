@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.2...@open-wc/create@0.26.3) (2019-12-23)
+
+
+### Bug Fixes
+
+* **generate:** align versions in package.json template ([6a5188d](https://github.com/open-wc/open-wc/commit/6a5188df3a8db2c1b7e169296157b15d13b302d8))
+
+
+
+
+
+## [0.26.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.1...@open-wc/create@0.26.2) (2019-12-18)
+
+
+### Bug Fixes
+
+* **create:** replace webpack-merge by deepmerge in testing dependencies ([e8c0553](https://github.com/open-wc/open-wc/commit/e8c0553de8f083785f21f34d7edbaba17a69492a))
+
+
+
+
+
 ## [0.26.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.0...@open-wc/create@0.26.1) (2019-12-12)
 
 

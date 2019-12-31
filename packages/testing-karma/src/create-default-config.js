@@ -22,7 +22,16 @@ const pruneSnapshots = process.argv.find(arg => arg.includes('--prune-snapshots'
 module.exports = config => ({
   browsers: ['ChromeHeadlessNoSandbox'],
 
-  files: ['__snapshots__/**/*.md', require.resolve('axe-core/axe.min.js')],
+  files: [
+    {
+      pattern: '__snapshots__/**/*.md',
+      // snapshot preprocessor will rewrite content of .md files with JS wrappers
+      // but karma will try and determine file type based on extension if we do not
+      // specify it, so force snapshot files to be js type to avoid karma complaints
+      type: 'js',
+    },
+    require.resolve('axe-core/axe.min.js'),
+  ],
 
   customLaunchers: {
     ChromeHeadlessNoSandbox: {
@@ -42,7 +51,6 @@ module.exports = config => ({
     require.resolve('karma-snapshot'),
     require.resolve('karma-mocha-snapshot'),
     require.resolve('karma-chrome-launcher'),
-    require.resolve('./snapshot-filename-preprocessor.js'),
 
     // fallback: resolve any karma- plugins
     'karma-*',
@@ -73,7 +81,7 @@ module.exports = config => ({
   },
 
   preprocessors: {
-    '**/__snapshots__/**/*.md': ['snapshot', 'snapshot-filename'],
+    '**/__snapshots__/**/*.md': ['snapshot'],
   },
 
   reporters: coverage ? ['mocha', 'coverage-istanbul'] : ['mocha'],

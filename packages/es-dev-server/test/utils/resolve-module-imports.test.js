@@ -1,26 +1,36 @@
+/**
+ * @typedef {object} TestResolveOverrides
+ * @property {string} [baseDir]
+ * @property {string[]} [fileExtensions]
+ * @property {string} [importer]
+ * @property {import('@rollup/plugin-node-resolve').Options} [resolveOptions]
+ */
+
 import path from 'path';
 import fs from 'fs';
 import { expect } from 'chai';
-import { resolveModuleImports } from '../../src/utils/resolve-module-imports.js';
+import { createResolveModuleImports } from '../../src/utils/resolve-module-imports.js';
 
 const updateSnapshots = process.argv.includes('--update-snapshots');
 const snapshotsDir = path.resolve(__dirname, '..', 'snapshots', 'resolve-module-imports');
 
 const baseDir = path.resolve(__dirname, '..', 'fixtures', 'simple');
-const sourceFileName = path.resolve(baseDir, 'src', 'foo.js');
+const importer = path.resolve(baseDir, 'src', 'foo.js');
 
-const defaultConfig = {
-  fileExtensions: ['.mjs', '.js'],
-  moduleDirectories: ['node_modules'],
-  preserveSymlinks: false,
-};
-
-async function expectMatchesSnapshot(name, source, configOverrides = {}) {
+/**
+ * @param {string} name
+ * @param {string} source
+ * @param {TestResolveOverrides} ovr
+ */
+async function expectMatchesSnapshot(name, source, ovr = {}) {
   const file = path.resolve(snapshotsDir, `${name}.js`);
-  const resolvedSource = await resolveModuleImports(baseDir, sourceFileName, source, {
-    ...defaultConfig,
-    ...configOverrides,
-  });
+  const resolveModuleImports = createResolveModuleImports(
+    ovr.baseDir || baseDir,
+    ovr.fileExtensions || ['.mjs', '.js'],
+    ovr.resolveOptions,
+  );
+
+  const resolvedSource = await resolveModuleImports(ovr.importer || importer, source);
 
   if (updateSnapshots) {
     fs.writeFileSync(file, resolvedSource, 'utf-8');
@@ -254,14 +264,77 @@ describe('resolve-module-imports', () => {
     let thrown = false;
 
     try {
-      await resolveModuleImports(baseDir, sourceFileName, 'import "nope";', defaultConfig);
+      const resolveModuleImports = createResolveModuleImports(baseDir, ['.mjs', '.js'], {});
+      await resolveModuleImports(importer, 'import "nope";');
     } catch (error) {
       thrown = true;
-      expect(error.message).to.equal(
-        `Could not resolve "import { ... } from 'nope';" in "./src/foo.js".`,
-      );
+      expect(error.message).to.equal(`Could not resolve import "nope" in "./src/foo.js".`);
     }
 
     expect(thrown).to.equal(true);
+  });
+
+  it('resolves nested node_modules', async () => {
+    await expectMatchesSnapshot(
+      'nested-node_modules',
+      `
+      import 'my-module';
+      import 'my-module/bar/index.js';
+    `,
+      {
+        importer: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
+      },
+    );
+  });
+
+  it('resolves from root node_modules when dedupe is enabled', async () => {
+    await expectMatchesSnapshot(
+      'deduped-node_modules',
+      `
+      import 'my-module';
+      import 'my-module/bar/index.js';
+    `,
+      {
+        importer: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
+        resolveOptions: {
+          dedupe: importee => !['.', '/'].includes(importee[0]),
+        },
+      },
+    );
+  });
+
+  it('does not resolve relative imports from root when dedupe is enabled', async () => {
+    await expectMatchesSnapshot(
+      'relative-deduped-node_modules',
+      `
+      import './my-module-2';
+    `,
+      {
+        importer: path.resolve(baseDir, 'node_modules', 'my-module-2', 'foo.js'),
+        resolveOptions: {
+          dedupe: importee => !['.', '/'].includes(importee[0]),
+        },
+      },
+    );
+  });
+
+  it('does not preserve symlinks when false', async () => {
+    await expectMatchesSnapshot(
+      'preserve-symlinks-false',
+      `
+      import 'symlinked-package';
+    `,
+      { resolveOptions: { customResolveOptions: { preserveSymlinks: false } } },
+    );
+  });
+
+  it('does preserve symlinks when true', async () => {
+    await expectMatchesSnapshot(
+      'preserve-symlinks-true',
+      `
+      import 'symlinked-package';
+    `,
+      { resolveOptions: { customResolveOptions: { preserveSymlinks: true } } },
+    );
   });
 });

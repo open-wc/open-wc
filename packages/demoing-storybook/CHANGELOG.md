@@ -3,6 +3,71 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.13](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.12...@open-wc/demoing-storybook@1.3.13) (2019-12-30)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.3.12](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.11...@open-wc/demoing-storybook@1.3.12) (2019-12-30)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.3.11](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.10...@open-wc/demoing-storybook@1.3.11) (2019-12-30)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** pass outputdir to config generator ([53637b6](https://github.com/open-wc/open-wc/commit/53637b60ddfca7a895332e80d430b98f641eec2a))
+
+
+
+
+
+## [1.3.10](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.9...@open-wc/demoing-storybook@1.3.10) (2019-12-21)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** fixes story file listing ([b8af8f7](https://github.com/open-wc/open-wc/commit/b8af8f7c7f0b8c7b097610e16fb09ba903cb685e))
+
+
+
+
+
+## [1.3.9](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.8...@open-wc/demoing-storybook@1.3.9) (2019-12-19)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.3.8](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.7...@open-wc/demoing-storybook@1.3.8) (2019-12-19)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** remove rootDir prefexing on storiesPattern ([62e3d11](https://github.com/open-wc/open-wc/commit/62e3d11c212c449d777461938efcfbe16575d522))
+
+
+
+
+
+## [1.3.7](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.6...@open-wc/demoing-storybook@1.3.7) (2019-12-18)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
 ## [1.3.6](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.5...@open-wc/demoing-storybook@1.3.6) (2019-12-16)
 
 

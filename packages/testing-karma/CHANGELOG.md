@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.24](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.23...@open-wc/testing-karma@3.2.24) (2019-12-30)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
+## [3.2.23](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.22...@open-wc/testing-karma@3.2.23) (2019-12-30)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
+## [3.2.22](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.21...@open-wc/testing-karma@3.2.22) (2019-12-30)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
+## [3.2.21](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.20...@open-wc/testing-karma@3.2.21) (2019-12-20)
+
+
+### Bug Fixes
+
+* **testing-karma:** removes snapshot filename processor ([8fe192a](https://github.com/open-wc/open-wc/commit/8fe192a7c6fc926baa04d39195c6ce1f8295521a))
+
+
+
+
+
+## [3.2.20](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.19...@open-wc/testing-karma@3.2.20) (2019-12-18)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
 ## [3.2.19](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.18...@open-wc/testing-karma@3.2.19) (2019-12-16)
 
 **Note:** Version bump only for package @open-wc/testing-karma

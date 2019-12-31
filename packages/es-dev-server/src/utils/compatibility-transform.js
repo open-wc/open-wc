@@ -1,31 +1,16 @@
-import minimatch from 'minimatch';
-import { defaultFileExtensions } from '@open-wc/building-utils';
-import {
-  createCompatibilityBabelTransform,
-  createMinCompatibilityBabelTransform,
-  createMaxCompatibilityBabelTransform,
-  polyfillModulesTransform,
-  createBabelTransform,
-} from './babel-transform.js';
-import { resolveModuleImports } from './resolve-module-imports.js';
-import { compatibilityModes } from '../constants.js';
-import { logDebug } from './utils.js';
-
 /** @typedef {import('./babel-transform.js').BabelTransform} BabelTransform */
 
 /**
  * @typedef {object} CompatibilityTransformConfig
  * @property {string} rootDir
- * @property {string[]} moduleDirectories
  * @property {boolean} readUserBabelConfig
- * @property {boolean} nodeResolve
+ * @property {boolean | import('@rollup/plugin-node-resolve').Options} nodeResolve
  * @property {string} compatibilityMode
  * @property {object} [customBabelConfig]
- * @property {string[]} extraFileExtensions
+ * @property {string[]} fileExtensions
  * @property {string[]} babelExclude
  * @property {string[]} babelModernExclude
  * @property {string[]} babelModuleExclude
- * @property {boolean} preserveSymlinks
  */
 
 /**
@@ -37,10 +22,25 @@ import { logDebug } from './utils.js';
  */
 
 /**
- * @param {CompatibilityTransformConfig} cfg
+ * @typedef {import('./resolve-module-imports.js').ResolveModuleImports} ResolveModuleImports
  */
-export function createCompatibilityTransform(cfg) {
-  const fileExtensions = [...cfg.extraFileExtensions, ...defaultFileExtensions];
+
+import minimatch from 'minimatch';
+import {
+  createCompatibilityBabelTransform,
+  createMinCompatibilityBabelTransform,
+  createMaxCompatibilityBabelTransform,
+  polyfillModulesTransform,
+  createBabelTransform,
+} from './babel-transform.js';
+import { compatibilityModes } from '../constants.js';
+import { logDebug } from './utils.js';
+
+/**
+ * @param {CompatibilityTransformConfig} cfg
+ * @param {ResolveModuleImports} resolveModuleImports
+ */
+export function createCompatibilityTransform(cfg, resolveModuleImports) {
   /** @type {Map<string, BabelTransform>} */
   const babelTransforms = new Map();
   const minCompatibilityTransform = createMinCompatibilityBabelTransform(cfg);
@@ -182,11 +182,7 @@ export function createCompatibilityTransform(cfg) {
      * we don't need to run babel which makes it a lot faster
      */
     if (transformModuleImports) {
-      transformedCode = await resolveModuleImports(cfg.rootDir, file.filePath, transformedCode, {
-        fileExtensions,
-        moduleDirectories: cfg.moduleDirectories,
-        preserveSymlinks: cfg.preserveSymlinks,
-      });
+      transformedCode = await resolveModuleImports(file.filePath, transformedCode);
     }
 
     /**

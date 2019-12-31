@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.17.3...@open-wc/building-rollup@0.17.4) (2019-12-30)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.17.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.17.2...@open-wc/building-rollup@0.17.3) (2019-12-30)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.17.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.17.1...@open-wc/building-rollup@0.17.2) (2019-12-30)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.17.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.17.0...@open-wc/building-rollup@0.17.1) (2019-12-19)
+
+
+### Bug Fixes
+
+* **building-rollup:** fixes module resolution in config ([1343d83](https://github.com/open-wc/open-wc/commit/1343d83702c64982e8d2f7f8531d8dc6081fa957))
+
+
+
+
+
+# [0.17.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.16.0...@open-wc/building-rollup@0.17.0) (2019-12-18)
+
+
+### Features
+
+* **building-rollup:** use new node-resolve plugin name ([#1137](https://github.com/open-wc/open-wc/issues/1137)) ([2f72252](https://github.com/open-wc/open-wc/commit/2f7225291662c163eeb7ad1202f8daa3dd84f067))
+
+
+
+
+
 # [0.16.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.15.4...@open-wc/building-rollup@0.16.0) (2019-12-13)
 
 
