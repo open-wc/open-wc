@@ -1,16 +1,21 @@
 <template>
   <div>
     <div v-if="loading">
-      Loading...
+      <p>
+        <b>Usage stats:</b> loading...
+      </p>
+      <p>
+        <b>Github stars:</b> loading...
+      </p>
     </div>
 
-    <div v-if="rejected">
-      <p>Unable to get usage statistics for {{ routerName }}</p>
-    </div>
+    <p v-if="rejected">
+      Unable to get usage statistics for {{ routerName }}
+    </p>
 
     <div v-if="success">
       <p>
-        <b>Usage stats:</b> {{ usageCount }} downloads (<a target="_blank" :href="'https://www.npmtrends.com/' + routerName">see more</a>)
+        <b>Usage stats:</b> {{ usageCount }} downloads (measured every 15 days) <a target="_blank" :href="'https://www.npmtrends.com/' + routerName">see more</a>
       </p>
       <p>
         <b>Github stars:</b> {{ stars }}
