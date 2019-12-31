@@ -20,7 +20,7 @@
       <p>
         <b>Github stars:</b> {{ stars }}
       </p>
-      <p v-if="usageCount < 100">
+      <p v-if="usageCount < 500">
         <i>
           ⚠️ This package has a low usage and popularity statistic, and could be considered for removal. <a target="_blank" href="https://github.com/open-wc/open-wc/issues/new">Let us know about this</a>, so we can keep our recommendations up to date.
         </i>
