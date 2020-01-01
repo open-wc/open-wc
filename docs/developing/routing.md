@@ -36,3 +36,7 @@ In alphabetical order:
 - [vaadin-router](https://github.com/vaadin/vaadin-router)
   <NpmUsage routerName="@vaadin/router"/>
   <hr>
+
+- [stencil-router](https://github.com/ionic-team/stencil-router)
+  <NpmUsage routerName="@stencil/router"/>
+  <hr>
