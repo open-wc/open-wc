@@ -89,7 +89,7 @@ The storybook server is based on [es-dev-server](https://open-wc.org/developing/
 
 ### Configuration file
 
-By default, `@open-wc/demoing-storybook` looks for config files called `start-storybook.config.js` and `build-storybook.config.js` in your config dir (default `.storybook`). You can modify this by using the `--config-dir` or `-c` flag.
+By default, `@open-wc/demoing-storybook` looks for config files called `start-storybook.config.js` and `build-storybook.config.js` in your config dir (default `.storybook`). You can modify this by using the `--config` or `-c` flag.
 
 For `start-storybook`, the config file contains the options specific to storybook and the options for `es-dev-server`. The options are camelCased versions of the CLI args. Example:
 

@@ -24,10 +24,10 @@ const toBrowserPath = require('../shared/toBrowserPath');
   }
 
   await build({
-    storybookConfigDir: config['config-dir'],
+    storybookConfigDir: config.configDir,
     storyUrls,
-    outputDir: config['output-dir'],
-    managerPath: require.resolve(config['manager-path']),
-    previewPath: require.resolve(config['preview-path']),
+    outputDir: config.outputDir,
+    managerPath: require.resolve(config.managerPath),
+    previewPath: require.resolve(config.previewPath),
   });
 })();
