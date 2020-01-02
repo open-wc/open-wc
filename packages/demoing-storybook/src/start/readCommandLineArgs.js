@@ -1,4 +1,3 @@
-const path = require('path');
 const commandLineArgs = require('command-line-args');
 const commandLineUsage = require('command-line-usage');
 const {
@@ -34,9 +33,9 @@ module.exports = function readCommandLineArgs() {
     { name: 'help', type: Boolean, description: 'See all options' },
   ];
 
-  const storybookServerConfig = commandLineArgs(cliOptions, { partial: true });
+  const storybookArgs = commandLineArgs(cliOptions, { partial: true });
 
-  if ('help' in storybookServerConfig) {
+  if ('help' in storybookArgs) {
     /* eslint-disable-next-line no-console */
     console.log(
       commandLineUsage([
@@ -62,9 +61,17 @@ module.exports = function readCommandLineArgs() {
     process.exit();
   }
 
-  const esDevServerConfig = esDevServerCommandLineArgs(storybookServerConfig._unknown || [], {
-    defaultConfigDir: path.join(process.cwd(), storybookServerConfig['config-dir']),
+  const esDevServerConfig = esDevServerCommandLineArgs(storybookArgs._unknown || [], {
+    defaultConfigDir: storybookArgs['config-dir'],
+    defaultConfigName: 'start-storybook.config.js',
   });
 
-  return { storybookServerConfig, esDevServerConfig };
+  return {
+    configDir: storybookArgs['config-dir'],
+    stories: storybookArgs.stories,
+    managerPath: storybookArgs['manager-path'],
+    previewPath: storybookArgs['preview-path'],
+    // some args may be overwritten, as es-dev-server reads start-storybook.config.js
+    ...esDevServerConfig,
+  };
 };
