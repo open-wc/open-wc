@@ -1,7 +1,7 @@
 const createMdxToJsTransformer = require('../../shared/createMdxToJsTransformer');
 
-module.exports = function createMdxToJs(rootDir) {
-  const transformMdxToJs = createMdxToJsTransformer(rootDir);
+module.exports = function createMdxToJs({ rootDir, previewPath }) {
+  const transformMdxToJs = createMdxToJsTransformer({ rootDir, previewPath });
 
   return async function mdxToJS({ url, body, status }) {
     const path = url.split('?')[0].split('#')[0];

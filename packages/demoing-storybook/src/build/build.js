@@ -8,23 +8,23 @@ const path = require('path');
 const createMdxToJsTransformer = require('../shared/createMdxToJsTransformer');
 const createAssets = require('../shared/getAssets');
 
-const transformMdxToJs = createMdxToJsTransformer(false);
-
-const transformMdxPlugin = {
-  transform(code, id) {
-    if (id.endsWith('.mdx')) {
-      return transformMdxToJs(id, code);
-    }
-    return null;
-  },
-};
-
 async function buildManager(outputDir, assets) {
   await fs.writeFile(path.join(outputDir, 'index.html'), assets.indexHTML);
   await fs.writeFile(path.join(outputDir, assets.managerScriptSrc), assets.managerCode);
 }
 
-async function buildPreview(outputDir, assets) {
+async function buildPreview(outputDir, previewPath, assets) {
+  const transformMdxToJs = createMdxToJsTransformer({ rootDir: null, previewPath });
+
+  const transformMdxPlugin = {
+    transform(code, id) {
+      if (id.endsWith('.mdx')) {
+        return transformMdxToJs(id, code);
+      }
+      return null;
+    },
+  };
+
   const configs = createCompatibilityConfig({
     input: 'noop',
     outputDir,
@@ -81,11 +81,20 @@ async function buildPreview(outputDir, assets) {
   await bundles[1].write(configs[1].output);
 }
 
-module.exports = async function build({ storybookConfigDir, outputDir, storyUrls }) {
-  const assets = createAssets({ storybookConfigDir, storyUrls });
+module.exports = async function build({
+  storybookConfigDir,
+  outputDir,
+  managerPath,
+  previewPath,
+  storyUrls,
+}) {
+  const assets = createAssets({ storybookConfigDir, managerPath, storyUrls });
 
   await fs.remove(outputDir);
   await fs.mkdirp(outputDir);
 
-  await Promise.all([buildManager(outputDir, assets), buildPreview(outputDir, assets)]);
+  await Promise.all([
+    buildManager(outputDir, assets),
+    buildPreview(outputDir, previewPath, assets),
+  ]);
 };

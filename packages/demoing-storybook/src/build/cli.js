@@ -16,6 +16,7 @@ const toBrowserPath = require('../shared/toBrowserPath');
     const relativeFilePath = path.relative(rootDir, filePath);
     return `./${toBrowserPath(relativeFilePath)}`;
   });
+
   if (storyUrls.length === 0) {
     console.log(`We could not find any stories for the provided pattern "${storiesPattern}".
       You can override it by doing "--stories ./your-pattern.js`);
@@ -26,5 +27,7 @@ const toBrowserPath = require('../shared/toBrowserPath');
     storybookConfigDir: config['config-dir'],
     storyUrls,
     outputDir: config['output-dir'],
+    managerPath: require.resolve(config['manager-path']),
+    previewPath: require.resolve(config['preview-path']),
   });
 })();

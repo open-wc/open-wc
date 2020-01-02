@@ -20,13 +20,15 @@ async function run() {
     : process.cwd();
 
   const storybookConfigDir = config.storybookServerConfig['config-dir'];
+  const managerPath = require.resolve(config.storybookServerConfig['manager-path']);
+  const previewPath = require.resolve(config.storybookServerConfig['preview-path']);
   const storiesPattern = config.storybookServerConfig.stories;
   const storyUrls = (await listFiles(storiesPattern, rootDir)).map(filePath => {
     const relativeFilePath = path.relative(rootDir, filePath);
     return `/${toBrowserPath(relativeFilePath)}`;
   });
 
-  const assets = getAssets({ storybookConfigDir, storyUrls });
+  const assets = getAssets({ storybookConfigDir, managerPath, storyUrls });
   config.esDevServerConfig.babelExclude = [
     ...(config.esDevServerConfig.babelExclude || []),
     assets.managerScriptUrl,
@@ -54,7 +56,7 @@ async function run() {
   ];
 
   config.esDevServerConfig.responseTransformers = [
-    createMdxToJs(rootDir),
+    createMdxToJs({ rootDir, previewPath }),
     createServePreviewTransformer(assets),
     ...(config.esDevServerConfig.responseTransformers || []),
   ];

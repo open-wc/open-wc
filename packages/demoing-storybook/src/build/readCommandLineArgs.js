@@ -22,8 +22,18 @@ module.exports = function readCommandLineArgs() {
       defaultValue: './stories/*.stories.{js,mdx}',
       description: 'List of story files e.g. --stories stories/*.stories.{js,mdx}',
     },
+    {
+      name: 'manager-path',
+      defaultValue: '@open-wc/storybook-prebuilt/dist/manager.js',
+      description: 'Import path of a prebuilt manager file',
+    },
+    {
+      name: 'preview-path',
+      defaultValue: '@open-wc/storybook-prebuilt/dist/preview.js',
+      description: 'Import path of a prebuilt preview file',
+    },
   ];
+
   const storybookServerConfig = commandLineArgs(optionDefinitions);
-  console.log('storybookServerConfig', storybookServerConfig);
   return storybookServerConfig;
 };
