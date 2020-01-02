@@ -1,5 +1,4 @@
 const commandLineArgs = require('command-line-args');
-const path = require('path');
 
 module.exports = function readCommandLineArgs() {
   const optionDefinitions = [
@@ -14,16 +13,17 @@ module.exports = function readCommandLineArgs() {
       name: 'output-dir',
       alias: 'o',
       type: String,
-      defaultValue: path.join(process.cwd(), 'static-storybook'),
+      defaultValue: 'storybook-static',
       description: 'Rollup build output directory',
     },
     {
       name: 'stories',
       alias: 's',
+      defaultValue: './stories/*.stories.{js,mdx}',
       description: 'List of story files e.g. --stories stories/*.stories.{js,mdx}',
     },
   ];
   const storybookServerConfig = commandLineArgs(optionDefinitions);
-
+  console.log('storybookServerConfig', storybookServerConfig);
   return storybookServerConfig;
 };

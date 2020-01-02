@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/create",
-  "version": "0.24.4",
+  "version": "0.26.3",
   "publishConfig": {
     "access": "public"
   },
@@ -51,7 +51,7 @@
     "babel-plugin-transform-dynamic-import": "^2.1.0",
     "chai": "^4.2.0",
     "chai-fs": "^2.0.0",
-    "eslint": "^6.1.0",
+    "eslint": "^6.7.2",
     "mocha": "^6.2.2",
     "onchange": "^5.2.0",
     "rimraf": "^3.0.0"

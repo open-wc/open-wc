@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
-function esmFramework(config) {
+function esmFramework(config, logger) {
+  const log = logger.create('karma-esm');
   config.beforeMiddleware = config.beforeMiddleware || [];
   config.beforeMiddleware.push('esm');
 
@@ -8,6 +9,12 @@ function esmFramework(config) {
   config.files.forEach(file => {
     file.watched = false;
   });
+
+  if (!config.files.some(file => file.type === 'module')) {
+    log.warn('Config does not contain any test files with type="module"');
+  }
 }
+
+esmFramework.$inject = ['config', 'logger'];
 
 module.exports = esmFramework;

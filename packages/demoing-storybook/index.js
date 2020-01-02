@@ -33,10 +33,13 @@ export {
 export { withWebComponentsKnobs } from '@open-wc/storybook-prebuilt';
 
 export {
-  Meta,
-  Props,
-  Story,
+  Anchor,
+  Description,
   DocsContainer,
   DocsPage,
+  Heading,
+  Meta,
+  Story,
   Preview,
+  Props,
 } from '@open-wc/storybook-prebuilt/dist/preview.js';

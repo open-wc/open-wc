@@ -4,74 +4,104 @@ const sidebar = [
   ['/', 'Home'],
   ['/guide/', 'Introduction'],
   {
-    title: 'Developing',
+    title: 'Guides & Docs',
     collapsable: true,
     children: [
-      ['/developing/', 'Getting started'],
-      ['/developing/ide', 'IDE'],
-      '/developing/lit-html',
-      '/developing/code-examples',
       '/developing/best-practices',
-      '/developing/es-dev-server',
-      ['/init/', 'Generators'],
+      ['/codelabs/', 'Codelabs'],
+      '/developing/code-examples',
+      '/developing/lit-html',
       '/developing/types',
       '/developing/routing',
+      ['/developing/ide', 'IDE'],
+      '/guide/component-libraries',
     ],
   },
-  ['/codelabs/', 'Codelabs'],
   {
-    title: 'Linting',
+    title: 'Configs & Recommendations',
     collapsable: true,
     children: [
-      ['/linting/', 'Getting started'],
-      '/linting/linting-eslint',
-      '/linting/linting-prettier',
-      '/linting/linting-types',
+      {
+        title: 'Linting',
+        collapsable: true,
+        children: [
+          ['/linting/', 'Getting started'],
+          '/linting/linting-eslint',
+          '/linting/linting-prettier',
+          '/linting/linting-types',
+        ],
+      },
+      {
+        title: 'Developing',
+        collapsable: true,
+        children: ['/developing/'],
+      },
+
+      {
+        title: 'Testing',
+        collapsable: true,
+        children: [
+          ['/testing/', 'Getting started'],
+          '/testing/testing',
+          '/testing/testing-karma',
+          '/testing/testing-karma-bs',
+          '/testing/testing-wallaby',
+        ],
+      },
+      {
+        title: 'Building apps for production',
+        collapsable: true,
+        children: [
+          ['/building/', 'Getting started'],
+          '/building/building-rollup',
+          '/building/building-webpack',
+        ],
+      },
+      {
+        title: 'Deploying apps',
+        collapsable: true,
+        children: [['/publishing/', 'Getting started']],
+      },
+      {
+        title: 'Demoing',
+        collapsable: true,
+        children: [['/demoing/', 'Getting started']],
+      },
     ],
   },
   {
-    title: 'Testing',
+    title: 'Tools',
     collapsable: true,
     children: [
-      ['/testing/', 'Getting started'],
-      '/testing/testing',
-      '/testing/testing-helpers',
-      '/testing/testing-chai-a11y-axe',
-      '/testing/testing-sinon',
-      '/testing/semantic-dom-diff',
-      '/testing/testing-karma',
-      '/testing/karma-esm',
-      '/testing/testing-karma-bs',
-      '/testing/testing-wallaby',
+      {
+        title: 'Developing',
+        collapsable: true,
+        children: [
+          '/developing/es-dev-server',
+          ['/init/', 'Generators'],
+          '/developing/lit-helpers',
+        ],
+      },
+      {
+        title: 'Testing',
+        collapsable: true,
+        children: [
+          '/testing/testing-helpers',
+          '/testing/testing-chai-a11y-axe',
+          '/testing/testing-sinon',
+          '/testing/semantic-dom-diff',
+          '/testing/karma-esm',
+        ],
+      },
+      {
+        title: 'Building',
+        collapsable: true,
+        children: ['/building/rollup-plugin-index-html', '/building/webpack-index-html-plugin'],
+      },
     ],
-  },
-  {
-    title: 'Building',
-    collapsable: true,
-    children: [
-      ['/building/', 'Getting started'],
-      '/building/building-rollup',
-      '/building/rollup-plugin-index-html',
-      '/building/building-webpack',
-      '/building/webpack-index-html-plugin',
-    ],
-  },
-  {
-    title: 'Demoing',
-    collapsable: true,
-    children: [['/demoing/', 'Getting started']],
-  },
-  {
-    title: 'Publishing',
-    collapsable: true,
-    children: [['/publishing/', 'Getting started']],
-  },
-  {
-    title: 'Automating',
-    collapsable: true,
-    children: [['/automating/', 'Getting started']],
   },
 ];
+
 module.exports = {
   title: 'open-wc',
   description: 'Open Web Component Recommendations',
@@ -96,7 +126,6 @@ module.exports = {
           title: 'Deep dives',
           collapsable: true,
           children: [
-            'component-libraries',
             'rerender',
             'unit-testing-custom-events',
             'unit-testing-init-error',

@@ -1,5 +1,7 @@
 # Getting Started
 
+> Please note that this project is released with a [Contributor Code of Conduct](./CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+
 First, create a fork of the [open-wc/open-wc](https://github.com/open-wc/open-wc) repo by hitting the `fork` button on the GitHub page.
 
 Next, clone your fork onto your computer with this command (replacing YOUR_USERNAME with your actual GitHub username)

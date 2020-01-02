@@ -6,8 +6,8 @@
   - [From version 0.3.x to 0.4.0](#from-version-03x-to-040)
     - [Storybook Upgrade from 5.1.x to 5.3.x](#storybook-upgrade-from-51x-to-53x)
     - [Dependency changes](#dependency-changes)
-    - [Removed `default-storybook-webpack-config.js`](#removed-default-storybook-webpack-configjs)
-    - [Replaced `withClassPropertiesKnobs` with a decorator `withWebComponentsKnobs`](#replaced-withclasspropertiesknobs-with-a-decorator-withwebcomponentsknobs)
+    - [Removed default-storybook-webpack-config.js](#removed-default-storybook-webpack-configjs)
+    - [Replaced withClassPropertiesKnobs with a decorator withWebComponentsKnobs](#replaced-withclasspropertiesknobs-with-a-decorator-withwebcomponentsknobs)
 
 If you did not modify your configurations then you can upgrade to the latest version by rerunning the generator.
 
@@ -79,8 +79,8 @@ If you had a custom `require.context` which is different to the default `./stori
 
 ```json
 "scripts": {
-  "storybook": "start-storybook --stories 'some/path/to/stories/*.stories.{js,mdx}' --node-resolve --watch --open",
-  "storybook:build": "build-storybook --stories 'some/path/to/stories/*.stories.{js,mdx}'"
+  "storybook": "start-storybook --stories \"some/path/to/stories/*.stories.{js,mdx}\" --node-resolve --watch --open",
+  "storybook:build": "build-storybook --stories \"some/path/to/stories/*.stories.{js,mdx}\""
 },
 ```
 

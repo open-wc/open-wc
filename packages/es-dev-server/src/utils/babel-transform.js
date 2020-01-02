@@ -27,9 +27,13 @@ export const defaultConfig = {
     require.resolve('@babel/plugin-syntax-dynamic-import'),
     require.resolve('@babel/plugin-syntax-import-meta'),
     require.resolve('@babel/plugin-syntax-class-properties'),
-    require.resolve('@babel/plugin-syntax-nullish-coalescing-operator'),
-    require.resolve('@babel/plugin-syntax-optional-chaining'),
     require.resolve('@babel/plugin-syntax-numeric-separator'),
+
+    /**
+     * This can be removed when https://github.com/babel/babel/pull/10811 is merged
+     */
+    [require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'), { loose: true }],
+    [require.resolve('@babel/plugin-proposal-optional-chaining'), { loose: true }],
   ],
   sourceType: 'module',
 };
@@ -116,6 +120,9 @@ export const polyfillModulesTransform = createBabelTransform(
     plugins: [
       require.resolve('@babel/plugin-proposal-dynamic-import'),
       require.resolve('@babel/plugin-transform-modules-systemjs'),
+      // systemjs adds template literals, we do systemjs after (potential)
+      // es5 compilation so we need to ensure it stays es5
+      require.resolve('@babel/plugin-transform-template-literals'),
     ],
     babelrc: false,
     configFile: false,

@@ -46,7 +46,7 @@ npm init @open-wc
 ### Manual
 
 - `yarn add @open-wc/demoing-storybook --dev`
-- Copy at minimum the [.storybook](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/demoing-storybook/templates/static/.storybook/addons.js) folder to `.storybook`
+- Copy at minimum the [.storybook](https://github.com/open-wc/open-wc/tree/master/packages/create/src/generators/demoing-storybook/templates/static/.storybook) folder to `.storybook`
 - If you want to bring along the examples, you may also copy the `stories` folder.
 - Be sure you have a [custom-elements.json](#custom-elements-json) file.
 - Add the following scripts to your package.json
@@ -90,7 +90,7 @@ The storybook server is based on [es-dev-server](https://open-wc.org/developing/
 Create a `*.stories.mdx` (for example `card.stories.mdx`) file within the `stories` folder.
 
 ```md
-import { Story, Preview, Meta, Props } from '@storybook/addon-docs/blocks';
+import { Story, Preview, Meta, Props } from '@open-wc/demoing-storybook';
 import { html } from 'lit-html';
 import '../demo-wc-card.js';
 

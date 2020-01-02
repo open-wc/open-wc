@@ -31,8 +31,18 @@ async function fetchText(url, userAgent) {
 }
 
 async function expectCompatibilityTransform(userAgent, features = {}) {
-  const stage4Features = await fetchText('stage-4-features.js', userAgent);
-  const esModules = await fetchText('module-features.js', userAgent);
+  const stage4Features = await fetchText(
+    `stage-4-features.js${features.esModules ? '?transform-modules' : ''}`,
+    userAgent,
+  );
+  const esModules = await fetchText(
+    `module-features.js${features.esModules ? '?transform-modules' : ''}`,
+    userAgent,
+  );
+  const stage4NoModernBrowserImpl = await fetchText(
+    `stage-4-no-modern-browser-impl.js${features.esModules ? '?transform-modules' : ''}`,
+    userAgent,
+  );
 
   expect(stage4Features).to.include(
     features.objectSpread ? '_objectSpread({}, foo);' : 'bar = { ...foo',
@@ -55,20 +65,26 @@ async function expectCompatibilityTransform(userAgent, features = {}) {
       : "import module from './module-features-a.js';",
   );
   expect(esModules).to.include("import('./module-features-b.js')");
-  expect(esModules).to.include(
-    features.esModules ? 'meta.url.endsWith' : 'import.meta.url.endsWith',
+  expect(esModules).to.include(features.esModules ? 'meta.url.indexOf' : 'import.meta.url.indexOf');
+
+  expect(stage4NoModernBrowserImpl).to.include(
+    features.optionalChaining
+      ? 'lorem == null ? void 0 : (_lorem$ipsum = lorem.ipsum) == null ? void 0 : _lorem$ipsum.foo'
+      : 'lorem?.ipsum?.foo',
+  );
+
+  expect(stage4NoModernBrowserImpl).to.include(
+    features.nullishCoalescing
+      ? "foo != null ? foo : 'nullish colaesced'"
+      : "foo ?? 'nullish colaesced'",
   );
 }
 
 async function expectSupportStage3(userAgent) {
   const classFields = await fetchText('stage-3-class-fields.js', userAgent);
-  const optionalChaining = await fetchText('stage-3-optional-chaining.js', userAgent);
-  const nullishCoalesc = await fetchText('stage-3-nullish-coalesc.js', userAgent);
   const privateFields = await fetchText('stage-3-private-class-fields.js', userAgent);
 
   expect(classFields).to.include("myField = 'foo';");
-  expect(optionalChaining).to.include('foo?.bar?.buz');
-  expect(nullishCoalesc).to.include("foo ?? 'nullish colaesced'");
   expect(privateFields).to.include("#foo = 'bar';");
 }
 
@@ -107,6 +123,8 @@ describe('compatibility transform middleware', () => {
       await expectCompatibilityTransform(userAgents['Chrome 78'], {
         objectSpread: true,
         templateLiteral: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
       });
     });
 
@@ -133,6 +151,8 @@ describe('compatibility transform middleware', () => {
         classes: true,
         templateLiteral: true,
         esModules: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
       });
     });
   });
@@ -154,17 +174,28 @@ describe('compatibility transform middleware', () => {
     it('transforms for Chrome 62', async () => {
       await expectCompatibilityTransform(userAgents['Chrome 62'], {
         esModules: true,
+        templateLiteral: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
       });
     });
 
     it('transforms for Chrome 63', async () => {
       await expectCompatibilityTransform(userAgents['Chrome 63'], {
         esModules: true,
+        templateLiteral: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
       });
     });
 
     it('transforms for Chrome 64', async () => {
-      await expectCompatibilityTransform(userAgents['Chrome 64']);
+      await expectCompatibilityTransform(userAgents['Chrome 64'], {
+        esModules: true,
+        templateLiteral: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
+      });
     });
 
     it('transforms for Firefox 70', async () => {
@@ -174,6 +205,8 @@ describe('compatibility transform middleware', () => {
     it('transforms for Safari 12.1.2', async () => {
       await expectCompatibilityTransform(userAgents['Safari 12.1.2'], {
         templateLiteral: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
       });
     });
 
@@ -183,6 +216,8 @@ describe('compatibility transform middleware', () => {
         exponentiation: true,
         templateLiteral: true,
         esModules: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
       });
     });
 
@@ -190,6 +225,9 @@ describe('compatibility transform middleware', () => {
       await expectCompatibilityTransform(userAgents['Edge 18'], {
         objectSpread: true,
         esModules: true,
+        templateLiteral: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
       });
     });
 
@@ -201,6 +239,8 @@ describe('compatibility transform middleware', () => {
         classes: true,
         templateLiteral: true,
         esModules: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
       });
     });
 
@@ -212,6 +252,107 @@ describe('compatibility transform middleware', () => {
         classes: true,
         templateLiteral: true,
         esModules: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
+      });
+    });
+  });
+
+  describe('compatibilityMode ALWAYS', () => {
+    let server;
+    beforeEach(async () => {
+      server = await setupServer(compatibilityModes.AUTO);
+    });
+
+    afterEach(() => {
+      server.close();
+    });
+
+    it('transforms for Chrome 78', async () => {
+      await expectCompatibilityTransform(userAgents['Chrome 78']);
+    });
+
+    it('transforms for Chrome 62', async () => {
+      await expectCompatibilityTransform(userAgents['Chrome 62'], {
+        esModules: true,
+        templateLiteral: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
+      });
+    });
+
+    it('transforms for Chrome 63', async () => {
+      await expectCompatibilityTransform(userAgents['Chrome 63'], {
+        esModules: true,
+        templateLiteral: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
+      });
+    });
+
+    it('transforms for Chrome 64', async () => {
+      await expectCompatibilityTransform(userAgents['Chrome 64'], {
+        optionalChaining: true,
+        nullishCoalescing: true,
+      });
+    });
+
+    it('transforms for Firefox 70', async () => {
+      await expectCompatibilityTransform(userAgents['Firefox 70']);
+    });
+
+    it('transforms for Safari 12.1.2', async () => {
+      await expectCompatibilityTransform(userAgents['Safari 12.1.2'], {
+        templateLiteral: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
+      });
+    });
+
+    it('transforms for Safari 10', async () => {
+      await expectCompatibilityTransform(userAgents['Safari 10'], {
+        objectSpread: true,
+        exponentiation: true,
+        templateLiteral: true,
+        esModules: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
+      });
+    });
+
+    it('transforms for Edge 18', async () => {
+      await expectCompatibilityTransform(userAgents['Edge 18'], {
+        objectSpread: true,
+        esModules: true,
+        templateLiteral: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
+      });
+    });
+
+    it('transforms for IE 11', async () => {
+      await expectCompatibilityTransform(userAgents['IE 11'], {
+        objectSpread: true,
+        asyncFunction: true,
+        exponentiation: true,
+        classes: true,
+        templateLiteral: true,
+        esModules: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
+      });
+    });
+
+    it('transforms all for unknown user agent', async () => {
+      await expectCompatibilityTransform('unknown user agent', {
+        objectSpread: true,
+        asyncFunction: true,
+        exponentiation: true,
+        classes: true,
+        templateLiteral: true,
+        esModules: true,
+        optionalChaining: true,
+        nullishCoalescing: true,
       });
     });
   });
@@ -307,6 +448,54 @@ describe('compatibility transform middleware', () => {
     });
   });
 
+  describe('node resolve flag', () => {
+    it('transforms module imports', async () => {
+      const { server } = await startServer(
+        createConfig({
+          compatibility: compatibilityModes.NONE,
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          port: 8080,
+          nodeResolve: true,
+        }),
+      );
+
+      try {
+        const response = await fetch(`${host}app.js`);
+        const responseText = await response.text();
+
+        expect(response.status).to.equal(200);
+        expect(responseText).to.include(
+          "import { message } from './node_modules/my-module/index.js';",
+        );
+        expect(responseText).to.include('async function* asyncGenerator()');
+      } finally {
+        server.close();
+      }
+    });
+
+    it('transforms module imports when compiling to systemjs', async () => {
+      const { server } = await startServer(
+        createConfig({
+          compatibility: compatibilityModes.MAX,
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          port: 8080,
+          nodeResolve: true,
+        }),
+      );
+
+      try {
+        const response = await fetch(`${host}app.js?transform-modules`);
+        const responseText = await response.text();
+        expect(response.status).to.equal(200);
+        expect(responseText).to.include(
+          'System.register(["./node_modules/my-module/index.js", "./src/local-module.js"], function',
+        );
+      } finally {
+        server.close();
+      }
+    });
+  });
+
   describe('typescript', () => {
     let server;
     beforeEach(async () => {
@@ -358,54 +547,6 @@ describe('compatibility transform middleware', () => {
     } finally {
       server.close();
     }
-  });
-
-  describe('node resolve flag', () => {
-    it('transforms module imports', async () => {
-      const { server } = await startServer(
-        createConfig({
-          compatibility: compatibilityModes.NONE,
-          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-          port: 8080,
-          nodeResolve: true,
-        }),
-      );
-
-      try {
-        const response = await fetch(`${host}app.js`);
-        const responseText = await response.text();
-
-        expect(response.status).to.equal(200);
-        expect(responseText).to.include(
-          "import { message } from './node_modules/my-module/index.js';",
-        );
-        expect(responseText).to.include('async function* asyncGenerator()');
-      } finally {
-        server.close();
-      }
-    });
-
-    it('transforms module imports when compiling to systemjs', async () => {
-      const { server } = await startServer(
-        createConfig({
-          compatibility: compatibilityModes.MAX,
-          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
-          port: 8080,
-          nodeResolve: true,
-        }),
-      );
-
-      try {
-        const response = await fetch(`${host}app.js`);
-        const responseText = await response.text();
-        expect(response.status).to.equal(200);
-        expect(responseText).to.include(
-          'System.register(["./node_modules/my-module/index.js", "./src/local-module.js"], function',
-        );
-      } finally {
-        server.close();
-      }
-    });
   });
 
   describe('combining node resolve and compatibility', () => {
@@ -460,7 +601,7 @@ describe('compatibility transform middleware', () => {
     });
 
     it('transforms properly', async () => {
-      const response = await fetch(`${host}app.ts`);
+      const response = await fetch(`${host}app.ts?transform-modules`);
       const responseText = await response.text();
 
       expect(response.status).to.equal(200);

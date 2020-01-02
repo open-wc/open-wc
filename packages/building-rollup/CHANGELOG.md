@@ -3,6 +3,150 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.17.3...@open-wc/building-rollup@0.17.4) (2019-12-30)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.17.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.17.2...@open-wc/building-rollup@0.17.3) (2019-12-30)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.17.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.17.1...@open-wc/building-rollup@0.17.2) (2019-12-30)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.17.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.17.0...@open-wc/building-rollup@0.17.1) (2019-12-19)
+
+
+### Bug Fixes
+
+* **building-rollup:** fixes module resolution in config ([1343d83](https://github.com/open-wc/open-wc/commit/1343d83702c64982e8d2f7f8531d8dc6081fa957))
+
+
+
+
+
+# [0.17.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.16.0...@open-wc/building-rollup@0.17.0) (2019-12-18)
+
+
+### Features
+
+* **building-rollup:** use new node-resolve plugin name ([#1137](https://github.com/open-wc/open-wc/issues/1137)) ([2f72252](https://github.com/open-wc/open-wc/commit/2f7225291662c163eeb7ad1202f8daa3dd84f067))
+
+
+
+
+
+# [0.16.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.15.4...@open-wc/building-rollup@0.16.0) (2019-12-13)
+
+
+### Features
+
+* **building-rollup:** update version of rollup-plugin-terser ([abda5e8](https://github.com/open-wc/open-wc/commit/abda5e84188eaa508a2666a5acdff4ea9bb70904))
+* **building-webpack:** update version of terser ([f537e47](https://github.com/open-wc/open-wc/commit/f537e475e73b31e81cafbaa920de7ca3f2a05e01))
+
+
+
+
+
+## [0.15.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.15.3...@open-wc/building-rollup@0.15.4) (2019-12-11)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.15.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.15.2...@open-wc/building-rollup@0.15.3) (2019-12-09)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.15.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.15.1...@open-wc/building-rollup@0.15.2) (2019-12-09)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.15.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.15.0...@open-wc/building-rollup@0.15.1) (2019-12-08)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+# [0.15.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.10...@open-wc/building-rollup@0.15.0) (2019-12-08)
+
+
+### Features
+
+* **building-rollup:** support optional chaining and nullish coalescing ([43ccef7](https://github.com/open-wc/open-wc/commit/43ccef7297277ff7ad60e9c4344b8d7059d2cce3))
+
+
+
+
+
+## [0.14.10](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.9...@open-wc/building-rollup@0.14.10) (2019-12-05)
+
+
+### Bug Fixes
+
+* **building-rollup:** respect output dir for sw.js ([#1082](https://github.com/open-wc/open-wc/issues/1082)) ([a71ed9d](https://github.com/open-wc/open-wc/commit/a71ed9d7162ef3bdddc70ca763f073b8853d31ce))
+
+
+
+
+
+## [0.14.9](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.8...@open-wc/building-rollup@0.14.9) (2019-12-05)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.14.8](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.7...@open-wc/building-rollup@0.14.8) (2019-12-02)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.14.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.6...@open-wc/building-rollup@0.14.7) (2019-12-01)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.14.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.5...@open-wc/building-rollup@0.14.6) (2019-11-30)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
 ## [0.14.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.14.4...@open-wc/building-rollup@0.14.5) (2019-11-27)
 
 **Note:** Version bump only for package @open-wc/building-rollup

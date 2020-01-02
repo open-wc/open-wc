@@ -1,6 +1,7 @@
 export const compatibilityModes = {
   NONE: 'none',
   AUTO: 'auto',
+  ALWAYS: 'always',
   MIN: 'min',
   MAX: 'max',
 };
