@@ -6,18 +6,16 @@ const toBrowserPath = require('./toBrowserPath');
 
 const compilers = [createCompiler({})];
 
-module.exports = function createMdxToJsTransformer(rootDir) {
-  let urlToPrebuilt = require.resolve('@open-wc/storybook-prebuilt/dist/preview.js');
-  if (rootDir) {
-    urlToPrebuilt = toBrowserPath(`/${path.relative(rootDir, urlToPrebuilt)}`);
-  }
+module.exports = function createMdxToJsTransformer({ rootDir, previewPath }) {
+  const previewPathRelative = rootDir ? `/${path.relative(rootDir, previewPath)}` : previewPath;
+  const previewImport = toBrowserPath(previewPathRelative);
 
   return async function transformMdxToJs(filePath, body) {
     const jsx = `
-      import { React, mdx } from '${urlToPrebuilt}';
+      import { React, mdx } from '${previewImport}';
 
       ${await mdx(body, { compilers, filepath: filePath })}
-    `.replace('@storybook/addon-docs/blocks', urlToPrebuilt);
+    `.replace('@storybook/addon-docs/blocks', previewImport);
 
     return transformAsync(jsx, {
       filename: filePath,

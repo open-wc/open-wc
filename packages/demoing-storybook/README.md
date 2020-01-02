@@ -74,12 +74,14 @@ npm run storybook
 
 #### Storybook specific
 
-| name       | type   | description                                                                                            |
-| ---------- | ------ | ------------------------------------------------------------------------------------------------------ |
-| stories    | string | A glob which stories to include. Be sure to wrap it in `'`. Default: `'./stories/\*.stories.{js,mdx}'` |
-| config-dir | string | Where the storybook config files are. Default: ./.storybook                                            |
-|            |        | Build only                                                                                             |
-| output-dir | string | Rollup build output directory. Default: ./static-storybook                                             |
+| name         | type   | description                                                                                                    |
+| ------------ | ------ | -------------------------------------------------------------------------------------------------------------- |
+| stories      | string | A glob which stories to include. Be sure to wrap it in `'`. Default: `'./stories/\*.stories.{js,mdx}'`         |
+| config-dir   | string | Where the storybook config files are. Default: ./.storybook                                                    |
+| manager-path | string | Where to load the prebuilt manager from. This is passed to `require.resolve`, it can be a file path or import. |
+| preview-path | string | Where to load the prebuilt preview from. This is passed to `require.resolve`, it can be a file path or import. |
+|              |        | Build only                                                                                                     |
+| output-dir   | string | Rollup build output directory. Default: ./static-storybook                                                     |
 
 #### Dev server
 
@@ -261,6 +263,14 @@ module.exports = {
     }),
   ],
 };
+```
+
+### Custom storybook build
+
+We use a custom storybook build so that we can load it as an es module in the browser, and we don't need to wait for webpack to build. You can provide your own custom storybook build with the `--manager-path` and `--preview-path` flags:
+
+```bash
+start-storybook --manager-path my-storybook-prebuild/dist/manager.js --preview-path my-storybook-/dist/preview.js
 ```
 
 <script>
