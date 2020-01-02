@@ -15,34 +15,23 @@ const listFiles = require('../shared/listFiles');
 
 async function run() {
   const config = readCommandLineArgs();
-  const rootDir = config.esDevServerConfig.rootDir
-    ? path.resolve(process.cwd(), config.esDevServerConfig.rootDir)
-    : process.cwd();
+  const rootDir = config.rootDir ? path.resolve(process.cwd(), config.rootDir) : process.cwd();
 
-  const storybookConfigDir = config.storybookServerConfig['config-dir'];
-  const managerPath = require.resolve(config.storybookServerConfig['manager-path']);
-  const previewPath = require.resolve(config.storybookServerConfig['preview-path']);
-  const storiesPattern = config.storybookServerConfig.stories;
+  const storybookConfigDir = config.configDir;
+  const managerPath = require.resolve(config.managerPath);
+  const previewPath = require.resolve(config.previewPath);
+  const storiesPattern = config.stories;
   const storyUrls = (await listFiles(storiesPattern, rootDir)).map(filePath => {
     const relativeFilePath = path.relative(rootDir, filePath);
     return `/${toBrowserPath(relativeFilePath)}`;
   });
 
   const assets = getAssets({ storybookConfigDir, managerPath, storyUrls });
-  config.esDevServerConfig.babelExclude = [
-    ...(config.esDevServerConfig.babelExclude || []),
-    assets.managerScriptUrl,
-  ];
+  config.babelExclude = [...(config.babelExclude || []), assets.managerScriptUrl];
 
-  config.esDevServerConfig.babelModuleExclude = [
-    ...(config.esDevServerConfig.babelModuleExclude || []),
-    assets.managerScriptUrl,
-  ];
+  config.babelModuleExclude = [...(config.babelModuleExclude || []), assets.managerScriptUrl];
 
-  config.esDevServerConfig.fileExtensions = [
-    ...(config.esDevServerConfig.fileExtensions || []),
-    '.mdx',
-  ];
+  config.fileExtensions = [...(config.fileExtensions || []), '.mdx'];
 
   if (storyUrls.length === 0) {
     console.log(`We could not find any stories for the provided pattern "${storiesPattern}".
@@ -50,18 +39,15 @@ async function run() {
     process.exit(1);
   }
 
-  config.esDevServerConfig.middlewares = [
-    createServeManagerMiddleware(assets),
-    ...(config.esDevServerConfig.middlewares || []),
-  ];
+  config.middlewares = [createServeManagerMiddleware(assets), ...(config.middlewares || [])];
 
-  config.esDevServerConfig.responseTransformers = [
+  config.responseTransformers = [
     createMdxToJs({ rootDir, previewPath }),
     createServePreviewTransformer(assets),
-    ...(config.esDevServerConfig.responseTransformers || []),
+    ...(config.responseTransformers || []),
   ];
 
-  startServer(createConfig(config.esDevServerConfig));
+  startServer(createConfig(config));
 
   ['exit', 'SIGINT'].forEach(event => {
     // @ts-ignore

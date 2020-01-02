@@ -155,11 +155,14 @@ export const commandLineOptions = [
  * Reads command line args from arguments array. Defaults to `process.argv`.
  *
  * @param {string[]} [argv]
- * @param {{ defaultConfigDir?: string }} config
+ * @param {{ defaultConfigDir?: string, defaultConfigName?: string }} config
  * @returns {import('./config.js').Config}
  */
 export function readCommandLineArgs(argv = process.argv, config = {}) {
-  const { defaultConfigDir = process.cwd() } = config;
+  const {
+    defaultConfigDir = process.cwd(),
+    defaultConfigName = 'es-dev-server.config.js',
+  } = config;
   const dashesArgs = commandLineArgs(commandLineOptions, { argv, partial: true });
   const openInCommandLineArgs = 'open' in dashesArgs;
 
@@ -199,7 +202,7 @@ export function readCommandLineArgs(argv = process.argv, config = {}) {
 
   if (args.config) {
     // read config from user provided path
-    const configPath = path.resolve(args.config);
+    const configPath = path.resolve(path.join(dashesArgs['root-dir'], args.config));
     if (!fs.existsSync(configPath) || !fs.statSync(configPath).isFile()) {
       throw new Error(`Did not find any config file at ${configPath}`);
     }
@@ -209,7 +212,12 @@ export function readCommandLineArgs(argv = process.argv, config = {}) {
     logDebug(`Found a config file at ${configPath}`);
   } else {
     // read default config if present
-    const defaultConfigPath = path.join(defaultConfigDir, 'es-dev-server.config.js');
+    const defaultConfigPath = path.join(
+      dashesArgs['root-dir'],
+      defaultConfigDir,
+      defaultConfigName,
+    );
+
     if (fs.existsSync(defaultConfigPath) && fs.statSync(defaultConfigPath).isFile()) {
       const fileConfig = require(defaultConfigPath);
       options = deepmerge(fileConfig, args);
