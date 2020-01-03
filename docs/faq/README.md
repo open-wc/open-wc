@@ -7,7 +7,7 @@ In this section you can find answers to frequently asked questions regarding jav
 
 **Deep dives:**
 
-- [Component Libraries](/guide/component-libraries)
+- [Managing events in your custom elements](./events.html)
 - [Rerender not triggered](./rerender.html)
 - [Unit testing custom events](./unit-testing-custom-events.html)
 - [Unit testing initialization error](./unit-testing-init-error.html)

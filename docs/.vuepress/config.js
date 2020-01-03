@@ -126,6 +126,7 @@ module.exports = {
           title: 'Deep dives',
           collapsable: true,
           children: [
+            'events',
             'rerender',
             'unit-testing-custom-events',
             'unit-testing-init-error',
