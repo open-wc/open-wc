@@ -9,7 +9,7 @@ function createContentHash(content) {
     .digest('hex');
 }
 
-module.exports = function getAssets({ storybookConfigDir, managerPath, storyUrls }) {
+module.exports = function getAssets({ storybookConfigDir, managerPath, previewImport, storyUrls }) {
   const managerIndexPath = path.join(__dirname, 'index.html');
   const iframePath = path.join(__dirname, 'iframe.html');
   const managerHeadPath = path.join(process.cwd(), storybookConfigDir, 'manager-head.html');
@@ -54,7 +54,7 @@ module.exports = function getAssets({ storybookConfigDir, managerPath, storyUrls
       </body>
       <script type="module" src="./${storybookConfigDir}/preview.js"></script>
       <script type="module">
-        import { configure } from '@open-wc/demoing-storybook';
+        import { configure } from '${previewImport}';
 
         Promise.all([
           ${storyUrls.map(url => `import('${url}')`).join(',\n')}

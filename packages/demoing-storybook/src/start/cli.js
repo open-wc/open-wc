@@ -20,13 +20,15 @@ async function run() {
   const storybookConfigDir = config.configDir;
   const managerPath = require.resolve(config.managerPath);
   const previewPath = require.resolve(config.previewPath);
+  const previewPathRelative = rootDir ? `/${path.relative(rootDir, previewPath)}` : previewPath;
+  const previewImport = toBrowserPath(previewPathRelative);
   const storiesPattern = config.stories;
   const storyUrls = (await listFiles(storiesPattern, rootDir)).map(filePath => {
     const relativeFilePath = path.relative(rootDir, filePath);
     return `/${toBrowserPath(relativeFilePath)}`;
   });
 
-  const assets = getAssets({ storybookConfigDir, managerPath, storyUrls });
+  const assets = getAssets({ storybookConfigDir, managerPath, previewImport, storyUrls });
   config.babelExclude = [...(config.babelExclude || []), assets.managerScriptUrl];
 
   config.babelModuleExclude = [...(config.babelModuleExclude || []), assets.managerScriptUrl];
@@ -42,7 +44,7 @@ async function run() {
   config.middlewares = [createServeManagerMiddleware(assets), ...(config.middlewares || [])];
 
   config.responseTransformers = [
-    createMdxToJs({ rootDir, previewPath }),
+    createMdxToJs({ previewImport }),
     createServePreviewTransformer(assets),
     ...(config.responseTransformers || []),
   ];

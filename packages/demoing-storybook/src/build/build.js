@@ -14,7 +14,7 @@ async function buildManager(outputDir, assets) {
 }
 
 async function buildPreview(outputDir, previewPath, assets) {
-  const transformMdxToJs = createMdxToJsTransformer({ rootDir: null, previewPath });
+  const transformMdxToJs = createMdxToJsTransformer({ previewImport: previewPath });
 
   const transformMdxPlugin = {
     transform(code, id) {
@@ -88,7 +88,12 @@ module.exports = async function build({
   previewPath,
   storyUrls,
 }) {
-  const assets = createAssets({ storybookConfigDir, managerPath, storyUrls });
+  const assets = createAssets({
+    storybookConfigDir,
+    managerPath,
+    previewImport: previewPath,
+    storyUrls,
+  });
 
   await fs.remove(outputDir);
   await fs.mkdirp(outputDir);
