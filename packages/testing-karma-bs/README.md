@@ -59,11 +59,16 @@ Add a script to your `package.json`:
 
 - Go to [https://www.browserstack.com/accounts/settings](https://www.browserstack.com/accounts/settings)
 - Look for "Automate" and write down your "Access Key" and "Username"
+- Within your terminal or command line write:
 
 ```bash
-# for one-time use only
+# for one-time use only (on mac)
 export BROWSER_STACK_USERNAME=xxx
 export BROWSER_STACK_ACCESS_KEY=xxx
+
+# or for one-time use only (on windows)
+set BROWSER_STACK_USERNAME=xxx
+set BROWSER_STACK_ACCESS_KEY=xxx
 
 # or add them to your .bashrc
 echo "export BROWSER_STACK_USERNAME=xxx" >> ~/.bashrc
