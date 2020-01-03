@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.35.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.34.0...es-dev-server@1.35.0) (2020-01-03)
+
+
+### Bug Fixes
+
+* **es-dev-server:** handle unset command line args ([824fcc6](https://github.com/open-wc/open-wc/commit/824fcc66e32c77543ee4e1518f27eda5e19f6290))
+
+
+### Features
+
+* **demoing-storybook:** read a combined start-storybook config ([4085898](https://github.com/open-wc/open-wc/commit/4085898bf9fd23ab51cd86d5fe582191c30be64e))
+
+
+
+
+
 # [1.34.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.33.1...es-dev-server@1.34.0) (2019-12-30)
 
 

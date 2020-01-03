@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.13...@open-wc/demoing-storybook@1.4.0) (2020-01-03)
+
+
+### Features
+
+* **demoing-storybook:** make manager and preview configurable ([e8b9292](https://github.com/open-wc/open-wc/commit/e8b929209f46a412ed28be52f1b93bf200f54073))
+* **demoing-storybook:** read a build-storybook config ([d0e8729](https://github.com/open-wc/open-wc/commit/d0e87299c362eb4bcac43c4c8ce9f476679d0b16))
+* **demoing-storybook:** read a combined start-storybook config ([4085898](https://github.com/open-wc/open-wc/commit/4085898bf9fd23ab51cd86d5fe582191c30be64e))
+
+
+
+
+
 ## [1.3.13](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.12...@open-wc/demoing-storybook@1.3.13) (2019-12-30)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
