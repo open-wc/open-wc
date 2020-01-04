@@ -17,6 +17,7 @@ export {
   fixtureSync,
   fixtureCleanup,
   elementUpdated,
+  waitUntil,
 } from '@open-wc/testing-helpers/index.js';
 
 // @ts-ignore

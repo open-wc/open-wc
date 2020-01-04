@@ -1,5 +1,6 @@
 import { expect } from './setup.js';
 import { defineCE, oneEvent, triggerFocusFor, triggerBlurFor, fixture } from '../index.js';
+import { waitUntil, aTimeout } from '../src/helpers.js';
 
 describe('Helpers', () => {
   it('provides defineCE() to register a unique new element', async () => {
@@ -67,5 +68,31 @@ describe('Helpers', () => {
     await triggerBlurFor(el.inputElement);
     expect(el.blurCount).to.be.within(0, 1);
     expect(el !== document.activeElement).to.be.true;
+  });
+
+  it('provides waitUntil to await async state', async () => {
+    let foo = false;
+    let resolved = false;
+    waitUntil(() => foo).then(() => {
+      resolved = true;
+    });
+
+    await aTimeout(100);
+    expect(resolved).to.be.false;
+    foo = true;
+    await aTimeout(100);
+
+    expect(resolved).to.be.true;
+  });
+
+  it('can customize the error message and timeout time', async () => {
+    let thrown = false;
+    try {
+      await waitUntil(() => false, 'false should become true', { timeout: 10 });
+    } catch (error) {
+      expect(error.message).to.equal('Timeout: false should become true');
+      thrown = true;
+    }
+    expect(thrown).to.be.true;
   });
 });
