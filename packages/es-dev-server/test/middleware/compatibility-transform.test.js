@@ -48,9 +48,7 @@ async function expectCompatibilityTransform(userAgent, features = {}) {
     features.objectSpread ? '_objectSpread({}, foo);' : 'bar = { ...foo',
   );
   expect(stage4Features).to.include(
-    features.asyncFunction
-      ? 'return regeneratorRuntime.async(function asyncFunction$(_context) {'
-      : 'async function',
+    features.asyncFunction ? '_asyncFunction = _asyncToGenerator(' : 'async function',
   );
   expect(stage4Features).to.include(features.exponentiation ? 'Math.pow(2, 4)' : '2 ** 4');
   expect(stage4Features).to.include(features.classes ? 'Foo = function Foo() {' : 'class Foo {');
