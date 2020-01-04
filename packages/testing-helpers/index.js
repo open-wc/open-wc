@@ -7,6 +7,7 @@ export {
   defineCE,
   aTimeout,
   nextFrame,
+  waitUntil,
 } from './src/helpers.js';
 export { litFixture, litFixtureSync } from './src/litFixture.js';
 export { stringFixture, stringFixtureSync } from './src/stringFixture.js';
