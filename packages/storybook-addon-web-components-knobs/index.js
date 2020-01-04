@@ -1,3 +1,4 @@
+/* eslint-disable */
 export { html } from 'lit-html';
 
 export {
