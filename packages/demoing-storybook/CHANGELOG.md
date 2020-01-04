@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.4.0...@open-wc/demoing-storybook@1.4.1) (2020-01-04)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** configure stories from dynamic preview path ([b640205](https://github.com/open-wc/open-wc/commit/b640205c26d9f07d785c122ef69b81f7584e456a))
+* **demoing-storybook:** serve sourcemap ([f296e74](https://github.com/open-wc/open-wc/commit/f296e7444dbbe59497ea9910f731f84fffaae12d))
+
+
+
+
+
 # [1.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.3.13...@open-wc/demoing-storybook@1.4.0) (2020-01-03)
 
 
