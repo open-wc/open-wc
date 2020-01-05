@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/open-wc/open-wc/compare/storybook-addon-web-components-knobs@0.2.2...storybook-addon-web-components-knobs@0.2.3) (2020-01-05)
+
+
+### Bug Fixes
+
+* **storybook-addon-web-components-knobs:** align storybook versions ([641905a](https://github.com/open-wc/open-wc/commit/641905a5216276f4b5cc2b600ceb44c5ac2033dc))
+* **storybook-addon-web-components-knobs:** do not rexport storybook ([a4f4e50](https://github.com/open-wc/open-wc/commit/a4f4e508c637488d17ab7498f6abe4114b130772))
+
+
+
+
+
 ## [0.2.2](https://github.com/open-wc/open-wc/compare/storybook-addon-web-components-knobs@0.2.1...storybook-addon-web-components-knobs@0.2.2) (2019-12-11)
 
 

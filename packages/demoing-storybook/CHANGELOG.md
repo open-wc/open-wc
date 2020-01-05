@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.4.1...@open-wc/demoing-storybook@1.5.0) (2020-01-05)
+
+
+### Features
+
+* **demoing-storybook:** inject ordered exports into stories ([c5e2894](https://github.com/open-wc/open-wc/commit/c5e28943d6dd4d90cb24682f087d172ce165ba7d))
+
+
+
+
+
 ## [1.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.4.0...@open-wc/demoing-storybook@1.4.1) (2020-01-04)
 
 
