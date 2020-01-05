@@ -9,6 +9,7 @@ const readCommandLineArgs = require('./readCommandLineArgs');
 const createServeManagerMiddleware = require('./middleware/createServeManagerMiddleware');
 const createServePreviewTransformer = require('./transformers/createServePreviewTransformer');
 const createMdxToJs = require('./transformers/createMdxToJs');
+const createOrderedExportsTransformer = require('./transformers/createOrderedExportsTransformer');
 const toBrowserPath = require('../shared/toBrowserPath');
 const getAssets = require('../shared/getAssets');
 const listFiles = require('../shared/listFiles');
@@ -45,6 +46,7 @@ async function run() {
 
   config.responseTransformers = [
     createMdxToJs({ previewImport }),
+    createOrderedExportsTransformer(storyUrls),
     createServePreviewTransformer(assets),
     ...(config.responseTransformers || []),
   ];
