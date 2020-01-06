@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.17.5...@open-wc/building-rollup@0.18.0) (2020-01-06)
+
+
+### Features
+
+* **es-dev-server:** remove node resolve fork ([24982cb](https://github.com/open-wc/open-wc/commit/24982cb7bb353311d7889af36a7faa646de7a132))
+
+
+
+
+
 ## [0.17.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.17.4...@open-wc/building-rollup@0.17.5) (2020-01-03)
 
 **Note:** Version bump only for package @open-wc/building-rollup

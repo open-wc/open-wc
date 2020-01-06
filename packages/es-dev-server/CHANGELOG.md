@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.36.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.35.0...es-dev-server@1.36.0) (2020-01-06)
+
+
+### Features
+
+* **es-dev-server:** remove node resolve fork ([24982cb](https://github.com/open-wc/open-wc/commit/24982cb7bb353311d7889af36a7faa646de7a132))
+
+
+
+
+
 # [1.35.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.34.0...es-dev-server@1.35.0) (2020-01-03)
 
 
