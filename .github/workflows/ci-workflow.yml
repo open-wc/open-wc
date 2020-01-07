@@ -14,25 +14,16 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '10.16'
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: v3-dependencies-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            v3-dependencies-{{ hashFiles('**/package.json') }}
-            v3-dependencies-
       - name: "YARN install"
         run: yarn install --frozen-lockfile
-        id: yarn_install
-      - name: "Echo YARN's install time"
-        run: echo 'The time was ${{ steps.yarn_install.outputs.time }}.'
-      - run: sudo chown -R runner:docker node_modules *
-      - run: |
+      - name: "NPM run build"
+        run: |
+          sudo chown -R runner:docker node_modules *
           npm run build
           npm run build:types
       - run: | 
           npm run lint
       - run: | 
           npm run test:node
+      - run: |
           npm run test:bs
