@@ -21,12 +21,16 @@ jobs:
         uses: actions/cache@v1
         with:
           path: node_modules
-          key: v3-dependencies-${{ hashFiles('**/package.json') }}
           restore-keys: |
-            v3-dependencies-{{ hashFiles('**/package.json') }}
-            v3-dependencies-
+            v4-dependencies-{{ hashFiles('yarn.lock') }}
+            v4-dependencies-
       - name: "YARN install"
         run: yarn install --frozen-lockfile
+      - name: Cache NODE modules again
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: v4-dependencies-${{ hashFiles('yarn.lock') }}
       - name: "NPM run build"
         run: |
           npm run build
