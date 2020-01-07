@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.4.3...@open-wc/testing@2.4.4) (2020-01-07)
+
+
+### Bug Fixes
+
+* **testing:** add missing files to npm ([962fc10](https://github.com/open-wc/open-wc/commit/962fc10f0af17120af8cd64f04509ebe80fc9cdf))
+
+
+
+
+
 ## [2.4.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.4.2...@open-wc/testing@2.4.3) (2020-01-07)
 
 
