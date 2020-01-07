@@ -18,7 +18,6 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: "NPM run build"
         run: |
-          sudo chown -R runner:docker node_modules *
           npm run build
           npm run build:types
       - run: | 
