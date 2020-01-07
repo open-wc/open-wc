@@ -23,10 +23,10 @@ import deepmerge from 'deepmerge';
 import { parse } from 'es-module-lexer';
 // @ts-ignore
 import nodeResolvePackageJson from '@rollup/plugin-node-resolve/package.json';
+import createRollupResolve from '@rollup/plugin-node-resolve';
 import path from 'path';
 import { toBrowserPath } from './utils.js';
 import { createBabelTransform, defaultConfig } from './babel-transform.js';
-import createRollupResolve from './temp-node-resolve-fork.js';
 
 const CONCAT_NO_PACKAGE_ERROR =
   'Dynamic import with a concatenated string should start with a valid full package name.';
