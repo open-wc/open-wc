@@ -1,5 +1,3 @@
-const path = require('path');
-
 function getCompatibility() {
   if (process.argv.find(arg => arg.includes('--legacy'))) {
     /* eslint-disable-next-line no-console */
