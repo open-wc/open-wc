@@ -22,7 +22,8 @@ jobs:
           npm run build:types
       - run: | 
           npm run lint
-      - run: | 
+      - run: |
+          npx mocha --version 
           npm run test:node
       - run: |
           npm run test:bs
