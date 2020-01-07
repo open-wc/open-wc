@@ -17,6 +17,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '10.16'
+      
       - name: Cache NODE modules
         uses: actions/cache@v1
         with:
@@ -25,8 +26,10 @@ jobs:
           restore-keys: |
             v4-dependencies-{{ hashFiles('yarn.lock') }}
             v4-dependencies-
+      
       - name: "YARN install"
         run: yarn install --frozen-lockfile
+      
       - name: Cache NODE modules again
         uses: actions/cache@v1
         with:
