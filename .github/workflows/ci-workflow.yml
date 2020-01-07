@@ -8,42 +8,42 @@ on:
       - "docs/**"
 
 jobs:
-  - npm-ci-job:
-      name: "YARN & NPM Build Test"
-      runs-on: ubuntu-latest
-      steps:
-        # This step uses GitHub's hello-world-javascript-action: https://github.com/actions/hello-world-javascript-action
-        - uses: actions/checkout@v1
-        - uses: actions/setup-node@v1
-          with:
-            node-version: '10.16'
-        - name: Cache NODE modules
-          uses: actions/cache@v1
-          with:
-            path: node_modules
-            key: v3-dependencies-${{ hashFiles('**/package.json') }}
-            restore-keys: |
-              v3-dependencies-{{ hashFiles('**/package.json') }}
-              v3-dependencies-
-        - name: "YARN install"
-          run: yarn install --frozen-lockfile
-        - name: "NPM run build"
-          run: |
-            npm run build
-            npm run build:types
-        - run: | 
-            npm run lint
-        - run: npm run test:node
-        - run: |
-            npm run test:bs
-          env:
-            BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
-            BROWSER_STACK_ACCESS_KEY: ${{ secrets.BROWSER_STACK_ACCESS_KEY }}
+  npm-ci-job:
+    name: "YARN & NPM Build Test"
+    runs-on: ubuntu-latest
+    steps:
+      # This step uses GitHub's hello-world-javascript-action: https://github.com/actions/hello-world-javascript-action
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.16'
+      - name: Cache NODE modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: v3-dependencies-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            v3-dependencies-{{ hashFiles('**/package.json') }}
+            v3-dependencies-
+      - name: "YARN install"
+        run: yarn install --frozen-lockfile
+      - name: "NPM run build"
+        run: |
+          npm run build
+          npm run build:types
+      - run: | 
+          npm run lint
+      - run: npm run test:node
+      - run: |
+          npm run test:bs
+        env:
+          BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
+          BROWSER_STACK_ACCESS_KEY: ${{ secrets.BROWSER_STACK_ACCESS_KEY }}
 
-  - npm-deploy-job:
-      name: "NPM Publish from Master"
-      runs-on: ubuntu-latest
-      needs: npm-ci-job
-      if: github.ref == 'refs/heads/master'
-      steps:
-        - run: echo TEST
+  npm-deploy-job:
+    name: "NPM Publish from Master"
+    runs-on: ubuntu-latest
+    needs: npm-ci-job
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - run: echo TEST
