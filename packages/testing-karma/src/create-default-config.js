@@ -125,7 +125,7 @@ module.exports = config => ({
     // only warn about unused snapshots when running all tests
     limitUnusedSnapshotsInWarning: config.grep ? 0 : -1,
     pathResolver(basePath, suiteName) {
-      return path.join(basePath, '__snapshots__', `${suiteName}.md`);
+      return `${basePath}/__snapshots__/${suiteName}.md`;
     },
   },
 
