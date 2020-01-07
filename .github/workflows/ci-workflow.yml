@@ -23,6 +23,6 @@ jobs:
       - run: | 
           npm run lint
       - run: | 
-          npm run test:node
+          npx lerna run --stream --concurrency=1 test:ci
       - run: |
           npm run test:bs
