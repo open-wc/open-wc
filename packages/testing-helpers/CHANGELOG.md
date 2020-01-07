@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.4.0...@open-wc/testing-helpers@1.5.0) (2020-01-07)
+
+
+### Features
+
+* **testing-helpers:** add waitUntil helper ([bef5dac](https://github.com/open-wc/open-wc/commit/bef5dac522f8bb0e497d0dd0e24eadbf39b98987))
+
+
+
+
+
 # [1.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.3.0...@open-wc/testing-helpers@1.4.0) (2019-11-24)
 
 
