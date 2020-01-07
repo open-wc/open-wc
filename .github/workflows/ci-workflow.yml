@@ -14,6 +14,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '10.16'
+      - name: Cache NODE modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: v3-dependencies-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            v3-dependencies-{{ hashFiles('**/package.json') }}
+            v3-dependencies-
       - name: "YARN install"
         run: yarn install --frozen-lockfile
       - name: "NPM run build"
