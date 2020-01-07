@@ -17,6 +17,7 @@
     "prepublishOnly": "../../scripts/insert-header.js"
   },
   "files": [
+    "import-wrappers",
     "*.d.ts",
     "*.js"
   ],
