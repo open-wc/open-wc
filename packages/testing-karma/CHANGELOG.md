@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.27](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.26...@open-wc/testing-karma@3.2.27) (2020-01-07)
+
+
+### Bug Fixes
+
+* **testing-karma:** use an os-agnostic pathResolver ([e3ad027](https://github.com/open-wc/open-wc/commit/e3ad02707c474854d0af0b7d14551da6948b99cb))
+* remove unused `path` ([3f80674](https://github.com/open-wc/open-wc/commit/3f80674373327c06f816d82451a8ea13699fe913))
+
+
+
+
+
 ## [3.2.26](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.25...@open-wc/testing-karma@3.2.26) (2020-01-06)
 
 **Note:** Version bump only for package @open-wc/testing-karma

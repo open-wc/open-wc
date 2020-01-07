@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma",
-  "version": "3.2.26",
+  "version": "3.2.27",
   "publishConfig": {
     "access": "public"
   },

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.4.2...@open-wc/testing@2.4.3) (2020-01-07)
+
+
+### Bug Fixes
+
+* **testing:** compatibility with webpack ([e355027](https://github.com/open-wc/open-wc/commit/e355027a6a8fb68686d18205bb456a515e86b5f3))
+
+
+
+
+
 ## [2.4.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.4.1...@open-wc/testing@2.4.2) (2019-12-05)
 
 **Note:** Version bump only for package @open-wc/testing
