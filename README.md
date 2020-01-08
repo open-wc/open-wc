@@ -28,6 +28,10 @@ What would you like to do today?
     Nah, I am fine thanks! => exit
 ```
 
+
+
+
+
 ## Homepage
 
 For more details please visit us at [open-wc.org](https://open-wc.org).
