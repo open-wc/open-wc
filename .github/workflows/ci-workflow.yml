@@ -11,10 +11,6 @@ jobs:
   debug:
     runs-on: ubuntu-16.04
     steps:
-      - name: Echo variables GITHUB_REPOSITORY
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_REPOSITORY"
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
@@ -69,6 +65,8 @@ jobs:
         run: npm run test:browser
       - name: "Tests - BrowserStack"
         run: npm run test:bs
+        if: |
+          !contains(${{ '"fork": true' }})
         env:
           BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
           BROWSER_STACK_ACCESS_KEY: ${{ secrets.BROWSER_STACK_ACCESS_KEY }}
