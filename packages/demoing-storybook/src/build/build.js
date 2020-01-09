@@ -102,10 +102,14 @@ async function buildPreview(outputDir, previewPath, assets, storyFiles) {
     }),
   );
 
+  // build sequentially instead of parallel because terser is multi
+  // threaded and will max out CPUs
   // @ts-ignore
-  const bundles = await Promise.all([rollup(configs[0]), rollup(configs[1])]);
-  await bundles[0].write(configs[0].output);
-  await bundles[1].write(configs[1].output);
+  const modernBundle = await rollup(configs[0]);
+  // @ts-ignore
+  const legacyBundle = await rollup(configs[1]);
+  await modernBundle.write(configs[0].output);
+  await legacyBundle.write(configs[1].output);
 }
 
 module.exports = async function build({
