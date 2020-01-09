@@ -73,6 +73,7 @@ function createConfig(_options, legacy) {
       // run code through babel
       options.plugins.babel &&
         babel({
+          exclude: options.babelExclude,
           extensions: options.extensions,
           plugins: [
             require.resolve('@babel/plugin-syntax-dynamic-import'),
@@ -122,7 +123,10 @@ function createConfig(_options, legacy) {
         }),
 
       // only minify if in production
-      production && terser(),
+      production &&
+        terser({
+          exclude: options.terserExclude,
+        }),
 
       production &&
         options.plugins.workbox &&
