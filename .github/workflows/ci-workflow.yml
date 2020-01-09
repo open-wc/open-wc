@@ -11,14 +11,10 @@ jobs:
   debug:
     runs-on: ubuntu-16.04
     steps:
-      - name: Echo variables GITHUB_HEAD_REF
+      - name: Echo variables GITHUB_REPOSITORY
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_HEAD_REF"
-      - name: Echo variable GITHUB_BASE_REF
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_BASE_REF"
+        run: echo "$GITHUB_REPOSITORY"
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
