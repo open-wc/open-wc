@@ -42,8 +42,17 @@ async function buildPreview(outputDir, previewPath, assets, storyFiles) {
     input: 'noop',
     outputDir,
     extensions: [...DEFAULT_EXTENSIONS, 'mdx'],
+    babelExclude: ['**/@open-wc/storybook-prebuilt/**/*'],
+    terserExclude: ['storybook-preview*'],
     plugins: { indexHTML: false },
   });
+
+  // force storybook preview into it's own chunk so that we can skip minifying it
+  const manualChunks = {
+    'storybook-preview': [require.resolve('@open-wc/storybook-prebuilt/dist/preview.js')],
+  };
+  configs[0].manualChunks = manualChunks;
+  configs[1].manualChunks = manualChunks;
 
   const transformMdxPlugin = {
     transform(code, id) {
