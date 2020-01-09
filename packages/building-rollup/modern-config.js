@@ -63,6 +63,7 @@ module.exports = function createBasicConfig(_options) {
       // run code through babel
       options.plugins.babel &&
         babel({
+          exclude: options.babelExclude,
           extensions: options.extensions,
           plugins: [
             require.resolve('@babel/plugin-syntax-dynamic-import'),
@@ -112,7 +113,10 @@ module.exports = function createBasicConfig(_options) {
         }),
 
       // only minify if in production
-      production && terser(),
+      production &&
+        terser({
+          exclude: options.terserExclude,
+        }),
 
       production && options.plugins.workbox && generateSW(getWorkboxConfig(options.outputDir)),
     ],
