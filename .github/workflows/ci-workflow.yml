@@ -66,7 +66,7 @@ jobs:
       - name: "Tests - BrowserStack"
         run: npm run test:bs
         if: >
-          !contains('"fork": true')
+          contains('"fork": true')
         env:
           BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
           BROWSER_STACK_ACCESS_KEY: ${{ secrets.BROWSER_STACK_ACCESS_KEY }}
