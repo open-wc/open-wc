@@ -159,10 +159,7 @@ export const commandLineOptions = [
  * @returns {import('./config.js').Config}
  */
 export function readCommandLineArgs(argv = process.argv, config = {}) {
-  const {
-    defaultConfigDir = process.cwd(),
-    defaultConfigName = 'es-dev-server.config.js',
-  } = config;
+  const { defaultConfigDir = '.', defaultConfigName = 'es-dev-server.config.js' } = config;
   const dashesArgs = commandLineArgs(commandLineOptions, { argv, partial: true });
   const openInCommandLineArgs = 'open' in dashesArgs;
 
@@ -214,7 +211,7 @@ export function readCommandLineArgs(argv = process.argv, config = {}) {
     // read default config if present
     const defaultConfigPath = path.join(
       process.cwd(),
-      dashesArgs['root-dir'] || '',
+      dashesArgs['root-dir'] || '.',
       defaultConfigDir,
       defaultConfigName,
     );

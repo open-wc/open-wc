@@ -155,6 +155,39 @@ Waits for `x` ms via `setTimeout`;
 await aTimeout(10); // would wait 10ms
 ```
 
+### waitUntil
+
+Waits until the given condition returns true. This is useful when elements do async work.
+
+`waitUntil` can slow down the execution of tests, it should only be used when you don't have any other more reliable hooks.
+
+```js
+import { fixture, waitUntil } from '@open-wc/testing-helpers';
+
+const element = await fixture(
+  html`
+    <my-element></my-element>
+  `,
+);
+
+// wait until some async property is set
+await waitUntil(() => element.someAsyncProperty, 'Element did not become ready');
+
+// wait until some child element is rendered
+await waitUntil(
+  () => element.shadowRoot.querySelector('my-child-element'),
+  'Element did not render children',
+);
+```
+
+`waitUntil` has a default timeout of 2000ms and a polling interval of 50ms. This can be customized:
+
+```js
+await waitUntil(predicate, 'Element should become visible', { interval: 10, timeout: 10000 });
+```
+
+The predicate can return a promise.
+
 ### elementUpdated
 
 If you want to test attribute and property changes, and an easy way to wait for those changes to propagate, you can import the `elementUpdated` helper (also available directly in the `testing` package)
