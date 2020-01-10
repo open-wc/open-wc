@@ -11,7 +11,6 @@ Open Web Components provides a set of defaults, recommendations and tools to hel
 
 ## Usage
 
-
 ```bash
 # in a new or existing folder:
 npm init @open-wc
