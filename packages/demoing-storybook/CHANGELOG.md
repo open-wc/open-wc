@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.5.2...@open-wc/demoing-storybook@1.5.3) (2020-01-10)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** don't transform or minify prebuilt ([8521a12](https://github.com/open-wc/open-wc/commit/8521a128d438094281764777401245c95633082b))
+* **demoing-storybook:** run builds sequentially ([848cc2b](https://github.com/open-wc/open-wc/commit/848cc2bdc1a88b02ee3c4901894aed9fc5370dd7))
+
+
+
+
+
 ## [1.5.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.5.1...@open-wc/demoing-storybook@1.5.2) (2020-01-07)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
