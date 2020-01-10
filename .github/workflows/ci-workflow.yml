@@ -40,11 +40,10 @@ jobs:
       - name: "Tests - BrowserStack"
         run: npm run test:bs
         if: >
-          !contains(toJson(github) , '"fork": true')
+          !contains(toJson(github) , '"fork": true') && github.event == 'pull-request'
         env:
           BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
           BROWSER_STACK_ACCESS_KEY: ${{ secrets.BROWSER_STACK_ACCESS_KEY }}
-
 
   # Publish job will be run only when the changes are merged to Master branch
   npm-deploy-job:
