@@ -39,8 +39,6 @@ jobs:
     name: "YARN & NPM Build Test"
     runs-on: ubuntu-latest
     timeout-minutes: 25
-    env:
-      GITHUB_CONTEXT: ${{ toJson(github) }}
     steps:
       # This step uses GitHub's hello-world-javascript-action: https://github.com/actions/hello-world-javascript-action
       - uses: actions/checkout@v1
@@ -68,7 +66,7 @@ jobs:
       - name: "Tests - BrowserStack"
         run: npm run test:bs
         if: >
-          contains(toJson(github) , '"fork": true')
+          !contains(toJson(github) , '"fork": true')
         env:
           BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
           BROWSER_STACK_ACCESS_KEY: ${{ secrets.BROWSER_STACK_ACCESS_KEY }}
