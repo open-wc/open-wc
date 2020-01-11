@@ -63,11 +63,13 @@ jobs:
         run: npm run build && npm run build:types
       - name: "Code linting"
         run: npm run lint
+      - name: "Tests - NODE"
+        run: npm run test:node
       - name: "Tests - headless browser"
         run: npm run test:browser
       - name: "Tests - BrowserStack"
         if: >
-          !contains(toJson(github) , '"fork": true')
+          !contains(toJson(github) , '"fork": true') || (GITHUB_REPOSITORY == 'open-wc/open-wc' && GITHUB_EVENT_NAME == 'push')
         run: npm run test:bs
         env:
           BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
@@ -97,4 +99,3 @@ jobs:
         run: "npx lerna publish --message 'chore: releasing new packages versions' --yes"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          
