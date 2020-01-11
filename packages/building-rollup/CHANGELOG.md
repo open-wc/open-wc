@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.18.1...@open-wc/building-rollup@0.19.0) (2020-01-10)
+
+
+### Features
+
+* **building-rollup:** allow excluding babel and terser ([ecd322d](https://github.com/open-wc/open-wc/commit/ecd322d50fc75ef6e64971291b1c8107c4287b5c))
+
+
+
+
+
 ## [0.18.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.18.0...@open-wc/building-rollup@0.18.1) (2020-01-07)
 
 **Note:** Version bump only for package @open-wc/building-rollup
