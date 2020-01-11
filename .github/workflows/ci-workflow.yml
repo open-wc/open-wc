@@ -63,8 +63,8 @@ jobs:
         run: npm run build && npm run build:types
       - name: "Code linting"
         run: npm run lint
-      - name: "Tests - NODE"
-        run: npm run test:node
+      #- name: "Tests - NODE"
+      #  run: npm run test:node
       - name: "Tests - headless browser"
         run: npm run test:browser
       - name: "Tests - BrowserStack"
