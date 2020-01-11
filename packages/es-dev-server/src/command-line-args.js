@@ -199,7 +199,7 @@ export function readCommandLineArgs(argv = process.argv, config = {}) {
 
   if (args.config) {
     // read config from user provided path
-    const configPath = path.join(process.cwd(), dashesArgs['root-dir'] || '', args.config);
+    const configPath = path.join(process.cwd(), args.config);
     if (!fs.existsSync(configPath) || !fs.statSync(configPath).isFile()) {
       throw new Error(`Did not find any config file at ${configPath}`);
     }
@@ -209,12 +209,7 @@ export function readCommandLineArgs(argv = process.argv, config = {}) {
     logDebug(`Found a config file at ${configPath}`);
   } else {
     // read default config if present
-    const defaultConfigPath = path.join(
-      process.cwd(),
-      dashesArgs['root-dir'] || '.',
-      defaultConfigDir,
-      defaultConfigName,
-    );
+    const defaultConfigPath = path.join(process.cwd(), defaultConfigDir, defaultConfigName);
 
     if (fs.existsSync(defaultConfigPath) && fs.statSync(defaultConfigPath).isFile()) {
       const fileConfig = require(defaultConfigPath);
