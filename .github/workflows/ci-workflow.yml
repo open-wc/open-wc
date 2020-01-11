@@ -69,7 +69,7 @@ jobs:
         run: npm run test:browser
       - name: "Tests - BrowserStack"
         if: >
-          !contains(toJson(github) , '"fork": true') || (GITHUB_REPOSITORY == 'open-wc/open-wc' && GITHUB_EVENT_NAME == 'push')
+          !contains(toJson(github) , '"fork": true') || (github.repository == 'open-wc/open-wc' && github.event_name == 'push')
         run: npm run test:bs
         env:
           BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
