@@ -57,7 +57,6 @@
     "lit-html": "^1.0.0",
     "magic-string": "^0.25.4",
     "rollup": "^1.15.6",
-    "rollup-plugin-cpy": "^1.1.0",
     "rollup-plugin-index-html": "^1.7.5"
   },
   "devDependencies": {
