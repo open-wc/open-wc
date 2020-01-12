@@ -62,6 +62,15 @@ async function rollupBuild(config) {
   await bundle.write(config.output);
 }
 
+const ignoredWarnings = ['EVAL', 'THIS_IS_UNDEFINED'];
+
+function onwarn(warning, warn) {
+  if (ignoredWarnings.includes(warning.code)) {
+    return;
+  }
+  warn(warning);
+}
+
 async function buildPreview(outputDir, previewPath, assets, storyFiles) {
   const transformMdxToJs = createMdxToJsTransformer({ previewImport: previewPath });
   const configs = createCompatibilityConfig({
@@ -89,6 +98,8 @@ async function buildPreview(outputDir, previewPath, assets, storyFiles) {
     },
   };
 
+  configs[0].onwarn = onwarn;
+  configs[1].onwarn = onwarn;
   configs[0].output.dir = path.join(outputDir, 'legacy');
   configs[1].output.dir = outputDir;
 
