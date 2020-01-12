@@ -57,6 +57,11 @@ async function buildManager(outputDir, assets) {
   await fs.writeFile(path.join(outputDir, assets.managerScriptSrc), assets.managerCode);
 }
 
+async function rollupBuild(config) {
+  const bundle = await rollup(config);
+  await bundle.write(config.output);
+}
+
 async function buildPreview(outputDir, previewPath, assets, storyFiles) {
   const transformMdxToJs = createMdxToJsTransformer({ previewImport: previewPath });
   const configs = createCompatibilityConfig({
@@ -128,13 +133,9 @@ async function buildPreview(outputDir, previewPath, assets, storyFiles) {
   );
 
   // build sequentially instead of parallel because terser is multi
-  // threaded and will max out CPUs
-  // @ts-ignore
-  const modernBundle = await rollup(configs[0]);
-  // @ts-ignore
-  const legacyBundle = await rollup(configs[1]);
-  await modernBundle.write(configs[0].output);
-  await legacyBundle.write(configs[1].output);
+  // threaded and will max out CPUs.
+  await rollupBuild(configs[0]);
+  await rollupBuild(configs[1]);
 }
 
 module.exports = async function build({
