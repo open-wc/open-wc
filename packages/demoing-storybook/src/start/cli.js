@@ -12,7 +12,7 @@ const createMdxToJs = require('./transformers/createMdxToJs');
 const createOrderedExportsTransformer = require('./transformers/createOrderedExportsTransformer');
 const toBrowserPath = require('../shared/toBrowserPath');
 const getAssets = require('../shared/getAssets');
-const listFiles = require('../shared/listFiles');
+const storiesPatternsToUrls = require('../shared/storiesPatternsToUrls');
 
 async function run() {
   const config = readCommandLineArgs();
@@ -23,11 +23,7 @@ async function run() {
   const previewPath = require.resolve(config.previewPath);
   const previewPathRelative = rootDir ? `/${path.relative(rootDir, previewPath)}` : previewPath;
   const previewImport = toBrowserPath(previewPathRelative);
-  const storiesPattern = config.stories;
-  const storyUrls = (await listFiles(storiesPattern, rootDir)).map(filePath => {
-    const relativeFilePath = path.relative(rootDir, filePath);
-    return `/${toBrowserPath(relativeFilePath)}`;
-  });
+  const storyUrls = await storiesPatternsToUrls(config.stories, rootDir);
 
   const assets = getAssets({ storybookConfigDir, managerPath, previewImport, storyUrls });
   config.babelExclude = [...(config.babelExclude || []), assets.managerScriptUrl];
@@ -37,8 +33,9 @@ async function run() {
   config.fileExtensions = [...(config.fileExtensions || []), '.mdx'];
 
   if (storyUrls.length === 0) {
-    console.log(`We could not find any stories for the provided pattern "${storiesPattern}".
-      You can override it by doing "--stories ./your-pattern.js`);
+    console.log(
+      `We could not find any stories for the provided pattern(s) "${config.stories}". You can configure this in your main.js configuration file.`,
+    );
     process.exit(1);
   }
 
