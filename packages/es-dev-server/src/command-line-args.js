@@ -222,8 +222,6 @@ export function readCommandLineArgs(argv = process.argv, config = {}) {
     }
   }
 
-  let { open } = options;
-
   if (options.dedupe) {
     options.dedupeModules = options.dedupe;
     delete options.dedupe;
@@ -232,13 +230,16 @@ export function readCommandLineArgs(argv = process.argv, config = {}) {
   // open can be a boolean nor a string. if it's a boolean from command line args,
   // it's passed as null. so if it's not a string or boolean type, we check for the
   // existence of open in the args object, and treat that as true
-  if (typeof open !== 'string' && typeof open !== 'boolean' && openInCommandLineArgs) {
-    open = true;
+  if (
+    typeof options.open !== 'string' &&
+    typeof options.open !== 'boolean' &&
+    openInCommandLineArgs
+  ) {
+    options.open = true;
   }
 
   return {
     ...options,
-    open,
     logStartup: true,
     // when used from the command line we log compile errors to the browser,
     // not to the terminal for a better UX
