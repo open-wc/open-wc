@@ -14,7 +14,14 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
   "scripts": {
-    "prepublishOnly": "../../scripts/insert-header.js"
+    "demo-build:before-nesting": "rollup -c demo/before-nesting/rollup.config.js",
+    "demo-build:no-scope": "rollup -c demo/no-scope/rollup.config.js",
+    "demo-build:with-scope": "rollup -c demo/with-scope/rollup.config.js",
+    "prepublishOnly": "../../scripts/insert-header.js",
+    "site:build": "run-p demo-build:*",
+    "start:before-nesting": "es-dev-server -c demo/before-nesting/server.js",
+    "start:no-scope": "es-dev-server -c demo/no-scope/server.js",
+    "start:with-scope": "es-dev-server -c demo/with-scope/server.js"
   },
   "files": [
     "*.d.ts",
@@ -32,7 +39,12 @@
     "lit-html": "^1.0.0"
   },
   "devDependencies": {
-    "@open-wc/testing": "^2.5.0"
+    "@open-wc/testing": "^2.5.0",
+    "@open-wc/building-rollup": "^0.19.1",
+    "es-dev-server": "^1.36.2",
+    "lit-html": "^1.0.0",
+    "npm-run-all": "4.1.3",
+    "rollup": "^1.15.6"
   },
   "module": "index.js"
 }
