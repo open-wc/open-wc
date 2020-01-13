@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.4](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.6.3...@open-wc/demoing-storybook@1.6.4) (2020-01-13)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** allow custom-elements.json in rootdir ([b38960c](https://github.com/open-wc/open-wc/commit/b38960cd1a6974802c4109dc59d4a3b80ee014eb))
+
+
+
+
+
 ## [1.6.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.6.2...@open-wc/demoing-storybook@1.6.3) (2020-01-13)
 
 
