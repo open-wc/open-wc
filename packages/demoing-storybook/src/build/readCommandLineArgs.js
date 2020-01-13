@@ -3,6 +3,37 @@ const commandLineArgs = require('command-line-args');
 const path = require('path');
 const deepmerge = require('deepmerge');
 const fs = require('fs');
+const readMainJs = require('../shared/readMainJs');
+
+// default values for non-cli only options
+const defaultConfig = {
+  managerPath: '@open-wc/storybook-prebuilt/dist/manager.js',
+  previewPath: '@open-wc/storybook-prebuilt/dist/preview.js',
+  defaultValue: 'storybook-static',
+};
+
+/**
+ * @param {object} args
+ */
+function dashToCamelArgs(args) {
+  const config = {};
+  if ('config-dir' in args) {
+    config.configDir = args['config-dir'];
+  }
+  if ('output-dir' in args) {
+    config.outputDir = args['output-dir'];
+  }
+  if ('stories' in args) {
+    config.managerPath = args.stories;
+  }
+  if ('manager-path' in args) {
+    config.managerPath = args['manager-path'];
+  }
+  if ('preview-path' in args) {
+    config.previewPath = args['preview-path'];
+  }
+  return config;
+}
 
 module.exports = function readCommandLineArgs() {
   const optionDefinitions = [
@@ -22,7 +53,6 @@ module.exports = function readCommandLineArgs() {
       name: 'output-dir',
       alias: 'o',
       type: String,
-      defaultValue: 'storybook-static',
       description: 'Rollup build output directory',
     },
     {
@@ -33,41 +63,39 @@ module.exports = function readCommandLineArgs() {
     },
     {
       name: 'manager-path',
-      defaultValue: '@open-wc/storybook-prebuilt/dist/manager.js',
       description: 'Import path of a prebuilt manager file',
     },
     {
       name: 'preview-path',
-      defaultValue: '@open-wc/storybook-prebuilt/dist/preview.js',
       description: 'Import path of a prebuilt preview file',
     },
   ];
 
-  const args = commandLineArgs(optionDefinitions);
-  let options = {
-    configDir: args['config-dir'],
-    outputDir: args['output-dir'],
-    stories: args.stories,
-    managerPath: args['manager-path'],
-    previewPath: args['preview-path'],
-  };
+  const dashedArgs = commandLineArgs(optionDefinitions);
+  const args = dashToCamelArgs(dashToCamelArgs);
+  let mainConfig = readMainJs(args.configDir);
 
-  if ('config' in args) {
-    // read user config
-    const configPath = path.resolve(process.cwd(), options.configDir, args.config);
-    if (!fs.existsSync(configPath) || !fs.statSync(configPath).isFile()) {
-      throw new Error(`Did not find any config file at ${configPath}`);
-    }
+  if (!mainConfig) {
+    /**
+     * TODO: Read backwards compatible build-storybook.config.js file
+     */
+    if ('config' in dashedArgs) {
+      // read user config
+      const configPath = path.resolve(process.cwd(), args.configDir, dashedArgs.config);
+      if (!fs.existsSync(configPath) || !fs.statSync(configPath).isFile()) {
+        throw new Error(`Did not find any config file at ${configPath}`);
+      }
 
-    options = deepmerge(options, require(configPath));
-  } else {
-    // read default config
-    const configPath = path.resolve(process.cwd(), options.configDir, 'build-storybook.config.js');
+      mainConfig = require(configPath);
+    } else {
+      // read default config
+      const configPath = path.resolve(process.cwd(), args.configDir, 'build-storybook.config.js');
 
-    if (fs.existsSync(configPath)) {
-      options = deepmerge(options, require(configPath));
+      if (fs.existsSync(configPath)) {
+        mainConfig = require(configPath);
+      }
     }
   }
 
-  return options;
+  return deepmerge(mainConfig, args);
 };
