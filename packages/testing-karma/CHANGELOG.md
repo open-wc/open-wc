@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.30](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.29...@open-wc/testing-karma@3.2.30) (2020-01-13)
+
+
+### Bug Fixes
+
+* **testing-karma:** latest karma-chrome-launcher decreases memory use ([707beba](https://github.com/open-wc/open-wc/commit/707beba9b1139ee9bd956579b0bf6b862fea4b49))
+
+
+
+
+
 ## [3.2.29](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.2.28...@open-wc/testing-karma@3.2.29) (2020-01-13)
 
 **Note:** Version bump only for package @open-wc/testing-karma
