@@ -8,14 +8,13 @@ module.exports = function readCommandLineArgs() {
   const optionDefinitions = [
     {
       name: 'config-dir',
-      alias: 'd',
+      alias: 'c',
       type: String,
       defaultValue: './.storybook',
       description: 'Location of storybook configuration directory',
     },
     {
       name: 'config',
-      alias: 'c',
       type: String,
       description: 'Name of the storybook build configuration file',
     },

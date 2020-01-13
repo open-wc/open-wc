@@ -9,7 +9,7 @@ module.exports = function readCommandLineArgs() {
   const cliOptions = [
     {
       name: 'config-dir',
-      alias: 'd',
+      alias: 'c',
       type: String,
       defaultValue: './.storybook',
       description: 'Location of storybook configuration',
