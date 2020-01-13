@@ -1,6 +1,6 @@
 {
   "name": "storybook-addon-web-components-knobs",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Storybook knobs for web-components based on custom-elements.json",
   "license": "MIT",
   "repository": {
@@ -34,15 +34,15 @@
     "@open-wc/testing-helpers": "^1.5.0"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^5.3.0-rc.9",
-    "@storybook/addon-actions": "^5.3.0-rc.9",
-    "@storybook/addon-backgrounds": "^5.3.0-rc.9",
+    "@storybook/addon-a11y": "^5.3.1",
+    "@storybook/addon-actions": "^5.3.1",
+    "@storybook/addon-backgrounds": "^5.3.1",
     "@storybook/addon-console": "^1.1.0",
-    "@storybook/addon-docs": "5.3.0-rc.9",
-    "@storybook/addon-knobs": "^5.3.0-rc.9",
-    "@storybook/addon-links": "^5.3.0-rc.9",
-    "@storybook/addon-viewport": "^5.3.0-rc.9",
-    "@storybook/web-components": "^5.3.0-rc.9",
+    "@storybook/addon-docs": "5.3.1",
+    "@storybook/addon-knobs": "^5.3.1",
+    "@storybook/addon-links": "^5.3.1",
+    "@storybook/addon-viewport": "^5.3.1",
+    "@storybook/web-components": "^5.3.1",
     "babel-loader": "^8.0.0",
     "lit-element": "^2.0.1",
     "lit-html": "^1.0.0"

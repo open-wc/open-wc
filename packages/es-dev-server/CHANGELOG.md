@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.36.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.36.1...es-dev-server@1.36.2) (2020-01-13)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't look for config in root dir ([87bae6d](https://github.com/open-wc/open-wc/commit/87bae6db4f83fa4e8e2fcd3db2041facfbf37dcc))
+
+
+
+
+
 ## [1.36.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.36.0...es-dev-server@1.36.1) (2020-01-07)
 
 

@@ -2,13 +2,13 @@ const { rollup } = require('rollup');
 const { createCompatibilityConfig } = require('@open-wc/building-rollup');
 const { DEFAULT_EXTENSIONS } = require('@babel/core');
 const indexHTML = require('rollup-plugin-index-html');
-const cpy = require('rollup-plugin-cpy');
 const fs = require('fs-extra');
 const path = require('path');
 const MagicString = require('magic-string');
 const createMdxToJsTransformer = require('../shared/createMdxToJsTransformer');
 const { createOrderedExports } = require('../shared/createOrderedExports');
 const createAssets = require('../shared/getAssets');
+const listFiles = require('../shared/listFiles');
 
 const injectOrderedExportsPlugin = storyFiles => ({
   async transform(code, id) {
@@ -31,9 +31,44 @@ const injectOrderedExportsPlugin = storyFiles => ({
   },
 });
 
+function copyCustomElementsJsonPlugin(outputRootDir) {
+  return {
+    async generateBundle() {
+      const files = await listFiles(
+        `!(node_modules|web_modules|bower_components|${outputRootDir})/**/custom-elements.json`,
+        process.cwd(),
+      );
+
+      for (const file of files) {
+        const destination = file.replace(process.cwd(), '');
+
+        this.emitFile({
+          type: 'asset',
+          fileName: destination.substring(1, destination.length),
+          source: fs.readFileSync(file, 'utf-8'),
+        });
+      }
+    },
+  };
+}
+
 async function buildManager(outputDir, assets) {
   await fs.writeFile(path.join(outputDir, 'index.html'), assets.indexHTML);
   await fs.writeFile(path.join(outputDir, assets.managerScriptSrc), assets.managerCode);
+}
+
+async function rollupBuild(config) {
+  const bundle = await rollup(config);
+  await bundle.write(config.output);
+}
+
+const ignoredWarnings = ['EVAL', 'THIS_IS_UNDEFINED'];
+
+function onwarn(warning, warn) {
+  if (ignoredWarnings.includes(warning.code)) {
+    return;
+  }
+  warn(warning);
 }
 
 async function buildPreview(outputDir, previewPath, assets, storyFiles) {
@@ -63,6 +98,8 @@ async function buildPreview(outputDir, previewPath, assets, storyFiles) {
     },
   };
 
+  configs[0].onwarn = onwarn;
+  configs[1].onwarn = onwarn;
   configs[0].output.dir = path.join(outputDir, 'legacy');
   configs[1].output.dir = outputDir;
 
@@ -83,6 +120,7 @@ async function buildPreview(outputDir, previewPath, assets, storyFiles) {
     }),
     transformMdxPlugin,
     injectOrderedExportsPlugin(storyFiles),
+    copyCustomElementsJsonPlugin(outputDir),
   );
 
   configs[1].plugins.unshift(
@@ -102,23 +140,13 @@ async function buildPreview(outputDir, previewPath, assets, storyFiles) {
     }),
     transformMdxPlugin,
     injectOrderedExportsPlugin(storyFiles),
-    cpy({
-      files: ['**/custom-elements.json'],
-      dest: outputDir,
-      options: {
-        parents: true,
-      },
-    }),
+    copyCustomElementsJsonPlugin(outputDir),
   );
 
   // build sequentially instead of parallel because terser is multi
-  // threaded and will max out CPUs
-  // @ts-ignore
-  const modernBundle = await rollup(configs[0]);
-  // @ts-ignore
-  const legacyBundle = await rollup(configs[1]);
-  await modernBundle.write(configs[0].output);
-  await legacyBundle.write(configs[1].output);
+  // threaded and will max out CPUs.
+  await rollupBuild(configs[0]);
+  await rollupBuild(configs[1]);
 }
 
 module.exports = async function build({
