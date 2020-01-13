@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.6.0...@open-wc/demoing-storybook@1.6.1) (2020-01-13)
+
+
+### Bug Fixes
+
+* update to storybook 5.3.1 ([2d3622d](https://github.com/open-wc/open-wc/commit/2d3622d41412cc5d858d3b1e6791035ed1d76e12))
+
+
+
+
+
 # [1.6.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.5.3...@open-wc/demoing-storybook@1.6.0) (2020-01-13)
 
 
