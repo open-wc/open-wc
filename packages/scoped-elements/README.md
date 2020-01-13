@@ -2,27 +2,84 @@
 
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
-Complex Web Component applications often are developed by several teams across
-organizations. In that scenario is common that shared component libraries are
-used by teams to create an homogeneous look and feel or just to avoid creating
-the same components several times, but as those libraries evolve name collision
-problems between different versions of the same library appear because teams are
-not able to evolve their code at the same velocity. That causes bottlenecks in
-software delivery that should be managed by the teams and complex build systems
-trying to alleviate the problem.
+:::warning
+This is an experimental feature use it at your own risk and be sure to understand it's [limitations](#limitations).
+No bigger applications is using `scoped-elements` - so there is no prove yet if it works in production.
+This page focuses a lot on in depth explanations as it should help foster a discussion on scoping.
+:::
 
-[Scoped Custom Element Registries](https://github.com/w3c/webcomponents/issues/716)
-is a proposal that will solve this problem, but until it is ready or we could
-use a polyfill, we have to scope the custom element tag names if we want to use
-different versions of them in our code. This package allows you to forget about
-how custom elements are defined, registering and scoping their tag names if it is
-necessary, avoiding the name collision problem.
+Complex Web Component applications often are developed by several teams across organizations.
+In that scenario is common that shared component libraries are used by teams to create an
+homogeneous look and feel or just to avoid creating the same components several times,
+but as those libraries evolve problems between different versions of the same library appear
+as teams are not able to evolve their code at the same velocity.
+That causes bottlenecks in software delivery that should be managed by the teams and complex
+build systems trying to alleviate the problem.
+
+[Scoped Custom Element Registries](https://github.com/w3c/webcomponents/issues/716) is a proposal that will solve this problem,
+but until it is ready or we could use a polyfill, we have to scope the custom element tag names if we want to use different versions of them in our code.
+This package allows you to forget about how custom elements are defined, registering and scoping their tag names if it is necessary, avoiding the name collision problem.
 
 ## Installation
 
 ```bash
 npm i --save @open-wc/scoped-elements
 ```
+
+## Use case and demos
+
+Consider the following setup
+
+- Team Blue own Page A
+- Team Green own Page B
+- Team Black own Feature A & B
+
+1. Everything is good and [your app is live](https://open-wc.org/scoped-elements/demo/before-nesting/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/before-nesting)] with both pages.
+2. Team Black releases a new version (2.x) of Feature B which unfortunately needs to be breaking in order to support new use-cases.
+3. Team Blue (on Page A) does not use any of those new use cases and they have a tight deadline to meet so they can not update right now.
+4. Team Green (on Page B) has to deliver an important functionality to your end users but they need to upgrade to Feature B 2.x as it can only be solved with this new version.
+5. As Feature A 1x & 2x are both used in the same app it will get installed nested which will lead to [catastrophic failure]https://open-wc.org/scoped-elements./demo/no-scoping/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/no-scope)]. Two possible solutions come to mind:
+   1. Synchronizing updates of shared dependencies - e.g. make sure Team Blue & Green always us the same version when releasing. This can be a viable solution however it comes with a high organizational overhead and is hard to scale up (for 10+ teams)
+   2. Temporarily (!) allow to ship similar source code (most breaking releases are not a total rewrite) and scope them via `@open-wc/scoped-elements` => see "fixed" [with-scope](https://open-wc.org/scoped-elements/demo/with-scoping/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/with-scope)] running with nested dependencies.
+
+#### Technical explanation of scenario
+
+The simplified app has the following dependencies
+
+- app
+  - page-a
+    - feature-a 1.x
+    - feature-b 1.x
+  - page-b
+    - feature-a 2.x
+    - feature-b 1.x
+
+which leads to the following node_modules tree
+
+```
+├── node_modules
+│   ├── feature-a
+│   ├── feature-b
+│   ├── page-a
+│   └── page-b
+│       └── node_modules
+│           └── feature-a
+├── demo-app.js
+└── index.html
+```
+
+So there are 3 demos:
+
+1. [before-nesting](https://open-wc.org/scoped-elements/demo/before-nesting/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/before-nesting)] everything fine as Page A/B both are using the same version of Feature A
+
+2. [no-scope](https://open-wc.org/scoped-elements/demo/no-scoping/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/no-scope)] Feature A version 1.x and 2.x are imported via self registering entry points which leads to the following error message as "feature-a" tries to register multiple times
+
+   ```
+   Uncaught DOMException: Failed to execute 'define' on 'CustomElementRegistry': the name "feature-a" has already been used with this registry
+     at [...]/node_modules/page-b/node_modules/feature-a/feature-a.js:3:16
+   ```
+
+3. [with-scope](https://open-wc.org/scoped-elements/demo/with-scoping/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/with-scope)] Successfully "fixing" the demo by using `createScopedHtml` on Page A/B.
 
 ## How it works
 
@@ -67,7 +124,7 @@ template literal is going to be processed by `lit-html`.
    ```js
    render() {
      return html`
-       <my-panel class="my-panel">
+       <my-panel class="panel">
          <my-button>${this.text}</my-button>
        </my-panel}>
      `;
@@ -90,7 +147,7 @@ const html = createScopedHtml({
 export default class MyElement extends LitElement {
   static get styles() {
     return css`
-      .my-panel {
+      .panel {
         padding: 10px;
         background-color: grey;
       }
@@ -105,7 +162,7 @@ export default class MyElement extends LitElement {
 
   render() {
     return html`
-      <my-panel class="my-panel">
+      <my-panel class="panel">
         <my-button>${this.text}</my-button>
       </my-panel}>
     `;
@@ -113,47 +170,58 @@ export default class MyElement extends LitElement {
 }
 ```
 
-## When to use it
+## Limitations
 
-If you are creating a custom element that depend on other custom elements then
-you should use `@open-wc/scoped-elements` to forget about how those custom
-elements are defined in the registry and which tags are using.
+1. Components imported via npm **MUST NOT** be self registering components
+   If a shared component (on npm) does not offer an export to the class alone, without the registration side effect, then this component can not be used. e.g. every component
+   that calls `customElement.define`
 
-```js
-// MyElement.js
-import { LitElement } from 'lit-element';
-import { createScopedHtml } from '@open-wc/scoped-elements'; // <-- import the autoDefine and html functions
-import MyButton from './MyButton.js'; // your custom element depends on it
+   ```js
+   export class MyEl { ... }
+   customElement.define('my-el', MyEl);
+   ```
 
-const html = createScopedHtml({ 'my-button': MyButton });
+   or uses the typescript decorator `customElement`
 
-export default class MyElement extends LitElement {
-  render() {
-    return html`
-      <my-button>Click me!</my-button>
-    `;
-  }
-}
-```
+   ```ts
+   @customElement('my-el')
+   export class MyEl { ... }
+   ```
 
-## When not to use it
+   only side effects free class exports may be used
 
-If you are developing a custom element that doesn't depend on other custom
-elements then you shouldn't use it. The reason for that is because there is a
-small performance penalty for using it, and it's better to avoid it if you can.
+   ```js
+   export class MyEl { ... }
+   ```
 
-```js
-// MyButton.js
-import { html, LitElement } from 'lit-element';
+   Note: not share or components withing the main app shell are exempted from this rule.
 
-export default class MyButton extends LitElement {
-  render() {
-    return html`
-      <button><slot></slot></button>
-    `;
-  }
-}
-```
+2. Every (!!!) component with sub component needs to use `scoped-elements`
+   Any import to a self registering component can result in a browser exception - completely breaking the full app.
+
+3. For now only `lit-html` is supported (other rendering engines could be incorporated)
+
+4. You can not use tag selectors in css
+
+   ```css
+   🚫 my-panel {
+     width: 300px;
+   }
+   ✅ .panel {
+     width: 300px;
+   }
+   ```
+
+5. You can not use tag selectors in javascript querySelectors
+
+   ```js
+   🚫 this.shadowRoot.querySelector('my-panel');
+   ✅ this.shadowRoot.querySelector('.panel');
+   ```
+
+6. Using `scoped-elements` may result in up to 8% of performance degradation
+7. Loading of duplicate/similar source code (most breaking releases are not a total rewrite) should always be a temporary solution
+8. A lot of times temporary solutions become more permanent 🙈 Be sure to focus on keeping the time of nested dependencies short.
 
 ## Performance
 
@@ -201,7 +269,7 @@ by their support and patience.
       const editLink = document.querySelector('.edit-link a');
       if (editLink) {
         const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/classes-in-html/README.md';
+        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/scoped-elements/README.md';
       }
     }
   }
