@@ -35,7 +35,7 @@ function copyCustomElementsJsonPlugin(outputRootDir) {
   return {
     async generateBundle() {
       const files = await listFiles(
-        `!(node_modules|web_modules|bower_components|${outputRootDir})/**/custom-elements.json`,
+        `{,!(node_modules|web_modules|bower_components|${outputRootDir})/**/}custom-elements.json`,
         process.cwd(),
       );
 
