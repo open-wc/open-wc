@@ -117,17 +117,17 @@ export async function triggerFocusFor(element) {
  * await oneEvent(el, 'done');
  * expect(el.done).to.be.true;
  *
- * @param {HTMLElement} element Element that is going to fire the event
+ * @param {EventTarget} eventTarget Target of the event, usually an Element
  * @param {string} eventName Name of the event
- * @returns {Promise<CustomEvent>} Promise to await until the event has been fired
+ * @returns {Promise<Event>} Promise to await until the event has been fired
  */
-export function oneEvent(element, eventName) {
+export function oneEvent(eventTarget, eventName) {
   return new Promise(resolve => {
     function listener(ev) {
       resolve(ev);
-      element.removeEventListener(eventName, listener);
+      eventTarget.removeEventListener(eventName, listener);
     }
-    element.addEventListener(eventName, listener);
+    eventTarget.addEventListener(eventName, listener);
   });
 }
 
