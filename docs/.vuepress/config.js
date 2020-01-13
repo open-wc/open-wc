@@ -100,6 +100,11 @@ const sidebar = [
       },
     ],
   },
+  {
+    title: 'Experiments',
+    collapsable: true,
+    children: [['/scoped-elements/', 'Scoped Elements']],
+  },
 ];
 
 module.exports = {
@@ -120,6 +125,7 @@ module.exports = {
       '/demoing/': sidebar,
       '/publishing/': sidebar,
       '/automating/': sidebar,
+      '/scoped-elements/': sidebar,
       '/faq/': [
         ['', 'Faq'],
         {
