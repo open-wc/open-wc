@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.6.2...@open-wc/demoing-storybook@1.6.3) (2020-01-13)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** make -c alias for --config-dir ([c9a4978](https://github.com/open-wc/open-wc/commit/c9a49789afb4848854c74405236b691c8c2e44ee))
+
+
+
+
+
 ## [1.6.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.6.1...@open-wc/demoing-storybook@1.6.2) (2020-01-13)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
