@@ -22,8 +22,8 @@
     "build:start": "es-dev-server --root-dir static-storybook --app-index index.html --open",
     "prepublishOnly": "../../scripts/insert-header.js",
     "site:build": "node src/build/cli.js --stories \"demo/stories/*.stories.{js,mdx}\" --config-dir demo/.storybook -o ../../_site/demoing-storybook",
-    "storybook": "node src/start/cli.js --config-dir packages/demoing-storybook/demo/.storybook --root-dir ../../",
-    "storybook:build": "node src/build/cli.js --config-dir demo/.storybook",
+    "storybook": "node src/start/cli.js -c demo/.storybook --root-dir ../../",
+    "storybook:build": "node src/build/cli.js -c demo/.storybook",
     "test": "mocha test/**/*.test.js test/*.test.js",
     "test:watch": "mocha test/**/*.test.js test/*.test.js --watch"
   },
