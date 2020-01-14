@@ -164,6 +164,7 @@ module.exports = async function build({
 }) {
   const assets = createAssets({
     storybookConfigDir,
+    rootDir: process.cwd(),
     managerPath,
     previewImport: previewPath,
     storyUrls,

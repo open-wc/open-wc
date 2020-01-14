@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const toBrowserPath = require('./toBrowserPath');
 
 function createContentHash(content) {
   return crypto
@@ -9,12 +10,20 @@ function createContentHash(content) {
     .digest('hex');
 }
 
-module.exports = function getAssets({ storybookConfigDir, managerPath, previewImport, storyUrls }) {
+module.exports = function getAssets({
+  storybookConfigDir,
+  rootDir,
+  managerPath,
+  previewImport,
+  storyUrls,
+}) {
   const managerIndexPath = path.join(__dirname, 'index.html');
   const iframePath = path.join(__dirname, 'iframe.html');
   const managerHeadPath = path.join(process.cwd(), storybookConfigDir, 'manager-head.html');
   const previewBodyPath = path.join(process.cwd(), storybookConfigDir, 'preview-body.html');
   const previewHeadPath = path.join(process.cwd(), storybookConfigDir, 'preview-head.html');
+  const previewJsPath = path.join(process.cwd(), storybookConfigDir, 'preview.js');
+  const previewJsImport = `./${toBrowserPath(path.relative(rootDir, previewJsPath))}`;
 
   let managerCode = fs.readFileSync(require.resolve(managerPath), 'utf-8');
   const managerSourceMap = fs.readFileSync(require.resolve(`${managerPath}.map`), 'utf-8');
@@ -52,8 +61,8 @@ module.exports = function getAssets({ storybookConfigDir, managerPath, previewIm
     '</body>',
     `
       </body>
-      <script type="module" src="./${storybookConfigDir}/preview.js"></script>
       <script type="module">
+        ${fs.existsSync(previewJsPath) ? `import '${previewJsImport}'` : ''}
         import { configure } from '${previewImport}';
 
         Promise.all([
