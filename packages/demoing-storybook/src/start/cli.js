@@ -25,7 +25,7 @@ async function run() {
   const previewImport = toBrowserPath(previewPathRelative);
   const storyUrls = await storiesPatternsToUrls(config.stories, rootDir);
 
-  const assets = getAssets({ storybookConfigDir, managerPath, previewImport, storyUrls });
+  const assets = getAssets({ storybookConfigDir, rootDir, managerPath, previewImport, storyUrls });
   config.babelExclude = [...(config.babelExclude || []), assets.managerScriptUrl];
 
   config.babelModuleExclude = [...(config.babelModuleExclude || []), assets.managerScriptUrl];
