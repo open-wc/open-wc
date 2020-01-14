@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.6.4...@open-wc/demoing-storybook@1.7.0) (2020-01-14)
+
+
+### Features
+
+* **demoing-storybook:** allow customizing rollup config ([040f8c4](https://github.com/open-wc/open-wc/commit/040f8c4ba499309f152d1e70bffb310b8e4a7546))
+* **demoing-storybook:** support main.js ([527381a](https://github.com/open-wc/open-wc/commit/527381a2aae511c89bcce9046122909f1177274a))
+
+
+
+
+
 ## [1.6.4](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.6.3...@open-wc/demoing-storybook@1.6.4) (2020-01-13)
 
 
