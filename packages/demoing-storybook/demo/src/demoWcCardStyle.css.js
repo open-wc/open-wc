@@ -79,7 +79,7 @@ export const demoWcCardStyle = css`
     position: absolute;
     width: 250px;
     box-sizing: border-box;
-    box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.25);;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
     padding: 10px;
     display: flex;
     flex-flow: column;
