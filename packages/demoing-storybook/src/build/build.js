@@ -71,9 +71,9 @@ function onwarn(warning, warn) {
   warn(warning);
 }
 
-async function buildPreview(outputDir, previewPath, assets, storyFiles) {
+async function buildPreview({ outputDir, previewPath, assets, storyFiles, rollupConfigDecorator }) {
   const transformMdxToJs = createMdxToJsTransformer({ previewImport: previewPath });
-  const configs = createCompatibilityConfig({
+  let configs = createCompatibilityConfig({
     input: 'noop',
     outputDir,
     extensions: [...DEFAULT_EXTENSIONS, 'mdx'],
@@ -143,6 +143,10 @@ async function buildPreview(outputDir, previewPath, assets, storyFiles) {
     copyCustomElementsJsonPlugin(outputDir),
   );
 
+  if (rollupConfigDecorator) {
+    configs = rollupConfigDecorator(configs) || configs;
+  }
+
   // build sequentially instead of parallel because terser is multi
   // threaded and will max out CPUs.
   await rollupBuild(configs[0]);
@@ -156,6 +160,7 @@ module.exports = async function build({
   previewPath,
   storyFiles,
   storyUrls,
+  rollupConfigDecorator,
 }) {
   const assets = createAssets({
     storybookConfigDir,
@@ -169,6 +174,6 @@ module.exports = async function build({
 
   await Promise.all([
     buildManager(outputDir, assets),
-    buildPreview(outputDir, previewPath, assets, storyFiles),
+    buildPreview({ outputDir, previewPath, assets, storyFiles, rollupConfigDecorator }),
   ]);
 };

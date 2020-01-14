@@ -31,5 +31,6 @@ const storiesPatternsToFiles = require('../shared/storiesPatternsToFiles');
     outputDir: config.outputDir,
     managerPath: require.resolve(config.managerPath),
     previewPath: require.resolve(config.previewPath),
+    rollupConfigDecorator: config.rollup,
   });
 })();

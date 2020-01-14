@@ -28,7 +28,7 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 - [@storybook/addon-links](https://github.com/storybookjs/storybook/tree/next/addons/links)
 - [@storybook/addon-knobs](https://github.com/storybookjs/storybook/tree/next/addons/knobs)
 - [@storybook/addon-viewport](https://github.com/storybookjs/storybook/tree/next/addons/viewport)
-- storybook-addon-web-components-knobs
+- [storybook-addon-web-components-knobs](https://github.com/open-wc/open-wc/tree/master/packages/storybook-addon-web-components-knobs)
 
 ## Demo
 
@@ -60,11 +60,9 @@ npm init @open-wc
 
 ### Migration
 
-If you are already using `@open-wc/storybook` be sure to check out the [Migration Guide](/demoing/MIGRATION.md).
+If you are using an older version of `@open-wc/storybook` be sure to check out the [Migration Guide](/demoing/MIGRATION.md).
 
 ## Usage
-
-Create documentation/stories within the `stories` folder.
 
 ```bash
 npm run storybook
@@ -72,35 +70,36 @@ npm run storybook
 
 ### CLI configuration
 
-#### Storybook specific
-
-| name         | type   | description                                                                                                    |
-| ------------ | ------ | -------------------------------------------------------------------------------------------------------------- |
-| stories      | string | A glob which stories to include. Be sure to wrap it in `'`. Default: `'./stories/\*.stories.{js,mdx}'`         |
-| config-dir   | string | Where the storybook config files are. Default: ./.storybook                                                    |
-| manager-path | string | Where to load the prebuilt manager from. This is passed to `require.resolve`, it can be a file path or import. |
-| preview-path | string | Where to load the prebuilt preview from. This is passed to `require.resolve`, it can be a file path or import. |
-|              |        | Build only                                                                                                     |
-| output-dir   | string | Rollup build output directory. Default: ./static-storybook                                                     |
-
 #### Dev server
 
-The storybook server is based on [es-dev-server](https://open-wc.org/developing/es-dev-server.html), see the docs of the dev server for any additional command options.
+The storybook server is based on [es-dev-server](https://open-wc.org/developing/es-dev-server.html) and accepts the same command line args. Check the docs for all available options.
+
+#### Storybook specific
+
+| name       | type   | description                                                   |
+| ---------- | ------ | ------------------------------------------------------------- |
+| config-dir | string | Where the storybook config files are. Default: `./.storybook` |
+| output-dir | string | Rollup build output directory. Default: `./static-storybook`  |
 
 ### Configuration file
 
-By default, `@open-wc/demoing-storybook` looks for config files called `main.js` in your config dir (default `.storybook`). 
-
-The config file contains the options specific to storybook and the options for `es-dev-server`. The options are camelCased versions of the CLI args. Example:
+By default, storybook looks for a config file called `main.js` in your config dir (default `.storybook`). In this file you can configure storybook itself, `es-dev-server` and the `rollup` build configuration.
 
 ```js
 module.exports = {
-  stories: ['./stories/*.stories.{js,mdx}'],
-  managerPath: './my-manager.js',
-  outputPath: '../my-build-folder',
+  // Globs of all the stories in your project
+  stories: ['../stories/*.stories.{js,mdx}'],
+  // Configuration for es-dev-server (start-storybook only)
   esDevServer: {
     nodeResolve: true,
     open: true,
+  },
+
+  // Rollup build output directory (build-storybook only)
+  outputPath: '../dist',
+  // Configuration for rollup (build-storybook only)
+  rollup: config => {
+    return config;
   },
 };
 ```
@@ -274,21 +273,15 @@ To set up a proxy, you can set up a koa middleware. [Read more about koa here.](
 const proxy = require('koa-proxies');
 
 module.exports = {
-  port: 9000,
-  middlewares: [
-    proxy('/api', {
-      target: 'http://localhost:9001',
-    }),
-  ],
+  esDevServer: {
+    port: 9000,
+    middlewares: [
+      proxy('/api', {
+        target: 'http://localhost:9001',
+      }),
+    ],
+  },
 };
-```
-
-### Custom storybook build
-
-We use a custom storybook build so that we can load it as an es module in the browser, and we don't need to wait for webpack to build. You can provide your own custom storybook build with the `--manager-path` and `--preview-path` flags:
-
-```bash
-start-storybook --manager-path my-storybook-prebuild/dist/manager.js --preview-path my-storybook-/dist/preview.js
 ```
 
 <script>
