@@ -37,7 +37,7 @@ When preparing to listen for events in your code, do the least work possible. No
 
 ### Inside of your elements
 
-When adding event listening inside of your components, assuming you are using `lit-html` (or any other declarative renderer with event binding syntax) use the tools supplied therein to [add event listeners](https://lit-html.polymer-project.org/guide/writing-templates#add-event-listeners). The reasoning behind this is that for any listener added by `lit-html`, the same listener will be removed by `lit-html` when no longer needed; no ghost listeners! That means whether the DOM and its associated lister is available for the entire lifecycle of your application, or just for a small part of that, the least amount of work will be done to ensure the event is handled appropriately. See the `click` listener in the following code. It _only_ exits while `this.open` is `true`, which leaves the browser listening to less things and your code less likely to trigger handlers errantly.
+When adding event listening inside of your components, assuming you are using `lit-html` (or any other declarative renderer with event binding syntax) use the tools supplied therein to [add event listeners](https://lit-html.polymer-project.org/guide/writing-templates#add-event-listeners). The reasoning behind this is that for any listener added by `lit-html`, the same listener will be removed by `lit-html` when no longer needed; no ghost listeners! That means whether the DOM and its associated listener is available for the entire lifecycle of your application, or just for a small part of that, the least amount of work will be done to ensure the event is handled appropriately. See the `click` listener in the following code. It _only_ exits while `this.open` is `true`, which leaves the browser listening to fewer things and your code less likely to trigger handlers errantly.
 
 ```js
 render() {
@@ -59,26 +59,31 @@ If you are adding a listener to your element, from inside your element, you shou
 ```js
 constructor() {
     super();
+    this.handleDone = this.handleDone.bind(this);
     this.addEventListener('done', this.handleDone);
 }
-handleDone = (event) => {
+handleDone(event) {
     this.done = true;
     // Do the work you'd like to complete when "done" here.
 }
 ```
 
-Side note: as you will be adding this listener manually, you _will_ need to ensure that `this` is bound to your liking. See the class field method syntax above.
+Side note: as you will be adding this listener manually, you _will_ need to ensure that `this` is bound to your liking. See the `.bind()` syntax above.
 
 ### On elements outside of your element
 
-In some cases you will need to add event listener to elements outside of the element you are building: e.g. a `resize` listener of the `window`. In this case the `window` could last well beyond the last referenc to your element and it is very important that you do the work to ensure that the listener is added and removed appropriately. Thankfully, the custom elements specification outlines the [`connectedCallback` and `disconnectedCallback` lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks). These are the perfect hooks for managing these sorts of listeners. When adding event listeners to this sort of external element, use the `connectedCallback`, like so:
+In some cases, you will need to add an event listener to elements outside of the element you are building: e.g. a `resize` listener of the `window`. When doing so, the `window` could last well beyond the last reference to your element and it is very important that you do the work to ensure that the listener is added and removed appropriately. Thankfully, the custom elements specification outlines the [`connectedCallback` and `disconnectedCallback` lifecycle methods](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks). These are the perfect hooks for managing these sorts of listeners. When adding event listeners to this sort of external element, use the `connectedCallback`, like so:
 
 ```js
+constructor() {
+    super();
+    this.handleResize = this.handleResize.bind(this);
+}
 connectedCallback() {
     super.connectedCallback && super.connectedCallback();
     window.addEventListener('resize', this.handleResize);
 }
-handleResize = (event) => {
+handleResize(event) {
     // Do something with the resize event here.
 }
 ```
@@ -92,13 +97,13 @@ disconnectedCallback() {
 }
 ```
 
-Side note: again, as you will be adding this listener manually, you _will_ need to ensure that `this` is bound to your liking. See the class field method syntax above. When removing event listeners is it also important to ensure that the identity of the callback bound to the event is available by reference or it won't be properly removed.
+Side note: again, as you will be adding this listener manually, you _will_ need to ensure that `this` is bound to your liking. See the `.bind()` syntax above. When removing event listeners is it important to ensure that the identity of the callback bound to the event is available by reference. See how the example above achieves this by assigning the bound version of `handleResize` to itself before adding/removing the listener.
 
 ## Event dispatching
 
 ### Keep it simple
 
-You can dispatch a DOM event on any element in your applicaiton with `el.dispatchEvent(new Event('event'))`. With just that amount of code you'll be able to trigger the callback for any listener for that event name that is bound to that element. You'll also trigger the callback on any ancestor elements in the same DOM tree for listeners bound to the "capture" phase of an event. In a lot of cases this might be all of the functionality you really need when dispatching an event, so compare your usage needs before worrying too much about the following.
+You can dispatch a DOM event on any element in your application with `el.dispatchEvent(new Event('event'))`. With just that amount of code, you'll be able to trigger the callback for any listener for that event name that is bound to that element. You'll also trigger the callback on any ancestor elements in the same DOM tree for listeners bound to the "capture" phase of an event. In a lot of cases this might be all of the functionality you really need when dispatching an event, so compare your usage needs before worrying too much about the following.
 
 ### Know your options
 
@@ -112,7 +117,7 @@ el.dispatchEvent(
 );
 ```
 
-This will allow your event to "bubble" up to the top of the current DOM tree. `bubbles` isn't required in order for an event to be accessible to the ancestors of the element on which is it dispatched, but in that listening to events on the "capture" phase can sometimes be confusing, involving of extended techniques to do in declarative templating, and requiring of extended documentation, it is best that you do use it in these cases.
+During the "bubble" phase an event travels element by element from the dispatching element up to the top of the current DOM tree. Often, `bubbles` is used to make your event available to ancestor elements, however, it isn't required to do so. During the "capture" phase, which occurs before the "bubble" phase the event will travel element by element down from the top of the current DOM tree, making the event available to those elements. However, listening to events on the "capture" phase can sometimes be confusing, involve extended techniques to add in declarative templating, and require extended documentation. In this way, the least work approach says using `bubbles` is a good idea and in cases where you do not, it is important to what you are committing to in choosing to make "capture" phase events a part of your element's API.
 
 If you'd like your event to be able to travel across shadow DOM boundaries, and begin its `capture` phase at the `window`, you'll need to manage the event's `composed` property, a la:
 
@@ -137,11 +142,11 @@ el.dispatchEvent(
 );
 ```
 
-Be conscious with your use of `composed: true`, though. When using `composed`, all parent components and implementors will also have access to your event in both phases, which can lead to event pollution. Only use these settings when you mean for the entire application to have access to an event.
+Remember to be conscious of your use of `composed: true`. When using `composed`, all parent components and implementors will also have access to your event in both phases, which can lead to event pollution. Only use these settings when you mean for the entire application to have access to an event.
 
 ## Even more data
 
-When you'd like to pass data along with your event, you have two options: dispatch a `new CustomEvent()` or extend the `Event` class. While no native DOM element uses the `CustomEvent` constructor to create the events that they dispatch, developers are offered this contructor and its additional `detail` property as a way to pass additional information along with their event. This can be done like so:
+When you'd like to pass data along with your event, you have two options: dispatch a `new CustomEvent()` or extend the `Event` class. While no native DOM element uses the `CustomEvent` constructor to create the events that they dispatch, developers are offered this constructor and its additional `detail` property as a way to pass additional information along with their event. This can be done like so:
 
 ```js
 el.dispatchEvent(
@@ -151,7 +156,7 @@ el.dispatchEvent(
 );
 ```
 
-In this way any listener would also access to the value of `event.detail` in its callback method. While `event.detail` isn't directly writable after you also created the event, you can set it to a mutable value so that listeners can also pass data back to the dispatching element.
+In this way, any listener would also access to the value of `event.detail` in its callback method. While `event.detail` isn't directly writable after you also created the event, you can set it to a mutable value so that listeners can also pass data back to the dispatching element.
 
 ```js
 parent.addEventListener('custom-event', event => {
@@ -167,7 +172,7 @@ el.didispatchEventspatch(customEvent);
 console.log(customEvent.detail.wasHeard); // true
 ```
 
-Developers may also access to the `Event` constructor which can be extended to contain not only data but also functionality.
+Developers may also access the `Event` constructor which can be extended to contain not only data but functionality, as well.
 
 ```js
 class MyEvent extends Event {
