@@ -41,8 +41,8 @@
     "lit-html": "^1.0.0"
   },
   "dependencies": {
-    "@babel/core": "^7.7.2",
-    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-transform-react-jsx": "^7.8.3",
     "@mdx-js/mdx": "^1.5.1",
     "@open-wc/building-rollup": "^0.19.4",
     "@storybook/addon-docs": "5.3.1",
