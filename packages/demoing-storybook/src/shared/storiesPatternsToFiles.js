@@ -6,7 +6,8 @@ const listFiles = require('./listFiles');
  * Will return all matching file paths
  */
 module.exports = async function storiesPatternsToFiles(storiesPatterns, rootDir) {
-  const listFilesPromises = storiesPatterns.map(pattern => listFiles(pattern, rootDir));
+  const patterns = typeof storiesPatterns === 'string' ? [storiesPatterns] : storiesPatterns;
+  const listFilesPromises = patterns.map(pattern => listFiles(pattern, rootDir));
   const arrayOfFilesArrays = await Promise.all(listFilesPromises);
   const files = [];
 

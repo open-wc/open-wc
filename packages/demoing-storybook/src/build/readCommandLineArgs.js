@@ -77,7 +77,6 @@ module.exports = function readCommandLineArgs() {
   ];
 
   const args = commandLineArgs(optionDefinitions);
-  args.stories = typeof args.stories === 'string' ? [args.stories] : args.stories;
 
   let options = {
     configDir: args['config-dir'],
