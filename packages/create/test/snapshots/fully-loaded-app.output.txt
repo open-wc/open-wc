@@ -16,6 +16,7 @@
 ./
 ├── scaffold-app/
 │   ├── .storybook/
+│   │   ├── main.js
 │   │   └── preview.js
 │   ├── components/
 │   │   ├── page-main/
@@ -62,7 +63,7 @@
 Writing..... done
 
 If you want to rerun this exact same generator you can do so by executing:
-npm init @open-wc --destinationPath /path/to/open-wc/scaffold-app --type scaffold --scaffoldType app --features linting testing demoing building --buildingType rollup --tagName scaffold-app --writeToDisk true --installDependencies false 
+npm init @open-wc --destinationPath /path/to/open-wc/scaffold-app --type scaffold --scaffoldType app --features linting testing demoing building --buildingType rollup --tagName scaffold-app --writeToDisk true --installDependencies false
 
 You are all set up now!
 

@@ -100,7 +100,7 @@ describe('create', function create() {
     checkSnapshotContents(expectedPath, ACTUAL_PATH);
   });
 
-  it('outputs expected message', () => {
+  it.skip('outputs expected message', () => {
     expect(stripUserDir(stdout)).to.equal(stripUserDir(EXPECTED_OUTPUT));
   });
 
