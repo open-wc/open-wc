@@ -60,7 +60,6 @@ module.exports = function readCommandLineArgs() {
     },
     {
       name: 'stories',
-      alias: 's',
       defaultValue: mainJs.stories || './stories/*.stories.{js,mdx}',
       description: 'List of story files e.g. --stories stories/*.stories.{js,mdx}',
     },
