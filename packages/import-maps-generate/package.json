@@ -41,10 +41,10 @@
     "semver": "^6.1.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.0",
-    "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
-    "@babel/register": "^7.7.0",
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/register": "^7.8.3",
     "babel-plugin-transform-dynamic-import": "^2.1.0",
     "chai": "^4.2.0",
     "mocha": "^6.2.2",
