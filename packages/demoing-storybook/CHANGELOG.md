@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.7.0...@open-wc/demoing-storybook@1.8.0) (2020-01-15)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** copy assets for deployed build ([30b998a](https://github.com/open-wc/open-wc/commit/30b998ad6b6e156c6b4bb7e40ae7f06dae8b1083))
+* **demoing-storybook:** fix serving preview with a custom root dir ([d466743](https://github.com/open-wc/open-wc/commit/d466743b06029ba85f013fa608f85951ecefe4a7))
+
+
+### Features
+
+* **demoing-storybook:** update styling of demo card ([#1234](https://github.com/open-wc/open-wc/issues/1234)) ([a9cd9af](https://github.com/open-wc/open-wc/commit/a9cd9afa897a3b50b514d8bf0a95df8a00ec3787))
+
+
+
+
+
 # [1.7.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.6.4...@open-wc/demoing-storybook@1.7.0) (2020-01-14)
 
 

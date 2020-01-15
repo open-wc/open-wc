@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.3...@open-wc/create@0.26.4) (2020-01-15)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** copy assets for deployed build ([30b998a](https://github.com/open-wc/open-wc/commit/30b998ad6b6e156c6b4bb7e40ae7f06dae8b1083))
+
+
+
+
+
 ## [0.26.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.2...@open-wc/create@0.26.3) (2019-12-23)
 
 
