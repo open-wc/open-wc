@@ -59,8 +59,7 @@ If you are adding a listener to your element, from inside your element, you shou
 ```js
 constructor() {
     super();
-    this.handleDone = this.handleDone.bind(this);
-    this.addEventListener('done', this.handleDone);
+    this.addEventListener('done', this.handleDone.bind(this));
 }
 handleDone(event) {
     this.done = true;
@@ -88,7 +87,7 @@ handleResize(event) {
 }
 ```
 
-Ensuring that event listeners do not stick around beyond the presence of your element in the DOM is just as straight forward with the `disconnectedCallback` method.
+Ensuring that event listeners do not stick around beyond the presence of your element in the DOM fits neatly into the `disconnectedCallback` method:
 
 ```js
 disconnectedCallback() {
