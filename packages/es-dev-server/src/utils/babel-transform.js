@@ -28,12 +28,6 @@ export const defaultConfig = {
     require.resolve('@babel/plugin-syntax-import-meta'),
     require.resolve('@babel/plugin-syntax-class-properties'),
     require.resolve('@babel/plugin-syntax-numeric-separator'),
-
-    /**
-     * This can be removed when https://github.com/babel/babel/pull/10811 is merged
-     */
-    [require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'), { loose: true }],
-    [require.resolve('@babel/plugin-proposal-optional-chaining'), { loose: true }],
   ],
   sourceType: 'module',
 };
