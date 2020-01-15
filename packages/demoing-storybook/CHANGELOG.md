@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.8.0...@open-wc/demoing-storybook@1.8.1) (2020-01-15)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** allow stories string start-storybook.config.js ([85dae17](https://github.com/open-wc/open-wc/commit/85dae17125ed43e829d121f66dbfda2660f44c36))
+* **demoing-storybook:** remove conflicting -s alias for --stories ([943361f](https://github.com/open-wc/open-wc/commit/943361fb8200de24f8baf8b50809a3bcd9de7a2c))
+
+
+
+
+
 # [1.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.7.0...@open-wc/demoing-storybook@1.8.0) (2020-01-15)
 
 
