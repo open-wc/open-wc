@@ -4,18 +4,25 @@ import { css } from 'lit-element';
 export const demoWcCardStyle = css`
   :host {
     display: block;
+    margin: 20px;
     position: relative;
     width: 250px;
     height: 200px;
     border-radius: 10px;
     transform-style: preserve-3d;
     transition: all 0.8s ease;
-    --demo-wc-card-front-color: #000;
-    --demo-wc-card-back-color: #fff;
+    font-family: sans-serif;
+    --demo-wc-card-font-color: #2c3e50;
+    --demo-wc-card-header-color-front: #217ff9;
+    --demo-wc-card-header-color-back: #9b35fa;
     --demo-wc-card-header-font-size: 16px;
   }
 
   .header {
+    padding: 10px;
+    text-transform: uppercase;
+    margin: -10px;
+    color: white;
     font-weight: bold;
     font-size: var(--demo-wc-card-header-font-size);
     text-align: center;
@@ -24,6 +31,7 @@ export const demoWcCardStyle = css`
   .content {
     padding: 20px 10px 0 10px;
     flex-grow: 1;
+    color: var(--demo-wc-card-font-color);
   }
 
   .footer {
@@ -71,7 +79,7 @@ export const demoWcCardStyle = css`
     position: absolute;
     width: 250px;
     box-sizing: border-box;
-    box-shadow: #ccc 3px 3px 2px 1px;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
     padding: 10px;
     display: flex;
     flex-flow: column;
@@ -84,18 +92,20 @@ export const demoWcCardStyle = css`
   }
 
   #front {
-    background: linear-gradient(141deg, #aaa 25%, #eee 40%, #ddd 55%);
-    color: var(--demo-wc-card-front-color);
+    background: #ededed;
+  }
+
+  #front .header {
+    background-color: var(--demo-wc-card-header-color-front);
+  }
+
+  #back .header {
+    background-color: var(--demo-wc-card-header-color-back);
   }
 
   #back {
-    background: linear-gradient(141deg, #333 25%, #aaa 40%, #666 55%);
-    color: var(--demo-wc-card-back-color);
+    background: #ededed;
     text-align: center;
     transform: rotateY(180deg);
-  }
-
-  #back .note {
-    color: #fff;
   }
 `;
