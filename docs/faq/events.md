@@ -33,7 +33,7 @@ There are lots of times when words just aren't enough to really get clarity on a
 
 ## Event listening
 
-When preparing to listen for events in your code, do the least work possible. Not only because this allows you to do less work now, but it allows you also to do less work later, and most importantly it allows the browser to do less work, which means a more performant application or component. The leasst work possible changes by context, but in important to remember no matter where you are adding event listners.
+When preparing to listen for events in your code, do the least work possible. Not only because this allows you to do less work now, but it allows you also to do less work later, and most importantly it allows the browser to do less work, which means a more performant application or component. The least work possible changes per context, but in important to remember no matter where you are adding event listeners.
 
 ### Inside of your elements
 
@@ -54,7 +54,7 @@ A side benefit of relying on the `@event` syntax in `LitElement` (if you use it)
 
 ### On your elements
 
-If you are adding a listener to your element, from inside your element, you should add that listener in the `constructor`. The browser does a great job of garbage collecting that listener when the element is removed from the DOM, so there no reason to do any work to manage that yourself. See the following example where the element listeners for a `done` event.
+If you are adding a listener to your element, from inside your element, you should add that listener in the `constructor`. The browser does a great job of garbage collecting that listener when the element is removed from the DOM, so there is no reason to do any work to manage that yourself. See the following example where the element listens for a `done` event.
 
 ```js
 constructor() {
@@ -83,7 +83,7 @@ handleResize = (event) => {
 }
 ```
 
-Ensuring that event listener does not stick around beyond the presence of your element in the DOM is just as straight forward with the `disconnectedCallback` method.
+Ensuring that event listeners do not stick around beyond the presence of your element in the DOM is just as straight forward with the `disconnectedCallback` method.
 
 ```js
 disconnectedCallback() {
@@ -92,7 +92,7 @@ disconnectedCallback() {
 }
 ```
 
-Side note: again, as you will be adding this listener manually, you _will_ need to ensure that `this` is bound to your liking. See the class field method syntax above. When removing event listeners is it also important to ensure that the identity of the callback bound to the event is available by reference or it won't be propertly removed.
+Side note: again, as you will be adding this listener manually, you _will_ need to ensure that `this` is bound to your liking. See the class field method syntax above. When removing event listeners is it also important to ensure that the identity of the callback bound to the event is available by reference or it won't be properly removed.
 
 ## Event dispatching
 
@@ -126,7 +126,7 @@ el.dispatchEvent(
 
 Be aware that a `composed` event will be retargeted to each shadow root that it passes through. In this way, the value for `event.target` will be the first of an element with a shadow DOM or the dispatching element as you travel from the listening element towards the dispatching element. This is one way in which a shadow root provides encapsulation for the inner working of your element. If you ever need the entire path across the DOM that your event will take you can use the `event.composedPath()` method to acquire an array of elements (starting with the dispatching element) that the event will pass through.
 
-With both of these properties managed, your event will both begin its `capture` phase at the `window` as well as also a `bubble` phase which ends at `window` as well. In this case, your event will look like the following:
+With both of these properties managed, your event will both begin its `capture` phase at the `window` as well as a `bubble` phase which ends at the `window`. In this case, your event will look like the following:
 
 ```js
 el.dispatchEvent(
@@ -137,11 +137,11 @@ el.dispatchEvent(
 );
 ```
 
-Be conscious with your use of `composed: true`. With itall parent components and implementors will also have access to your event in both phases, which can lead to event polution. Only use these settings when you mean for the entire application to have access to an event.
+Be conscious with your use of `composed: true`, though. When using `composed`, all parent components and implementors will also have access to your event in both phases, which can lead to event pollution. Only use these settings when you mean for the entire application to have access to an event.
 
 ## Even more data
 
-When you'd like to pass data along with your event, you also two options: dispatch a `new CustomEvent()` or extend the `Event` class. While no native DOM element uses the `CustomEvent` constructor to create the events that they dispatch, developers are offered this contructor and its additional `detail` property as a way to pass additional information along with their event. This can be done like so:
+When you'd like to pass data along with your event, you have two options: dispatch a `new CustomEvent()` or extend the `Event` class. While no native DOM element uses the `CustomEvent` constructor to create the events that they dispatch, developers are offered this contructor and its additional `detail` property as a way to pass additional information along with their event. This can be done like so:
 
 ```js
 el.dispatchEvent(
@@ -167,7 +167,7 @@ el.didispatchEventspatch(customEvent);
 console.log(customEvent.detail.wasHeard); // true
 ```
 
-Developers also access to the `Event` constructor which can be extended to contain not only data but also functionality.
+Developers may also access to the `Event` constructor which can be extended to contain not only data but also functionality.
 
 ```js
 class MyEvent extends Event {
@@ -198,7 +198,7 @@ el.dispatchEvent(customEvent); // Something imporant
 console.log(customEvent.dataReceived); // true
 ```
 
-An additional benefit of extending the `Event` class is the ability to do `instanceof` checking in your listener. This can be a great way to disabiguate one `custom-event` from another `custom-event`.
+An additional benefit of extending the `Event` class is the ability to do `instanceof` checking in your listener. This can be a great way to disambiguate one `custom-event` from another `custom-event`.
 
 ```js
 parent.addEventListener('custom-event', event => {
