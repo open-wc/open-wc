@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.8.1...@open-wc/demoing-storybook@1.8.2) (2020-01-15)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** allow partial command line args ([c2f8502](https://github.com/open-wc/open-wc/commit/c2f850242e61cca3219d392a6a62b980f83fc8f0))
+
+
+
+
+
 ## [1.8.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.8.0...@open-wc/demoing-storybook@1.8.1) (2020-01-15)
 
 
