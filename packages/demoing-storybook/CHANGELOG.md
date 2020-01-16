@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.8.2...@open-wc/demoing-storybook@1.8.3) (2020-01-16)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** make preview.js available to storybook-build ([a8d2dae](https://github.com/open-wc/open-wc/commit/a8d2dae8ccc90cdf5e56514d5d8bc5f418b4d0f9))
+
+
+
+
+
 ## [1.8.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.8.1...@open-wc/demoing-storybook@1.8.2) (2020-01-15)
 
 
