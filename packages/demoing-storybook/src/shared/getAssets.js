@@ -61,8 +61,12 @@ module.exports = function getAssets({
     '</body>',
     `
       </body>
+      ${
+        fs.existsSync(previewJsPath)
+          ? `<script type="module" src="${previewJsImport}"></script>`
+          : ''
+      }
       <script type="module">
-        ${fs.existsSync(previewJsPath) ? `import '${previewJsImport}'` : ''}
         import { configure } from '${previewImport}';
 
         Promise.all([
