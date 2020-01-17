@@ -5,7 +5,7 @@
   },
   "devDependencies": {
     "eslint": "^6.1.0",
-    "@open-wc/eslint-config": "^1.0.0"
+    "@open-wc/eslint-config": "^2.0.0"
   },
   "eslintConfig": {
     "extends": [

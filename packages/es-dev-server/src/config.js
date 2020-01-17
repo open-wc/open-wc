@@ -1,6 +1,11 @@
 import path from 'path';
+import { defaultFileExtensions } from '@open-wc/building-utils';
 import { toBrowserPath, setDebug } from './utils/utils.js';
 import { compatibilityModes, polyfillsModes } from './constants.js';
+
+/**
+ * @typedef {import('@rollup/plugin-node-resolve').Options} NodeResolveOptions
+ */
 
 /**
  * Public config, to be defined by the user.
@@ -37,7 +42,9 @@ import { compatibilityModes, polyfillsModes } from './constants.js';
  * @property {string} [compatibility] compatibility mode for older browsers. Can be: "auto", "min",
  *  "max" or "none". Defaults to "auto"
  * @property {string} [polyfills] polyfills mode, can be "auto" or "none". Defaults to "auto".
- * @property {boolean} [nodeResolve] whether to resolve bare module imports using node resolve
+ * @property {boolean | NodeResolveOptions} [nodeResolve] whether to resolve bare module imports using node resolve
+ * @property {boolean | string[] | ((importee: string) => boolean)} dedupeModules dedupe ensures only one
+ *   version of a module is ever resolved by resolving it from the root node_modules.
  * @property {boolean} [preserveSymlinks] preserve symlinks when resolving modules. Default false,
  *  which is the default node behavior.
  * @property {string[]} [moduleDirs] directories to resolve modules from when using nodeResolve
@@ -87,15 +94,13 @@ import { compatibilityModes, polyfillsModes } from './constants.js';
  * @property {string} sslCert
  *
  * Code transformation
- * @property {string[]} moduleDirectories
- * @property {boolean} nodeResolve
- * @property {boolean} preserveSymlinks
+ * @property {boolean | NodeResolveOptions} nodeResolve
  * @property {boolean} readUserBabelConfig same as babel option in command line args
  * @property {string} compatibilityMode
  * @property {string} polyfillsMode
  * @property {boolean|CompressOptions} compress Whether the server should compress responses.
  * @property {object} customBabelConfig custom babel configuration to use when compiling
- * @property {string[]} extraFileExtensions
+ * @property {string[]} fileExtensions
  * @property {string[]} babelExclude
  * @property {string[]} babelModernExclude
  * @property {string[]} babelModuleExclude
@@ -115,15 +120,12 @@ export function createConfig(config) {
     babelModuleExclude = [],
     basePath,
     compress = true,
-    fileExtensions = [],
+    fileExtensions: fileExtensionsArg,
     hostname,
     http2 = false,
     logStartup,
-    moduleDirs = ['node_modules'],
-    nodeResolve = false,
     open = false,
     port,
-    preserveSymlinks = false,
     sslCert,
     sslKey,
     watch = false,
@@ -131,6 +133,10 @@ export function createConfig(config) {
     polyfills = polyfillsModes.AUTO,
     responseTransformers,
     debug = false,
+    nodeResolve: nodeResolveArg = false,
+    dedupeModules,
+    moduleDirs,
+    preserveSymlinks = false,
   } = config;
 
   if (debug) {
@@ -153,7 +159,7 @@ export function createConfig(config) {
   }
 
   if (!Object.values(polyfillsModes).includes(polyfills)) {
-    throw new Error(`Unknown compatibility mode: ${polyfills}`);
+    throw new Error(`Unknown polyfills mode: ${polyfills}`);
   }
 
   // middlewares used to be called customMiddlewares
@@ -192,6 +198,32 @@ export function createConfig(config) {
     openPath = basePath ? `${basePath}/` : '/';
   }
 
+  const fileExtensions = [...(fileExtensionsArg || []), ...defaultFileExtensions];
+
+  /** @type {boolean | NodeResolveOptions} */
+  let nodeResolve = nodeResolveArg;
+  // some node resolve options can be set separately for convenience, primarily
+  // for the command line args. we merge them into a node resolve options object
+  if (
+    nodeResolveArg != null &&
+    nodeResolveArg !== false &&
+    (moduleDirs != null || preserveSymlinks != null || dedupeModules != null)
+  ) {
+    nodeResolve = {
+      // user provided options, if any
+      ...(typeof nodeResolveArg === 'object' ? nodeResolveArg : {}),
+      customResolveOptions: {
+        moduleDirectory: moduleDirs,
+        preserveSymlinks,
+      },
+    };
+
+    if (dedupeModules) {
+      nodeResolve.dedupe =
+        dedupeModules === true ? importee => !['.', '/'].includes(importee[0]) : dedupeModules;
+    }
+  }
+
   return {
     appIndex,
     appIndexDir,
@@ -205,16 +237,14 @@ export function createConfig(config) {
     customBabelConfig: babelConfig,
     customMiddlewares: middlewares,
     responseTransformers,
-    extraFileExtensions: fileExtensions,
+    fileExtensions,
     hostname,
     http2,
     logStartup,
-    moduleDirectories: moduleDirs,
     nodeResolve,
     openBrowser: open === true || typeof open === 'string',
     openPath,
     port,
-    preserveSymlinks,
     readUserBabelConfig: babel,
     rootDir,
     sslCert,

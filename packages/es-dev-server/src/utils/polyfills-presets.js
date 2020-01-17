@@ -12,7 +12,17 @@ const allWithSystemjs = {
   systemJsExtended: true,
 };
 
+/**
+ * In max compatibility mode, we need to load the regenerator runtime on all browsers since
+ * we're always compiling to es5.
+ */
+const max = {
+  ...allWithSystemjs,
+  regeneratorRuntime: 'always',
+};
+
 export const polyfillsPresets = {
   all,
+  max,
   allWithSystemjs,
 };

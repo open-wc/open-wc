@@ -1,12 +1,13 @@
-// non es module plugins
-import 'chai-dom';
-import 'sinon-chai';
-
 // es module plugins
 import { chaiDomDiff } from '@open-wc/semantic-dom-diff';
 import { chaiA11yAxe } from 'chai-a11y-axe';
 
+import chai from './import-wrappers/chai.js';
+// non es module plugins
+import './import-wrappers/chai-dom.js';
+import './import-wrappers/sinon-chai.js';
+
 // @ts-ignore
-window.chai.use(chaiDomDiff);
+chai.use(chaiDomDiff);
 // @ts-ignore
-window.chai.use(chaiA11yAxe);
+chai.use(chaiA11yAxe);

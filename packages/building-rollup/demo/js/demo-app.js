@@ -34,7 +34,11 @@ class DemoApp extends LitElement {
 customElements.define('demo-app', DemoApp);
 
 const cssText = DemoApp.styles.cssText.replace(/\s/g, '');
+const foo = { bar: 'lorem ipsum' };
+const loremIpsum = undefined;
 
+window.__optionalChaining = foo?.bar === 'lorem ipsum' && foo?.bar?.loremIpsum === undefined;
+window.__nullishCoalescing = (loremIpsum ?? 'lorem ipsum') === 'lorem ipsum';
 window.__partialCSS = cssText.includes('font-size:16px') && cssText.includes('display:block');
 window.__litElement = (async () => {
   await import('./lazy-component.js');

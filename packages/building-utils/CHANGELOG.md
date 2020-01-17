@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.7...@open-wc/building-utils@2.11.0) (2019-12-09)
+
+
+### Features
+
+* **es-dev-server:** allow max compat on modern browsers ([dbb2928](https://github.com/open-wc/open-wc/commit/dbb2928ddc97e567d1751b7c34bf0542036298c3))
+
+
+
+
+
+## [2.10.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.6...@open-wc/building-utils@2.10.7) (2019-12-05)
+
+
+### Bug Fixes
+
+* **building-rollup:** respect output dir for sw.js ([#1082](https://github.com/open-wc/open-wc/issues/1082)) ([a71ed9d](https://github.com/open-wc/open-wc/commit/a71ed9d7162ef3bdddc70ca763f073b8853d31ce))
+
+
+
+
+
 ## [2.10.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.5...@open-wc/building-utils@2.10.6) (2019-12-01)
 
 

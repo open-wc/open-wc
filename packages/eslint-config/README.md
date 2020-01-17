@@ -17,15 +17,23 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 
 ## Manual
 
-- `yarn add --dev @open-wc/eslint-config`
-- Copy [.eslintignore](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/linting-eslint/templates/static/.eslintignore) to `.eslintignore`
-- Copy [.eslintrc.js](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/linting-eslint/templates/static/.eslintrc.js) to `.eslintrc.js`
-- Add these scripts to your package.json
+- Install `@open-wc/eslint-config`
+  ```bash
+  npm add --save-dev @open-wc/eslint-config
+  ```
+- Adjust your package.json with the following
   ```js
-  "scripts": {
-    "lint:eslint": "eslint --ext .js,.html .",
-    "format:eslint": "eslint --ext .js,.html . --fix"
-  },
+  {
+    "scripts": {
+      "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
+      "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore"
+    },
+    "eslintConfig": {
+      "extends": [
+        "@open-wc/eslint-config"
+      ]
+    }
+  }
   ```
 
 ## What you get

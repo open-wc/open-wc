@@ -17,26 +17,25 @@ npm init @open-wc
 
 ## Manual
 
-- Install `@open-wc/prettier-config`.
+- Install `@open-wc/prettier-config`
   ```bash
-  yarn add --dev @open-wc/prettier-config
+  npm add --save-dev @open-wc/prettier-config
   ```
-- Create `prettier.config.js` in the root directory of your project.
-  ```js
-  module.exports = require('@open-wc/prettier-config');
-  ```
-- Add the following scripts to your package.json
+- Adjust your package.json with the following
   ```js
   "scripts": {
-    "lint:prettier": "prettier \"**/*.js\" --list-different || (echo '↑↑ these files are not prettier formatted ↑↑' && exit 1)",
-    "format:prettier": "prettier \"**/*.js\" --write",
+    "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
+    "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore"
   },
-  ```
-- Update your `.eslintrc.js` to look like this:
-  ```js
-  module.exports = {
-    extends: ['@open-wc/eslint-config', 'eslint-config-prettier'].map(require.resolve),
-  };
+  "devDependencies": {
+    "@open-wc/prettier-config": "^0.1.10"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint-config-prettier"
+    ]
+  },
+  "prettier": "@open-wc/prettier-config"
   ```
 
 ## What you get

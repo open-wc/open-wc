@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const toBrowserPath = require('./toBrowserPath');
 
 function createContentHash(content) {
   return crypto
@@ -9,22 +10,35 @@ function createContentHash(content) {
     .digest('hex');
 }
 
-module.exports = function getAssets({ storybookConfigDir, storyUrls }) {
-  const managerPath = path.join(__dirname, 'index.html');
+module.exports = function getAssets({
+  storybookConfigDir,
+  rootDir,
+  managerPath,
+  previewImport,
+  storyUrls,
+}) {
+  const managerIndexPath = path.join(__dirname, 'index.html');
   const iframePath = path.join(__dirname, 'iframe.html');
   const managerHeadPath = path.join(process.cwd(), storybookConfigDir, 'manager-head.html');
   const previewBodyPath = path.join(process.cwd(), storybookConfigDir, 'preview-body.html');
   const previewHeadPath = path.join(process.cwd(), storybookConfigDir, 'preview-head.html');
+  const previewJsPath = path.join(process.cwd(), storybookConfigDir, 'preview.js');
+  const previewJsImport = `./${toBrowserPath(path.relative(rootDir, previewJsPath))}`;
 
-  const managerCode = fs.readFileSync(
-    require.resolve('@open-wc/storybook-prebuilt/dist/manager.js'),
-    'utf-8',
-  );
+  let managerCode = fs.readFileSync(require.resolve(managerPath), 'utf-8');
+  const managerSourceMap = fs.readFileSync(require.resolve(`${managerPath}.map`), 'utf-8');
+
   const managerHash = createContentHash(managerCode);
   const managerScriptUrl = `/storybook-manager-${managerHash}.js`;
+  const managerSourceMapUrl = `/storybook-manager-${managerHash}.js.map`;
   const managerScriptSrc = `.${managerScriptUrl}`;
 
-  let indexHTML = fs.readFileSync(managerPath, 'utf-8');
+  managerCode = managerCode.replace(
+    '//# sourceMappingURL=manager.js.map',
+    `//# sourceMappingURL=${managerSourceMapUrl}`,
+  );
+
+  let indexHTML = fs.readFileSync(managerIndexPath, 'utf-8');
   if (fs.existsSync(managerHeadPath)) {
     const managerHead = fs.readFileSync(managerHeadPath, 'utf-8');
     indexHTML = indexHTML.replace('</head>', `${managerHead}</head>`);
@@ -47,9 +61,13 @@ module.exports = function getAssets({ storybookConfigDir, storyUrls }) {
     '</body>',
     `
       </body>
-      <script type="module" src="./${storybookConfigDir}/preview.js"></script>
+      ${
+        fs.existsSync(previewJsPath)
+          ? `<script type="module" src="${previewJsImport}"></script>`
+          : ''
+      }
       <script type="module">
-        import { configure } from '@open-wc/demoing-storybook';
+        import { configure } from '${previewImport}';
 
         Promise.all([
           ${storyUrls.map(url => `import('${url}')`).join(',\n')}
@@ -64,6 +82,8 @@ module.exports = function getAssets({ storybookConfigDir, storyUrls }) {
     managerCode,
     managerScriptSrc,
     managerScriptUrl,
+    managerSourceMap,
+    managerSourceMapUrl,
     indexHTML,
     iframeHTML,
   };

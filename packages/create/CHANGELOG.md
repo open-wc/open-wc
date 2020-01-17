@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.3...@open-wc/create@0.26.4) (2020-01-15)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** copy assets for deployed build ([30b998a](https://github.com/open-wc/open-wc/commit/30b998ad6b6e156c6b4bb7e40ae7f06dae8b1083))
+
+
+
+
+
+## [0.26.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.2...@open-wc/create@0.26.3) (2019-12-23)
+
+
+### Bug Fixes
+
+* **generate:** align versions in package.json template ([6a5188d](https://github.com/open-wc/open-wc/commit/6a5188df3a8db2c1b7e169296157b15d13b302d8))
+
+
+
+
+
+## [0.26.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.1...@open-wc/create@0.26.2) (2019-12-18)
+
+
+### Bug Fixes
+
+* **create:** replace webpack-merge by deepmerge in testing dependencies ([e8c0553](https://github.com/open-wc/open-wc/commit/e8c0553de8f083785f21f34d7edbaba17a69492a))
+
+
+
+
+
+## [0.26.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.0...@open-wc/create@0.26.1) (2019-12-12)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** use " for stories glob to support windows ([20d9db0](https://github.com/open-wc/open-wc/commit/20d9db0b7419414aa7f8fa0956834015518fe27f))
+
+
+
+
+
+# [0.26.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.25.0...@open-wc/create@0.26.0) (2019-12-09)
+
+
+### Features
+
+* **create:** update building-rollup dependency ([2c83603](https://github.com/open-wc/open-wc/commit/2c836039743356c0b4be02edbae7a6addbeaf8ac))
+
+
+
+
+
+# [0.25.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.4...@open-wc/create@0.25.0) (2019-12-08)
+
+
+### Features
+
+* **create:** update linting config ([#1090](https://github.com/open-wc/open-wc/issues/1090)) ([795449d](https://github.com/open-wc/open-wc/commit/795449de3e49153004626a648bb59e25dc61bba8))
+
+
+
+
+
 ## [0.24.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.24.3...@open-wc/create@0.24.4) (2019-11-27)
 
 **Note:** Version bump only for package @open-wc/create

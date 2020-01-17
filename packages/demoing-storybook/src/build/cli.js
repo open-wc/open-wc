@@ -5,17 +5,19 @@ const path = require('path');
 
 const build = require('./build');
 const readCommandLineArgs = require('./readCommandLineArgs');
-const listFiles = require('../shared/listFiles');
 const toBrowserPath = require('../shared/toBrowserPath');
+const storiesPatternsToFiles = require('../shared/storiesPatternsToFiles');
 
 (async function main() {
   const rootDir = process.cwd();
   const config = readCommandLineArgs();
   const storiesPattern = `${process.cwd()}/${config.stories}`;
-  const storyUrls = (await listFiles(storiesPattern, rootDir)).map(filePath => {
+  const storyFiles = await storiesPatternsToFiles(config.stories, rootDir);
+  const storyUrls = storyFiles.map(filePath => {
     const relativeFilePath = path.relative(rootDir, filePath);
     return `./${toBrowserPath(relativeFilePath)}`;
   });
+
   if (storyUrls.length === 0) {
     console.log(`We could not find any stories for the provided pattern "${storiesPattern}".
       You can override it by doing "--stories ./your-pattern.js`);
@@ -23,8 +25,12 @@ const toBrowserPath = require('../shared/toBrowserPath');
   }
 
   await build({
-    storybookConfigDir: config['config-dir'],
+    storybookConfigDir: config.configDir,
+    storyFiles,
     storyUrls,
-    outputDir: config['output-dir'],
+    outputDir: config.outputDir,
+    managerPath: require.resolve(config.managerPath),
+    previewPath: require.resolve(config.previewPath),
+    rollupConfigDecorator: config.rollup,
   });
 })();

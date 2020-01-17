@@ -1,9 +1,10 @@
 /* eslint-disable no-await-in-loop, no-restricted-syntax */
-import { getBodyAsString, RequestCancelledError } from '../utils/utils.js';
+import { getBodyAsString, RequestCancelledError, IsBinaryFileError } from '../utils/utils.js';
 
 /**
  * @typedef {object} ResponseTransformerArgs
  * @property {string} url
+ * @property {Record<string, string>} headers
  * @property {number} status
  * @property {string} contentType
  * @property {string} body
@@ -40,6 +41,10 @@ export function createResponseTransformMiddleware(config) {
       if (error instanceof RequestCancelledError) {
         return;
       }
+
+      if (error instanceof IsBinaryFileError) {
+        return;
+      }
       throw error;
     }
 
@@ -52,6 +57,7 @@ export function createResponseTransformMiddleware(config) {
     for (const transformer of config.responseTransformers) {
       const result = await transformer({
         url: ctx.url,
+        headers: ctx.headers,
         status: ctx.status,
         contentType: newContentType,
         body: newBody,

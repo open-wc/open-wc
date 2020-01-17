@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.4.4...@open-wc/testing@2.5.0) (2020-01-07)
+
+
+### Features
+
+* **testing-helpers:** add waitUntil helper ([bef5dac](https://github.com/open-wc/open-wc/commit/bef5dac522f8bb0e497d0dd0e24eadbf39b98987))
+
+
+
+
+
+## [2.4.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.4.3...@open-wc/testing@2.4.4) (2020-01-07)
+
+
+### Bug Fixes
+
+* **testing:** add missing files to npm ([962fc10](https://github.com/open-wc/open-wc/commit/962fc10f0af17120af8cd64f04509ebe80fc9cdf))
+
+
+
+
+
+## [2.4.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.4.2...@open-wc/testing@2.4.3) (2020-01-07)
+
+
+### Bug Fixes
+
+* **testing:** compatibility with webpack ([e355027](https://github.com/open-wc/open-wc/commit/e355027a6a8fb68686d18205bb456a515e86b5f3))
+
+
+
+
+
+## [2.4.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.4.1...@open-wc/testing@2.4.2) (2019-12-05)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
 ## [2.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.4.0...@open-wc/testing@2.4.1) (2019-11-24)
 
 **Note:** Version bump only for package @open-wc/testing

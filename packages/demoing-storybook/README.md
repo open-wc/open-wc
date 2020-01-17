@@ -28,7 +28,7 @@ This is part of the default [open-wc](https://open-wc.org/) recommendation
 - [@storybook/addon-links](https://github.com/storybookjs/storybook/tree/next/addons/links)
 - [@storybook/addon-knobs](https://github.com/storybookjs/storybook/tree/next/addons/knobs)
 - [@storybook/addon-viewport](https://github.com/storybookjs/storybook/tree/next/addons/viewport)
-- storybook-addon-web-components-knobs
+- [storybook-addon-web-components-knobs](https://github.com/open-wc/open-wc/tree/master/packages/storybook-addon-web-components-knobs)
 
 ## Demo
 
@@ -46,7 +46,7 @@ npm init @open-wc
 ### Manual
 
 - `yarn add @open-wc/demoing-storybook --dev`
-- Copy at minimum the [.storybook](https://github.com/open-wc/open-wc/blob/master/packages/create/src/generators/demoing-storybook/templates/static/.storybook/addons.js) folder to `.storybook`
+- Copy at minimum the [.storybook](https://github.com/open-wc/open-wc/tree/master/packages/create/src/generators/demoing-storybook/templates/static/.storybook) folder to `.storybook`
 - If you want to bring along the examples, you may also copy the `stories` folder.
 - Be sure you have a [custom-elements.json](#custom-elements-json) file.
 - Add the following scripts to your package.json
@@ -60,11 +60,9 @@ npm init @open-wc
 
 ### Migration
 
-If you are already using `@open-wc/storybook` be sure to check out the [Migration Guide](/demoing/MIGRATION.md).
+If you are using an older version of `@open-wc/storybook` be sure to check out the [Migration Guide](/demoing/MIGRATION.md).
 
 ## Usage
-
-Create documentation/stories within the `stories` folder.
 
 ```bash
 npm run storybook
@@ -72,25 +70,46 @@ npm run storybook
 
 ### CLI configuration
 
-#### Storybook specific
-
-| name       | type   | description                                                                                            |
-| ---------- | ------ | ------------------------------------------------------------------------------------------------------ |
-| stories    | string | A glob which stories to include. Be sure to wrap it in `'`. Default: `'./stories/\*.stories.{js,mdx}'` |
-| config-dir | string | Where the storybook config files are. Default: ./.storybook                                            |
-|            |        | Build only                                                                                             |
-| output-dir | string | Rollup build output directory. Default: ./static-storybook                                             |
-
 #### Dev server
 
-The storybook server is based on [es-dev-server](https://open-wc.org/developing/es-dev-server.html), see the docs of the dev server for any additional command options.
+The storybook server is based on [es-dev-server](https://open-wc.org/developing/es-dev-server.html) and accepts the same command line args. Check the docs for all available options.
+
+#### Storybook specific
+
+| name       | type   | description                                                   |
+| ---------- | ------ | ------------------------------------------------------------- |
+| config-dir | string | Where the storybook config files are. Default: `./.storybook` |
+| output-dir | string | Rollup build output directory. Default: `./static-storybook`  |
+
+### Configuration file
+
+By default, storybook looks for a config file called `main.js` in your config dir (default `.storybook`). In this file you can configure storybook itself, `es-dev-server` and the `rollup` build configuration.
+
+```js
+module.exports = {
+  // Globs of all the stories in your project
+  stories: ['../stories/*.stories.{js,mdx}'],
+  // Configuration for es-dev-server (start-storybook only)
+  esDevServer: {
+    nodeResolve: true,
+    open: true,
+  },
+
+  // Rollup build output directory (build-storybook only)
+  outputDir: '../dist',
+  // Configuration for rollup (build-storybook only)
+  rollup: config => {
+    return config;
+  },
+};
+```
 
 ### Create documentation
 
 Create a `*.stories.mdx` (for example `card.stories.mdx`) file within the `stories` folder.
 
 ```md
-import { Story, Preview, Meta, Props } from '@storybook/addon-docs/blocks';
+import { Story, Preview, Meta, Props } from '@open-wc/demoing-storybook';
 import { html } from 'lit-html';
 import '../demo-wc-card.js';
 
@@ -254,12 +273,14 @@ To set up a proxy, you can set up a koa middleware. [Read more about koa here.](
 const proxy = require('koa-proxies');
 
 module.exports = {
-  port: 9000,
-  middlewares: [
-    proxy('/api', {
-      target: 'http://localhost:9001',
-    }),
-  ],
+  esDevServer: {
+    port: 9000,
+    middlewares: [
+      proxy('/api', {
+        target: 'http://localhost:9001',
+      }),
+    ],
+  },
 };
 ```
 

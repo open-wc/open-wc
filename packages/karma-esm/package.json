@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/karma-esm",
-  "version": "2.11.2",
+  "version": "2.12.6",
   "publishConfig": {
     "access": "public"
   },
@@ -18,9 +18,8 @@
     "prepublishOnly": "../../scripts/insert-header.js",
     "test": "karma start demo/basic/karma.config.js --coverage",
     "test:import-map": "karma start demo/import-map/karma.config.js --coverage",
-    "test:import-map:watch": "karma start demo/import-map/karma.config.js --auto-watch=true --single-run=false",
+    "test:no-modules": "karma start demo/no-modules/karma.config.js --coverage",
     "test:typescript": "karma start demo/typescript/karma.config.js --coverage",
-    "test:typescript:watch": "karma start demo/typescript/karma.config.js --auto-watch=true --single-run=false",
     "test:watch": "karma start demo/basic/karma.config.js --auto-watch=true --single-run=false"
   },
   "files": [
@@ -33,11 +32,11 @@
     "polyfill"
   ],
   "dependencies": {
-    "@open-wc/building-utils": "^2.10.6",
+    "@open-wc/building-utils": "^2.11.0",
     "babel-plugin-istanbul": "^5.1.4",
     "chokidar": "^3.0.0",
     "deepmerge": "^3.2.0",
-    "es-dev-server": "^1.28.0",
+    "es-dev-server": "^1.36.2",
     "minimatch": "^3.0.4",
     "node-fetch": "^2.6.0",
     "portfinder": "^1.0.21",

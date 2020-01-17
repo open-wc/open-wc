@@ -33,7 +33,7 @@ dist
 build-stats.json
 stats.html
 .rpt2_cache
-static-storybook
+storybook-static
 
 ## we already store snapshots globally
 packages/**/__snapshots__
@@ -43,3 +43,4 @@ local.log
 
 ## generated codelabs
 docs/.vuepress/public/codelabs
+

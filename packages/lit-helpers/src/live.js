@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign, no-restricted-syntax, guard-for-in */
+/* eslint-disable no-param-reassign, no-restricted-syntax, guard-for-in, no-console */
 import { directive, PropertyPart, AttributePart } from 'lit-html';
 
 export const live = directive((/** @type {unknown} */ value) => (

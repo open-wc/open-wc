@@ -269,11 +269,11 @@ it('renders correctly', async () => {
       foo
     </div>
   `,
-    { ignoreChildren: ['my-custom-element'] },
+    { ignoreChildren: ['my-custom-input'] },
   );
 
   expect(el).dom.to.equalSnapshot({
-    ignoreChildren: ['my-custom-element'],
+    ignoreChildren: ['my-custom-input'],
   });
 });
 ```

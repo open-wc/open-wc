@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.5](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.7.4...rollup-plugin-index-html@1.7.5) (2019-12-09)
+
+**Note:** Version bump only for package rollup-plugin-index-html
+
+
+
+
+
+## [1.7.4](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.7.3...rollup-plugin-index-html@1.7.4) (2019-12-05)
+
+**Note:** Version bump only for package rollup-plugin-index-html
+
+
+
+
+
 ## [1.7.3](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.7.2...rollup-plugin-index-html@1.7.3) (2019-12-01)
 
 

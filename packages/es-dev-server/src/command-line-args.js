@@ -96,6 +96,13 @@ export const commandLineOptions = [
     description: 'Resolve bare import imports using node resolve.',
   },
   {
+    name: 'dedupe',
+    alias: 'd',
+    type: Boolean,
+    description:
+      'Dedupe modules by resolving them always from the root, ensuring only one version of a package is ever resolved.',
+  },
+  {
     name: 'preserve-symlinks',
     type: Boolean,
     description:
@@ -129,7 +136,7 @@ export const commandLineOptions = [
     name: 'compatibility',
     type: String,
     description:
-      'Compatibility mode for older browsers. Can be: "auto", "min", "max" or "none". Default "auto"',
+      'Compatibility mode for older browsers. Can be: "auto", "always", "min", "max" or "none". Default "auto"',
   },
   {
     name: 'polyfills',
@@ -148,9 +155,11 @@ export const commandLineOptions = [
  * Reads command line args from arguments array. Defaults to `process.argv`.
  *
  * @param {string[]} [argv]
+ * @param {{ defaultConfigDir?: string, defaultConfigName?: string }} config
  * @returns {import('./config.js').Config}
  */
-export function readCommandLineArgs(argv = process.argv) {
+export function readCommandLineArgs(argv = process.argv, config = {}) {
+  const { defaultConfigDir = '.', defaultConfigName = 'es-dev-server.config.js' } = config;
   const dashesArgs = commandLineArgs(commandLineOptions, { argv, partial: true });
   const openInCommandLineArgs = 'open' in dashesArgs;
 
@@ -190,7 +199,7 @@ export function readCommandLineArgs(argv = process.argv) {
 
   if (args.config) {
     // read config from user provided path
-    const configPath = path.resolve(args.config);
+    const configPath = path.join(process.cwd(), args.config);
     if (!fs.existsSync(configPath) || !fs.statSync(configPath).isFile()) {
       throw new Error(`Did not find any config file at ${configPath}`);
     }
@@ -200,7 +209,8 @@ export function readCommandLineArgs(argv = process.argv) {
     logDebug(`Found a config file at ${configPath}`);
   } else {
     // read default config if present
-    const defaultConfigPath = path.join(process.cwd(), 'es-dev-server.config.js');
+    const defaultConfigPath = path.join(process.cwd(), defaultConfigDir, defaultConfigName);
+
     if (fs.existsSync(defaultConfigPath) && fs.statSync(defaultConfigPath).isFile()) {
       const fileConfig = require(defaultConfigPath);
       options = deepmerge(fileConfig, args);
@@ -213,6 +223,11 @@ export function readCommandLineArgs(argv = process.argv) {
   }
 
   let { open } = options;
+
+  if (options.dedupe) {
+    options.dedupeModules = options.dedupe;
+    delete options.dedupe;
+  }
 
   // open can be a boolean nor a string. if it's a boolean from command line args,
   // it's passed as null. so if it's not a string or boolean type, we check for the

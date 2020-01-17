@@ -1,6 +1,6 @@
 {
   "imports": {
     "lodash-es": "/base/node_modules/lodash-es/lodash.js",
-    "chai": "/base/node_modules/chai/index.js"
+    "chai/": "/base/node_modules/chai/"
   }
 }

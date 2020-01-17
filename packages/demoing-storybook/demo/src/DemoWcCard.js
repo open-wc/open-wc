@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { LitElement, html } from 'lit-element';
 import { demoWcCardStyle } from './demoWcCardStyle.css.js';
+import { chevron } from './chevron.svg.js';
 
 // @ts-ignore
 export class DemoWcCard extends LitElement {
@@ -47,7 +48,7 @@ export class DemoWcCard extends LitElement {
         </div>
         <div class="footer">
           <div class="note">A</div>
-          <button @click=${this.toggle}>></button>
+          <button @click=${this.toggle}>${chevron}</button>
         </div>
       </div>
       <div id="back">
@@ -71,7 +72,7 @@ export class DemoWcCard extends LitElement {
         </div>
         <div class="footer">
           <div class="note">B</div>
-          <button @click=${this.toggle}>></button>
+          <button @click=${this.toggle}>${chevron}</button>
         </div>
       </div>
     `;
