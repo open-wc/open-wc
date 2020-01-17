@@ -112,6 +112,16 @@ By default, our configuration does not do any modifications to your code. It jus
 
 By passing the `compatibility` flag, we enable compatibility mode which makes your code run on older browsers as well. It loads polyfills and transforms modern syntax where needed. There are a few possible modes, but generally 'all' is sufficient for testing. This mode is powered by `karma-esm`. [Check out the documentaton](https://open-wc.org/testing/karma-esm.html) for more information.
 
+## Testing on WSL (Windows Subsystem for Linux)
+
+Currently Chrome Headless has issues on WSL.
+Until they are fixed, you can work around it by pointing your CHROME_BIN variable to your Windows installation of chrome instead of chromium inside your linux distro.
+This works because with WSL, you can use executables between environments.
+
+```bash
+export CHROME_BIN=/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe
+```
+
 ## Why don't you recommend testing tool X?
 
 Sometimes people ask why we recommend Karma and not other popular testing tools. We're always on the lookout for improving our recommendations, so if you think we can do better please let us know. What's important for us is that the testing tool is robust, simple to use, does not require any building and runs in a real browser.
