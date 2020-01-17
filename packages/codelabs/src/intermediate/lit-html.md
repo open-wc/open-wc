@@ -74,7 +74,7 @@ You should already know how to create a web component using `LitElement`. Go ahe
 <!DOCTYPE html>
 <html>
   <body>
-    <todo-app></todo-app>
+    <news-app></news-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
