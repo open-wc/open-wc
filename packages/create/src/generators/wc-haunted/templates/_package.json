@@ -3,7 +3,6 @@
   "module": "index.js",
   "scripts": {
     "start": "es-dev-server --app-index demo/index.html --node-resolve --open --watch",
-    "start:compatibility": "es-dev-server --app-index demo/index.html --compatibility all --node-resolve --open --watch"
   },
   "dependencies": {
     "lit-html": "^1.0.0",
