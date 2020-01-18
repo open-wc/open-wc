@@ -1,38 +1,34 @@
-/* eslint-disable no-console */
-import path from 'path';
-import { URLSearchParams } from 'url';
-import { getTransformedIndexHTML } from '../utils/transform-index-html.js';
-import {
-  isIndexHTMLResponse,
-  getBodyAsString,
-  toBrowserPath,
-  isInlineModule,
-  RequestCancelledError,
-} from '../utils/utils.js';
-import { getUserAgentCompat } from '../utils/user-agent-compat.js';
-
-/**
- * @typedef {object} TransformIndexHTMLMiddlewareConfig
- * @property {string} appIndex
- * @property {string} appIndexDir
- * @property {string} compatibilityMode
- * @property {string} polyfillsMode
- */
+/** @typedef {import('./polyfills-loader-types').PolyfillsLoaderMiddlewareConfig} PolyfillsLoaderMiddlewareConfig */
+/** @typedef {import('polyfills-loader').GeneratedFile} GeneratedFile */
 
 /**
  * @typedef {object} IndexHTMLData
  * @property {string} indexHTML
  * @property {string} lastModified
- * @property {Map<string, string>} inlineModules
+ * @property {GeneratedFile[]} inlineScripts
  */
+
+/* eslint-disable no-console */
+import path from 'path';
+import { URLSearchParams } from 'url';
+import { injectPolyfillsLoader } from '../utils/inject-polyfills-loader.js';
+import {
+  isIndexHTMLResponse,
+  getBodyAsString,
+  toBrowserPath,
+  isInlineScript,
+  RequestCancelledError,
+  toFilePath,
+} from '../utils/utils.js';
+import { getUserAgentCompat } from '../utils/user-agent-compat.js';
 
 /**
  * Creates middleware which injects polyfills and code into the served application which allows
  * it to run on legacy browsers.
  *
- * @param {TransformIndexHTMLMiddlewareConfig} cfg
+ * @param {PolyfillsLoaderMiddlewareConfig} cfg
  */
-export function createTransformIndexHTMLMiddleware(cfg) {
+export function createPolyfillsLoaderMiddleware(cfg) {
   // polyfills, keyed by url
   /** @type {Map<string, string>} */
   const polyfills = new Map();
@@ -42,7 +38,7 @@ export function createTransformIndexHTMLMiddleware(cfg) {
   const indexHTMLData = new Map();
 
   /** @type {import('koa').Middleware} */
-  async function transformIndexHTMLMiddleware(ctx, next) {
+  async function polyfillsLoaderMiddleware(ctx, next) {
     // serve polyfill from memory if url matches
     const polyfill = polyfills.get(ctx.url);
     if (polyfill) {
@@ -57,34 +53,33 @@ export function createTransformIndexHTMLMiddleware(cfg) {
     /**
      * serve extracted inline module if url matches. an inline module requests has this
      * structure:
-     * `/inline-module-<index>?source=<index-html-path>`
+     * `/inline-script-<index>?source=<index-html-path>`
      * for example:
-     * `/inline-module-2?source=/src/index-html`
+     * `/inline-script-2?source=/src/index-html`
      * source query parameter is the index.html the inline module came from, index is the index
      * of the inline module in that index.html. We use these to look up the correct code to
      * serve
      */
-    if (isInlineModule(ctx.url)) {
+    if (isInlineScript(ctx.url)) {
       const [url, queryString] = ctx.url.split('?');
       const params = new URLSearchParams(queryString);
-      const indexHTML = indexHTMLData.get(
+      const data = indexHTMLData.get(
         uaCompat.browserTarget + decodeURIComponent(params.get('source')),
       );
-
-      if (!indexHTML) {
+      if (!data) {
         return undefined;
       }
 
       const name = path.basename(url);
-      const inlineModule = indexHTML.inlineModules.get(name);
-      if (!inlineModule) {
+      const inlineScript = data.inlineScripts.find(f => f.path.split('?')[0] === name);
+      if (!inlineScript) {
         throw new Error(`Could not find inline module for ${ctx.url}`);
       }
 
-      ctx.body = inlineModule;
+      ctx.body = inlineScript.content;
       ctx.response.set('content-type', 'text/javascript');
       ctx.response.set('cache-control', 'no-cache');
-      ctx.response.set('last-modified', indexHTML.lastModified);
+      ctx.response.set('last-modified', data.lastModified);
       return undefined;
     }
 
@@ -104,25 +99,38 @@ export function createTransformIndexHTMLMiddleware(cfg) {
       return undefined;
     }
 
+    const indexFilePath = path.join(cfg.rootDir, toFilePath(ctx.url));
+
     try {
       // transforms index.html to make the code load correctly with the right polyfills and shims
-      const indexHTMLString = await getBodyAsString(ctx);
-      const transformResult = getTransformedIndexHTML({
+      const htmlString = await getBodyAsString(ctx);
+      const result = await injectPolyfillsLoader({
+        htmlString,
         indexUrl: ctx.url,
-        indexHTMLString,
+        indexFilePath,
+        transformJs: cfg.transformJs,
         compatibilityMode: cfg.compatibilityMode,
-        polyfillsMode: cfg.polyfillsMode,
+        polyfillsLoaderConfig: cfg.polyfillsLoaderConfig,
         uaCompat,
       });
 
-      // add new index.html
-      ctx.body = transformResult.indexHTML;
+      // set new index.html
+      ctx.body = result.indexHTML;
+
+      const polyfillsMap = new Map();
+      result.polyfills.forEach(file => {
+        polyfillsMap.set(file.path, file);
+      });
 
       // cache index for later use
-      indexHTMLData.set(uaCompat.browserTarget + ctx.url, { ...transformResult, lastModified });
+      indexHTMLData.set(uaCompat.browserTarget + ctx.url, {
+        ...result,
+        inlineScripts: result.inlineScripts,
+        lastModified,
+      });
 
       // cache polyfills for serving
-      transformResult.polyfills.forEach(p => {
+      result.polyfills.forEach(p => {
         let root = ctx.url.endsWith('/') ? ctx.url : path.posix.dirname(ctx.url);
         if (!root.endsWith('/')) {
           root = `${root}/`;
@@ -138,5 +146,5 @@ export function createTransformIndexHTMLMiddleware(cfg) {
     return undefined;
   }
 
-  return transformIndexHTMLMiddleware;
+  return polyfillsLoaderMiddleware;
 }
