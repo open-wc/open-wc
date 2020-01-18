@@ -8,10 +8,9 @@ No big applications are using `scoped-elements` yet - so there is no proof yet i
 This page focuses on in depth explanations as it should help foster a discussion on scoping.
 :::
 
-Complex Web Component applications often are developed by several teams across organizations.
-In that scenario it is common that shared component libraries are used by teams to create an homogeneous look and feel or just to avoid creating the same components multiple times, but as those libraries evolve problems between different versions of the same library appear, as teams may not be able to evolve and update their code at the same velocity. This causes bottlenecks in software delivery that should be managed by the teams and complex build systems, to try and alleviate the problem.
+Complex Web Component applications are soften developed by several teams across organizations. In that scenario it is common that shared component libraries are used by teams to create an homogeneous look and feel or just to avoid creating the same components multiple times, but as those libraries evolve problems between different versions of the same library may appear, as teams may not be able to evolve and update their code at the same velocity. This causes bottlenecks in software delivery that should be managed by the teams and complex build systems, to try and alleviate the problem.
 
-[Scoped Custom Element Registries](https://github.com/w3c/webcomponents/issues/716) is a proposal that will solve this problem, but until it is ready or a polyfill becomes available, we have to _scope_ custom element tag names if we want to use different versions of them in our code. This package allows you to forget about how custom elements are defined, registered and scopes their tag names if it is necessary, and avoids the name collision problem.
+[Scoped Custom Element Registries](https://github.com/w3c/webcomponents/issues/716) is a proposal that will solve this problem, but until it is ready or a polyfill becomes available, we have to _scope_ custom element tag names if we want to use different versions of those custom elements in our code. This package allows you to forget about how custom elements are defined, registered and scopes their tag names if it is necessary, and avoids the name collision problem.
 
 ## Installation
 
@@ -35,8 +34,8 @@ Consider the following setup
 
 Two possible solutions come to mind:
 
-1.  Synchronizing updates of shared dependencies - e.g. make sure Team Blue & Green always use the same version when releasing. This can be a viable solution however it comes with a high organizational overhead and is hard to scale up (for 10+ teams)
 2.  Temporarily (!) allow to ship similar source code (most breaking releases are not a total rewrite) and scope them via `@open-wc/scoped-elements`; see the "fixed" example [with-scope](https://open-wc.org/scoped-elements/demo/with-scoping/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/with-scope)] running with nested dependencies.
+1.  Synchronizing updates of shared dependencies - e.g. make sure **Team Blue** & **Team Green** always use the same version when releasing. This can be a viable solution however it comes with a high organizational overhead and is hard to scale up (for 10+ teams)
 
 #### Technical explanation of scenario
 
@@ -79,7 +78,7 @@ To demonstrate, we made three demos:
 
 ## How it works
 
-`createScopedHtml` defines your custom element classes and creates a unique scoped tag for each of them if you need to use multiple versions of an element. In case those classes were previously defined, it will return the previously defined tag.
+`createScopedHtml` defines your custom element classes and creates a unique scoped tag for each of them if you need to use multiple versions of an element. In case those classes were already defined, it will return the previously defined tag.
 
 Then, the `html` function provided by the `createScopedHtml` method transforms the template literal into another one replacing the tags used by the user by the ones defined by the custom elements. Finally, the transformed template literal is going to be processed by `lit-html`.
 
@@ -216,9 +215,7 @@ export default class MyElement extends LitElement {
 
 ## Performance
 
-We are using [Tachometer](https://github.com/Polymer/tachometer) to measure the
-performance penalty of using the scoped elements feature. The chosen test
-application is a slight variation of the [Polymer Shop Application](https://shop.polymer-project.org).
+We are using [Tachometer](https://github.com/Polymer/tachometer) to measure the performance penalty of using the scoped elements feature. The chosen test application is a slight variation of the [Polymer Shop Application](https://shop.polymer-project.org).
 
 This is an example of the results obtained running the performance test.
 
