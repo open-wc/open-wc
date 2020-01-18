@@ -17,7 +17,7 @@ const deepmerge = require('deepmerge');
  * @property {string[]} [babelModernExclude]
  * @property {string[]} [babelModuleExclude]
  * @property {boolean} [preserveSymlinks]
- * @property {Partial<import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig>} polyfills
+ * @property {import('./utils/inject-polyfills-loader-types').PolyfillsLoaderConfig} [polyfillsLoader]
  */
 
 function createEsmConfig(karmaConfig) {
