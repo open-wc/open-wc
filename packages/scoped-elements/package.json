@@ -14,10 +14,10 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
   "scripts": {
-    "prepublishOnly": "../../scripts/insert-header.js",
     "demo-build:before-nesting": "rollup -c demo/before-nesting/rollup.config.js",
     "demo-build:no-scope": "rollup -c demo/no-scope/rollup.config.js",
     "demo-build:with-scope": "rollup -c demo/with-scope/rollup.config.js",
+    "prepublishOnly": "../../scripts/insert-header.js",
     "site:build": "run-p demo-build:*",
     "start:before-nesting": "es-dev-server -c demo/before-nesting/server.js",
     "start:no-scope": "es-dev-server -c demo/no-scope/server.js",

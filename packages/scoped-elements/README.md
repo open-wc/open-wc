@@ -31,11 +31,12 @@ Consider the following setup
 2. **Team Black** releases a new version (**2.x**) of **Feature B** which unfortunately needs to be breaking in order to support new use-cases.
 3. **Team Blue** (on **Page A**) does not use any of those new use cases and they have a tight deadline to meet so they can not update right now.
 4. **Team Green** (on **Page B**) has to deliver an important functionality to your end users but they need to upgrade to **Feature B 2.x** since it can only be solved with this new version.
-5. Since **Feature A 1.x & 2.x** are both used in the same app, this will lead to nested dependencies, which then will lead to [catastrophic failure, and errors](https://open-wc.org/scoped-elements./demo/no-scoping/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/no-scope)]. 
+5. Since **Feature A 1.x & 2.x** are both used in the same app, this will lead to nested dependencies, which then will lead to [catastrophic failure, and errors](https://open-wc.org/scoped-elements./demo/no-scoping/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/no-scope)].
 
 Two possible solutions come to mind:
-   1. Synchronizing updates of shared dependencies - e.g. make sure Team Blue & Green always use the same version when releasing. This can be a viable solution however it comes with a high organizational overhead and is hard to scale up (for 10+ teams)
-   2. Temporarily (!) allow to ship similar source code (most breaking releases are not a total rewrite) and scope them via `@open-wc/scoped-elements`; see the "fixed" example [with-scope](https://open-wc.org/scoped-elements/demo/with-scoping/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/with-scope)] running with nested dependencies.
+
+1.  Synchronizing updates of shared dependencies - e.g. make sure Team Blue & Green always use the same version when releasing. This can be a viable solution however it comes with a high organizational overhead and is hard to scale up (for 10+ teams)
+2.  Temporarily (!) allow to ship similar source code (most breaking releases are not a total rewrite) and scope them via `@open-wc/scoped-elements`; see the "fixed" example [with-scope](https://open-wc.org/scoped-elements/demo/with-scoping/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/with-scope)] running with nested dependencies.
 
 #### Technical explanation of scenario
 
@@ -82,9 +83,9 @@ To demonstrate, we made three demos:
 
 Then, the `html` function provided by the `createScopedHtml` method transforms the template literal into another one replacing the tags used by the user by the ones defined by the custom elements. Finally, the transformed template literal is going to be processed by `lit-html`.
 
-`<my-button>${this.text}</my-button>` 
+`<my-button>${this.text}</my-button>`
 
-becomes: 
+becomes:
 `<my-button-3>${this.text}</my-button-3>`
 
 ## Usage
