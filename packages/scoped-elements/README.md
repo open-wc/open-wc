@@ -3,7 +3,7 @@
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 :::warning
-This is an experimental feature, use it at your own risk and be sure to understand it's [limitations](#limitations).
+This is an experimental feature, use it at your own risk and be sure to understand its [limitations](#limitations).
 No big applications are using `scoped-elements` yet - so there is no proof yet if it works in production.
 This page focuses on in depth explanations as it should help foster a discussion on scoping.
 :::
