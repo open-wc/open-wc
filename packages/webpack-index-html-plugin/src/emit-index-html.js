@@ -3,7 +3,7 @@ const { serialize, parse } = require('parse5');
 const { createIndexHTML, minifyIndexHTML } = require('@open-wc/building-utils/index-html');
 
 const VARIATION_FALLBACK = Symbol('fallback');
-/** @param {import('parse5').ASTNode} ast */
+/** @param {import('parse5').Document} ast */
 function cloneAST(ast) {
   return parse(serialize(ast));
 }
@@ -15,7 +15,7 @@ function cloneAST(ast) {
  *
  * @param {object} compilation
  * @param {import('../webpack-index-html-plugin').WebpackIndexHTMLPluginConfig} config
- * @param {import('parse5').ASTNode} [baseIndex]
+ * @param {import('parse5').Document} [baseIndex]
  * @param {BuildResult} buildResult
  * @param {BuildResult} [legacyBuildResult]
  */
@@ -27,7 +27,7 @@ function emitIndexHTML(compilation, config, baseIndex, buildResult, legacyBuildR
    * @param {string | Symbol} [variation]
    */
   const generateIndex = (filename, entries, legacyEntries, variation) => {
-    /** @type {import('parse5').ASTNode} */
+    /** @type {import('parse5').Document} */
     let localBaseIndex;
 
     /** If there is a user defined template, use that as the base to inject the output into. */

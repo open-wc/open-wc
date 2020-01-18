@@ -8,7 +8,7 @@ const { createLoaderScript } = require('./loader-script');
 const { minifyIndexHTML, defaultMinifyHTMLConfig } = require('./minify-index-html');
 const { createContentHash, cleanImportPath, polyfillFilename } = require('./utils');
 
-/** @typedef {import('parse5').ASTNode} ASTNode */
+/** @typedef {import('parse5').Document} ASTNode */
 
 /**
  * @typedef {object} EntriesConfig
