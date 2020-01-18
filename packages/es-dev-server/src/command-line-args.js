@@ -139,11 +139,6 @@ export const commandLineOptions = [
       'Compatibility mode for older browsers. Can be: "auto", "always", "min", "max" or "none". Default "auto"',
   },
   {
-    name: 'polyfills',
-    type: String,
-    description: 'Polyfills to load for older browsers. Can be "auto" or "none". Default "auto"',
-  },
-  {
     name: 'debug',
     type: Boolean,
     description: 'Whether to log debug messages',

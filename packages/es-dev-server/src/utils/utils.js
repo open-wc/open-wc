@@ -162,14 +162,14 @@ export function isPolyfill(url) {
  * @param {string} url
  */
 export function shoudlTransformToModule(url) {
-  return url.includes('transform-module');
+  return url.includes('transform-systemjs');
 }
 
 /**
  * @param {string} url
  */
-export function isInlineModule(url) {
-  return url.includes(`inline-module-`) && url.includes('?source=');
+export function isInlineScript(url) {
+  return url.includes(`inline-script-`) && url.includes('?source=');
 }
 
 /**
@@ -177,7 +177,7 @@ export function isInlineModule(url) {
  * @param {string} url
  */
 export function isGeneratedFile(url) {
-  return url.startsWith(virtualFilePrefix) || isPolyfill(url) || isInlineModule(url);
+  return url.startsWith(virtualFilePrefix) || isPolyfill(url) || isInlineScript(url);
 }
 
 /**
@@ -191,7 +191,7 @@ export function getRequestFilePath(ctx, rootDir) {
   }
 
   // inline module requests have the source in a query string
-  if (isInlineModule(ctx.url)) {
+  if (isInlineScript(ctx.url)) {
     const url = ctx.url.split('?')[0];
     const indexPath = toFilePath(url);
     return path.join(rootDir, indexPath);

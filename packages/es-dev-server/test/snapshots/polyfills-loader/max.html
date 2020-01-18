@@ -1,0 +1,89 @@
+<html><head>
+  <title>My app</title>
+</head>
+
+<body>
+
+  <!-- relative path -->
+  
+
+  <!-- upwards path -->
+  
+
+  <!-- absolute path -->
+  
+
+
+
+<script>(function () {
+  function loadScript(src, type) {
+    var loaded = false,
+        thenCb,
+        s = document.createElement('script');
+
+    function resolve() {
+      document.head.removeChild(s);
+      thenCb ? thenCb() : loaded = true;
+    }
+
+    s.src = src;
+    s.onload = resolve;
+
+    s.onerror = function () {
+      console.error('[polyfills-loader] failed to load: ' + src + ' check the network tab for HTTP status.');
+      resolve();
+    };
+
+    if (type) s.type = type;
+    document.head.appendChild(s);
+    return {
+      then: function (cb) {
+        loaded ? cb() : thenCb = cb;
+      }
+    };
+  }
+
+  var polyfills = [];
+  polyfills.push(loadScript('./polyfills/systemjs.js').then(function () {
+    // appends a query param to each systemjs request to trigger systemjs transformation
+    var originalResolve = System.constructor.prototype.resolve;
+
+    System.constructor.prototype.resolve = function () {
+      return Promise.resolve(originalResolve.apply(this, arguments)).then(function (url) {
+        return url + (url.indexOf('?') > 0 ? '&' : '?') + 'transform-systemjs';
+      });
+    };
+  }));
+
+  if (!('noModule' in HTMLScriptElement.prototype)) {
+    polyfills.push(loadScript('./polyfills/core-js.js'));
+  }
+
+  polyfills.push(loadScript('./polyfills/regenerator-runtime.js'));
+
+  if (!('fetch' in window)) {
+    polyfills.push(loadScript('./polyfills/fetch.js'));
+  }
+
+  if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) {
+    polyfills.push(loadScript('./polyfills/webcomponents.js'));
+  }
+
+  if (!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype) {
+    polyfills.push(loadScript('./polyfills/custom-elements-es5-adapter.js'));
+  }
+
+  function loadFiles() {
+    [function () {
+      return System.import('./app.js');
+    }, function () {
+      return System.import('../src/app.js');
+    }, function () {
+      return System.import('/src/app.js');
+    }].reduce(function (a, c) {
+      return a.then(c);
+    }, Promise.resolve());
+  }
+
+  polyfills.length ? Promise.all(polyfills).then(loadFiles) : loadFiles();
+})();</script></body></html>
