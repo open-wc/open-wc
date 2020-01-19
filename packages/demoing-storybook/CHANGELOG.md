@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.4](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.8.3...@open-wc/demoing-storybook@1.8.4) (2020-01-19)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** create ordered exports after user transformers ([#1263](https://github.com/open-wc/open-wc/issues/1263)) ([354eb90](https://github.com/open-wc/open-wc/commit/354eb90958882d04c4e480d8371958151f4fdc63))
+
+
+
+
+
 ## [1.8.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.8.2...@open-wc/demoing-storybook@1.8.3) (2020-01-16)
 
 
