@@ -42,10 +42,10 @@ async function run() {
   config.middlewares = [createServeManagerMiddleware(assets), ...(config.middlewares || [])];
 
   config.responseTransformers = [
+    ...(config.responseTransformers || []),
     createMdxToJs({ previewImport }),
     createOrderedExportsTransformer(storyUrls),
     createServePreviewTransformer(assets),
-    ...(config.responseTransformers || []),
   ];
 
   startServer(createConfig(config));
