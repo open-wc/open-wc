@@ -9,6 +9,7 @@ const createMdxToJsTransformer = require('../shared/createMdxToJsTransformer');
 const { createOrderedExports } = require('../shared/createOrderedExports');
 const createAssets = require('../shared/getAssets');
 const listFiles = require('../shared/listFiles');
+const toBrowserPath = require('../shared/toBrowserPath');
 
 const injectOrderedExportsPlugin = storyFiles => ({
   async transform(code, id) {
@@ -52,11 +53,6 @@ function copyCustomElementsJsonPlugin(outputRootDir) {
   };
 }
 
-async function buildManager(outputDir, assets) {
-  await fs.writeFile(path.join(outputDir, 'index.html'), assets.indexHTML);
-  await fs.writeFile(path.join(outputDir, assets.managerScriptSrc), assets.managerCode);
-}
-
 async function rollupBuild(config) {
   const bundle = await rollup(config);
   await bundle.write(config.output);
@@ -71,23 +67,67 @@ function onwarn(warning, warn) {
   warn(warning);
 }
 
-async function buildPreview({ outputDir, previewPath, assets, storyFiles, rollupConfigDecorator }) {
-  const transformMdxToJs = createMdxToJsTransformer({ previewImport: previewPath });
+async function buildManager(outputDir, assets) {
+  const configs = createCompatibilityConfig({
+    input: 'noop',
+    outputDir,
+    plugins: { indexHTML: false },
+  });
+
+  configs[0].onwarn = onwarn;
+  configs[1].onwarn = onwarn;
+  configs[0].output.dir = path.join(outputDir, 'legacy');
+  configs[1].output.dir = outputDir;
+
+  configs[0].plugins.unshift(
+    indexHTML({
+      indexFilename: 'index.html',
+      indexHTMLString: assets.indexHTML,
+      multiBuild: true,
+      legacy: true,
+      polyfills: {
+        dynamicImport: true,
+        coreJs: true,
+        regeneratorRuntime: true,
+        webcomponents: true,
+        systemJs: true,
+        fetch: true,
+      },
+    }),
+  );
+
+  configs[1].plugins.unshift(
+    indexHTML({
+      indexFilename: 'index.html',
+      indexHTMLString: assets.indexHTML,
+      multiBuild: true,
+      legacy: false,
+      polyfills: {
+        dynamicImport: true,
+        coreJs: true,
+        regeneratorRuntime: true,
+        webcomponents: true,
+        systemJs: true,
+        fetch: true,
+      },
+    }),
+    copyCustomElementsJsonPlugin(outputDir),
+  );
+
+  // build sequentially instead of parallel because terser is multi
+  // threaded and will max out CPUs.
+  await rollupBuild(configs[0]);
+  await rollupBuild(configs[1]);
+}
+
+async function buildPreview({ outputDir, assets, storyFiles, rollupConfigDecorator }) {
+  const transformMdxToJs = createMdxToJsTransformer();
   let configs = createCompatibilityConfig({
     input: 'noop',
     outputDir,
     extensions: [...DEFAULT_EXTENSIONS, 'mdx'],
-    babelExclude: ['**/@open-wc/storybook-prebuilt/**/*'],
-    terserExclude: ['storybook-preview*'],
     plugins: { indexHTML: false },
   });
-
-  // force storybook preview into it's own chunk so that we can skip minifying it
-  const manualChunks = {
-    'storybook-preview': [require.resolve('@open-wc/storybook-prebuilt/dist/preview.js')],
-  };
-  configs[0].manualChunks = manualChunks;
-  configs[1].manualChunks = manualChunks;
 
   const transformMdxPlugin = {
     transform(code, id) {
@@ -162,19 +202,20 @@ module.exports = async function build({
   storyUrls,
   rollupConfigDecorator,
 }) {
+  const managerPathRelative = `/${path.relative(process.cwd(), require.resolve(managerPath))}`;
+  const managerImport = toBrowserPath(managerPathRelative);
+
   const assets = createAssets({
     storybookConfigDir,
     rootDir: process.cwd(),
-    managerPath,
     previewImport: previewPath,
+    managerImport,
     storyUrls,
   });
 
   await fs.remove(outputDir);
   await fs.mkdirp(outputDir);
 
-  await Promise.all([
-    buildManager(outputDir, assets),
-    buildPreview({ outputDir, previewPath, assets, storyFiles, rollupConfigDecorator }),
-  ]);
+  await buildManager(outputDir, assets);
+  await buildPreview({ outputDir, assets, storyFiles, rollupConfigDecorator });
 };
