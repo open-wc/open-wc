@@ -25,6 +25,7 @@ module.exports = {
       });
     }
   },
+  managerPath: require.resolve('../../manager.js'),
   esDevServer: {
     nodeResolve: true,
     watch: true,

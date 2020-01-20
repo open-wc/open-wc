@@ -65,12 +65,12 @@ module.exports = function readCommandLineArgs() {
     },
     {
       name: 'manager-path',
-      defaultValue: mainJs.managerPath || '@open-wc/storybook-prebuilt/dist/manager.js',
+      defaultValue: mainJs.managerPath || '@open-wc/demoing-storybook/manager.js',
       description: 'Import path of a prebuilt manager file',
     },
     {
       name: 'preview-path',
-      defaultValue: mainJs.previewPath || '@open-wc/storybook-prebuilt/dist/preview.js',
+      defaultValue: mainJs.previewPath || 'storybook-prebuilt/web-components.js',
       description: 'Import path of a prebuilt preview file',
     },
   ];

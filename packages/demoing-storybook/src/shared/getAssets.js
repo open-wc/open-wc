@@ -1,20 +1,12 @@
 const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
 const toBrowserPath = require('./toBrowserPath');
-
-function createContentHash(content) {
-  return crypto
-    .createHash('md4')
-    .update(content)
-    .digest('hex');
-}
 
 module.exports = function getAssets({
   storybookConfigDir,
   rootDir,
-  managerPath,
   previewImport,
+  managerImport,
   storyUrls,
 }) {
   const managerIndexPath = path.join(__dirname, 'index.html');
@@ -25,26 +17,16 @@ module.exports = function getAssets({
   const previewJsPath = path.join(process.cwd(), storybookConfigDir, 'preview.js');
   const previewJsImport = `./${toBrowserPath(path.relative(rootDir, previewJsPath))}`;
 
-  let managerCode = fs.readFileSync(require.resolve(managerPath), 'utf-8');
-  const managerSourceMap = fs.readFileSync(require.resolve(`${managerPath}.map`), 'utf-8');
-
-  const managerHash = createContentHash(managerCode);
-  const managerScriptUrl = `/storybook-manager-${managerHash}.js`;
-  const managerSourceMapUrl = `/storybook-manager-${managerHash}.js.map`;
-  const managerScriptSrc = `.${managerScriptUrl}`;
-
-  managerCode = managerCode.replace(
-    '//# sourceMappingURL=manager.js.map',
-    `//# sourceMappingURL=${managerSourceMapUrl}`,
-  );
-
   let indexHTML = fs.readFileSync(managerIndexPath, 'utf-8');
   if (fs.existsSync(managerHeadPath)) {
     const managerHead = fs.readFileSync(managerHeadPath, 'utf-8');
     indexHTML = indexHTML.replace('</head>', `${managerHead}</head>`);
   }
 
-  indexHTML = indexHTML.replace('</body>', `<script src="${managerScriptSrc}"></script>`);
+  indexHTML = indexHTML.replace(
+    '</body>',
+    `<script type="module" src="${managerImport}"></script>`,
+  );
 
   let iframeHTML = fs.readFileSync(iframePath, 'utf-8');
   if (fs.existsSync(previewHeadPath)) {
@@ -79,11 +61,6 @@ module.exports = function getAssets({
   );
 
   return {
-    managerCode,
-    managerScriptSrc,
-    managerScriptUrl,
-    managerSourceMap,
-    managerSourceMapUrl,
     indexHTML,
     iframeHTML,
   };
