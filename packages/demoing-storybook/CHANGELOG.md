@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.5](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.8.4...@open-wc/demoing-storybook@1.8.5) (2020-01-24)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** remove deprecated usage in demo ([#1273](https://github.com/open-wc/open-wc/issues/1273)) ([88debe6](https://github.com/open-wc/open-wc/commit/88debe6d5f19b85b7fd87e8d9f942f6b96460d0e))
+
+
+
+
+
 ## [1.8.4](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.8.3...@open-wc/demoing-storybook@1.8.4) (2020-01-19)
 
 
