@@ -3,7 +3,7 @@ import { html } from '../../index.js';
 import '../demo-wc-card.js';
 
 export default {
-  title: 'Demo Card|Component Story Format',
+  title: 'Demo Card/Component Story Format',
   component: 'demo-wc-card',
 };
 
@@ -16,4 +16,9 @@ export const heading = () =>
 export const card = () =>
   html`
     <demo-wc-card>Hello World</demo-wc-card>
+  `;
+
+export const assets = () =>
+  html`
+    <img src=${new URL('../assets/logo.png', import.meta.url)} title="loaded logo" />
   `;
