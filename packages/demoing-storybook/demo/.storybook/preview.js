@@ -17,7 +17,7 @@ async function run() {
       },
     },
     options: {
-      hierarchyRootSeparator: /\|/,
+      showRoots: true,
     },
     docs: {
       iframeHeight: '200px',
