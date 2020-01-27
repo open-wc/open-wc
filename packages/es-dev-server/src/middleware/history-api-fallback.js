@@ -13,7 +13,9 @@
 export function createHistoryAPIFallbackMiddleware(cfg) {
   /** @type {import('koa').Middleware} */
   function historyAPIFallback(ctx, next) {
-    if (ctx.method !== 'GET' || ctx.url.includes('.')) {
+    // . character hints at a file request (could possibly check with regex for file ext)
+    const cleanUrl = ctx.url.split('?')[0].split('#')[0];
+    if (ctx.method !== 'GET' || cleanUrl.includes('.')) {
       return next();
     }
 
