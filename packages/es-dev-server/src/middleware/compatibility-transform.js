@@ -57,6 +57,11 @@ export function createCompatibilityTransformMiddleware(cfg) {
     if (isPolyfill(ctx.url) || !cfg.fileExtensions.some(ext => baseURL.endsWith(ext))) {
       return next();
     }
+
+    if (ctx.headers.accept.includes('text/html')) {
+      return next();
+    }
+
     await next();
 
     // should be a 2xx response

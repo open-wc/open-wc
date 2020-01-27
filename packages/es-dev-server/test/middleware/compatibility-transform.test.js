@@ -610,4 +610,46 @@ describe('compatibility transform middleware', () => {
       expect(responseText).to.include("bar = 'buz';");
     });
   });
+
+  describe('content-type', () => {
+    let server;
+    beforeEach(async () => {
+      ({ server } = await startServer(
+        createConfig({
+          port: 8080,
+          compatibility: compatibilityModes.MAX,
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          fileExtensions: ['.html'],
+        }),
+      ));
+    });
+
+    afterEach(() => {
+      server.close();
+    });
+
+    it('does not transform HTML files requested with content-type text/html', async () => {
+      const response = await fetch(`${host}index.html`, {
+        headers: { accept: 'text/html' },
+      });
+      const responseText = await response.text();
+
+      expect(response.status).to.equal(200);
+      expect(response.headers.get('content-type')).to.equal('text/html; charset=utf-8');
+      expect(responseText.startsWith('<html>')).to.be.true;
+    });
+
+    it('does not transform JS files requested with content-type text/html', async () => {
+      const response = await fetch(`${host}app.js`, {
+        headers: { accept: 'text/html' },
+      });
+      const responseText = await response.text();
+
+      expect(response.status).to.equal(200);
+      expect(response.headers.get('content-type')).to.equal(
+        'application/javascript; charset=utf-8',
+      );
+      expect(responseText.startsWith("import { message } from 'my-module';")).to.be.true;
+    });
+  });
 });
