@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.36.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.36.2...es-dev-server@1.36.3) (2020-01-27)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't compatibility transform html requests ([#1277](https://github.com/open-wc/open-wc/issues/1277)) ([fcd529a](https://github.com/open-wc/open-wc/commit/fcd529a6148422d17b1ad0d140c46adcb10a010a))
+
+
+
+
+
 ## [1.36.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.36.1...es-dev-server@1.36.2) (2020-01-13)
 
 
