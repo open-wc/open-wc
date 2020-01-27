@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.36.4](https://github.com/open-wc/open-wc/compare/es-dev-server@1.36.3...es-dev-server@1.36.4) (2020-01-27)
+
+
+### Bug Fixes
+
+* **es-dev-server:** handle url parameters with . characters ([#1059](https://github.com/open-wc/open-wc/issues/1059)) ([#1278](https://github.com/open-wc/open-wc/issues/1278)) ([a0f3915](https://github.com/open-wc/open-wc/commit/a0f3915d299140e18066fd4dfdb3ad1ecbc5ebe7))
+
+
+
+
+
 ## [1.36.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.36.2...es-dev-server@1.36.3) (2020-01-27)
 
 

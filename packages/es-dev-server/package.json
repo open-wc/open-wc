@@ -1,6 +1,6 @@
 {
   "name": "es-dev-server",
-  "version": "1.36.3",
+  "version": "1.36.4",
   "publishConfig": {
     "access": "public"
   },
