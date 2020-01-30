@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.8.7...@open-wc/demoing-storybook@1.9.0) (2020-01-30)
+
+
+### Features
+
+* **demoing-storybook:** update to storybook-prebuilt v1 ([#1274](https://github.com/open-wc/open-wc/issues/1274)) ([ce33a61](https://github.com/open-wc/open-wc/commit/ce33a6160982a15ee8d7795600d8eafd912e91ca))
+
+
+
+
+
 ## [1.8.7](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.8.6...@open-wc/demoing-storybook@1.8.7) (2020-01-27)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
