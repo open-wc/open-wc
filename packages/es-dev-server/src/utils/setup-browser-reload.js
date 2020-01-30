@@ -18,5 +18,7 @@ function onFileChanged() {
  * @param {SetupBrowserReloadConfig} cfg
  */
 export function setupBrowserReload(cfg) {
-  cfg.fileWatcher.addListener('change', debounce(onFileChanged, cfg.watchDebounce));
+  const onChange = debounce(onFileChanged, cfg.watchDebounce);
+  cfg.fileWatcher.addListener('change', onChange);
+  cfg.fileWatcher.addListener('unlink', onChange);
 }
