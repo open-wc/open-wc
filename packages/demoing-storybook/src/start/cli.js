@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 
 /* eslint-disable no-console, no-param-reassign */
-
 const { createConfig, startServer } = require('es-dev-server');
 const path = require('path');
 
 const readCommandLineArgs = require('./readCommandLineArgs');
-const createServeManagerMiddleware = require('./middleware/createServeManagerMiddleware');
-const createServePreviewTransformer = require('./transformers/createServePreviewTransformer');
+const createServeStorybookTransformer = require('./transformers/createServeStorybookTransformer');
 const createMdxToJs = require('./transformers/createMdxToJs');
 const createOrderedExportsTransformer = require('./transformers/createOrderedExportsTransformer');
 const toBrowserPath = require('../shared/toBrowserPath');
@@ -19,16 +17,23 @@ async function run() {
   const rootDir = config.rootDir ? path.resolve(process.cwd(), config.rootDir) : process.cwd();
 
   const storybookConfigDir = config.configDir;
-  const managerPath = require.resolve(config.managerPath);
   const previewPath = require.resolve(config.previewPath);
+  const managerPath = require.resolve(config.managerPath);
   const previewPathRelative = rootDir ? `/${path.relative(rootDir, previewPath)}` : previewPath;
+  const managerPathRelative = rootDir ? `/${path.relative(rootDir, managerPath)}` : managerPath;
   const previewImport = toBrowserPath(previewPathRelative);
+  const managerImport = toBrowserPath(managerPathRelative);
   const storyUrls = await storiesPatternsToUrls(config.stories, rootDir);
 
-  const assets = getAssets({ storybookConfigDir, rootDir, managerPath, previewImport, storyUrls });
-  config.babelExclude = [...(config.babelExclude || []), assets.managerScriptUrl];
+  const assets = getAssets({
+    storybookConfigDir,
+    rootDir,
+    previewImport,
+    managerImport,
+    storyUrls,
+  });
 
-  config.babelModuleExclude = [...(config.babelModuleExclude || []), assets.managerScriptUrl];
+  config.babelModernExclude = [...(config.babelModernExclude || []), '**/storybook-prebuilt/**'];
 
   config.fileExtensions = [...(config.fileExtensions || []), '.mdx'];
 
@@ -39,13 +44,11 @@ async function run() {
     process.exit(1);
   }
 
-  config.middlewares = [createServeManagerMiddleware(assets), ...(config.middlewares || [])];
-
   config.responseTransformers = [
     ...(config.responseTransformers || []),
-    createMdxToJs({ previewImport }),
+    createMdxToJs(),
+    createServeStorybookTransformer(assets),
     createOrderedExportsTransformer(storyUrls),
-    createServePreviewTransformer(assets),
   ];
 
   startServer(createConfig(config));
