@@ -9,10 +9,12 @@ const unimplementedFeatures = ['optionalChaining', 'nullishCoalescing'];
 const testCases = [
   {
     name: 'static',
+    pages: [''],
     tests: ['moduleLoaded'],
   },
   {
     name: 'syntax',
+    pages: [''],
     tests: [
       'stage4',
       'importMeta',
@@ -24,21 +26,33 @@ const testCases = [
   },
   {
     name: 'node-resolve',
+    pages: [''],
     tests: ['inlineNodeResolve', 'nodeResolve', 'noExtension', 'extensionPriority'],
   },
   {
     name: 'babel',
+    pages: [''],
     tests: ['classFields', 'optionalNullish'],
   },
   {
     name: 'typescript',
+    pages: [''],
     tests: ['litElement', 'extensionPriority'],
+  },
+  {
+    name: 'multi-page',
+    pages: [
+      'packages/es-dev-server/demo/multi-page/',
+      'packages/es-dev-server/demo/multi-page/page-a/',
+      'packages/es-dev-server/demo/multi-page/page-a/sub-page/',
+    ],
+    tests: ['inline', 'moduleA', 'moduleB'],
   },
 ];
 
 describe('integration tests', () => {
   testCases.forEach(testCase => {
-    ['auto', 'always', 'min', 'max'].forEach(compatibility => {
+    ['auto', 'none', 'min', 'max'].forEach(compatibility => {
       describe(`testcase ${testCase.name}-${compatibility}`, () => {
         let server;
         let serverConfig;
@@ -69,26 +83,32 @@ describe('integration tests', () => {
           );
         });
 
-        it('passes the in-browser tests', async function it() {
-          this.timeout(10000);
-          const appPath = `http://localhost:8080${serverConfig.openPath}index.html`;
-          const page = await browser.newPage();
-          await page.goto(appPath, {
-            waitUntil: 'networkidle0',
-          });
+        testCase.pages.forEach(pageUrl => {
+          it(`passes the in-browser tests for page ${pageUrl}`, async function it() {
+            this.timeout(10000);
 
-          // @ts-ignore
-          const browserTests = await page.evaluate(() => window.__tests);
+            const appPath = `http://localhost:8080${serverConfig.openPath}${pageUrl}`;
+            const page = await browser.newPage();
+            await page.goto(appPath, {
+              waitUntil: 'networkidle0',
+            });
 
-          // the demos run "tests", which we check here
-          testCase.tests.forEach(test => {
-            if (compatibility === 'auto' && unimplementedFeatures.includes(test)) {
-              return;
-            }
+            // @ts-ignore
+            const browserTests = await page.evaluate(() => window.__tests);
 
-            if (!browserTests[test]) {
-              throw new Error(`Expected test ${test} to have passed in the browser.`);
-            }
+            // the demos run "tests", which we check here
+            testCase.tests.forEach(test => {
+              if (
+                (compatibility === 'auto' || compatibility === 'none') &&
+                unimplementedFeatures.includes(test)
+              ) {
+                return;
+              }
+
+              if (!browserTests[test]) {
+                throw new Error(`Expected test ${test} to have passed in the browser.`);
+              }
+            });
           });
         });
       });

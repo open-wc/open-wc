@@ -29,6 +29,7 @@
     "start:dedupe": "yarn build && node dist/cli.js -c demo/dedupe/server.js --open --watch",
     "start:http2": "yarn build && node dist/cli.js -c demo/http2/server.js",
     "start:import-map": "yarn build && node dist/cli.js -c demo/import-map/server.js",
+    "start:multi-page": "yarn build && node dist/cli.js -c demo/web-components/server.js --open /packages/es-dev-server/demo/multi-page/ --watch",
     "start:node-builtins": "yarn build && node dist/cli.js -c demo/node-builtins/server.js --open --watch",
     "start:node-resolve": "yarn build && node dist/cli.js -c demo/node-resolve/server.js --open --watch",
     "start:performance": "yarn build && node dist/cli.js -c demo/performance/server.js",
@@ -37,6 +38,7 @@
     "start:syntax": "yarn build && node dist/cli.js -c demo/syntax/server.js --open --watch",
     "start:transformers": "yarn build && node dist/cli.js -c demo/response-transformers/server.js",
     "start:typescript": "yarn build && node dist/cli.js -c demo/typescript/server.js --open --watch",
+    "start:web-components": "yarn build && node dist/cli.js -c demo/web-components/server.js --open --watch",
     "test": "npm run test:node",
     "test:node": "mocha test/**/*.test.js test/*.test.js --require @babel/register",
     "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --require @babel/register --update-snapshots"

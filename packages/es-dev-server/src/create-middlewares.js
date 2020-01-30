@@ -158,7 +158,7 @@ export function createMiddlewares(config, fileWatcher) {
   }
 
   // injects polyfills and shims for compatibility with older browsers
-  if (setupCompatibility) {
+  if (setupCompatibility || nodeResolve) {
     middlewares.push(
       createPolyfillsLoaderMiddleware({
         compatibilityMode,

@@ -17,6 +17,7 @@ module.exports = config => {
 
       esm: {
         nodeResolve: true,
+        coverageExclude: ['**/testing/import-wrappers/**'],
       },
     }),
   );

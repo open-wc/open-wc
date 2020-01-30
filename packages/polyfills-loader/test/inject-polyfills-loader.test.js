@@ -29,7 +29,7 @@ function testSnapshot(name, htmlString, config) {
     fs.writeFileSync(snapshotPath, result.htmlString, 'utf-8');
   } else {
     const snapshot = fs.readFileSync(snapshotPath, 'utf-8');
-    expect(result.htmlString).to.equal(snapshot);
+    expect(result.htmlString.replace(/\s/g, '')).to.equal(snapshot.replace(/\s/g, ''));
   }
 }
 
