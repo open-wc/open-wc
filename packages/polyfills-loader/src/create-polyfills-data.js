@@ -171,7 +171,7 @@ function createPolyfillsData(cfg) {
       content = minifyResult.code;
     }
 
-    const filePath = `${path.join(
+    const filePath = `${path.posix.join(
       cfg.polyfillsDir || 'polyfills',
       `${polyfillConfig.name}${polyfills.hash !== false ? `.${createContentHash(content)}` : ''}`,
     )}.js`;

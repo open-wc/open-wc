@@ -14,14 +14,11 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/packages/polyfills-loader",
   "main": "index.js",
-  "bin": {
-    "polyfills-loader": "./dist/cli.js"
-  },
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
-    "prepublishOnly": "npm run build && ../../scripts/insert-header.js",
+    "prepublishOnly": "../../scripts/insert-header.js",
     "test": "npm run test:node",
     "test:node": "mocha test/**/*.test.js test/**/*.test.js",
     "test:update-snapshots": "mocha test/**/*.test.js test/**/*.test.js --update-snapshots",

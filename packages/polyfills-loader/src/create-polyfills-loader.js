@@ -10,7 +10,7 @@
 
 const { transform } = require('@babel/core');
 const Terser = require('terser');
-const { fileTypes, hasFileOfType, cleanImportPath, toBrowserPath } = require('./utils');
+const { fileTypes, hasFileOfType, cleanImportPath } = require('./utils');
 const { createPolyfillsData } = require('./create-polyfills-data');
 
 const DEFAULT_POLYFILLS_DIR = 'polyfills';
@@ -165,7 +165,7 @@ function createPolyfillsLoaderCode(cfg, polyfills) {
   let loadPolyfillsCode = '  var polyfills = [];';
 
   polyfills.forEach(polyfill => {
-    let loadScript = `loadScript('./${toBrowserPath(polyfill.path)}')`;
+    let loadScript = `loadScript('./${polyfill.path}')`;
     if (polyfill.initializer) {
       loadScript += `.then(function () { ${polyfill.initializer} })`;
     }

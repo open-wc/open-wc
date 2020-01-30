@@ -24,7 +24,7 @@ function testSnapshot({ name, config, expectedFiles = /** @type {string[]} */ ([
     fs.writeFileSync(snapshotPath, loader.code, 'utf-8');
   } else {
     const snapshot = fs.readFileSync(snapshotPath, 'utf-8');
-    expect(loader.code).to.equal(snapshot);
+    expect(loader.code.replace(/\s/g, '')).to.equal(snapshot.replace(/\s/g, ''));
   }
 }
 

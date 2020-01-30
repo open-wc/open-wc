@@ -12,6 +12,7 @@ import {
   setTextContent,
 } from '@open-wc/building-utils/dom5-fork/index.js';
 import { parse, serialize } from 'parse5';
+import path from 'path';
 import deepmerge from 'deepmerge';
 import {
   injectPolyfillsLoader as originalInjectPolyfillsLoader,
@@ -95,12 +96,12 @@ function findScripts(cfg, documentAst) {
   const inlineScriptNodes = [];
   scriptNodes.forEach((scriptNode, i) => {
     const type = getScriptFileType(scriptNode);
-    let path = getAttribute(scriptNode, 'src');
+    let src = getAttribute(scriptNode, 'src');
 
-    if (!path) {
-      path = `inline-script-${i}.js?source=${encodeURIComponent(cfg.indexUrl)}`;
+    if (!src) {
+      src = `inline-script-${i}.js?source=${encodeURIComponent(cfg.indexUrl)}`;
       inlineScripts.push({
-        path,
+        path: src,
         type,
         content: getTextContent(scriptNode),
       });
@@ -109,7 +110,7 @@ function findScripts(cfg, documentAst) {
 
     files.push({
       type,
-      path,
+      path: src,
     });
   });
 
@@ -132,10 +133,15 @@ async function transformInlineScripts(cfg, inlineScriptNodes) {
   const asyncTransforms = [];
 
   for (const scriptNode of inlineScriptNodes) {
+    // we need to refer to an actual file for node resolve to work properly
+    const filePath = cfg.indexFilePath.endsWith(path.sep)
+      ? path.join(cfg.indexFilePath, 'index.html')
+      : cfg.indexFilePath;
+
     const asyncTransform = cfg
       .transformJs({
+        filePath,
         uaCompat: cfg.uaCompat,
-        filePath: cfg.indexFilePath,
         code: getTextContent(scriptNode),
         transformModule: false,
       })
