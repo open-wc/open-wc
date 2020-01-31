@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "@open-wc/chai-dom-equals": "^0.12.36",
-    "@open-wc/semantic-dom-diff": "^0.15.6",
+    "@open-wc/semantic-dom-diff": "^0.16.0",
     "@open-wc/testing-helpers": "^1.5.1",
     "@types/chai": "^4.1.7",
     "@types/chai-dom": "^0.0.8",

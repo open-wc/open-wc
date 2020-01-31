@@ -46,7 +46,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
     "@babel/preset-env": "^7.7.1",
-    "@open-wc/building-utils": "^2.11.0",
+    "@open-wc/building-utils": "^2.12.0",
     "@open-wc/webpack-index-html-plugin": "^1.5.10",
     "babel-loader": "^8.0.0",
     "babel-plugin-bundled-import-meta": "^0.3.0",
