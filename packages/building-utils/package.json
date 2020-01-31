@@ -32,6 +32,8 @@
     "@babel/core": "^7.7.2",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@webcomponents/webcomponentsjs": "^2.4.0",
+    "@webcomponents/shadycss": "^1.9.4",
+    "shady-css-scoped-element": "^0.0.1",
     "arrify": "^2.0.1",
     "browserslist": "^4.7.2",
     "chokidar": "^3.0.0",
