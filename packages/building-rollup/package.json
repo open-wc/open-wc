@@ -52,7 +52,7 @@
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-index-html": "^1.8.0",
     "rollup-plugin-terser": "^5.1.0",
-    "rollup-plugin-workbox": "^4.0.0"
+    "rollup-plugin-workbox": "^5.0.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.7.0",
