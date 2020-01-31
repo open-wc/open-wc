@@ -37,7 +37,7 @@ stats.html
 storybook-static
 
 ## we already store snapshots globally
-packages/**/__snapshots__/*
+packages/**/__snapshots__
 
 ## browserstack
 local.log
