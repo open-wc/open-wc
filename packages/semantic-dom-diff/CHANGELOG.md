@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.15.6...@open-wc/semantic-dom-diff@0.17.0) (2020-01-31)
+
+
+### Bug Fixes
+
+* skip brooken published versions ([25d21de](https://github.com/open-wc/open-wc/commit/25d21def522f22f98fc8c71b4c055617089c0e23))
+
+
+### Features
+
+* **polyfills-loader:** add polyfills loader ([249fee8](https://github.com/open-wc/open-wc/commit/249fee8a64982021eb2e1ad1937f3c08a4abc3c5))
+
+
+
+
+
 ## [0.15.6](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.15.5...@open-wc/semantic-dom-diff@0.15.6) (2020-01-19)
 
 **Note:** Version bump only for package @open-wc/semantic-dom-diff

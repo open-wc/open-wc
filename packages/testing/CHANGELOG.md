@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.1...@open-wc/testing@2.5.2) (2020-01-31)
+
+
+### Bug Fixes
+
+* skip brooken published versions ([25d21de](https://github.com/open-wc/open-wc/commit/25d21def522f22f98fc8c71b4c055617089c0e23))
+
+
+
+
+
 ## [2.5.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.0...@open-wc/testing@2.5.1) (2020-01-19)
 
 **Note:** Version bump only for package @open-wc/testing

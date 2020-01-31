@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.7.5...rollup-plugin-index-html@1.8.0) (2020-01-31)
+
+
+### Bug Fixes
+
+* skip brooken published versions ([25d21de](https://github.com/open-wc/open-wc/commit/25d21def522f22f98fc8c71b4c055617089c0e23))
+
+
+### Features
+
+* **polyfills-loader:** add polyfills loader ([249fee8](https://github.com/open-wc/open-wc/commit/249fee8a64982021eb2e1ad1937f3c08a4abc3c5))
+
+
+
+
+
 ## [1.7.5](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.7.4...rollup-plugin-index-html@1.7.5) (2019-12-09)
 
 **Note:** Version bump only for package rollup-plugin-index-html

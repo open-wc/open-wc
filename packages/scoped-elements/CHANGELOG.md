@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.2.3...@open-wc/scoped-elements@0.2.5) (2020-01-31)
+
+
+### Bug Fixes
+
+* skip brooken published versions ([25d21de](https://github.com/open-wc/open-wc/commit/25d21def522f22f98fc8c71b4c055617089c0e23))
+
+
+
+
+
 ## [0.2.3](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.2.2...@open-wc/scoped-elements@0.2.3) (2020-01-27)
 
 **Note:** Version bump only for package @open-wc/scoped-elements
