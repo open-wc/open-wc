@@ -53,11 +53,14 @@ function createEsmConfig(karmaConfig) {
   if (esmConfig.coverage) {
     const coverageExclude = [
       '**/node_modules/**',
+      '**/web_modules/**',
       '**/test/**',
       '**/spec/**',
       '**/demo/**',
       '**/stories/**',
       '**/inline-script-*',
+      '**/context.html',
+      '**/debug.html',
       ...(esmConfig.coverageExclude || []),
     ];
 
