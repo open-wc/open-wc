@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.2](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.1...@open-wc/karma-esm@2.13.2) (2020-02-02)
+
+
+### Bug Fixes
+
+* **karma-esm:** dont run coverage on debug, context and web_modules ([4565222](https://github.com/open-wc/open-wc/commit/4565222efe17293bbe29e69fca3fb02f6a7e7737))
+
+
+
+
+
 ## [2.13.1](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.0...@open-wc/karma-esm@2.13.1) (2020-02-02)
 
 **Note:** Version bump only for package @open-wc/karma-esm
