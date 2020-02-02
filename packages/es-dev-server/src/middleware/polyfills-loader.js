@@ -94,7 +94,9 @@ export function createPolyfillsLoaderMiddleware(cfg) {
 
     // return cached index.html if it did not change
     const data = indexHTMLData.get(uaCompat.browserTarget + ctx.url);
-    if (data && data.lastModified === lastModified) {
+    // if there is no lastModified cached, the HTML file is not served from the
+    // file system
+    if (data && data.lastModified && lastModified && data.lastModified === lastModified) {
       ctx.body = data.indexHTML;
       return undefined;
     }
