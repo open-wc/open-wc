@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = {
-  stories: ['../stories/**/*.stories.{js,mdx}'],
+  stories: ['../stories/**/*.stories.{js,mdx,md}'],
   addons: [
     // order of tabs in addons panel
     'storybook-prebuilt/addon-actions/register.js',
