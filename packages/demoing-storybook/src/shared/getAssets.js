@@ -2,13 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const toBrowserPath = require('./toBrowserPath');
 
-module.exports = function getAssets({
-  storybookConfigDir,
-  rootDir,
-  previewImport,
-  managerImport,
-  storyUrls,
-}) {
+module.exports = function getAssets({ storybookConfigDir, rootDir, managerImport }) {
   const managerIndexPath = path.join(__dirname, 'index.html');
   const iframePath = path.join(__dirname, 'iframe.html');
   const managerHeadPath = path.join(process.cwd(), storybookConfigDir, 'manager-head.html');
@@ -39,26 +33,15 @@ module.exports = function getAssets({
     iframeHTML = iframeHTML.replace('</body>', `${previewBody}</body>`);
   }
 
-  iframeHTML = iframeHTML.replace(
-    '</body>',
-    `
-      </body>
-      ${
-        fs.existsSync(previewJsPath)
-          ? `<script type="module" src="${previewJsImport}"></script>`
-          : ''
-      }
-      <script type="module">
-        import { configure } from '${previewImport}';
-
-        Promise.all([
-          ${storyUrls.map(url => `import('${url}')`).join(',\n')}
-        ]).then(stories => {
-          configure(() => stories, {});
-        });
-      </script>
-    `,
-  );
+  if (fs.existsSync(previewJsPath)) {
+    iframeHTML = iframeHTML.replace(
+      '</body>',
+      `
+  <script type="module" src="${previewJsImport}"></script>
+  </body>
+  `,
+    );
+  }
 
   return {
     indexHTML,

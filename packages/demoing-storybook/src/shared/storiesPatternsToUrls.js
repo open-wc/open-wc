@@ -7,10 +7,12 @@ const toBrowserPath = require('./toBrowserPath');
  *
  * Will return all matching urls.
  */
-module.exports = async function storiesPatternsToUrls(storiesPatterns, rootDir) {
-  const arrayOfFilesArrays = await storiesPatternsToFiles(storiesPatterns, rootDir);
-  return arrayOfFilesArrays.map(filePath => {
+module.exports = async function storiesPatternsToUrls({ storiesPatterns, rootDir, absolutePath }) {
+  const files = await storiesPatternsToFiles(storiesPatterns, rootDir);
+  const urls = files.map(filePath => {
     const relativeFilePath = path.relative(rootDir, filePath);
-    return `/${toBrowserPath(relativeFilePath)}`;
+    return `${absolutePath ? '' : '.'}/${toBrowserPath(relativeFilePath)}`;
   });
+
+  return { files, urls };
 };
