@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/open-wc/open-wc/compare/@import-maps/resolve@0.2.1...@import-maps/resolve@0.2.2) (2020-02-02)
+
+**Note:** Version bump only for package @import-maps/resolve
+
+
+
+
+
 ## [0.2.1](https://github.com/open-wc/open-wc/compare/@import-maps/resolve@0.2.0...@import-maps/resolve@0.2.1) (2019-11-24)
 
 **Note:** Version bump only for package @import-maps/resolve
