@@ -7,10 +7,8 @@ const path = require('path');
 const readCommandLineArgs = require('./readCommandLineArgs');
 const createServeStorybookTransformer = require('./transformers/createServeStorybookTransformer');
 const createMdxToJs = require('./transformers/createMdxToJs');
-const createOrderedExportsTransformer = require('./transformers/createOrderedExportsTransformer');
 const toBrowserPath = require('../shared/toBrowserPath');
 const getAssets = require('../shared/getAssets');
-const storiesPatternsToUrls = require('../shared/storiesPatternsToUrls');
 
 async function run() {
   const config = readCommandLineArgs();
@@ -23,32 +21,26 @@ async function run() {
   const managerPathRelative = rootDir ? `/${path.relative(rootDir, managerPath)}` : managerPath;
   const previewImport = toBrowserPath(previewPathRelative);
   const managerImport = toBrowserPath(managerPathRelative);
-  const storyUrls = await storiesPatternsToUrls(config.stories, rootDir);
 
   const assets = getAssets({
     storybookConfigDir,
     rootDir,
-    previewImport,
     managerImport,
-    storyUrls,
   });
 
   config.babelModernExclude = [...(config.babelModernExclude || []), '**/storybook-prebuilt/**'];
 
   config.fileExtensions = [...(config.fileExtensions || []), '.mdx'];
 
-  if (storyUrls.length === 0) {
-    console.log(
-      `We could not find any stories for the provided pattern(s) "${config.stories}". You can configure this in your main.js configuration file.`,
-    );
-    process.exit(1);
-  }
-
   config.responseTransformers = [
     ...(config.responseTransformers || []),
     createMdxToJs(),
-    createServeStorybookTransformer(assets),
-    createOrderedExportsTransformer(storyUrls),
+    createServeStorybookTransformer({
+      assets,
+      previewImport,
+      storiesPatterns: config.stories,
+      rootDir,
+    }),
   ];
 
   startServer(createConfig(config));
