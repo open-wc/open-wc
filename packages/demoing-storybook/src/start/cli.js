@@ -38,7 +38,7 @@ async function run() {
     createServeStorybookTransformer({
       assets,
       previewImport,
-      storyPatterns: config.stories,
+      storiesPatterns: config.stories,
       rootDir,
     }),
   ];
