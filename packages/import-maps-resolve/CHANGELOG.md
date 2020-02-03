@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/open-wc/open-wc/compare/@import-maps/resolve@0.2.2...@import-maps/resolve@0.2.3) (2020-02-03)
+
+
+### Bug Fixes
+
+* **create:** update broken @babel/cli ([b0cb95b](https://github.com/open-wc/open-wc/commit/b0cb95b650e3aae3d04ddf1879b5eec62abe7d00))
+
+
+
+
+
 ## [0.2.2](https://github.com/open-wc/open-wc/compare/@import-maps/resolve@0.2.1...@import-maps/resolve@0.2.2) (2020-02-02)
 
 **Note:** Version bump only for package @import-maps/resolve
