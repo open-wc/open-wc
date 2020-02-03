@@ -39,7 +39,7 @@ At the bottom of each section, there is a "View final result" button, this will 
 
 ## Setup
 
-In this codelab, we will build a news app. This is a great exercise to learn the intermediate parts of lit-html and lit-element.
+In this codelab, we will build a hackernews app. This is a great exercise to learn the intermediate parts of lit-html and lit-element.
 
 You can follow this codelab using anything that can display a simple HTML page. For the best editing experience, we recommend setting this up using your favorite IDE. Alternatively, you can use an online code editor like [jsbin](https://jsbin.com/?html,output), [stackblitz](https://stackblitz.com/) or [webcomponents.dev](https://webcomponents.dev/).
 
@@ -63,7 +63,7 @@ Make sure that you add `type="module"` to the script tag.
 In this example, we are using `unpkg`, a CDN from which we can easily import any modules that are available on NPM. When working on a real project, it is a good idea to use an actual package manager such as NPM or yarn.
 </aside>
 
-You should already know how to create a web component using `LitElement`. Go ahead and create one which renders '_My news app_' to the screen. When it works, you're ready to move on to the next step.
+You should already know how to create a web component using `LitElement`. Go ahead and create one which renders '_My hackernews app_' to the screen. When it works, you're ready to move on to the next step.
 
 ---
 
@@ -74,20 +74,20 @@ You should already know how to create a web component using `LitElement`. Go ahe
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <hackernews-app></hackernews-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
 
-      class NewsApp extends LitElement {
+      class HackerNewsApp extends LitElement {
         render() {
           return html`
-            My news app
+            My hackernews app
           `;
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('hackernews-app', HackerNewsApp);
     </script>
   </body>
 </html>
@@ -95,26 +95,36 @@ You should already know how to create a web component using `LitElement`. Go ahe
 
 </details>
 
-## Google news API
+## HackerNews API
 
-For this codelab, we will be fetching live data from the google news API. You will need to retrieve an API key first:
+For this codelab, we will be fetching live data from the HackerNews API. To retrieve an item from the api you need its id.
 
-- Go to https://newsapi.org/
-- Click 'Get API key'
-- Register for an account.
-  - **tip**: you don't need to use an actual valid e-mail address
-- Remember your API key
+```js
+  const itemId = 22115410;
+  const path = `https://hacker-news.firebaseio.com/v0/item/${itemId}.json`;
+```
 
-When you have your API key, you can construct the URL needed to fetch news articles using the following format:
-`https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}`.
+Create your URL with the itemId above, and visit it from the browser. You should see the API return a JSON response, which looks similar to this:
 
-You will need to fill in your API key and a news topic. For example: `https://newsapi.org/v2/everything?q=web%20development&apiKey=123456`.
+```json
+{
+  "by": "[username]",
+  "id": 22115410,
+  "kids": ["..."],
+  "parent": 22106482,
+  "text": "lorem ipsum",
+  "time": 1579678389,
+  "type": "comment"
+}
+```
 
-Create your URL, and visit it from the browser. You should see the API return a JSON response. If you're stuck, you can try the [getting started](https://newsapi.org/docs/get-started) page for the news API. Don't follow any of the code examples yet, we will look into this in the next step
+<aside class="notice">
+  Get the full <a href="https://github.com/HackerNews/API">HackerNews API Documentation</a>. There is additional detailed information about the endpoints and a list of all available endpoints. These endpoints are not required for this tutorial.
+</aside>
 
-## Fetching news articles
+## Fetching HackerNews comments
 
-Besides displaying UI, web components can also use any of the available javascript APIs. We are going to use the `fetch` function to make an HTTP request to retrieve our news articles. `fetch` is an asynchronous operation, and it costs system resources. We, therefore, need to be a bit more careful about when and how we use it.
+Besides displaying UI, web components can also use any of the available javascript APIs. We are going to use the `fetch` function to make an HTTP request to retrieve our HackerNews comments. `fetch` is an asynchronous operation, and it costs system resources. We, therefore, need to be a bit more careful about when and how we use it.
 
 `LitElement` has several lifecycle methods available for this, some of them will be familiar to you by now. See [this page](/faq/lit-element-lifecycle.html) for a full overview and reference of all the available lifecycle methods.
 
@@ -122,31 +132,42 @@ We could trigger our `fetch` in the constructor since it's run only once. But be
 
 ### Tasks to complete this step:
 
-- Fetch articles from the news API
-- Render the fetched articles as JSON
+- Fetch five comments from the news API
+- Render the fetched comments as JSON
+
+<aside class="notice">
+  You can use the item id <i style="font-weight: 700;">22115410</i> as a starting point.
+</aside>
 
 ### Tips
+
+The HN API doesn't distinguish its items, thus it might be difficult to know if a received object is indeed a comment. To verify that the data fetched from the HackerNews API is a comment you can simply use an if-conditional and check against its data.type.
+
+```js
+if(data.type !== "comment") return false;
+return true;
+```
 
 <details>
  <summary>Using fetch</summary>
 <code>fetch</code> is a browser API for making HTTP requests. It's promise based, and it returns a streaming response. We can turn the the stream into JSON using the <code>json</code> function:
 
 ```js
-async fetchArticles() {
-  const response = await fetch('https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}');
+async fetchComments() {
+  const response = await fetch('https://hacker-news.firebaseio.com/v0/item/221154410.json');
   const jsonResponse = await response.json();
-  this.articles = jsonResponse.articles;
+  this.comments = jsonResponse.data;
 }
 ```
 
 If you're not familiar with [async await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), this is what it looks like using `Promise`:
 
 ```js
-fetchArticles() {
-  fetch('https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}')
+fetchComments() {
+  fetch('https://hacker-news.firebaseio.com/v0/item/221154410.json')
     .then(response => response.json())
     .then((jsonResponse) => {
-      this.articles = jsonResponse.articles;
+      this.comments = jsonResponse.comments;
     });
 }
 ```
@@ -157,12 +178,12 @@ fetchArticles() {
  <summary>Example connectedCallback</summary>
 
 ```js
-class NewsApp extends LitElement {
+class HackerNewsApp extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    if (!this.articles) {
-      this.fetchArticles();
+    if (!this.comments) {
+      this.fetchComments();
     }
   }
 }
@@ -171,13 +192,43 @@ class NewsApp extends LitElement {
 </details>
 
 <details>
-<summary>Example of articles rendered as JSON</summary>
+<summary>Example of comments rendered as JSON</summary>
 
 ```js
 render() {
   return html`
-    <pre>${JSON.stringify(this.articles, null, 2)}</pre>
+    <pre>${JSON.stringify(this.comments, null, 2)}</pre>
   `;
+}
+```
+
+</details>
+
+<details>
+<summary>Example of how to fetch multiple comments from the HackerNews API</summary>
+
+```js
+async fetchComments() {
+  // configurations for the HackerNews API
+  const path = "https://hacker-news.firebaseio.com/v0/item";
+  const itemId = 22115410; // random itemId from HackerNews
+
+  let idx = 0;
+  const maxItems = 5;   // the maximum amount of items the comments array should contain
+  const array = [];
+
+  // loop and query a new item from the HackerNews API by decreasing the itemId with
+  // the index idx until the array has the same length as maxItems
+  while (array.length < maxItems) {
+    const res = await fetch(`${path}/${itemId - idx}.json`)
+    const data = await res.json().data
+
+    if(data.type !== "comment") return;
+    array.push(data);
+    idx++;
+  }
+
+  this.comments = array;
 }
 ```
 
@@ -192,42 +243,54 @@ render() {
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <hackernews-app></hackernews-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
 
-      class NewsApp extends LitElement {
+      class HackerNewsApp extends LitElement {
         static get properties() {
           return {
-            articles: { type: Array },
+            comments: { type: Array },
           };
         }
 
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.comments) {
+            this.fetchComments();
           }
         }
 
-        async fetchArticles() {
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
-          const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+        async fetchComments() {
+          const path = "https://hacker-news.firebaseio.com/v0/item";
+          const itemId = 22115410;
+
+          let idx = 0;
+          const maxItems = 5;
+          const array = [];
+
+          while (array.length < maxItems) {
+            const res = await fetch(`${path}/${itemId - idx}.json`)
+            const data = await res.json().data
+
+            if(data.type !== "comment") return;
+            array.push(data);
+            idx++;
+          }
+
+          this.comments = array;
         }
 
         render() {
           return html`
-            <pre>${JSON.stringify(this.articles, null, 2)}</pre>
+            <pre>${JSON.stringify(this.comments, null, 2)}</pre>
           `;
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('hackernews-app', HackerNewsApp);
     </script>
   </body>
 </html>
@@ -237,24 +300,38 @@ render() {
 
 ## Displaying a loading state
 
-Fetching news articles is async, so the first time your `render` function is called they aren't there yet. This isn't a problem right now, because `JSON.stringify` handles null or undefined input. But when we want to start doing things with the articles, our code will crash because the first time `this.articles` is undefined.
+Fetching HackerNews comments is async, so the first time your `render` function is called they aren't there yet. This isn't a problem right now, because `JSON.stringify` handles null or undefined input. But when we want to start doing things with the comments, our code will crash because the first time `this.comments` is undefined.
 
-We can cover this scenario by preventing the rendering of our main content until the articles are fetched. We can take this opportunity to display a nice loading state for the user as well.
+We can cover this scenario by preventing the rendering of our main content until the comments are fetched. We can take this opportunity to display a nice loading state for the user as well.
 
 ### Tasks to complete this step
 
-- Maintain a boolean indicating whether articles are being fetched
-- Display a message while articles are being fetched
+- Maintain a boolean indicating whether comments are being fetched
+- Display a message while comments are being fetched
 
 <details>
 <summary>Maintain a loading state while fetching</summary>
 
 ```js
-async fetchArticles() {
+async fetchComments() {
   this.loading = true;
-  const response = await fetch('https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}');
-  const jsonResponse = await response.json();
-  this.articles = jsonResponse.articles;
+  const path = "https://hacker-news.firebaseio.com/v0/item";
+  const itemId = 22115410;
+
+  let idx = 0;
+  const maxItems = 5;
+  const array = [];
+
+  while (array.length < maxItems) {
+    const res = await fetch(`${path}/${itemId - idx}.json`)
+    const data = await res.json().data
+
+    if(data.type !== "comment") return;
+    array.push(data);
+    idx++;
+  }
+
+  this.comments = array;
   this.loading = false;
 }
 ```
@@ -271,7 +348,7 @@ render() {
   }
 
   return html`
-    <pre>${JSON.stringify(this.articles, null, 2)}</pre>
+    <pre>${JSON.stringify(this.comments, null, 2)}</pre>
   `;
 }
 ```
@@ -287,34 +364,46 @@ render() {
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <hackernews-app></hackernews-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
 
-      class NewsApp extends LitElement {
+      class HackerNewsApp extends LitElement {
         static get properties() {
           return {
             loading: { type: Boolean },
-            articles: { type: Array },
+            comments: { type: Array },
           };
         }
 
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.comments) {
+            this.fetchComments();
           }
         }
 
-        async fetchArticles() {
+        async fetchComments() {
           this.loading = true;
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
-          const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+          const path = "https://hacker-news.firebaseio.com/v0/item";
+          const itemId = 22115410;
+
+          let idx = 0;
+          const maxItems = 5;
+          const array = [];
+
+          while (array.length < maxItems) {
+            const res = await fetch(`${path}/${itemId - idx}.json`)
+            const data = await res.json().data
+
+            if(data.type !== "comment") return;
+            array.push(data);
+            idx++;
+          }
+
+          this.comments = array;
           this.loading = false;
         }
 
@@ -326,12 +415,12 @@ render() {
           }
 
           return html`
-            <pre>${JSON.stringify(this.articles, null, 2)}</pre>
+            <pre>${JSON.stringify(this.comments, null, 2)}</pre>
           `;
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('hackernews-app', HackerNewsApp);
     </script>
   </body>
 </html>
@@ -339,56 +428,56 @@ render() {
 
 </details>
 
-## Displaying articles
+## Displaying comments
 
-To display individual article it's best to create a new component so that we separate the logic from the main app. This should be a plain UI component, which receives the article data as plain properties to display.
+To display individual comment it's best to create a new component so that we separate the logic from the main app. This should be a plain UI component, which receives the comment data as plain properties to display.
 
 ### Tasks to complete this step
 
-- Create a `news-article` element that displays the article's title and description.
-- Display a list of `news-article` elements in the `news-app`, one for each article received from the news API.
+- Create a `hn-comment` element that displays the comment's title and description.
+- Display a list of `hn-comment` elements in the `hackernews-app`, one for each comment received from the news API.
 
 ### Tips
 
 <details>
- <summary>Create an article component</summary>
+ <summary>Create an comment component</summary>
 
 ```js
-class NewsArticle extends LitElement {
+class HackerNewsComment extends LitElement {
   static get properties() {
     return {
-      title: { type: String },
-      description: { type: String },
+      type: { type: String },
+      text: { type: String },
     };
   }
 
   render() {
     return html`
-      <h3>${this.title}</h3>
-      <p>${this.description}</p>
+      <h3>${this.type}</h3>
+      <p>${this.text}</p>
     `;
   }
 }
 
-customElements.define('news-article', NewsArticle);
+customElements.define('hn-comment', HackerNewsComment);
 ```
 
 </details>
 
 <details>
-<summary>Display a list of articles</summary>
+<summary>Display a list of comments</summary>
 
 ```js
 render() {
   return html`
     <ul>
-      ${this.articles.map(
-        article => html`
+      ${this.comments.map(
+        comment => html`
           <li>
-            <news-article
-              .title=${article.title}
-              .description=${article.description}
-            ></news-article>
+            <hn-comment
+              .type=${comment.type}
+              .text=${comment.text}
+            ></hn-comment>
           </li>
         `,
       )}
@@ -408,34 +497,46 @@ render() {
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <hackernews-app></hackernews-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
 
-      class NewsApp extends LitElement {
+      class HackerNewsApp extends LitElement {
         static get properties() {
           return {
             loading: { type: Boolean },
-            articles: { type: Array },
+            comments: { type: Array },
           };
         }
 
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.comments) {
+            this.fetchComments();
           }
         }
 
-        async fetchArticles() {
+        async fetchComments() {
           this.loading = true;
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
-          const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+          const path = "https://hacker-news.firebaseio.com/v0/item";
+          const itemId = 22115410;
+
+          let idx = 0;
+          const maxItems = 5;
+          const array = [];
+
+          while (array.length < maxItems) {
+            const res = await fetch(`${path}/${itemId - idx}.json`)
+            const data = await res.json().data
+
+            if(data.type !== "comment") return;
+            array.push(data);
+            idx++;
+          }
+
+          this.comments = array;
           this.loading = false;
         }
 
@@ -447,17 +548,17 @@ render() {
           }
 
           return html`
-            <h1>News App</h1>
+            <h1>HackerNews Comment App</h1>
 
-            <h2>Articles</h2>
+            <h2>Comments</h2>
             <ul>
-              ${this.articles.map(
-                article => html`
+              ${this.comments.map(
+                comment => html`
                   <li>
-                    <news-article
-                      .title=${article.title}
-                      .description=${article.description}
-                    ></news-article>
+                    <hn-comment
+                      .type=${comment.type}
+                      .text=${comment.text}
+                    ></hn-comment>
                   </li>
                 `,
               )}
@@ -466,25 +567,25 @@ render() {
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('hackernews-app', HackerNewsApp);
 
-      class NewsArticle extends LitElement {
+      class HackerNewsComment extends LitElement {
         static get properties() {
           return {
-            title: { type: String },
-            description: { type: String },
+            type: { type: String },
+            text: { type: String },
           };
         }
 
         render() {
           return html`
-            <h3>${this.title}</h3>
-            <p>${this.description}</p>
+            <h3>${this.type}</h3>
+            <p>${this.text}</p>
           `;
         }
       }
 
-      customElements.define('news-article', NewsArticle);
+      customElements.define('hn-comment', HackerNewsComment);
     </script>
   </body>
 </html>
@@ -494,15 +595,15 @@ render() {
 
 ## Adding a read/unread toggle
 
-Any serious news app allows the user to track whether or not they have read an article, so let's add this capability to ours as well.
+Any serious comment overview app allows the user to track whether or not they have read a comment, so let's add this capability to ours as well.
 
-As a start, you can maintain a local property for the read/unread status in the `news-article` component. We will look into lifting this data to the parent component in the next step.
+As a start, you can maintain a local property for the read/unread status in the `hn-comment` component. We will look into lifting this data to the parent component in the next step.
 
 ### Tasks to complete this step
 
-- Add a property on the `news-article` component which indicates whether the user has read the article.
-- Display the read/unread status in the title of each article.
-- Add a button on the `news-article` component to toggle between the read/unread status, storing this status locally.
+- Add a property on the `hn-comment` component which indicates whether the user has read the comment.
+- Display the read/unread status in the title of each comment.
+- Add a button on the `hn-comment` component to toggle between the read/unread status, storing this status locally.
 
 ### Tips
 
@@ -514,7 +615,7 @@ You can conditionally render something using any valid javascript expression. Fo
 ```js
 render() {
   return html`
-    <h3>${this.title} (${this.read ? 'read' : 'unread'})</h3>
+    <h3>${this.type} (${this.read ? 'read' : 'unread'})</h3>
   `;
 }
 ```
@@ -533,7 +634,7 @@ function readStatus(read) {
 class MyElement extends LitElement {
   render() {
     return html`
-      My article (${readStatus(this.read)})
+      My comment (${readStatus(this.read)})
     `;
   }
 }
@@ -570,34 +671,46 @@ In this example, we register an event listener for the `click` event, and call t
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <hackernews-app></hackernews-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
 
-      class NewsApp extends LitElement {
+      class HackerNewsApp extends LitElement {
         static get properties() {
           return {
             loading: { type: Boolean },
-            articles: { type: Array },
+            comments: { type: Array },
           };
         }
 
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.comments) {
+            this.fetchComments();
           }
         }
 
-        async fetchArticles() {
+        async fetchComments() {
           this.loading = true;
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
-          const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+          const path = "https://hacker-news.firebaseio.com/v0/item";
+          const itemId = 22115410;
+
+          let idx = 0;
+          const maxItems = 5;
+          const array = [];
+
+          while (array.length < maxItems) {
+            const res = await fetch(`${path}/${itemId - idx}.json`)
+            const data = await res.json().data
+
+            if(data.type !== "comment") return;
+            array.push(data);
+            idx++;
+          }
+
+          this.comments = array;
           this.loading = false;
         }
 
@@ -609,18 +722,18 @@ In this example, we register an event listener for the `click` event, and call t
           }
 
           return html`
-            <h1>News App</h1>
+            <h1>HackerNews Comment App</h1>
 
-            <h2>Articles</h2>
+            <h2>Comments</h2>
             <ul>
-              ${this.articles.map(
-                article => html`
+              ${this.comments.map(
+                comment => html`
                   <li>
-                    <news-article
-                      .title=${article.title}
-                      .description=${article.description}
-                      .read=${article.read}
-                    ></news-article>
+                    <hn-comment
+                      .type=${comment.type}
+                      .text=${comment.text}
+                      .read=${comment.read}
+                    ></hn-comment>
                   </li>
                 `,
               )}
@@ -629,21 +742,21 @@ In this example, we register an event listener for the `click` event, and call t
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('hackernews-app', HackerNewsApp);
 
-      class NewsArticle extends LitElement {
+      class HackerNewsComment extends LitElement {
         static get properties() {
           return {
-            title: { type: String },
-            description: { type: String },
+            type: { type: String },
+            text: { type: String },
             read: { type: Boolean },
           };
         }
 
         render() {
           return html`
-            <h3>${this.title} (${this.read ? 'read' : 'unread'})</h3>
-            <p>${this.description}</p>
+            <h3>${this.type} (${this.read ? 'read' : 'unread'})</h3>
+            <p>${this.text}</p>
             <button @click=${this._toggleReadStatus}>
               Mark as ${this.read ? 'unread' : 'read'}
             </button>
@@ -655,7 +768,7 @@ In this example, we register an event listener for the `click` event, and call t
         }
       }
 
-      customElements.define('news-article', NewsArticle);
+      customElements.define('hn-comment', HackerNewsComment);
     </script>
   </body>
 </html>
@@ -665,16 +778,16 @@ In this example, we register an event listener for the `click` event, and call t
 
 ## Add a read/unread counter
 
-Now that the user can mark articles as read/unread, we want to display the total amount of read and unread items in the app. This counter should be displayed in the `news-app`, but we're storing the read/unread status in the `news-article` component. We need to think of a better way to solve this...
+Now that the user can mark comments as read/unread, we want to display the total amount of read and unread items in the app. This counter should be displayed in the `hackernews-app`, but we're storing the read/unread status in the `hn-comment` component. We need to think of a better way to solve this...
 
 It's best to keep the data in your application flowing in one direction from top to bottom. Parent components are responsible for data of child components, including changing this data.
 
-In our case, the `news-article` component can fire an event to the `news-app` component to request a change in the read/unread status.
+In our case, the `hn-comment` component can fire an event to the `hackernews-app` component to request a change in the read/unread status.
 
 ### Tasks to complete this step
 
-- Communicate the read/unread status of the article back to the `news-app` component.
-- Display the total amount of read and unread articles in the `news-app` component.
+- Communicate the read/unread status of the comment back to the `hackernews-app` component.
+- Display the total amount of read and unread comments in the `hackernews-app` component.
 
 ### Tips
 
@@ -698,10 +811,10 @@ When you add an event listener on an element in a list of templates, you need a 
 
 ```js
 html`
-  ${this.articles.map(
-    article => html`
+  ${this.comments.map(
+    comment => html`
       <li>
-        <news-article @toggle-read-status=${() => this._toggleReadStatus(article)}></news-article>
+        <hn-comment @toggle-read-status=${() => this._toggleReadStatus(comment)}></hn-comment>
       </li>
     `,
   )}
@@ -713,12 +826,12 @@ html`
 <details>
  <summary>Update read status in main app</summary>
 
-To update the read status, we need to use immutable data update patterns. This means we should create a articles array, and a new object for the article that was updated. A quick way to do this, is by using a map function:
+To update the read status, we need to use immutable data update patterns. This means we should create a comments array, and a new object for the comment that was updated. A quick way to do this, is by using a map function:
 
 ```js
-_toggleReadStatus(articleToUpdate) {
-  this.articles = this.articles.map(article => {
-    return article === articleToUpdate ? { ...article, read: !article.read } : article;
+_toggleReadStatus(commentToUpdate) {
+  this.comments = this.comments.map(comment => {
+    return comment === commentToUpdate ? { ...comment, read: !comment.read } : comment;
   });
 }
 ```
@@ -732,7 +845,7 @@ To display the total amount of read/unread items, we can calculate it on top of 
 
 ```js
 render() {
- const totalRead = this.articles.filter(a => a.read).length;
+ const totalRead = this.comments.filter(a => a.read).length;
 
  return html`...`;
 }
@@ -749,34 +862,46 @@ render() {
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <hackernews-app></hackernews-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
 
-      class NewsApp extends LitElement {
+      class HackerNewsApp extends LitElement {
         static get properties() {
           return {
             loading: { type: Boolean },
-            articles: { type: Array },
+            comments: { type: Array },
           };
         }
 
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.comments) {
+            this.fetchComments();
           }
         }
 
-        async fetchArticles() {
+        async fetchComments() {
           this.loading = true;
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
-          const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+          const path = "https://hacker-news.firebaseio.com/v0/item";
+          const itemId = 22115410;
+
+          let idx = 0;
+          const maxItems = 5;
+          const array = [];
+
+          while (array.length < maxItems) {
+            const res = await fetch(`${path}/${itemId - idx}.json`)
+            const data = await res.json().data
+
+            if(data.type !== "comment") return;
+            array.push(data);
+            idx++;
+          }
+
+          this.comments = array;
           this.loading = false;
         }
 
@@ -787,24 +912,24 @@ render() {
             `;
           }
 
-          const totalRead = this.articles.filter(a => a.read).length;
-          const totalUnread = this.articles.length - totalRead;
+          const totalRead = this.comments.filter(a => a.read).length;
+          const totalUnread = this.comments.length - totalRead;
 
           return html`
-            <h1>News App</h1>
+            <h1>HackerNews Comment App</h1>
 
-            <h2>Articles</h2>
+            <h2>Comments</h2>
             <p>(${totalRead} read and ${totalUnread} unread)</p>
             <ul>
-              ${this.articles.map(
-                article => html`
+              ${this.comments.map(
+                comment => html`
                   <li>
-                    <news-article
-                      .title=${article.title}
-                      .description=${article.description}
-                      .read=${article.read}
-                      @toggle-read-status=${() => this._toggleReadStatus(article)}
-                    ></news-article>
+                    <hn-comment
+                      .type=${comment.type}
+                      .text=${comment.text}
+                      .read=${comment.read}
+                      @toggle-read-status=${() => this._toggleReadStatus(comment)}
+                    ></hn-comment>
                   </li>
                 `,
               )}
@@ -812,28 +937,28 @@ render() {
           `;
         }
 
-        _toggleReadStatus(articleToUpdate) {
-          this.articles = this.articles.map(article => {
-            return article === articleToUpdate ? { ...article, read: !article.read } : article;
+        _toggleReadStatus(commentToUpdate) {
+          this.comments = this.comments.map(comment => {
+            return comment === commentToUpdate ? { ...comment, read: !comment.read } : comment;
           });
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('hackernews-app', HackerNewsApp);
 
-      class NewsArticle extends LitElement {
+      class HackerNewsComment extends LitElement {
         static get properties() {
           return {
-            title: { type: String },
-            description: { type: String },
+            type: { type: String },
+            text: { type: String },
             read: { type: Boolean },
           };
         }
 
         render() {
           return html`
-            <h3>${this.title} (${this.read ? 'read' : 'unread'})</h3>
-            <p>${this.description}</p>
+            <h3>${this.type} (${this.read ? 'read' : 'unread'})</h3>
+            <p>${this.text}</p>
             <button @click=${this._toggleReadStatus}>
               Mark as ${this.read ? 'unread' : 'read'}
             </button>
@@ -845,7 +970,7 @@ render() {
         }
       }
 
-      customElements.define('news-article', NewsArticle);
+      customElements.define('hn-comment', HackerNewsComment);
     </script>
   </body>
 </html>
@@ -855,18 +980,18 @@ render() {
 
 ## Add a read/unread filter
 
-Now that the `news-app` component knows about the read/unread status, we can do more interesting things like allowing the user to filter based on the article's status.
+Now that the `hackernews-app` component knows about the read/unread status, we can do more interesting things like allowing the user to filter based on the comment's status.
 
 It's a good practice to separate concerns in your application, and in a real application, such a filter might grow to be quite complex in UI and logic. In those cases, it can be a good idea to separate it into a separate component.
 
-If the functionality is small, like in our example application, we can keep it in the `news-app` component for now.
+If the functionality is small, like in our example application, we can keep it in the `hackernews-app` component for now.
 
 ### Tasks to complete this step
 
-- Add three buttons to the `news-app` component:
-  - A button which displays only read articles
-  - A button which displays only unread articles
-  - A button which displays all articles
+- Add three buttons to the `hackernews-app` component:
+  - A button which displays only read comments
+  - A button which displays only unread comments
+  - A button which displays all comments
 
 ### Tips
 
@@ -875,7 +1000,7 @@ If the functionality is small, like in our example application, we can keep it i
 
 To create a filter, each of the three buttons can update a `filter` property on the element. Changing this property should trigger a re-render.
 
-Then, on the top of your `render` function, you can filter the array of articles using this filter value. Make sure you're using this new array in your template, and not the original array.
+Then, on the top of your `render` function, you can filter the array of comments using this filter value. Make sure you're using this new array in your template, and not the original array.
 
 </details>
 
@@ -888,16 +1013,16 @@ Then, on the top of your `render` function, you can filter the array of articles
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <hackernews-app></hackernews-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
 
-      class NewsApp extends LitElement {
+      class HackerNewsApp extends LitElement {
         static get properties() {
           return {
             loading: { type: Boolean },
-            articles: { type: Array },
+            comments: { type: Array },
             filter: { type: String },
           };
         }
@@ -905,18 +1030,30 @@ Then, on the top of your `render` function, you can filter the array of articles
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.comments) {
+            this.fetchComments();
           }
         }
 
-        async fetchArticles() {
+        async fetchComments() {
           this.loading = true;
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
-          const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+          const path = "https://hacker-news.firebaseio.com/v0/item";
+          const itemId = 22115410;
+
+          let idx = 0;
+          const maxItems = 5;
+          const array = [];
+
+          while (array.length < maxItems) {
+            const res = await fetch(`${path}/${itemId - idx}.json`)
+            const data = await res.json().data
+
+            if(data.type !== "comment") return;
+            array.push(data);
+            idx++;
+          }
+
+          this.comments = array;
           this.loading = false;
         }
 
@@ -927,19 +1064,19 @@ Then, on the top of your `render` function, you can filter the array of articles
             `;
           }
 
-          const totalRead = this.articles.filter(a => a.read).length;
-          const totalUnread = this.articles.length - totalRead;
-          const articles = this.articles.filter(article => {
+          const totalRead = this.comments.filter(a => a.read).length;
+          const totalUnread = this.comments.length - totalRead;
+          const comments = this.comments.filter(comment => {
             if (!this.filter) {
               return true;
             }
-            return this.filter === 'read' ? article.read : !article.read;
+            return this.filter === 'read' ? comment.read : !comment.read;
           });
 
           return html`
-            <h1>News App</h1>
+            <h1>HackerNews Comments App</h1>
 
-            <h2>Articles</h2>
+            <h2>Comments</h2>
             <p>(${totalRead} read and ${totalUnread} unread)</p>
 
             <button @click=${this._filterNone}>Filter none</button>
@@ -947,15 +1084,15 @@ Then, on the top of your `render` function, you can filter the array of articles
             <button @click=${this._filterUnread}>Filter unread</button>
 
             <ul>
-              ${articles.map(
-                article => html`
+              ${comments.map(
+                comment => html`
                   <li>
-                    <news-article
-                      .title=${article.title}
-                      .description=${article.description}
-                      .read=${article.read}
-                      @toggle-read-status=${() => this.toggleReadStatus(article)}
-                    ></news-article>
+                    <hn-comment
+                      .type=${comment.type}
+                      .text=${comment.text}
+                      .read=${comment.read}
+                      @toggle-read-status=${() => this.toggleReadStatus(comment)}
+                    ></hn-comment>
                   </li>
                 `,
               )}
@@ -963,9 +1100,9 @@ Then, on the top of your `render` function, you can filter the array of articles
           `;
         }
 
-        toggleReadStatus(articleToUpdate) {
-          this.articles = this.articles.map(article => {
-            return article === articleToUpdate ? { ...article, read: !article.read } : article;
+        toggleReadStatus(commentToUpdate) {
+          this.comments = this.comments.map(comment => {
+            return comment === commentToUpdate ? { ...comment, read: !comment.read } : comment;
           });
         }
 
@@ -982,21 +1119,21 @@ Then, on the top of your `render` function, you can filter the array of articles
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('hackernews-app', HackerNewsApp);
 
-      class NewsArticle extends LitElement {
+      class HackerNewsComment extends LitElement {
         static get properties() {
           return {
-            title: { type: String },
-            description: { type: String },
+            type: { type: String },
+            text: { type: String },
             read: { type: Boolean },
           };
         }
 
         render() {
           return html`
-            <h3>${this.title} (${this.read ? 'read' : 'unread'})</h3>
-            <p>${this.description}</p>
+            <h3>${this.type} (${this.read ? 'read' : 'unread'})</h3>
+            <p>${this.text}</p>
             <button @click=${this._toggleReadStatus}>
               Mark as ${this.read ? 'unread' : 'read'}
             </button>
@@ -1008,7 +1145,7 @@ Then, on the top of your `render` function, you can filter the array of articles
         }
       }
 
-      customElements.define('news-article', NewsArticle);
+      customElements.define('hn-comment', HackerNewsComment);
     </script>
   </body>
 </html>
@@ -1070,17 +1207,17 @@ html`
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <hackernews-app></hackernews-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
       import 'https://unpkg.com/@material/mwc-button?module';
 
-      class NewsApp extends LitElement {
+      class HackerNewsApp extends LitElement {
         static get properties() {
           return {
             loading: { type: Boolean },
-            articles: { type: Array },
+            comments: { type: Array },
             filter: { type: String },
           };
         }
@@ -1088,18 +1225,30 @@ html`
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.comments) {
+            this.fetchComments();
           }
         }
 
-        async fetchArticles() {
+        async fetchComments() {
           this.loading = true;
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
-          const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+          const path = "https://hacker-news.firebaseio.com/v0/item";
+          const itemId = 22115410;
+
+          let idx = 0;
+          const maxItems = 5;
+          const array = [];
+
+          while (array.length < maxItems) {
+            const res = await fetch(`${path}/${itemId - idx}.json`)
+            const data = await res.json().data
+
+            if(data.type !== "comment") return;
+            array.push(data);
+            idx++;
+          }
+
+          this.comments = array;
           this.loading = false;
         }
 
@@ -1110,19 +1259,19 @@ html`
             `;
           }
 
-          const totalRead = this.articles.filter(a => a.read).length;
-          const totalUnread = this.articles.length - totalRead;
-          const articles = this.articles.filter(article => {
+          const totalRead = this.comments.filter(a => a.read).length;
+          const totalUnread = this.comments.length - totalRead;
+          const comments = this.comments.filter(comment => {
             if (!this.filter) {
               return true;
             }
-            return this.filter === 'read' ? article.read : !article.read;
+            return this.filter === 'read' ? comment.read : !comment.read;
           });
 
           return html`
-            <h1>News App</h1>
+            <h1>HackerNews Comment App</h1>
 
-            <h2>Articles</h2>
+            <h2>Comments</h2>
             <p>(${totalRead} read and ${totalUnread} unread)</p>
 
             <mwc-button @click=${this._filterNone}>Filter none</mwc-button>
@@ -1130,15 +1279,15 @@ html`
             <mwc-button @click=${this._filterUnread}>Filter unread</mwc-button>
 
             <ul>
-              ${articles.map(
-                article => html`
+              ${comments.map(
+                comment => html`
                   <li>
-                    <news-article
-                      .title=${article.title}
-                      .description=${article.description}
-                      .read=${article.read}
-                      @toggle-read-status=${() => this.toggleReadStatus(article)}
-                    ></news-article>
+                    <hn-comment
+                      .type=${comment.type}
+                      .text=${comment.text}
+                      .read=${comment.read}
+                      @toggle-read-status=${() => this.toggleReadStatus(comment)}
+                    ></hackernews-app>
                   </li>
                 `,
               )}
@@ -1146,9 +1295,9 @@ html`
           `;
         }
 
-        toggleReadStatus(articleToUpdate) {
-          this.articles = this.articles.map(article => {
-            return article === articleToUpdate ? { ...article, read: !article.read } : article;
+        toggleReadStatus(commentToUpdate) {
+          this.comments = this.comments.map(comment => {
+            return comment === commentToUpdate ? { ...comment, read: !comment.read } : comment;
           });
         }
 
@@ -1165,21 +1314,21 @@ html`
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('hackernews-app', HackerNewsApp);
 
-      class NewsArticle extends LitElement {
+      class HackerNewsComment extends LitElement {
         static get properties() {
           return {
-            title: { type: String },
-            description: { type: String },
+            type: { type: String },
+            text: { type: String },
             read: { type: Boolean },
           };
         }
 
         render() {
           return html`
-            <h3>${this.title} (${this.read ? 'read' : 'unread'})</h3>
-            <p>${this.description}</p>
+            <h3>${this.type} (${this.read ? 'read' : 'unread'})</h3>
+            <p>${this.text}</p>
             <mwc-button @click=${this._toggleReadStatus}>
               Mark as ${this.read ? 'unread' : 'read'}
             </mwc-button>
@@ -1191,7 +1340,7 @@ html`
         }
       }
 
-      customElements.define('news-article', NewsArticle);
+      customElements.define('hn-comment', HackerNewsComment);
     </script>
   </body>
 </html>
@@ -1201,7 +1350,7 @@ html`
 
 ## Template function
 
-For our `news-article` we created a separate web component. A web component creates a strong encapsulation boundary between the parent and child components. This is a great feature, we can develop components in complete isolation.
+For our `hn-comment` we created a separate web component. A web component creates a strong encapsulation boundary between the parent and child components. This is a great feature, we can develop components in complete isolation.
 
 But sometimes this can be overkill for just simple templates, or we may want to have no boundaries so that we can share styles or select DOM nodes.
 
@@ -1217,7 +1366,7 @@ function messageTemplate(message) {
 
 ### Tasks to complete this step
 
-- Replace the `news-article` component with a template function.
+- Replace the `hn-comment` component with a template function.
 
 ### Tips
 
@@ -1227,12 +1376,12 @@ function messageTemplate(message) {
 We cannot fire any events from the template function. Instead, we should pass along the event handler from the parent component.
 
 ```js
-function articleTemplate(article, toggleReadStatus) {
+function commentTemplate(comment, toggleReadStatus) {
   return html`
-    <h3>${article.title} (${article.read ? 'read' : 'unread'})</h3>
-    <p>${article.description}</p>
+    <h3>${comment.title} (${comment.read ? 'read' : 'unread'})</h3>
+    <p>${comment.text}</p>
     <mwc-button @click=${toggleReadStatus}>
-      Mark as ${article.read ? 'unread' : 'read'}
+      Mark as ${comment.read ? 'unread' : 'read'}
     </mwc-button>
   `;
 }
@@ -1243,7 +1392,7 @@ Then, to render the template:
 ```js
 html`
   <li>
-    ${articleTemplate(article, () => this.toggleReadStatus(article))}
+    ${commentTemplate(comment, () => this.toggleReadStatus(comment))}
   </li>
 `;
 ```
@@ -1259,27 +1408,27 @@ html`
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <hackernews-app></hackernews-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
       import 'https://unpkg.com/@material/mwc-button?module';
 
-      function articleTemplate(article, toggleReadStatus) {
+      function commentTemplate(comment, toggleReadStatus) {
         return html`
-          <h3>${article.title} (${article.read ? 'read' : 'unread'})</h3>
-          <p>${article.description}</p>
+          <h3>${comment.type} (${comment.read ? 'read' : 'unread'})</h3>
+          <p>${comment.text}</p>
           <mwc-button @click=${toggleReadStatus}>
-            Mark as ${article.read ? 'unread' : 'read'}
+            Mark as ${comment.read ? 'unread' : 'read'}
           </mwc-button>
         `;
       }
 
-      class NewsApp extends LitElement {
+      class HackerNewsApp extends LitElement {
         static get properties() {
           return {
             loading: { type: Boolean },
-            articles: { type: Array },
+            comments: { type: Array },
             filter: { type: String },
           };
         }
@@ -1287,18 +1436,30 @@ html`
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.comments) {
+            this.fetchComments();
           }
         }
 
-        async fetchArticles() {
+        async fetchComments() {
           this.loading = true;
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
-          const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+          const path = "https://hacker-news.firebaseio.com/v0/item";
+          const itemId = 22115410;
+
+          let idx = 0;
+          const maxItems = 5;
+          const array = [];
+
+          while (array.length < maxItems) {
+            const res = await fetch(`${path}/${itemId - idx}.json`)
+            const data = await res.json().data
+
+            if(data.type !== "comment") return;
+            array.push(data);
+            idx++;
+          }
+
+          this.comments = array;
           this.loading = false;
         }
 
@@ -1309,19 +1470,19 @@ html`
             `;
           }
 
-          const totalRead = this.articles.filter(a => a.read).length;
-          const totalUnread = this.articles.length - totalRead;
-          const articles = this.articles.filter(article => {
+          const totalRead = this.comments.filter(a => a.read).length;
+          const totalUnread = this.comments.length - totalRead;
+          const comments = this.comments.filter(comment => {
             if (!this.filter) {
               return true;
             }
-            return this.filter === 'read' ? article.read : !article.read;
+            return this.filter === 'read' ? comment.read : !comment.read;
           });
 
           return html`
-            <h1>News App</h1>
+            <h1>HackerNews Comment App</h1>
 
-            <h2>Articles</h2>
+            <h2>Comments</h2>
             <p>(${totalRead} read and ${totalUnread} unread)</p>
 
             <mwc-button @click=${this._filterNone}>Filter none</mwc-button>
@@ -1329,10 +1490,10 @@ html`
             <mwc-button @click=${this._filterUnread}>Filter unread</mwc-button>
 
             <ul>
-              ${articles.map(
-                article => html`
+              ${comments.map(
+                comment => html`
                   <li>
-                    ${articleTemplate(article, () => this.toggleReadStatus(article))}
+                    ${commentTemplate(comment, () => this.toggleReadStatus(comment))}
                   </li>
                 `,
               )}
@@ -1340,9 +1501,9 @@ html`
           `;
         }
 
-        toggleReadStatus(articleToUpdate) {
-          this.articles = this.articles.map(article => {
-            return article === articleToUpdate ? { ...article, read: !article.read } : article;
+        toggleReadStatus(commentToUpdate) {
+          this.comments = this.comments.map(comment => {
+            return comment === commentToUpdate ? { ...comment, read: !comment.read } : comment;
           });
         }
 
@@ -1359,7 +1520,7 @@ html`
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('hackernews-app', HackerNewsApp);
     </script>
   </body>
 </html>
