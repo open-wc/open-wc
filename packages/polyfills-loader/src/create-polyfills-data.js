@@ -126,7 +126,7 @@ function createPolyfillsData(cfg) {
     });
   }
 
-  if (polyfills.webcomponents) {
+  if (polyfills.webcomponents && !polyfills.shadyCssCustomStyle) {
     addPolyfillConfig(
       {
         name: 'webcomponents',
@@ -148,6 +148,34 @@ function createPolyfillsData(cfg) {
     );
   }
 
+  if (polyfills.webcomponents && polyfills.shadyCssCustomStyle) {
+    // shadycss/custom-style-interface polyfill *must* load after the webcomponents polyfill or it doesn't work.
+    // to get around that, concat the two together.
+
+    addPolyfillConfig({
+      name: 'webcomponents-shady-css-custom-style',
+      test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)",
+      path: [
+        require.resolve('@webcomponents/webcomponentsjs/webcomponents-bundle.js'),
+        require.resolve('@webcomponents/shadycss/custom-style-interface.min.js'),
+        require.resolve('shady-css-scoped-element/shady-css-scoped-element.min.js'),
+      ],
+    });
+  }
+
+  /**
+   * @description returns the contents of a file at the given path
+   * @param {string} filePath
+   * @return {!string}
+   */
+  function readPolyfillFileContents(filePath) {
+    const codePath = path.resolve(filePath);
+    if (!codePath || !fs.existsSync(codePath) || !fs.statSync(codePath).isFile()) {
+      throw new Error(`Could not find a file at ${filePath}`);
+    }
+    return fs.readFileSync(filePath, 'utf-8');
+  }
+
   /** @type {PolyfillFile[]} */
   const polyfillFiles = [];
   /** @type {PolyfillFile | undefined} */
@@ -157,14 +185,15 @@ function createPolyfillsData(cfg) {
     if (!polyfillConfig.name || !polyfillConfig.path) {
       throw new Error(`A polyfill should have a name and a path property.`);
     }
-
-    const codePath = path.resolve(polyfillConfig.path);
-    if (!codePath || !fs.existsSync(codePath) || !fs.statSync(codePath).isFile()) {
-      throw new Error(`Could not find a file at ${polyfillConfig.path}`);
+    let content = '';
+    if (Array.isArray(polyfillConfig.path)) {
+      content = polyfillConfig.path.reduce((acc, p) => {
+        acc += readPolyfillFileContents(p); // eslint-disable-line no-param-reassign
+        return acc;
+      }, '');
+    } else {
+      content = readPolyfillFileContents(polyfillConfig.path);
     }
-
-    let content = fs.readFileSync(codePath, 'utf-8');
-    /** @type {string} */
     if (polyfillConfig.minify) {
       const minifyResult = Terser.minify(content, { sourceMap: false });
       // @ts-ignore
