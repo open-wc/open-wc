@@ -1,6 +1,6 @@
 {
   "name": "es-dev-server",
-  "version": "1.38.1",
+  "version": "1.38.2",
   "publishConfig": {
     "access": "public"
   },
@@ -93,7 +93,7 @@
     "opn": "^5.4.0",
     "parse5": "^5.1.0",
     "path-is-inside": "^1.0.2",
-    "polyfills-loader": "^1.1.1",
+    "polyfills-loader": "^1.1.2",
     "portfinder": "^1.0.21",
     "strip-ansi": "^5.2.0",
     "useragent": "^2.3.0",
