@@ -67,13 +67,13 @@ async function expectCompatibilityTransform(userAgent, features = {}) {
 
   expect(stage4NoModernBrowserImpl).to.include(
     features.optionalChaining
-      ? 'lorem == null ? void 0 : (_lorem$ipsum = lorem.ipsum) == null ? void 0 : _lorem$ipsum.foo'
+      ? "(lorem === null || lorem === void 0 ? void 0 : lorem.ipsum) === 'lorem ipsum' && (lorem === null || lorem === void 0 ? void 0 : (_lorem$ipsum = lorem.ipsum) === null || _lorem$ipsum === void 0 ? void 0 : _lorem$ipsum.foo) === undefined;"
       : 'lorem?.ipsum?.foo',
   );
 
   expect(stage4NoModernBrowserImpl).to.include(
     features.nullishCoalescing
-      ? "foo != null ? foo : 'nullish colaesced'"
+      ? "(foo !== null && foo !== void 0 ? foo : 'nullish colaesced') === 'nullish colaesced'"
       : "foo ?? 'nullish colaesced'",
   );
 }

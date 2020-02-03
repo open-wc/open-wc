@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.11.0...@open-wc/building-webpack@2.11.1) (2020-02-03)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+# [2.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.10.12...@open-wc/building-webpack@2.11.0) (2020-02-02)
+
+
+### Features
+
+* **building-webpack:** remove extra babel plugins ([5304489](https://github.com/open-wc/open-wc/commit/5304489d3e692473d7b4c20df03e4f8443907f9b))
+
+
+
+
+
 ## [2.10.12](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.10.11...@open-wc/building-webpack@2.10.12) (2020-01-31)
 
 
