@@ -15,7 +15,10 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/",
   "scripts": {
-    "site:build": "node build-codelabs.js"
+    "start": "concurrently npm:site:build:watch npm:site:build:serve",
+    "site:build": "node build-codelabs.js",
+    "site:build:watch": "nodemon -w './src/**/*.*' -e 'md' --exec 'npm run site:build'",
+    "site:build:serve": "browser-sync start -s '../../_site/codelabs/' -w '../../_site/**/*.*'"
   },
   "keywords": [
     "open-wc",
