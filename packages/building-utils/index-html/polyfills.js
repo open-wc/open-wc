@@ -127,7 +127,7 @@ function getPolyfills(config) {
     }
   }
 
-  if (config.polyfills.webcomponents && !config.polyfills.shadyCSS) {
+  if (config.polyfills.webcomponents && !config.polyfills.shadyCssCustomStyle) {
     try {
       instructions.push({
         name: 'webcomponents',
@@ -169,14 +169,14 @@ function getPolyfills(config) {
     }
   }
 
-  if (config.polyfills.shadyCSS && !config.polyfills.webcomponents) {
-    // shadyCSS isn't going to work without webcomponents.
+  if (config.polyfills.shadyCssCustomStyle && !config.polyfills.webcomponents) {
+    // shadyCssCustomsStyle isn't going to work without webcomponents.
     throw new Error(
       'configured to polyfill custom-styles, which depends on webcomponents. add `webcomponents:true` to your polyfills config.',
     );
   }
-  if (config.polyfills.shadyCSS && config.polyfills.webcomponents) {
-    // shadyCSS polyfill *must* load after the webcomponents polyfill or it doesn't work.
+  if (config.polyfills.shadyCssCustomStyle && config.polyfills.webcomponents) {
+    // shadycss/custom-style-interface polyfill *must* load after the webcomponents polyfill or it doesn't work.
     // to get around that, concat the two together.
     try {
       instructions.push({
@@ -190,7 +190,7 @@ function getPolyfills(config) {
       });
     } catch (error) {
       throw new Error(
-        'configured to polyfill shadycss, but no pollyfills found. Install with "npm i -D @webcomponents/shadycss" and "npm i -D @webcomponents/shady-scoped-css-element"',
+        'configured to polyfill ShadyCssCustomStyle, but no pollyfills found. Install with "npm i -D @webcomponents/shadycss" and "npm i -D @webcomponents/shady-scoped-css-element"',
       );
     }
   }
