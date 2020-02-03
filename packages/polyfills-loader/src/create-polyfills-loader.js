@@ -246,7 +246,7 @@ function createPolyfillsLoader(cfg) {
     }
     ({ code } = output);
   } else {
-    const output = transform(code);
+    const output = transform(code, { babelrc: false, configFile: false });
     if (!output || !output.code) {
       throw new Error('Could not prettify loader.');
     }
