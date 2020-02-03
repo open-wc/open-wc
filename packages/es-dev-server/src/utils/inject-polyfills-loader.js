@@ -11,15 +11,16 @@ import {
   remove,
   setTextContent,
 } from '@open-wc/building-utils/dom5-fork/index.js';
+import { findJsScripts } from '@open-wc/building-utils';
 import { parse, serialize } from 'parse5';
 import path from 'path';
 import deepmerge from 'deepmerge';
 import {
   injectPolyfillsLoader as originalInjectPolyfillsLoader,
   fileTypes,
-  findJsScripts,
   getScriptFileType,
 } from 'polyfills-loader';
+
 import sytemJsTransformResolver from '../browser-scripts/systemjs-transform-resolver.js';
 import { compatibilityModes } from '../constants.js';
 import { logDebug } from './utils.js';

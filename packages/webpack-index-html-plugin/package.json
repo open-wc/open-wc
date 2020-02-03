@@ -34,7 +34,7 @@
   "dependencies": {
     "@open-wc/building-utils": "^2.14.3",
     "deepmerge": "^3.2.0",
-    "parse5": "^5.1.0"
+    "parse5": "^5.1.1"
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.4.0",

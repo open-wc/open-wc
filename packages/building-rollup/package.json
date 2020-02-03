@@ -60,11 +60,11 @@
     "@babel/preset-typescript": "^7.8.3",
     "chai": "^4.2.0",
     "es-dev-server": "^1.40.1",
-    "lit-element": "^2.0.1",
+    "lit-element": "^2.2.1",
     "mocha": "^6.2.2",
     "puppeteer": "^2.0.0",
     "rimraf": "^3.0.0",
-    "rollup": "^1.15.6",
+    "rollup": "^1.31.1",
     "rollup-plugin-typescript2": "^0.19.3"
   }
 }

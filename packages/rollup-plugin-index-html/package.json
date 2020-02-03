@@ -32,11 +32,11 @@
     "@import-maps/resolve": "^0.2.4",
     "@open-wc/building-utils": "^2.14.3",
     "deepmerge": "^3.2.0",
-    "lit-element": "^2.0.1",
+    "lit-element": "^2.2.1",
     "lit-html": "^1.0.0",
     "md5": "^2.2.1",
     "mkdirp": "^0.5.1",
-    "parse5": "^5.1.0"
+    "parse5": "^5.1.1"
   },
   "devDependencies": {
     "@webcomponents/shadycss": "^1.9.4",
@@ -45,7 +45,7 @@
     "intersection-observer": "^0.7.0",
     "mocha": "^6.2.2",
     "rimraf": "^3.0.0",
-    "rollup": "^1.15.6",
+    "rollup": "^1.31.1",
     "whatwg-fetch": "^3.0.0"
   }
 }

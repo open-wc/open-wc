@@ -28,7 +28,7 @@
     "@open-wc/testing-karma-bs": "^1.0.0",
     "@open-wc/testing": "^2.0.0",
     "@open-wc/demoing-storybook": "^1.0.1",
-    "@open-wc/building-rollup": "^0.15.1",
+    "@open-wc/building-rollup": "^0.21.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.15.4",
     "es-dev-server": "^1.5.0"

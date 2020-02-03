@@ -43,7 +43,7 @@
     "@storybook/addon-viewport": "^5.3.1",
     "@storybook/web-components": "^5.3.1",
     "babel-loader": "^8.0.0",
-    "lit-element": "^2.0.1",
+    "lit-element": "^2.2.1",
     "lit-html": "^1.0.0"
   }
 }
