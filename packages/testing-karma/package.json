@@ -43,6 +43,6 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "karma-browserstack-launcher": "^1.0.0",
-    "lit-element": "^2.0.1"
+    "lit-element": "^2.2.1"
   }
 }

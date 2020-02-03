@@ -1,5 +1,5 @@
-import './shared-ed942ddb.js';
+console.log('shared');
 
 console.log('my app');
 
-import('./lazy-1d008aa1.js');
+import('./lazy-6dc2cd83.js');

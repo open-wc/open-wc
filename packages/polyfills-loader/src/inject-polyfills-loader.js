@@ -11,8 +11,9 @@ const {
   append,
   cloneNode,
 } = require('@open-wc/building-utils/dom5-fork');
+const { createScript, findImportMapScripts } = require('@open-wc/building-utils');
 const { createPolyfillsLoader } = require('./create-polyfills-loader');
-const { createScript, findImportMapScripts, hasFileOfType, fileTypes } = require('./utils');
+const { hasFileOfType, fileTypes } = require('./utils');
 
 /**
  * @param {DocumentAst} headAst

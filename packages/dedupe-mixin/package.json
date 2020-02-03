@@ -34,7 +34,7 @@
     "@open-wc/building-rollup": "^0.21.1",
     "@open-wc/testing": "^2.5.4",
     "http-server": "^0.11.1",
-    "rollup": "^1.15.6",
+    "rollup": "^1.31.1",
     "sinon": "^7.4.1"
   },
   "module": "index.js",
