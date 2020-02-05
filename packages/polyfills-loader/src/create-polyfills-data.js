@@ -187,10 +187,7 @@ function createPolyfillsData(cfg) {
     }
     let content = '';
     if (Array.isArray(polyfillConfig.path)) {
-      content = polyfillConfig.path.reduce((acc, p) => {
-        acc += readPolyfillFileContents(p); // eslint-disable-line no-param-reassign
-        return acc;
-      }, '');
+      content = polyfillConfig.path.map(p => readPolyfillFileContents(p)).join('');
     } else {
       content = readPolyfillFileContents(polyfillConfig.path);
     }
