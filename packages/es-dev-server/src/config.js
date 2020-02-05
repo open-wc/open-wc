@@ -137,10 +137,11 @@ export function createConfig(config) {
     debug = false,
     nodeResolve: nodeResolveArg = false,
     dedupeModules,
-    moduleDirs,
+    moduleDirs = ['node_modules', 'web_modules'],
     preserveSymlinks = false,
   } = config;
-
+  console.log('###################################');
+  console.log(moduleDirs);
   if (debug) {
     setDebug(true);
   }

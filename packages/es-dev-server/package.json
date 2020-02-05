@@ -39,8 +39,9 @@
     "start:transformers": "yarn build && node dist/cli.js -c demo/response-transformers/server.js",
     "start:typescript": "yarn build && node dist/cli.js -c demo/typescript/server.js --open --watch",
     "start:web-components": "yarn build && node dist/cli.js -c demo/web-components/server.js --open --watch",
+    "start:web-modules": "yarn build && node dist/cli.js -c demo/web-modules/server.js --open --watch",
     "test": "npm run test:node",
-    "test:node": "mocha test/**/*.test.js test/*.test.js --require @babel/register",
+    "test:node": "mocha test/utils/**/*.test.js test/utils/*.test.js --require @babel/register --watch",
     "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --require @babel/register --update-snapshots"
   },
   "files": [
