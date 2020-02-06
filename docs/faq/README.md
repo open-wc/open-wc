@@ -124,7 +124,7 @@ The reason for this is that Redux ships CommonJS by default, and expects `proces
 
 And everything should run in the browser as expected.
 
-## Why are some styles leaking in my web component?
+## Why do certain styles pierce the shadow DOM?
 
 > "Doesn't shadow DOM provide total encapsulation?"
 
@@ -152,15 +152,19 @@ If this inheriting behavior is undesirable, you can reset it by adding the follo
 
 ```css
 :host {
+  /* Reset specific CSS properties */
+  color: initial;
+
+  /* Reset all CSS properties */
   all: initial;
 }
 ```
 
-You can find a code example [here](https://webcomponents.dev/edit/NeHSCFaBjUkpe5ldUu1N).
-
 ::: warning
-Do note, that setting `all: initial;` will also reset any CSS custom properties, which you'll usually _want_ to maintain. If you find yourself going this route, it's worth considering if you need an iframe instead.
+Do note that setting `all: initial;` will also reset any CSS custom properties, which you'll usually _want_ to maintain. If you find yourself going this route, it's worth considering if you need an iframe instead.
 :::
+
+You can find a code example [here](https://webcomponents.dev/edit/NeHSCFaBjUkpe5ldUu1N).
 
 If you're interested in reading more about this, you can check out these resources:
 
