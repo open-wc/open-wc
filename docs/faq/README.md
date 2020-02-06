@@ -132,7 +132,7 @@ Nope! As written in the [spec](https://www.w3.org/TR/css-scoping-1/#inheritance)
 
 > The top-level elements of a shadow tree inherit from their host element.
 
-What this means is that [_inheritable_](https://gist.github.com/dcneiner/1137601) styles continue to inherit in shadow DOM, will _pierce_ the shadow DOM and affect your component's styling.
+What this means is that [_inheritable_](https://gist.github.com/dcneiner/1137601) styles, like `color` or `font-family` among others, continue to inherit in shadow DOM, will _pierce_ the shadow DOM and affect your component's styling.
 
 Custom CSS properties are also able to pierce the shadow DOM boundary, and can be used to style elements from outside of your component itself. Example:
 
