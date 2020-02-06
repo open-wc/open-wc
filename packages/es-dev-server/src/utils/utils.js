@@ -29,8 +29,6 @@ export class IsBinaryFileError extends Error {}
 /** @type {WeakMap<import('koa').Request, string>} */
 const filePathsForRequests = new WeakMap();
 
-const htmlTags = ['html', 'head', 'body'];
-
 /**
  * Returns the body value as string. If the response is a stream, the
  * stream is drained and the result is returned. Because koa-static stores
@@ -134,21 +132,7 @@ export async function isIndexHTMLResponse(ctx, appIndex) {
 
   // make the check based on content-type and check
   const contentType = ctx.response.header && ctx.response.header['content-type'];
-  if (!contentType || !contentType.includes('text/html')) {
-    return false;
-  }
-
-  try {
-    const indexHTMLString = await getBodyAsString(ctx);
-    return htmlTags.some(
-      tag => indexHTMLString.includes(`<${tag}`) && indexHTMLString.includes(`</${tag}>`),
-    );
-  } catch (error) {
-    if (error instanceof RequestCancelledError) {
-      return false;
-    }
-    throw error;
-  }
+  return contentType && contentType.includes('text/html');
 }
 
 /**
