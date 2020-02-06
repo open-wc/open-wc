@@ -91,7 +91,7 @@ es-dev-server requires node v10 or higher
 | preserve-symlinks    | boolean       | Preserve symlinks when resolving modules. Set to true, if using tools that rely on symlinks, such as `npm link`. Default false. |
 | module-dirs          | string/array  | Directories to resolve modules from. Used by node-resolve                                                                       |
 | babel                | boolean       | Transform served code through babel. Requires .babelrc                                                                          |
-| file-extensions      | number/array  | Extra file extensions to use when transforming code.                                                                            |
+| file-extensions      | string/array  | Extra file extensions to use when transforming code.                                                                            |
 | babel-exclude        | number/array  | Patterns of files to exclude from babel compilation.                                                                            |
 | babel-modern-exclude | number/array  | Patterns of files to exclude from babel compilation on modern browsers.                                                         |
 | babel-module-exclude | number/array  | Patterns of files to exclude from babel compilation for modules only.                                                           |
