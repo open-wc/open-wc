@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "0.20.1",
+  "version": "0.20.2",
   "publishConfig": {
     "access": "public"
   },
@@ -59,7 +59,7 @@
     "@babel/plugin-proposal-decorators": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
     "chai": "^4.2.0",
-    "es-dev-server": "^1.38.1",
+    "es-dev-server": "^1.38.2",
     "lit-element": "^2.0.1",
     "mocha": "^6.2.2",
     "puppeteer": "^2.0.0",
