@@ -15,6 +15,7 @@ export { fixture } from '@open-wc/testing-helpers/index.js';
 export { fixtureSync } from '@open-wc/testing-helpers/index.js';
 export { fixtureCleanup } from '@open-wc/testing-helpers/index.js';
 export { elementUpdated } from '@open-wc/testing-helpers/index.js';
+export { waitUntil } from '@open-wc/testing-helpers/index.js';
 
 import chai from 'chai';
 

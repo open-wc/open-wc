@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.2...@open-wc/testing@2.5.3) (2020-02-06)
+
+
+### Bug Fixes
+
+* **testing:** export "waitUntil" type ([730514f](https://github.com/open-wc/open-wc/commit/730514f111926d6fb0ea750994e98482bb6ab092))
+
+
+
+
+
 ## [2.5.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.1...@open-wc/testing@2.5.2) (2020-01-31)
 
 
