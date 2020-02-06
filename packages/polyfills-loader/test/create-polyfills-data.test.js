@@ -89,7 +89,30 @@ describe('polyfills', () => {
       },
     ]);
   });
-
+  it('handles the shady-css-custom-styles polyfill', () => {
+    /** @type {PolyfillsLoaderConfig} */
+    const config = {
+      modern: { files: [{ type: fileTypes.MODULE, path: 'foo.js' }] },
+      polyfills: {
+        hash: false,
+        webcomponents: true,
+        shadyCssCustomStyle: true,
+      },
+    };
+    const { coreJs, polyfillFiles } = createPolyfillsData(config);
+    cleanupPolyfill(coreJs);
+    polyfillFiles.forEach(p => {
+      expect(p.content).to.be.a('string');
+      cleanupPolyfill(p);
+    });
+    expect(polyfillFiles).to.eql([
+      {
+        type: fileTypes.SCRIPT,
+        path: 'polyfills/webcomponents-shady-css-custom-style.js',
+        test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)",
+      },
+    ]);
+  });
   it("loads systemjs when an entrypoint needs it, including it's test", () => {
     /** @type {PolyfillsLoaderConfig} */
     const config = {

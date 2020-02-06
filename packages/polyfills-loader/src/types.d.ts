@@ -39,13 +39,15 @@ export interface PolyfillsConfig {
   systemjsExtended?: boolean;
   // whether to polyfill es modules using es module shims
   esModuleShims?: boolean;
+  // whether to include polyfill for shady-css-custom-style and shady-css-scoped-element
+  shadyCssCustomStyle?: boolean;
 }
 
 export interface PolyfillConfig {
   // name of the polyfill
   name: string;
-  // path polyfill path
-  path: string;
+  // polyfill path
+  path: string | string[];
   // expression which should evaluate to true to load the polyfill
   test?: string;
   // how to load the polyfill, defaults to script
