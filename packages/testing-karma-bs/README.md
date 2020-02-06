@@ -25,7 +25,7 @@ Install:
 npm i -D @open-wc/testing-karma-bs deepmerge
 ```
 
-Add a `karma.conf.bs.js`:
+Add a `karma.conf.bs.js` file:
 
 ```javascript
 const merge = require('deepmerge');
@@ -34,11 +34,15 @@ const createBaseConfig = require('./karma.conf.js');
 
 module.exports = config => {
   config.set(
-    merge(bsSettings(config), createBaseConfig(config), {
-      browserStack: {
-        project: 'your-name',
+    merge.all([
+      bsSettings(config),
+      createBaseConfig(config),
+      {
+        browserStack: {
+          project: 'your-name',
+        },
       },
-    }),
+    ]),
   );
 
   return config;
@@ -50,7 +54,7 @@ Add a script to your `package.json`:
 ```json
 {
   "scripts": {
-    "test:bs": "karma start karma.bs.config.js --coverage"
+    "test:bs": "karma start karma.conf.bs.js --coverage"
   }
 }
 ```
