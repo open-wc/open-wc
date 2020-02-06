@@ -147,6 +147,7 @@ The polyfills config controls which polyills are injected onto the page. These a
 - [systemjs](https://github.com/systemjs/systemjs) (also injected when one of the files is systemjs)
 - [dynamicImport](https://github.com/GoogleChromeLabs/dynamic-import-polyfill)
 - [esModuleShims](https://github.com/guybedford/es-module-shims)
+- [shadyCssCustomStyle](https://github.com/webcomponents/polyfills/blob/master/packages/shadycss/custom-style-interface.html) (you must also include webcomponents)
 
 They can be turned on using booleans. When using the polyfills loader directly, these are default false. Other tools may turn on different defaults.
 
@@ -159,6 +160,38 @@ const config = {
     coreJs: true,
     fetch: true,
     webcomponents: true,
+  },
+};
+```
+
+</details>
+
+#### Shady css custom style
+
+In order to define css variables outside of a web component in IE11, you need to wrap the `<style>` tag inside of a `<shady-css-scoped>` tag. This tag is provided by the shady-css-scoped-element package, and will be included if you use both the webcomponents and shadyCssCustomStyle polyfills.
+
+<details>
+<summary>View example</summary>
+
+index.html
+
+```html
+<shady-css-scoped>
+  <style>
+    html {
+      --my-button-color: pink;
+    }
+  </style>
+</shady-css-scoped>
+```
+
+config.js
+
+```js
+const config = {
+  polyfills: {
+    webcomponents: true,
+    shadyCssCustomStyle: true,
   },
 };
 ```

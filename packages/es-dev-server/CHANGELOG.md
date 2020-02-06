@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.38.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.38.2...es-dev-server@1.38.3) (2020-02-06)
+
+
+### Bug Fixes
+
+* **es-dev-server:** determine serving html based on content-type alone ([c22a477](https://github.com/open-wc/open-wc/commit/c22a477893a2a28ee8a2bf2cbc7f54466b6c3b05))
+
+
+
+
+
 ## [1.38.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.38.1...es-dev-server@1.38.2) (2020-02-03)
 
 **Note:** Version bump only for package es-dev-server
