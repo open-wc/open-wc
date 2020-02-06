@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.1.2...polyfills-loader@1.2.0) (2020-02-06)
+
+
+### Features
+
+* **polyfills-loader:** add shady css scoped polyfill ([3c0bc88](https://github.com/open-wc/open-wc/commit/3c0bc88f0e67806abbb901d689b01c565261b6e0))
+
+
+
+
+
 ## [1.1.2](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.1.1...polyfills-loader@1.1.2) (2020-02-03)
 
 
