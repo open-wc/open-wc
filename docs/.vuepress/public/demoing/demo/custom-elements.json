@@ -47,18 +47,13 @@
           "type": "Length"
         },
         {
-          "name": "--demo-wc-card-font-color",
+          "name": "--demo-wc-card-front-color",
           "description": "Font color for the front",
           "type": "Color"
         },
         {
-          "name": "--demo-wc-card-header-color-front",
-          "description": "Header color for the front",
-          "type": "Color"
-        },
-        {
-          "name": "--demo-wc-card-header-color-back",
-          "description": "Header color for the back",
+          "name": "--demo-wc-card-back-color",
+          "description": "Font color for the back",
           "type": "Color"
         }
       ]
