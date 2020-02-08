@@ -140,8 +140,7 @@ export function createConfig(config) {
     moduleDirs = ['node_modules', 'web_modules'],
     preserveSymlinks = false,
   } = config;
-  console.log('###################################');
-  console.log(moduleDirs);
+
   if (debug) {
     setDebug(true);
   }

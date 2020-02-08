@@ -240,14 +240,10 @@ export function createResolveModuleImports(rootDir, fileExtensions, opts) {
   rollupResolve.buildStart.call(fakePluginContext, { preserveSymlinks });
 
   async function nodeResolve(importee, importer) {
-    console.log(importee);
-    console.log(importer);
-    console.log(fakePluginContext);
     const result = await rollupResolve.resolveId.call(fakePluginContext, importee, importer);
     if (!result || !result.id) {
       throw new ModuleNotFoundError();
     }
-    console.log(result.id);
     return result.id;
   }
 
