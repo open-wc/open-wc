@@ -1,4 +1,4 @@
     
       import '../web_modules/my-module.js';
-      import { bar } from '../web_modules/lit-html/directives/until.js';
-      import foo from '../web_modules/htm.js';
+      import { until } from '../web_modules/some-module/directives/until.js';
+      import htm from '../web_modules/htm.js';

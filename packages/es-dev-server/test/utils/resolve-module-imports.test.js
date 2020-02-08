@@ -61,8 +61,8 @@ describe('resolve-module-imports', () => {
       'web-modules',
       `
       import 'my-module';
-      import { bar } from 'lit-html/directives/until';
-      import foo from 'htm';
+      import { until } from 'some-module/directives/until';
+      import htm from 'htm';
     `,
     );
   });
