@@ -12,7 +12,7 @@
     "directory": "packages/webpack-index-html-plugin"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/rollup-plugin-index-html",
   "main": "rollup-plugin-index-html.js",
   "scripts": {
     "test": "npm run test:node",

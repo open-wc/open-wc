@@ -12,7 +12,7 @@
     "directory": "packages/es-dev-server"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/es-dev-server",
   "main": "./dist/es-dev-server.js",
   "bin": {
     "es-dev-server": "./dist/cli.js"

@@ -12,7 +12,7 @@
     "directory": "packages/building-webpack"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/building-webpack",
   "main": "index.js",
   "scripts": {
     "demo:build": "webpack --mode production --config demo/js/webpack.config.js",

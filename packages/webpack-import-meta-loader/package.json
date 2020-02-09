@@ -12,7 +12,7 @@
     "directory": "packages/webpack-import-meta-loader"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/webpack-import-meta-loader",
   "main": "webpack-import-meta-loader.js",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js",
