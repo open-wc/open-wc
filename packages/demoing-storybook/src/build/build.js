@@ -154,13 +154,13 @@ async function buildManager({ outputDir, assets }) {
 
 async function buildPreview({
   outputDir,
-  assets,
+  assets: { iframeHTML },
   previewPath,
   storiesPatterns,
   rollupConfigDecorator,
 }) {
   const { html, storyFiles } = await injectStories({
-    iframeHTML: assets.iframeHTML,
+    iframeHTML,
     previewImport: previewPath,
     storiesPatterns,
     absolutePath: false,
