@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.10.0...@open-wc/demoing-storybook@1.10.1) (2020-02-09)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** always load user preview.js before stories ([1e84df5](https://github.com/open-wc/open-wc/commit/1e84df5707d4fc9745291265c98b48e3c996a0d2))
+
+
+
+
+
 # [1.10.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.9.5...@open-wc/demoing-storybook@1.10.0) (2020-02-09)
 
 
