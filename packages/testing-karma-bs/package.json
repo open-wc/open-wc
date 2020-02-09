@@ -12,7 +12,7 @@
     "directory": "packages/testing-karma-bs"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/testing-karma-bs",
   "main": "index.js",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js",

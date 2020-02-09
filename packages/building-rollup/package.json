@@ -12,7 +12,7 @@
     "directory": "packages/building-rollup"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/building-rollup",
   "main": "index.js",
   "scripts": {
     "demo:build": "rimraf dist && rollup -c demo/js/rollup.config.js",

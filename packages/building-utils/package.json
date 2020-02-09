@@ -12,7 +12,7 @@
     "directory": "packages/building-utils"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/building-utils",
   "scripts": {
     "test": "npm run test:node",
     "test:node": "mocha test/**/*.test.js test/*.test.js",
