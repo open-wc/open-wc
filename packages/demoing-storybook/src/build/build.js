@@ -156,12 +156,14 @@ async function buildPreview({
   outputDir,
   assets: { iframeHTML },
   previewPath,
+  previewConfigImport,
   storiesPatterns,
   rollupConfigDecorator,
 }) {
   const { html, storyFiles } = await injectStories({
     iframeHTML,
     previewImport: previewPath,
+    previewConfigImport,
     storiesPatterns,
     absolutePath: false,
     rootDir: process.cwd(),
@@ -218,13 +220,22 @@ module.exports = async function build({
 
   const assets = createAssets({
     storybookConfigDir,
-    rootDir: process.cwd(),
     managerImport,
   });
+
+  const previewConfigPath = path.join(process.cwd(), storybookConfigDir, 'preview.js');
+  const previewConfigImport = fs.existsSync(previewConfigPath) ? previewConfigPath : undefined;
 
   await fs.remove(outputDir);
   await fs.mkdirp(outputDir);
 
   await buildManager({ outputDir, assets });
-  await buildPreview({ outputDir, assets, storiesPatterns, previewPath, rollupConfigDecorator });
+  await buildPreview({
+    outputDir,
+    assets,
+    storiesPatterns,
+    previewPath,
+    previewConfigImport,
+    rollupConfigDecorator,
+  });
 };

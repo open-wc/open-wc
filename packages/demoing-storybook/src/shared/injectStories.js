@@ -5,6 +5,7 @@ const storiesPatternsToUrls = require('./storiesPatternsToUrls');
  * @param {object} args
  * @param {string} args.iframeHTML
  * @param {string} args.previewImport
+ * @param {string} [args.previewConfigImport]
  * @param {string[]} args.storiesPatterns
  * @param {string} args.rootDir
  * @param {boolean} args.absolutePath
@@ -12,6 +13,7 @@ const storiesPatternsToUrls = require('./storiesPatternsToUrls');
 async function injectStories({
   iframeHTML,
   previewImport,
+  previewConfigImport,
   storiesPatterns,
   rootDir,
   absolutePath,
@@ -31,6 +33,7 @@ async function injectStories({
     '</body>',
     `
 <script type="module">
+  ${previewConfigImport ? `import '${previewConfigImport}';` : ''}
   import { configure } from '${previewImport}';
   ${urls.map((url, i) => `import * as story${i} from '${url}'`).join(';\n  ')}
 

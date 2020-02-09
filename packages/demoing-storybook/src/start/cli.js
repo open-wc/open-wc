@@ -3,6 +3,7 @@
 /* eslint-disable no-console, no-param-reassign */
 const { createConfig, startServer } = require('es-dev-server');
 const path = require('path');
+const fs = require('fs');
 
 const readCommandLineArgs = require('./readCommandLineArgs');
 const createServeStorybookTransformer = require('./transformers/createServeStorybookTransformer');
@@ -22,14 +23,15 @@ async function run() {
   const previewImport = toBrowserPath(previewPathRelative);
   const managerImport = toBrowserPath(managerPathRelative);
 
-  const assets = getAssets({
-    storybookConfigDir,
-    rootDir,
-    managerImport,
-  });
+  const previewConfigPath = path.join(process.cwd(), storybookConfigDir, 'preview.js');
+  let previewConfigImport;
+  if (fs.existsSync(previewConfigPath)) {
+    previewConfigImport = `/${toBrowserPath(path.relative(rootDir, previewConfigPath))}`;
+  }
+
+  const assets = getAssets({ storybookConfigDir, managerImport });
 
   config.babelModernExclude = [...(config.babelModernExclude || []), '**/storybook-prebuilt/**'];
-
   config.fileExtensions = [...(config.fileExtensions || []), '.mdx'];
 
   config.responseTransformers = [
@@ -38,6 +40,7 @@ async function run() {
     createServeStorybookTransformer({
       assets,
       previewImport,
+      previewConfigImport,
       storiesPatterns: config.stories,
       rootDir,
     }),
