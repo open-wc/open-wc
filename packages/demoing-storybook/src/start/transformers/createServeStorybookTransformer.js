@@ -7,7 +7,7 @@ const { createOrderedExports } = require('../../shared/createOrderedExports');
  * @param {string} args.assets.indexHTML
  * @param {string} args.assets.iframeHTML
  * @param {string} args.previewImport
- * @param {string[]} args.storiesPatterns
+ * @param {string[]} args.storiesPatterns glob patterns of story files
  * @param {string} args.rootDir
  */
 function createServeStorybookTransformer({ assets, previewImport, storiesPatterns, rootDir }) {
