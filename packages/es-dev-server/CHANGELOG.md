@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.39.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.38.3...es-dev-server@1.39.0) (2020-02-09)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't cache virtual html files ([d64908c](https://github.com/open-wc/open-wc/commit/d64908cc7a5f74b28546a1c9600aa73d3bc9cd3c))
+
+
+### Features
+
+* **es-dev-server:** trigger reload on file rename ([489f652](https://github.com/open-wc/open-wc/commit/489f652651aa59e891d645e617b6013b56349d25))
+
+
+
+
+
 ## [1.38.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.38.2...es-dev-server@1.38.3) (2020-02-06)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.11.3...@open-wc/building-webpack@2.11.4) (2020-02-09)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
 ## [2.11.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.11.2...@open-wc/building-webpack@2.11.3) (2020-02-06)
 
 **Note:** Version bump only for package @open-wc/building-webpack
