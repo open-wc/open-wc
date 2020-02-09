@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.14](https://github.com/open-wc/open-wc/compare/@open-wc/testing-wallaby@0.1.13...@open-wc/testing-wallaby@0.1.14) (2020-02-09)
+
+**Note:** Version bump only for package @open-wc/testing-wallaby
+
+
+
+
+
 ## [0.1.13](https://github.com/open-wc/open-wc/compare/@open-wc/testing-wallaby@0.1.12...@open-wc/testing-wallaby@0.1.13) (2019-10-23)
 
 
