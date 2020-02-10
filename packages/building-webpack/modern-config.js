@@ -66,6 +66,7 @@ module.exports = userOptions => {
         'browser',
         'main',
       ],
+      modules: ['node_modules', 'web_modules'],
     },
 
     module: {
