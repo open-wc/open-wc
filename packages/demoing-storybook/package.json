@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/demoing-storybook",
-  "version": "1.10.3",
+  "version": "1.10.4",
   "publishConfig": {
     "access": "public"
   },
@@ -45,12 +45,12 @@
     "@babel/core": "^7.8.3",
     "@babel/plugin-transform-react-jsx": "^7.8.3",
     "@mdx-js/mdx": "^1.5.1",
-    "@open-wc/building-rollup": "^0.20.6",
+    "@open-wc/building-rollup": "^0.21.0",
     "@storybook/addon-docs": "5.3.1",
     "command-line-args": "^5.0.2",
     "command-line-usage": "^6.1.0",
     "deepmerge": "^3.2.0",
-    "es-dev-server": "^1.39.2",
+    "es-dev-server": "^1.40.0",
     "es-module-lexer": "^0.3.13",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.3",

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.20.6...@open-wc/building-rollup@0.21.0) (2020-02-10)
+
+
+### Features
+
+* **building-rollup:** support web-modules ([2799753](https://github.com/open-wc/open-wc/commit/2799753bfda62f534a22f6db006f5cda97b50665))
+* **building-webpack:** support web-modules ([492860a](https://github.com/open-wc/open-wc/commit/492860adbafecacb95378179be950e2e6b2c002d))
+
+
+
+
+
 ## [0.20.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.20.5...@open-wc/building-rollup@0.20.6) (2020-02-10)
 
 **Note:** Version bump only for package @open-wc/building-rollup

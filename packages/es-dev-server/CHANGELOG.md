@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.40.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.39.2...es-dev-server@1.40.0) (2020-02-10)
+
+
+### Features
+
+* **es-dev-server:** support web_modules ([#1323](https://github.com/open-wc/open-wc/issues/1323)) ([560e96c](https://github.com/open-wc/open-wc/commit/560e96c75921e05a2a13ea2a69923c05bc2bb221))
+
+
+
+
+
 ## [1.39.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.39.1...es-dev-server@1.39.2) (2020-02-10)
 
 **Note:** Version bump only for package es-dev-server
