@@ -12,56 +12,6 @@ In this section you can find answers to frequently asked questions regarding jav
 - [Unit testing custom events](./unit-testing-custom-events.html)
 - [Unit testing initialization error](./unit-testing-init-error.html)
 
-## Custom elements render life cycle
-
-<iframe src="https://andyogo.github.io/custom-element-reactions-diagram/" style="width: 940px; border: none;margin-left: -100px; height: 1350px;"></iframe>
-
-## How can I set `:host` width via a property?
-
-The following example features 3 variations:
-
-- `disabled` style differently if a property is set
-- `type` style if type has a certain value
-- `width` map a property to a css variable
-
-```js
-class MyEl extends LitElement {
-  static get properties() {
-    disabled: { type: Boolean, reflect: true },
-    width: { type: String },
-    type: { type: String, reflect: true },
-  }
-
-  static get styles() {
-    return css`
-      :host {
-        width: var(--my-el-width)px;
-      }
-      :host([disabled]) {
-        background: grey;
-      }
-      :host([type=bar]) {
-        background: green;
-      }
-    `;
-  }
-
-  constructor() {
-    super();
-    this.disabled = false;
-    this.width = '200px';
-    this.type = 'foo';
-  }
-
-  updated(changedProperties) {
-    if (changedProperties.has('width')) {
-      // this is only supported on evergreen browsers; for IE11 a little more work is needed
-      this.style.setProperty('--my-el-width', this.width);
-    }
-  }
-}
-```
-
 ## Checkbox's 'checked' attribute does not match the property
 
 Many elements reflect their properties as attributes, and vice versa, like for example the `disabled` attribute on a button.
@@ -109,6 +59,72 @@ And similarly, changing the `checked` property does not change the attribute:
 mycheck.checked = false;
 console.log(mycheck.hasAttribute('checked')); // true
 console.log(mycheck.checked); // false
+```
+
+## Custom elements render life cycle
+
+<iframe src="https://andyogo.github.io/custom-element-reactions-diagram/" style="width: 940px; border: none;margin-left: -100px; height: 1350px;"></iframe>
+
+## Debugging styles in adopted stylesheets with Chrome Dev Tools
+
+If your custom element leverages the performance benefits of [constructable stylesheets](https://developers.google.com/web/updates/2019/02/constructable-stylesheets), you will likely run into [this Chrome bug](https://bugs.chromium.org/p/chromium/issues/detail?id=946975) that makes it difficult to debug those styles in Dev Tools. In particular, the `LitElement` base class [leverages this API by default](https://github.com/Polymer/lit-element/blob/41e9fd3b8c18b3070f9df2a2f21915b796b2b298/src/lit-element.ts#L154), so when working with many of the Open Web Components recomendations you should be prepared for this eventuality. If you leverage `LitElement` or an other custom element base class that has the appropriate fallback support for browsers without this API, you can make those styles accessible in Dev Tools again by prepending the following snippet to the beginning of your development environment. This will remove the `adoptedStyleSheets` API from that page and cause those styles to be applied to the page via `<style>` tags (in most cases) which will return access to those styles in the inspector. When you find yourself needing this work around, it would be beneficial to the community for you to visit the linked Chrome bug and star it to help drive the priority of a fix in the Chrome team.
+
+```html
+<script>
+  // @TODO: Remove this after user agent stylesheet bug is fixed
+  // https://bugs.chromium.org/p/chromium/issues/detail?id=946975
+  delete Document.prototype.adoptedStyleSheets;
+</script>
+```
+
+::: tip Using this work around in Storybook
+If you are using Storybook to demonstrate the usage of your elements (either directly or via [`@open-wc/demoing-storybook`](/demoing) you can add this to your `preview-head.html` file to ensure that it is shipped before each of your stories for a simpler development workflow.
+:::
+
+## How can I set `:host` width via a property?
+
+The following example features 3 variations:
+
+- `disabled` style differently if a property is set
+- `type` style if type has a certain value
+- `width` map a property to a css variable
+
+```js
+class MyEl extends LitElement {
+  static get properties() {
+    disabled: { type: Boolean, reflect: true },
+    width: { type: String },
+    type: { type: String, reflect: true },
+  }
+
+  static get styles() {
+    return css`
+      :host {
+        width: var(--my-el-width)px;
+      }
+      :host([disabled]) {
+        background: grey;
+      }
+      :host([type=bar]) {
+        background: green;
+      }
+    `;
+  }
+
+  constructor() {
+    super();
+    this.disabled = false;
+    this.width = '200px';
+    this.type = 'foo';
+  }
+
+  updated(changedProperties) {
+    if (changedProperties.has('width')) {
+      // this is only supported on evergreen browsers; for IE11 a little more work is needed
+      this.style.setProperty('--my-el-width', this.width);
+    }
+  }
+}
 ```
 
 ## Redux: `process is not defined`
