@@ -56,17 +56,6 @@ describe('resolve-module-imports', () => {
     );
   });
 
-  it('resolves bare imports from web_modules', async () => {
-    await expectMatchesSnapshot(
-      'web-modules',
-      `
-      import 'my-module';
-      import { until } from 'some-module/directives/until';
-      import htm from 'htm';
-    `,
-    );
-  });
-
   it('resolves basic exports', async () => {
     await expectMatchesSnapshot(
       'basic-exports',
