@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.14.1...@open-wc/building-utils@2.14.2) (2020-02-10)
+
+
+### Bug Fixes
+
+* **building-utils:** keep edge 18 support for now ([#1328](https://github.com/open-wc/open-wc/issues/1328)) ([16a36af](https://github.com/open-wc/open-wc/commit/16a36af6438b83fbf5ce32efb52abaa5d6d13878))
+
+
+
+
+
 ## [2.14.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.14.0...@open-wc/building-utils@2.14.1) (2020-02-09)
 
 **Note:** Version bump only for package @open-wc/building-utils
