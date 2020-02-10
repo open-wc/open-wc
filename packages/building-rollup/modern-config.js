@@ -58,6 +58,7 @@ module.exports = function createBasicConfig(_options) {
       // resolve bare import specifiers
       resolve({
         extensions: options.extensions,
+        moduleDirectory: ['node_modules', 'web_modules']
       }),
 
       // run code through babel
