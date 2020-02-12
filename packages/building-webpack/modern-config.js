@@ -44,9 +44,9 @@ module.exports = userOptions => {
     entry: options.input || options.entry,
 
     output: {
-      filename: outputFilename,
-      chunkFilename: outputChunkFilename,
-      path: path.resolve(process.cwd(), 'dist'),
+      filename: (options.output && options.output.filename) ? options.output.filename : outputFilename,
+      chunkFilename: (options.output && options.output.chunkFilename) ? options.output.chunkFilename : outputChunkFilename,
+      path: (options.output && options.output.path) ? options.output.path : path.resolve(process.cwd(), 'dist'),
     },
 
     mode: options.mode,
