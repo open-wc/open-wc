@@ -1,5 +1,5 @@
 import { expect } from '@open-wc/testing';
-import { createUniqueTag } from '../src/tag.js';
+import { SUFFIX, createUniqueTag } from '../src/tag.js';
 
 describe('tags', () => {
   describe('createUniqueTag', () => {
@@ -15,7 +15,7 @@ describe('tags', () => {
       const tagName = 'nal-hutta';
       const tag = createUniqueTag(customElements, `${tagName}`);
 
-      expect(tag).to.equal(`${tagName}`);
+      expect(tag).to.equal(`${tagName}-${SUFFIX}`);
     });
 
     it('should increment a counter if tag is already registered', () => {
@@ -23,13 +23,13 @@ describe('tags', () => {
 
       customElements.define(`${tagName}`, class extends HTMLElement {});
       // eslint-disable-next-line wc/no-invalid-element-name
-      customElements.define(`${tagName}-1`, class extends HTMLElement {});
+      customElements.define(`${tagName}-${SUFFIX}`, class extends HTMLElement {});
       // eslint-disable-next-line wc/no-invalid-element-name
-      customElements.define(`${tagName}-2`, class extends HTMLElement {});
+      customElements.define(`${tagName}-${SUFFIX}-1`, class extends HTMLElement {});
 
       const tag = createUniqueTag(customElements, `${tagName}`);
 
-      expect(tag).to.equal(`${tagName}-3`);
+      expect(tag).to.equal(`${tagName}-${SUFFIX}-2`);
     });
   });
 });

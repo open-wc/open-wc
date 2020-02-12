@@ -85,7 +85,9 @@ Then, the `html` function provided by the `createScopedHtml` method transforms t
 `<my-button>${this.text}</my-button>`
 
 becomes:
-`<my-button-3>${this.text}</my-button-3>`
+`<my-button-se>${this.text}</my-button-se>`
+
+To know when a tag name has been auto-defined by scoped elements, the suffix `-se` will be added to the tag name provided by the developer. In addition, this suffix allows scoped-elements and traditional self-defined elements to coexist, avoiding name collision.
 
 ## Usage
 

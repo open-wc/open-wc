@@ -1,5 +1,6 @@
 import { expect } from '@open-wc/testing';
 import { registerElements } from '../src/scoped-elements.js';
+import { SUFFIX } from '../src/tag.js';
 
 describe('scoped-elements', () => {
   describe('registerElements', () => {
@@ -15,9 +16,9 @@ describe('scoped-elements', () => {
       });
 
       expect(result).to.deep.equal({
-        'naboo-planet': `naboo-planet`,
-        'alderaan-planet': `alderaan-planet`,
-        'bespin-planet': `bespin-planet`,
+        'naboo-planet': `naboo-planet-${SUFFIX}`,
+        'alderaan-planet': `alderaan-planet-${SUFFIX}`,
+        'bespin-planet': `bespin-planet-${SUFFIX}`,
       });
     });
   });
