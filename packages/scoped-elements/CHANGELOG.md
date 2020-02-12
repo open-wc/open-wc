@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.15](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.2.14...@open-wc/scoped-elements@0.2.15) (2020-02-12)
+
+
+### Bug Fixes
+
+* add setting so webpack can apply tree shaking on it ([#1337](https://github.com/open-wc/open-wc/issues/1337)) ([b5fdf5c](https://github.com/open-wc/open-wc/commit/b5fdf5c2f124913ffd07b97dbbb666661e4ef480))
+
+
+
+
+
 ## [0.2.14](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.2.13...@open-wc/scoped-elements@0.2.14) (2020-02-10)
 
 **Note:** Version bump only for package @open-wc/scoped-elements

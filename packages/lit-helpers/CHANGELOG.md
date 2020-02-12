@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10](https://github.com/open-wc/open-wc/compare/@open-wc/lit-helpers@0.2.9...@open-wc/lit-helpers@0.2.10) (2020-02-12)
+
+
+### Bug Fixes
+
+* add setting so webpack can apply tree shaking on it ([#1337](https://github.com/open-wc/open-wc/issues/1337)) ([b5fdf5c](https://github.com/open-wc/open-wc/commit/b5fdf5c2f124913ffd07b97dbbb666661e4ef480))
+
+
+
+
+
 ## [0.2.9](https://github.com/open-wc/open-wc/compare/@open-wc/lit-helpers@0.2.8...@open-wc/lit-helpers@0.2.9) (2020-02-09)
 
 **Note:** Version bump only for package @open-wc/lit-helpers
