@@ -184,23 +184,17 @@ async function resolveModuleImportsWithConfig(importer, source, cfg) {
       lastIndex = end;
     } else if (dynamicImportIndex >= 0) {
       // dynamic import
-      const subSource = source.substring(start, end);
-      let stringSymbol;
-      if (subSource.includes('`')) stringSymbol = '`';
-      if (subSource.includes('"')) stringSymbol = '"';
-      if (subSource.includes("'")) stringSymbol = "'";
-
+      const literals = [`\``, "'", '"'];
+      const stringSymbol = literals.find(char => source.substring(start, end).includes(char));
       const dynamicStart = source.indexOf(stringSymbol, start) + 1;
       const dynamicEnd = source.indexOf(stringSymbol, dynamicStart);
-
       const [importee, importeeSuffix] = getImportee(source.substring(dynamicStart, dynamicEnd));
-      const isStringLiteral = [`\``, "'", '"'].includes(stringSymbol);
+      const isStringLiteral = literals.includes(stringSymbol);
       const concatenatedString =
         stringSymbol === `\`` || importee.includes("'") || importee.includes('"');
       const resolvedimportee = isStringLiteral
         ? await maybeResolveImport(importer, importee, concatenatedString, cfg)
         : importee;
-
       resolvedSource += `${source.substring(
         lastIndex,
         dynamicStart,
