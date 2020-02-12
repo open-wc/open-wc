@@ -21,8 +21,8 @@ describe('createScopedHtml', () => {
 
     expect($div.innerHTML).to.be.equal(
       '<!---->\n      ' +
-        '<c-onderon><!---->text sample<!----></c-onderon>' +
-        '<c-ossus><!---->text sample<!----></c-ossus>' +
+        `<onderon-planet><!---->text sample<!----></onderon-planet>` +
+        `<ossus-planet><!---->text sample<!----></ossus-planet>` +
         '\n    <!---->',
     );
   });

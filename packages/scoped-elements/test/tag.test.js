@@ -3,33 +3,33 @@ import { createUniqueTag } from '../src/tag.js';
 
 describe('tags', () => {
   describe('createUniqueTag', () => {
-    it('should create a valid tag name for an anonymous class', () => {
-      const tag = createUniqueTag(customElements, class extends HTMLElement {});
-
-      expect(tag).to.match(/[a-z][a-z0-9-\\._]*-[a-z0-9-\\._]*/);
+    it('should throw an error if tagName is invalid', () => {
+      expect(() => createUniqueTag(customElements)).to.throw(/tagName is invalid/);
+      expect(() => createUniqueTag(customElements, '')).to.throw(/tagName is invalid/);
+      expect(() => createUniqueTag(customElements, ' ')).to.throw(/tagName is invalid/);
+      expect(() => createUniqueTag(customElements, 'mustafar')).to.throw(/tagName is invalid/);
+      expect(() => createUniqueTag(customElements, 'NAL-HUTTA')).to.throw(/tagName is invalid/);
     });
 
-    it('should add a prefix if name is no valid', () => {
-      expect(createUniqueTag(customElements, class Mustafar extends HTMLElement {})).to.be.equal(
-        'c-mustafar',
-      );
-      expect(createUniqueTag(customElements, class _Sample2 extends HTMLElement {})).to.be.equal(
-        'c-sample2',
-      );
+    it('should return a valid tag name', () => {
+      const tagName = 'nal-hutta';
+      const tag = createUniqueTag(customElements, `${tagName}`);
+
+      expect(tag).to.equal(`${tagName}`);
     });
 
-    it('should return the name in dash case if is valid', () => {
-      expect(createUniqueTag(customElements, class MonCalamari extends HTMLElement {})).to.be.equal(
-        'mon-calamari',
-      );
-    });
+    it('should increment a counter if tag is already registered', () => {
+      const tagName = 'mon-calamari';
 
-    it('should return the name in dash case and a counter if is valid and is already registered', () => {
-      customElements.define('nal-hutta', class extends HTMLElement {});
+      customElements.define(`${tagName}`, class extends HTMLElement {});
+      // eslint-disable-next-line wc/no-invalid-element-name
+      customElements.define(`${tagName}-1`, class extends HTMLElement {});
+      // eslint-disable-next-line wc/no-invalid-element-name
+      customElements.define(`${tagName}-2`, class extends HTMLElement {});
 
-      expect(createUniqueTag(customElements, class NalHutta extends HTMLElement {})).to.match(
-        /nal-hutta-\d+/,
-      );
+      const tag = createUniqueTag(customElements, `${tagName}`);
+
+      expect(tag).to.equal(`${tagName}-3`);
     });
   });
 });
