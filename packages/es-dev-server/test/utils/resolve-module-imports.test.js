@@ -152,6 +152,33 @@ describe('resolve-module-imports', () => {
     );
   });
 
+  it('resolves dynamic imports literal not first character', async () => {
+    await expectMatchesSnapshot(
+      'dynamic-imports-formatted',
+      `
+      import 'my-module';
+
+      function lazyLoad() {
+        return import(
+          'my-module-2'
+          );
+      }
+
+      () => import(
+        \`my-module\`
+      );
+
+      function lazyLoad2() {
+        return import(      "my-module-2");
+      }
+
+      import('my-module');
+
+      import('./local-module.js');
+    `,
+    );
+  });
+
   it('does not touch import.meta.url', async () => {
     await expectMatchesSnapshot(
       'import-meta',
