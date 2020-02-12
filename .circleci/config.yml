@@ -35,6 +35,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
+              - repo/node_modules
               - repo/packages/*/node_modules
               - repo/packages/*/dist
   test-local:
@@ -59,6 +60,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      # Download and cache dependencies
       - attach_workspace:
             at: ~/
       # Download and cache dependencies
