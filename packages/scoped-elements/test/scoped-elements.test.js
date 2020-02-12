@@ -15,9 +15,9 @@ describe('scoped-elements', () => {
       });
 
       expect(result).to.deep.equal({
-        'naboo-planet': 'c-naboo',
-        'alderaan-planet': 'c-alderaan',
-        'bespin-planet': 'c-bespin',
+        'naboo-planet': `naboo-planet`,
+        'alderaan-planet': `alderaan-planet`,
+        'bespin-planet': `bespin-planet`,
       });
     });
   });
