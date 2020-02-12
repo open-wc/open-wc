@@ -1,6 +1,7 @@
 import { expect } from '@open-wc/testing';
 import { render } from 'lit-html';
 import { createScopedHtml } from '../src/scoped-html.js';
+import { SUFFIX } from '../src/tag.js';
 
 describe('createScopedHtml', () => {
   it('passes strings and values as tagged templates expect', () => {
@@ -21,8 +22,8 @@ describe('createScopedHtml', () => {
 
     expect($div.innerHTML).to.be.equal(
       '<!---->\n      ' +
-        `<onderon-planet><!---->text sample<!----></onderon-planet>` +
-        `<ossus-planet><!---->text sample<!----></ossus-planet>` +
+        `<onderon-planet-${SUFFIX}><!---->text sample<!----></onderon-planet-${SUFFIX}>` +
+        `<ossus-planet-${SUFFIX}><!---->text sample<!----></ossus-planet-${SUFFIX}>` +
         '\n    <!---->',
     );
   });
