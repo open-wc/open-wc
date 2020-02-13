@@ -27,4 +27,21 @@ describe('createScopedHtml', () => {
         '\n    <!---->',
     );
   });
+
+  it('defers the definition of components until they are used', () => {
+    class Ithor extends HTMLElement {}
+    class Taris extends HTMLElement {}
+
+    const html = createScopedHtml({
+      'ithor-planet': Ithor,
+      'taris-planet': Taris,
+    });
+
+    html`
+      <taris-planet></taris-planet>
+    `;
+
+    expect(customElements.get(`ithor-planet-${SUFFIX}`)).to.be.undefined;
+    expect(customElements.get(`taris-planet-${SUFFIX}`)).to.not.be.undefined;
+  });
 });
