@@ -121,7 +121,7 @@ To know when a tag name has been auto-defined by scoped elements, the suffix `-s
      return html`
        <my-panel class="panel">
          <my-button>${this.text}</my-button>
-       </my-panel}>
+       </my-panel>
      `;
    }
    ```
