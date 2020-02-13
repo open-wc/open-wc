@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.2.15...@open-wc/scoped-elements@0.3.0) (2020-02-13)
+
+
+### Bug Fixes
+
+* **scoped-elements:** keep descriptive tag name when building ([64b8a44](https://github.com/open-wc/open-wc/commit/64b8a44d23b51a7843185462f8b2204e522a07c8))
+
+
+### Features
+
+* **scoped-elements:** add '-se' suffix to all scoped tag names ([28c7011](https://github.com/open-wc/open-wc/commit/28c7011bb834638a6448b420ea4a4d844b151fe7))
+
+
+
+
+
 ## [0.2.15](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.2.14...@open-wc/scoped-elements@0.2.15) (2020-02-12)
 
 
