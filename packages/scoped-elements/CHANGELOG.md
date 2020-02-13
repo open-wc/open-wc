@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.3.0...@open-wc/scoped-elements@0.3.1) (2020-02-13)
+
+
+### Bug Fixes
+
+* **scoped-elements:** support extending elements ([#1272](https://github.com/open-wc/open-wc/issues/1272)) ([9868bc7](https://github.com/open-wc/open-wc/commit/9868bc7a1bc94d4e54651c92d458f3b413a1ebda))
+
+
+
+
+
 # [0.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.2.15...@open-wc/scoped-elements@0.3.0) (2020-02-13)
 
 
