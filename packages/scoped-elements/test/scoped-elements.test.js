@@ -1,5 +1,5 @@
 import { expect } from '@open-wc/testing';
-import { registerElements } from '../src/scoped-elements.js';
+import { registerElement } from '../src/scoped-elements.js';
 import { SUFFIX } from '../src/tag.js';
 
 describe('scoped-elements', () => {
@@ -9,17 +9,13 @@ describe('scoped-elements', () => {
       class Alderaan extends HTMLElement {}
       class Bespin extends HTMLElement {}
 
-      const result = registerElements({
-        'naboo-planet': Naboo,
-        'alderaan-planet': Alderaan,
-        'bespin-planet': Bespin,
-      });
+      const nabooTag = registerElement('naboo-planet', Naboo);
+      const alderaanTag = registerElement('alderaan-planet', Alderaan);
+      const bespinTag = registerElement('bespin-planet', Bespin);
 
-      expect(result).to.deep.equal({
-        'naboo-planet': `naboo-planet-${SUFFIX}`,
-        'alderaan-planet': `alderaan-planet-${SUFFIX}`,
-        'bespin-planet': `bespin-planet-${SUFFIX}`,
-      });
+      expect(nabooTag).to.equal(`naboo-planet-${SUFFIX}`);
+      expect(alderaanTag).to.equal(`alderaan-planet-${SUFFIX}`);
+      expect(bespinTag).to.equal(`bespin-planet-${SUFFIX}`);
     });
   });
 });

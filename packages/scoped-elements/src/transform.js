@@ -1,4 +1,5 @@
 import { fromCache, toCache } from './cache.js';
+import { registerElement } from './scoped-elements.js';
 
 const re = /<\/?([a-zA-Z0-9-]+)/g;
 
@@ -22,13 +23,14 @@ const transformTemplate = (strings, tags) =>
 
       for (let i = matches.length - 1; i >= 0; i -= 1) {
         const item = matches[i];
-        const replacement = tags[item[1]];
+        const klass = tags[item[1]];
 
-        if (replacement) {
+        if (klass) {
+          const tag = registerElement(item[1], klass);
           const start = item.index + item[0].length - item[1].length;
           const end = start + item[1].length;
 
-          acc = acc.slice(0, start) + replacement + acc.slice(end);
+          acc = acc.slice(0, start) + tag + acc.slice(end);
         }
       }
 
