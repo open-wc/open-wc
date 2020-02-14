@@ -1,1 +1,1 @@
-export { createScopedHtml } from './src/scoped-html.js';
+export { createScopedHtml, createScope } from './src/scoped-html.js';

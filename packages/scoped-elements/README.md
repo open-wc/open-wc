@@ -74,13 +74,13 @@ To demonstrate, we made three demos:
      at [...]/node_modules/page-b/node_modules/feature-a/feature-a.js:3:16
    ```
 
-3. [with-scope](https://open-wc.org/scoped-elements/demo/with-scope/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/with-scope)] This example successfully fixes the problem by using `createScopedHtml` on both **Page A** and **Page B**.
+3. [with-scope](https://open-wc.org/scoped-elements/demo/with-scope/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/with-scope)] This example successfully fixes the problem by using `createScope` on both **Page A** and **Page B**.
 
 ## How it works
 
-`createScopedHtml` defines your custom element classes and creates a unique scoped tag for each of them if you need to use multiple versions of an element. In case those classes were already defined, it will return the previously defined tag.
+`createScope` defines your custom element classes and creates a unique scoped tag for each of them if you need to use multiple versions of an element. In case those classes were already defined, it will return the previously defined tag.
 
-Then, the `html` function provided by the `createScopedHtml` method transforms the template literal into another one replacing the tags used by the user by the ones defined by the custom elements. Finally, the transformed template literal is going to be processed by `lit-html`.
+Then, the `html` function provided by the `createScope` method transforms the template literal into another one replacing the tags used by the user by the ones defined by the custom elements. Finally, the transformed template literal is going to be processed by `lit-html`.
 
 `<my-button>${this.text}</my-button>`
 
@@ -89,12 +89,27 @@ becomes:
 
 To know when a tag name has been auto-defined by scoped elements, the suffix `-se` will be added to the tag name provided by the developer. In addition, this suffix allows scoped-elements and traditional self-defined elements to coexist, avoiding name collision.
 
+In some situations is necessary to create an element using `document.createElement()`, but as our elements are scoped and we don't know how they are defined we can't use that function directly.
+
+However, `createScope()` provides a `createElement()` function that knows how our elements are defined, so we can use this function to create our scoped elements.
+
+```js
+import { createScope } from '@open-wc/scoped-elements';
+import MyButton from './MyButton.js';
+
+const { createElement } = createScope({
+  'my-button': MyButton,
+});
+
+const $button = createElement('my-button');
+```
+
 ## Usage
 
-1. Import `createScopedHtml` from `@open-wc/scoped-elements`.
+1. Import `createScope` from `@open-wc/scoped-elements`.
 
    ```js
-   import { createScopedHtml } from '@open-wc/scoped-elements';
+   import { createScope } from '@open-wc/scoped-elements';
    ```
 
 2. Import the classes of the components you want to use.
@@ -104,11 +119,10 @@ To know when a tag name has been auto-defined by scoped elements, the suffix `-s
    import MyPanel from './MyPanel.js';
    ```
 
-3. Create the `html` function and define the tags you want to use for your
-   components.
+3. Create the scope with the tags you want to use for your components and obtaining the `html` and `createElement` functions.
 
    ```js
-   const html = createScopedHtml({
+   const { html, createElement } = createScope({
      'my-button': MyButton,
      'my-panel': MyPanel,
    });
@@ -117,6 +131,12 @@ To know when a tag name has been auto-defined by scoped elements, the suffix `-s
 4. Use your components in your html.
 
    ```js
+   connectedCallback() {
+     super.connectedCallback();
+
+     this.$button = createElement('my-button');
+   }
+
    render() {
      return html`
        <my-panel class="panel">
@@ -130,11 +150,11 @@ To know when a tag name has been auto-defined by scoped elements, the suffix `-s
 
 ```js
 import { css, LitElement } from 'lit-element';
-import { createScopedHtml } from '@open-wc/scoped-elements';
+import { createScope } from '@open-wc/scoped-elements';
 import MyButton from './MyButton.js';
 import MyPanel from './MyPanel.js';
 
-const html = createScopedHtml({
+const { html } = createScope({
   'my-button': MyButton, // <-- binds the element to a tag in your html
   'my-panel': MyPanel,
 });
@@ -211,9 +231,10 @@ export default class MyElement extends LitElement {
    ✅ this.shadowRoot.querySelector('.panel');
    ```
 
-7. Using `scoped-elements` may result in a performance degradation of up to 8%.
-8. Loading of duplicate/similar source code (most breaking releases are not a total rewrite) should always be a temporary solution.
-9. Often, temporary solutions tend to become more permanent. Be sure to focus on keeping the lifecycle of nested dependencies short.
+7. You can not use `document.createElement()` to create scoped elements, but you can use the `createElement` function provided by `createScope` instead.
+8. Using `scoped-elements` may result in a performance degradation of up to 8%.
+9. Loading of duplicate/similar source code (most breaking releases are not a total rewrite) should always be a temporary solution.
+10. Often, temporary solutions tend to become more permanent. Be sure to focus on keeping the lifecycle of nested dependencies short.
 
 ## Performance
 
