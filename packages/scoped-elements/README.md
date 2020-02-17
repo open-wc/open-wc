@@ -74,27 +74,23 @@ To demonstrate, we made three demos:
      at [...]/node_modules/page-b/node_modules/feature-a/feature-a.js:3:16
    ```
 
-3. [with-scope](https://open-wc.org/scoped-elements/demo/with-scope/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/with-scope)] This example successfully fixes the problem by using `createScopedHtml` on both **Page A** and **Page B**.
+3. [with-scope](https://open-wc.org/scoped-elements/demo/with-scope/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/with-scope)] This example successfully fixes the problem by using `ScopedElementsMixin` on both **Page A** and **Page B**.
 
 ## How it works
 
-`createScopedHtml` defines your custom element classes and creates a unique scoped tag for each of them if you need to use multiple versions of an element. In case those classes were already defined, it will return the previously defined tag.
+`ScopedElementsMixin` is mixed into your LitElement and via `static get scopedElements()` you define the tags and classes you wanna use in your elements template.
+Under the hood it changes your template so `<my-button>${this.text}</my-button>` becomes `<my-button-2748>${this.text}</my-button-2748>`.
 
-Then, the `html` function provided by the `createScopedHtml` method transforms the template literal into another one replacing the tags used by the user by the ones defined by the custom elements. Finally, the transformed template literal is going to be processed by `lit-html`.
+Every auto-defined scoped elements gets a random\* 4 digit number suffix. This suffix changes every time to make sure developers are not inclined to use it the generated tag name as a styling hook. Additionally the suffix allows scoped-elements and traditional self-defined elements to coexist, avoiding name collision.
 
-`<my-button>${this.text}</my-button>`
-
-becomes:
-`<my-button-se>${this.text}</my-button-se>`
-
-To know when a tag name has been auto-defined by scoped elements, the suffix `-se` will be added to the tag name provided by the developer. In addition, this suffix allows scoped-elements and traditional self-defined elements to coexist, avoiding name collision.
+\* it is actually a global counter that gets initialized with a random starting number on load
 
 ## Usage
 
-1. Import `createScopedHtml` from `@open-wc/scoped-elements`.
+1. Import `ScopedElementsMixin` from `@open-wc/scoped-elements`.
 
    ```js
-   import { createScopedHtml } from '@open-wc/scoped-elements';
+   import { ScopedElementsMixin } from '@open-wc/scoped-elements';
    ```
 
 2. Import the classes of the components you want to use.
@@ -104,14 +100,18 @@ To know when a tag name has been auto-defined by scoped elements, the suffix `-s
    import MyPanel from './MyPanel.js';
    ```
 
-3. Create the `html` function and define the tags you want to use for your
+3. Apply `ScopedElementsMixin` and define the tags you want to use for your
    components.
 
    ```js
-   const html = createScopedHtml({
-     'my-button': MyButton,
-     'my-panel': MyPanel,
-   });
+   class MyElement extends ScopedElementsMixin(LitElement) {
+     static get scopedElements() {
+       return {
+         'my-button': MyButton,
+         'my-panel': MyPanel,
+       };
+     }
+   }
    ```
 
 4. Use your components in your html.
@@ -130,16 +130,18 @@ To know when a tag name has been auto-defined by scoped elements, the suffix `-s
 
 ```js
 import { css, LitElement } from 'lit-element';
-import { createScopedHtml } from '@open-wc/scoped-elements';
+import { ScopedElementsMixin } from '@open-wc/scoped-elements';
 import MyButton from './MyButton.js';
 import MyPanel from './MyPanel.js';
 
-const html = createScopedHtml({
-  'my-button': MyButton, // <-- binds the element to a tag in your html
-  'my-panel': MyPanel,
-});
+export class MyElement extends ScopedElementsMixin(LitElement) {
+  static get scopedElements() {
+    return {
+      'my-button': MyButton,
+      'my-panel': MyPanel,
+    };
+  }
 
-export default class MyElement extends LitElement {
   static get styles() {
     return css`
       .panel {
@@ -167,7 +169,7 @@ export default class MyElement extends LitElement {
 
 ## Limitations
 
-1. Components imported via npm **MUST NOT** be self registering components. If a shared component (installed from npm) does not offer an export to the class alone, without the registration side effect, then this component can not be used. E.g. every component that calls `customElement.define`.
+1. Components imported via npm **SHOULD NOT** be self registering components. If a shared component (installed from npm) does not offer an export to the class alone, without the registration side effect, then this component may not be used. E.g. every component that calls `customElement.define`.
 
    ```js
    export class MyEl { ... }
@@ -187,11 +189,11 @@ export default class MyElement extends LitElement {
    export class MyEl { ... }
    ```
 
-2. Every (!!!) component that uses sub components need to use `scoped-elements`. Any import to a self registering component can result in a browser exception - completely breaking the whole application.
+2. Every component that uses sub components should use `scoped-elements`. Any import to a self registering component can potentially result in a browser exception - completely breaking the whole application.
 
-3. Imported elements need to be fully side effect free (not only element registration)
+3. Imported elements should be fully side effect free (not only element registration)
 
-4. Currently, only `lit-html` is supported (though other rendering engines could be incorporated in the future).
+4. Currently, only `lit-element` is supported (though other elements/rendering engines could be incorporated in the future).
 
 5. You can not use tag selectors in css, but you could use an id, a class name or even a property instead.
 
@@ -222,28 +224,26 @@ We are using [Tachometer](https://github.com/Polymer/tachometer) to measure the 
 This is an example of the results obtained running the performance test.
 
 ```
-⠋ Auto-sample 150 (timeout in 13m37s)
-
-┌─────────────┬──────────────┐
-│     Version │ <none>       │
-├─────────────┼──────────────┤
-│     Browser │ chrome       │
-│             │ 79.0.3945.88 │
-├─────────────┼──────────────┤
-│ Sample size │ 200          │
-└─────────────┴──────────────┘
-
-┌─────────────────┬────────────┬─────────────────────┬─────────────────┬────────────────────┐
-│ Benchmark       │ Bytes      │            Avg time │  vs lit-element │ vs scoped-elements │
-├─────────────────┼────────────┼─────────────────────┼─────────────────┼────────────────────┤
-│ lit-element     │ 185.99 KiB │ 110.89ms - 117.84ms │                 │             faster │
-│                 │            │                     │        -        │            0% - 8% │
-│                 │            │                     │                 │     0.13ms - 9.6ms │
-├─────────────────┼────────────┼─────────────────────┼─────────────────┼────────────────────┤
-│ scoped-elements │ 190.12 KiB │ 116.02ms - 122.44ms │          slower │                    │
-│                 │            │                     │         0% - 8% │           -        │
-│                 │            │                     │ 0.13ms - 9.60ms │                    │
-└─────────────────┴────────────┴─────────────────────┴─────────────────┴────────────────────┘
+⠋ Auto-sample 560 (timeout in 16m27s)
+┌─────────────┬───────────────┐
+│     Version │ <none>        │
+├─────────────┼───────────────┤
+│     Browser │ chrome        │
+│             │ 80.0.3987.106 │
+├─────────────┼───────────────┤
+│ Sample size │ 610           │
+└─────────────┴───────────────┘
+┌─────────────────────────────┬────────────┬─────────────────────┬─────────────────┬──────────────────────────┐
+│ Benchmark                   │ Bytes      │            Avg time │  vs lit-element │ vs scoped-elements-mixin │
+├─────────────────────────────┼────────────┼─────────────────────┼─────────────────┼──────────────────────────┤
+│ lit-element                 │ 281.24 KiB │ 285.72ms - 286.69ms │                 │                   faster │
+│                             │            │                     │        -        │                  2% - 2% │
+│                             │            │                     │                 │           5.68ms - 7.1ms │
+├─────────────────────────────┼────────────┼─────────────────────┼─────────────────┼──────────────────────────┤
+│ scoped-elements-mixin       │ 283.21 KiB │ 292.08ms - 293.11ms │          slower │                          │
+│                             │            │                     │         2% - 2% │                 -        │
+│                             │            │                     │ 5.68ms - 7.10ms │                          │
+└─────────────────────────────┴────────────┴─────────────────────┴─────────────────┴──────────────────────────┘
 ```
 
 ## Special thanks
