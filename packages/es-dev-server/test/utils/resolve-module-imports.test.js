@@ -13,7 +13,6 @@ import { createResolveModuleImports } from '../../src/utils/resolve-module-impor
 
 const updateSnapshots = process.argv.includes('--update-snapshots');
 const snapshotsDir = path.resolve(__dirname, '..', 'snapshots', 'resolve-module-imports');
-
 const baseDir = path.resolve(__dirname, '..', 'fixtures', 'simple');
 const importer = path.resolve(baseDir, 'src', 'foo.js');
 
@@ -24,6 +23,7 @@ const importer = path.resolve(baseDir, 'src', 'foo.js');
  */
 async function expectMatchesSnapshot(name, source, ovr = {}) {
   const file = path.resolve(snapshotsDir, `${name}.js`);
+
   const resolveModuleImports = createResolveModuleImports(
     ovr.baseDir || baseDir,
     ovr.fileExtensions || ['.mjs', '.js'],

@@ -1,0 +1,33 @@
+<html>
+
+<head>
+  <base href="/packages/es-dev-server/demo/web-modules/">
+</head>
+
+<body>
+  <img width="100" src="../logo.png">
+
+  <h1>Node resolve web_modules demo</h1>
+  <p>A demo which resolves bare module imports from web_modules</p>
+
+  <div id="test"></div>
+
+  <script type="module">
+    // inline bare modules are resolved
+    import { render, html } from 'lit-html';
+    import { until } from "lit-html/directives/until";
+    import htm from 'htm.js';
+
+    window.__tests = {
+      render: render || false,
+      html: html || false,
+      until: until || false,
+      htm: htm || false
+    };
+
+    document.getElementById('test').innerHTML = `<pre>${JSON.stringify(window.__tests, null, 2)}</pre>`;
+  </script>
+
+</body>
+
+</html>

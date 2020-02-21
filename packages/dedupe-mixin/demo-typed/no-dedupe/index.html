@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+      #wrapper {
+        display: block;
+        max-width: 680px;
+        margin: 0 auto;
+      }
+
+      #pages {
+        display: flex;
+      }
+
+      #log-output {
+        margin-top: 50px;
+        border-top: 1px solid #ccc;
+      }
+      #log-output p {
+        color: #666;
+        margin: 2px 0;
+      }
+      #log-output p::before {
+        content: '> ';
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <h1>My App</h1>
+      <div id="pages">
+        <page-red></page-red>
+        <page-green></page-green>
+        <page-blue></page-blue>
+      </div>
+
+      <div id="log-output">
+        <h3>Logging System</h3>
+      </div>
+      <script type="module" src="index.js"></script>
+    </div>
+  </body>
+</html>

@@ -5,13 +5,15 @@ import { createBasePathMiddleware } from './middleware/base-path.js';
 import { createHistoryAPIFallbackMiddleware } from './middleware/history-api-fallback.js';
 import { createCompatibilityTransformMiddleware } from './middleware/compatibility-transform.js';
 import { createWatchServedFilesMiddleware } from './middleware/watch-served-files.js';
-import { createTransformIndexHTMLMiddleware } from './middleware/transform-index-html.js';
+import { createPolyfillsLoaderMiddleware } from './middleware/polyfills-loader.js';
 import { createMessageChannelMiddleware } from './middleware/message-channel.js';
 import { createEtagCacheMiddleware } from './middleware/etag-cache.js';
 import { createResponseBodyCacheMiddleware } from './middleware/response-body-cache.js';
 import { setupBrowserReload } from './utils/setup-browser-reload.js';
 import { compatibilityModes } from './constants.js';
 import { createResponseTransformMiddleware } from './middleware/response-transform.js';
+import { createResolveModuleImports } from './utils/resolve-module-imports.js';
+import { createCompatibilityTransform } from './utils/compatibility-transform.js';
 import { logDebug } from './utils/utils.js';
 
 const defaultCompressOptions = {
@@ -38,13 +40,13 @@ export function createMiddlewares(config, fileWatcher) {
     babelModuleExclude,
     basePath,
     compatibilityMode,
-    polyfillsMode,
     compress,
     customBabelConfig,
     customMiddlewares,
     responseTransformers,
     fileExtensions,
     nodeResolve,
+    polyfillsLoaderConfig,
     readUserBabelConfig,
     rootDir,
     watch,
@@ -73,12 +75,35 @@ export function createMiddlewares(config, fileWatcher) {
     );
   }
 
-  const setupBabel =
+  const setupCompatibility =
     customBabelConfig || compatibilityMode !== compatibilityModes.NONE || readUserBabelConfig;
-  const setupCompatibility = compatibilityMode && compatibilityMode !== compatibilityModes.NONE;
-  const setupTransformIndexHTML = nodeResolve || setupBabel || setupCompatibility;
   const setupHistoryFallback = appIndex;
-  const setupMessageChanel = watch || (logErrorsToBrowser && (setupBabel || nodeResolve));
+  const setupMessageChanel = watch || (logErrorsToBrowser && (setupCompatibility || nodeResolve));
+
+  const resolveModuleImports = nodeResolve
+    ? createResolveModuleImports(
+        rootDir,
+        fileExtensions,
+        typeof nodeResolve === 'boolean' ? undefined : nodeResolve,
+      )
+    : undefined;
+  const transformJs =
+    setupCompatibility || nodeResolve
+      ? createCompatibilityTransform(
+          {
+            rootDir,
+            readUserBabelConfig,
+            nodeResolve,
+            compatibilityMode,
+            customBabelConfig,
+            fileExtensions,
+            babelExclude,
+            babelModernExclude,
+            babelModuleExclude,
+          },
+          resolveModuleImports,
+        )
+      : undefined;
 
   // strips a base path from requests
   if (config.basePath) {
@@ -122,30 +147,25 @@ export function createMiddlewares(config, fileWatcher) {
   );
 
   // compile code using babel and/or resolve module imports
-  if (setupBabel || nodeResolve) {
+  if (setupCompatibility || nodeResolve) {
     middlewares.push(
       createCompatibilityTransformMiddleware({
         rootDir,
-        readUserBabelConfig,
-        compatibilityMode,
         fileExtensions,
-        customBabelConfig,
-        babelExclude,
-        babelModernExclude,
-        babelModuleExclude,
-        nodeResolve,
+        transformJs,
       }),
     );
   }
 
   // injects polyfills and shims for compatibility with older browsers
-  if (setupTransformIndexHTML) {
+  if (setupCompatibility || nodeResolve) {
     middlewares.push(
-      createTransformIndexHTMLMiddleware({
+      createPolyfillsLoaderMiddleware({
         compatibilityMode,
-        polyfillsMode,
+        polyfillsLoaderConfig,
+        rootDir,
         appIndex,
-        appIndexDir,
+        transformJs,
       }),
     );
   }

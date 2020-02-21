@@ -61,7 +61,7 @@ describe('my-test', () => {
     const el = await fixture(html`
       <my-element></my-element>
     `);
-    expect(el).to.be.accessible();
+    await expect(el).to.be.accessible();
   });
 });
 ```

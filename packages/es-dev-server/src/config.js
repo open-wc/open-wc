@@ -1,7 +1,9 @@
+/** @typedef {import('./utils/inject-polyfills-loader-types').PolyfillsLoaderConfig} PolyfillsLoaderConfig */
+
 import path from 'path';
 import { defaultFileExtensions } from '@open-wc/building-utils';
 import { toBrowserPath, setDebug } from './utils/utils.js';
-import { compatibilityModes, polyfillsModes } from './constants.js';
+import { compatibilityModes } from './constants.js';
 
 /**
  * @typedef {import('@rollup/plugin-node-resolve').Options} NodeResolveOptions
@@ -41,10 +43,10 @@ import { compatibilityModes, polyfillsModes } from './constants.js';
  * Code transformation
  * @property {string} [compatibility] compatibility mode for older browsers. Can be: "auto", "min",
  *  "max" or "none". Defaults to "auto"
- * @property {string} [polyfills] polyfills mode, can be "auto" or "none". Defaults to "auto".
  * @property {boolean | NodeResolveOptions} [nodeResolve] whether to resolve bare module imports using node resolve
  * @property {boolean | string[] | ((importee: string) => boolean)} dedupeModules dedupe ensures only one
  *   version of a module is ever resolved by resolving it from the root node_modules.
+ * @property {Partial<PolyfillsLoaderConfig>} [polyfillsLoader] configuration for the polyfills loader
  * @property {boolean} [preserveSymlinks] preserve symlinks when resolving modules. Default false,
  *  which is the default node behavior.
  * @property {string[]} [moduleDirs] directories to resolve modules from when using nodeResolve
@@ -95,9 +97,9 @@ import { compatibilityModes, polyfillsModes } from './constants.js';
  *
  * Code transformation
  * @property {boolean | NodeResolveOptions} nodeResolve
+ * @property {Partial<PolyfillsLoaderConfig>} polyfillsLoaderConfig
  * @property {boolean} readUserBabelConfig same as babel option in command line args
  * @property {string} compatibilityMode
- * @property {string} polyfillsMode
  * @property {boolean|CompressOptions} compress Whether the server should compress responses.
  * @property {object} customBabelConfig custom babel configuration to use when compiling
  * @property {string[]} fileExtensions
@@ -130,12 +132,12 @@ export function createConfig(config) {
     sslKey,
     watch = false,
     logErrorsToBrowser = false,
-    polyfills = polyfillsModes.AUTO,
+    polyfillsLoader,
     responseTransformers,
     debug = false,
     nodeResolve: nodeResolveArg = false,
     dedupeModules,
-    moduleDirs,
+    moduleDirs = ['node_modules', 'web_modules'],
     preserveSymlinks = false,
   } = config;
 
@@ -156,10 +158,6 @@ export function createConfig(config) {
 
   if (!Object.values(compatibilityModes).includes(compatibility)) {
     throw new Error(`Unknown compatibility mode: ${compatibility}`);
-  }
-
-  if (!Object.values(polyfillsModes).includes(polyfills)) {
-    throw new Error(`Unknown polyfills mode: ${polyfills}`);
   }
 
   // middlewares used to be called customMiddlewares
@@ -232,7 +230,7 @@ export function createConfig(config) {
     babelModuleExclude,
     basePath,
     compatibilityMode: compatibility,
-    polyfillsMode: polyfills,
+    polyfillsLoaderConfig: polyfillsLoader,
     compress,
     customBabelConfig: babelConfig,
     customMiddlewares: middlewares,

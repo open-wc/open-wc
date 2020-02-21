@@ -3,6 +3,107 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.40.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.39.2...es-dev-server@1.40.0) (2020-02-10)
+
+
+### Features
+
+* **es-dev-server:** support web_modules ([#1323](https://github.com/open-wc/open-wc/issues/1323)) ([560e96c](https://github.com/open-wc/open-wc/commit/560e96c75921e05a2a13ea2a69923c05bc2bb221))
+
+
+
+
+
+## [1.39.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.39.1...es-dev-server@1.39.2) (2020-02-10)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+## [1.39.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.39.0...es-dev-server@1.39.1) (2020-02-09)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+# [1.39.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.38.3...es-dev-server@1.39.0) (2020-02-09)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't cache virtual html files ([d64908c](https://github.com/open-wc/open-wc/commit/d64908cc7a5f74b28546a1c9600aa73d3bc9cd3c))
+
+
+### Features
+
+* **es-dev-server:** trigger reload on file rename ([489f652](https://github.com/open-wc/open-wc/commit/489f652651aa59e891d645e617b6013b56349d25))
+
+
+
+
+
+## [1.38.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.38.2...es-dev-server@1.38.3) (2020-02-06)
+
+
+### Bug Fixes
+
+* **es-dev-server:** determine serving html based on content-type alone ([c22a477](https://github.com/open-wc/open-wc/commit/c22a477893a2a28ee8a2bf2cbc7f54466b6c3b05))
+
+
+
+
+
+## [1.38.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.38.1...es-dev-server@1.38.2) (2020-02-03)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+## [1.38.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.38.0...es-dev-server@1.38.1) (2020-02-03)
+
+
+### Bug Fixes
+
+* **create:** update broken @babel/cli ([b0cb95b](https://github.com/open-wc/open-wc/commit/b0cb95b650e3aae3d04ddf1879b5eec62abe7d00))
+
+
+
+
+
+# [1.38.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.37.0...es-dev-server@1.38.0) (2020-02-02)
+
+
+### Features
+
+* **es-dev-server:** remove extra babel plugins ([5912b67](https://github.com/open-wc/open-wc/commit/5912b67cbf27ff8f179e3b1eb8e3e7756414200d))
+
+
+
+
+
+# [1.37.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.36.4...es-dev-server@1.37.0) (2020-01-31)
+
+
+### Bug Fixes
+
+* skip brooken published versions ([25d21de](https://github.com/open-wc/open-wc/commit/25d21def522f22f98fc8c71b4c055617089c0e23))
+
+
+### Features
+
+* **es-dev-server:** properly resolve imports in inline modules ([2abde96](https://github.com/open-wc/open-wc/commit/2abde96787753185c67cd16c530bc7697716d917))
+* **es-dev-server:** use new polyfills loader ([f5a4036](https://github.com/open-wc/open-wc/commit/f5a40366c50b6fdc1b94514b1833f83096d0e893))
+
+
+
+
+
 ## [1.36.4](https://github.com/open-wc/open-wc/compare/es-dev-server@1.36.3...es-dev-server@1.36.4) (2020-01-27)
 
 

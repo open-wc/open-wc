@@ -1,0 +1,55 @@
+<html>
+
+<head>
+  <title>My app</title>
+</head>
+
+<body>
+
+  <script>
+    const message = 'foo';
+    console.log(`The message is: ${message}`);
+
+    class Foo {
+
+    }
+
+    const bar = 'buz';
+
+    console.log(window?.foo?.bar ?? 'x');
+
+    async function* asyncGenerator() {
+      await Promise.resolve();
+      yield 0;
+      await Promise.resolve();
+      yield 1;
+    }
+  </script>
+
+  <script type="module">
+    import { message } from 'my-module';
+    import './src/local-module.js';
+
+    console.log(`The message is: ${message}`);
+
+    class Foo {
+
+    }
+
+    const bar = 'buz';
+
+    console.log(window?.foo?.bar ?? 'x');
+
+    async function* asyncGenerator() {
+      await Promise.resolve();
+      yield 0;
+      await Promise.resolve();
+      yield 1;
+    }
+  </script>
+
+  <script type="module" src="./app.js"></script>
+
+</body>
+
+</html>

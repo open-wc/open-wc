@@ -1,7 +1,32 @@
-import { fromCache, toCache } from './cache.js';
+import { registerElement } from './registerElement.js';
 
-const re = /<\/?([a-zA-Z0-9-]+)/g;
+/**
+ * allowed tag name chars
+ *
+ * @type {string}
+ */
+const chars = `-|\\.|[0-9]|[a-z]`;
 
+/**
+ * Regular Expression to find a custom element tag
+ *
+ * @type {RegExp}
+ */
+const re = new RegExp(`<\\/?([a-z](${chars})*-(${chars})*)`, 'g');
+
+/**
+ * Global cache of processed string arrays
+ *
+ * @type {Map<TemplateStringsArray, TemplateStringsArray>}
+ */
+const globalCache = new Map();
+
+/**
+ * Find custom element tags in the string
+ *
+ * @param {string} str
+ * @returns {RegExpExecArray[]}
+ */
 const matchAll = str => {
   const matches = [];
   let result;
@@ -13,27 +38,53 @@ const matchAll = str => {
   return matches;
 };
 
-const transformTemplate = (strings, tags) =>
-  toCache(
-    strings,
-    strings.map(str => {
-      let acc = str;
-      const matches = matchAll(str);
+/**
+ * transforms a strings array into another one with resolved scoped elements and caches it for future references
+ *
+ * @param {TemplateStringsArray} strings
+ * @param {Object.<string, typeof HTMLElement>} tags
+ * @param {Map<TemplateStringsArray, TemplateStringsArray>} cache
+ * @returns {TemplateStringsArray}
+ */
+const transformTemplate = (strings, tags, cache) => {
+  const transformedStrings = strings.map(str => {
+    let acc = str;
+    const matches = matchAll(str);
 
-      for (let i = matches.length - 1; i >= 0; i -= 1) {
-        const item = matches[i];
-        const replacement = tags[item[1]];
+    for (let i = matches.length - 1; i >= 0; i -= 1) {
+      const item = matches[i];
+      const klass = tags[item[1]];
 
-        if (replacement) {
-          const start = item.index + item[0].length - item[1].length;
-          const end = start + item[1].length;
+      if (klass) {
+        const tag = registerElement(item[1], klass);
+        const start = item.index + item[0].length - item[1].length;
+        const end = start + item[1].length;
 
-          acc = acc.slice(0, start) + replacement + acc.slice(end);
-        }
+        acc = acc.slice(0, start) + tag + acc.slice(end);
       }
+    }
 
-      return acc;
-    }),
-  );
+    return acc;
+  });
 
-export const transform = (strings, tags) => fromCache(strings) || transformTemplate(strings, tags);
+  // @ts-ignore
+  // noinspection JSCheckFunctionSignatures
+  cache.set(strings, transformedStrings);
+
+  // @ts-ignore
+  // noinspection JSValidateTypes
+  return transformedStrings;
+};
+
+/**
+ * Obtains the cached strings array with resolved scoped elements or creates it if needed
+ *
+ * @exports
+ * @param {TemplateStringsArray} strings
+ * @param {Object.<string, typeof HTMLElement>} tags
+ * @param {Map<TemplateStringsArray, TemplateStringsArray>} cache
+ * @returns {TemplateStringsArray}
+ */
+export function transform(strings, tags, cache = globalCache) {
+  return cache.get(strings) || transformTemplate(strings, tags, cache);
+}

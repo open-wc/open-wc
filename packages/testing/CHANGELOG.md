@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.3...@open-wc/testing@2.5.4) (2020-02-09)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.5.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.2...@open-wc/testing@2.5.3) (2020-02-06)
+
+
+### Bug Fixes
+
+* **testing:** export "waitUntil" type ([730514f](https://github.com/open-wc/open-wc/commit/730514f111926d6fb0ea750994e98482bb6ab092))
+
+
+
+
+
+## [2.5.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.1...@open-wc/testing@2.5.2) (2020-01-31)
+
+
+### Bug Fixes
+
+* skip brooken published versions ([25d21de](https://github.com/open-wc/open-wc/commit/25d21def522f22f98fc8c71b4c055617089c0e23))
+
+
+
+
+
 ## [2.5.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.0...@open-wc/testing@2.5.1) (2020-01-19)
 
 **Note:** Version bump only for package @open-wc/testing

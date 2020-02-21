@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.14.1...@open-wc/building-utils@2.14.2) (2020-02-10)
+
+
+### Bug Fixes
+
+* **building-utils:** keep edge 18 support for now ([#1328](https://github.com/open-wc/open-wc/issues/1328)) ([16a36af](https://github.com/open-wc/open-wc/commit/16a36af6438b83fbf5ce32efb52abaa5d6d13878))
+
+
+
+
+
+## [2.14.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.14.0...@open-wc/building-utils@2.14.1) (2020-02-09)
+
+**Note:** Version bump only for package @open-wc/building-utils
+
+
+
+
+
+# [2.14.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.13.1...@open-wc/building-utils@2.14.0) (2020-02-06)
+
+
+### Features
+
+* **polyfills-loader:** add shady css scoped polyfill ([3c0bc88](https://github.com/open-wc/open-wc/commit/3c0bc88f0e67806abbb901d689b01c565261b6e0))
+
+
+
+
+
+## [2.13.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.13.0...@open-wc/building-utils@2.13.1) (2020-02-02)
+
+**Note:** Version bump only for package @open-wc/building-utils
+
+
+
+
+
+# [2.13.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.11.0...@open-wc/building-utils@2.13.0) (2020-01-31)
+
+
+### Bug Fixes
+
+* skip brooken published versions ([25d21de](https://github.com/open-wc/open-wc/commit/25d21def522f22f98fc8c71b4c055617089c0e23))
+
+
+### Features
+
+* **polyfills-loader:** add polyfills loader ([249fee8](https://github.com/open-wc/open-wc/commit/249fee8a64982021eb2e1ad1937f3c08a4abc3c5))
+
+
+
+
+
 # [2.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.10.7...@open-wc/building-utils@2.11.0) (2019-12-09)
 
 

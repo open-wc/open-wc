@@ -3,7 +3,7 @@ const fs = require('fs');
 const { serialize, parse } = require('parse5');
 const { createIndexHTML, minifyIndexHTML } = require('@open-wc/building-utils/index-html');
 
-/** @typedef {import('parse5').ASTNode} ASTNode */
+/** @typedef {import('parse5').Document} ASTNode */
 /** @typedef {import('@open-wc/building-utils/index-html/create-index-html').EntriesConfig} EntriesConfig */
 /** @typedef {import('../rollup-plugin-index-html').RollupPluginIndexHTMLConfig} RollupPluginIndexHTMLConfig */
 

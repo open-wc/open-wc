@@ -17,7 +17,7 @@ const deepmerge = require('deepmerge');
  * @property {string[]} [babelModernExclude]
  * @property {string[]} [babelModuleExclude]
  * @property {boolean} [preserveSymlinks]
- * @property {Partial<import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig>} polyfills
+ * @property {import('./utils/inject-polyfills-loader-types').PolyfillsLoaderConfig} [polyfillsLoader]
  */
 
 function createEsmConfig(karmaConfig) {
@@ -53,11 +53,14 @@ function createEsmConfig(karmaConfig) {
   if (esmConfig.coverage) {
     const coverageExclude = [
       '**/node_modules/**',
+      '**/web_modules/**',
       '**/test/**',
       '**/spec/**',
       '**/demo/**',
       '**/stories/**',
-      '**/inline-module-*',
+      '**/inline-script-*',
+      '**/context.html',
+      '**/debug.html',
       ...(esmConfig.coverageExclude || []),
     ];
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/open-wc/open-wc/compare/@open-wc/codelabs@1.4.0...@open-wc/codelabs@1.5.0) (2020-02-09)
+
+
+### Bug Fixes
+
+* **codelabs:** add read property to newsapp render ([6c04580](https://github.com/open-wc/open-wc/commit/6c04580b99d00a045be6e0e865274c4ea39459d4))
+
+
+### Features
+
+* **codelabs:** add intermediate lit-html codelab ([#982](https://github.com/open-wc/open-wc/issues/982)) ([ad080ce](https://github.com/open-wc/open-wc/commit/ad080ce6747b402a8131c5dd49c3f7fb6d9bcc85))
+
+
+
+
+
 # [1.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/codelabs@1.3.1...@open-wc/codelabs@1.4.0) (2019-11-11)
 
 

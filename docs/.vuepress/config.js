@@ -15,6 +15,7 @@ const sidebar = [
       '/developing/routing',
       ['/developing/ide', 'IDE'],
       '/guide/component-libraries',
+      '/guide/dedupe-mixin',
     ],
   },
   {

@@ -1,0 +1,68 @@
+<html><head>
+  <title>My app</title>
+</head>
+
+<body>
+
+  <!-- relative path -->
+  
+
+  <!-- upwards path -->
+  
+
+  <!-- absolute path -->
+  
+
+
+
+<script>(function () {
+  function loadScript(src, type) {
+    return new Promise(function (resolve) {
+      var script = document.createElement('script');
+
+      function onLoaded() {
+        document.head.removeChild(script);
+        resolve();
+      }
+
+      script.src = src;
+      script.onload = onLoaded;
+
+      script.onerror = function () {
+        console.error('[polyfills-loader] failed to load: ' + src + ' check the network tab for HTTP status.');
+        onLoaded();
+      };
+
+      if (type) script.type = type;
+      document.head.appendChild(script);
+    });
+  }
+
+  var polyfills = [];
+
+  if ('noModule' in HTMLScriptElement.prototype) {
+    polyfills.push(loadScript('./polyfills/es-module-shims.js'));
+  }
+
+  if (!('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype)) {
+    polyfills.push(loadScript('./polyfills/intersection-observer.js'));
+  }
+
+  function loadFiles() {
+    [function () {
+      return loadScript('./app.js', 'module');
+    }, function () {
+      return loadScript('../src/app.js', 'module');
+    }, function () {
+      return loadScript('/src/app.js', 'module');
+    }].reduce(function (a, c) {
+      return a.then(c);
+    }, Promise.resolve());
+  }
+
+  if (polyfills.length) {
+    Promise.all(polyfills).then(loadFiles);
+  } else {
+    loadFiles();
+  }
+})();</script></body></html>

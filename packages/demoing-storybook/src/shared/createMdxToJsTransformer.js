@@ -4,13 +4,14 @@ const createCompiler = require('@storybook/addon-docs/mdx-compiler-plugin');
 
 const compilers = [createCompiler({})];
 
-module.exports = function createMdxToJsTransformer({ previewImport }) {
+module.exports = function createMdxToJsTransformer() {
   return async function transformMdxToJs(filePath, body) {
     const jsx = `
-      import { React, mdx } from '${previewImport}';
+      import * as React from 'storybook-prebuilt/react.js';
+      import { mdx } from 'storybook-prebuilt/addon-docs/blocks.js';
 
       ${await mdx(body, { compilers, filepath: filePath })}
-    `.replace('@storybook/addon-docs/blocks', previewImport);
+    `.replace('@storybook/addon-docs/blocks', 'storybook-prebuilt/addon-docs/blocks.js');
 
     return transformAsync(jsx, {
       filename: filePath,

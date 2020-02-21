@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/lit-helpers",
-  "version": "0.2.6",
+  "version": "0.2.10",
   "publishConfig": {
     "access": "public"
   },
@@ -12,7 +12,7 @@
     "directory": "packages/lit-helpers"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/lit-helpers",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
   },
@@ -33,8 +33,9 @@
     "lit-element": "^1.0.0"
   },
   "devDependencies": {
-    "@open-wc/testing": "^2.5.1",
+    "@open-wc/testing": "^2.5.4",
     "sinon": "^7.4.1"
   },
-  "module": "index.js"
+  "module": "index.js",
+  "sideEffects": false
 }

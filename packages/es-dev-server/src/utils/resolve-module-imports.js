@@ -141,10 +141,10 @@ async function maybeResolveImport(importer, importee, concatenatedString, cfg) {
     if (error instanceof ModuleNotFoundError) {
       const relativeImportFilePath = path.relative(cfg.rootDir, importer);
       const resolvedimportee = toBrowserPath(relativeImportFilePath);
-      const realtivePathToErrorFile = resolvedimportee.startsWith('.')
+      const relativePathToErrorFile = resolvedimportee.startsWith('.')
         ? resolvedimportee
         : `./${resolvedimportee}`;
-      throw new Error(`Could not resolve import "${importee}" in "${realtivePathToErrorFile}".`);
+      throw new Error(`Could not resolve import "${importee}" in "${relativePathToErrorFile}".`);
     }
     throw error;
   }

@@ -32,15 +32,15 @@ async function fetchText(url, userAgent) {
 
 async function expectCompatibilityTransform(userAgent, features = {}) {
   const stage4Features = await fetchText(
-    `stage-4-features.js${features.esModules ? '?transform-modules' : ''}`,
+    `stage-4-features.js${features.esModules ? '?transform-systemjs' : ''}`,
     userAgent,
   );
   const esModules = await fetchText(
-    `module-features.js${features.esModules ? '?transform-modules' : ''}`,
+    `module-features.js${features.esModules ? '?transform-systemjs' : ''}`,
     userAgent,
   );
   const stage4NoModernBrowserImpl = await fetchText(
-    `stage-4-no-modern-browser-impl.js${features.esModules ? '?transform-modules' : ''}`,
+    `stage-4-no-modern-browser-impl.js${features.esModules ? '?transform-systemjs' : ''}`,
     userAgent,
   );
 
@@ -67,13 +67,13 @@ async function expectCompatibilityTransform(userAgent, features = {}) {
 
   expect(stage4NoModernBrowserImpl).to.include(
     features.optionalChaining
-      ? 'lorem == null ? void 0 : (_lorem$ipsum = lorem.ipsum) == null ? void 0 : _lorem$ipsum.foo'
+      ? "(lorem === null || lorem === void 0 ? void 0 : lorem.ipsum) === 'lorem ipsum' && (lorem === null || lorem === void 0 ? void 0 : (_lorem$ipsum = lorem.ipsum) === null || _lorem$ipsum === void 0 ? void 0 : _lorem$ipsum.foo) === undefined;"
       : 'lorem?.ipsum?.foo',
   );
 
   expect(stage4NoModernBrowserImpl).to.include(
     features.nullishCoalescing
-      ? "foo != null ? foo : 'nullish colaesced'"
+      ? "(foo !== null && foo !== void 0 ? foo : 'nullish colaesced') === 'nullish colaesced'"
       : "foo ?? 'nullish colaesced'",
   );
 }
@@ -482,7 +482,7 @@ describe('compatibility transform middleware', () => {
       );
 
       try {
-        const response = await fetch(`${host}app.js?transform-modules`);
+        const response = await fetch(`${host}app.js?transform-systemjs`);
         const responseText = await response.text();
         expect(response.status).to.equal(200);
         expect(responseText).to.include(
@@ -523,21 +523,21 @@ describe('compatibility transform middleware', () => {
     });
   });
 
-  it('compiles inline modules', async () => {
+  it('compiles inline scripts', async () => {
     let server;
     try {
       ({ server } = await startServer(
         createConfig({
           port: 8080,
           compatibility: compatibilityModes.MAX,
-          rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-module'),
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'inline-script'),
         }),
       ));
 
       const indexResponse = await fetch(`${host}index.html`);
       expect(indexResponse.status).to.equal(200);
       const inlineModuleResponse = await fetch(
-        `${host}${virtualFilePrefix}inline-module-0.js?source=/index.html`,
+        `${host}${virtualFilePrefix}inline-script-1.js?source=/index.html`,
       );
       expect(inlineModuleResponse.status).to.equal(200);
       const inlineModuleText = await inlineModuleResponse.text();
@@ -545,6 +545,54 @@ describe('compatibility transform middleware', () => {
     } finally {
       server.close();
     }
+  });
+
+  describe('node resolve flag', () => {
+    it('transforms module imports', async () => {
+      const { server } = await startServer(
+        createConfig({
+          compatibility: compatibilityModes.NONE,
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          port: 8080,
+          nodeResolve: true,
+        }),
+      );
+
+      try {
+        const response = await fetch(`${host}app.js`);
+        const responseText = await response.text();
+
+        expect(response.status).to.equal(200);
+        expect(responseText).to.include(
+          "import { message } from './node_modules/my-module/index.js';",
+        );
+        expect(responseText).to.include('async function* asyncGenerator()');
+      } finally {
+        server.close();
+      }
+    });
+
+    it('transforms module imports when compiling to systemjs', async () => {
+      const { server } = await startServer(
+        createConfig({
+          compatibility: compatibilityModes.MAX,
+          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          port: 8080,
+          nodeResolve: true,
+        }),
+      );
+
+      try {
+        const response = await fetch(`${host}app.js?transform-systemjs`);
+        const responseText = await response.text();
+        expect(response.status).to.equal(200);
+        expect(responseText).to.include(
+          'System.register(["./node_modules/my-module/index.js", "./src/local-module.js"], function',
+        );
+      } finally {
+        server.close();
+      }
+    });
   });
 
   describe('combining node resolve and compatibility', () => {
@@ -599,7 +647,7 @@ describe('compatibility transform middleware', () => {
     });
 
     it('transforms properly', async () => {
-      const response = await fetch(`${host}app.ts?transform-modules`);
+      const response = await fetch(`${host}app.ts?transform-systemjs`);
       const responseText = await response.text();
 
       expect(response.status).to.equal(200);

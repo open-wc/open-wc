@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma",
-  "version": "3.2.32",
+  "version": "3.2.42",
   "publishConfig": {
     "access": "public"
   },
@@ -12,7 +12,7 @@
     "directory": "packages/testing-karma"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/testing-karma",
   "main": "testing-karma.js",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
@@ -28,7 +28,7 @@
     "compatibility"
   ],
   "dependencies": {
-    "@open-wc/karma-esm": "^2.12.8",
+    "@open-wc/karma-esm": "^2.13.9",
     "axe-core": "^3.3.1",
     "karma": "^4.1.0",
     "karma-chrome-launcher": "^3.1.0",

@@ -1,0 +1,42 @@
+{
+  "name": "@open-wc/dedupe-mixin",
+  "version": "1.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Dedupe JavaScript Class Mixins",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/dedupe-mixin"
+  },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/dedupe-mixin",
+  "scripts": {
+    "demo-build:no-dedupe": "rollup -c demo-typed/no-dedupe/rollup.config.js",
+    "demo-build:with-dedupe": "rollup -c demo-typed/with-dedupe/rollup.config.js",
+    "prepublishOnly": "../../scripts/insert-header.js",
+    "site:build": "run-p demo-build:*",
+    "start:no-dedupe": "http-server -o demo-typed/no-dedupe/",
+    "start:with-dedupe": "http-server -o demo-typed/with-dedupe/"
+  },
+  "files": [
+    "*.d.ts",
+    "*.js",
+    "src"
+  ],
+  "keywords": [
+    "dedupe",
+    "mixins"
+  ],
+  "devDependencies": {
+    "@open-wc/building-rollup": "^0.21.0",
+    "@open-wc/testing": "^2.5.4",
+    "http-server": "^0.11.1",
+    "rollup": "^1.15.6",
+    "sinon": "^7.4.1"
+  },
+  "module": "index.js",
+  "sideEffects": false
+}

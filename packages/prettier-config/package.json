@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/prettier-config",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "publishConfig": {
     "access": "public"
   },
@@ -12,7 +12,7 @@
     "directory": "packages/prettier-config"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/prettier-config",
   "main": "prettier.config.js",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"

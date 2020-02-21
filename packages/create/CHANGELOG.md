@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.8](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.7...@open-wc/create@0.26.8) (2020-02-19)
+
+
+### Bug Fixes
+
+* **create:** update building-rollup due to terser vulnerability ([#1350](https://github.com/open-wc/open-wc/issues/1350)) ([feff11e](https://github.com/open-wc/open-wc/commit/feff11e818d3673fbf9df7b3c31092d2f77be2c4))
+
+
+
+
+
+## [0.26.7](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.6...@open-wc/create@0.26.7) (2020-02-09)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+## [0.26.6](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.5...@open-wc/create@0.26.6) (2020-02-03)
+
+
+### Bug Fixes
+
+* **create:** update broken @babel/cli ([b0cb95b](https://github.com/open-wc/open-wc/commit/b0cb95b650e3aae3d04ddf1879b5eec62abe7d00))
+
+
+
+
+
+## [0.26.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.4...@open-wc/create@0.26.5) (2020-02-02)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
 ## [0.26.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.3...@open-wc/create@0.26.4) (2020-01-15)
 
 

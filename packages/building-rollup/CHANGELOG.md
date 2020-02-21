@@ -3,6 +3,88 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.20.6...@open-wc/building-rollup@0.21.0) (2020-02-10)
+
+
+### Features
+
+* **building-rollup:** support web-modules ([2799753](https://github.com/open-wc/open-wc/commit/2799753bfda62f534a22f6db006f5cda97b50665))
+* **building-webpack:** support web-modules ([492860a](https://github.com/open-wc/open-wc/commit/492860adbafecacb95378179be950e2e6b2c002d))
+
+
+
+
+
+## [0.20.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.20.5...@open-wc/building-rollup@0.20.6) (2020-02-10)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.20.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.20.4...@open-wc/building-rollup@0.20.5) (2020-02-09)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.20.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.20.3...@open-wc/building-rollup@0.20.4) (2020-02-09)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.20.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.20.2...@open-wc/building-rollup@0.20.3) (2020-02-06)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.20.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.20.1...@open-wc/building-rollup@0.20.2) (2020-02-03)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [0.20.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.20.0...@open-wc/building-rollup@0.20.1) (2020-02-03)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+# [0.20.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.19.4...@open-wc/building-rollup@0.20.0) (2020-02-02)
+
+
+### Features
+
+* **building-rollup:** remove extra babel plugins ([afd3690](https://github.com/open-wc/open-wc/commit/afd369001ca4a6b13d541c1ff9b618fd02d34775))
+
+
+
+
+
+## [0.19.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.19.3...@open-wc/building-rollup@0.19.4) (2020-01-31)
+
+
+### Bug Fixes
+
+* skip brooken published versions ([25d21de](https://github.com/open-wc/open-wc/commit/25d21def522f22f98fc8c71b4c055617089c0e23))
+
+
+
+
+
 ## [0.19.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.19.2...@open-wc/building-rollup@0.19.3) (2020-01-27)
 
 **Note:** Version bump only for package @open-wc/building-rollup
