@@ -36,7 +36,7 @@ When testing with karma, we recommend the following libraries:
 - [chai](https://www.chaijs.com/) for doing assertions
 - [sinon](https://open-wc.org/testing/testing-sinon.html) for mocks, spies and stubs
 - [@open-wc/testing-helpers](https://open-wc.org/testing/testing-helpers.html) for setting up test fixtures and helper functions
-- [@open-wc/semantic-dom-diff](https://open-wc.org/testing/smenatic-dom-diff.html) for snapshot testing the rendered HTML
+- [@open-wc/semantic-dom-diff](https://open-wc.org/testing/semantic-dom-diff.html) for snapshot testing the rendered HTML
 - [@open-wc/chai-axe-a11y](https://open-wc.org/testing/testing-chai-a11y-axe.html) for testing accessibility
 
 To use these testing libraries, we recommend [@open-wc/testing](https://open-wc.org/testing/testing.html). This is an opinionated package that combines and configures many of these testing libraries, to minimize the amount of ceremony required to set up tests. For example, it exports chai with plugins already registered.

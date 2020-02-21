@@ -44,7 +44,7 @@ Add scripts to your `package.json`, modify the flags as needed:
 ```json
 {
   "scripts": {
-    "start": "es-dev-server --app-index index.html --node-resolve --dedupe --watch --open"
+    "start": "es-dev-server --app-index index.html --node-resolve --watch --open"
   }
 }
 ```
@@ -91,7 +91,7 @@ es-dev-server requires node v10 or higher
 | preserve-symlinks    | boolean       | Preserve symlinks when resolving modules. Set to true, if using tools that rely on symlinks, such as `npm link`. Default false. |
 | module-dirs          | string/array  | Directories to resolve modules from. Used by node-resolve                                                                       |
 | babel                | boolean       | Transform served code through babel. Requires .babelrc                                                                          |
-| file-extensions      | number/array  | Extra file extensions to use when transforming code.                                                                            |
+| file-extensions      | string/array  | Extra file extensions to use when transforming code.                                                                            |
 | babel-exclude        | number/array  | Patterns of files to exclude from babel compilation.                                                                            |
 | babel-modern-exclude | number/array  | Patterns of files to exclude from babel compilation on modern browsers.                                                         |
 | babel-module-exclude | number/array  | Patterns of files to exclude from babel compilation for modules only.                                                           |
@@ -110,17 +110,18 @@ module.exports = {
   watch: true,
   nodeResolve: true,
   appIndex: 'demo/index.html',
-  moduleDirs: ['node_modules', 'custom-modules'],
+  moduleDirs: ['node_modules', 'web_modules'],
 };
 ```
 
 In addition to the command-line flags, the configuration file accepts these additional options:
 
-| name                 | type   | description                                            |
-| -------------------- | ------ | ------------------------------------------------------ |
-| middlewares          | array  | Koa middlewares to add to the server, read more below. |
-| responseTransformers | array  | Functions which transform the server's response.       |
-| babelConfig          | object | Babel config to run with the server                    |
+| name                 | type   | description                                              |
+| -------------------- | ------ | -------------------------------------------------------- |
+| middlewares          | array  | Koa middlewares to add to the server, read more below.   |
+| responseTransformers | array  | Functions which transform the server's response.         |
+| babelConfig          | object | Babel config to run with the server                      |
+| polyfillsLoader      | object | Configuration for the polyfills loader, read more below. |
 
 ## Node resolve
 
@@ -538,14 +539,48 @@ This works down to at least IE11. Depending on what browser features you are usi
 **none**
 `none` disables compatibility mode entirely.
 
-**polyfills**
-Compatibility mode injects polyfills for popular browser features. We plan to make this behavior configurable.
+</details>
 
-Features which are polyfilled:
+### Polyfills loader
 
-- [core-js (js polyfills)](https://github.com/zloirock/core-js)
-- [webcomponents](https://github.com/webcomponents/webcomponentsjs)
-- [fetch](https://github.com/github/fetch)
+When compatibility mode is enabled, polyfills are loaded using [polyfills-loader](https://github.com/open-wc/open-wc/tree/master/packages/polyfills-loader).
+
+<details>
+  <summary>Read more</summary>
+
+You can customize the polyfill loader configuration from your configuration file. Check the docs for the [polyfills-loader](https://github.com/open-wc/open-wc/tree/master/packages/polyfills-loader) for all possible options.
+
+```js
+module.exports = {
+  polyfillsLoader: {
+    polyfills: {
+      fetch: false,
+      custom: [
+        {
+          name: 'my-feature-polyfill',
+          path: require.resolve('my-feature-polyfill'),
+          test: "!('myFeature' in window)",
+        },
+      ],
+    },
+  },
+};
+```
+
+By default, es-dev-server wraps all scripts and are deferred until polyfills are loaded. Loading order of scripts are preserved, but this can create problems if you rely on a script being executed before HTML is parsed. You can configure `es-dev-server` to exclude certain types of scripts:
+
+```js
+module.exports = {
+  polyfillsLoader: {
+    exclude: {
+      jsModules: true,
+      inlineJsModules: true,
+      jsScripts: true,
+      inlineJsScripts: true,
+    },
+  },
+};
+```
 
 </details>
 

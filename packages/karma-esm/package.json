@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/karma-esm",
-  "version": "2.12.5",
+  "version": "2.13.9",
   "publishConfig": {
     "access": "public"
   },
@@ -12,7 +12,7 @@
     "directory": "packages/karma-esm"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/karma-esm",
   "main": "./karma-esm.js",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js",
@@ -32,20 +32,20 @@
     "polyfill"
   ],
   "dependencies": {
-    "@open-wc/building-utils": "^2.11.0",
+    "@open-wc/building-utils": "^2.14.2",
     "babel-plugin-istanbul": "^5.1.4",
     "chokidar": "^3.0.0",
     "deepmerge": "^3.2.0",
-    "es-dev-server": "^1.36.1",
+    "es-dev-server": "^1.40.0",
     "minimatch": "^3.0.4",
     "node-fetch": "^2.6.0",
     "portfinder": "^1.0.21",
     "request": "^2.88.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.7.0",
-    "@babel/plugin-proposal-decorators": "^7.7.0",
-    "@babel/preset-typescript": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
     "@types/lodash-es": "^4.17.3",
     "chai": "^4.2.0",
     "karma": "^4.1.0",

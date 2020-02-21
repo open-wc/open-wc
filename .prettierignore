@@ -9,5 +9,6 @@ packages/**/test/**/snapshots
 /packages/es-dev-server/demo/**/*
 /packages/karma-esm/src/esm-debug.html
 /packages/karma-esm/src/esm-context.html
+/packages/demoing-storybook/storybook-static/**/*
 CHANGELOG.md
 __snapshots__/

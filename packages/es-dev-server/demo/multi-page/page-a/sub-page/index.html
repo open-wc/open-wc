@@ -1,0 +1,43 @@
+<html>
+
+<body>
+  <img width="100" src="/packages/es-dev-server/demo/logo.png">
+
+  <h1>Demo showcasing a multi page application</h1>
+
+  <h2>Page A, sub page</h2>
+
+  <ul>
+    <li>
+      <a href="/packages/es-dev-server/demo/multi-page/">Main</a>
+    </li>
+    <li>
+      <a href="/packages/es-dev-server/demo/multi-page/page-a/">Page A</a>
+    </li>
+    <li>
+      <a href="/packages/es-dev-server/demo/multi-page/page-b/">Page B</a>
+    </li>
+  </ul>
+
+  <div id="test"></div>
+
+  <script type="module">
+    import { render, html } from 'lit-html';
+
+    window.__inline = !!render && !!html;
+  </script>
+
+  <script type="module">
+    import '../../module-a.js';
+    import '../../page-b/module-b.js';
+
+    window.__tests = {
+      inline: window.__inline || false,
+      moduleA: window.__moduleA || false,
+      moduleB: window.__moduleB || false,
+    };
+    document.getElementById('test').innerHTML = `<pre>${JSON.stringify(window.__tests, null, 2)}</pre>`;
+  </script>
+</body>
+
+</html>

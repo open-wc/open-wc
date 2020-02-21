@@ -1,7 +1,7 @@
-export { html } from '@open-wc/storybook-prebuilt';
+export { html } from 'lit-html';
 
 export {
-  storiesOf,
+  // storiesOf,
   addParameters,
   addDecorator,
   setCustomElements,
@@ -9,10 +9,10 @@ export {
   isValidComponent,
   isValidMetaData,
   configure,
-} from '@open-wc/storybook-prebuilt';
-export { action } from '@open-wc/storybook-prebuilt';
-export { withA11y } from '@open-wc/storybook-prebuilt';
-export { linkTo } from '@open-wc/storybook-prebuilt';
+} from 'storybook-prebuilt/web-components.js';
+export { action } from 'storybook-prebuilt/addon-actions.js';
+export { withA11y } from 'storybook-prebuilt/addon-a11y.js';
+export { linkTo } from 'storybook-prebuilt/addon-links.js';
 
 export {
   withKnobs,
@@ -28,9 +28,9 @@ export {
   radios,
   files,
   optionsKnob,
-} from '@open-wc/storybook-prebuilt';
+} from 'storybook-prebuilt/addon-knobs.js';
 
-export { withWebComponentsKnobs } from '@open-wc/storybook-prebuilt';
+export { withWebComponentsKnobs } from 'storybook-prebuilt/addon-web-components-knobs.js';
 
 export {
   Anchor,
@@ -42,4 +42,4 @@ export {
   Story,
   Preview,
   Props,
-} from '@open-wc/storybook-prebuilt/dist/preview.js';
+} from 'storybook-prebuilt/addon-docs/blocks.js';

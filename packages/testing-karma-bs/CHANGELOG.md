@@ -3,6 +3,118 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.42](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.41...@open-wc/testing-karma-bs@1.3.42) (2020-02-10)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
+## [1.3.41](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.40...@open-wc/testing-karma-bs@1.3.41) (2020-02-10)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
+## [1.3.40](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.39...@open-wc/testing-karma-bs@1.3.40) (2020-02-09)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
+## [1.3.39](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.38...@open-wc/testing-karma-bs@1.3.39) (2020-02-09)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
+## [1.3.38](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.37...@open-wc/testing-karma-bs@1.3.38) (2020-02-06)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
+## [1.3.37](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.36...@open-wc/testing-karma-bs@1.3.37) (2020-02-03)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
+## [1.3.36](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.35...@open-wc/testing-karma-bs@1.3.36) (2020-02-03)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
+## [1.3.35](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.34...@open-wc/testing-karma-bs@1.3.35) (2020-02-02)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
+## [1.3.34](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.33...@open-wc/testing-karma-bs@1.3.34) (2020-02-02)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
+## [1.3.33](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.32...@open-wc/testing-karma-bs@1.3.33) (2020-01-31)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
+## [1.3.32](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.31...@open-wc/testing-karma-bs@1.3.32) (2020-01-27)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
+## [1.3.31](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.30...@open-wc/testing-karma-bs@1.3.31) (2020-01-27)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
+## [1.3.30](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.29...@open-wc/testing-karma-bs@1.3.30) (2020-01-13)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
+## [1.3.29](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.28...@open-wc/testing-karma-bs@1.3.29) (2020-01-13)
+
+**Note:** Version bump only for package @open-wc/testing-karma-bs
+
+
+
+
+
 ## [1.3.28](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma-bs@1.3.27...@open-wc/testing-karma-bs@1.3.28) (2020-01-07)
 
 **Note:** Version bump only for package @open-wc/testing-karma-bs

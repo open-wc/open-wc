@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/semantic-dom-diff",
-  "version": "0.15.5",
+  "version": "0.17.1",
   "publishConfig": {
     "access": "public"
   },
@@ -12,7 +12,7 @@
     "directory": "packages/semantic-dom-diff"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
   },
@@ -27,7 +27,7 @@
     "snapshots"
   ],
   "devDependencies": {
-    "@open-wc/testing-helpers": "^1.5.0",
+    "@open-wc/testing-helpers": "^1.5.2",
     "chai": "^4.2.0",
     "mocha": "^6.2.2"
   },

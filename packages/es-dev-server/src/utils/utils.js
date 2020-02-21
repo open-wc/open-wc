@@ -29,8 +29,6 @@ export class IsBinaryFileError extends Error {}
 /** @type {WeakMap<import('koa').Request, string>} */
 const filePathsForRequests = new WeakMap();
 
-const htmlTags = ['html', 'head', 'body'];
-
 /**
  * Returns the body value as string. If the response is a stream, the
  * stream is drained and the result is returned. Because koa-static stores
@@ -134,21 +132,7 @@ export async function isIndexHTMLResponse(ctx, appIndex) {
 
   // make the check based on content-type and check
   const contentType = ctx.response.header && ctx.response.header['content-type'];
-  if (!contentType || !contentType.includes('text/html')) {
-    return false;
-  }
-
-  try {
-    const indexHTMLString = await getBodyAsString(ctx);
-    return htmlTags.some(
-      tag => indexHTMLString.includes(`<${tag}`) && indexHTMLString.includes(`</${tag}>`),
-    );
-  } catch (error) {
-    if (error instanceof RequestCancelledError) {
-      return false;
-    }
-    throw error;
-  }
+  return contentType && contentType.includes('text/html');
 }
 
 /**
@@ -162,14 +146,14 @@ export function isPolyfill(url) {
  * @param {string} url
  */
 export function shoudlTransformToModule(url) {
-  return url.includes('transform-module');
+  return url.includes('transform-systemjs');
 }
 
 /**
  * @param {string} url
  */
-export function isInlineModule(url) {
-  return url.includes(`inline-module-`) && url.includes('?source=');
+export function isInlineScript(url) {
+  return url.includes(`inline-script-`) && url.includes('?source=');
 }
 
 /**
@@ -177,7 +161,7 @@ export function isInlineModule(url) {
  * @param {string} url
  */
 export function isGeneratedFile(url) {
-  return url.startsWith(virtualFilePrefix) || isPolyfill(url) || isInlineModule(url);
+  return url.startsWith(virtualFilePrefix) || isPolyfill(url) || isInlineScript(url);
 }
 
 /**
@@ -191,7 +175,7 @@ export function getRequestFilePath(ctx, rootDir) {
   }
 
   // inline module requests have the source in a query string
-  if (isInlineModule(ctx.url)) {
+  if (isInlineScript(ctx.url)) {
     const url = ctx.url.split('?')[0];
     const indexPath = toFilePath(url);
     return path.join(rootDir, indexPath);

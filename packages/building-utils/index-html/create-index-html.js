@@ -8,7 +8,7 @@ const { createLoaderScript } = require('./loader-script');
 const { minifyIndexHTML, defaultMinifyHTMLConfig } = require('./minify-index-html');
 const { createContentHash, cleanImportPath, polyfillFilename } = require('./utils');
 
-/** @typedef {import('parse5').ASTNode} ASTNode */
+/** @typedef {import('parse5').Document} ASTNode */
 
 /**
  * @typedef {object} EntriesConfig
@@ -38,7 +38,7 @@ const { createContentHash, cleanImportPath, polyfillFilename } = require('./util
 /**
  * @typedef {object} PolyfillInstruction
  * @property {string} name name of the polyfill
- * @property {string} path polyfill path
+ * @property {string|Array<string>} path polyfill path
  * @property {string} [test] expression which should evaluate to true to load the polyfill
  * @property {boolean} [nomodule] whether to inject the polyfills as a script with nomodule attribute
  * @property {boolean} [module] wether to load the polyfill with type module
@@ -51,6 +51,7 @@ const { createContentHash, cleanImportPath, polyfillFilename } = require('./util
  * @property {boolean} [coreJs] whether to polyfill core-js polyfills
  * @property {boolean | string} [regeneratorRuntime] whether to add regenerator runtime
  * @property {boolean} [webcomponents] whether to polyfill webcomponents
+ * @property {boolean} [shadyCssCustomStyle] whether to polyfill shadyCSS
  * @property {boolean} [fetch] whether to polyfill fetch
  * @property {boolean} [intersectionObserver] whether to polyfill intersection observer
  * @property {boolean} [dynamicImport] whether to polyfill dynamic import

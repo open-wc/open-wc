@@ -1,15 +1,4 @@
-/**
- * @typedef {object} CompatibilityTransformMiddleware
- * @property {string} rootDir
- * @property {boolean} readUserBabelConfig
- * @property {boolean | import('@rollup/plugin-node-resolve').Options} nodeResolve
- * @property {string} compatibilityMode
- * @property {object} [customBabelConfig]
- * @property {string[]} fileExtensions
- * @property {string[]} babelExclude
- * @property {string[]} babelModernExclude
- * @property {string[]} babelModuleExclude
- */
+/** @typedef {import('./compatibility-transform-types').CompatibilityTransformMiddleware} CompatibilityTransformMiddleware */
 
 import stripAnsi from 'strip-ansi';
 import {
@@ -18,10 +7,10 @@ import {
   isPolyfill,
   RequestCancelledError,
   shoudlTransformToModule,
+  logDebug,
 } from '../utils/utils.js';
 import { sendMessageToActiveBrowsers } from '../utils/message-channel.js';
-import { createResolveModuleImports, ResolveSyntaxError } from '../utils/resolve-module-imports.js';
-import { createCompatibilityTransform } from '../utils/compatibility-transform.js';
+import { ResolveSyntaxError } from '../utils/resolve-module-imports.js';
 import { getUserAgentCompat } from '../utils/user-agent-compat.js';
 
 /**
@@ -42,28 +31,23 @@ function logError(errorMessage) {
  * @param {CompatibilityTransformMiddleware} cfg
  */
 export function createCompatibilityTransformMiddleware(cfg) {
-  const resolveModuleImports = cfg.nodeResolve
-    ? createResolveModuleImports(
-        cfg.rootDir,
-        cfg.fileExtensions,
-        typeof cfg.nodeResolve === 'boolean' ? undefined : cfg.nodeResolve,
-      )
-    : undefined;
-  const compatibilityTransform = createCompatibilityTransform(cfg, resolveModuleImports);
-
   /** @type {import('koa').Middleware} */
   async function compatibilityMiddleware(ctx, next) {
     const baseURL = ctx.url.split('?')[0].split('#')[0];
     if (isPolyfill(ctx.url) || !cfg.fileExtensions.some(ext => baseURL.endsWith(ext))) {
       return next();
     }
+
+    if (ctx.headers.accept.includes('text/html')) {
+      return next();
+    }
+
     await next();
 
     // should be a 2xx response
     if (ctx.status < 200 || ctx.status >= 300) {
       return undefined;
     }
-
     const transformModule = shoudlTransformToModule(ctx.url);
     const filePath = getRequestFilePath(ctx, cfg.rootDir);
     // if there is no file path, this file was not served statically
@@ -77,7 +61,7 @@ export function createCompatibilityTransformMiddleware(cfg) {
     try {
       const code = await getBodyAsString(ctx);
       const uaCompat = getUserAgentCompat(ctx);
-      const transformedCode = await compatibilityTransform({
+      const transformedCode = await cfg.transformJs({
         uaCompat,
         filePath,
         code,
@@ -101,6 +85,8 @@ export function createCompatibilityTransformMiddleware(cfg) {
         );
         return undefined;
       }
+
+      logDebug(error);
 
       let errorMessage = error.message;
 

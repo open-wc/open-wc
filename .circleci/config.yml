@@ -10,7 +10,7 @@ defaults: &defaults
     - image: circleci/node:10.16.0-browsers
 
 jobs:
-  test:
+  build:
     <<: *defaults
     steps:
       - checkout
@@ -18,15 +18,6 @@ jobs:
       - restore_cache:
           keys:
             - v4-dependencies-{{ checksum "yarn.lock" }}
-      # - run:
-      #     name: Do `yarn install` on cache miss
-      #     command: |
-      #       if [ -d "./node_modules" ]; then
-      #         echo "Restored node_modules from cache";
-      #       else
-      #         echo "Fill node_modules via yarn install";
-      #         yarn install --frozen-lockfile
-      #       fi
       # seems we always need to run yarn for mono repos to get nested dependencies and bin links
       - run: yarn install --frozen-lockfile
       - save_cache:
@@ -40,23 +31,50 @@ jobs:
       # auto build typescript definition files (not part of build as locally JsDoc alone is all we need)
       - run: npm run build:types
 
+      # persist built files and duplicate dependencies to workspace
+      - persist_to_workspace:
+          root: ~/
+          paths:
+              - repo/node_modules
+              - repo/packages/*/node_modules
+              - repo/packages/*/dist
+  test-local:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+            at: ~/
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v4-dependencies-{{ checksum "yarn.lock" }}
       # run lint
       - run: npm run lint
 
       # run tests
       - run: npm run test:node
-      - run: npm run test:bs
 
-      - persist_to_workspace:
-          root: ~/repo
-          paths: .
+      # run browser tests
+      - run: npm run test:browser
+  test-bs:
+    <<: *defaults
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - attach_workspace:
+            at: ~/
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v4-dependencies-{{ checksum "yarn.lock" }}
+      - run: npm run test:bs
   deploy:
     <<: *defaults
     steps:
       # will add github as known host
       - checkout
       - attach_workspace:
-          at: ~/repo
+          at: ~/
       - add_ssh_keys:
           fingerprints:
             - '3f:ea:54:b7:77:13:b6:cf:29:90:2b:19:bb:eb:b5:f1'
@@ -73,10 +91,17 @@ workflows:
   version: 2
   test-deploy:
     jobs:
-      - test
+      - build
+      - test-local:
+          requires:
+            - build
+      - test-bs:
+          requires:
+            - build
       - deploy:
           requires:
-            - test
+            - test-local
+            - test-bs
           filters:
             branches:
               only: master

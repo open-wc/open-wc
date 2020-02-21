@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-index-html",
-  "version": "1.7.5",
+  "version": "1.9.2",
   "publishConfig": {
     "access": "public"
   },
@@ -12,7 +12,7 @@
     "directory": "packages/webpack-index-html-plugin"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/rollup-plugin-index-html",
   "main": "rollup-plugin-index-html.js",
   "scripts": {
     "test": "npm run test:node",
@@ -29,8 +29,8 @@
     "polyfill"
   ],
   "dependencies": {
-    "@import-maps/resolve": "^0.2.1",
-    "@open-wc/building-utils": "^2.11.0",
+    "@import-maps/resolve": "^0.2.4",
+    "@open-wc/building-utils": "^2.14.2",
     "deepmerge": "^3.2.0",
     "lit-element": "^2.0.1",
     "lit-html": "^1.0.0",
@@ -39,7 +39,8 @@
     "parse5": "^5.1.0"
   },
   "devDependencies": {
-    "@webcomponents/webcomponentsjs": "^2.2.10",
+    "@webcomponents/shadycss": "^1.9.4",
+    "@webcomponents/webcomponentsjs": "^2.4.0",
     "chai": "^4.2.0",
     "intersection-observer": "^0.7.0",
     "mocha": "^6.2.2",

@@ -1,0 +1,94 @@
+<html><head>
+  <title>My app</title>
+</head>
+
+<body>
+
+  <script>var _ref, _window, _window$foo;
+
+function _awaitAsyncGenerator(value) { return new _AwaitValue(value); }
+
+function _wrapAsyncGenerator(fn) { return function () { return new _AsyncGenerator(fn.apply(this, arguments)); }; }
+
+function _AsyncGenerator(gen) { var front, back; function send(key, arg) { return new Promise(function (resolve, reject) { var request = { key: key, arg: arg, resolve: resolve, reject: reject, next: null }; if (back) { back = back.next = request; } else { front = back = request; resume(key, arg); } }); } function resume(key, arg) { try { var result = gen[key](arg); var value = result.value; var wrappedAwait = value instanceof _AwaitValue; Promise.resolve(wrappedAwait ? value.wrapped : value).then(function (arg) { if (wrappedAwait) { resume(key === "return" ? "return" : "next", arg); return; } settle(result.done ? "return" : "normal", arg); }, function (err) { resume("throw", err); }); } catch (err) { settle("throw", err); } } function settle(type, value) { switch (type) { case "return": front.resolve({ value: value, done: true }); break; case "throw": front.reject(value); break; default: front.resolve({ value: value, done: false }); break; } front = front.next; if (front) { resume(front.key, front.arg); } else { back = null; } } this._invoke = send; if (typeof gen.return !== "function") { this.return = undefined; } }
+
+if (typeof Symbol === "function" && Symbol.asyncIterator) { _AsyncGenerator.prototype[Symbol.asyncIterator] = function () { return this; }; }
+
+_AsyncGenerator.prototype.next = function (arg) { return this._invoke("next", arg); };
+
+_AsyncGenerator.prototype.throw = function (arg) { return this._invoke("throw", arg); };
+
+_AsyncGenerator.prototype.return = function (arg) { return this._invoke("return", arg); };
+
+function _AwaitValue(value) { this.wrapped = value; }
+
+const message = 'foo';
+console.log("The message is: ".concat(message));
+
+class Foo {}
+
+const bar = 'buz';
+console.log((_ref = (_window = window) === null || _window === void 0 ? void 0 : (_window$foo = _window.foo) === null || _window$foo === void 0 ? void 0 : _window$foo.bar) !== null && _ref !== void 0 ? _ref : 'x');
+
+function asyncGenerator() {
+  return _asyncGenerator.apply(this, arguments);
+}
+
+function _asyncGenerator() {
+  _asyncGenerator = _wrapAsyncGenerator(function* () {
+    yield _awaitAsyncGenerator(Promise.resolve());
+    yield 0;
+    yield _awaitAsyncGenerator(Promise.resolve());
+    yield 1;
+  });
+  return _asyncGenerator.apply(this, arguments);
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4Lmh0bWwiXSwibmFtZXMiOlsibWVzc2FnZSIsImNvbnNvbGUiLCJsb2ciLCJGb28iLCJiYXIiLCJ3aW5kb3ciLCJmb28iLCJhc3luY0dlbmVyYXRvciIsIlByb21pc2UiLCJyZXNvbHZlIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFDSSxNQUFNQSxPQUFPLEdBQUcsS0FBaEI7QUFDQUMsT0FBTyxDQUFDQyxHQUFSLDJCQUErQkYsT0FBL0I7O0FBRUEsTUFBTUcsR0FBTixDQUFVOztBQUlWLE1BQU1DLEdBQUcsR0FBRyxLQUFaO0FBRUFILE9BQU8sQ0FBQ0MsR0FBUixvQkFBWUcsTUFBWiwyREFBWSxRQUFRQyxHQUFwQixnREFBWSxZQUFhRixHQUF6Qix1Q0FBZ0MsR0FBaEM7O1NBRWdCRyxjOzs7Ozt3Q0FBaEIsYUFBaUM7QUFDL0IsK0JBQU1DLE9BQU8sQ0FBQ0MsT0FBUixFQUFOO0FBQ0EsVUFBTSxDQUFOO0FBQ0EsK0JBQU1ELE9BQU8sQ0FBQ0MsT0FBUixFQUFOO0FBQ0EsVUFBTSxDQUFOO0FBQ0QsRyIsInNvdXJjZXNDb250ZW50IjpbIlxuICAgIGNvbnN0IG1lc3NhZ2UgPSAnZm9vJztcbiAgICBjb25zb2xlLmxvZyhgVGhlIG1lc3NhZ2UgaXM6ICR7bWVzc2FnZX1gKTtcblxuICAgIGNsYXNzIEZvbyB7XG5cbiAgICB9XG5cbiAgICBjb25zdCBiYXIgPSAnYnV6JztcblxuICAgIGNvbnNvbGUubG9nKHdpbmRvdz8uZm9vPy5iYXIgPz8gJ3gnKTtcblxuICAgIGFzeW5jIGZ1bmN0aW9uKiBhc3luY0dlbmVyYXRvcigpIHtcbiAgICAgIGF3YWl0IFByb21pc2UucmVzb2x2ZSgpO1xuICAgICAgeWllbGQgMDtcbiAgICAgIGF3YWl0IFByb21pc2UucmVzb2x2ZSgpO1xuICAgICAgeWllbGQgMTtcbiAgICB9XG4gICJdfQ==</script>
+
+  <script type="module">var _ref, _window, _window$foo;
+
+function _awaitAsyncGenerator(value) { return new _AwaitValue(value); }
+
+function _wrapAsyncGenerator(fn) { return function () { return new _AsyncGenerator(fn.apply(this, arguments)); }; }
+
+function _AsyncGenerator(gen) { var front, back; function send(key, arg) { return new Promise(function (resolve, reject) { var request = { key: key, arg: arg, resolve: resolve, reject: reject, next: null }; if (back) { back = back.next = request; } else { front = back = request; resume(key, arg); } }); } function resume(key, arg) { try { var result = gen[key](arg); var value = result.value; var wrappedAwait = value instanceof _AwaitValue; Promise.resolve(wrappedAwait ? value.wrapped : value).then(function (arg) { if (wrappedAwait) { resume(key === "return" ? "return" : "next", arg); return; } settle(result.done ? "return" : "normal", arg); }, function (err) { resume("throw", err); }); } catch (err) { settle("throw", err); } } function settle(type, value) { switch (type) { case "return": front.resolve({ value: value, done: true }); break; case "throw": front.reject(value); break; default: front.resolve({ value: value, done: false }); break; } front = front.next; if (front) { resume(front.key, front.arg); } else { back = null; } } this._invoke = send; if (typeof gen.return !== "function") { this.return = undefined; } }
+
+if (typeof Symbol === "function" && Symbol.asyncIterator) { _AsyncGenerator.prototype[Symbol.asyncIterator] = function () { return this; }; }
+
+_AsyncGenerator.prototype.next = function (arg) { return this._invoke("next", arg); };
+
+_AsyncGenerator.prototype.throw = function (arg) { return this._invoke("throw", arg); };
+
+_AsyncGenerator.prototype.return = function (arg) { return this._invoke("return", arg); };
+
+function _AwaitValue(value) { this.wrapped = value; }
+
+import { message } from './node_modules/my-module/index.js';
+import './src/local-module.js';
+console.log("The message is: ".concat(message));
+
+class Foo {}
+
+const bar = 'buz';
+console.log((_ref = (_window = window) === null || _window === void 0 ? void 0 : (_window$foo = _window.foo) === null || _window$foo === void 0 ? void 0 : _window$foo.bar) !== null && _ref !== void 0 ? _ref : 'x');
+
+function asyncGenerator() {
+  return _asyncGenerator.apply(this, arguments);
+}
+
+function _asyncGenerator() {
+  _asyncGenerator = _wrapAsyncGenerator(function* () {
+    yield _awaitAsyncGenerator(Promise.resolve());
+    yield 0;
+    yield _awaitAsyncGenerator(Promise.resolve());
+    yield 1;
+  });
+  return _asyncGenerator.apply(this, arguments);
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4Lmh0bWwiXSwibmFtZXMiOlsibWVzc2FnZSIsImNvbnNvbGUiLCJsb2ciLCJGb28iLCJiYXIiLCJ3aW5kb3ciLCJmb28iLCJhc3luY0dlbmVyYXRvciIsIlByb21pc2UiLCJyZXNvbHZlIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFDSSxTQUFTQSxPQUFULFFBQXdCLFdBQXhCO0FBQ0EsT0FBTyx1QkFBUDtBQUVBQyxPQUFPLENBQUNDLEdBQVIsMkJBQStCRixPQUEvQjs7QUFFQSxNQUFNRyxHQUFOLENBQVU7O0FBSVYsTUFBTUMsR0FBRyxHQUFHLEtBQVo7QUFFQUgsT0FBTyxDQUFDQyxHQUFSLG9CQUFZRyxNQUFaLDJEQUFZLFFBQVFDLEdBQXBCLGdEQUFZLFlBQWFGLEdBQXpCLHVDQUFnQyxHQUFoQzs7U0FFZ0JHLGM7Ozs7O3dDQUFoQixhQUFpQztBQUMvQiwrQkFBTUMsT0FBTyxDQUFDQyxPQUFSLEVBQU47QUFDQSxVQUFNLENBQU47QUFDQSwrQkFBTUQsT0FBTyxDQUFDQyxPQUFSLEVBQU47QUFDQSxVQUFNLENBQU47QUFDRCxHIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHsgbWVzc2FnZSB9IGZyb20gJ215LW1vZHVsZSc7XG4gICAgaW1wb3J0ICcuL3NyYy9sb2NhbC1tb2R1bGUuanMnO1xuXG4gICAgY29uc29sZS5sb2coYFRoZSBtZXNzYWdlIGlzOiAke21lc3NhZ2V9YCk7XG5cbiAgICBjbGFzcyBGb28ge1xuXG4gICAgfVxuXG4gICAgY29uc3QgYmFyID0gJ2J1eic7XG5cbiAgICBjb25zb2xlLmxvZyh3aW5kb3c/LmZvbz8uYmFyID8/ICd4Jyk7XG5cbiAgICBhc3luYyBmdW5jdGlvbiogYXN5bmNHZW5lcmF0b3IoKSB7XG4gICAgICBhd2FpdCBQcm9taXNlLnJlc29sdmUoKTtcbiAgICAgIHlpZWxkIDA7XG4gICAgICBhd2FpdCBQcm9taXNlLnJlc29sdmUoKTtcbiAgICAgIHlpZWxkIDE7XG4gICAgfVxuICAiXX0=</script>
+
+  <script type="module" src="./app.js"></script>
+
+
+
+</body></html>

@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/codelabs",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "private": true,
   "publishConfig": {
     "access": "public"
@@ -13,7 +13,7 @@
     "directory": "packages/codelabs"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/codelabs",
   "scripts": {
     "site:build": "node build-codelabs.js"
   },

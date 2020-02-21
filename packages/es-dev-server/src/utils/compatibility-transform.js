@@ -22,6 +22,10 @@
  */
 
 /**
+ * @typedef {(file: FileData) => Promise<string>} TransformJs
+ */
+
+/**
  * @typedef {import('./resolve-module-imports.js').ResolveModuleImports} ResolveModuleImports
  */
 
@@ -39,6 +43,7 @@ import { logDebug } from './utils.js';
 /**
  * @param {CompatibilityTransformConfig} cfg
  * @param {ResolveModuleImports} resolveModuleImports
+ * @returns {TransformJs}
  */
 export function createCompatibilityTransform(cfg, resolveModuleImports) {
   /** @type {Map<string, BabelTransform>} */

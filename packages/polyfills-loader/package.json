@@ -1,0 +1,55 @@
+{
+  "name": "polyfills-loader",
+  "version": "1.2.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Tool for polyfilling js and browser features on demand",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/polyfills-loader"
+  },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/polyfills-loader",
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js",
+    "test": "npm run test:node",
+    "test:node": "mocha test/**/*.test.js test/**/*.test.js",
+    "test:update-snapshots": "mocha test/**/*.test.js test/**/*.test.js --update-snapshots",
+    "test:watch": "mocha test/**/*.test.js test/**/*.test.js --watch"
+  },
+  "files": [
+    "index.js",
+    "src"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.8.3",
+    "@open-wc/building-utils": "^2.14.2",
+    "@webcomponents/webcomponentsjs": "^2.4.0",
+    "core-js-bundle": "^3.6.0",
+    "deepmerge": "^3.2.0",
+    "dynamic-import-polyfill": "^0.1.1",
+    "es-module-shims": "^0.4.6",
+    "html-minifier": "^4.0.0",
+    "intersection-observer": "^0.7.0",
+    "parse5": "^5.1.0",
+    "regenerator-runtime": "^0.13.3",
+    "systemjs": "^4.0.0",
+    "terser": "^4.0.0",
+    "valid-url": "^1.0.9",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/babel__core": "^7.1.3",
+    "@types/parse5": "^5.0.2",
+    "@types/valid-url": "^1.0.2",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2"
+  }
+}

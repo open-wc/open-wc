@@ -68,6 +68,7 @@ function createConfig(_options, legacy) {
       // resolve bare import specifiers
       resolve({
         extensions: options.extensions,
+        moduleDirectory: ['node_modules', 'web_modules'],
       }),
 
       // run code through babel
@@ -78,14 +79,6 @@ function createConfig(_options, legacy) {
           plugins: [
             require.resolve('@babel/plugin-syntax-dynamic-import'),
             require.resolve('@babel/plugin-syntax-import-meta'),
-            /**
-             * This can be removed when https://github.com/babel/babel/pull/10811 is released
-             */
-            [
-              require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'),
-              { loose: true },
-            ],
-            [require.resolve('@babel/plugin-proposal-optional-chaining'), { loose: true }],
             // rollup rewrites import.meta.url, but makes them point to the file location after bundling
             // we want the location before bundling
             [require.resolve('babel-plugin-bundled-import-meta'), { importStyle: 'baseURI' }],

@@ -11,6 +11,7 @@ coverage/
 ## npm
 node_modules
 !packages/es-dev-server/test/**/node_modules
+!packages/scoped-elements/demo/**/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -43,4 +44,3 @@ local.log
 
 ## generated codelabs
 docs/.vuepress/public/codelabs
-

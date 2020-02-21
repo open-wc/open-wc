@@ -4,7 +4,7 @@ const { queryAll, predicates, getAttribute, remove } = require('../dom5-fork');
 
 /**
  * @typedef {object} ExtractResult
- * @property {import('parse5').ASTNode} indexHTML the index file, with resources removed
+ * @property {import('parse5').Document} indexHTML the index file, with resources removed
  * @property {string[]} inlineModules inline module scripts
  * @property {string[]} jsModules paths to js modules that were found
  * @property {string[]} inlineImportMaps content of inline import maps that were found

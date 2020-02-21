@@ -11,8 +11,8 @@
     "test:update-snapshots": "karma start --update-snapshots",
     "test:prune-snapshots": "karma start --prune-snapshots",
     "test:bs": "karma start karma.bs.config.js --coverage",
-    "storybook": "start-storybook --stories \"components/*/stories/*.stories.{js,mdx}\" --node-resolve --watch --open",
-    "storybook:build": "build-storybook --stories \"components/*/stories/*.stories.{js,mdx}\"",
+    "storybook": "start-storybook --node-resolve --watch --open",
+    "storybook:build": "build-storybook",
     "start:build": "cd dist && es-dev-server --open",
     "build": "rimraf dist && rollup -c rollup.config.js",
     "start": "es-dev-server --app-index index.html --node-resolve --open --watch"

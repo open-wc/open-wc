@@ -55,6 +55,14 @@ describe('history api fallback middleware', () => {
       expect(responseText).to.include('Hello world!');
       expect(responseText).to.not.include('<title>My app</title>');
     });
+
+    it('does return index.html for requests that have url parameters with . characters (issue 1059)', async () => {
+      const response = await fetch(`${host}text-files/foo/bar/?baz=open.wc`);
+      const responseText = await response.text();
+
+      expect(response.status).to.equal(200);
+      expect(responseText).to.include('<title>My app</title>');
+    });
   });
 
   describe('index not in root', () => {
@@ -111,6 +119,14 @@ describe('history api fallback middleware', () => {
 
       expect(response.status).to.equal(404);
       expect(responseText).to.not.include('<title>My app</title>');
+    });
+
+    it('does return index.html for requests that have url parameters with . characters (issue 1059)', async () => {
+      const response = await fetch(`${host}src/foo/bar/?baz=open.wc`);
+      const responseText = await response.text();
+
+      expect(response.status).to.equal(200);
+      expect(responseText).to.include('<title>My app</title>');
     });
   });
 });
