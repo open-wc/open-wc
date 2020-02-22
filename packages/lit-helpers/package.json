@@ -29,7 +29,8 @@
     "helpers"
   ],
   "peerDependencies": {
-    "lit-html": "^1.0.0"
+    "lit-html": "^1.0.0",
+    "lit-element": "^1.0.0"
   },
   "devDependencies": {
     "@open-wc/testing": "^2.5.4",
