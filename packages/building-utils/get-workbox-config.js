@@ -5,6 +5,7 @@ const path = require('path');
 module.exports = function getWorkboxConfig(outputDir) {
   const workboxConfigPath = path.join(process.cwd(), 'workbox-config.js');
   const defaultWorboxConfig = {
+    exclude: [/polyfills\/.*.js/, /legacy\/.*.js/],
     navigateFallback: '/index.html',
     // where to output the generated sw
     swDest: path.join(process.cwd(), outputDir, 'sw.js'),

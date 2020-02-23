@@ -141,6 +141,7 @@ module.exports = userOptions => {
       production &&
         options.plugins.workbox &&
         new GenerateSW({
+          exclude: [/polyfills\/.*.js/, /legacy\/.*.js/],
           // for spa client side routing, always return index.html
           navigateFallback: '/index.html',
           // where to output the generated sw
