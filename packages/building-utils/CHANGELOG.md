@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.14.2...@open-wc/building-utils@2.14.3) (2020-02-23)
+
+
+### Bug Fixes
+
+* **building-utils:** dont precache legacy files ([20ece8d](https://github.com/open-wc/open-wc/commit/20ece8df0d53dd58e09a44e7ff38629a7fc3163e))
+
+
+
+
+
 ## [2.14.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.14.1...@open-wc/building-utils@2.14.2) (2020-02-10)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "polyfills-loader",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "publishConfig": {
     "access": "public"
   },
@@ -30,7 +30,7 @@
   ],
   "dependencies": {
     "@babel/core": "^7.8.3",
-    "@open-wc/building-utils": "^2.14.2",
+    "@open-wc/building-utils": "^2.14.3",
     "@webcomponents/webcomponentsjs": "^2.4.0",
     "core-js-bundle": "^3.6.0",
     "deepmerge": "^3.2.0",

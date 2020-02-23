@@ -1,6 +1,6 @@
 {
   "name": "es-dev-server",
-  "version": "1.40.0",
+  "version": "1.40.1",
   "publishConfig": {
     "access": "public"
   },
@@ -66,7 +66,7 @@
     "@babel/plugin-syntax-optional-chaining": "^7.8.3",
     "@babel/plugin-transform-template-literals": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
-    "@open-wc/building-utils": "^2.14.2",
+    "@open-wc/building-utils": "^2.14.3",
     "@rollup/plugin-node-resolve": "^6.1.0",
     "@rollup/pluginutils": "^3.0.0",
     "@types/minimatch": "^3.0.3",
@@ -94,7 +94,7 @@
     "opn": "^5.4.0",
     "parse5": "^5.1.0",
     "path-is-inside": "^1.0.2",
-    "polyfills-loader": "^1.2.2",
+    "polyfills-loader": "^1.2.3",
     "portfinder": "^1.0.21",
     "strip-ansi": "^5.2.0",
     "useragent": "^2.3.0",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.12.0...@open-wc/building-webpack@2.12.1) (2020-02-23)
+
+
+### Bug Fixes
+
+* **building-webpack:** dont precache legacy files ([38aa31b](https://github.com/open-wc/open-wc/commit/38aa31b108e823557d49d692aacb9396fa4d45ed))
+
+
+
+
+
 # [2.12.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.11.6...@open-wc/building-webpack@2.12.0) (2020-02-10)
 
 
