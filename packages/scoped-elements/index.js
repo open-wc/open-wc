@@ -1,2 +1,2 @@
 export { ScopedElementsMixin } from './src/ScopedElementsMixin.js';
-export { createScopedElement } from './src/createScopedElement.js';
+export { getScopedTagName } from './src/getScopedTagName.js';

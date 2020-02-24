@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/lit-helpers@0.3.0...@open-wc/lit-helpers@0.3.1) (2020-02-22)
+
+
+### Bug Fixes
+
+* **lit-helpers:** add type declarations for exports ([#1363](https://github.com/open-wc/open-wc/issues/1363)) ([703f57d](https://github.com/open-wc/open-wc/commit/703f57d655f6c8016f891731ec2c22abff73d455))
+
+
+
+
+
+# [0.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/lit-helpers@0.2.10...@open-wc/lit-helpers@0.3.0) (2020-02-22)
+
+
+### Features
+
+* **lit-helpers:** add ReadOnlyPropertiesMixin ([#1265](https://github.com/open-wc/open-wc/issues/1265)) ([18690c5](https://github.com/open-wc/open-wc/commit/18690c59acb86885da0546e80d12b4f8b1b3422e))
+
+
+
+
+
 ## [0.2.10](https://github.com/open-wc/open-wc/compare/@open-wc/lit-helpers@0.2.9...@open-wc/lit-helpers@0.2.10) (2020-02-12)
 
 
