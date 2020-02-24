@@ -1,14 +1,14 @@
 import { registerElement } from './registerElement.js';
 
 /**
- * Creates a scoped element
+ * Gets the scoped tag name
  *
  * @param {string} tagName
  * @param {Object.<string, typeof HTMLElement>} scopedElements
  * @throws Will throw an error if the tag name is unknown
- * @returns {HTMLElement}
+ * @returns {string}
  */
-export function createScopedElement(tagName, scopedElements = {}) {
+export function getScopedTagName(tagName, scopedElements = {}) {
   const klass = scopedElements[tagName];
 
   if (!klass) {
@@ -17,5 +17,5 @@ export function createScopedElement(tagName, scopedElements = {}) {
     );
   }
 
-  return document.createElement(registerElement(tagName, klass));
+  return registerElement(tagName, klass);
 }
