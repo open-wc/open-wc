@@ -1,0 +1,76 @@
+name: NPM CI
+on:
+  push:
+    paths-ignore:
+      - "docs/**"
+  pull_request:
+    paths-ignore:
+      - "docs/**"
+
+jobs:
+  npm-ci-job:
+    name: "YARN & NPM Build Test"
+  # runs-on: ${{ matrix.os }}
+  # strategy:
+  #   matrix:
+  #     os: [ubuntu-18.04, windows-latest]
+    runs-on: ubuntu-18.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.16'     
+      - name: Restore cached NODE modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: v4-dependencies-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            v4-dependencies-${{ hashFiles('yarn.lock') }}
+            v4-dependencies- 
+      - name: "YARN install"
+        run: yarn install --frozen-lockfile
+      - name: "NPM run build"
+        run: npm run build && npm run build:types
+      - name: "Code linting"
+        run: npm run lint
+      - name: "Tests - NODE"
+        run: npm run test:node
+      - name: "Tests - headless browser"
+        run: npm run test:browser
+    # Disabled BrowserStack to achieve speed. 
+    # If uncommneted it will run only on non-forked PRs, after any-kind of PR merges and pushes to repo by it's memebers   
+    # - name: "Tests - BrowserStack"
+    # Runs only on non-forked PRs, after any-kind of PR merges and pushes to repo by it's memebers   
+    #   if: >
+    #     !contains(toJson(github) , '"fork": true') || (github.repository == 'open-wc/open-wc' && github.event_name == 'push')
+    #   run: npm run test:bs
+    #   env:
+    #     BROWSER_STACK_USERNAME: ${{ secrets.BROWSER_STACK_USERNAME }}
+    #     BROWSER_STACK_ACCESS_KEY: ${{ secrets.BROWSER_STACK_ACCESS_KEY }}
+
+  # Publish job will be run only when the changes are merged to Master branch
+  npm-deploy-job:
+    name: "NPM Publish from Master"
+    runs-on: ubuntu-latest
+    needs: npm-ci-job
+    if: github.ref == 'refs/heads/master' && github.event	== 'push' && github.repository == 'open-wc/open-wc'
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.16'  
+          registry-url: https://registry.npmjs.org
+      - name: Restore cached NODE modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: v4-dependencies-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            v4-dependencies-${{ hashFiles('yarn.lock') }}
+            v4-dependencies- 
+      - name: "Publish packages"
+        run: "npx lerna publish --message 'chore: releasing new packages versions' --yes"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
