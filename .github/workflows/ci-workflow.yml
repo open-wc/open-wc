@@ -39,6 +39,7 @@ jobs:
         run: npm run test:node
       - name: "Tests - headless browser"
         run: npm run test:browser
+
     # Disabled BrowserStack to achieve speed. 
     # If uncommneted it will run only on non-forked PRs, after any-kind of PR merges and pushes to repo by it's memebers   
     # - name: "Tests - BrowserStack"
