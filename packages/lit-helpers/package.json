@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/lit-helpers",
-  "version": "0.2.10",
+  "version": "0.3.1",
   "publishConfig": {
     "access": "public"
   },
@@ -29,6 +29,7 @@
     "helpers"
   ],
   "peerDependencies": {
+    "lit-element": "^1.0.0",
     "lit-html": "^1.0.0"
   },
   "devDependencies": {

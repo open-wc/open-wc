@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/scoped-elements",
-  "version": "0.3.1",
+  "version": "0.5.0",
   "publishConfig": {
     "access": "public"
   },
@@ -21,7 +21,9 @@
     "site:build": "run-p demo-build:*",
     "start:before-nesting": "es-dev-server -c demo/before-nesting/server.js",
     "start:no-scope": "es-dev-server -c demo/no-scope/server.js",
-    "start:with-scope": "es-dev-server -c demo/with-scope/server.js"
+    "start:with-scope": "es-dev-server -c demo/with-scope/server.js",
+    "test": "cd ../../ && yarn test:browser --grep \"packages/scoped-elements/test/*.test.js\"",
+    "test:watch": "cd ../../ && yarn test:browser:watch --grep \"packages/scoped-elements/test/*.test.js\""
   },
   "files": [
     "*.d.ts",
@@ -35,14 +37,14 @@
     "utils",
     "helpers"
   ],
-  "peerDependencies": {
-    "lit-html": "^1.0.0"
+  "dependencies": {
+    "@open-wc/dedupe-mixin": "^1.1.1",
+    "lit-element": "^2.0.1"
   },
   "devDependencies": {
-    "@open-wc/building-rollup": "^0.21.0",
+    "@open-wc/building-rollup": "^0.21.1",
     "@open-wc/testing": "^2.5.4",
-    "es-dev-server": "^1.40.0",
-    "lit-html": "^1.0.0",
+    "es-dev-server": "^1.40.1",
     "npm-run-all": "4.1.3",
     "rollup": "^1.15.6"
   },

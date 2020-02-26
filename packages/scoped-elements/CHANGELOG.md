@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.4.1...@open-wc/scoped-elements@0.5.0) (2020-02-24)
+
+
+### Features
+
+* **scoped-elements:** add getScopedTagName function ([21132e0](https://github.com/open-wc/open-wc/commit/21132e00f72111dbaaedddf659a84014359a4232))
+
+
+
+
+
+## [0.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.4.0...@open-wc/scoped-elements@0.4.1) (2020-02-23)
+
+**Note:** Version bump only for package @open-wc/scoped-elements
+
+
+
+
+
+# [0.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.3.1...@open-wc/scoped-elements@0.4.0) (2020-02-19)
+
+
+### Features
+
+* **scoped-elements:** implement as ScopedElementsMixin ([b4f6483](https://github.com/open-wc/open-wc/commit/b4f648362234949572e1215e0b65df415e63d65c))
+
+
+
+
+
 ## [0.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.3.0...@open-wc/scoped-elements@0.3.1) (2020-02-13)
 
 
