@@ -26,7 +26,7 @@
     "test:browser:update-snapshots": "karma start --update-snapshots",
     "test:browser:watch": "karma start --auto-watch=true --single-run=false",
     "test:bs": "karma start karma.bs.conf.js --coverage",
-    "test:node": "lerna run test:node",
+    "test:node": "lerna run --stream --concurrency=1 test:node",
     "test:update-snapshots": "lerna run test:update-snapshots",
     "update-dependency": "node scripts/update-dependency.js && yarn format",
     "vuepress:build": "vuepress build docs",
