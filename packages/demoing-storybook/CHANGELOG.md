@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.6](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.10.5...@open-wc/demoing-storybook@1.10.6) (2020-02-28)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** fix storybook build on windows ([53bd4e3](https://github.com/open-wc/open-wc/commit/53bd4e38ea53781ecf52408c34513905cf665da7))
+
+
+
+
+
 ## [1.10.5](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.10.4...@open-wc/demoing-storybook@1.10.5) (2020-02-23)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
