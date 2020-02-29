@@ -7,6 +7,7 @@ module.exports = function getAssets({
   rootDir,
   absoluteImports,
   managerImport,
+  addons,
 }) {
   const importPrefix = absoluteImports ? '/' : './';
   const managerIndexPath = path.join(__dirname, 'index.html');
@@ -25,12 +26,11 @@ module.exports = function getAssets({
     indexHTML = indexHTML.replace('</head>', `${managerHead}</head>`);
   }
 
+  const imports = [managerImport, managerConfigImport, ...(addons || [])];
+
   indexHTML = indexHTML.replace(
     '</body>',
-    '<script type="module">\n' +
-      `import '${managerImport}';\n` +
-      `${managerConfigImport ? `import '${managerConfigImport}';\n` : ''}` +
-      ' </script>',
+    `<script type="module">\n${imports.map(i => `import '${i}';`).join('\n')}\n</script>`,
   );
 
   let iframeHTML = fs.readFileSync(iframePath, 'utf-8');

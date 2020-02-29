@@ -82,6 +82,7 @@ module.exports = function readCommandLineArgs() {
     outputDir: args['output-dir'],
     stories: args.stories,
     rollup: mainJs.rollup,
+    addons: mainJs.addons,
     managerPath: args['manager-path'],
     previewPath: args['preview-path'],
   };

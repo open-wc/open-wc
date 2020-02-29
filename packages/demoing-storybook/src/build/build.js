@@ -214,6 +214,7 @@ module.exports = async function build({
   previewPath,
   storiesPatterns,
   rollupConfigDecorator,
+  addons,
 }) {
   const managerPathRelative = `/${path.relative(process.cwd(), require.resolve(managerPath))}`;
   const managerImport = `./${toBrowserPath(managerPathRelative)}`;
@@ -222,6 +223,7 @@ module.exports = async function build({
     rootDir: process.cwd(),
     storybookConfigDir,
     managerImport,
+    addons,
     absoluteImports: false,
   });
 
