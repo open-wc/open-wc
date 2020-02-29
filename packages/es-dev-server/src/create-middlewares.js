@@ -15,6 +15,7 @@ import { createResponseTransformMiddleware } from './middleware/response-transfo
 import { createResolveModuleImports } from './utils/resolve-module-imports.js';
 import { createCompatibilityTransform } from './utils/compatibility-transform.js';
 import { logDebug } from './utils/utils.js';
+import chokidar from 'chokidar';
 
 const defaultCompressOptions = {
   filter(contentType) {
@@ -31,7 +32,7 @@ const defaultCompressOptions = {
  * @param {import('chokidar').FSWatcher} fileWatcher
  * @returns {import('koa').Middleware[]}
  */
-export function createMiddlewares(config, fileWatcher) {
+export function createMiddlewares(config, fileWatcher =  chokidar.watch([])) {
   const {
     appIndex,
     appIndexDir,
