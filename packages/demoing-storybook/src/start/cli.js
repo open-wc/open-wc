@@ -29,7 +29,7 @@ async function run() {
     previewConfigImport = `/${toBrowserPath(path.relative(rootDir, previewConfigPath))}`;
   }
 
-  const assets = getAssets({ storybookConfigDir, managerImport });
+  const assets = getAssets({ storybookConfigDir, rootDir, managerImport, absoluteImports: true });
 
   config.babelModernExclude = [...(config.babelModernExclude || []), '**/storybook-prebuilt/**'];
   config.fileExtensions = [...(config.fileExtensions || []), '.mdx'];
