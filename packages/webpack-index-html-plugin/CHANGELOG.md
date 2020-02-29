@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.6.5...@open-wc/webpack-index-html-plugin@1.7.0) (2020-02-29)
+
+
+### Features
+
+* **rollup-plugin-html:** first release ([9acb29a](https://github.com/open-wc/open-wc/commit/9acb29ac84b0ef7e2b06c57043c9d2c76d5a29c0))
+
+
+
+
+
 ## [1.6.5](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-index-html-plugin@1.6.4...@open-wc/webpack-index-html-plugin@1.6.5) (2020-02-23)
 
 **Note:** Version bump only for package @open-wc/webpack-index-html-plugin

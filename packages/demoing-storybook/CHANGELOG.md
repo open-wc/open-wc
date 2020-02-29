@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.10.6...@open-wc/demoing-storybook@1.11.0) (2020-02-29)
+
+
+### Features
+
+* **rollup-plugin-html:** first release ([9acb29a](https://github.com/open-wc/open-wc/commit/9acb29ac84b0ef7e2b06c57043c9d2c76d5a29c0))
+
+
+
+
+
 ## [1.10.6](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.10.5...@open-wc/demoing-storybook@1.10.6) (2020-02-28)
 
 
