@@ -43,7 +43,7 @@ But in the case of reference types, the thing that is compared is the _reference
 
 ```js
 const o = { foo: 'bar' }
-const p === { foo: 'bar' }
+const p = { foo: 'bar' }
 o === p // false
 ```
 
