@@ -216,11 +216,13 @@ module.exports = async function build({
   rollupConfigDecorator,
 }) {
   const managerPathRelative = `/${path.relative(process.cwd(), require.resolve(managerPath))}`;
-  const managerImport = toBrowserPath(managerPathRelative);
+  const managerImport = `./${toBrowserPath(managerPathRelative)}`;
 
   const assets = createAssets({
+    rootDir: process.cwd(),
     storybookConfigDir,
     managerImport,
+    absoluteImports: false,
   });
 
   const previewConfigPath = path.join(storybookConfigDir, 'preview.js');
