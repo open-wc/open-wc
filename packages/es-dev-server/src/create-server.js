@@ -3,6 +3,7 @@ import path from 'path';
 import httpServer from 'http';
 import http2Server from 'http2';
 import fs from 'fs';
+import chokidar from 'chokidar';
 import { createMiddlewares } from './create-middlewares.js';
 
 /**
@@ -13,7 +14,7 @@ import { createMiddlewares } from './create-middlewares.js';
  * @param {import('chokidar').FSWatcher} fileWatcher
  * @returns {{ app: import('koa'), server: import('http').Server | import('http2').Http2SecureServer }}
  */
-export function createServer(cfg, fileWatcher) {
+export function createServer(cfg, fileWatcher =  chokidar.watch([])) {
   const middlewares = createMiddlewares(cfg, fileWatcher);
 
   const app = new Koa();
