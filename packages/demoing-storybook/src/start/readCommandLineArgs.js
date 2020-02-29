@@ -104,6 +104,7 @@ module.exports = function readCommandLineArgs() {
     stories: storybookArgs.stories,
     managerPath: storybookArgs['manager-path'],
     previewPath: storybookArgs['preview-path'],
+    addons: mainJs.addons,
     // some args may be overwritten, as es-dev-server reads start-storybook.config.js
     ...esDevServerConfig,
     ...mainJs.esDevServer,
