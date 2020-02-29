@@ -117,7 +117,7 @@ module.exports = {
 In addition to the command-line flags, the configuration file accepts these additional options:
 
 | name                 | type    | description                                              |
-| -------------------- | ------  | -------------------------------------------------------- |
+| -------------------- | ------- | -------------------------------------------------------- |
 | middlewares          | array   | Koa middlewares to add to the server, read more below.   |
 | responseTransformers | array   | Functions which transform the server's response.         |
 | babelConfig          | object  | Babel config to run with the server.                     |
@@ -300,12 +300,12 @@ If you use <abbr title="Single Page Application">SPA</abbr> routing, using a bas
 
 The order of execution for the es-dev-server is:
 
-1) Custom middlewares
-2) Es-dev-server static file middleware
-3) Response transformers
-4) Es-dev-server code transform middlewares
-5) Es-dev-server response cache (it also caches the code transformations!)
-6) Deferred custom middlewares
+1. Custom middlewares
+2. Es-dev-server static file middleware
+3. Response transformers
+4. Es-dev-server code transform middlewares
+5. Es-dev-server response cache (it also caches the code transformations!)
+6. Deferred custom middlewares
 
 Take this into account when deciding between response transformers, custom middlewares and whether or not you defer your custom middleware.
 
