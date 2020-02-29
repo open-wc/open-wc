@@ -325,24 +325,28 @@ It is possible to create multiple rollup build outputs and inject both bundles i
 
 To create multiple outputs with rollup, you need to set the `output` option as an array. For each output, you need to create a child plugin from the main plugin.
 
+The HTML file will be output into the directory of the last build. If your builds will be output into separate directories, you need to make sure the modern build is last.
+
 ```js
 import html from '@open-wc/rollup-plugin-html';
 
 const htmlPlugin = html({
   name: 'index.html',
   inject: false,
-  template({ inputHtml, bundles }) {
+  template({ bundles }) {
     return `
       <html>
         <body>
-          ${bundles[0].entrypoints.map(bundle => e =>
-            `<script type="module" src="${e.importPath}"></script>`,
-          )}
+        <script nomodule src="./systemjs.js"></script>
+        ${bundles[0].entrypoints.map(
+          e => `<script nomodule>System.import("${e.importPath}")</script>`,
+        )}
 
-          <script src="./systemjs.js"></script>
-          ${bundles[1].entrypoints.map(bundle => e =>
-            `<script nomodule>System.import("${e.importPath}</script>`,
-          )}
+        ${bundles[1].entrypoints.map(
+          e => `
+          <script type="module" src="${e.importPath}"></script>
+        `,
+        )}
         </body>
       </html>
     `;
@@ -353,13 +357,15 @@ export default {
   input: './app.js',
   output: [
     {
-      format: 'es',
-      dir: 'dist',
-      plugins: [htmlPlugin.addOutput()],
-    },
-    {
       format: 'system',
       dir: 'dist/legacy',
+      plugins: [htmlPlugin.addOutput()],
+    },
+    // Note: the modern build should always be last, as the HTML file will be output into
+    // this directory
+    {
+      format: 'es',
+      dir: 'dist',
       plugins: [htmlPlugin.addOutput()],
     },
   ],
