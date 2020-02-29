@@ -1,6 +1,7 @@
 import koaStatic from 'koa-static';
 import koaEtag from 'koa-etag';
 import koaCompress from 'koa-compress';
+import chokidar from 'chokidar';
 import { createBasePathMiddleware } from './middleware/base-path.js';
 import { createHistoryAPIFallbackMiddleware } from './middleware/history-api-fallback.js';
 import { createCompatibilityTransformMiddleware } from './middleware/compatibility-transform.js';
@@ -15,7 +16,6 @@ import { createResponseTransformMiddleware } from './middleware/response-transfo
 import { createResolveModuleImports } from './utils/resolve-module-imports.js';
 import { createCompatibilityTransform } from './utils/compatibility-transform.js';
 import { logDebug } from './utils/utils.js';
-import chokidar from 'chokidar';
 
 const defaultCompressOptions = {
   filter(contentType) {
