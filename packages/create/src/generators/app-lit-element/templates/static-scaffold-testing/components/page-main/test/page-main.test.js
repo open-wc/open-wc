@@ -19,14 +19,6 @@ describe('PageMain', () => {
     expect(el.title).to.equal('attribute title');
   });
 
-  it('matches the snapshot', async () => {
-    const el = await fixture(html`
-      <page-main title="attribute title"></page-main>
-    `);
-
-    expect(el).shadowDom.to.equalSnapshot();
-  });
-
   it('passes the a11y audit', async () => {
     const el = await fixture(html`
       <page-main title="attribute title"></page-main>

@@ -2,9 +2,9 @@ import { LitElement, html, css } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { openWcLogo } from './open-wc-logo.js';
 
-import '../../page-main/page-main.js';
-import '../../page-one/page-one.js';
-import { templateAbout } from './templateAbout.js';
+import { aboutTemplate } from './aboutTemplate.js';
+import '../page-main/page-main.js';
+import '../page-one/page-one.js';
 
 export class ScaffoldApp extends LitElement {
   static get properties() {
@@ -122,7 +122,7 @@ export class ScaffoldApp extends LitElement {
           <page-one></page-one>
         `;
       case 'about':
-        return templateAbout;
+        return aboutTemplate;
       default:
         return html`
           <p>Page not found try going to <a href="#main">Main</a></p>

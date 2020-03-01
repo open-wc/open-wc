@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 
-export const templateAbout = html`
+export const aboutTemplate = html`
   <div>
     <h1>About this output</h1>
     <ul>
