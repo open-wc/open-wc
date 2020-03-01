@@ -16,7 +16,6 @@ const sidebar = [
       '/developing/routing',
       ['/developing/ide', 'IDE'],
       '/guide/component-libraries',
-      '/guide/dedupe-mixin',
     ],
   },
   {
@@ -89,6 +88,7 @@ const sidebar = [
           '/developing/es-dev-server',
           ['/init/', 'Generators'],
           '/developing/lit-helpers',
+          '/guide/dedupe-mixin',
         ],
       },
       {
