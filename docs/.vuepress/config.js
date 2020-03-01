@@ -124,7 +124,7 @@ module.exports = {
   themeConfig: {
     logo: '/logo.png',
     displayAllHeaders: false,
-    sidebarDepth: 2,
+    sidebarDepth: 0,
     sidebar: {
       '/guide/': sidebar,
       '/codelabs/': sidebar,
