@@ -9,9 +9,3 @@ To run the tests in watch mode (for <abbr title="test driven development">TDD</a
 ```bash
 <%= scriptRunCommand %> test:watch
 ```
-
-## Testing with Karma via BrowserStack
-To run the suite of karma tests in BrowserStack, run
-```bash
-<%= scriptRunCommand %> test:bs
-```
