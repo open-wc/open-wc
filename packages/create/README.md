@@ -81,7 +81,7 @@ npm init @open-wc
   <br/>
 
 - `Testing`<br>
-  This generator adds a complete testing setup with Karma, and Karma Browserstack.
+  This generator adds a complete testing setup with Karma.
   <br/>
 
 - `Demoing`<br>
