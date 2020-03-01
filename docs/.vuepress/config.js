@@ -78,7 +78,7 @@ const sidebar = [
     ],
   },
   {
-    title: 'Tools',
+    title: 'Tools & Libraries',
     collapsable: true,
     children: [
       {
