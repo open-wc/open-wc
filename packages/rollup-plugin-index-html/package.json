@@ -15,6 +15,7 @@
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/rollup-plugin-index-html",
   "main": "rollup-plugin-index-html.js",
   "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js",
     "test": "npm run test:node",
     "test:node": "mocha test/**/*.test.js test/*.test.js",
     "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"

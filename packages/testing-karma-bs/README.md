@@ -1,5 +1,7 @@
 # Testing via Browserstack
 
+Configuration for setting up browserstack testing with karma.
+
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 To make sure your project is production-ready, we recommend running tests in all the browsers you want to support.

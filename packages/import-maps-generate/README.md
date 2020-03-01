@@ -1,9 +1,9 @@
 # Generate Import Map
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 This will allow you to generate a flat [import-map](https://github.com/WICG/import-maps).
 It allows you to fix the "nested" npm problem for front end development.
+
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ::: warning
 Currently, only yarn.lock is supported

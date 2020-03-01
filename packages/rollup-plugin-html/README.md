@@ -8,6 +8,8 @@ Plugin for generating HTML files from rollup.
 - Minify HTML and inline JS and CSS
 - Suitable for single page and multi-page apps
 
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
+
 Jump to:
 
 - [Installation](#installation)

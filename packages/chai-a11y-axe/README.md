@@ -1,16 +1,10 @@
 # Chai A11y aXe
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 This module provides a Chai plugin to perform automated accessibility tests via axe.
 
-::: tip
-This is part of the default [open-wc testing](https://open-wc.org/testing/) recommendation
-:::
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
-## Testing for Accessibility
-
-### Chai BDD UI
+## Chai BDD UI
 
 The BDD UI works with chai's `expect` function.
 
@@ -63,7 +57,7 @@ it('accepts "done" option', done => {
 });
 ```
 
-### Chai TDD UI
+## Chai TDD UI
 
 The `isAccessible()` and `isNotAccessible()` methods work on Chai's `assert` function.
 

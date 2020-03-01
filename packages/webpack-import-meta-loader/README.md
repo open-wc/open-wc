@@ -1,8 +1,8 @@
 # Webpack Helpers
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
+Webpack loader for supporting `import.meta` in webpack.
 
-If you need support to use `import.meta` within webpack this is a minimal loader to support it.
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ## Note
 
