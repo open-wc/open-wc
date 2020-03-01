@@ -1,3 +1,3 @@
-import { ScaffoldApp } from './src/ScaffoldApp.js';
+import { ScaffoldApp } from './ScaffoldApp.js';
 
-window.customElements.define('scaffold-app', ScaffoldApp);
+customElements.define('scaffold-app', ScaffoldApp);
