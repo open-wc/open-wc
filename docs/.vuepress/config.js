@@ -6,6 +6,7 @@ const sidebar = [
   {
     title: 'Guides & Docs',
     collapsable: true,
+    sidebarDepth: 0,
     children: [
       '/developing/best-practices',
       ['/codelabs/', 'Codelabs'],
@@ -24,7 +25,8 @@ const sidebar = [
     children: [
       {
         title: 'Linting',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: [
           ['/linting/', 'Getting started'],
           '/linting/linting-eslint',
@@ -34,13 +36,15 @@ const sidebar = [
       },
       {
         title: 'Developing',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: ['/developing/'],
       },
 
       {
         title: 'Testing',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: [
           ['/testing/', 'Getting started'],
           '/testing/testing',
@@ -51,7 +55,8 @@ const sidebar = [
       },
       {
         title: 'Building apps for production',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: [
           ['/building/', 'Getting started'],
           '/building/building-rollup',
@@ -60,12 +65,14 @@ const sidebar = [
       },
       {
         title: 'Deploying apps',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: [['/publishing/', 'Getting started']],
       },
       {
         title: 'Demoing',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: [['/demoing/', 'Getting started']],
       },
     ],
@@ -76,7 +83,8 @@ const sidebar = [
     children: [
       {
         title: 'Developing',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: [
           '/developing/es-dev-server',
           ['/init/', 'Generators'],
@@ -85,7 +93,8 @@ const sidebar = [
       },
       {
         title: 'Testing',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: [
           '/testing/testing-helpers',
           '/testing/testing-chai-a11y-axe',
@@ -96,7 +105,8 @@ const sidebar = [
       },
       {
         title: 'Building',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: ['/building/rollup-plugin-index-html', '/building/webpack-index-html-plugin'],
       },
     ],
@@ -131,7 +141,7 @@ module.exports = {
         ['', 'Faq'],
         {
           title: 'Deep dives',
-          collapsable: true,
+          collapsable: false,
           children: [
             'events',
             'rerender',
