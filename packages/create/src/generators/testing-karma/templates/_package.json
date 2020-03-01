@@ -1,9 +1,7 @@
 {
   "scripts": {
     "test": "karma start --coverage",
-    "test:watch": "karma start --auto-watch=true --single-run=false",
-    "test:update-snapshots": "karma start --update-snapshots",
-    "test:prune-snapshots": "karma start --prune-snapshots"
+    "test:watch": "karma start --auto-watch=true --single-run=false"
   },
   "devDependencies": {
     "@open-wc/testing-karma": "^3.0.0",

@@ -29,14 +29,6 @@ describe('<%= className %>', () => {
     expect(el.title).to.equal('attribute title');
   });
 
-  it('shows initially the text "hey there Nr. 5!" and an "increment" button', async () => {
-    const el = await fixture(html`
-      <<%= tagName %>></<%= tagName %>>
-    `);
-
-    expect(el).shadowDom.to.equalSnapshot();
-  });
-
   it('passes the a11y audit', async () => {
     const el = await fixture(html`
       <<%= tagName %>></<%= tagName %>>
