@@ -1,7 +1,6 @@
 // .vuepress/config.js
 
 const sidebar = [
-  ['/', 'Home'],
   ['/guide/', 'Introduction'],
   {
     title: 'Guides & Docs',
