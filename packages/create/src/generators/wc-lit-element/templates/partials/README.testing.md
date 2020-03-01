@@ -15,13 +15,3 @@ To run the suite of karma tests in BrowserStack, run
 ```bash
 <%= scriptRunCommand %> test:bs
 ```
-
-## Managing Test Snapshots
-You can manage the test snapshots using
-```bash
-<%= scriptRunCommand %> test:update-snapshots
-```
-or
-```bash
-<%= scriptRunCommand %> test:prune-snapshots
-```
