@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.11.0...@open-wc/demoing-storybook@1.11.1) (2020-03-01)
+
+
+### Bug Fixes
+
+* **create:** fix race condition with registering addons ([f92509f](https://github.com/open-wc/open-wc/commit/f92509fe0a31b7e8526e9d3c6325aa3567cc11ed))
+
+
+
+
+
 # [1.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.10.6...@open-wc/demoing-storybook@1.11.0) (2020-02-29)
 
 
