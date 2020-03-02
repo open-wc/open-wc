@@ -1,6 +1,7 @@
 import koaStatic from 'koa-static';
 import koaEtag from 'koa-etag';
 import koaCompress from 'koa-compress';
+import chokidar from 'chokidar';
 import { createBasePathMiddleware } from './middleware/base-path.js';
 import { createHistoryAPIFallbackMiddleware } from './middleware/history-api-fallback.js';
 import { createCompatibilityTransformMiddleware } from './middleware/compatibility-transform.js';
@@ -31,7 +32,7 @@ const defaultCompressOptions = {
  * @param {import('chokidar').FSWatcher} fileWatcher
  * @returns {import('koa').Middleware[]}
  */
-export function createMiddlewares(config, fileWatcher) {
+export function createMiddlewares(config, fileWatcher = chokidar.watch([])) {
   const {
     appIndex,
     appIndexDir,
