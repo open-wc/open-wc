@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.42.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.41.0...es-dev-server@1.42.0) (2020-03-02)
+
+
+### Features
+
+* **es-dev-server:** make watcher an optional parameter ([ab750ed](https://github.com/open-wc/open-wc/commit/ab750ed1d8f06699d8d4e37b6bdefbcf96458bc5))
+
+
+
+
+
 # [1.41.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.40.1...es-dev-server@1.41.0) (2020-02-29)
 
 

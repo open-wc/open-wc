@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/rollup-plugin-html",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publishConfig": {
     "access": "public"
   },
@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "es-dev-server": "^1.41.0",
+    "es-dev-server": "^1.42.0",
     "lit-element": "^2.2.1",
     "rimraf": "^3.0.0",
     "rollup": "^1.31.1"

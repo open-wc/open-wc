@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/karma-esm",
-  "version": "2.13.11",
+  "version": "2.13.12",
   "publishConfig": {
     "access": "public"
   },
@@ -36,7 +36,7 @@
     "babel-plugin-istanbul": "^5.1.4",
     "chokidar": "^3.0.0",
     "deepmerge": "^3.2.0",
-    "es-dev-server": "^1.41.0",
+    "es-dev-server": "^1.42.0",
     "minimatch": "^3.0.4",
     "node-fetch": "^2.6.0",
     "portfinder": "^1.0.21",
