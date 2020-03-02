@@ -32,7 +32,7 @@ const defaultCompressOptions = {
  * @param {import('chokidar').FSWatcher} fileWatcher
  * @returns {import('koa').Middleware[]}
  */
-export function createMiddlewares(config, fileWatcher =  chokidar.watch([])) {
+export function createMiddlewares(config, fileWatcher = chokidar.watch([])) {
   const {
     appIndex,
     appIndexDir,
