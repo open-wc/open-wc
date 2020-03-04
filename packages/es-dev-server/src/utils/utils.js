@@ -126,13 +126,14 @@ export async function isIndexHTMLResponse(ctx, appIndex) {
   }
 
   // if we're serving the app index, it's an index html response
-  if (ctx.url === appIndex) {
+  if (ctx.url === appIndex || ctx.url.includes('index.html')) {
     return true;
   }
 
-  // make the check based on content-type and check
+  // make the check based on content-type and `accept` request header value
   const contentType = ctx.response.header && ctx.response.header['content-type'];
-  return contentType && contentType.includes('text/html');
+  const acceptType = ctx.request.header && ctx.request.header.accept;
+  return contentType && contentType.includes('text/html') && acceptType && acceptType.includes('text/html');
 }
 
 /**
