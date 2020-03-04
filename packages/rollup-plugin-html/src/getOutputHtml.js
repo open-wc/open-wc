@@ -2,6 +2,7 @@
 
 /** @typedef {import('./types').PluginOptions} PluginOptions */
 /** @typedef {import('./types').EntrypointBundle} EntrypointBundle */
+/** @typedef {import('./types').TransformFunction} TransformFunction */
 
 const { injectBundles } = require('./injectBundles');
 const { minifyHtml } = require('./minifyHtml');
@@ -12,9 +13,15 @@ const defaultHtml = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><bo
  * @param {object} args
  * @param {PluginOptions} args.pluginOptions
  * @param {EntrypointBundle[]} args.entrypointBundles
+ * @param {TransformFunction[]} [args.externalTransformFns]
  * @param {string | undefined} [args.inputHtml]
  */
-async function getOutputHtml({ pluginOptions, entrypointBundles, inputHtml }) {
+async function getOutputHtml({
+  pluginOptions,
+  entrypointBundles,
+  externalTransformFns,
+  inputHtml,
+}) {
   const { template, inject, minify } = pluginOptions;
   let outputHtml;
 
@@ -38,17 +45,19 @@ async function getOutputHtml({ pluginOptions, entrypointBundles, inputHtml }) {
   }
 
   // transform HTML output
+  const transforms = [...(externalTransformFns || [])];
   if (pluginOptions.transform) {
-    const transforms = Array.isArray(pluginOptions.transform)
-      ? pluginOptions.transform
-      : [pluginOptions.transform];
-
-    for (const transform of transforms) {
-      outputHtml = await transform(outputHtml, {
-        bundle: entrypointBundles[0],
-        bundles: entrypointBundles,
-      });
+    if (Array.isArray(pluginOptions.transform)) {
+      transforms.push(...pluginOptions.transform);
+    } else {
+      transforms.push(pluginOptions.transform);
     }
+  }
+  for (const transform of transforms) {
+    outputHtml = await transform(outputHtml, {
+      bundle: entrypointBundles[0],
+      bundles: entrypointBundles,
+    });
   }
 
   // minify final HTML output

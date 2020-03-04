@@ -12,10 +12,6 @@ const { createError } = require('./utils');
  */
 function getInputHtmlData(pluginOptions, rootDir = process.cwd()) {
   if (pluginOptions.inputHtml) {
-    if (!pluginOptions.name) {
-      throw createError('Must set a name option when providing inputHtml directory.');
-    }
-
     return {
       name: pluginOptions.name,
       rootDir,

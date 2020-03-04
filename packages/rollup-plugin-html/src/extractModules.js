@@ -11,10 +11,11 @@ const {
 
 /**
  * @param {InputHtmlData} inputHtmlData
+ * @param {string} inputHtmlName
  * @param {string} [projectRootDir]
  */
-function extractModules(inputHtmlData, projectRootDir = process.cwd()) {
-  const { inputHtml, name, rootDir: htmlRootDir } = inputHtmlData;
+function extractModules(inputHtmlData, inputHtmlName, projectRootDir = process.cwd()) {
+  const { inputHtml, rootDir: htmlRootDir } = inputHtmlData;
   const documentAst = parse(inputHtml);
   const scriptNodes = findJsScripts(documentAst, { jsScripts: true, inlineJsScripts: true });
 
@@ -26,7 +27,10 @@ function extractModules(inputHtmlData, projectRootDir = process.cwd()) {
     const src = getAttribute(scriptNode, 'src');
 
     if (!src) {
-      inlineModules.set(`inline-module-${name.split('.')[0]}-${i}`, getTextContent(scriptNode));
+      inlineModules.set(
+        `inline-module-${inputHtmlName.split('.')[0]}-${i}`,
+        getTextContent(scriptNode),
+      );
     } else {
       const importPath = path.join(src.startsWith('/') ? projectRootDir : htmlRootDir, src);
       moduleImports.push(importPath);

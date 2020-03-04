@@ -5,7 +5,6 @@ describe('extractModules()', () => {
   it('extracts all modules from a html document', () => {
     const { moduleImports, inlineModules, htmlWithoutModules } = extractModules(
       {
-        name: 'index.html',
         inputHtml:
           '<div>before</div>' +
           '<script type="module" src="./foo.js"></script>' +
@@ -13,6 +12,7 @@ describe('extractModules()', () => {
           '<div>after</div>',
         rootDir: '/',
       },
+      'index.html',
       '/',
     );
 
@@ -26,7 +26,6 @@ describe('extractModules()', () => {
   it('resolves imports relative to the root dir', () => {
     const { moduleImports, inlineModules, htmlWithoutModules } = extractModules(
       {
-        name: 'index.html',
         inputHtml:
           '<div>before</div>' +
           '<script type="module" src="./foo.js"></script>' +
@@ -34,6 +33,7 @@ describe('extractModules()', () => {
           '<div>after</div>',
         rootDir: '/base/',
       },
+      'index.html',
       '/base/',
     );
 
@@ -47,7 +47,6 @@ describe('extractModules()', () => {
   it('resolves relative imports relative to the relative import base', () => {
     const { moduleImports, inlineModules, htmlWithoutModules } = extractModules(
       {
-        name: 'index.html',
         inputHtml:
           '<div>before</div>' +
           '<script type="module" src="./foo.js"></script>' +
@@ -55,6 +54,7 @@ describe('extractModules()', () => {
           '<div>after</div>',
         rootDir: '/base-1/base-2/',
       },
+      'index.html',
       '/base-1/',
     );
 
@@ -68,7 +68,6 @@ describe('extractModules()', () => {
   it('extracts all inline modules from a html document', () => {
     const { moduleImports, inlineModules, htmlWithoutModules } = extractModules(
       {
-        name: 'index.html',
         inputHtml:
           '<div>before</div>' +
           '<script type="module">/* my module 1 */</script>' +
@@ -76,7 +75,7 @@ describe('extractModules()', () => {
           '<div>after</div>',
         rootDir: '/base-1/base-2/',
       },
-
+      'index.html',
       '/',
     );
 
