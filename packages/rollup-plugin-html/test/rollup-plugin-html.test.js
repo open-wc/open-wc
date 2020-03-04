@@ -1,5 +1,7 @@
 /** @typedef {import('rollup').OutputChunk} OutputChunk */
 /** @typedef {import('rollup').OutputAsset} OutputAsset */
+/** @typedef {import('rollup').InputOptions} InputOptions */
+/** @typedef {import('../rollup-plugin-html').RollupPluginHtml} RollupPluginHtml */
 /** @typedef {(OutputChunk | OutputAsset)[]} Output */
 
 const rollup = require('rollup');
@@ -465,6 +467,67 @@ describe('rollup-plugin-html', () => {
     expect(output.length).to.equal(2);
     expect(getAsset(output, 'pages/index.html').source).to.equal(
       '<html><head></head><body><h1>Hello world</h1><script type="module" src="../entrypoint-a.js"></script></body></html>',
+    );
+  });
+
+  it('can get the filename with getHtmlFileName()', async () => {
+    // default filename
+    const pluginA = htmlPlugin({ inputHtml: 'Hello world' });
+    // filename inferred from input filename
+    const pluginB = htmlPlugin({ inputPath: 'test/fixtures/rollup-plugin-html/my-page.html' });
+    // filename explicitly set
+    const pluginC = htmlPlugin({
+      name: 'pages/my-other-page.html',
+      inputPath: 'test/fixtures/rollup-plugin-html/index.html',
+    });
+
+    await rollup.rollup({
+      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      plugins: [pluginA],
+    });
+    await rollup.rollup({ plugins: [pluginB] });
+    await rollup.rollup({ plugins: [pluginC] });
+
+    expect(pluginA.getHtmlFileName()).to.equal('index.html');
+    expect(pluginB.getHtmlFileName()).to.equal('my-page.html');
+    expect(pluginC.getHtmlFileName()).to.equal('pages/my-other-page.html');
+  });
+
+  it('supports other plugins injecting a transform function', async () => {
+    const config = {
+      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      plugins: [
+        htmlPlugin({
+          name: 'my-page.html',
+          minify: false,
+        }),
+        {
+          name: 'other-plugin',
+          /** @param {InputOptions} options */
+          buildStart(options) {
+            if (!options.plugins) throw new Error('no plugins');
+            const p = /** @type {RollupPluginHtml} */ (options.plugins.find(pl => {
+              if (pl.name === '@open-wc/rollup-plugin-html') {
+                const pl2 = /** @type {RollupPluginHtml} */ (pl);
+                return pl2.getHtmlFileName() === 'my-page.html';
+              }
+              return false;
+            }));
+
+            p.addHtmlTransformer(html => html.replace('</body>', '<!-- injected --></body>'));
+          },
+        },
+      ],
+    };
+    const bundle = await rollup.rollup(config);
+    const { output } = await bundle.generate(outputConfig);
+
+    expect(output.length).to.equal(2);
+    expect(getChunk(output, 'entrypoint-a.js').code).to.include("console.log('entrypoint-a.js');");
+    expect(getAsset(output, 'my-page.html').source).to.equal(
+      '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body>' +
+        '<script type="module" src="./entrypoint-a.js"></script>' +
+        '<!-- injected --></body></html>',
     );
   });
 });

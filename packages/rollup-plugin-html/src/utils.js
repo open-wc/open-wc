@@ -78,21 +78,9 @@ function addRollupInput(inputOptions, inputModuleIds) {
   throw createError(`Unknown rollup input type. Supported inputs are string, array and object.`);
 }
 
-/**
- * @param {PluginOptions} pluginOptions
- * @param {string} [inputHtmlName]
- */
-function getOutputHtmlFileName(pluginOptions, inputHtmlName) {
-  if (pluginOptions.name) {
-    return pluginOptions.name;
-  }
-  return inputHtmlName || 'index.html';
-}
-
 module.exports = {
   createError,
   getMainOutputDir,
   fromEntries,
   addRollupInput,
-  getOutputHtmlFileName,
 };

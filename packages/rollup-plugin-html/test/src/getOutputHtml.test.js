@@ -184,16 +184,12 @@ describe('getOutputHtml()', () => {
       pluginOptions: {
         ...defaultOptions.pluginOptions,
         template: '<h1>Hello world</h1>',
+        inject: false,
         transform: html => html.replace('Hello world', 'Goodbye world'),
       },
     });
 
-    expect(output).to.equal(
-      '<html><head></head><body><h1>Goodbye world</h1>' +
-        '<script type="module" src="/app.js"></script>' +
-        '<script type="module" src="/module.js"></script>' +
-        '</body></html>',
-    );
+    expect(output).to.equal('<h1>Goodbye world</h1>');
   });
 
   it('allows setting multiple html transform functions', async () => {
@@ -202,6 +198,7 @@ describe('getOutputHtml()', () => {
       pluginOptions: {
         ...defaultOptions.pluginOptions,
         template: '<h1>Hello world</h1>',
+        inject: false,
         transform: [
           html => html.replace('Hello world', 'Goodbye world'),
           html => html.replace(/h1/g, 'h2'),
@@ -209,12 +206,36 @@ describe('getOutputHtml()', () => {
       },
     });
 
-    expect(output).to.equal(
-      '<html><head></head><body><h2>Goodbye world</h2>' +
-        '<script type="module" src="/app.js"></script>' +
-        '<script type="module" src="/module.js"></script>' +
-        '</body></html>',
-    );
+    expect(output).to.equal('<h2>Goodbye world</h2>');
+  });
+
+  it('can set transform functions provided by other plugins', async () => {
+    const output = await getOutputHtml({
+      ...defaultOptions,
+      pluginOptions: {
+        ...defaultOptions.pluginOptions,
+        inject: false,
+        template: '<h1>Hello world</h1>',
+      },
+      externalTransformFns: [html => html.replace('Hello world', 'Goodbye world')],
+    });
+
+    expect(output).to.equal('<h1>Goodbye world</h1>');
+  });
+
+  it('can combine external and regular transform functions', async () => {
+    const output = await getOutputHtml({
+      ...defaultOptions,
+      pluginOptions: {
+        ...defaultOptions.pluginOptions,
+        inject: false,
+        template: '<h1>Hello world</h1>',
+        transform: [html => html.replace(/h1/g, 'h2')],
+      },
+      externalTransformFns: [html => html.replace('Hello world', 'Goodbye world')],
+    });
+
+    expect(output).to.equal('<h2>Goodbye world</h2>');
   });
 
   it('default minify minifies html', async () => {

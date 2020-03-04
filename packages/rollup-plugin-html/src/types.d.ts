@@ -1,4 +1,4 @@
-import { OutputChunk, OutputOptions, OutputBundle } from 'rollup';
+import { OutputChunk, OutputOptions, OutputBundle, Plugin } from 'rollup';
 
 export interface PluginOptions {
   name?: string;
@@ -57,7 +57,13 @@ export type TransformFunction = (html: string, args: TransformArgs) => string | 
 export type TemplateFunction = (args: TemplateArgs) => string | Promise<string>;
 
 export interface InputHtmlData {
-  name: string;
+  name?: string;
   rootDir: string;
   inputHtml: string;
+}
+
+export interface RollupPluginHtml extends Plugin {
+  getHtmlFileName(): string;
+  addHtmlTransformer(transform: TransformFunction): void;
+  addOutput(): Plugin;
 }
