@@ -133,7 +133,12 @@ export async function isIndexHTMLResponse(ctx, appIndex) {
   // make the check based on content-type and `accept` request header value
   const contentType = ctx.response.header && ctx.response.header['content-type'];
   const acceptType = ctx.request.header && ctx.request.header.accept;
-  return contentType && contentType.includes('text/html') && acceptType && acceptType.includes('text/html');
+  return (
+    contentType &&
+    contentType.includes('text/html') &&
+    acceptType &&
+    acceptType.includes('text/html')
+  );
 }
 
 /**
