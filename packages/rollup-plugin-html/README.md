@@ -325,9 +325,13 @@ It is possible to create multiple rollup build outputs and inject both bundles i
 <details>
 <summary>View example</summary>
 
-To create multiple outputs with rollup, you need to set the `output` option as an array. For each output, you need to create a child plugin from the main plugin.
+When you configure rollup to generate multiple build outputs you can inject all outputs into a single HTML file.
 
-The HTML file will be output into the directory of the last build. If your builds will be output into separate directories, you need to make sure the modern build is last.
+To do this, create one parent `@open-wc/rollup-plugin-html` instance and use `addOutput` to create two child plugins for each separate rollup output.
+
+Each output defines a unique name, this can be used to retreive the correct bundle from `bundles` argument when creating the HTML template.
+
+The HTML file will be output into the directory of the last build. If your builds will be output into separate directories, you need to make sure the main directory in the last.
 
 ```js
 import html from '@open-wc/rollup-plugin-html';
@@ -339,15 +343,13 @@ const htmlPlugin = html({
     return `
       <html>
         <body>
-        <script nomodule src="./systemjs.js"></script>
-        ${bundles[0].entrypoints.map(
-          e => `<script nomodule>System.import("${e.importPath}")</script>`,
+        ${bundles.modern.entrypoints.map(
+          e => `<script type="module" src="${e.importPath}"></script>`,
         )}
 
-        ${bundles[1].entrypoints.map(
-          e => `
-          <script type="module" src="${e.importPath}"></script>
-        `,
+        <script nomodule src="./systemjs.js"></script>
+        ${bundles.legacy.entrypoints.map(
+          e => `<script nomodule>System.import("${e.importPath}")</script>`,
         )}
         </body>
       </html>
@@ -361,14 +363,14 @@ export default {
     {
       format: 'system',
       dir: 'dist/legacy',
-      plugins: [htmlPlugin.addOutput()],
+      plugins: [htmlPlugin.addOutput('legacy')],
     },
     // Note: the modern build should always be last, as the HTML file will be output into
     // this directory
     {
       format: 'es',
       dir: 'dist',
-      plugins: [htmlPlugin.addOutput()],
+      plugins: [htmlPlugin.addOutput('modern')],
     },
   ],
   plugins: [htmlPlugin],
@@ -450,7 +452,7 @@ For more info see the [configuration type definitions](#configuration-types).
 <summary>Full typescript definitions of configuration options</summary>
 
 ```ts
-import { OutputChunk, OutputOptions, OutputBundle } from 'rollup';
+import { OutputChunk, OutputOptions, OutputBundle, Plugin } from 'rollup';
 
 export interface PluginOptions {
   name?: string;
@@ -467,6 +469,7 @@ export interface PluginOptions {
 export type MinifyFunction = (html: string) => string | Promise<string>;
 
 export interface GeneratedBundle {
+  name: string;
   options: OutputOptions;
   bundle: OutputBundle;
 }
@@ -494,19 +497,31 @@ export interface TemplateArgs {
   bundle: EntrypointBundle;
   // the rollup bundles to be injected on the page. if there is only one
   // build output options, this will be an array with one option
-  bundles: EntrypointBundle[];
+  bundles: Record<string, EntrypointBundle>;
 }
 
 export interface TransformArgs {
   // see TemplateArgs
   bundle: EntrypointBundle;
   // see TemplateArgs
-  bundles: EntrypointBundle[];
+  bundles: Record<string, EntrypointBundle>;
 }
 
 export type TransformFunction = (html: string, args: TransformArgs) => string | Promise<string>;
 
 export type TemplateFunction = (args: TemplateArgs) => string | Promise<string>;
+
+export interface InputHtmlData {
+  name?: string;
+  rootDir: string;
+  inputHtml: string;
+}
+
+export interface RollupPluginHtml extends Plugin {
+  getHtmlFileName(): string;
+  addHtmlTransformer(transform: TransformFunction): void;
+  addOutput(name: string): Plugin;
+}
 ```
 
 </details>

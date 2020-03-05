@@ -12,7 +12,7 @@ const defaultHtml = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><bo
 /**
  * @param {object} args
  * @param {PluginOptions} args.pluginOptions
- * @param {EntrypointBundle[]} args.entrypointBundles
+ * @param {Record<string, EntrypointBundle>} args.entrypointBundles
  * @param {TransformFunction[]} [args.externalTransformFns]
  * @param {string | undefined} [args.inputHtml]
  */
@@ -30,7 +30,7 @@ async function getOutputHtml({
   } else if (typeof template === 'function') {
     outputHtml = await template({
       inputHtml,
-      bundle: entrypointBundles[0],
+      bundle: entrypointBundles.default,
       bundles: entrypointBundles,
     });
   } else if (inputHtml) {
@@ -55,7 +55,7 @@ async function getOutputHtml({
   }
   for (const transform of transforms) {
     outputHtml = await transform(outputHtml, {
-      bundle: entrypointBundles[0],
+      bundle: entrypointBundles.default,
       bundles: entrypointBundles,
     });
   }

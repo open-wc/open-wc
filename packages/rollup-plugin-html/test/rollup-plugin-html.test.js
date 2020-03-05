@@ -246,12 +246,12 @@ describe('rollup-plugin-html', () => {
     const bundleA = build.generate({
       format: 'system',
       dir: 'dist/legacy',
-      plugins: [plugin.addOutput()],
+      plugins: [plugin.addOutput('legacy')],
     });
     const bundleB = build.generate({
       format: 'es',
       dir: 'dist',
-      plugins: [plugin.addOutput()],
+      plugins: [plugin.addOutput('modern')],
     });
 
     const { output: outputA } = await bundleA;
