@@ -32,6 +32,8 @@ function rollupPluginHtml(pluginOptions) {
     ...(pluginOptions || {}),
   };
 
+  /** @type {string[]} */
+  const multiOutputNames = [];
   let multiOutput = false;
   let outputCount = 0;
   /** @type {string} */
@@ -150,7 +152,7 @@ function rollupPluginHtml(pluginOptions) {
      */
     async generateBundle(options, bundle) {
       if (multiOutput) return;
-      generatedBundles.push({ options, bundle });
+      generatedBundles.push({ name: 'default', options, bundle });
       this.emitFile(await createHtmlAsset());
     },
 
@@ -168,8 +170,15 @@ function rollupPluginHtml(pluginOptions) {
     /**
      * Creates a sub plugin for tracking multiple build outputs, generating a single index.html
      * file when both build outputs are finished.
+     *
+     * @param {string} name
      */
-    addOutput() {
+    addOutput(name) {
+      if (!name || multiOutputNames.includes(name)) {
+        throw createError('Each output must have a unique name');
+      }
+      multiOutputNames.push(name);
+
       multiOutput = true;
       outputCount += 1;
 
@@ -183,7 +192,7 @@ function rollupPluginHtml(pluginOptions) {
          * @param {OutputBundle} bundle
          */
         async generateBundle(options, bundle) {
-          generatedBundles.push({ options, bundle });
+          generatedBundles.push({ name, options, bundle });
           if (generatedBundles.length === outputCount) {
             this.emitFile(await createHtmlAsset());
           }

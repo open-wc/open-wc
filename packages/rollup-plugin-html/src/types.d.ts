@@ -15,6 +15,7 @@ export interface PluginOptions {
 export type MinifyFunction = (html: string) => string | Promise<string>;
 
 export interface GeneratedBundle {
+  name: string;
   options: OutputOptions;
   bundle: OutputBundle;
 }
@@ -42,14 +43,14 @@ export interface TemplateArgs {
   bundle: EntrypointBundle;
   // the rollup bundles to be injected on the page. if there is only one
   // build output options, this will be an array with one option
-  bundles: EntrypointBundle[];
+  bundles: Record<string, EntrypointBundle>;
 }
 
 export interface TransformArgs {
   // see TemplateArgs
   bundle: EntrypointBundle;
   // see TemplateArgs
-  bundles: EntrypointBundle[];
+  bundles: Record<string, EntrypointBundle>;
 }
 
 export type TransformFunction = (html: string, args: TransformArgs) => string | Promise<string>;
@@ -65,5 +66,5 @@ export interface InputHtmlData {
 export interface RollupPluginHtml extends Plugin {
   getHtmlFileName(): string;
   addHtmlTransformer(transform: TransformFunction): void;
-  addOutput(): Plugin;
+  addOutput(name: string): Plugin;
 }
