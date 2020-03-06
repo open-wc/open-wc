@@ -1,13 +1,5 @@
 # Semantic Dom Diff
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
-## Manual Setup
-
-```bash
-npm i -D @open-wc/semantic-dom-diff
-```
-
 `semantic-dom-diff` allows diffing chunks of dom or HTML for semantic equality:
 
 - whitespace and newlines are normalized
@@ -15,6 +7,14 @@ npm i -D @open-wc/semantic-dom-diff
 - comments are removed
 - style, script and SVG contents are removed
 - tags, attributes or element's light dom can be ignored through configuration
+
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
+
+## Manual Setup
+
+```bash
+npm i -D @open-wc/semantic-dom-diff
+```
 
 ## Chai Plugin
 

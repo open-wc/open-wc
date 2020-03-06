@@ -1,12 +1,8 @@
 # Demoing via storybook
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 For demoing, documenting and showcasing different states of your Web Component, we recommend using [storybook](https://storybook.js.org/).
 
-::: tip
-This is part of the default [open-wc](https://open-wc.org/) recommendation
-:::
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 # Features
 

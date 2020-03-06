@@ -1,5 +1,7 @@
 # Create Open Web Components
 
+Web component project scaffolding.
+
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ## Usage

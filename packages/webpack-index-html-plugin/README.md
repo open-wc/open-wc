@@ -1,8 +1,8 @@
 # Webpack Index HTML Plugin
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 Webpack plugin to make webpack understand your index.html.
+
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 1. Takes in a standard index.html:
 

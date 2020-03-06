@@ -1,12 +1,12 @@
 # ES dev server
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 A web server for development without bundling, utilizing the browser's standard module loader and efficient browser caching for simple and fast web development.
 
 ```bash
 npx es-dev-server --node-resolve --watch
 ```
+
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 **Quick overview**
 

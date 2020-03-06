@@ -1,12 +1,8 @@
 # Linting Prettier
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 Use [Prettier](https://prettier.io) to format your JS, CSS and HTML code.
 
-::: tip
-This is part of the default [open-wc](https://open-wc.org/) recommendation
-:::
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ## Setup
 
