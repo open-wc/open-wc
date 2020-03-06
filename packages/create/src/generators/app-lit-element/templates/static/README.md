@@ -22,3 +22,9 @@ npm init @open-wc
 - `build` builds your app and outputs it in your `dist` directory
 - `test` runs your test suite with Karma
 - `lint` runs the linter for your project
+
+## Tooling configs
+
+For most of the tools, the configuration is in the `package.json` to reduces the amount of files in your project.
+
+If you customize the configuration a lot, you can consider moving them to individual files.
