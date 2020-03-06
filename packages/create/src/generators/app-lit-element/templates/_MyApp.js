@@ -56,7 +56,7 @@ export class <%= className %> extends LitElement {
   render() {
     return html`
       <main>
-        <div class="logo">${openWcLogo} </div>
+        <div class="logo">${openWcLogo}</div>
         <h1>My app</h1>
 
         <p>Edit <code>src/MyApp.js</code> and save to reload.</p>
