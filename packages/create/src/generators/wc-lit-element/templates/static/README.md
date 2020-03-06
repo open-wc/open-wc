@@ -18,6 +18,12 @@ npm i <%= tagName %>
 
 <%= featureReadmes %>
 
+## Tooling configs
+
+For most of the tools, the configuration is in the `package.json` to reduces the amount of files in your project.
+
+If you customize the configuration a lot, you can consider moving them to individual files.
+
 ## Local Demo with `es-dev-server`
 ```bash
 npm start
