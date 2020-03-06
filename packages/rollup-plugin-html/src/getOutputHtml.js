@@ -25,13 +25,15 @@ async function getOutputHtml({
   const { template, inject, minify } = pluginOptions;
   let outputHtml;
 
+  const { default: defaultBundle, ...multiBundles } = entrypointBundles;
+
   if (typeof template === 'string') {
     outputHtml = template;
   } else if (typeof template === 'function') {
     outputHtml = await template({
       inputHtml,
-      bundle: entrypointBundles.default,
-      bundles: entrypointBundles,
+      bundle: defaultBundle,
+      bundles: multiBundles,
     });
   } else if (inputHtml) {
     outputHtml = inputHtml;
@@ -55,8 +57,8 @@ async function getOutputHtml({
   }
   for (const transform of transforms) {
     outputHtml = await transform(outputHtml, {
-      bundle: entrypointBundles.default,
-      bundles: entrypointBundles,
+      bundle: defaultBundle,
+      bundles: multiBundles,
     });
   }
 

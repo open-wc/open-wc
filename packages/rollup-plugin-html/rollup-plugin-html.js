@@ -11,6 +11,8 @@
 /** @typedef {import('./src/types').GeneratedBundle} GeneratedBundle */
 /** @typedef {import('./src/types').TransformFunction} TransformFunction */
 /** @typedef {import('./src/types').RollupPluginHtml} RollupPluginHtml */
+/** @typedef {import('./src/types').EntrypointBundle} EntrypointBundle */
+/** @typedef {import('./src/types').TransformArgs} TransformArgs */
 
 const { getInputHtmlData } = require('./src/getInputHtmlData');
 const { getEntrypointBundles } = require('./src/getEntrypointBundles');
