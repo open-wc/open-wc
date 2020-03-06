@@ -62,6 +62,9 @@ export default createDefaultConfig({ input: './index.html' });
 
 We use [rollup-plugin-index-html](https://open-wc.org/building/rollup-plugin-index-html.html) which takes your `index.html` as input for rollup. It scans for any `<script type="module" src="...">` and sends them to rollup for bundling, and outputs your `index.html` in the output directory.
 
+> If there is no script with `type="module"` in your `index.html`, rollup build will fail. 
+> Also make sure that your references to internal files are relative paths.
+
 4. Add the following commands to your `package.json`:
 
 ```json
