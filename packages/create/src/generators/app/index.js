@@ -69,10 +69,13 @@ export const AppMixin = subclass =>
           message: 'What would you like to add?',
           choices: (prev, all) =>
             [
-              { title: 'Linting', value: 'linting' },
-              { title: 'Testing', value: 'testing' },
-              { title: 'Demoing', value: 'demoing' },
-              all.scaffoldType !== 'wc' && { title: 'Building', value: 'building' },
+              { title: 'Linting (eslint & prettier)', value: 'linting' },
+              { title: 'Testing (karma)', value: 'testing' },
+              { title: 'Demoing (storybook)', value: 'demoing' },
+              all.scaffoldType !== 'wc' && {
+                title: 'Building (rollup or webpack)',
+                value: 'building',
+              },
             ].filter(_ => !!_),
           onState: state => {
             state.value.forEach(meta => {
