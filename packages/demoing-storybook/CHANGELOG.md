@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.11.3...@open-wc/demoing-storybook@1.12.0) (2020-03-06)
+
+
+### Features
+
+* **demoing-storybook:** support loading custom addons ([200d39b](https://github.com/open-wc/open-wc/commit/200d39b5a2c5a5e44df19523a215b072d0bd8d32))
+* **demoing-storybook:** support loading manager.js ([eb65c0f](https://github.com/open-wc/open-wc/commit/eb65c0f8c4d3fc787570cfab8ea5f80eb787cc20))
+
+
+
+
+
 ## [1.11.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.11.2...@open-wc/demoing-storybook@1.11.3) (2020-03-06)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
