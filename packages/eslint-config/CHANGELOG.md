@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@2.0.3...@open-wc/eslint-config@2.0.4) (2020-03-06)
+
+
+### Bug Fixes
+
+* **eslint-config:** add support for optional chaining ([#1399](https://github.com/open-wc/open-wc/issues/1399)) ([79b0683](https://github.com/open-wc/open-wc/commit/79b0683034dc31f9101a403fa75d47ba4037f9c4))
+
+
+
+
+
 ## [2.0.3](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@2.0.2...@open-wc/eslint-config@2.0.3) (2020-02-09)
 
 **Note:** Version bump only for package @open-wc/eslint-config
