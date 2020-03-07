@@ -8,7 +8,7 @@ const { fileTypes } = require('polyfills-loader');
 const { createError } = require('./utils');
 
 /**  @param {ModuleFormat} [format] */
-function formatToFilyType(format) {
+function formatToFileType(format) {
   switch (format) {
     case 'es':
     case 'esm':
@@ -28,7 +28,7 @@ function bundleNotFoundError(name) {
 
 /** @param {EntrypointBundle} bundle */
 function createEntrypoints(bundle) {
-  const type = formatToFilyType(bundle.options.format);
+  const type = formatToFileType(bundle.options.format);
   const files = bundle.entrypoints.map(e => ({ type, path: e.importPath }));
   return { files };
 }

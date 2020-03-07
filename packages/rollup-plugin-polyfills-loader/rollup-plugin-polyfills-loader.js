@@ -15,7 +15,7 @@ const { createPolyfillsLoaderConfig } = require('./src/createPolyfillsLoaderConf
  * @param {PluginOptions} pluginOptions
  * @returns {Plugin}
  */
-function rollupPluginHtml(pluginOptions) {
+function rollupPluginPolyfillsLoader(pluginOptions) {
   pluginOptions = {
     htmlFileName: 'index.html',
     ...(pluginOptions || {}),
@@ -80,4 +80,4 @@ function rollupPluginHtml(pluginOptions) {
   };
 }
 
-module.exports = rollupPluginHtml;
+module.exports = rollupPluginPolyfillsLoader;
