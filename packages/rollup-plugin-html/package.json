@@ -12,7 +12,7 @@
     "directory": "packages/rollup-plugin-html"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/packages/rollup-plugin-html",
   "main": "rollup-plugin-html.js",
   "scripts": {
     "demo:mpa": "rm -rf demo/dist && rollup -c demo/mpa/rollup.config.js --watch & yarn serve-demo",

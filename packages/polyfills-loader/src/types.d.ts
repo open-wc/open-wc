@@ -14,6 +14,9 @@ export interface PolyfillsLoaderConfig {
   polyfillsDir?: string;
   // whether to minify the loader output
   minify?: boolean;
+  // whether to preload the modern entrypoint, best for performance
+  // defaults to true
+  preload?: boolean;
 }
 
 export interface PolyfillsConfig {
