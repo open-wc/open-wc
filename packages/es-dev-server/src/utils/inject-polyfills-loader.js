@@ -182,6 +182,7 @@ export async function injectPolyfillsLoader(cfg) {
         })),
       },
       polyfills: polyfillsConfig,
+      preload: false,
     },
     cfg.polyfillsLoaderConfig || {},
   );
