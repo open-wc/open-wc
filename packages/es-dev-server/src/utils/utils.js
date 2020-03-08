@@ -115,6 +115,22 @@ export class SSEStream extends Stream.Transform {
 }
 
 /**
+ * @param  {*}  x
+ * @return {x is boolean}
+ */
+export function isBoolean(x) {
+  return typeof x === 'boolean';
+}
+
+/**
+ * @param  {boolean|import('chokidar').WatchOptions}  watch
+ * @return {watch is WatchOptions}
+ */
+export function isWatchOptions(watch) {
+  return typeof watch === 'object';
+}
+
+/**
  * Returns the index html response, or null if this wasn't an index.html response
  * @param {import('koa').Context} ctx
  * @param {string} appIndex

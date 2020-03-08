@@ -34,7 +34,7 @@ import { compatibilityModes } from './constants.js';
  * @property {boolean} debug whether to log debug messages
  *
  * Development help
- * @property {boolean} [watch] whether to watch served files and reload the browser on change
+ * @property {boolean|import('chokidar').WatchOptions} [watch] whether to watch served files and reload the browser on change
  * @property {boolean} [logErrorsToBrowser] whether to log errors to the browser
  * @property {boolean} [http2] whether to run the server in http2, sets up https as well
  * @property {string} [sslKey] path to local .key file to use for https
@@ -88,7 +88,7 @@ import { compatibilityModes } from './constants.js';
  * @property {import('./middleware/response-transform').ResponseTransformer[]} responseTransformers
  *
  * Development help
- * @property {boolean} watch
+ * @property {boolean|import("chokidar").WatchOptions} watch
  * @property {boolean} logErrorsToBrowser
  * @property {number} watchDebounce
  * @property {boolean} http2

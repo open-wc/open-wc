@@ -4,6 +4,7 @@ import portfinder from 'portfinder';
 import { URL } from 'url';
 import { createServer } from './create-server.js';
 import { compatibilityModes } from './constants.js';
+import { isBoolean } from './utils/utils.js';
 
 function isValidURL(str) {
   try {
@@ -14,7 +15,9 @@ function isValidURL(str) {
 }
 
 /** @param {import('./config.js').InternalConfig} cfg */
-export async function startServer(cfg, fileWatcher = chokidar.watch([])) {
+export async function startServer(cfg, watcher = undefined) {
+  let fileWatcher = watcher || chokidar.watch([], ...(!isBoolean(cfg.watch) ? [cfg.watch] : []));
+
   const result = createServer(cfg, fileWatcher);
   const { app } = result;
   let { server } = result;
@@ -25,7 +28,6 @@ export async function startServer(cfg, fileWatcher = chokidar.watch([])) {
   function closeFileWatcher() {
     if (fileWatcher) {
       fileWatcher.close();
-      /* eslint-disable-next-line no-param-reassign */
       fileWatcher = undefined;
     }
   }

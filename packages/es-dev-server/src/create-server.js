@@ -5,16 +5,19 @@ import http2Server from 'http2';
 import fs from 'fs';
 import chokidar from 'chokidar';
 import { createMiddlewares } from './create-middlewares.js';
+import { isBoolean } from './utils/utils.js';
 
 /**
  * Creates a koa server with middlewares, but does not start it. Returns the koa app and
  * http server instances.
  *
  * @param {import('./config').InternalConfig} cfg the server configuration
- * @param {import('chokidar').FSWatcher} fileWatcher
+ * @param {import('chokidar').FSWatcher} watcher
  * @returns {{ app: import('koa'), server: import('http').Server | import('http2').Http2SecureServer }}
  */
-export function createServer(cfg, fileWatcher = chokidar.watch([])) {
+export function createServer(cfg, watcher) {
+  const fileWatcher = watcher || chokidar.watch([], ...(!isBoolean(cfg.watch) ? [cfg.watch] : []));
+
   const middlewares = createMiddlewares(cfg, fileWatcher);
 
   const app = new Koa();

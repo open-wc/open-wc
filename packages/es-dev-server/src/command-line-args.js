@@ -64,7 +64,16 @@ export const commandLineOptions = [
   {
     name: 'watch',
     alias: 'w',
-    type: Boolean,
+    type: x => {
+      switch (x) {
+        case 'true':
+          return true;
+        case 'false':
+          return false;
+        default:
+          return JSON.parse(x);
+      }
+    },
     description: 'Reload the browser when files are edited.',
   },
   {

@@ -15,7 +15,9 @@ import { compatibilityModes } from './constants.js';
 import { createResponseTransformMiddleware } from './middleware/response-transform.js';
 import { createResolveModuleImports } from './utils/resolve-module-imports.js';
 import { createCompatibilityTransform } from './utils/compatibility-transform.js';
-import { logDebug } from './utils/utils.js';
+import { logDebug, isBoolean } from './utils/utils.js';
+
+/** @typedef {import('chokidar').WatchOptions} WatchOptions */
 
 const defaultCompressOptions = {
   filter(contentType) {
@@ -29,10 +31,10 @@ const defaultCompressOptions = {
  * used by a koa server using `app.use()`:
  *
  * @param {import('./config').InternalConfig} config the server configuration
- * @param {import('chokidar').FSWatcher} fileWatcher
+ * @param {import('chokidar').FSWatcher} watcher
  * @returns {import('koa').Middleware[]}
  */
-export function createMiddlewares(config, fileWatcher = chokidar.watch([])) {
+export function createMiddlewares(config, watcher) {
   const {
     appIndex,
     appIndexDir,
@@ -54,6 +56,8 @@ export function createMiddlewares(config, fileWatcher = chokidar.watch([])) {
     logErrorsToBrowser,
     watchDebounce,
   } = config;
+
+  const fileWatcher = watcher || chokidar.watch([], ...(!isBoolean(watch) ? [watch] : []));
 
   /** @type {import('koa').Middleware[]} */
   const middlewares = [];
