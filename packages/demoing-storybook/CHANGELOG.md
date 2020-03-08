@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.12.1...@open-wc/demoing-storybook@1.13.0) (2020-03-08)
+
+
+### Features
+
+* add Markdown with JavaScript (mdjs) ([5547ebc](https://github.com/open-wc/open-wc/commit/5547ebc00c02c5c34725030865dc3fd5a02aae80))
+
+
+
+
+
 ## [1.12.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.12.0...@open-wc/demoing-storybook@1.12.1) (2020-03-08)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
