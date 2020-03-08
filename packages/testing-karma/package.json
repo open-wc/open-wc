@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "publishConfig": {
     "access": "public"
   },
@@ -28,7 +28,7 @@
     "compatibility"
   ],
   "dependencies": {
-    "@open-wc/karma-esm": "^2.13.13",
+    "@open-wc/karma-esm": "^2.13.14",
     "axe-core": "^3.3.1",
     "karma": "^4.1.0",
     "karma-chrome-launcher": "^3.1.0",
