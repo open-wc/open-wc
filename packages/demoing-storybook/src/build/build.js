@@ -155,14 +155,14 @@ async function buildManager({ outputDir, assets }) {
 async function buildPreview({
   outputDir,
   assets: { iframeHTML },
-  previewPath,
+  previewImport,
   previewConfigImport,
   storiesPatterns,
   rollupConfigDecorator,
 }) {
   const { html, storyFiles } = await injectStories({
     iframeHTML,
-    previewImport: previewPath,
+    previewImport,
     previewConfigImport,
     storiesPatterns,
     absolutePath: false,
@@ -214,17 +214,25 @@ module.exports = async function build({
   previewPath,
   storiesPatterns,
   rollupConfigDecorator,
+  addons,
 }) {
   const managerPathRelative = `/${path.relative(process.cwd(), require.resolve(managerPath))}`;
-  const managerImport = toBrowserPath(managerPathRelative);
+  const managerImport = `./${toBrowserPath(managerPathRelative)}`;
 
   const assets = createAssets({
+    rootDir: process.cwd(),
     storybookConfigDir,
     managerImport,
+    addons,
+    absoluteImports: false,
   });
 
-  const previewConfigPath = path.join(process.cwd(), storybookConfigDir, 'preview.js');
-  const previewConfigImport = fs.existsSync(previewConfigPath) ? previewConfigPath : undefined;
+  const previewConfigPath = path.join(storybookConfigDir, 'preview.js');
+  const previewConfigImport = fs.existsSync(path.join(process.cwd(), previewConfigPath))
+    ? `./${toBrowserPath(previewConfigPath)}`
+    : undefined;
+  const relativePreviewPath = path.relative(process.cwd(), previewPath);
+  const previewImport = `./${toBrowserPath(relativePreviewPath)}`;
 
   await fs.remove(outputDir);
   await fs.mkdirp(outputDir);
@@ -234,7 +242,7 @@ module.exports = async function build({
     outputDir,
     assets,
     storiesPatterns,
-    previewPath,
+    previewImport,
     previewConfigImport,
     rollupConfigDecorator,
   });

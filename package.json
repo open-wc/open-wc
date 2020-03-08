@@ -28,7 +28,7 @@
     "test:bs": "karma start karma.bs.conf.js --coverage",
     "test:node": "lerna run test:node",
     "test:update-snapshots": "lerna run test:update-snapshots",
-    "update-dependency": "node scripts/update-dependency.js && yarn format",
+    "update-dependency": "node scripts/update-dependency.js",
     "vuepress:build": "vuepress build docs",
     "vuepress:copy-static": "cp -f packages/demoing-storybook/demo/custom-elements.json docs/.vuepress/public/demoing/demo/custom-elements.json",
     "vuepress:start": "vuepress dev docs"

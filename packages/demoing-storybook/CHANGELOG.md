@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.11.3...@open-wc/demoing-storybook@1.12.0) (2020-03-06)
+
+
+### Features
+
+* **demoing-storybook:** support loading custom addons ([200d39b](https://github.com/open-wc/open-wc/commit/200d39b5a2c5a5e44df19523a215b072d0bd8d32))
+* **demoing-storybook:** support loading manager.js ([eb65c0f](https://github.com/open-wc/open-wc/commit/eb65c0f8c4d3fc787570cfab8ea5f80eb787cc20))
+
+
+
+
+
+## [1.11.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.11.2...@open-wc/demoing-storybook@1.11.3) (2020-03-06)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.11.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.11.1...@open-wc/demoing-storybook@1.11.2) (2020-03-02)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [1.11.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.11.0...@open-wc/demoing-storybook@1.11.1) (2020-03-01)
+
+
+### Bug Fixes
+
+* **create:** fix race condition with registering addons ([f92509f](https://github.com/open-wc/open-wc/commit/f92509fe0a31b7e8526e9d3c6325aa3567cc11ed))
+
+
+
+
+
+# [1.11.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.10.6...@open-wc/demoing-storybook@1.11.0) (2020-02-29)
+
+
+### Features
+
+* **rollup-plugin-html:** first release ([9acb29a](https://github.com/open-wc/open-wc/commit/9acb29ac84b0ef7e2b06c57043c9d2c76d5a29c0))
+
+
+
+
+
+## [1.10.6](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.10.5...@open-wc/demoing-storybook@1.10.6) (2020-02-28)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** fix storybook build on windows ([53bd4e3](https://github.com/open-wc/open-wc/commit/53bd4e38ea53781ecf52408c34513905cf665da7))
+
+
+
+
+
 ## [1.10.5](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.10.4...@open-wc/demoing-storybook@1.10.5) (2020-02-23)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook

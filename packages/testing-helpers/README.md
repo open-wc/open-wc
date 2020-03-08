@@ -1,8 +1,8 @@
 # Testing Helpers
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 A library with helpers functions for testing in the browser.
+
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ::: warning
 

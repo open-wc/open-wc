@@ -1,10 +1,10 @@
 # Rollup
 
+Rollup configuration to help you get started building modern web applications. You write modern javascript using the latest browser features, rollup will optimize your code for production ensure it runs on all supported browsers.
+
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ## Configuration
-
-Rollup configuration to help you get started building modern web applications. You write modern javascript using the latest browser features, rollup will optimize your code for production ensure it runs on all supported browsers.
 
 The input for rollup is the same `index.html` you use for development. Any module scripts in your index are run through rollup and your index is updated with the output from rollup.
 
@@ -61,6 +61,9 @@ export default createDefaultConfig({ input: './index.html' });
 ```
 
 We use [rollup-plugin-index-html](https://open-wc.org/building/rollup-plugin-index-html.html) which takes your `index.html` as input for rollup. It scans for any `<script type="module" src="...">` and sends them to rollup for bundling, and outputs your `index.html` in the output directory.
+
+> If there is no script with `type="module"` in your `index.html`, rollup build will fail.
+> Also make sure that your references to internal files are relative paths.
 
 4. Add the following commands to your `package.json`:
 

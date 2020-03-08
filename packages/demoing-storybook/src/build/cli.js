@@ -12,5 +12,6 @@ const readCommandLineArgs = require('./readCommandLineArgs');
     managerPath: require.resolve(config.managerPath),
     previewPath: require.resolve(config.previewPath),
     rollupConfigDecorator: config.rollup,
+    addons: config.addons,
   });
 })();

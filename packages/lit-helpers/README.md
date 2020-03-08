@@ -1,8 +1,8 @@
 # Lit Helpers
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 A library with helpers functions for working with [lit-html](https://lit-html.polymer-project.org/) and [lit-element](https://lit-element.polymer-project.org/)
+
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ## Installation
 

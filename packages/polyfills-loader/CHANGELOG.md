@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.3.0...polyfills-loader@1.3.1) (2020-03-06)
+
+**Note:** Version bump only for package polyfills-loader
+
+
+
+
+
+# [1.3.0](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.2.3...polyfills-loader@1.3.0) (2020-02-29)
+
+
+### Features
+
+* **rollup-plugin-html:** first release ([9acb29a](https://github.com/open-wc/open-wc/commit/9acb29ac84b0ef7e2b06c57043c9d2c76d5a29c0))
+
+
+
+
+
 ## [1.2.3](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.2.2...polyfills-loader@1.2.3) (2020-02-23)
 
 **Note:** Version bump only for package polyfills-loader

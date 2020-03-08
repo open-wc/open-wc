@@ -1,10 +1,10 @@
 # Webpack
 
+Webpack configuration to help you get started building modern web applications. You write modern javascript using the latest browser features, webpack will optimize your code for production ensure it runs on all supported browsers.
+
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ## Configuration
-
-Webpack configuration to help you get started building modern web applications. You write modern javascript using the latest browser features, webpack will optimize your code for production ensure it runs on all supported browsers.
 
 The input for webpack is the same `index.html` you use for development. Any module scripts in your index are run through webpack and your index is updated with the output from rollup.
 

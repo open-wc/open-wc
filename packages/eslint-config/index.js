@@ -8,7 +8,7 @@ module.exports = {
     browser: true,
     mocha: true,
   },
-  plugins: ['lit', 'html', 'no-only-tests'],
+  plugins: ['lit', 'html', 'no-only-tests', 'babel'],
   rules: {
     'arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
     'no-underscore-dangle': 'off',
@@ -60,6 +60,12 @@ module.exports = {
       },
     ],
 
+    // Currently, eslint doesn't support optional chaining,
+    // so switching to a babel rule for now.
+    // https://github.com/eslint/eslint/issues/12642
+    'no-unused-expressions': 'off',
+    'babel/no-unused-expressions': 'error',
+
     // eslint-plugin-lit
     'lit/no-template-bind': 'error',
     'lit/no-duplicate-template-bindings': 'error',
@@ -78,6 +84,7 @@ module.exports = {
       rules: {
         'no-console': 'off',
         'no-unused-expressions': 'off',
+        'babel/no-unused-expressions': 'off',
         'class-methods-use-this': 'off',
 
         // loosen templating restrictions in tests and demos

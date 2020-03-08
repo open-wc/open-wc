@@ -59,4 +59,4 @@ The web components standards are fairly low-level, letting library authors build
 
 ## Contribute
 
-Feel free to critique, ask questions and join the conversation, we'd love to hear your opinions and feedback. You can reach us by creating an issue on our [github](https://github.com/open-wc) or on the [#open-wc](https://polymer.slack.com/messages/CE6D9DN05) channel in the [Polymer slack](https://www.polymer-project.org/slack-invite).
+Feel free to critique, ask questions and join the conversation, we'd love to hear your opinions and feedback. You can reach us by creating an issue on our [github](https://github.com/open-wc) or on the [#open-wc](hhttps://slack.com/share/IUQNUPWUF/awabyN8iYH4dXX6aGpu16ES9/enQtOTc2Nzc2ODEyOTY3LWM5ZGExNGFiMmM4NDY2YWI2MzYwOGY5ZTNlZjk4OGU4NTFhMGJjNmVhNGI4MzVlNTMwNGRiNGIxNjc4MGJhNDg) channel in the [Polymer slack](https://www.polymer-project.org/slack-invite).

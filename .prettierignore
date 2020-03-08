@@ -10,5 +10,7 @@ packages/**/test/**/snapshots
 /packages/karma-esm/src/esm-debug.html
 /packages/karma-esm/src/esm-context.html
 /packages/demoing-storybook/storybook-static/**/*
+/packages/rollup-plugin-input-html/test/fixtures/**/*
+/packages/rollup-plugin-html/dist/**/*
 CHANGELOG.md
 __snapshots__/

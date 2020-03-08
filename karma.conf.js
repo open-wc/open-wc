@@ -10,7 +10,7 @@ module.exports = config => {
         {
           pattern: config.grep
             ? config.grep
-            : 'packages/!(webpack-import-meta-loader|create|building-utils|demoing-storybook|webpack-index-html-plugin|rollup-plugin-index-html|import-maps-generate|import-maps-resolve|es-dev-server|karma-esm|building-rollup|building-webpack|polyfills-loader)/test/**/*.test.js',
+            : 'packages/!(webpack-import-meta-loader|create|building-utils|demoing-storybook|webpack-index-html-plugin|rollup-plugin-index-html|import-maps-generate|import-maps-resolve|es-dev-server|karma-esm|building-rollup|building-webpack|polyfills-loader|rollup-plugin-html)/test/**/*.test.js',
           type: 'module',
         },
       ],

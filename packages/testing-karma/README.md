@@ -1,5 +1,7 @@
 # Testing with Karma
 
+Configuration for setting up testing with karma.
+
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 We recommend karma as a general-purpose tool for testing code which runs in the browser. Karma can run a large range of browsers, including IE11. This way you are confident that your code runs correctly in all supported environments.

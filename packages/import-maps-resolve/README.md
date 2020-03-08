@@ -1,8 +1,8 @@
 # Resolve import-maps
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 This will allow you to parse and resolve urls by a given [import-map](https://github.com/WICG/import-maps).
+
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ## Usage
 
