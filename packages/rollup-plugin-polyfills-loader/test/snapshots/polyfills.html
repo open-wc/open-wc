@@ -28,11 +28,11 @@
   }
 
   if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) {
-    polyfills.push(loadScript('./polyfills/webcomponents.dae9f79d9d6992b6582e204c3dd953d3.js'));
+    polyfills.push(loadScript('./polyfills/webcomponents.d67d6757b8cd44bc35b021ee0b71d197.js'));
   }
 
   if (!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype) {
-    polyfills.push(loadScript('./polyfills/custom-elements-es5-adapter.0ec040d16c6fd1b9220084b0b925cbe0.js'));
+    polyfills.push(loadScript('./polyfills/custom-elements-es5-adapter.3342b468203af1a14ca005e80d14148f.js'));
   }
 
   function loadFiles() {
