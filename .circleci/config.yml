@@ -34,16 +34,13 @@ jobs:
       # persist built files and duplicate dependencies to workspace
       - persist_to_workspace:
           root: ~/
-          paths:
-              - repo/node_modules
-              - repo/packages/*/node_modules
-              - repo/packages/*/dist
+          paths: .
   test-local:
     <<: *defaults
     steps:
       - checkout
       - attach_workspace:
-            at: ~/
+          at: ~/
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -104,4 +101,4 @@ workflows:
             - test-bs
           filters:
             branches:
-              only: master
+              only: fix/ciTypes
