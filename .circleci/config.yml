@@ -91,7 +91,7 @@ jobs:
 
       # auto build typescript definition files (not part of build as locally JsDoc alone is all we need)
       - run: npm run build:types
-      
+
       - run:
           name: Publish package
           command: "./node_modules/.bin/lerna publish --message 'chore: release new versions' --yes"
@@ -113,4 +113,4 @@ workflows:
             - test-bs
           filters:
             branches:
-              only: master
+              only: westbrook/ci-types
