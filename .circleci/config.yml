@@ -28,9 +28,6 @@ jobs:
       # build what needs to be build so we can use it in the next steps
       - run: npm run build
 
-      # auto build typescript definition files (not part of build as locally JsDoc alone is all we need)
-      - run: npm run build:types
-
       # persist built files and duplicate dependencies to workspace
       - persist_to_workspace:
           root: ~/
@@ -48,6 +45,10 @@ jobs:
       - restore_cache:
           keys:
             - v4-dependencies-{{ checksum "yarn.lock" }}
+
+      # auto build typescript definition files (not part of build as locally JsDoc alone is all we need)
+      - run: npm run build:types
+
       # run lint
       - run: npm run lint
 
@@ -67,6 +68,10 @@ jobs:
       - restore_cache:
           keys:
             - v4-dependencies-{{ checksum "yarn.lock" }}
+
+      # auto build typescript definition files (not part of build as locally JsDoc alone is all we need)
+      - run: npm run build:types
+
       - run: npm run test:bs
   deploy:
     <<: *defaults
@@ -83,6 +88,10 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - run: git config --global user.email circleci@circleci
       - run: git config --global user.name CircleCI
+
+      # auto build typescript definition files (not part of build as locally JsDoc alone is all we need)
+      - run: npm run build:types
+      
       - run:
           name: Publish package
           command: "./node_modules/.bin/lerna publish --message 'chore: release new versions' --yes"
