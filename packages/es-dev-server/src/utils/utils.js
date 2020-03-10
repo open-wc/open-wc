@@ -115,19 +115,13 @@ export class SSEStream extends Stream.Transform {
 }
 
 /**
+ * Typeguard which asserts that the arg is of type `boolean`.
+ * Used to disambiguate union types e.g. in function params
  * @param  {*}  x
  * @return {x is boolean}
  */
 export function isBoolean(x) {
   return typeof x === 'boolean';
-}
-
-/**
- * @param  {boolean|import('chokidar').WatchOptions}  watch
- * @return {watch is WatchOptions}
- */
-export function isWatchOptions(watch) {
-  return typeof watch === 'object';
 }
 
 /**

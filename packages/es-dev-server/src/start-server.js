@@ -15,8 +15,12 @@ function isValidURL(str) {
 }
 
 /** @param {import('./config.js').InternalConfig} cfg */
-export async function startServer(cfg, watcher = undefined) {
-  let fileWatcher = watcher || chokidar.watch([], ...(!isBoolean(cfg.watch) ? [cfg.watch] : []));
+export async function startServer(cfg, watcherOrWatchOptions) {
+  let fileWatcher = watcherOrWatchOptions;
+  if (!fileWatcher) {
+    const chokidarOptionsArgs = !isBoolean(cfg.watch) ? [cfg.watch] : [];
+    fileWatcher = chokidar.watch([], ...chokidarOptionsArgs);
+  }
 
   const result = createServer(cfg, fileWatcher);
   const { app } = result;

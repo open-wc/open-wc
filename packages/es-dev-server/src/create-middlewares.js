@@ -31,10 +31,10 @@ const defaultCompressOptions = {
  * used by a koa server using `app.use()`:
  *
  * @param {import('./config').InternalConfig} config the server configuration
- * @param {import('chokidar').FSWatcher} watcher
+ * @param {import('chokidar').FSWatcher} watcherOrWatchOptions
  * @returns {import('koa').Middleware[]}
  */
-export function createMiddlewares(config, watcher) {
+export function createMiddlewares(config, watcherOrWatchOptions) {
   const {
     appIndex,
     appIndexDir,
@@ -57,7 +57,11 @@ export function createMiddlewares(config, watcher) {
     watchDebounce,
   } = config;
 
-  const fileWatcher = watcher || chokidar.watch([], ...(!isBoolean(watch) ? [watch] : []));
+  let fileWatcher = watcherOrWatchOptions;
+  if (!fileWatcher) {
+    const chokidarOptionsArgs = !isBoolean(watch) ? [watch] : [];
+    fileWatcher = chokidar.watch([], ...chokidarOptionsArgs);
+  }
 
   /** @type {import('koa').Middleware[]} */
   const middlewares = [];

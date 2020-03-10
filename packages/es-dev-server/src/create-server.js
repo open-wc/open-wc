@@ -12,11 +12,15 @@ import { isBoolean } from './utils/utils.js';
  * http server instances.
  *
  * @param {import('./config').InternalConfig} cfg the server configuration
- * @param {import('chokidar').FSWatcher} watcher
+ * @param {import('chokidar').FSWatcher} watcherOrWatchOptions
  * @returns {{ app: import('koa'), server: import('http').Server | import('http2').Http2SecureServer }}
  */
-export function createServer(cfg, watcher) {
-  const fileWatcher = watcher || chokidar.watch([], ...(!isBoolean(cfg.watch) ? [cfg.watch] : []));
+export function createServer(cfg, watcherOrWatchOptions) {
+  let fileWatcher = watcherOrWatchOptions;
+  if (!fileWatcher) {
+    const chokidarOptionsArgs = !isBoolean(cfg.watch) ? [cfg.watch] : [];
+    fileWatcher = chokidar.watch([], ...chokidarOptionsArgs);
+  }
 
   const middlewares = createMiddlewares(cfg, fileWatcher);
 
