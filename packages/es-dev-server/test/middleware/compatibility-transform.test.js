@@ -119,7 +119,7 @@ describe('compatibility transform middleware', () => {
     /** NOTE: this test can fail over time as browser support improves */
     it('does not do any transformation for standard features', async () => {
       await expectCompatibilityTransform(userAgents['Chrome 78'], {
-        objectSpread: true,
+        objectSpread: false,
         templateLiteral: true,
         optionalChaining: true,
         nullishCoalescing: true,
@@ -166,7 +166,10 @@ describe('compatibility transform middleware', () => {
     });
 
     it('transforms for Chrome 78', async () => {
-      await expectCompatibilityTransform(userAgents['Chrome 78']);
+      await expectCompatibilityTransform(userAgents['Chrome 78'], {
+        optionalChaining: true,
+        nullishCoalescing: true,
+      });
     });
 
     it('transforms for Chrome 62', async () => {
@@ -197,7 +200,10 @@ describe('compatibility transform middleware', () => {
     });
 
     it('transforms for Firefox 70', async () => {
-      await expectCompatibilityTransform(userAgents['Firefox 70']);
+      await expectCompatibilityTransform(userAgents['Firefox 70'], {
+        optionalChaining: true,
+        nullishCoalescing: true,
+      });
     });
 
     it('transforms for Safari 12.1.2', async () => {
@@ -267,7 +273,10 @@ describe('compatibility transform middleware', () => {
     });
 
     it('transforms for Chrome 78', async () => {
-      await expectCompatibilityTransform(userAgents['Chrome 78']);
+      await expectCompatibilityTransform(userAgents['Chrome 78'], {
+        optionalChaining: true,
+        nullishCoalescing: true,
+      });
     });
 
     it('transforms for Chrome 62', async () => {
@@ -296,7 +305,10 @@ describe('compatibility transform middleware', () => {
     });
 
     it('transforms for Firefox 70', async () => {
-      await expectCompatibilityTransform(userAgents['Firefox 70']);
+      await expectCompatibilityTransform(userAgents['Firefox 70'], {
+        optionalChaining: true,
+        nullishCoalescing: true,
+      });
     });
 
     it('transforms for Safari 12.1.2', async () => {
@@ -603,7 +615,7 @@ describe('compatibility transform middleware', () => {
           port: 8080,
           rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
           appIndex: path.resolve(__dirname, '..', 'fixtures', 'simple', 'index.html'),
-          compatibility: compatibilityModes.MIN,
+          compatibility: compatibilityModes.MAX,
           nodeResolve: true,
         }),
       ));
@@ -619,7 +631,7 @@ describe('compatibility transform middleware', () => {
 
       expect(response.status).to.equal(200);
 
-      expect(responseText).to.include('_asyncGenerator = _wrapAsyncGenerator(function* () {');
+      expect(responseText).to.include('function _classCallCheck(instance, Constructor)');
       expect(responseText).to.include(
         "import { message } from './node_modules/my-module/index.js'",
       );

@@ -10,7 +10,7 @@ class Page extends LoggingMixin(HTMLElement) {
   connectedCallback() {
     super.connectedCallback();
     this.shadowRoot.innerHTML = `
-      <style> 
+      <style>
         :host { display: block; background: ${this.name}; width: 100px; height: 100px; }
       </style>
       <div>
@@ -26,6 +26,7 @@ class PageRed extends Page {
     this.name = 'Red';
   }
 }
+// @ts-ignore
 customElements.define('page-red', PageRed);
 
 // ****** here we apply the mixin again ******
@@ -40,6 +41,7 @@ class PageGreen extends LoggingMixin(Page) {
     // this.logString(12);
   }
 }
+// @ts-ignore
 customElements.define('page-green', PageGreen);
 
 class PageBlue extends Page {
@@ -48,4 +50,5 @@ class PageBlue extends Page {
     this.name = 'Blue';
   }
 }
+// @ts-ignore
 customElements.define('page-blue', PageBlue);
