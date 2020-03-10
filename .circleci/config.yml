@@ -59,7 +59,7 @@ jobs:
       - checkout
       # Download and cache dependencies
       - attach_workspace:
-            at: ~/
+          at: ~/
       # Download and cache dependencies
       - restore_cache:
           keys:
