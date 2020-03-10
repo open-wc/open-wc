@@ -24,6 +24,7 @@ async function fetchText(url, userAgent) {
   });
 
   if (response.status !== 200) {
+    console.log(response);
     throw new Error('Server did not respond with 200');
   }
 
@@ -37,10 +38,6 @@ async function expectCompatibilityTransform(userAgent, features = {}) {
   );
   const esModules = await fetchText(
     `module-features.js${features.esModules ? '?transform-systemjs' : ''}`,
-    userAgent,
-  );
-  const stage4NoModernBrowserImpl = await fetchText(
-    `stage-4-no-modern-browser-impl.js${features.esModules ? '?transform-systemjs' : ''}`,
     userAgent,
   );
 
@@ -65,16 +62,16 @@ async function expectCompatibilityTransform(userAgent, features = {}) {
   expect(esModules).to.include("import('./module-features-b.js')");
   expect(esModules).to.include(features.esModules ? 'meta.url.indexOf' : 'import.meta.url.indexOf');
 
-  expect(stage4NoModernBrowserImpl).to.include(
+  expect(stage4Features).to.include(
     features.optionalChaining
-      ? "(lorem === null || lorem === void 0 ? void 0 : lorem.ipsum) === 'lorem ipsum' && (lorem === null || lorem === void 0 ? void 0 : (_lorem$ipsum = lorem.ipsum) === null || _lorem$ipsum === void 0 ? void 0 : _lorem$ipsum.foo) === undefined;"
+      ? "lorem == null ? void 0 : lorem.ipsum) === 'lorem ipsum' && (lorem == null ? void 0 : (_lorem$ipsum = lorem.ipsum) == null ? void 0 : _lorem$ipsum.foo) === undefined;"
       : 'lorem?.ipsum?.foo',
   );
 
-  expect(stage4NoModernBrowserImpl).to.include(
+  expect(stage4Features).to.include(
     features.nullishCoalescing
-      ? "(foo !== null && foo !== void 0 ? foo : 'nullish colaesced') === 'nullish colaesced'"
-      : "foo ?? 'nullish colaesced'",
+      ? "(buz != null ? buz : 'nullish colaesced') === 'nullish colaesced'"
+      : "buz ?? 'nullish colaesced'",
   );
 }
 
@@ -146,6 +143,7 @@ describe('compatibility transform middleware', () => {
       await expectCompatibilityTransform(userAgents['Chrome 78'], {
         objectSpread: true,
         exponentiation: true,
+        asyncFunction: true,
         classes: true,
         templateLiteral: true,
         esModules: true,
@@ -219,6 +217,7 @@ describe('compatibility transform middleware', () => {
         objectSpread: true,
         exponentiation: true,
         templateLiteral: true,
+        asyncFunction: true,
         esModules: true,
         optionalChaining: true,
         nullishCoalescing: true,
@@ -324,6 +323,7 @@ describe('compatibility transform middleware', () => {
         objectSpread: true,
         exponentiation: true,
         templateLiteral: true,
+        asyncFunction: true,
         esModules: true,
         optionalChaining: true,
         nullishCoalescing: true,

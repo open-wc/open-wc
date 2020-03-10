@@ -34,7 +34,7 @@
     "@webcomponents/shadycss": "^1.9.4",
     "@webcomponents/webcomponentsjs": "^2.4.0",
     "arrify": "^2.0.1",
-    "browserslist": "^4.7.2",
+    "browserslist": "^4.9.1",
     "chokidar": "^3.0.0",
     "clean-css": "^4.2.1",
     "clone": "^2.1.2",

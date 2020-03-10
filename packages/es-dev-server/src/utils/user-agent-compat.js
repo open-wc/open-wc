@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
-import { resolveUserAgent, matchesUA } from 'browserslist-useragent';
+import { resolveUserAgent } from 'browserslist-useragent';
 import * as browserslist from 'browserslist';
 import * as caniuse from 'caniuse-api';
 import { logDebug } from './utils.js';
+import { isModernBrowser } from './is-modern-browser.js';
 
 /**
  * @typedef {object} UserAgentCompat
@@ -93,34 +94,10 @@ function calcUserAgentCompat(userAgent) {
   try {
     resolvedUA = resolveUserAgent(userAgent);
     const browserTarget = `${getBrowserName(resolvedUA.family)} ${getBrowserVersion(resolvedUA)}`;
-    const supportsEsm = getSupportsEsm(browserTarget);
+    const modern = isModernBrowser(userAgent);
+    const supportsEsm = modern ? true : getSupportsEsm(browserTarget);
 
-    const modern = matchesUA(userAgent, {
-      browsers: [
-        'last 2 Chrome major versions',
-        'unreleased Chrome versions',
-        'last 2 ChromeAndroid major versions',
-        'unreleased ChromeAndroid versions',
-        'last 2 Opera major versions',
-        'unreleased Opera versions',
-        'last 2 Firefox major versions',
-        'unreleased Firefox versions',
-        'last 2 FirefoxAndroid major versions',
-        'unreleased FirefoxAndroid versions',
-        // // safari versions progress more slowly
-        'last 1 Safari versions',
-        'last 1 iOS versions',
-        // unreleased safari throws an error?
-        // 'unreleased Safari versions',
-      ],
-      allowHigherVersions: true,
-    });
-
-    return {
-      browserTarget,
-      modern,
-      supportsEsm,
-    };
+    return { browserTarget, modern, supportsEsm };
   } catch (error) {
     let message = '\n';
     if (!resolvedUA) {

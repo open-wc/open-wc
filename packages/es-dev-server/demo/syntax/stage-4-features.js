@@ -1,28 +1,25 @@
-import { html, render } from 'lit-html';
-
-// object rest/spread
 const foo = { a: 1 };
 const bar = { ...foo };
-console.log(bar);
+const objectSpread = bar.a === 1;
 
-// async function
 async function asyncFunction() {
-  console.log('async function');
 }
-asyncFunction();
+const asyncFunctions = asyncFunction() instanceof Promise;
 
-// exponentiation
-console.log(2 ** 4);
+const exponentation = 2 ** 4 === 16;
 
-// classes
 class Foo {
   constructor() {
-    console.log('foo class');
     this.foo = 'bar';
   }
 }
+const classes = new Foo().foo === 'bar'
 
-// template literal
-const templateLiteral = `template ${'literal'}`;
+const templateLiterals = `template ${'literal'}` === 'template literal'
 
-window.__stage4 = new Foo().foo === 'bar' && templateLiteral === 'template literal' && bar.a === 1 && asyncFunction() instanceof Promise;
+const lorem = { ipsum: 'lorem ipsum'};
+const optionalChaining = lorem?.ipsum === 'lorem ipsum' && lorem?.ipsum?.foo === undefined;
+const buz = null;
+const nullishCoalescing = (buz ?? 'nullish colaesced') === 'nullish colaesced';
+
+window.__stage4 = objectSpread && asyncFunctions && exponentation && classes && templateLiterals && optionalChaining && nullishCoalescing;
