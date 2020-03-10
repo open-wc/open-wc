@@ -34,7 +34,11 @@ jobs:
       # persist built files and duplicate dependencies to workspace
       - persist_to_workspace:
           root: ~/
-          paths: .
+          paths:
+            - repo/node_modules
+            - repo/packages/*/node_modules
+            - repo/packages/*/dist
+            - repo/packages/**/*.d.ts
   test-local:
     <<: *defaults
     steps:
