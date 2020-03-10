@@ -39,12 +39,12 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - attach_workspace:
-            at: ~/
       # Download and cache dependencies
       - restore_cache:
           keys:
             - v4-dependencies-{{ checksum "yarn.lock" }}
+      - attach_workspace:
+            at: ~/
 
       # auto build typescript definition files (not part of build as locally JsDoc alone is all we need)
       - run: npm run build:types
@@ -62,12 +62,12 @@ jobs:
     steps:
       - checkout
       # Download and cache dependencies
-      - attach_workspace:
-            at: ~/
-      # Download and cache dependencies
       - restore_cache:
           keys:
             - v4-dependencies-{{ checksum "yarn.lock" }}
+      # Download and cache dependencies
+      - attach_workspace:
+            at: ~/
 
       # auto build typescript definition files (not part of build as locally JsDoc alone is all we need)
       - run: npm run build:types
