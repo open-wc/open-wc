@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/semantic-dom-diff",
-  "version": "0.17.2",
+  "version": "0.17.3",
   "publishConfig": {
     "access": "public"
   },
@@ -27,7 +27,7 @@
     "snapshots"
   ],
   "devDependencies": {
-    "@open-wc/testing-helpers": "^1.5.3",
+    "@open-wc/testing-helpers": "^1.6.0",
     "chai": "^4.2.0",
     "mocha": "^6.2.2"
   },
