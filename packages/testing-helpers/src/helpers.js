@@ -11,11 +11,12 @@ let defineCECounter = 0;
  * const el = fixture(`<${tag}></${tag}>`);
  * // test el
  *
- * @param {function} klass Class which extends HTMLElement
+ * @param {typeof HTMLElement | function} klass Class which extends HTMLElement
  * @returns {string} Tag name of the registered element
  */
 export function defineCE(klass) {
   const tag = `test-${defineCECounter}`;
+  // @ts-ignore
   customElements.define(tag, klass);
   defineCECounter += 1;
   return tag;
