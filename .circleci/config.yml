@@ -35,15 +35,16 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-              - repo/node_modules
-              - repo/packages/*/node_modules
-              - repo/packages/*/dist
+            - repo/node_modules
+            - repo/packages/*/node_modules
+            - repo/packages/*/dist
+            - repo/packages/**/*.d.ts
   test-local:
     <<: *defaults
     steps:
       - checkout
       - attach_workspace:
-            at: ~/
+          at: ~/
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -62,7 +63,7 @@ jobs:
       - checkout
       # Download and cache dependencies
       - attach_workspace:
-            at: ~/
+          at: ~/
       # Download and cache dependencies
       - restore_cache:
           keys:
