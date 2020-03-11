@@ -1,6 +1,7 @@
 import { nextFrame } from './helpers.js';
 
-const isDefinedPromise = action => typeof action === 'object' && Promise.resolve(action) === action;
+const isDefinedPromise = actionP =>
+  typeof actionP === 'object' && Promise.resolve(actionP) === actionP;
 
 /**
  * Awaits for "update complete promises" of elements
