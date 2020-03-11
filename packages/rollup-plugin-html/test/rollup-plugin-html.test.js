@@ -81,6 +81,31 @@ describe('rollup-plugin-html', () => {
     );
   });
 
+  it('can build with html file as rollup input', async () => {
+    const config = {
+      input: 'test/fixtures/rollup-plugin-html/index.html',
+      plugins: [
+        htmlPlugin({
+          minify: false,
+        }),
+      ],
+    };
+    const bundle = await rollup.rollup(config);
+    const { output } = await bundle.generate(outputConfig);
+
+    expect(output.length).to.equal(4);
+    const { code: entryA } = getChunk(output, 'entrypoint-a.js');
+    const { code: entryB } = getChunk(output, 'entrypoint-b.js');
+    expect(entryA).to.include("console.log('entrypoint-a.js');");
+    expect(entryB).to.include("console.log('entrypoint-b.js');");
+    expect(getAsset(output, 'index.html').source).to.equal(
+      '<html><head></head><body><h1>hello world</h1>\n\n' +
+        '<script type="module" src="./entrypoint-a.js"></script>' +
+        '<script type="module" src="./entrypoint-b.js"></script>' +
+        '</body></html>',
+    );
+  });
+
   it('can build with a html string as input', async () => {
     const config = {
       plugins: [
