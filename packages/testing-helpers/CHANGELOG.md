@@ -3,6 +3,83 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2020-03-11)
+
+
+### Bug Fixes
+
+* add an npmignore file ([ddceeca](https://github.com/open-wc/open-wc/commit/ddceeca2405c05e42975c760b4aa9055d4d5db2c))
+* add docu for fixtureCleanup ([ab0170a](https://github.com/open-wc/open-wc/commit/ab0170a07665df0d78ee4feb977089bb65b89092))
+* add karma.conf.js to npmignore ([9700532](https://github.com/open-wc/open-wc/commit/9700532bee5bfde6490430a866603701b41d312e))
+* add package keywords ([#859](https://github.com/open-wc/open-wc/issues/859)) ([cd78405](https://github.com/open-wc/open-wc/commit/cd7840594242d72341f1237460ab9642aab38ed6))
+* adopt new karma setup for all packages ([1888260](https://github.com/open-wc/open-wc/commit/18882604198f50ceaa8f5d7741a4f6761e8ad701))
+* adopt to new testing-karma setup ([bdcc717](https://github.com/open-wc/open-wc/commit/bdcc717f36d5edf5f635229b6089e34913c3b0c0))
+* align all open-wc readme headers ([b589429](https://github.com/open-wc/open-wc/commit/b5894290e27adf465484d1d7e7bf08fad279d3f4))
+* align sinon version ([0d529bf](https://github.com/open-wc/open-wc/commit/0d529bf40447eda4c20e2fe3ea85a27c76779f3b))
+* align used mocha version ([#901](https://github.com/open-wc/open-wc/issues/901)) ([3606381](https://github.com/open-wc/open-wc/commit/3606381d1032c07b2b9670c4e9225de249669cbd))
+* apply prettier; add lint-staged ([43acfad](https://github.com/open-wc/open-wc/commit/43acfad699ab20d898fb305e8b49d5c73b07b5b2))
+* cleanup package.json scripts ([be6bdb5](https://github.com/open-wc/open-wc/commit/be6bdb5bcd83215dde69c8229e7709adeb9ac1f5))
+* do not assume available global types of users ([cd394d9](https://github.com/open-wc/open-wc/commit/cd394d96bca74800faf3c0f399bd818f56cf027a))
+* do not assume globally setup mocha types ([977d5b4](https://github.com/open-wc/open-wc/commit/977d5b42b8b2433fbcb98118ea0a5594e9978e9a))
+* do not destructure exports to support es-module-lexer ([3709413](https://github.com/open-wc/open-wc/commit/3709413cd86b210e0043937d99df8ae5ae3b9f2a))
+* improve documentation ([4f5472f](https://github.com/open-wc/open-wc/commit/4f5472f6789be84d52839508326b37547f280a51))
+* include *.ts files in npm packages ([8087906](https://github.com/open-wc/open-wc/commit/8087906afc75b7020e35255b8545538cf97153b3))
+* move documentation to READMEs of packages ([b4a0426](https://github.com/open-wc/open-wc/commit/b4a0426ee523494a8e4c13786fe17047f05c2aea))
+* move fixtureCleanup to testing helpers ([#136](https://github.com/open-wc/open-wc/issues/136)) ([9d268ab](https://github.com/open-wc/open-wc/commit/9d268ab5e8ae37a93f4afbdaef0fbfb397a6a2b2))
+* properly apply prettier ([a12bb09](https://github.com/open-wc/open-wc/commit/a12bb09a6587721877b0bd3e9b1ea95cfad23791))
+* unify npm readme header for all open-wc packages ([1bac939](https://github.com/open-wc/open-wc/commit/1bac9391f8866cac1667afadb26b0693f5f0c591))
+* update generator usage ([5d284d4](https://github.com/open-wc/open-wc/commit/5d284d444f25f30b17e701191216d2a3be73dae1))
+* update package repository fields with monorepo details ([cb1acb7](https://github.com/open-wc/open-wc/commit/cb1acb7e59cb8161528b010342e15d6bba1cf457))
+* **eslint-config:** loosen up rules for test and stories files ([#408](https://github.com/open-wc/open-wc/issues/408)) ([3fd251e](https://github.com/open-wc/open-wc/commit/3fd251ebe374f4419fb45e675361e028ec9394b3))
+* **testing-helpers:** add `await elementUpdated(el)` supports stencil ([c442f21](https://github.com/open-wc/open-wc/commit/c442f21a07b2c30a806e30545d78735ee5f5ba0e))
+* **testing-helpers:** add await to fixture example in docs ([393f3ed](https://github.com/open-wc/open-wc/commit/393f3ed864a5e98901262cd0ba60987dcaaaa22b))
+* **testing-helpers:** add time before triggering focus/blur (only IE) ([f77cfa2](https://github.com/open-wc/open-wc/commit/f77cfa2e6426fbd221598433ce6e974da7a9f448))
+* **testing-helpers:** adopt fixture/litFixture typings ([57764fe](https://github.com/open-wc/open-wc/commit/57764fe8ed39168f57515b5a33010157733107d2))
+* **testing-helpers:** correct usage of oneEvent in readme ([a16969a](https://github.com/open-wc/open-wc/commit/a16969a1bc4c8cc3dfbd8bc1777c5b0bb3b9a776))
+* **testing-helpers:** document oneEvent, triggerFocusFor, triggerBlurFor ([a591611](https://github.com/open-wc/open-wc/commit/a5916119dcb9cbd6b4f7e4b3245d1b380eaec3ca))
+* **testing-helpers:** ensure ShadyDOM finished its job in fixture ([4fbe93d](https://github.com/open-wc/open-wc/commit/4fbe93d5bc364912119cb91404385d9245acbea2))
+* **testing-helpers:** fixture waits for elements updateComplete ([a80a625](https://github.com/open-wc/open-wc/commit/a80a625d2a93f5a1d05d982708a5b7a2a7c83799))
+* **testing-helpers:** flaky IE11 blur/focus helpers ([aa91e06](https://github.com/open-wc/open-wc/commit/aa91e0679edbc3514f4f5085c56365d165139511))
+* **testing-helpers:** force focus/blur for IE ([#457](https://github.com/open-wc/open-wc/issues/457)) ([e06b5ce](https://github.com/open-wc/open-wc/commit/e06b5ce07d0d9edeee98a11bda025c2ca1bd5cf6))
+* **testing-helpers:** make fixture type generic ([613a672](https://github.com/open-wc/open-wc/commit/613a672106c919e55b6f1a1b3078ee9a99fc0c0a))
+* **testing-helpers:** more work for IE11 flaky focus/blur ([29bedd1](https://github.com/open-wc/open-wc/commit/29bedd1cda06a075150487245b8541e73171d7d9))
+* **testing-helpers:** on IE set timeout to 2ms for blur/focus trigger ([c62b684](https://github.com/open-wc/open-wc/commit/c62b684d8ded721cbb6fc3e148f244f6ecb95090))
+* **testing-helpers:** raise peer dependency of lit-html to 1.x ([1744317](https://github.com/open-wc/open-wc/commit/1744317f1143bf8ba3bd1e0d47c35c18f7298419))
+* **testing-helpers:** remove deprecated flush ([df077dc](https://github.com/open-wc/open-wc/commit/df077dcca7594958fe4e177e5a4db1adde47d05b))
+* **testing-helpers:** use asynchronous fixtures ([7b6372b](https://github.com/open-wc/open-wc/commit/7b6372be83ea6bba825a9806ed009cb7f38e3b8f))
+* use chai instead of @bundled-es-modules/chai ([f9d19bb](https://github.com/open-wc/open-wc/commit/f9d19bb06b8114d91fc7337488be6fcb3d462bbc))
+* use file extensions for imports to support import maps ([c711b13](https://github.com/open-wc/open-wc/commit/c711b13bb4ace20fec15c1ff5a085151e03c1367))
+
+
+### Features
+
+* add testing-helpers package ([90428f7](https://github.com/open-wc/open-wc/commit/90428f71a4391c925983d5918462ff9e60248e49))
+* add type definition files for testing ([462a29f](https://github.com/open-wc/open-wc/commit/462a29f6bbae0d179b71e14f28eb7ff688bfb74e))
+* add types + linting & improve intellisense ([b6d260c](https://github.com/open-wc/open-wc/commit/b6d260c04f2d634a3bc64beca38c64c4d95ce6be))
+* **testing-helpers:** add waitUntil helper ([bef5dac](https://github.com/open-wc/open-wc/commit/bef5dac522f8bb0e497d0dd0e24eadbf39b98987))
+* use extendable karma configs by default ([8fd9435](https://github.com/open-wc/open-wc/commit/8fd9435f0b7c150bb3f6eb702b22fa25f03c6c52))
+* **testing-helpers:** allow rendering non-TemplateResult ([#910](https://github.com/open-wc/open-wc/issues/910)) ([15345c7](https://github.com/open-wc/open-wc/commit/15345c7a62ac674205a1134a668fa4b17fa68f49))
+* **testing-helpers:** fixture can handle strings and TemplateResults ([0649ea0](https://github.com/open-wc/open-wc/commit/0649ea03bd2315e06b75b6b51cb29e00d3efc54c))
+* add typescript type declaration files ([f5cb243](https://github.com/open-wc/open-wc/commit/f5cb24399d2437d53a493785c7399e592413cc4e))
+* **testing-helpers:** support fixture cleanup in tdd style tests with 'teardown' ([#1410](https://github.com/open-wc/open-wc/issues/1410)) ([ce8c833](https://github.com/open-wc/open-wc/commit/ce8c8337da2d07d82f40e778d37a709093606b7e))
+* expose elementUpdated testing-helper by default ([#653](https://github.com/open-wc/open-wc/issues/653)) ([55a165f](https://github.com/open-wc/open-wc/commit/55a165f7926bc05a4cd032e9b128e19712f43618))
+* simplify testing-helpers names ([68e1cb5](https://github.com/open-wc/open-wc/commit/68e1cb511ce57a6811e1c17436d419e240fdce4a))
+* sinon is no longer a mandatory package ([ef97cec](https://github.com/open-wc/open-wc/commit/ef97cecdfe4096fee0e879ca900a4e959507d423))
+* update to latest testing-karma config syntax ([465bfe0](https://github.com/open-wc/open-wc/commit/465bfe060270c4027ec05d5a1d8093f6a3391e4c))
+* update to use auto compatibility of es-dev-server ([f6d085e](https://github.com/open-wc/open-wc/commit/f6d085eda5a05391d1a464b9e49222c78194b0d9))
+* use es module chai version; auto-register side-effects ([263f4ff](https://github.com/open-wc/open-wc/commit/263f4ff99d3768e8c485c8f568f1621212c10f91))
+* use latest testing-karma features ([5edc46c](https://github.com/open-wc/open-wc/commit/5edc46c9f843b9dcedcc37a58bc984681bd77a07))
+* utils and webpack plugin for an index.html entrypoint ([#474](https://github.com/open-wc/open-wc/issues/474)) ([c382cc7](https://github.com/open-wc/open-wc/commit/c382cc7d20dec0a99b651ecfca1fec3000655182))
+
+
+### BREAKING CHANGES
+
+* Replaced webpack html plugin with index html plugin
+
+
+
+
+
 # [1.6.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.5.3...@open-wc/testing-helpers@1.6.0) (2020-03-10)
 
 
