@@ -33,6 +33,11 @@ In alphabetical order:
 
   <hr>
 
+- [slick-router](https://github.com/blikblum/slick-router)
+  <NpmUsage routerName="slick-router"/>
+
+  <hr>
+
 - [vaadin-router](https://github.com/vaadin/vaadin-router)
   <NpmUsage routerName="@vaadin/router"/>
   <hr>
