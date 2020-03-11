@@ -42,12 +42,15 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - attach_workspace:
-            at: ~/
       # Download and cache dependencies
       - restore_cache:
           keys:
             - v4-dependencies-{{ checksum "yarn.lock" }}
+      - attach_workspace:
+            at: ~/
+
+      # auto build typescript definition files (not part of build as locally JsDoc alone is all we need)
+      - run: npm run build:types
       # run lint
       - run: npm run lint
 
@@ -61,20 +64,30 @@ jobs:
     steps:
       - checkout
       # Download and cache dependencies
-      - attach_workspace:
-            at: ~/
-      # Download and cache dependencies
       - restore_cache:
           keys:
             - v4-dependencies-{{ checksum "yarn.lock" }}
+      # Download and cache dependencies
+      - attach_workspace:
+            at: ~/
+
+      # auto build typescript definition files (not part of build as locally JsDoc alone is all we need)
+      - run: npm run build:types
       - run: npm run test:bs
   deploy:
     <<: *defaults
     steps:
       # will add github as known host
       - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v4-dependencies-{{ checksum "yarn.lock" }}
       - attach_workspace:
           at: ~/
+
+      # auto build typescript definition files (not part of build as locally JsDoc alone is all we need)
+      - run: npm run build:types
       - add_ssh_keys:
           fingerprints:
             - '3f:ea:54:b7:77:13:b6:cf:29:90:2b:19:bb:eb:b5:f1'
@@ -104,4 +117,4 @@ workflows:
             - test-bs
           filters:
             branches:
-              only: master
+              only: westbrook/types
