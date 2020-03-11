@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/open-wc/open-wc/compare/@d4kmor/testing-helpers@2.0.0...@d4kmor/testing-helpers@2.0.1) (2020-03-11)
+
+
+### Bug Fixes
+
+* **testing-helpers:** inlcude types make release ([5c4dd49](https://github.com/open-wc/open-wc/commit/5c4dd49dcbb0e772ff565307c5129078046f82e2))
+
+
+
+
+
 # 2.0.0 (2020-03-11)
 
 
