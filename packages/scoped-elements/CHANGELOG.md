@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.6](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.6.5...@open-wc/scoped-elements@0.6.6) (2020-03-11)
+
+**Note:** Version bump only for package @open-wc/scoped-elements
+
+
+
+
+
 ## [0.6.5](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.6.4...@open-wc/scoped-elements@0.6.5) (2020-03-10)
 
 **Note:** Version bump only for package @open-wc/scoped-elements
