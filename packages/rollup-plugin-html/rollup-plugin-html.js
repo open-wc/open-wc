@@ -18,7 +18,12 @@ const { getInputHtmlData } = require('./src/getInputHtmlData');
 const { getEntrypointBundles } = require('./src/getEntrypointBundles');
 const { getOutputHtml } = require('./src/getOutputHtml');
 const { extractModules } = require('./src/extractModules');
-const { createError, getMainOutputDir, addRollupInput } = require('./src/utils');
+const {
+  createError,
+  getMainOutputDir,
+  addRollupInput,
+  shouldReadInputFromRollup,
+} = require('./src/utils');
 
 const watchMode = process.env.ROLLUP_WATCH === 'true';
 const defaultFileName = 'index.html';
@@ -91,12 +96,17 @@ function rollupPluginHtml(pluginOptions) {
      * @param {InputOptions} rollupInputOptions
      */
     options(rollupInputOptions) {
-      if (!pluginOptions.inputHtml && !pluginOptions.inputPath) {
+      let rollupInput;
+      if (shouldReadInputFromRollup(rollupInputOptions, pluginOptions)) {
+        rollupInput = /** @type {string} */ (rollupInputOptions.input);
+      }
+
+      if (!pluginOptions.inputHtml && !pluginOptions.inputPath && !rollupInput) {
         htmlFileName = pluginOptions.name || defaultFileName;
         return null;
       }
 
-      const inputHtmlData = getInputHtmlData(pluginOptions);
+      const inputHtmlData = getInputHtmlData(pluginOptions, rollupInput);
       htmlFileName = pluginOptions.name || inputHtmlData.name || defaultFileName;
       const inputHtmlResources = extractModules(inputHtmlData, htmlFileName);
       inputHtml = inputHtmlResources.htmlWithoutModules;
@@ -107,6 +117,10 @@ function rollupPluginHtml(pluginOptions) {
         ...inputHtmlResources.inlineModules.keys(),
       ];
 
+      if (rollupInput) {
+        // we are taking input from the rollup input, we should replace the html from the input
+        return { ...rollupInputOptions, input: inputModuleIds };
+      } // we need to add modules to existing rollup input
       return addRollupInput(rollupInputOptions, inputModuleIds);
     },
 

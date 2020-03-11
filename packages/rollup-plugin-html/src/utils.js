@@ -78,9 +78,23 @@ function addRollupInput(inputOptions, inputModuleIds) {
   throw createError(`Unknown rollup input type. Supported inputs are string, array and object.`);
 }
 
+/**
+ * @param {InputOptions} rollupInputOptions
+ * @param {PluginOptions} pluginOptions
+ */
+function shouldReadInputFromRollup(rollupInputOptions, pluginOptions) {
+  return (
+    typeof rollupInputOptions.input === 'string' &&
+    rollupInputOptions.input.endsWith('.html') &&
+    !pluginOptions.inputHtml &&
+    !pluginOptions.inputPath
+  );
+}
+
 module.exports = {
   createError,
   getMainOutputDir,
   fromEntries,
   addRollupInput,
+  shouldReadInputFromRollup,
 };

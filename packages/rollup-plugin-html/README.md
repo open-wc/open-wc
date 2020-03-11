@@ -46,7 +46,26 @@ export default {
 
 ### Input from file
 
-During development, you will already have an HTML file which imports your application's modules. You can use give this same file to the plugin using the `inputPath` option, which will bundle any modules inside and output the same HTML minified optimized.
+During development, you will probably already have an HTML file which imports your application's modules. You can use this same file as the input of the html plugin, which will bundle any modules inside and output the same HTML minified optimized.
+
+To do this, you can set the html file as input for rollup:
+
+<details>
+
+<summary>Show example</summary>
+
+```js
+import html from '@open-wc/rollup-plugin-html';
+export default {
+  input: 'index.html',
+  output: { dir: 'dist' },
+  plugins: [html()],
+};
+```
+
+</details>
+
+You can also set the `inputPath` property on the html plugin. This is useful if you are generating multiple html files, which each have their own entrypoints:
 
 <details>
 
@@ -59,6 +78,9 @@ export default {
   plugins: [
     html({
       inputPath: 'index.html',
+    }),
+    html({
+      inputPath: 'another-index.html',
     }),
   ],
 };
