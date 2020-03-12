@@ -4,7 +4,7 @@ export interface PluginOptions {
   name?: string;
   inputPath?: string;
   inputHtml?: string;
-  dir?: string;
+  outputBundleName?: string;
   publicPath?: string;
   inject?: boolean;
   minify?: boolean | object | MinifyFunction;

@@ -353,8 +353,6 @@ To do this, create one parent `@open-wc/rollup-plugin-html` instance and use `ad
 
 Each output defines a unique name, this can be used to retreive the correct bundle from `bundles` argument when creating the HTML template.
 
-The HTML file will be output into the directory of the last build. If your builds will be output into separate directories, you need to make sure the main directory in the last.
-
 ```js
 import html from '@open-wc/rollup-plugin-html';
 
@@ -383,16 +381,53 @@ export default {
   input: './app.js',
   output: [
     {
+      format: 'es',
+      dir: 'dist',
+      plugins: [htmlPlugin.addOutput('modern')],
+    },
+    {
       format: 'system',
-      dir: 'dist/legacy',
+      dir: 'dist',
       plugins: [htmlPlugin.addOutput('legacy')],
     },
-    // Note: the modern build should always be last, as the HTML file will be output into
-    // this directory
+  ],
+  plugins: [htmlPlugin],
+};
+```
+
+</details>
+
+If your outputs use different outputs directories, you need to set the `outputBundleName` option to specify which build to use to output the HTML file.
+
+<details>
+<summary>View example</summary>
+
+```js
+import html from '@open-wc/rollup-plugin-html';
+
+const htmlPlugin = html({
+  name: 'index.html',
+  inject: false,
+  outputBundleName: 'modern',
+  template({ bundles }) {
+    return `
+      ...
+    `;
+  },
+});
+
+export default {
+  input: './app.js',
+  output: [
     {
       format: 'es',
       dir: 'dist',
       plugins: [htmlPlugin.addOutput('modern')],
+    },
+    {
+      format: 'system',
+      dir: 'dist',
+      plugins: [htmlPlugin.addOutput('legacy')],
     },
   ],
   plugins: [htmlPlugin],
@@ -422,6 +457,12 @@ Path to the HTML file to use as input. Modules in this file are bundled and the 
 Type: `string`
 
 Same as `inputPath`, but provides the HTML as a string directly.
+
+### outputBundleName
+
+Type: `string`
+
+When using multiple build outputs, this is the name of the build that will be used to emit the generated HTML file.
 
 ### dir
 
@@ -480,7 +521,7 @@ export interface PluginOptions {
   name?: string;
   inputPath?: string;
   inputHtml?: string;
-  dir?: string;
+  outputBundleName?: string;
   publicPath?: string;
   inject?: boolean;
   minify?: boolean | object | MinifyFunction;

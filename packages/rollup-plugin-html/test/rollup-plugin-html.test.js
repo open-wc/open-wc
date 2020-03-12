@@ -270,7 +270,7 @@ describe('rollup-plugin-html', () => {
     const build = await rollup.rollup(config);
     const bundleA = build.generate({
       format: 'system',
-      dir: 'dist/legacy',
+      dir: 'dist',
       plugins: [plugin.addOutput('legacy')],
     });
     const bundleB = build.generate({
@@ -293,7 +293,53 @@ describe('rollup-plugin-html', () => {
     expect(getAsset(outputA, 'index.html')).to.not.exist;
     expect(getAsset(outputB, 'index.html').source).to.equal(
       '<html><head></head><body><h1>Hello world</h1>' +
-        '<script>System.import("/static/legacy/entrypoint-a.js");</script>' +
+        '<script>System.import("/static/entrypoint-a.js");</script>' +
+        '<script type="module" src="/static/entrypoint-a.js"></script></body></html>',
+    );
+  });
+
+  it('can build with multiple build outputs, specifying a specific output directory', async () => {
+    const plugin = htmlPlugin({
+      name: 'index.html',
+      outputBundleName: 'modern',
+      inputHtml:
+        '<h1>Hello world</h1>' +
+        '<script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
+      publicPath: '/static/',
+      minify: false,
+    });
+
+    const config = {
+      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      plugins: [plugin],
+    };
+
+    const build = await rollup.rollup(config);
+    const bundleA = build.generate({
+      format: 'system',
+      dir: 'dist-1',
+      plugins: [plugin.addOutput('legacy')],
+    });
+    const bundleB = build.generate({
+      format: 'es',
+      dir: 'dist-2',
+      plugins: [plugin.addOutput('modern')],
+    });
+
+    const [{ output: outputA }, { output: outputB }] = await Promise.all([bundleA, bundleB]);
+
+    expect(outputA.length).to.equal(1);
+    expect(outputB.length).to.equal(2);
+    const { code: entrypointA1 } = getChunk(outputA, 'entrypoint-a.js');
+    const { code: entrypointA2 } = getChunk(outputB, 'entrypoint-a.js');
+    expect(entrypointA1).to.include("console.log('entrypoint-a.js');");
+    expect(entrypointA1).to.include("console.log('module-a.js');");
+    expect(entrypointA2).to.include("console.log('entrypoint-a.js');");
+    expect(entrypointA2).to.include("console.log('module-a.js');");
+    expect(getAsset(outputA, 'index.html')).to.not.exist;
+    expect(getAsset(outputB, 'index.html').source).to.equal(
+      '<html><head></head><body><h1>Hello world</h1>' +
+        '<script>System.import("/dist-1/entrypoint-a.js");</script>' +
         '<script type="module" src="/static/entrypoint-a.js"></script></body></html>',
     );
   });
