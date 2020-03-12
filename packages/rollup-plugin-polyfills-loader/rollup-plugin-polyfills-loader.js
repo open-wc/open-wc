@@ -12,14 +12,10 @@ const { createError } = require('./src/utils');
 const { createPolyfillsLoaderConfig } = require('./src/createPolyfillsLoaderConfig');
 
 /**
- * @param {PluginOptions} pluginOptions
+ * @param {PluginOptions} [pluginOptions]
  * @returns {Plugin}
  */
-function rollupPluginPolyfillsLoader(pluginOptions) {
-  pluginOptions = {
-    htmlFileName: 'index.html',
-    ...(pluginOptions || {}),
-  };
+function rollupPluginPolyfillsLoader(pluginOptions = {}) {
   /** @type {GeneratedFile[] | undefined} */
   let generatedFiles;
 
@@ -40,9 +36,10 @@ function rollupPluginPolyfillsLoader(pluginOptions) {
         );
       }
 
-      const htmlPlugin = htmlPlugins.find(
-        pl => pl.getHtmlFileName() === pluginOptions.htmlFileName,
-      );
+      const htmlPlugin =
+        htmlPlugins.length === 1
+          ? htmlPlugins[0]
+          : htmlPlugins.find(pl => pl.getHtmlFileName() === pluginOptions.htmlFileName);
 
       if (!htmlPlugin) {
         throw createError(

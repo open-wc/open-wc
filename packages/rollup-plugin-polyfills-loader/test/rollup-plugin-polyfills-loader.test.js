@@ -72,9 +72,7 @@ describe('rollup-plugin-polyfills-loader', () => {
           inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
           minify: false,
         }),
-        polyfillsLoader({
-          htmlFileName: 'index.html',
-        }),
+        polyfillsLoader(),
       ],
     };
 
@@ -89,6 +87,11 @@ describe('rollup-plugin-polyfills-loader', () => {
   it('can set the html file name', async () => {
     const inputOptions = {
       plugins: [
+        html({
+          name: 'bar.html',
+          inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>Bar',
+          minify: false,
+        }),
         html({
           name: 'foo.html',
           inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
@@ -117,7 +120,6 @@ describe('rollup-plugin-polyfills-loader', () => {
           minify: false,
         }),
         polyfillsLoader({
-          htmlFileName: 'index.html',
           polyfills: {
             webcomponents: true,
             fetch: true,
@@ -147,7 +149,6 @@ describe('rollup-plugin-polyfills-loader', () => {
       plugins: [
         htmlPlugin,
         polyfillsLoader({
-          htmlFileName: 'index.html',
           modernOutput: 'modern',
           legacyOutput: [{ name: 'legacy', test: "!('noModule' in HTMLScriptElement.prototype)" }],
           polyfills: {
@@ -162,7 +163,7 @@ describe('rollup-plugin-polyfills-loader', () => {
     const outputOptions = [
       {
         format: 'system',
-        dir: 'dist/legacy',
+        dir: 'dist',
         plugins: [htmlPlugin.addOutput('legacy')],
       },
       {
@@ -186,9 +187,7 @@ describe('rollup-plugin-polyfills-loader', () => {
         html({
           inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
         }),
-        polyfillsLoader({
-          htmlFileName: 'index.html',
-        }),
+        polyfillsLoader(),
       ],
     };
 
