@@ -42,7 +42,6 @@ export default {
       inject: false,
     }),
     polyfillsLoader({
-      htmlFileName: 'index.html',
       polyfills: {
         coreJs: true,
         fetch: true,
@@ -80,7 +79,6 @@ export default {
   plugins: [
     htmlPlugin,
     polyfillsLoader({
-      htmlFileName: 'index.html',
       modernOutput: 'modern',
       legacyOutput: { name: 'legacy', test: "!('noModule' in HTMLScriptElement.prototype)" },
       polyfills: {

@@ -1,4 +1,4 @@
-<html><head></head><body><script>System.import("./legacy/entrypoint-a.js");</script><script type="module" src="./entrypoint-a.js"></script><script>(function () {
+<html><head></head><body><script>System.import("./entrypoint-a.js");</script><script type="module" src="./entrypoint-a.js"></script><script>(function () {
   function loadScript(src, type) {
     return new Promise(function (resolve) {
       var script = document.createElement('script');
@@ -41,7 +41,7 @@
 
   function loadFiles() {
     if (!('noModule' in HTMLScriptElement.prototype)) {
-      System.import('./legacy/entrypoint-a.js');
+      System.import('./entrypoint-a.js');
     } else {
       loadScript('./entrypoint-a.js', 'module');
     }
