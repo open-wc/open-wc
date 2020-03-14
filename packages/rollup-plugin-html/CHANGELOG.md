@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@0.2.2...@open-wc/rollup-plugin-html@0.3.0) (2020-03-14)
+
+
+### Bug Fixes
+
+* **rollup-plugin-html:** handle race conditions with multi build ([f53aea6](https://github.com/open-wc/open-wc/commit/f53aea6f8cedccddcd993bf082debdcf325470e4))
+
+
+### Features
+
+* **rollup-plugin-html:** allow setting rollup input as html ([adad265](https://github.com/open-wc/open-wc/commit/adad26542e9388df7dc1244e8def9af623349a11))
+
+
+
+
+
 ## [0.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@0.2.1...@open-wc/rollup-plugin-html@0.2.2) (2020-03-11)
 
 **Note:** Version bump only for package @open-wc/rollup-plugin-html
