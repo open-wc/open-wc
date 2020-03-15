@@ -1,5 +1,7 @@
 /** @typedef {import('rollup').OutputChunk} OutputChunk */
 /** @typedef {import('rollup').OutputAsset} OutputAsset */
+/** @typedef {import('rollup').InputOptions} InputOptions */
+/** @typedef {import('../rollup-plugin-html').RollupPluginHtml} RollupPluginHtml */
 /** @typedef {(OutputChunk | OutputAsset)[]} Output */
 
 const rollup = require('rollup');
@@ -59,6 +61,31 @@ describe('rollup-plugin-html', () => {
       plugins: [
         htmlPlugin({
           inputPath: 'test/fixtures/rollup-plugin-html/index.html',
+          minify: false,
+        }),
+      ],
+    };
+    const bundle = await rollup.rollup(config);
+    const { output } = await bundle.generate(outputConfig);
+
+    expect(output.length).to.equal(4);
+    const { code: entryA } = getChunk(output, 'entrypoint-a.js');
+    const { code: entryB } = getChunk(output, 'entrypoint-b.js');
+    expect(entryA).to.include("console.log('entrypoint-a.js');");
+    expect(entryB).to.include("console.log('entrypoint-b.js');");
+    expect(getAsset(output, 'index.html').source).to.equal(
+      '<html><head></head><body><h1>hello world</h1>\n\n' +
+        '<script type="module" src="./entrypoint-a.js"></script>' +
+        '<script type="module" src="./entrypoint-b.js"></script>' +
+        '</body></html>',
+    );
+  });
+
+  it('can build with html file as rollup input', async () => {
+    const config = {
+      input: 'test/fixtures/rollup-plugin-html/index.html',
+      plugins: [
+        htmlPlugin({
           minify: false,
         }),
       ],
@@ -243,13 +270,13 @@ describe('rollup-plugin-html', () => {
     const build = await rollup.rollup(config);
     const bundleA = build.generate({
       format: 'system',
-      dir: 'dist/legacy',
-      plugins: [plugin.addOutput()],
+      dir: 'dist',
+      plugins: [plugin.addOutput('legacy')],
     });
     const bundleB = build.generate({
       format: 'es',
       dir: 'dist',
-      plugins: [plugin.addOutput()],
+      plugins: [plugin.addOutput('modern')],
     });
 
     const { output: outputA } = await bundleA;
@@ -266,7 +293,53 @@ describe('rollup-plugin-html', () => {
     expect(getAsset(outputA, 'index.html')).to.not.exist;
     expect(getAsset(outputB, 'index.html').source).to.equal(
       '<html><head></head><body><h1>Hello world</h1>' +
-        '<script>System.import("/static/legacy/entrypoint-a.js");</script>' +
+        '<script>System.import("/static/entrypoint-a.js");</script>' +
+        '<script type="module" src="/static/entrypoint-a.js"></script></body></html>',
+    );
+  });
+
+  it('can build with multiple build outputs, specifying a specific output directory', async () => {
+    const plugin = htmlPlugin({
+      name: 'index.html',
+      outputBundleName: 'modern',
+      inputHtml:
+        '<h1>Hello world</h1>' +
+        '<script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
+      publicPath: '/static/',
+      minify: false,
+    });
+
+    const config = {
+      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      plugins: [plugin],
+    };
+
+    const build = await rollup.rollup(config);
+    const bundleA = build.generate({
+      format: 'system',
+      dir: 'dist-1',
+      plugins: [plugin.addOutput('legacy')],
+    });
+    const bundleB = build.generate({
+      format: 'es',
+      dir: 'dist-2',
+      plugins: [plugin.addOutput('modern')],
+    });
+
+    const [{ output: outputA }, { output: outputB }] = await Promise.all([bundleA, bundleB]);
+
+    expect(outputA.length).to.equal(1);
+    expect(outputB.length).to.equal(2);
+    const { code: entrypointA1 } = getChunk(outputA, 'entrypoint-a.js');
+    const { code: entrypointA2 } = getChunk(outputB, 'entrypoint-a.js');
+    expect(entrypointA1).to.include("console.log('entrypoint-a.js');");
+    expect(entrypointA1).to.include("console.log('module-a.js');");
+    expect(entrypointA2).to.include("console.log('entrypoint-a.js');");
+    expect(entrypointA2).to.include("console.log('module-a.js');");
+    expect(getAsset(outputA, 'index.html')).to.not.exist;
+    expect(getAsset(outputB, 'index.html').source).to.equal(
+      '<html><head></head><body><h1>Hello world</h1>' +
+        '<script>System.import("/dist-1/entrypoint-a.js");</script>' +
         '<script type="module" src="/static/entrypoint-a.js"></script></body></html>',
     );
   });
@@ -465,6 +538,67 @@ describe('rollup-plugin-html', () => {
     expect(output.length).to.equal(2);
     expect(getAsset(output, 'pages/index.html').source).to.equal(
       '<html><head></head><body><h1>Hello world</h1><script type="module" src="../entrypoint-a.js"></script></body></html>',
+    );
+  });
+
+  it('can get the filename with getHtmlFileName()', async () => {
+    // default filename
+    const pluginA = htmlPlugin({ inputHtml: 'Hello world' });
+    // filename inferred from input filename
+    const pluginB = htmlPlugin({ inputPath: 'test/fixtures/rollup-plugin-html/my-page.html' });
+    // filename explicitly set
+    const pluginC = htmlPlugin({
+      name: 'pages/my-other-page.html',
+      inputPath: 'test/fixtures/rollup-plugin-html/index.html',
+    });
+
+    await rollup.rollup({
+      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      plugins: [pluginA],
+    });
+    await rollup.rollup({ plugins: [pluginB] });
+    await rollup.rollup({ plugins: [pluginC] });
+
+    expect(pluginA.getHtmlFileName()).to.equal('index.html');
+    expect(pluginB.getHtmlFileName()).to.equal('my-page.html');
+    expect(pluginC.getHtmlFileName()).to.equal('pages/my-other-page.html');
+  });
+
+  it('supports other plugins injecting a transform function', async () => {
+    const config = {
+      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      plugins: [
+        htmlPlugin({
+          name: 'my-page.html',
+          minify: false,
+        }),
+        {
+          name: 'other-plugin',
+          /** @param {InputOptions} options */
+          buildStart(options) {
+            if (!options.plugins) throw new Error('no plugins');
+            const p = /** @type {RollupPluginHtml} */ (options.plugins.find(pl => {
+              if (pl.name === '@open-wc/rollup-plugin-html') {
+                const pl2 = /** @type {RollupPluginHtml} */ (pl);
+                return pl2.getHtmlFileName() === 'my-page.html';
+              }
+              return false;
+            }));
+
+            p.addHtmlTransformer(html => html.replace('</body>', '<!-- injected --></body>'));
+          },
+        },
+      ],
+    };
+    const bundle = await rollup.rollup(config);
+    const { output } = await bundle.generate(outputConfig);
+
+    expect(output.length).to.equal(2);
+    expect(getChunk(output, 'entrypoint-a.js').code).to.include("console.log('entrypoint-a.js');");
+    expect(getAsset(output, 'my-page.html').source).to.equal(
+      '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body>' +
+        '<script type="module" src="./entrypoint-a.js"></script>' +
+        '<!-- injected --></body></html>',
     );
   });
 });

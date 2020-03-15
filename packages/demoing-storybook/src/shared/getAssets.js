@@ -26,7 +26,9 @@ module.exports = function getAssets({
     indexHTML = indexHTML.replace('</head>', `${managerHead}</head>`);
   }
 
-  const imports = [managerImport, managerConfigImport, ...(addons || [])];
+  const imports = [managerImport, managerConfigImport, ...(addons || [])].filter(
+    imprt => typeof imprt === 'string',
+  );
 
   indexHTML = indexHTML.replace(
     '</body>',

@@ -48,10 +48,10 @@ function getEntrypointBundles({
   mainOutputDir,
   htmlFileName,
 }) {
-  /** @type {EntrypointBundle[]} */
-  const entrypointBundles = [];
+  /** @type {Record<string, EntrypointBundle>} */
+  const entrypointBundles = {};
 
-  for (const { options, bundle } of generatedBundles) {
+  for (const { name, options, bundle } of generatedBundles) {
     if (!options.format) throw createError('Missing module format');
 
     /** @type {{ importPath: string, chunk: OutputChunk }[]} */
@@ -76,7 +76,7 @@ function getEntrypointBundles({
         }
       }
     }
-    entrypointBundles.push({ options, bundle, entrypoints });
+    entrypointBundles[name] = { name, options, bundle, entrypoints };
   }
 
   return entrypointBundles;

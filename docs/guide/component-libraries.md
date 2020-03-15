@@ -58,6 +58,10 @@ The hardest part of any project is often getting content onto that first blank p
 
   With the goal of helping to deliver modern responsive websites and applications that work on any device and are pleasure to use, the Smart HTML Elements collection is one the most feature rich and comprehensive javascript user interface frameworks.
 
+- [Spectrum Web Components](https://opensource.adobe.com/spectrum-web-components/)
+
+  The Spectrum Web Components project is an implementation of Spectrum, Adobe’s design system. It's designed to work with any web framework — or even without one.
+
 - [Vaadin](https://vaadin.com/components)
 
   Vaadin has a comprehensive set of beautifully crafted, performant, and adaptable UI components for modern mobile-first Web apps. They are the ideal building blocks for Progressive Web Applications.

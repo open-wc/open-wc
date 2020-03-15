@@ -5,14 +5,15 @@ const { expect } = require('chai');
 const { getOutputHtml } = require('../../src/getOutputHtml');
 
 describe('getOutputHtml()', () => {
-  /** @type {EntrypointBundle[]} */
-  const defaultEntrypointBundles = [
-    {
+  /** @type {Record<string, EntrypointBundle>} */
+  const defaultEntrypointBundles = {
+    default: {
+      name: 'default',
       options: { format: 'es' },
       // @ts-ignore
       entrypoints: [{ importPath: '/app.js' }, { importPath: '/module.js' }],
     },
-  ];
+  };
 
   const defaultOptions = {
     pluginOptions: { inject: true },
@@ -78,19 +79,21 @@ describe('getOutputHtml()', () => {
   });
 
   it('generates a HTML file for multiple rollup bundles', async () => {
-    /** @type {EntrypointBundle[]} */
-    const entrypointBundles = [
-      {
+    /** @type {Record<string, EntrypointBundle>} */
+    const entrypointBundles = {
+      modern: {
+        name: 'modern',
         options: { format: 'es' },
         // @ts-ignore
         entrypoints: [{ importPath: '/app.js' }, { importPath: '/module.js' }],
       },
-      {
+      legacy: {
+        name: 'legacy',
         options: { format: 'system' },
         // @ts-ignore
         entrypoints: [{ importPath: '/legacy/app.js' }, { importPath: '/legacy/module.js' }],
       },
-    ];
+    };
 
     const output = await getOutputHtml({ ...defaultOptions, entrypointBundles });
     expect(output).to.equal(
@@ -138,19 +141,21 @@ describe('getOutputHtml()', () => {
   });
 
   it('can inject multi build output in template function', async () => {
-    /** @type {EntrypointBundle[]} */
-    const entrypointBundles = [
-      {
+    /** @type {Record<string, EntrypointBundle>} */
+    const entrypointBundles = {
+      modern: {
+        name: 'modern',
         options: { format: 'es' },
         // @ts-ignore
         entrypoints: [{ importPath: '/app.js' }, { importPath: '/module.js' }],
       },
-      {
+      legacy: {
+        name: 'legacy',
         options: { format: 'system' },
         // @ts-ignore
         entrypoints: [{ importPath: '/legacy/app.js' }, { importPath: '/legacy/module.js' }],
       },
-    ];
+    };
 
     const output = await getOutputHtml({
       ...defaultOptions,
@@ -160,10 +165,10 @@ describe('getOutputHtml()', () => {
         inject: false,
         template: ({ bundles }) =>
           `<h1>Hello world</h1>` +
-          bundles[0].entrypoints
+          bundles.modern.entrypoints
             .map(e => `<script type="module" src="${e.importPath}"></script>`)
             .join('') +
-          bundles[1].entrypoints
+          bundles.legacy.entrypoints
             .map(e => `<script nomodule src="${e.importPath}"></script>`)
             .join(''),
       },
@@ -184,16 +189,12 @@ describe('getOutputHtml()', () => {
       pluginOptions: {
         ...defaultOptions.pluginOptions,
         template: '<h1>Hello world</h1>',
+        inject: false,
         transform: html => html.replace('Hello world', 'Goodbye world'),
       },
     });
 
-    expect(output).to.equal(
-      '<html><head></head><body><h1>Goodbye world</h1>' +
-        '<script type="module" src="/app.js"></script>' +
-        '<script type="module" src="/module.js"></script>' +
-        '</body></html>',
-    );
+    expect(output).to.equal('<h1>Goodbye world</h1>');
   });
 
   it('allows setting multiple html transform functions', async () => {
@@ -202,6 +203,7 @@ describe('getOutputHtml()', () => {
       pluginOptions: {
         ...defaultOptions.pluginOptions,
         template: '<h1>Hello world</h1>',
+        inject: false,
         transform: [
           html => html.replace('Hello world', 'Goodbye world'),
           html => html.replace(/h1/g, 'h2'),
@@ -209,12 +211,36 @@ describe('getOutputHtml()', () => {
       },
     });
 
-    expect(output).to.equal(
-      '<html><head></head><body><h2>Goodbye world</h2>' +
-        '<script type="module" src="/app.js"></script>' +
-        '<script type="module" src="/module.js"></script>' +
-        '</body></html>',
-    );
+    expect(output).to.equal('<h2>Goodbye world</h2>');
+  });
+
+  it('can set transform functions provided by other plugins', async () => {
+    const output = await getOutputHtml({
+      ...defaultOptions,
+      pluginOptions: {
+        ...defaultOptions.pluginOptions,
+        inject: false,
+        template: '<h1>Hello world</h1>',
+      },
+      externalTransformFns: [html => html.replace('Hello world', 'Goodbye world')],
+    });
+
+    expect(output).to.equal('<h1>Goodbye world</h1>');
+  });
+
+  it('can combine external and regular transform functions', async () => {
+    const output = await getOutputHtml({
+      ...defaultOptions,
+      pluginOptions: {
+        ...defaultOptions.pluginOptions,
+        inject: false,
+        template: '<h1>Hello world</h1>',
+        transform: [html => html.replace(/h1/g, 'h2')],
+      },
+      externalTransformFns: [html => html.replace('Hello world', 'Goodbye world')],
+    });
+
+    expect(output).to.equal('<h2>Goodbye world</h2>');
   });
 
   it('default minify minifies html', async () => {

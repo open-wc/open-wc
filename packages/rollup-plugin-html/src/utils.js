@@ -26,26 +26,6 @@ function fromEntries(entries) {
 }
 
 /**
- * @param {PluginOptions} pluginOptions
- * @param {GeneratedBundle[]} generatedBundles
- * @returns {string}
- */
-function getMainOutputDir(pluginOptions, generatedBundles) {
-  const mainOutputDir =
-    // user defined output dir
-    pluginOptions.dir ||
-    // if no used defined output dir, we find the "lowest" output dir, ex. if there are
-    // "dist/legacy" and "dist", we take "dist"
-    generatedBundles.map(b => b.options.dir).sort((a, b) => (a && b ? a.length - b.length : 0))[0];
-
-  if (typeof mainOutputDir !== 'string')
-    throw createError(
-      "Rollup must be configured to output in a directory: html({ outputDir: 'dist' })",
-    );
-  return mainOutputDir;
-}
-
-/**
  * @param {InputOptions} inputOptions
  * @param {string[]} inputModuleIds
  * @returns {InputOptions}
@@ -79,20 +59,21 @@ function addRollupInput(inputOptions, inputModuleIds) {
 }
 
 /**
+ * @param {InputOptions} rollupInputOptions
  * @param {PluginOptions} pluginOptions
- * @param {string} [inputHtmlName]
  */
-function getOutputHtmlFileName(pluginOptions, inputHtmlName) {
-  if (pluginOptions.name) {
-    return pluginOptions.name;
-  }
-  return inputHtmlName || 'index.html';
+function shouldReadInputFromRollup(rollupInputOptions, pluginOptions) {
+  return (
+    typeof rollupInputOptions.input === 'string' &&
+    rollupInputOptions.input.endsWith('.html') &&
+    !pluginOptions.inputHtml &&
+    !pluginOptions.inputPath
+  );
 }
 
 module.exports = {
   createError,
-  getMainOutputDir,
   fromEntries,
   addRollupInput,
-  getOutputHtmlFileName,
+  shouldReadInputFromRollup,
 };

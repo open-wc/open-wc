@@ -35,7 +35,7 @@ async function injectStories({
 <script type="module">
   ${previewConfigImport ? `import '${previewConfigImport}';` : ''}
   import { configure } from '${previewImport}';
-  ${urls.map((url, i) => `import * as story${i} from '${url}'`).join(';\n  ')}
+  ${urls.map((url, i) => `import * as story${i} from '${url}?storybook-story'`).join(';\n  ')}
 
   configure(() => [
     ${urls.map((_, i) => `story${i}`).join(',\n    ')}

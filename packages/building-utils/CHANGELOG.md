@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.15.2...@open-wc/building-utils@2.16.0) (2020-03-11)
+
+
+### Features
+
+* **es-dev-server:** auto compat for browsers without stage4 features ([31a682b](https://github.com/open-wc/open-wc/commit/31a682bd5252ab97208287163eba325815fa5182))
+
+
+
+
+
+## [2.15.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.15.1...@open-wc/building-utils@2.15.2) (2020-03-10)
+
+**Note:** Version bump only for package @open-wc/building-utils
+
+
+
+
+
 ## [2.15.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.15.0...@open-wc/building-utils@2.15.1) (2020-03-06)
 
 **Note:** Version bump only for package @open-wc/building-utils

@@ -10,7 +10,7 @@
     "test:watch": "karma start --auto-watch=true --single-run=false",
     "storybook": "start-storybook --node-resolve --watch --open",
     "storybook:build": "build-storybook",
-    "start:build": "cd dist && es-dev-server --open",
+    "start:build": "es-dev-server --root-dir dist --app-index index.html --open --compatibility none",
     "build": "rimraf dist && rollup -c rollup.config.js",
     "start": "es-dev-server --app-index index.html --node-resolve --open --watch"
   },

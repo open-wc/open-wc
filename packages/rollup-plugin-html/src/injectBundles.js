@@ -24,14 +24,14 @@ function createLoadScript(src, format) {
 
 /**
  * @param {string} htmlString
- * @param {EntrypointBundle[]} entrypointBundles
+ * @param {Record<string, EntrypointBundle>} entrypointBundles
  * @returns {string}
  */
 function injectBundles(htmlString, entrypointBundles) {
   const documentAst = parse(htmlString);
   const body = query(documentAst, predicates.hasTagName('body'));
 
-  for (const { options, entrypoints } of entrypointBundles) {
+  for (const { options, entrypoints } of Object.values(entrypointBundles)) {
     if (!options.format) throw createError('Missing output format.');
 
     for (const entrypoint of entrypoints) {

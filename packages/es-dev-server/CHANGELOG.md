@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.44.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.43.1...es-dev-server@1.44.0) (2020-03-11)
+
+
+### Features
+
+* **es-dev-server:** auto compat for browsers without stage4 features ([31a682b](https://github.com/open-wc/open-wc/commit/31a682bd5252ab97208287163eba325815fa5182))
+
+
+
+
+
+## [1.43.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.43.0...es-dev-server@1.43.1) (2020-03-10)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+# [1.43.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.42.1...es-dev-server@1.43.0) (2020-03-08)
+
+
+### Features
+
+* **polyfills-loader:** add preload links ([23428e3](https://github.com/open-wc/open-wc/commit/23428e344154af6826e7db6a72f67533f3bd9511))
+
+
+
+
+
 ## [1.42.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.42.0...es-dev-server@1.42.1) (2020-03-06)
 
 **Note:** Version bump only for package es-dev-server

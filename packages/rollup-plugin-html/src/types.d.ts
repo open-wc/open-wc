@@ -1,10 +1,10 @@
-import { OutputChunk, OutputOptions, OutputBundle } from 'rollup';
+import { OutputChunk, OutputOptions, OutputBundle, Plugin } from 'rollup';
 
 export interface PluginOptions {
   name?: string;
   inputPath?: string;
   inputHtml?: string;
-  dir?: string;
+  outputBundleName?: string;
   publicPath?: string;
   inject?: boolean;
   minify?: boolean | object | MinifyFunction;
@@ -15,6 +15,7 @@ export interface PluginOptions {
 export type MinifyFunction = (html: string) => string | Promise<string>;
 
 export interface GeneratedBundle {
+  name: string;
   options: OutputOptions;
   bundle: OutputBundle;
 }
@@ -42,14 +43,14 @@ export interface TemplateArgs {
   bundle: EntrypointBundle;
   // the rollup bundles to be injected on the page. if there is only one
   // build output options, this will be an array with one option
-  bundles: EntrypointBundle[];
+  bundles: Record<string, EntrypointBundle>;
 }
 
 export interface TransformArgs {
   // see TemplateArgs
   bundle: EntrypointBundle;
   // see TemplateArgs
-  bundles: EntrypointBundle[];
+  bundles: Record<string, EntrypointBundle>;
 }
 
 export type TransformFunction = (html: string, args: TransformArgs) => string | Promise<string>;
@@ -57,7 +58,13 @@ export type TransformFunction = (html: string, args: TransformArgs) => string | 
 export type TemplateFunction = (args: TemplateArgs) => string | Promise<string>;
 
 export interface InputHtmlData {
-  name: string;
+  name?: string;
   rootDir: string;
   inputHtml: string;
+}
+
+export interface RollupPluginHtml extends Plugin {
+  getHtmlFileName(): string;
+  addHtmlTransformer(transform: TransformFunction): void;
+  addOutput(name: string): Plugin;
 }

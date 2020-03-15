@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/rollup-plugin-html",
-  "version": "0.1.3",
+  "version": "0.3.0",
   "publishConfig": {
     "access": "public"
   },
@@ -12,7 +12,7 @@
     "directory": "packages/rollup-plugin-html"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/",
+  "homepage": "https://github.com/open-wc/open-wc/packages/rollup-plugin-html",
   "main": "rollup-plugin-html.js",
   "scripts": {
     "demo:mpa": "rm -rf demo/dist && rollup -c demo/mpa/rollup.config.js --watch & yarn serve-demo",
@@ -40,7 +40,7 @@
     "polyfill"
   ],
   "dependencies": {
-    "@open-wc/building-utils": "^2.15.1",
+    "@open-wc/building-utils": "^2.16.0",
     "@types/html-minifier": "^3.5.3",
     "fs-extra": "^8.1.0",
     "html-minifier": "^4.0.0",
@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "es-dev-server": "^1.42.1",
+    "es-dev-server": "^1.44.0",
     "lit-element": "^2.2.1",
     "rimraf": "^3.0.0",
     "rollup": "^1.31.1"

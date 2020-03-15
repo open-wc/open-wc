@@ -2,6 +2,7 @@
 
 /** @typedef {import('./types').PluginOptions} PluginOptions */
 /** @typedef {import('./types').EntrypointBundle} EntrypointBundle */
+/** @typedef {import('./types').TransformFunction} TransformFunction */
 
 const { injectBundles } = require('./injectBundles');
 const { minifyHtml } = require('./minifyHtml');
@@ -11,20 +12,28 @@ const defaultHtml = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><bo
 /**
  * @param {object} args
  * @param {PluginOptions} args.pluginOptions
- * @param {EntrypointBundle[]} args.entrypointBundles
+ * @param {Record<string, EntrypointBundle>} args.entrypointBundles
+ * @param {TransformFunction[]} [args.externalTransformFns]
  * @param {string | undefined} [args.inputHtml]
  */
-async function getOutputHtml({ pluginOptions, entrypointBundles, inputHtml }) {
+async function getOutputHtml({
+  pluginOptions,
+  entrypointBundles,
+  externalTransformFns,
+  inputHtml,
+}) {
   const { template, inject, minify } = pluginOptions;
   let outputHtml;
+
+  const { default: defaultBundle, ...multiBundles } = entrypointBundles;
 
   if (typeof template === 'string') {
     outputHtml = template;
   } else if (typeof template === 'function') {
     outputHtml = await template({
       inputHtml,
-      bundle: entrypointBundles[0],
-      bundles: entrypointBundles,
+      bundle: defaultBundle,
+      bundles: multiBundles,
     });
   } else if (inputHtml) {
     outputHtml = inputHtml;
@@ -38,17 +47,19 @@ async function getOutputHtml({ pluginOptions, entrypointBundles, inputHtml }) {
   }
 
   // transform HTML output
+  const transforms = [...(externalTransformFns || [])];
   if (pluginOptions.transform) {
-    const transforms = Array.isArray(pluginOptions.transform)
-      ? pluginOptions.transform
-      : [pluginOptions.transform];
-
-    for (const transform of transforms) {
-      outputHtml = await transform(outputHtml, {
-        bundle: entrypointBundles[0],
-        bundles: entrypointBundles,
-      });
+    if (Array.isArray(pluginOptions.transform)) {
+      transforms.push(...pluginOptions.transform);
+    } else {
+      transforms.push(pluginOptions.transform);
     }
+  }
+  for (const transform of transforms) {
+    outputHtml = await transform(outputHtml, {
+      bundle: defaultBundle,
+      bundles: multiBundles,
+    });
   }
 
   // minify final HTML output

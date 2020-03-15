@@ -1,0 +1,48 @@
+{
+  "name": "@open-wc/rollup-plugin-polyfills-loader",
+  "version": "0.2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Plugin for generating an html file with rollup",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/rollup-plugin-polyfills-loader"
+  },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/packages/rollup-plugin-polyfills-loader",
+  "main": "rollup-plugin-polyfills-loader.js",
+  "scripts": {
+    "demo:multi-build": "rm -rf demo/dist && rollup -c demo/multi-build/rollup.config.js --watch & yarn serve-demo",
+    "demo:multi-page": "rm -rf demo/dist && rollup -c demo/multi-page/rollup.config.js --watch & yarn serve-demo",
+    "demo:single-build": "rm -rf demo/dist && rollup -c demo/single-build/rollup.config.js --watch & yarn serve-demo",
+    "serve-demo": "es-dev-server --watch --root-dir demo/dist --app-index index.html --compatibility none --open",
+    "test": "npm run test:node",
+    "test:node": "mocha test/**/*.test.js test/*.test.js",
+    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots",
+    "test:watch": "npm run test:node -- --watch"
+  },
+  "files": [
+    "*.js",
+    "src"
+  ],
+  "keywords": [
+    "rollup-plugin",
+    "minify",
+    "html",
+    "polyfill"
+  ],
+  "dependencies": {
+    "@open-wc/rollup-plugin-html": "^0.3.0",
+    "polyfills-loader": "^1.4.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "es-dev-server": "^1.44.0",
+    "lit-element": "^2.2.1",
+    "rimraf": "^3.0.0",
+    "rollup": "^1.31.1"
+  }
+}

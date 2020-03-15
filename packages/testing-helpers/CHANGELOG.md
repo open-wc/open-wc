@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.5.3...@open-wc/testing-helpers@1.6.0) (2020-03-10)
+
+
+### Features
+
+* **testing-helpers:** support fixture cleanup in tdd style tests with 'teardown' ([#1410](https://github.com/open-wc/open-wc/issues/1410)) ([ce8c833](https://github.com/open-wc/open-wc/commit/ce8c8337da2d07d82f40e778d37a709093606b7e))
+
+
+
+
+
+## [1.5.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.5.2...@open-wc/testing-helpers@1.5.3) (2020-03-10)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
 ## [1.5.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.5.1...@open-wc/testing-helpers@1.5.2) (2020-02-09)
 
 **Note:** Version bump only for package @open-wc/testing-helpers

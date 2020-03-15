@@ -108,12 +108,18 @@ const sidebar = [
         sidebarDepth: 0,
         children: ['/building/rollup-plugin-index-html', '/building/webpack-index-html-plugin'],
       },
+      {
+        title: 'Demoing',
+        collapsable: false,
+        sidebarDepth: 0,
+        children: ['/demoing/storybook-addon-markdown-docs'],
+      },
     ],
   },
   {
     title: 'Experiments',
     collapsable: true,
-    children: [['/scoped-elements/', 'Scoped Elements']],
+    children: [['/scoped-elements/', 'Scoped Elements'], '/mdjs/'],
   },
 ];
 
@@ -136,6 +142,7 @@ module.exports = {
       '/publishing/': sidebar,
       '/automating/': sidebar,
       '/scoped-elements/': sidebar,
+      '/mdjs/': sidebar,
       '/faq/': [
         ['', 'Faq'],
         {

@@ -6,8 +6,9 @@ const path = require('path');
 const fs = require('fs');
 
 const readCommandLineArgs = require('./readCommandLineArgs');
+const mdjsToCsfTransformer = require('./transformers/mdjsToCsfTransformer');
 const createServeStorybookTransformer = require('./transformers/createServeStorybookTransformer');
-const createMdxToJs = require('./transformers/createMdxToJs');
+const { mdxToCsfTransformer } = require('./transformers/mdxToCsfTransformer');
 const toBrowserPath = require('../shared/toBrowserPath');
 const getAssets = require('../shared/getAssets');
 
@@ -40,9 +41,14 @@ async function run() {
   config.babelModernExclude = [...(config.babelModernExclude || []), '**/storybook-prebuilt/**'];
   config.fileExtensions = [...(config.fileExtensions || []), '.mdx'];
 
+  if (config.experimentalMdDocs) {
+    config.fileExtensions.push('.md');
+  }
+
   config.responseTransformers = [
     ...(config.responseTransformers || []),
-    createMdxToJs(),
+    config.experimentalMdDocs ? mdjsToCsfTransformer : null,
+    mdxToCsfTransformer,
     createServeStorybookTransformer({
       assets,
       previewImport,
@@ -50,7 +56,7 @@ async function run() {
       storiesPatterns: config.stories,
       rootDir,
     }),
-  ];
+  ].filter(_ => _);
 
   startServer(createConfig(config));
 

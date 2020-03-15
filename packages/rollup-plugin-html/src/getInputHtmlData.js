@@ -1,3 +1,4 @@
+/** @typedef {import('rollup').InputOptions} InputOptions */
 /** @typedef {import('./types').PluginOptions} PluginOptions */
 /** @typedef {import('./types').InputHtmlData} InputHtmlData */
 
@@ -7,15 +8,12 @@ const { createError } = require('./utils');
 
 /**
  * @param {PluginOptions} pluginOptions
- * @param {string} rootDir
+ * @param {string} [rollupInput]
+ * @param {string} [rootDir]
  * @returns {InputHtmlData}
  */
-function getInputHtmlData(pluginOptions, rootDir = process.cwd()) {
+function getInputHtmlData(pluginOptions, rollupInput, rootDir = process.cwd()) {
   if (pluginOptions.inputHtml) {
-    if (!pluginOptions.name) {
-      throw createError('Must set a name option when providing inputHtml directory.');
-    }
-
     return {
       name: pluginOptions.name,
       rootDir,
@@ -23,17 +21,18 @@ function getInputHtmlData(pluginOptions, rootDir = process.cwd()) {
     };
   }
 
-  if (!pluginOptions.inputPath) {
-    throw createError('Input must have either a path or content.');
+  if (!pluginOptions.inputPath && !rollupInput) {
+    throw createError('Internal plugin error, missing input while getInputHtmlData is called.');
   }
 
-  const htmlPath = path.resolve(rootDir, pluginOptions.inputPath);
+  const inputPath = /** @type {string} */ (pluginOptions.inputPath || rollupInput);
+  const htmlPath = path.resolve(rootDir, inputPath);
   if (!fs.existsSync) {
     throw createError(`Could not find HTML input file at: ${htmlPath}`);
   }
   const htmlDir = path.dirname(htmlPath);
   const inputHtml = fs.readFileSync(htmlPath, 'utf-8');
-  const name = pluginOptions.name || path.basename(pluginOptions.inputPath);
+  const name = pluginOptions.name || path.basename(inputPath);
   return { name, rootDir: htmlDir, inputHtml };
 }
 

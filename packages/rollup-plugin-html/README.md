@@ -46,7 +46,26 @@ export default {
 
 ### Input from file
 
-During development, you will already have an HTML file which imports your application's modules. You can use give this same file to the plugin using the `inputPath` option, which will bundle any modules inside and output the same HTML minified optimized.
+During development, you will probably already have an HTML file which imports your application's modules. You can use this same file as the input of the html plugin, which will bundle any modules inside and output the same HTML minified optimized.
+
+To do this, you can set the html file as input for rollup:
+
+<details>
+
+<summary>Show example</summary>
+
+```js
+import html from '@open-wc/rollup-plugin-html';
+export default {
+  input: 'index.html',
+  output: { dir: 'dist' },
+  plugins: [html()],
+};
+```
+
+</details>
+
+You can also set the `inputPath` property on the html plugin. This is useful if you are generating multiple html files, which each have their own entrypoints:
 
 <details>
 
@@ -59,6 +78,9 @@ export default {
   plugins: [
     html({
       inputPath: 'index.html',
+    }),
+    html({
+      inputPath: 'another-index.html',
     }),
   ],
 };
@@ -325,9 +347,11 @@ It is possible to create multiple rollup build outputs and inject both bundles i
 <details>
 <summary>View example</summary>
 
-To create multiple outputs with rollup, you need to set the `output` option as an array. For each output, you need to create a child plugin from the main plugin.
+When you configure rollup to generate multiple build outputs you can inject all outputs into a single HTML file.
 
-The HTML file will be output into the directory of the last build. If your builds will be output into separate directories, you need to make sure the modern build is last.
+To do this, create one parent `@open-wc/rollup-plugin-html` instance and use `addOutput` to create two child plugins for each separate rollup output.
+
+Each output defines a unique name, this can be used to retreive the correct bundle from `bundles` argument when creating the HTML template.
 
 ```js
 import html from '@open-wc/rollup-plugin-html';
@@ -339,15 +363,13 @@ const htmlPlugin = html({
     return `
       <html>
         <body>
-        <script nomodule src="./systemjs.js"></script>
-        ${bundles[0].entrypoints.map(
-          e => `<script nomodule>System.import("${e.importPath}")</script>`,
+        ${bundles.modern.entrypoints.map(
+          e => `<script type="module" src="${e.importPath}"></script>`,
         )}
 
-        ${bundles[1].entrypoints.map(
-          e => `
-          <script type="module" src="${e.importPath}"></script>
-        `,
+        <script nomodule src="./systemjs.js"></script>
+        ${bundles.legacy.entrypoints.map(
+          e => `<script nomodule>System.import("${e.importPath}")</script>`,
         )}
         </body>
       </html>
@@ -359,16 +381,53 @@ export default {
   input: './app.js',
   output: [
     {
-      format: 'system',
-      dir: 'dist/legacy',
-      plugins: [htmlPlugin.addOutput()],
+      format: 'es',
+      dir: 'dist',
+      plugins: [htmlPlugin.addOutput('modern')],
     },
-    // Note: the modern build should always be last, as the HTML file will be output into
-    // this directory
+    {
+      format: 'system',
+      dir: 'dist',
+      plugins: [htmlPlugin.addOutput('legacy')],
+    },
+  ],
+  plugins: [htmlPlugin],
+};
+```
+
+</details>
+
+If your outputs use different outputs directories, you need to set the `outputBundleName` option to specify which build to use to output the HTML file.
+
+<details>
+<summary>View example</summary>
+
+```js
+import html from '@open-wc/rollup-plugin-html';
+
+const htmlPlugin = html({
+  name: 'index.html',
+  inject: false,
+  outputBundleName: 'modern',
+  template({ bundles }) {
+    return `
+      ...
+    `;
+  },
+});
+
+export default {
+  input: './app.js',
+  output: [
     {
       format: 'es',
       dir: 'dist',
-      plugins: [htmlPlugin.addOutput()],
+      plugins: [htmlPlugin.addOutput('modern')],
+    },
+    {
+      format: 'system',
+      dir: 'dist',
+      plugins: [htmlPlugin.addOutput('legacy')],
     },
   ],
   plugins: [htmlPlugin],
@@ -398,6 +457,12 @@ Path to the HTML file to use as input. Modules in this file are bundled and the 
 Type: `string`
 
 Same as `inputPath`, but provides the HTML as a string directly.
+
+### outputBundleName
+
+Type: `string`
+
+When using multiple build outputs, this is the name of the build that will be used to emit the generated HTML file.
 
 ### dir
 
@@ -450,13 +515,13 @@ For more info see the [configuration type definitions](#configuration-types).
 <summary>Full typescript definitions of configuration options</summary>
 
 ```ts
-import { OutputChunk, OutputOptions, OutputBundle } from 'rollup';
+import { OutputChunk, OutputOptions, OutputBundle, Plugin } from 'rollup';
 
 export interface PluginOptions {
   name?: string;
   inputPath?: string;
   inputHtml?: string;
-  dir?: string;
+  outputBundleName?: string;
   publicPath?: string;
   inject?: boolean;
   minify?: boolean | object | MinifyFunction;
@@ -467,6 +532,7 @@ export interface PluginOptions {
 export type MinifyFunction = (html: string) => string | Promise<string>;
 
 export interface GeneratedBundle {
+  name: string;
   options: OutputOptions;
   bundle: OutputBundle;
 }
@@ -494,19 +560,31 @@ export interface TemplateArgs {
   bundle: EntrypointBundle;
   // the rollup bundles to be injected on the page. if there is only one
   // build output options, this will be an array with one option
-  bundles: EntrypointBundle[];
+  bundles: Record<string, EntrypointBundle>;
 }
 
 export interface TransformArgs {
   // see TemplateArgs
   bundle: EntrypointBundle;
   // see TemplateArgs
-  bundles: EntrypointBundle[];
+  bundles: Record<string, EntrypointBundle>;
 }
 
 export type TransformFunction = (html: string, args: TransformArgs) => string | Promise<string>;
 
 export type TemplateFunction = (args: TemplateArgs) => string | Promise<string>;
+
+export interface InputHtmlData {
+  name?: string;
+  rootDir: string;
+  inputHtml: string;
+}
+
+export interface RollupPluginHtml extends Plugin {
+  getHtmlFileName(): string;
+  addHtmlTransformer(transform: TransformFunction): void;
+  addOutput(name: string): Plugin;
+}
 ```
 
 </details>
