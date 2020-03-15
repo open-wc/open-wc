@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.4.2...polyfills-loader@1.5.0) (2020-03-15)
+
+
+### Bug Fixes
+
+* **polyfills-loader:** invert dynamic import check ([7f8bfa4](https://github.com/open-wc/open-wc/commit/7f8bfa4ca0aaf37394005077f54c06643cd82ef7))
+* **polyfills-loader:** minify fetch polyfill ([487e907](https://github.com/open-wc/open-wc/commit/487e90754371f421cd148afa922aa3a4101ee26d))
+
+
+### Features
+
+* **polyfills-loader:** add AbortController polyfill ([7fae798](https://github.com/open-wc/open-wc/commit/7fae798bda0d3156e850c81b64381b80e8512c55))
+* **polyfills-loader:** add ResizeObserver polyfill ([03ede89](https://github.com/open-wc/open-wc/commit/03ede89140e9fdb103283410c95643303909f6b3))
+
+
+
+
+
 ## [1.4.2](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.4.1...polyfills-loader@1.4.2) (2020-03-11)
 
 **Note:** Version bump only for package polyfills-loader

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.45.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.44.0...es-dev-server@1.45.0) (2020-03-15)
+
+
+### Bug Fixes
+
+* **es-dev-server:** check accept header before transforming HTML ([6d87378](https://github.com/open-wc/open-wc/commit/6d87378bf91d2343aff78bea9d881fe689783b7d))
+
+
+### Features
+
+* **es-dev-server:** polyfill AbortController when not supported ([fd03b29](https://github.com/open-wc/open-wc/commit/fd03b29ca059ff8000fa3dc189b40bf61b769766))
+
+
+
+
+
 # [1.44.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.43.1...es-dev-server@1.44.0) (2020-03-11)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@0.2.0...@open-wc/rollup-plugin-polyfills-loader@0.3.0) (2020-03-15)
+
+
+### Features
+
+* **es-dev-server:** polyfill AbortController when not supported ([fd03b29](https://github.com/open-wc/open-wc/commit/fd03b29ca059ff8000fa3dc189b40bf61b769766))
+
+
+
+
+
 # [0.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@0.1.2...@open-wc/rollup-plugin-polyfills-loader@0.2.0) (2020-03-14)
 
 
