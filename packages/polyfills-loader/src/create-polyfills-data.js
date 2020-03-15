@@ -64,6 +64,19 @@ function createPolyfillsData(cfg) {
     );
   }
 
+  if (polyfills.abortController) {
+    addPolyfillConfig(
+      {
+        name: 'abort-controller',
+        // cannot do 'AbortController' in window, because safari 11 implements it but it's just a stub
+        test: "!('signal' in Request.prototype)",
+        path: require.resolve('abortcontroller-polyfill/dist/umd-polyfill.js'),
+        minify: true,
+      },
+      'abortcontroller-polyfill',
+    );
+  }
+
   // load systemjs, an es module polyfill, if one of the entries needs it
   const hasSystemJs =
     cfg.polyfills && cfg.polyfills.custom && cfg.polyfills.custom.find(c => c.name === 'systemjs');
