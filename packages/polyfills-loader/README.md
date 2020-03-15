@@ -74,9 +74,12 @@ const config = {
     hash: true,
     coreJs: true,
     fetch: true,
+    abortController: true,
     regeneratorRuntime: true,
     dynamicImport: true,
     webcomponents: true,
+    intersectionObserver: true,
+    resizeObserver: true,
   },
   minify: true,
 };
@@ -145,7 +148,9 @@ The polyfills config controls which polyills are injected onto the page. These a
 - [regeneratorRuntime](https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime)
 - [webcomponents](https://github.com/webcomponents/webcomponentsjs)
 - [fetch](https://github.com/github/fetch)
-- [intersectionObserver](https://github.com/w3c/IntersectionObserver)
+- [abortController](https://github.com/github/fetch)
+- [intersectionObserver](https://github.com/mo/abortcontroller-polyfill)
+- [resizeObserver](https://github.com/que-etc/resize-observer-polyfill)
 - [systemjs](https://github.com/systemjs/systemjs) (also injected when one of the files is systemjs)
 - [dynamicImport](https://github.com/GoogleChromeLabs/dynamic-import-polyfill)
 - [esModuleShims](https://github.com/guybedford/es-module-shims)
