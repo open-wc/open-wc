@@ -20,29 +20,25 @@ export interface PolyfillsLoaderConfig {
 }
 
 export interface PolyfillsConfig {
-  // custom polyfills not available by default
+  // custom polyfills provided by the user
   custom?: PolyfillConfig[];
   // whether to hash polyfill filenames
   hash?: boolean;
-  // whether to load core-js polyfills
+  // js language polyfills (array functions, map etc.)
   coreJs?: boolean;
-  // whether to add regenerator runtime, if the value is 'always'
-  // it is always loaded, otherwise only on browsers which don't support
-  // modules
+  // if the value is 'always' it is always loaded, otherwise only on browsers 
+  // which don't support modules
   regeneratorRuntime?: boolean | 'always';
-  // whether to polyfill webcomponents
+  // custom-elements and shady-dom
   webcomponents?: boolean;
-  // whether to polyfill fetch
   fetch?: boolean;
-  // whether to polyfill intersection observer
+  abortController?: boolean;
   intersectionObserver?: boolean;
-  // whether to polyfill dynamic imports
   dynamicImport?: boolean;
-  //  whether to polyfill systemjs, extended version with import maps
+  // systemjs extended version with import maps
   systemjsExtended?: boolean;
-  // whether to polyfill es modules using es module shims
   esModuleShims?: boolean;
-  // whether to include polyfill for shady-css-custom-style and shady-css-scoped-element
+  // shady-css-custom-style and shady-css-scoped-element
   shadyCssCustomStyle?: boolean;
 }
 
