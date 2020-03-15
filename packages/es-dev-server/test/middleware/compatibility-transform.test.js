@@ -534,7 +534,9 @@ describe('compatibility transform middleware', () => {
         }),
       ));
 
-      const indexResponse = await fetch(`${host}index.html`);
+      const indexResponse = await fetch(`${host}index.html`, {
+        headers: { accept: 'text/html' },
+      });
       expect(indexResponse.status).to.equal(200);
       const inlineModuleResponse = await fetch(
         `${host}${virtualFilePrefix}inline-script-1.js?source=/index.html`,
