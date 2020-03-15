@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/dedupe-mixin",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "publishConfig": {
     "access": "public"
   },
@@ -31,7 +31,7 @@
     "mixins"
   ],
   "devDependencies": {
-    "@open-wc/building-rollup": "^0.22.6",
+    "@open-wc/building-rollup": "^0.22.7",
     "@open-wc/testing": "^2.5.6",
     "http-server": "^0.11.1",
     "rollup": "^1.31.1",

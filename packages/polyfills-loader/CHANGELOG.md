@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.5.0...polyfills-loader@1.5.1) (2020-03-15)
+
+
+### Bug Fixes
+
+* **polyfills-loader:** load fetch and abort controller together ([#1430](https://github.com/open-wc/open-wc/issues/1430)) ([ca29548](https://github.com/open-wc/open-wc/commit/ca2954822440dbb218420be99dfbd2df03760dbd))
+
+
+
+
+
 # [1.5.0](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.4.2...polyfills-loader@1.5.0) (2020-03-15)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/open-wc/open-wc/compare/@mdjs/core@0.1.3...@mdjs/core@0.1.4) (2020-03-15)
+
+**Note:** Version bump only for package @mdjs/core
+
+
+
+
+
 ## [0.1.3](https://github.com/open-wc/open-wc/compare/@mdjs/core@0.1.2...@mdjs/core@0.1.3) (2020-03-15)
 
 **Note:** Version bump only for package @mdjs/core
