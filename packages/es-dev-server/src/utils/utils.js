@@ -127,8 +127,6 @@ export async function isIndexHTMLResponse(ctx, appIndex) {
 
   // if we're serving the app index, it's an index html response
   if (ctx.url === appIndex) {
-    console.log('ctx url and appindex is the same');
-    console.log(`${ctx.url} === ${appIndex}`);
     return true;
   }
 
