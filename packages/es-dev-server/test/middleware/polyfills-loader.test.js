@@ -114,6 +114,7 @@ describe('polyfills-loader middleware', () => {
               polyfills: {
                 coreJs: false,
                 fetch: false,
+                abortController: false,
                 regeneratorRuntime: false,
                 webcomponents: false,
                 intersectionObserver: false,

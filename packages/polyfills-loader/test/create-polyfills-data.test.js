@@ -34,7 +34,6 @@ describe('polyfills', () => {
         coreJs: true,
         webcomponents: true,
         fetch: true,
-        abortController: true,
         intersectionObserver: true,
         resizeObserver: true,
         dynamicImport: true,
@@ -58,11 +57,6 @@ describe('polyfills', () => {
       {
         path: 'polyfills/fetch.js',
         test: "!('fetch' in window)",
-        type: 'script',
-      },
-      {
-        path: 'polyfills/abort-controller.js',
-        test: "!('Request' in window) || !('signal' in window.Request.prototype)",
         type: 'script',
       },
       {
@@ -101,6 +95,33 @@ describe('polyfills', () => {
       },
     ]);
   });
+
+  it('adds abort controller to the fetch polyfill', () => {
+    /** @type {PolyfillsLoaderConfig} */
+    const config = {
+      modern: { files: [{ type: fileTypes.MODULE, path: 'foo.js' }] },
+      polyfills: {
+        hash: false,
+        fetch: true,
+        abortController: true,
+      },
+    };
+    const { coreJs, polyfillFiles } = createPolyfillsData(config);
+    cleanupPolyfill(coreJs);
+    polyfillFiles.forEach(p => {
+      expect(p.content).to.be.a('string');
+      cleanupPolyfill(p);
+    });
+    expect(polyfillFiles).to.eql([
+      {
+        path: 'polyfills/fetch.js',
+        test:
+          "!('fetch' in window) || !('Request' in window) || !('signal' in window.Request.prototype)",
+        type: 'script',
+      },
+    ]);
+  });
+
   it('handles the shady-css-custom-styles polyfill', () => {
     /** @type {PolyfillsLoaderConfig} */
     const config = {
@@ -125,6 +146,7 @@ describe('polyfills', () => {
       },
     ]);
   });
+
   it("loads systemjs when an entrypoint needs it, including it's test", () => {
     /** @type {PolyfillsLoaderConfig} */
     const config = {

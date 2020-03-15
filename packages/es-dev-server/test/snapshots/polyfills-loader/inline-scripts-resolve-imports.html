@@ -42,12 +42,8 @@
       polyfills.push(loadScript('./polyfills/regenerator-runtime.45f8b90cc0fac37d446d8da4b68e27f5.js'));
     }
 
-    if (!('fetch' in window)) {
-      polyfills.push(loadScript('./polyfills/fetch.191258a74d74243758f52065f3d0962a.js'));
-    }
-
-    if (!('Request' in window) || !('signal' in window.Request.prototype)) {
-      polyfills.push(loadScript('./polyfills/abort-controller.b3df8655bba814572ec6f5de4fe0d802.js'));
+    if (!('fetch' in window) || !('Request' in window) || !('signal' in window.Request.prototype)) {
+      polyfills.push(loadScript('./polyfills/fetch.a030f3e3353d6a5594af9f9be3692d53.js'));
     }
 
     if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) {
