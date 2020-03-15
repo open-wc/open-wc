@@ -41,6 +41,7 @@
     "intersection-observer": "^0.7.0",
     "parse5": "^5.1.1",
     "regenerator-runtime": "^0.13.3",
+    "resize-observer-polyfill": "^1.5.1",
     "systemjs": "^4.0.0",
     "terser": "^4.6.4",
     "whatwg-fetch": "^3.0.0"

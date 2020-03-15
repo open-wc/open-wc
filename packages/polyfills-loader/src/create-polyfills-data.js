@@ -140,6 +140,18 @@ function createPolyfillsData(cfg) {
     });
   }
 
+  if (polyfills.resizeObserver) {
+    addPolyfillConfig(
+      {
+        name: 'resize-observer',
+        test: "!('ResizeObserver' in window)",
+        path: require.resolve('resize-observer-polyfill/dist/ResizeObserver.global.js'),
+        minify: true,
+      },
+      'resize-observer-polyfill',
+    );
+  }
+
   if (polyfills.webcomponents && !polyfills.shadyCssCustomStyle) {
     addPolyfillConfig(
       {
