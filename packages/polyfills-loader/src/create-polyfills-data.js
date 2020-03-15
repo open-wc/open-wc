@@ -69,7 +69,7 @@ function createPolyfillsData(cfg) {
       {
         name: 'abort-controller',
         // cannot do 'AbortController' in window, because safari 11 implements it but it's just a stub
-        test: "!('signal' in Request.prototype)",
+        test: "!('Request' in window) || !('signal' in window.Request.prototype)",
         path: require.resolve('abortcontroller-polyfill/dist/umd-polyfill.js'),
         minify: true,
       },

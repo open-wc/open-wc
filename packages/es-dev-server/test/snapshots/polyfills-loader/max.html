@@ -56,7 +56,7 @@
       polyfills.push(loadScript('./polyfills/fetch.js'));
     }
 
-    if (!('signal' in Request.prototype)) {
+    if (!('Request' in window) || !('signal' in window.Request.prototype)) {
       polyfills.push(loadScript('./polyfills/abort-controller.js'));
     }
 
