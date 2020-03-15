@@ -101,7 +101,7 @@ function createPolyfillsData(cfg) {
        */
       test:
         "'noModule' in HTMLScriptElement.prototype && " +
-        "(function () { try { Function('window.importShim = s => import(s);').call(); return true; } catch (_) { return false } })()",
+        "(function () { try { Function('window.importShim = s => import(s);').call(); return false; } catch (_) { return true; } })()",
       path: require.resolve('dynamic-import-polyfill/dist/dynamic-import-polyfill.umd.js'),
       initializer: "window.dynamicImportPolyfill.initialize({ importFunctionName: 'importShim' });",
     });
