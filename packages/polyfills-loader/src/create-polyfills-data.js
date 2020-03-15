@@ -58,6 +58,7 @@ function createPolyfillsData(cfg) {
         name: 'fetch',
         test: "!('fetch' in window)",
         path: require.resolve('whatwg-fetch/dist/fetch.umd.js'),
+        minify: true,
       },
       'whatwg-fetch',
     );
