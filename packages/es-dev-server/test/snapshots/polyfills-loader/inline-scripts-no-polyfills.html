@@ -37,7 +37,7 @@
 
   var polyfills = [];
 
-  if (!('signal' in Request.prototype)) {
+  if (!('Request' in window) || !('signal' in window.Request.prototype)) {
     polyfills.push(loadScript('./polyfills/abort-controller.b3df8655bba814572ec6f5de4fe0d802.js'));
   }
 

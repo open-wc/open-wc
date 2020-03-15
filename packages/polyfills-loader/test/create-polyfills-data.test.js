@@ -62,7 +62,7 @@ describe('polyfills', () => {
       },
       {
         path: 'polyfills/abort-controller.js',
-        test: "!('signal' in Request.prototype)",
+        test: "!('Request' in window) || !('signal' in window.Request.prototype)",
         type: 'script',
       },
       {
