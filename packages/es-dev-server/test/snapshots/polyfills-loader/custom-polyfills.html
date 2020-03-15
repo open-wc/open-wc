@@ -49,6 +49,10 @@
       polyfills.push(loadScript('./polyfills/fetch.js'));
     }
 
+    if (!('signal' in Request.prototype)) {
+      polyfills.push(loadScript('./polyfills/abort-controller.js'));
+    }
+
     if ('noModule' in HTMLScriptElement.prototype) {
       polyfills.push(loadScript('./polyfills/es-module-shims.js'));
     }

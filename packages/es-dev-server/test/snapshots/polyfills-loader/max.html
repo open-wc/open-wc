@@ -56,6 +56,10 @@
       polyfills.push(loadScript('./polyfills/fetch.js'));
     }
 
+    if (!('signal' in Request.prototype)) {
+      polyfills.push(loadScript('./polyfills/abort-controller.js'));
+    }
+
     if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) {
       polyfills.push(loadScript('./polyfills/webcomponents.js'));
     }
