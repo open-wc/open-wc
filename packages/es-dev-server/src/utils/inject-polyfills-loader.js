@@ -30,6 +30,7 @@ const allPolyfills = {
   coreJs: true,
   regeneratorRuntime: true,
   fetch: true,
+  abortController: true,
   webcomponents: true,
 };
 
