@@ -34,6 +34,7 @@ export interface PolyfillsConfig {
   fetch?: boolean;
   abortController?: boolean;
   intersectionObserver?: boolean;
+  resizeObserver?: boolean;
   dynamicImport?: boolean;
   // systemjs extended version with import maps
   systemjsExtended?: boolean;
