@@ -34,7 +34,9 @@ describe('polyfills', () => {
         coreJs: true,
         webcomponents: true,
         fetch: true,
+        abortController: true,
         intersectionObserver: true,
+        resizeObserver: true,
         dynamicImport: true,
         esModuleShims: true,
       },
@@ -54,38 +56,48 @@ describe('polyfills', () => {
     });
     expect(polyfillFiles).to.eql([
       {
-        type: fileTypes.SCRIPT,
         path: 'polyfills/fetch.js',
         test: "!('fetch' in window)",
+        type: 'script',
       },
       {
-        type: fileTypes.SCRIPT,
-        path: 'polyfills/dynamic-import.js',
+        path: 'polyfills/abort-controller.js',
+        test: "!('signal' in Request.prototype)",
+        type: 'script',
+      },
+      {
         initializer:
           "window.dynamicImportPolyfill.initialize({ importFunctionName: 'importShim' });",
+        path: 'polyfills/dynamic-import.js',
         test:
-          "'noModule' in HTMLScriptElement.prototype && (function () { try { Function('window.importShim = s => import(s);').call(); return true; } catch (_) { return false } })()",
+          "'noModule' in HTMLScriptElement.prototype && (function () { try { Function('window.importShim = s => import(s);').call(); return false; } catch (_) { return true; } })()",
+        type: 'script',
       },
       {
-        type: fileTypes.MODULE,
         path: 'polyfills/es-module-shims.js',
         test: "'noModule' in HTMLScriptElement.prototype",
+        type: 'module',
       },
       {
-        type: fileTypes.SCRIPT,
         path: 'polyfills/intersection-observer.js',
         test:
           "!('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype)",
+        type: 'script',
       },
       {
-        type: fileTypes.SCRIPT,
+        path: 'polyfills/resize-observer.js',
+        test: "!('ResizeObserver' in window)",
+        type: 'script',
+      },
+      {
         path: 'polyfills/webcomponents.js',
         test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)",
+        type: 'script',
       },
       {
-        type: fileTypes.SCRIPT,
         path: 'polyfills/custom-elements-es5-adapter.js',
         test: "!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype",
+        type: 'script',
       },
     ]);
   });
