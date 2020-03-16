@@ -138,12 +138,8 @@ function rollupPluginHtml(pluginOptions) {
     },
 
     resolveId(id) {
-      if (!id.startsWith('inline-module-')) {
+      if (!inlineModules || !inlineModules.has(id)) {
         return null;
-      }
-
-      if (!inlineModules.has(id)) {
-        throw createError(`Could not find inline module: ${id}`);
       }
 
       return id;
@@ -154,11 +150,7 @@ function rollupPluginHtml(pluginOptions) {
      * @param {string} id
      */
     load(id) {
-      if (!id.startsWith('inline-module-')) {
-        return null;
-      }
-
-      return inlineModules.get(id) || null;
+      return (inlineModules && inlineModules.get(id)) || null;
     },
 
     /**
