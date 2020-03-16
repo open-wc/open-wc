@@ -73,15 +73,39 @@ describe('extractModules()', () => {
           '<script type="module">/* my module 1 */</script>' +
           '<script type="module">/* my module 2 */</script>' +
           '<div>after</div>',
-        rootDir: '/base-1/base-2/',
+        rootDir: '/',
       },
       'index.html',
       '/',
     );
 
     expect([...inlineModules.entries()]).to.eql([
-      ['inline-module-index-0', '/* my module 1 */'],
-      ['inline-module-index-1', '/* my module 2 */'],
+      ['/inline-module-index-0.js', '/* my module 1 */'],
+      ['/inline-module-index-1.js', '/* my module 2 */'],
+    ]);
+    expect(moduleImports).to.eql([]);
+    expect(htmlWithoutModules).to.eql(
+      '<html><head></head><body><div>before</div><div>after</div></body></html>',
+    );
+  });
+
+  it('prefixes inline module with index.html directory', () => {
+    const { moduleImports, inlineModules, htmlWithoutModules } = extractModules(
+      {
+        inputHtml:
+          '<div>before</div>' +
+          '<script type="module">/* my module 1 */</script>' +
+          '<script type="module">/* my module 2 */</script>' +
+          '<div>after</div>',
+        rootDir: '/foo/bar/',
+      },
+      'foo/bar/index.html',
+      '/',
+    );
+
+    expect([...inlineModules.entries()]).to.eql([
+      ['/foo/bar/inline-module-index-0.js', '/* my module 1 */'],
+      ['/foo/bar/inline-module-index-1.js', '/* my module 2 */'],
     ]);
     expect(moduleImports).to.eql([]);
     expect(htmlWithoutModules).to.eql(

@@ -153,6 +153,21 @@ describe('rollup-plugin-html', () => {
     );
   });
 
+  it('resolves inline module imports relative to the HTML file', async () => {
+    const config = {
+      plugins: [
+        htmlPlugin({ inputPath: 'test/fixtures/rollup-plugin-html/foo/foo.html', minify: false }),
+      ],
+    };
+
+    const bundle = await rollup.rollup(config);
+    const { output } = await bundle.generate(outputConfig);
+
+    expect(output.length).to.equal(2);
+    const { code: appCode } = getChunk(output, 'inline-module-foo-0.js');
+    expect(appCode).to.include("console.log('foo');");
+  });
+
   it('can build with js input and generated html output', async () => {
     const config = {
       input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',

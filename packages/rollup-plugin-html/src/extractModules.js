@@ -23,15 +23,17 @@ function extractModules(inputHtmlData, inputHtmlName, projectRootDir = process.c
   const moduleImports = [];
   /** @type {Map<string, string>} */
   const inlineModules = new Map();
+
   scriptNodes.forEach((scriptNode, i) => {
     const src = getAttribute(scriptNode, 'src');
 
     if (!src) {
-      inlineModules.set(
-        `inline-module-${inputHtmlName.split('.')[0]}-${i}`,
-        getTextContent(scriptNode),
-      );
+      // turn inline module (<script type="module"> ...code ... </script>)
+      const suffix = path.basename(inputHtmlName).split('.')[0];
+      const importPath = path.join(htmlRootDir, `inline-module-${suffix}-${i}.js`);
+      inlineModules.set(importPath, getTextContent(scriptNode));
     } else {
+      // external script <script type="module" src="./foo.js"></script>
       const importPath = path.join(src.startsWith('/') ? projectRootDir : htmlRootDir, src);
       moduleImports.push(importPath);
     }
