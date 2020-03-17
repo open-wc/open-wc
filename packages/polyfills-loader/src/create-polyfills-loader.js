@@ -24,7 +24,9 @@ const loadScriptFunction = `
     return new Promise(function (resolve) {
       var script = document.createElement('script');
       function onLoaded() {
-        document.head.removeChild(script);
+        if (script.parentElement) {
+          script.parentElement.removeChild(script);
+        }
         resolve();
       }
       script.src = src;
