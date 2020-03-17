@@ -257,6 +257,6 @@ it('does the thing', async () => {
 });
 ```
 
-- You could pass an anonymous function that calls `this.myFunction()`, like so: `@click=${() => this.myFunction()}`. Note that this usually only makes sense if you pass some arguments to the function, e.g.: `@click=${(e) => this.myFunction(e)}`, or `@click=${() => this.myFunction(someOtherData)}`
-
 - Or you can choose to instead of testing the function has been called, test the side-effects of that function. (e.g.: it fires an event, a property has now been set, etc.)
+
+- As a last resort, you could pass an anonymous function that calls `this.myFunction()`, like so: `@click=${() => this.myFunction()}`. Note that this is not recommended unless its a 100% needed. Some valid usecases for this may be if you need to pass some arguments to the function, e.g.: `@click=${(e) => this.myFunction(e)}`, or `@click=${() => this.myFunction(someOtherData)}`
