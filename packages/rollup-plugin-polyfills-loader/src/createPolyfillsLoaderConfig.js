@@ -1,6 +1,7 @@
 /** @typedef {import ('@open-wc/rollup-plugin-html').EntrypointBundle} EntrypointBundle */
 /** @typedef {import('polyfills-loader').PolyfillsLoaderConfig} PolyfillsLoaderConfig */
 /** @typedef {import('polyfills-loader').LegacyEntrypoint} LegacyEntrypoint */
+/** @typedef {import('polyfills-loader').FileType} FileType */
 /** @typedef {import('rollup').ModuleFormat} ModuleFormat */
 /** @typedef {import('./types').PluginOptions} PluginOptions */
 
@@ -26,9 +27,12 @@ function bundleNotFoundError(name) {
   return createError(`Could not find any @open-wc/rollup-plugin-html output named ${name}.`);
 }
 
-/** @param {EntrypointBundle} bundle */
-function createEntrypoints(bundle) {
-  const type = formatToFileType(bundle.options.format);
+/**
+ * @param {EntrypointBundle} bundle
+ * @param {FileType} [filetype]
+ */
+function createEntrypoints(bundle, filetype) {
+  const type = filetype || formatToFileType(bundle.options.format);
   const files = bundle.entrypoints.map(e => ({ type, path: e.importPath }));
   return { files };
 }
@@ -36,9 +40,10 @@ function createEntrypoints(bundle) {
 /**
  * @param {EntrypointBundle} bundle
  * @param {string} test
+ * @param {FileType} [fileType]
  */
-function createLegacyEntrypoints(bundle, test) {
-  return { ...createEntrypoints(bundle), test };
+function createLegacyEntrypoints(bundle, test, fileType) {
+  return { ...createEntrypoints(bundle, fileType), test };
 }
 
 /**
@@ -79,8 +84,8 @@ function createPolyfillsLoaderConfig(pluginOptions, bundle, bundles) {
       );
     }
 
-    if (!bundles[modernOutput]) throw bundleNotFoundError(modernOutput);
-    modern = createEntrypoints(bundles[modernOutput]);
+    if (!bundles[modernOutput.name]) throw bundleNotFoundError(modernOutput.name);
+    modern = createEntrypoints(bundles[modernOutput.name], modernOutput.type);
 
     /** @type {LegacyEntrypoint[]} */
     legacy = [];
@@ -88,7 +93,7 @@ function createPolyfillsLoaderConfig(pluginOptions, bundle, bundles) {
     for (const output of legacyOutputIterator) {
       if (!bundles[output.name]) throw bundleNotFoundError(output.name);
 
-      const entrypoint = createLegacyEntrypoints(bundles[output.name], output.test);
+      const entrypoint = createLegacyEntrypoints(bundles[output.name], output.test, output.type);
       legacy.push(entrypoint);
     }
   }
