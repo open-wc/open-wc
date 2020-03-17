@@ -4,7 +4,10 @@
       var script = document.createElement('script');
 
       function onLoaded() {
-        document.head.removeChild(script);
+        if (script.parentElement) {
+          script.parentElement.removeChild(script);
+        }
+
         resolve();
       }
 
