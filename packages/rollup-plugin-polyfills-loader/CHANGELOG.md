@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@0.3.2...@open-wc/rollup-plugin-polyfills-loader@0.4.0) (2020-03-18)
+
+
+### Features
+
+* **rollup-plugin-polyfills-loader:** allow setting file type explicitly ([#1434](https://github.com/open-wc/open-wc/issues/1434)) ([c15f730](https://github.com/open-wc/open-wc/commit/c15f730ed51ee436b000e325d80cee89413ecffc))
+
+
+
+
+
 ## [0.3.2](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@0.3.1...@open-wc/rollup-plugin-polyfills-loader@0.3.2) (2020-03-16)
 
 **Note:** Version bump only for package @open-wc/rollup-plugin-polyfills-loader
