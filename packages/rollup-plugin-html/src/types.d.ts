@@ -3,6 +3,7 @@ import { OutputChunk, OutputOptions, OutputBundle, Plugin } from 'rollup';
 export interface PluginOptions {
   name?: string;
   inputPath?: string;
+  serviceWorker?: ServiceWorker;
   inputHtml?: string;
   dir?: string;
   publicPath?: string;
@@ -10,6 +11,11 @@ export interface PluginOptions {
   minify?: boolean | object | MinifyFunction;
   template?: string | TemplateFunction;
   transform?: TransformFunction | TransformFunction[];
+}
+
+export interface ServiceWorker {
+  addRegistration?: boolean;
+  path?: string;
 }
 
 export type MinifyFunction = (html: string) => string | Promise<string>;

@@ -6,6 +6,7 @@
 
 const { injectBundles } = require('./injectBundles');
 const { minifyHtml } = require('./minifyHtml');
+const applyServiceworkerRegistration = require('./applyServiceWorkerRegistration');
 
 const defaultHtml = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body></body></html>';
 
@@ -22,7 +23,7 @@ async function getOutputHtml({
   externalTransformFns,
   inputHtml,
 }) {
-  const { template, inject, minify } = pluginOptions;
+  const { template, inject, minify, serviceWorker } = pluginOptions;
   let outputHtml;
 
   const { default: defaultBundle, ...multiBundles } = entrypointBundles;
@@ -44,6 +45,11 @@ async function getOutputHtml({
   // inject build output into HTML
   if (inject) {
     outputHtml = injectBundles(outputHtml, entrypointBundles);
+  }
+
+  if (serviceWorker && serviceWorker.addRegistration) {
+    const swPath = serviceWorker.path || './sw.js';
+    outputHtml = applyServiceworkerRegistration(outputHtml, swPath);
   }
 
   // transform HTML output

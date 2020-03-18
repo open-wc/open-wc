@@ -17,7 +17,7 @@
   "scripts": {
     "demo:mpa": "rm -rf demo/dist && rollup -c demo/mpa/rollup.config.js --watch & yarn serve-demo",
     "demo:spa": "yarn demo:spa:defaults",
-    "demo:spa:defaults": "rm -rf demo/dist && rollup -c demo/spa/defaults.rollup.config.js --watch & yarn serve-demo",
+    "demo:spa:defaults": "rm -rf demo/dist && rollup -c demo/spa/defaults.rollup.config.js --watch  & yarn serve-demo",
     "demo:spa:html-input": "rm -rf demo/dist && rollup -c demo/spa/html-input.rollup.config.js --watch & yarn serve-demo",
     "demo:spa:manual-inject": "rm -rf demo/dist && rollup -c demo/spa/manual-inject.rollup.config.js --watch & yarn serve-demo",
     "demo:spa:multi-output": "rm -rf demo/dist && rollup -c demo/spa/multi-output.rollup.config.js --watch & yarn serve-demo",
@@ -51,6 +51,7 @@
     "chai": "^4.2.0",
     "es-dev-server": "^1.43.0",
     "lit-element": "^2.2.1",
+    "mocha": "^7.1.0",
     "rimraf": "^3.0.0",
     "rollup": "^1.31.1"
   }

@@ -31,6 +31,10 @@ function rollupPluginHtml(pluginOptions) {
   pluginOptions = {
     inject: true,
     minify: !watchMode,
+    serviceWorker: {
+      addRegistration: false,
+      path: 'sw.js',
+    },
     ...(pluginOptions || {}),
   };
 

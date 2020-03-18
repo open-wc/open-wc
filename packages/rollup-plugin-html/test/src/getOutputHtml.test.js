@@ -20,6 +20,37 @@ describe('getOutputHtml()', () => {
     entrypointBundles: defaultEntrypointBundles,
   };
 
+  it('applies a serviceworker registration', async () => {
+    const output = await getOutputHtml({
+      ...defaultOptions,
+      pluginOptions: {
+        serviceWorker: {
+          addRegistration: true,
+        },
+      },
+    });
+
+    expect(output).to.equal(
+      '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body><script>"serviceWorker"in navigator&&window.addEventListener("load",()=>{navigator.serviceWorker.register("./sw.js").then(()=>{console.log("ServiceWorker registered!")},e=>{console.log("ServiceWorker registration failed: ",e)})});</script></body></html>',
+    );
+  });
+
+  it('applies a serviceworker registration with a custom sw path', async () => {
+    const output = await getOutputHtml({
+      ...defaultOptions,
+      pluginOptions: {
+        serviceWorker: {
+          addRegistration: true,
+          path: './foo.js',
+        },
+      },
+    });
+
+    expect(output).to.equal(
+      '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body><script>"serviceWorker"in navigator&&window.addEventListener("load",()=>{navigator.serviceWorker.register("./foo.js").then(()=>{console.log("ServiceWorker registered!")},e=>{console.log("ServiceWorker registration failed: ",e)})});</script></body></html>',
+    );
+  });
+
   it('injects bundle into a default generated HTML file', async () => {
     const output = await getOutputHtml(defaultOptions);
 
