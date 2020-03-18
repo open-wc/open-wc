@@ -32,4 +32,21 @@ describe('my component', () => {
 });
 ```
 
+```javascript
+class MyComponent extends LitElement {
+  myFunction(e) {
+    console.log(e);
+  }
+  render() {
+    return html`
+      <button @click=${e => this.myFunction(e)}>click</button>
+    `;
+  }
+}
+
+customElements.define('my-component', MyComponent);
+```
+
 See the [sinon documentation](https://sinonjs.org/) to learn how to use the different features.
+
+If you run into any problems trying to stub methods on component, please check out the [FAQ](/faq).
