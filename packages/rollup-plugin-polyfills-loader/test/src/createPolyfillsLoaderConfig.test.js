@@ -63,7 +63,7 @@ describe('createPolyfillsLoaderConfig()', () => {
 
   it('creates a config for 2 build outputs', () => {
     const pluginConfig = {
-      modernOutput: 'modern',
+      modernOutput: { name: 'modern' },
       legacyOutput: { name: 'legacy', test: "!('noModule' in HTMScriptElement.prototype)" },
     };
     const bundles = {
@@ -94,7 +94,7 @@ describe('createPolyfillsLoaderConfig()', () => {
 
   it('creates a config for 3 build outputs', () => {
     const pluginConfig = {
-      modernOutput: 'modern',
+      modernOutput: { name: 'modern' },
       legacyOutput: [
         { name: 'super-legacy', test: 'window.bar' },
         { name: 'legacy', test: 'window.foo' },
@@ -128,6 +128,41 @@ describe('createPolyfillsLoaderConfig()', () => {
         {
           files: [{ path: 'legacy/app.js', type: 'systemjs' }],
           test: 'window.foo',
+        },
+      ],
+      polyfills: undefined,
+    });
+  });
+
+  it('creates set the file type', () => {
+    const pluginConfig = {
+      modernOutput: { name: 'modern', type: 'script' },
+      legacyOutput: {
+        name: 'legacy',
+        type: 'script',
+        test: "!('noModule' in HTMScriptElement.prototype)",
+      },
+    };
+    const bundles = {
+      modern: {
+        options: { format: 'es' },
+        entrypoints: [{ importPath: 'app.js' }],
+      },
+      legacy: {
+        options: { format: 'system' },
+        entrypoints: [{ importPath: 'legacy/app.js' }],
+      },
+    };
+
+    // @ts-ignore
+    const config = createPolyfillsLoaderConfig(pluginConfig, undefined, bundles);
+
+    expect(config).to.eql({
+      modern: { files: [{ path: 'app.js', type: 'script' }] },
+      legacy: [
+        {
+          files: [{ path: 'legacy/app.js', type: 'script' }],
+          test: "!('noModule' in HTMScriptElement.prototype)",
         },
       ],
       polyfills: undefined,

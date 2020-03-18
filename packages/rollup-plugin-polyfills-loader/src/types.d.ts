@@ -1,13 +1,17 @@
-import { PolyfillsConfig } from 'polyfills-loader';
+import { PolyfillsConfig, FileType } from 'polyfills-loader';
 
-export interface LegacyBuildConfig {
+export interface OutputConfig {
   name: string;
+  type?: FileType;
+}
+
+export interface LegacyOutputConfig extends OutputConfig {
   test: string;
 }
 
 export interface PluginOptions {
   htmlFileName?: string;
-  modernOutput?: string;
-  legacyOutput?: LegacyBuildConfig | LegacyBuildConfig[];
+  modernOutput?: OutputConfig;
+  legacyOutput?: LegacyOutputConfig | LegacyOutputConfig[];
   polyfills?: PolyfillsConfig;
 }

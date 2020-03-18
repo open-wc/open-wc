@@ -9,17 +9,21 @@ Documentation is still under construction.
 ## Types
 
 ```ts
-import { PolyfillsConfig } from 'polyfills-loader';
+import { PolyfillsConfig, FileType } from 'polyfills-loader';
 
-export interface LegacyBuildConfig {
+export interface OutputConfig {
   name: string;
+  type?: FileType;
+}
+
+export interface LegacyOutputConfig extends OutputConfig {
   test: string;
 }
 
 export interface PluginOptions {
   htmlFileName?: string;
-  modernOutput?: string;
-  legacyOutput?: LegacyBuildConfig | LegacyBuildConfig[];
+  modernOutput?: OutputConfig;
+  legacyOutput?: LegacyOutputConfig | LegacyOutputConfig[];
   polyfills?: PolyfillsConfig;
 }
 ```
@@ -81,6 +85,49 @@ export default {
     polyfillsLoader({
       modernOutput: 'modern',
       legacyOutput: { name: 'legacy', test: "!('noModule' in HTMLScriptElement.prototype)" },
+      polyfills: {
+        coreJs: true,
+        fetch: true,
+        webcomponents: true,
+      },
+    }),
+  ],
+};
+```
+
+### Customized file type
+
+```js
+import html from '@open-wc/rollup-plugin-html';
+import polyfillsLoader from '@open-wc/rollup-plugin-polyfills-loader';
+
+const htmlPlugin = html({
+  inputPath: 'demo/single-build/index.html',
+  inject: false,
+});
+
+export default {
+  output: [
+    {
+      format: 'es',
+      dir: './demo/dist',
+      plugins: [htmlPlugin.addOutput('modern')],
+    },
+    {
+      format: 'es',
+      dir: './demo/dist/legacy',
+      plugins: [htmlPlugin.addOutput('legacy')],
+    },
+  ],
+  plugins: [
+    htmlPlugin,
+    polyfillsLoader({
+      modernOutput: { name: 'modern', type: 'module' },
+      legacyOutput: {
+        name: 'legacy',
+        type: 'system',
+        test: "!('noModule' in HTMLScriptElement.prototype)",
+      },
       polyfills: {
         coreJs: true,
         fetch: true,

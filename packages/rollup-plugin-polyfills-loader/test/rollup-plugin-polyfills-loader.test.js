@@ -149,7 +149,7 @@ describe('rollup-plugin-polyfills-loader', () => {
       plugins: [
         htmlPlugin,
         polyfillsLoader({
-          modernOutput: 'modern',
+          modernOutput: { name: 'modern' },
           legacyOutput: [{ name: 'legacy', test: "!('noModule' in HTMLScriptElement.prototype)" }],
           polyfills: {
             webcomponents: true,
@@ -175,6 +175,54 @@ describe('rollup-plugin-polyfills-loader', () => {
 
     await testSnapshot({
       name: 'multiple-outputs',
+      fileName: 'index.html',
+      inputOptions,
+      outputOptions,
+    });
+  });
+
+  it('can customize the file type', async () => {
+    const htmlPlugin = html({
+      name: 'index.html',
+      inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
+      minify: false,
+    });
+    const inputOptions = {
+      plugins: [
+        htmlPlugin,
+        polyfillsLoader({
+          modernOutput: { name: 'modern', type: 'script' },
+          legacyOutput: [
+            {
+              name: 'legacy',
+              type: 'script',
+              test: "!('noModule' in HTMLScriptElement.prototype)",
+            },
+          ],
+          polyfills: {
+            webcomponents: true,
+            fetch: true,
+          },
+        }),
+      ],
+    };
+
+    /** @type {OutputOptions[]} */
+    const outputOptions = [
+      {
+        format: 'system',
+        dir: 'dist',
+        plugins: [htmlPlugin.addOutput('legacy')],
+      },
+      {
+        format: 'es',
+        dir: 'dist',
+        plugins: [htmlPlugin.addOutput('modern')],
+      },
+    ];
+
+    await testSnapshot({
+      name: 'customize-filetype',
       fileName: 'index.html',
       inputOptions,
       outputOptions,
