@@ -36,9 +36,7 @@ jobs:
           root: ~/
           paths:
             - repo/node_modules
-            - repo/packages/*/node_modules
-            - repo/packages/*/dist
-            - repo/packages/**/*.d.ts
+            - repo/packages/*
   test-local:
     <<: *defaults
     steps:
