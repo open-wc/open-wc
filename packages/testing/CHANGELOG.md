@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.7](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.6...@open-wc/testing@2.5.7) (2020-03-19)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
 ## [2.5.6](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.5...@open-wc/testing@2.5.6) (2020-03-10)
 
 **Note:** Version bump only for package @open-wc/testing

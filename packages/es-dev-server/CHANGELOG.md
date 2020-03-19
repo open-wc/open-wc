@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.45.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.45.1...es-dev-server@1.45.2) (2020-03-19)
+
+
+### Bug Fixes
+
+* **es-dev-server:** add directly depended package to package.json ([1ea26eb](https://github.com/open-wc/open-wc/commit/1ea26eb9333f8eb5f44a9e96523da6ef3a5cf88b))
+
+
+
+
+
 ## [1.45.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.45.0...es-dev-server@1.45.1) (2020-03-15)
 
 
