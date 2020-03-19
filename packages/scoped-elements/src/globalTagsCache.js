@@ -6,7 +6,7 @@
 const globalTagsCache = new Map();
 
 /**
- * Adds a tag to the global cache
+ * Adds a tag to the global tags cache
  *
  * @param {string} tag
  * @param {typeof HTMLElement} klass
@@ -14,7 +14,7 @@ const globalTagsCache = new Map();
 export const addToGlobalTagsCache = (tag, klass) => globalTagsCache.set(klass, tag);
 
 /**
- * Gets a tag from the global cache
+ * Gets a tag from the global tags cache
  *
  * @exports
  * @param {typeof HTMLElement} klass
