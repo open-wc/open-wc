@@ -1,18 +1,29 @@
-import { expect } from '@open-wc/testing';
-import { registerElement } from '../src/registerElement.js';
+import { expect, fixture } from '@open-wc/testing';
+import { registerElement, defineScopedElement } from '../src/registerElement.js';
 
-describe('registerElements', () => {
-  it('should return an object with the mapped registered element tags', () => {
-    class Naboo extends HTMLElement {}
-    class Alderaan extends HTMLElement {}
-    class Bespin extends HTMLElement {}
+class Naboo extends HTMLElement {}
 
+describe('registerElement', () => {
+  it('should return the scoped tag name', () => {
     const nabooTag = registerElement('naboo-planet', Naboo);
-    const alderaanTag = registerElement('alderaan-planet', Alderaan);
-    const bespinTag = registerElement('bespin-planet', Bespin);
 
     expect(nabooTag).to.match(new RegExp(`naboo-planet-\\d{1,5}`));
-    expect(alderaanTag).to.match(new RegExp(`alderaan-planet-\\d{1,5}`));
-    expect(bespinTag).to.match(new RegExp(`bespin-planet-\\d{1,5}`));
+  });
+
+  it('should throw an error with lazy components and no tags cache', () => {
+    expect(() => registerElement('naboo-planet', undefined)).to.throw();
+  });
+});
+
+describe('defineScopedElement', () => {
+  it('should allow the use of lazy elements', async () => {
+    const tagsCache = new Map();
+    const tag = registerElement('naboo-planet', undefined, tagsCache);
+    const el = await fixture(`<${tag}></${tag}>`);
+
+    expect(el).to.not.be.an.instanceOf(Naboo);
+    defineScopedElement('naboo-planet', Naboo, tagsCache);
+
+    expect(el).to.be.an.instanceOf(Naboo);
   });
 });

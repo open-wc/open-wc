@@ -8,9 +8,9 @@ No big applications are using `scoped-elements` yet - so there is no proof yet i
 This page focuses on in depth explanations as it should help [foster a discussion on scoping](https://github.com/open-wc/open-wc/issues/1262).
 :::
 
-Complex Web Component applications are often developed by several teams across organizations. In that scenario it is common that shared component libraries are used by teams to create an homogeneous look and feel or just to avoid creating the same components multiple times, but as those libraries evolve problems between different versions of the same library may appear, as teams may not be able to evolve and update their code at the same velocity. This causes bottlenecks in software delivery that should be managed by the teams and complex build systems, to try and alleviate the problem.
+Complex Web Component applications are often developed by several teams across organizations. In that scenario it is common that shared component libraries are used by teams to create a homogeneous look and feel or just to avoid creating the same components multiple times, but as those libraries evolve problems between different versions of the same library may appear, as teams may not be able to evolve and update their code at the same velocity. This causes bottlenecks in software delivery that should be managed by the teams and complex build systems, to try to alleviate the problem.
 
-[Scoped Custom Element Registries](https://github.com/w3c/webcomponents/issues/716) is a proposal that will solve this problem, but until it is ready or a polyfill becomes available, we have to _scope_ custom element tag names if we want to use different versions of those custom elements in our code. This package allows you to forget about how custom elements are defined, registered and scopes their tag names if it is necessary, and avoids the name collision problem.
+[Scoped Custom Element Registries](https://github.com/w3c/webcomponents/issues/716) is a proposal that will solve this problem, but until it is ready, or a polyfill becomes available, we have to _scope_ custom element tag names if we want to use different versions of those custom elements in our code. This package allows you to forget about how custom elements are defined, registered and scopes their tag names if it is necessary, and avoids the name collision problem.
 
 ## Installation
 
@@ -28,13 +28,13 @@ Consider the following setup
 
 1. Everything is good and [your app is live](https://open-wc.org/scoped-elements/demo/before-nesting/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/before-nesting)] with both pages.
 2. **Team Black** releases a new version (**2.x**) of **Feature B** which unfortunately needs to be breaking in order to support new use-cases.
-3. **Team Blue** (on **Page A**) does not use any of those new use cases and they have a tight deadline to meet so they can not update right now.
-4. **Team Green** (on **Page B**) has to deliver an important functionality to your end users but they need to upgrade to **Feature B 2.x** since it can only be solved with this new version.
+3. **Team Blue** (on **Page A**) does not use any of those new use cases, and they have a tight deadline to meet, so they cannot update right now.
+4. **Team Green** (on **Page B**) has to deliver an important functionality to your end users, but they need to upgrade to **Feature B 2.x** since it can only be solved with this new version.
 5. Since **Feature A 1.x & 2.x** are both used in the same app, this will lead to nested dependencies, which then will lead to [catastrophic failure, and errors](https://open-wc.org/scoped-elements/demo/no-scope/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/no-scope)].
 
 Two possible solutions come to mind:
 
-1.  Temporarily (!) allow to ship similar source code (most breaking releases are not a total rewrite) and scope them via `@open-wc/scoped-elements`; see the "fixed" example [with-scope](https://open-wc.org/scoped-elements/demo/with-scope/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/with-scope)] running with nested dependencies.
+1.  Temporarily (!) allow shipping similar source code (most breaking releases are not a total rewrite) and scope them via `@open-wc/scoped-elements`; see the "fixed" example [with-scope](https://open-wc.org/scoped-elements/demo/with-scope/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/with-scope)] running with nested dependencies.
 2.  Synchronizing updates of shared dependencies - e.g. make sure **Team Blue** & **Team Green** always use the same version when releasing. This can be a viable solution however it comes with a high organizational overhead and is hard to scale up (for 10+ teams)
 
 #### Technical explanation of scenario
@@ -100,8 +100,7 @@ Every auto-defined scoped elements gets a random\* 4 digit number suffix. This s
    import MyPanel from './MyPanel.js';
    ```
 
-3. Apply `ScopedElementsMixin` and define the tags you want to use for your
-   components.
+3. Apply `ScopedElementsMixin` and define the tags you want to use for your components.
 
    ```js
    class MyElement extends ScopedElementsMixin(LitElement) {
@@ -195,7 +194,7 @@ export class MyElement extends ScopedElementsMixin(LitElement) {
 
 4. Currently, only `lit-element` is supported (though other elements/rendering engines could be incorporated in the future).
 
-5. You can not use tag selectors in css, but you could use an id, a class name or even a property instead.
+5. You cannot use tag selectors in css, but you could use an id, a class name or even a property instead.
 
    ```css
    🚫 my-panel {
@@ -206,7 +205,7 @@ export class MyElement extends ScopedElementsMixin(LitElement) {
    }
    ```
 
-6. You can not use tag names using javascript querySelectors, but you could use an id, a class name or even a property instead.
+6. You cannot use tag names using javascript querySelectors, but you could use an id, a class name or even a property instead.
 
    ```js
    🚫 this.shadowRoot.querySelector('my-panel');

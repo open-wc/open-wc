@@ -30,24 +30,24 @@ const isValid = tag => tagRegExp.exec(tag) !== null;
 /**
  * Checks if the tag is already registered
  *
- * @param {CustomElementRegistry} registry
  * @param {string} name
+ * @param {CustomElementRegistry} registry
  * @returns {boolean}
  */
-const isTagRegistered = (registry, name) => !!registry.get(name);
+const isTagRegistered = (name, registry) => !!registry.get(name);
 
 /**
  * Given a tag name scopes it with a number suffix
  *
- * @param {CustomElementRegistry} registry
  * @param {string} tagName
+ * @param {CustomElementRegistry} registry
  * @returns {string} scoped tag name
  */
-const incrementTagName = (registry, tagName) => {
+const incrementTagName = (tagName, registry) => {
   const newTagName = `${tagName}-${(counter += 1)}`;
 
-  if (isTagRegistered(registry, newTagName)) {
-    return incrementTagName(registry, tagName);
+  if (isTagRegistered(newTagName, registry)) {
+    return incrementTagName(tagName, registry);
   }
 
   return newTagName;
@@ -57,14 +57,14 @@ const incrementTagName = (registry, tagName) => {
  * Creates a unique scoped tag name
  *
  * @exports
- * @param {CustomElementRegistry} registry
  * @param {string} tagName - tag name to scope
+ * @param {CustomElementRegistry} registry
  * @returns {string} scoped tag name
  */
-export function createUniqueTag(registry, tagName) {
+export function createUniqueTag(tagName, registry = customElements) {
   if (!isValid(tagName)) {
     throw new Error('tagName is invalid');
   }
 
-  return incrementTagName(registry, tagName);
+  return incrementTagName(tagName, registry);
 }
