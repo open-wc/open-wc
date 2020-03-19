@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.6.1...@open-wc/testing-helpers@1.6.2) (2020-03-19)
+
+
+### Bug Fixes
+
+* **testing-helpers:** publish typescript definition files again ([a411293](https://github.com/open-wc/open-wc/commit/a411293282e3133becd2ebc4c27d309a4f866a4d))
+
+
+
+
+
 ## [1.6.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.6.0...@open-wc/testing-helpers@1.6.1) (2020-03-19)
 
 **Note:** Version bump only for package @open-wc/testing-helpers
