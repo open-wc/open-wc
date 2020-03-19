@@ -103,4 +103,4 @@ workflows:
             - test-bs
           filters:
             branches:
-              only: master
+              only: westbrook/peristance-test-deploy

@@ -1,6 +1,6 @@
 {
-  "name": "@open-wc/testing-helpers",
-  "version": "1.6.1",
+  "name": "@d4kmor/testing-helpers",
+  "version": "2.0.1",
   "publishConfig": {
     "access": "public"
   },
