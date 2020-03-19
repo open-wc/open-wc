@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.7.1...@open-wc/scoped-elements@1.0.0) (2020-03-19)
+
+
+### Bug Fixes
+
+* **scoped-elements:** fix some jsDocs ([b4d4fc1](https://github.com/open-wc/open-wc/commit/b4d4fc14a01c35e9b50ea7c87110853e0b18b1a3))
+
+
+### BREAKING CHANGES
+
+* **scoped-elements:** getScopedTagName is not available anymore as a function but
+                 a ScopedElementsMixin method.
+
+
+
+
+
 ## [0.7.1](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.7.0...@open-wc/scoped-elements@0.7.1) (2020-03-19)
 
 **Note:** Version bump only for package @open-wc/scoped-elements
