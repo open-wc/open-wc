@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.6.9...@open-wc/scoped-elements@0.7.0) (2020-03-19)
+
+
+### Features
+
+* **scoped-elements:** add support for lazy elements ([0d67b9f](https://github.com/open-wc/open-wc/commit/0d67b9f8851e73a1a2dc48fe66717a62822fc4b7))
+
+
+
+
+
 ## [0.6.9](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@0.6.8...@open-wc/scoped-elements@0.6.9) (2020-03-19)
 
 **Note:** Version bump only for package @open-wc/scoped-elements

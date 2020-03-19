@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/scoped-elements",
-  "version": "0.6.9",
+  "version": "0.7.0",
   "publishConfig": {
     "access": "public"
   },
