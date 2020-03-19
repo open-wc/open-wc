@@ -1,7 +1,7 @@
 import { expect, fixture, defineCE } from '@open-wc/testing';
 import { LitElement, html } from 'lit-element';
 import { ScopedElementsMixin } from '../index.js';
-import { getFromTagsCache } from '../src/registerElement.js';
+import { getFromGlobalTagsCache } from '../src/globalTagsCache.js';
 
 class FeatureA extends LitElement {
   render() {
@@ -256,8 +256,70 @@ describe('ScopedElementsMixin', () => {
       },
     );
     const el = await fixture(`<${tag}></${tag}>`);
-    expect(el.shadowRoot.children[0]).to.be.an.instanceOf(FeatureC);
 
-    expect(getFromTagsCache(FeatureD)).to.be.undefined;
+    expect(el.shadowRoot.children[0]).to.be.an.instanceOf(FeatureC);
+    expect(getFromGlobalTagsCache(FeatureD)).to.be.undefined;
+  });
+
+  it('supports lazy loaded elements', async () => {
+    const tag = defineCE(
+      class extends ScopedElementsMixin(LitElement) {
+        static get scopedElements() {
+          return {
+            'feature-a': FeatureA,
+          };
+        }
+
+        render() {
+          return html`
+            <feature-a></feature-a>
+            <feature-b></feature-b>
+            <feature-c></feature-c>
+          `;
+        }
+      },
+    );
+
+    const el = await fixture(`<${tag}></${tag}>`);
+
+    expect(el.shadowRoot.children[0]).to.be.an.instanceOf(FeatureA);
+    expect(el.shadowRoot.children[1]).to.not.be.an.instanceOf(FeatureB);
+    expect(el.shadowRoot.children[2]).to.not.undefined;
+
+    // @ts-ignore
+    el.defineScopedElement('feature-b', FeatureB);
+
+    expect(el.shadowRoot.children[1]).to.be.an.instanceOf(FeatureB);
+  });
+
+  describe('getScopedTagName', () => {
+    it('should return the scoped tag name', async () => {
+      const chars = `-|\\.|[0-9]|[a-z]`;
+      const tagRegExp = new RegExp(`[a-z](${chars})*-(${chars})*-[0-9]{1,5}`);
+
+      const tag = defineCE(
+        class extends ScopedElementsMixin(LitElement) {
+          static get scopedElements() {
+            return {
+              'feature-a': FeatureA,
+            };
+          }
+
+          render() {
+            return html`
+              <feature-a></feature-a>
+              <feature-b></feature-b>
+            `;
+          }
+        },
+      );
+
+      const el = await fixture(`<${tag}></${tag}>`);
+
+      // @ts-ignore
+      expect(el.constructor.getScopedTagName('feature-a')).to.match(tagRegExp);
+      // @ts-ignore
+      expect(el.constructor.getScopedTagName('feature-b')).to.match(tagRegExp);
+    });
   });
 });
