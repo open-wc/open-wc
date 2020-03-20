@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.9](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.22.8...@open-wc/building-rollup@0.22.9) (2020-03-20)
+
+
+### Bug Fixes
+
+* **building-rollup:** ensuring input is a string before checking extension ([5b1318a](https://github.com/open-wc/open-wc/commit/5b1318af3a913d0b851824c3bd9ddf32b79597e2))
+
+
+
+
+
 ## [0.22.8](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.22.7...@open-wc/building-rollup@0.22.8) (2020-03-19)
 
 **Note:** Version bump only for package @open-wc/building-rollup

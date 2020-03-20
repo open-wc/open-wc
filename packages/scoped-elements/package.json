@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/scoped-elements",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publishConfig": {
     "access": "public"
   },
@@ -38,11 +38,11 @@
     "helpers"
   ],
   "dependencies": {
-    "@open-wc/dedupe-mixin": "^1.2.10",
+    "@open-wc/dedupe-mixin": "^1.2.11",
     "lit-element": "^2.2.1"
   },
   "devDependencies": {
-    "@open-wc/building-rollup": "^0.22.8",
+    "@open-wc/building-rollup": "^0.22.9",
     "@open-wc/testing": "^2.5.8",
     "es-dev-server": "^1.45.2",
     "npm-run-all": "4.1.3",
