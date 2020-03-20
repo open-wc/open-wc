@@ -128,7 +128,7 @@ Snapshots are created by setting up your component in a specific state, and then
 import { fixture } from '@open-wc/testing';
 
 describe('my-message', () => {
-  it('renders message foo correctly', () => {
+  it('renders message foo correctly', async () => {
     const element = await fixture(`
       <my-message message="Foo"></my-element>
     `);
@@ -136,7 +136,7 @@ describe('my-message', () => {
     expect(element).shadowDom.to.equalSnapshot();
   });
 
-  it('renders message bar correctly', () => {
+  it('renders message bar correctly', async () => {
     const element = await fixture(`
       <my-message message="Bar"></my-element>
     `);
@@ -144,7 +144,7 @@ describe('my-message', () => {
     expect(element).shadowDom.to.equalSnapshot();
   });
 
-  it('renders a capitalized message correctly', () => {
+  it('renders a capitalized message correctly', async () => {
     const element = await fixture(`
       <my-message message="Bar" capitalized></my-element>
     `);
@@ -152,7 +152,7 @@ describe('my-message', () => {
     expect(element).shadowDom.to.equalSnapshot();
   });
 
-  it('allows rendering a message from a slot', () => {
+  it('allows rendering a message from a slot', async () => {
     const element = await fixture(`
       <my-message capitalized>Bar</my-element>
     `);
