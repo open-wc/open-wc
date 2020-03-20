@@ -243,7 +243,7 @@ const basicConfig = createDefaultConfig({
   },
 });
 
-export default merge(basicConfig, {
+export default deepmerge(basicConfig, {
   plugins: [
     indexHTMLPlugin({
       indexHTML: `
