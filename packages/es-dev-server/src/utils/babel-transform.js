@@ -79,6 +79,7 @@ export function createCompatibilityBabelTransform(cfg) {
           useBuiltIns: false,
           shippedProposals: true,
           modules: false,
+          bugfixes: true,
         },
       ],
     ],

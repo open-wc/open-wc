@@ -100,6 +100,7 @@ module.exports = function createBasicConfig(_options) {
                 exclude: ['@babel/plugin-transform-template-literals'],
                 useBuiltIns: false,
                 modules: false,
+                bugfixes: true,
               },
             ],
           ],
