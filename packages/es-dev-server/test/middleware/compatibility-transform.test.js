@@ -117,7 +117,7 @@ describe('compatibility transform middleware', () => {
     it('does not do any transformation for standard features', async () => {
       await expectCompatibilityTransform(userAgents['Chrome 78'], {
         objectSpread: false,
-        templateLiteral: true,
+        templateLiteral: false,
         optionalChaining: true,
         nullishCoalescing: true,
       });
@@ -206,7 +206,7 @@ describe('compatibility transform middleware', () => {
 
     it('transforms for Safari 12.1.2', async () => {
       await expectCompatibilityTransform(userAgents['Safari 12.1.2'], {
-        templateLiteral: true,
+        templateLiteral: false,
         optionalChaining: true,
         nullishCoalescing: true,
       });
@@ -312,7 +312,7 @@ describe('compatibility transform middleware', () => {
 
     it('transforms for Safari 12.1.2', async () => {
       await expectCompatibilityTransform(userAgents['Safari 12.1.2'], {
-        templateLiteral: true,
+        templateLiteral: false,
         optionalChaining: true,
         nullishCoalescing: true,
       });
@@ -434,6 +434,7 @@ describe('compatibility transform middleware', () => {
                 {
                   targets: ['ie 11'],
                   useBuiltIns: false,
+                  bugfixes: true,
                 },
               ],
             ],

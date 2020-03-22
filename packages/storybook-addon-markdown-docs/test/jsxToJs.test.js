@@ -11,14 +11,14 @@ function render() {
 }
 `;
     expect(await jsxToJs(input, '/foo')).to.equal(`function render() {
-  return React.createElement(MyComponent, null);
+  return /*#__PURE__*/React.createElement(MyComponent, null);
 }`);
   });
 
   it('does not transform es2015', async () => {
     const input = 'export default () => <MyComponent />;';
     expect(await jsxToJs(input, '/foo')).to.equal(
-      'export default (() => React.createElement(MyComponent, null));',
+      'export default (() => /*#__PURE__*/React.createElement(MyComponent, null));',
     );
   });
 

@@ -109,6 +109,7 @@ function createConfig(options, legacy) {
                     exclude: legacy ? undefined : ['@babel/plugin-transform-template-literals'],
                     useBuiltIns: false,
                     modules: false,
+                    bugfixes: true,
                   },
                 ],
               ],

@@ -29,7 +29,7 @@
     "src"
   ],
   "dependencies": {
-    "@babel/core": "^7.8.3",
+    "@babel/core": "^7.9.0",
     "@open-wc/building-utils": "^2.16.0",
     "@webcomponents/webcomponentsjs": "^2.4.0",
     "abortcontroller-polyfill": "^1.4.0",

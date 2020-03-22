@@ -6,7 +6,8 @@ module.exports = {
         "targets": [
           "ie 11"
         ],
-        "useBuiltIns": false
+        "useBuiltIns": false,
+        "bugfixes": true
       }
     ]
   ]
