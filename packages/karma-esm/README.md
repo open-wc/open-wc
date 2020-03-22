@@ -29,27 +29,31 @@ npm i -D @open-wc/karma-esm
 2. Add to your karma config
 
 ```javascript
-module.exports = {
-  // define where your test files are, make sure to set type to module
-  files: [
-    { pattern: 'test/**/*.test.js', type: 'module' }
-  ]
+module.exports = config => {
+  config.set({
+    // define where your test files are, make sure to set type to module
+    files: [
+      { pattern: 'test/**/*.test.js', type: 'module' }
+    ],
 
-  plugins: [
-    // load plugin
-    require.resolve('@open-wc/karma-esm'),
+    plugins: [
+      // load plugin
+      require.resolve('@open-wc/karma-esm'),
 
-    // fallback: resolve any karma- plugins
-    'karma-*',
-  ],
+      // fallback: resolve any karma- plugins
+      'karma-*',
+    ],
 
-  frameworks: ['esm'],
+    frameworks: [
+      'esm',
+    ],
 
-  esm: {
-    // if you are using 'bare module imports' you will need this option
-    nodeResolve: true,
-  },
-}
+    esm: {
+      nodeResolve: true,
+    },
+  }); 
+  return config;
+};
 ```
 
 ## Configuration
