@@ -34,9 +34,9 @@ The hardest part of any project is often getting content onto that first blank p
 
   Take advantage of the component system that powers Ionic applications with a large ecosystem to choose from and in-depth usage instructions, no matter the framework you use.
 
-- [Lightning Web Components by SalesForce](https://developer.salesforce.com/docs/component-library/overview/components)
+- [Lightning Web Components by Salesforce](https://developer.salesforce.com/docs/component-library/overview/components)
 
-  Lightning Web Components are now the go-to standard for developing applications in the SalesForce ecosystem, and with the power of web components, they can be the basis of applications outside of their ecosystem, too!
+  Lightning Web Components are now the go-to standard for developing applications in the Salesforce ecosystem, and with the power of web components, they can be the basis of applications outside of their ecosystem, too!
 
 - [Lion Web Components by ING Bank](https://github.com/ing-bank/lion)
 
