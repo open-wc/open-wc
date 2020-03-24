@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.20](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.19...@open-wc/karma-esm@2.13.20) (2020-03-24)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
 ## [2.13.19](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.18...@open-wc/karma-esm@2.13.19) (2020-03-19)
 
 **Note:** Version bump only for package @open-wc/karma-esm

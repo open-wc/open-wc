@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/rollup-plugin-html",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "publishConfig": {
     "access": "public"
   },
@@ -40,7 +40,7 @@
     "polyfill"
   ],
   "dependencies": {
-    "@open-wc/building-utils": "^2.16.0",
+    "@open-wc/building-utils": "^2.16.1",
     "@types/html-minifier": "^3.5.3",
     "fs-extra": "^8.1.0",
     "html-minifier": "^4.0.0",
@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "es-dev-server": "^1.45.2",
+    "es-dev-server": "^1.45.3",
     "lit-element": "^2.2.1",
     "rimraf": "^3.0.0",
     "rollup": "^1.31.1"

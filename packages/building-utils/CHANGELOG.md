@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.16.0...@open-wc/building-utils@2.16.1) (2020-03-24)
+
+**Note:** Version bump only for package @open-wc/building-utils
+
+
+
+
+
 # [2.16.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.15.2...@open-wc/building-utils@2.16.0) (2020-03-11)
 
 
