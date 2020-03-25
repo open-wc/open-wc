@@ -2,8 +2,7 @@
 import { TemplateResult } from 'lit-element';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { transform } from './transform.js';
-import { defineScopedElement } from './registerElement.js';
-import { getFromGlobalTagsCache } from './globalTagsCache.js';
+import { defineScopedElement, registerElement } from './registerElement.js';
 
 /**
  * @typedef {import('lit-html/lib/shady-render').ShadyRenderOptions} ShadyRenderOptions
@@ -115,7 +114,9 @@ export const ScopedElementsMixin = dedupeMixin(
       static getScopedTagName(tagName) {
         const klass = this.scopedElements[tagName];
 
-        return klass ? getFromGlobalTagsCache(klass) : tagsCaches.get(this).get(tagName);
+        return klass
+          ? registerElement(tagName, klass, tagsCaches.get(this))
+          : tagsCaches.get(this).get(tagName);
       }
     },
 );
