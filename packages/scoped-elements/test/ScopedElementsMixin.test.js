@@ -292,11 +292,8 @@ describe('ScopedElementsMixin', () => {
     expect(el.shadowRoot.children[1]).to.be.an.instanceOf(FeatureB);
   });
 
-  describe('getScopedTagName', () => {
+  describe.only('getScopedTagName', () => {
     it('should return the scoped tag name', async () => {
-      const chars = `-|\\.|[0-9]|[a-z]`;
-      const tagRegExp = new RegExp(`[a-z](${chars})*-(${chars})*-[0-9]{1,5}`);
-
       const tag = defineCE(
         class extends ScopedElementsMixin(LitElement) {
           static get scopedElements() {
@@ -317,9 +314,61 @@ describe('ScopedElementsMixin', () => {
       const el = await fixture(`<${tag}></${tag}>`);
 
       // @ts-ignore
-      expect(el.constructor.getScopedTagName('feature-a')).to.match(tagRegExp);
+      expect(el.constructor.getScopedTagName('feature-a')).to.match(
+        new RegExp(`feature-a-\\d{1,5}`),
+      );
       // @ts-ignore
-      expect(el.constructor.getScopedTagName('feature-b')).to.match(tagRegExp);
+      expect(el.constructor.getScopedTagName('feature-b')).to.match(
+        new RegExp(`feature-b-\\d{1,5}`),
+      );
+    });
+
+    it('allows to get the tag name all the time', async () => {
+      class FeatureStatic extends LitElement {
+        render() {
+          return html`
+            <div>Element A</div>
+          `;
+        }
+      }
+
+      class StaticGetScopedTagName extends ScopedElementsMixin(LitElement) {
+        static get scopedElements() {
+          return {
+            'feature-static': FeatureStatic,
+          };
+        }
+      }
+      expect(StaticGetScopedTagName.getScopedTagName('feature-static')).to.match(
+        new RegExp(`feature-static-\\d{1,5}`),
+      );
+    });
+
+    it('allows to get the tag name with instance', async () => {
+      class FeatureInstance extends LitElement {
+        render() {
+          return html`
+            <div>Element A</div>
+          `;
+        }
+      }
+
+      const tag = defineCE(
+        class extends ScopedElementsMixin(LitElement) {
+          static get scopedElements() {
+            return {
+              'feature-instance': FeatureInstance,
+            };
+          }
+
+          exposeTagName() {
+            // @ts-ignore
+            return this.constructor.getScopedTagName('feature-instance');
+          }
+        },
+      );
+      const el = document.createElement(tag);
+      expect(el.exposeTagName()).to.match(new RegExp(`feature-a-\\d{1,5}`));
     });
   });
 });
