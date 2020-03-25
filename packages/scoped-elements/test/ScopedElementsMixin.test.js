@@ -293,7 +293,7 @@ describe('ScopedElementsMixin', () => {
   });
 
   describe('getScopedTagName', () => {
-    it('should return the scoped tag name', async () => {
+    it('should return the scoped tag name for a registered element', async () => {
       const chars = `-|\\.|[0-9]|[a-z]`;
       const tagRegExp = new RegExp(`[a-z](${chars})*-(${chars})*-[0-9]{1,5}`);
 
@@ -320,6 +320,34 @@ describe('ScopedElementsMixin', () => {
       expect(el.constructor.getScopedTagName('feature-a')).to.match(tagRegExp);
       // @ts-ignore
       expect(el.constructor.getScopedTagName('feature-b')).to.match(tagRegExp);
+    });
+
+    it('should return the scoped tag name for a non already registered element', async () => {
+      const chars = `-|\\.|[0-9]|[a-z]`;
+      const tagRegExp = new RegExp(`[a-z](${chars})*-(${chars})*-[0-9]{1,5}`);
+
+      class UnregisteredFeature extends LitElement {
+        render() {
+          return html`
+            <div>Unregistered feature</div>
+          `;
+        }
+      }
+
+      const tag = defineCE(
+        class extends ScopedElementsMixin(LitElement) {
+          static get scopedElements() {
+            return {
+              'unregistered-feature': UnregisteredFeature,
+            };
+          }
+        },
+      );
+
+      const el = await fixture(`<${tag}></${tag}>`);
+
+      // @ts-ignore
+      expect(el.constructor.getScopedTagName('unregistered-feature')).to.match(tagRegExp);
     });
   });
 });
