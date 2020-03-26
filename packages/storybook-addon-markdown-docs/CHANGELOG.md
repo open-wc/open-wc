@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.1.8...storybook-addon-markdown-docs@0.2.0) (2020-03-26)
+
+
+### Features
+
+* **storybook-addon-markdown-docs:** support docs-only pages ([b099717](https://github.com/open-wc/open-wc/commit/b099717fc423dd8afc971af196f4baf7018b3552))
+
+
+
+
+
 ## [0.1.8](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.1.7...storybook-addon-markdown-docs@0.1.8) (2020-03-24)
 
 **Note:** Version bump only for package storybook-addon-markdown-docs

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.13.8...@open-wc/demoing-storybook@1.14.0) (2020-03-26)
+
+
+### Features
+
+* **storybook-addon-markdown-docs:** support docs-only pages ([b099717](https://github.com/open-wc/open-wc/commit/b099717fc423dd8afc971af196f4baf7018b3552))
+
+
+
+
+
 ## [1.13.8](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.13.7...@open-wc/demoing-storybook@1.13.8) (2020-03-24)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
