@@ -32,7 +32,7 @@ export async function startServer(cfg, fileWatcher = chokidar.watch([])) {
 
   server.addListener('close', closeFileWatcher);
 
-  function stopServer() {
+  async function stopServer() {
     if (server) {
       server.close();
       server = undefined;
@@ -49,6 +49,10 @@ export async function startServer(cfg, fileWatcher = chokidar.watch([])) {
     console.error(error);
     stopServer();
   });
+
+  if (cfg.onServerStart) {
+    await cfg.onServerStart(cfg);
+  }
 
   // start the server, open the browser and log messages
   await new Promise(resolve =>
