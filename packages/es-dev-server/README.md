@@ -116,13 +116,14 @@ module.exports = {
 
 In addition to the command-line flags, the configuration file accepts these additional options:
 
-| name                 | type    | description                                              |
-| -------------------- | ------- | -------------------------------------------------------- |
-| middlewares          | array   | Koa middlewares to add to the server, read more below.   |
-| responseTransformers | array   | Functions which transform the server's response.         |
-| babelConfig          | object  | Babel config to run with the server.                     |
-| polyfillsLoader      | object  | Configuration for the polyfills loader, read more below. |
-| debug                | boolean | Whether to turn on debug mode on the server.             |
+| name                 | type                      | description                                              |
+| -------------------- | ------------------------- | -------------------------------------------------------- |
+| middlewares          | array                     | Koa middlewares to add to the server, read more below.   |
+| responseTransformers | array                     | Functions which transform the server's response.         |
+| babelConfig          | object                    | Babel config to run with the server.                     |
+| polyfillsLoader      | object                    | Configuration for the polyfills loader, read more below. |
+| debug                | boolean                   | Whether to turn on debug mode on the server.             |
+| onServerStart        | (config) => Promise<void> | Function called before server is started.                |
 
 ## Node resolve
 

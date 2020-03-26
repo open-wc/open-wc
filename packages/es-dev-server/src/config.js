@@ -59,6 +59,8 @@ import { compatibilityModes } from './constants.js';
  * @property {string[]} [babelModuleExclude] files excluded from module transfomration
  * @property {object} [babelConfig] babel config to use, this is useful when you want to provide a
  *   babel config from a tool, and don't want to require all users to use the same babel config
+ * @property {(config: InternalConfig) => void | Promise<void>} onServerStart callback called before the server is
+ *   started, the returned promise is awaited
  */
 
 /**
@@ -86,6 +88,8 @@ import { compatibilityModes } from './constants.js';
  * @property {boolean} logStartup whether to log a startup message
  * @property {import('koa').Middleware[]} customMiddlewares
  * @property {import('./middleware/response-transform').ResponseTransformer[]} responseTransformers
+ * @property {(config: InternalConfig) => void | Promise<void>} onServerStart callback called before the server is
+ *   started, the returned promise is awaited
  *
  * Development help
  * @property {boolean} watch
@@ -139,6 +143,7 @@ export function createConfig(config) {
     dedupeModules,
     moduleDirs = ['node_modules', 'web_modules'],
     preserveSymlinks = false,
+    onServerStart,
   } = config;
 
   if (debug) {
@@ -250,5 +255,6 @@ export function createConfig(config) {
     watch,
     logErrorsToBrowser,
     watchDebounce: 100,
+    onServerStart,
   };
 }
