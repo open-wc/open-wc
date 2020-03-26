@@ -49,6 +49,21 @@ __export_default__.parameters.docs.page = () => <AddContext
   mdxStoryNameToKey={mdxStoryNameToKey}
   mdxComponentMeta={__export_default__}><MDXContent
 /></AddContext>;
+${
+  !stories || stories.length === 0
+    ? `
+export const __page = () => {
+  throw new Error("Docs-only story");
+};
+__page.story = {
+  parameters: {
+    docsOnly: true
+  }
+};
+`
+    : ''
+}
+
 export default __export_default__;`;
 }
 
