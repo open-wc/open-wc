@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.14.0...@open-wc/demoing-storybook@1.15.0) (2020-03-26)
+
+
+### Features
+
+* **demoing-storybook:** allow disabling recommended addons ([0b2017c](https://github.com/open-wc/open-wc/commit/0b2017c5601c060c662999186fe65e97397ff8e1))
+
+
+
+
+
 # [1.14.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.13.8...@open-wc/demoing-storybook@1.14.0) (2020-03-26)
 
 
