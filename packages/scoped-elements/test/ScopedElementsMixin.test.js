@@ -1,5 +1,7 @@
-import { expect, fixture, defineCE } from '@open-wc/testing';
+import { expect, fixture, defineCE, waitUntil } from '@open-wc/testing';
 import { LitElement, html } from 'lit-element';
+import { until } from 'lit-html/directives/until.js';
+import { repeat } from 'lit-html/directives/repeat';
 import { ScopedElementsMixin } from '../index.js';
 import { getFromGlobalTagsCache } from '../src/globalTagsCache.js';
 
@@ -348,6 +350,81 @@ describe('ScopedElementsMixin', () => {
 
       // @ts-ignore
       expect(el.constructor.getScopedTagName('unregistered-feature')).to.match(tagRegExp);
+    });
+  });
+
+  describe('directives integration', () => {
+    it('should work with until(...)', async () => {
+      const content = new Promise(resolve => {
+        setTimeout(
+          () =>
+            resolve(
+              html`
+                <feature-a id="feat"></feature-a>
+              `,
+            ),
+          0,
+        );
+      });
+
+      const tag = defineCE(
+        class ContainerElement extends ScopedElementsMixin(LitElement) {
+          static get scopedElements() {
+            return {
+              'feature-a': FeatureA,
+            };
+          }
+
+          render() {
+            return html`
+              ${until(
+                content,
+                html`
+                  <span>Loading...</span>
+                `,
+              )}
+            `;
+          }
+        },
+      );
+
+      const el = await fixture(`<${tag}></${tag}>`);
+
+      expect(el.shadowRoot.getElementById('feat')).to.be.null;
+
+      await waitUntil(() => el.shadowRoot.getElementById('feat') !== null);
+      const feature = el.shadowRoot.getElementById('feat');
+
+      expect(feature).shadowDom.to.equal('<div>Element A</div>');
+    });
+
+    it('should work with repeat(...)', async () => {
+      const tag = defineCE(
+        class ContainerElement extends ScopedElementsMixin(LitElement) {
+          static get scopedElements() {
+            return {
+              'feature-a': FeatureA,
+            };
+          }
+
+          render() {
+            return html`
+              ${repeat(
+                [...Array(10).keys()],
+                () => html`
+                  <feature-a data-type="child"></feature-a>
+                `,
+              )}
+            `;
+          }
+        },
+      );
+
+      const el = await fixture(`<${tag}></${tag}>`);
+
+      el.shadowRoot.querySelectorAll('[data-type="child"]').forEach(child => {
+        expect(child).shadowDom.to.equal('<div>Element A</div>');
+      });
     });
   });
 });
