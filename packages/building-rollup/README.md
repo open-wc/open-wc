@@ -268,11 +268,12 @@ export default deepmerge(basicConfig, {
 
 #### Resolve commonjs modules
 
-CommonJS is the module format for NodeJS, and not suitable for the browser. Rollup only handles es modules by default, but sometimes it's necessary to be able to import a dependency. To do this, you can add [rollup-plugin-commonjs](https://github.com/rollup/rollup-plugin-commonjs):
+CommonJS is the module format for NodeJS, and not suitable for the browser. Rollup only handles es modules by default, but sometimes it's necessary to be able to import a dependency if you want to use third party libraries in your web component. To do this, you can add [@rollup/plugin-commonjs](https://github.com/rollup/plugins/tree/master/packages/commonjs):
 
 ```javascript
 import { createCompatibilityConfig } from '@open-wc/building-rollup';
-import commonjs from 'rollup-plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs';
+
 
 const configs = createCompatibilityConfig({ input: './index.html' });
 
