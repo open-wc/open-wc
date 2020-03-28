@@ -1,8 +1,9 @@
 /* eslint-disable no-use-before-define */
-import { TemplateResult } from 'lit-element';
+import { TemplateResult } from 'lit-html';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { transform } from './transform.js';
 import { defineScopedElement, registerElement } from './registerElement.js';
+import { shadyTemplateFactory } from './shadyTemplateFactory.js';
 
 /**
  * @typedef {import('lit-html/lib/shady-render').ShadyRenderOptions} ShadyRenderOptions
@@ -28,18 +29,18 @@ const tagsCaches = new WeakMap();
  *
  * @param {ReadonlyArray} items
  * @param {Object.<string, typeof HTMLElement>} scopedElements
- * @param {Map<TemplateStringsArray, TemplateStringsArray>} cache
+ * @param {Map<TemplateStringsArray, TemplateStringsArray>} templateCache
  * @param {Map<string, string>} tagsCache
  * @returns {ReadonlyArray}
  */
-const transformArray = (items, scopedElements, cache, tagsCache) =>
+const transformArray = (items, scopedElements, templateCache, tagsCache) =>
   items.map(value => {
     if (value instanceof TemplateResult) {
-      return transformTemplate(value, scopedElements, cache, tagsCache);
+      return transformTemplate(value, scopedElements, templateCache, tagsCache);
     }
 
     if (Array.isArray(value)) {
-      return transformArray(value, scopedElements, cache, tagsCache);
+      return transformArray(value, scopedElements, templateCache, tagsCache);
     }
 
     return value;
@@ -62,6 +63,17 @@ const transformTemplate = (template, scopedElements, templateCache, tagsCache) =
     template.processor,
   );
 
+const scopedElementsTemplateFactory = (
+  scopeName,
+  scopedElements,
+  templateCache,
+  tagsCache,
+) => template => {
+  const newTemplate = transformTemplate(template, scopedElements, templateCache, tagsCache);
+
+  return shadyTemplateFactory(scopeName)(newTemplate);
+};
+
 export const ScopedElementsMixin = dedupeMixin(
   superclass =>
     // eslint-disable-next-line no-shadow
@@ -74,6 +86,11 @@ export const ScopedElementsMixin = dedupeMixin(
        * @override
        */
       static render(template, container, options) {
+        if (!options || typeof options !== 'object' || !options.scopeName) {
+          throw new Error('The `scopeName` option is required.');
+        }
+        const { scopeName } = options;
+
         if (!templateCaches.has(this)) {
           templateCaches.set(this, new Map());
         }
@@ -84,15 +101,17 @@ export const ScopedElementsMixin = dedupeMixin(
         const templateCache = templateCaches.get(this);
         const tagsCache = tagsCaches.get(this);
         const { scopedElements } = this;
-        const transformedTemplate = transformTemplate(
-          template,
-          scopedElements,
-          templateCache,
-          tagsCache,
-        );
 
         // @ts-ignore
-        return super.render(transformedTemplate, container, options);
+        return super.render(template, container, {
+          ...options,
+          templateFactory: scopedElementsTemplateFactory(
+            scopeName,
+            scopedElements,
+            templateCache,
+            tagsCache,
+          ),
+        });
       }
 
       /**
