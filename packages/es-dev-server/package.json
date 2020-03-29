@@ -97,7 +97,7 @@
     "polyfills-loader": "^1.5.2",
     "portfinder": "^1.0.21",
     "strip-ansi": "^5.2.0",
-    "systemjs": "^4.0.0",
+    "systemjs": "^6.2.6",
     "useragent": "^2.3.0",
     "whatwg-url": "^7.0.0"
   },
