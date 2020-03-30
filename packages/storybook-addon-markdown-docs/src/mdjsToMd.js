@@ -12,10 +12,14 @@ const mdStringify = require('remark-html');
 const detab = require('detab');
 const u = require('unist-builder');
 const visit = require('unist-util-visit-parents');
+// @ts-ignore
+const normalize = require('mdurl/encode');
 
 const { mdjsParse, mdjsStoryParse } = require('@mdjs/core');
 
 /**
+ * Keep the code blocks as md source code so storybook will use it's special code block
+ *
  * @param {*} h
  * @param {*} node
  */
@@ -23,6 +27,39 @@ function code(h, node) {
   const value = node.value ? detab(node.value) : '';
   const raw = ['', `\`\`\`${node.lang}`, value, '```'].join('\n');
   return h.augment(node, u('raw', raw));
+}
+
+/**
+ * Override image to make it closing `<img src="" />` as otherwise the jsx parser throws
+ *
+ * @param {*} h
+ * @param {*} node
+ */
+function image(h, node) {
+  const attributes = [];
+  if (node.title !== null && node.title !== undefined) {
+    attributes.push(`title="${node.title}"`);
+  }
+  if (node.alt !== null && node.alt !== undefined) {
+    attributes.push(`alt="${node.alt}"`);
+  }
+  if (node.url !== null && node.url !== undefined) {
+    attributes.push(`src="${normalize(node.url)}"`);
+  }
+
+  const raw = `<img ${attributes.join(' ')} />`;
+  return h.augment(node, u('raw', raw));
+}
+
+/**
+ * Override line break to make it closing `<br />` as otherwise the jsx parser throws
+ * Can't use 'break' as a function name as it is a reserved javascript language name
+ *
+ * @param {*} h
+ * @param {*} node
+ */
+function hardBreak(h, node) {
+  return [h.augment(node, u('raw', '<br />')), u('text', '\n')];
 }
 
 function transformPropsHook() {
@@ -60,6 +97,8 @@ async function mdjsToMd(markdownText) {
     .use(mdStringify, {
       handlers: {
         code,
+        image,
+        break: hardBreak,
       },
     });
   /** @type {unknown} */
