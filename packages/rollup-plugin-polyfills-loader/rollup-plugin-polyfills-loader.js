@@ -8,7 +8,7 @@
 /** @typedef {import('./src/types').PluginOptions} PluginOptions */
 
 const { injectPolyfillsLoader } = require('polyfills-loader');
-const { createError } = require('./src/utils');
+const { createError, shouldInjectLoader } = require('./src/utils');
 const { createPolyfillsLoaderConfig } = require('./src/createPolyfillsLoaderConfig');
 
 /**
@@ -50,10 +50,38 @@ function rollupPluginPolyfillsLoader(pluginOptions = {}) {
 
       htmlPlugin.addHtmlTransformer((html, { bundle, bundles }) => {
         const config = createPolyfillsLoaderConfig(pluginOptions, bundle, bundles);
-        const { htmlString, polyfillFiles } = injectPolyfillsLoader(html, config);
-        generatedFiles = polyfillFiles;
+        let htmlString = html;
 
-        return htmlString;
+        if (shouldInjectLoader(config)) {
+          const result = injectPolyfillsLoader(html, config);
+          htmlString = result.htmlString;
+          generatedFiles = result.polyfillFiles;
+        } else {
+          // we don't need to inject a polyfills loader, so we just inject the scripts directly
+          const scripts = config.modern.files
+            .map(f => `<script type="module" src="${f.path}"></script>\n`)
+            .join('');
+          htmlString = htmlString.replace('</body>', `\n${scripts}\n</body>`);
+        }
+
+        // preload all entrypoints as well as their direct dependencies
+        const { entrypoints } = pluginOptions.modernOutput
+          ? bundles[pluginOptions.modernOutput.name]
+          : bundle;
+
+        let preloaded = [];
+        for (const entrypoint of entrypoints) {
+          preloaded.push(entrypoint.importPath);
+          preloaded.push(...entrypoint.chunk.imports);
+        }
+        preloaded = [...new Set(preloaded)];
+
+        return htmlString.replace(
+          '</head>',
+          `\n${preloaded
+            .map(i => `<link rel="preload" href="${i}" as="script" crossorigin="anonymous">\n`)
+            .join('')}</head>`,
+        );
       });
     },
 

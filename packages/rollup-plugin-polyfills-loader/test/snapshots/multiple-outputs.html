@@ -1,4 +1,6 @@
-<html><head></head><body><script>System.import("./entrypoint-a.js");</script><script type="module" src="./entrypoint-a.js"></script><script>(function () {
+<html><head>
+<link rel="preload" href="./entrypoint-a.js" as="script" crossorigin="anonymous">
+</head><body><script>(function () {
   function loadScript(src, type) {
     return new Promise(function (resolve) {
       var script = document.createElement('script');
@@ -24,19 +26,19 @@
   var polyfills = [];
 
   if (!('fetch' in window)) {
-    polyfills.push(loadScript('./polyfills/fetch.191258a74d74243758f52065f3d0962a.js'));
+    polyfills.push(loadScript('./polyfills/fetch.js'));
   }
 
   if (!('noModule' in HTMLScriptElement.prototype)) {
-    polyfills.push(loadScript('./polyfills/systemjs.6dfbfd8f2c3e558918ed74d133a6757a.js'));
+    polyfills.push(loadScript('./polyfills/systemjs.js'));
   }
 
   if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) {
-    polyfills.push(loadScript('./polyfills/webcomponents.d67d6757b8cd44bc35b021ee0b71d197.js'));
+    polyfills.push(loadScript('./polyfills/webcomponents.js'));
   }
 
   if (!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype) {
-    polyfills.push(loadScript('./polyfills/custom-elements-es5-adapter.3342b468203af1a14ca005e80d14148f.js'));
+    polyfills.push(loadScript('./polyfills/custom-elements-es5-adapter.js'));
   }
 
   function loadFiles() {
