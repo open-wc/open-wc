@@ -70,9 +70,12 @@ describe('rollup-plugin-polyfills-loader', () => {
       plugins: [
         html({
           inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
+          inject: false,
           minify: false,
         }),
-        polyfillsLoader(),
+        polyfillsLoader({
+          polyfills: { hash: false, fetch: true },
+        }),
       ],
     };
 
@@ -90,15 +93,21 @@ describe('rollup-plugin-polyfills-loader', () => {
         html({
           name: 'bar.html',
           inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>Bar',
+          inject: false,
           minify: false,
         }),
         html({
           name: 'foo.html',
           inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
+          inject: false,
           minify: false,
         }),
         polyfillsLoader({
           htmlFileName: 'foo.html',
+          polyfills: {
+            hash: false,
+            fetch: true,
+          },
         }),
       ],
     };
@@ -117,10 +126,12 @@ describe('rollup-plugin-polyfills-loader', () => {
         html({
           name: 'index.html',
           inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
+          inject: false,
           minify: false,
         }),
         polyfillsLoader({
           polyfills: {
+            hash: false,
             webcomponents: true,
             fetch: true,
           },
@@ -143,6 +154,7 @@ describe('rollup-plugin-polyfills-loader', () => {
     const htmlPlugin = html({
       name: 'index.html',
       inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
+      inject: false,
       minify: false,
     });
     const inputOptions = {
@@ -151,10 +163,7 @@ describe('rollup-plugin-polyfills-loader', () => {
         polyfillsLoader({
           modernOutput: { name: 'modern' },
           legacyOutput: [{ name: 'legacy', test: "!('noModule' in HTMLScriptElement.prototype)" }],
-          polyfills: {
-            webcomponents: true,
-            fetch: true,
-          },
+          polyfills: { hash: false, webcomponents: true, fetch: true },
         }),
       ],
     };
@@ -185,6 +194,7 @@ describe('rollup-plugin-polyfills-loader', () => {
     const htmlPlugin = html({
       name: 'index.html',
       inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
+      inject: false,
       minify: false,
     });
     const inputOptions = {
@@ -199,10 +209,7 @@ describe('rollup-plugin-polyfills-loader', () => {
               test: "!('noModule' in HTMLScriptElement.prototype)",
             },
           ],
-          polyfills: {
-            webcomponents: true,
-            fetch: true,
-          },
+          polyfills: { hash: false, webcomponents: true, fetch: true },
         }),
       ],
     };
@@ -234,13 +241,36 @@ describe('rollup-plugin-polyfills-loader', () => {
       plugins: [
         html({
           inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
+          inject: false,
+        }),
+        polyfillsLoader({
+          polyfills: { hash: false, webcomponents: true, fetch: true },
+        }),
+      ],
+    };
+
+    await testSnapshot({
+      name: 'minified',
+      fileName: 'index.html',
+      inputOptions,
+      outputOptions: defaultOutputOptions,
+    });
+  });
+
+  it('a regular module script is added when no polyfills need to be loaded', async () => {
+    const inputOptions = {
+      plugins: [
+        html({
+          inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
+          inject: false,
+          minify: false,
         }),
         polyfillsLoader(),
       ],
     };
 
     await testSnapshot({
-      name: 'minified',
+      name: 'no-polyfills',
       fileName: 'index.html',
       inputOptions,
       outputOptions: defaultOutputOptions,
