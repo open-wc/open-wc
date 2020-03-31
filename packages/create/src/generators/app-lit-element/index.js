@@ -1,5 +1,3 @@
-import path from 'path';
-import { executeViaOptions } from '../app/executeViaOptions.js';
 import { CommonRepoMixin } from '../common-repo/index.js';
 
 /* eslint-disable no-console */
@@ -10,50 +8,20 @@ export const AppLitElementMixin = subclass =>
 
       const { tagName, className } = this.templateData;
 
-      // user chosen tag name for app
-      const appMainOptions = {
-        ...this.options,
-        scaffoldType: 'wc-lit-element',
-        tagName,
-        destinationPath: path.join(process.cwd(), tagName, 'components', tagName),
-        noEnd: true,
-      };
-      delete appMainOptions.features;
-
-      await executeViaOptions(appMainOptions);
-
-      // page-main
-      const pageMainOptions = {
-        ...appMainOptions,
-        tagName: 'page-main',
-        destinationPath: path.join(process.cwd(), tagName, 'components/page-main/'),
-      };
-
-      await executeViaOptions(pageMainOptions);
-
-      // page-one
-      const pageOneOptions = {
-        ...appMainOptions,
-        tagName: 'page-one',
-        destinationPath: path.join(process.cwd(), tagName, 'components/page-one/'),
-      };
-
-      await executeViaOptions(pageOneOptions);
-
       // write & rename el class template
       this.copyTemplate(
+        `${__dirname}/templates/_my-app.js`,
+        this.destinationPath(`src//${tagName}.js`),
+      );
+
+      this.copyTemplate(
         `${__dirname}/templates/_MyApp.js`,
-        this.destinationPath(`components/${tagName}/src/${className}.js`),
+        this.destinationPath(`src/${className}.js`),
       );
 
       this.copyTemplate(
         `${__dirname}/templates/_open-wc-logo.js`,
-        this.destinationPath(`components/${tagName}/src/open-wc-logo.js`),
-      );
-
-      this.copyTemplate(
-        `${__dirname}/templates/_templateAbout.js`,
-        this.destinationPath(`components/${tagName}/src/templateAbout.js`),
+        this.destinationPath(`src/open-wc-logo.js`),
       );
 
       this.copyTemplateJsonInto(
@@ -69,11 +37,6 @@ export const AppLitElementMixin = subclass =>
       );
 
       if (this.options.features && this.options.features.includes('testing')) {
-        this.copyTemplate(
-          `${__dirname}/templates/_my-app.test.js`,
-          this.destinationPath(`components/${tagName}/test/${tagName}.test.js`),
-        );
-
         await this.copyTemplates(`${__dirname}/templates/static-testing/**/*`);
       }
 
@@ -81,7 +44,21 @@ export const AppLitElementMixin = subclass =>
         await this.copyTemplates(`${__dirname}/templates/static-demoing/**/*`);
       }
 
+      if (this.options.scaffoldFilesFor && this.options.scaffoldFilesFor.includes('demoing')) {
+        this.copyTemplate(
+          `${__dirname}/templates/_my-app.stories.js`,
+          this.destinationPath(`./stories/${tagName}.stories.js`),
+        );
+
+        await this.copyTemplates(`${__dirname}/templates/static-scaffold-demoing/**/*`);
+      }
+
       if (this.options.scaffoldFilesFor && this.options.scaffoldFilesFor.includes('testing')) {
+        this.copyTemplate(
+          `${__dirname}/templates/_my-app.test.js`,
+          this.destinationPath(`./test/${tagName}.test.js`),
+        );
+
         await this.copyTemplates(`${__dirname}/templates/static-scaffold-testing/**/*`);
       }
     }

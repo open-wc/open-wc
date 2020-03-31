@@ -1,12 +1,8 @@
 # Demoing via storybook
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 For demoing, documenting and showcasing different states of your Web Component, we recommend using [storybook](https://storybook.js.org/).
 
-::: tip
-This is part of the default [open-wc](https://open-wc.org/) recommendation
-:::
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 # Features
 
@@ -89,6 +85,16 @@ By default, storybook looks for a config file called `main.js` in your config di
 module.exports = {
   // Globs of all the stories in your project
   stories: ['../stories/*.stories.{js,mdx}'],
+
+  // Addons to be loaded, note that you need to import
+  // them from storybook-prebuilt
+  addons: [
+    'storybook-prebuilt/addon-actions/register.js',
+    'storybook-prebuilt/addon-knobs/register.js',
+    'storybook-prebuilt/addon-a11y/register.js',
+    'storybook-prebuilt/addon-docs/register.js',
+  ],
+
   // Configuration for es-dev-server (start-storybook only)
   esDevServer: {
     nodeResolve: true,
@@ -104,7 +110,54 @@ module.exports = {
 };
 ```
 
-### Create documentation
+### Create documentation (mdjs)
+
+Create a `*.stories.md` (for example `card.stories.md`) file within the `stories` folder.
+
+This uses the [Markdown JavaScript (mdjs) Format](https://open-wc.org/mdjs/) via [storybook-addon-markdown-docs](https://open-wc.org/demoing/storybook-addon-markdown-docs.html).
+
+````md
+```js script
+import '../demo-wc-card.js';
+
+export default {
+  title: 'Demo Card/Docs (markdown)',
+  parameters: { component: 'demo-wc-card' } },
+};
+```
+
+# Demo Web Component Card
+
+A component meant to display small information with additional data on the back.
+// [...] use markdown to format your text
+// the following demo is inline
+
+```js story
+export const Simple = () => html`
+  <demo-wc-card>Hello World</demo-wc-card>
+`;
+```
+
+## Variations
+
+Show demo with a frame and a "show code" button.
+
+```js preview-story
+export const Simple = () => html`
+  <demo-wc-card>Hello World</demo-wc-card>
+`;
+```
+
+## API
+
+The api table will show the data of "demo-wc-card" in your `custom-elements.json`.
+
+<sb-props of="demo-wc-card"></sb-props>
+
+// [...]
+````
+
+### Create documentation (mdx)
 
 Create a `*.stories.mdx` (for example `card.stories.mdx`) file within the `stories` folder.
 

@@ -3,6 +3,123 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.46.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.45.3...es-dev-server@1.46.0) (2020-03-26)
+
+
+### Features
+
+* **es-dev-server:** add onServerStart hook ([4ade3c8](https://github.com/open-wc/open-wc/commit/4ade3c84854e0bc8e855597ba74250d7c7476939))
+
+
+
+
+
+## [1.45.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.45.2...es-dev-server@1.45.3) (2020-03-24)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+## [1.45.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.45.1...es-dev-server@1.45.2) (2020-03-19)
+
+
+### Bug Fixes
+
+* **es-dev-server:** add directly depended package to package.json ([1ea26eb](https://github.com/open-wc/open-wc/commit/1ea26eb9333f8eb5f44a9e96523da6ef3a5cf88b))
+
+
+
+
+
+## [1.45.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.45.0...es-dev-server@1.45.1) (2020-03-15)
+
+
+### Bug Fixes
+
+* **polyfills-loader:** load fetch and abort controller together ([#1430](https://github.com/open-wc/open-wc/issues/1430)) ([ca29548](https://github.com/open-wc/open-wc/commit/ca2954822440dbb218420be99dfbd2df03760dbd))
+
+
+
+
+
+# [1.45.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.44.0...es-dev-server@1.45.0) (2020-03-15)
+
+
+### Bug Fixes
+
+* **es-dev-server:** check accept header before transforming HTML ([6d87378](https://github.com/open-wc/open-wc/commit/6d87378bf91d2343aff78bea9d881fe689783b7d))
+
+
+### Features
+
+* **es-dev-server:** polyfill AbortController when not supported ([fd03b29](https://github.com/open-wc/open-wc/commit/fd03b29ca059ff8000fa3dc189b40bf61b769766))
+
+
+
+
+
+# [1.44.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.43.1...es-dev-server@1.44.0) (2020-03-11)
+
+
+### Features
+
+* **es-dev-server:** auto compat for browsers without stage4 features ([31a682b](https://github.com/open-wc/open-wc/commit/31a682bd5252ab97208287163eba325815fa5182))
+
+
+
+
+
+## [1.43.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.43.0...es-dev-server@1.43.1) (2020-03-10)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+# [1.43.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.42.1...es-dev-server@1.43.0) (2020-03-08)
+
+
+### Features
+
+* **polyfills-loader:** add preload links ([23428e3](https://github.com/open-wc/open-wc/commit/23428e344154af6826e7db6a72f67533f3bd9511))
+
+
+
+
+
+## [1.42.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.42.0...es-dev-server@1.42.1) (2020-03-06)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+# [1.42.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.41.0...es-dev-server@1.42.0) (2020-03-02)
+
+
+### Features
+
+* **es-dev-server:** make watcher an optional parameter ([ab750ed](https://github.com/open-wc/open-wc/commit/ab750ed1d8f06699d8d4e37b6bdefbcf96458bc5))
+
+
+
+
+
+# [1.41.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.40.1...es-dev-server@1.41.0) (2020-02-29)
+
+
+### Features
+
+* **rollup-plugin-html:** first release ([9acb29a](https://github.com/open-wc/open-wc/commit/9acb29ac84b0ef7e2b06c57043c9d2c76d5a29c0))
+
+
+
+
+
 ## [1.40.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.40.0...es-dev-server@1.40.1) (2020-02-23)
 
 **Note:** Version bump only for package es-dev-server

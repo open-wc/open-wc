@@ -27,7 +27,7 @@ function createConfig(_options, legacy) {
     indexHTMLPlugin: {},
     ..._options,
     plugins: {
-      indexHTML: _options.input.endsWith('.html'),
+      indexHTML: _options.input.endsWith && _options.input.endsWith('.html'),
       workbox: true,
       babel: true,
       ...(_options.plugins || {}),
@@ -110,6 +110,7 @@ function createConfig(_options, legacy) {
                 exclude: legacy ? undefined : ['@babel/plugin-transform-template-literals'],
                 useBuiltIns: false,
                 modules: false,
+                bugfixes: true,
               },
             ],
           ],

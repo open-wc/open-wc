@@ -27,9 +27,9 @@
     if ('noModule' in HTMLScriptElement.prototype && function () {
       try {
         Function('window.importShim = s => import(s);').call();
-        return true;
-      } catch (_) {
         return false;
+      } catch (_) {
+        return true;
       }
     }()) {
       polyfills.push(loadScript('./polyfills/dynamic-import.js').then(function () {

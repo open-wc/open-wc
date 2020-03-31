@@ -25,7 +25,7 @@ module.exports = function createBasicConfig(_options) {
     indexHTMLPlugin: {},
     ..._options,
     plugins: {
-      indexHTML: _options.input.endsWith('.html'),
+      indexHTML: _options.input.endsWith && _options.input.endsWith('.html'),
       workbox: true,
       babel: true,
       ...(_options.plugins || {}),
@@ -100,6 +100,7 @@ module.exports = function createBasicConfig(_options) {
                 exclude: ['@babel/plugin-transform-template-literals'],
                 useBuiltIns: false,
                 modules: false,
+                bugfixes: true,
               },
             ],
           ],

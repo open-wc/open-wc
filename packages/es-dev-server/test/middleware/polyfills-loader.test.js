@@ -14,6 +14,7 @@ const snapshotsDir = path.join(__dirname, '..', 'snapshots', 'polyfills-loader')
 async function expectSnapshotMatches(name) {
   const response = await fetch(`${host}index.html`, {
     headers: {
+      accept: 'text/html',
       'user-agent': userAgents['Chrome 78'],
     },
   });
@@ -113,6 +114,7 @@ describe('polyfills-loader middleware', () => {
               polyfills: {
                 coreJs: false,
                 fetch: false,
+                abortController: false,
                 regeneratorRuntime: false,
                 webcomponents: false,
                 intersectionObserver: false,
@@ -169,7 +171,9 @@ describe('polyfills-loader middleware', () => {
         }),
       ));
 
-      const indexResponse = await fetch(`${host}index.html`);
+      const indexResponse = await fetch(`${host}index.html`, {
+        headers: { accept: 'text/html' },
+      });
       expect(indexResponse.status).to.equal(200);
       const fetchPolyfillResponse = await fetch(`${host}polyfills/fetch.js`);
       expect(fetchPolyfillResponse.status).to.equal(200);
@@ -194,7 +198,9 @@ describe('polyfills-loader middleware', () => {
         }),
       ));
 
-      const indexResponse = await fetch(`${host}index.html`);
+      const indexResponse = await fetch(`${host}index.html`, {
+        headers: { accept: 'text/html' },
+      });
       expect(indexResponse.status).to.equal(200);
 
       const inlineModule0Response = await fetch(
@@ -220,7 +226,9 @@ describe('polyfills-loader middleware', () => {
         }),
       ));
 
-      const indexResponse = await fetch(`${host}index.html`);
+      const indexResponse = await fetch(`${host}index.html`, {
+        headers: { accept: 'text/html' },
+      });
       expect(indexResponse.status).to.equal(200);
 
       const inlineModule1Response = await fetch(

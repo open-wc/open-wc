@@ -1,5 +1,6 @@
 /** @typedef {import('parse5').Document} DocumentAst */
 /** @typedef {import('./types').PolyfillsLoaderConfig} PolyfillsLoaderConfig */
+/** @typedef {import('./types').PolyfillsLoader} PolyfillsLoader */
 /** @typedef {import('./types').GeneratedFile} GeneratedFile */
 
 const { parse, serialize } = require('parse5');
@@ -11,8 +12,9 @@ const {
   append,
   cloneNode,
 } = require('@open-wc/building-utils/dom5-fork');
+const { createScript, createElement, findImportMapScripts } = require('@open-wc/building-utils');
 const { createPolyfillsLoader } = require('./create-polyfills-loader');
-const { createScript, findImportMapScripts, hasFileOfType, fileTypes } = require('./utils');
+const { hasFileOfType, fileTypes } = require('./utils');
 
 /**
  * @param {DocumentAst} headAst
@@ -55,6 +57,39 @@ function injectImportMapPolyfills(documentAst, headAst, cfg) {
 }
 
 /**
+ * @param {*} bodyAst
+ * @param {PolyfillsLoader} polyfillsLoader
+ */
+function injectLoaderScript(bodyAst, polyfillsLoader) {
+  const loaderScript = createScript({}, polyfillsLoader.code);
+  append(bodyAst, loaderScript);
+}
+
+/**
+ * @param {any} headAst
+ * @param {PolyfillsLoaderConfig} cfg
+ */
+function injectPrefetchLinks(headAst, cfg) {
+  for (const file of cfg.modern.files) {
+    const { path } = file;
+    const href = path.startsWith('.') || path.startsWith('/') ? path : `./${path}`;
+    if ([fileTypes.MODULE, fileTypes.ES_MODULE_SHIMS].includes(file.type)) {
+      append(
+        headAst,
+        createElement('link', {
+          rel: 'preload',
+          href,
+          as: 'script',
+          crossorigin: 'anonymous',
+        }),
+      );
+    } else {
+      append(headAst, createElement('link', { rel: 'preload', href, as: 'script' }));
+    }
+  }
+}
+
+/**
  * Transforms an index.html file, injecting a polyfills loader for
  * compatibility with older browsers.
  *
@@ -78,10 +113,11 @@ function injectPolyfillsLoader(htmlString, cfg) {
     return { htmlString, polyfillFiles: [] };
   }
 
-  const loaderScript = createScript({}, polyfillsLoader.code);
-  append(bodyAst, loaderScript);
-
+  if (cfg.preload) {
+    injectPrefetchLinks(headAst, cfg);
+  }
   injectImportMapPolyfills(documentAst, headAst, cfg);
+  injectLoaderScript(bodyAst, polyfillsLoader);
 
   return {
     htmlString: serialize(documentAst),

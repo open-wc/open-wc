@@ -35,19 +35,18 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-              - repo/node_modules
-              - repo/packages/*/node_modules
-              - repo/packages/*/dist
+            - repo/node_modules
+            - repo/packages/*
   test-local:
     <<: *defaults
     steps:
       - checkout
-      - attach_workspace:
-            at: ~/
       # Download and cache dependencies
       - restore_cache:
           keys:
             - v4-dependencies-{{ checksum "yarn.lock" }}
+      - attach_workspace:
+          at: ~/
       # run lint
       - run: npm run lint
 
@@ -61,12 +60,12 @@ jobs:
     steps:
       - checkout
       # Download and cache dependencies
-      - attach_workspace:
-            at: ~/
-      # Download and cache dependencies
       - restore_cache:
           keys:
             - v4-dependencies-{{ checksum "yarn.lock" }}
+      # Download and cache dependencies
+      - attach_workspace:
+          at: ~/
       - run: npm run test:bs
   deploy:
     <<: *defaults

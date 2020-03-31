@@ -16,14 +16,8 @@ const {
   fileTypes,
   createContentHash,
   cleanImportPath,
-  createElement,
-  createScript,
-  createModuleScript,
-  findImportMapScripts,
-  findJsScripts,
   getScriptFileType,
   hasFileOfType,
-  toBrowserPath,
 } = require('./src/utils');
 
 module.exports = {
@@ -34,12 +28,6 @@ module.exports = {
   fileTypes,
   createContentHash,
   cleanImportPath,
-  createElement,
-  createScript,
-  createModuleScript,
-  findImportMapScripts,
-  findJsScripts,
   getScriptFileType,
   hasFileOfType,
-  toBrowserPath,
 };

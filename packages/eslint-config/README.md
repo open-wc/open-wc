@@ -1,8 +1,8 @@
 # Linting ESLint
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 Use [ESLint](https://eslint.org/) to lint your es6 code.
+
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ## Setup
 

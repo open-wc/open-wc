@@ -53,13 +53,25 @@ module.exports = function readCommandLineArgs() {
     },
     {
       name: 'manager-path',
-      defaultValue: mainJs.managerPath || '@open-wc/demoing-storybook/manager.js',
+      defaultValue: mainJs.managerPath || 'storybook-prebuilt/manager.js',
       description: 'Import path of a prebuilt manager file',
     },
     {
       name: 'preview-path',
       defaultValue: mainJs.previewPath || 'storybook-prebuilt/web-components.js',
       description: 'Import path of a prebuilt preview file',
+    },
+    {
+      name: 'disable-recommended-addons',
+      type: Boolean,
+      defaultValue:
+        typeof mainJs.disableRecommendedAddons === 'boolean'
+          ? mainJs.disableRecommendedAddons
+          : false,
+    },
+    {
+      name: 'experimental-md-docs',
+      type: Boolean,
     },
     { name: 'help', type: Boolean, description: 'See all options' },
   ];
@@ -99,11 +111,26 @@ module.exports = function readCommandLineArgs() {
     defaultConfigName: 'start-storybook.config.js',
   });
 
+  const addons = mainJs.addons || [];
+  if (!storybookArgs['disable-recommended-addons']) {
+    addons.push(
+      'storybook-prebuilt/addon-actions/register.js',
+      'storybook-prebuilt/addon-knobs/register.js',
+      'storybook-prebuilt/addon-a11y/register.js',
+      'storybook-prebuilt/addon-docs/register.js',
+      'storybook-prebuilt/addon-backgrounds/register.js',
+      'storybook-prebuilt/addon-links/register.js',
+      'storybook-prebuilt/addon-viewport/register.js',
+    );
+  }
+
   return {
     configDir: storybookArgs['config-dir'],
     stories: storybookArgs.stories,
     managerPath: storybookArgs['manager-path'],
     previewPath: storybookArgs['preview-path'],
+    addons,
+    experimentalMdDocs: storybookArgs['experimental-md-docs'],
     // some args may be overwritten, as es-dev-server reads start-storybook.config.js
     ...esDevServerConfig,
     ...mainJs.esDevServer,

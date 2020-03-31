@@ -133,4 +133,18 @@ describe('server', () => {
     expect(responseText).to.include('<title>My app</title>');
     server.close();
   });
+
+  it('calls server start and stop functions', async () => {
+    let onStart = false;
+    const { server } = await startServer(
+      createConfig({
+        onServerStart() {
+          onStart = true;
+        },
+      }),
+    );
+
+    expect(onStart).to.be.true;
+    server.close();
+  });
 });

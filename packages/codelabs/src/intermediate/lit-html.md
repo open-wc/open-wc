@@ -39,7 +39,7 @@ At the bottom of each section, there is a "View final result" button, this will 
 
 ## Setup
 
-In this codelab, we will build a news app. This is a great exercise to learn the intermediate parts of lit-html and lit-element.
+In this codelab, we will build a brewery app. This is a great exercise to learn the intermediate parts of lit-html and lit-element.
 
 You can follow this codelab using anything that can display a simple HTML page. For the best editing experience, we recommend setting this up using your favorite IDE. Alternatively, you can use an online code editor like [jsbin](https://jsbin.com/?html,output), [stackblitz](https://stackblitz.com/) or [webcomponents.dev](https://webcomponents.dev/).
 
@@ -63,7 +63,7 @@ Make sure that you add `type="module"` to the script tag.
 In this example, we are using `unpkg`, a CDN from which we can easily import any modules that are available on NPM. When working on a real project, it is a good idea to use an actual package manager such as NPM or yarn.
 </aside>
 
-You should already know how to create a web component using `LitElement`. Go ahead and create one which renders '_My news app_' to the screen. When it works, you're ready to move on to the next step.
+You should already know how to create a web component using `LitElement`. Go ahead and create one which renders '_My brewery app_' to the screen. When it works, you're ready to move on to the next step.
 
 ---
 
@@ -74,20 +74,20 @@ You should already know how to create a web component using `LitElement`. Go ahe
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <brewery-app></brewery-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
 
-      class NewsApp extends LitElement {
+      class BreweryApp extends LitElement {
         render() {
           return html`
-            My news app
+            My brewery app
           `;
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('brewery-app', BreweryApp);
     </script>
   </body>
 </html>
@@ -95,26 +95,41 @@ You should already know how to create a web component using `LitElement`. Go ahe
 
 </details>
 
-## Google news API
+## OpenBreweryDB API
 
-For this codelab, we will be fetching live data from the google news API. You will need to retrieve an API key first:
+For this codelab, we will be fetching data from the api of [Open Brewery DB](https://www.openbrewerydb.org/). Use the url provided to connect and retrieve data from the Open Brewery API `https://api.openbrewerydb.org/breweries`.
 
-- Go to https://newsapi.org/
-- Click 'Get API key'
-- Register for an account.
-  - **tip**: you don't need to use an actual valid e-mail address
-- Remember your API key
+Create a variable storing the URL. You can test the URL by visiting it from the browser. You should see the API return a JSON response. The return response object you can expect from the api should look similar to this:
 
-When you have your API key, you can construct the URL needed to fetch news articles using the following format:
-`https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}`.
+```json
+[
+  {
+    "id": 2,
+    "name": "Avondale Brewing Co",
+    "brewery_type": "micro",
+    "street": "201 41st St S",
+    "city": "Birmingham",
+    "state": "Alabama",
+    "postal_code": "35222-1932",
+    "country": "United States",
+    "longitude": "-86.774322",
+    "latitude": "33.524521",
+    "phone": "2057775456",
+    "website_url": "http://www.avondalebrewing.com",
+    "updated_at": "2018-08-23T23:19:57.825Z",
+    "tag_list": []
+  },
+  "..."
+]
+```
 
-You will need to fill in your API key and a news topic. For example: `https://newsapi.org/v2/everything?q=web%20development&apiKey=123456`.
+<aside class="notice">
+If you're stuck, you can <a href="https://www.openbrewerydb.org/documentation/01-listbreweries">read the documentation</a> on the Open Brewery DB website.
+</aside>
 
-Create your URL, and visit it from the browser. You should see the API return a JSON response. If you're stuck, you can try the [getting started](https://newsapi.org/docs/get-started) page for the news API. Don't follow any of the code examples yet, we will look into this in the next step
+## Fetching breweries
 
-## Fetching news articles
-
-Besides displaying UI, web components can also use any of the available javascript APIs. We are going to use the `fetch` function to make an HTTP request to retrieve our news articles. `fetch` is an asynchronous operation, and it costs system resources. We, therefore, need to be a bit more careful about when and how we use it.
+Besides displaying UI, web components can also use any of the available javascript APIs. We are going to use the `fetch` function to make an HTTP request to retrieve a list of breweries. `fetch` is an asynchronous operation, and it costs system resources. We, therefore, need to be a bit more careful about when and how we use it.
 
 `LitElement` has several lifecycle methods available for this, some of them will be familiar to you by now. See [this page](/faq/lit-element-lifecycle.html) for a full overview and reference of all the available lifecycle methods.
 
@@ -122,8 +137,8 @@ We could trigger our `fetch` in the constructor since it's run only once. But be
 
 ### Tasks to complete this step:
 
-- Fetch articles from the news API
-- Render the fetched articles as JSON
+- Fetch breweries from the OpenBreweryDB API
+- Render the fetched breweries as JSON
 
 ### Tips
 
@@ -132,21 +147,21 @@ We could trigger our `fetch` in the constructor since it's run only once. But be
 <code>fetch</code> is a browser API for making HTTP requests. It's promise based, and it returns a streaming response. We can turn the the stream into JSON using the <code>json</code> function:
 
 ```js
-async fetchArticles() {
-  const response = await fetch('https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}');
+async fetchBreweries() {
+  const response = await fetch('https://api.openbrewerydb.org/breweries');
   const jsonResponse = await response.json();
-  this.articles = jsonResponse.articles;
+  this.breweries = jsonResponse;
 }
 ```
 
 If you're not familiar with [async await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), this is what it looks like using `Promise`:
 
 ```js
-fetchArticles() {
-  fetch('https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}')
+fetchBreweries() {
+  fetch('https://api.openbrewerydb.org/breweries')
     .then(response => response.json())
     .then((jsonResponse) => {
-      this.articles = jsonResponse.articles;
+      this.breweries = jsonResponse;
     });
 }
 ```
@@ -157,12 +172,12 @@ fetchArticles() {
  <summary>Example connectedCallback</summary>
 
 ```js
-class NewsApp extends LitElement {
+class BreweryApp extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    if (!this.articles) {
-      this.fetchArticles();
+    if (!this.breweries) {
+      this.fetchBreweries();
     }
   }
 }
@@ -171,12 +186,12 @@ class NewsApp extends LitElement {
 </details>
 
 <details>
-<summary>Example of articles rendered as JSON</summary>
+<summary>Example of breweries rendered as JSON</summary>
 
 ```js
 render() {
   return html`
-    <pre>${JSON.stringify(this.articles, null, 2)}</pre>
+    <pre>${JSON.stringify(this.breweries, null, 2)}</pre>
   `;
 }
 ```
@@ -192,42 +207,40 @@ render() {
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <brewery-app></brewery-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
 
-      class NewsApp extends LitElement {
+      class BreweryApp extends LitElement {
         static get properties() {
           return {
-            articles: { type: Array },
+            breweries: { type: Array },
           };
         }
 
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.breweries) {
+            this.fetchBreweries();
           }
         }
 
-        async fetchArticles() {
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
+        async fetchBreweries() {
+          const response = await fetch('https://api.openbrewerydb.org/breweries');
           const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+          this.breweries = jsonResponse;
         }
 
         render() {
           return html`
-            <pre>${JSON.stringify(this.articles, null, 2)}</pre>
+            <pre>${JSON.stringify(this.breweries, null, 2)}</pre>
           `;
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('brewery-app', BreweryApp);
     </script>
   </body>
 </html>
@@ -237,24 +250,24 @@ render() {
 
 ## Displaying a loading state
 
-Fetching news articles is async, so the first time your `render` function is called they aren't there yet. This isn't a problem right now, because `JSON.stringify` handles null or undefined input. But when we want to start doing things with the articles, our code will crash because the first time `this.articles` is undefined.
+Fetching the breweries is async, so the first time your `render` function is called they aren't there yet. This isn't a problem right now, because `JSON.stringify` handles null or undefined input. But when we want to start doing things with the list of breweries, our code will crash because the first time `this.breweries` is undefined.
 
-We can cover this scenario by preventing the rendering of our main content until the articles are fetched. We can take this opportunity to display a nice loading state for the user as well.
+We can cover this scenario by preventing the rendering of our main content until the list of breweries are fetched. We can take this opportunity to display a nice loading state for the user as well.
 
 ### Tasks to complete this step
 
-- Maintain a boolean indicating whether articles are being fetched
-- Display a message while articles are being fetched
+- Maintain a boolean indicating whether the list of breweries are being fetched
+- Display a message while the list of breweries are being fetched
 
 <details>
 <summary>Maintain a loading state while fetching</summary>
 
 ```js
-async fetchArticles() {
+async fetchBreweries() {
   this.loading = true;
-  const response = await fetch('https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}');
+  const response = await fetch('https://api.openbrewerydb.org/breweries');
   const jsonResponse = await response.json();
-  this.articles = jsonResponse.articles;
+  this.breweries = jsonResponse;
   this.loading = false;
 }
 ```
@@ -271,7 +284,7 @@ render() {
   }
 
   return html`
-    <pre>${JSON.stringify(this.articles, null, 2)}</pre>
+    <pre>${JSON.stringify(this.breweries, null, 2)}</pre>
   `;
 }
 ```
@@ -287,34 +300,32 @@ render() {
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <brewery-app></brewery-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
 
-      class NewsApp extends LitElement {
+      class BreweryApp extends LitElement {
         static get properties() {
           return {
             loading: { type: Boolean },
-            articles: { type: Array },
+            breweries: { type: Array },
           };
         }
 
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.breweries) {
+            this.fetchBreweries();
           }
         }
 
-        async fetchArticles() {
+        async fetchBreweries() {
           this.loading = true;
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
+          const response = await fetch('https://api.openbrewerydb.org/breweries');
           const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+          this.breweries = jsonResponse;
           this.loading = false;
         }
 
@@ -326,12 +337,12 @@ render() {
           }
 
           return html`
-            <pre>${JSON.stringify(this.articles, null, 2)}</pre>
+            <pre>${JSON.stringify(this.breweries, null, 2)}</pre>
           `;
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('brewery-app', BreweryApp);
     </script>
   </body>
 </html>
@@ -339,56 +350,59 @@ render() {
 
 </details>
 
-## Displaying articles
+## Displaying breweries
 
-To display individual article it's best to create a new component so that we separate the logic from the main app. This should be a plain UI component, which receives the article data as plain properties to display.
+To display individual breweries it's best to create a new component so that we separate the logic from the main app. This should be a plain UI component, which receives the brewery data as plain properties to display.
 
 ### Tasks to complete this step
 
-- Create a `news-article` element that displays the article's title and description.
-- Display a list of `news-article` elements in the `news-app`, one for each article received from the news API.
+- Create a `brewery-detail` element that displays the brewery's name, type and city.
+- Display a list of `brewery-detail` elements in the `brewery-app`, one for each brewery received from the OpenBreweryDB API.
 
 ### Tips
 
 <details>
- <summary>Create an article component</summary>
+ <summary>Create an brewery component</summary>
 
 ```js
-class NewsArticle extends LitElement {
+class BreweryDetail extends LitElement {
   static get properties() {
     return {
-      title: { type: String },
-      description: { type: String },
+      name: { type: String },
+      type: { type: String },
+      city: { type: String },
     };
   }
 
   render() {
     return html`
-      <h3>${this.title}</h3>
-      <p>${this.description}</p>
+      <h3>${this.name}</h3>
+      <p>brewery type: ${this.type}</p>
+      <p>city: ${this.city}</p>
     `;
   }
 }
 
-customElements.define('news-article', NewsArticle);
+customElements.define('brewery-detail', BreweryDetail);
 ```
 
 </details>
 
 <details>
-<summary>Display a list of articles</summary>
+<summary>Display a list of breweries</summary>
 
 ```js
 render() {
   return html`
     <ul>
-      ${this.articles.map(
-        article => html`
+      ${this.breweries.map(
+        brewery => html`
           <li>
-            <news-article
-              .title=${article.title}
-              .description=${article.description}
-            ></news-article>
+            <brewery-detail
+              .name=${brewery.name}
+              .type=${brewery.brewery_type}
+              .city=${brewery.city}
+            ></brewery-detail>
           </li>
         `,
       )}
@@ -408,34 +422,32 @@ render() {
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <brewery-app></brewery-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
 
-      class NewsApp extends LitElement {
+      class BreweryApp extends LitElement {
         static get properties() {
           return {
             loading: { type: Boolean },
-            articles: { type: Array },
+            breweries: { type: Array },
           };
         }
 
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.breweries) {
+            this.fetchBreweries();
           }
         }
 
-        async fetchArticles() {
+        async fetchBreweries() {
           this.loading = true;
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
+          const response = await fetch('https://api.openbrewerydb.org/breweries');
           const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+          this.breweries = jsonResponse;
           this.loading = false;
         }
 
@@ -447,17 +459,18 @@ render() {
           }
 
           return html`
-            <h1>News App</h1>
+            <h1>Breweries App</h1>
 
-            <h2>Articles</h2>
+            <h2>Breweries</h2>
             <ul>
-              ${this.articles.map(
-                article => html`
+              ${this.breweries.map(
+                brewery => html`
                   <li>
-                    <news-article
-                      .title=${article.title}
-                      .description=${article.description}
-                    ></news-article>
+                    <brewery-detail
+                      .name=${brewery.name}
+                      .type=${brewery.brewery_type}
+                      .city=${brewery.city}
+                    ></brewery-detail>
                   </li>
                 `,
               )}
@@ -466,25 +479,27 @@ render() {
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('brewery-app', BreweryApp);
 
-      class NewsArticle extends LitElement {
+      class BreweryDetail extends LitElement {
         static get properties() {
           return {
-            title: { type: String },
-            description: { type: String },
+            name: { type: String },
+            type: { type: String },
+            city: { type: String },
           };
         }
 
         render() {
           return html`
-            <h3>${this.title}</h3>
-            <p>${this.description}</p>
+            <h3>${this.name}</h3>
+            <p>brewery type: ${this.type}</p>
+            <p>city: ${this.city}</p>
           `;
         }
       }
 
-      customElements.define('news-article', NewsArticle);
+      customElements.define('brewery-detail', BreweryDetail);
     </script>
   </body>
 </html>
@@ -492,17 +507,17 @@ render() {
 
 </details>
 
-## Adding a read/unread toggle
+## Adding a visited/not-visited toggle
 
-Any serious news app allows the user to track whether or not they have read an article, so let's add this capability to ours as well.
+On a brewery tour it's useful to know which brewery has already been visited. To allow the user to track whether or not they have already visited a brewery we need a button, so the user can click to mark they have visited the brewery.
 
-As a start, you can maintain a local property for the read/unread status in the `news-article` component. We will look into lifting this data to the parent component in the next step.
+As a start, you can maintain a local property for the visited/not-visited status in the `brewery-detail` component. We will look into lifting this data to the parent component in the next step.
 
 ### Tasks to complete this step
 
-- Add a property on the `news-article` component which indicates whether the user has read the article.
-- Display the read/unread status in the title of each article.
-- Add a button on the `news-article` component to toggle between the read/unread status, storing this status locally.
+- Add a property on the `brewery-detail` component which indicates whether the user has visited the brewery.
+- Display the visited/not-visited status in the name of each brewery.
+- Add a button on the `brewery-detail` component to toggle between the visited/not-visited status, storing this status locally.
 
 ### Tips
 
@@ -514,7 +529,7 @@ You can conditionally render something using any valid javascript expression. Fo
 ```js
 render() {
   return html`
-    <h3>${this.title} (${this.read ? 'read' : 'unread'})</h3>
+    <h3>${this.name} (${this.visited ? 'visited' : 'not-visited'})</h3>
   `;
 }
 ```
@@ -522,18 +537,18 @@ render() {
 If the logic is a bit more complex, separating this into a pure function is very useful. The advantage here is that we can use regular if statements, so we don't need to squash everything into a single expression:
 
 ```js
-function readStatus(read) {
-  if (read) {
-    return '(read)';
+function visitedStatus(visited) {
+  if (visited) {
+    return '(visited)';
   }
 
-  return '(unread)';
+  return '(not-visited)';
 }
 
-class MyElement extends LitElement {
+class MyBrewery extends LitElement {
   render() {
     return html`
-      My article (${readStatus(this.read)})
+      Bendërbrāu ${visitedStatus(this.visited)}
     `;
   }
 }
@@ -570,34 +585,32 @@ In this example, we register an event listener for the `click` event, and call t
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <brewery-app></brewery-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
 
-      class NewsApp extends LitElement {
+      class BreweryApp extends LitElement {
         static get properties() {
           return {
             loading: { type: Boolean },
-            articles: { type: Array },
+            breweries: { type: Array },
           };
         }
 
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.breweries) {
+            this.fetchBreweries();
           }
         }
 
-        async fetchArticles() {
+        async fetchBreweries() {
           this.loading = true;
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
+          const response = await fetch('https://api.openbrewerydb.org/breweries');
           const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+          this.breweries = jsonResponse;
           this.loading = false;
         }
 
@@ -609,18 +622,19 @@ In this example, we register an event listener for the `click` event, and call t
           }
 
           return html`
-            <h1>News App</h1>
+            <h1>Breweries App</h1>
 
-            <h2>Articles</h2>
+            <h2>Breweries</h2>
             <ul>
-              ${this.articles.map(
-                article => html`
+              ${this.breweries.map(
+                brewery => html`
                   <li>
-                    <news-article
-                      .title=${article.title}
-                      .description=${article.description}
-                      .read=${article.read}
-                    ></news-article>
+                    <brewery-detail
+                      .name=${brewery.name}
+                      .type=${brewery.brewery_type}
+                      .city=${brewery.city}
+                      .visited=${brewery.visited}
+                    ></brewery-detail>
                   </li>
                 `,
               )}
@@ -629,33 +643,35 @@ In this example, we register an event listener for the `click` event, and call t
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('brewery-app', BreweryApp);
 
-      class NewsArticle extends LitElement {
+      class BreweryDetail extends LitElement {
         static get properties() {
           return {
-            title: { type: String },
-            description: { type: String },
-            read: { type: Boolean },
+            name: { type: String },
+            type: { type: String },
+            city: { type: String },
+            visited: { type: Boolean },
           };
         }
 
         render() {
           return html`
-            <h3>${this.title} (${this.read ? 'read' : 'unread'})</h3>
-            <p>${this.description}</p>
-            <button @click=${this._toggleReadStatus}>
-              Mark as ${this.read ? 'unread' : 'read'}
+            <h3>${this.name} (${this.visited ? 'visited' : 'not-visited'})</h3>
+            <p>brewery type: ${this.type}</p>
+            <p>city: ${this.city}</p>
+            <button @click=${this._toggleVisitedStatus}>
+              Mark as ${this.visited ? 'not-visited' : 'visited'}
             </button>
           `;
         }
 
-        _toggleReadStatus() {
-          this.read = !this.read;
+        _toggleVisitedStatus() {
+          this.visited = !this.visited;
         }
       }
 
-      customElements.define('news-article', NewsArticle);
+      customElements.define('brewery-detail', BreweryDetail);
     </script>
   </body>
 </html>
@@ -663,18 +679,18 @@ In this example, we register an event listener for the `click` event, and call t
 
 </details>
 
-## Add a read/unread counter
+## Add a visited/not-visited counter
 
-Now that the user can mark articles as read/unread, we want to display the total amount of read and unread items in the app. This counter should be displayed in the `news-app`, but we're storing the read/unread status in the `news-article` component. We need to think of a better way to solve this...
+Now that the user can mark breweries as visited/not-visited, we want to display the total amount of visited breweries and the breweries that still need to be visited in the app. This counter should be displayed in the `brewery-app`, but we're storing the visited/not-visited status in the `brewery-detail` component. We need to think of a better way to solve this...
 
 It's best to keep the data in your application flowing in one direction from top to bottom. Parent components are responsible for data of child components, including changing this data.
 
-In our case, the `news-article` component can fire an event to the `news-app` component to request a change in the read/unread status.
+In our case, the `brewery-detail` component can fire an event to the `brewery-app` component to request a change in the visited/not-visited status.
 
 ### Tasks to complete this step
 
-- Communicate the read/unread status of the article back to the `news-app` component.
-- Display the total amount of read and unread articles in the `news-app` component.
+- Communicate the visited/not-visited status of the brewery back to the `brewery-app` component.
+- Display the total amount of visited breweries and the breweries that still need to be visited in the `brewery-app` component.
 
 ### Tips
 
@@ -684,8 +700,8 @@ Remember that with `LitElement`, you need to use immutable data patterns. Otherw
  <summary>Firing events</summary>
 
 ```js
-_toggleReadStatus() {
-  this.dispatchEvent(new CustomEvent('toggle-read-status'));
+_toggleVisitedStatus() {
+  this.dispatchEvent(new CustomEvent('toggle-visited-status'));
 }
 ```
 
@@ -698,10 +714,12 @@ When you add an event listener on an element in a list of templates, you need a 
 
 ```js
 html`
-  ${this.articles.map(
-    article => html`
+  ${this.breweries.map(
+    brewery => html`
       <li>
-        <news-article @toggle-read-status=${() => this._toggleReadStatus(article)}></news-article>
+        <brewery-detail
+          @toggle-visited-status=${() => this._toggleVisitedStatus(brewery)}
+        ></brewery-detail>
       </li>
     `,
   )}
@@ -711,14 +729,14 @@ html`
 </details>
 
 <details>
- <summary>Update read status in main app</summary>
+ <summary>Update visited status in main app</summary>
 
-To update the read status, we need to use immutable data update patterns. This means we should create a articles array, and a new object for the article that was updated. A quick way to do this, is by using a map function:
+To update the visited status, we need to use immutable data update patterns. This means we should create a breweries array, and a new object for the brewery that was updated. A quick way to do this, is by using a map function:
 
 ```js
-_toggleReadStatus(articleToUpdate) {
-  this.articles = this.articles.map(article => {
-    return article === articleToUpdate ? { ...article, read: !article.read } : article;
+_toggleVisitedStatus(breweryToUpdate) {
+  this.breweries = this.breweries.map(brewery => {
+    return brewery === breweryToUpdate ? { ...brewery, visited: !brewery.visted } : brewery;
   });
 }
 ```
@@ -728,11 +746,11 @@ _toggleReadStatus(articleToUpdate) {
 <details>
  <summary>Calculating derived data</summary>
 
-To display the total amount of read/unread items, we can calculate it on top of the render function:
+To display the total amount of visisted/not-visited breweries, we can calculate it on top of the render function:
 
 ```js
 render() {
- const totalRead = this.articles.filter(a => a.read).length;
+ const totalVisited = this.breweries.filter(b => b.visited).length;
 
  return html`...`;
 }
@@ -749,34 +767,32 @@ render() {
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <brewery-app></brewery-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
 
-      class NewsApp extends LitElement {
+      class BreweryApp extends LitElement {
         static get properties() {
           return {
             loading: { type: Boolean },
-            articles: { type: Array },
+            breweries: { type: Array },
           };
         }
 
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.breweries) {
+            this.fetchBreweries();
           }
         }
 
-        async fetchArticles() {
+        async fetchBreweries() {
           this.loading = true;
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
+          const response = await fetch('https://api.openbrewerydb.org/breweries');
           const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+          this.breweries = jsonResponse;
           this.loading = false;
         }
 
@@ -787,24 +803,25 @@ render() {
             `;
           }
 
-          const totalRead = this.articles.filter(a => a.read).length;
-          const totalUnread = this.articles.length - totalRead;
+          const totalVisited = this.breweries.filter(b => b.visited).length;
+          const totalNotVisited = this.breweries.length - totalVisited;
 
           return html`
-            <h1>News App</h1>
+            <h1>Breweries App</h1>
 
-            <h2>Articles</h2>
-            <p>(${totalRead} read and ${totalUnread} unread)</p>
+            <h2>Breweries</h2>
+            <p>(${totalVisited} visited and ${totalNotVisited} still to go)</p>
             <ul>
-              ${this.articles.map(
-                article => html`
+              ${this.breweries.map(
+                brewery => html`
                   <li>
-                    <news-article
-                      .title=${article.title}
-                      .description=${article.description}
-                      .read=${article.read}
-                      @toggle-read-status=${() => this._toggleReadStatus(article)}
-                    ></news-article>
+                    <brewery-detail
+                      .name=${brewery.name}
+                      .type=${brewery.brewery_type}
+                      .city=${brewery.city}
+                      .visited=${brewery.visited}
+                      @toggle-visited-status=${() => this._toggleVisitedStatus(brewery)}
+                    ></brewery-detail>
                   </li>
                 `,
               )}
@@ -812,40 +829,44 @@ render() {
           `;
         }
 
-        _toggleReadStatus(articleToUpdate) {
-          this.articles = this.articles.map(article => {
-            return article === articleToUpdate ? { ...article, read: !article.read } : article;
+        _toggleVisitedStatus(breweryToUpdate) {
+          this.breweries = this.breweries.map(brewery => {
+            return brewery === breweryToUpdate
+              ? { ...brewery, visited: !brewery.visited }
+              : brewery;
           });
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('brewery-app', BreweryApp);
 
-      class NewsArticle extends LitElement {
+      class BreweryDetail extends LitElement {
         static get properties() {
           return {
-            title: { type: String },
-            description: { type: String },
-            read: { type: Boolean },
+            name: { type: String },
+            type: { type: String },
+            city: { type: String },
+            visited: { type: Boolean },
           };
         }
 
         render() {
           return html`
-            <h3>${this.title} (${this.read ? 'read' : 'unread'})</h3>
-            <p>${this.description}</p>
-            <button @click=${this._toggleReadStatus}>
-              Mark as ${this.read ? 'unread' : 'read'}
+            <h3>${this.name} (${this.visited ? 'visited' : 'not-visited'})</h3>
+            <p>brewery type: ${this.type}</p>
+            <p>city: ${this.city}</p>
+            <button @click=${this._toggleVisitedStatus}>
+              Mark as ${this.visited ? 'not-visited' : 'visited'}
             </button>
           `;
         }
 
-        _toggleReadStatus() {
-          this.dispatchEvent(new CustomEvent('toggle-read-status'));
+        _toggleVisitedStatus() {
+          this.dispatchEvent(new CustomEvent('toggle-visited-status'));
         }
       }
 
-      customElements.define('news-article', NewsArticle);
+      customElements.define('brewery-detail', BreweryDetail);
     </script>
   </body>
 </html>
@@ -853,20 +874,20 @@ render() {
 
 </details>
 
-## Add a read/unread filter
+## Add a visited/not-visited filter
 
-Now that the `news-app` component knows about the read/unread status, we can do more interesting things like allowing the user to filter based on the article's status.
+Now that the `brewery-app` component knows about the visited/not-visited status, we can do more interesting things like allowing the user to filter based on the brewery's status.
 
 It's a good practice to separate concerns in your application, and in a real application, such a filter might grow to be quite complex in UI and logic. In those cases, it can be a good idea to separate it into a separate component.
 
-If the functionality is small, like in our example application, we can keep it in the `news-app` component for now.
+If the functionality is small, like in our example application, we can keep it in the `brewery-app` component for now.
 
 ### Tasks to complete this step
 
-- Add three buttons to the `news-app` component:
-  - A button which displays only read articles
-  - A button which displays only unread articles
-  - A button which displays all articles
+- Add three buttons to the `brewery-app` component:
+  - A button which displays only visited breweries
+  - A button which displays only not-visited breweries
+  - A button which displays all breweries
 
 ### Tips
 
@@ -875,7 +896,7 @@ If the functionality is small, like in our example application, we can keep it i
 
 To create a filter, each of the three buttons can update a `filter` property on the element. Changing this property should trigger a re-render.
 
-Then, on the top of your `render` function, you can filter the array of articles using this filter value. Make sure you're using this new array in your template, and not the original array.
+Then, on the top of your `render` function, you can filter the array of breweries using this filter value. Make sure you're using this new array in your template, and not the original array.
 
 </details>
 
@@ -888,16 +909,16 @@ Then, on the top of your `render` function, you can filter the array of articles
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <brewery-app></brewery-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
 
-      class NewsApp extends LitElement {
+      class BreweryApp extends LitElement {
         static get properties() {
           return {
             loading: { type: Boolean },
-            articles: { type: Array },
+            breweries: { type: Array },
             filter: { type: String },
           };
         }
@@ -905,18 +926,16 @@ Then, on the top of your `render` function, you can filter the array of articles
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.breweries) {
+            this.fetchBreweries();
           }
         }
 
-        async fetchArticles() {
+        async fetchBreweries() {
           this.loading = true;
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
+          const response = await fetch('https://api.openbrewerydb.org/breweries');
           const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+          this.breweries = jsonResponse;
           this.loading = false;
         }
 
@@ -927,35 +946,36 @@ Then, on the top of your `render` function, you can filter the array of articles
             `;
           }
 
-          const totalRead = this.articles.filter(a => a.read).length;
-          const totalUnread = this.articles.length - totalRead;
-          const articles = this.articles.filter(article => {
+          const totalVisited = this.breweries.filter(b => b.visited).length;
+          const totalNotVisted = this.breweries.length - totalVisited;
+          const breweries = this.breweries.filter(brewery => {
             if (!this.filter) {
               return true;
             }
-            return this.filter === 'read' ? article.read : !article.read;
+            return this.filter === 'visited' ? brewery.visited : !brewery.visited;
           });
 
           return html`
-            <h1>News App</h1>
+            <h1>Breweries App</h1>
 
-            <h2>Articles</h2>
-            <p>(${totalRead} read and ${totalUnread} unread)</p>
+            <h2>Breweries</h2>
+            <p>(${totalVisited} visited and ${totalNotVisted} still to go)</p>
 
             <button @click=${this._filterNone}>Filter none</button>
-            <button @click=${this._filterRead}>Filter read</button>
-            <button @click=${this._filterUnread}>Filter unread</button>
+            <button @click=${this._filterVisited}>Filter visited</button>
+            <button @click=${this._filterNotVisited}>Filter not-visited</button>
 
             <ul>
-              ${articles.map(
-                article => html`
+              ${breweries.map(
+                brewery => html`
                   <li>
-                    <news-article
-                      .title=${article.title}
-                      .description=${article.description}
-                      .read=${article.read}
-                      @toggle-read-status=${() => this.toggleReadStatus(article)}
-                    ></news-article>
+                    <brewery-detail
+                      .name=${brewery.name}
+                      .type=${brewery.brewery_type}
+                      .city=${brewery.city}
+                      .visited=${brewery.visited}
+                      @toggle-visited-status=${() => this.toggleVisitedStatus(brewery)}
+                    ></brewery-detail>
                   </li>
                 `,
               )}
@@ -963,9 +983,11 @@ Then, on the top of your `render` function, you can filter the array of articles
           `;
         }
 
-        toggleReadStatus(articleToUpdate) {
-          this.articles = this.articles.map(article => {
-            return article === articleToUpdate ? { ...article, read: !article.read } : article;
+        toggleVisitedStatus(breweryToUpdate) {
+          this.breweries = this.breweries.map(brewery => {
+            return brewery === breweryToUpdate
+              ? { ...brewery, visited: !brewery.visited }
+              : brewery;
           });
         }
 
@@ -973,42 +995,44 @@ Then, on the top of your `render` function, you can filter the array of articles
           this.filter = null;
         }
 
-        _filterRead() {
-          this.filter = 'read';
+        _filterVisited() {
+          this.filter = 'visited';
         }
 
-        _filterUnread() {
-          this.filter = 'unread';
+        _filterNotVisited() {
+          this.filter = 'not-visited';
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('brewery-app', BreweryApp);
 
-      class NewsArticle extends LitElement {
+      class BreweryDetail extends LitElement {
         static get properties() {
           return {
-            title: { type: String },
-            description: { type: String },
-            read: { type: Boolean },
+            name: { type: String },
+            type: { type: String },
+            city: { type: String },
+            visited: { type: Boolean },
           };
         }
 
         render() {
           return html`
-            <h3>${this.title} (${this.read ? 'read' : 'unread'})</h3>
-            <p>${this.description}</p>
-            <button @click=${this._toggleReadStatus}>
-              Mark as ${this.read ? 'unread' : 'read'}
+            <h3>${this.name} (${this.visited ? 'visited' : 'not-visited'})</h3>
+            <p>brewery type: ${this.type}</p>
+            <p>city: ${this.city}</p>
+            <button @click=${this._toggleVisitedStatus}>
+              Mark as ${this.visited ? 'not-visited' : 'visited'}
             </button>
           `;
         }
 
-        _toggleReadStatus() {
-          this.dispatchEvent(new CustomEvent('toggle-read-status'));
+        _toggleVisitedStatus() {
+          this.dispatchEvent(new CustomEvent('toggle-visited-status'));
         }
       }
 
-      customElements.define('news-article', NewsArticle);
+      customElements.define('brewery-detail', BreweryDetail);
     </script>
   </body>
 </html>
@@ -1044,8 +1068,8 @@ From:
 ```js
 html`
   <button @click=${this._filterNone}>Filter none</button>
-  <button @click=${this._filterRead}>Filter read</button>
-  <button @click=${this._filterUnread}>Filter unread</button>
+  <button @click=${this._filterVisited}>Filter visited</button>
+  <button @click=${this._filterNotVisited}>Filter not-visited</button>
 `;
 ```
 
@@ -1054,8 +1078,8 @@ To:
 ```js
 html`
   <mwc-button @click=${this._filterNone}>Filter none</mwc-button>
-  <mwc-button @click=${this._filterRead}>Filter read</mwc-button>
-  <mwc-button @click=${this._filterUnread}>Filter unread</mwc-button>
+  <mwc-button @click=${this._filterVisited}>Filter visited</mwc-button>
+  <mwc-button @click=${this._filterNotVisited}>Filter not-visited</mwc-button>
 `;
 ```
 
@@ -1070,17 +1094,17 @@ html`
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <brewery-app></brewery-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
       import 'https://unpkg.com/@material/mwc-button?module';
 
-      class NewsApp extends LitElement {
+      class BreweryApp extends LitElement {
         static get properties() {
           return {
             loading: { type: Boolean },
-            articles: { type: Array },
+            breweries: { type: Array },
             filter: { type: String },
           };
         }
@@ -1088,18 +1112,16 @@ html`
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.breweries) {
+            this.fetchBreweries();
           }
         }
 
-        async fetchArticles() {
+        async fetchBreweries() {
           this.loading = true;
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
+          const response = await fetch('https://api.openbrewerydb.org/breweries');
           const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+          this.breweries = jsonResponse;
           this.loading = false;
         }
 
@@ -1110,35 +1132,36 @@ html`
             `;
           }
 
-          const totalRead = this.articles.filter(a => a.read).length;
-          const totalUnread = this.articles.length - totalRead;
-          const articles = this.articles.filter(article => {
+          const totalVisited = this.breweries.filter(b => b.visited).length;
+          const totalNotVisited = this.breweries.length - totalVisited;
+          const breweries = this.breweries.filter(brewery => {
             if (!this.filter) {
               return true;
             }
-            return this.filter === 'read' ? article.read : !article.read;
+            return this.filter === 'visited' ? brewery.visited : !brewery.visited;
           });
 
           return html`
-            <h1>News App</h1>
+            <h1>Breweries App</h1>
 
-            <h2>Articles</h2>
-            <p>(${totalRead} read and ${totalUnread} unread)</p>
+            <h2>Breweries</h2>
+            <p>(${totalVisited} visited and ${totalNotVisited} still to go)</p>
 
             <mwc-button @click=${this._filterNone}>Filter none</mwc-button>
-            <mwc-button @click=${this._filterRead}>Filter read</mwc-button>
-            <mwc-button @click=${this._filterUnread}>Filter unread</mwc-button>
+            <mwc-button @click=${this._filterVisited}>Filter visited</mwc-button>
+            <mwc-button @click=${this._filterNotVisited}>Filter not-visited</mwc-button>
 
             <ul>
-              ${articles.map(
-                article => html`
+              ${breweries.map(
+                brewery => html`
                   <li>
-                    <news-article
-                      .title=${article.title}
-                      .description=${article.description}
-                      .read=${article.read}
-                      @toggle-read-status=${() => this.toggleReadStatus(article)}
-                    ></news-article>
+                    <brewery-detail
+                      .name=${brewery.name}
+                      .type=${brewery.brewery_type}
+                      .city=${brewery.city}
+                      .visited=${brewery.visited}
+                      @toggle-visited-status=${() => this.toggleVisitedStatus(brewery)}
+                    ></brewery-detail>
                   </li>
                 `,
               )}
@@ -1146,9 +1169,11 @@ html`
           `;
         }
 
-        toggleReadStatus(articleToUpdate) {
-          this.articles = this.articles.map(article => {
-            return article === articleToUpdate ? { ...article, read: !article.read } : article;
+        toggleVisitedStatus(breweryToUpdate) {
+          this.breweries = this.breweries.map(brewery => {
+            return brewery === breweryToUpdate
+              ? { ...brewery, visited: !brewery.visited }
+              : brewery;
           });
         }
 
@@ -1156,42 +1181,44 @@ html`
           this.filter = null;
         }
 
-        _filterRead() {
-          this.filter = 'read';
+        _filterVisited() {
+          this.filter = 'visited';
         }
 
-        _filterUnread() {
-          this.filter = 'unread';
+        _filterNotVisited() {
+          this.filter = 'not-visited';
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('brewery-app', BreweryApp);
 
-      class NewsArticle extends LitElement {
+      class BreweryDetail extends LitElement {
         static get properties() {
           return {
-            title: { type: String },
-            description: { type: String },
-            read: { type: Boolean },
+            name: { type: String },
+            type: { type: String },
+            city: { type: String },
+            visited: { type: Boolean },
           };
         }
 
         render() {
           return html`
-            <h3>${this.title} (${this.read ? 'read' : 'unread'})</h3>
-            <p>${this.description}</p>
-            <mwc-button @click=${this._toggleReadStatus}>
-              Mark as ${this.read ? 'unread' : 'read'}
+            <h3>${this.name} (${this.visited ? 'visited' : 'not-visited'})</h3>
+            <p>brewery type: ${this.type}</p>
+            <p>city: ${this.city}</p>
+            <mwc-button @click=${this._toggleVisitedStatus}>
+              Mark as ${this.visited ? 'not-visited' : 'visited'}
             </mwc-button>
           `;
         }
 
-        _toggleReadStatus() {
-          this.dispatchEvent(new CustomEvent('toggle-read-status'));
+        _toggleVisitedStatus() {
+          this.dispatchEvent(new CustomEvent('toggle-visited-status'));
         }
       }
 
-      customElements.define('news-article', NewsArticle);
+      customElements.define('brewery-detail', BreweryDetail);
     </script>
   </body>
 </html>
@@ -1201,23 +1228,23 @@ html`
 
 ## Template function
 
-For our `news-article` we created a separate web component. A web component creates a strong encapsulation boundary between the parent and child components. This is a great feature, we can develop components in complete isolation.
+For our `brewery-detail` we created a separate web component. A web component creates a strong encapsulation boundary between the parent and child components. This is a great feature, we can develop components in complete isolation.
 
 But sometimes this can be overkill for just simple templates, or we may want to have no boundaries so that we can share styles or select DOM nodes.
 
 Since lit-html templates are actual javascript variables, we could write our template as a function which returns our template:
 
 ```js
-function messageTemplate(message) {
+function BeerTemplate(beer) {
   return html`
-    <h1>${message}</h1>
+    <h1>${beer}</h1>
   `;
 }
 ```
 
 ### Tasks to complete this step
 
-- Replace the `news-article` component with a template function.
+- Replace the `brewery-detail` component with a template function.
 
 ### Tips
 
@@ -1227,12 +1254,13 @@ function messageTemplate(message) {
 We cannot fire any events from the template function. Instead, we should pass along the event handler from the parent component.
 
 ```js
-function articleTemplate(article, toggleReadStatus) {
+function breweryTemplate(brewery, toggleVisitedStatus) {
   return html`
-    <h3>${article.title} (${article.read ? 'read' : 'unread'})</h3>
-    <p>${article.description}</p>
-    <mwc-button @click=${toggleReadStatus}>
-      Mark as ${article.read ? 'unread' : 'read'}
+    <h3>${brewery.name} (${brewery.visited ? 'visited' : 'not-visited'})</h3>
+    <p>brewery type: ${brewery.brewery_type}</p>
+    <p>city: ${brewery.city}</p>
+    <mwc-button @click=${toggleVisitedStatus}>
+      Mark as ${brewery.visited ? 'not-visited' : 'visited'}
     </mwc-button>
   `;
 }
@@ -1243,7 +1271,7 @@ Then, to render the template:
 ```js
 html`
   <li>
-    ${articleTemplate(article, () => this.toggleReadStatus(article))}
+    ${breweryTemplate(brewery, () => this.toggleVisitedStatus(brewery))}
   </li>
 `;
 ```
@@ -1259,27 +1287,28 @@ html`
 <!DOCTYPE html>
 <html>
   <body>
-    <news-app></news-app>
+    <brewery-app></brewery-app>
 
     <script type="module">
       import { LitElement, html } from 'https://unpkg.com/lit-element?module';
       import 'https://unpkg.com/@material/mwc-button?module';
 
-      function articleTemplate(article, toggleReadStatus) {
+      function breweryTemplate(brewery, toggleVisitedStatus) {
         return html`
-          <h3>${article.title} (${article.read ? 'read' : 'unread'})</h3>
-          <p>${article.description}</p>
-          <mwc-button @click=${toggleReadStatus}>
-            Mark as ${article.read ? 'unread' : 'read'}
+          <h3>${brewery.name} (${brewery.visited ? 'visited' : 'not-visited'})</h3>
+          <p>brewery type: ${brewery.brewery_type}</p>
+          <p>city: ${brewery.city}</p>
+          <mwc-button @click=${toggleVisitedStatus}>
+            Mark as ${brewery.visited ? 'not-visited' : 'visited'}
           </mwc-button>
         `;
       }
 
-      class NewsApp extends LitElement {
+      class BreweryApp extends LitElement {
         static get properties() {
           return {
             loading: { type: Boolean },
-            articles: { type: Array },
+            breweries: { type: Array },
             filter: { type: String },
           };
         }
@@ -1287,18 +1316,16 @@ html`
         connectedCallback() {
           super.connectedCallback();
 
-          if (!this.articles) {
-            this.fetchArticles();
+          if (!this.breweries) {
+            this.fetchBreweries();
           }
         }
 
-        async fetchArticles() {
+        async fetchBreweries() {
           this.loading = true;
-          const response = await fetch(
-            'https://newsapi.org/v2/everything?q={some-topic}&apiKey={your-api-key}',
-          );
+          const response = await fetch('https://api.openbrewerydb.org/breweries');
           const jsonResponse = await response.json();
-          this.articles = jsonResponse.articles;
+          this.breweries = jsonResponse;
           this.loading = false;
         }
 
@@ -1309,30 +1336,30 @@ html`
             `;
           }
 
-          const totalRead = this.articles.filter(a => a.read).length;
-          const totalUnread = this.articles.length - totalRead;
-          const articles = this.articles.filter(article => {
+          const totalVisited = this.breweries.filter(b => b.visited).length;
+          const totalNotVisited = this.breweries.length - totalVisited;
+          const breweries = this.breweries.filter(brewery => {
             if (!this.filter) {
               return true;
             }
-            return this.filter === 'read' ? article.read : !article.read;
+            return this.filter === 'visited' ? brewery.visited : !brewery.visited;
           });
 
           return html`
-            <h1>News App</h1>
+            <h1>Breweries App</h1>
 
-            <h2>Articles</h2>
-            <p>(${totalRead} read and ${totalUnread} unread)</p>
+            <h2>Breweries</h2>
+            <p>(${totalVisited} visited and ${totalNotVisited} still to go)</p>
 
             <mwc-button @click=${this._filterNone}>Filter none</mwc-button>
-            <mwc-button @click=${this._filterRead}>Filter read</mwc-button>
-            <mwc-button @click=${this._filterUnread}>Filter unread</mwc-button>
+            <mwc-button @click=${this._filterVisited}>Filter visited</mwc-button>
+            <mwc-button @click=${this._filterNotVisited}>Filter not-visited</mwc-button>
 
             <ul>
-              ${articles.map(
-                article => html`
+              ${breweries.map(
+                brewery => html`
                   <li>
-                    ${articleTemplate(article, () => this.toggleReadStatus(article))}
+                    ${breweryTemplate(brewery, () => this.toggleVisitedStatus(brewery))}
                   </li>
                 `,
               )}
@@ -1340,9 +1367,11 @@ html`
           `;
         }
 
-        toggleReadStatus(articleToUpdate) {
-          this.articles = this.articles.map(article => {
-            return article === articleToUpdate ? { ...article, read: !article.read } : article;
+        toggleVisitedStatus(breweryToUpdate) {
+          this.breweries = this.breweries.map(brewery => {
+            return brewery === breweryToUpdate
+              ? { ...brewery, visited: !brewery.visited }
+              : brewery;
           });
         }
 
@@ -1350,16 +1379,16 @@ html`
           this.filter = null;
         }
 
-        _filterRead() {
-          this.filter = 'read';
+        _filterVisited() {
+          this.filter = 'visited';
         }
 
-        _filterUnread() {
-          this.filter = 'unread';
+        _filterNotVisited() {
+          this.filter = 'not-visited';
         }
       }
 
-      customElements.define('news-app', NewsApp);
+      customElements.define('brewery-app', BreweryApp);
     </script>
   </body>
 </html>

@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.28.0...@open-wc/create@0.28.1) (2020-03-24)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+# [0.28.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.27.0...@open-wc/create@0.28.0) (2020-03-06)
+
+
+### Features
+
+* **create:** clarify features ([7f9747c](https://github.com/open-wc/open-wc/commit/7f9747cfd9859be44750f359c3dcc6951d08a597))
+* **create:** remove app pages and pseudo router ([b98a4da](https://github.com/open-wc/open-wc/commit/b98a4dadb5290dbaca4cdefd7f5a499adaec654d))
+* **create:** remove default karma browserstack scaffolding ([55c7025](https://github.com/open-wc/open-wc/commit/55c702544db138c54eb39cbddec14e206f05e706))
+* **create:** remove snapshot testing scaffold ([ff5a421](https://github.com/open-wc/open-wc/commit/ff5a4214d5d9d4545c50beb730e8e19c66e05b35))
+* **create:** simplify app output ([0c8cd71](https://github.com/open-wc/open-wc/commit/0c8cd71340470dd6ff7f5930487dc37fb2983415))
+
+
+
+
+
+# [0.27.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.8...@open-wc/create@0.27.0) (2020-03-01)
+
+
+### Bug Fixes
+
+* **create:** fix race condition with registering addons ([f92509f](https://github.com/open-wc/open-wc/commit/f92509fe0a31b7e8526e9d3c6325aa3567cc11ed))
+* **create:** remove mention of test and start compatibility ([f3f3b98](https://github.com/open-wc/open-wc/commit/f3f3b9809cb36cdc94e5eff8d0e28060bfe941da))
+
+
+### Features
+
+* **rollup-plugin-html:** first release ([9acb29a](https://github.com/open-wc/open-wc/commit/9acb29ac84b0ef7e2b06c57043c9d2c76d5a29c0))
+
+
+
+
+
 ## [0.26.8](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.26.7...@open-wc/create@0.26.8) (2020-02-19)
 
 

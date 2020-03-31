@@ -80,16 +80,16 @@
       polyfills.push(loadScript('./polyfills/regenerator-runtime.45f8b90cc0fac37d446d8da4b68e27f5.js'));
     }
 
-    if (!('fetch' in window)) {
-      polyfills.push(loadScript('./polyfills/fetch.8c78815e37189a88a5ccc668ab31698f.js'));
+    if (!('fetch' in window) || !('Request' in window) || !('signal' in window.Request.prototype)) {
+      polyfills.push(loadScript('./polyfills/fetch.a030f3e3353d6a5594af9f9be3692d53.js'));
     }
 
     if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) {
-      polyfills.push(loadScript('./polyfills/webcomponents.dae9f79d9d6992b6582e204c3dd953d3.js'));
+      polyfills.push(loadScript('./polyfills/webcomponents.d67d6757b8cd44bc35b021ee0b71d197.js'));
     }
 
     if (!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype) {
-      polyfills.push(loadScript('./polyfills/custom-elements-es5-adapter.0ec040d16c6fd1b9220084b0b925cbe0.js'));
+      polyfills.push(loadScript('./polyfills/custom-elements-es5-adapter.3342b468203af1a14ca005e80d14148f.js'));
     }
 
     function loadFiles() {
@@ -111,7 +111,7 @@
       polyfillsLoader();
     }
 
-    s.src = "polyfills/core-js.d58f09bfd9f1c0b1682cf4a93be23230.js";
+    s.src = "polyfills/core-js.577a5602a7262d6256830802d4aaab43.js";
     s.onload = onLoaded;
 
     s.onerror = function () {

@@ -4,8 +4,6 @@ import path from 'path';
 import fs from 'fs';
 import { startServer, createConfig } from '../../src/es-dev-server.js';
 
-const unimplementedFeatures = ['optionalChaining', 'nullishCoalescing'];
-
 const testCases = [
   {
     name: 'static',
@@ -15,14 +13,7 @@ const testCases = [
   {
     name: 'syntax',
     pages: [''],
-    tests: [
-      'stage4',
-      'importMeta',
-      'staticImports',
-      'dynamicImports',
-      'optionalChaining',
-      'nullishCoalescing',
-    ],
+    tests: ['stage4', 'inlineStage4', 'importMeta', 'staticImports', 'dynamicImports'],
   },
   {
     name: 'node-resolve',
@@ -98,13 +89,6 @@ describe('integration tests', () => {
 
             // the demos run "tests", which we check here
             testCase.tests.forEach(test => {
-              if (
-                (compatibility === 'auto' || compatibility === 'none') &&
-                unimplementedFeatures.includes(test)
-              ) {
-                return;
-              }
-
               if (!browserTests[test]) {
                 throw new Error(`Expected test ${test} to have passed in the browser.`);
               }

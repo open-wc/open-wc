@@ -1,12 +1,24 @@
 const fs = require('fs');
 const path = require('path');
+const toBrowserPath = require('./toBrowserPath');
 
-module.exports = function getAssets({ storybookConfigDir, managerImport }) {
+module.exports = function getAssets({
+  storybookConfigDir,
+  rootDir,
+  absoluteImports,
+  managerImport,
+  addons,
+}) {
+  const importPrefix = absoluteImports ? '/' : './';
   const managerIndexPath = path.join(__dirname, 'index.html');
   const iframePath = path.join(__dirname, 'iframe.html');
   const managerHeadPath = path.join(process.cwd(), storybookConfigDir, 'manager-head.html');
   const previewBodyPath = path.join(process.cwd(), storybookConfigDir, 'preview-body.html');
   const previewHeadPath = path.join(process.cwd(), storybookConfigDir, 'preview-head.html');
+  const managerConfigPath = path.join(process.cwd(), storybookConfigDir, 'manager.js');
+  const managerConfigImport = fs.existsSync(managerConfigPath)
+    ? `${importPrefix}${toBrowserPath(path.relative(rootDir, managerConfigPath))}`
+    : null;
 
   let indexHTML = fs.readFileSync(managerIndexPath, 'utf-8');
   if (fs.existsSync(managerHeadPath)) {
@@ -14,9 +26,13 @@ module.exports = function getAssets({ storybookConfigDir, managerImport }) {
     indexHTML = indexHTML.replace('</head>', `${managerHead}</head>`);
   }
 
+  const imports = [managerImport, managerConfigImport, ...(addons || [])].filter(
+    imprt => typeof imprt === 'string',
+  );
+
   indexHTML = indexHTML.replace(
     '</body>',
-    `<script type="module" src="${managerImport}"></script>`,
+    `<script type="module">\n${imports.map(i => `import '${i}';`).join('\n')}\n</script>`,
   );
 
   let iframeHTML = fs.readFileSync(iframePath, 'utf-8');

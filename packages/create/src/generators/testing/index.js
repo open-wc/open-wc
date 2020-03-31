@@ -1,8 +1,7 @@
 import { TestingKarmaMixin } from '../testing-karma/index.js';
-import { TestingKarmaBsMixin } from '../testing-karma-bs/index.js';
 
 export const TestingMixin = subclass =>
-  class extends TestingKarmaBsMixin(TestingKarmaMixin(subclass)) {
+  class extends TestingKarmaMixin(subclass) {
     async execute() {
       await super.execute();
 

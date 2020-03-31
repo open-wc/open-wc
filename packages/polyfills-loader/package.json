@@ -1,6 +1,6 @@
 {
   "name": "polyfills-loader",
-  "version": "1.2.3",
+  "version": "1.5.2",
   "publishConfig": {
     "access": "public"
   },
@@ -29,20 +29,21 @@
     "src"
   ],
   "dependencies": {
-    "@babel/core": "^7.8.3",
-    "@open-wc/building-utils": "^2.14.3",
+    "@babel/core": "^7.9.0",
+    "@open-wc/building-utils": "^2.16.1",
     "@webcomponents/webcomponentsjs": "^2.4.0",
+    "abortcontroller-polyfill": "^1.4.0",
     "core-js-bundle": "^3.6.0",
     "deepmerge": "^3.2.0",
     "dynamic-import-polyfill": "^0.1.1",
     "es-module-shims": "^0.4.6",
     "html-minifier": "^4.0.0",
     "intersection-observer": "^0.7.0",
-    "parse5": "^5.1.0",
+    "parse5": "^5.1.1",
     "regenerator-runtime": "^0.13.3",
+    "resize-observer-polyfill": "^1.5.1",
     "systemjs": "^4.0.0",
-    "terser": "^4.0.0",
-    "valid-url": "^1.0.9",
+    "terser": "^4.6.4",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {

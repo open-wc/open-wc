@@ -1,7 +1,9 @@
-import { expect, fixture, defineCE } from '@open-wc/testing';
+import { expect, fixture, defineCE, waitUntil } from '@open-wc/testing';
 import { LitElement, html } from 'lit-element';
+import { until } from 'lit-html/directives/until.js';
+import { repeat } from 'lit-html/directives/repeat';
 import { ScopedElementsMixin } from '../index.js';
-import { getFromTagsCache } from '../src/registerElement.js';
+import { getFromGlobalTagsCache } from '../src/globalTagsCache.js';
 
 class FeatureA extends LitElement {
   render() {
@@ -256,8 +258,173 @@ describe('ScopedElementsMixin', () => {
       },
     );
     const el = await fixture(`<${tag}></${tag}>`);
-    expect(el.shadowRoot.children[0]).to.be.an.instanceOf(FeatureC);
 
-    expect(getFromTagsCache(FeatureD)).to.be.undefined;
+    expect(el.shadowRoot.children[0]).to.be.an.instanceOf(FeatureC);
+    expect(getFromGlobalTagsCache(FeatureD)).to.be.undefined;
+  });
+
+  it('supports lazy loaded elements', async () => {
+    const tag = defineCE(
+      class extends ScopedElementsMixin(LitElement) {
+        static get scopedElements() {
+          return {
+            'feature-a': FeatureA,
+          };
+        }
+
+        render() {
+          return html`
+            <feature-a></feature-a>
+            <feature-b></feature-b>
+            <feature-c></feature-c>
+          `;
+        }
+      },
+    );
+
+    const el = await fixture(`<${tag}></${tag}>`);
+
+    expect(el.shadowRoot.children[0]).to.be.an.instanceOf(FeatureA);
+    expect(el.shadowRoot.children[1]).to.not.be.an.instanceOf(FeatureB);
+    expect(el.shadowRoot.children[2]).to.not.undefined;
+
+    // @ts-ignore
+    el.defineScopedElement('feature-b', FeatureB);
+
+    expect(el.shadowRoot.children[1]).to.be.an.instanceOf(FeatureB);
+  });
+
+  describe('getScopedTagName', () => {
+    it('should return the scoped tag name for a registered element', async () => {
+      const chars = `-|\\.|[0-9]|[a-z]`;
+      const tagRegExp = new RegExp(`[a-z](${chars})*-(${chars})*-[0-9]{1,5}`);
+
+      const tag = defineCE(
+        class extends ScopedElementsMixin(LitElement) {
+          static get scopedElements() {
+            return {
+              'feature-a': FeatureA,
+            };
+          }
+
+          render() {
+            return html`
+              <feature-a></feature-a>
+              <feature-b></feature-b>
+            `;
+          }
+        },
+      );
+
+      const el = await fixture(`<${tag}></${tag}>`);
+
+      // @ts-ignore
+      expect(el.constructor.getScopedTagName('feature-a')).to.match(tagRegExp);
+      // @ts-ignore
+      expect(el.constructor.getScopedTagName('feature-b')).to.match(tagRegExp);
+    });
+
+    it('should return the scoped tag name for a non already registered element', async () => {
+      const chars = `-|\\.|[0-9]|[a-z]`;
+      const tagRegExp = new RegExp(`[a-z](${chars})*-(${chars})*-[0-9]{1,5}`);
+
+      class UnregisteredFeature extends LitElement {
+        render() {
+          return html`
+            <div>Unregistered feature</div>
+          `;
+        }
+      }
+
+      const tag = defineCE(
+        class extends ScopedElementsMixin(LitElement) {
+          static get scopedElements() {
+            return {
+              'unregistered-feature': UnregisteredFeature,
+            };
+          }
+        },
+      );
+
+      const el = await fixture(`<${tag}></${tag}>`);
+
+      // @ts-ignore
+      expect(el.constructor.getScopedTagName('unregistered-feature')).to.match(tagRegExp);
+    });
+  });
+
+  describe('directives integration', () => {
+    it('should work with until(...)', async () => {
+      const content = new Promise(resolve => {
+        setTimeout(
+          () =>
+            resolve(
+              html`
+                <feature-a id="feat"></feature-a>
+              `,
+            ),
+          0,
+        );
+      });
+
+      const tag = defineCE(
+        class ContainerElement extends ScopedElementsMixin(LitElement) {
+          static get scopedElements() {
+            return {
+              'feature-a': FeatureA,
+            };
+          }
+
+          render() {
+            return html`
+              ${until(
+                content,
+                html`
+                  <span>Loading...</span>
+                `,
+              )}
+            `;
+          }
+        },
+      );
+
+      const el = await fixture(`<${tag}></${tag}>`);
+
+      expect(el.shadowRoot.getElementById('feat')).to.be.null;
+
+      await waitUntil(() => el.shadowRoot.getElementById('feat') !== null);
+      const feature = el.shadowRoot.getElementById('feat');
+
+      expect(feature).shadowDom.to.equal('<div>Element A</div>');
+    });
+
+    it('should work with repeat(...)', async () => {
+      const tag = defineCE(
+        class ContainerElement extends ScopedElementsMixin(LitElement) {
+          static get scopedElements() {
+            return {
+              'feature-a': FeatureA,
+            };
+          }
+
+          render() {
+            return html`
+              ${repeat(
+                [...Array(10).keys()],
+                () => html`
+                  <feature-a data-type="child"></feature-a>
+                `,
+              )}
+            `;
+          }
+        },
+      );
+
+      const el = await fixture(`<${tag}></${tag}>`);
+
+      el.shadowRoot.querySelectorAll('[data-type="child"]').forEach(child => {
+        expect(child).shadowDom.to.equal('<div>Element A</div>');
+      });
+    });
   });
 });

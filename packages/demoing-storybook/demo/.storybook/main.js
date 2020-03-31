@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = {
-  stories: ['../stories/**/*.stories.{js,mdx}'],
+  stories: ['../stories/**/*.stories.{js,mdx,md}'],
+  addons: [],
   rollup: configs => {
     for (const config of configs) {
       config.plugins.push({
@@ -25,7 +26,6 @@ module.exports = {
       });
     }
   },
-  managerPath: require.resolve('../../manager.js'),
   esDevServer: {
     nodeResolve: true,
     watch: true,

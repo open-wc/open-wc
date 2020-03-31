@@ -35,6 +35,7 @@ describe('polyfills', () => {
         webcomponents: true,
         fetch: true,
         intersectionObserver: true,
+        resizeObserver: true,
         dynamicImport: true,
         esModuleShims: true,
       },
@@ -54,41 +55,73 @@ describe('polyfills', () => {
     });
     expect(polyfillFiles).to.eql([
       {
-        type: fileTypes.SCRIPT,
         path: 'polyfills/fetch.js',
         test: "!('fetch' in window)",
+        type: 'script',
       },
       {
-        type: fileTypes.SCRIPT,
-        path: 'polyfills/dynamic-import.js',
         initializer:
           "window.dynamicImportPolyfill.initialize({ importFunctionName: 'importShim' });",
+        path: 'polyfills/dynamic-import.js',
         test:
-          "'noModule' in HTMLScriptElement.prototype && (function () { try { Function('window.importShim = s => import(s);').call(); return true; } catch (_) { return false } })()",
+          "'noModule' in HTMLScriptElement.prototype && (function () { try { Function('window.importShim = s => import(s);').call(); return false; } catch (_) { return true; } })()",
+        type: 'script',
       },
       {
-        type: fileTypes.MODULE,
         path: 'polyfills/es-module-shims.js',
         test: "'noModule' in HTMLScriptElement.prototype",
+        type: 'module',
       },
       {
-        type: fileTypes.SCRIPT,
         path: 'polyfills/intersection-observer.js',
         test:
           "!('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype)",
+        type: 'script',
       },
       {
-        type: fileTypes.SCRIPT,
+        path: 'polyfills/resize-observer.js',
+        test: "!('ResizeObserver' in window)",
+        type: 'script',
+      },
+      {
         path: 'polyfills/webcomponents.js',
         test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)",
+        type: 'script',
       },
       {
-        type: fileTypes.SCRIPT,
         path: 'polyfills/custom-elements-es5-adapter.js',
         test: "!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype",
+        type: 'script',
       },
     ]);
   });
+
+  it('adds abort controller to the fetch polyfill', () => {
+    /** @type {PolyfillsLoaderConfig} */
+    const config = {
+      modern: { files: [{ type: fileTypes.MODULE, path: 'foo.js' }] },
+      polyfills: {
+        hash: false,
+        fetch: true,
+        abortController: true,
+      },
+    };
+    const { coreJs, polyfillFiles } = createPolyfillsData(config);
+    cleanupPolyfill(coreJs);
+    polyfillFiles.forEach(p => {
+      expect(p.content).to.be.a('string');
+      cleanupPolyfill(p);
+    });
+    expect(polyfillFiles).to.eql([
+      {
+        path: 'polyfills/fetch.js',
+        test:
+          "!('fetch' in window) || !('Request' in window) || !('signal' in window.Request.prototype)",
+        type: 'script',
+      },
+    ]);
+  });
+
   it('handles the shady-css-custom-styles polyfill', () => {
     /** @type {PolyfillsLoaderConfig} */
     const config = {
@@ -113,6 +146,7 @@ describe('polyfills', () => {
       },
     ]);
   });
+
   it("loads systemjs when an entrypoint needs it, including it's test", () => {
     /** @type {PolyfillsLoaderConfig} */
     const config = {

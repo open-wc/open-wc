@@ -13,7 +13,7 @@ const { parse } = require('es-module-lexer');
 async function createOrderedExports(source) {
   const result = await parse(source);
 
-  if (result.includes('__namedExportsOrder')) {
+  if (result[1].includes('__namedExportsOrder')) {
     return null;
   }
 

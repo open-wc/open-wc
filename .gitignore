@@ -36,9 +36,6 @@ stats.html
 .rpt2_cache
 storybook-static
 
-## we already store snapshots globally
-packages/**/__snapshots__
-
 ## browserstack
 local.log
 

@@ -52,7 +52,7 @@
     }));
     polyfills.push(loadScript('./polyfills/regenerator-runtime.js'));
 
-    if (!('fetch' in window)) {
+    if (!('fetch' in window) || !('Request' in window) || !('signal' in window.Request.prototype)) {
       polyfills.push(loadScript('./polyfills/fetch.js'));
     }
 

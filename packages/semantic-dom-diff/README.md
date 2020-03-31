@@ -1,13 +1,5 @@
 # Semantic Dom Diff
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
-## Manual Setup
-
-```bash
-npm i -D @open-wc/semantic-dom-diff
-```
-
 `semantic-dom-diff` allows diffing chunks of dom or HTML for semantic equality:
 
 - whitespace and newlines are normalized
@@ -15,6 +7,14 @@ npm i -D @open-wc/semantic-dom-diff
 - comments are removed
 - style, script and SVG contents are removed
 - tags, attributes or element's light dom can be ignored through configuration
+
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
+
+## Manual Setup
+
+```bash
+npm i -D @open-wc/semantic-dom-diff
+```
 
 ## Chai Plugin
 
@@ -128,7 +128,7 @@ Snapshots are created by setting up your component in a specific state, and then
 import { fixture } from '@open-wc/testing';
 
 describe('my-message', () => {
-  it('renders message foo correctly', () => {
+  it('renders message foo correctly', async () => {
     const element = await fixture(`
       <my-message message="Foo"></my-element>
     `);
@@ -136,7 +136,7 @@ describe('my-message', () => {
     expect(element).shadowDom.to.equalSnapshot();
   });
 
-  it('renders message bar correctly', () => {
+  it('renders message bar correctly', async () => {
     const element = await fixture(`
       <my-message message="Bar"></my-element>
     `);
@@ -144,7 +144,7 @@ describe('my-message', () => {
     expect(element).shadowDom.to.equalSnapshot();
   });
 
-  it('renders a capitalized message correctly', () => {
+  it('renders a capitalized message correctly', async () => {
     const element = await fixture(`
       <my-message message="Bar" capitalized></my-element>
     `);
@@ -152,7 +152,7 @@ describe('my-message', () => {
     expect(element).shadowDom.to.equalSnapshot();
   });
 
-  it('allows rendering a message from a slot', () => {
+  it('allows rendering a message from a slot', async () => {
     const element = await fixture(`
       <my-message capitalized>Bar</my-element>
     `);

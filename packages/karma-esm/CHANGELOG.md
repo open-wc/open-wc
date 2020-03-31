@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.21](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.20...@open-wc/karma-esm@2.13.21) (2020-03-26)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.13.20](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.19...@open-wc/karma-esm@2.13.20) (2020-03-24)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.13.19](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.18...@open-wc/karma-esm@2.13.19) (2020-03-19)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.13.18](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.17...@open-wc/karma-esm@2.13.18) (2020-03-15)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.13.17](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.16...@open-wc/karma-esm@2.13.17) (2020-03-15)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.13.16](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.15...@open-wc/karma-esm@2.13.16) (2020-03-11)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.13.15](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.14...@open-wc/karma-esm@2.13.15) (2020-03-10)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.13.14](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.13...@open-wc/karma-esm@2.13.14) (2020-03-08)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.13.13](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.12...@open-wc/karma-esm@2.13.13) (2020-03-06)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.13.12](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.11...@open-wc/karma-esm@2.13.12) (2020-03-02)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
+## [2.13.11](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.10...@open-wc/karma-esm@2.13.11) (2020-02-29)
+
+**Note:** Version bump only for package @open-wc/karma-esm
+
+
+
+
+
 ## [2.13.10](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.9...@open-wc/karma-esm@2.13.10) (2020-02-23)
 
 **Note:** Version bump only for package @open-wc/karma-esm

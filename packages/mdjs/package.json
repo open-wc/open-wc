@@ -1,0 +1,66 @@
+{
+  "name": "@mdjs/core",
+  "version": "0.1.7",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Combine Markdown with JavaScript",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/mdjs"
+  },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/mdjs",
+  "main": "./index.js",
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js",
+    "start": "npm run start:stories",
+    "start:script": "es-dev-server -c demo/script/server.js --root-dir ../../",
+    "start:stories": "es-dev-server -c demo/stories/server.js --root-dir ../../",
+    "test": "npm run test:node",
+    "test:node": "mocha",
+    "test:watch": "mocha --watch"
+  },
+  "files": [
+    "*.d.ts",
+    "*.js",
+    "src",
+    "types"
+  ],
+  "keywords": [
+    "open-wc",
+    "markdown",
+    "unified",
+    "remark"
+  ],
+  "dependencies": {
+    "@mdjs/mdjs-preview": "^0.0.1",
+    "@mdjs/mdjs-story": "^0.0.1",
+    "@types/unist": "^2.0.3",
+    "@types/vfile": "^4.0.0",
+    "es-module-lexer": "^0.3.13",
+    "github-markdown-css": "^3.0.1",
+    "rehype-autolink-headings": "^2.0.5",
+    "rehype-raw": "^4.0.1",
+    "rehype-slug": "^2.0.3",
+    "rehype-stringify": "^6.0.1",
+    "remark": "^11.0.2",
+    "remark-parse": "^7.0.2",
+    "remark-rehype": "^5.0.0",
+    "unified": "^8.4.2",
+    "unist-util-remove": "^1.0.3",
+    "unist-util-visit": "^2.0.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "es-dev-server": "^1.46.0",
+    "mocha": "^6.2.2",
+    "remark-autolink-headings": "^5.2.1",
+    "remark-html": "^10.0.0",
+    "remark-slug": "^5.1.2",
+    "remark-stringify": "^7.0.4"
+  },
+  "types": "index.d.ts"
+}

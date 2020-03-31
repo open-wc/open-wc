@@ -15,7 +15,7 @@ const chars = `-|\\.|[0-9]|[a-z]`;
 const re = new RegExp(`<\\/?([a-z](${chars})*-(${chars})*)`, 'g');
 
 /**
- * Global cache of processed string arrays
+ * The global cache of processed string arrays
  *
  * @type {Map<TemplateStringsArray, TemplateStringsArray>}
  */
@@ -39,14 +39,15 @@ const matchAll = str => {
 };
 
 /**
- * transforms a strings array into another one with resolved scoped elements and caches it for future references
+ * Transforms a string array into another one with resolved scoped elements and caches it for future references
  *
  * @param {TemplateStringsArray} strings
  * @param {Object.<string, typeof HTMLElement>} tags
- * @param {Map<TemplateStringsArray, TemplateStringsArray>} cache
+ * @param {Map<TemplateStringsArray, TemplateStringsArray>} templateCache
+ * @param {Map<string, string>} tagsCache
  * @returns {TemplateStringsArray}
  */
-const transformTemplate = (strings, tags, cache) => {
+const transformTemplate = (strings, tags, templateCache, tagsCache) => {
   const transformedStrings = strings.map(str => {
     let acc = str;
     const matches = matchAll(str);
@@ -54,14 +55,11 @@ const transformTemplate = (strings, tags, cache) => {
     for (let i = matches.length - 1; i >= 0; i -= 1) {
       const item = matches[i];
       const klass = tags[item[1]];
+      const tag = registerElement(item[1], klass, tagsCache);
+      const start = item.index + item[0].length - item[1].length;
+      const end = start + item[1].length;
 
-      if (klass) {
-        const tag = registerElement(item[1], klass);
-        const start = item.index + item[0].length - item[1].length;
-        const end = start + item[1].length;
-
-        acc = acc.slice(0, start) + tag + acc.slice(end);
-      }
+      acc = acc.slice(0, start) + tag + acc.slice(end);
     }
 
     return acc;
@@ -69,7 +67,7 @@ const transformTemplate = (strings, tags, cache) => {
 
   // @ts-ignore
   // noinspection JSCheckFunctionSignatures
-  cache.set(strings, transformedStrings);
+  templateCache.set(strings, transformedStrings);
 
   // @ts-ignore
   // noinspection JSValidateTypes
@@ -77,14 +75,15 @@ const transformTemplate = (strings, tags, cache) => {
 };
 
 /**
- * Obtains the cached strings array with resolved scoped elements or creates it if needed
+ * Obtains the cached strings array with resolved scoped elements or creates it
  *
  * @exports
  * @param {TemplateStringsArray} strings
  * @param {Object.<string, typeof HTMLElement>} tags
- * @param {Map<TemplateStringsArray, TemplateStringsArray>} cache
+ * @param {Map<TemplateStringsArray, TemplateStringsArray>} templateCache
+ * @param {Map<string, string>} tagsCache
  * @returns {TemplateStringsArray}
  */
-export function transform(strings, tags, cache = globalCache) {
-  return cache.get(strings) || transformTemplate(strings, tags, cache);
+export function transform(strings, tags, templateCache = globalCache, tagsCache) {
+  return templateCache.get(strings) || transformTemplate(strings, tags, templateCache, tagsCache);
 }

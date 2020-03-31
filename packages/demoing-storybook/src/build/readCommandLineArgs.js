@@ -65,7 +65,7 @@ module.exports = function readCommandLineArgs() {
     },
     {
       name: 'manager-path',
-      defaultValue: mainJs.managerPath || '@open-wc/demoing-storybook/manager.js',
+      defaultValue: mainJs.managerPath || 'storybook-prebuilt/manager.js',
       description: 'Import path of a prebuilt manager file',
     },
     {
@@ -73,17 +73,44 @@ module.exports = function readCommandLineArgs() {
       defaultValue: mainJs.previewPath || 'storybook-prebuilt/web-components.js',
       description: 'Import path of a prebuilt preview file',
     },
+    {
+      name: 'disable-recommended-addons',
+      type: Boolean,
+      defaultValue:
+        typeof mainJs.disableRecommendedAddons === 'boolean'
+          ? mainJs.disableRecommendedAddons
+          : false,
+    },
+    {
+      name: 'experimental-md-docs',
+      type: Boolean,
+    },
   ];
 
   const args = commandLineArgs(optionDefinitions, { partial: true });
+
+  const addons = mainJs.addons || [];
+  if (!args['disable-recommended-addons']) {
+    addons.push(
+      'storybook-prebuilt/addon-actions/register.js',
+      'storybook-prebuilt/addon-knobs/register.js',
+      'storybook-prebuilt/addon-a11y/register.js',
+      'storybook-prebuilt/addon-docs/register.js',
+      'storybook-prebuilt/addon-backgrounds/register.js',
+      'storybook-prebuilt/addon-links/register.js',
+      'storybook-prebuilt/addon-viewport/register.js',
+    );
+  }
 
   let options = {
     configDir: args['config-dir'],
     outputDir: args['output-dir'],
     stories: args.stories,
     rollup: mainJs.rollup,
+    addons: mainJs.addons,
     managerPath: args['manager-path'],
     previewPath: args['preview-path'],
+    experimentalMdDocs: args['experimental-md-docs'],
   };
 
   if ('config' in args) {

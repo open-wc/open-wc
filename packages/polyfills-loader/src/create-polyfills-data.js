@@ -19,16 +19,15 @@ function createPolyfillsData(cfg) {
 
   /**
    * @param {PolyfillConfig} polyfillConfig
-   * @param {string} [pkg]
    */
-  function addPolyfillConfig(polyfillConfig, pkg) {
+  function addPolyfillConfig(polyfillConfig) {
     try {
       polyfillConfigs.push(polyfillConfig);
     } catch (error) {
       if (error.code === 'MODULE_NOT_FOUND') {
         throw new Error(
-          `configured to polyfill ${polyfillConfig.name},` +
-            ` but no polyfills found. Install with "npm i -D ${pkg || polyfillConfig.name}"`,
+          `[Polyfills loader]: Error resolving polyfill ${polyfillConfig.name}` +
+            ' Are dependencies installed correctly?',
         );
       }
 
@@ -53,14 +52,25 @@ function createPolyfillsData(cfg) {
   }
 
   if (polyfills.fetch) {
-    addPolyfillConfig(
-      {
-        name: 'fetch',
-        test: "!('fetch' in window)",
-        path: require.resolve('whatwg-fetch/dist/fetch.umd.js'),
-      },
-      'whatwg-fetch',
-    );
+    addPolyfillConfig({
+      name: 'fetch',
+      test: `!('fetch' in window)${
+        polyfills.abortController
+          ? " || !('Request' in window) || !('signal' in window.Request.prototype)"
+          : ''
+      }`,
+      path: polyfills.abortController
+        ? [
+            require.resolve('whatwg-fetch/dist/fetch.umd.js'),
+            require.resolve('abortcontroller-polyfill/dist/umd-polyfill.js'),
+          ]
+        : [require.resolve('whatwg-fetch/dist/fetch.umd.js')],
+      minify: true,
+    });
+  }
+
+  if (polyfills.abortController && !polyfills.fetch) {
+    throw new Error('Cannot polyfill AbortController without fetch.');
   }
 
   // load systemjs, an es module polyfill, if one of the entries needs it
@@ -101,7 +111,7 @@ function createPolyfillsData(cfg) {
        */
       test:
         "'noModule' in HTMLScriptElement.prototype && " +
-        "(function () { try { Function('window.importShim = s => import(s);').call(); return true; } catch (_) { return false } })()",
+        "(function () { try { Function('window.importShim = s => import(s);').call(); return false; } catch (_) { return true; } })()",
       path: require.resolve('dynamic-import-polyfill/dist/dynamic-import-polyfill.umd.js'),
       initializer: "window.dynamicImportPolyfill.initialize({ importFunctionName: 'importShim' });",
     });
@@ -126,26 +136,29 @@ function createPolyfillsData(cfg) {
     });
   }
 
+  if (polyfills.resizeObserver) {
+    addPolyfillConfig({
+      name: 'resize-observer',
+      test: "!('ResizeObserver' in window)",
+      path: require.resolve('resize-observer-polyfill/dist/ResizeObserver.global.js'),
+      minify: true,
+    });
+  }
+
   if (polyfills.webcomponents && !polyfills.shadyCssCustomStyle) {
-    addPolyfillConfig(
-      {
-        name: 'webcomponents',
-        test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)",
-        path: require.resolve('@webcomponents/webcomponentsjs/webcomponents-bundle.js'),
-      },
-      '@webcomponents/webcomponentsjs',
-    );
+    addPolyfillConfig({
+      name: 'webcomponents',
+      test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)",
+      path: require.resolve('@webcomponents/webcomponentsjs/webcomponents-bundle.js'),
+    });
 
     // If a browser does not support nomodule attribute, but does support custom elements, we need
     // to load the custom elements es5 adapter. This is the case for Safari 10.1
-    addPolyfillConfig(
-      {
-        name: 'custom-elements-es5-adapter',
-        test: "!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype",
-        path: require.resolve('@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'),
-      },
-      '@webcomponents/webcomponentsjs',
-    );
+    addPolyfillConfig({
+      name: 'custom-elements-es5-adapter',
+      test: "!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype",
+      path: require.resolve('@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'),
+    });
   }
 
   if (polyfills.webcomponents && polyfills.shadyCssCustomStyle) {

@@ -3,6 +3,7 @@ const CleanCSS = require('clean-css');
 const cleanCSS = new CleanCSS({
   rebase: false,
   inline: ['none'],
+  // @ts-ignore
   level: {
     1: {
       all: false,
@@ -20,7 +21,7 @@ const cleanCSS = new CleanCSS({
       replaceTimeUnits: true, // controls replacing time units with shorter values; defaults to `true`
       replaceZeroUnits: true, // controls replacing zero values with units; defaults to `true`
       roundingPrecision: false, // rounds pixel values to `N` decimal places; `false` disables rounding; defaults to `false`
-      selectorsSortingMethod: false, // denotes selector sorting method; can be `'natural'` or `'standard'`, `'none'`, or false (the last two since 4.1.0); defaults to `'standard'`
+      selectorsSortingMethod: 'none', // denotes selector sorting method; can be `'natural'` or `'standard'`, `'none'`, or false (the last two since 4.1.0); defaults to `'standard'`
       specialComments: 'all', // denotes a number of /*! ... */ comments preserved; defaults to `all`
       tidyAtRules: false, // controls at-rules (e.g. `@charset`, `@import`) optimizing; defaults to `true`
       tidyBlockScopes: false, // controls block scopes (e.g. `@media`) optimizing; defaults to `true`

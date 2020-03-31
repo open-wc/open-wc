@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.2](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.5.1...polyfills-loader@1.5.2) (2020-03-24)
+
+**Note:** Version bump only for package polyfills-loader
+
+
+
+
+
+## [1.5.1](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.5.0...polyfills-loader@1.5.1) (2020-03-15)
+
+
+### Bug Fixes
+
+* **polyfills-loader:** load fetch and abort controller together ([#1430](https://github.com/open-wc/open-wc/issues/1430)) ([ca29548](https://github.com/open-wc/open-wc/commit/ca2954822440dbb218420be99dfbd2df03760dbd))
+
+
+
+
+
+# [1.5.0](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.4.2...polyfills-loader@1.5.0) (2020-03-15)
+
+
+### Bug Fixes
+
+* **polyfills-loader:** invert dynamic import check ([7f8bfa4](https://github.com/open-wc/open-wc/commit/7f8bfa4ca0aaf37394005077f54c06643cd82ef7))
+* **polyfills-loader:** minify fetch polyfill ([487e907](https://github.com/open-wc/open-wc/commit/487e90754371f421cd148afa922aa3a4101ee26d))
+
+
+### Features
+
+* **polyfills-loader:** add AbortController polyfill ([7fae798](https://github.com/open-wc/open-wc/commit/7fae798bda0d3156e850c81b64381b80e8512c55))
+* **polyfills-loader:** add ResizeObserver polyfill ([03ede89](https://github.com/open-wc/open-wc/commit/03ede89140e9fdb103283410c95643303909f6b3))
+
+
+
+
+
+## [1.4.2](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.4.1...polyfills-loader@1.4.2) (2020-03-11)
+
+**Note:** Version bump only for package polyfills-loader
+
+
+
+
+
+## [1.4.1](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.4.0...polyfills-loader@1.4.1) (2020-03-10)
+
+**Note:** Version bump only for package polyfills-loader
+
+
+
+
+
+# [1.4.0](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.3.1...polyfills-loader@1.4.0) (2020-03-08)
+
+
+### Features
+
+* **polyfills-loader:** add preload links ([23428e3](https://github.com/open-wc/open-wc/commit/23428e344154af6826e7db6a72f67533f3bd9511))
+
+
+
+
+
+## [1.3.1](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.3.0...polyfills-loader@1.3.1) (2020-03-06)
+
+**Note:** Version bump only for package polyfills-loader
+
+
+
+
+
+# [1.3.0](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.2.3...polyfills-loader@1.3.0) (2020-02-29)
+
+
+### Features
+
+* **rollup-plugin-html:** first release ([9acb29a](https://github.com/open-wc/open-wc/commit/9acb29ac84b0ef7e2b06c57043c9d2c76d5a29c0))
+
+
+
+
+
 ## [1.2.3](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.2.2...polyfills-loader@1.2.3) (2020-02-23)
 
 **Note:** Version bump only for package polyfills-loader

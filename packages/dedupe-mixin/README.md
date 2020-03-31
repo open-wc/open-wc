@@ -1,8 +1,8 @@
 # Dedupe Mixin
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 Automatically Deduplicate JavaScript Class Mixins
+
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ## Features
 

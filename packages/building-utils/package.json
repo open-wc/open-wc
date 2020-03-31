@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-utils",
-  "version": "2.14.3",
+  "version": "2.16.1",
   "publishConfig": {
     "access": "public"
   },
@@ -29,12 +29,12 @@
     "utils"
   ],
   "dependencies": {
-    "@babel/core": "^7.8.3",
+    "@babel/core": "^7.9.0",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@webcomponents/shadycss": "^1.9.4",
     "@webcomponents/webcomponentsjs": "^2.4.0",
     "arrify": "^2.0.1",
-    "browserslist": "^4.7.2",
+    "browserslist": "^4.9.1",
     "chokidar": "^3.0.0",
     "clean-css": "^4.2.1",
     "clone": "^2.1.2",
@@ -44,14 +44,14 @@
     "html-minifier": "^4.0.0",
     "lru-cache": "^5.1.1",
     "minimatch": "^3.0.4",
-    "parse5": "^5.1.0",
+    "parse5": "^5.1.1",
     "path-is-inside": "^1.0.2",
     "regenerator-runtime": "^0.13.3",
     "resolve": "^1.11.1",
     "rimraf": "^3.0.0",
-    "shady-css-scoped-element": "^0.0.1",
+    "shady-css-scoped-element": "^0.0.2",
     "systemjs": "^4.0.0",
-    "terser": "^4.0.0",
+    "terser": "^4.6.4",
     "valid-url": "^1.0.9",
     "whatwg-fetch": "^3.0.0",
     "whatwg-url": "^7.0.0"

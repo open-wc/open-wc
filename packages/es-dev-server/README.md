@@ -1,12 +1,12 @@
 # ES dev server
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 A web server for development without bundling, utilizing the browser's standard module loader and efficient browser caching for simple and fast web development.
 
 ```bash
 npx es-dev-server --node-resolve --watch
 ```
+
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 **Quick overview**
 
@@ -116,12 +116,14 @@ module.exports = {
 
 In addition to the command-line flags, the configuration file accepts these additional options:
 
-| name                 | type   | description                                              |
-| -------------------- | ------ | -------------------------------------------------------- |
-| middlewares          | array  | Koa middlewares to add to the server, read more below.   |
-| responseTransformers | array  | Functions which transform the server's response.         |
-| babelConfig          | object | Babel config to run with the server                      |
-| polyfillsLoader      | object | Configuration for the polyfills loader, read more below. |
+| name                 | type                      | description                                              |
+| -------------------- | ------------------------- | -------------------------------------------------------- |
+| middlewares          | array                     | Koa middlewares to add to the server, read more below.   |
+| responseTransformers | array                     | Functions which transform the server's response.         |
+| babelConfig          | object                    | Babel config to run with the server.                     |
+| polyfillsLoader      | object                    | Configuration for the polyfills loader, read more below. |
+| debug                | boolean                   | Whether to turn on debug mode on the server.             |
+| onServerStart        | (config) => Promise<void> | Function called before server is started.                |
 
 ## Node resolve
 
@@ -294,6 +296,31 @@ You can set up a `<base href="">` element to modify how files are resolved relat
 If you use <abbr title="Single Page Application">SPA</abbr> routing, using a base element is highly recommended. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
 
 </details>
+
+## Order of execution
+
+The order of execution for the es-dev-server is:
+
+1. Custom middlewares
+2. Es-dev-server static file middleware
+3. Response transformers
+4. Es-dev-server code transform middlewares
+5. Es-dev-server response cache (it also caches the code transformations!)
+6. Deferred custom middlewares
+
+Take this into account when deciding between response transformers, custom middlewares and whether or not you defer your custom middleware.
+
+For example, a deferred custom middleware may be necessary if you need to do something with the response body **after** caching.
+
+```javascript
+async function myMiddleware(ctx, next) {
+  ctx.url = ctx.url.replace('foo', 'bar');
+  // before es-dev-server
+  await next();
+  // deferred, after es-dev-server
+  ctx.body = ctx.body.replace('foo', 'bar');
+}
+```
 
 ## Custom middlewares / proxy
 

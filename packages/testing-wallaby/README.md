@@ -1,8 +1,8 @@
 # Testing in IDE via Wallaby
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 Wallaby.js is a Plugin for your IDE and runs tests in real time while you are typing.
+
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 Using:
 

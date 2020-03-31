@@ -1,11 +1,11 @@
 // .vuepress/config.js
 
 const sidebar = [
-  ['/', 'Home'],
   ['/guide/', 'Introduction'],
   {
     title: 'Guides & Docs',
     collapsable: true,
+    sidebarDepth: 0,
     children: [
       '/developing/best-practices',
       ['/codelabs/', 'Codelabs'],
@@ -15,7 +15,6 @@ const sidebar = [
       '/developing/routing',
       ['/developing/ide', 'IDE'],
       '/guide/component-libraries',
-      '/guide/dedupe-mixin',
     ],
   },
   {
@@ -24,7 +23,8 @@ const sidebar = [
     children: [
       {
         title: 'Linting',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: [
           ['/linting/', 'Getting started'],
           '/linting/linting-eslint',
@@ -34,13 +34,15 @@ const sidebar = [
       },
       {
         title: 'Developing',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: ['/developing/'],
       },
 
       {
         title: 'Testing',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: [
           ['/testing/', 'Getting started'],
           '/testing/testing',
@@ -51,7 +53,8 @@ const sidebar = [
       },
       {
         title: 'Building apps for production',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: [
           ['/building/', 'Getting started'],
           '/building/building-rollup',
@@ -60,32 +63,37 @@ const sidebar = [
       },
       {
         title: 'Deploying apps',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: [['/publishing/', 'Getting started']],
       },
       {
         title: 'Demoing',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: [['/demoing/', 'Getting started']],
       },
     ],
   },
   {
-    title: 'Tools',
+    title: 'Tools & Libraries',
     collapsable: true,
     children: [
       {
         title: 'Developing',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: [
           '/developing/es-dev-server',
           ['/init/', 'Generators'],
           '/developing/lit-helpers',
+          '/guide/dedupe-mixin',
         ],
       },
       {
         title: 'Testing',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: [
           '/testing/testing-helpers',
           '/testing/testing-chai-a11y-axe',
@@ -96,15 +104,22 @@ const sidebar = [
       },
       {
         title: 'Building',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: ['/building/rollup-plugin-index-html', '/building/webpack-index-html-plugin'],
+      },
+      {
+        title: 'Demoing',
+        collapsable: false,
+        sidebarDepth: 0,
+        children: ['/demoing/storybook-addon-markdown-docs'],
       },
     ],
   },
   {
     title: 'Experiments',
     collapsable: true,
-    children: [['/scoped-elements/', 'Scoped Elements']],
+    children: [['/scoped-elements/', 'Scoped Elements'], '/mdjs/'],
   },
 ];
 
@@ -114,7 +129,7 @@ module.exports = {
   themeConfig: {
     logo: '/logo.png',
     displayAllHeaders: false,
-    sidebarDepth: 2,
+    sidebarDepth: 0,
     sidebar: {
       '/guide/': sidebar,
       '/codelabs/': sidebar,
@@ -127,11 +142,12 @@ module.exports = {
       '/publishing/': sidebar,
       '/automating/': sidebar,
       '/scoped-elements/': sidebar,
+      '/mdjs/': sidebar,
       '/faq/': [
         ['', 'Faq'],
         {
           title: 'Deep dives',
-          collapsable: true,
+          collapsable: false,
           children: [
             'events',
             'rerender',

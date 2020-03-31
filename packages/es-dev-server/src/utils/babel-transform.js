@@ -71,11 +71,22 @@ export function createCompatibilityBabelTransform(cfg) {
         require.resolve('@babel/preset-env'),
         {
           targets: Array.isArray(cfg.browserTarget) ? cfg.browserTarget : [cfg.browserTarget],
+          exclude: [
+            // included below in loose mode
+            '@babel/plugin-proposal-optional-chaining',
+            '@babel/plugin-proposal-nullish-coalescing-operator',
+          ],
           useBuiltIns: false,
           shippedProposals: true,
           modules: false,
+          bugfixes: true,
         },
       ],
+    ],
+    plugins: [
+      // loose mode saves a lot of extra generated code
+      [require.resolve('@babel/plugin-proposal-optional-chaining'), { loose: true }],
+      [require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'), { loose: true }],
     ],
   });
 }
