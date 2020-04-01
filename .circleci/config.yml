@@ -62,7 +62,7 @@ jobs:
           at: ~/
       # reinstall dependencies, cannot use cached dependencies from a linux VM
       - run: yarn install --frozen-lockfile
-      - run: npm run test:node
+      - run: npm run test:node-windows
   deploy:
     <<: *defaults
     steps:
