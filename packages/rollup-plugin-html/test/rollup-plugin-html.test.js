@@ -34,10 +34,14 @@ const outputConfig = {
   dir: 'dist',
 };
 
+function stripNewlines(str) {
+  return str.replace(/(\r\n|\n|\r)/gm, '');
+}
+
 describe('rollup-plugin-html', () => {
   it('can build an app with rollup bundle injected into a default HTML page and filename', async () => {
     const config = {
-      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      input: require.resolve('./fixtures/rollup-plugin-html/entrypoint-a.js'),
       plugins: [
         htmlPlugin({
           minify: false,
@@ -49,7 +53,7 @@ describe('rollup-plugin-html', () => {
 
     expect(output.length).to.equal(2);
     expect(getChunk(output, 'entrypoint-a.js').code).to.include("console.log('entrypoint-a.js');");
-    expect(getAsset(output, 'index.html').source).to.equal(
+    expect(stripNewlines(getAsset(output, 'index.html').source)).to.equal(
       '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body>' +
         '<script type="module" src="./entrypoint-a.js"></script>' +
         '</body></html>',
@@ -60,7 +64,7 @@ describe('rollup-plugin-html', () => {
     const config = {
       plugins: [
         htmlPlugin({
-          inputPath: 'test/fixtures/rollup-plugin-html/index.html',
+          inputPath: require.resolve('./fixtures/rollup-plugin-html/index.html'),
           minify: false,
         }),
       ],
@@ -73,8 +77,8 @@ describe('rollup-plugin-html', () => {
     const { code: entryB } = getChunk(output, 'entrypoint-b.js');
     expect(entryA).to.include("console.log('entrypoint-a.js');");
     expect(entryB).to.include("console.log('entrypoint-b.js');");
-    expect(getAsset(output, 'index.html').source).to.equal(
-      '<html><head></head><body><h1>hello world</h1>\n\n' +
+    expect(stripNewlines(getAsset(output, 'index.html').source)).to.equal(
+      '<html><head></head><body><h1>hello world</h1>' +
         '<script type="module" src="./entrypoint-a.js"></script>' +
         '<script type="module" src="./entrypoint-b.js"></script>' +
         '</body></html>',
@@ -83,7 +87,7 @@ describe('rollup-plugin-html', () => {
 
   it('can build with html file as rollup input', async () => {
     const config = {
-      input: 'test/fixtures/rollup-plugin-html/index.html',
+      input: require.resolve('./fixtures/rollup-plugin-html/index.html'),
       plugins: [
         htmlPlugin({
           minify: false,
@@ -98,8 +102,8 @@ describe('rollup-plugin-html', () => {
     const { code: entryB } = getChunk(output, 'entrypoint-b.js');
     expect(entryA).to.include("console.log('entrypoint-a.js');");
     expect(entryB).to.include("console.log('entrypoint-b.js');");
-    expect(getAsset(output, 'index.html').source).to.equal(
-      '<html><head></head><body><h1>hello world</h1>\n\n' +
+    expect(stripNewlines(getAsset(output, 'index.html').source)).to.equal(
+      '<html><head></head><body><h1>hello world</h1>' +
         '<script type="module" src="./entrypoint-a.js"></script>' +
         '<script type="module" src="./entrypoint-b.js"></script>' +
         '</body></html>',
@@ -122,7 +126,7 @@ describe('rollup-plugin-html', () => {
     const { output } = await bundle.generate(outputConfig);
 
     expect(output.length).to.equal(2);
-    expect(getAsset(output, 'index.html').source).to.equal(
+    expect(stripNewlines(getAsset(output, 'index.html').source)).to.equal(
       '<html><head></head><body><h1>Hello world</h1>' +
         '<script type="module" src="./entrypoint-a.js"></script></body></html>',
     );
@@ -146,7 +150,7 @@ describe('rollup-plugin-html', () => {
     expect(output.length).to.equal(2);
     const { code: appCode } = getChunk(output, 'inline-module-index-0.js');
     expect(appCode).to.include("console.log('entrypoint-a.js');");
-    expect(getAsset(output, 'index.html').source).to.equal(
+    expect(stripNewlines(getAsset(output, 'index.html').source)).to.equal(
       '<html><head></head><body><h1>Hello world</h1>' +
         '<script type="module" src="./inline-module-index-0.js"></script>' +
         '</body></html>',
@@ -170,7 +174,7 @@ describe('rollup-plugin-html', () => {
 
   it('can build with js input and generated html output', async () => {
     const config = {
-      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      input: require.resolve('./fixtures/rollup-plugin-html/entrypoint-a.js'),
       plugins: [
         htmlPlugin({
           name: 'index.html',
@@ -195,7 +199,7 @@ describe('rollup-plugin-html', () => {
 
   it('can build transforming final output', async () => {
     const config = {
-      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      input: require.resolve('./fixtures/rollup-plugin-html/entrypoint-a.js'),
       plugins: [
         htmlPlugin({
           name: 'index.html',
@@ -221,7 +225,7 @@ describe('rollup-plugin-html', () => {
 
   it('can build with a public path', async () => {
     const config = {
-      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      input: require.resolve('./fixtures/rollup-plugin-html/entrypoint-a.js'),
       plugins: [
         htmlPlugin({
           name: 'index.html',
@@ -245,7 +249,7 @@ describe('rollup-plugin-html', () => {
 
   it('can build with a public path with a file in a directory', async () => {
     const config = {
-      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      input: require.resolve('./fixtures/rollup-plugin-html/entrypoint-a.js'),
       plugins: [
         htmlPlugin({
           name: 'pages/index.html',
@@ -278,7 +282,7 @@ describe('rollup-plugin-html', () => {
     });
 
     const config = {
-      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      input: require.resolve('./fixtures/rollup-plugin-html/entrypoint-a.js'),
       plugins: [plugin],
     };
 
@@ -325,7 +329,7 @@ describe('rollup-plugin-html', () => {
     });
 
     const config = {
-      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      input: require.resolve('./fixtures/rollup-plugin-html/entrypoint-a.js'),
       plugins: [plugin],
     };
 
@@ -420,7 +424,7 @@ describe('rollup-plugin-html', () => {
 
   it('can build with js input, injecting the same bundle into multiple html files', async () => {
     const config = {
-      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      input: require.resolve('./fixtures/rollup-plugin-html/entrypoint-a.js'),
       plugins: [
         htmlPlugin({
           name: 'page-a.html',
@@ -568,7 +572,7 @@ describe('rollup-plugin-html', () => {
     });
 
     await rollup.rollup({
-      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      input: require.resolve('./fixtures/rollup-plugin-html/entrypoint-a.js'),
       plugins: [pluginA],
     });
     await rollup.rollup({ plugins: [pluginB] });
@@ -581,7 +585,7 @@ describe('rollup-plugin-html', () => {
 
   it('supports other plugins injecting a transform function', async () => {
     const config = {
-      input: './test/fixtures/rollup-plugin-html/entrypoint-a.js',
+      input: require.resolve('./fixtures/rollup-plugin-html/entrypoint-a.js'),
       plugins: [
         htmlPlugin({
           name: 'my-page.html',
