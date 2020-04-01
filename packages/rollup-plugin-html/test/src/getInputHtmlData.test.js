@@ -4,25 +4,36 @@ const { getInputHtmlData } = require('../../src/getInputHtmlData');
 
 const rootDir = path.join(__dirname, '..', 'fixtures', 'getInputHtmlData');
 
+/** @param {string} str */
+function cleanupHtml(str) {
+  return str.replace(/(\r\n|\n|\r| )/gm, '');
+}
+
 describe('getInputHtmlData()', () => {
   it('supports setting path as input in plugin options', () => {
     const options = { inputPath: 'index.html' };
     const result = getInputHtmlData(options, undefined, rootDir);
 
-    expect(result).to.eql({
+    expect({
+      ...result,
+      inputHtml: cleanupHtml(result.inputHtml),
+    }).to.eql({
       rootDir,
       name: 'index.html',
-      inputHtml: '<html>index.html\n\n</html>',
+      inputHtml: '<html>index.html</html>',
     });
   });
 
   it('supports setting path as rollup input', () => {
     const result = getInputHtmlData({}, 'index.html', rootDir);
 
-    expect(result).to.eql({
+    expect({
+      ...result,
+      inputHtml: cleanupHtml(result.inputHtml),
+    }).to.eql({
       rootDir,
       name: 'index.html',
-      inputHtml: '<html>index.html\n\n</html>',
+      inputHtml: '<html>index.html</html>',
     });
   });
 
@@ -30,18 +41,24 @@ describe('getInputHtmlData()', () => {
     const options = { inputPath: 'not-index.html' };
     const result = getInputHtmlData(options, 'index.html', rootDir);
 
-    expect(result).to.eql({
+    expect({
+      ...result,
+      inputHtml: cleanupHtml(result.inputHtml),
+    }).to.eql({
       rootDir,
       name: 'not-index.html',
-      inputHtml: '<html>not-index.html\n\n</html>',
+      inputHtml: '<html>not-index.html</html>',
     });
   });
 
   it('supports setting html string as input', () => {
-    const options = { name: 'foo.html', inputHtml: '<html>My HTML</html>' };
+    const options = { name: 'foo.html', inputHtml: '<html>foo</html>' };
     const result = getInputHtmlData(options, undefined, rootDir);
 
-    expect(result).to.eql({
+    expect({
+      ...result,
+      inputHtml: cleanupHtml(result.inputHtml),
+    }).to.eql({
       name: 'foo.html',
       rootDir,
       inputHtml: options.inputHtml,
@@ -54,10 +71,13 @@ describe('getInputHtmlData()', () => {
     };
     const result = getInputHtmlData(options, undefined, rootDir);
 
-    expect(result).to.eql({
+    expect({
+      ...result,
+      inputHtml: cleanupHtml(result.inputHtml),
+    }).to.eql({
       rootDir: path.join(rootDir, 'pages'),
       name: 'page-a.html',
-      inputHtml: '<html>page-a.html\n\n</html>',
+      inputHtml: '<html>page-a.html</html>',
     });
   });
 

@@ -34,6 +34,7 @@ const outputConfig = {
   dir: 'dist',
 };
 
+/** @param {string} str */
 function stripNewlines(str) {
   return str.replace(/(\r\n|\n|\r)/gm, '');
 }
