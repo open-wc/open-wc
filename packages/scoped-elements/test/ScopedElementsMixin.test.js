@@ -294,6 +294,58 @@ describe('ScopedElementsMixin', () => {
     expect(el.shadowRoot.children[1]).to.be.an.instanceOf(FeatureB);
   });
 
+  it("support define a lazy element even if it's not used in previous templates", async () => {
+    class LazyElement extends LitElement {
+      render() {
+        return html`
+          <div>Lazy element</div>
+        `;
+      }
+    }
+
+    const tag = defineCE(
+      class extends ScopedElementsMixin(LitElement) {
+        static get scopedElements() {
+          return {
+            'feature-a': FeatureA,
+          };
+        }
+
+        constructor() {
+          super();
+
+          const defineScopedElement = this.defineScopedElement.bind(this);
+
+          this.loading = new Promise(resolve => {
+            defineScopedElement('lazy-element', LazyElement);
+
+            resolve(
+              html`
+                <lazy-element></lazy-element>
+              `,
+            );
+          });
+        }
+
+        render() {
+          return html`
+            <feature-a></feature-a>
+            ${until(
+              this.loading,
+              html`
+                <div>Loading...</div>
+              `,
+            )}
+          `;
+        }
+      },
+    );
+
+    const el = await fixture(`<${tag}></${tag}>`);
+
+    await waitUntil(() => el.shadowRoot.children[1] instanceof LazyElement);
+  });
+
   describe('getScopedTagName', () => {
     it('should return the scoped tag name for a registered element', async () => {
       const chars = `-|\\.|[0-9]|[a-z]`;

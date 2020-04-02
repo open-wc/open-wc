@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.15.0...@open-wc/demoing-storybook@1.15.1) (2020-03-30)
+
+
+### Bug Fixes
+
+* support md images and line breaks in storybook ([14d85d3](https://github.com/open-wc/open-wc/commit/14d85d37a64db5366efc04a20f0a0e0cd2556e91))
+
+
+
+
+
 # [1.15.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.14.0...@open-wc/demoing-storybook@1.15.0) (2020-03-26)
 
 

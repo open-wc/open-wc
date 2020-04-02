@@ -1,6 +1,6 @@
 /** @typedef {import('./types').InputHtmlData} InputHtmlData */
 
-const { findJsScripts } = require('@open-wc/building-utils');
+const { findJsScripts, toFilePath } = require('@open-wc/building-utils');
 const path = require('path');
 const { parse, serialize } = require('parse5');
 const {
@@ -29,12 +29,15 @@ function extractModules(inputHtmlData, inputHtmlName, projectRootDir = process.c
 
     if (!src) {
       // turn inline module (<script type="module"> ...code ... </script>)
-      const suffix = path.basename(inputHtmlName).split('.')[0];
-      const importPath = path.join(htmlRootDir, `inline-module-${suffix}-${i}.js`);
+      const suffix = path.posix.basename(inputHtmlName).split('.')[0];
+      const importPath = path.posix.join(htmlRootDir, `inline-module-${suffix}-${i}.js`);
       inlineModules.set(importPath, getTextContent(scriptNode));
     } else {
       // external script <script type="module" src="./foo.js"></script>
-      const importPath = path.join(src.startsWith('/') ? projectRootDir : htmlRootDir, src);
+      const importPath = path.join(
+        src.startsWith('/') ? projectRootDir : htmlRootDir,
+        toFilePath(src),
+      );
       moduleImports.push(importPath);
     }
 

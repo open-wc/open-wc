@@ -76,5 +76,9 @@ export function registerElement(tagName, klass, tagsCache = undefined) {
 export function defineScopedElement(tagName, klass, tagsCache) {
   const tag = tagsCache.get(tagName);
 
-  defineElement(tag, klass, customElements);
+  if (tag) {
+    defineElement(tag, klass, customElements);
+  } else {
+    tagsCache.set(tagName, registerElement(tagName, klass, tagsCache));
+  }
 }

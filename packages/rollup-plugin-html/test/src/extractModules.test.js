@@ -1,4 +1,5 @@
 const { expect } = require('chai');
+const path = require('path');
 const { extractModules } = require('../../src/extractModules');
 
 describe('extractModules()', () => {
@@ -17,7 +18,7 @@ describe('extractModules()', () => {
     );
 
     expect(inlineModules.size).to.equal(0);
-    expect(moduleImports).to.eql(['/foo.js', '/bar.js']);
+    expect(moduleImports).to.eql([`${path.sep}foo.js`, `${path.sep}bar.js`]);
     expect(htmlWithoutModules).to.eql(
       '<html><head></head><body><div>before</div><div>after</div></body></html>',
     );
@@ -38,7 +39,10 @@ describe('extractModules()', () => {
     );
 
     expect(inlineModules.size).to.equal(0);
-    expect(moduleImports).to.eql(['/base/foo.js', '/base/bar.js']);
+    expect(moduleImports).to.eql([
+      `${path.sep}base${path.sep}foo.js`,
+      `${path.sep}base${path.sep}bar.js`,
+    ]);
     expect(htmlWithoutModules).to.eql(
       '<html><head></head><body><div>before</div><div>after</div></body></html>',
     );
@@ -59,7 +63,10 @@ describe('extractModules()', () => {
     );
 
     expect(inlineModules.size).to.equal(0);
-    expect(moduleImports).to.eql(['/base-1/base-2/foo.js', '/base-1/bar.js']);
+    expect(moduleImports).to.eql([
+      `${path.sep}base-1${path.sep}base-2${path.sep}foo.js`,
+      `${path.sep}base-1${path.sep}bar.js`,
+    ]);
     expect(htmlWithoutModules).to.eql(
       '<html><head></head><body><div>before</div><div>after</div></body></html>',
     );

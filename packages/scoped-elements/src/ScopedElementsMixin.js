@@ -18,11 +18,37 @@ import { shadyTemplateFactory } from './shadyTemplateFactory.js';
 const templateCaches = new WeakMap();
 
 /**
+ * Retrieves or creates a templateCache for a specific key
+ * @param {Function} key
+ * @returns {Map<TemplateStringsArray, TemplateStringsArray>}
+ */
+const getTemplateCache = key => {
+  if (!templateCaches.has(key)) {
+    templateCaches.set(key, new Map());
+  }
+
+  return templateCaches.get(key);
+};
+
+/**
  * Tags caches
  *
  * @type {WeakMap<object, Map<string, string>>}
  */
 const tagsCaches = new WeakMap();
+
+/**
+ * Retrieves or creates a tagsCache for a specific key
+ * @param {object} key
+ * @returns {Map<string, string>}
+ */
+const getTagsCache = key => {
+  if (!tagsCaches.has(key)) {
+    tagsCaches.set(key, new Map());
+  }
+
+  return tagsCaches.get(key);
+};
 
 /**
  * Transforms an array of TemplateResults or arrays into another one with resolved scoped elements
@@ -91,15 +117,8 @@ export const ScopedElementsMixin = dedupeMixin(
         }
         const { scopeName } = options;
 
-        if (!templateCaches.has(this)) {
-          templateCaches.set(this, new Map());
-        }
-        if (!tagsCaches.has(this)) {
-          tagsCaches.set(this, new Map());
-        }
-
-        const templateCache = templateCaches.get(this);
-        const tagsCache = tagsCaches.get(this);
+        const templateCache = getTemplateCache(this);
+        const tagsCache = getTagsCache(this);
         const { scopedElements } = this;
 
         // @ts-ignore
@@ -121,7 +140,7 @@ export const ScopedElementsMixin = dedupeMixin(
        * @param {typeof HTMLElement} klass
        */
       defineScopedElement(tagName, klass) {
-        return defineScopedElement(tagName, klass, tagsCaches.get(this.constructor));
+        return defineScopedElement(tagName, klass, getTagsCache(this.constructor));
       }
 
       /**
@@ -134,8 +153,8 @@ export const ScopedElementsMixin = dedupeMixin(
         const klass = this.scopedElements[tagName];
 
         return klass
-          ? registerElement(tagName, klass, tagsCaches.get(this))
-          : tagsCaches.get(this).get(tagName);
+          ? registerElement(tagName, klass, getTagsCache(this))
+          : getTagsCache(this).get(tagName);
       }
     },
 );

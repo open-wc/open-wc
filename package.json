@@ -27,6 +27,7 @@
     "test:browser:watch": "karma start --auto-watch=true --single-run=false",
     "test:bs": "karma start karma.bs.conf.js --coverage",
     "test:node": "lerna run test:node",
+    "test:node-windows": "lerna run --scope \"@open-wc/rollup-plugin-html\" --scope \"@open-wc/rollup-plugin-polyfills-loader\" --scope \"polyfills-loader\" test:node",
     "test:update-snapshots": "lerna run test:update-snapshots",
     "update-dependency": "node scripts/update-dependency.js",
     "vuepress:build": "vuepress build docs",
