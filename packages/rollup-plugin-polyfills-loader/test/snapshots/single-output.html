@@ -1,4 +1,6 @@
-<html><head></head><body><script type="module" src="./entrypoint-a.js"></script><script>(function () {
+<html><head>
+<link rel="preload" href="./entrypoint-a.js" as="script" crossorigin="anonymous">
+</head><body><script>(function () {
   function loadScript(src, type) {
     return new Promise(function (resolve) {
       var script = document.createElement('script');
@@ -21,5 +23,19 @@
     });
   }
 
-  loadScript('./entrypoint-a.js', 'module');
+  var polyfills = [];
+
+  if (!('fetch' in window)) {
+    polyfills.push(loadScript('./polyfills/fetch.js'));
+  }
+
+  function loadFiles() {
+    loadScript('./entrypoint-a.js', 'module');
+  }
+
+  if (polyfills.length) {
+    Promise.all(polyfills).then(loadFiles);
+  } else {
+    loadFiles();
+  }
 })();</script></body></html>

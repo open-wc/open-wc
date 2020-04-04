@@ -88,6 +88,7 @@ const sidebar = [
           ['/init/', 'Generators'],
           '/developing/lit-helpers',
           '/guide/dedupe-mixin',
+          ['/scoped-elements/', 'Scoped Elements'],
         ],
       },
       {
@@ -119,7 +120,7 @@ const sidebar = [
   {
     title: 'Experiments',
     collapsable: true,
-    children: [['/scoped-elements/', 'Scoped Elements'], '/mdjs/'],
+    children: ['/mdjs/'],
   },
 ];
 

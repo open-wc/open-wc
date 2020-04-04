@@ -2,21 +2,162 @@
 
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
-:::warning
-This is an experimental feature, use it at your own risk and be sure to understand its [limitations](#limitations).
-No big applications are using `scoped-elements` yet - so there is no proof yet if it works in production.
-This page focuses on in depth explanations as it should help [foster a discussion on scoping](https://github.com/open-wc/open-wc/issues/1262).
-:::
-
-Complex Web Component applications are often developed by several teams across organizations. In that scenario it is common that shared component libraries are used by teams to create a homogeneous look and feel or just to avoid creating the same components multiple times, but as those libraries evolve problems between different versions of the same library may appear, as teams may not be able to evolve and update their code at the same velocity. This causes bottlenecks in software delivery that should be managed by the teams and complex build systems, to try to alleviate the problem.
-
-[Scoped Custom Element Registries](https://github.com/w3c/webcomponents/issues/716) is a proposal that will solve this problem, but until it is ready, or a polyfill becomes available, we have to _scope_ custom element tag names if we want to use different versions of those custom elements in our code. This package allows you to forget about how custom elements are defined, registered and scopes their tag names if it is necessary, and avoids the name collision problem.
+Scope element tag names avoiding naming collision and allowing to use different versions of the same web component in your code.
 
 ## Installation
 
 ```bash
 npm i --save @open-wc/scoped-elements
 ```
+
+## Usage
+
+1. Import `ScopedElementsMixin` from `@open-wc/scoped-elements`.
+
+   ```js
+   import { ScopedElementsMixin } from '@open-wc/scoped-elements';
+   ```
+
+2. Import the classes of the components you want to use.
+
+   ```js
+   import { MyButton } from './MyButton.js';
+   import { MyPanel } from './MyPanel.js';
+   ```
+
+3. Apply `ScopedElementsMixin` and define the tags you want to use for your components.
+
+   ```js
+   class MyElement extends ScopedElementsMixin(LitElement) {
+     static get scopedElements() {
+       return {
+         'my-button': MyButton,
+         'my-panel': MyPanel,
+       };
+     }
+   }
+   ```
+
+4. Use your components in your html.
+
+   ```js
+   render() {
+     return html`
+       <my-panel class="panel">
+         <my-button>${this.text}</my-button>
+       </my-panel>
+     `;
+   }
+   ```
+
+### Complete example
+
+```js
+import { css, LitElement } from 'lit-element';
+import { ScopedElementsMixin } from '@open-wc/scoped-elements';
+import { MyButton } from './MyButton.js';
+import { MyPanel } from './MyPanel.js';
+
+export class MyElement extends ScopedElementsMixin(LitElement) {
+  static get scopedElements() {
+    return {
+      'my-button': MyButton,
+      'my-panel': MyPanel,
+    };
+  }
+
+  static get styles() {
+    return css`
+      .panel {
+        padding: 10px;
+        background-color: grey;
+      }
+    `;
+  }
+
+  static get properties() {
+    return {
+      text: String,
+    };
+  }
+
+  render() {
+    return html`
+      <my-panel class="panel">
+        <my-button>${this.text}</my-button>
+      </my-panel}>
+    `;
+  }
+}
+```
+
+### Lazy scoped components
+
+In some situations may happen that you want to use a component in your templates that is not already loaded at the moment of defining the scoped elements map. The `ScopedElementsMixin` provides the `defineScopedElement` method to define scoped elements at any time.
+
+```js
+import { LitElement } from 'lit-element';
+import { ScopedElementsMixin } from '@open-wc/scoped-elements';
+import { MyPanel } from './MyPanel.js';
+
+export class MyElement extends ScopedElementsMixin(LitElement) {
+  static get scopedElements() {
+    return {
+      'my-panel': MyPanel,
+    };
+  }
+
+  constructor() {
+    super();
+
+    import('./MyButton.js').then(({ MyButton }) => this.defineScopedElement('my-button', MyButton));
+  }
+
+  render() {
+    return html`
+      <my-panel class="panel">
+        <my-button>${this.text}</my-button>
+      </my-panel>
+    `;
+  }
+}
+```
+
+### Obtaining a scoped tag name
+
+Maybe you want to create a scoped element programmatically and don't know which one is the scoped tag name? No problem, there is a static method called `getScopedTagName` that would help you for that.
+
+```js
+import { LitElement } from 'lit-element';
+import { ScopedElementsMixin } from '@open-wc/scoped-elements';
+import { MyButton } from './MyButton.js';
+import { MyPanel } from './MyPanel.js';
+
+export class MyElement extends ScopedElementsMixin(LitElement) {
+  static get scopedElements() {
+    return {
+      'my-panel': MyPanel,
+      'my-button': MyButton,
+    };
+  }
+
+  constructor() {
+    super();
+
+    const scopedTagName = this.constructor.getScopedTagName('my-button');
+
+    // do whatever you need with the scopedTagName
+  }
+
+  // ...
+}
+```
+
+## Motivation
+
+Complex Web Component applications are often developed by several teams across organizations. In that scenario it is common that shared component libraries are used by teams to create a homogeneous look and feel or just to avoid creating the same components multiple times, but as those libraries evolve problems between different versions of the same library may appear, as teams may not be able to evolve and update their code at the same velocity. This causes bottlenecks in software delivery that should be managed by the teams and complex build systems, to try to alleviate the problem.
+
+[Scoped Custom Element Registries](https://github.com/w3c/webcomponents/issues/716) is a proposal that will solve this problem, but until it is ready, or a polyfill becomes available, we have to _scope_ custom element tag names if we want to use different versions of those custom elements in our code. This package allows you to forget about how custom elements are defined, registered and scopes their tag names if it is necessary, and avoids the name collision problem.
 
 ## Use case and demos
 
@@ -81,90 +222,9 @@ To demonstrate, we made three demos:
 `ScopedElementsMixin` is mixed into your LitElement and via `static get scopedElements()` you define the tags and classes you wanna use in your elements template.
 Under the hood it changes your template so `<my-button>${this.text}</my-button>` becomes `<my-button-2748>${this.text}</my-button-2748>`.
 
-Every auto-defined scoped elements gets a random\* 4 digit number suffix. This suffix changes every time to make sure developers are not inclined to use it the generated tag name as a styling hook. Additionally the suffix allows scoped-elements and traditional self-defined elements to coexist, avoiding name collision.
+Every auto-defined scoped elements gets a random\* 4 digits number suffix. This suffix changes every time to make sure developers are not inclined to use it the generated tag name as a styling hook. Additionally the suffix allows scoped-elements and traditional self-defined elements to coexist, avoiding name collision.
 
 \* it is actually a global counter that gets initialized with a random starting number on load
-
-## Usage
-
-1. Import `ScopedElementsMixin` from `@open-wc/scoped-elements`.
-
-   ```js
-   import { ScopedElementsMixin } from '@open-wc/scoped-elements';
-   ```
-
-2. Import the classes of the components you want to use.
-
-   ```js
-   import MyButton from './MyButton.js';
-   import MyPanel from './MyPanel.js';
-   ```
-
-3. Apply `ScopedElementsMixin` and define the tags you want to use for your components.
-
-   ```js
-   class MyElement extends ScopedElementsMixin(LitElement) {
-     static get scopedElements() {
-       return {
-         'my-button': MyButton,
-         'my-panel': MyPanel,
-       };
-     }
-   }
-   ```
-
-4. Use your components in your html.
-
-   ```js
-   render() {
-     return html`
-       <my-panel class="panel">
-         <my-button>${this.text}</my-button>
-       </my-panel>
-     `;
-   }
-   ```
-
-### Complete example
-
-```js
-import { css, LitElement } from 'lit-element';
-import { ScopedElementsMixin } from '@open-wc/scoped-elements';
-import MyButton from './MyButton.js';
-import MyPanel from './MyPanel.js';
-
-export class MyElement extends ScopedElementsMixin(LitElement) {
-  static get scopedElements() {
-    return {
-      'my-button': MyButton,
-      'my-panel': MyPanel,
-    };
-  }
-
-  static get styles() {
-    return css`
-      .panel {
-        padding: 10px;
-        background-color: grey;
-      }
-    `;
-  }
-
-  static get properties() {
-    return {
-      text: String,
-    };
-  }
-
-  render() {
-    return html`
-      <my-panel class="panel">
-        <my-button>${this.text}</my-button>
-      </my-panel}>
-    `;
-  }
-}
-```
 
 ## Limitations
 

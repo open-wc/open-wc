@@ -1,5 +1,7 @@
-import { expect, fixture, defineCE } from '@open-wc/testing';
+import { expect, fixture, defineCE, waitUntil } from '@open-wc/testing';
 import { LitElement, html } from 'lit-element';
+import { until } from 'lit-html/directives/until.js';
+import { repeat } from 'lit-html/directives/repeat';
 import { ScopedElementsMixin } from '../index.js';
 import { getFromGlobalTagsCache } from '../src/globalTagsCache.js';
 
@@ -292,6 +294,58 @@ describe('ScopedElementsMixin', () => {
     expect(el.shadowRoot.children[1]).to.be.an.instanceOf(FeatureB);
   });
 
+  it("support define a lazy element even if it's not used in previous templates", async () => {
+    class LazyElement extends LitElement {
+      render() {
+        return html`
+          <div>Lazy element</div>
+        `;
+      }
+    }
+
+    const tag = defineCE(
+      class extends ScopedElementsMixin(LitElement) {
+        static get scopedElements() {
+          return {
+            'feature-a': FeatureA,
+          };
+        }
+
+        constructor() {
+          super();
+
+          const defineScopedElement = this.defineScopedElement.bind(this);
+
+          this.loading = new Promise(resolve => {
+            defineScopedElement('lazy-element', LazyElement);
+
+            resolve(
+              html`
+                <lazy-element></lazy-element>
+              `,
+            );
+          });
+        }
+
+        render() {
+          return html`
+            <feature-a></feature-a>
+            ${until(
+              this.loading,
+              html`
+                <div>Loading...</div>
+              `,
+            )}
+          `;
+        }
+      },
+    );
+
+    const el = await fixture(`<${tag}></${tag}>`);
+
+    await waitUntil(() => el.shadowRoot.children[1] instanceof LazyElement);
+  });
+
   describe('getScopedTagName', () => {
     it('should return the scoped tag name for a registered element', async () => {
       const chars = `-|\\.|[0-9]|[a-z]`;
@@ -348,6 +402,81 @@ describe('ScopedElementsMixin', () => {
 
       // @ts-ignore
       expect(el.constructor.getScopedTagName('unregistered-feature')).to.match(tagRegExp);
+    });
+  });
+
+  describe('directives integration', () => {
+    it('should work with until(...)', async () => {
+      const content = new Promise(resolve => {
+        setTimeout(
+          () =>
+            resolve(
+              html`
+                <feature-a id="feat"></feature-a>
+              `,
+            ),
+          0,
+        );
+      });
+
+      const tag = defineCE(
+        class ContainerElement extends ScopedElementsMixin(LitElement) {
+          static get scopedElements() {
+            return {
+              'feature-a': FeatureA,
+            };
+          }
+
+          render() {
+            return html`
+              ${until(
+                content,
+                html`
+                  <span>Loading...</span>
+                `,
+              )}
+            `;
+          }
+        },
+      );
+
+      const el = await fixture(`<${tag}></${tag}>`);
+
+      expect(el.shadowRoot.getElementById('feat')).to.be.null;
+
+      await waitUntil(() => el.shadowRoot.getElementById('feat') !== null);
+      const feature = el.shadowRoot.getElementById('feat');
+
+      expect(feature).shadowDom.to.equal('<div>Element A</div>');
+    });
+
+    it('should work with repeat(...)', async () => {
+      const tag = defineCE(
+        class ContainerElement extends ScopedElementsMixin(LitElement) {
+          static get scopedElements() {
+            return {
+              'feature-a': FeatureA,
+            };
+          }
+
+          render() {
+            return html`
+              ${repeat(
+                [...Array(10).keys()],
+                () => html`
+                  <feature-a data-type="child"></feature-a>
+                `,
+              )}
+            `;
+          }
+        },
+      );
+
+      const el = await fixture(`<${tag}></${tag}>`);
+
+      el.shadowRoot.querySelectorAll('[data-type="child"]').forEach(child => {
+        expect(child).shadowDom.to.equal('<div>Element A</div>');
+      });
     });
   });
 });

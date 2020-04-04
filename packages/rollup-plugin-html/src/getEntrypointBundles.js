@@ -4,6 +4,7 @@
 /** @typedef {import('./types').GeneratedBundle} GeneratedBundle */
 
 const path = require('path');
+const { toBrowserPath } = require('@open-wc/building-utils');
 const { createError } = require('./utils');
 
 /**
@@ -18,13 +19,13 @@ function createImportPath({ publicPath, mainOutputDir, fileOutputDir, htmlFileNa
   const pathFromMainToFileDir = path.relative(mainOutputDir, fileOutputDir);
   let importPath;
   if (publicPath) {
-    importPath = path.join(publicPath, pathFromMainToFileDir, fileName);
+    importPath = toBrowserPath(path.join(publicPath, pathFromMainToFileDir, fileName));
   } else {
     const pathFromHtmlToOutputDir = path.relative(
       path.dirname(htmlFileName),
       pathFromMainToFileDir,
     );
-    importPath = path.join(pathFromHtmlToOutputDir, fileName);
+    importPath = toBrowserPath(path.join(pathFromHtmlToOutputDir, fileName));
   }
 
   if (importPath.startsWith('http') || importPath.startsWith('/') || importPath.startsWith('.')) {

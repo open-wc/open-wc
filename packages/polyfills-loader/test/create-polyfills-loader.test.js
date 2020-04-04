@@ -28,7 +28,10 @@ function testSnapshot({ name, config, expectedFiles = /** @type {string[]} */ ([
   }
 }
 
-describe('create-polyfills-loader', () => {
+describe('create-polyfills-loader', function describe() {
+  // bootup of the first test can take a long time in CI to load all the polyfills
+  this.timeout(5000);
+
   it('generates a loader script with one module resource', () => {
     testSnapshot({
       name: 'module-resource',

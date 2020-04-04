@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@0.4.3...@open-wc/rollup-plugin-polyfills-loader@0.5.0) (2020-03-31)
+
+
+### Features
+
+* **polyfills-loader:** prefetch entrypoints ([7e180d4](https://github.com/open-wc/open-wc/commit/7e180d497e3d44f51d7e2b244a1caf82643ba3f2))
+
+
+
+
+
 ## [0.4.3](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@0.4.2...@open-wc/rollup-plugin-polyfills-loader@0.4.3) (2020-03-26)
 
 **Note:** Version bump only for package @open-wc/rollup-plugin-polyfills-loader
