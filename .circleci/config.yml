@@ -96,7 +96,6 @@ workflows:
             - build
       - deploy:
           requires:
-            - test-windows
             - test-local
             - test-bs
           filters:
