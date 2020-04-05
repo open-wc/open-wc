@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@1.0.5...@open-wc/scoped-elements@1.0.6) (2020-04-05)
+
+
+### Bug Fixes
+
+* **scoped-elements:** define unused lazy scoped elements ([5b863a2](https://github.com/open-wc/open-wc/commit/5b863a2bbaa8647b29cc6818ffb6dadc7297caae))
+
+
+
+
+
 ## [1.0.5](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@1.0.4...@open-wc/scoped-elements@1.0.5) (2020-03-28)
 
 

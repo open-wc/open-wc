@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.46.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.46.0...es-dev-server@1.46.1) (2020-04-05)
+
+
+### Bug Fixes
+
+* **polyfills-loader:** don't remove element if it was already removed ([1e500bc](https://github.com/open-wc/open-wc/commit/1e500bc4c23ab467967d5b50b7d3ced0047bbfb5))
+
+
+
+
+
 # [1.46.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.45.3...es-dev-server@1.46.0) (2020-03-26)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.28.1...@open-wc/create@0.28.2) (2020-04-05)
+
+
+### Bug Fixes
+
+* **create:** set default value for variable ([5c39676](https://github.com/open-wc/open-wc/commit/5c3967600837cc9e84dbed6a23772a3c21b67c81))
+
+
+
+
+
 ## [0.28.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.28.0...@open-wc/create@0.28.1) (2020-03-24)
 
 **Note:** Version bump only for package @open-wc/create

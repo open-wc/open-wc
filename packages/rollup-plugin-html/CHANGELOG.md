@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.7](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@0.3.6...@open-wc/rollup-plugin-html@0.3.7) (2020-04-05)
+
+
+### Bug Fixes
+
+* **rollup-plugin-html:** fix windows paths ([75cfa0e](https://github.com/open-wc/open-wc/commit/75cfa0ecf40705b389719482a326485a5fe7f5be))
+
+
+
+
+
 ## [0.3.6](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@0.3.5...@open-wc/rollup-plugin-html@0.3.6) (2020-03-26)
 
 **Note:** Version bump only for package @open-wc/rollup-plugin-html
