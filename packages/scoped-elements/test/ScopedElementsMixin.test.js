@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { expect, fixture, defineCE, waitUntil } from '@open-wc/testing';
 import { LitElement, html } from 'lit-element';
 import { until } from 'lit-html/directives/until.js';
@@ -311,14 +312,14 @@ describe('ScopedElementsMixin', () => {
           };
         }
 
-        constructor() {
-          super();
+        connectedCallback() {
+          if (super.connectedCallback) {
+            super.connectedCallback();
+          }
 
-          const defineScopedElement = this.defineScopedElement.bind(this);
+          this.defineScopedElement('lazy-element', LazyElement);
 
           this.loading = new Promise(resolve => {
-            defineScopedElement('lazy-element', LazyElement);
-
             resolve(
               html`
                 <lazy-element></lazy-element>
