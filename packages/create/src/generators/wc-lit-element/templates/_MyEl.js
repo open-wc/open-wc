@@ -4,11 +4,9 @@ export class <%= className %> extends LitElement {
   static get styles() {
     return css`
       :host {
-        --<%= tagName %>-text-color: #000;
-
         display: block;
         padding: 25px;
-        color: var(--<%= tagName %>-text-color);
+        color: var(--<%= tagName %>-text-color, #000);
       }
     `;
   }
