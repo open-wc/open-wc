@@ -115,7 +115,7 @@ function createScripts(polyfillsConfig, polyfills, entries, needsLoader) {
     scripts.push(
       createScript(
         null,
-        "window.importShim = src => import(src.startsWith('.') ? new URL(src, document.baseURI) : src)",
+        "window.importShim = function(src) { return import(src.startsWith('.') ? new URL(src, document.baseURI) : src); }",
       ),
     );
   }
