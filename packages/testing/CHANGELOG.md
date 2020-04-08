@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.10](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.9...@open-wc/testing@2.5.10) (2020-04-06)
+
+
+### Bug Fixes
+
+* **testing:** auto load chai plugin typings ([a895e3a](https://github.com/open-wc/open-wc/commit/a895e3ab2f5dc57026ff55af04c8909969bdc641))
+
+
+
+
+
+## [2.5.9](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.8...@open-wc/testing@2.5.9) (2020-04-05)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
 ## [2.5.8](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.7...@open-wc/testing@2.5.8) (2020-03-19)
 
 **Note:** Version bump only for package @open-wc/testing

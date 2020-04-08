@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.6.2...@open-wc/testing-helpers@1.7.0) (2020-04-05)
+
+
+### Features
+
+* **testing-helpers:** add fixture option to define wrapper el ([e7db9f6](https://github.com/open-wc/open-wc/commit/e7db9f69f0534be2348d85c2976da6d41757bdfb))
+
+
+
+
+
 ## [1.6.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.6.1...@open-wc/testing-helpers@1.6.2) (2020-03-19)
 
 

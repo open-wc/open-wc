@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/lit-helpers",
-  "version": "0.3.5",
+  "version": "0.3.7",
   "publishConfig": {
     "access": "public"
   },
@@ -33,7 +33,7 @@
     "lit-html": "^1.0.0"
   },
   "devDependencies": {
-    "@open-wc/testing": "^2.5.8",
+    "@open-wc/testing": "^2.5.10",
     "sinon": "^7.4.1"
   },
   "module": "index.js",

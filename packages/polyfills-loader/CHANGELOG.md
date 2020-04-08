@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.3](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.5.2...polyfills-loader@1.5.3) (2020-04-05)
+
+
+### Bug Fixes
+
+* **polyfills-loader:** don't remove element if it was already removed ([1e500bc](https://github.com/open-wc/open-wc/commit/1e500bc4c23ab467967d5b50b7d3ced0047bbfb5))
+* **polyfills-loader:** fix test on windows ([8eb0e7f](https://github.com/open-wc/open-wc/commit/8eb0e7feed3d86a2401633c4d99cbcbdca6ec6c7))
+
+
+
+
+
 ## [1.5.2](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.5.1...polyfills-loader@1.5.2) (2020-03-24)
 
 **Note:** Version bump only for package polyfills-loader
