@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.16](https://github.com/open-wc/open-wc/compare/@open-wc/dedupe-mixin@1.2.15...@open-wc/dedupe-mixin@1.2.16) (2020-04-12)
+
+**Note:** Version bump only for package @open-wc/dedupe-mixin
+
+
+
+
+
 ## [1.2.15](https://github.com/open-wc/open-wc/compare/@open-wc/dedupe-mixin@1.2.14...@open-wc/dedupe-mixin@1.2.15) (2020-04-06)
 
 **Note:** Version bump only for package @open-wc/dedupe-mixin

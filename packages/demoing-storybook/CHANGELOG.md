@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.15.2...@open-wc/demoing-storybook@2.0.0) (2020-04-12)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** use new rollup resolve ([e55d695](https://github.com/open-wc/open-wc/commit/e55d695e16809cd720e826a634f9fcc7373ff0c4))
+
+
+### Features
+
+* **demoing-storybook:** don't preload addons ([401eaf9](https://github.com/open-wc/open-wc/commit/401eaf9b4e49727a058fc3a209780f0656f33b70))
+* **demoing-storybook:** remove support for deprecated config ([e9b626c](https://github.com/open-wc/open-wc/commit/e9b626c48bc10fd2c4c40adc89f69fe3374a9634))
+* **demoing-storybook:** simplify rollup build ([45fd031](https://github.com/open-wc/open-wc/commit/45fd03168fb1cef15d94d987f1cdb10cfa0b869b))
+* **demoing-storybook:** unflag mdjs docs ([853813d](https://github.com/open-wc/open-wc/commit/853813dfb8fd2e7473deb8f01bca1bc29d129f86))
+
+
+### BREAKING CHANGES
+
+* **demoing-storybook:** you now need to set addons yourself in main.js
+* **demoing-storybook:** start-storybook.js and build-storybook.js are no longer used, use main.js instead
+* **demoing-storybook:** The main.js rollup option no longer receives an array of configs
+
+
+
+
+
 ## [1.15.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@1.15.1...@open-wc/demoing-storybook@1.15.2) (2020-04-05)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook

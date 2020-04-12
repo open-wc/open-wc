@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.22.12...@open-wc/building-rollup@1.0.0) (2020-04-12)
+
+
+### Features
+
+* **building-rollup:** refactor and update to rollup v2 ([9149c0c](https://github.com/open-wc/open-wc/commit/9149c0cf32b85dce49010d0f855c92064275098e))
+
+
+### BREAKING CHANGES
+
+* **building-rollup:** The config is completely refactored, see MIGRATION.md and README.md
+
+
+
+
+
 ## [0.22.12](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.22.11...@open-wc/building-rollup@0.22.12) (2020-04-05)
 
 **Note:** Version bump only for package @open-wc/building-rollup

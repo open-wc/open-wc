@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "0.22.12",
+  "version": "1.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -56,9 +56,9 @@
     "@babel/plugin-transform-modules-systemjs": "^7.9.0",
     "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
-    "@open-wc/building-utils": "^2.16.2",
-    "@open-wc/rollup-plugin-html": "^0.3.7",
-    "@open-wc/rollup-plugin-polyfills-loader": "^0.5.1",
+    "@open-wc/building-utils": "^2.16.3",
+    "@open-wc/rollup-plugin-html": "^1.0.0",
+    "@open-wc/rollup-plugin-polyfills-loader": "^1.0.0",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "babel-plugin-bundled-import-meta": "^0.3.2",
     "babel-plugin-template-html-minifier": "^4.0.0",

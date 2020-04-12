@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/scoped-elements",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "publishConfig": {
     "access": "public"
   },
@@ -38,7 +38,7 @@
     "helpers"
   ],
   "dependencies": {
-    "@open-wc/dedupe-mixin": "^1.2.15",
+    "@open-wc/dedupe-mixin": "^1.2.16",
     "lit-html": "^1.0.0"
   },
   "module": "index.js",

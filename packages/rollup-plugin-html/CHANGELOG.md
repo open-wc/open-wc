@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@0.3.7...@open-wc/rollup-plugin-html@1.0.0) (2020-04-12)
+
+
+### Features
+
+* **rollup-plugin-html:** release v1 ([f401b94](https://github.com/open-wc/open-wc/commit/f401b94e7e8dcb6aa9097e5c33d6f052b8f4dee1))
+
+
+### BREAKING CHANGES
+
+* **rollup-plugin-html:** trigger v1 release
+
+
+
+
+
 ## [0.3.7](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@0.3.6...@open-wc/rollup-plugin-html@0.3.7) (2020-04-05)
 
 
