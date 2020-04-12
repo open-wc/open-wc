@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   stories: ['../stories/**/*.stories.{js,mdx,md}'],
-  addons: [],
+  addons: ['storybook-prebuilt/addon-docs/register.js'],
   rollup: config => {
     config.plugins.push({
       generateBundle() {
