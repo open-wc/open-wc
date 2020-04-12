@@ -47,11 +47,9 @@
     "@babel/plugin-proposal-decorators": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
     "@types/lodash-es": "^4.17.3",
-    "chai": "^4.2.0",
     "karma": "^4.1.0",
     "karma-browserstack-launcher": "^1.0.0",
     "karma-coverage-istanbul-reporter": "^2.0.0",
-    "lodash-es": "^4.17.15",
-    "sinon": "^7.4.1"
+    "lodash-es": "^4.17.15"
   }
 }

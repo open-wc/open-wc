@@ -35,8 +35,5 @@
     "@open-wc/testing-karma": "^3.3.11",
     "@types/node": "^11.13.0",
     "karma-browserstack-launcher": "^1.0.0"
-  },
-  "devDependencies": {
-    "chai": "^4.2.0"
   }
 }

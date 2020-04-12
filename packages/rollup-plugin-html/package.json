@@ -46,12 +46,5 @@
     "html-minifier": "^4.0.0",
     "parse5": "^5.1.1",
     "terser": "^4.6.7"
-  },
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "es-dev-server": "^1.46.1",
-    "lit-element": "^2.2.1",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.0.0"
   }
 }

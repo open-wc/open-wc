@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console, max-classes-per-file */
 import isStream from 'is-stream';
 import getStream from 'get-stream';
 import Stream from 'stream';

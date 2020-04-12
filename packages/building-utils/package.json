@@ -58,8 +58,6 @@
   },
   "devDependencies": {
     "@types/lru-cache": "^5.1.0",
-    "@types/rimraf": "^2.0.2",
-    "chai": "^4.2.0",
-    "mocha": "^6.2.2"
+    "@types/rimraf": "^2.0.2"
   }
 }

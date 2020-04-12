@@ -38,12 +38,9 @@
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.4.0",
-    "chai": "^4.2.0",
     "intersection-observer": "^0.7.0",
     "memory-fs": "^0.4.1",
     "mkdirp": "^0.5.1",
-    "mocha": "^6.2.2",
-    "rimraf": "^3.0.2",
     "webpack": "^4.28.0",
     "whatwg-fetch": "^3.0.0"
   }

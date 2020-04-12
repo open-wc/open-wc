@@ -13,8 +13,7 @@
  * @typedef {(importer: string, source: string ) => Promise<string>} ResolveModuleImports
  */
 
-/* eslint-disable no-await-in-loop, no-restricted-syntax, no-console */
-/* eslint-disable no-console */
+/* eslint-disable no-await-in-loop, no-restricted-syntax, no-console, max-classes-per-file */
 import whatwgUrl from 'whatwg-url';
 import pathIsInside from 'path-is-inside';
 import deepmerge from 'deepmerge';

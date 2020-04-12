@@ -39,8 +39,5 @@
     "mocha": "^6.2.2",
     "sinon-chai": "^3.3.0"
   },
-  "devDependencies": {
-    "sinon": "^7.4.1"
-  },
   "module": "index.js"
 }

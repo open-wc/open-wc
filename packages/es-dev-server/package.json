@@ -118,17 +118,12 @@
     "@types/whatwg-url": "^6.4.0",
     "abort-controller": "^3.0.0",
     "buffer": "^5.4.3",
-    "chai": "^4.2.0",
     "koa-proxies": "^0.8.1",
-    "lit-element": "^2.2.1",
     "lit-html": "^1.0.0",
     "lodash-es": "^4.17.15",
-    "mocha": "^6.2.2",
     "node-fetch": "^2.6.0",
-    "puppeteer": "^2.1.1",
     "request": "^2.88.0",
     "selfsigned": "^1.10.4",
-    "sinon": "^7.4.1",
     "uuid": "^3.3.2"
   }
 }

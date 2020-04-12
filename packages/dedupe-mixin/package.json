@@ -31,11 +31,7 @@
     "mixins"
   ],
   "devDependencies": {
-    "@open-wc/building-rollup": "^0.22.12",
-    "@open-wc/testing": "^2.5.10",
-    "http-server": "^0.11.1",
-    "rollup": "^2.0.0",
-    "sinon": "^7.4.1"
+    "http-server": "^0.11.1"
   },
   "module": "index.js",
   "sideEffects": false

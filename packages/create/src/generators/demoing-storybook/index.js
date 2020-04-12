@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 export const DemoingStorybookMixin = subclass =>
   class extends subclass {
     async execute() {
