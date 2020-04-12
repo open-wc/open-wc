@@ -13,19 +13,6 @@ For demoing, documenting and showcasing different states of your Web Component, 
 - Uses es-dev-server (serve modern code while developing)
 - Completely separate storybook UI from your code
 
-**Prebuilt Storybook comes with**
-
-- [@storybook/web-components](https://github.com/storybookjs/storybook/tree/next/app/web-components)
-- [@storybook/addon-a11y](https://github.com/storybookjs/storybook/tree/next/addons/a11y)
-- [@storybook/addon-actions](https://github.com/storybookjs/storybook/tree/next/addons/actions)
-- [@storybook/addon-backgrounds](https://github.com/storybookjs/storybook/tree/next/addons/backgrounds)
-- [@storybook/addon-console](https://github.com/storybookjs/storybook-addon-console)
-- [@storybook/addon-docs](https://github.com/storybookjs/storybook/tree/next/addons/docs)
-- [@storybook/addon-links](https://github.com/storybookjs/storybook/tree/next/addons/links)
-- [@storybook/addon-knobs](https://github.com/storybookjs/storybook/tree/next/addons/knobs)
-- [@storybook/addon-viewport](https://github.com/storybookjs/storybook/tree/next/addons/viewport)
-- [storybook-addon-web-components-knobs](https://github.com/open-wc/open-wc/tree/master/packages/storybook-addon-web-components-knobs)
-
 ## Demo
 
 ::: tip
@@ -53,10 +40,6 @@ npm init @open-wc
   "storybook:build": "build-storybook"
 },
 ```
-
-### Migration
-
-If you are using an older version of `@open-wc/storybook` be sure to check out the [Migration Guide](/demoing/MIGRATION.md).
 
 ## Usage
 

@@ -51,14 +51,6 @@ module.exports = function readCommandLineArgs() {
       description: 'List of story files e.g. --stories stories/*.stories.{js,mdx}',
     },
     {
-      name: 'disable-recommended-addons',
-      type: Boolean,
-      defaultValue:
-        typeof mainJs.disableRecommendedAddons === 'boolean'
-          ? mainJs.disableRecommendedAddons
-          : false,
-    },
-    {
       name: 'experimental-md-docs',
       type: Boolean,
     },
@@ -66,25 +58,12 @@ module.exports = function readCommandLineArgs() {
 
   const args = commandLineArgs(optionDefinitions, { partial: true });
 
-  const addons = mainJs.addons || [];
-  if (!args['disable-recommended-addons']) {
-    addons.push(
-      'storybook-prebuilt/addon-actions/register.js',
-      'storybook-prebuilt/addon-knobs/register.js',
-      'storybook-prebuilt/addon-a11y/register.js',
-      'storybook-prebuilt/addon-docs/register.js',
-      'storybook-prebuilt/addon-backgrounds/register.js',
-      'storybook-prebuilt/addon-links/register.js',
-      'storybook-prebuilt/addon-viewport/register.js',
-    );
-  }
-
   return {
     configDir: args['config-dir'],
     outputDir: args['output-dir'],
     stories: args.stories,
     rollup: mainJs.rollup,
-    addons: mainJs.addons,
+    addons: mainJs.addons || [],
     experimentalMdDocs: args['experimental-md-docs'],
   };
 };
