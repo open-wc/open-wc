@@ -1,13 +1,11 @@
-const { createCompatibilityConfig } = require('@open-wc/building-rollup');
+import merge from 'deepmerge';
+import { createSpaConfig } from '@open-wc/building-rollup';
 
-const configs = createCompatibilityConfig({
-  input: './demo/no-scope/index.html',
+const baseConfig = createSpaConfig({
+  outputDir: '../../_site/scoped-elements/demo/no-scope',
+  legacyBuild: true,
 });
 
-module.exports = configs.map(config => ({
-  ...config,
-  output: {
-    ...config.output,
-    dir: '../../_site/scoped-elements/demo/no-scope',
-  },
-}));
+export default merge(baseConfig, {
+  input: './demo/no-scope/index.html',
+});

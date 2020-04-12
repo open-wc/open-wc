@@ -54,9 +54,6 @@
     "unist-util-visit": "^2.0.1"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "es-dev-server": "^1.46.1",
-    "mocha": "^6.2.2",
     "remark-autolink-headings": "^5.2.1",
     "remark-html": "^10.0.0",
     "remark-slug": "^5.1.2",

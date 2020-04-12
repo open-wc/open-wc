@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { TestingKarmaMixin } from '../testing-karma/index.js';
 
 export const TestingMixin = subclass =>

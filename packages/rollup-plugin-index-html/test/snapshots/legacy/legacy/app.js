@@ -7,7 +7,7 @@ System.register([], function (exports, module) {
 
 			console.log('my app');
 
-			module.import('./lazy-c54dffe7.js');
+			module.import('./lazy-30aa5246.js');
 
 		}
 	};

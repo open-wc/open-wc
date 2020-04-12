@@ -1,42 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta http-equiv="expires" content="0" />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta http-equiv="expires" content="0">
+    <title>My Demo</title>
+  </head>
 
-  <title>My Demo</title>
-</head>
+  <body>
+    <h1>Static content in index.html is preserved</h1>
 
-<body>
+    <demo-app></demo-app>
 
-  <h1>Static content in index.html is preserved</h1>
+    <div id="test"></div>
 
-  <demo-app></demo-app>
+    <script type="module">
+      import './demo-app.js';
 
-  <div id="test"></div>
+      function waitForTest(test) {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve(false);
+          }, 1000);
+          test.then(resolve);
+        });
+      }
 
-  <script type="module">
-    import './demo-app.js';
-    import './syntax.js'
+      (async () => {
+        window.__tests = {
+          partialCSS: window.__partialCSS || false,
+          litElement: await waitForTest(window.__litElement),
+          startsWith: window.__startsWith || false,
+          map: window.__map || false,
+          importMeta: window.__importMeta || false,
+          importMeta2: window.__importMeta2 || false,
+          asyncFunction: await waitForTest(window.__asyncFunction),
+          forOf: window.__forOf || false,
+          optionalChaining: window.__optionalChaining || false,
+          nullishCoalescing: window.__nullishCoalescing || false,
+          asyncIterator: await waitForTest(window.__asyncIterator),
+        };
 
-    (async () => {
-      window.__tests = {
-        partialCSS: window.__partialCSS || false,
-        litElement: await window.__litElement || false,
-        startsWith: window.__startsWith || false,
-        map: window.__map || false,
-        importMeta: window.__importMeta || false,
-        importMeta2: window.__importMeta2 || false,
-        asyncFunction: await window.__asyncFunction || false,
-        forOf: window.__forOf || false,
-        optionalChaining: window.__optionalChaining || false,
-        nullishCoalescing: window.__nullishCoalescing || false,
-      };
-      document.getElementById('test').innerHTML = `<pre>${JSON.stringify(window.__tests, null, 2)}</pre>`;
-    })();
-  </script>
-</body>
-
+        document.getElementById('test').innerHTML = `<pre>${JSON.stringify(
+          window.__tests,
+          null,
+          2,
+        )}</pre>`;
+      })();
+    </script>
+  </body>
 </html>

@@ -35,7 +35,7 @@
     "@open-wc/building-utils": "^2.16.2",
     "babel-plugin-istanbul": "^5.1.4",
     "chokidar": "^3.0.0",
-    "deepmerge": "^3.2.0",
+    "deepmerge": "^4.2.2",
     "es-dev-server": "^1.46.1",
     "minimatch": "^3.0.4",
     "node-fetch": "^2.6.0",
@@ -47,11 +47,9 @@
     "@babel/plugin-proposal-decorators": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
     "@types/lodash-es": "^4.17.3",
-    "chai": "^4.2.0",
     "karma": "^4.1.0",
     "karma-browserstack-launcher": "^1.0.0",
     "karma-coverage-istanbul-reporter": "^2.0.0",
-    "lodash-es": "^4.17.15",
-    "sinon": "^7.4.1"
+    "lodash-es": "^4.17.15"
   }
 }

@@ -26,10 +26,5 @@
     "testing",
     "snapshots"
   ],
-  "devDependencies": {
-    "@open-wc/testing-helpers": "^1.7.0",
-    "chai": "^4.2.0",
-    "mocha": "^6.2.2"
-  },
   "module": "index.js"
 }

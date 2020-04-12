@@ -8,14 +8,14 @@ const { buildPreview } = require('./rollup/buildPreview');
 module.exports = async function build({
   storybookConfigDir,
   outputDir,
-  managerPath,
-  previewPath,
   storiesPatterns,
   rollupConfigDecorator,
-  experimentalMdDocs,
   addons,
 }) {
-  const managerPathRelative = `/${path.relative(process.cwd(), require.resolve(managerPath))}`;
+  const managerPathRelative = `/${path.relative(
+    process.cwd(),
+    require.resolve('storybook-prebuilt/manager.js'),
+  )}`;
   const managerImport = `./${toBrowserPath(managerPathRelative)}`;
 
   const assets = getAssets({
@@ -30,7 +30,10 @@ module.exports = async function build({
   const previewConfigImport = fs.existsSync(path.join(process.cwd(), previewConfigPath))
     ? `./${toBrowserPath(previewConfigPath)}`
     : undefined;
-  const relativePreviewPath = path.relative(process.cwd(), previewPath);
+  const relativePreviewPath = path.relative(
+    process.cwd(),
+    require.resolve('storybook-prebuilt/web-components.js'),
+  );
   const previewImport = `./${toBrowserPath(relativePreviewPath)}`;
 
   await fs.remove(outputDir);
@@ -43,7 +46,6 @@ module.exports = async function build({
     storiesPatterns,
     previewImport,
     previewConfigImport,
-    experimentalMdDocs,
     rollupConfigDecorator,
   });
 };

@@ -351,7 +351,7 @@ When you configure rollup to generate multiple build outputs you can inject all 
 
 To do this, create one parent `@open-wc/rollup-plugin-html` instance and use `addOutput` to create two child plugins for each separate rollup output.
 
-Each output defines a unique name, this can be used to retreive the correct bundle from `bundles` argument when creating the HTML template.
+Each output defines a unique name, this can be used to retrieve the correct bundle from `bundles` argument when creating the HTML template.
 
 ```js
 import html from '@open-wc/rollup-plugin-html';

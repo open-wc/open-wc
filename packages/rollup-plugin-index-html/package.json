@@ -32,8 +32,7 @@
   "dependencies": {
     "@import-maps/resolve": "^0.2.5",
     "@open-wc/building-utils": "^2.16.2",
-    "deepmerge": "^3.2.0",
-    "lit-element": "^2.2.1",
+    "deepmerge": "^4.2.2",
     "lit-html": "^1.0.0",
     "md5": "^2.2.1",
     "mkdirp": "^0.5.1",
@@ -42,11 +41,7 @@
   "devDependencies": {
     "@webcomponents/shadycss": "^1.9.4",
     "@webcomponents/webcomponentsjs": "^2.4.0",
-    "chai": "^4.2.0",
     "intersection-observer": "^0.7.0",
-    "mocha": "^6.2.2",
-    "rimraf": "^3.0.0",
-    "rollup": "^1.31.1",
     "whatwg-fetch": "^3.0.0"
   }
 }

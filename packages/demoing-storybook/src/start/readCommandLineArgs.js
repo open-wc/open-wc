@@ -28,13 +28,6 @@ module.exports = function readCommandLineArgs() {
       mainJs.stories = typeof mainJs.stories === 'string' ? [mainJs.stories] : mainJs.stories;
       mainJs.stories = mainJs.stories.map(entry => path.join(mainDir, entry));
     }
-    // fix relative paths if they work - otherwise let resolve handle it afterwards
-    if (mainJs.managerPath && fs.existsSync(path.join(mainDir, mainJs.managerPath))) {
-      mainJs.managerPath = path.join(mainDir, mainJs.managerPath);
-    }
-    if (mainJs.previewPath && fs.existsSync(path.join(mainDir, mainJs.previewPath))) {
-      mainJs.previewPath = path.join(mainDir, mainJs.previewPath);
-    }
     mainJs.esDevServer = mainJs.esDevServer || {};
   }
 
@@ -50,28 +43,6 @@ module.exports = function readCommandLineArgs() {
       name: 'stories',
       defaultValue: mainJs.stories || './stories/*.stories.{js,mdx}',
       description: 'List of story files e.g. --stories stories/*.stories.\\{js,mdx\\}',
-    },
-    {
-      name: 'manager-path',
-      defaultValue: mainJs.managerPath || 'storybook-prebuilt/manager.js',
-      description: 'Import path of a prebuilt manager file',
-    },
-    {
-      name: 'preview-path',
-      defaultValue: mainJs.previewPath || 'storybook-prebuilt/web-components.js',
-      description: 'Import path of a prebuilt preview file',
-    },
-    {
-      name: 'disable-recommended-addons',
-      type: Boolean,
-      defaultValue:
-        typeof mainJs.disableRecommendedAddons === 'boolean'
-          ? mainJs.disableRecommendedAddons
-          : false,
-    },
-    {
-      name: 'experimental-md-docs',
-      type: Boolean,
     },
     { name: 'help', type: Boolean, description: 'See all options' },
   ];
@@ -108,31 +79,17 @@ module.exports = function readCommandLineArgs() {
 
   const esDevServerConfig = esDevServerCommandLineArgs(storybookArgs._unknown || [], {
     defaultConfigDir: storybookArgs['config-dir'],
-    defaultConfigName: 'start-storybook.config.js',
   });
-
-  const addons = mainJs.addons || [];
-  if (!storybookArgs['disable-recommended-addons']) {
-    addons.push(
-      'storybook-prebuilt/addon-actions/register.js',
-      'storybook-prebuilt/addon-knobs/register.js',
-      'storybook-prebuilt/addon-a11y/register.js',
-      'storybook-prebuilt/addon-docs/register.js',
-      'storybook-prebuilt/addon-backgrounds/register.js',
-      'storybook-prebuilt/addon-links/register.js',
-      'storybook-prebuilt/addon-viewport/register.js',
-    );
-  }
 
   return {
     configDir: storybookArgs['config-dir'],
     stories: storybookArgs.stories,
-    managerPath: storybookArgs['manager-path'],
-    previewPath: storybookArgs['preview-path'],
-    addons,
-    experimentalMdDocs: storybookArgs['experimental-md-docs'],
-    // some args may be overwritten, as es-dev-server reads start-storybook.config.js
+    addons: mainJs.addons || [],
+
+    // TODO: we should separate es dev server config and storybook config
+    // command line args read from regular es-dev-server
     ...esDevServerConfig,
+    // args set in main js config
     ...mainJs.esDevServer,
   };
 };

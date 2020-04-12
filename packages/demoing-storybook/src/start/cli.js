@@ -17,8 +17,8 @@ async function run() {
   const rootDir = config.rootDir ? path.resolve(process.cwd(), config.rootDir) : process.cwd();
 
   const storybookConfigDir = config.configDir;
-  const previewPath = require.resolve(config.previewPath);
-  const managerPath = require.resolve(config.managerPath);
+  const previewPath = require.resolve('storybook-prebuilt/web-components.js');
+  const managerPath = require.resolve('storybook-prebuilt/manager.js');
   const previewPathRelative = rootDir ? `/${path.relative(rootDir, previewPath)}` : previewPath;
   const managerPathRelative = rootDir ? `/${path.relative(rootDir, managerPath)}` : managerPath;
   const previewImport = toBrowserPath(previewPathRelative);
@@ -39,15 +39,11 @@ async function run() {
   });
 
   config.babelModernExclude = [...(config.babelModernExclude || []), '**/storybook-prebuilt/**'];
-  config.fileExtensions = [...(config.fileExtensions || []), '.mdx'];
-
-  if (config.experimentalMdDocs) {
-    config.fileExtensions.push('.md');
-  }
+  config.fileExtensions = [...(config.fileExtensions || []), '.md', '.mdx'];
 
   config.responseTransformers = [
     ...(config.responseTransformers || []),
-    config.experimentalMdDocs ? mdjsToCsfTransformer : null,
+    mdjsToCsfTransformer,
     mdxToCsfTransformer,
     createServeStorybookTransformer({
       assets,

@@ -51,8 +51,6 @@
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.0.0",
     "babel-loader": "^8.0.0",
-    "chai": "^4.2.0",
-    "mocha": "^6.2.2",
     "mocha-chai-snapshot": "^1.0.0"
   }
 }

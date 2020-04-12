@@ -1,8 +1,8 @@
-const { createRollupConfigs } = require('./createRollupConfigs');
+const { createRollupConfig } = require('./createRollupConfig');
 const { buildAndWrite } = require('./buildAndWrite');
 const { injectStories } = require('../../shared/injectStories');
 const { collectStoryIdsPlugin } = require('./collectStoryIdsPlugin');
-const { transformMdxPlugin } = require('./transformMdxPlugin');
+const { transformMdPlugin } = require('./transformMdPlugin');
 const { injectOrderedExportsPlugin } = require('./injectOrderedExportsPlugin');
 const { copyCustomElementsJsonPlugin } = require('./copyCustomElementsJsonPlugin');
 
@@ -14,7 +14,6 @@ const { copyCustomElementsJsonPlugin } = require('./copyCustomElementsJsonPlugin
  * @param {string} param.previewConfigImport
  * @param {string[]} param.storiesPatterns
  * @param {(config: object) => object | undefined} param.rollupConfigDecorator
- * @param {boolean} param.experimentalMdDocs
  */
 async function buildPreview({
   outputDir,
@@ -23,7 +22,6 @@ async function buildPreview({
   previewConfigImport,
   storiesPatterns,
   rollupConfigDecorator,
-  experimentalMdDocs,
 }) {
   const { html } = await injectStories({
     iframeHTML,
@@ -34,32 +32,27 @@ async function buildPreview({
     rootDir: process.cwd(),
   });
 
-  let configs = createRollupConfigs({
+  let config = createRollupConfig({
     outputDir,
     indexFilename: 'iframe.html',
     indexHTMLString: html,
   });
 
-  configs.forEach(config => {
-    // stories, filled by collectStoryIdsPlugin, shared by the other plugins
-    const storyIds = [];
+  // stories, filled by collectStoryIdsPlugin, shared by the other plugins
+  const storyIds = [];
 
-    config.plugins.unshift(
-      collectStoryIdsPlugin(storyIds),
-      transformMdxPlugin(storyIds, experimentalMdDocs),
-      injectOrderedExportsPlugin(storyIds),
-      copyCustomElementsJsonPlugin(outputDir),
-    );
-  });
+  config.plugins.unshift(
+    collectStoryIdsPlugin(storyIds),
+    transformMdPlugin(storyIds),
+    injectOrderedExportsPlugin(storyIds),
+    copyCustomElementsJsonPlugin(outputDir),
+  );
 
   if (rollupConfigDecorator) {
-    configs = rollupConfigDecorator(configs) || configs;
+    config = rollupConfigDecorator(config) || config;
   }
 
-  // build sequentially instead of parallel because terser is multi
-  // threaded and will max out CPUs.
-  await buildAndWrite(configs[0]);
-  await buildAndWrite(configs[1]);
+  await buildAndWrite(config);
 }
 
 module.exports = { buildPreview };

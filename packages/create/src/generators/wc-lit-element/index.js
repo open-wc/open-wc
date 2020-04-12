@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { join } from 'path';
 import { CommonRepoMixin } from '../common-repo/index.js';
 import { processTemplate, readFileFromPath } from '../../core.js';

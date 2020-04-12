@@ -8,7 +8,6 @@ const { rollup } = require('rollup');
 const { startServer, createConfig } = require('es-dev-server');
 
 const rootDir = path.resolve(__dirname, '..', 'dist');
-const testCases = ['js', 'ts-babel'];
 
 describe('integration tests', () => {
   let server;
@@ -36,56 +35,52 @@ describe('integration tests', () => {
     );
   });
 
-  testCases.forEach(testCase => {
-    ['modern', 'modern-and-legacy'].forEach(mode => {
-      describe(`testcase ${testCase}-${mode}`, function describe() {
-        this.timeout(10000);
-        let page;
+  ['js/rollup.spa.config.js', 'js/rollup.spa-nomodule.config.js'].forEach(testCase => {
+    describe(`testcase ${testCase}`, function describe() {
+      this.timeout(10000);
+      let page;
 
-        before(async () => {
-          const configName = mode === 'modern' ? 'rollup.modern.config.js' : 'rollup.config.js';
-          const configPath = path.join(__dirname, '..', 'demo', testCase, configName);
-          const config = require(configPath);
+      before(async () => {
+        rimraf.sync(rootDir);
+        const configPath = path.join(__dirname, '..', 'demo', testCase);
+        const config = require(configPath);
+        const bundle = await rollup(config);
+        if (Array.isArray(config.output)) {
+          await Promise.all([bundle.write(config.output[0]), bundle.write(config.output[1])]);
+        } else {
+          await bundle.write(config.output);
+        }
 
-          if (Array.isArray(config)) {
-            const bundles = await Promise.all([rollup(config[0]), rollup(config[1])]);
-            await bundles[0].write(config[0].output);
-            await bundles[1].write(config[1].output);
-          } else {
-            const bundle = await rollup(config);
-            await bundle.write(config.output);
-          }
-
-          page = await browser.newPage();
-          await page.goto('http://localhost:8081/', {
-            waitUntil: 'networkidle0',
-          });
+        page = await browser.newPage();
+        await page.goto('http://localhost:8081/', {
+          waitUntil: 'networkidle0',
         });
+      });
 
-        after(() => {
-          rimraf.sync(rootDir);
-        });
+      after(() => {
+        rimraf.sync(rootDir);
+      });
 
-        it('passes the in-browser tests', async () => {
-          // @ts-ignore
-          const browserTests = await page.evaluate(() => window.__tests);
-          expect(browserTests).to.eql({
-            partialCSS: true,
-            litElement: true,
-            startsWith: true,
-            map: true,
-            importMeta: true,
-            importMeta2: true,
-            asyncFunction: true,
-            forOf: true,
-            optionalChaining: true,
-            nullishCoalescing: true,
-          });
+      it('passes the in-browser tests', async () => {
+        // @ts-ignore
+        const browserTests = await page.evaluate(() => window.__tests);
+        expect(browserTests).to.eql({
+          partialCSS: true,
+          litElement: true,
+          startsWith: true,
+          map: true,
+          importMeta: true,
+          importMeta2: true,
+          asyncFunction: true,
+          forOf: true,
+          optionalChaining: true,
+          nullishCoalescing: true,
+          asyncIterator: true,
         });
+      });
 
-        it('outputs a service worker', () => {
-          expect(fs.existsSync(path.join(rootDir, 'sw.js'))).to.be.true;
-        });
+      it('outputs a service worker', () => {
+        expect(fs.existsSync(path.join(rootDir, 'sw.js'))).to.be.true;
       });
     });
   });

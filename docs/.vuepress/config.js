@@ -107,7 +107,12 @@ const sidebar = [
         title: 'Building',
         collapsable: false,
         sidebarDepth: 0,
-        children: ['/building/rollup-plugin-index-html', '/building/webpack-index-html-plugin'],
+        children: [
+          '/building/rollup-plugin-html',
+          '/building/rollup-plugin-polyfills-loader',
+          '/building/polyfills-loader',
+          '/building/webpack-index-html-plugin',
+        ],
       },
       {
         title: 'Demoing',
