@@ -28,13 +28,6 @@ module.exports = function readCommandLineArgs() {
       mainJs.stories = typeof mainJs.stories === 'string' ? [mainJs.stories] : mainJs.stories;
       mainJs.stories = mainJs.stories.map(entry => path.join(mainDir, entry));
     }
-    // fix relative paths if they work - otherwise let resolve handle it afterwards
-    if (mainJs.managerPath && fs.existsSync(path.join(mainDir, mainJs.managerPath))) {
-      mainJs.managerPath = path.join(mainDir, mainJs.managerPath);
-    }
-    if (mainJs.previewPath && fs.existsSync(path.join(mainDir, mainJs.previewPath))) {
-      mainJs.previewPath = path.join(mainDir, mainJs.previewPath);
-    }
     mainJs.esDevServer = mainJs.esDevServer || {};
   }
 
@@ -50,16 +43,6 @@ module.exports = function readCommandLineArgs() {
       name: 'stories',
       defaultValue: mainJs.stories || './stories/*.stories.{js,mdx}',
       description: 'List of story files e.g. --stories stories/*.stories.\\{js,mdx\\}',
-    },
-    {
-      name: 'manager-path',
-      defaultValue: mainJs.managerPath || 'storybook-prebuilt/manager.js',
-      description: 'Import path of a prebuilt manager file',
-    },
-    {
-      name: 'preview-path',
-      defaultValue: mainJs.previewPath || 'storybook-prebuilt/web-components.js',
-      description: 'Import path of a prebuilt preview file',
     },
     {
       name: 'disable-recommended-addons',
@@ -108,7 +91,6 @@ module.exports = function readCommandLineArgs() {
 
   const esDevServerConfig = esDevServerCommandLineArgs(storybookArgs._unknown || [], {
     defaultConfigDir: storybookArgs['config-dir'],
-    defaultConfigName: 'start-storybook.config.js',
   });
 
   const addons = mainJs.addons || [];
@@ -127,12 +109,13 @@ module.exports = function readCommandLineArgs() {
   return {
     configDir: storybookArgs['config-dir'],
     stories: storybookArgs.stories,
-    managerPath: storybookArgs['manager-path'],
-    previewPath: storybookArgs['preview-path'],
     addons,
     experimentalMdDocs: storybookArgs['experimental-md-docs'],
-    // some args may be overwritten, as es-dev-server reads start-storybook.config.js
+
+    // TODO: we should separate es dev server config and storybook config
+    // command line args read from regular es-dev-server
     ...esDevServerConfig,
+    // args set in main js config
     ...mainJs.esDevServer,
   };
 };
