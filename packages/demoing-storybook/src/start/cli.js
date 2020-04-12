@@ -39,15 +39,11 @@ async function run() {
   });
 
   config.babelModernExclude = [...(config.babelModernExclude || []), '**/storybook-prebuilt/**'];
-  config.fileExtensions = [...(config.fileExtensions || []), '.mdx'];
-
-  if (config.experimentalMdDocs) {
-    config.fileExtensions.push('.md');
-  }
+  config.fileExtensions = [...(config.fileExtensions || []), '.md', '.mdx'];
 
   config.responseTransformers = [
     ...(config.responseTransformers || []),
-    config.experimentalMdDocs ? mdjsToCsfTransformer : null,
+    mdjsToCsfTransformer,
     mdxToCsfTransformer,
     createServeStorybookTransformer({
       assets,

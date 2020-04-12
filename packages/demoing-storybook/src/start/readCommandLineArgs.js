@@ -44,18 +44,6 @@ module.exports = function readCommandLineArgs() {
       defaultValue: mainJs.stories || './stories/*.stories.{js,mdx}',
       description: 'List of story files e.g. --stories stories/*.stories.\\{js,mdx\\}',
     },
-    {
-      name: 'disable-recommended-addons',
-      type: Boolean,
-      defaultValue:
-        typeof mainJs.disableRecommendedAddons === 'boolean'
-          ? mainJs.disableRecommendedAddons
-          : false,
-    },
-    {
-      name: 'experimental-md-docs',
-      type: Boolean,
-    },
     { name: 'help', type: Boolean, description: 'See all options' },
   ];
 
@@ -97,7 +85,6 @@ module.exports = function readCommandLineArgs() {
     configDir: storybookArgs['config-dir'],
     stories: storybookArgs.stories,
     addons: mainJs.addons || [],
-    experimentalMdDocs: storybookArgs['experimental-md-docs'],
 
     // TODO: we should separate es dev server config and storybook config
     // command line args read from regular es-dev-server

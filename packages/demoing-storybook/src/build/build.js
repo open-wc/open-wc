@@ -10,7 +10,6 @@ module.exports = async function build({
   outputDir,
   storiesPatterns,
   rollupConfigDecorator,
-  experimentalMdDocs,
   addons,
 }) {
   const managerPathRelative = `/${path.relative(
@@ -47,7 +46,6 @@ module.exports = async function build({
     storiesPatterns,
     previewImport,
     previewConfigImport,
-    experimentalMdDocs,
     rollupConfigDecorator,
   });
 };

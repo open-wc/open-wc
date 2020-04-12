@@ -50,10 +50,6 @@ module.exports = function readCommandLineArgs() {
       defaultValue: mainJs.stories || './stories/*.stories.{js,mdx}',
       description: 'List of story files e.g. --stories stories/*.stories.{js,mdx}',
     },
-    {
-      name: 'experimental-md-docs',
-      type: Boolean,
-    },
   ];
 
   const args = commandLineArgs(optionDefinitions, { partial: true });
@@ -64,6 +60,5 @@ module.exports = function readCommandLineArgs() {
     stories: args.stories,
     rollup: mainJs.rollup,
     addons: mainJs.addons || [],
-    experimentalMdDocs: args['experimental-md-docs'],
   };
 };

@@ -9,7 +9,6 @@ const readCommandLineArgs = require('./readCommandLineArgs');
     storybookConfigDir: config.configDir,
     storiesPatterns: config.stories,
     outputDir: config.outputDir,
-    experimentalMdDocs: config.experimentalMdDocs,
     rollupConfigDecorator: config.rollup,
     addons: config.addons,
   });

@@ -3,9 +3,8 @@ const { transformMdxToCsf } = require('../../shared/transformMdxToCsf');
 
 /**
  * @param {string[]} storyIds
- * @param {boolean} experimentalMdDocs
  */
-function transformMdxPlugin(storyIds, experimentalMdDocs) {
+function transformMdPlugin(storyIds) {
   return {
     transform(code, id) {
       if (!storyIds.includes(id)) {
@@ -16,7 +15,7 @@ function transformMdxPlugin(storyIds, experimentalMdDocs) {
         return transformMdxToCsf(code, id);
       }
 
-      if (experimentalMdDocs && id.endsWith('.md')) {
+      if (id.endsWith('.md')) {
         return mdjsToCsf(code, id);
       }
       return null;
@@ -24,4 +23,4 @@ function transformMdxPlugin(storyIds, experimentalMdDocs) {
   };
 }
 
-module.exports = { transformMdxPlugin };
+module.exports = { transformMdPlugin };
