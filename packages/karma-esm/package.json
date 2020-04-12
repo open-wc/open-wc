@@ -35,7 +35,7 @@
     "@open-wc/building-utils": "^2.16.2",
     "babel-plugin-istanbul": "^5.1.4",
     "chokidar": "^3.0.0",
-    "deepmerge": "^3.2.0",
+    "deepmerge": "^4.2.2",
     "es-dev-server": "^1.46.1",
     "minimatch": "^3.0.4",
     "node-fetch": "^2.6.0",
