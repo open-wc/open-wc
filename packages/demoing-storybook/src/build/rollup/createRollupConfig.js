@@ -32,6 +32,7 @@ function createRollupConfig({ outputDir, indexFilename, indexHTMLString }) {
       dir: outputDir,
     },
     plugins: [
+      // @ts-ignore
       resolve({
         moduleDirectory: ['node_modules', 'web_modules'],
       }),

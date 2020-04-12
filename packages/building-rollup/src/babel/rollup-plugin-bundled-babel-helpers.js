@@ -1,3 +1,4 @@
+// @ts-ignore
 const { buildExternalHelpers, transformSync } = require('@babel/core');
 const { getDependencies } = require('@babel/helpers');
 const MagicString = require('magic-string');
@@ -132,6 +133,7 @@ function bundledBabelHelpers({ format = 'es', minify = true } = {}) {
       for (const chunk of chunks) {
         const importSpecifier = getHelperImportSpecifier(this.parse(chunk.code), format);
         if (importSpecifier) {
+          // @ts-ignore
           const ms = new MagicString(chunk.code);
           ms.overwrite(importSpecifier.start, importSpecifier.end, `"./${helperFileName}"`);
           chunk.code = ms.toString();
