@@ -1,151 +1,171 @@
 # Rollup
 
-Rollup configuration to help you get started building modern web applications. You write modern javascript using the latest browser features, rollup will optimize your code for production ensure it runs on all supported browsers.
+Rollup configuration to help you get started building modern web applications.
+You write modern javascript using the latest browser features, rollup will optimize your code for production and ensure it runs on all supported browsers.
 
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
-## Configuration
+## Features
 
-The input for rollup is the same `index.html` you use for development. Any module scripts in your index are run through rollup and your index is updated with the output from rollup.
+- Set HTML or JS as input and/or output
+- Optimized for browsers which support modules
+- Optional separate build for legacy browsers
+- Loads polyfills using feature detection
+- Generates a service worker
+- Minifies JS
+- Minifies lit-html templates
 
-- See the [config features section](#config-features) for full details
-- See the [extending section](#extending-the-rollup-config) for more customization, such as supporting non-standard syntax or adding babel plugins.
+## Automatic setup
 
-## Setup
+We recommend the open-wc [project generator](https://open-wc.org/init/) for automated setup, for new projects or to upgrade existing projects.
 
-### New project
+## Manual setup
 
-```bash
-npm init @open-wc
-```
+Install the required dependencies:
 
-### Existing project
-
-```bash
-npm init @open-wc
-# Upgrade > Building > Rollup
-```
-
-### Manual setup
-
-1. Install the required dependencies:
+<details>
+<summary>View</summary>
 
 ```bash
-npm i -D @open-wc/building-rollup rollup rimraf es-dev-server
+npm i -D rollup @open-wc/building-rollup rimraf deepmerge es-dev-server
 ```
 
-2. Create a `rollup.config.js` file and pass in your app's `index.html`:
+</details>
 
-```javascript
-import { createDefaultConfig } from '@open-wc/building-rollup';
+Create a `rollup.config.js` file:
 
-// if you need to support IE11 use `createCompatibilityConfig` instead.
-// import { createCompatibilityConfig } from '@open-wc/building-rollup';
-// export default createCompatibilityConfig({ input: './index.html' });
+<details>
+<summary>View</summary>
 
-export default createDefaultConfig({ input: './index.html' });
+```js
+import merge from 'deepmerge';
+// use createSpaConfig for bundling a Single Page App
+import { createSpaConfig } from '@open-wc/building-rollup';
+// use createBasicConfig to do regular JS to JS bundling
+// import { createBasicConfig } from '@open-wc/building-rollup';
+
+const baseConfig = createSpaConfig({
+  // use the outputdir option to modify where files are output
+  // outputDir: 'dist',
+
+  // if you need to support older browsers, such as IE11, set the legacyBuild
+  // option to generate an additional build just for this browser
+  // legacyBuild: true,
+
+  // development mode creates a non-minified build for debugging or development
+  developmentMode: process.env.ROLLUP_WATCH === 'true',
+
+  // set to true to inject the service worker registration into your index.html
+  injectServiceWorker: false,
+});
+
+export default merge(baseConfig, {
+  // you can use your JS as entrypoint for ollup
+  input: './app.js',
+
+  // optionally use your index.html as entrypoint, and <script type="module">
+  // inside will be bundled
+  // input: './index.html',
+});
 ```
 
-3. Create an `index.html`:
+</details>
 
-```html
-<!DOCTYPE html>
-<html>
-  <head></head>
-  <body>
-    <my-app></my-app>
+Add the following NPM scripts to your `package.json`:
 
-    <script type="module" src="./src/my-app.js"></script>
-  </body>
-</html>
-```
-
-We use [rollup-plugin-index-html](https://open-wc.org/building/rollup-plugin-index-html.html) which takes your `index.html` as input for rollup. It scans for any `<script type="module" src="...">` and sends them to rollup for bundling, and outputs your `index.html` in the output directory.
-
-> If there is no script with `type="module"` in your `index.html`, rollup build will fail.
-> Also make sure that your references to internal files are relative paths.
-
-4. Add the following commands to your `package.json`:
+<details>
+<summary>View</summary>
 
 ```json
 {
   "scripts": {
     "build": "rimraf dist && rollup -c rollup.config.js",
-    "start:build": "es-dev-server --app-index dist/index.html --open"
+    "start:build": "npm run build && es-dev-server --root-dir dist --app-index index.html --compatibility none --open"
   }
 }
 ```
 
-- `start` runs your app for development, reloading on file changes
-- `start:build` runs your app after it has been built using the build command
-- `build` builds your app and outputs it in your `dist` directory
+</details>
 
-## Supporting legacy browsers
+### SPA Projects
 
-`createDefaultConfig` works for browsers which [support es modules](https://caniuse.com/#feat=es6-module). If you need to support older browsers such as IE11 you need to use our `createCompatibilityConfig` in your `rollup.config.js`:
+If you have a SPA (Single Page App) project you can use `createSpaConfig` to generate your config. This will inject the rollup output into a single index.html file, generate a service worker and load polyfills using feature detection.
 
-```javascript
-import { createCompatibilityConfig } from '@open-wc/building-rollup';
+#### HTML as input
 
-export default createCompatibilityConfig({ input: './index.html' });
+You can set an index.html file as rollup input. Any modules inside will be bundled by rollup and the final output will be injected into the final HTML file.
+
+<details>
+<summary>View example</summary>
+
+```js
+import merge from 'deepmerge';
+import { createBasicConfig } from '@open-wc/building-rollup';
+
+const baseConfig = createBasicConfig();
+
+export default merge(baseConfig, {
+  input: './index.html',
+});
 ```
 
-In addition to outputting a regular build of your app, it outputs a legacy build which is compatible with older browsers down to IE11.
+</details>
 
-At runtime we determine which version of your app should be loaded, so that legacy browsers don't force you to ship more and slower code to most users on modern browsers.
+#### Custom HTML template
 
-## Config features
+You can also provide the HTML as a template, as a string or read from a file. See the [html plugin docs](https://github.com/open-wc/open-wc/tree/master/packages/rollup-plugin-html#readme) for all possible options.
 
-`createDefaultConfig`:
+<details>
+<summary>View example</summary>
 
-- compatible with browsers which [support es modules](https://caniuse.com/#feat=es6-module)
-- babel transform based on browser support (no es5 for all browsers)
-- load polyfills when needed:
-  - dynamic import
-  - webcomponents
-- resolve bare imports ( `import { html } from 'lit-html'` )
-- preserve `import.meta.url` value from before bundling
-- minify + treeshake js
-- minify html and css in template literals
+```js
+import merge from 'deepmerge';
+import { createBasicConfig } from '@open-wc/building-rollup';
 
-`createCompatibilityConfig`:
+const baseConfig = createBasicConfig({
+  html: {
+    template: /* your template goes here */,
+  },
+});
 
-- Two build outputs:
+export default merge(baseConfig, {
+  input: './src/app.js',
+});
+```
 
-  - Modern build:
+</details>
 
-    - es modules
-    - compatible with browsers which [support es modules](https://caniuse.com/#feat=es6-module)
-    - babel transform based on browser support (no es5 for all browsers)
+### Non-SPA projects
 
-  - Legacy build:
+If you are not building a single page app you can use `createBasicConfig` to set up regular JS to JS bundling.
 
-    - systemjs modules
-    - compatible down to IE11
-    - babel transform down to IE11 (es5)
-    - core js polyfills (`Promise`, `Symbol`, `String.prototype.includes` etc.)
+From there on it's easy to extend further for different use cases. For example, to bundle and generate multiple HTML files you can take a look at the documentation of [@open-wc/rollup-plugin-html](https://github.com/open-wc/open-wc/tree/master/packages/rollup-plugin-html#readme). See below how to add plugins to the rollup config.
 
-  - Both:
-    - resolve bare imports ( `import { html } from 'lit-html'` )
-    - preserve `import.meta.url` value from before bundling
-    - load polyfills when needed:
-      - dynamic import
-      - webcomponents
-      - fetch
-    - minify + treeshake js
-    - minify html and css in template literals
+## Injecting a service worker
 
-## Adjusting browser support for the modern build
+When you use `createSpaConfig` a service worker is generated automatically with Workbox. The service worker registration is not injected into your `index.html` by default to prevent unexpected results. You can turn this on by enabling the `injectServiceWorker` option:
 
-The legacy build targets IE11, which is the earliest browser supported by the webcomponents polyfill. For the modern build we target the 2 most recent versions of the major browsers (chrome, firefox, safari and edge).
+```js
+const baseConfig = createSpaConfig({
+  injectServiceWorker: true,
+});
+```
 
-You can adjust this by adding a [browserslist](https://github.com/browserslist/browserslist) configuration. For example by adding a `.browserslistrc` file to your project, or adding an entry to your package.json. See the [browserslist documentation](https://github.com/browserslist/browserslist) for more information.
+## Supporting older browsers
 
-> Warning: you should not add IE11 or other very early browsers as a target in your browserslist, as it would result in a broken modern build because it makes some assumptions around browser support. Use the `--legacy` flag for legacy builds.
+The default build output works only on browsers that support modules. If you need to support older browsers, such as IE11 or the old Edge, you can set the `legacyBuild` option when you use the create config function.
+
+This will create a separate rollup build output for legacy browsers and makes sure the correct version is loaded. This has minimal impact on users with modern browsers.
+
+```js
+const baseConfig = createSpaConfig({
+  legacyBuild: true,
+});
+```
 
 ## Customizing the babel config
 
-You can define your own babel plugins by adding a `.babelrc` or `babel.config.js` to your project. See [babeljs config](https://babeljs.io/docs/en/configuration) for more information.
+You can define custom babel plugins to be loaded by adding a `.babelrc` or `babel.config.js` to your project. See [babeljs config](https://babeljs.io/docs/en/configuration) for more information.
 
 For example to add support for class properties:
 
@@ -155,342 +175,241 @@ For example to add support for class properties:
 }
 ```
 
-## Extending the rollup config
+## Customizations
 
-A rollup config is just a plain object. It's easy to extend it using javascript:
+Our config generator sets you up with good defaults for most projects. It's easy to extend and customize this config further for your requirements.
 
-```javascript
-import { createDefaultConfig } from '@open-wc/building-rollup';
+If you find yourself disabling a lot of the default functionality we recommend forking from the default config and taking control yourself. Rollup is relatively easy to configure compared to other build tools, it's better to be in full control if you know what you're doing.
 
-const config = createDefaultConfig({ input: './index.html' });
+### Customizing default plugins
 
-export default {
-  ...config,
-  output: {
-    ...config.output,
-    sourcemap: false,
-  },
-  plugins: [...config.plugins, myAwesomePlugin()],
-};
-```
+Our config creators install a number of rollup plugins by default:
 
-If you use `createCompatibilityConfig`, it is actually an array of configs so that rollup outputs a modern and a legacy build. Simply `map` over the array to adjust both configs:
+Basic and SPA config plugins:
 
-```javascript
-import { createCompatibilityConfig } from '@open-wc/building-rollup';
+- [nodeResolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve#readme)
+- [babel](https://github.com/rollup/rollup-plugin-babel#readme)
+- [terser](https://github.com/TrySound/rollup-plugin-terser#readme)
 
-const configs = createCompatibilityConfig({ input: './index.html' });
+SPA config plugins:
 
-export default configs.map(config => ({
-  ...config,
-  output: {
-    ...config.output,
-    sourcemap: false,
-  },
-  plugins: [...config.plugins, myAwesomePlugin()],
-}));
-```
+- [html](https://github.com/open-wc/open-wc/tree/master/packages/rollup-plugin-html#readme)
+- [polyfillsLoader](https://github.com/open-wc/open-wc/tree/master/packages/polyfills-loader#readme)
+- [workbox](https://www.npmjs.com/package/rollup-plugin-workbox)
 
-### Common extensions
+You can customize options for these plugins, or turn them off completely by setting them to false. Check the documentation for the respective plugins to learn which options can be configured.
 
-::: warning
-Some extensions or plugins add non-native or experimental features to your code. This can be bad for the maintenance of your code in the long term, we therefore don't recommend it unless you know what you're doing.
-:::
+<details>
+<summary>View example</summary>
 
-#### Customizing index.html output
+Each plugin can be either "true", "false" or an object. If it's an object, this is used as a configuration for the plugin.
 
-If you need to customize the output of your `index.html` you can create a basic config object with `createDefaultConfig`, and use `deepmerge` to override and apply your customized options to [rollup-plugin-index-html](https://open-wc.org/building/rollup-plugin-index-html.html):
-
-```javascript
-import { createDefaultConfig } from '@open-wc/building-rollup';
-import { indexHTMLPlugin } from 'rollup-plugin-index-html';
-import deepmerge from 'deepmerge';
-
-const basicConfig = createDefaultConfig({
-  input: './index.html',
-  plugins: {
-    indexHTML: false,
-  },
-});
-
-export default deepmerge(basicConfig, {
-  plugins: [
-    indexHTMLPlugin({
-      polyfills: {
-        fetch: false,
-        intersectionObserver: true,
-      },
-    }),
-  ],
+```js
+const baseConfig = createSpaConfig({
+  nodeResolve: { browser: true, dedupe: ['lit-html'] },
+  babel: true,
+  terser: { exclude: ['node_modules*'] },
+  html: false,
+  polyfillsLoader: false,
+  workbox: false,
 });
 ```
 
-See the plugin docs for all options.
+</details>
 
-#### non index.html entrypoint
+Examples:
 
-By default we look for an `index.html` as entrypoint. If want to use regular entrypoints you will need to provide your `index.html` for output manually:
+### Customize HTML
 
-```javascript
-import { createDefaultConfig } from '@open-wc/building-rollup';
-import { indexHTMLPlugin } from 'rollup-plugin-index-html';
-import deepmerge from 'deepmerge';
+[@open-wc/rollup-plugin-html](https://github.com/open-wc/open-wc/tree/master/packages/rollup-plugin-html#readme) powers a lot of what our rollup config does. It has a lot of options available, for example, to transform the HTML output or set a different template.
 
-const basicConfig = createDefaultConfig({
-  input: './my-app.js',
-  plugins: {
-    indexHTML: false,
-  },
-});
+We recommend looking into the documentation to get an overview of all available options.
 
-export default deepmerge(basicConfig, {
-  plugins: [
-    indexHTMLPlugin({
-      indexHTML: `
-        <html>
-          <head></head>
-          <body></body>
-        </html>
-      `,
+<details>
+<summary>View example</summary>
 
-      // from file
-      indexHTML: fs.readFileSync('/path/to/index.html', 'utf-8'),
+```js
+import packageJson from './package.json';
 
-      // other options:
-      polyfills: {
-        dynamicImport: true,
-        webcomponents: true,
-      },
-    }),
-  ],
-});
-```
-
-#### Resolve commonjs modules
-
-CommonJS is the module format for NodeJS, and not suitable for the browser. Rollup only handles es modules by default, but sometimes it's necessary to be able to import a dependency. To do this, you can add [rollup-plugin-commonjs](https://github.com/rollup/rollup-plugin-commonjs):
-
-```javascript
-import { createCompatibilityConfig } from '@open-wc/building-rollup';
-import commonjs from 'rollup-plugin-commonjs';
-
-const configs = createCompatibilityConfig({ input: './index.html' });
-
-// map if you use an array of configs, otherwise just extend the config
-export default configs.map(config => ({
-  ...config,
-  plugins: [...config.plugins, commonjs()],
-}));
-```
-
-### Copy assets
-
-Web apps often include assets such as CSS files and images. These are not part of your regular dependency graph (see above), so they need to be copied into the build directory. Other files you might need to copy this way are e.g. fonts, JSON files, sound or video files, and HTML files (other than the `index.html` referenced in the `input` option) etc.
-
-[Rollup-plugin-cpy](https://github.com/shrynx/rollup-plugin-cpy) is a plugin that can be used, but there are other options, too.
-
-```javascript
-import cpy from 'rollup-plugin-cpy';
-import { createCompatibilityConfig } from '@open-wc/building-rollup';
-
-const config = createCompatibilityConfig({
-  input: './index.html',
-});
-
-// if you use an array of configs, you don't need the copy task to be executed for both builds.
-// we can add the plugin only to the first rollup config:
-export default [
-  // add plugin to the first config
-  {
-    ...config[0],
-    plugins: [
-      ...config[0].plugins,
-      cpy({
-        // copy over all images files
-        files: ['**/*.png'],
-        dest: 'dist',
-        options: {
-          // parents makes sure to preserve the original folder structure
-          parents: true,
-        },
-      }),
+const baseConfig = createSpaConfig({
+  html: {
+    transform: [
+      // inject lang attribute
+      html => html.replace('<html>', '<html lang="en-GB">'),
+      // inject app version
+      html =>
+        html.replace(
+          '</body>',
+          `<script>window.APP_VERSION = "${packageJson.version}"</script></body>`,
+        ),
     ],
   },
-
-  // leave the second config untouched
-  config[1],
-];
-```
-
-### Support typescript
-
-To import a typescript file, use the `.ts` extension in your `index.html`:
-
-```html
-<html>
-  <head></head>
-  <body>
-    <my-app></my-app>
-    <script type="module" src="./src/my-app.ts"></script>
-  </body>
-</html>
-```
-
-Make sure you set your `tsconfig.json` `target` and `module` fields to `ESNext`. This way `tsc`, the typescript compiler, won't do any compilation so that a plugin can take care of it.
-
-Within rollup there are two options to add typescript support.
-
-#### 1. Babel
-
-We recommend using the babel typescript plugin. Add it to your babel config file (`.babelrc` or `babel.config.js`):
-
-```json
-{
-  "presets": ["@babel/preset-typescript"]
-}
-```
-
-You also need to specify `.ts` in the `extensions` option, for babel and node to properly recognize ts files:
-
-```
-const configs = createDefaultConfig({
-  input: './index.html',
-  extensions: ['.js', '.mjs', '.ts'],
 });
 ```
 
-(keep `.js` in there, since node will want to resolve javascript files in node_modules)
+</details>
 
-This is the fastest method, as it strips away types during babel transformation of your code. It will not perform any type checking though. We recommend setting up the type checking as part of your linting setup, so that you don't need to run the typechecker during development for faster builds.
+### Customize polyfills
 
-#### 2. Plugin
+[@open-wc/rollup-plugin-polyills-loader](https://github.com/open-wc/open-wc/tree/master/packages/rollup-plugin-polyfills-loader#readme) loads polyfills only when necessary based on feature detection.
 
-It is also possible to add the rollup typescript plugin, which does typechecking and compiling for you:
+You can prevent certain polyfills from being loaded or add your own polyfills.
 
-```javascript
-import typescript from 'rollup-plugin-typescript2';
-import { createCompatibilityConfig } from '@open-wc/building-rollup';
-
-const configs = createCompatibilityConfig({
-  input: './index.html',
-});
-
-export default configs.map(config => ({
-  ...config,
-  plugins: [...config.plugins, typescript()],
-}));
-```
-
-#### Disable typescript compilation
-
-We already mentioned this above, but this is _really important_: Make sure to prevent any compilation done by the typescript compiler (`tsc`). If you use one of the options above, you put babel or rollup in charge of the compilation of typescript. In no case do you want multiple compilers to interfere with each other.
-
-You can do this by setting the following options in `tsconfig.json`:
-
-```json
-{
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext"
-  }
-}
-```
-
-#### Import CSS files in lit-html
-
-To separate your lit-html styles in css files, you can use [rollup-plugin-lit-css](https://github.com/bennypowers/rollup-plugin-lit-css):
-
-```javascript
-import { createCompatibilityConfig } from '@open-wc/building-rollup';
-import litcss from 'rollup-plugin-lit-css';
-
-const configs = createCompatibilityConfig({ input: './index.html' });
-
-// map if you use an array of configs, otherwise just extend the config
-export default configs.map(config => ({
-  ...config,
-  plugins: [...config.plugins, litcss({ include, exclude, uglify })],
-}));
-```
-
-## Progressive Web App
-
-### Making your app installable
-
-Make sure your PWA meets the installable criteria, which you can find [here](https://developers.google.com/web/fundamentals/app-install-banners/). You can find a tool to generate your `manifest.json` [here](https://www.pwabuilder.com/generate). When your app has a service worker with a `fetch` handler (generated by this configuration), a `manifest.json`, and is served over HTTPS, your app is ready to be installed.
-
-### Enabling the service worker
-
-This configuration will by default generate a service worker for you, using [rollup-plugin-workbox](https://www.npmjs.com/package/rollup-plugin-workbox). The service worker will only be generated for production. To opt-in to using this service worker, you can add the following code snippet to your `index.html`:
-
-```html
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js');
-    });
-  }
-</script>
-```
-
-### Overriding the workbox config
-
-If you want to override the default config with your own workbox configuration, you can disable the default workbox configuration by setting `options.plugins.workbox` to false in the `options` object that you pass to `createDefaultConfig`, and then you can override the plugins
-
-Alternatively, you can create a `workbox-config.js` in the root of your project, and it will be automatically be picked up by the configuration if available. Do note that this only works for `generateSW` mode.
+<details>
+<summary>View example</summary>
 
 ```js
-const { createDefaultConfig } = require('@open-wc/building-rollup');
-const deepmerge = require('deepmerge');
-const { injectManifest /* generateSW */ } = require('rollup-plugin-workbox');
-
-const basicConfig = createDefaultConfig({
-  input: './index.html',
-  plugins: {
-    workbox: false,
-  },
-});
-
-const workboxConfig = require('./workbox-config.js');
-
-export default merge(basicConfig, {
-  plugins: [injectManifest(workboxConfig)],
-});
-```
-
-`workbox-config.js`:
-
-```js
-const path = require('path');
-
-module.exports = {
-  swDest: path.join(__dirname, 'dist', 'sw.js'),
-  swSrc: path.join(__dirname, 'serviceWorker.js'),
-  globDirectory: path.join(__dirname, 'dist'),
-  globPatterns: ['**/*.{html,js,css}'],
-};
-```
-
-You can find the options for configuring Workbox [here](https://developers.google.com/web/tools/workbox/modules/workbox-build).
-
-### Disabling service worker generation
-
-To opt out of using workbox to generate a service worker, you can disabled it by overriding the options in the `createDefaultConfig` function:
-
-```js
-export default createDefaultConfig({
-  input: './index.html',
-  plugins: {
-    workbox: false,
+const baseConfig = createSpaConfig({
+  polyfillsLoader: {
+    polyfills: {
+      webcomponents: false,
+      intersectionObserver: true,
+      resizeObserver: true,
+      custom: [
+        {
+          name: 'my-feature-polyfill',
+          path: require.resolve('my-feature-polyfill'),
+          test: "!('myFeature' in window)",
+          minify: true,
+        },
+      ],
+    },
   },
 });
 ```
 
-### A note on `skipWaiting`
+</details>
 
-By default, the service worker generated will _not_ call `skipWaiting`. The reason for this is that it becomes very painful very quickly if you're lazyloading code in your application.
+### Extending the rollup config
 
-If you want to add a user-friendly 'Add To Home Screen' experience, you can use the [pwa-update-available](https://github.com/thepassle/pwa-helpers) web component.
+A rollup config is just a plain object. It's easy to extend it using javascript. We recommend using the `deepmerge` library because it is an easy way to merge objects and arrays:
+
+<details>
+<summary>View example</summary>
+
+```javascript
+import merge from 'deepmerge';
+import { createSpaConfig } from '@open-wc/building-rollup';
+
+const baseConfig = createSpaConfig();
+
+export default merge(baseConfig, {
+  // add your own rollup configuration here
+  input: './index.html',
+  output: {
+    sourcemap: false,
+  },
+  plugins: [
+    // add new plugins
+    myPlugin(),
+  ],
+});
+```
+
+</details>
+
+If you have enabled the legacy build option, the `output` option is an array. In that case, you cannot use deepmerge if you need to make changes to the `output` option.
+
+<details>
+<summary>View example</summary>
+
+```javascript
+import merge from 'deepmerge';
+import { createSpaConfig } from '@open-wc/building-rollup';
+
+const baseConfig = createSpaConfig({
+  legacyBuild: true,
+});
+
+// set the sourceMap option on both outputs
+baseConfig.output[0].sourceMap = true;
+baseConfig.output[1].sourceMap = true;
+
+export default merge(baseConfig, {
+  input: './index.html',
+  plugins: [
+    // add new plugins
+    myPlugin(),
+  ],
+});
+```
+
+</details>
+
+#### Copying assets
+
+To copy over assets, such as images, css or json files, we recommend using [rollup-plugin-copy](https://www.npmjs.com/package/rollup-plugin-copy)
+
+<details>
+  <summary>View example</summary>
+
+```js
+import merge from 'deepmerge';
+import { createSpaConfig } from '@open-wc/building-rollup';
+import copy from 'rollup-plugin-copy';
+
+const baseConfig = createSpaConfig();
+
+export default merge(baseConfig, {
+  input: './index.html',
+  plugins: [
+    copy({
+      targets: [{ src: 'assets/**/*', dest: '/dist' }],
+      // set flatten to false to preserve folder structure
+      flatten: false,
+    }),
+  ],
+});
+```
+
+</details>
+
+#### Support for CommonJs modules
+
+Rollup only supports standard es modules (using `import` and `export`). A lot of projects don't use this syntax yet, and instead use the CommonJs module format. This format uses `require` and `module.exports` statements, and is intended for NodeJs.
+
+To support this in Rollup, you can add the [@rollup/plugin-commonjs](https://github.com/rollup/plugins/tree/master/packages/commonjs) plugin.
+
+<details>
+  <summary>View example</summary>
+
+```js
+import merge from 'deepmerge';
+import { createSpaConfig } from '@open-wc/building-rollup';
+import commonjs from '@rollup/plugin-commonjs';
+
+const baseConfig = createSpaConfig();
+
+export default merge(baseConfig, {
+  input: './index.html',
+  plugins: [commonjs()],
+});
+```
+
+</details>
+
+#### Support for Typescript
+
+<details>
+
+<summary>View example</summary>
+
+To support Typescript in rollup you have multiple options. You can run `tsc`, and then run rollup on the generated JS files. This is useful when you are already running `tsc` for use in other tools, such as a dev server. You can also use the [@rollup/plugin-typescript](https://github.com/rollup/plugins/tree/master/packages/typescript) plugin to integrate with rollup more directly. View their documentation for more information.
+
+```js
+import merge from 'deepmerge';
+import { createSpaConfig } from '@open-wc/building-rollup';
+import typescript from '@rollup/plugin-typescript';
+
+const baseConfig = createSpaConfig();
+
+export default merge(baseConfig, {
+  input: './index.html',
+  plugins: [typescript()],
+});
+```
+
+</details>
 
 <script>
   export default {

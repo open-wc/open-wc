@@ -1,4 +1,9 @@
-const createDefaultConfig = require('./modern-config.js');
-const createCompatibilityConfig = require('./modern-and-legacy-config.js');
+/**
+ * @typedef {import('./src/types').BasicOptions} BasicOptions
+ * @typedef {import('./src/types').SpaOptions} SpaOptions
+ */
 
-module.exports = { createDefaultConfig, createCompatibilityConfig };
+const { createBasicConfig } = require('./src/createBasicConfig');
+const { createSpaConfig } = require('./src/createSpaConfig');
+
+module.exports = { createBasicConfig, createSpaConfig };
