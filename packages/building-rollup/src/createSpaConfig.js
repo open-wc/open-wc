@@ -87,6 +87,12 @@ function createSpaConfig(options) {
             globPatterns: ['**/*.{html,js,css}'],
             skipWaiting: true,
             clientsClaim: true,
+            runtimeCaching: [
+              {
+                urlPattern: 'polyfills/*.js',
+                handler: 'CacheFirst',
+              },
+            ],
           },
           () => {},
         ),
