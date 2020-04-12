@@ -334,7 +334,7 @@ connectedCallback() {
 }
 ```
 
-To test the encapsulation of to our component, let's add some styles to the `<template>` element:
+To test the encapsulation of our component, let's add some styles to the `<template>` element:
 
 ```html
 <template>
