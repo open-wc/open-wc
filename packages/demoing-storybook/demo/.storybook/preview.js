@@ -19,9 +19,7 @@ addParameters({
 });
 
 async function run() {
-  const customElements = await (
-    await fetch(new URL('../custom-elements.json', import.meta.url))
-  ).json();
+  const customElements = await fetch(new URL('../custom-elements.json')).json();
 
   setCustomElements(customElements);
 }
