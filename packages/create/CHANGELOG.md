@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.29.0...@open-wc/create@0.30.0) (2020-04-13)
+
+
+### Features
+
+* **create:** copyTemplates resolves with the copied files ([00a7d90](https://github.com/open-wc/open-wc/commit/00a7d908cd2aa7b59d686c533ef8aaea82f42194))
+
+
+
+
+
 # [0.29.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.28.4...@open-wc/create@0.29.0) (2020-04-13)
 
 
