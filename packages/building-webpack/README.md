@@ -64,7 +64,7 @@ module.exports = createDefaultConfig({
 </html>
 ```
 
-We use [webpack-index-html-plugin](https://open-wc.org/building/webpack-index-html-plugin.html). Contrary to other webpack plugins, you **do** need to include your app's module entrypoint in your `index.html`. This allows you to use the same index during development and when building.
+We use [webpack-index-html-plugin](https://github.com/open-wc/open-wc/tree/master/packages/webpack-index-html-plugin). Contrary to other webpack plugins, you **do** need to include your app's module entrypoint in your `index.html`. This allows you to use the same index during development and when building.
 
 4. Add the following commands to your `package.json`:
 
@@ -183,7 +183,7 @@ Some extensions or plugins add non-native or experimental features to your code.
 
 #### Customizing index.html output
 
-If you need to customize the output of your `index.html` you can pass extra options to [webpack-index-html-plugin](https://open-wc.org/building/webpack-index-html-plugin.html):
+If you need to customize the output of your `index.html` you can pass extra options to [webpack-index-html-plugin](https://github.com/open-wc/open-wc/tree/master/packages/webpack-index-html-plugin):
 
 ```javascript
 const merge = require('webpack-merge');
@@ -249,7 +249,7 @@ module.exports = createDefaultConfig({
 });
 ```
 
-[See the documentation](https://open-wc.org/building/webpack-index-html-plugin.html) for more information.
+[See the documentation](https://github.com/open-wc/open-wc/tree/master/packages/webpack-index-html-plugin) for more information.
 
 #### Copy assets
 
@@ -312,7 +312,7 @@ This the fastest method, as it strips away types during babel transformormation 
   <summary>Supporting decorators</summary>
 
 ::: warning
-Please note that decorators will add [non standard syntax](https://open-wc.org/building/building-webpack.html#common-extensions) to your code.
+Please note that decorators will add [non standard syntax](#common-extensions) to your code.
 :::
 
 ```json

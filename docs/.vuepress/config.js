@@ -55,11 +55,7 @@ const sidebar = [
         title: 'Building apps for production',
         collapsable: false,
         sidebarDepth: 0,
-        children: [
-          ['/building/', 'Getting started'],
-          '/building/building-rollup',
-          '/building/building-webpack',
-        ],
+        children: [['/building/', 'Getting started'], '/building/building-rollup'],
       },
       {
         title: 'Deploying apps',
@@ -111,7 +107,6 @@ const sidebar = [
           '/building/rollup-plugin-html',
           '/building/rollup-plugin-polyfills-loader',
           '/building/polyfills-loader',
-          '/building/webpack-index-html-plugin',
         ],
       },
       {
