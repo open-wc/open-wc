@@ -41,6 +41,7 @@ Create a `rollup.config.js` file:
 import merge from 'deepmerge';
 // use createSpaConfig for bundling a Single Page App
 import { createSpaConfig } from '@open-wc/building-rollup';
+
 // use createBasicConfig to do regular JS to JS bundling
 // import { createBasicConfig } from '@open-wc/building-rollup';
 
@@ -60,12 +61,13 @@ const baseConfig = createSpaConfig({
 });
 
 export default merge(baseConfig, {
-  // you can use your JS as entrypoint for ollup
-  input: './app.js',
+  // if you use createSpaConfig, you can use your index.html as entrypoint,
+  // any <script type="module"> inside will be bundled by rollup
+  input: './index.html',
 
-  // optionally use your index.html as entrypoint, and <script type="module">
-  // inside will be bundled
-  // input: './index.html',
+  // alternatively, you can use your JS as entrypoint for rollup and
+  // optionally set a HTML template manually
+  // input: './app.js',
 });
 ```
 
