@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.0.0...@open-wc/building-rollup@1.1.0) (2020-04-13)
+
+
+### Features
+
+* **building-rollup:** runtime cache polyfills ([8964e2e](https://github.com/open-wc/open-wc/commit/8964e2e286e9585e76208928b0129f2b16bdf60b))
+
+
+
+
+
 # [1.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.22.12...@open-wc/building-rollup@1.0.0) (2020-04-12)
 
 
