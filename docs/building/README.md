@@ -1,48 +1,33 @@
 # Building
 
-## Browser standards
+Building is a necessary optimization when shipping apps to production. By using a build you reduce the total size and amount of files transferred to the end-user, and you ensure your code runs on all supported browsers.
 
-We strongly believe that staying close to browser standards will be the best long term investment for your code. It is the basis for all our recommendations, and it means that sometimes we will not recommend a popular feature or functionality. It also means we can be faster to adopt and recommend new browser standards.
+We recommend doing most of the building only in projects which deploy the final result to production, such as apps or websites. This is where you can make the best decisions about supported browsers and optimizations.
 
-## Building web apps
+## Build types
 
-Building is a necessary optimization when shipping apps to production. Generally speaking, build tools accomplish some or all of the following:
+Depending on the type of project, we recommend different approaches to building.
 
-1. Reduce app size (tree shaking, inlining, minification etc.)
-2. Bundling and code splitting (combining many into few files)
-3. Transforming/polyfilling standard code for older browsers
-4. Transforming/polyfilling experimental standards (stage 3 proposals) for older browsers
-5. Transforming/polyfilling non-standard code
+### Building single page apps (SPA)
 
-Our recommended setups address the first four points but refrain from introducing non-standard features. We think it's best to avoid those, as they might lock your source code to a specific build setup which can be hard to get away from at a later time. Javascript is evolving fast, your code can quickly become out of sync with new developments.
+If you are building a single page application we recommend [rollup](https://rollupjs.org/guide/en/) to build your app.
 
-## Using `index.html` as an entry point
+Take a look at our dedicated [building-rollup](/building/building-rollup) page which explains how to set up rollup. We ship a default config that you can use to set up your project, or you can use it as inspiration for your custom config.
 
-Our configs for `rollup` & `webpack` are unique in that sense that they take a single html file as an entry point.
-Doing so allows you to work with the same entry point no matter if you use
+### Building reusable components and libraries
 
-- webpack
-- rollup
-- es-dev-server
-- polymer serve
-- etc
+If you are building a reusable component or library we recommend publishing code that runs without modifications on the latest browsers. You should not bundle in any dependencies or polyfills, or build to a very old of javascript such as es5. This way consuming projects can decide which polyfills to load and javascript version to target based on browser support.
 
-This means you can easily compare how different setups affect your app size and loading time.
-This allows you to easily switch between build configurations; if you want to switch to webpack for a while, your entrypoint will be exactly the same.
-It also means you can use `es-dev-server` for your regular development, and then use either `rollup` or `webpack` to prepare your application for your production environment.
+In practical terms, this means publishing standard es modules and standard javascript features implemented in modern browsers like Chrome, Safari, Firefox, and Edge. We recommend [buildless development](/developing/) so unless you are using very cutting edge features, you can actually just publish your source code as is. See [this blog post](https://justinfagnani.com/2019/11/01/how-to-publish-web-components-to-npm/) for a general guideline.
 
-## Rollup
+If you are using very new or non-standard features such as typescript, you will need to set up a lightweight build. For this we recommend tools such as [babel](https://babeljs.io/) with the [preset-env](https://babeljs.io/docs/en/babel-preset-env) plugin or the [typescript compiler](https://www.typescriptlang.org/). Make sure to set the target to modern browsers, and publish es modules.
 
-We recommend [Rollup](https://rollupjs.org/) for building front-end projects. Rollup is convenient to use and gets out of your way. It is easy to understand what's going on. Quite a relief in a world of complex javascript tooling.
+### Building websites or multi page apps (MPA)
 
-Rollup is focused on statically analyzing es module based projects, significantly reducing the size of your app through tree shaking, minification and code splitting. Rollup can output es modules, making use of the native module loader available in modern browsers.
+Single page apps are great for a snappy user experience when you have highly dynamic content, but a lot of content on the web does not fall into this category. It still makes sense to build websites or apps consisting of multiple pages. This also requires a different approach to your build system.
 
-Our [default configuration](/building/building-rollup.html) gets your started with a setup for modern browsers, and optionally for supporting legacy browsers.
+We are still in the process of investigating and documenting our recommendations for this. In the meantime both [building-rollup](/building/building-rollup) and [@open-wc/rollup-plugin-html](https://open-wc.org/building/rollup-plugin-html.html) have tips for these types of projects.
 
 ## Webpack
 
-[Webpack](https://webpack.js.org/) is a popular and flexible build tool, with a large ecosystem of plugins. Out of the box, webpack handles different module formats, such as esm, commonjs, amd and umd. It is not able to output native es modules, relying instead on its own module loader.
-
-Compared to rollup it is a more complex tool, with more options for composing and managing complex projects. It also comes with a dev server with features such as auto-reload and hot module reloading.
-
-Because webpack is not able to output native es modules, and because it has a steeper learning curve, we don't recommend it for general use. However if you have more complex requirements, or because you have to integrate with an existing setup, it can still be a great choice. We have a [default configuration](/building/building-webpack.html) available to get you started.
+We recommend [rollup](https://rollupjs.org/guide/en/) as a build tool. It is designed specifically for standard es modules and it's very easy to use. But sometimes you are not in control of choosing the tools to use on a project, and you need to make things work with other tools. For webpack, we also have a [standard config](https://github.com/open-wc/open-wc/tree/master/packages/building-webpack) which can be used to build apps with web components.
