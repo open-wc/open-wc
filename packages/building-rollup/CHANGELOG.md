@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.1.0...@open-wc/building-rollup@1.1.1) (2020-04-13)
+
+
+### Bug Fixes
+
+* **building-rollup:** fix type definition ([8fb967b](https://github.com/open-wc/open-wc/commit/8fb967b318735f47e91b09dd70c4bfd06fcb290f))
+
+
+
+
+
 # [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.0.0...@open-wc/building-rollup@1.1.0) (2020-04-13)
 
 
