@@ -6,7 +6,6 @@ import {
   DemoingStorybookScaffoldMixin,
 } from '../demoing-storybook/index.js';
 import { BuildingRollupMixin } from '../building-rollup/index.js';
-import { BuildingWebpackMixin } from '../building-webpack/index.js';
 
 export function gatherMixins(options) {
   let considerScaffoldFilesFor = false;
@@ -37,15 +36,7 @@ export function gatherMixins(options) {
         mixins.push(DemoingStorybookMixin);
       }
       if (feature === 'building') {
-        switch (options.buildingType) {
-          case 'rollup':
-            mixins.push(BuildingRollupMixin);
-            break;
-          case 'webpack':
-            mixins.push(BuildingWebpackMixin);
-            break;
-          // no default
-        }
+        mixins.push(BuildingRollupMixin);
       }
     });
   }

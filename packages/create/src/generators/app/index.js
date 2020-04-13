@@ -19,7 +19,6 @@ const optionDefinitions = [
   { name: 'type', type: String }, // scaffold, upgrade
   { name: 'scaffoldType', type: String }, // wc, app
   { name: 'features', type: String, multiple: true }, // linting, testing, demoing, building
-  { name: 'buildingType', type: String }, // rollup, webpack
   { name: 'scaffoldFilesFor', type: String, multiple: true }, // testing, demoing, building
   { name: 'tagName', type: String },
   { name: 'installDependencies', type: String }, // yarn, npm, false
@@ -73,7 +72,7 @@ export const AppMixin = subclass =>
               { title: 'Testing (karma)', value: 'testing' },
               { title: 'Demoing (storybook)', value: 'demoing' },
               all.scaffoldType !== 'wc' && {
-                title: 'Building (rollup or webpack)',
+                title: 'Building (rollup)',
                 value: 'building',
               },
             ].filter(_ => !!_),
@@ -87,16 +86,6 @@ export const AppMixin = subclass =>
               }
             });
           },
-        },
-        {
-          type: (prev, all) =>
-            all.features && all.features.includes('building') ? 'select' : null,
-          name: 'buildingType',
-          message: 'What would you like to use for Building?',
-          choices: [
-            { title: 'Rollup (recommended)', value: 'rollup' },
-            { title: 'Webpack', value: 'webpack' },
-          ],
         },
         {
           type: () => (scaffoldOptions.length > 0 ? 'multiselect' : null),
@@ -120,7 +109,6 @@ export const AppMixin = subclass =>
        *   type: 'scaffold',
        *   scaffoldType: 'wc',
        *   features: [ 'testing', 'building' ],
-       *   buildingType: 'rollup',
        *   scaffoldFilesFor: [ 'testing' ],
        *   tagName: 'foo-bar',
        *   installDependencies: 'false'
