@@ -1,11 +1,11 @@
 {
   "scripts": {
-    "start:build": "es-dev-server --root-dir dist --app-index index.html --open --compatibility none",
-    "build": "rimraf dist && rollup -c rollup.config.js"
+    "build": "rimraf dist && rollup -c rollup.config.js",
+    "start:build": "npm run build && es-dev-server --root-dir dist --app-index index.html --open --compatibility none"
   },
   "devDependencies": {
-    "@open-wc/building-rollup": "^0.21.0",
+    "@open-wc/building-rollup": "^1.0.0",
     "rimraf": "^2.6.3",
-    "rollup": "^1.15.4"
+    "rollup": "^2.3.4"
   }
 }
