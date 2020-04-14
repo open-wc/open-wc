@@ -14,10 +14,7 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/webpack-index-html-plugin",
   "main": "webpack-index-html-plugin.js",
-  "scripts": {
-    "test": "mocha test/**/*.test.js test/*.test.js",
-    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
-  },
+  "scripts": {},
   "files": [
     "*.js",
     "src"
