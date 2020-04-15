@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.1.1...@open-wc/building-rollup@1.1.2) (2020-04-15)
+
+
+### Bug Fixes
+
+* **building-rollup:** add transitive babel helper dependencies ([d0b5159](https://github.com/open-wc/open-wc/commit/d0b51591beb3b457d3685021ff57a18fd4ed8a23))
+
+
+
+
+
 ## [1.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.1.0...@open-wc/building-rollup@1.1.1) (2020-04-13)
 
 
