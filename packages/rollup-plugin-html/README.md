@@ -102,7 +102,7 @@ export default {
   output: { dir: 'dist' },
   plugins: [
     html({
-      inputHtml: '<html><script type="module" src="./app.js></script></html>',
+      inputHtml: '<html><script type="module" src="./app.js"></script></html>',
     }),
   ],
 };
