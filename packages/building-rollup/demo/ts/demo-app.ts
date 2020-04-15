@@ -7,6 +7,13 @@ class DemoApp extends LitElement {
   render() {
     return html`
       ${msg}
+
+      <div id="demo">Demo</div>
     `;
+  }
+  
+  firstUpdated() {
+    const demoElement = this.shadowRoot?.getElementById('demo');
+    demoElement.innerText = 'Demo updated!';
   }
 }
