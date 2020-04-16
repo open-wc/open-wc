@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-webpack",
-  "version": "2.13.12",
+  "version": "2.13.13",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +47,7 @@
     "@babel/plugin-syntax-import-meta": "^7.8.3",
     "@babel/preset-env": "^7.9.0",
     "@open-wc/building-utils": "^2.16.3",
-    "@open-wc/webpack-index-html-plugin": "^1.7.6",
+    "@open-wc/webpack-index-html-plugin": "^1.7.7",
     "babel-loader": "^8.0.0",
     "babel-plugin-bundled-import-meta": "^0.3.2",
     "babel-plugin-template-html-minifier": "^4.0.0",
