@@ -323,9 +323,9 @@ const baseConfig = createSpaConfig({
   legacyBuild: true,
 });
 
-// set the sourceMap option on both outputs
-baseConfig.output[0].sourceMap = true;
-baseConfig.output[1].sourceMap = true;
+// set the sourcemap option on both outputs
+baseConfig.output[0].sourcemap = true;
+baseConfig.output[1].sourcemap = true;
 
 export default merge(baseConfig, {
   input: './index.html',
