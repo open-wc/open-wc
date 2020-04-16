@@ -8,51 +8,51 @@ We recommend
 - [Prettier](https://prettier.io/) to auto format your code
 - [lint-staged](https://www.npmjs.com/package/lint-staged) to apply linting fixed only to changed files
 
-## Setup
+## Automated Setup
+
+You can use our scaffoldint to set up a new project, or upgrade an existing project.
 
 ```bash
 npm init @open-wc
-# Upgrade > Linting
 ```
 
-::: tip Info
-This is part of the default [open-wc](https://open-wc.org/) recommendation
-:::
+## Manual Setup
 
-### Manual
+Install needed dependencies:
 
-- Install needed dependencies
-  ```bash
-  npm add --save-dev @open-wc/eslint-config @open-wc/prettier-config lint-staged husky
-  ```
-- Adjust your package.json with the following
-  ```js
+```bash
+npm add --save-dev @open-wc/eslint-config prettier lint-staged husky
+```
+
+Adjust your package.json with the following:
+
+```json
+{
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["eslint --fix", "prettier --write", "git add"]
   },
   "scripts": {
+    "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
+    "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",
+    "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
+    "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier"
   },
   "devDependencies": {
+    "eslint": "^6.1.0",
+    "@open-wc/eslint-config": "^2.0.0",
+    "prettier": "^2.0.4",
     "husky": "^1.0.0",
     "lint-staged": "^8.0.0"
   }
-  ```
-
-## What you get
-
-- Linting and auto formatting using eslint & prettier
-- Full automatic linting for changed files on commit
+}
+```
 
 ## Usage
 
@@ -62,27 +62,3 @@ Run:
 - `npm run format` to auto format your files
 
 Whenever you create a commit the update files will be auto formatted and the commit message will be linted for you.
-
-## Linting Error Examples
-
-```bash
-$ npm run lint:prettier
-
-test/set-card.test.js
-test/set-game.test.js
-↑↑ these files are not prettier formatted ↑↑
-```
-
-Simply run `npm run format:prettier` to format those files automatically.
-
-```bash
-$ npm run lint:eslint
-
-/.../example-vanilla-set-game/set-card.js
-  14:11  error  'foo' is assigned a value but never used  no-unused-vars
-
-✖ 1 problem (1 error, 0 warnings)
-```
-
-If you're using eslint and prettier together most eslint errors will not be auto fixable.
-This means usually you will need to pick up an editor and actually fix the problem in code.
