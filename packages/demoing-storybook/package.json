@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/demoing-storybook",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "publishConfig": {
     "access": "public"
   },
@@ -67,7 +67,7 @@
     "rollup": "^2.0.0",
     "rollup-plugin-babel": "^5.0.0-alpha.1",
     "rollup-plugin-terser": "^5.2.0",
-    "storybook-addon-markdown-docs": "^0.2.5",
+    "storybook-addon-markdown-docs": "^0.2.6",
     "storybook-prebuilt": "^1.5.0"
   }
 }

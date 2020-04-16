@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.6](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.5...storybook-addon-markdown-docs@0.2.6) (2020-04-16)
+
+
+### Bug Fixes
+
+* **storybook-addon-markdown-docs:** close hr to support jsx parser ([2114f7d](https://github.com/open-wc/open-wc/commit/2114f7d32edb36b8c0cc451f92ebd806edabbe66))
+
+
+
+
+
 ## [0.2.5](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.4...storybook-addon-markdown-docs@0.2.5) (2020-04-15)
 
 
