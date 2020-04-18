@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@3.0.0...@open-wc/demoing-storybook@3.0.1) (2020-04-18)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** ensure regenerator runtime is always loaded ([79f9558](https://github.com/open-wc/open-wc/commit/79f9558d11ca115e1fd7bb2c381d26262fccf2b0))
+
+
+
+
+
 # [3.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.0.2...@open-wc/demoing-storybook@3.0.0) (2020-04-18)
 
 
