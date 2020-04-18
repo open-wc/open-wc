@@ -10,12 +10,7 @@ describe('spread', () => {
   });
 
   function renderSpread(data) {
-    render(
-      html`
-        <div ...=${spread(data)}></div>
-      `,
-      wrapper,
-    );
+    render(html` <div ...=${spread(data)}></div> `, wrapper);
     return wrapper.firstElementChild;
   }
 

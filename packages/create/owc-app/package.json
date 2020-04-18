@@ -1,30 +1,35 @@
 {
+  "name": "owc-app",
+  "version": "0.0.0",
+  "description": "Webcomponent owc-app following open-wc recommendations",
+  "license": "MIT",
+  "author": "owc-app",
   "scripts": {
-    "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
+    "format": "npm run format:eslint && npm run format:prettier",
     "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",
-    "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
     "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
     "lint": "npm run lint:eslint && npm run lint:prettier",
-    "format": "npm run format:eslint && npm run format:prettier",
+    "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
+    "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
     "start": "es-dev-server --app-index index.html --node-resolve --open --watch"
   },
+  "dependencies": {
+    "lit-element": "^2.0.1",
+    "lit-html": "^1.0.0"
+  },
   "devDependencies": {
-    "eslint": "^6.1.0",
     "@open-wc/eslint-config": "^2.0.0",
-    "prettier": "^2.0.4",
+    "es-dev-server": "^1.5.0",
+    "eslint": "^6.1.0",
     "husky": "^1.0.0",
     "lint-staged": "^8.0.0",
-    "es-dev-server": "^1.5.0"
+    "prettier": "^2.0.4"
   },
   "eslintConfig": {
     "extends": [
       "@open-wc/eslint-config",
       "eslint-config-prettier"
     ]
-  },
-  "prettier": {
-    "singleQuote": true,
-    "arrowParens": "avoid"
   },
   "husky": {
     "hooks": {
@@ -38,13 +43,8 @@
       "git add"
     ]
   },
-  "name": "owc-app",
-  "version": "0.0.0",
-  "description": "Webcomponent owc-app following open-wc recommendations",
-  "author": "owc-app",
-  "license": "MIT",
-  "dependencies": {
-    "lit-html": "^1.0.0",
-    "lit-element": "^2.0.1"
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
   }
 }

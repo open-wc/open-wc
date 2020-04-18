@@ -11,9 +11,7 @@ class DemoComponent extends LitElement {
   }
 
   render() {
-    return html`
-      <p>Demo component</p>
-    `;
+    return html` <p>Demo component</p> `;
   }
 }
 
