@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit-element';
 import { openWcLogo } from './open-wc-logo.js';
 
-export class ScaffoldApp extends LitElement {
+export class OwcApp extends LitElement {
   static get properties() {
     return {
       title: { type: String },
@@ -59,7 +59,7 @@ export class ScaffoldApp extends LitElement {
         <div class="logo">${openWcLogo}</div>
         <h1>My app</h1>
 
-        <p>Edit <code>src/ScaffoldApp.js</code> and save to reload.</p>
+        <p>Edit <code>src/OwcApp.js</code> and save to reload.</p>
         <a
           class="app-link"
           href="https://open-wc.org/developing/#code-examples"

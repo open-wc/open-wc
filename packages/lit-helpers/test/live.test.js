@@ -25,12 +25,7 @@ describe('live', () => {
     });
 
     function renderLive(value) {
-      render(
-        html`
-          <lit-helpers .myProp="${live(value)}"></lit-helpers>
-        `,
-        wrapper,
-      );
+      render(html` <lit-helpers .myProp="${live(value)}"></lit-helpers> `, wrapper);
       return wrapper.firstElementChild;
     }
 
@@ -82,12 +77,7 @@ describe('live', () => {
     });
 
     function renderLive(value) {
-      render(
-        html`
-          <div my-attr="${live(value)}"></div>
-        `,
-        wrapper,
-      );
+      render(html` <div my-attr="${live(value)}"></div> `, wrapper);
       return wrapper.firstElementChild;
     }
 

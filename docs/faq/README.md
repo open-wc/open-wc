@@ -200,9 +200,7 @@ class MyComponent extends LitElement {
     // ...
   }
   render() {
-    return html`
-      <button @click=${this.myFunction}>click</button>
-    `;
+    return html` <button @click=${this.myFunction}>click</button> `;
   }
 }
 ```
@@ -215,11 +213,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 describe('my component', () => {
   it('calls myFunction when a button is clicked', () => {
-    const el = fixture(
-      html`
-        <my-component></my-component>
-      `,
-    );
+    const el = fixture(html` <my-component></my-component> `);
     const myFunctionStub = stub(el, 'myFunction');
     el.shadowRoot.querySelector('button').click();
     expect(myFunctionStub).to.have.callCount(1);
@@ -244,11 +238,7 @@ How can we solve this? There are a few ways to go about this:
 
 ```js
 it('does the thing', async () => {
-  const el = await fixture(
-    html`
-      <my-component></my-component>
-    `,
-  );
+  const el = await fixture(html` <my-component></my-component> `);
   const myFunctionStub = sinon.stub(el, 'myFunction');
   el.requestUpdate();
   await el.updateComplete;

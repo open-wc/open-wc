@@ -46,10 +46,7 @@ The code snippet will actually get executed at that place and you will have a li
 
 ````md
 ```js story
-export const JsStory = () =>
-  html`
-    <demo-wc-card>JS Story</demo-wc-card>
-  `;
+export const JsStory = () => html` <demo-wc-card>JS Story</demo-wc-card> `;
 ```
 ````
 
@@ -72,10 +69,7 @@ Will become a live demo wrapped in a container with a show code button.
 
 ````md
 ```js preview-story
-export const JsStory = () =>
-  html`
-    <demo-wc-card>JS Story</demo-wc-card>
-  `;
+export const JsStory = () => html` <demo-wc-card>JS Story</demo-wc-card> `;
 ```
 ````
 
@@ -172,10 +166,7 @@ const markdown = require('remark-parse');
 const htmlStringify = require('remark-html');
 const mdjsParse = require('@mdjs/core');
 
-const parser = unified()
-  .use(markdown)
-  .use(mdjsParse)
-  .use(htmlStringify);
+const parser = unified().use(markdown).use(mdjsParse).use(htmlStringify);
 const result = await parser.process(body);
 const { jsCode } = result.data;
 console.log(result.contents);
