@@ -14,10 +14,7 @@ const rules = [
   },
 ];
 function getOnlyDynamicSource(source) {
-  return source
-    .split('\n')
-    .splice(18)
-    .join(newLine);
+  return source.split('\n').splice(18).join(newLine);
 }
 
 describe('import-meta-url-loader', () => {
@@ -26,8 +23,7 @@ describe('import-meta-url-loader', () => {
     const caseA = getOnlyDynamicSource(stats.toJson().modules[0].source);
 
     expect(caseA).to.equal(
-      `${'' +
-        "export const foo = new URL('./', ({ url: getAbsoluteUrl('caseA/index.js') }).url);"}${newLine}export const bar = new URL('./', ({ url: getAbsoluteUrl('caseA/index.js') }).url);${newLine}`,
+      `${"export const foo = new URL('./', ({ url: getAbsoluteUrl('caseA/index.js') }).url);"}${newLine}export const bar = new URL('./', ({ url: getAbsoluteUrl('caseA/index.js') }).url);${newLine}`,
     );
 
     const statsReturn = await compiler('caseA/return.js', rules);
@@ -44,8 +40,7 @@ describe('import-meta-url-loader', () => {
     const caseBsub = getOnlyDynamicSource(stats.toJson().modules[0].source);
 
     expect(caseB).to.equal(
-      `${'' +
-        "import './caseBsub/caseBsub.js';"}${newLine}${newLine}export const foo = new URL('./', ({ url: getAbsoluteUrl('caseB/index.js') }).url);${newLine}`,
+      `${"import './caseBsub/caseBsub.js';"}${newLine}${newLine}export const foo = new URL('./', ({ url: getAbsoluteUrl('caseB/index.js') }).url);${newLine}`,
     );
 
     expect(caseBsub).to.equal(

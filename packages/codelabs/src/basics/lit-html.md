@@ -144,9 +144,7 @@ In order to create an actual lit-html template, we need to prefix the template l
 ```js
 import { html } from 'https://unpkg.com/lit-element?module';
 
-const template = html`
-  <h1>Hello world</h1>
-`;
+const template = html` <h1>Hello world</h1> `;
 ```
 
 This is a native browser feature called [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates). The `html` tag is just a function that gets called with information about the template literal that it's attached to. We won't go into details of how it works exactly. By using this syntax, lit-html can very efficiently create templates and update only the parts that changed when re-rendering.
@@ -183,9 +181,7 @@ If you refresh the browser, you should see the title displayed on the page.
 
       class TodoApp extends LitElement {
         render() {
-          return html`
-            <h1>Todo app</h1>
-          `;
+          return html` <h1>Todo app</h1> `;
         }
       }
 
@@ -474,9 +470,7 @@ Start by adding an input field and a button:
 On the "add" button we attached an event listener that listens for the `click` event. This is done by prefixing the event name with a `@` and attributing a function to it.
 
 ```js
-html`
-  <button @click=${this._addTodo}></button>
-`;
+html` <button @click=${this._addTodo}></button> `;
 ```
 
 This is just syntactic sugar that executes the `addEventListener()` function on the element with the specified event and function. In this case, we reference a function of our component, which we should now implement:

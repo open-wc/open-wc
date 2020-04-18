@@ -33,10 +33,7 @@ describe('mdjsStoryParse', () => {
       '',
     ].join('\n');
 
-    const parser = unified()
-      .use(markdown)
-      .use(mdjsStoryParse)
-      .use(html);
+    const parser = unified().use(markdown).use(mdjsStoryParse).use(html);
     const result = await parser.process(input);
     expect(result.contents).to.equal(expected);
     // @ts-ignore

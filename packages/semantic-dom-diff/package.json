@@ -13,6 +13,7 @@
   },
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff",
+  "module": "index.js",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
   },
@@ -25,6 +26,5 @@
     "dom-diff",
     "testing",
     "snapshots"
-  ],
-  "module": "index.js"
+  ]
 }

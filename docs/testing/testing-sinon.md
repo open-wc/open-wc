@@ -16,9 +16,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 describe('my component', () => {
   it('calls myFunction when a button is clicked', () => {
-    const el = fixture(html`
-      <my-component></my-component>
-    `);
+    const el = fixture(html` <my-component></my-component> `);
 
     // stub a function
     const myFunctionStub = stub(el, 'myFunction');
@@ -38,9 +36,7 @@ class MyComponent extends LitElement {
     console.log(e);
   }
   render() {
-    return html`
-      <button @click=${e => this.myFunction(e)}>click</button>
-    `;
+    return html` <button @click=${e => this.myFunction(e)}>click</button> `;
   }
 }
 
