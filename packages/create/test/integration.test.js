@@ -42,9 +42,7 @@ function stripUserDir(output) {
  * @param  {string} actualPath   path to actual output
  */
 function assertFile(expectedPath, actualPath) {
-  expect(actualPath)
-    .to.be.a.file()
-    .and.equal(expectedPath);
+  expect(actualPath).to.be.a.file().and.equal(expectedPath);
 }
 
 /**
@@ -90,9 +88,7 @@ describe('create', function create() {
 
   it('scaffolds a fully loaded app project', async () => {
     // Check that all files exist, without checking their contents
-    expect(ACTUAL_PATH)
-      .to.be.a.directory()
-      .and.deep.equal(expectedPath);
+    expect(ACTUAL_PATH).to.be.a.directory().and.deep.equal(expectedPath);
   });
 
   it('generates expected file contents', () => {

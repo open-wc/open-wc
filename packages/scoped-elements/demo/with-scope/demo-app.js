@@ -73,13 +73,7 @@ class DemoApp extends LitElement {
           Page B
         </button>
       </nav>
-      ${this.page === 'A'
-        ? html`
-            <page-a></page-a>
-          `
-        : html`
-            <page-b></page-b>
-          `}
+      ${this.page === 'A' ? html` <page-a></page-a> ` : html` <page-b></page-b> `}
     `;
   }
 }

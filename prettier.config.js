@@ -1,1 +1,6 @@
-module.exports = require('./packages/prettier-config');
+module.exports = {
+  printWidth: 100,
+  singleQuote: true,
+  trailingComma: 'all',
+  arrowParens: 'avoid',
+};

@@ -24,10 +24,7 @@ import '@foo/demo-wc-card/demo-wc-card.js';
 ## Story
 
 ```js story
-export const JsStory = () =>
-  html`
-    <demo-wc-card>JS Story</demo-wc-card>
-  `;
+export const JsStory = () => html` <demo-wc-card>JS Story</demo-wc-card> `;
 ```
 
 ## Story
@@ -35,8 +32,5 @@ export const JsStory = () =>
 with preview
 
 ```js preview-story
-export const JsStory2 = () =>
-  html`
-    <demo-wc-card>JS Story with preview</demo-wc-card>
-  `;
+export const JsStory2 = () => html` <demo-wc-card>JS Story with preview</demo-wc-card> `;
 ```

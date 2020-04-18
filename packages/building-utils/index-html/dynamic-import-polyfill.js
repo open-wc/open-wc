@@ -9,7 +9,7 @@
  * - We need it to be a plain script which registers to the window
  */
 
-(function() {
+(function () {
   function toAbsoluteURL(url) {
     const a = document.createElement('a');
     a.setAttribute('href', url); // <a href="hoge.html">
@@ -18,11 +18,7 @@
 
   function importShim(url) {
     return new Promise((resolve, reject) => {
-      const vector =
-        '$importModule$' +
-        Math.random()
-          .toString(32)
-          .slice(2);
+      const vector = '$importModule$' + Math.random().toString(32).slice(2);
       const script = document.createElement('script');
       const destructor = () => {
         delete window[vector];
