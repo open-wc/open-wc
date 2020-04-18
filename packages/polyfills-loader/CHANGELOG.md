@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.5.4...polyfills-loader@2.0.0) (2020-04-18)
+
+
+* Chore/update prettier (#1525) ([c55e339](https://github.com/open-wc/open-wc/commit/c55e339343154aefa6665837de1b6ae013f7fe5a)), closes [#1525](https://github.com/open-wc/open-wc/issues/1525)
+
+
+### BREAKING CHANGES
+
+* see prettier release notes
+
+
+
+
+
 ## [1.5.4](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.5.3...polyfills-loader@1.5.4) (2020-04-12)
 
 **Note:** Version bump only for package polyfills-loader

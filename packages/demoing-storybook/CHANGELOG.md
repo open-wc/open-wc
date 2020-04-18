@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.0.2...@open-wc/demoing-storybook@3.0.0) (2020-04-18)
+
+
+* Chore/update prettier (#1525) ([c55e339](https://github.com/open-wc/open-wc/commit/c55e339343154aefa6665837de1b6ae013f7fe5a)), closes [#1525](https://github.com/open-wc/open-wc/issues/1525)
+
+
+### BREAKING CHANGES
+
+* see prettier release notes
+
+
+
+
+
 ## [2.0.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.0.1...@open-wc/demoing-storybook@2.0.2) (2020-04-16)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
