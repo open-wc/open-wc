@@ -3,20 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [3.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.13...@open-wc/building-webpack@3.0.0) (2020-04-18)
-
-
-* Chore/update prettier (#1525) ([c55e339](https://github.com/open-wc/open-wc/commit/c55e339343154aefa6665837de1b6ae013f7fe5a)), closes [#1525](https://github.com/open-wc/open-wc/issues/1525)
-
-
-### BREAKING CHANGES
-
-* see prettier release notes
-
-
-
-
-
 ## [2.13.13](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.12...@open-wc/building-webpack@2.13.13) (2020-04-16)
 
 **Note:** Version bump only for package @open-wc/building-webpack

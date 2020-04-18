@@ -26,7 +26,7 @@ Webpack plugin to make webpack understand your index.html.
     <my-app></my-app>
 
     <script>
-      (function () {
+      (function() {
         var message = 'hello inline script';
         console.log(message);
       })();

@@ -13,7 +13,12 @@ export const heading = () =>
     <input type="text" />
   `;
 
-export const card = () => html` <demo-wc-card>Hello World</demo-wc-card> `;
+export const card = () =>
+  html`
+    <demo-wc-card>Hello World</demo-wc-card>
+  `;
 
 export const assets = () =>
-  html` <img src=${new URL('../assets/logo.png', import.meta.url)} title="loaded logo" /> `;
+  html`
+    <img src=${new URL('../assets/logo.png', import.meta.url)} title="loaded logo" />
+  `;

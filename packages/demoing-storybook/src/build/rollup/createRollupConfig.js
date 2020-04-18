@@ -96,7 +96,7 @@ function createRollupConfig({ outputDir, indexFilename, indexHTMLString }) {
           coreJs: true,
           fetch: true,
           abortController: true,
-          regeneratorRuntime: 'always',
+          regeneratorRuntime: true,
           webcomponents: true,
           intersectionObserver: true,
           resizeObserver: true,

@@ -81,7 +81,9 @@ You should already know how to create a web component using `LitElement`. Go ahe
 
       class BreweryApp extends LitElement {
         render() {
-          return html` My brewery app `;
+          return html`
+            My brewery app
+          `;
         }
       }
 
@@ -232,7 +234,9 @@ render() {
         }
 
         render() {
-          return html` <pre>${JSON.stringify(this.breweries, null, 2)}</pre> `;
+          return html`
+            <pre>${JSON.stringify(this.breweries, null, 2)}</pre>
+          `;
         }
       }
 
@@ -327,10 +331,14 @@ render() {
 
         render() {
           if (this.loading) {
-            return html` <p>Loading...</p> `;
+            return html`
+              <p>Loading...</p>
+            `;
           }
 
-          return html` <pre>${JSON.stringify(this.breweries, null, 2)}</pre> `;
+          return html`
+            <pre>${JSON.stringify(this.breweries, null, 2)}</pre>
+          `;
         }
       }
 
@@ -445,7 +453,9 @@ render() {
 
         render() {
           if (this.loading) {
-            return html` <p>Loading...</p> `;
+            return html`
+              <p>Loading...</p>
+            `;
           }
 
           return html`
@@ -537,7 +547,9 @@ function visitedStatus(visited) {
 
 class MyBrewery extends LitElement {
   render() {
-    return html` Bendërbrāu ${visitedStatus(this.visited)} `;
+    return html`
+      Bendërbrāu ${visitedStatus(this.visited)}
+    `;
   }
 }
 ```
@@ -604,7 +616,9 @@ In this example, we register an event listener for the `click` event, and call t
 
         render() {
           if (this.loading) {
-            return html` <p>Loading...</p> `;
+            return html`
+              <p>Loading...</p>
+            `;
           }
 
           return html`
@@ -784,7 +798,9 @@ render() {
 
         render() {
           if (this.loading) {
-            return html` <p>Loading...</p> `;
+            return html`
+              <p>Loading...</p>
+            `;
           }
 
           const totalVisited = this.breweries.filter(b => b.visited).length;
@@ -925,7 +941,9 @@ Then, on the top of your `render` function, you can filter the array of brewerie
 
         render() {
           if (this.loading) {
-            return html` <p>Loading...</p> `;
+            return html`
+              <p>Loading...</p>
+            `;
           }
 
           const totalVisited = this.breweries.filter(b => b.visited).length;
@@ -1109,7 +1127,9 @@ html`
 
         render() {
           if (this.loading) {
-            return html` <p>Loading...</p> `;
+            return html`
+              <p>Loading...</p>
+            `;
           }
 
           const totalVisited = this.breweries.filter(b => b.visited).length;
@@ -1216,7 +1236,9 @@ Since lit-html templates are actual javascript variables, we could write our tem
 
 ```js
 function BeerTemplate(beer) {
-  return html` <h1>${beer}</h1> `;
+  return html`
+    <h1>${beer}</h1>
+  `;
 }
 ```
 
@@ -1309,7 +1331,9 @@ html`
 
         render() {
           if (this.loading) {
-            return html` <p>Loading...</p> `;
+            return html`
+              <p>Loading...</p>
+            `;
           }
 
           const totalVisited = this.breweries.filter(b => b.visited).length;

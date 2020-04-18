@@ -3,20 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.0.0](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.11.0...rollup-plugin-index-html@2.0.0) (2020-04-18)
-
-
-* Chore/update prettier (#1525) ([c55e339](https://github.com/open-wc/open-wc/commit/c55e339343154aefa6665837de1b6ae013f7fe5a)), closes [#1525](https://github.com/open-wc/open-wc/issues/1525)
-
-
-### BREAKING CHANGES
-
-* see prettier release notes
-
-
-
-
-
 # [1.11.0](https://github.com/open-wc/open-wc/compare/rollup-plugin-index-html@1.10.6...rollup-plugin-index-html@1.11.0) (2020-04-14)
 
 

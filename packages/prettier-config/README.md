@@ -2,7 +2,7 @@
 
 Use [Prettier](https://prettier.io) to format your JS, CSS and HTML code.
 
-> :Warning: this package is deprecated. We recommend using prettier v2 with the recommend config instead.
+[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ## Setup
 

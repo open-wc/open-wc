@@ -18,12 +18,20 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
     }
     [
       stringFixtureSync('<test-component>Text content</test-component>'),
-      litFixtureSync(html` <test-component>Text content</test-component> `),
+      litFixtureSync(
+        html`
+          <test-component>Text content</test-component>
+        `,
+      ),
     ].forEach(testElement);
     (
       await Promise.all([
         stringFixture('<test-component>Text content</test-component>'),
-        litFixture(html` <test-component>Text content</test-component> `),
+        litFixture(
+          html`
+            <test-component>Text content</test-component>
+          `,
+        ),
       ])
     ).forEach(testElement);
   });
@@ -38,12 +46,20 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
     }
     [
       stringFixtureSync('<test-component></test-component>'),
-      litFixtureSync(html` <test-component></test-component> `),
+      litFixtureSync(
+        html`
+          <test-component></test-component>
+        `,
+      ),
     ].forEach(testElement);
     (
       await Promise.all([
         stringFixture('<test-component></test-component>'),
-        litFixture(html` <test-component></test-component> `),
+        litFixture(
+          html`
+            <test-component></test-component>
+          `,
+        ),
       ])
     ).forEach(testElement);
   });
@@ -60,15 +76,31 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
     [
       stringFixtureSync('<test-component></test-component>'),
       stringFixtureSync('<test-component></test-component>'),
-      litFixtureSync(html` <test-component></test-component> `),
-      litFixtureSync(html` <test-component></test-component> `),
+      litFixtureSync(
+        html`
+          <test-component></test-component>
+        `,
+      ),
+      litFixtureSync(
+        html`
+          <test-component></test-component>
+        `,
+      ),
     ].forEach(testElement);
     (
       await Promise.all([
         stringFixture('<test-component></test-component>'),
         stringFixture('<test-component></test-component>'),
-        litFixture(html` <test-component></test-component> `),
-        litFixture(html` <test-component></test-component> `),
+        litFixture(
+          html`
+            <test-component></test-component>
+          `,
+        ),
+        litFixture(
+          html`
+            <test-component></test-component>
+          `,
+        ),
       ])
     ).forEach(testElement);
   });
@@ -80,13 +112,22 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
     function testElement(element) {
       expect(element).to.be.an.instanceof(TestComponent);
     }
-    [stringFixtureSync('<test-component/>'), litFixtureSync(html` <test-component /> `)].forEach(
-      testElement,
-    );
+    [
+      stringFixtureSync('<test-component/>'),
+      litFixtureSync(
+        html`
+          <test-component />
+        `,
+      ),
+    ].forEach(testElement);
     (
       await Promise.all([
         stringFixture('<test-component/>'),
-        litFixture(html` <test-component /> `),
+        litFixture(
+          html`
+            <test-component />
+          `,
+        ),
       ])
     ).forEach(testElement);
   });

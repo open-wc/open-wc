@@ -28,6 +28,7 @@ const sidebar = [
         children: [
           ['/linting/', 'Getting started'],
           '/linting/linting-eslint',
+          '/linting/linting-prettier',
           '/linting/linting-types',
         ],
       },

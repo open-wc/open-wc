@@ -55,7 +55,9 @@ export default {
   parameters: { options: { selectedPanel: 'storybookjs/knobs/panel' } },
 };
 
-export const singleComponent = () => html` <demo-wc-card></demo-wc-card> `;
+export const singleComponent = () => html`
+  <demo-wc-card></demo-wc-card>
+`;
 ```
 
 For additional features like

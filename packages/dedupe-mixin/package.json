@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/dedupe-mixin",
-  "version": "2.0.0",
+  "version": "1.2.16",
   "publishConfig": {
     "access": "public"
   },
@@ -13,7 +13,6 @@
   },
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/dedupe-mixin",
-  "module": "index.js",
   "scripts": {
     "demo-build:no-dedupe": "rollup -c demo-typed/no-dedupe/rollup.config.js",
     "demo-build:with-dedupe": "rollup -c demo-typed/with-dedupe/rollup.config.js",
@@ -34,5 +33,6 @@
   "devDependencies": {
     "http-server": "^0.11.1"
   },
+  "module": "index.js",
   "sideEffects": false
 }

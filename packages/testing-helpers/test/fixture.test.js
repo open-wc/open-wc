@@ -69,24 +69,38 @@ describe('fixtureSync & fixture', () => {
       expect(element.localName).to.equal('div');
     }
 
-    const elementSync = fixtureSync(html` <div></div> `);
+    const elementSync = fixtureSync(html`
+      <div></div>
+    `);
     // @ts-ignore
     testElement(elementSync);
 
-    const elementAsync = await fixture(html` <div></div> `);
+    const elementAsync = await fixture(html`
+      <div></div>
+    `);
     // @ts-ignore
     testElement(elementAsync);
   });
 
   it('supports lit-html TemplateResult with custom parent', async () => {
-    const elSync = fixtureSync(html` <div foo="${'bar'}"></div> `, {
-      parentNode: createParent(),
-    });
+    const elSync = fixtureSync(
+      html`
+        <div foo="${'bar'}"></div>
+      `,
+      {
+        parentNode: createParent(),
+      },
+    );
     expect(elSync.parentElement.tagName).to.equal('MY-PARENT');
 
-    const elAsync = await fixture(html` <div foo="${'bar'}"></div> `, {
-      parentNode: createParent(),
-    });
+    const elAsync = await fixture(
+      html`
+        <div foo="${'bar'}"></div>
+      `,
+      {
+        parentNode: createParent(),
+      },
+    );
     expect(elAsync.parentElement.tagName).to.equal('MY-PARENT');
   });
 

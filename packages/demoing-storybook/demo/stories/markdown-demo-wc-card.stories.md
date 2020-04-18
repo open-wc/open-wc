@@ -32,7 +32,9 @@ import '@foo/demo-wc-card/demo-wc-card.js';
 ```
 
 ```js preview-story
-export const Simple = () => html` <demo-wc-card>Hello World</demo-wc-card> `;
+export const Simple = () => html`
+  <demo-wc-card>Hello World</demo-wc-card>
+`;
 ```
 
 ## API
@@ -57,7 +59,9 @@ export const CustomHeader = () => html`
 ###### Back Side
 
 ```js story
-export const ShowBack = () => html` <demo-wc-card back-side>Hello World</demo-wc-card> `;
+export const ShowBack = () => html`
+  <demo-wc-card back-side>Hello World</demo-wc-card>
+`;
 ```
 
 ###### Providing Rows

@@ -20,7 +20,9 @@ describe('html', () => {
   });
 
   it('renders static templates', async () => {
-    const el = await litFixture(html` <div></div> `);
+    const el = await litFixture(html`
+      <div></div>
+    `);
     expect(el.tagName).to.equal('DIV');
   });
 

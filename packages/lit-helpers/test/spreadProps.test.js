@@ -9,7 +9,12 @@ describe('spreadProps', () => {
   });
 
   function renderSpread(props) {
-    render(html` <div ...=${spreadProps(props)}></div> `, wrapper);
+    render(
+      html`
+        <div ...=${spreadProps(props)}></div>
+      `,
+      wrapper,
+    );
     return wrapper.firstElementChild;
   }
 

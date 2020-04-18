@@ -8,13 +8,17 @@ import { getFromGlobalTagsCache } from '../src/globalTagsCache.js';
 
 class FeatureA extends LitElement {
   render() {
-    return html` <div>Element A</div> `;
+    return html`
+      <div>Element A</div>
+    `;
   }
 }
 
 class FeatureB extends LitElement {
   render() {
-    return html` <div>Element A</div> `;
+    return html`
+      <div>Element A</div>
+    `;
   }
 }
 
@@ -30,7 +34,9 @@ describe('ScopedElementsMixin', () => {
     const tag = defineCE(
       class ContainerElement extends ScopedElementsMixin(LitElement) {
         render() {
-          return html` <feature-a></feature-a><feature-b></feature-b> `;
+          return html`
+            <feature-a></feature-a><feature-b></feature-b>
+          `;
         }
       },
     );
@@ -51,7 +57,9 @@ describe('ScopedElementsMixin', () => {
         }
 
         render() {
-          return html` <feature-a></feature-a><feature-b></feature-b> `;
+          return html`
+            <feature-a></feature-a><feature-b></feature-b>
+          `;
         }
       },
     );
@@ -63,13 +71,17 @@ describe('ScopedElementsMixin', () => {
   it('supports the "same" tag name in the template for multiple different sub components', async () => {
     class FeatureA1x extends LitElement {
       render() {
-        return html` <div>Element A</div> `;
+        return html`
+          <div>Element A</div>
+        `;
       }
     }
 
     class FeatureA2x extends LitElement {
       render() {
-        return html` <div>Element A</div> `;
+        return html`
+          <div>Element A</div>
+        `;
       }
     }
 
@@ -81,7 +93,9 @@ describe('ScopedElementsMixin', () => {
       }
 
       render() {
-        return html` <feature-a></feature-a> `;
+        return html`
+          <feature-a></feature-a>
+        `;
       }
     }
 
@@ -93,7 +107,9 @@ describe('ScopedElementsMixin', () => {
       }
 
       render() {
-        return html` <feature-a></feature-a> `;
+        return html`
+          <feature-a></feature-a>
+        `;
       }
     }
 
@@ -107,7 +123,9 @@ describe('ScopedElementsMixin', () => {
         }
 
         render() {
-          return html` <page-a></page-a><page-b></page-b> `;
+          return html`
+            <page-a></page-a><page-b></page-b>
+          `;
         }
       },
     );
@@ -125,17 +143,23 @@ describe('ScopedElementsMixin', () => {
   });
 
   it('supports to use a shared template and use it with different sub components', async () => {
-    const sharedTemplate = html` <feature-a></feature-a> `;
+    const sharedTemplate = html`
+      <feature-a></feature-a>
+    `;
 
     class FeatureA1x extends LitElement {
       render() {
-        return html` <div>Element A</div> `;
+        return html`
+          <div>Element A</div>
+        `;
       }
     }
 
     class FeatureA2x extends LitElement {
       render() {
-        return html` <div>Element A</div> `;
+        return html`
+          <div>Element A</div>
+        `;
       }
     }
 
@@ -173,7 +197,9 @@ describe('ScopedElementsMixin', () => {
         }
 
         render() {
-          return html` <page-a></page-a><page-b></page-b> `;
+          return html`
+            <page-a></page-a><page-b></page-b>
+          `;
         }
       },
     );
@@ -193,13 +219,17 @@ describe('ScopedElementsMixin', () => {
   it('supports to extend as ScopedElements component without defining unused sub components', async () => {
     class FeatureC extends LitElement {
       render() {
-        return html` <div>Element C</div> `;
+        return html`
+          <div>Element C</div>
+        `;
       }
     }
 
     class FeatureD extends LitElement {
       render() {
-        return html` <div>Element D</div> `;
+        return html`
+          <div>Element D</div>
+        `;
       }
     }
 
@@ -222,7 +252,9 @@ describe('ScopedElementsMixin', () => {
     const tag = defineCE(
       class extends ScopedElementsMixin(PageA) {
         render() {
-          return html` <feature-c></feature-c> `;
+          return html`
+            <feature-c></feature-c>
+          `;
         }
       },
     );
@@ -266,7 +298,9 @@ describe('ScopedElementsMixin', () => {
   it("support define a lazy element even if it's not used in previous templates", async () => {
     class LazyElement extends LitElement {
       render() {
-        return html` <div>Lazy element</div> `;
+        return html`
+          <div>Lazy element</div>
+        `;
       }
     }
 
@@ -286,14 +320,23 @@ describe('ScopedElementsMixin', () => {
           this.defineScopedElement('lazy-element', LazyElement);
 
           this.loading = new Promise(resolve => {
-            resolve(html` <lazy-element></lazy-element> `);
+            resolve(
+              html`
+                <lazy-element></lazy-element>
+              `,
+            );
           });
         }
 
         render() {
           return html`
             <feature-a></feature-a>
-            ${until(this.loading, html` <div>Loading...</div> `)}
+            ${until(
+              this.loading,
+              html`
+                <div>Loading...</div>
+              `,
+            )}
           `;
         }
       },
@@ -340,7 +383,9 @@ describe('ScopedElementsMixin', () => {
 
       class UnregisteredFeature extends LitElement {
         render() {
-          return html` <div>Unregistered feature</div> `;
+          return html`
+            <div>Unregistered feature</div>
+          `;
         }
       }
 
@@ -364,7 +409,15 @@ describe('ScopedElementsMixin', () => {
   describe('directives integration', () => {
     it('should work with until(...)', async () => {
       const content = new Promise(resolve => {
-        setTimeout(() => resolve(html` <feature-a id="feat"></feature-a> `), 0);
+        setTimeout(
+          () =>
+            resolve(
+              html`
+                <feature-a id="feat"></feature-a>
+              `,
+            ),
+          0,
+        );
       });
 
       const tag = defineCE(
@@ -376,7 +429,14 @@ describe('ScopedElementsMixin', () => {
           }
 
           render() {
-            return html` ${until(content, html` <span>Loading...</span> `)} `;
+            return html`
+              ${until(
+                content,
+                html`
+                  <span>Loading...</span>
+                `,
+              )}
+            `;
           }
         },
       );
@@ -404,7 +464,9 @@ describe('ScopedElementsMixin', () => {
             return html`
               ${repeat(
                 [...Array(10).keys()],
-                () => html` <feature-a data-type="child"></feature-a> `,
+                () => html`
+                  <feature-a data-type="child"></feature-a>
+                `,
               )}
             `;
           }

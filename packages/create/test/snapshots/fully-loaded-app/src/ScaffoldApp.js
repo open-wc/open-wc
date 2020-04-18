@@ -59,7 +59,7 @@ export class ScaffoldApp extends LitElement {
         <div class="logo">${openWcLogo}</div>
         <h1>My app</h1>
 
-        <p>Edit <code>src/ScaffoldApp.js</code> and save to reload.</p>
+        <p>Edit <code>src/MyApp.js</code> and save to reload.</p>
         <a
           class="app-link"
           href="https://open-wc.org/developing/#code-examples"
@@ -72,12 +72,7 @@ export class ScaffoldApp extends LitElement {
 
       <p class="app-footer">
         🚽 Made with love by
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/open-wc"
-          >open-wc</a
-        >.
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/open-wc">open-wc</a>.
       </p>
     `;
   }

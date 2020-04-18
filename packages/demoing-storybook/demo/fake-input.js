@@ -32,7 +32,9 @@ export class FakeInput extends LitElement {
   }
 
   render() {
-    return html` <input type="text" @focusin=${this.focusin} @focusout=${this.focusout} /> `;
+    return html`
+      <input type="text" @focusin=${this.focusin} @focusout=${this.focusout} />
+    `;
   }
 }
 

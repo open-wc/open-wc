@@ -21,7 +21,10 @@ const fileTypes = {
  * @returns {string}
  */
 function createContentHash(content) {
-  return crypto.createHash('md4').update(content).digest('hex');
+  return crypto
+    .createHash('md4')
+    .update(content)
+    .digest('hex');
 }
 
 /**

@@ -17,7 +17,7 @@
   "devDependencies": {
     "eslint": "^6.1.0",
     "@open-wc/eslint-config": "^2.0.0",
-    "prettier": "^2.0.4",
+    "@open-wc/prettier-config": "^0.1.10",
     "husky": "^1.0.0",
     "lint-staged": "^8.0.0",
     "@open-wc/testing-karma": "^3.0.0",
@@ -35,10 +35,7 @@
       "eslint-config-prettier"
     ]
   },
-  "prettier": {
-    "singleQuote": true,
-    "arrowParens": "avoid"
-  },
+  "prettier": "@open-wc/prettier-config",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"

@@ -57,7 +57,11 @@ it('can instantiate an element', async () => {
 import { html, fixture } from '@open-wc/testing';
 
 it('can instantiate an element with properties', async () => {
-  const el = await fixture(html` <my-el .foo=${'bar'}></my-el> `);
+  const el = await fixture(
+    html`
+      <my-el .foo=${'bar'}></my-el>
+    `,
+  );
   expect(el.foo).to.equal('bar');
 });
 ```
@@ -117,12 +121,20 @@ Essentially, `fixture` creates a synchronous fixture, then waits for the element
 This way, you can write your tests more succinctly, without having to explicitly `await` those hooks yourself.
 
 ```js
-const el = await fixture(html` <my-el .foo=${'bar'}></my-el> `);
+const el = await fixture(
+  html`
+    <my-el .foo=${'bar'}></my-el>
+  `,
+);
 expect(el.foo).to.equal('bar');
 
 // vs
 
-const el = fixtureSync(html` <my-el .foo=${'bar'}></my-el> `);
+const el = fixtureSync(
+  html`
+    <my-el .foo=${'bar'}></my-el>
+  `,
+);
 await elementUpdated(el);
 expect(el.foo).to.equal('bar');
 ```
@@ -152,7 +164,11 @@ Waits until the given condition returns true. This is useful when elements do as
 ```js
 import { fixture, waitUntil } from '@open-wc/testing-helpers';
 
-const element = await fixture(html` <my-element></my-element> `);
+const element = await fixture(
+  html`
+    <my-element></my-element>
+  `,
+);
 
 // wait until some async property is set
 await waitUntil(() => element.someAsyncProperty, 'Element did not become ready');
