@@ -151,7 +151,7 @@ export function oneEvent(eventTarget, eventName) {
  * @param {{ interval?: number, timeout?: number }} [options] timeout and polling interval
  */
 export function waitUntil(predicate, message, options = {}) {
-  const { interval = 50, timeout = 2000 } = options;
+  const { interval = 50, timeout = 1000 } = options;
 
   return new Promise((resolve, reject) => {
     let timeoutId;
