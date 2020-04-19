@@ -1,6 +1,6 @@
-# Publishing
+# Deploying
 
-To publish your Web Component we recommend [netlify](https://www.netlify.com/).
+To deploy your Web Component we recommend [netlify](https://www.netlify.com/).
 
 - It's free
 - It's easy
@@ -20,7 +20,7 @@ And you're all set up.
 
 ## Example
 
-The [Set-Game Example](https://github.com/open-wc/example-vanilla-set-game/) has the default publishing via storybook on netlify.
+The [Set-Game Example](https://github.com/open-wc/example-vanilla-set-game/) deploys its storybook to netlify in this way.
 You can see the finished page here: [https://example-set-game-open-wc.netlify.com/](https://example-set-game-open-wc.netlify.com/).
 
 ## Serving With Apache HTTP Server
