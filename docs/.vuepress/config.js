@@ -60,7 +60,7 @@ const sidebar = [
         title: 'Deploying apps',
         collapsable: false,
         sidebarDepth: 0,
-        children: [['/publishing/', 'Getting started']],
+        children: [['/deploying/', 'Getting started']],
       },
       {
         title: 'Demoing',
