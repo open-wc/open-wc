@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.9](https://github.com/open-wc/open-wc/compare/@open-wc/lit-helpers@0.3.8...@open-wc/lit-helpers@0.3.9) (2020-04-20)
+
+**Note:** Version bump only for package @open-wc/lit-helpers
+
+
+
+
+
 ## [0.3.8](https://github.com/open-wc/open-wc/compare/@open-wc/lit-helpers@0.3.7...@open-wc/lit-helpers@0.3.8) (2020-04-12)
 
 **Note:** Version bump only for package @open-wc/lit-helpers

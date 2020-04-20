@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/prettier-config",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "publishConfig": {
     "access": "public"
   },

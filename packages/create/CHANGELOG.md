@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.30.0...@open-wc/create@0.31.0) (2020-04-20)
+
+
+### Features
+
+* **create:** update prettier to v2 ([d6aa4f9](https://github.com/open-wc/open-wc/commit/d6aa4f9fe0c97c72e6401186cc14d019e8d7ee09))
+
+
+
+
+
 # [0.30.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.29.0...@open-wc/create@0.30.0) (2020-04-13)
 
 
