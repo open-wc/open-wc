@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/rollup-plugin-polyfills-loader",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publishConfig": {
     "access": "public"
   },
@@ -36,6 +36,6 @@
   ],
   "dependencies": {
     "@open-wc/rollup-plugin-html": "^1.0.2",
-    "polyfills-loader": "^1.5.5"
+    "polyfills-loader": "^1.5.6"
   }
 }
