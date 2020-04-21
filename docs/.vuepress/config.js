@@ -139,7 +139,7 @@ module.exports = {
       '/testing/': sidebar,
       '/building/': sidebar,
       '/demoing/': sidebar,
-      '/publishing/': sidebar,
+      '/deploying/': sidebar,
       '/automating/': sidebar,
       '/scoped-elements/': sidebar,
       '/mdjs/': sidebar,
