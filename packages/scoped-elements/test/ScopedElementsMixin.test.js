@@ -304,6 +304,37 @@ describe('ScopedElementsMixin', () => {
     await waitUntil(() => el.shadowRoot.children[1] instanceof LazyElement);
   });
 
+  it('should reuse the global tag if defined with the same name and class reference', async () => {
+    class ItemA extends LitElement {
+      render() {
+        return html` <div>Item A</div> `;
+      }
+    }
+
+    customElements.define('item-a', ItemA);
+
+    const tag = defineCE(
+      class ContainerElement extends ScopedElementsMixin(LitElement) {
+        static get scopedElements() {
+          return {
+            ...super.scopedElements,
+            'item-a': customElements.get('item-a'),
+          };
+        }
+
+        render() {
+          return html` <item-a></item-a> `;
+        }
+      },
+    );
+
+    const el = await fixture(`<${tag}></${tag}>`);
+    const firstElement = el.shadowRoot.children[0];
+
+    expect(firstElement.tagName.toLowerCase()).to.be.equal('item-a');
+    expect(firstElement).to.be.instanceof(ItemA);
+  });
+
   describe('getScopedTagName', () => {
     it('should return the scoped tag name for a registered element', async () => {
       const chars = `-|\\.|[0-9]|[a-z]`;
