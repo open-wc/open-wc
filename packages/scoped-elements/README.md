@@ -38,6 +38,19 @@ npm i --save @open-wc/scoped-elements
    }
    ```
 
+   > WARNING: If you are going to use elements that are globally defined you have to declare them in `scopedElements` as well. This is required because we are trying to work as close as possible to the future Scoped Custom Element Registries feature and, by the moment, there is not going ot be inheritance between registries.
+   >
+   > You can declare them like in the following example:
+   >
+   > ```js
+   >  static get scopedElements() {
+   >    return {
+   >      'old-button': customElements.get('old-button'),
+   >      'my-panel': MyPanel,
+   >    };
+   >  }
+   > ```
+
 4. Use your components in your html.
 
    ```js
