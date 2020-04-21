@@ -87,7 +87,7 @@
       polyfills.push(loadScript('./polyfills/fetch.a030f3e3353d6a5594af9f9be3692d53.js'));
     }
 
-    if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) {
+    if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || window.ShadyDOM && window.ShadyDOM.force) {
       polyfills.push(loadScript('./polyfills/webcomponents.d67d6757b8cd44bc35b021ee0b71d197.js'));
     }
 
