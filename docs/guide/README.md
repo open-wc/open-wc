@@ -19,7 +19,7 @@ npm init @open-wc
 - [Testing](/testing/)
 - [Building](/building/)
 - [Demoing](/demoing/)
-- [Publishing](/publishing/)
+- [Deploying](/deploying/)
 - [Automating](/automating/)
 
 ## Our Philosophy
