@@ -85,7 +85,8 @@ describe('polyfills', () => {
       },
       {
         path: 'polyfills/webcomponents.js',
-        test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)",
+        test:
+          "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)",
         type: 'script',
       },
       {
