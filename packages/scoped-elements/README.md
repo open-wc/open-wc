@@ -50,6 +50,8 @@ npm i --save @open-wc/scoped-elements
    >    };
    >  }
    > ```
+   >
+   > If you try to register the same element globally AND locally with the exact same name AND class instance it will reuse the global tag name and NOT scope it.
 
 4. Use your components in your html.
 
