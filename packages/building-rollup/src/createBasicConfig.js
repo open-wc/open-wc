@@ -33,6 +33,7 @@ function createBasicConfig(userOptions = {}) {
   const assetName = `[${developmentMode ? 'name' : 'hash'}][extname]`;
 
   const config = {
+    preserveEntrySignatures: false,
     treeshake: !developmentMode,
 
     output: {
