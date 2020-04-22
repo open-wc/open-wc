@@ -45,6 +45,9 @@
     "modules",
     "rollup"
   ],
+  "peerDependencies": {
+    "rollup": "^2.7.2"
+  },
   "dependencies": {
     "@babel/core": "^7.9.0",
     "@babel/helpers": "^7.9.2",
