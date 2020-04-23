@@ -165,7 +165,13 @@ const baseConfig = createSpaConfig({
 });
 ```
 
-## Customizing the babel config
+## Customizations
+
+Our config generator sets you up with good defaults for most projects. It's easy to extend and customize this config further for your requirements.
+
+If you find yourself disabling a lot of the default functionality we recommend forking from the default config and taking control yourself. Rollup is relatively easy to configure compared to other build tools, it's better to be in full control if you know what you're doing.
+
+### Customizing the babel config
 
 You can define custom babel plugins to be loaded by adding a `.babelrc` or `babel.config.js` to your project. See [babeljs config](https://babeljs.io/docs/en/configuration) for more information.
 
@@ -176,12 +182,6 @@ For example to add support for class properties:
   "plugins": ["@babel/plugin-proposal-class-properties"]
 }
 ```
-
-## Customizations
-
-Our config generator sets you up with good defaults for most projects. It's easy to extend and customize this config further for your requirements.
-
-If you find yourself disabling a lot of the default functionality we recommend forking from the default config and taking control yourself. Rollup is relatively easy to configure compared to other build tools, it's better to be in full control if you know what you're doing.
 
 ### Customizing default plugins
 
@@ -282,7 +282,36 @@ const baseConfig = createSpaConfig({
 
 </details>
 
-### Extending the rollup config
+### Customize built-in babel plugins
+
+We add some babel plugins by default. These can be overwritten with a different configuration from the config. For example to change the html template minification, or add other modules to be minified:
+
+<details>
+  <summary>View example</summary>
+
+```js
+const baseConfig = createSpaConfig({
+  babel: {
+    plugins: [
+      [
+        require.resolve('babel-plugin-template-html-minifier'),
+        {
+          modules: {
+            'cool-html': ['html'],
+          },
+          htmlMinifier: {
+            removeComments: false,
+          },
+        },
+      ],
+    ],
+  },
+});
+```
+
+</details>
+
+## Extending the rollup config
 
 A rollup config is just a plain object. It's easy to extend it using javascript. We recommend using the `deepmerge` library because it is an easy way to merge objects and arrays:
 
