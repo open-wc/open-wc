@@ -37,6 +37,7 @@
  * @returns {string} html restructured in a diffable format
  */
 export function getDiffableHTML(html: string | Node, options?: DiffOptions): string;
+export function isDiffOptions(arg: any): arg is DiffOptions;
 export type IgnoreAttributesForTags = {
     /**
      * tags on which to ignore the given attributes
