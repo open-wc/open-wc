@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.0.6...@open-wc/demoing-storybook@2.1.0) (2020-04-24)
+
+
+### Features
+
+* **demoing-storybook:** don't preserve entry signature in build ([098a923](https://github.com/open-wc/open-wc/commit/098a923888111ca1b785ac6839ba95fa2b7a7fc9))
+
+
+
+
+
 ## [2.0.6](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.0.5...@open-wc/demoing-storybook@2.0.6) (2020-04-21)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook

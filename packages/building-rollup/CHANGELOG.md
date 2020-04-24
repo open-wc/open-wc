@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.1.4...@open-wc/building-rollup@1.2.0) (2020-04-24)
+
+
+### Features
+
+* **building-rollup:** support overriding built-in babel plugins ([ecd294e](https://github.com/open-wc/open-wc/commit/ecd294efad9648db5a0f0c8ed84833e621b757aa))
+* **building-rollup:** use new preserveEntrySignatures option ([ee31fba](https://github.com/open-wc/open-wc/commit/ee31fba7de938362e38ee3f75999c3afdfbb2301))
+
+
+
+
+
 ## [1.1.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.1.3...@open-wc/building-rollup@1.1.4) (2020-04-21)
 
 **Note:** Version bump only for package @open-wc/building-rollup
