@@ -3,6 +3,7 @@ import { fixtureWrapper } from './fixtureWrapper.js';
 import { render } from './lit-html.js';
 import { elementUpdated } from './elementUpdated.js';
 import { NODE_TYPES } from './lib.js';
+import { getScopedElementsTemplate } from './scopedElementsWrapper.js';
 
 /**
  * @typedef {
@@ -35,7 +36,12 @@ const isUsefulNode = ({ nodeType, textContent }) => {
  */
 export function litFixtureSync(template, options = {}) {
   const wrapper = fixtureWrapper(options.parentNode);
-  render(template, wrapper);
+
+  render(
+    options.scopedElements ? getScopedElementsTemplate(template, options.scopedElements) : template,
+    wrapper,
+  );
+
   if (template instanceof TemplateResult) {
     return /** @type {T} */ (wrapper.firstElementChild);
   }
@@ -52,9 +58,17 @@ export function litFixtureSync(template, options = {}) {
  * @param {import('./fixture-no-side-effect.js').FixtureOptions} [options]
  * @returns {Promise<T>}
  */
-export async function litFixture(template, options) {
+export async function litFixture(template, options = {}) {
   const el = litFixtureSync(template, options);
   await elementUpdated(el);
+
+  if (options.scopedElements) {
+    const [node] = Array.from(el.shadowRoot.childNodes).filter(isUsefulNode);
+    await elementUpdated(/** @type {T} */ (node));
+
+    return /** @type {T} */ (node);
+  }
+
   // @ts-ignore
   return el;
 }
