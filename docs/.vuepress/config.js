@@ -191,6 +191,20 @@ module.exports = {
   ],
   ga: 'UA-131782693-1',
   head: [
+    [
+      'script',
+      {},
+      `
+      let refreshing;
+      navigator.serviceWorker.addEventListener('controllerchange',
+        function() {
+          if (refreshing) return;
+          refreshing = true;
+          window.location.reload();
+        }
+      );
+    `,
+    ],
     ['link', { rel: 'manifest', href: '/manifest.json' }],
     ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
     [
