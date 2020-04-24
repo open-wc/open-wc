@@ -15,8 +15,8 @@ import { stub } from 'sinon';
 import { expect, fixture, html } from '@open-wc/testing';
 
 describe('my component', () => {
-  it('calls myFunction when a button is clicked', () => {
-    const el = fixture(html` <my-component></my-component> `);
+  it('calls myFunction when a button is clicked', async () => {
+    const el = await fixture(html` <my-component></my-component> `);
 
     // stub a function
     const myFunctionStub = stub(el, 'myFunction');
