@@ -6,6 +6,7 @@ import { defineScopedElement, registerElement } from './registerElement.js';
 import { shadyTemplateFactory } from './shadyTemplateFactory.js';
 
 /**
+ * @typedef {import('./types').ScopedElementsMap} ScopedElementsMap
  * @typedef {import('lit-html/lib/shady-render').ShadyRenderOptions} ShadyRenderOptions
  * @typedef {function(TemplateResult, Element|DocumentFragment|ShadowRoot, ShadyRenderOptions): void} RenderFunction
  */
@@ -19,6 +20,7 @@ const templateCaches = new WeakMap();
 
 /**
  * Retrieves or creates a templateCache for a specific key
+ *
  * @param {Function} key
  * @returns {Map<TemplateStringsArray, TemplateStringsArray>}
  */
@@ -54,7 +56,7 @@ const getTagsCache = key => {
  * Transforms an array of TemplateResults or arrays into another one with resolved scoped elements
  *
  * @param {ReadonlyArray} items
- * @param {Object.<string, typeof HTMLElement>} scopedElements
+ * @param {ScopedElementsMap} scopedElements
  * @param {Map<TemplateStringsArray, TemplateStringsArray>} templateCache
  * @param {Map<string, string>} tagsCache
  * @returns {ReadonlyArray}
@@ -76,7 +78,7 @@ const transformArray = (items, scopedElements, templateCache, tagsCache) =>
  * Transforms a TemplateResult into another one with resolved scoped elements
  *
  * @param {TemplateResult} template
- * @param {Object.<string, typeof HTMLElement>} scopedElements
+ * @param {ScopedElementsMap} scopedElements
  * @param {Map<TemplateStringsArray, TemplateStringsArray>} templateCache
  * @param {Map<string, string>} tagsCache
  * @returns {TemplateResult}
@@ -89,6 +91,15 @@ const transformTemplate = (template, scopedElements, templateCache, tagsCache) =
     template.processor,
   );
 
+/**
+ * Gets an instance of the ScopedElementsTemplateFactory
+ *
+ * @param {string} scopeName
+ * @param {ScopedElementsMap} scopedElements
+ * @param {Map<TemplateStringsArray, TemplateStringsArray>} templateCache
+ * @param {Map<string, string>} tagsCache
+ * @returns {function(any): any}
+ */
 const scopedElementsTemplateFactory = (
   scopeName,
   scopedElements,
@@ -104,13 +115,16 @@ export const ScopedElementsMixin = dedupeMixin(
   superclass =>
     // eslint-disable-next-line no-shadow
     class ScopedElementsMixin extends superclass {
+      /**
+       * Obtains the scoped elements definitions map
+       *
+       * @returns {ScopedElementsMap}
+       */
       static get scopedElements() {
         return {};
       }
 
-      /**
-       * @override
-       */
+      /** @override */
       static render(template, container, options) {
         if (!options || typeof options !== 'object' || !options.scopeName) {
           throw new Error('The `scopeName` option is required.');
