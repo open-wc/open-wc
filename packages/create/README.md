@@ -88,12 +88,8 @@ npm init @open-wc
   This generator adds a complete demoing setup with Storybook.
   <br/>
 
-- `Building > Rollup`<br>
+- `Building`<br>
   This generator adds a complete building setup with rollup.
-  <br/>
-
-- `Building > Webpack`<br>
-  This generator adds a complete building setup with webpack.
   <br/>
 
 <script>

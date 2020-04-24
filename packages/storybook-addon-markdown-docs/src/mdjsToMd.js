@@ -62,6 +62,16 @@ function hardBreak(h, node) {
   return [h.augment(node, u('raw', '<br />')), u('text', '\n')];
 }
 
+/**
+ * Override hr to make it closing `<hr />` as otherwise the jsx parser throws
+ *
+ * @param {*} h
+ * @param {*} node
+ */
+function thematicBreak(h, node) {
+  return h.augment(node, u('raw', `<hr />`));
+}
+
 function transformPropsHook() {
   // @ts-ignore
   return tree => {
@@ -99,6 +109,7 @@ async function mdjsToMd(markdownText) {
         code,
         image,
         break: hardBreak,
+        thematicBreak,
       },
     });
   /** @type {unknown} */

@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-index-html",
-  "version": "1.10.6",
+  "version": "1.11.1",
   "publishConfig": {
     "access": "public"
   },
@@ -15,10 +15,7 @@
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/rollup-plugin-index-html",
   "main": "rollup-plugin-index-html.js",
   "scripts": {
-    "prepublishOnly": "../../scripts/insert-header.js",
-    "test": "npm run test:node",
-    "test:node": "mocha test/**/*.test.js test/*.test.js",
-    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
+    "prepublishOnly": "../../scripts/insert-header.js"
   },
   "files": [
     "*.js",
@@ -31,7 +28,7 @@
   ],
   "dependencies": {
     "@import-maps/resolve": "^0.2.6",
-    "@open-wc/building-utils": "^2.16.3",
+    "@open-wc/building-utils": "^2.16.4",
     "deepmerge": "^4.2.2",
     "lit-html": "^1.0.0",
     "md5": "^2.2.1",

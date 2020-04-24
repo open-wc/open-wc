@@ -37,7 +37,7 @@
     polyfills.push(loadScript('./polyfills/intersection-observer.js'));
   }
 
-  if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) {
+  if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || window.ShadyDOM && window.ShadyDOM.force) {
     polyfills.push(loadScript('./polyfills/webcomponents.js'));
   }
 

@@ -3,9 +3,7 @@ import { message } from './commonjs-module.js';
 
 class DemoApp extends LitElement {
   render() {
-    return html`
-      ${message}
-    `;
+    return html` ${message} `;
   }
 }
 

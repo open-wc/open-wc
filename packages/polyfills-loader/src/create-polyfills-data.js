@@ -148,7 +148,8 @@ function createPolyfillsData(cfg) {
   if (polyfills.webcomponents && !polyfills.shadyCssCustomStyle) {
     addPolyfillConfig({
       name: 'webcomponents',
-      test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)",
+      test:
+        "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)",
       path: require.resolve('@webcomponents/webcomponentsjs/webcomponents-bundle.js'),
     });
 

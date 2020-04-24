@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.6...storybook-addon-markdown-docs@0.2.7) (2020-04-20)
+
+
+### Bug Fixes
+
+* **storybook-addon-markdown-docs:** no babel user config for jsxToJs ([#1542](https://github.com/open-wc/open-wc/issues/1542)) ([484679d](https://github.com/open-wc/open-wc/commit/484679db284a48ab5083d820b76a52d49e3c5290))
+
+
+
+
+
+## [0.2.6](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.5...storybook-addon-markdown-docs@0.2.6) (2020-04-16)
+
+
+### Bug Fixes
+
+* **storybook-addon-markdown-docs:** close hr to support jsx parser ([2114f7d](https://github.com/open-wc/open-wc/commit/2114f7d32edb36b8c0cc451f92ebd806edabbe66))
+
+
+
+
+
+## [0.2.5](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.4...storybook-addon-markdown-docs@0.2.5) (2020-04-15)
+
+
+### Bug Fixes
+
+* **storybook-addon-markdown-docs:** remove dep ([2a54660](https://github.com/open-wc/open-wc/commit/2a546601a0d813bbc0413dcd98b8241bb12e2953))
+
+
+
+
+
 ## [0.2.4](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.3...storybook-addon-markdown-docs@0.2.4) (2020-04-12)
 
 **Note:** Version bump only for package storybook-addon-markdown-docs

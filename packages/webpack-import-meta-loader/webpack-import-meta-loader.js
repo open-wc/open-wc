@@ -13,7 +13,7 @@ const regex = /import\.meta/g;
  * return import.meta.url;
  * // becomes: return ({ url: `${window.location.protocol}//${window.location.host}/relative/path/to/file.js` }).url;
  */
-module.exports = function(source) {
+module.exports = function (source) {
   const path = require('path');
 
   const relativePath = this.context.substring(

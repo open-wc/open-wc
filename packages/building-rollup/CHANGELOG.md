@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.1.4...@open-wc/building-rollup@1.2.0) (2020-04-24)
+
+
+### Features
+
+* **building-rollup:** support overriding built-in babel plugins ([ecd294e](https://github.com/open-wc/open-wc/commit/ecd294efad9648db5a0f0c8ed84833e621b757aa))
+* **building-rollup:** use new preserveEntrySignatures option ([ee31fba](https://github.com/open-wc/open-wc/commit/ee31fba7de938362e38ee3f75999c3afdfbb2301))
+
+
+
+
+
+## [1.1.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.1.3...@open-wc/building-rollup@1.1.4) (2020-04-21)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [1.1.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.1.2...@open-wc/building-rollup@1.1.3) (2020-04-20)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [1.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.1.1...@open-wc/building-rollup@1.1.2) (2020-04-15)
+
+
+### Bug Fixes
+
+* **building-rollup:** add transitive babel helper dependencies ([d0b5159](https://github.com/open-wc/open-wc/commit/d0b51591beb3b457d3685021ff57a18fd4ed8a23))
+
+
+
+
+
+## [1.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.1.0...@open-wc/building-rollup@1.1.1) (2020-04-13)
+
+
+### Bug Fixes
+
+* **building-rollup:** fix type definition ([8fb967b](https://github.com/open-wc/open-wc/commit/8fb967b318735f47e91b09dd70c4bfd06fcb290f))
+
+
+
+
+
+# [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.0.0...@open-wc/building-rollup@1.1.0) (2020-04-13)
+
+
+### Features
+
+* **building-rollup:** runtime cache polyfills ([8964e2e](https://github.com/open-wc/open-wc/commit/8964e2e286e9585e76208928b0129f2b16bdf60b))
+
+
+
+
+
 # [1.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@0.22.12...@open-wc/building-rollup@1.0.0) (2020-04-12)
 
 

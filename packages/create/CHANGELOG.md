@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.30.0...@open-wc/create@0.31.0) (2020-04-20)
+
+
+### Features
+
+* **create:** update prettier to v2 ([d6aa4f9](https://github.com/open-wc/open-wc/commit/d6aa4f9fe0c97c72e6401186cc14d019e8d7ee09))
+
+
+
+
+
+# [0.30.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.29.0...@open-wc/create@0.30.0) (2020-04-13)
+
+
+### Features
+
+* **create:** copyTemplates resolves with the copied files ([00a7d90](https://github.com/open-wc/open-wc/commit/00a7d908cd2aa7b59d686c533ef8aaea82f42194))
+
+
+
+
+
+# [0.29.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.28.4...@open-wc/create@0.29.0) (2020-04-13)
+
+
+### Features
+
+* **create:** remove webpack option ([2e6083d](https://github.com/open-wc/open-wc/commit/2e6083de7556ed47ef9b8ca791e18dd000c9dd77))
+* **create:** update building-rollup ([7b41b3f](https://github.com/open-wc/open-wc/commit/7b41b3fbf97a637b6d8d4fa63a3852ff6146a92e))
+* **create:** update demoing-storybook ([4300d2e](https://github.com/open-wc/open-wc/commit/4300d2ea627a65e933eb3badcbec5b57d46f2f25))
+
+
+
+
+
 ## [0.28.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.28.3...@open-wc/create@0.28.4) (2020-04-12)
 
 **Note:** Version bump only for package @open-wc/create

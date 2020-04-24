@@ -37,7 +37,8 @@ const defaultPolyfills = [
     name: 'webcomponents',
     nomodule: false,
     sourcemap: undefined,
-    test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)",
+    test:
+      "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)",
   },
 ];
 

@@ -50,17 +50,27 @@ function getHelperImportSpecifier(ast, format) {
   }
 }
 
+function addHelperDependencies(allHelpers, helper) {
+  if (helper === 'regeneratorRuntime') {
+    return;
+  }
+
+  for (const dep of getDependencies(helper)) {
+    if (!allHelpers.has(dep)) {
+      allHelpers.add(dep);
+      addHelperDependencies(allHelpers, dep);
+    }
+  }
+}
+
 function getHelpersWithDependencies(helpers) {
   const all = new Set(helpers);
   for (const helper of helpers) {
-    if (helper !== 'regeneratorRuntime') {
-      for (const d of getDependencies(helper)) {
-        all.add(d);
-      }
-    }
+    addHelperDependencies(all, helper);
   }
   return Array.from(all);
 }
+
 function createHelperModule(helpers, format, minify) {
   const helpersWithDependencies = getHelpersWithDependencies(helpers);
   const addRegeneratorRuntime = helpersWithDependencies.includes('regeneratorRuntime');

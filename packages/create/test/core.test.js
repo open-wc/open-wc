@@ -3,18 +3,19 @@
 import chai from 'chai';
 import fs from 'fs';
 import {
-  processTemplate,
-  writeFileToPath,
-  virtualFiles,
-  resetVirtualFiles,
-  readFileFromPath,
   copyTemplateJsonInto,
+  copyTemplates,
   deleteVirtualFile,
   executeMixinGenerator,
   filesToTree,
   optionsToCommand,
-  writeFileToPathOnDisk,
+  processTemplate,
+  readFileFromPath,
+  resetVirtualFiles,
   setOverrideAllFiles,
+  virtualFiles,
+  writeFileToPath,
+  writeFileToPathOnDisk,
 } from '../src/core.js';
 
 const { expect } = chai;
@@ -128,6 +129,20 @@ describe('writeFileToPathOnDisk', () => {
     await writeFileToPathOnDisk(`./__tmpfoo.txt`, 'updatedfoofile', { ask: false });
     expect(fs.readFileSync(`./__tmpfoo.txt`, 'utf-8')).to.equal('updatedfoofile');
     setOverrideAllFiles(false);
+  });
+});
+
+describe('copyTemplates', () => {
+  it('returns a promise which resolves with the copied and processed files', async () => {
+    const copiedFiles = await copyTemplates(`./test/template/**/*`, `source`, {
+      name: 'hello-world',
+    });
+    expect(copiedFiles).to.deep.equal([
+      {
+        processed: "console.log('name: hello-world');\n",
+        toPath: './source/index.js',
+      },
+    ]);
   });
 });
 

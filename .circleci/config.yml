@@ -4,8 +4,8 @@
 #
 version: 2.1
 
-orbs:
-  windows: circleci/windows@2.4.0
+# orbs:
+#   windows: circleci/windows@2.4.0
 
 defaults: &defaults
   working_directory: ~/repo
@@ -54,15 +54,15 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: npm run test:bs
-  test-windows:
-    executor: windows/default
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/
-      # reinstall dependencies, cannot use cached dependencies from a linux VM
-      - run: yarn install --frozen-lockfile
-      - run: npm run test:node-windows
+  # test-windows:
+  #   executor: windows/default
+  #   steps:
+  #     - checkout
+  #     - attach_workspace:
+  #         at: ~/
+  #     # reinstall dependencies, cannot use cached dependencies from a linux VM
+  #     - run: yarn install --frozen-lockfile
+  #     - run: npm run test:node-windows
   deploy:
     <<: *defaults
     steps:
@@ -87,7 +87,6 @@ workflows:
   test-deploy:
     jobs:
       - build
-      - test-windows
       - test-local:
           requires:
             - build

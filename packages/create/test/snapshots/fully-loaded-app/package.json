@@ -8,25 +8,25 @@
     "format": "npm run format:eslint && npm run format:prettier",
     "test": "karma start --coverage",
     "test:watch": "karma start --auto-watch=true --single-run=false",
-    "storybook": "start-storybook --node-resolve --watch --open",
+    "storybook": "start-storybook",
     "storybook:build": "build-storybook",
-    "start:build": "es-dev-server --root-dir dist --app-index index.html --open --compatibility none",
     "build": "rimraf dist && rollup -c rollup.config.js",
+    "start:build": "npm run build && es-dev-server --root-dir dist --app-index index.html --open --compatibility none",
     "start": "es-dev-server --app-index index.html --node-resolve --open --watch"
   },
   "devDependencies": {
     "eslint": "^6.1.0",
     "@open-wc/eslint-config": "^2.0.0",
-    "@open-wc/prettier-config": "^0.1.10",
+    "prettier": "^2.0.4",
     "husky": "^1.0.0",
     "lint-staged": "^8.0.0",
     "@open-wc/testing-karma": "^3.0.0",
     "deepmerge": "^3.2.0",
     "@open-wc/testing": "^2.0.0",
-    "@open-wc/demoing-storybook": "^1.0.1",
-    "@open-wc/building-rollup": "^0.21.0",
+    "@open-wc/demoing-storybook": "^2.0.0",
+    "@open-wc/building-rollup": "^1.0.0",
     "rimraf": "^2.6.3",
-    "rollup": "^1.15.4",
+    "rollup": "^2.3.4",
     "es-dev-server": "^1.5.0"
   },
   "eslintConfig": {
@@ -35,7 +35,10 @@
       "eslint-config-prettier"
     ]
   },
-  "prettier": "@open-wc/prettier-config",
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"

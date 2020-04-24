@@ -1,22 +1,8 @@
-import {
-  addParameters,
-  addDecorator,
-  setCustomElements,
-  withA11y
-} from '@open-wc/demoing-storybook';
-
-addDecorator(withA11y);
+import { addParameters, setCustomElements } from '@open-wc/demoing-storybook';
 
 addParameters({
-  a11y: {
-    config: {},
-    options: {
-      checks: { 'color-contrast': { options: { noScroll: true } } },
-      restoreScroll: true
-    }
-  },
   docs: {
-    iframeHeight: '200px'
+    iframeHeight: '200px',
   }
 });
 

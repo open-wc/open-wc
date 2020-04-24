@@ -1,5 +1,7 @@
 # Rollup Plugin Index HTML
 
+> **WARNING**: This project is deprecated and no longer maintained. See [@open-wc/rollup-plugin-html](https://github.com/open-wc/open-wc/tree/master/packages/rollup-plugin-html) and [@open-wc/rollup-plugin-polyfills-loader](https://github.com/open-wc/open-wc/tree/master/packages/rollup-plugin-polyfills-loader) for replacements.
+
 Rollup plugin to make rollup understand your index.html.
 
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
@@ -26,7 +28,7 @@ Rollup plugin to make rollup understand your index.html.
     <my-app></my-app>
 
     <script>
-      (function() {
+      (function () {
         var message = 'hello inline script';
         console.log(message);
       })();

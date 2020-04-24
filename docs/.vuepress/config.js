@@ -28,7 +28,6 @@ const sidebar = [
         children: [
           ['/linting/', 'Getting started'],
           '/linting/linting-eslint',
-          '/linting/linting-prettier',
           '/linting/linting-types',
         ],
       },
@@ -55,17 +54,13 @@ const sidebar = [
         title: 'Building apps for production',
         collapsable: false,
         sidebarDepth: 0,
-        children: [
-          ['/building/', 'Getting started'],
-          '/building/building-rollup',
-          '/building/building-webpack',
-        ],
+        children: [['/building/', 'Getting started'], '/building/building-rollup'],
       },
       {
         title: 'Deploying apps',
         collapsable: false,
         sidebarDepth: 0,
-        children: [['/publishing/', 'Getting started']],
+        children: [['/deploying/', 'Getting started']],
       },
       {
         title: 'Demoing',
@@ -111,7 +106,6 @@ const sidebar = [
           '/building/rollup-plugin-html',
           '/building/rollup-plugin-polyfills-loader',
           '/building/polyfills-loader',
-          '/building/webpack-index-html-plugin',
         ],
       },
       {
@@ -145,7 +139,7 @@ module.exports = {
       '/testing/': sidebar,
       '/building/': sidebar,
       '/demoing/': sidebar,
-      '/publishing/': sidebar,
+      '/deploying/': sidebar,
       '/automating/': sidebar,
       '/scoped-elements/': sidebar,
       '/mdjs/': sidebar,

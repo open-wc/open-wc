@@ -1,13 +1,11 @@
 /* eslint-disable no-console, import/no-cycle */
 
-import fs from 'fs';
-import path from 'path';
 import { spawn } from 'child_process';
-
-import prompts from 'prompts';
-import glob from 'glob';
 import deepmerge from 'deepmerge';
-
+import fs from 'fs';
+import glob from 'glob';
+import path from 'path';
+import prompts from 'prompts';
 import Generator from './Generator.js';
 
 /**
@@ -320,6 +318,7 @@ export function copyTemplate(fromPath, toPath, data) {
 export function copyTemplates(fromGlob, toDir = process.cwd(), data = {}) {
   return new Promise(resolve => {
     glob(fromGlob, { dot: true }, (er, files) => {
+      const copiedFiles = [];
       files.forEach(filePath => {
         if (!fs.lstatSync(filePath).isDirectory()) {
           const fileContent = readFileFromPath(filePath);
@@ -330,11 +329,12 @@ export function copyTemplates(fromGlob, toDir = process.cwd(), data = {}) {
             const replace = path.join(fromGlob.replace(/\*/g, '')).replace(/\\(?! )/g, '/');
             const toPath = filePath.replace(replace, `${toDir}/`);
 
+            copiedFiles.push({ toPath, processed });
             writeFileToPath(toPath, processed);
           }
         }
       });
-      resolve();
+      resolve(copiedFiles);
     });
   });
 }
