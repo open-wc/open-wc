@@ -261,6 +261,26 @@ describe('ScopedElementsMixin', () => {
     expect(el.shadowRoot.children[1]).to.be.an.instanceOf(FeatureB);
   });
 
+  it('should avoid definition if lazy is already defined', async () => {
+    const tag = defineCE(
+      class extends ScopedElementsMixin(LitElement) {
+        render() {
+          return html` <feature-a></feature-a> `;
+        }
+      },
+    );
+
+    const el = await fixture(`<${tag}></${tag}>`);
+
+    expect(el.shadowRoot.children[0]).to.not.be.an.instanceOf(FeatureA);
+
+    el.defineScopedElement('feature-a', FeatureA);
+
+    expect(el.shadowRoot.children[0]).to.be.an.instanceOf(FeatureA);
+
+    el.defineScopedElement('feature-a', FeatureA);
+  });
+
   it("support define a lazy element even if it's not used in previous templates", async () => {
     class LazyElement extends LitElement {
       render() {
