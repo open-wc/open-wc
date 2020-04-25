@@ -7,7 +7,8 @@ import { getScopedElementsTemplate } from './scopedElementsWrapper.js';
 
 /**
  * @typedef {
-     import('lit-html').TemplateResult | import('lit-html').TemplateResult[]
+     import('lit-html').TemplateResult
+   | import('lit-html').TemplateResult[]
    | Node | Node[]
    | string | string[]
    | number | number[]
@@ -59,16 +60,20 @@ export function litFixtureSync(template, options = {}) {
  * @returns {Promise<T>}
  */
 export async function litFixture(template, options = {}) {
+  /** @type {T} */
+  // NB: in the case of scopedElements, this is ScopedElementsTestWrapper, not T,
+  // but that's only a small lie
   const el = litFixtureSync(template, options);
   await elementUpdated(el);
 
   if (options.scopedElements) {
-    const [node] = Array.from(el.shadowRoot.childNodes).filter(isUsefulNode);
-    await elementUpdated(/** @type {T} */ (node));
+    const [node] =
+      /** @type {T[]} */
+      (Array.from(el.shadowRoot.childNodes).filter(isUsefulNode));
+    await elementUpdated(node.firstElementChild);
 
-    return /** @type {T} */ (node);
+    return node;
   }
 
-  // @ts-ignore
   return el;
 }

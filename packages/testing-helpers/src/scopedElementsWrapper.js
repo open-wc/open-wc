@@ -1,6 +1,5 @@
 import { ScopedElementsMixin } from '@open-wc/scoped-elements';
 import { html, LitElement, TemplateResult } from 'lit-element';
-import { nothing } from 'lit-html';
 import { isIterable } from './lib.js';
 
 /** @typedef {import('@open-wc/scoped-elements').ScopedElementsMap} ScopedElementsMap */
@@ -31,13 +30,13 @@ class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
     /** @type {ScopedElementsMap} */
     this.scopedElements = {};
 
-    /** @type {TemplateResult|{}} */
-    this.template = nothing;
+    /** @type {import('./litFixture').LitHTMLRenderable} */
+    // eslint-disable-next-line babel/no-unused-expressions
+    this.template;
   }
 
-  async firstUpdated() {
-    // @ts-ignore
-    await super.firstUpdated();
+  firstUpdated(_changed) {
+    super.firstUpdated(_changed);
 
     Object.keys(this.scopedElements).forEach(key =>
       this.defineScopedElement(key, this.scopedElements[key]),
@@ -49,7 +48,6 @@ class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
   }
 }
 
-// @ts-ignore
 customElements.define('scoped-elements-test-wrapper', ScopedElementsTestWrapper);
 
 /**
