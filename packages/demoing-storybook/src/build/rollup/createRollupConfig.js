@@ -24,6 +24,7 @@ function onwarn(warning, warn) {
  */
 function createRollupConfig({ outputDir, indexFilename, indexHTMLString }) {
   const config = {
+    preserveEntrySignatures: false,
     output: {
       entryFileNames: '[hash].js',
       chunkFileNames: '[hash].js',

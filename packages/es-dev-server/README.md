@@ -694,7 +694,7 @@ fileWatcher.close();
 
 ### startServer
 
-`startServer` creates and starts the server, listening on the configured port. It opens the browser if configured and logs a startup message.
+`startServer` asynchronously creates and starts the server, listening on the configured port. It opens the browser if configured and logs a startup message.
 
 Returns the koa app and a node http or http2 server.
 
@@ -702,8 +702,12 @@ Returns the koa app and a node http or http2 server.
 import Koa from 'koa';
 import { createConfig, startServer } from 'es-dev-server';
 
-const config = createConfig({ ... });
-const { app, server } = startServer(config, fileWatcher);
+async function main() {
+  const config = createConfig({ ... });
+  const { app, server } = await startServer(config, fileWatcher);
+}
+
+main();
 ```
 
 </details>

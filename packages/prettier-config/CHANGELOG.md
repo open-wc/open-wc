@@ -3,15 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/prettier-config@0.1.14...@open-wc/prettier-config@1.0.0) (2020-04-18)
+# [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/prettier-config@0.1.14...@open-wc/prettier-config@1.1.0) (2020-04-20)
 
 
-* Chore/update prettier (#1525) ([c55e339](https://github.com/open-wc/open-wc/commit/c55e339343154aefa6665837de1b6ae013f7fe5a)), closes [#1525](https://github.com/open-wc/open-wc/issues/1525)
+### Features
 
-
-### BREAKING CHANGES
-
-* see prettier release notes
+* **prettier-config:** update to prettier v2 ([908013c](https://github.com/open-wc/open-wc/commit/908013cd3090daa551bc5eccaa1eae4032257262))
 
 
 

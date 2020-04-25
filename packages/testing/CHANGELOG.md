@@ -3,15 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [3.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.11...@open-wc/testing@3.0.0) (2020-04-18)
+## [2.5.13](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.12...@open-wc/testing@2.5.13) (2020-04-21)
 
 
-* Chore/update prettier (#1525) ([c55e339](https://github.com/open-wc/open-wc/commit/c55e339343154aefa6665837de1b6ae013f7fe5a)), closes [#1525](https://github.com/open-wc/open-wc/issues/1525)
+### Bug Fixes
+
+* **testing:** export types from chai ([ce4b91a](https://github.com/open-wc/open-wc/commit/ce4b91a9a22ecff48a48c05f35fd19c93ba3bc24))
 
 
-### BREAKING CHANGES
 
-* see prettier release notes
+
+
+## [2.5.12](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.11...@open-wc/testing@2.5.12) (2020-04-20)
+
+**Note:** Version bump only for package @open-wc/testing
 
 
 

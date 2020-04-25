@@ -11,6 +11,8 @@ async function jsxToJs(docsJsx, filename) {
   const result = await transformAsync(docsJsx, {
     filename,
     sourceMaps: true,
+    babelrc: false,
+    configFile: false,
     plugins: [
       require.resolve('@babel/plugin-syntax-import-meta'),
       [require.resolve('@babel/plugin-transform-react-jsx'), { useSpread: true }],

@@ -31,7 +31,7 @@
       polyfills.push(loadScript('./foo/bar/fetch.js'));
     }
 
-    if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) {
+    if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || window.ShadyDOM && window.ShadyDOM.force) {
       polyfills.push(loadScript('./foo/bar/webcomponents.js'));
     }
 

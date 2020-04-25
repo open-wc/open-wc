@@ -3,26 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.0.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@3.0.0...@open-wc/demoing-storybook@3.0.1) (2020-04-18)
+# [2.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.0.6...@open-wc/demoing-storybook@2.1.0) (2020-04-24)
+
+
+### Features
+
+* **demoing-storybook:** don't preserve entry signature in build ([098a923](https://github.com/open-wc/open-wc/commit/098a923888111ca1b785ac6839ba95fa2b7a7fc9))
+
+
+
+
+
+## [2.0.6](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.0.5...@open-wc/demoing-storybook@2.0.6) (2020-04-21)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.0.5](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.0.4...@open-wc/demoing-storybook@2.0.5) (2020-04-20)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.0.4](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.0.3...@open-wc/demoing-storybook@2.0.4) (2020-04-20)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.0.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.0.2...@open-wc/demoing-storybook@2.0.3) (2020-04-19)
 
 
 ### Bug Fixes
 
-* **demoing-storybook:** ensure regenerator runtime is always loaded ([79f9558](https://github.com/open-wc/open-wc/commit/79f9558d11ca115e1fd7bb2c381d26262fccf2b0))
-
-
-
-
-
-# [3.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.0.2...@open-wc/demoing-storybook@3.0.0) (2020-04-18)
-
-
-* Chore/update prettier (#1525) ([c55e339](https://github.com/open-wc/open-wc/commit/c55e339343154aefa6665837de1b6ae013f7fe5a)), closes [#1525](https://github.com/open-wc/open-wc/issues/1525)
-
-
-### BREAKING CHANGES
-
-* see prettier release notes
+* **demoing-storybook:** ensure regenerator runtime is always loaded ([b81d4e8](https://github.com/open-wc/open-wc/commit/b81d4e850a75f53169b21f8e5b27376c77e05e48))
 
 
 

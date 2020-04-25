@@ -3,15 +3,9 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.0.0](https://github.com/open-wc/open-wc/compare/storybook-addon-web-components-knobs@0.3.6...storybook-addon-web-components-knobs@1.0.0) (2020-04-18)
+## [0.3.7](https://github.com/open-wc/open-wc/compare/storybook-addon-web-components-knobs@0.3.6...storybook-addon-web-components-knobs@0.3.7) (2020-04-20)
 
-
-* Chore/update prettier (#1525) ([c55e339](https://github.com/open-wc/open-wc/commit/c55e339343154aefa6665837de1b6ae013f7fe5a)), closes [#1525](https://github.com/open-wc/open-wc/issues/1525)
-
-
-### BREAKING CHANGES
-
-* see prettier release notes
+**Note:** Version bump only for package storybook-addon-web-components-knobs
 
 
 

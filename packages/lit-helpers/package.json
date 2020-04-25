@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/lit-helpers",
-  "version": "1.0.0",
+  "version": "0.3.9",
   "publishConfig": {
     "access": "public"
   },

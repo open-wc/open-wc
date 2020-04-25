@@ -3,7 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.46.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.46.2...es-dev-server@1.46.3) (2020-04-18)
+## [1.46.5](https://github.com/open-wc/open-wc/compare/es-dev-server@1.46.4...es-dev-server@1.46.5) (2020-04-21)
+
+
+### Bug Fixes
+
+* **polyfills-loader:** allow forcing the polyfill ([ee44812](https://github.com/open-wc/open-wc/commit/ee44812f89e90879713a0ba5cd79e631c57f6d4e))
+
+
+
+
+
+## [1.46.4](https://github.com/open-wc/open-wc/compare/es-dev-server@1.46.2...es-dev-server@1.46.4) (2020-04-20)
 
 **Note:** Version bump only for package es-dev-server
 

@@ -6,6 +6,28 @@ const Terser = require('terser');
 
 const isFalsy = _ => !!_;
 
+function dedupedBabelPlugin(babel, userConfig, defaultConfig) {
+  if (!userConfig) {
+    return undefined;
+  }
+
+  const config = merge(defaultConfig, typeof userConfig === 'object' ? userConfig : {});
+
+  const newPlugins = [];
+  const addedPlugins = new Set();
+  for (const plugin of [...config.plugins].reverse()) {
+    const name = Array.isArray(plugin) ? plugin[0] : plugin;
+    const resolvedName = require.resolve(name);
+    if (!addedPlugins.has(resolvedName)) {
+      addedPlugins.add(resolvedName);
+      newPlugins.unshift(plugin);
+    }
+  }
+
+  config.plugins = newPlugins;
+  return babel(config);
+}
+
 function pluginWithOptions(plugin, userConfig, defaultConfig, ...otherParams) {
   if (!userConfig) {
     return undefined;
@@ -47,5 +69,6 @@ function applyServiceWorkerRegistration(htmlString) {
 module.exports = {
   isFalsy,
   pluginWithOptions,
+  dedupedBabelPlugin,
   applyServiceWorkerRegistration,
 };

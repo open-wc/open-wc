@@ -60,7 +60,7 @@ const sidebar = [
         title: 'Deploying apps',
         collapsable: false,
         sidebarDepth: 0,
-        children: [['/publishing/', 'Getting started']],
+        children: [['/deploying/', 'Getting started']],
       },
       {
         title: 'Demoing',
@@ -139,7 +139,7 @@ module.exports = {
       '/testing/': sidebar,
       '/building/': sidebar,
       '/demoing/': sidebar,
-      '/publishing/': sidebar,
+      '/deploying/': sidebar,
       '/automating/': sidebar,
       '/scoped-elements/': sidebar,
       '/mdjs/': sidebar,
@@ -191,6 +191,20 @@ module.exports = {
   ],
   ga: 'UA-131782693-1',
   head: [
+    [
+      'script',
+      {},
+      `
+      let refreshing;
+      navigator.serviceWorker.addEventListener('controllerchange',
+        function() {
+          if (refreshing) return;
+          refreshing = true;
+          window.location.reload();
+        }
+      );
+    `,
+    ],
     ['link', { rel: 'manifest', href: '/manifest.json' }],
     ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
     [

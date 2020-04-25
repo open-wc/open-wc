@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/semantic-dom-diff",
-  "version": "1.0.0",
+  "version": "0.17.8",
   "publishConfig": {
     "access": "public"
   },
