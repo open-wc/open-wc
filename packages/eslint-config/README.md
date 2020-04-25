@@ -55,6 +55,40 @@ Run:
 - `npm run lint:eslint` to check if any file is not correctly formatted
 - `npm run format:eslint` to auto format your files
 
+## Running with Prettier
+
+If you also are using Prettier, in order for your ESLint to play nicely with Prettier, you should also include eslint-config-prettier.
+This way, the Prettier formatting will take into account your linting rules, so you don't need to add your own overrides for Prettier if it clashes with your linting rules.
+
+```sh
+npm add --save-dev eslint-config-prettier
+```
+
+```json
+{
+  "eslintConfig": {
+    "extends": ["@open-wc/eslint-config", "eslint-config-prettier"]
+  }
+}
+```
+
+And if you want the same formatting rules as the deprecated `@open-wc/prettier-config`, you can add some prettier overrides in your `package.json`:
+
+```json
+{
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  }
+}
+```
+
+This combination of `Prettier 2` and `@open-wc/eslint-config` represents the outcome if you add both linting and formatting while scaffolding with:
+
+```sh
+npm init @open-wc
+```
+
 <script>
   export default {
     mounted() {
