@@ -17,6 +17,7 @@
   "files": ["browser.d.ts"],
   "include": [
     "packages/testing-helpers/*.js",
+    "packages/lit-helpers/*.js",
     "packages/semantic-dom-diff/get-diffable-html.js",
     "packages/semantic-dom-diff/src/utils.js",
     "packages/polyfills-loader/*.js",

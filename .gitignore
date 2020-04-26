@@ -41,3 +41,34 @@ local.log
 
 ## generated codelabs
 docs/.vuepress/public/codelabs
+
+## typings - add manually written *.d.ts files here
+*.d.ts
+!packages/es-dev-server/src/middleware/polyfills-loader-types.d.ts
+!packages/es-dev-server/src/middleware/compatibility-transform-types.d.ts
+!packages/es-dev-server/src/utils/inject-polyfills-loader-types.d.ts
+!packages/mdjs/types/global.d.ts
+!packages/mdjs/index.d.ts
+!packages/mdjs/src/types.d.ts
+!packages/polyfills-loader/src/types.d.ts
+!packages/rollup-plugin-html/src/types.d.ts
+!packages/lit-helpers/src/read-only-properties-mixin.d.ts
+!packages/building-rollup/src/types.d.ts
+!packages/testing-helpers/test/setup.d.ts
+!packages/dedupe-mixin/index.d.ts
+!packages/chai-a11y-axe/chai-a11y-axe-plugin.d.ts
+!packages/chai-a11y-axe/index.d.ts
+!packages/chai-a11y-axe/src/accessible.d.ts
+!packages/storybook-addon-markdown-docs/types/global.d.ts
+!packages/testing/index-no-side-effects.d.ts
+!packages/testing/index.d.ts
+!packages/testing/import-wrappers/chai.d.ts
+!packages/testing/register-chai-plugins.d.ts
+!packages/testing-karma/testing-karma.d.ts
+!packages/rollup-plugin-polyfills-loader/src/types.d.ts
+!packages/scoped-elements/src/types.d.ts
+!packages/semantic-dom-diff/chai-dom-diff.d.ts
+!packages/semantic-dom-diff/test/bdd-setup.d.ts
+!packages/semantic-dom-diff/index.d.ts
+!packages/semantic-dom-diff/chai-dom-diff-plugin.d.ts
+!packages/semantic-dom-diff/src/utils.d.ts
