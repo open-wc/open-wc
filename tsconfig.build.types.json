@@ -20,6 +20,7 @@
     "packages/semantic-dom-diff/get-diffable-html.js",
     "packages/semantic-dom-diff/src/utils.js",
     "packages/polyfills-loader/*.js",
+    "packages/import-maps-resolve/*.js",
     "packages/scoped-elements/*.js"
   ]
 }
