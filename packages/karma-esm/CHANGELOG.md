@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.28](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.27...@open-wc/karma-esm@2.13.28) (2020-04-26)
+
+
+### Bug Fixes
+
+* **karma-esm:** fix polyfills-loader types ([e301a94](https://github.com/open-wc/open-wc/commit/e301a94499567468238aa260cee3cd71a103388f))
+* **testing-karma:** missing dependency ([2b37e90](https://github.com/open-wc/open-wc/commit/2b37e906ce188baf09379f808f2244be593cd98f))
+
+
+
+
+
 ## [2.13.27](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.26...@open-wc/karma-esm@2.13.27) (2020-04-26)
 
 **Note:** Version bump only for package @open-wc/karma-esm

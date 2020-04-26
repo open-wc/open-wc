@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.17](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.3.16...@open-wc/testing-karma@3.3.17) (2020-04-26)
+
+
+### Bug Fixes
+
+* **karma-esm:** fix polyfills-loader types ([e301a94](https://github.com/open-wc/open-wc/commit/e301a94499567468238aa260cee3cd71a103388f))
+* **testing-karma:** export types ([753c359](https://github.com/open-wc/open-wc/commit/753c3597ad4732f024de46bf9063eba8b2b5d47b))
+
+
+
+
+
 ## [3.3.16](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.3.15...@open-wc/testing-karma@3.3.16) (2020-04-26)
 
 **Note:** Version bump only for package @open-wc/testing-karma
