@@ -5,6 +5,8 @@ import { isValidRenderArg } from './lib.js';
 /**
  * @typedef {object} FixtureOptions
  * @property {Element} [parentNode] optional parent node to render the fixture's template to
+ * @property {import('@open-wc/scoped-elements').ScopedElementsMap} [scopedElements] optional scoped-elements
+ * definition map
  */
 
 /**

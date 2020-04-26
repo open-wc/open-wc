@@ -6,6 +6,9 @@ import { defineScopedElement, registerElement } from './registerElement.js';
 import { shadyTemplateFactory } from './shadyTemplateFactory.js';
 
 /**
+ * @typedef {import('./types').ScopedElementsMixin} ScopedElementsMixin
+ * @typedef {import('./types').ScopedElementsMap} ScopedElementsMap
+ * @typedef {import("lit-element").LitElement} LitElement
  * @typedef {import('lit-html/lib/shady-render').ShadyRenderOptions} ShadyRenderOptions
  * @typedef {function(TemplateResult, Element|DocumentFragment|ShadowRoot, ShadyRenderOptions): void} RenderFunction
  */
@@ -19,6 +22,7 @@ const templateCaches = new WeakMap();
 
 /**
  * Retrieves or creates a templateCache for a specific key
+ *
  * @param {Function} key
  * @returns {Map<TemplateStringsArray, TemplateStringsArray>}
  */
@@ -54,7 +58,7 @@ const getTagsCache = key => {
  * Transforms an array of TemplateResults or arrays into another one with resolved scoped elements
  *
  * @param {ReadonlyArray} items
- * @param {Object.<string, typeof HTMLElement>} scopedElements
+ * @param {ScopedElementsMap} scopedElements
  * @param {Map<TemplateStringsArray, TemplateStringsArray>} templateCache
  * @param {Map<string, string>} tagsCache
  * @returns {ReadonlyArray}
@@ -76,7 +80,7 @@ const transformArray = (items, scopedElements, templateCache, tagsCache) =>
  * Transforms a TemplateResult into another one with resolved scoped elements
  *
  * @param {TemplateResult} template
- * @param {Object.<string, typeof HTMLElement>} scopedElements
+ * @param {ScopedElementsMap} scopedElements
  * @param {Map<TemplateStringsArray, TemplateStringsArray>} templateCache
  * @param {Map<string, string>} tagsCache
  * @returns {TemplateResult}
@@ -89,6 +93,15 @@ const transformTemplate = (template, scopedElements, templateCache, tagsCache) =
     template.processor,
   );
 
+/**
+ * Gets an instance of the ScopedElementsTemplateFactory
+ *
+ * @param {string} scopeName
+ * @param {ScopedElementsMap} scopedElements
+ * @param {Map<TemplateStringsArray, TemplateStringsArray>} templateCache
+ * @param {Map<string, string>} tagsCache
+ * @returns {function(any): any}
+ */
 const scopedElementsTemplateFactory = (
   scopeName,
   scopedElements,
@@ -100,61 +113,63 @@ const scopedElementsTemplateFactory = (
   return shadyTemplateFactory(scopeName)(newTemplate);
 };
 
-export const ScopedElementsMixin = dedupeMixin(
-  superclass =>
-    // eslint-disable-next-line no-shadow
-    class ScopedElementsMixin extends superclass {
-      static get scopedElements() {
-        return {};
+/** @type {ScopedElementsMixin} */
+const ScopedElementsMixinImplementation = superclass =>
+  class ScopedElementsHost extends superclass {
+    /**
+     * Obtains the scoped elements definitions map
+     *
+     * @returns {ScopedElementsMap}
+     */
+    static get scopedElements() {
+      return {};
+    }
+
+    /** @override */
+    static render(template, container, options) {
+      if (!options || typeof options !== 'object' || !options.scopeName) {
+        throw new Error('The `scopeName` option is required.');
       }
+      const { scopeName } = options;
 
-      /**
-       * @override
-       */
-      static render(template, container, options) {
-        if (!options || typeof options !== 'object' || !options.scopeName) {
-          throw new Error('The `scopeName` option is required.');
-        }
-        const { scopeName } = options;
+      const templateCache = getTemplateCache(this);
+      const tagsCache = getTagsCache(this);
+      const { scopedElements } = this;
 
-        const templateCache = getTemplateCache(this);
-        const tagsCache = getTagsCache(this);
-        const { scopedElements } = this;
+      return super.render(template, container, {
+        ...options,
+        templateFactory: scopedElementsTemplateFactory(
+          scopeName,
+          scopedElements,
+          templateCache,
+          tagsCache,
+        ),
+      });
+    }
 
-        // @ts-ignore
-        return super.render(template, container, {
-          ...options,
-          templateFactory: scopedElementsTemplateFactory(
-            scopeName,
-            scopedElements,
-            templateCache,
-            tagsCache,
-          ),
-        });
-      }
+    /**
+     * Defines a scoped element
+     *
+     * @param {string} tagName
+     * @param {typeof HTMLElement} klass
+     */
+    defineScopedElement(tagName, klass) {
+      return defineScopedElement(tagName, klass, getTagsCache(this.constructor));
+    }
 
-      /**
-       * Defines a scoped element
-       *
-       * @param {string} tagName
-       * @param {typeof HTMLElement} klass
-       */
-      defineScopedElement(tagName, klass) {
-        return defineScopedElement(tagName, klass, getTagsCache(this.constructor));
-      }
+    /**
+     * Returns a scoped tag name
+     *
+     * @param {string} tagName
+     * @returns {string|undefined}
+     */
+    static getScopedTagName(tagName) {
+      const klass = this.scopedElements[tagName];
 
-      /**
-       * Returns a scoped tag name
-       *
-       * @param {string} tagName
-       * @returns {string|undefined}
-       */
-      static getScopedTagName(tagName) {
-        const klass = this.scopedElements[tagName];
+      return klass
+        ? registerElement(tagName, klass, getTagsCache(this))
+        : getTagsCache(this).get(tagName);
+    }
+  };
 
-        return klass
-          ? registerElement(tagName, klass, getTagsCache(this))
-          : getTagsCache(this).get(tagName);
-      }
-    },
-);
+export const ScopedElementsMixin = dedupeMixin(ScopedElementsMixinImplementation);
