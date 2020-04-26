@@ -1,13 +1,14 @@
 /// <reference path="../chai-dom-diff-plugin.d.ts" />
+/// <reference types="chai" />
 
-import chai from 'chai';
-
-type expect = typeof chai.expect;
-type assert = typeof chai.assert;
-type should = typeof chai.should;
-
-declare function expect(...args: Parameters<expect>): ReturnType<expect>;
-declare const assert: assert;
-declare function should(...args: Parameters<should>): ReturnType<should>;
+declare const expect: typeof chai.expect;
+declare const assert: typeof chai.assert;
+declare const should: typeof chai.should;
 
 export { expect, assert, should };
+
+declare global {
+  interface Window {
+    chai: typeof chai;
+  }
+}

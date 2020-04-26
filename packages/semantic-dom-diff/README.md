@@ -278,28 +278,6 @@ it('renders correctly', async () => {
 });
 ```
 
-**TypeScript**
-
-When working with typescript you may notice that the types are not correct for
-
-```js
-expect(el).dom.to.equal('<div>Hey</div>', {
-  ignoreTags: ['my-custom-element'],
-});
-```
-
-e.g. the 2nd parameter is expected to be a string. Unfortunately, we currently can not change this.
-For now you will need to ignore types if you want to provide extra options.
-
-```js
-// @ts-ignore
-expect(el).dom.to.equal('<div>Hey</div>', {
-  ignoreTags: ['my-custom-element'],
-});
-```
-
-We plan to change and include it in the next [breaking testing release](https://github.com/open-wc/open-wc/projects/1).
-
 <script>
   export default {
     mounted() {

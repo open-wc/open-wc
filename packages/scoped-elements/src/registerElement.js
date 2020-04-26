@@ -22,6 +22,26 @@ const defineElement = (tagName, klass, registry = customElements) => {
 };
 
 /**
+ * Stores a lazy element in the cache to be used in future
+ *
+ * @param {string} tagName
+ * @param {CustomElementRegistry} registry
+ * @param {Map<string, string>} tagsCache
+ * @returns {string}
+ */
+const storeLazyElementInCache = (tagName, registry, tagsCache) => {
+  const tag = createUniqueTag(tagName, registry);
+
+  if (!tagsCache) {
+    throw new Error('Lazy scoped elements requires the use of tags cache');
+  }
+
+  tagsCache.set(tagName, tag);
+
+  return tag;
+};
+
+/**
  * Define a scoped custom element storing the scoped tag name in the cache
  *
  * @param {string} tagName
@@ -31,19 +51,21 @@ const defineElement = (tagName, klass, registry = customElements) => {
  */
 const defineElementAndStoreInCache = (tagName, klass, tagsCache) => {
   const registry = customElements;
-  const tag = createUniqueTag(tagName, registry);
 
-  if (extendsHTMLElement(klass)) {
-    // @ts-ignore
-    // we extend it just in case the class has been defined manually
-    defineElement(tag, klass, registry);
-  } else {
-    if (!tagsCache) {
-      throw new Error('Lazy scoped elements requires the use of tags cache');
-    }
-
-    tagsCache.set(tagName, tag);
+  if (!extendsHTMLElement(klass)) {
+    return storeLazyElementInCache(tagName, registry, tagsCache);
   }
+
+  if (klass === customElements.get(tagName)) {
+    addToGlobalTagsCache(tagName, klass);
+
+    return tagName;
+  }
+
+  const tag = createUniqueTag(tagName, registry);
+  // @ts-ignore
+  // we extend it just in case the class has been defined manually
+  defineElement(tag, klass, registry);
 
   return tag;
 };

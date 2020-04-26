@@ -26,5 +26,8 @@
     "dom-diff",
     "testing",
     "snapshots"
-  ]
+  ],
+  "dependencies": {
+    "@types/chai": "^4.2.11"
+  }
 }

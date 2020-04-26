@@ -277,3 +277,19 @@ export function getDiffableHTML(html, options = {}) {
 
   return text;
 }
+
+/**
+ * @param {*} arg
+ * @return {arg is DiffOptions}
+ */
+export function isDiffOptions(arg) {
+  return (
+    arg &&
+    arg !== null &&
+    typeof arg === 'object' &&
+    ('ignoreAttributes' in arg ||
+      'ignoreTags' in arg ||
+      'ignoreChildren' in arg ||
+      'stripEmptyAttributes' in arg)
+  );
+}
