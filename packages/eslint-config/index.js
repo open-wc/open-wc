@@ -37,7 +37,12 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['**/test/**/*.js', '**/stories/**/*.js', '**/*.config.js'],
+        devDependencies: [
+          '**/test/**/*.js',
+          '**/stories/**/*.js',
+          '**/*.config.js',
+          '**/*.conf.js',
+        ],
       },
     ],
     'class-methods-use-this': [
