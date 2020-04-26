@@ -73,10 +73,6 @@ module.exports = config => ({
     babelModernExclude: ['**/node_modules/sinon/**/*'],
     // prevent compiling non-module libs
     babelModuleExclude: ['**/node_modules/mocha/**/*', '**/node_modules/core-js-bundle/**/*'],
-    polyfills: {
-      webcomponents: true,
-      fetch: true,
-    },
     exclude: ['**/__snapshots__/**/*'],
   },
 

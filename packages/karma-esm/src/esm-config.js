@@ -3,10 +3,10 @@ const deepmerge = require('deepmerge');
 
 /**
  * @typedef {object} KarmaEsmConfig
- * @property {boolean} nodeResolve
- * @property {boolean} coverage
- * @property {string[]} coverageExclude
- * @property {object} babelConfig
+ * @property {boolean} [nodeResolve]
+ * @property {boolean} [coverage]
+ * @property {string[]} [coverageExclude]
+ * @property {object} [babelConfig]
  * @property {string} [compatibility]
  * @property {string[]} [moduleDirs]
  * @property {Function[]} [middlewares]
@@ -17,7 +17,7 @@ const deepmerge = require('deepmerge');
  * @property {string[]} [babelModernExclude]
  * @property {string[]} [babelModuleExclude]
  * @property {boolean} [preserveSymlinks]
- * @property {import('./utils/inject-polyfills-loader-types').PolyfillsLoaderConfig} [polyfillsLoader]
+ * @property {Partial<import('polyfills-loader').PolyfillsLoaderConfig>} [polyfillsLoader]
  */
 
 function createEsmConfig(karmaConfig) {
