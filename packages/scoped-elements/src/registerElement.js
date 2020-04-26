@@ -17,8 +17,8 @@ const extendsHTMLElement = klass => Object.prototype.isPrototypeOf.call(HTMLElem
  * @param {CustomElementRegistry} registry
  */
 const defineElement = (tagName, klass, registry = customElements) => {
-  registry.define(tagName, class extends klass {});
   addToGlobalTagsCache(tagName, klass);
+  registry.define(tagName, class extends klass {});
 };
 
 /**
@@ -99,7 +99,9 @@ export function defineScopedElement(tagName, klass, tagsCache) {
   const tag = tagsCache.get(tagName);
 
   if (tag) {
-    defineElement(tag, klass, customElements);
+    if (customElements.get(tag) === undefined) {
+      defineElement(tag, klass, customElements);
+    }
   } else {
     tagsCache.set(tagName, registerElement(tagName, klass, tagsCache));
   }

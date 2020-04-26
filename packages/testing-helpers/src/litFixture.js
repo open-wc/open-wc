@@ -3,10 +3,12 @@ import { fixtureWrapper } from './fixtureWrapper.js';
 import { render } from './lit-html.js';
 import { elementUpdated } from './elementUpdated.js';
 import { NODE_TYPES } from './lib.js';
+import { getScopedElementsTemplate } from './scopedElementsWrapper.js';
 
 /**
  * @typedef {
-     import('lit-html').TemplateResult | import('lit-html').TemplateResult[]
+     import('lit-html').TemplateResult
+   | import('lit-html').TemplateResult[]
    | Node | Node[]
    | string | string[]
    | number | number[]
@@ -35,7 +37,12 @@ const isUsefulNode = ({ nodeType, textContent }) => {
  */
 export function litFixtureSync(template, options = {}) {
   const wrapper = fixtureWrapper(options.parentNode);
-  render(template, wrapper);
+
+  render(
+    options.scopedElements ? getScopedElementsTemplate(template, options.scopedElements) : template,
+    wrapper,
+  );
+
   if (template instanceof TemplateResult) {
     return /** @type {T} */ (wrapper.firstElementChild);
   }
@@ -52,9 +59,21 @@ export function litFixtureSync(template, options = {}) {
  * @param {import('./fixture-no-side-effect.js').FixtureOptions} [options]
  * @returns {Promise<T>}
  */
-export async function litFixture(template, options) {
+export async function litFixture(template, options = {}) {
+  /** @type {T} */
+  // NB: in the case of scopedElements, this is ScopedElementsTestWrapper, not T,
+  // but that's only a small lie
   const el = litFixtureSync(template, options);
   await elementUpdated(el);
-  // @ts-ignore
+
+  if (options.scopedElements) {
+    const [node] =
+      /** @type {T[]} */
+      (Array.from(el.shadowRoot.childNodes).filter(isUsefulNode));
+    await elementUpdated(node.firstElementChild);
+
+    return node;
+  }
+
   return el;
 }
