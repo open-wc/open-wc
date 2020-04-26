@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.0...@open-wc/testing-helpers@1.8.1) (2020-04-26)
+
+
+### Bug Fixes
+
+* **testing-helpers:** constrain the type of defineCE ([#1470](https://github.com/open-wc/open-wc/issues/1470)) ([1341fa9](https://github.com/open-wc/open-wc/commit/1341fa96ad8adc83c9546cab1e1f6f62c1960322))
+
+
+
+
+
 # [1.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.7.2...@open-wc/testing-helpers@1.8.0) (2020-04-26)
 
 
