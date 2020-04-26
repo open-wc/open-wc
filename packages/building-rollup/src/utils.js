@@ -2,7 +2,6 @@ const merge = require('deepmerge');
 const { createScript } = require('@open-wc/building-utils');
 const { parse, serialize } = require('parse5');
 const { append, predicates, query } = require('@open-wc/building-utils/dom5-fork');
-const Terser = require('terser');
 
 const isFalsy = _ => !!_;
 
@@ -56,7 +55,7 @@ function appendScriptToBody(htmlString, code) {
  * @returns {string}
  */
 function applyServiceWorkerRegistration(htmlString) {
-  const { code } = Terser.minify(`
+  const code = `
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
         navigator.serviceWorker
@@ -69,7 +68,7 @@ function applyServiceWorkerRegistration(htmlString) {
           });
       });
     }
-  `);
+  `;
 
   return appendScriptToBody(htmlString, code);
 }
