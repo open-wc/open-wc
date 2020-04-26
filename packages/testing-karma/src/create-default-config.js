@@ -10,12 +10,14 @@ function getCompatibility() {
 }
 
 const compatibility = getCompatibility();
-const coverage = process.argv.find(arg => arg.includes('--coverage'));
-const updateSnapshots = process.argv.find(arg => arg.includes('--update-snapshots'));
-const pruneSnapshots = process.argv.find(arg => arg.includes('--prune-snapshots'));
+const coverage = !!process.argv.find(arg => arg.includes('--coverage'));
+const updateSnapshots = !!process.argv.find(arg => arg.includes('--update-snapshots'));
+const pruneSnapshots = !!process.argv.find(arg => arg.includes('--prune-snapshots'));
 
 /**
  * Creates base karma configuration.
+ * @param {import("karma").Config} config
+ * @return {import('karma').ConfigOptions}
  */
 module.exports = config => ({
   browsers: ['ChromeHeadlessNoSandbox'],
