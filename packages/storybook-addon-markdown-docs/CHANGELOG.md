@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.8](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.7...storybook-addon-markdown-docs@0.2.8) (2020-04-26)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** allow assertion message ([c8a3b18](https://github.com/open-wc/open-wc/commit/c8a3b18936de43cba0227c146e77b60a04327e41))
+
+
+
+
+
 ## [0.2.7](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.6...storybook-addon-markdown-docs@0.2.7) (2020-04-20)
 
 
