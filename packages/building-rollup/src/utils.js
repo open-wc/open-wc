@@ -39,14 +39,24 @@ function pluginWithOptions(plugin, userConfig, defaultConfig, ...otherParams) {
 
 /**
  * @param {string} htmlString
+ * @param {string} code
+ * @returns {string}
+ */
+function appendScriptToBody(htmlString, code) {
+  const documentAst = parse(htmlString);
+  const body = query(documentAst, predicates.hasTagName('body'));
+  const swRegistration = createScript({}, code);
+
+  append(body, swRegistration);
+  return serialize(documentAst);
+}
+
+/**
+ * @param {string} htmlString
  * @returns {string}
  */
 function applyServiceWorkerRegistration(htmlString) {
-  const documentAst = parse(htmlString);
-  const body = query(documentAst, predicates.hasTagName('body'));
-  const swRegistration = createScript(
-    {},
-    Terser.minify(`
+  const { code } = Terser.minify(`
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
         navigator.serviceWorker
@@ -59,16 +69,15 @@ function applyServiceWorkerRegistration(htmlString) {
           });
       });
     }
-  `).code,
-  );
+  `);
 
-  append(body, swRegistration);
-  return serialize(documentAst);
+  return appendScriptToBody(htmlString, code);
 }
 
 module.exports = {
   isFalsy,
   pluginWithOptions,
   dedupedBabelPlugin,
+  appendScriptToBody,
   applyServiceWorkerRegistration,
 };
