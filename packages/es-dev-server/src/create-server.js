@@ -23,7 +23,7 @@ function httpsRedirect(req, res) {
  *
  * @param {import('./config').InternalConfig} cfg the server configuration
  * @param {import('chokidar').FSWatcher} fileWatcher
- * @returns {{ app: import('koa'), server: import('http').Server | import('http2').Http2SecureServer }}
+ * @returns {{ app: import('koa'), server: net.Server | httpServer.Server }}
  */
 export function createServer(cfg, fileWatcher = chokidar.watch([])) {
   const middlewares = createMiddlewares(cfg, fileWatcher);
@@ -86,6 +86,7 @@ export function createServer(cfg, fileWatcher = chokidar.watch([])) {
     server.listen = (config, callback) => {
       appServer.addListener('listening', callback);
       serverListen(config);
+      return server;
     };
   } else {
     server = httpServer.createServer(app.callback());
