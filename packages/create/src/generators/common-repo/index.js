@@ -1,6 +1,11 @@
 export const CommonRepoMixin = subclass =>
   class extends subclass {
     async execute() {
+      this.templateData = {
+        ...this.templateData,
+        year: new Date().getFullYear(),
+      };
+
       await super.execute();
 
       this.copyTemplateJsonInto(
