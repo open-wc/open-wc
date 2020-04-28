@@ -77,7 +77,7 @@ function createSpaConfig(options) {
           generateSW,
           userOptions.workbox,
           {
-            globIgnores: ['nomodule-*.js'],
+            globIgnores: ['polyfills/*.js', 'nomodule-*.js'],
             navigateFallback: '/index.html',
             // where to output the generated sw
             swDest: path.join(process.cwd(), outputDir, 'sw.js'),
