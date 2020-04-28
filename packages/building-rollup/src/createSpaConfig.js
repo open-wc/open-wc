@@ -84,7 +84,7 @@ function createSpaConfig(options) {
             // directory to match patterns against to be precached
             globDirectory: path.join(process.cwd(), outputDir),
             // cache any html js and css by default
-            globPatterns: ['**/*.{html,js,css}'],
+            globPatterns: ['**/*.{html,js,css,webmanifest}'],
             skipWaiting: true,
             clientsClaim: true,
             runtimeCaching: [
