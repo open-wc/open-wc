@@ -38,31 +38,6 @@ function createSpaConfig(options) {
     minify: !userOptions.developmentMode,
   };
 
-  const workboxPlugin = pluginWithOptions(
-    generateSW,
-    userOptions.workbox,
-    {
-      // Keep 'legacy-*.js' and 'nomodule-*.js' just for retro compatibility
-      globIgnores: ['polyfills/*.js', 'legacy-*.js', 'nomodule-*.js'],
-      navigateFallback: '/index.html',
-      // where to output the generated sw
-      swDest: path.join(process.cwd(), outputDir, 'sw.js'),
-      // directory to match patterns against to be precached
-      globDirectory: path.join(process.cwd(), outputDir),
-      // cache any html js and css by default
-      globPatterns: ['**/*.{html,js,css,webmanifest}'],
-      skipWaiting: true,
-      clientsClaim: true,
-      runtimeCaching: [
-        {
-          urlPattern: 'polyfills/*.js',
-          handler: 'CacheFirst',
-        },
-      ],
-    },
-    () => {},
-  );
-
   if (userOptions.legacyBuild) {
     if (!htmlPlugin) {
       throw new Error('Cannot generate multi build outputs when html plugin is disabled');
@@ -87,6 +62,31 @@ function createSpaConfig(options) {
       polyfills: defaultPolyfills,
     };
   }
+
+  const workboxPlugin = pluginWithOptions(
+    generateSW,
+    userOptions.workbox,
+    {
+      // Keep 'legacy-*.js' and 'nomodule-*.js' just for retro compatibility
+      globIgnores: ['polyfills/*.js', 'legacy-*.js', 'nomodule-*.js'],
+      navigateFallback: '/index.html',
+      // where to output the generated sw
+      swDest: path.join(process.cwd(), outputDir, 'sw.js'),
+      // directory to match patterns against to be precached
+      globDirectory: path.join(process.cwd(), outputDir),
+      // cache any html js and css by default
+      globPatterns: ['**/*.{html,js,css,webmanifest}'],
+      skipWaiting: true,
+      clientsClaim: true,
+      runtimeCaching: [
+        {
+          urlPattern: 'polyfills/*.js',
+          handler: 'CacheFirst',
+        },
+      ],
+    },
+    () => {},
+  );
 
   if (userOptions.workbox) {
     if (userOptions.legacyBuild) {
