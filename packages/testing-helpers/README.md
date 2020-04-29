@@ -102,6 +102,30 @@ const el = await fixture(html`<${tag} .bar=${'baz'}></${tag}>`);
 expect(el.bar).to.equal('baz');
 ```
 
+## Customize the fixture container
+
+Ordinarily, `fixture` will render your template as a child of a plain `<div>` element on karma's test runner page:
+
+```js
+const el = await fixture(html`<my-el></my-el>`);
+```
+
+```html
+<div><my-el></my-el></div>
+```
+
+This should suffice for most cases, but if you need to specify the type of element that contains your custom element fixture, (e.g., to give it an absolute position), you can pass the wrapping node in the `parentNode` option:
+
+```js
+const parentNode = document.createElement('div');
+parentNode.setAttribute('style', 'position:absolute;');
+const el = await fixture(html`<my-el></my-el>`, { parentNode });
+```
+
+```html
+<div style="position:absolute;"><my-el></my-el></div>
+```
+
 ## Timings
 
 By default fixture awaits the elements "update complete" Promise.
