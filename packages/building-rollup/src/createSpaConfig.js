@@ -103,9 +103,6 @@ function createSpaConfig(options) {
 
       // inject polyfills loader into HTML
       pluginWithOptions(polyfillsLoader, userOptions.polyfillsLoader, polyfillsLoaderConfig),
-
-      // generate service worker
-      userOptions.workbox && workboxPlugin,
     ],
   });
 }
