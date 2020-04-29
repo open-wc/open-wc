@@ -38,6 +38,30 @@ function createSpaConfig(options) {
     minify: !userOptions.developmentMode,
   };
 
+  const workboxPlugin = pluginWithOptions(
+    generateSW,
+    userOptions.workbox,
+    {
+      globIgnores: ['polyfills/*.js', 'legacy-*.js', 'nomodule-*.js'],
+      navigateFallback: '/index.html',
+      // where to output the generated sw
+      swDest: path.join(process.cwd(), outputDir, 'sw.js'),
+      // directory to match patterns against to be precached
+      globDirectory: path.join(process.cwd(), outputDir),
+      // cache any html js and css by default
+      globPatterns: ['**/*.{html,js,css,webmanifest}'],
+      skipWaiting: true,
+      clientsClaim: true,
+      runtimeCaching: [
+        {
+          urlPattern: 'polyfills/*.js',
+          handler: 'CacheFirst',
+        },
+      ],
+    },
+    () => {},
+  );
+
   if (userOptions.legacyBuild) {
     if (!htmlPlugin) {
       throw new Error('Cannot generate multi build outputs when html plugin is disabled');
@@ -72,30 +96,7 @@ function createSpaConfig(options) {
       pluginWithOptions(polyfillsLoader, userOptions.polyfillsLoader, polyfillsLoaderConfig),
 
       // generate service worker
-      userOptions.workbox &&
-        pluginWithOptions(
-          generateSW,
-          userOptions.workbox,
-          {
-            globIgnores: ['polyfills/*.js', 'legacy-*.js', 'nomodule-*.js'],
-            navigateFallback: '/index.html',
-            // where to output the generated sw
-            swDest: path.join(process.cwd(), outputDir, 'sw.js'),
-            // directory to match patterns against to be precached
-            globDirectory: path.join(process.cwd(), outputDir),
-            // cache any html js and css by default
-            globPatterns: ['**/*.{html,js,css,webmanifest}'],
-            skipWaiting: true,
-            clientsClaim: true,
-            runtimeCaching: [
-              {
-                urlPattern: 'polyfills/*.js',
-                handler: 'CacheFirst',
-              },
-            ],
-          },
-          () => {},
-        ),
+      userOptions.workbox && workboxPlugin,
     ],
   });
 }
