@@ -53,7 +53,9 @@ function createBasicConfig(userOptions = {}) {
     plugins: [
       // resolve bare module imports
       pluginWithOptions(resolve, opts.nodeResolve, {
-        moduleDirectory: ['node_modules', 'web_modules'],
+        customResolveOptions: {
+          moduleDirectory: ['node_modules', 'web_modules'],
+        },
       }),
 
       // build non-standard syntax to standard syntax and other babel optimization plugins

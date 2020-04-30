@@ -35,7 +35,9 @@ function createRollupConfig({ outputDir, indexFilename, indexHTMLString }) {
     plugins: [
       // @ts-ignore
       resolve({
-        moduleDirectory: ['node_modules', 'web_modules'],
+        customResolveOptions: {
+          moduleDirectory: ['node_modules', 'web_modules'],
+        },
       }),
       babel({
         babelHelpers: 'bundled',
