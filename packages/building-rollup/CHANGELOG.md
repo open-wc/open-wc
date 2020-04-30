@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.2.1...@open-wc/building-rollup@1.2.2) (2020-04-30)
+
+
+### Bug Fixes
+
+* **building-rollup:** node resolve config is incorrect ([63e1165](https://github.com/open-wc/open-wc/commit/63e1165535f15532720e08bdb1ec969b4fee5834))
+
+
+
+
+
 ## [1.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.2.0...@open-wc/building-rollup@1.2.1) (2020-04-28)
 
 **Note:** Version bump only for package @open-wc/building-rollup
