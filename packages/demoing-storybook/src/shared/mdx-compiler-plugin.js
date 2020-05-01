@@ -1,3 +1,5 @@
+// @ts-nocheck
+/* eslint-disable */
 /**
  * Inlined from @storybook/addon-docs in order to avoid a dependency on
  * many react packages.
