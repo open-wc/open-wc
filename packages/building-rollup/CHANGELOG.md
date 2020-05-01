@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.2.3...@open-wc/building-rollup@1.2.4) (2020-05-01)
+
+
+### Bug Fixes
+
+* **building-rollup:** don't read user .browserslist ([60a5ea7](https://github.com/open-wc/open-wc/commit/60a5ea7c2e21cadfbbe779011cee05c73d179cda))
+
+
+
+
+
 ## [1.2.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.2.2...@open-wc/building-rollup@1.2.3) (2020-05-01)
 
 **Note:** Version bump only for package @open-wc/building-rollup
