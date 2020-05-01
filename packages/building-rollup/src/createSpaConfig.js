@@ -67,7 +67,7 @@ function createSpaConfig(options) {
     generateSW,
     userOptions.workbox,
     {
-      // Keep 'legacy-*.js' and 'nomodule-*.js' just for retro compatibility
+      // Keep 'legacy-*.js' just for retro compatibility
       globIgnores: ['polyfills/*.js', 'legacy-*.js', 'nomodule-*.js'],
       navigateFallback: '/index.html',
       // where to output the generated sw
@@ -89,8 +89,9 @@ function createSpaConfig(options) {
   );
 
   if (userOptions.workbox) {
-    if (userOptions.legacyBuild) {
-      basicConfig.output[0].plugins.push(workboxPlugin);
+    if (basicConfig.output.length > 1) {
+      const lastOutput = basicConfig.output.length - 1;
+      basicConfig.output[lastOutput].plugins.push(workboxPlugin);
     } else {
       basicConfig.output.plugins.push(workboxPlugin);
     }
