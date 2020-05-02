@@ -26,7 +26,7 @@
     "packages/building-utils/test/custom-polyfils/**/*",
     "**/dist/**/*",
     "packages/**/test/**/snapshots",
-    "packages/es-dev-server/test/fixtures/**/*",
+    "packages/es-dev-server**/*",
     "packages/**/demo/**/*"
   ]
 }

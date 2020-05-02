@@ -1,6 +1,7 @@
 node_modules
 coverage/
 dist
+tsc-dist
 stats.html
 /packages/create/src/generators/*/templates/**/*
 /packages/import-maps-generate/test/assets/**/node_modules

@@ -16,11 +16,11 @@
   "main": "./karma-esm.js",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js",
-    "test": "karma start demo/basic/karma.config.js --coverage",
-    "test:import-map": "karma start demo/import-map/karma.config.js --coverage",
-    "test:no-modules": "karma start demo/no-modules/karma.config.js --coverage",
-    "test:typescript": "karma start demo/typescript/karma.config.js --coverage",
-    "test:watch": "karma start demo/basic/karma.config.js --auto-watch=true --single-run=false"
+    "test": "node ../../karma.js start demo/basic/karma.config.js --coverage",
+    "test:import-map": "node ../karma.js start demo/import-map/karma.config.js --coverage",
+    "test:no-modules": "node ../karma.js start demo/no-modules/karma.config.js --coverage",
+    "test:typescript": "node ../karma.js start demo/typescript/karma.config.js --coverage",
+    "test:watch": "node ../karma.js start demo/basic/karma.config.js --auto-watch=true --single-run=false"
   },
   "files": [
     "*.js",

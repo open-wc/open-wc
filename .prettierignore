@@ -2,6 +2,7 @@ node_modules
 coverage/
 /packages/create/src/generators/*/templates/**/*
 dist
+tsc-dist
 stats.html
 packages/semantic-dom-diff/bundle/get-diffable-html.js
 packages/**/test/**/snapshots
