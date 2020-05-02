@@ -28,7 +28,7 @@ You are encouraged to freely switch between them depending on what you are worki
 The ideal development environment uses no tools, just an up-to-date browser and a simple HTTP server.
 
 <div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>Unfortunately we are not fully there yet, because of the <a href="#bare-specifiers">bare modules exception</a> you will still need to have a server that at least supports them.
-We recommend our <a href="/developing/es-dev-server.html" class="">ES Dev Server</a> as it does nothing more/nothing less.</p></div>
+We recommend our <a href="../developing/es-dev-server.html" class="">ES Dev Server</a> as it does nothing more/nothing less.</p></div>
 
 When would you choose this workflow:
 
