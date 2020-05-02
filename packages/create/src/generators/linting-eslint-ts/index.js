@@ -7,5 +7,10 @@ export const TsLintingEsLintMixin = subclass =>
         `${__dirname}/templates/_package.json`,
         this.destinationPath('package.json'),
       );
+
+      this.copyTemplate(
+        `${__dirname}/templates/_.eslintrc.js`,
+        this.destinationPath('.eslintrc.js'),
+      );
     }
   };

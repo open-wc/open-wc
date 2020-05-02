@@ -3,9 +3,9 @@ import { openWcLogo } from './open-wc-logo.js';
 
 export class <%= className %> extends LitElement {
 
-  @property() page: string | undefined = "main";
+  @property() page = "main";
 
-  @property() title: string = '';
+  @property() title = '';
 
   static styles = css`
     :host {
