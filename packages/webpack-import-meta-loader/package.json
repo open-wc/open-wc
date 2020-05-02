@@ -14,6 +14,9 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/webpack-import-meta-loader",
   "main": "webpack-import-meta-loader.js",
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js",
     "test": "npm run test:node",

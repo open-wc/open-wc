@@ -18,7 +18,7 @@
     "es-dev-server": "./dist/cli.js"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=10.13.0"
   },
   "scripts": {
     "build": "babel src --out-dir dist --copy-files --include-dotfiles",

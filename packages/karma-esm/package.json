@@ -14,6 +14,9 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/karma-esm",
   "main": "./karma-esm.js",
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js",
     "test": "karma start demo/basic/karma.config.js --coverage",

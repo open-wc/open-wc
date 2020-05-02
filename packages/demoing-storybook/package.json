@@ -18,6 +18,9 @@
     "start-storybook": "src/start/cli.js",
     "build-storybook": "src/build/cli.js"
   },
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "scripts": {
     "build:start": "es-dev-server --root-dir storybook-static --app-index index.html --open",
     "prepublishOnly": "../../scripts/insert-header.js",

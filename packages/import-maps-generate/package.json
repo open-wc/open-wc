@@ -18,6 +18,9 @@
     "generate": "./dist/generate.js",
     "generate-import-map": "./dist/generate.js"
   },
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "scripts": {
     "build": "babel src --out-dir dist --copy-files --include-dotfiles",
     "prepublishOnly": "npm run build && ../../scripts/insert-header.js",

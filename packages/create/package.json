@@ -16,6 +16,9 @@
   "bin": {
     "create-open-wc": "./dist/create.js"
   },
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "scripts": {
     "build": "rm -rf dist && babel src --out-dir dist --copy-files --include-dotfiles",
     "prepublishOnly": "npm run build && ../../scripts/insert-header.js",

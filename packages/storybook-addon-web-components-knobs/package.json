@@ -11,6 +11,9 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/storybook-addon-web-components-knobs",
   "main": "index.js",
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js",
     "storybook": "start-storybook -p 9001 -c demo/.storybook",

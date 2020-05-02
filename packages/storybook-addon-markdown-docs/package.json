@@ -11,6 +11,9 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/storybook-addon-markdown-docs",
   "main": "index.js",
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "scripts": {
     "build:styles": "node styles/create-global-styles.js",
     "start": "npm run storybook",

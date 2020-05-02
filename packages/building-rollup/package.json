@@ -14,6 +14,9 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/building-rollup",
   "main": "index.js",
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "scripts": {
     "build:babelrc": "rimraf dist && rollup -c demo/babelrc/rollup.config.js",
     "build:basic": "rimraf dist && rollup -c demo/js/rollup.basic.config.js",

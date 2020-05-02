@@ -14,6 +14,9 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/webpack-index-html-plugin",
   "main": "webpack-index-html-plugin.js",
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "scripts": {},
   "files": [
     "*.js",

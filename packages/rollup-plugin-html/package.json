@@ -14,6 +14,9 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/packages/rollup-plugin-html",
   "main": "rollup-plugin-html.js",
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "scripts": {
     "demo:mpa": "rm -rf demo/dist && rollup -c demo/mpa/rollup.config.js --watch & yarn serve-demo",
     "demo:spa": "yarn demo:spa:defaults",
