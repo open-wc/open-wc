@@ -175,15 +175,3 @@ Alternatively, you can specify your own resolutions in your package.json.
 | name      | type   | description                                       |
 | --------- | ------ | ------------------------------------------------- |
 | inject-to | string | Injects the import map to the specified html file |
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/import-maps-generate/README.md';
-      }
-    }
-  }
-</script>

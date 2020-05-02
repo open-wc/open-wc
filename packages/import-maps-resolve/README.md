@@ -94,15 +94,3 @@ console.log(fileURLToPath(resolvedUrl));
 ## Acknowledgments
 
 This implementation is heavily based on the [import-maps reference implementation](https://github.com/WICG/import-maps/tree/master/reference-implementation).
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/import-maps-process/README.md';
-      }
-    }
-  }
-</script>

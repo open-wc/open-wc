@@ -1,3 +1,11 @@
+---
+permalink: 'developing/types.html'
+title: Types
+section: guides
+tags:
+  - guides
+---
+
 # Types
 
 ## Types are good

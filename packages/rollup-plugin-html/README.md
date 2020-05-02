@@ -1,3 +1,11 @@
+---
+permalink: 'building/rollup-plugin-html.html'
+title: Rollup Plugin HTML
+section: guides
+tags:
+  - guides
+---
+
 # Rollup Plugin HTML
 
 Plugin for generating HTML files from rollup.

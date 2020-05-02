@@ -1,3 +1,11 @@
+---
+permalink: 'faq/events.html'
+title: Managing events in your custom elements
+section: faq
+tags:
+  - faq
+---
+
 # Managing events in your custom elements
 
 Events in the DOM can span in complexity from responding to a `click` on a `<button>` element to orchestrating the entirety of an application's logic and state. For some insight on how that spectrum might be possible, take some time to check out [`composed: true` considered harmful?](https://dev.to/open-wc/composed-true-considered-harmful-5g59) for a more complete review of the DOM Events API at large. Get started using events in your web components with the recommendations below.

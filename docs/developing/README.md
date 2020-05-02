@@ -1,3 +1,11 @@
+---
+permalink: 'developing/index.html'
+title: Developing
+section: guides
+tags:
+  - guides
+---
+
 # Developing
 
 ## Going buildless
@@ -16,7 +24,7 @@ We created [es-dev-server](https://open-wc.org/developing/es-dev-server.html) to
 
 You can write web components using just the basic web component APIs. This can be a great choice when you're looking to keep dependencies low. But generally, we recommend using lightweight libraries to help improve the developer experience and reduce boilerplate.
 
-We recommend [lit-html](https://www.npmjs.com/package/lit-html) with the [lit-element](https://www.npmjs.com/package/lit-element) base class as a general-purpose library for building web components. `lit-html` is feature complete, extremely lightweight and offers a great development experience. Check out the [lit-html page](/developing/lit-html/) for code examples and more information.
+We recommend [lit-html](https://www.npmjs.com/package/lit-html) with the [lit-element](https://www.npmjs.com/package/lit-element) base class as a general-purpose library for building web components. `lit-html` is feature complete, extremely lightweight and offers a great development experience. Check out the [lit-html page](/developing/lit-html.html) for code examples and more information.
 
 In the code snippets throughout our documentation we use `lit-html` and `lit-element`, but our recommendations and tools are not specific to them. You should be able to use them with any web component library that follows browser standards. If you do run into issues, or have any questions, let us know about it!
 
@@ -36,7 +44,7 @@ See the [codelabs](/codelabs/) page for step by step tutorials for development.
 
 ## Code examples
 
-Check out the [code examples](/developing/code-examples/) page for a collection of best practices and design patterns.
+Check out the [code examples](/developing/code-examples.html) page for a collection of best practices and design patterns.
 
 ## Testing
 

@@ -1,3 +1,11 @@
+---
+permalink: 'deploying/index.html'
+title: Deploying
+section: guides
+tags:
+  - guides
+---
+
 # Deploying
 
 To deploy your Web Component we recommend [netlify](https://www.netlify.com/).
@@ -47,4 +55,4 @@ If you're using our [build configuration](http://open-wc.org/building), the `dis
 - Restart Apache: `sudo /usr/sbin/apachectl restart`
 - Open the page in your browser using the URL `http://mypwa.localhost/`
 
-If the app was built to support [legacy browsers](https://open-wc.org/building/building-rollup.html#supporting-legacy-browsers), the `dist` directory will include the subdirectories `legacy` and `polyfills`, and legacy browsers such as Internet Explorer 11 will be served suitable content.
+If the app was built to support [legacy browsers](https://open-wc.org/building/building-rollup.html#supporting-older-browsers), the `dist` directory will include the subdirectories `legacy` and `polyfills`, and legacy browsers such as Internet Explorer 11 will be served suitable content.

@@ -1,3 +1,11 @@
+---
+permalink: 'faq/lit-element-lifecycle.html'
+title: LitElement lifecycle
+section: faq
+tags:
+  - faq
+---
+
 # LitElement lifecycle
 
 ## Overview

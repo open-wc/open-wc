@@ -1,3 +1,11 @@
+---
+permalink: 'demoing/migration.html'
+title: Migration
+section: guides
+tags:
+  - guides
+---
+
 # Migration
 
 - [Migration](#migration)
