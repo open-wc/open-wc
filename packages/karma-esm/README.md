@@ -1,3 +1,11 @@
+---
+permalink: 'testing/karma-esm.html'
+title: karma-esm
+section: guides
+tags:
+  - guides
+---
+
 # karma-esm
 
 Karma plugin for testing with real es modules without any bundling.
@@ -140,16 +148,62 @@ You can configure `karma-esm` to pick up the babel configuration files in your p
 
 Because karma-esm doesn't do any bundling, it's easy to integrate it with typescript and doesn't require any extra tooling or plugins. Just run `tsc` on your code, and test the compiled output with karma-esm. You can run both `tsc` and karma in watch mode, changes will be picked up automatically.
 
-Make sure to configure `tsc` to output real ES modules.
+You can also configure `karma-esm` to run your typescript files directly. This is done by running it with a babel plugin to compile your typescript files to javascript.
 
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/karma-esm/README.md';
-      }
-    }
-  }
-</script>
+Note that when compiling typescript with babel it does not do any type checking or special typescript compilation such as decorators, class fields and enums. You can configure babel to cover most of these, but not all. [Read more about babel typescript here](https://babeljs.io/docs/en/babel-plugin-transform-typescript).
+
+1. Install the preset:
+
+```bash
+npm i --save-dev @babel/preset-typescript
+```
+
+2. Add a `babel.config.js` or `.babelrc` to your project:
+
+```json
+{
+  "presets": ["@babel/preset-typescript"]
+}
+```
+
+3. Configure your karma config to pick up your ts files:
+
+```javascript
+{
+  files: [
+    { pattern: 'test/**/*.test.ts', type: 'module' }
+  ],
+
+  esm: {
+    babel: true,
+    nodeResolve: true,
+    fileExtensions: ['.ts']
+  },
+}
+```
+
+To add support for experimental features that are normally handled by the typescript compiler, you can add extra plugins:
+
+1. Install the plugins:
+
+```bash
+npm i --save-dev @babel/plugin-proposal-decorators @babel/plugin-proposal-class-properties
+```
+
+2. Update your babel configuration:
+
+```json
+{
+  "presets": ["@babel/preset-typescript"],
+  // for libraries that support babel decorators (lit-element) use:
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
+    "@babel/plugin-proposal-class-properties"
+  ]
+  // for libraries that only support typescript:
+  // "plugins": [
+  //   ["@babel/plugin-proposal-decorators", { "legacy": true }],
+  //   ["@babel/plugin-proposal-class-properties", { "loose": true }]
+  // ],
+}
+```

@@ -1,3 +1,11 @@
+---
+permalink: 'about/blog.html'
+title: Blog
+section: about
+tags:
+  - about
+---
+
 # Blog
 
 ## [Announcing Open Web Components](https://dev.to/thepassle/announcing-open-web-components-5h7)
@@ -10,7 +18,7 @@ by [Vincent Ogloblinsky](https://github.com/vogloblinsky)
 
 ## [npm Convos: open-wc](https://blog.npmjs.org/post/182917093835/npm-convos-open-wc?utm_campaign=newsletter20190228&utm_source=newsletter_mailer&utm_medium=email&utm_source=npm+Weekly&utm_campaign=72f3f1c998-npm_weekly_186_2019_02_26_08_58&utm_medium=email&utm_term=0_e17fe5d778-72f3f1c998-303236901)
 
-by [npm](npmjs.com)
+by [npm](https://npmjs.com)
 
 ## [Not Another To Do App](https://medium.com/@westbrook/not-another-to-do-app-169c14bb7ef9)
 

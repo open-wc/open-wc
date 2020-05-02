@@ -1,3 +1,11 @@
+---
+permalink: 'mdjs/index.html'
+title: Markdown JavaScript (mdjs) Format
+section: guides
+tags:
+  - guides
+---
+
 # Markdown JavaScript (mdjs) Format
 
 The format is meant to allow using JavaScript with Markdown.
@@ -176,15 +184,3 @@ console.log(jsCode);
 // customElements.define('my-el', class extends HTMLElement {
 // ...
 ```
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/mdjs/README.md';
-      }
-    }
-  }
-</script>

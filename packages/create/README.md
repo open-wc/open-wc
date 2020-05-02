@@ -1,3 +1,11 @@
+---
+permalink: 'init/index.html'
+title: Create Open Web Components
+section: guides
+tags:
+  - guides
+---
+
 # Create Open Web Components
 
 Web component project scaffolding.
@@ -10,9 +18,7 @@ Web component project scaffolding.
 npm init @open-wc
 ```
 
-::: warning
-`npm init` requires node 10 & npm 6 or higher
-:::
+<div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p><code>npm init</code> requires node 10 &amp; npm 6 or higher</p></div>
 
 This will kickstart a menu guiding you through all available actions.
 
@@ -91,15 +97,3 @@ npm init @open-wc
 - `Building`<br>
   This generator adds a complete building setup with rollup.
   <br/>
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/create/src/README.md';
-      }
-    }
-  }
-</script>

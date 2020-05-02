@@ -1,3 +1,11 @@
+---
+permalink: 'building/building-rollup.html'
+title: Rollup
+section: guides
+tags:
+  - guides
+---
+
 # Rollup
 
 Rollup configuration to help you get started building modern web applications.
@@ -441,15 +449,3 @@ export default merge(baseConfig, {
 ```
 
 </details>
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/building-rollup/README.md';
-      }
-    }
-  }
-</script>

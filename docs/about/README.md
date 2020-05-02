@@ -1,3 +1,12 @@
+---
+permalink: 'about/index.html'
+title: 'About'
+section: about
+tags:
+  - about
+  - section
+---
+
 # About Us
 
 - We are programmers

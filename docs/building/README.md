@@ -1,3 +1,11 @@
+---
+permalink: 'building/index.html'
+title: Building
+section: guides
+tags:
+  - guides
+---
+
 # Building
 
 Building is a necessary optimization when shipping apps to production. By using a build you reduce the total size and amount of files transferred to the end-user, and you ensure your code runs on all supported browsers.
@@ -12,7 +20,7 @@ Depending on the type of project, we recommend different approaches to building.
 
 If you are building a single page application we recommend [rollup](https://rollupjs.org/guide/en/) to build your app.
 
-Take a look at our dedicated [building-rollup](/building/building-rollup) page which explains how to set up rollup. We ship a default config that you can use to set up your project, or you can use it as inspiration for your custom config.
+Take a look at our dedicated [building-rollup](/building/building-rollup.html) page which explains how to set up rollup. We ship a default config that you can use to set up your project, or you can use it as inspiration for your custom config.
 
 ### Building reusable components and libraries
 
@@ -26,7 +34,7 @@ If you are using very new or non-standard features such as typescript, you will 
 
 Single page apps are great for a snappy user experience when you have highly dynamic content, but a lot of content on the web does not fall into this category. It still makes sense to build websites or apps consisting of multiple pages. This also requires a different approach to your build system.
 
-We are still in the process of investigating and documenting our recommendations for this. In the meantime both [building-rollup](/building/building-rollup) and [@open-wc/rollup-plugin-html](https://open-wc.org/building/rollup-plugin-html.html) have tips for these types of projects.
+We are still in the process of investigating and documenting our recommendations for this. In the meantime both [building-rollup](/building/building-rollup.html) and [@open-wc/rollup-plugin-html](https://open-wc.org/building/rollup-plugin-html.html) have tips for these types of projects.
 
 ## Webpack
 

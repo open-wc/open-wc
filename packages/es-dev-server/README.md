@@ -1,3 +1,11 @@
+---
+permalink: 'developing/es-dev-server.html'
+title: es dev server
+section: guides
+tags:
+  - guides
+---
+
 # es dev server
 
 A web server for development without bundling.
@@ -16,7 +24,7 @@ npx es-dev-server --node-resolve --watch
 - auto-reload on file changes with the (`--watch`)
 - history API fallback for SPA routing (`--app-index index.html`)
 
-[See all commands](#Command%20line%20flags%20and%20Configuration)
+[See all commands](#command-line-flags-and-configuration)
 
 ## Getting started
 
@@ -169,7 +177,7 @@ es-dev-server --root-dir src --open
 
 Now your `index.html` is accessible at `/` or `/index.html`. However, the dev server cannot serve any files outside of the root directory. So if your app uses any node modules, they will no longer because accessible.
 
-If you want your index in a subfolder without this being visible in the browser URL, you can set up a file rewrite rule. [Read more here](#rewriting-file-requests)
+If you want your index in a subfolder without this being visible in the browser URL, you can set up a file rewrite rule. [Read more here](#rewriting-request-urls)
 
 </details>
 
@@ -630,15 +638,3 @@ main();
 ```
 
 </details>
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/es-dev-server/README.md';
-      }
-    }
-  }
-</script>

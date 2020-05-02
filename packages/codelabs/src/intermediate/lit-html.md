@@ -13,7 +13,7 @@ This codelab is a followup from the [lit-html & lit-element basics](https://open
 - A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
 - Intermediate knowledge of HTML and Javascript
 - Basic knowledge of web components, see our [basics codelab](https://open-wc.org/codelabs/#web-components-basics) to get you started.
-- Basic knowledge of lit-html & lit-element, see our [basics codelab](https://open-wc.org/codelabs/#lit-html-lit-element-basics)
+- Basic knowledge of lit-html & lit-element, see our [basics codelab](https://open-wc.org/codelabs/#lit-html--lit-element-basics)
 - Familiarity with the following concepts:
   - [Javascript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
   - [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
@@ -33,7 +33,7 @@ This codelab is a followup from the [lit-html & lit-element basics](https://open
 
 **How it works**
 
-Unlike the [basics codelab](https://open-wc.org/codelabs/#lit-html-lit-element-basics), we will not explain the required changes for each step in detail. Instead, we give background information and the desired end-result. In most steps, we offer some tips, most of them hidden behind a toggle.
+Unlike the [basics codelab](https://open-wc.org/codelabs/#lit-html--lit-element-basics), we will not explain the required changes for each step in detail. Instead, we give background information and the desired end-result. In most steps, we offer some tips, most of them hidden behind a toggle.
 
 At the bottom of each section, there is a "View final result" button, this will show you the correct code that you should end up with, in case you get stuck. The steps are sequential, thus results from the previous steps carry over to the next step.
 

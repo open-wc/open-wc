@@ -1,3 +1,11 @@
+---
+permalink: 'testing/testing.html'
+title: Testing
+section: guides
+tags:
+  - guides
+---
+
 # Testing
 
 An opinionated package that combines and configures testing libraries to minimize the amount of ceremony required when writing tests.
@@ -74,15 +82,3 @@ describe('Plugin - chai-dom', () => {
   });
 });
 ```
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/testing/README.md';
-      }
-    }
-  }
-</script>

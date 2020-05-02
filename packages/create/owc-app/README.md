@@ -10,7 +10,7 @@
 
 To get started:
 
-```sh
+```bash
 npm init @open-wc
 # requires node 10 & npm 6 or higher
 ```

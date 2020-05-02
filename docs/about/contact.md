@@ -1,3 +1,11 @@
+---
+permalink: 'about/contact.html'
+title: Contact
+section: about
+tags:
+  - about
+---
+
 # Contact
 
 Feel free to reach out to us on [twitter](https://twitter.com/OpenWc) or create [a github issue](https://github.com/open-wc/open-wc/issues/new) for any feedback or questions you might have.

@@ -104,15 +104,3 @@ It basically looks like this:
 ```
 
 For a full example see the [./demo/custom-elements.json](./demo/custom-elements.json).
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/storybook-addon-web-components-knobs/README.md';
-      }
-    }
-  }
-</script>

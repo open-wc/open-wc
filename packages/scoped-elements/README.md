@@ -1,3 +1,11 @@
+---
+permalink: 'scoped-elements/index.html'
+title: Scoped elements
+section: guides
+tags:
+  - guides
+---
+
 # Scoped elements
 
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
@@ -323,15 +331,3 @@ This is an example of the results obtained running the performance test.
 ## Special thanks
 
 This package was initially inspired by [carehtml](https://github.com/bashmish/carehtml) and we would like to thank [@bashmish](https://github.com/bashmish) for his work on it.
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/scoped-elements/README.md';
-      }
-    }
-  }
-</script>
