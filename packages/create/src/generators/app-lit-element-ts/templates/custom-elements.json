@@ -2,7 +2,7 @@
   "version": 2,
   "tags": [
     {
-      "name": "owc-app",
+      "name": "<%= tagName %>",
       "description": "An application with a title and an action counter",
       "properties": [
         {

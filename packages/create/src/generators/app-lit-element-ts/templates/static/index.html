@@ -16,13 +16,13 @@
       background-color: #ededed;
     }
   </style>
-  <title>owc-app</title>
+  <title><%= tagName %></title>
 </head>
 
 <body>
-  <owc-app></owc-app>
+  <<%= tagName %>></<%= tagName %>>
 
-  <script type="module" src="./src/owc-app.js"></script>
+  <script type="module" src="./out-tsc/src/<%= tagName %>.js"></script>
 </body>
 
 </html>
