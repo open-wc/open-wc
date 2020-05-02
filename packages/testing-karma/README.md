@@ -240,8 +240,3 @@ module.exports = config => {
   return config;
 };
 ```
-
-```js script
-const bar = 'This was logged from MDJS...';
-console.log(bar);
-```

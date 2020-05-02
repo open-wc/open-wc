@@ -14,7 +14,7 @@ Codelabs are step by step tutorials. They teach a specific topic through practic
 
 A quick primer on the basics of web component. Great if you're just getting started, or just want to learn a bit about what web components are.
 
-<a href="/codelabs/basics/web-components.html?index=/codelabs/" target="_blank">
+<a href="./basics/web-components.html?index=/codelabs/" target="_blank">
   > Go to the codelab
 </a>
 
@@ -22,7 +22,7 @@ A quick primer on the basics of web component. Great if you're just getting star
 
 A kickstart to building web components with lit-html and lit-element. Goes through the process of building a simple application, explaining in detail each step along the way.
 
-<a href="/codelabs/basics/lit-html.html?index=/codelabs/" target="_blank">
+<a href="./basics/lit-html.html?index=/codelabs/" target="_blank">
   > Go to the codelab
 </a>
 
@@ -30,6 +30,6 @@ A kickstart to building web components with lit-html and lit-element. Goes throu
 
 A further deep dive into lit-html and lit-element. Handles data fetching, loading states and complex templating.
 
-<a href="/codelabs/intermediate/lit-html.html?index=/codelabs/" target="_blank">
+<a href="./intermediate/lit-html.html?index=/codelabs/" target="_blank">
   > Go to the codelab
 </a>

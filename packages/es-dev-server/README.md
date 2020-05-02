@@ -1,15 +1,12 @@
-# es dev server
-
 ---
-
 permalink: 'developing/es-dev-server.html'
 title: ES dev server
 section: guides
 tags:
-
-- guides
-
+  - guides
 ---
+
+# es dev server
 
 A web server for development without bundling.
 

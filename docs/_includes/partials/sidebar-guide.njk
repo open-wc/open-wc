@@ -1,146 +1,139 @@
 <ul class="sidebar-links">
-  <li><a href="/guide/" class="active sidebar-link">Introduction</a></li>
   <li>
-    <section class="sidebar-group collapsable depth-0">
-      <p class="sidebar-heading"><span>Guides &amp; Docs</span> <span class="arrow right"></span></p>
-      <ul class="sidebar-links sidebar-group-items" style="">
-        <li><a href="/developing/best-practices.html" class="{% if permalink == 'developing/best-practices.html' %}active {% endif %}sidebar-link">Best Practices</a></li>
-        <li><a href="/codelabs/" class="{% if permalink == 'codelabs/index.html' %}active {% endif %}sidebar-link">Codelabs</a></li>
-        <li><a href="/developing/code-examples.html" class="{% if permalink == 'developing/code-examples.html' %}active {% endif %}sidebar-link">Code examples</a></li>
-        <li><a href="/developing/lit-html.html" class="{% if permalink == 'developing/lit-html.html' %}active {% endif %}sidebar-link">lit-html</a></li>
-        <li><a href="/developing/types.html" class="{% if permalink == 'developing/types.html' %}active {% endif %}sidebar-link">Types</a></li>
-        <li><a href="/developing/ide.html" class="{% if permalink == 'developing/ide.html' %}active {% endif %}sidebar-link">IDE</a></li>
-        <li><a href="/guide/component-libraries.html" class="{% if permalink == 'guide/component-libraries.html' %}active {% endif %}sidebar-link">Web Component Libraries</a></li>
-      </ul>
-    </section>
+    <a href="/guide/" class="active sidebar-link">Introduction</a>
   </li>
   <li>
     <section class="sidebar-group collapsable depth-0">
-      <p class="sidebar-heading"><span>Configs &amp; Recommendations</span> <span class="arrow right"></span></p>
+      <p class="sidebar-heading">
+        <span>Guides &amp; Docs</span>
+        <span class="arrow right"></span></p>
       <ul class="sidebar-links sidebar-group-items" style="">
         <li>
-          <section class="sidebar-group is-sub-group depth-1">
-            <p class="sidebar-heading open"><span>Linting</span>
-              <!---->
-            </p>
-            <ul class="sidebar-links sidebar-group-items">
-              <li><a href="/linting/" class="{% if permalink == 'linting/index.html' %}active {% endif %}sidebar-link">Getting started</a></li>
-              <li><a href="/linting/linting-eslint.html" class="{% if permalink == 'linting/linting-eslint.html' %}active {% endif %}sidebar-link">Linting ESLint</a></li>
-              <li><a href="/linting/linting-types.html" class="{% if permalink == 'linting/linting-types.html' %}active {% endif %}sidebar-link">Linting Types</a></li>
-            </ul>
-          </section>
+          <a href="/developing/best-practices.html" class="{% if permalink == 'developing/best-practices.html' %}active {% endif %}sidebar-link">Best Practices</a>
         </li>
         <li>
-          <section class="sidebar-group is-sub-group depth-1">
-            <p class="sidebar-heading"><span>Developing</span>
-              <!---->
-            </p>
-            <ul class="sidebar-links sidebar-group-items">
-              <li><a href="/developing/" class="{% if permalink == 'developing/index.html' %}active {% endif %}sidebar-link">Developing</a></li>
-            </ul>
-          </section>
+          <a href="/codelabs/" class="{% if permalink == 'codelabs/index.html' %}active {% endif %}sidebar-link">Codelabs</a>
         </li>
         <li>
-          <section class="sidebar-group is-sub-group depth-1">
-            <p class="sidebar-heading"><span>Testing</span>
-              <!---->
-            </p>
-            <ul class="sidebar-links sidebar-group-items">
-              <li><a href="/testing/" class="{% if permalink == 'testing/index.html' %}active {% endif %}sidebar-link">Getting started</a></li>
-              <li><a href="/testing/testing.html" class="{% if permalink == 'testing/testing.html' %}active {% endif %}sidebar-link">Testing</a></li>
-              <li><a href="/testing/testing-karma.html" class="{% if permalink == 'testing/testing-karma.html' %}active {% endif %}sidebar-link">Testing with Karma</a></li>
-              <li><a href="/testing/testing-karma-bs.html" class="{% if permalink == 'testing/testing-karma-bs.html' %}active {% endif %}sidebar-link">Testing via Browserstack</a></li>
-              <li><a href="/testing/testing-wallaby.html" class="{% if permalink == 'testing/testing-wallaby.html' %}active {% endif %}sidebar-link">Testing in IDE via Wallaby</a></li>
-            </ul>
-          </section>
+          <a href="/developing/code-examples.html" class="{% if permalink == 'developing/code-examples.html' %}active {% endif %}sidebar-link">Code examples</a>
         </li>
         <li>
-          <section class="sidebar-group is-sub-group depth-1">
-            <p class="sidebar-heading"><span>Building apps for production</span>
-              <!---->
-            </p>
-            <ul class="sidebar-links sidebar-group-items">
-              <li><a href="/building/" class="{% if permalink == 'building/index.html' %}active {% endif %}sidebar-link">Getting started</a></li>
-              <li><a href="/building/building-rollup.html" class="{% if permalink == 'building/building-rollup.html' %}active {% endif %}sidebar-link">Rollup</a></li>
-            </ul>
-          </section>
+          <a href="/developing/lit-html.html" class="{% if permalink == 'developing/lit-html.html' %}active {% endif %}sidebar-link">lit-html</a>
         </li>
         <li>
-          <section class="sidebar-group is-sub-group depth-1">
-            <p class="sidebar-heading"><span>Deploying apps</span>
-              <!---->
-            </p>
-            <ul class="sidebar-links sidebar-group-items">
-              <li><a href="/deploying/" class="{% if permalink == 'deploying/index.html' %}active {% endif %}sidebar-link">Getting started</a></li>
-            </ul>
-          </section>
+          <a href="/developing/types.html" class="{% if permalink == 'developing/types.html' %}active {% endif %}sidebar-link">Types</a>
         </li>
         <li>
-          <section class="sidebar-group is-sub-group depth-1">
-            <p class="sidebar-heading"><span>Demoing</span>
-              <!---->
-            </p>
-            <ul class="sidebar-links sidebar-group-items">
-              <li><a href="/demoing/" class="{% if permalink == 'demoing/index.html' %}active {% endif %}sidebar-link">Getting started</a></li>
-            </ul>
-          </section>
+          <a href="/developing/ide.html" class="{% if permalink == 'developing/ide.html' %}active {% endif %}sidebar-link">IDE</a>
+        </li>
+        <li>
+          <a href="/guide/component-libraries.html" class="{% if permalink == 'guide/component-libraries.html' %}active {% endif %}sidebar-link">Web Component Libraries</a>
         </li>
       </ul>
     </section>
   </li>
   <li>
     <section class="sidebar-group collapsable depth-0">
-      <p class="sidebar-heading"><span>Tools &amp; Libraries</span> <span class="arrow right"></span></p>
+      <p class="sidebar-heading">
+        <span>Configs &amp; Recommendations</span>
+        <span class="arrow right"></span></p>
       <ul class="sidebar-links sidebar-group-items" style="">
         <li>
           <section class="sidebar-group is-sub-group depth-1">
-            <p class="sidebar-heading open"><span>Developing</span>
+            <p class="sidebar-heading open">
+              <span>Linting</span>
               <!---->
             </p>
             <ul class="sidebar-links sidebar-group-items">
-              <li><a href="/developing/es-dev-server.html" class="{% if permalink == 'developing/es-dev-server.html' %}active {% endif %}sidebar-link">ES dev server</a></li>
-              <li><a href="/init/" class="{% if permalink == 'init/index.html' %}active {% endif %}sidebar-link">Generators</a></li>
-              <li><a href="/developing/lit-helpers.html" class="{% if permalink == 'developing/lit-helpers.html' %}active {% endif %}sidebar-link">Lit Helpers</a></li>
-              <li><a href="/guide/dedupe-mixin.html" class="{% if permalink == 'guide/dedupe-mixin.html' %}active {% endif %}sidebar-link">Dedupe Mixin</a></li>
-              <li><a href="/scoped-elements/" class="{% if permalink == 'scoped-elements/index.html' %}active {% endif %}sidebar-link">Scoped Elements</a></li>
+              <li>
+                <a href="/linting/" class="{% if permalink == 'linting/index.html' %}active {% endif %}sidebar-link">Getting started</a>
+              </li>
+              <li>
+                <a href="/linting/linting-eslint.html" class="{% if permalink == 'linting/linting-eslint.html' %}active {% endif %}sidebar-link">Linting ESLint</a>
+              </li>
+              <li>
+                <a href="/linting/linting-types.html" class="{% if permalink == 'linting/linting-types.html' %}active {% endif %}sidebar-link">Linting Types</a>
+              </li>
             </ul>
           </section>
         </li>
         <li>
           <section class="sidebar-group is-sub-group depth-1">
-            <p class="sidebar-heading"><span>Testing</span>
+            <p class="sidebar-heading">
+              <span>Developing</span>
               <!---->
             </p>
             <ul class="sidebar-links sidebar-group-items">
-              <li><a href="/testing/testing-helpers.html" class="{% if permalink == 'testing/testing-helpers.html' %}active {% endif %}sidebar-link">Testing Helpers</a></li>
-              <li><a href="/testing/testing-chai-a11y-axe.html" class="{% if permalink == 'testing/testing-chai-a11y-axe.html' %}active {% endif %}sidebar-link">Chai A11y aXe</a></li>
-              <li><a href="/testing/testing-sinon.html" class="{% if permalink == 'testing/testing-sinon.html' %}active {% endif %}sidebar-link">Testing with sinon</a></li>
-              <li><a href="/testing/semantic-dom-diff.html" class="{% if permalink == 'testing/semantic-dom-diff.html' %}active {% endif %}sidebar-link">Semantic Dom Diff</a></li>
-              <li><a href="/testing/karma-esm.html" class="{% if permalink == 'testing/karma-esm.html' %}active {% endif %}sidebar-link">karma-esm</a></li>
+              <li>
+                <a href="/developing/" class="{% if permalink == 'developing/index.html' %}active {% endif %}sidebar-link">Developing</a>
+              </li>
             </ul>
           </section>
         </li>
         <li>
           <section class="sidebar-group is-sub-group depth-1">
-            <p class="sidebar-heading"><span>Building</span>
+            <p class="sidebar-heading">
+              <span>Testing</span>
               <!---->
             </p>
             <ul class="sidebar-links sidebar-group-items">
-              <li><a href="/building/rollup-plugin-html.html" class="{% if permalink == 'building/rollup-plugin-html.html' %}active {% endif %}sidebar-link">Rollup Plugin HTML</a></li>
-              <li><a href="/building/rollup-plugin-polyfills-loader.html" class="{% if permalink == 'building/rollup-plugin-polyfills-loader.html' %}active {% endif %}sidebar-link">Rollup Plugin Polyfills
-                  Loader</a></li>
-              <li><a href="/building/polyfills-loader.html" class="{% if permalink == 'building/polyfills-loader.html' %}active {% endif %}sidebar-link">Polyfills loader</a></li>
+              <li>
+                <a href="/testing/" class="{% if permalink == 'testing/index.html' %}active {% endif %}sidebar-link">Getting started</a>
+              </li>
+              <li>
+                <a href="/testing/testing.html" class="{% if permalink == 'testing/testing.html' %}active {% endif %}sidebar-link">Testing</a>
+              </li>
+              <li>
+                <a href="/testing/testing-karma.html" class="{% if permalink == 'testing/testing-karma.html' %}active {% endif %}sidebar-link">Testing with Karma</a>
+              </li>
+              <li>
+                <a href="/testing/testing-karma-bs.html" class="{% if permalink == 'testing/testing-karma-bs.html' %}active {% endif %}sidebar-link">Testing via Browserstack</a>
+              </li>
+              <li>
+                <a href="/testing/testing-wallaby.html" class="{% if permalink == 'testing/testing-wallaby.html' %}active {% endif %}sidebar-link">Testing in IDE via Wallaby</a>
+              </li>
             </ul>
           </section>
         </li>
         <li>
           <section class="sidebar-group is-sub-group depth-1">
-            <p class="sidebar-heading"><span>Demoing</span>
+            <p class="sidebar-heading">
+              <span>Building apps for production</span>
               <!---->
             </p>
             <ul class="sidebar-links sidebar-group-items">
-              <li><a href="/demoing/storybook-addon-markdown-docs.html" class="{% if permalink == 'demoing/storybook-addon-markdown-docs.html' %}active {% endif %}sidebar-link">Storybook Addon: Markdown
-                  Docs</a></li>
+              <li>
+                <a href="/building/" class="{% if permalink == 'building/index.html' %}active {% endif %}sidebar-link">Getting started</a>
+              </li>
+              <li>
+                <a href="/building/building-rollup.html" class="{% if permalink == 'building/building-rollup.html' %}active {% endif %}sidebar-link">Rollup</a>
+              </li>
+            </ul>
+          </section>
+        </li>
+        <li>
+          <section class="sidebar-group is-sub-group depth-1">
+            <p class="sidebar-heading">
+              <span>Deploying apps</span>
+              <!---->
+            </p>
+            <ul class="sidebar-links sidebar-group-items">
+              <li>
+                <a href="/deploying/" class="{% if permalink == 'deploying/index.html' %}active {% endif %}sidebar-link">Getting started</a>
+              </li>
+            </ul>
+          </section>
+        </li>
+        <li>
+          <section class="sidebar-group is-sub-group depth-1">
+            <p class="sidebar-heading">
+              <span>Demoing</span>
+              <!---->
+            </p>
+            <ul class="sidebar-links sidebar-group-items">
+              <li>
+                <a href="/demoing/" class="{% if permalink == 'demoing/index.html' %}active {% endif %}sidebar-link">Getting started</a>
+              </li>
             </ul>
           </section>
         </li>
@@ -149,30 +142,147 @@
   </li>
   <li>
     <section class="sidebar-group collapsable depth-0">
-      <p class="sidebar-heading"><span>Experiments</span> <span class="arrow right"></span></p>
+      <p class="sidebar-heading">
+        <span>Tools &amp; Libraries</span>
+        <span class="arrow right"></span></p>
       <ul class="sidebar-links sidebar-group-items" style="">
-        <li><a href="/mdjs/" class="{% if permalink == 'mdjs/index.html' %}active {% endif %}sidebar-link">Markdown JavaScript (mdjs) Format</a></li>
+        <li>
+          <section class="sidebar-group is-sub-group depth-1">
+            <p class="sidebar-heading open">
+              <span>Developing</span>
+              <!---->
+            </p>
+            <ul class="sidebar-links sidebar-group-items">
+              <li>
+                <a href="/developing/es-dev-server.html" class="{% if permalink == 'developing/es-dev-server.html' %}active {% endif %}sidebar-link">ES dev server</a>
+              </li>
+              <li>
+                <a href="/init/" class="{% if permalink == 'init/index.html' %}active {% endif %}sidebar-link">Generators</a>
+              </li>
+              <li>
+                <a href="/developing/lit-helpers.html" class="{% if permalink == 'developing/lit-helpers.html' %}active {% endif %}sidebar-link">Lit Helpers</a>
+              </li>
+              <li>
+                <a href="/guide/dedupe-mixin.html" class="{% if permalink == 'guide/dedupe-mixin.html' %}active {% endif %}sidebar-link">Dedupe Mixin</a>
+              </li>
+              <li>
+                <a href="/scoped-elements/" class="{% if permalink == 'scoped-elements/index.html' %}active {% endif %}sidebar-link">Scoped Elements</a>
+              </li>
+            </ul>
+          </section>
+        </li>
+        <li>
+          <section class="sidebar-group is-sub-group depth-1">
+            <p class="sidebar-heading">
+              <span>Testing</span>
+              <!---->
+            </p>
+            <ul class="sidebar-links sidebar-group-items">
+              <li>
+                <a href="/testing/testing-helpers.html" class="{% if permalink == 'testing/testing-helpers.html' %}active {% endif %}sidebar-link">Testing Helpers</a>
+              </li>
+              <li>
+                <a href="/testing/testing-chai-a11y-axe.html" class="{% if permalink == 'testing/testing-chai-a11y-axe.html' %}active {% endif %}sidebar-link">Chai A11y aXe</a>
+              </li>
+              <li>
+                <a href="/testing/testing-sinon.html" class="{% if permalink == 'testing/testing-sinon.html' %}active {% endif %}sidebar-link">Testing with sinon</a>
+              </li>
+              <li>
+                <a href="/testing/semantic-dom-diff.html" class="{% if permalink == 'testing/semantic-dom-diff.html' %}active {% endif %}sidebar-link">Semantic Dom Diff</a>
+              </li>
+              <li>
+                <a href="/testing/karma-esm.html" class="{% if permalink == 'testing/karma-esm.html' %}active {% endif %}sidebar-link">karma-esm</a>
+              </li>
+            </ul>
+          </section>
+        </li>
+        <li>
+          <section class="sidebar-group is-sub-group depth-1">
+            <p class="sidebar-heading">
+              <span>Building</span>
+              <!---->
+            </p>
+            <ul class="sidebar-links sidebar-group-items">
+              <li>
+                <a href="/building/rollup-plugin-html.html" class="{% if permalink == 'building/rollup-plugin-html.html' %}active {% endif %}sidebar-link">Rollup Plugin HTML</a>
+              </li>
+              <li>
+                <a href="/building/rollup-plugin-polyfills-loader.html" class="{% if permalink == 'building/rollup-plugin-polyfills-loader.html' %}active {% endif %}sidebar-link">Rollup Plugin Polyfills Loader</a>
+              </li>
+              <li>
+                <a href="/building/polyfills-loader.html" class="{% if permalink == 'building/polyfills-loader.html' %}active {% endif %}sidebar-link">Polyfills loader</a>
+              </li>
+            </ul>
+          </section>
+        </li>
+        <li>
+          <section class="sidebar-group is-sub-group depth-1">
+            <p class="sidebar-heading">
+              <span>Demoing</span>
+              <!---->
+            </p>
+            <ul class="sidebar-links sidebar-group-items">
+              <li>
+                <a href="/demoing/storybook-addon-markdown-docs.html" class="{% if permalink == 'demoing/storybook-addon-markdown-docs.html' %}active {% endif %}sidebar-link">Storybook Addon: Markdown Docs</a>
+              </li>
+            </ul>
+          </section>
+        </li>
+      </ul>
+    </section>
+  </li>
+  <li>
+    <section class="sidebar-group collapsable depth-0">
+      <p class="sidebar-heading">
+        <span>Experiments</span>
+        <span class="arrow right"></span></p>
+      <ul class="sidebar-links sidebar-group-items" style="">
+        <li>
+          <a href="/mdjs/" class="{% if permalink == 'mdjs/index.html' %}active {% endif %}sidebar-link">Markdown JavaScript (mdjs) Format</a>
+        </li>
       </ul>
     </section>
   </li>
 </ul>
 <script>
-const groups = [...document.querySelectorAll('.sidebar-group:not(.is-sub-group)')];
-groups.map(group => {
-  group.querySelector('.sidebar-heading').addEventListener('click', e => {
-    e.currentTarget.classList.toggle('open');
-    const arrow = e.currentTarget.querySelector('.arrow');
-    arrow.classList.toggle('down');
-    arrow.classList.toggle('right');
-    e.currentTarget.nextElementSibling.classList.toggle('hidden');
-  });
-  const active = group.querySelector('.active');
-  if (active) {
-    const arrow = group.querySelector('.arrow');
-    arrow.classList.toggle('down');
-    arrow.classList.toggle('right');
-  } else {
-    group.querySelector('.sidebar-group-items').classList.toggle('hidden');
-  }
-})
+  const groups = [...document.querySelectorAll('.sidebar-group:not(.is-sub-group)')];
+  groups.map(group => {
+    group
+      .querySelector('.sidebar-heading')
+      .addEventListener('click', e => {
+        e
+          .currentTarget
+          .classList
+          .toggle('open');
+        const arrow = e
+          .currentTarget
+          .querySelector('.arrow');
+        arrow
+          .classList
+          .toggle('down');
+        arrow
+          .classList
+          .toggle('right');
+        e
+          .currentTarget
+          .nextElementSibling
+          .classList
+          .toggle('hidden');
+      });
+    const active = group.querySelector('.active');
+    if (active) {
+      const arrow = group.querySelector('.arrow');
+      arrow
+        .classList
+        .toggle('down');
+      arrow
+        .classList
+        .toggle('right');
+    } else {
+      group
+        .querySelector('.sidebar-group-items')
+        .classList
+        .toggle('hidden');
+    }
+  })
 </script>

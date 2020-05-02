@@ -88,12 +88,6 @@ It transforms: `import foo from 'bar'` to: `import foo from './node_modules/bar/
 
 See the [node-resolve documentation of es-dev-server](https://open-wc.org/developing/es-dev-server.html#node-resolve) for more information.
 
-### dedupe
-
-Deduplicate packages, ensuring only one version of a package is resolved.
-
-See the [dedupe documentation of es-dev-server](https://open-wc.org/developing/es-dev-server.html#dedupe) for more information.
-
 ### coverage
 
 Due to a bug in karma, the test coverage reporter causes browser logs to appear twice which can be annoying
