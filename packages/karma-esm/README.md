@@ -1,3 +1,11 @@
+---
+permalink: 'testing/karma-esm.html'
+title: karma-esm
+section: guides
+tags:
+  - guides
+---
+
 # karma-esm
 
 Karma plugin for testing with real es modules without any bundling.

@@ -1,3 +1,11 @@
+---
+permalink: 'faq/rerender.html'
+title: Rerender not triggered
+section: faq
+tags:
+  - faq
+---
+
 # Rerender not triggered
 
 # Modifying an array or objects members does not trigger rerender

@@ -1,3 +1,11 @@
+---
+permalink: 'testing/testing-chai-a11y-axe.html'
+title: Chai A11y aXe
+section: guides
+tags:
+  - guides
+---
+
 # Chai A11y aXe
 
 This module provides a Chai plugin to perform automated accessibility tests via axe.
@@ -65,15 +73,3 @@ it('passes for negation', async () => {
   await assert.isNotAccessible(el);
 });
 ```
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/chai-a11y-axe/README.md';
-      }
-    }
-  }
-</script>

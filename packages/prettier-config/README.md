@@ -59,15 +59,3 @@ test/set-game.test.js
 ```
 
 Simply run `npm run format:prettier` to format your files automatically.
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/prettier-config/README.md';
-      }
-    }
-  }
-</script>

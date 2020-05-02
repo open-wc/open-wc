@@ -1,3 +1,11 @@
+---
+permalink: 'faq/unit-testing-init-error.html'
+title: Testing for errors thrown in initialization
+section: faq
+tags:
+  - faq
+---
+
 # Testing for errors thrown in initialization
 
 ## The issue - components silently failing

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  {% include 'partials/meta.njk' %}
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body data-gr-c-s-loaded="true">
+  <div id="app">
+    <div class="theme-container">
+      {% include 'partials/header.njk' %}
+      {% include 'partials/sidebar.njk' %}
+      <main class="page">
+        <div class="theme-default-content content__default">
+          {{ content | safe }}
+          {% if content.data.jsCode %}
+            <script>{{ content.data.jsCode | safe }}</script>
+          {% endif %}
+        </div>
+      </main>
+    </div>
+    <div class="global-ui"></div>
+  </div>
+</body>
+
+</html>

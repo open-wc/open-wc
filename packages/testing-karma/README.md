@@ -1,3 +1,11 @@
+---
+permalink: 'testing/testing-karma.html'
+title: Testing with Karma
+section: guides
+tags:
+  - guides
+---
+
 # Testing with Karma
 
 Configuration for setting up testing with karma.
@@ -233,14 +241,7 @@ module.exports = config => {
 };
 ```
 
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/testing-karma/README.md';
-      }
-    }
-  }
-</script>
+```js script
+const bar = 'This was logged from MDJS...';
+console.log(bar);
+```

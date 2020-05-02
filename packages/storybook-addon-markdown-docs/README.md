@@ -1,3 +1,11 @@
+---
+permalink: 'demoing/storybook-addon-markdown-docs.html'
+title: 'Storybook Addon: Markdown Docs'
+section: guides
+tags:
+  - guides
+---
+
 # Storybook Addon: Markdown Docs
 
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
