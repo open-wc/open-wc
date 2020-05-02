@@ -1,1 +1,2 @@
 !test/**/node_modules
+tsc-dist
