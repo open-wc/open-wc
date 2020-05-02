@@ -1,0 +1,18 @@
+{
+  "main": "index.js",
+  "module": "index.js",
+  "scripts": {
+    "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index demo/index.html --node-resolve --open --watch\"",
+    "tsc:watch": "tsc --watch"
+  },
+  "dependencies": {
+    "lit-html": "^1.1.2",
+    "lit-element": "^2.2.1"
+  },
+  "devDependencies": {
+    "es-dev-server": "^1.23.0",
+    "typescript": "^3.8.2",
+    "concurrently": "^5.1.0",
+    "tslib": "^1.11.0"
+  }
+}
