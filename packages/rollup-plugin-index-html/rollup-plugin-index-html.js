@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
-const { parseFromString, resolve, mergeImportMaps } = require('@import-maps/resolve');
+const deepmerge = require('deepmerge');
+const { parseFromString, resolve } = require('@import-maps/resolve');
 const { findInlineEntryId } = require('@open-wc/building-utils/index-html');
 const { processEntryHtml } = require('./src/process-entry-html.js');
 const { createOutput } = require('./src/create-output');
@@ -104,7 +105,7 @@ module.exports = (pluginConfig = {}) => {
         if (importMapCache === null) {
           inlineImportMaps.forEach(importMapString => {
             const newImportMap = parseFromString(importMapString, basePath);
-            importMapCache = mergeImportMaps(importMapCache, newImportMap);
+            importMapCache = deepmerge(importMapCache, newImportMap);
           });
         }
 

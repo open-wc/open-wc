@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.47.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.46.5...es-dev-server@1.47.0) (2020-04-26)
+
+
+### Bug Fixes
+
+* **es-dev-server:** types for create-server ([8f8789f](https://github.com/open-wc/open-wc/commit/8f8789f1b95439b86f9115ff7d2bb53b47442bfd))
+
+
+### Features
+
+* **es-dev-server:** add https redirect ([1e53552](https://github.com/open-wc/open-wc/commit/1e535525a8e9f0fbcfe5772ada378bc9fba19c7d))
+
+
+
+
+
 ## [1.46.5](https://github.com/open-wc/open-wc/compare/es-dev-server@1.46.4...es-dev-server@1.46.5) (2020-04-21)
 
 

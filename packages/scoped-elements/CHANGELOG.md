@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@1.1.0...@open-wc/scoped-elements@1.1.1) (2020-04-26)
+
+
+### Bug Fixes
+
+* **scoped-elements:** duplicate definition ([9aecafb](https://github.com/open-wc/open-wc/commit/9aecafbd68b8eb6a77f9d6fd8420e7693c3e8eef))
+
+
+
+
+
+# [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@1.0.9...@open-wc/scoped-elements@1.1.0) (2020-04-25)
+
+
+### Features
+
+* **scoped-elements:** self-registering components compatibility ([d4806e4](https://github.com/open-wc/open-wc/commit/d4806e43972c6cf2b895998a521ff89d5f16583d))
+
+
+
+
+
 ## [1.0.9](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@1.0.8...@open-wc/scoped-elements@1.0.9) (2020-04-20)
 
 **Note:** Version bump only for package @open-wc/scoped-elements

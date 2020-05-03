@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const merge = require('webpack-merge');
-const { defaultConfig } = require('../testing-karma');
+const { createDefaultConfig } = require('../testing-karma');
 
 module.exports = config => {
   config.set(
-    merge(defaultConfig(config), {
+    merge(createDefaultConfig(config), {
       basePath: '../../../',
 
       files: [

@@ -1,10 +1,10 @@
 {
   "name": "@import-maps/resolve",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "publishConfig": {
     "access": "public"
   },
-  "description": "Read and resolve urls via an import map",
+  "description": "Parse and resolve imports via an import map",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,28 +13,19 @@
   },
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/import-maps-resolve",
-  "main": "dist/index.js",
+  "main": "./index.js",
   "scripts": {
-    "build": "babel src --out-dir dist --copy-files --include-dotfiles",
     "prepublishOnly": "npm run build && ../../scripts/insert-header.js",
-    "start": "npm run build && node ./dist/index.js",
     "test": "npm run test:node",
-    "test:node": "mocha --require @babel/register",
-    "test:watch": "onchange 'src/**/*.js' 'test/**/*.js' -- npm run test --silent"
+    "test:node": "mocha test/run-tests.js"
   },
   "files": [
-    "dist"
+    "*.d.ts",
+    "*.js",
+    "src"
   ],
   "keywords": [
     "import-map",
     "import-maps"
-  ],
-  "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "@babel/register": "^7.9.0",
-    "babel-plugin-transform-dynamic-import": "^2.1.0",
-    "onchange": "^5.2.0"
-  }
+  ]
 }

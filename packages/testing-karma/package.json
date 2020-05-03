@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma",
-  "version": "3.3.15",
+  "version": "3.3.17",
   "publishConfig": {
     "access": "public"
   },
@@ -28,7 +28,11 @@
     "compatibility"
   ],
   "dependencies": {
-    "@open-wc/karma-esm": "^2.13.26",
+    "@open-wc/karma-esm": "^2.13.28",
+    "@types/karma": "^5.0.0",
+    "@types/karma-coverage-istanbul-reporter": "^2.1.0",
+    "@types/karma-mocha": "^1.3.0",
+    "@types/karma-mocha-reporter": "^2.2.0",
     "axe-core": "^3.3.1",
     "karma": "^4.1.0",
     "karma-chrome-launcher": "^3.1.0",

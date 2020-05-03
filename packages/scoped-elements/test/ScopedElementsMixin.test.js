@@ -22,7 +22,6 @@ describe('ScopedElementsMixin', () => {
   it('has a default value for "static get scopedElements()" of {}', async () => {
     const tag = defineCE(class extends ScopedElementsMixin(LitElement) {});
     const el = await fixture(`<${tag}></${tag}>`);
-    // @ts-ignore
     expect(el.constructor.scopedElements).to.deep.equal({});
   });
 
@@ -257,10 +256,29 @@ describe('ScopedElementsMixin', () => {
     expect(el.shadowRoot.children[1]).to.not.be.an.instanceOf(FeatureB);
     expect(el.shadowRoot.children[2]).to.not.undefined;
 
-    // @ts-ignore
     el.defineScopedElement('feature-b', FeatureB);
 
     expect(el.shadowRoot.children[1]).to.be.an.instanceOf(FeatureB);
+  });
+
+  it('should avoid definition if lazy is already defined', async () => {
+    const tag = defineCE(
+      class extends ScopedElementsMixin(LitElement) {
+        render() {
+          return html` <feature-a></feature-a> `;
+        }
+      },
+    );
+
+    const el = await fixture(`<${tag}></${tag}>`);
+
+    expect(el.shadowRoot.children[0]).to.not.be.an.instanceOf(FeatureA);
+
+    el.defineScopedElement('feature-a', FeatureA);
+
+    expect(el.shadowRoot.children[0]).to.be.an.instanceOf(FeatureA);
+
+    el.defineScopedElement('feature-a', FeatureA);
   });
 
   it("support define a lazy element even if it's not used in previous templates", async () => {
@@ -304,6 +322,37 @@ describe('ScopedElementsMixin', () => {
     await waitUntil(() => el.shadowRoot.children[1] instanceof LazyElement);
   });
 
+  it('should reuse the global tag if defined with the same name and class reference', async () => {
+    class ItemA extends LitElement {
+      render() {
+        return html` <div>Item A</div> `;
+      }
+    }
+
+    customElements.define('item-a', ItemA);
+
+    const tag = defineCE(
+      class ContainerElement extends ScopedElementsMixin(LitElement) {
+        static get scopedElements() {
+          return {
+            ...super.scopedElements,
+            'item-a': customElements.get('item-a'),
+          };
+        }
+
+        render() {
+          return html` <item-a></item-a> `;
+        }
+      },
+    );
+
+    const el = await fixture(`<${tag}></${tag}>`);
+    const firstElement = el.shadowRoot.children[0];
+
+    expect(firstElement.tagName.toLowerCase()).to.be.equal('item-a');
+    expect(firstElement).to.be.instanceof(ItemA);
+  });
+
   describe('getScopedTagName', () => {
     it('should return the scoped tag name for a registered element', async () => {
       const chars = `-|\\.|[0-9]|[a-z]`;
@@ -328,9 +377,7 @@ describe('ScopedElementsMixin', () => {
 
       const el = await fixture(`<${tag}></${tag}>`);
 
-      // @ts-ignore
       expect(el.constructor.getScopedTagName('feature-a')).to.match(tagRegExp);
-      // @ts-ignore
       expect(el.constructor.getScopedTagName('feature-b')).to.match(tagRegExp);
     });
 
@@ -356,7 +403,6 @@ describe('ScopedElementsMixin', () => {
 
       const el = await fixture(`<${tag}></${tag}>`);
 
-      // @ts-ignore
       expect(el.constructor.getScopedTagName('unregistered-feature')).to.match(tagRegExp);
     });
   });

@@ -1,60 +1,99 @@
 # Resolve import-maps
 
-This will allow you to parse and resolve urls by a given [import-map](https://github.com/WICG/import-maps).
+Library for parsing and resolving [import maps](https://github.com/WICG/import-maps).
 
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ## Usage
 
 ```bash
-yarn add @import-maps/resolve
+npm i --save-dev @import-maps/resolve
 ```
 
-You may then override a resolve method in your build process.
+### Base URL
+
+Parsing and resolving import maps requires a base URL. This is an instance of the `URL` constructor.
+
+This can be a browser URL:
 
 ```js
-import { parseFromString, resolve } from '@import-maps/resolve';
-
-// you probably want to cache the map processing and not redo it for every resolve
-// a simple example
-const importMapCache = null;
-
-function myResolve(specifier) {
-  const rootDir = process.cwd();
-  const basePath = importer ? importer.replace(rootDir, `${rootDir}::`) : `${rootDir}::`;
-  if (!importMapCache) {
-    const mapString = fs.readFileSync(path.join(rootDir, 'import-map.json'), 'utf-8');
-    mapCache = parseFromString(mapString, basePath);
-  }
-
-  const relativeSource = source.replace(rootDir, '');
-  const resolvedPath = resolve(relativeSource, importMapCache, basePath);
-
-  if (resolvedPath) {
-    return resolvedPath;
-  }
-}
+const myUrl = new URL('https://www.example.com/');
 ```
 
-### Additional info
+Or a file URL when working with a file system. The `pathToFileURL` function is useful for converting a file path to a URL object:
 
-The 3rd parameter of `resolve` is the "baseUrl/basePath" and it's format is `/path/to/root::/subdir/foo`.
-You can compare it with an url `http://example.com/subdir/foo`.
+```js
+import path from 'path';
+import { pathToFileURL } from 'url';
 
-- Everything before the `::` is sort of the `domain` e.g. `http://example.com/`
-- Everything after is the path/directory to your appliaction
+const fileUrl1 = new URL('file:///foo/bar');
+const fileUrl2 = pathToFileURL(path.join(process.cwd(), 'foo', 'bar'));
+```
 
-Such a path is needed as import maps support relative pathes as values.
+### Parsing an import map from a string
+
+The `parseFromString` parses an import map from a JSON string. It returns the parsed import map object to be used when resolving import specifiers.
+
+```js
+import { parseFromString } from '@import-maps/resolve';
+
+// get the import map from somewhere, for example read it from a string
+const importMapString = '{ "imports": { "foo": "./bar.js" } }';
+// create a base URL to resolve imports relatively to
+const baseURL = new URL('https://www.example.com/');
+
+const importMap = parseFromString(importMapString, baseURL);
+```
+
+### Parsing an import map from an object
+
+If you already have an object which represents the import map, it still needs to be parsed to validate it and to prepare it for resolving. You can use the `parse` function for this.
+
+```js
+import { parse } from '@import-maps/resolve';
+
+// get the import map from somewhere, for example read it from a string
+const rawImportMap = { imports: { foo: './bar.js' } };
+// create a base URL to resolve imports relatively to
+const baseURL = new URL('https://www.example.com/');
+
+const importMap = parse(importMapString, baseURL);
+```
+
+### Resolving specifiers
+
+Once you've created a parsed import map, you can start resolving specifiers. The `resolve` function returns a `URL`, you can use this to either use the resolved `href` or just the `pathname`.
+
+```js
+import { resolve } from '@import-maps/resolve';
+
+const importMap = /* parse import map shown above */;
+// create a base URL to resolve imports relatively to
+const baseURL = new URL('https://www.example.com/');
+
+const resolvedUrl = resolve(importMapString, baseURL);
+
+// the full url including protocol and domain
+console.log(resolvedUrl.href);
+// just the path
+console.log(resolvedUrl.url);
+```
+
+If you need to use the resolved path on the file system, you can use the `fileURLToPath` utility:
+
+```js
+import { fileURLToPath } from 'url';
+import { resolve } from '@import-maps/resolve';
+
+const resolvedUrl = resolve(importMapString, baseURL);
+
+// the fully resolved file path
+console.log(fileURLToPath(resolvedUrl));
+```
 
 ## Acknowledgments
 
 This implementation is heavily based on the [import-maps reference implementation](https://github.com/WICG/import-maps/tree/master/reference-implementation).
-Thanks to @domenic and @guybedford for sharing that prototype.
-
-Some adjustments have been made
-
-- Allow to process/resolve node pathes besides urls
-- Use mocha/chai for testing (already available in our setup)
 
 <script>
   export default {

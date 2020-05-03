@@ -3,6 +3,8 @@
 import 'chai/chai.js';
 import { cachedWrappers } from '@open-wc/testing-helpers/index-no-side-effects.js';
 import { chaiDomDiff } from '../chai-dom-diff.js';
+// eslint-disable-next-line
+/// <reference path="../chai-dom-diff-plugin.d.ts" />
 
 // register-cleanup
 if (afterEach) {
@@ -17,9 +19,7 @@ if (afterEach) {
 }
 
 // register-plugins
-// @ts-ignore
 window.chai.use(chaiDomDiff);
 
-// @ts-ignore
 const { expect, assert, should } = window.chai;
 export { expect, assert, should };
