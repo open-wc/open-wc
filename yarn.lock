@@ -2332,6 +2332,32 @@
   resolved "https://registry.yarnpkg.com/@open-wc/semantic-dom-diff/-/semantic-dom-diff-0.13.21.tgz#718b9ec5f9a98935fc775e577ad094ae8d8b7dea"
   integrity sha512-BONpjHcGX2zFa9mfnwBCLEmlDsOHzT+j6Qt1yfK3MzFXFtAykfzFjAgaxPetu0YbBlCfXuMlfxI4vlRGCGMvFg==
 
+"@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
+  version "1.3.61"
+  dependencies:
+    "@open-wc/testing-karma" "^3.3.18"
+    "@types/node" "^11.13.0"
+    karma-browserstack-launcher "^1.0.0"
+
+"@open-wc/testing-karma@file:./packages/testing-karma":
+  version "3.3.18"
+  dependencies:
+    "@open-wc/karma-esm" "^2.14.0"
+    "@types/karma" "^5.0.0"
+    "@types/karma-coverage-istanbul-reporter" "^2.1.0"
+    "@types/karma-mocha" "^1.3.0"
+    "@types/karma-mocha-reporter" "^2.2.0"
+    axe-core "^3.3.1"
+    karma "^4.1.0"
+    karma-chrome-launcher "^3.1.0"
+    karma-coverage-istanbul-reporter "^2.0.0"
+    karma-mocha "^1.0.0"
+    karma-mocha-reporter "^2.0.0"
+    karma-mocha-snapshot "^0.2.1"
+    karma-snapshot "^0.6.0"
+    karma-source-map-support "^1.3.0"
+    mocha "^6.2.2"
+
 "@reach/router@^1.2.1":
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.3.3.tgz#58162860dce6c9449d49be86b0561b5ef46d80db"
