@@ -10,7 +10,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "outDir": "dist"
+    "outDir": "out-tsc"
   },
   "include": ["**/*.ts"]
 }

@@ -9,9 +9,9 @@ export class <%= className %> extends LitElement {
     }
   `;
 
-  @property() title: string = 'Hey there';
+  @property({type: String}) title = 'Hey there';
 
-  @property() counter: number = 5;
+  @property({type: Number}) counter = 5;
 
   __increment() {
     this.counter += 1;

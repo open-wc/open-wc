@@ -1,3 +1,3 @@
-import { <%= className %> } from './<%= className %>.ts';
+import { <%= className %> } from './<%= className %>.js';
 
 customElements.define('<%= tagName %>', <%= className %>);

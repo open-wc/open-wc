@@ -1,6 +1,6 @@
 ```js script
 import { html } from '@open-wc/demoing-storybook';
-import '../<%= tagName %>.js';
+import '../dist/<%= tagName %>.js';
 
 export default {
   title: '<%= className %>',

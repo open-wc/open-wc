@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "tags": [
+    {
+      "name": "asd-asd",
+      "description": "An application with a title and an action counter",
+      "properties": [
+        {
+          "name": "title",
+          "type": "String",
+          "description": "The title of your application",
+          "default": "Hey there"
+        },
+        {
+          "name": "page",
+          "type": "String",
+          "description": "Which page to show",
+          "default": "main"
+        }
+      ],
+      "events": [],
+      "slots": [],
+      "cssProperties": []
+    }
+  ]
+}

@@ -1,11 +1,10 @@
 import { LitElement, html, css, property } from 'lit-element';
 import { openWcLogo } from './open-wc-logo.js';
 
-export class <%= className %> extends LitElement {
+export class AsdAsd extends LitElement {
+  @property({ type: String }) page = 'main';
 
-  @property({type: String}) page = 'main';
-
-  @property({type: String}) title = '';
+  @property({ type: String }) title = '';
 
   static styles = css`
     :host {
@@ -55,7 +54,7 @@ export class <%= className %> extends LitElement {
         <div class="logo">${openWcLogo}</div>
         <h1>My app</h1>
 
-        <p>Edit <code>src/<%= className %>.js</code> and save to reload.</p>
+        <p>Edit <code>src/AsdAsd.js</code> and save to reload.</p>
         <a
           class="app-link"
           href="https://open-wc.org/developing/#code-examples"
