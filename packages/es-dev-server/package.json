@@ -137,6 +137,7 @@
     "request": "^2.88.0",
     "selfsigned": "^1.10.4",
     "ts-mocha": "^7.0.0",
+    "typescript": "^3.8.3",
     "uuid": "^3.3.2"
   }
 }
