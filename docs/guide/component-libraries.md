@@ -34,6 +34,10 @@ The hardest part of any project is often getting content onto that first blank p
 
   Take advantage of the component system that powers Ionic applications with a large ecosystem to choose from and in-depth usage instructions, no matter the framework you use.
 
+- [Kor UI](https://kor-ui.com/)
+
+  A Design System and complete UI component library built to facilitate the design and development of intuitive, coherent and pleasing applications based on Web technologies (HTML5). It contains 35+ components which are compatible with any framework, form factor, input type and modern browser.
+
 - [Lightning Web Components by SalesForce](https://developer.salesforce.com/docs/component-library/overview/components)
 
   Lightning Web Components are now the go-to standard for developing applications in the SalesForce ecosystem, and with the power of web components, they can be the basis of applications outside of their ecosystem, too!

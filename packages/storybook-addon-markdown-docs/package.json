@@ -1,6 +1,6 @@
 {
   "name": "storybook-addon-markdown-docs",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Write documentation in markdown for storybook",
   "license": "MIT",
   "repository": {
@@ -29,12 +29,11 @@
   "dependencies": {
     "@babel/code-frame": "^7.8.3",
     "@babel/core": "^7.9.0",
-    "@babel/generator": "^7.9.0",
-    "@babel/parser": "^7.9.2",
+    "@babel/generator": "^7.9.6",
+    "@babel/parser": "^7.9.6",
     "@babel/plugin-syntax-import-meta": "^7.8.3",
     "@mdjs/core": "^0.1.9",
     "@mdx-js/mdx": "^1.5.1",
-    "@storybook/addon-docs": "5.3.1",
     "detab": "^2.0.3",
     "mdurl": "^1.0.1",
     "remark-html": "^10.0.0",

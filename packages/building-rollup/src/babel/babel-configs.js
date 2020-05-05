@@ -1,4 +1,3 @@
-const { findModernBrowserslist } = require('./findModernBrowserslist');
 const { babelPluginBundledHelpers } = require('./babel-plugin-bundled-helpers');
 const { isFalsy } = require('../utils');
 
@@ -42,7 +41,16 @@ function createBabelConfigRollupGenerate(modern = true) {
       [
         require.resolve('@babel/preset-env'),
         {
-          targets: modern ? findModernBrowserslist() : ['ie 11'],
+          targets: modern
+            ? [
+                'last 3 Chrome major versions',
+                'last 3 ChromeAndroid major versions',
+                'last 3 Firefox major versions',
+                'last 3 Edge major versions',
+                'last 3 Safari major versions',
+                'last 3 iOS major versions',
+              ]
+            : ['ie 11'],
           useBuiltIns: false,
           shippedProposals: true,
           modules: false,

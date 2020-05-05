@@ -63,6 +63,40 @@ function createSpaConfig(options) {
     };
   }
 
+  const workboxPlugin = pluginWithOptions(
+    generateSW,
+    userOptions.workbox,
+    {
+      // Keep 'legacy-*.js' just for retro compatibility
+      globIgnores: ['polyfills/*.js', 'legacy-*.js', 'nomodule-*.js'],
+      navigateFallback: '/index.html',
+      // where to output the generated sw
+      swDest: path.join(process.cwd(), outputDir, 'sw.js'),
+      // directory to match patterns against to be precached
+      globDirectory: path.join(process.cwd(), outputDir),
+      // cache any html js and css by default
+      globPatterns: ['**/*.{html,js,css,webmanifest}'],
+      skipWaiting: true,
+      clientsClaim: true,
+      runtimeCaching: [
+        {
+          urlPattern: 'polyfills/*.js',
+          handler: 'CacheFirst',
+        },
+      ],
+    },
+    () => {},
+  );
+
+  if (userOptions.workbox) {
+    if (basicConfig.output.length > 1) {
+      const lastOutput = basicConfig.output.length - 1;
+      basicConfig.output[lastOutput].plugins.push(workboxPlugin);
+    } else {
+      basicConfig.output.plugins.push(workboxPlugin);
+    }
+  }
+
   return merge(basicConfig, {
     plugins: [
       // create HTML file output
@@ -70,32 +104,6 @@ function createSpaConfig(options) {
 
       // inject polyfills loader into HTML
       pluginWithOptions(polyfillsLoader, userOptions.polyfillsLoader, polyfillsLoaderConfig),
-
-      // generate service worker
-      userOptions.workbox &&
-        pluginWithOptions(
-          generateSW,
-          userOptions.workbox,
-          {
-            globIgnores: ['polyfills/*.js', 'legacy-*.js', 'nomodule-*.js'],
-            navigateFallback: '/index.html',
-            // where to output the generated sw
-            swDest: path.join(process.cwd(), outputDir, 'sw.js'),
-            // directory to match patterns against to be precached
-            globDirectory: path.join(process.cwd(), outputDir),
-            // cache any html js and css by default
-            globPatterns: ['**/*.{html,js,css,webmanifest}'],
-            skipWaiting: true,
-            clientsClaim: true,
-            runtimeCaching: [
-              {
-                urlPattern: 'polyfills/*.js',
-                handler: 'CacheFirst',
-              },
-            ],
-          },
-          () => {},
-        ),
     ],
   });
 }
