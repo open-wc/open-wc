@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import '../out-tsc/src/<%= tagName %>.js';
+import '../src/<%= tagName %>.js';
 
 export default {
   title: '<%= tagName %>',
