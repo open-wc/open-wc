@@ -1,0 +1,19 @@
+{
+  "include": ["src/**/*", "../**/polyfills-loader", "../**/building-utils"],
+  "compilerOptions": {
+    "strict": true,
+    "target": "es2018",
+    "module": "CommonJS",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "outDir": "tsc-dist",
+    "lib": ["es2018"],
+    "allowJs": true,
+    "checkJs": false,
+    "declaration": true,
+    "types": ["node", "mocha"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  }
+}

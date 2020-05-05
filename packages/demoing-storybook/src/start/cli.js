@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/** @typedef {import('es-dev-server').Config} ServerConfig */
+
 /* eslint-disable no-console, no-param-reassign */
 const { createConfig, startServer } = require('es-dev-server');
 const path = require('path');
@@ -13,7 +15,7 @@ const toBrowserPath = require('../shared/toBrowserPath');
 const getAssets = require('../shared/getAssets');
 
 async function run() {
-  const config = readCommandLineArgs();
+  const config = /** @type {ServerConfig & { stories: string[], addons: string[], configDir: string}} */ (readCommandLineArgs());
   const rootDir = config.rootDir ? path.resolve(process.cwd(), config.rootDir) : process.cwd();
 
   const storybookConfigDir = config.configDir;
