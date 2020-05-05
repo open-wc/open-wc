@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.1.3...@open-wc/demoing-storybook@2.2.0) (2020-05-05)
+
+
+### Features
+
+* **es-dev-server:** move to typescript ([179b299](https://github.com/open-wc/open-wc/commit/179b2991442aae30460479c21cc6edfbf30b7885))
+
+
+
+
+
 ## [2.1.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.1.2...@open-wc/demoing-storybook@2.1.3) (2020-05-02)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook

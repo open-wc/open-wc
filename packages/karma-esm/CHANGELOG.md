@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.28...@open-wc/karma-esm@2.14.0) (2020-05-05)
+
+
+### Features
+
+* **es-dev-server:** move to typescript ([179b299](https://github.com/open-wc/open-wc/commit/179b2991442aae30460479c21cc6edfbf30b7885))
+
+
+
+
+
 ## [2.13.28](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.13.27...@open-wc/karma-esm@2.13.28) (2020-04-26)
 
 

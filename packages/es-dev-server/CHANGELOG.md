@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.48.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.47.0...es-dev-server@1.48.0) (2020-05-05)
+
+
+### Features
+
+* **es-dev-server:** move to typescript ([179b299](https://github.com/open-wc/open-wc/commit/179b2991442aae30460479c21cc6edfbf30b7885))
+
+
+
+
+
 # [1.47.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.46.5...es-dev-server@1.47.0) (2020-04-26)
 
 
