@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/demoing-storybook",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "publishConfig": {
     "access": "public"
   },
@@ -59,7 +59,7 @@
     "command-line-args": "^5.0.2",
     "command-line-usage": "^6.1.0",
     "deepmerge": "^4.2.2",
-    "es-dev-server": "^1.48.0",
+    "es-dev-server": "^1.48.1",
     "es-module-lexer": "^0.3.13",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.3",
