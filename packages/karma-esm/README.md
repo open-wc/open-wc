@@ -1,12 +1,12 @@
 # karma-esm
 
-Karma plugin for running tests with es modules on a wide range of browsers.
+Karma plugin for testing with real es modules without any bundling.
 
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
-Out the box es modules don't work with karma because they import their dependencies from the browser, while karma doesn't allow requesting any files it doesn't know about upfront.
+Out the box es modules don't work with karma because they import their dependencies at runtime from the browser. Karma doesn't allow requesting any files it doesn't know about upfront.
 
-The `karma-esm` plugin fixes this and spins up [es-dev-server](https://open-wc.org/developing/es-dev-server.html) behind the scenes. This lets you write tests using es modules, modern javascript syntax and features, and have karma run them on all modern browsers and IE11.
+The `karma-esm` plugin fixes this and spins up [es-dev-server](https://open-wc.org/developing/es-dev-server.html) behind the scenes. This lets you write tests using es modules, modern javascript syntax, and features, and have karma run them on all modern browsers and IE11.
 
 `es-dev-server` takes care of loading the correct polyfills, and runs babel for older browsers if necessary. On browsers which don't support es modules, dynamic imports and/or import.meta.url, [systemjs](https://github.com/systemjs/systemjs) is used as a module polyfill.
 
@@ -64,7 +64,7 @@ module.exports = {
 | importMap        | string        | Path to import map used for testing.                                                                          |
 | compatibility    | string        | Compatibility level to run the `es-dev-server` with.                                                          |
 | coverageExclude  | array         | Extra glob patterns of tests to exclude from coverage.                                                        |
-| babelConfig      | string        | Custom babel configuration file to run on served code.                                                        |
+| babelConfig      | object        | Custom babel configuration file to run on served code.                                                        |
 | moduleDirs       | array         | Directories to resolve modules from. Defaults to `node_modules`                                               |
 | babel            | boolean       | Whether to pick up a babel configuration file in your project.                                                |
 | fileExtensions   | array         | Custom file extensions to serve as es modules.                                                                |
@@ -92,7 +92,7 @@ Due to a bug in karma, the test coverage reporter causes browser logs to appear 
 
 ### importMap
 
-Allows to control the behavior of ES imports according to the (in progress) [spec](https://github.com/WICG/import-maps).
+Allows controlling the behavior of ES imports according to the (in progress) [spec](https://github.com/WICG/import-maps).
 Since this feature is not enabled by default, is necessary to launch Chrome with `--enable-experimental-web-platform-features` flag.
 
 In karma.config.js add:
@@ -118,7 +118,7 @@ See the [compatibility documentation of es-dev-server](https://open-wc.org/devel
 
 ### preserveSymlinks
 
-The `es-dev-server` by default resolves the symlinks in the dependency directory. This can cause problem when you're using `npm link` command or other tools which rely on them. This option will make `es-dev-server` preserve symlinks.
+The `es-dev-server` by default resolves the symlinks in the dependency directory. This can cause a problem when you're using `npm link` command or other tools which rely on them. This option will make `es-dev-server` preserve symlinks.
 
 ## Karma preprocessors
 
@@ -138,67 +138,9 @@ You can configure `karma-esm` to pick up the babel configuration files in your p
 
 ## Testing typescript
 
-The simplest way to test typescript is to compile your typescript to javascript before running tests. Just run `tsc` in watch mode and include the compiled js files from your karma config.
+Because karma-esm doesn't do any bundling, it's easy to integrate it with typescript and doesn't require any extra tooling or plugins. Just run `tsc` on your code, and test the compiled output with karma-esm. You can run both `tsc` and karma in watch mode, changes will be picked up automatically.
 
-You can also configure `karma-esm` to run your typescript files directly. This is done by running it with a babel plugin to compile your typescript files to javascript.
-
-Note that when compiling typescript with babel it does not do any type checking or special typescript compilation such as decorators, class fields and enums. You can configure babel to cover most of these, but not all. [Read more about babel typescript here](https://babeljs.io/docs/en/babel-plugin-transform-typescript).
-
-1. Install the preset:
-
-```bash
-npm i --save-dev @babel/preset-typescript
-```
-
-2. Add a `babel.config.js` or `.babelrc` to your project:
-
-```json
-{
-  "presets": ["@babel/preset-typescript"]
-}
-```
-
-3. Configure your karma config to pick up your ts files:
-
-```javascript
-{
-  files: [
-    { pattern: 'test/**/*.test.ts', type: 'module' }
-  ],
-
-  esm: {
-    babel: true,
-    nodeResolve: true,
-    fileExtensions: ['.ts']
-  },
-}
-```
-
-To add support for experimental features that are normally handled by the typescript compiler, you can add extra plugins:
-
-1. Install the plugins:
-
-```bash
-npm i --save-dev @babel/plugin-proposal-decorators @babel/plugin-proposal-class-properties
-```
-
-2. Update your babel configuration:
-
-```json
-{
-  "presets": ["@babel/preset-typescript"],
-  // for libraries that support babel decorators (lit-element) use:
-  "plugins": [
-    ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
-    "@babel/plugin-proposal-class-properties"
-  ]
-  // for libraries that only support typescript:
-  // "plugins": [
-  //   ["@babel/plugin-proposal-decorators", { "legacy": true }],
-  //   ["@babel/plugin-proposal-class-properties", { "loose": true }]
-  // ],
-}
-```
+Make sure to configure `tsc` to output real ES modules.
 
 <script>
   export default {

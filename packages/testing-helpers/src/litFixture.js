@@ -70,7 +70,7 @@ export async function litFixture(template, options = {}) {
     const [node] =
       /** @type {T[]} */
       (Array.from(el.shadowRoot.childNodes).filter(isUsefulNode));
-    await elementUpdated(node.firstElementChild);
+    await elementUpdated(node);
 
     return node;
   }

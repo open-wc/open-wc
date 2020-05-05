@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.1...@open-wc/testing-helpers@1.8.2) (2020-05-01)
+
+
+### Bug Fixes
+
+* **testing-helpers:** await to the wrong element ([79575e1](https://github.com/open-wc/open-wc/commit/79575e16bf8d64f4eefd237f25000d9aae01edab))
+* **testing-helpers:** move peerDependencies to dependencies ([b2380eb](https://github.com/open-wc/open-wc/commit/b2380eb992bef13927c846499a8bab96714cc60e))
+
+
+
+
+
 ## [1.8.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.0...@open-wc/testing-helpers@1.8.1) (2020-04-26)
 
 
