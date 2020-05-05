@@ -10,6 +10,7 @@
     "lit-element": "^2.2.1"
   },
   "devDependencies": {
+    "@types/node": "13.11.1",
     "es-dev-server": "^1.23.0",
     "typescript": "^3.8.2",
     "concurrently": "^5.1.0",
