@@ -1,6 +1,6 @@
 ```js script
 import { html } from '@open-wc/demoing-storybook';
-import '../out-tsc/<%= tagName %>.js';
+import '../<%= tagName %>.js';
 
 export default {
   title: '<%= className %>',
