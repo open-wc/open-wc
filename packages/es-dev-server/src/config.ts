@@ -1,12 +1,12 @@
 import path from 'path';
 import { Middleware } from 'koa';
-import { defaultFileExtensions } from '@open-wc/building-utils';
 import { Options as NodeResolveOptions } from '@rollup/plugin-node-resolve';
 import { PolyfillsLoaderConfig } from './utils/inject-polyfills-loader';
 import { toBrowserPath, setDebug } from './utils/utils';
 import { compatibilityModes } from './constants';
 import { ResponseTransformer } from './middleware/response-transform';
 import { TransformOptions, Node } from '@babel/core';
+import { Plugin } from './Plugin';
 
 // Config object for Koa compress middleware
 export interface CompressOptions {
@@ -85,7 +85,7 @@ export interface Config {
    */
   dedupeModules?: boolean | string[] | ((importee: string) => boolean);
   /** configuration for the polyfills loader */
-  polyfillsLoader?: Partial<PolyfillsLoaderConfig>;
+  polyfillsLoader?: boolean | Partial<PolyfillsLoaderConfig>;
   /**
    * preserve symlinks when resolving modules. Default false,
    * which is the default node behavior.
@@ -97,6 +97,9 @@ export interface Config {
    * find directories with these names
    */
   moduleDirs?: string[];
+  /** plugins to load */
+  plugins?: Plugin[];
+
   /** whether to use the user's .babelrc babel config */
   babel?: boolean;
   /** file extensions to run babel on */
@@ -144,7 +147,9 @@ export interface ParsedConfig {
   sslCert?: string;
 
   // Code transformation
+  plugins: Plugin[];
   nodeResolve: boolean | NodeResolveOptions;
+  polyfillsLoader: boolean;
   polyfillsLoaderConfig?: Partial<PolyfillsLoaderConfig>;
   readUserBabelConfig: boolean;
   compatibilityMode: string;
@@ -179,6 +184,7 @@ export function createConfig(config: Partial<Config>): ParsedConfig {
     watch = false,
     logErrorsToBrowser = false,
     polyfillsLoader,
+    plugins = [],
     responseTransformers = [],
     debug = false,
     nodeResolve: nodeResolveArg = false,
@@ -242,7 +248,15 @@ export function createConfig(config: Partial<Config>): ParsedConfig {
     openPath = basePath ? `${basePath}/` : '/';
   }
 
-  const fileExtensions = [...(fileExtensionsArg || []), ...defaultFileExtensions];
+  const fileExtensions = [
+    ...(fileExtensionsArg || []),
+    '.mjs',
+    '.js',
+    '.cjs',
+    '.jsx',
+    '.ts',
+    '.tsx',
+  ];
 
   let nodeResolve = nodeResolveArg;
   // some node resolve options can be set separately for convenience, primarily
@@ -267,6 +281,8 @@ export function createConfig(config: Partial<Config>): ParsedConfig {
     }
   }
 
+  const polyfillsLoaderConfig = typeof polyfillsLoader === 'boolean' ? undefined : polyfillsLoader;
+
   return {
     appIndex,
     appIndexDir,
@@ -275,7 +291,8 @@ export function createConfig(config: Partial<Config>): ParsedConfig {
     babelModuleExclude,
     basePath,
     compatibilityMode: compatibility,
-    polyfillsLoaderConfig: polyfillsLoader,
+    polyfillsLoader: polyfillsLoader !== false,
+    polyfillsLoaderConfig,
     compress,
     customBabelConfig: babelConfig,
     customMiddlewares: middlewares,
@@ -283,6 +300,7 @@ export function createConfig(config: Partial<Config>): ParsedConfig {
     fileExtensions,
     hostname,
     http2,
+    plugins,
     logStartup: !!logStartup,
     nodeResolve,
     openBrowser: open === true || typeof open === 'string',

@@ -103,8 +103,7 @@ export function createResponseBodyCacheMiddleware(cfg: ResponseBodyCacheMiddlewa
       return;
     }
 
-    const strippedUrl = ctx.url.split('?')[0].split('#')[0];
-    if (isGeneratedFile(ctx.url) || !cfg.fileExtensions.some(ext => strippedUrl.endsWith(ext))) {
+    if (isGeneratedFile(ctx.url) || !ctx.response.is('js')) {
       return;
     }
 

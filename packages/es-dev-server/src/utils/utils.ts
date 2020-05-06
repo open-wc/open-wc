@@ -3,6 +3,7 @@ import isStream from 'is-stream';
 import getStream from 'get-stream';
 import Stream from 'stream';
 import path from 'path';
+import mimeTypes from 'mime-types';
 import { Context, Request } from 'koa';
 import { isBinaryFile } from 'isbinaryfile';
 import { virtualFilePrefix } from '../constants';
@@ -28,6 +29,11 @@ export class IsBinaryFileError extends Error {}
  * with a string, so we keep a reference with a weakmap
  */
 const filePathsForRequests = new WeakMap<Request, string>();
+
+export function isUtf8(context: Context) {
+  const charSet = mimeTypes.charset(context.response.get('content-type'));
+  return charSet === false ? false : charSet.toLowerCase() === 'utf-8';
+}
 
 /**
  * Returns the body value as string. If the response is a stream, the
@@ -113,9 +119,11 @@ export class SSEStream extends Stream.Transform {
 }
 
 /**
- * Returns the index html response, or null if this wasn't an index.html response
+ * Returns whether this is a HTML document response
+ *
+ * TODO: Rename to isHTMLResponse
  */
-export async function isIndexHTMLResponse(ctx: Context, appIndex?: string): Promise<boolean> {
+export function isIndexHTMLResponse(ctx: Context, appIndex?: string): boolean {
   if (ctx.status < 200 || ctx.status >= 300) {
     return false;
   }
@@ -141,7 +149,7 @@ export function isPolyfill(url: string) {
   return url.includes('/polyfills/');
 }
 
-export function shoudlTransformToModule(url: string) {
+export function shouldTransformToModule(url: string) {
   return url.includes('transform-systemjs');
 }
 

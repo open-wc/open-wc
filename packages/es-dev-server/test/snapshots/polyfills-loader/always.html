@@ -13,6 +13,8 @@
   <!-- absolute path -->
   
 
+  
+
 
 
 <script>(function () {
@@ -67,6 +69,8 @@
         return loadScript('../src/app.js', 'module');
       }, function () {
         return loadScript('/src/app.js', 'module');
+      }, function () {
+        return loadScript('./inline-script-3.js?source=%2Findex.html', 'module');
       }].reduce(function (a, c) {
         return a.then(c);
       }, Promise.resolve());
