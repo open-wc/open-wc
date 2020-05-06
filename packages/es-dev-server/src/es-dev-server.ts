@@ -5,3 +5,4 @@ export * from './create-server';
 export * from './start-server';
 
 export * from './constants';
+export * from './Plugin';

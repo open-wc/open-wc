@@ -4,20 +4,25 @@ import koaCompress from 'koa-compress';
 import chokidar from 'chokidar';
 import { createBasePathMiddleware } from './middleware/base-path';
 import { createHistoryAPIFallbackMiddleware } from './middleware/history-api-fallback';
-import { createCompatibilityTransformMiddleware } from './middleware/compatibility-transform';
 import { createWatchServedFilesMiddleware } from './middleware/watch-served-files';
-import { createPolyfillsLoaderMiddleware } from './middleware/polyfills-loader';
 import { createMessageChannelMiddleware } from './middleware/message-channel';
 import { createEtagCacheMiddleware } from './middleware/etag-cache';
 import { createResponseBodyCacheMiddleware } from './middleware/response-body-cache';
 import { setupBrowserReload } from './utils/setup-browser-reload';
 import { compatibilityModes } from './constants';
 import { createResponseTransformMiddleware } from './middleware/response-transform';
-import { createResolveModuleImports } from './utils/resolve-module-imports';
-import { createCompatibilityTransform } from './utils/compatibility-transform';
 import { logDebug } from './utils/utils';
 import { ParsedConfig } from './config';
 import { Middleware } from 'koa';
+import { createPluginServeMiddlware } from './middleware/plugin-serve';
+import { createPluginTransformMiddlware } from './middleware/plugin-transform';
+import { createPluginMimeTypeMiddleware } from './middleware/plugin-mime-type';
+import { Plugin } from './Plugin';
+import { resolveModuleImportsPlugin } from './plugins/resolveModuleImportsPlugin';
+import { nodeResolvePlugin } from './plugins/nodeResolvePlugin';
+import { fileExtensionsPlugin } from './plugins/fileExtensionsPlugin';
+import { babelTransformPlugin } from './plugins/babelTransformPlugin';
+import { polyfillsLoaderPlugin } from './plugins/polyfillsLoaderPlugin';
 
 const defaultCompressOptions = {
   filter(contentType: string) {
@@ -25,6 +30,10 @@ const defaultCompressOptions = {
     return contentType !== 'text/event-stream';
   },
 };
+
+function hasHook(plugins: Plugin[], hook: string) {
+  return plugins.some(plugin => hook in plugin);
+}
 
 /**
  * Creates middlewares based on the given configuration. The middlewares can be
@@ -37,9 +46,6 @@ export function createMiddlewares(
   const {
     appIndex,
     appIndexDir,
-    babelExclude,
-    babelModernExclude,
-    babelModuleExclude,
     basePath,
     compatibilityMode,
     compress,
@@ -48,8 +54,10 @@ export function createMiddlewares(
     responseTransformers,
     fileExtensions,
     nodeResolve,
+    polyfillsLoader,
     polyfillsLoaderConfig,
     readUserBabelConfig,
+    plugins,
     rootDir,
     watch,
     logErrorsToBrowser,
@@ -76,35 +84,29 @@ export function createMiddlewares(
     );
   }
 
-  const setupCompatibility =
-    customBabelConfig || compatibilityMode !== compatibilityModes.NONE || readUserBabelConfig;
+  const setupCompatibility = compatibilityMode !== compatibilityModes.NONE;
+  const setupBabel = customBabelConfig || readUserBabelConfig;
   const setupHistoryFallback = appIndex;
   const setupMessageChanel = watch || (logErrorsToBrowser && (setupCompatibility || nodeResolve));
 
-  const resolveModuleImports = nodeResolve
-    ? createResolveModuleImports(
-        rootDir,
-        fileExtensions,
-        typeof nodeResolve === 'boolean' ? undefined : nodeResolve,
-      )
-    : undefined;
-  const transformJs =
-    setupCompatibility || nodeResolve
-      ? createCompatibilityTransform(
-          {
-            rootDir,
-            readUserBabelConfig,
-            nodeResolve,
-            compatibilityMode,
-            customBabelConfig,
-            fileExtensions,
-            babelExclude,
-            babelModernExclude,
-            babelModuleExclude,
-          },
-          resolveModuleImports,
-        )
-      : undefined;
+  if (fileExtensions.length > 0) {
+    plugins.unshift(fileExtensionsPlugin());
+  }
+
+  if (nodeResolve || hasHook(plugins, 'resolveId')) {
+    plugins.push(resolveModuleImportsPlugin());
+    if (nodeResolve) {
+      plugins.push(nodeResolvePlugin());
+    }
+  }
+
+  if (setupCompatibility || setupBabel) {
+    plugins.push(babelTransformPlugin());
+  }
+
+  if (polyfillsLoader && setupCompatibility) {
+    plugins.push(polyfillsLoaderPlugin());
+  }
 
   // strips a base path from requests
   if (basePath) {
@@ -147,30 +149,6 @@ export function createMiddlewares(
     }),
   );
 
-  // compile code using babel and/or resolve module imports
-  if ((setupCompatibility || nodeResolve) && transformJs) {
-    middlewares.push(
-      createCompatibilityTransformMiddleware({
-        rootDir,
-        fileExtensions,
-        transformJs,
-      }),
-    );
-  }
-
-  // injects polyfills and shims for compatibility with older browsers
-  if ((setupCompatibility || nodeResolve) && transformJs) {
-    middlewares.push(
-      createPolyfillsLoaderMiddleware({
-        compatibilityMode,
-        polyfillsLoaderConfig,
-        rootDir,
-        appIndex,
-        transformJs,
-      }),
-    );
-  }
-
   // serves index.html for non-file requests for SPA routing
   if (setupHistoryFallback && typeof appIndex === 'string' && typeof appIndexDir === 'string') {
     middlewares.push(createHistoryAPIFallbackMiddleware({ appIndex, appIndexDir }));
@@ -180,11 +158,17 @@ export function createMiddlewares(
     setupBrowserReload({ fileWatcher, watchDebounce });
   }
 
+  middlewares.push(createPluginTransformMiddlware({ plugins }));
+
+  // DEPRECATED: Response transformers (now split up in serve and transform in plugins)
   if (responseTransformers) {
     middlewares.push(createResponseTransformMiddleware({ responseTransformers }));
   }
 
-  // serve sstatic files
+  middlewares.push(createPluginMimeTypeMiddleware({ plugins }));
+  middlewares.push(createPluginServeMiddlware({ plugins }));
+
+  // serve static files
   middlewares.push(
     koaStatic(rootDir, {
       hidden: true,
