@@ -19,6 +19,7 @@ const openWcTargets = [
  */
 module.exports = function findSupportedBrowsers() {
   // generate default list
+  // @ts-ignore
   const browserslistDefaultTargets = browserslist(browserslist.defaults);
   // empty call causes browserslist to find a user-defined configuration
   // for example in .bowerslistrc or the package.json
