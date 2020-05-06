@@ -21,7 +21,7 @@ export function gatherMixins(options) {
   const mixins = [];
 
   if (options.type === 'scaffold') {
-    if (options.typescript) {
+    if (options.typescript === 'true') {
       switch (options.scaffoldType) {
         case 'wc':
           mixins.push(TsWcLitElementPackageMixin);
@@ -49,7 +49,7 @@ export function gatherMixins(options) {
   }
 
   if (options.features && options.features.length > 0) {
-    if (options.typescript) {
+    if (options.typescript === 'true') {
       options.features.forEach(feature => {
         if (feature === 'linting') {
           mixins.push(TsLintingMixin);
@@ -84,7 +84,7 @@ export function gatherMixins(options) {
 
   if (considerScaffoldFilesFor && options.scaffoldFilesFor && options.scaffoldFilesFor.length > 0) {
     options.scaffoldFilesFor.forEach(feature => {
-      if (options.typescript) {
+      if (options.typescript === 'true') {
         switch (feature) {
           case 'testing':
             mixins.push(TsTestingScaffoldMixin);
