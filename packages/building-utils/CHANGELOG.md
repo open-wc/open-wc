@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.16.4...@open-wc/building-utils@2.17.0) (2020-05-05)
+
+
+### Bug Fixes
+
+* **polyfills-loader:** allow forcing the polyfill ([ee44812](https://github.com/open-wc/open-wc/commit/ee44812f89e90879713a0ba5cd79e631c57f6d4e))
+
+
+### Features
+
+* **es-dev-server:** move to typescript ([179b299](https://github.com/open-wc/open-wc/commit/179b2991442aae30460479c21cc6edfbf30b7885))
+
+
+
+
+
 ## [2.16.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.16.3...@open-wc/building-utils@2.16.4) (2020-04-20)
 
 **Note:** Version bump only for package @open-wc/building-utils
