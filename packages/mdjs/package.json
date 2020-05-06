@@ -43,6 +43,7 @@
     "es-module-lexer": "^0.3.13",
     "github-markdown-css": "^3.0.1",
     "rehype-autolink-headings": "^2.0.5",
+    "rehype-prism-template": "^0.4.1",
     "rehype-raw": "^4.0.1",
     "rehype-slug": "^2.0.3",
     "rehype-stringify": "^6.0.1",
@@ -54,6 +55,7 @@
     "unist-util-visit": "^2.0.1"
   },
   "devDependencies": {
+    "demo-wc-card": "^0.0.1",
     "remark-autolink-headings": "^5.2.1",
     "remark-html": "^10.0.0",
     "remark-slug": "^5.1.2",

@@ -1,7 +1,7 @@
 /* eslint-disable no-template-curly-in-string */
 
 const chai = require('chai');
-const { mdjsProcess } = require('../src/mdjsProcess.js');
+const { mdjsProcess, mdjsProcessPlugins } = require('../src/mdjsProcess.js');
 
 const { expect } = chai;
 
@@ -25,7 +25,7 @@ describe('mdjsProcess', () => {
   it('extracts code blocks with "js story" and "js preview-story" and places marker tags', async () => {
     const expected = [
       '<p>Intro</p>',
-      '<pre><code class="language-js">const foo = 1;',
+      '<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> foo <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>',
       '</code></pre>',
       '<mdjs-story mdjs-story-name="fooStory"></mdjs-story>',
       '<mdjs-preview mdjs-story-name="fooPreviewStory"></mdjs-preview>',
@@ -55,19 +55,31 @@ describe('mdjsProcess', () => {
     );
     expect(result.jsCode).to.equal('');
   });
+
+  it('allows to fully configure the plugin list', async () => {
     const expected = [
       '<p>Intro</p>',
-      '<pre><code class="language-js">const foo = 1;',
+      '<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> foo <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>',
       '</code></pre>',
       '<my-story mdjs-story-name="fooStory"></my-story>',
       '<my-preview mdjs-story-name="fooPreviewStory"></my-preview>',
     ].join('\n');
 
+    const plugins = mdjsProcessPlugins.map(pluginObj => {
+      if (pluginObj.name === 'mdjsStoryParse') {
+        return {
+          ...pluginObj,
+          options: {
+            storyTag: name => `<my-story mdjs-story-name="${name}"></my-story>`,
+            previewStoryTag: name => `<my-preview mdjs-story-name="${name}"></></my-preview>`,
+          },
+        };
+      }
+      return pluginObj;
+    });
+
     const result = await mdjsProcess(input, {
-      mdjsStoryParseOptions: {
-        storyTag: name => `<my-story mdjs-story-name="${name}"></my-story>`,
-        previewStoryTag: name => `<my-preview mdjs-story-name="${name}"></></my-preview>`,
-      },
+      plugins,
     });
 
     expect(result.html).to.equal(expected);

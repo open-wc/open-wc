@@ -1,6 +1,7 @@
 /** @typedef {import('./types').Story} Story */
 /** @typedef {import('./types').ParseResult} ParseResult */
 /** @typedef {import('./types').ProcessResult} ProcessResult */
+/** @typedef {import('./types').MdjsProcessPlugin} MdjsProcessPlugin */
 
 const unified = require('unified');
 const markdown = require('remark-parse');
@@ -9,23 +10,32 @@ const raw = require('rehype-raw');
 const htmlStringify = require('rehype-stringify');
 const htmlSlug = require('rehype-slug');
 const htmlHeading = require('rehype-autolink-headings');
+const rehypePrism = require('rehype-prism-template');
 
 const { mdjsParse } = require('./mdjsParse.js');
 const { mdjsStoryParse } = require('./mdjsStoryParse.js');
 
+/** @type {MdjsProcessPlugin[]} */
+const mdjsProcessPlugins = [
+  { name: 'markdown', plugin: markdown },
+  { name: 'mdjsParse', plugin: mdjsParse },
+  { name: 'mdjsStoryParse', plugin: mdjsStoryParse },
+  { name: 'remark2rehype', plugin: remark2rehype, options: { allowDangerousHTML: true } },
+  { name: 'rehypePrism', plugin: rehypePrism },
+  { name: 'raw', plugin: raw },
+  { name: 'htmlSlug', plugin: htmlSlug },
+  { name: 'htmlHeading', plugin: htmlHeading },
+  { name: 'htmlStringify', plugin: htmlStringify },
+];
+
 async function mdjsProcess(
   mdjs,
-  { rootNodeQueryCode = 'document', mdjsStoryParseOptions = {} } = {},
+  { rootNodeQueryCode = 'document', plugins = mdjsProcessPlugins } = {},
 ) {
-  const parser = unified()
-    .use(markdown)
-    .use(mdjsParse)
-    .use(mdjsStoryParse, mdjsStoryParseOptions)
-    .use(remark2rehype, { allowDangerousHTML: true })
-    .use(raw)
-    .use(htmlSlug)
-    .use(htmlHeading)
-    .use(htmlStringify);
+  const parser = unified();
+  for (const pluginObj of plugins) {
+    parser.use(pluginObj.plugin, pluginObj.options);
+  }
 
   /** @type {unknown} */
   const parseResult = await parser.process(mdjs);
@@ -62,4 +72,5 @@ async function mdjsProcess(
 
 module.exports = {
   mdjsProcess,
+  mdjsProcessPlugins,
 };

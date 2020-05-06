@@ -6,7 +6,7 @@ const { mdjsStoryParse } = require('./src/mdjsStoryParse.js');
 const { mdjsDocPage } = require('./src/mdjsDocPage.js');
 const { mdjsTransformer } = require('./src/mdjsTransformer.js');
 const { resolveToUnpkg } = require('./src/resolveToUnpkg.js');
-const { mdjsProcess } = require('./src/mdjsProcess.js');
+const { mdjsProcess, mdjsProcessPlugins } = require('./src/mdjsProcess.js');
 const { isMdjsContent } = require('./src/isMdjsContent.js');
 
 module.exports = {
@@ -14,6 +14,7 @@ module.exports = {
   mdjsStoryParse,
   mdjsDocPage,
   mdjsProcess,
+  mdjsProcessPlugins,
   mdjsTransformer,
   resolveToUnpkg,
   isMdjsContent,
