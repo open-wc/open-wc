@@ -18,6 +18,7 @@
     "eslint": "^6.1.0",
     "@open-wc/eslint-config": "^2.0.0",
     "prettier": "^2.0.4",
+    "eslint-config-prettier": "^6.11.0",
     "husky": "^1.0.0",
     "lint-staged": "^8.0.0",
     "@open-wc/testing-karma": "^3.0.0",

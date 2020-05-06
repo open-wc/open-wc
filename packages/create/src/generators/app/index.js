@@ -19,9 +19,9 @@ const optionDefinitions = [
   { name: 'destinationPath', type: String }, // path
   { name: 'type', type: String }, // scaffold, upgrade
   { name: 'scaffoldType', type: String }, // wc, app
-  { name: 'typescript', type: Boolean }, // wc, app
   { name: 'features', type: String, multiple: true }, // linting, testing, demoing, building
   { name: 'scaffoldFilesFor', type: String, multiple: true }, // testing, demoing, building
+  { name: 'typescript', type: String },
   { name: 'tagName', type: String },
   { name: 'installDependencies', type: String }, // yarn, npm, false
   { name: 'writeToDisk', type: String }, // true, false
@@ -94,8 +94,8 @@ export const AppMixin = subclass =>
           name: 'typescript',
           message: 'Would you like to use typescript?',
           choices: [
-            { title: 'Yes', value: true },
-            { title: 'No', value: false },
+            { title: 'No', value: 'false' },
+            { title: 'Yes', value: 'true' },
           ],
         },
         {
@@ -134,7 +134,7 @@ export const AppMixin = subclass =>
       const mixins = gatherMixins(this.options);
       // app is separate to prevent circular imports
       if (this.options.type === 'scaffold' && this.options.scaffoldType === 'app') {
-        if (this.options.typescript) {
+        if (this.options.typescript === 'true') {
           mixins.push(TsAppLitElementMixin);
         } else {
           mixins.push(AppLitElementMixin);
