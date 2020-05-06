@@ -38,7 +38,16 @@ customElements.define('my-el', MyEl);
 
 ## Demo Support (Story)
 
-mdjs comes with some additional helpers like
+mdjs comes with some additional helpers you can choose to import via
+
+````md
+```js script
+import '@mdjs/mdjs-story/mdjs-story.js';
+import '@mdjs/mdjs-preview/mdjs-preview.js';
+```
+````
+
+once loaded you can use them like so.
 
 ### js story
 
@@ -72,6 +81,21 @@ Will become a live demo wrapped in a container with a show code button.
 export const JsStory = () => html` <demo-wc-card>JS Story</demo-wc-card> `;
 ```
 ````
+
+Here is a live example from [demo-wc-card](https://www.npmjs.com/package/demo-wc-card).
+
+```js script
+import '@mdjs/mdjs-story/mdjs-story.js';
+import '@mdjs/mdjs-preview/mdjs-preview.js';
+import { html } from 'lit-html';
+```
+
+```js preview-story
+import 'demo-wc-card/demo-wc-card.js';
+export const header = () => {
+  return html` <demo-wc-card .header=${'my new header'}></demo-wc-card> `;
+};
+```
 
 ## Supported Systems
 
@@ -146,12 +170,12 @@ const { mdjsProcess } = require('@mdjs/core');
 const data = await mdjsProcess(markdownString);
 console.log(data);
 /*
-{ 
+{
   jsCode: "
     import '@mdjs/mdjs-story/mdjs-story.js';
     ...
   ",
-  html: '<h1>Markdown One</h1>', 
+  html: '<h1>Markdown One</h1>',
 }
 */
 ```
