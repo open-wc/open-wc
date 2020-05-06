@@ -31,8 +31,6 @@ describe('mdjsProcess', () => {
       '<mdjs-preview mdjs-story-name="fooPreviewStory"></mdjs-preview>',
     ].join('\n');
     const expectedJsCode = [
-      "import '@mdjs/mdjs-story/mdjs-story.js';",
-      "import '@mdjs/mdjs-preview/mdjs-preview.js';",
       'const bar = 2;',
       'export const fooStory = () => {}',
       'export const fooPreviewStory = () => {}',
@@ -50,7 +48,13 @@ describe('mdjsProcess', () => {
     expect(result.jsCode).to.equal(expectedJsCode);
   });
 
-  it('allows to configure the marker tags', async () => {
+  it('has no js code if there are no stories', async () => {
+    const result = await mdjsProcess('## Intro');
+    expect(result.html).to.equal(
+      '<h2 id="intro"><a aria-hidden="true" href="#intro"><span class="icon icon-link"></span></a>Intro</h2>',
+    );
+    expect(result.jsCode).to.equal('');
+  });
     const expected = [
       '<p>Intro</p>',
       '<pre><code class="language-js">const foo = 1;',
