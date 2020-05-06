@@ -6,12 +6,24 @@
 /** @typedef {import('./types').ParsedScopesMap} ParsedScopesMap */
 /** @typedef {import('./types').ParsedSpecifierMap} ParsedSpecifierMap */
 
-const assert = require('assert');
+const _assert = require('assert');
+// NB: TS casts the `required` function to a const, then pukes on the assertion
+// see https://github.com/microsoft/TypeScript/issues/34523#issuecomment-542978853
+/**
+ *
+ * @param {*} x
+ * @param {string|Error} [message]
+ * @return {asserts x}
+ */
+function assert(x, message) {
+  return _assert(x, message);
+}
+
 const { tryURLParse, tryURLLikeSpecifierParse } = require('./utils.js');
 
 /**
- * @param {unknown} value
- * @returns {boolean}
+ * @param {*} value
+ * @returns {value is object}
  */
 function isJSONObject(value) {
   return typeof value === 'object' && value != null && !Array.isArray(value);
