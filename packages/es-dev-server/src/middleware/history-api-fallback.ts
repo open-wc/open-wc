@@ -1,4 +1,5 @@
 import { Middleware } from 'koa';
+import path from 'path';
 
 interface HistoryAPIFallbackMiddlewareConfig {
   appIndex: string;
@@ -13,9 +14,8 @@ export function createHistoryAPIFallbackMiddleware(
   cfg: HistoryAPIFallbackMiddlewareConfig,
 ): Middleware {
   return function historyAPIFallback(ctx, next) {
-    // . character hints at a file request (could possibly check with regex for file ext)
-    const cleanUrl = ctx.url.split('?')[0].split('#')[0];
-    if (ctx.method !== 'GET' || cleanUrl.includes('.')) {
+    if (ctx.method !== 'GET' || path.extname(ctx.path)) {
+      // not a GET, or a direct file request
       return next();
     }
 

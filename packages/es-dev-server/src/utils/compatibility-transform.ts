@@ -2,7 +2,6 @@ import { TransformOptions } from '@babel/core';
 import { Options } from '@rollup/plugin-node-resolve';
 import { BabelTransform } from './babel-transform';
 import { UserAgentCompat } from './user-agent-compat';
-import { ResolveModuleImports } from './resolve-module-imports';
 import minimatch from 'minimatch';
 import {
   createCompatibilityBabelTransform,
@@ -35,10 +34,7 @@ export interface FileData {
 
 export type TransformJs = (file: FileData) => Promise<string>;
 
-export function createCompatibilityTransform(
-  cfg: CompatibilityTransformConfig,
-  resolveModuleImports?: ResolveModuleImports,
-): TransformJs {
+export function createCompatibilityTransform(cfg: CompatibilityTransformConfig): TransformJs {
   /** @type {Map} */
   const babelTransforms = new Map<string, BabelTransform>();
   const minCompatibilityTransform = createMinCompatibilityBabelTransform(cfg);
@@ -146,13 +142,11 @@ export function createCompatibilityTransform(
   async function compatibilityTransform(file: FileData) {
     const excludeFromBabel = cfg.babelExclude.some(pattern => minimatch(file.filePath, pattern));
     const transformBabel = !excludeFromBabel && shouldTransformBabel(file);
-    const transformModuleImports = !excludeFromBabel && cfg.nodeResolve;
     const transformModules = shouldTransformModules(file);
     let transformedCode = file.code;
 
     logDebug(
       `Compatibility transform babel: ${transformBabel}, ` +
-        `imports: ${transformModuleImports}, ` +
         `modules: ${transformModules} ` +
         `for request: ${file.filePath}`,
     );
@@ -164,14 +158,6 @@ export function createCompatibilityTransform(
     if (transformBabel) {
       const compatTransform = getCompatibilityBabelTranform(file);
       transformedCode = await compatTransform(file.filePath, transformedCode);
-    }
-
-    /**
-     * Resolve module imports. This isn't a babel plugin because if only node-resolve is configured,
-     * we don't need to run babel which makes it a lot faster
-     */
-    if (transformModuleImports && resolveModuleImports) {
-      transformedCode = await resolveModuleImports(file.filePath, transformedCode);
     }
 
     /**

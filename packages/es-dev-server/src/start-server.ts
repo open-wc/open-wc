@@ -46,9 +46,16 @@ export async function startServer(cfg: ParsedConfig, fileWatcher = chokidar.watc
     stopServer();
   });
 
+  // Deprecated: replaced by plugins
   if (cfg.onServerStart) {
     await cfg.onServerStart(cfg);
   }
+
+  // call server start plugin hooks in parallel
+  const startHooks = cfg.plugins
+    .filter(pl => !!pl.serverStart)
+    .map(pl => pl.serverStart?.({ config: cfg, app, server, fileWatcher }));
+  await Promise.all(startHooks);
 
   // start the server, open the browser and log messages
   await new Promise(resolve =>

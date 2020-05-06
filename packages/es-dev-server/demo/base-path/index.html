@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <base href="/my-base-path/demo/node-resolve/">
+  <base href="/my-base-path/demo/base-path/">
 </head>
 
 <body>
@@ -23,17 +23,8 @@
 
 <script type="module">
   /* eslint-disable */
-  import { html, render } from 'lit-html';
   import { foo } from './module-b.js';
-
   console.log('inline module 0', foo());
-
-  render(
-    html`
-      <strong>inline module 0 loaded correctlyX</strong>
-    `,
-    document.getElementById('inlineApp'),
-  );
 </script>
 
 <script type="module" src="./module-a.js"></script>

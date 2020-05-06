@@ -13,6 +13,8 @@
   <!-- absolute path -->
   
 
+  
+
 
 
 <script>(function () {
@@ -74,6 +76,8 @@
         return System.import('../src/app.js');
       }, function () {
         return System.import('/src/app.js');
+      }, function () {
+        return System.import('./inline-script-3.js?source=%2Findex.html');
       }].reduce(function (a, c) {
         return a.then(c);
       }, Promise.resolve());

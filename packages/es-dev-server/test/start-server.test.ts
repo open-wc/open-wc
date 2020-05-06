@@ -1,4 +1,7 @@
 /* eslint-disable no-restricted-syntax, no-await-in-loop */
+import Koa from 'koa';
+import { Server } from 'net';
+import { FSWatcher } from 'chokidar';
 import { expect } from 'chai';
 import fetch from 'node-fetch';
 import path from 'path';
@@ -134,7 +137,7 @@ describe('server', () => {
     server.close();
   });
 
-  it('calls server start and stop functions', async () => {
+  it('calls the onServerStart', async () => {
     let onStart = false;
     const { server } = await startServer(
       createConfig({
@@ -145,6 +148,65 @@ describe('server', () => {
     );
 
     expect(onStart).to.be.true;
+    server.close();
+  });
+
+  it('calls server start plugin hook', async () => {
+    let startArgs;
+    const { server } = await startServer(
+      createConfig({
+        plugins: [
+          {
+            serverStart(args) {
+              startArgs = args;
+            },
+          },
+        ],
+      }),
+    );
+
+    expect(startArgs).to.exist;
+    expect(startArgs.app).to.be.an.instanceOf(Koa);
+    expect(startArgs.server).to.be.an.instanceOf(Server);
+    expect(startArgs.fileWatcher).to.be.an.instanceOf(FSWatcher);
+    expect(startArgs.config).to.be.an('object');
+
+    server.close();
+  });
+
+  it('waits on server start hooks before starting', async () => {
+    let aFinished = false;
+    let bFinished = false;
+
+    const { server } = await startServer(
+      createConfig({
+        plugins: [
+          {
+            serverStart() {
+              return new Promise(resolve =>
+                setTimeout(() => {
+                  aFinished = true;
+                  resolve();
+                }, 5),
+              );
+            },
+          },
+          {
+            serverStart() {
+              return new Promise(resolve =>
+                setTimeout(() => {
+                  bFinished = true;
+                  resolve();
+                }, 10),
+              );
+            },
+          },
+        ],
+      }),
+    );
+
+    expect(aFinished).to.be.true;
+    expect(bFinished).to.be.true;
     server.close();
   });
 });

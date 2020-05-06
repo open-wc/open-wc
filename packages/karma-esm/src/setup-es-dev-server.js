@@ -75,8 +75,8 @@ async function fetchKarmaHTML(karmaHost, name, importMap) {
         .map(
           path => `import('${path}')
           .catch((e) => {
-            console.log('Error loading test file: ${path.split('?')[0].replace('/base', '')}');
-            throw e;
+            console.error('Error loading test file: ${path.split('?')[0].replace('/base', '')}');
+            console.error(e.stack);
           })`,
         )
         .join(',')}])

@@ -21,6 +21,14 @@
     document.getElementById('test').innerHTML = `<pre>${JSON.stringify(window.__tests, null, 2)}</pre>`;
   </script>
 
+  <script>
+    (async() => {
+      await fetch('/README.md');
+      await fetch('/module.js');
+    })()
+
+  </script>
+
 </body>
 
 </html>
