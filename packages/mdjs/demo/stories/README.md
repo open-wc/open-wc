@@ -23,16 +23,30 @@ yarn add @foo/demo-wc-card
 import '@foo/demo-wc-card/demo-wc-card.js';
 ```
 
-## Story
+## Js Story
 
 ```js story
 export const JsStory = () => html` <demo-wc-card>JS Story</demo-wc-card> `;
 ```
 
-## Story
+## Js Preview Story
 
 with preview
 
 ```js preview-story
 export const JsStory2 = () => html` <demo-wc-card>JS Story with preview</demo-wc-card> `;
+```
+
+## Html Story
+
+```html story
+<demo-wc-card></demo-wc-card>
+```
+
+## Html Preview Story
+
+with preview
+
+```html preview-story
+<demo-wc-card></demo-wc-card>
 ```

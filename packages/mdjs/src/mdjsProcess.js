@@ -49,9 +49,18 @@ async function mdjsProcess(
 
     const invokeStoriesCode = [];
     for (const story of stories) {
-      invokeStoriesCode.push(
-        `{ key: '${story.key}', story: ${story.key}, code: ${story.key.toString()} }`,
-      );
+      let code;
+      switch (story.type) {
+        case 'html':
+          code = `"${story.code.split('`')[1]}"`;
+          break;
+        case 'js':
+          code = story.key.toString();
+          break;
+        default:
+          break;
+      }
+      invokeStoriesCode.push(`{ key: '${story.key}', story: ${story.key}, code: ${code} }`);
     }
 
     fullJsCode = [

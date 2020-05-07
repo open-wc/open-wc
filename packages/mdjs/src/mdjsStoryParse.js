@@ -7,13 +7,14 @@ const { init, parse } = require('es-module-lexer');
 
 /**
  * @param {string} code
+ * @param {{type: string}} options
  * @returns {Story}
  */
-function extractStoryData(code) {
+function extractStoryData(code, { type }) {
   const parsed = parse(code);
   const key = parsed[1][0];
   const name = key;
-  return { key, name, code };
+  return { key, name, code, type };
 }
 
 /**
@@ -42,6 +43,7 @@ function mdjsStoryParse({
 } = {}) {
   /** @type {Story[]} */
   const stories = [];
+  let index = 0;
 
   return async (tree, file) => {
     // unifiedjs expects node changes to be made on the given node...
@@ -50,17 +52,40 @@ function mdjsStoryParse({
     visit(tree, 'code', node => {
       if (node.lang === 'js' && node.meta === 'story') {
         // @ts-ignore
-        const storyData = extractStoryData(node.value);
+        const storyData = extractStoryData(node.value, { type: 'js' });
         node.type = 'html';
         node.value = storyTag(storyData.name);
         stories.push(storyData);
       }
       if (node.lang === 'js' && node.meta === 'preview-story') {
         // @ts-ignore
-        const storyData = extractStoryData(node.value);
+        const storyData = extractStoryData(node.value, { type: 'js' });
         node.type = 'html';
         node.value = previewStoryTag(storyData.name);
         stories.push(storyData);
+      }
+
+      if (node.lang === 'html' && node.meta === 'story') {
+        // @ts-ignore
+        const storyData = extractStoryData(
+          `export const HtmlStory${index} = () => html\`${node.value}\`;`,
+          { type: 'html' },
+        );
+        node.type = 'html';
+        node.value = storyTag(storyData.name);
+        stories.push(storyData);
+        index += 1;
+      }
+      if (node.lang === 'html' && node.meta === 'preview-story') {
+        // @ts-ignore
+        const storyData = extractStoryData(
+          `export const HtmlStory${index} = () => html\`${node.value}\`;`,
+          { type: 'html' },
+        );
+        node.type = 'html';
+        node.value = previewStoryTag(storyData.name);
+        stories.push(storyData);
+        index += 1;
       }
     });
     // we can only return/modify the tree but stories should not be part of the tree
