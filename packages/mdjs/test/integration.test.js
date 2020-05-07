@@ -113,11 +113,13 @@ describe('Integration', () => {
         key: 'fooStory',
         name: 'fooStory',
         code: 'export const fooStory = () => {}',
+        type: 'js',
       },
       {
         key: 'fooPreviewStory',
         name: 'fooPreviewStory',
         code: 'export const fooPreviewStory = () => {}',
+        type: 'js',
       },
     ]);
   });

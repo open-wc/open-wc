@@ -11,6 +11,7 @@ describe('createStoriesCode', () => {
         key: 'StoryA',
         name: 'StoryA',
         code: 'export const StoryA = () => html`<div>Hello world</div>`',
+        type: 'js',
       },
     ];
     expect(createStoriesCode(stories).trim()).to.eql(
@@ -28,11 +29,13 @@ StoryA.story.parameters.mdxSource = "export const StoryA = () => html\`<div>Hell
         key: 'StoryA',
         name: 'StoryA',
         code: 'export const StoryA = () => html`<div>Hello world</div>`',
+        type: 'js',
       },
       {
         key: 'StoryB',
         name: 'StoryB',
         code: 'export const StoryB = () => html`<div>Hello world</div>`',
+        type: 'js',
       },
     ];
     expect(createStoriesCode(stories).trim()).to.eql(
@@ -55,6 +58,7 @@ StoryB.story.parameters.mdxSource = "export const StoryB = () => html\`<div>Hell
         key: 'StoryA',
         name: 'Story A',
         code: 'export const StoryA = () => html`<div>Hello world</div>`',
+        type: 'js',
       },
     ];
     expect(createStoriesCode(stories).trim()).to.eql(
@@ -75,6 +79,7 @@ StoryA.story.parameters.mdxSource = "export const StoryA = () => html\`<div>Hell
         code: `export const StoryA = () => html\`
   <div>Hello world</div>
 \`;`,
+        type: 'js',
       },
     ];
     expect(createStoriesCode(stories).trim()).to.eql(
