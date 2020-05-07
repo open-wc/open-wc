@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/open-wc/open-wc/compare/@mdjs/core@0.1.9...@mdjs/core@0.2.0) (2020-05-07)
+
+
+### Bug Fixes
+
+* **core:** update @mdjs/mdjs-preview with no css side effect for buttons ([c21abf6](https://github.com/open-wc/open-wc/commit/c21abf640b34e98c216c374e70741e7e7a6a6a72))
+
+
+### Features
+
+* **core:** allow to fully customize used plugins ([bd3c443](https://github.com/open-wc/open-wc/commit/bd3c44321a9e866aadf42d59ca8d5c788401c786))
+* **core:** no jsCode if no stories, no auto import of wc ([9eab522](https://github.com/open-wc/open-wc/commit/9eab52224edf618ef3bb956db18ed4ade98a3ac6))
+
+
+
+
+
 ## [0.1.9](https://github.com/open-wc/open-wc/compare/@mdjs/core@0.1.8...@mdjs/core@0.1.9) (2020-04-12)
 
 **Note:** Version bump only for package @mdjs/core
