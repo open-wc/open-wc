@@ -132,11 +132,13 @@ describe('mdjsToMd', () => {
         code: 'export const MyStory = () => html`<div>Hello world></div>`',
         key: 'MyStory',
         name: 'MyStory',
+        type: 'js',
       },
       {
         code: 'export const YourStory = () => html`<div>Goodbye world></div>`',
         key: 'YourStory',
         name: 'YourStory',
+        type: 'js',
       },
     ]);
   });

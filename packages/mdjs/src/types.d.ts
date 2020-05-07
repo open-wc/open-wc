@@ -10,6 +10,7 @@ export interface Story {
   key: string;
   name: string;
   code: string;
+  type: string;
 }
 
 export interface ProcessResult {
