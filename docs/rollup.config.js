@@ -12,9 +12,21 @@ module.exports = async () => {
     // development mode creates a non-minified build for debugging or development
     developmentMode: false, // process.env.ROLLUP_WATCH === 'true',
 
-    // set to true to inject the service worker registration into your index.html
     injectServiceWorker: false,
-    workbox: false,
+    workbox: {
+      globIgnores: ['polyfills/*.js', 'legacy-*.js', 'nomodule-*.js'],
+      swDest: path.join(process.cwd(), '_site', 'service-worker.js'),
+      globDirectory: path.join(process.cwd(), '_site'),
+      globPatterns: ['**/*.{html,js,json,css,webmanifest,png,gif}'],
+      skipWaiting: true,
+      clientsClaim: true,
+      runtimeCaching: [
+        {
+          urlPattern: 'polyfills/*.js',
+          handler: 'CacheFirst',
+        },
+      ],
+    },
   });
 
   const dest = '_site/';
