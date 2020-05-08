@@ -1,0 +1,23 @@
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker
+        .register(`${window.location.pathname.split('/').length - 1 > 1 ? '../service-worker.js' : './service-worker.js' }`)
+        .then(function() {
+          console.log('ServiceWorker registered.');
+        })
+        .catch(function(err) {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+  }
+
+  let refreshing;
+  navigator.serviceWorker.addEventListener('controllerchange',
+    function() {
+      if (refreshing) return;
+      refreshing = true;
+      window.location.reload();
+    }
+  );
+</script>
