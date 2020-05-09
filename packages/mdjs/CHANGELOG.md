@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/open-wc/open-wc/compare/@mdjs/core@0.2.0...@mdjs/core@0.3.0) (2020-05-09)
+
+
+### Bug Fixes
+
+* **core:** having a js or html code block alone does not mean mdjs ([427ea5e](https://github.com/open-wc/open-wc/commit/427ea5eb2947ff461f2a3c69cd74bad9f3a2d24a))
+* **core:** limit Story.type to js|html and make it optional ([f0191d1](https://github.com/open-wc/open-wc/commit/f0191d1ad0974e667e730e4df8ff2f7930fa082f))
+
+
+### Features
+
+* **core:** mimic github syntax highlighting, upoptimized code view ([a9879f8](https://github.com/open-wc/open-wc/commit/a9879f84b46726fe20de3240d11b534e9776bc70))
+* **core:** support html preview/-stories ([c820f17](https://github.com/open-wc/open-wc/commit/c820f1718115a4f376c6541edec44c41d1ed7d8d))
+
+
+
+
+
 # [0.2.0](https://github.com/open-wc/open-wc/compare/@mdjs/core@0.1.9...@mdjs/core@0.2.0) (2020-05-07)
 
 

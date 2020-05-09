@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.10...storybook-addon-markdown-docs@0.3.0) (2020-05-09)
+
+
+### Bug Fixes
+
+* **core:** limit Story.type to js|html and make it optional ([f0191d1](https://github.com/open-wc/open-wc/commit/f0191d1ad0974e667e730e4df8ff2f7930fa082f))
+
+
+### Features
+
+* **core:** support html preview/-stories ([c820f17](https://github.com/open-wc/open-wc/commit/c820f1718115a4f376c6541edec44c41d1ed7d8d))
+
+
+
+
+
 ## [0.2.10](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.9...storybook-addon-markdown-docs@0.2.10) (2020-05-07)
 
 **Note:** Version bump only for package storybook-addon-markdown-docs
