@@ -1,8 +1,9 @@
+{% if site.url !== '/_site-dev/' %}
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
       navigator.serviceWorker
-        .register(`${window.location.pathname.split('/').length - 1 > 1 ? '../service-worker.js' : './service-worker.js' }`)
+        .register('service-worker.js')
         .then(function() {
           console.log('ServiceWorker registered.');
         })
@@ -21,3 +22,4 @@
     }
   );
 </script>
+{% endif %}

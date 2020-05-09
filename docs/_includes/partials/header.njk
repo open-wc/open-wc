@@ -4,18 +4,18 @@
       <path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path>
     </svg>
   </div>
-  <a href="/index.html" class="home-link router-link-active"><img src="/logo.png" alt="open-wc" class="logo">
+  <a href="index.html" class="home-link router-link-active"><img src="logo.png" alt="open-wc" class="logo">
     <span class="site-name can-hide">open-wc</span></a>
   <div class="links" style="max-width: 1532px;">
     <nav class="nav-links can-hide">
       <div class="nav-item">
-        <a href="/index.html" class="nav-link{% if permalink == 'index.html' %} router-link-active{% endif %}">
+        <a href="index.html" class="nav-link{% if permalink == 'index.html' %} router-link-active{% endif %}">
           Home
         </a>
       </div>
       {% for navItem in collections.section %}
         <div class="nav-item">
-          <a href="/{{ navItem.data.permalink }}" class="nav-link{% if section == navItem.data.section %} router-link-active{% endif %}">
+          <a href="{{ navItem.data.permalink }}" class="nav-link{% if section == navItem.data.section %} router-link-active{% endif %}">
             {{ navItem.data.title }}
           </a>
         </div>

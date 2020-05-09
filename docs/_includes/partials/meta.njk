@@ -9,12 +9,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ pageTitle }}</title>
+<base href="{{ site.url }}" />
 <meta name="generator" content="11ty 0.10.0">
-<link rel="manifest" href="/manifest.json">
-<link rel="icon" type="image/png" href="/favicon.png"/>
-<link rel="apple-touch-icon" href="/icons/icon-128x128.png"/>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="favicon.png"/>
+<link rel="apple-touch-icon" href="icons/icon-128x128.png"/>
 <meta name="theme-color" content="#127afb"/>
-{% if site.url !== '/' %}
+{% if site.url !== '/_site-dev' %}
   <link rel="canonical" href="{{ currentUrl }}"/>
 {% endif %}
 
