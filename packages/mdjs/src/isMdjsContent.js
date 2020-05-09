@@ -9,10 +9,8 @@ function isMdjsContent(text) {
     return false;
   }
   switch (true) {
-    case text.includes('```js'):
     case text.includes('```js story'):
     case text.includes('```js preview-story'):
-    case text.includes('```html'):
     case text.includes('```html story'):
     case text.includes('```html preview-story'):
       return true;
