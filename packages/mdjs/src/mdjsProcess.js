@@ -44,23 +44,38 @@ async function mdjsProcess(
   const { stories, jsCode } = result.data;
   let fullJsCode = '';
 
-  if (stories.length > 0) {
+  if (stories && stories.length > 0) {
     const storiesCode = stories.map(story => story.code).join('\n');
+
+    const codePlugins = plugins.filter(pluginObj =>
+      ['markdown', 'remark2rehype', 'rehypePrism', 'htmlStringify'].includes(pluginObj.name),
+    );
+    const codeParser = unified();
+    for (const pluginObj of codePlugins) {
+      codeParser.use(pluginObj.plugin, pluginObj.options);
+    }
 
     const invokeStoriesCode = [];
     for (const story of stories) {
       let code;
       switch (story.type) {
         case 'html':
-          code = `"${story.code.split('`')[1]}"`;
+          code = `\`\`\`html\n${story.code.split('`')[1]}\n\`\`\``;
           break;
         case 'js':
-          code = story.key.toString();
+          code = `\`\`\`js\n${story.code}\n\`\`\``;
           break;
         default:
           break;
       }
-      invokeStoriesCode.push(`{ key: '${story.key}', story: ${story.key}, code: ${code} }`);
+      // eslint-disable-next-line no-await-in-loop
+      const codeResult = await codeParser.process(code);
+      const highlightedCode = /** @type {string} */ (codeResult.contents)
+        .replace(/`/g, '\\`')
+        .replace(/\$/g, '\\$');
+      invokeStoriesCode.push(
+        `{ key: '${story.key}', story: ${story.key}, code: \`${highlightedCode}\` }`,
+      );
     }
 
     fullJsCode = [
@@ -71,6 +86,7 @@ async function mdjsProcess(
       `for (const story of stories) {`,
       // eslint-disable-next-line no-template-curly-in-string
       '  const storyEl = rootNode.querySelector(`[mdjs-story-name="${story.key}"]`);',
+      `  storyEl.codeHasHtml = true;`,
       `  storyEl.story = story.story;`,
       `  storyEl.code = story.code;`,
       `};`,

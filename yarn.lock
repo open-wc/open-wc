@@ -2173,6 +2173,16 @@
     "@mdjs/mdjs-story" "^0.0.1"
     lit-element "^2.3.1"
 
+"@mdjs/mdjs-preview@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@mdjs/mdjs-preview/-/mdjs-preview-0.2.0.tgz#c3100d626afc3da9fd97274a81a7ca32dac70fe7"
+  integrity sha512-AIdTbUef2H6vQ3NnUZcVEeRJg0N5aFruJp+uPE4+vAm4XDzytpPUFOOfZovTbkAVQ8ehgmEfyadRaXPBOVUbTA==
+  dependencies:
+    "@mdjs/mdjs-preview" "^0.1.0"
+    "@mdjs/mdjs-story" "^0.0.1"
+    lit-element "^2.3.1"
+    lit-html "^1.2.1"
+
 "@mdjs/mdjs-story@^0.0.1":
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/@mdjs/mdjs-story/-/mdjs-story-0.0.1.tgz#aad15762dd881a532756fbff774113e9964dda88"
@@ -11666,7 +11676,7 @@ lit-element@^2.0.1, lit-element@^2.2.1, lit-element@^2.3.1:
   dependencies:
     lit-html "^1.1.1"
 
-lit-html@^1.0.0, lit-html@^1.1.1:
+lit-html@^1.0.0, lit-html@^1.1.1, lit-html@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/lit-html/-/lit-html-1.2.1.tgz#1fb933dc1e2ddc095f60b8086277d4fcd9d62cc8"
   integrity sha512-GSJHHXMGLZDzTRq59IUfL9FCdAlGfqNp/dEa7k7aBaaWD+JKaCjsAk9KYm2V12ItonVaYx2dprN66Zdm1AuBTQ==
@@ -13786,7 +13796,7 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-picomatch@^2.0.4, picomatch@^2.0.5, picomatch@^2.2.1, picomatch@^2.2.2:
+picomatch@^2.0.4, picomatch@^2.0.5, picomatch@^2.0.7, picomatch@^2.2.1, picomatch@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.2.2.tgz#21f333e9b6b8eaff02468f5146ea406d345f4dad"
   integrity sha512-q0M/9eZHzmr0AulXyPwNfZjtwZ/RBZlbN3K3CErVrk50T2ASYI7Bye0EvekFY3IP1Nt2DHu0re+V2ZHIpMkuWg==
@@ -14870,6 +14880,13 @@ readdirp@^2.2.1:
     graceful-fs "^4.1.11"
     micromatch "^3.1.10"
     readable-stream "^2.0.2"
+
+readdirp@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/readdirp/-/readdirp-3.3.0.tgz#984458d13a1e42e2e9f5841b129e162f369aff17"
+  integrity sha512-zz0pAkSPOXXm1viEwygWIPSPkcBYjW1xU5j/JBh5t9bGCJwa6f9+BJa6VaB2g+b55yVrmXzqkyLf4xaWYM0IkQ==
+  dependencies:
+    picomatch "^2.0.7"
 
 readdirp@~3.4.0:
   version "3.4.0"
