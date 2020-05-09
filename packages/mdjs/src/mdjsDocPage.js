@@ -27,6 +27,62 @@ async function mdjsDocPage(body) {
           padding: 15px;
         }
       }
+
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: #393A34;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+        direction: ltr;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        tab-size: 4;
+        hyphens: none;
+        margin-bottom: 16px;
+        padding: 16px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        background-color: #f6f8fa;
+        border-radius: 3px;
+      }
+
+      .token.function,
+      .token.class-name {
+        color: #6f42c1;
+      }
+
+      .token.tag,
+      .token.selector,
+      .language-autohotkey .token.keyword {
+        color: #22863a;
+      }
+
+      .token.entity,
+      .token.url,
+      .token.symbol,
+      .token.number,
+      .token.boolean,
+      .token.variable,
+      .token.constant,
+      .token.property,
+      .token.inserted,
+      .token.punctuation,
+      .token.operator {
+        color: #005cc5;
+      }
+
+      .token.regex {
+        color: #032f62;
+      }
+
+      .token.atrule,
+      .token.keyword,
+      .token.attr-name,
+      .language-autohotkey .token.selector {
+        color: #d73a49;
+      }
     </style>
     <script type="module">
       ${data.jsCode}
