@@ -30,7 +30,7 @@
     "test:browser:update-snapshots": "node ./karma.js start --update-snapshots",
     "test:browser:watch": "node ./karma.js start --auto-watch=true --single-run=false",
     "test:bs": "node ./karma.js start karma.bs.conf.js --coverage",
-    "test:node": "lerna run test:node",
+    "test:node": "lerna run test:node --stream",
     "test:node-windows": "lerna run --scope \"@open-wc/rollup-plugin-html\" --scope \"@open-wc/rollup-plugin-polyfills-loader\" --scope \"polyfills-loader\" test:node",
     "test:update-snapshots": "lerna run test:update-snapshots",
     "update-dependency": "node scripts/update-dependency.js"
