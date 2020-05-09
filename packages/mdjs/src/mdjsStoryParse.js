@@ -1,4 +1,5 @@
 /** @typedef {import('./types').Story} Story */
+/** @typedef {import('./types').StoryTypes} StoryTypes */
 /** @typedef {(name: string) => string} TagFunction */
 /** @typedef {import('unist').Node} UnistNode */
 
@@ -7,10 +8,10 @@ const { init, parse } = require('es-module-lexer');
 
 /**
  * @param {string} code
- * @param {{type: string}} options
+ * @param {{type: StoryTypes}} options
  * @returns {Story}
  */
-function extractStoryData(code, { type }) {
+function extractStoryData(code, { type = 'js' } = { type: 'js' }) {
   const parsed = parse(code);
   const key = parsed[1][0];
   const name = key;
@@ -52,14 +53,14 @@ function mdjsStoryParse({
     visit(tree, 'code', node => {
       if (node.lang === 'js' && node.meta === 'story') {
         // @ts-ignore
-        const storyData = extractStoryData(node.value, { type: 'js' });
+        const storyData = extractStoryData(node.value);
         node.type = 'html';
         node.value = storyTag(storyData.name);
         stories.push(storyData);
       }
       if (node.lang === 'js' && node.meta === 'preview-story') {
         // @ts-ignore
-        const storyData = extractStoryData(node.value, { type: 'js' });
+        const storyData = extractStoryData(node.value);
         node.type = 'html';
         node.value = previewStoryTag(storyData.name);
         stories.push(storyData);

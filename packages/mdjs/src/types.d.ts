@@ -1,5 +1,7 @@
 import unified from 'unified';
 
+export type StoryTypes = 'js' | 'html';
+
 export interface MarkdownResult {
   html: string;
   jsCode: string;
@@ -10,7 +12,7 @@ export interface Story {
   key: string;
   name: string;
   code: string;
-  type: string;
+  type?: StoryTypes;
 }
 
 export interface ProcessResult {
