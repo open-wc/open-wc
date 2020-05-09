@@ -1,5 +1,6 @@
 const path = require('path');
 const copy = require('rollup-plugin-copy');
+const { generateSW } = require('rollup-plugin-workbox');
 const { createMpaConfig } = require('./_building-rollup/createMpaConfig.js');
 
 module.exports = async () => {
@@ -13,7 +14,12 @@ module.exports = async () => {
     developmentMode: false, // process.env.ROLLUP_WATCH === 'true',
 
     injectServiceWorker: false,
-    workbox: {
+    workbox: false,
+  });
+
+  const dest = '_site/';
+  mpaConfig.plugins.push(
+    generateSW({
       globIgnores: ['polyfills/*.js', 'legacy-*.js', 'nomodule-*.js'],
       swDest: path.join(process.cwd(), '_site', 'service-worker.js'),
       globDirectory: path.join(process.cwd(), '_site'),
@@ -26,10 +32,9 @@ module.exports = async () => {
           handler: 'CacheFirst',
         },
       ],
-    },
-  });
+    }),
+  );
 
-  const dest = '_site/';
   mpaConfig.plugins.push(
     copy({
       targets: [
