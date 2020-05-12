@@ -16859,10 +16859,10 @@ symbol.prototype.description@^1.0.0:
     es-abstract "^1.17.0-next.1"
     has-symbols "^1.0.1"
 
-systemjs@^4.0.0:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-4.1.1.tgz#c90061456f9707478d487b47f3b92b9896032889"
-  integrity sha512-/0x3bcMrl1pxDCLw6sJWEKPVy0ZGEu7I0nItFSHxfPoDU2Lll6TUyB1wqltvbm7n5y5jVOoK4lei4oMpmW7XJQ==
+systemjs@^6.3.1:
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-6.3.1.tgz#661adf60f257c1f65b8075fd5b034c0c69b306f4"
+  integrity sha512-pYAQxEK2a3Xj6cRVXrXgogSfKc3oFTzEWejK8KfHcZxwT31yT2xL43WXjUNcjOk5P048Z1zLRIlfrB3Mq4W+PQ==
 
 table-layout@^1.0.0:
   version "1.0.1"
