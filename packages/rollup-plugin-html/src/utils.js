@@ -50,7 +50,7 @@ function addRollupInput(inputOptions, inputModuleIds) {
       ...inputOptions,
       input: {
         ...inputOptions.input,
-        ...fromEntries(inputModuleIds.map(i => [i, i])),
+        ...fromEntries(inputModuleIds.map(i => [i.split('/').slice(-1)[0].split('.')[0], i])),
       },
     };
   }
