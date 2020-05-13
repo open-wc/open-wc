@@ -1,6 +1,6 @@
 {
   "name": "es-dev-server",
-  "version": "1.48.1",
+  "version": "1.49.0",
   "publishConfig": {
     "access": "public"
   },
@@ -68,7 +68,7 @@
     "@babel/plugin-syntax-optional-chaining": "^7.8.3",
     "@babel/plugin-transform-template-literals": "^7.8.3",
     "@babel/preset-env": "^7.9.0",
-    "@open-wc/building-utils": "^2.17.0",
+    "@open-wc/building-utils": "^2.18.0",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@rollup/pluginutils": "^3.0.0",
     "@types/browserslist": "^4.8.0",
@@ -109,7 +109,7 @@
     "open": "^7.0.3",
     "parse5": "^5.1.1",
     "path-is-inside": "^1.0.2",
-    "polyfills-loader": "^1.5.7",
+    "polyfills-loader": "^1.6.0",
     "portfinder": "^1.0.21",
     "strip-ansi": "^5.2.0",
     "systemjs": "^6.3.1",

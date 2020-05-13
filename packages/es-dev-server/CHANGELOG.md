@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.49.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.48.1...es-dev-server@1.49.0) (2020-05-13)
+
+
+### Features
+
+* **polyfills-loader:** update to systemjs v6 ([7de4d67](https://github.com/open-wc/open-wc/commit/7de4d6759792725e919f7f165bae8262812e9e17))
+
+
+
+
+
 ## [1.48.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.48.0...es-dev-server@1.48.1) (2020-05-05)
 
 **Note:** Version bump only for package es-dev-server

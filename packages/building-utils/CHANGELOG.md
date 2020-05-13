@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.17.0...@open-wc/building-utils@2.18.0) (2020-05-13)
+
+
+### Features
+
+* **polyfills-loader:** update to systemjs v6 ([7de4d67](https://github.com/open-wc/open-wc/commit/7de4d6759792725e919f7f165bae8262812e9e17))
+
+
+
+
+
 # [2.17.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-utils@2.16.4...@open-wc/building-utils@2.17.0) (2020-05-05)
 
 
