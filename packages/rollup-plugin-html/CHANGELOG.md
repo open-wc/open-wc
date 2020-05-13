@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@1.0.3...@open-wc/rollup-plugin-html@1.0.4) (2020-05-13)
+
+
+### Bug Fixes
+
+* **rollup-plugin-html:** set a valid entrypoint name ([6432392](https://github.com/open-wc/open-wc/commit/64323923e9dd99fb14328108bcdf2cfa210a6678))
+
+
+
+
+
 ## [1.0.3](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@1.0.2...@open-wc/rollup-plugin-html@1.0.3) (2020-05-05)
 
 
