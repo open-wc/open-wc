@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.15.0...@open-wc/karma-esm@2.16.0) (2020-05-14)
+
+
+### Features
+
+* **karma-esm:** allow setting es-dev-server plugins ([3ccc078](https://github.com/open-wc/open-wc/commit/3ccc078139fa44e1362dc172d1a9fddfb4207bc4))
+
+
+
+
+
 # [2.15.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.14.2...@open-wc/karma-esm@2.15.0) (2020-05-14)
 
 
