@@ -55,7 +55,8 @@ export function nodeResolvePlugin(): Plugin {
         return source;
       }
 
-      const fileUrl = new URL(`.${context.path}`, `${pathToFileURL(rootDir)}/`);
+      const requestedFile = context.path.endsWith('/') ? `${context.path}index.html` : context.path;
+      const fileUrl = new URL(`.${requestedFile}`, `${pathToFileURL(rootDir)}/`);
       const filePath = fileURLToPath(fileUrl);
 
       // do the actual resolve using the rolluo plugin
