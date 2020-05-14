@@ -76,6 +76,7 @@ module.exports = {
 | moduleDirs       | array         | Directories to resolve modules from. Defaults to `node_modules`                                               |
 | babel            | boolean       | Whether to pick up a babel configuration file in your project.                                                |
 | fileExtensions   | array         | Custom file extensions to serve as es modules.                                                                |
+| plugins          | array         | es-dev-server plugins to load                                                                                 |
 | polyfillsLoader  | object        | Configuration for the polyfills loader                                                                        |
 | devServerPort    | number        | Port of server that serves the modules. Note that this is not the karma port. Picks a random port if not set. |
 | preserveSymlinks | boolean       | Run the `es-dev-server` with the `--preserve-symlinks` option.                                                |
