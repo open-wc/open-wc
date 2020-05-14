@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.50.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.49.0...es-dev-server@1.50.0) (2020-05-14)
+
+
+### Features
+
+* **es-dev-server:** add plugin system ([2497345](https://github.com/open-wc/open-wc/commit/2497345c3a32cdc64758e74cd584fbdc5a0d8b20))
+
+
+
+
+
 # [1.49.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.48.1...es-dev-server@1.49.0) (2020-05-13)
 
 
