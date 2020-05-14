@@ -566,7 +566,7 @@ module.exports = {
     {
       resolveMimeType(context) {
         // this ensures the browser interprets .md files as .html
-        if (context.response.is('md')) {
+        if (context.path.endsWith('.md')) {
           return 'html';
         }
       },
@@ -574,7 +574,7 @@ module.exports = {
       async transform(context) {
         // this will transform all MD files. if you only want to transform certain MD files
         // you can check context.path
-        if (context.response.is('md')) {
+        if (context.path.endsWith('.md')) {
           const html = await markdownToHTML(body);
 
           return { body: html };
@@ -592,13 +592,13 @@ module.exports = {
   plugins: [
     {
       resolveMimeType(context) {
-        if (context.response.is('css')) {
+        if (context.path.endsWith('.css')) {
           return 'js';
         }
       },
 
       async transform(context) {
-        if (context.response.is('css')) {
+        if (context.path.endsWith('.css')) {
           const stylesheet = `
             const stylesheet = new CSSStyleSheet();
             stylesheet.replaceSync(${JSON.stringify(body)});
