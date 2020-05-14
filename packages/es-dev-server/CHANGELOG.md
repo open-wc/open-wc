@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.50.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.0...es-dev-server@1.50.1) (2020-05-14)
+
+
+### Bug Fixes
+
+* **es-dev-server:** fix resolving inline imports ([05f6ab5](https://github.com/open-wc/open-wc/commit/05f6ab5c631190e9d4907d5074f700eac16c42cd))
+
+
+
+
+
 # [1.50.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.49.0...es-dev-server@1.50.0) (2020-05-14)
 
 
