@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.6](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.5...@open-wc/demoing-storybook@2.2.6) (2020-05-14)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** don't set incorrect content-type ([1ac1759](https://github.com/open-wc/open-wc/commit/1ac1759d0b0f7134c25376623a55b5bf3a17bc51))
+
+
+
+
+
 ## [2.2.5](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.4...@open-wc/demoing-storybook@2.2.5) (2020-05-14)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
