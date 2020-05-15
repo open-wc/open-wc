@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.50.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.1...es-dev-server@1.50.2) (2020-05-15)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't rely on serverStart for built-in plugins ([7bb2b3f](https://github.com/open-wc/open-wc/commit/7bb2b3f654df53f4d1deaf708145946e198efdf1))
+
+
+
+
+
 ## [1.50.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.0...es-dev-server@1.50.1) (2020-05-14)
 
 
