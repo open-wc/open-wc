@@ -4,6 +4,7 @@ title: Types
 section: guides
 tags:
   - guides
+  - guide
 ---
 
 # Types

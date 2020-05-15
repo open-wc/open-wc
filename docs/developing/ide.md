@@ -4,6 +4,7 @@ title: IDE
 section: guides
 tags:
   - guides
+  - guide
 ---
 
 # IDE

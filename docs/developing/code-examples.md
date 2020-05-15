@@ -4,6 +4,7 @@ title: Code examples
 section: guides
 tags:
   - guides
+  - guide
 ---
 
 # Code examples
