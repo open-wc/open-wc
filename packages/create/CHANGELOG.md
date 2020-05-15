@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.32.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.0...@open-wc/create@0.32.1) (2020-05-15)
+
+
+### Bug Fixes
+
+* **create:** pin ts version ([f405cec](https://github.com/open-wc/open-wc/commit/f405cec5bba294a1427b876aacc031b360932518))
+
+
+
+
+
 # [0.32.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.31.1...@open-wc/create@0.32.0) (2020-05-06)
 
 
