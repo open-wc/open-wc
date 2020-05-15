@@ -1,4 +1,4 @@
-import createRollupResolve from '@rollup/plugin-node-resolve';
+import createRollupResolve, { Options } from '@rollup/plugin-node-resolve';
 import { Plugin as RollupPlugin } from 'rollup';
 import path from 'path';
 import { URL, pathToFileURL, fileURLToPath } from 'url';
@@ -17,27 +17,29 @@ const fakePluginContext = {
   },
 };
 
-export function nodeResolvePlugin(): Plugin {
-  let fileExtensions: string[];
-  let rootDir: string;
-  let nodeResolve: RollupPlugin;
+interface NodeResolveConfig {
+  rootDir: string;
+  fileExtensions: string[];
+  nodeResolve: boolean | Options;
+}
+
+export function nodeResolvePlugin(config: NodeResolveConfig): Plugin {
+  const { fileExtensions, rootDir } = config;
+  const options = {
+    rootDir,
+    // allow resolving polyfills for nodejs libs
+    preferBuiltins: false,
+    extensions: fileExtensions,
+    ...(typeof config.nodeResolve === 'object' ? config.nodeResolve : {}),
+  };
+  const nodeResolve = createRollupResolve(options);
+
+  // call buildStart
+  const preserveSymlinks = options?.customResolveOptions?.preserveSymlinks;
+  nodeResolve.buildStart?.call(fakePluginContext as any, { preserveSymlinks });
 
   return {
-    async serverStart({ config }) {
-      ({ rootDir, fileExtensions } = config);
-      const options = {
-        rootDir,
-        // allow resolving polyfills for nodejs libs
-        preferBuiltins: false,
-        extensions: fileExtensions,
-        ...(typeof config.nodeResolve === 'object' ? config.nodeResolve : {}),
-      };
-      nodeResolve = createRollupResolve(options);
-
-      // call buildStart
-      const preserveSymlinks = options?.customResolveOptions?.preserveSymlinks;
-      nodeResolve.buildStart?.call(fakePluginContext as any, { preserveSymlinks });
-    },
+    async serverStart({ config }) {},
 
     async resolveImport({ source, context }) {
       if (whatwgUrl.parseURL(source) != null) {

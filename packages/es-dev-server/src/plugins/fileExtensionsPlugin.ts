@@ -1,16 +1,16 @@
 import { Plugin } from '../Plugin';
 
+interface FileExtensionsConfig {
+  fileExtensions: string[];
+}
+
 /**
  * Plugin which serves configured file extensions as JS.
  */
-export function fileExtensionsPlugin(): Plugin {
-  let fileExtensions: string[];
+export function fileExtensionsPlugin(config: FileExtensionsConfig): Plugin {
+  const { fileExtensions } = config;
 
   return {
-    serverStart({ config }) {
-      fileExtensions = config.fileExtensions.map(ext => (ext.startsWith('.') ? ext : `.${ext}`));
-    },
-
     resolveMimeType(context) {
       if (fileExtensions.some(ext => context.path.endsWith(ext))) {
         return 'js';

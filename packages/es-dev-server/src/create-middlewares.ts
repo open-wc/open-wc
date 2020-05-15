@@ -62,6 +62,9 @@ export function createMiddlewares(
     watch,
     logErrorsToBrowser,
     watchDebounce,
+    babelExclude,
+    babelModernExclude,
+    babelModuleExclude,
   } = config;
 
   const middlewares: Middleware[] = [];
@@ -90,22 +93,40 @@ export function createMiddlewares(
   const setupMessageChanel = watch || (logErrorsToBrowser && (setupCompatibility || nodeResolve));
 
   if (fileExtensions.length > 0) {
-    plugins.unshift(fileExtensionsPlugin());
+    plugins.unshift(fileExtensionsPlugin({ fileExtensions }));
   }
 
   if (nodeResolve || hasHook(plugins, 'resolveId')) {
-    plugins.push(resolveModuleImportsPlugin());
     if (nodeResolve) {
-      plugins.push(nodeResolvePlugin());
+      plugins.push(nodeResolvePlugin({ rootDir, fileExtensions, nodeResolve }));
     }
+    plugins.push(resolveModuleImportsPlugin({ rootDir, plugins }));
   }
 
   if (setupCompatibility || setupBabel) {
-    plugins.push(babelTransformPlugin());
+    plugins.push(
+      babelTransformPlugin({
+        rootDir,
+        readUserBabelConfig,
+        nodeResolve,
+        compatibilityMode,
+        customBabelConfig,
+        fileExtensions,
+        babelExclude,
+        babelModernExclude,
+        babelModuleExclude,
+      }),
+    );
   }
 
   if (polyfillsLoader && setupCompatibility) {
-    plugins.push(polyfillsLoaderPlugin());
+    plugins.push(
+      polyfillsLoaderPlugin({
+        rootDir,
+        compatibilityMode,
+        polyfillsLoaderConfig,
+      }),
+    );
   }
 
   // strips a base path from requests

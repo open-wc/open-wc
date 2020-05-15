@@ -13,27 +13,24 @@ interface IndexHTMLData {
   inlineScripts: GeneratedFile[];
 }
 
-export interface PolyfillsLoaderMiddlewareConfig {}
+export interface PolyfillsLoaderPluginConfig {
+  rootDir: string;
+  compatibilityMode: string;
+  polyfillsLoaderConfig?: Partial<PolyfillsLoaderConfig>;
+}
 
 /**
  * Creates plugin which injects polyfills and code into HTML pages which allows
  * it to run on legacy browsers.
  */
-export function polyfillsLoaderPlugin(): Plugin {
+export function polyfillsLoaderPlugin(config: PolyfillsLoaderPluginConfig): Plugin {
+  const { compatibilityMode, rootDir, polyfillsLoaderConfig = {} } = config;
   // index html data, keyed by url
   const indexHTMLData = new Map<string, IndexHTMLData>();
   // polyfills, keyed by request path
   const polyfills = new Map<string, string>();
 
-  let compatibilityMode: string;
-  let rootDir: string;
-  let polyfillsLoaderConfig: Partial<PolyfillsLoaderConfig>;
-
   return {
-    serverStart({ config }) {
-      ({ compatibilityMode, rootDir, polyfillsLoaderConfig = {} } = config);
-    },
-
     async serve(context) {
       const uaCompat = getUserAgentCompat(context);
 
