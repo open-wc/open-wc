@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.7](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.6...@open-wc/demoing-storybook@2.2.7) (2020-05-15)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
 ## [2.2.6](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.5...@open-wc/demoing-storybook@2.2.6) (2020-05-14)
 
 
