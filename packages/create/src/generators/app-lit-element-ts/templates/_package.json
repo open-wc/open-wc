@@ -12,7 +12,7 @@
   "devDependencies": {
     "@types/node": "13.11.1",
     "es-dev-server": "^1.5.0",
-    "typescript": "^3.8.2",
+    "typescript": "~3.8.2",
     "concurrently": "^5.1.0",
     "tslib": "^1.11.0"
   }
