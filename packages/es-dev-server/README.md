@@ -435,8 +435,8 @@ module.exports = {
   plugins: [
     {
       serve(context) {
-        if (context.path === '/environment.js') {
-          return { body: 'export default "development";' };
+        if (context.path === '/messages.js') {
+          return { body: 'export default "Hello world";' };
         }
       },
     },
@@ -451,7 +451,7 @@ module.exports = {
   plugins: [
     {
       serve(context) {
-        if (context.path === '/foo.bar') {
+        if (context.path === '/foo.xyz') {
           return { body: 'console.log("foo bar");', type: 'js' };
         }
       },
@@ -464,7 +464,7 @@ module.exports = {
 
 ### Hook: resolveMimeType
 
-An important thing to keep in mind is that es-dev-server serves actual files to the browser. For the browser to know how to interpret a file, it doesn't use the file extension. Instead, it uses [media or MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) which is set using the `content-type` header.
+Browsers don't use file extensions to know how to interpret files. Instead, they use [media or MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) which is set using the `content-type` header.
 
 es-dev-server guesses the MIME type based on the file extension. When serving virtual files with non-standard file extensions, you can set the MIME type in the returned result (see the examples above). If you are transforming code from one format to another, you need to use the `resolveMimeType` hook.
 
@@ -516,9 +516,11 @@ module.exports = {
 
 ### Hook: transform
 
-The transform hook is called for each file and can be used to transform the response. Multiple plugins can transform a single response. It can return a Promise.
+The transform hook is called for each file and can be used to transform a file. Multiple plugins can transform a single file. It can return a Promise.
 
-You can change the response body, mime type, or set additional headers. Remember to include a `resolveMimeType` hook if needed.
+This hook is useful for small modifications, such as injecting environment variables, or for compiling files to JS before serving them to the browser.
+
+If you are transforming non-standard file types, you may also need to include a `resolveMimeType` hook.
 
 <details>
   <summary>Read more</summary>
@@ -530,8 +532,10 @@ module.exports = {
   plugins: [
     {
       transform(context) {
-        const transformedBody = body.replace(/<base href=".*">/, '<base href="/foo/">');
-        return { body: rewritransformedBodytten };
+        if (context.path === '/index.html') {
+          const transformedBody = context.body.replace(/<base href=".*">/, '<base href="/foo/">');
+          return { body: rewritransformedBodytten };
+        }
       },
     },
   ],
@@ -545,11 +549,31 @@ module.exports = {
   plugins: [
     {
       transform(context) {
-        const transformedBody = body.replace(
-          '</head>',
-          '<script>window.process = { env: { NODE_ENV: "development" } }</script></head>',
-        );
-        return { body: transformedBody };
+        if (context.path === '/index.html') {
+          const transformedBody = context.body.replace(
+            '</head>',
+            '<script>window.process = { env: { NODE_ENV: "development" } }</script></head>',
+          );
+          return { body: transformedBody };
+        }
+      },
+    },
+  ],
+};
+```
+
+Inject environment variables into a JS module:
+
+```js
+const packageJson = require('./package.json');
+
+module.exports = {
+  plugins: [
+    {
+      transform(context) {
+        if (context.path === '/src/environment.js') {
+          return { body: `export const version = '${packageJson.version}';` };
+        }
       },
     },
   ],
