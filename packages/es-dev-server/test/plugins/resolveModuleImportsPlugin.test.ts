@@ -192,21 +192,22 @@ const host = 'http://localhost:8080/';
 
 describe('resolveModuleImportsPlugin', () => {
   it('lets plugins resolve imports using the resolveImport hook', async () => {
+    const rootDir = path.resolve(__dirname, '..', 'fixtures', 'simple');
     const plugins: Plugin[] = [
       {
         resolveImport({ source }) {
           return `RESOLVED__${source}`;
         },
       },
-      resolveModuleImportsPlugin(),
     ];
+    plugins.push(resolveModuleImportsPlugin({ rootDir, plugins }));
 
     let server;
     try {
       ({ server } = await startServer(
         createConfig({
           port: 8080,
-          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          rootDir,
           compatibility: 'none',
           plugins,
         }),
@@ -223,21 +224,22 @@ describe('resolveModuleImportsPlugin', () => {
   });
 
   it('resolved imports in inline modules in HTML files', async () => {
+    const rootDir = path.resolve(__dirname, '..', 'fixtures', 'simple');
     const plugins: Plugin[] = [
       {
         resolveImport({ source }) {
           return `RESOLVED__${source}`;
         },
       },
-      resolveModuleImportsPlugin(),
     ];
+    plugins.push(resolveModuleImportsPlugin({ rootDir, plugins }));
 
     let server;
     try {
       ({ server } = await startServer(
         createConfig({
           port: 8080,
-          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          rootDir,
           compatibility: 'none',
           plugins,
         }),
@@ -254,21 +256,22 @@ describe('resolveModuleImportsPlugin', () => {
   });
 
   it('unmatched resolve leaves import untouched', async () => {
+    const rootDir = path.resolve(__dirname, '..', 'fixtures', 'simple');
     const plugins: Plugin[] = [
       {
         resolveImport() {
           return undefined;
         },
       },
-      resolveModuleImportsPlugin(),
     ];
+    plugins.push(resolveModuleImportsPlugin({ rootDir, plugins }));
 
     let server;
     try {
       ({ server } = await startServer(
         createConfig({
           port: 8080,
-          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          rootDir,
           compatibility: 'none',
           plugins,
         }),
@@ -285,6 +288,7 @@ describe('resolveModuleImportsPlugin', () => {
   });
 
   it('first matching plugin takes priority', async () => {
+    const rootDir = path.resolve(__dirname, '..', 'fixtures', 'simple');
     const plugins: Plugin[] = [
       {
         resolveImport({ source, context }) {
@@ -298,15 +302,15 @@ describe('resolveModuleImportsPlugin', () => {
           return `RESOLVED__B__${source}`;
         },
       },
-      resolveModuleImportsPlugin(),
     ];
+    plugins.push(resolveModuleImportsPlugin({ rootDir, plugins }));
 
     let server;
     try {
       ({ server } = await startServer(
         createConfig({
           port: 8080,
-          rootDir: path.resolve(__dirname, '..', 'fixtures', 'simple'),
+          rootDir,
           compatibility: 'none',
           plugins,
         }),
