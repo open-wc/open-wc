@@ -186,16 +186,16 @@ async function resolveWithPluginHooks(
   return resolveModuleImports(jsCode, filePath, resolveImport);
 }
 
-export function resolveModuleImportsPlugin(): Plugin {
-  let rootDir: string;
-  let resolvePlugins: Plugin[];
+export interface ResolveModuleImportsPlugin {
+  rootDir: string;
+  plugins?: Plugin[];
+}
+
+export function resolveModuleImportsPlugin(config: ResolveModuleImportsPlugin): Plugin {
+  const { rootDir, plugins = [] } = config;
+  const resolvePlugins = plugins.filter(pl => !!pl.resolveImport);
 
   return {
-    serverStart({ config }) {
-      ({ rootDir } = config);
-      resolvePlugins = config.plugins.filter(pl => !!pl.resolveImport);
-    },
-
     async transform(context) {
       if (resolvePlugins.length === 0) {
         return;

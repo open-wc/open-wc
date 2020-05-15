@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import { Options } from '@rollup/plugin-node-resolve';
 import { Plugin } from '../Plugin';
 import { createCompatibilityTransform, TransformJs } from '../utils/compatibility-transform';
 import { getUserAgentCompat } from '../utils/user-agent-compat';
@@ -10,14 +11,27 @@ import { parse as parseHtml, serialize as serializeHtml } from 'parse5';
 import { URL, pathToFileURL, fileURLToPath } from 'url';
 import { Context } from 'koa';
 import { isPolyfill } from '../utils/utils';
+import { TransformOptions } from '@babel/core';
 
 function createFilePath(context: Context, rootDir: string) {
   return fileURLToPath(new URL(`.${context.path}`, `${pathToFileURL(rootDir)}/`));
 }
 
-export function babelTransformPlugin(): Plugin {
-  let rootDir: string;
-  let compatibilityTransform: TransformJs;
+interface BabelTransformConfig {
+  rootDir: string;
+  readUserBabelConfig: boolean;
+  nodeResolve: boolean | Options;
+  compatibilityMode: string;
+  customBabelConfig?: TransformOptions;
+  fileExtensions: string[];
+  babelExclude: string[];
+  babelModernExclude: string[];
+  babelModuleExclude: string[];
+}
+
+export function babelTransformPlugin(config: BabelTransformConfig): Plugin {
+  const compatibilityTransform = createCompatibilityTransform(config);
+  const { rootDir } = config;
 
   async function transformJs(context: Context, code: string) {
     const filePath = createFilePath(context, rootDir);
@@ -32,11 +46,6 @@ export function babelTransformPlugin(): Plugin {
   }
 
   return {
-    serverStart({ config }) {
-      ({ rootDir } = config);
-      compatibilityTransform = createCompatibilityTransform(config);
-    },
-
     async transform(context) {
       // transform a single file
       if (context.response.is('js') && !isPolyfill(context.url)) {
