@@ -3,7 +3,6 @@ permalink: 'index.html'
 title: Open Web Components
 layout: home.njk
 home: true
-heroImage: /hero.png
 actionText: Get Started →
 actionLink: /guide/
 features:
