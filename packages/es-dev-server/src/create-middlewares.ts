@@ -96,7 +96,7 @@ export function createMiddlewares(
     plugins.unshift(fileExtensionsPlugin({ fileExtensions }));
   }
 
-  if (nodeResolve || hasHook(plugins, 'resolveId')) {
+  if (nodeResolve || hasHook(plugins, 'resolveImport')) {
     if (nodeResolve) {
       plugins.push(nodeResolvePlugin({ rootDir, fileExtensions, nodeResolve }));
     }
