@@ -4,6 +4,7 @@ title: lit-html
 section: guides
 tags:
   - guides
+  - guide
 ---
 
 # lit-html

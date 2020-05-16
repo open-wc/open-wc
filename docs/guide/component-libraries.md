@@ -4,6 +4,7 @@ title: Web Component Libraries
 section: guides
 tags:
   - guides
+  - guide
 ---
 
 # Web Component Libraries

@@ -4,6 +4,7 @@ title: Best Practices
 section: guides
 tags:
   - guides
+  - guide
 ---
 
 # Best Practices
