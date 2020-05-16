@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/open-wc/open-wc/compare/@mdjs/core@0.3.0...@mdjs/core@0.3.1) (2020-05-16)
+
+
+### Bug Fixes
+
+* **core:** use types everywhere, export interfaces ([3f4ba8b](https://github.com/open-wc/open-wc/commit/3f4ba8b2293d2fa29d8ac8b210abf2dc3727a008))
+
+
+
+
+
 # [0.3.0](https://github.com/open-wc/open-wc/compare/@mdjs/core@0.2.0...@mdjs/core@0.3.0) (2020-05-09)
 
 
