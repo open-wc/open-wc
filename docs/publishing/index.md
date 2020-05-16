@@ -9,7 +9,7 @@ tags:
 
 When you are ready to publish your package to NPM, be sure that you've addressed the recommendations below to ensure the code you publish is as easy for your users to consume as possible. Your package should already have [demos](/demoing/), [documentation](/demoing/storybook-addon-markdown-docs.html), [tests](/testing/), et al, as each of these plays a role in making the clearest example of the benefits on your work, outlining the easiest path to integrating that work into other projects, and ensuring that the package as a whole is resilient to change over time. With this reality in mind, they will not be discussed directly below. If you're looking for information on including these things in your published packages, take a look at our [guides](/guide/index.html) or learn about [getting started](#getting-started) below.
 
-<div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>These suggestions are not specifically tuned for publishing to a CDN or other contexts where broader application-specific optimizations will not be applied to the code available therein.</p></div>
+<div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>These suggestions are not specifically useful for publishing to a CDN or any other context where broader application-specific optimisations may be appropriated.</p></div>
 
 <style>
 .content__default ul {list-style:none;padding:0;}
@@ -80,21 +80,21 @@ When importing something that doesn't point directly to the entry point of a mod
 
 **Yes:** 👍
 
-```
+```js
 import { html } from 'lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
 ```
 
 **No:** 👎
 
-```
+```js
 import { html } from 'lit-html.js';
 import { ifDefined } from 'lit-html/directives/if-defined';
 ```
 
 ## Optional: use `type: "module"`
 
-Using `type: "module"` in your `package.json` will help CDNs and bundlers choose whether to parse your package with module parse goal. However, it will also enforce strict realities on how es modules and common JS modules must be imported into your scripting. If all of the JS in your package is es modules, and using this entry in your `package.json` does not cause issues with your scripting, then using `type: "module"` will allow those CDNs or bundlers to better leverage your package. If scripting in your package has issues running in Node@12+ due to this inclusion, excluding it will ease the local requirements on import statements in your code.
+Using `type: "module"` in your `package.json` will help CDNs and bundlers choose whether to parse your package with a module parse goal. However, it will also enforce that all the code you execute needs to be es modules. This includes all the dev tools (like bundlers, linters, ...) you use as well. CommonJs may still be used but requires a special way of importing. Therefore if all of the JS in your package is es modules, and using this entry in your `package.json` does not cause issues with your tools or scripts, then using `type: "module"` will allow those CDNs or bundlers to better leverage your package. If tools or script in your package have issues running in Node@12+ due to this inclusion, excluding it will ease the local requirements on import statements in your code.
 
 ## Optional: include typings
 
@@ -118,7 +118,7 @@ Minification is an application-level concern. What's more, minifiers get better 
 
 ## Do not use `.mjs` file-extensions
 
-It is still all too common that a `.mjs` file gets served to a browser with an incorrect mime type and causes an application to fail unrecoverably. Prevent this issue from ever arising by only publishing `.js` files. In cases where you are working with Node scripting in your package and you find issue with this recommendation, please see [Optional: use `type: "module"`](#optional-use-type-module) above as a possible alternative.
+It is still all too common that a `.mjs` file gets served to a browser with an incorrect mime type and causes an application to fail unrecoverably. This happens when the used server does not have `.mjs` configured which could either be because it never became a default in the server software or an older stable version is used. Prevent this issue from ever arising by only publishing `.js` files. In cases where you are working with Node scripting in your package and you find issue with this recommendation, please see [Optional: use `type: "module"`](#optional-use-type-module) above as a possible alternative.
 
 ## Do not import polyfills
 
