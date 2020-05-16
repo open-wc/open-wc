@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.50.4](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.3...es-dev-server@1.50.4) (2020-05-16)
+
+
+### Bug Fixes
+
+* **es-dev-server:** typo in custom resolve hook ([2de863c](https://github.com/open-wc/open-wc/commit/2de863c137dd52085a77fc2418a35cc58b2769fa))
+
+
+
+
+
 ## [1.50.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.2...es-dev-server@1.50.3) (2020-05-15)
 
 **Note:** Version bump only for package es-dev-server
