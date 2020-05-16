@@ -200,7 +200,6 @@ describe('resolveModuleImportsPlugin', () => {
         },
       },
     ];
-    plugins.push(resolveModuleImportsPlugin({ rootDir, plugins }));
 
     let server;
     try {
@@ -232,7 +231,6 @@ describe('resolveModuleImportsPlugin', () => {
         },
       },
     ];
-    plugins.push(resolveModuleImportsPlugin({ rootDir, plugins }));
 
     let server;
     try {
@@ -264,7 +262,6 @@ describe('resolveModuleImportsPlugin', () => {
         },
       },
     ];
-    plugins.push(resolveModuleImportsPlugin({ rootDir, plugins }));
 
     let server;
     try {
@@ -303,7 +300,6 @@ describe('resolveModuleImportsPlugin', () => {
         },
       },
     ];
-    plugins.push(resolveModuleImportsPlugin({ rootDir, plugins }));
 
     let server;
     try {
