@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.50.5](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.4...es-dev-server@1.50.5) (2020-05-16)
+
+
+### Bug Fixes
+
+* **es-dev-server:** really fix plugin types ([330cd8a](https://github.com/open-wc/open-wc/commit/330cd8a81e34eb0ee2ae7f0d6ba8276a42647160))
+
+
+
+
+
 ## [1.50.4](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.3...es-dev-server@1.50.4) (2020-05-16)
 
 
