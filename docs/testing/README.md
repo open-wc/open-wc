@@ -42,7 +42,6 @@ When testing with karma, we recommend the following libraries:
 
 - [mocha](https://mochajs.org/) for setting up the testing structure.
 - [chai](https://www.chaijs.com/) for doing assertions
-- [sinon](https://open-wc.org/testing/testing-sinon.html) for mocks, spies and stubs
 - [@open-wc/testing-helpers](https://open-wc.org/testing/testing-helpers.html) for setting up test fixtures and helper functions
 - [@open-wc/semantic-dom-diff](https://open-wc.org/testing/semantic-dom-diff.html) for snapshot testing the rendered HTML
 - [@open-wc/chai-axe-a11y](https://open-wc.org/testing/testing-chai-a11y-axe.html) for testing accessibility
