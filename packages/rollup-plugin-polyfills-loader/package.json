@@ -25,7 +25,8 @@
     "test:watch": "npm run test:node -- --watch"
   },
   "files": [
-    "*.js",
+    "rollup-plugin-polyfills-loader.d.ts",
+    "rollup-plugin-polyfills-loader.js",
     "src"
   ],
   "keywords": [
