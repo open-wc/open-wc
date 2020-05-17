@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.50.6](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.5...es-dev-server@1.50.6) (2020-05-17)
+
+
+### Bug Fixes
+
+* **es-dev-server:** add missing dependencies to compile types ([a742c74](https://github.com/open-wc/open-wc/commit/a742c74d22e80a674ccedad763e442d6c24c70c5))
+* **rollup-plugin-polyfills-loader:** add missing .d.ts file ([47bdeeb](https://github.com/open-wc/open-wc/commit/47bdeeba325e698ae4a218003b5b0080ca3bfe97))
+
+
+
+
+
 ## [1.50.5](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.4...es-dev-server@1.50.5) (2020-05-16)
 
 
