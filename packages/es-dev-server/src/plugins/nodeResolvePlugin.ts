@@ -1,5 +1,4 @@
 import createRollupResolve, { Options } from '@rollup/plugin-node-resolve';
-import { Plugin as RollupPlugin } from 'rollup';
 import path from 'path';
 import { URL, pathToFileURL, fileURLToPath } from 'url';
 import whatwgUrl from 'whatwg-url';
