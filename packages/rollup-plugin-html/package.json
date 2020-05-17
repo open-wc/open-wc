@@ -30,7 +30,8 @@
     "test:watch": "npm run test:node -- --watch"
   },
   "files": [
-    "*.js",
+    "rollup-plugin-html.d.ts",
+    "rollup-plugin-html.js",
     "src"
   ],
   "keywords": [
