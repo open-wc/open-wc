@@ -81,6 +81,29 @@ jobs:
       - run:
           name: Publish package
           command: "./node_modules/.bin/lerna publish --message 'chore: release new versions' --yes"
+  generate-repo:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - add_ssh_keys:
+          fingerprints:
+            - '95:74:63:db:82:da:b3:e6:57:0c:3a:bd:3f:ff:ce:c6'
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - run: git config --global user.email circleci@circleci
+      - run: git config --global user.name CircleCI
+      - run: 
+          name: Publish init output to GitHub
+          command: |
+            cd packages/create
+            git clone git@github.com:open-wc/init-output-test.git
+            yarn start --type scaffold --scaffoldType wc --features testing demoing building demoing --tagName init-output-test --scaffoldFilesFor testing demoing building --installDependencies false --writeToDisk true --typescript no --overwriteFile always
+            cd init-output-test
+            git add .
+            git commit -am 'updated npm init @open-wc output' && git push -f || exit 0
 
 workflows:
   version: 2
@@ -93,6 +116,12 @@ workflows:
       - test-bs:
           requires:
             - build
+      - generate-repo:
+          requires:
+            - build
+          filters:
+            branches:
+              only: westbrook/generate-repo
       - deploy:
           requires:
             - test-local

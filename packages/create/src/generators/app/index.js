@@ -14,6 +14,7 @@ import { gatherMixins } from './gatherMixins.js';
  * example:
  * npm init @open-wc --type scaffold --scaffoldType app --tagName foo-bar --installDependencies false
  * npm init @open-wc --type upgrade --features linting demoing --tagName foo-bar --scaffoldFilesFor demoing --installDependencies false
+ * npm init @open-wc --type upgrade --features testing demoing building demoing --tagName test-el --scaffoldFilesFor testing demoing building --installDependencies false --writeToDisk true --typescript no --overwriteFile always
  */
 const optionDefinitions = [
   { name: 'destinationPath', type: String }, // path
@@ -25,6 +26,7 @@ const optionDefinitions = [
   { name: 'tagName', type: String },
   { name: 'installDependencies', type: String }, // yarn, npm, false
   { name: 'writeToDisk', type: String }, // true, false
+  { name: 'overwriteFile', type: String }, // true, false, always
 ];
 const overrides = commandLineArgs(optionDefinitions);
 prompts.override(overrides);
