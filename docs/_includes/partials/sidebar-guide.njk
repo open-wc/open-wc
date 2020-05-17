@@ -25,17 +25,12 @@
         <li>
           <section class="sidebar-group is-sub-group depth-1">
             <p class="sidebar-heading open">
-              <span>Linting</span>
+              <a href="/linting/" class="{% if permalink == 'linting/index.html' %}active {% endif %} sidebar-heading-link">Linting</a>
+              <!---->
             </p>
             <ul class="sidebar-links sidebar-group-items">
               <li>
-                <a href="/linting/" class="{% if permalink == 'linting/index.html' %}active {% endif %}sidebar-link">Getting started</a>
-              </li>
-              <li>
-                <a href="/linting/linting-eslint.html" class="{% if permalink == 'linting/linting-eslint.html' %}active {% endif %}sidebar-link">Linting ESLint</a>
-              </li>
-              <li>
-                <a href="/linting/linting-types.html" class="{% if permalink == 'linting/linting-types.html' %}active {% endif %}sidebar-link">Linting Types</a>
+                <a href="/linting/linting-eslint.html" class="{% if permalink == 'linting/linting-eslint.html' %}active {% endif %}sidebar-link">ESLint</a>
               </li>
             </ul>
           </section>
@@ -43,11 +38,26 @@
         <li>
           <section class="sidebar-group is-sub-group depth-1">
             <p class="sidebar-heading">
-              <span>Developing</span>
+              <a href="/developing/" class="{% if permalink == 'developing/index.html' %}active {% endif %} sidebar-heading-link">Developing</a>
+              <!---->
+            </p>
+          </section>
+        </li>
+        <li>
+          <section class="sidebar-group is-sub-group depth-1">
+            <p class="sidebar-heading">
+              <a href="/testing/" class="{% if permalink == 'testing/index.html' %}active {% endif %} sidebar-heading-link">Testing</a>
+              <!---->
             </p>
             <ul class="sidebar-links sidebar-group-items">
               <li>
-                <a href="/developing/" class="{% if permalink == 'developing/index.html' %}active {% endif %}sidebar-link">Developing</a>
+                <a href="/testing/testing.html" class="{% if permalink == 'testing/testing.html' %}active {% endif %}sidebar-link">Testing library</a>
+              </li>
+              <li>
+                <a href="/testing/testing-karma.html" class="{% if permalink == 'testing/testing-karma.html' %}active {% endif %}sidebar-link">Karma</a>
+              </li>
+              <li>
+                <a href="/testing/testing-karma-bs.html" class="{% if permalink == 'testing/testing-karma-bs.html' %}active {% endif %}sidebar-link">Browserstack</a>
               </li>
             </ul>
           </section>
@@ -55,48 +65,17 @@
         <li>
           <section class="sidebar-group is-sub-group depth-1">
             <p class="sidebar-heading">
-              <span>Testing</span>
+              <a href="/publishing/" class="{% if page.url == '/publishing/' %}active {% endif %}sidebar-heading-link">Publishing Web Components</a>
             </p>
-            <ul class="sidebar-links sidebar-group-items">
-              <li>
-                <a href="/testing/" class="{% if permalink == 'testing/index.html' %}active {% endif %}sidebar-link">Getting started</a>
-              </li>
-              <li>
-                <a href="/testing/testing.html" class="{% if permalink == 'testing/testing.html' %}active {% endif %}sidebar-link">Testing</a>
-              </li>
-              <li>
-                <a href="/testing/testing-karma.html" class="{% if permalink == 'testing/testing-karma.html' %}active {% endif %}sidebar-link">Testing with Karma</a>
-              </li>
-              <li>
-                <a href="/testing/testing-karma-bs.html" class="{% if permalink == 'testing/testing-karma-bs.html' %}active {% endif %}sidebar-link">Testing via Browserstack</a>
-              </li>
-              <li>
-                <a href="/testing/testing-wallaby.html" class="{% if permalink == 'testing/testing-wallaby.html' %}active {% endif %}sidebar-link">Testing in IDE via Wallaby</a>
-              </li>
-            </ul>
           </section>
         </li>
         <li>
           <section class="sidebar-group is-sub-group depth-1">
             <p class="sidebar-heading">
-              <span>Publishing Web Components</span>
+              <a href="/building/" class="{% if permalink == 'building/index.html' %}active {% endif %} sidebar-heading-link">Building</a>
+              <!---->
             </p>
             <ul class="sidebar-links sidebar-group-items">
-              <li>
-                <a href="/publishing/" class="{% if page.url == '/publishing/' %}active {% endif %}sidebar-link">Getting started</a>
-              </li>
-            </ul>
-          </section>
-        </li>
-        <li>
-          <section class="sidebar-group is-sub-group depth-1">
-            <p class="sidebar-heading">
-              <span>Building apps for production</span>
-            </p>
-            <ul class="sidebar-links sidebar-group-items">
-              <li>
-                <a href="/building/" class="{% if permalink == 'building/index.html' %}active {% endif %}sidebar-link">Getting started</a>
-              </li>
               <li>
                 <a href="/building/building-rollup.html" class="{% if permalink == 'building/building-rollup.html' %}active {% endif %}sidebar-link">Rollup</a>
               </li>
@@ -106,25 +85,17 @@
         <li>
           <section class="sidebar-group is-sub-group depth-1">
             <p class="sidebar-heading">
-              <span>Deploying apps</span>
+              <a href="/deploying/" class="{% if permalink == 'deploying/index.html' %}active {% endif %} sidebar-heading-link">Deploying apps</a>
+              <!---->
             </p>
-            <ul class="sidebar-links sidebar-group-items">
-              <li>
-                <a href="/deploying/" class="{% if permalink == 'deploying/index.html' %}active {% endif %}sidebar-link">Getting started</a>
-              </li>
-            </ul>
           </section>
         </li>
         <li>
           <section class="sidebar-group is-sub-group depth-1">
             <p class="sidebar-heading">
-              <span>Demoing</span>
+              <a href="/demoing/" class="{% if permalink == 'demoing/index.html' %}active {% endif %} sidebar-heading-link">Demoing</a>
+              <!---->
             </p>
-            <ul class="sidebar-links sidebar-group-items">
-              <li>
-                <a href="/demoing/" class="{% if permalink == 'demoing/index.html' %}active {% endif %}sidebar-link">Getting started</a>
-              </li>
-            </ul>
           </section>
         </li>
       </ul>
