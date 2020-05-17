@@ -25,6 +25,7 @@
     "test:watch": "mocha test/**/*.test.js test/**/*.test.js --watch"
   },
   "files": [
+    "index.d.ts",
     "index.js",
     "src"
   ],
