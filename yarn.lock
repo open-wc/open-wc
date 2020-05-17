@@ -2383,6 +2383,32 @@
   resolved "https://registry.yarnpkg.com/@open-wc/semantic-dom-diff/-/semantic-dom-diff-0.13.21.tgz#718b9ec5f9a98935fc775e577ad094ae8d8b7dea"
   integrity sha512-BONpjHcGX2zFa9mfnwBCLEmlDsOHzT+j6Qt1yfK3MzFXFtAykfzFjAgaxPetu0YbBlCfXuMlfxI4vlRGCGMvFg==
 
+"@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
+  version "1.3.70"
+  dependencies:
+    "@open-wc/testing-karma" "^3.3.27"
+    "@types/node" "^11.13.0"
+    karma-browserstack-launcher "^1.0.0"
+
+"@open-wc/testing-karma@file:./packages/testing-karma":
+  version "3.3.27"
+  dependencies:
+    "@open-wc/karma-esm" "^2.16.5"
+    "@types/karma" "^5.0.0"
+    "@types/karma-coverage-istanbul-reporter" "^2.1.0"
+    "@types/karma-mocha" "^1.3.0"
+    "@types/karma-mocha-reporter" "^2.2.0"
+    axe-core "^3.3.1"
+    karma "^4.1.0"
+    karma-chrome-launcher "^3.1.0"
+    karma-coverage-istanbul-reporter "^2.0.0"
+    karma-mocha "^1.0.0"
+    karma-mocha-reporter "^2.0.0"
+    karma-mocha-snapshot "^0.2.1"
+    karma-snapshot "^0.6.0"
+    karma-source-map-support "^1.3.0"
+    mocha "^6.2.2"
+
 "@reach/router@^1.2.1":
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.3.3.tgz#58162860dce6c9449d49be86b0561b5ef46d80db"
@@ -3116,7 +3142,7 @@
   resolved "https://registry.yarnpkg.com/@types/babel-types/-/babel-types-7.0.7.tgz#667eb1640e8039436028055737d2b9986ee336e3"
   integrity sha512-dBtBbrc+qTHy1WdfHYjBwRln4+LWqASWakLHsWHR2NWHIFkv4W3O070IGoGLEBrJBvct3r0L1BUPuvURi7kYUQ==
 
-"@types/babel__core@^7.1.3", "@types/babel__core@^7.1.7":
+"@types/babel__core@^7.1.3":
   version "7.1.7"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.7.tgz#1dacad8840364a57c98d0dd4855c6dd3752c6b89"
   integrity sha512-RL62NqSFPCDK2FM1pSDH0scHpJvsXtZNiYlMB73DgPBaG1E38ZYVL+ei5EkWRbr+KC4YNiAUNBnRj+bgwpgjMw==
@@ -15612,13 +15638,6 @@ rollup@^1.31.1:
     "@types/estree" "*"
     "@types/node" "*"
     acorn "^7.1.0"
-
-rollup@^2.10.2:
-  version "2.10.2"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.10.2.tgz#9adfcf8ab36861b5b0f8ca7b436f5866e3e9e200"
-  integrity sha512-tivFM8UXBlYOUqpBYD3pRktYpZvK/eiCQ190eYlrAyrpE/lzkyG2gbawroNdbwmzyUc7Y4eT297xfzv0BDh9qw==
-  optionalDependencies:
-    fsevents "~2.1.2"
 
 rollup@^2.7.2:
   version "2.8.0"
