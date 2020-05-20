@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.32.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.1...@open-wc/create@0.32.2) (2020-05-20)
+
+
+### Bug Fixes
+
+* **create:** generate sourcemap for ts files ([#1656](https://github.com/open-wc/open-wc/issues/1656)) ([624a90f](https://github.com/open-wc/open-wc/commit/624a90fe421fc501ee2082b86386a4a339ba7dca))
+
+
+
+
+
 ## [0.32.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.0...@open-wc/create@0.32.1) (2020-05-15)
 
 
