@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.32.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.2...@open-wc/create@0.32.3) (2020-05-20)
+
+
+### Bug Fixes
+
+* **create:** support number for optionsToCommand ([6fc4298](https://github.com/open-wc/open-wc/commit/6fc42980baf23588d485ff9e3643b6e025ded2dc))
+
+
+
+
+
 ## [0.32.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.1...@open-wc/create@0.32.2) (2020-05-20)
 
 
