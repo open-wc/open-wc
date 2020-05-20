@@ -2,7 +2,7 @@
 import { expect } from 'chai';
 import fetch from 'node-fetch';
 import path from 'path';
-import { startServer as originalStartServer, createConfig } from '../../src/es-dev-server';
+import { createConfig, startServer as originalStartServer } from '../../src/es-dev-server';
 
 const host = 'http://localhost:8080/';
 
@@ -128,10 +128,53 @@ describe('plugin-transform middleware', () => {
 
     try {
       const response = await fetch(`${host}index.html`);
-      const responseText = await response.text();
 
       expect(response.status).to.equal(200);
       expect(response.headers.get('x-foo')).to.equal('bar');
+    } finally {
+      server.close();
+    }
+  });
+
+  it('caches response bodies when possible, by default', async () => {
+    const { server } = await startServer({
+      transform(ctx) {
+        if (ctx.path === '/app.js') {
+          return { body: `${Date.now()}` };
+        }
+      },
+    });
+
+    try {
+      let response = await fetch(`${host}app.js`);
+      let timestampOne = await response.text();
+
+      response = await fetch(`${host}app.js`);
+      const timestampTwo = await response.text();
+
+      expect(timestampOne).equal(timestampTwo);
+    } finally {
+      server.close();
+    }
+  });
+
+  it('allows users to turn off caching of response body', async () => {
+    const { server } = await startServer({
+      transform(ctx) {
+        if (ctx.path === '/app.js') {
+          return { body: `${Date.now()}`, disableCache: true };
+        }
+      },
+    });
+
+    try {
+      let response = await fetch(`${host}app.js`);
+      let timestampOne = await response.text();
+
+      response = await fetch(`${host}app.js`);
+      const timestampTwo = await response.text();
+
+      expect(timestampOne).to.not.equal(timestampTwo);
     } finally {
       server.close();
     }
