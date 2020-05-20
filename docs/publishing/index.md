@@ -5,9 +5,9 @@ tags:
   - guides
 ---
 
-## Publishing Web Components to NPM
+## Publishing Web Components to npm
 
-When you are ready to publish your package to NPM, be sure that you've addressed the recommendations below to ensure the code you publish is as easy for your users to consume as possible. Your package should already have [demos](/demoing/), [documentation](/demoing/storybook-addon-markdown-docs.html), [tests](/testing/), et al, as each of these plays a role in making the clearest example of the benefits on your work, outlining the easiest path to integrating that work into other projects, and ensuring that the package as a whole is resilient to change over time. With this reality in mind, they will not be discussed directly below. If you're looking for information on including these things in your published packages, take a look at our [guides](/guide/index.html) or learn about [getting started](#getting-started) below.
+When you are ready to publish your package to npm, be sure that you've addressed the recommendations below to ensure the code you publish is as easy for your users to consume as possible. Your package should already have [demos](/demoing/), [documentation](/demoing/storybook-addon-markdown-docs.html), [tests](/testing/), et al, as each of these plays a role in making the clearest example of the benefits on your work, outlining the easiest path to integrating that work into other projects, and ensuring that the package as a whole is resilient to change over time. With this reality in mind, they will not be discussed directly below. If you're looking for information on including these things in your published packages, take a look at our [guides](/guide/index.html) or learn about [getting started](#getting-started) below.
 
 <div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>These suggestions are not specifically useful for publishing to a CDN or any other context where broader application-specific optimisations may be appropriate.</p></div>
 
@@ -126,9 +126,9 @@ If you feel you need polyfills, for package demos or the like, feel free to add 
 
 ### Additional Reading
 
-- [How to Public Web Componoent to NPM by Justing Fagnani](https://justinfagnani.com/2019/11/01/how-to-publish-web-components-to-npm/)
+- [How to Public Web Componoent to npm by Justing Fagnani](https://justinfagnani.com/2019/11/01/how-to-publish-web-components-to-npm/)
 - [npm-publish](https://docs.npmjs.com/cli/publish)
-- [Contributing Packages to the NPM Registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry)
+- [Contributing Packages to the npm Registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry)
 
 # Getting started...
 
