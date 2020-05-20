@@ -56,3 +56,35 @@ If you're using our [build configuration](http://open-wc.org/building), the `dis
 - Open the page in your browser using the URL `http://mypwa.localhost/`
 
 If the app was built to support [legacy browsers](https://open-wc.org/building/building-rollup.html#supporting-older-browsers), the `dist` directory will include the subdirectories `legacy` and `polyfills`, and legacy browsers such as Internet Explorer 11 will be served suitable content.
+
+## Deployment to Github Pages
+
+If you want to deploy your SPA to [github-pages](https://pages.github.com/), do the following
+
+1. Install gh-pages: `yarn add gh-pages`
+2. Add a "deploy" script to `package.json`
+
+If you are deploying to a **project site** e.g `https://myusername.github.io/my-app`
+
+```
+"scripts": {
+  "deploy": "npm run build && gh-pages -d dist"
+}
+```
+
+The script will build your application and deploy it github pages and put the
+bundle code into a branch named "gh-pages" of the repository `https://github.com/myusername/my-app`
+
+![alt text](https://i.imgur.com/HUjEr9l.png 'Branch gh-pages')
+
+If you are deploying to a **user or organization site** e.g `https://myusername.github.io`
+
+```
+"scripts": {
+  "deploy": "npm run build && gh-pages -d dist -r https://github.com/myusername/myusername.github.io.git -b master"
+}
+```
+
+The script will build your application deploy it github pages and put the bundle code into the "master" branch of the repository `https://github.com/myusername.github.io`
+
+3. Deploy the site by running `npm run deploy`
