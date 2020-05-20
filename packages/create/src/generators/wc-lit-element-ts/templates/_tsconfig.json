@@ -10,7 +10,9 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "sourceMap": true,
+    "inlineSources": true
   },
   "include": ["**/*.ts"]
 }
