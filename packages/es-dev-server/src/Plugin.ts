@@ -10,7 +10,7 @@ type ServeResult =
 type TransformResult =
   | undefined
   | null
-  | { body?: string; headers?: Record<string, string>; disableCache: boolean };
+  | { body?: string; headers?: Record<string, string>; transformCache?: boolean };
 type ResolveResult = undefined | null | string;
 type ResolveMimeTypeResult = undefined | null | string;
 

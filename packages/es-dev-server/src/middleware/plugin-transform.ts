@@ -83,11 +83,11 @@ export function createPluginTransformMiddlware(cfg: PluginServeMiddlewareConfig)
       return undefined;
     }
 
-    let disableCache = false;
+    let transformCache = true;
     for (const plugin of transformPlugins) {
       const response = await plugin.transform?.(context);
       if (response) {
-        disableCache = response.disableCache === true ? true : disableCache;
+        transformCache = response.transformCache === false ? false : transformCache;
         if (response.body != null) {
           context.body = response.body;
         }
@@ -100,7 +100,7 @@ export function createPluginTransformMiddlware(cfg: PluginServeMiddlewareConfig)
       }
     }
 
-    if (cached && !disableCache) {
+    if (cached && transformCache) {
       context.body = cachedBody;
       return undefined;
     }

@@ -162,7 +162,7 @@ describe('plugin-transform middleware', () => {
     const { server } = await startServer({
       transform(ctx) {
         if (ctx.path === '/app.js') {
-          return { body: `${Date.now()}`, disableCache: true };
+          return { body: `${Date.now()}`, transformCache: false };
         }
       },
     });
