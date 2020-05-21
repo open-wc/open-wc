@@ -68,6 +68,11 @@ export function createPluginTransformMiddlware(cfg: PluginServeMiddlewareConfig)
       return undefined;
     }
 
+    if (cached) {
+      context.body = cachedBody;
+      return undefined;
+    }
+
     if (!isUtf8(context)) {
       return undefined;
     }
@@ -100,12 +105,7 @@ export function createPluginTransformMiddlware(cfg: PluginServeMiddlewareConfig)
       }
     }
 
-    if (cached && transformCache) {
-      context.body = cachedBody;
-      return undefined;
-    }
-
-    if (cfg.fileWatcher && cfg.cache && cfg.cacheKeysForFilePaths) {
+    if (cfg.fileWatcher && transformCache && cfg.cache && cfg.cacheKeysForFilePaths) {
       addToCache({
         cache: cfg.cache,
         cacheKey,
