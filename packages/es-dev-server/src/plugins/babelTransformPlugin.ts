@@ -14,7 +14,8 @@ import { isPolyfill } from '../utils/utils';
 import { TransformOptions } from '@babel/core';
 
 function createFilePath(context: Context, rootDir: string) {
-  return fileURLToPath(new URL(`.${context.path}`, `${pathToFileURL(rootDir)}/`));
+  const path = context.path.endsWith('/') ? `${context.path}index.html` : context.path;
+  return fileURLToPath(new URL(`.${path}`, `${pathToFileURL(rootDir)}/`));
 }
 
 interface BabelTransformConfig {
