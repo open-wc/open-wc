@@ -12,7 +12,8 @@
     "importHelpers": true,
     "outDir": "out-tsc",
     "sourceMap": true,
-    "inlineSources": true
+    "inlineSources": true,
+    "rootDir": "./"
   },
   "include": ["**/*.ts"]
 }
