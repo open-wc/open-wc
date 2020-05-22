@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.50.8](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.7...es-dev-server@1.50.8) (2020-05-22)
+
+
+### Bug Fixes
+
+* **es-dev-server:** make mime-types a dependency ([104d402](https://github.com/open-wc/open-wc/commit/104d40217ba284e16bf23b4f7435d0910967d5a8))
+
+
+
+
+
 ## [1.50.7](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.6...es-dev-server@1.50.7) (2020-05-21)
 
 
