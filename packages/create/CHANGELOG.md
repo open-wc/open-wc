@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.32.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.3...@open-wc/create@0.32.4) (2020-05-23)
+
+
+### Bug Fixes
+
+* **create:** use rootDir to maintain file structure ([11c381e](https://github.com/open-wc/open-wc/commit/11c381e202328f3d066dc4349e4605414c35785d))
+
+
+
+
+
 ## [0.32.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.2...@open-wc/create@0.32.3) (2020-05-20)
 
 
