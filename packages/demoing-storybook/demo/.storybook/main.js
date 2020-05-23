@@ -7,6 +7,8 @@ module.exports = {
     'storybook-prebuilt/addon-docs/register.js',
     'storybook-prebuilt/addon-knobs/register.js',
   ],
+  // this would disable the ids of headlines - you can also use it to add your own unified/remark plugins
+  // setupMdjsPlugins: plugins => plugins.filter(plugin => plugin.name !== 'mdSlug'),
   rollup: config => {
     config.plugins.push({
       generateBundle() {

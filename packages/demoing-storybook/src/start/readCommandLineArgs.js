@@ -87,6 +87,7 @@ module.exports = function readCommandLineArgs() {
     configDir: storybookArgs['config-dir'],
     stories: storybookArgs.stories,
     addons: mainJs.addons || [],
+    setupMdjsPlugins: mainJs.setupMdjsPlugins,
 
     // TODO: we should separate es dev server config and storybook config
     // command line args read from regular es-dev-server
