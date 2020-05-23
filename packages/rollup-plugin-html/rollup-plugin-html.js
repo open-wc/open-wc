@@ -8,13 +8,14 @@
 /** @typedef {import('rollup').EmittedFile} EmittedFile */
 /** @typedef {import('rollup').EmitFile} EmitFile */
 /** @typedef {import('./src/types').PluginOptions} PluginOptions */
-/** @typedef {import('./src/types').InputHtmlData} InputHtmlData */
 /** @typedef {import('./src/types').GeneratedBundle} GeneratedBundle */
 /** @typedef {import('./src/types').TransformFunction} TransformFunction */
 /** @typedef {import('./src/types').RollupPluginHtml} RollupPluginHtml */
 /** @typedef {import('./src/types').EntrypointBundle} EntrypointBundle */
 /** @typedef {import('./src/types').TransformArgs} TransformArgs */
+/** @typedef {import('./src/types').HtmlFile} HtmlFile */
 
+const path = require('path');
 const { getInputHtmlData } = require('./src/getInputHtmlData');
 const { getEntrypointBundles } = require('./src/getEntrypointBundles');
 const { getOutputHtml } = require('./src/getOutputHtml');
@@ -31,26 +32,26 @@ const defaultFileName = 'index.html';
 function rollupPluginHtml(pluginOptions) {
   pluginOptions = {
     inject: true,
+    flatten: true,
     minify: !watchMode,
+    rootDir: process.cwd(),
     ...(pluginOptions || {}),
   };
 
-  /** @type {string} */
-  let inputHtml;
-  /** @type {string[]} */
-  let inputModuleIds;
-  /** @type {Map<string, string>} */
-  let inlineModules;
-  /** @type {string} */
-  let htmlFileName;
+  pluginOptions.rootDir = path.resolve(pluginOptions.rootDir);
+
   /** @type {GeneratedBundle[]} */
-  let generatedBundles;
+  let thisGeneratedBundles;
   /** @type {TransformFunction[]} */
-  let externalTransformFns = [];
+  let thisExternalTransformFns = [];
+  /** @type {HtmlFile[]}  */
+  const thisHtmlFiles = [];
+  /** @type {string} */
+  let thisFakeModuleForPureHtmlInput = '';
 
   // variables for multi build
   /** @type {string[]} */
-  const multiOutputNames = [];
+  const thisMultiOutputNames = [];
   // function emit asset, used when the outputName option is
   // used to explicitly configure which output build to emit
   // assets from
@@ -59,16 +60,17 @@ function rollupPluginHtml(pluginOptions) {
 
   /**
    * @param {string} mainOutputDir
+   * @param {HtmlFile} data
    * @returns {Promise<EmittedFile>}
    */
-  async function createHtmlAsset(mainOutputDir) {
-    if (generatedBundles.length === 0) {
+  async function createHtmlAsset(mainOutputDir, { inputModuleIds, htmlFileName, html }) {
+    if (thisGeneratedBundles.length === 0) {
       throw createError('Cannot output HTML when no bundles have been generated');
     }
 
     const entrypointBundles = getEntrypointBundles({
       pluginOptions,
-      generatedBundles,
+      generatedBundles: thisGeneratedBundles,
       inputModuleIds,
       mainOutputDir,
       htmlFileName,
@@ -77,14 +79,26 @@ function rollupPluginHtml(pluginOptions) {
     const outputHtml = await getOutputHtml({
       pluginOptions,
       entrypointBundles,
-      inputHtml,
-      externalTransformFns,
+      html,
+      externalTransformFns: thisExternalTransformFns,
     });
     return {
       fileName: htmlFileName,
       source: outputHtml,
       type: 'asset',
     };
+  }
+
+  /**
+   * @param {string} mainOutputDir
+   */
+  async function createHtmlAssets(mainOutputDir) {
+    const assets = [];
+    for (const htmlAsset of thisHtmlFiles) {
+      // eslint-disable-next-line no-await-in-loop
+      assets.push(await createHtmlAsset(mainOutputDir, htmlAsset));
+    }
+    return assets;
   }
 
   return {
@@ -101,21 +115,41 @@ function rollupPluginHtml(pluginOptions) {
         rollupInput = /** @type {string} */ (rollupInputOptions.input);
       }
 
-      if (!pluginOptions.inputHtml && !pluginOptions.inputPath && !rollupInput) {
-        htmlFileName = pluginOptions.name || defaultFileName;
-        return null;
+      if (!pluginOptions.html && !pluginOptions.files && !rollupInput) {
+        /** @deprecated - use html or files instead */
+
+        if (!pluginOptions.inputHtml && !pluginOptions.inputPath) {
+          return null;
+        }
+      }
+      const htmlDataArray = getInputHtmlData(pluginOptions, rollupInput);
+      for (const htmlData of htmlDataArray) {
+        const htmlFileName = pluginOptions.name || htmlData.name || defaultFileName;
+        const inputHtmlResources = extractModules(htmlData, htmlFileName);
+        const html = inputHtmlResources.htmlWithoutModules;
+        const { inlineModules } = inputHtmlResources;
+
+        const inputModuleIds = [
+          ...inputHtmlResources.moduleImports,
+          ...inputHtmlResources.inlineModules.keys(),
+        ];
+        thisHtmlFiles.push({
+          html,
+          inputModuleIds,
+          htmlFileName,
+          inlineModules,
+        });
+      }
+      /** @type {string[]} */
+      let inputModuleIds = [];
+      for (const htmlFile of thisHtmlFiles) {
+        inputModuleIds = [...inputModuleIds, ...htmlFile.inputModuleIds];
       }
 
-      const inputHtmlData = getInputHtmlData(pluginOptions, rollupInput);
-      htmlFileName = pluginOptions.name || inputHtmlData.name || defaultFileName;
-      const inputHtmlResources = extractModules(inputHtmlData, htmlFileName);
-      inputHtml = inputHtmlResources.htmlWithoutModules;
-      inlineModules = inputHtmlResources.inlineModules;
-
-      inputModuleIds = [
-        ...inputHtmlResources.moduleImports,
-        ...inputHtmlResources.inlineModules.keys(),
-      ];
+      if (inputModuleIds.length === 0) {
+        thisFakeModuleForPureHtmlInput = 'fake-module-for-pure-html-input.js';
+        inputModuleIds.push(thisFakeModuleForPureHtmlInput);
+      }
 
       if (rollupInput) {
         // we are taking input from the rollup input, we should replace the html from the input
@@ -129,8 +163,8 @@ function rollupPluginHtml(pluginOptions) {
      * Watches input HTML for file reloads.
      */
     buildStart() {
-      generatedBundles = [];
-      externalTransformFns = [];
+      thisGeneratedBundles = [];
+      thisExternalTransformFns = [];
 
       if (pluginOptions.inputPath) {
         this.addWatchFile(pluginOptions.inputPath);
@@ -138,11 +172,15 @@ function rollupPluginHtml(pluginOptions) {
     },
 
     resolveId(id) {
-      if (!inlineModules || !inlineModules.has(id)) {
-        return null;
+      for (const file of thisHtmlFiles) {
+        if (file.inlineModules && file.inlineModules.has(id)) {
+          return id;
+        }
       }
-
-      return id;
+      if (id === thisFakeModuleForPureHtmlInput) {
+        return thisFakeModuleForPureHtmlInput;
+      }
+      return null;
     },
 
     /**
@@ -150,7 +188,15 @@ function rollupPluginHtml(pluginOptions) {
      * @param {string} id
      */
     load(id) {
-      return (inlineModules && inlineModules.get(id)) || null;
+      for (const file of thisHtmlFiles) {
+        if (file.inlineModules && file.inlineModules.has(id)) {
+          return file.inlineModules.get(id);
+        }
+      }
+      if (id === thisFakeModuleForPureHtmlInput) {
+        return 'export const doNothing = true; // I am here to allow pure html inputs for rollup';
+      }
+      return null;
     },
 
     /**
@@ -159,23 +205,53 @@ function rollupPluginHtml(pluginOptions) {
      * @param {OutputBundle} bundle
      */
     async generateBundle(options, bundle) {
-      if (multiOutputNames.length !== 0) return;
+      if (thisMultiOutputNames.length !== 0) return;
       if (!options.dir) {
         throw createError('Output must have a dir option set.');
       }
-      generatedBundles.push({ name: 'default', options, bundle });
-      this.emitFile(await createHtmlAsset(options.dir));
+      thisGeneratedBundles.push({ name: 'default', options, bundle });
+
+      const assets = await createHtmlAssets(options.dir);
+      if (assets.length > 0) {
+        for (const asset of assets) {
+          this.emitFile(asset);
+        }
+      } else {
+        const htmlFileName = pluginOptions.name || defaultFileName;
+        this.emitFile(await createHtmlAsset(options.dir, { htmlFileName }));
+      }
     },
 
+    /**
+     * @deprecated use getHtmlFileNames instead
+     */
     getHtmlFileName() {
-      return htmlFileName;
+      if (thisHtmlFiles.length > 1) {
+        throw createError(
+          'Using getHtmlFileName is not possible when having multiple html files. Use getHtmlFileNames instead.',
+        );
+      }
+      if (thisHtmlFiles.length === 0) {
+        return pluginOptions.name || defaultFileName;
+      }
+      return thisHtmlFiles[0].htmlFileName;
+    },
+
+    getHtmlFileNames() {
+      if (thisHtmlFiles.length === 0) {
+        if (pluginOptions.name) {
+          return [pluginOptions.name];
+        }
+        return [defaultFileName];
+      }
+      return thisHtmlFiles.map(htmlFile => htmlFile.htmlFileName);
     },
 
     /**
      * @param {TransformFunction} transformFunction
      */
     addHtmlTransformer(transformFunction) {
-      externalTransformFns.push(transformFunction);
+      thisExternalTransformFns.push(transformFunction);
     },
 
     /**
@@ -185,14 +261,14 @@ function rollupPluginHtml(pluginOptions) {
      * @param {string} name
      */
     addOutput(name) {
-      if (!name || multiOutputNames.includes(name)) {
+      if (!name || thisMultiOutputNames.includes(name)) {
         throw createError('Each output must have a unique name');
       }
 
-      multiOutputNames.push(name);
+      thisMultiOutputNames.push(name);
 
       return {
-        name: `rollup-plugin-html-multi-output-${multiOutputNames.length}`,
+        name: `rollup-plugin-html-multi-output-${thisMultiOutputNames.length}`,
 
         /**
          * Stores output bundle, and emits output HTML file if all builds
@@ -206,10 +282,10 @@ function rollupPluginHtml(pluginOptions) {
               throw createError(`Output ${name} must have a dir option set.`);
             }
 
-            generatedBundles.push({ name, options, bundle });
+            thisGeneratedBundles.push({ name, options, bundle });
 
             if (pluginOptions.outputBundleName) {
-              if (!multiOutputNames.includes(pluginOptions.outputBundleName)) {
+              if (!thisMultiOutputNames.includes(pluginOptions.outputBundleName)) {
                 throw createError(
                   `outputName is set to ${pluginOptions.outputBundleName} but there was no ` +
                     "output added with this name. Used .addOutput('name') to add it.",
@@ -222,14 +298,16 @@ function rollupPluginHtml(pluginOptions) {
                 // when all builds are finished
                 const { dir } = options;
                 deferredEmitHtmlFile = () =>
-                  createHtmlAsset(dir).then(asset => {
-                    this.emitFile(asset);
+                  createHtmlAssets(dir).then(assets => {
+                    for (const asset of assets) {
+                      this.emitFile(asset);
+                    }
                     resolve();
                   });
               }
             }
 
-            if (generatedBundles.length === multiOutputNames.length) {
+            if (thisGeneratedBundles.length === thisMultiOutputNames.length) {
               // this is the last build, emit the HTML file
               if (deferredEmitHtmlFile) {
                 // emit to another build output's asset tree
@@ -239,7 +317,7 @@ function rollupPluginHtml(pluginOptions) {
                 return;
               }
 
-              const outputDirs = new Set(generatedBundles.map(b => b.options.dir));
+              const outputDirs = new Set(thisGeneratedBundles.map(b => b.options.dir));
               if (outputDirs.size !== 1) {
                 throw createError(
                   `Multiple rollup build outputs have a different output directory set.` +
@@ -248,9 +326,11 @@ function rollupPluginHtml(pluginOptions) {
               }
 
               // emit asset from this output
-              createHtmlAsset(options.dir).then(asset => {
+              createHtmlAssets(options.dir).then(assets => {
                 resolve();
-                this.emitFile(asset);
+                for (const asset of assets) {
+                  this.emitFile(asset);
+                }
               });
               return;
             }

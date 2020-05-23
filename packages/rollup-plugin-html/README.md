@@ -13,6 +13,7 @@ Plugin for generating HTML files from rollup.
 - Generate one or more HTML pages from a rollup build
 - Inject rollup bundle into an HTML page
 - Optionally use HTML as rollup input, bundling any module scripts inside
+- Optionally use multiple html files via a glob or html strings as input
 - Minify HTML and inline JS and CSS
 - Suitable for single page and multi-page apps
 
@@ -73,7 +74,29 @@ export default {
 
 </details>
 
-You can also set the `inputPath` property on the html plugin. This is useful if you are generating multiple html files, which each have their own entrypoints:
+#### Input from multiple html files
+
+You can also work with multiple html files. An example of this could be when you're using this plugin in combination with a static site generator. To target all your html files, you can provide a glob as input. You can specify the `flatten: false` property to retain the folder structure.
+
+<details>
+
+<summary>Show example</summary>
+
+```js
+import html from '@open-wc/rollup-plugin-html';
+export default {
+  input: '**/*.html',
+  // or even
+  input: ['index.html', 'pages/*.html'],
+  output: { dir: 'dist' },
+  plugins: [html({ flatten: false, rootDir: '_site' })],
+};
+```
+
+</details>
+
+You can also set the `files` property on the html plugin. This will take precedence over rollup's input.
+Additionally, it supports an array of files/globs and can be used if you want to use multiple html plugins with different options:
 
 <details>
 
@@ -85,10 +108,11 @@ export default {
   output: { dir: 'dist' },
   plugins: [
     html({
-      inputPath: 'index.html',
+      files: ['index.html', 'docs/**/*.html'],
     }),
     html({
-      inputPath: 'another-index.html',
+      files: 'pages/index.html',
+      /* different options */
     }),
   ],
 };
@@ -98,7 +122,7 @@ export default {
 
 ### Input from string
 
-Sometimes the HTML you want to use as input is not available on the file system. With the `inputHtml` option you can provide the HTML as a string directly. This is useful for example when using rollup from javascript directly.
+Sometimes the HTML you want to use as input is not available on the file system. With the `html` option you can provide the HTML as a string directly. This is useful for example when using rollup from javascript directly.
 
 <details>
 
@@ -110,7 +134,45 @@ export default {
   output: { dir: 'dist' },
   plugins: [
     html({
-      inputHtml: '<html><script type="module" src="./app.js"></script></html>',
+      html: '<html><script type="module" src="./app.js"></script></html>',
+    }),
+  ],
+};
+```
+
+</details>
+
+### Input from multiple html strings
+
+When creating multiple html files via strings the following additional options are required.
+
+- `name`: name of your html file (incl. relative folders)
+- `html`: the html as a string
+- `rootDir`: the location where relative imports within the html string should resolve
+
+<details>
+
+<summary>Show example</summary>
+
+```js
+import html from '@open-wc/rollup-plugin-html';
+export default {
+  output: { dir: 'dist' },
+  plugins: [
+    html({
+      html: [
+        { name: 'index.html', html: '<html>...</html>', rootDir: path.join(__dirname) },
+        {
+          name: 'pages/page-a.html',
+          html: '<html>...</html>',
+          rootDir: path.join(__dirname, 'pages'),
+        },
+        {
+          name: 'pages/page-b.html',
+          html: '<html>...</html>',
+          rootDir: path.join(__dirname, 'pages'),
+        },
+      ],
     }),
   ],
 };
@@ -169,50 +231,9 @@ export default {
 
 </details>
 
-### Multiple HTML pages
-
-With this plugin, you can generate as many HTML pages as you want. Rollup will efficiently create shared chunks between pages, allowing you to serve from cache between navigations.
-
-<details>
- <summary>View example</summary>
-
-The easiest way is to have the HTML files with module scripts on disk, for each one you can create an instance of the plugin which will bundle the different entry points automatically share common code.
-
-By default, the output filename is taken from the input filename. If you want to create a specific directory structure you need to provide an explicit name:
-
-```js
-import html from '@open-wc/rollup-plugin-html';
-
-export default {
-  output: { dir: 'dist' },
-  plugins: [
-    html({
-      inputPath: './home.html',
-    }),
-    html({
-      inputPath: './about.html',
-    }),
-    html({
-      name: 'articles/a.html',
-      inputPath: './articles/a.html',
-    }),
-    html({
-      name: 'articles/b.html',
-      inputPath: './articles/b.html',
-    }),
-    html({
-      name: 'articles/c.html',
-      inputPath: './articles/c.html',
-    }),
-  ],
-};
-```
-
-</details>
-
 ### Manually inject build output
 
-If you want to control how the build output is injected on the page, disable the `inject` option and use the arguments provided to the template function.
+If you want to control how the build output is injected on the page, disable the `inject` option, and use the arguments provided to the template function.
 
 <details>
 
@@ -254,7 +275,7 @@ export default {
   output: { dir: 'dist' },
   plugins: [
     html({
-      inputPath: './index.html',
+      files: './index.html',
       inject: false,
       template({ inputHtml, bundle }) {
         return inputHtml.replace(
@@ -286,7 +307,7 @@ export default {
   output: { dir: 'dist' },
   plugins: [
     html({
-      inputPath: './index.html',
+      files: './index.html',
       transform: html => html.replace('<html>', '<html lang="en-GB">'),
     }),
   ],
@@ -305,7 +326,7 @@ export default {
   output: { dir: 'dist' },
   plugins: [
     html({
-      inputPath: './index.html',
+      files: './index.html',
       transform: [
         html => html.replace('<html>', '<html lang="en-GB">'),
         html =>
@@ -339,7 +360,7 @@ export default {
   output: { dir: 'dist' },
   plugins: [
     html({
-      inputPath: './index.html',
+      files: './index.html',
       publicPath: '/static/',
     }),
   ],
@@ -444,6 +465,39 @@ export default {
 
 </details>
 
+## Details for Plugin rootDir
+
+When keeping the folder structures it may mean that your `rootDir` is not your current working directory.
+Image for example all the html files are generated into a `_site-in-html` folder.
+
+```
+.
+├── _site-in-html
+│   ├── page-a
+│   │   └── index.html
+│   └── index.html
+├── rollup.config.js
+└── package.json
+```
+
+If you provide `input: '_site-in-html/**/*.html';` it will result in files like `dist/_site-in-html/index.html`. If the dist folder gets automatically uploaded to a static hosting service then it will result in this url `https://my-domain.com/_site_in-html/index.html`.
+By defining `rootDir: './_site-in-html'` & `input: '**/*.html';` we can get do get files like `dist/index.html` and urls like `https://my-domain.com/`.
+
+<details>
+
+<summary>Show example</summary>
+
+```js
+import html from '@open-wc/rollup-plugin-html';
+export default {
+  input: '**/*.html',
+  output: { dir: 'dist' },
+  plugins: [html({ flatten: false, rootDir: './_site-in-html' })],
+};
+```
+
+</details>
+
 ## Configuration options
 
 All configuration options are optional if an option is not set the plugin will fall back to smart defaults. See below example use cases.
@@ -452,19 +506,31 @@ All configuration options are optional if an option is not set the plugin will f
 
 Type: `string`
 
-Name of the generated HTML file. If `inputPath` is set, defaults to the `inputPath` filename, otherwise defaults to `index.html`.
+Name of the generated HTML file. If `files` is set, defaults to the `files` filename, otherwise defaults to `index.html`.
 
-### inputPath
+### files
+
+Type: `string|strings[]`
+
+Paths to the HTML file to use as input. Modules in this files are bundled and the HTML is used as the template for the generated HTML file. This may also be a glob pattern.
+
+### rootDir
 
 Type: `string`
 
-Path to the HTML file to use as input. Modules in this file are bundled and the HTML is used as the template for the generated HTML file.
+Path to a directory which will serve as the starting point for all `files`. The final file tree will result in relative urls to this rootDir.
 
-### inputHtml
+### flatten
 
-Type: `string`
+Type: `boolean`
 
-Same as `inputPath`, but provides the HTML as a string directly.
+Whether or not the folder in `filePaths` should be stripped, and all files should be placed in a single folder. (Defaults to true)
+
+### html
+
+Type: `string|[{ name: string, html: string, rootDir: string}]`
+
+Provide the HTML directly as string. If multiple files are provided then name, html, and rootDir are required.
 
 ### outputBundleName
 
@@ -494,7 +560,7 @@ Whether to inject the rollup bundle into the output HTML. If using one of the in
 
 Type: `boolean | object | (html: string) => string | Promise<string>`
 
-When false, does not do any minification. When true, does minification with default settings. When an object, does minification with a custom config. When a function, the function is called with the html and should return the minified html. Defaults to true.
+When false, it does not do any minification. When true, does minification with default settings. When an object, does minification with a custom config. When a function, the function is called with the html and should return the minified html. Defaults to true.
 
 Default minification is done using [html-minifier](https://github.com/kangax/html-minifier). When passing an object, the object is given to `html-minifier` directly so you can use any of the regular minify options.
 
@@ -525,11 +591,22 @@ For more info see the [configuration type definitions](#configuration-types).
 ```ts
 import { OutputChunk, OutputOptions, OutputBundle, Plugin } from 'rollup';
 
+export interface HtmlFile {
+  html?: string;
+  name?: string;
+  rootDir?: string;
+  inputModuleIds?: string[];
+  htmlFileName?: string;
+  inlineModules?: Map<string, string>;
+}
+
 export interface PluginOptions {
   name?: string;
-  inputPath?: string;
-  inputHtml?: string;
+  files?: string | string[];
+  flatten?: boolean;
+  html?: string | HtmlFile[];
   outputBundleName?: string;
+  rootDir?: string;
   publicPath?: string;
   inject?: boolean;
   minify?: boolean | object | MinifyFunction;
@@ -558,7 +635,7 @@ export interface EntrypointBundle extends GeneratedBundle {
 
 export interface TemplateArgs {
   // if one of the input options was set, this references the HTML set as input
-  inputHtml?: string;
+  html?: string;
   // the rollup bundle to be injected on the page. if there are multiple
   // rollup output options, this will reference the first bundle
   //
@@ -582,14 +659,10 @@ export type TransformFunction = (html: string, args: TransformArgs) => string | 
 
 export type TemplateFunction = (args: TemplateArgs) => string | Promise<string>;
 
-export interface InputHtmlData {
-  name?: string;
-  rootDir: string;
-  inputHtml: string;
-}
-
 export interface RollupPluginHtml extends Plugin {
-  getHtmlFileName(): string;
+  /** @deprecated use getHtmlFileNames instead */
+  getHtmlFileName(): string | undefined;
+  getHtmlFileNames(): string[] | undefined;
   addHtmlTransformer(transform: TransformFunction): void;
   addOutput(name: string): Plugin;
 }
