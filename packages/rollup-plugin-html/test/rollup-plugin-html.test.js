@@ -136,6 +136,46 @@ describe('rollup-plugin-html', () => {
     );
   });
 
+  it('can build with pure html file as rollup input', async () => {
+    const config = {
+      input: require.resolve('./fixtures/rollup-plugin-html/pure-index.html'),
+      plugins: [
+        htmlPlugin({
+          minify: false,
+        }),
+      ],
+    };
+    const bundle = await rollup.rollup(config);
+    const { output } = await bundle.generate(outputConfig);
+
+    expect(stripNewlines(getAsset(output, 'pure-index.html').source)).to.equal(
+      '<html><head></head><body><h1>hello world</h1></body></html>',
+    );
+  });
+
+  it('can build with multiple pure html inputs', async () => {
+    const config = {
+      plugins: [
+        htmlPlugin({
+          files: [
+            require.resolve('./fixtures/rollup-plugin-html/pure-index.html'),
+            require.resolve('./fixtures/rollup-plugin-html/pure-index2.html'),
+          ],
+          minify: false,
+        }),
+      ],
+    };
+    const bundle = await rollup.rollup(config);
+    const { output } = await bundle.generate(outputConfig);
+
+    expect(stripNewlines(getAsset(output, 'pure-index.html').source)).to.equal(
+      '<html><head></head><body><h1>hello world</h1></body></html>',
+    );
+    expect(stripNewlines(getAsset(output, 'pure-index2.html').source)).to.equal(
+      '<html><head></head><body><h1>hey there</h1></body></html>',
+    );
+  });
+
   it('can build with pluginOption "html" string as input', async () => {
     const config = {
       plugins: [
@@ -463,7 +503,7 @@ describe('rollup-plugin-html', () => {
     expect(entryA).to.include("console.log('entrypoint-a.js');");
     expect(entryB).to.include("console.log('entrypoint-b.js');");
     expect(getAsset(output, 'index.html').source).to.equal(
-      '<html><head></head><body><h1>hello world</h1>\n\n' +
+      '<html><head></head><body><h1>hello world</h1>\n\n\n' +
         '<script type="module" src="./entrypoint-a.js"></script>' +
         '<script type="module" src="./entrypoint-b.js"></script>' +
         '</body></html>',

@@ -46,6 +46,8 @@ function rollupPluginHtml(pluginOptions) {
   let thisExternalTransformFns = [];
   /** @type {HtmlFile[]}  */
   const thisHtmlFiles = [];
+  /** @type {string} */
+  let thisFakeModuleForPureHtmlInput = '';
 
   // variables for multi build
   /** @type {string[]} */
@@ -143,6 +145,11 @@ function rollupPluginHtml(pluginOptions) {
         inputModuleIds = [...inputModuleIds, ...htmlFile.inputModuleIds];
       }
 
+      if (inputModuleIds.length === 0) {
+        thisFakeModuleForPureHtmlInput = 'fake-module-for-pure-html-input.js';
+        inputModuleIds.push(thisFakeModuleForPureHtmlInput);
+      }
+
       if (rollupInput) {
         // we are taking input from the rollup input, we should replace the html from the input
         return { ...rollupInputOptions, input: inputModuleIds };
@@ -169,6 +176,9 @@ function rollupPluginHtml(pluginOptions) {
           return id;
         }
       }
+      if (id === thisFakeModuleForPureHtmlInput) {
+        return thisFakeModuleForPureHtmlInput;
+      }
       return null;
     },
 
@@ -181,6 +191,9 @@ function rollupPluginHtml(pluginOptions) {
         if (file.inlineModules && file.inlineModules.has(id)) {
           return file.inlineModules.get(id);
         }
+      }
+      if (id === thisFakeModuleForPureHtmlInput) {
+        return 'export const doNothing = true; // I am here to allow pure html inputs for rollup';
       }
       return null;
     },
