@@ -1,4 +1,4 @@
-/** @typedef {import('./types').InputHtmlData} InputHtmlData */
+/** @typedef {import('./types').HtmlFile} HtmlFile */
 
 const { findJsScripts, toFilePath } = require('@open-wc/building-utils');
 const path = require('path');
@@ -10,13 +10,13 @@ const {
 } = require('@open-wc/building-utils/dom5-fork/index.js');
 
 /**
- * @param {InputHtmlData} inputHtmlData
+ * @param {HtmlFile} inputHtmlData
  * @param {string} inputHtmlName
  * @param {string} [projectRootDir]
  */
 function extractModules(inputHtmlData, inputHtmlName, projectRootDir = process.cwd()) {
-  const { inputHtml, rootDir: htmlRootDir } = inputHtmlData;
-  const documentAst = parse(inputHtml);
+  const { html, rootDir: htmlRootDir } = inputHtmlData;
+  const documentAst = parse(html);
   const scriptNodes = findJsScripts(documentAst, { jsScripts: true, inlineJsScripts: true });
 
   /** @type {string[]} */

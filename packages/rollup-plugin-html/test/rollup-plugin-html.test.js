@@ -61,7 +61,32 @@ describe('rollup-plugin-html', () => {
     );
   });
 
-  it('can build with html file as input', async () => {
+  it('can build with plugin option "files" as input', async () => {
+    const config = {
+      plugins: [
+        htmlPlugin({
+          files: require.resolve('./fixtures/rollup-plugin-html/index.html'),
+          minify: false,
+        }),
+      ],
+    };
+    const bundle = await rollup.rollup(config);
+    const { output } = await bundle.generate(outputConfig);
+
+    expect(output.length).to.equal(4);
+    const { code: entryA } = getChunk(output, 'entrypoint-a.js');
+    const { code: entryB } = getChunk(output, 'entrypoint-b.js');
+    expect(entryA).to.include("console.log('entrypoint-a.js');");
+    expect(entryB).to.include("console.log('entrypoint-b.js');");
+    expect(stripNewlines(getAsset(output, 'index.html').source)).to.equal(
+      '<html><head></head><body><h1>hello world</h1>' +
+        '<script type="module" src="./entrypoint-a.js"></script>' +
+        '<script type="module" src="./entrypoint-b.js"></script>' +
+        '</body></html>',
+    );
+  });
+
+  it('[deprecated] can build with plugin option "inputPath" as input', async () => {
     const config = {
       plugins: [
         htmlPlugin({
@@ -111,7 +136,29 @@ describe('rollup-plugin-html', () => {
     );
   });
 
-  it('can build with a html string as input', async () => {
+  it('can build with pluginOption "html" string as input', async () => {
+    const config = {
+      plugins: [
+        htmlPlugin({
+          name: 'index.html',
+          html:
+            '<h1>Hello world</h1>' +
+            '<script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
+          minify: false,
+        }),
+      ],
+    };
+    const bundle = await rollup.rollup(config);
+    const { output } = await bundle.generate(outputConfig);
+
+    expect(output.length).to.equal(2);
+    expect(stripNewlines(getAsset(output, 'index.html').source)).to.equal(
+      '<html><head></head><body><h1>Hello world</h1>' +
+        '<script type="module" src="./entrypoint-a.js"></script></body></html>',
+    );
+  });
+
+  it('[deprecated] can build with a plugin option "inputHtml" as input', async () => {
     const config = {
       plugins: [
         htmlPlugin({
