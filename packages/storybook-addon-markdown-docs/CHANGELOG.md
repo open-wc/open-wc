@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.3.1...storybook-addon-markdown-docs@0.4.0) (2020-05-23)
+
+
+### Features
+
+* allow to set plugins for mdjs processing ([e1ed13d](https://github.com/open-wc/open-wc/commit/e1ed13d6c99bd2b9997f7bc3fb26cae7bd8c25a0))
+
+
+
+
+
 ## [0.3.1](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.3.0...storybook-addon-markdown-docs@0.3.1) (2020-05-16)
 
 **Note:** Version bump only for package storybook-addon-markdown-docs

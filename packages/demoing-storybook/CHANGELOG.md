@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.14...@open-wc/demoing-storybook@2.3.0) (2020-05-23)
+
+
+### Features
+
+* allow to set plugins for mdjs processing ([e1ed13d](https://github.com/open-wc/open-wc/commit/e1ed13d6c99bd2b9997f7bc3fb26cae7bd8c25a0))
+
+
+
+
+
 ## [2.2.14](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.13...@open-wc/demoing-storybook@2.2.14) (2020-05-22)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook
