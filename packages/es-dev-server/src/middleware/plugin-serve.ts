@@ -1,4 +1,4 @@
-import { Context, Middleware } from 'koa';
+import { Middleware } from 'koa';
 import path from 'path';
 import { Plugin } from '../Plugin';
 

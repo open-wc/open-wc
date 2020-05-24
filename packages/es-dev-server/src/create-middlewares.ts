@@ -1,28 +1,27 @@
-import koaStatic from 'koa-static';
-import koaEtag from 'koa-etag';
-import koaCompress from 'koa-compress';
 import chokidar from 'chokidar';
-import { createBasePathMiddleware } from './middleware/base-path';
-import { createHistoryAPIFallbackMiddleware } from './middleware/history-api-fallback';
-import { createWatchServedFilesMiddleware } from './middleware/watch-served-files';
-import { createMessageChannelMiddleware } from './middleware/message-channel';
-import { createEtagCacheMiddleware } from './middleware/etag-cache';
-import { createResponseBodyCacheMiddleware } from './middleware/response-body-cache';
-import { setupBrowserReload } from './utils/setup-browser-reload';
-import { compatibilityModes } from './constants';
-import { createResponseTransformMiddleware } from './middleware/response-transform';
-import { logDebug } from './utils/utils';
-import { ParsedConfig } from './config';
 import { Middleware } from 'koa';
+import koaCompress from 'koa-compress';
+import koaEtag from 'koa-etag';
+import koaStatic from 'koa-static';
+import { ParsedConfig } from './config';
+import { compatibilityModes } from './constants';
+import { createBasePathMiddleware } from './middleware/base-path';
+import { createEtagCacheMiddleware } from './middleware/etag-cache';
+import { createHistoryAPIFallbackMiddleware } from './middleware/history-api-fallback';
+import { createMessageChannelMiddleware } from './middleware/message-channel';
+import { createPluginMimeTypeMiddleware } from './middleware/plugin-mime-type';
 import { createPluginServeMiddlware } from './middleware/plugin-serve';
 import { createPluginTransformMiddlware } from './middleware/plugin-transform';
-import { createPluginMimeTypeMiddleware } from './middleware/plugin-mime-type';
+import { createResponseTransformMiddleware } from './middleware/response-transform';
+import { createWatchServedFilesMiddleware } from './middleware/watch-served-files';
 import { Plugin } from './Plugin';
-import { resolveModuleImportsPlugin } from './plugins/resolveModuleImportsPlugin';
-import { nodeResolvePlugin } from './plugins/nodeResolvePlugin';
-import { fileExtensionsPlugin } from './plugins/fileExtensionsPlugin';
 import { babelTransformPlugin } from './plugins/babelTransformPlugin';
+import { fileExtensionsPlugin } from './plugins/fileExtensionsPlugin';
+import { nodeResolvePlugin } from './plugins/nodeResolvePlugin';
 import { polyfillsLoaderPlugin } from './plugins/polyfillsLoaderPlugin';
+import { resolveModuleImportsPlugin } from './plugins/resolveModuleImportsPlugin';
+import { setupBrowserReload } from './utils/setup-browser-reload';
+import { logDebug } from './utils/utils';
 
 const defaultCompressOptions = {
   filter(contentType: string) {
@@ -152,11 +151,6 @@ export function createMiddlewares(
   // adds etag headers for caching
   middlewares.push(koaEtag());
 
-  if (fileWatcher) {
-    // caches (transformed) file contents for faster response times
-    middlewares.push(createResponseBodyCacheMiddleware({ fileWatcher, rootDir, fileExtensions }));
-  }
-
   // communicates with browser for reload or logging
   if (setupMessageChanel) {
     middlewares.push(createMessageChannelMiddleware({ rootDir, appIndex }));
@@ -179,7 +173,14 @@ export function createMiddlewares(
     setupBrowserReload({ fileWatcher, watchDebounce });
   }
 
-  middlewares.push(createPluginTransformMiddlware({ plugins }));
+  middlewares.push(
+    createPluginTransformMiddlware({
+      plugins,
+      fileWatcher,
+      rootDir,
+      fileExtensions,
+    }),
+  );
 
   // DEPRECATED: Response transformers (now split up in serve and transform in plugins)
   if (responseTransformers) {

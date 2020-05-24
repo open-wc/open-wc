@@ -1,5 +1,5 @@
-import Koa, { Context } from 'koa';
 import { FSWatcher } from 'chokidar';
+import Koa, { Context } from 'koa';
 import { Server } from 'net';
 import { ParsedConfig } from './config';
 
@@ -7,7 +7,10 @@ type ServeResult =
   | undefined
   | null
   | { body: string; type?: string; headers?: Record<string, string> };
-type TransformResult = undefined | null | { body?: string; headers?: Record<string, string> };
+type TransformResult =
+  | undefined
+  | null
+  | { body?: string; headers?: Record<string, string>; transformCache?: boolean };
 type ResolveResult = undefined | null | string;
 type ResolveMimeTypeResult = undefined | null | string;
 
