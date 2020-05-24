@@ -45,7 +45,7 @@ module.exports = function (source) {
         if (publicPath) {
           url += publicPath;
         } else {
-          url += '//';
+          url += '/';
         }
 
         return url + relativeUrl;
