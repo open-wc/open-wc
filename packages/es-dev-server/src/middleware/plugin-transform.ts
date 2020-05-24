@@ -4,7 +4,7 @@ import { Context, Middleware } from 'koa';
 import LRUCache from 'lru-cache';
 import { promisify } from 'util';
 import { Plugin } from '../Plugin';
-import { addToCache, tryServeFromCache } from '../response-body-cache';
+import { addToCache, createResponseBodyCache, tryServeFromCache } from '../response-body-cache';
 import { getBodyAsString, isUtf8, RequestCancelledError } from '../utils/utils';
 
 const stat = promisify(fs.stat);
@@ -14,8 +14,6 @@ export interface PluginServeMiddlewareConfig {
   fileWatcher: FSWatcher;
   rootDir: string;
   fileExtensions: string[];
-  cache: LRUCache<string, CacheEntry> | undefined;
-  cacheKeysForFilePaths: Map<String, String> | undefined;
 }
 
 interface CacheEntry {
@@ -45,6 +43,12 @@ async function getLastModified(path: string): Promise<number> {
  * Sets up a middleware which allows plugins to transform files before they are served to the browser.
  */
 export function createPluginTransformMiddlware(cfg: PluginServeMiddlewareConfig): Middleware {
+  let cache: LRUCache<string, CacheEntry>;
+  let cacheKeysForFilePaths: Map<String, String>;
+  if (cfg.fileWatcher) {
+    ({ cache, cacheKeysForFilePaths } = createResponseBodyCache(cfg, cfg.fileWatcher));
+  }
+
   const transformPlugins = cfg.plugins.filter(p => 'transform' in p);
   if (transformPlugins.length === 0) {
     // nothing to transform
@@ -56,20 +60,19 @@ export function createPluginTransformMiddlware(cfg: PluginServeMiddlewareConfig)
     let cacheKey = '';
     let cachedBody: string | undefined;
 
-    if (cfg.fileWatcher && cfg.cache) {
-      const result = await tryServeFromCache(cfg.cache, context);
+    if (cfg.fileWatcher && cache) {
+      const result = await tryServeFromCache(cache, context);
       ({ cached, cacheKey, cachedBody } = result);
-      context = result.context;
+    }
+
+    if (cached) {
+      context.body = cachedBody;
+      return undefined;
     }
 
     await next();
 
     if (context.status < 200 || context.status >= 300) {
-      return undefined;
-    }
-
-    if (cached) {
-      context.body = cachedBody;
       return undefined;
     }
 
@@ -105,11 +108,11 @@ export function createPluginTransformMiddlware(cfg: PluginServeMiddlewareConfig)
       }
     }
 
-    if (cfg.fileWatcher && transformCache && cfg.cache && cfg.cacheKeysForFilePaths) {
+    if (cfg.fileWatcher && transformCache) {
       addToCache({
-        cache: cfg.cache,
+        cache,
         cacheKey,
-        cacheKeysForFilePaths: cfg.cacheKeysForFilePaths,
+        cacheKeysForFilePaths,
         context,
         cfg,
       });

@@ -3,7 +3,6 @@ import { Middleware } from 'koa';
 import koaCompress from 'koa-compress';
 import koaEtag from 'koa-etag';
 import koaStatic from 'koa-static';
-import LRUCache from 'lru-cache';
 import { ParsedConfig } from './config';
 import { compatibilityModes } from './constants';
 import { createBasePathMiddleware } from './middleware/base-path';
@@ -21,7 +20,6 @@ import { fileExtensionsPlugin } from './plugins/fileExtensionsPlugin';
 import { nodeResolvePlugin } from './plugins/nodeResolvePlugin';
 import { polyfillsLoaderPlugin } from './plugins/polyfillsLoaderPlugin';
 import { resolveModuleImportsPlugin } from './plugins/resolveModuleImportsPlugin';
-import { createResponseBodyCache } from './response-body-cache';
 import { setupBrowserReload } from './utils/setup-browser-reload';
 import { logDebug } from './utils/utils';
 
@@ -34,13 +32,6 @@ const defaultCompressOptions = {
 
 function hasHook(plugins: Plugin[], hook: string) {
   return plugins.some(plugin => hook in plugin);
-}
-
-interface CacheEntry {
-  body: string;
-  headers: Record<string, string>;
-  filePath: string;
-  lastModified: number;
 }
 
 /**
@@ -137,12 +128,6 @@ export function createMiddlewares(
     );
   }
 
-  let cache: LRUCache<string, CacheEntry> | undefined;
-  let cacheKeysForFilePaths: Map<String, String> | undefined;
-  if (fileWatcher) {
-    ({ cache, cacheKeysForFilePaths } = createResponseBodyCache(config, fileWatcher));
-  }
-
   // strips a base path from requests
   if (basePath) {
     middlewares.push(createBasePathMiddleware({ basePath }));
@@ -194,8 +179,6 @@ export function createMiddlewares(
       fileWatcher,
       rootDir,
       fileExtensions,
-      cache,
-      cacheKeysForFilePaths,
     }),
   );
 
