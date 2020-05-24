@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.2.7...@open-wc/building-rollup@1.3.0) (2020-05-24)
+
+
+### Features
+
+* **building-rollup:** use babel compact mode ([f2414ce](https://github.com/open-wc/open-wc/commit/f2414ce0b3999440f211c81749d209089a32766e))
+
+
+
+
+
 ## [1.2.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.2.6...@open-wc/building-rollup@1.2.7) (2020-05-17)
 
 **Note:** Version bump only for package @open-wc/building-rollup

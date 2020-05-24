@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.52.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.51.0...es-dev-server@1.52.0) (2020-05-24)
+
+
+### Features
+
+* **building-rollup:** use babel compact mode ([f2414ce](https://github.com/open-wc/open-wc/commit/f2414ce0b3999440f211c81749d209089a32766e))
+* **es-dev-server:** render large files in babel compact mode ([d0808b8](https://github.com/open-wc/open-wc/commit/d0808b88a8204c06edb466c0e424a8d0fd883d2c))
+
+
+
+
+
 # [1.51.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.8...es-dev-server@1.51.0) (2020-05-24)
 
 
