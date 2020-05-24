@@ -28,6 +28,9 @@
     "A11Y",
     "testing"
   ],
+  "dependencies": {
+    "axe-core": "^3.5.3"
+  },
   "contributors": [
     "Pawel Psztyc"
   ]
