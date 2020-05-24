@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.51.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.8...es-dev-server@1.51.0) (2020-05-24)
+
+
+### Features
+
+* **es-dev-server:** allow disabling transform cache from plugins ([92e847d](https://github.com/open-wc/open-wc/commit/92e847d296d1a3e50943fbe5daa494e4246281e9))
+
+
+
+
+
 ## [1.50.8](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.7...es-dev-server@1.50.8) (2020-05-22)
 
 
