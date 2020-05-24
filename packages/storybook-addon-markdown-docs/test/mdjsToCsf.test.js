@@ -1,3 +1,5 @@
+/** @typedef {import('@mdjs/core').MdjsProcessPlugin} MdjsProcessPlugin */
+
 const chai = require('chai');
 // @ts-ignore
 const chaiSnapshot = require('mocha-chai-snapshot');
@@ -40,5 +42,31 @@ describe('mdjsToCsf', () => {
     const output = (await mdjsToCsf(input, '/foo.js')).split('\n');
     // @ts-ignore
     expect(output).to.matchSnapshot(this);
+  });
+
+  it('passes on filePath and options to mdjsToMd', async () => {
+    let resultPlugins = [];
+    let resultFilePath;
+    const input = [
+      '```js script',
+      'export default { title: "My docs" }',
+      '```',
+      '',
+      '# Title',
+    ].join('\n');
+    /**
+     * @param {MdjsProcessPlugin[]} plugins
+     * @param {string} filePath
+     */
+    function setupMdjsPlugins(plugins, filePath) {
+      resultPlugins = plugins;
+      resultFilePath = filePath;
+      return plugins;
+    }
+    await mdjsToCsf(input, '/foo.js', {
+      setupMdjsPlugins,
+    });
+    expect(resultPlugins.length).to.equal(6);
+    expect(resultFilePath).to.equal('/foo.js');
   });
 });

@@ -7,10 +7,11 @@ const { jsxToJs } = require('./jsxToJs');
 /**
  * @param {string} markdown
  * @param {string} filePath
+ * @param {object} options
  * @returns {Promise<string>}
  */
-async function mdjsToCsf(markdown, filePath) {
-  const markdownResult = await mdjsToMd(markdown);
+async function mdjsToCsf(markdown, filePath, options = {}) {
+  const markdownResult = await mdjsToMd(markdown, { ...options, filePath });
 
   const jsCode = renameDefaultExport(markdownResult.jsCode, filePath);
   const storiesCode = createStoriesCode(markdownResult.stories);

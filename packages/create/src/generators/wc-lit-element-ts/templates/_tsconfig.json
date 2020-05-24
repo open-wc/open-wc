@@ -12,7 +12,8 @@
     "importHelpers": true,
     "outDir": "dist",
     "sourceMap": true,
-    "inlineSources": true
+    "inlineSources": true,
+    "rootDir": "./"
   },
   "include": ["**/*.ts"]
 }
