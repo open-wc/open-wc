@@ -30,5 +30,8 @@
   ],
   "contributors": [
     "Pawel Psztyc"
-  ]
+  ],
+  "dependencies": {
+    "axe-core": "^3.5.3"
+  }
 }

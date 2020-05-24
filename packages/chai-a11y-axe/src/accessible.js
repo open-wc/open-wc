@@ -1,4 +1,5 @@
-/* global axe */
+import { axe, loadAxe } from './axe-import.js';
+
 /**
  * Creates a map of rules to disable during the test.
  * @param {Array<String>?} ignored List of rule names to ignore during the test.
@@ -22,7 +23,12 @@ function getRules(ignored) {
  * @param {Object} opts AXE configuration options.
  * @return {Promise} Promise resolved to the test results object
  */
-function runTestAsync(element, opts) {
+async function runTestAsync(element, opts) {
+  if (!axe) {
+    // ensure axe is loaded before running tests
+    await loadAxe();
+  }
+
   return new Promise((resolve, reject) => {
     // @ts-ignore
     axe.run(element, opts, (err, results) => {
