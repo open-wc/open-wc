@@ -30,7 +30,6 @@ module.exports = config => ({
       // specify it, so force snapshot files to be js type to avoid karma complaints
       type: 'js',
     },
-    require.resolve('axe-core/axe.min.js'),
   ],
 
   customLaunchers: {
