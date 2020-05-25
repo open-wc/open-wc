@@ -2,6 +2,7 @@ import { FSWatcher } from 'chokidar';
 import Koa, { Context } from 'koa';
 import { Server } from 'net';
 import { ParsedConfig } from './config';
+import { MessageChannel } from './utils/MessageChannel';
 
 type ServeResult =
   | undefined
@@ -19,6 +20,7 @@ interface ServerArgs {
   app: Koa;
   server: Server;
   fileWatcher: FSWatcher;
+  messageChannel?: MessageChannel;
 }
 
 export interface Plugin {

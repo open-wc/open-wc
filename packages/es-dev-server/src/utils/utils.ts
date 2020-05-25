@@ -118,33 +118,6 @@ export class SSEStream extends Stream.Transform {
   }
 }
 
-/**
- * Returns whether this is a HTML document response
- *
- * TODO: Rename to isHTMLResponse
- */
-export function isIndexHTMLResponse(ctx: Context, appIndex?: string): boolean {
-  if (ctx.status < 200 || ctx.status >= 300) {
-    return false;
-  }
-
-  // if we're serving the app index, it's an index html response
-  if (appIndex && ctx.url === appIndex) {
-    return true;
-  }
-
-  // make the check based on content-type and `accept` request header value
-  const contentType = ctx.response.header && ctx.response.header['content-type'];
-  const acceptType = ctx.request.header && ctx.request.header.accept;
-
-  return (
-    contentType &&
-    contentType.includes('text/html') &&
-    acceptType &&
-    acceptType.includes('text/html')
-  );
-}
-
 export function isPolyfill(url: string) {
   return url.includes('/polyfills/');
 }

@@ -3,7 +3,6 @@ import { Options } from '@rollup/plugin-node-resolve';
 import { Plugin } from '../Plugin';
 import { createCompatibilityTransform, TransformJs } from '../utils/compatibility-transform';
 import { getUserAgentCompat } from '../utils/user-agent-compat';
-import { sendMessageToActiveBrowsers } from '../utils/message-channel';
 import stripAnsi from 'strip-ansi';
 import { getTextContent, setTextContent } from '@open-wc/building-utils/dom5-fork';
 import { findJsScripts } from '@open-wc/building-utils';
@@ -12,6 +11,7 @@ import { URL, pathToFileURL, fileURLToPath } from 'url';
 import { Context } from 'koa';
 import { isPolyfill } from '../utils/utils';
 import { TransformOptions } from '@babel/core';
+import { MessageChannel } from '../utils/MessageChannel';
 
 function createFilePath(context: Context, rootDir: string) {
   const path = context.path.endsWith('/') ? `${context.path}index.html` : context.path;
@@ -33,6 +33,7 @@ interface BabelTransformConfig {
 export function babelTransformPlugin(config: BabelTransformConfig): Plugin {
   const compatibilityTransform = createCompatibilityTransform(config);
   const { rootDir } = config;
+  let _messageChannel: MessageChannel | undefined;
 
   async function transformJs(context: Context, code: string) {
     const filePath = createFilePath(context, rootDir);
@@ -47,6 +48,10 @@ export function babelTransformPlugin(config: BabelTransformConfig): Plugin {
   }
 
   return {
+    async serverStart({ messageChannel }) {
+      _messageChannel = messageChannel;
+    },
+
     async transform(context) {
       // transform a single file
       if (context.response.is('js') && !isPolyfill(context.url)) {
@@ -63,7 +68,10 @@ export function babelTransformPlugin(config: BabelTransformConfig): Plugin {
           // send compile error to browser for logging
           context.body = errorMessage;
           context.status = 500;
-          sendMessageToActiveBrowsers('error-message', JSON.stringify(stripAnsi(errorMessage)));
+          _messageChannel?.sendMessage({
+            name: 'error-message',
+            data: JSON.stringify(stripAnsi(errorMessage)),
+          });
           console.error(`\n${errorMessage}`);
         }
       }
