@@ -1,3 +1,3 @@
 import { PropertyPart } from 'lit-html';
 
-export declare const spreadProps: (props: { [key: string]: unknown }) => (part: PropertyPart) => void;
+export declare const spreadProps: <T extends object>(props: T) => (part: PropertyPart) => void;
