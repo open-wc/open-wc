@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing",
-  "version": "2.5.16",
+  "version": "2.5.17",
   "publishConfig": {
     "access": "public"
   },
@@ -35,7 +35,7 @@
     "@types/mocha": "^5.0.0",
     "@types/sinon-chai": "^3.2.3",
     "chai": "^4.2.0",
-    "chai-a11y-axe": "^1.2.3",
+    "chai-a11y-axe": "^1.3.0",
     "chai-dom": "^1.8.1",
     "mocha": "^6.2.2",
     "sinon-chai": "^3.3.0"

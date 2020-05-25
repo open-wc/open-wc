@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.53.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.52.0...es-dev-server@1.53.0) (2020-05-25)
+
+
+### Features
+
+* **es-dev-server:** expose message channel API to plugins ([314b806](https://github.com/open-wc/open-wc/commit/314b80637c957eccac4780e202b6b9b6684bfa16))
+
+
+
+
+
 # [1.52.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.51.0...es-dev-server@1.52.0) (2020-05-24)
 
 
