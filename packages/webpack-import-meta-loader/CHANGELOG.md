@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.7](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.4.6...@open-wc/webpack-import-meta-loader@0.4.7) (2020-05-25)
+
+
+### Bug Fixes
+
+* **webpack-import-meta-loader:** fix a bug in the publicPath logic ([#1677](https://github.com/open-wc/open-wc/issues/1677)) ([f8ff5e8](https://github.com/open-wc/open-wc/commit/f8ff5e8a6bfea75112d2de74e77ebc9a96623a7c))
+
+
+
+
+
 ## [0.4.6](https://github.com/open-wc/open-wc/compare/@open-wc/webpack-import-meta-loader@0.4.5...@open-wc/webpack-import-meta-loader@0.4.6) (2020-04-20)
 
 **Note:** Version bump only for package @open-wc/webpack-import-meta-loader
