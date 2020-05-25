@@ -16,7 +16,7 @@ function isValidURL(str: string) {
 
 export async function startServer(cfg: ParsedConfig, fileWatcher = chokidar.watch([])) {
   const result = createServer(cfg, fileWatcher);
-  const { app } = result;
+  const { app, onServerStarted } = result;
   let { server } = result;
 
   const port = typeof cfg.port === 'number' ? cfg.port : await portfinder.getPortPromise();
@@ -51,11 +51,7 @@ export async function startServer(cfg: ParsedConfig, fileWatcher = chokidar.watc
     await cfg.onServerStart(cfg);
   }
 
-  // call server start plugin hooks in parallel
-  const startHooks = cfg.plugins
-    .filter(pl => !!pl.serverStart)
-    .map(pl => pl.serverStart?.({ config: cfg, app, server, fileWatcher }));
-  await Promise.all(startHooks);
+  await onServerStarted(app, server);
 
   // start the server, open the browser and log messages
   await new Promise(resolve =>

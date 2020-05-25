@@ -3,6 +3,8 @@ import { Middleware } from 'koa';
 import koaCompress from 'koa-compress';
 import koaEtag from 'koa-etag';
 import koaStatic from 'koa-static';
+import Koa from 'koa';
+import { Server } from 'net';
 import { ParsedConfig } from './config';
 import { compatibilityModes } from './constants';
 import { createBasePathMiddleware } from './middleware/base-path';
@@ -20,8 +22,9 @@ import { fileExtensionsPlugin } from './plugins/fileExtensionsPlugin';
 import { nodeResolvePlugin } from './plugins/nodeResolvePlugin';
 import { polyfillsLoaderPlugin } from './plugins/polyfillsLoaderPlugin';
 import { resolveModuleImportsPlugin } from './plugins/resolveModuleImportsPlugin';
-import { setupBrowserReload } from './utils/setup-browser-reload';
 import { logDebug } from './utils/utils';
+import { MessageChannel } from './utils/MessageChannel';
+import { browserReloadPlugin } from './plugins/browserReloadPlugin';
 
 const defaultCompressOptions = {
   filter(contentType: string) {
@@ -38,10 +41,7 @@ function hasHook(plugins: Plugin[], hook: string) {
  * Creates middlewares based on the given configuration. The middlewares can be
  * used by a koa server using `app.use()`:
  */
-export function createMiddlewares(
-  config: ParsedConfig,
-  fileWatcher = chokidar.watch([]),
-): Middleware[] {
+export function createMiddlewares(config: ParsedConfig, fileWatcher = chokidar.watch([])) {
   const {
     appIndex,
     appIndexDir,
@@ -89,7 +89,8 @@ export function createMiddlewares(
   const setupCompatibility = compatibilityMode !== compatibilityModes.NONE;
   const setupBabel = customBabelConfig || readUserBabelConfig;
   const setupHistoryFallback = appIndex;
-  const setupMessageChanel = watch || (logErrorsToBrowser && (setupCompatibility || nodeResolve));
+  const setupMessageChannel = watch || (logErrorsToBrowser && (setupCompatibility || nodeResolve));
+  const messageChannel = setupMessageChannel ? new MessageChannel() : undefined;
 
   if (fileExtensions.length > 0) {
     plugins.unshift(fileExtensionsPlugin({ fileExtensions }));
@@ -128,6 +129,10 @@ export function createMiddlewares(
     );
   }
 
+  if (watch) {
+    plugins.push(browserReloadPlugin({ watchDebounce }));
+  }
+
   // strips a base path from requests
   if (basePath) {
     middlewares.push(createBasePathMiddleware({ basePath }));
@@ -152,8 +157,8 @@ export function createMiddlewares(
   middlewares.push(koaEtag());
 
   // communicates with browser for reload or logging
-  if (setupMessageChanel) {
-    middlewares.push(createMessageChannelMiddleware({ rootDir, appIndex }));
+  if (setupMessageChannel && messageChannel) {
+    middlewares.push(createMessageChannelMiddleware({ messageChannel }));
   }
 
   // watches served files
@@ -167,10 +172,6 @@ export function createMiddlewares(
   // serves index.html for non-file requests for SPA routing
   if (setupHistoryFallback && typeof appIndex === 'string' && typeof appIndexDir === 'string') {
     middlewares.push(createHistoryAPIFallbackMiddleware({ appIndex, appIndexDir }));
-  }
-
-  if (watch) {
-    setupBrowserReload({ fileWatcher, watchDebounce });
   }
 
   middlewares.push(
@@ -200,5 +201,16 @@ export function createMiddlewares(
     }),
   );
 
-  return middlewares;
+  return {
+    middlewares,
+
+    // callback called by start-server
+    async onServerStarted(app: Koa, server: Server) {
+      // call server start plugin hooks in parallel
+      const startHooks = plugins
+        .filter(pl => !!pl.serverStart)
+        .map(pl => pl.serverStart?.({ config, app, server, fileWatcher, messageChannel }));
+      await Promise.all(startHooks);
+    },
+  };
 }
