@@ -468,7 +468,7 @@ export default {
 ## Details for Plugin rootDir
 
 When keeping the folder structures it may mean that your `rootDir` is not your current working directory.
-Image for example all the html files are generated into a `_site-in-html` folder.
+For example, imagine all the html files are generated into a `_site-in-html` folder.
 
 ```
 .
@@ -481,7 +481,7 @@ Image for example all the html files are generated into a `_site-in-html` folder
 ```
 
 If you provide `input: '_site-in-html/**/*.html';` it will result in files like `dist/_site-in-html/index.html`. If the dist folder gets automatically uploaded to a static hosting service then it will result in this url `https://my-domain.com/_site_in-html/index.html`.
-By defining `rootDir: './_site-in-html'` & `input: '**/*.html';` we can get do get files like `dist/index.html` and urls like `https://my-domain.com/`.
+By defining `rootDir: './_site-in-html'` and `input: '**/*.html';` we can get files like `dist/index.html` and urls like `https://my-domain.com/`.
 
 <details>
 
