@@ -28,10 +28,10 @@
     "A11Y",
     "testing"
   ],
-  "contributors": [
-    "Pawel Psztyc"
-  ],
   "dependencies": {
     "axe-core": "^3.5.3"
-  }
+  },
+  "contributors": [
+    "Pawel Psztyc"
+  ]
 }

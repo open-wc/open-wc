@@ -30,7 +30,6 @@ module.exports = config => ({
       // specify it, so force snapshot files to be js type to avoid karma complaints
       type: 'js',
     },
-    require.resolve('axe-core/axe.min.js'),
   ],
 
   customLaunchers: {
@@ -70,7 +69,7 @@ module.exports = config => ({
       '**/node_modules/core-js-bundle/**/*',
     ],
     // sinon is not completely es5...
-    babelModernExclude: ['**/node_modules/sinon/**/*'],
+    babelModernExclude: ['**/node_modules/sinon/**/*', '**/node_modules/axe-core/**/*'],
     // prevent compiling non-module libs
     babelModuleExclude: ['**/node_modules/mocha/**/*', '**/node_modules/core-js-bundle/**/*'],
     exclude: ['**/__snapshots__/**/*'],
