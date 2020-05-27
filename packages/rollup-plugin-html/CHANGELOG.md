@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@1.0.5...@open-wc/rollup-plugin-html@1.1.0) (2020-05-27)
+
+
+### Features
+
+* **rollup-plugin-html:** support multiple html inputs ([#1671](https://github.com/open-wc/open-wc/issues/1671)) ([efea41f](https://github.com/open-wc/open-wc/commit/efea41f64cf384a7b16337fc76247d6e82645a6d))
+
+
+
+
+
 ## [1.0.5](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@1.0.4...@open-wc/rollup-plugin-html@1.0.5) (2020-05-17)
 
 
