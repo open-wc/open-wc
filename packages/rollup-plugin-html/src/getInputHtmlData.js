@@ -79,7 +79,16 @@ function getInputHtmlData(pluginOptions, rollupInput) {
     ];
   }
   if (Array.isArray(html)) {
-    return html.map(htmlFile => ({ rootDir, ...htmlFile }));
+    const result = [];
+    for (const htmlFile of html) {
+      let localRootDir = rootDir;
+      const dirname = path.dirname(htmlFile.name);
+      if (dirname !== '.') {
+        localRootDir = path.join(rootDir, dirname);
+      }
+      result.push({ rootDir: localRootDir, ...htmlFile });
+    }
+    return result;
   }
 
   if (!files && !rollupInput) {

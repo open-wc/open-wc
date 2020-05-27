@@ -13,12 +13,13 @@ module.exports = {
   },
   plugins: [
     html({
+      rootDir: __dirname,
       html: [
         // ..
-        { name: 'index.html', html: htmlIndex, rootDir: path.join(__dirname) },
-        { name: 'pages/page-a.html', html: htmlPageA, rootDir: path.join(__dirname, 'pages') },
-        { name: 'pages/page-b.html', html: htmlPageB, rootDir: path.join(__dirname, 'pages') },
-        { name: 'pages/page-c.html', html: htmlPageC, rootDir: path.join(__dirname, 'pages') },
+        { name: 'index.html', html: htmlIndex },
+        { name: 'pages/page-a.html', html: htmlPageA },
+        { name: 'pages/page-b.html', html: htmlPageB },
+        { name: 'pages/page-c.html', html: htmlPageC },
       ],
     }),
   ],

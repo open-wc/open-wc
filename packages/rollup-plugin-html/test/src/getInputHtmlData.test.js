@@ -93,12 +93,10 @@ describe('getInputHtmlData()', () => {
         {
           name: 'foo.html',
           html: '<html>foo</html>',
-          rootDir,
         },
         {
-          name: 'bar.html',
+          name: 'nested/bar.html',
           html: '<html>bar</html>',
-          rootDir,
         },
       ],
     });
@@ -109,8 +107,8 @@ describe('getInputHtmlData()', () => {
         html: '<html>foo</html>',
       },
       {
-        name: 'bar.html',
-        rootDir,
+        name: 'nested/bar.html',
+        rootDir: `${rootDir}/nested`,
         html: '<html>bar</html>',
       },
     ]);

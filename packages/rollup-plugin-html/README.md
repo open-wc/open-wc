@@ -148,7 +148,6 @@ When creating multiple html files via strings the following additional options a
 
 - `name`: name of your html file (incl. relative folders)
 - `html`: the html as a string
-- `rootDir`: the location where relative imports within the html string should resolve
 
 <details>
 
@@ -160,17 +159,16 @@ export default {
   output: { dir: 'dist' },
   plugins: [
     html({
+      rootDir: __dirname,
       html: [
-        { name: 'index.html', html: '<html>...</html>', rootDir: path.join(__dirname) },
+        { name: 'index.html', html: '<html>...</html>' },
         {
           name: 'pages/page-a.html',
           html: '<html>...</html>',
-          rootDir: path.join(__dirname, 'pages'),
         },
         {
           name: 'pages/page-b.html',
           html: '<html>...</html>',
-          rootDir: path.join(__dirname, 'pages'),
         },
       ],
     }),
@@ -528,9 +526,9 @@ Whether or not the folder in `filePaths` should be stripped, and all files shoul
 
 ### html
 
-Type: `string|[{ name: string, html: string, rootDir: string}]`
+Type: `string|[{ name: string, html: string}]`
 
-Provide the HTML directly as string. If multiple files are provided then name, html, and rootDir are required.
+Provide the HTML directly as string. If multiple files are provided then name and html are required.
 
 ### outputBundleName
 
