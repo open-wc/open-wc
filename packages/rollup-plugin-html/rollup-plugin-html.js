@@ -17,10 +17,9 @@
 
 const path = require('path');
 const { getInputHtmlData } = require('./src/getInputHtmlData');
-const { getEntrypointBundles } = require('./src/getEntrypointBundles');
-const { getOutputHtml } = require('./src/getOutputHtml');
 const { extractModules } = require('./src/extractModules');
 const { createError, addRollupInput, shouldReadInputFromRollup } = require('./src/utils');
+const { createHtmlAsset, createHtmlAssets } = require('./src/createHtmlAssets');
 
 const watchMode = process.env.ROLLUP_WATCH === 'true';
 const defaultFileName = 'index.html';
@@ -41,65 +40,22 @@ function rollupPluginHtml(pluginOptions) {
   pluginOptions.rootDir = path.resolve(pluginOptions.rootDir);
 
   /** @type {GeneratedBundle[]} */
-  let thisGeneratedBundles;
+  let generatedBundles;
   /** @type {TransformFunction[]} */
-  let thisExternalTransformFns = [];
+  let externalTransformFns = [];
   /** @type {HtmlFile[]}  */
-  const thisHtmlFiles = [];
+  const htmlFiles = [];
   /** @type {string} */
-  let thisFakeModuleForPureHtmlInput = '';
+  let fakeModuleForPureHtmlInput = '';
 
   // variables for multi build
   /** @type {string[]} */
-  const thisMultiOutputNames = [];
+  const multiOutputNames = [];
   // function emit asset, used when the outputName option is
   // used to explicitly configure which output build to emit
   // assets from
   /** @type {Function} */
   let deferredEmitHtmlFile;
-
-  /**
-   * @param {string} mainOutputDir
-   * @param {HtmlFile} data
-   * @returns {Promise<EmittedFile>}
-   */
-  async function createHtmlAsset(mainOutputDir, { inputModuleIds, htmlFileName, html }) {
-    if (thisGeneratedBundles.length === 0) {
-      throw createError('Cannot output HTML when no bundles have been generated');
-    }
-
-    const entrypointBundles = getEntrypointBundles({
-      pluginOptions,
-      generatedBundles: thisGeneratedBundles,
-      inputModuleIds,
-      mainOutputDir,
-      htmlFileName,
-    });
-
-    const outputHtml = await getOutputHtml({
-      pluginOptions,
-      entrypointBundles,
-      html,
-      externalTransformFns: thisExternalTransformFns,
-    });
-    return {
-      fileName: htmlFileName,
-      source: outputHtml,
-      type: 'asset',
-    };
-  }
-
-  /**
-   * @param {string} mainOutputDir
-   */
-  async function createHtmlAssets(mainOutputDir) {
-    const assets = [];
-    for (const htmlAsset of thisHtmlFiles) {
-      // eslint-disable-next-line no-await-in-loop
-      assets.push(await createHtmlAsset(mainOutputDir, htmlAsset));
-    }
-    return assets;
-  }
 
   return {
     name: '@open-wc/rollup-plugin-html',
@@ -133,7 +89,7 @@ function rollupPluginHtml(pluginOptions) {
           ...inputHtmlResources.moduleImports,
           ...inputHtmlResources.inlineModules.keys(),
         ];
-        thisHtmlFiles.push({
+        htmlFiles.push({
           html,
           inputModuleIds,
           htmlFileName,
@@ -142,13 +98,13 @@ function rollupPluginHtml(pluginOptions) {
       }
       /** @type {string[]} */
       let inputModuleIds = [];
-      for (const htmlFile of thisHtmlFiles) {
+      for (const htmlFile of htmlFiles) {
         inputModuleIds = [...inputModuleIds, ...htmlFile.inputModuleIds];
       }
 
       if (inputModuleIds.length === 0) {
-        thisFakeModuleForPureHtmlInput = 'fake-module-for-pure-html-input.js';
-        inputModuleIds.push(thisFakeModuleForPureHtmlInput);
+        fakeModuleForPureHtmlInput = 'fake-module-for-pure-html-input.js';
+        inputModuleIds.push(fakeModuleForPureHtmlInput);
       }
 
       if (rollupInput) {
@@ -163,8 +119,8 @@ function rollupPluginHtml(pluginOptions) {
      * Watches input HTML for file reloads.
      */
     buildStart() {
-      thisGeneratedBundles = [];
-      thisExternalTransformFns = [];
+      generatedBundles = [];
+      externalTransformFns = [];
 
       if (pluginOptions.inputPath) {
         this.addWatchFile(pluginOptions.inputPath);
@@ -172,13 +128,13 @@ function rollupPluginHtml(pluginOptions) {
     },
 
     resolveId(id) {
-      for (const file of thisHtmlFiles) {
+      for (const file of htmlFiles) {
         if (file.inlineModules && file.inlineModules.has(id)) {
           return id;
         }
       }
-      if (id === thisFakeModuleForPureHtmlInput) {
-        return thisFakeModuleForPureHtmlInput;
+      if (id === fakeModuleForPureHtmlInput) {
+        return fakeModuleForPureHtmlInput;
       }
       return null;
     },
@@ -188,12 +144,12 @@ function rollupPluginHtml(pluginOptions) {
      * @param {string} id
      */
     load(id) {
-      for (const file of thisHtmlFiles) {
+      for (const file of htmlFiles) {
         if (file.inlineModules && file.inlineModules.has(id)) {
           return file.inlineModules.get(id);
         }
       }
-      if (id === thisFakeModuleForPureHtmlInput) {
+      if (id === fakeModuleForPureHtmlInput) {
         return 'export const doNothing = true; // I am here to allow pure html inputs for rollup';
       }
       return null;
@@ -205,20 +161,31 @@ function rollupPluginHtml(pluginOptions) {
      * @param {OutputBundle} bundle
      */
     async generateBundle(options, bundle) {
-      if (thisMultiOutputNames.length !== 0) return;
+      if (multiOutputNames.length !== 0) return;
       if (!options.dir) {
         throw createError('Output must have a dir option set.');
       }
-      thisGeneratedBundles.push({ name: 'default', options, bundle });
+      generatedBundles.push({ name: 'default', options, bundle });
 
-      const assets = await createHtmlAssets(options.dir);
+      const assets = await createHtmlAssets(options.dir, {
+        htmlFiles,
+        generatedBundles,
+        externalTransformFns,
+        pluginOptions,
+      });
       if (assets.length > 0) {
         for (const asset of assets) {
           this.emitFile(asset);
         }
       } else {
         const htmlFileName = pluginOptions.name || defaultFileName;
-        this.emitFile(await createHtmlAsset(options.dir, { htmlFileName }));
+        this.emitFile(
+          await createHtmlAsset(
+            options.dir,
+            { htmlFileName },
+            { generatedBundles, externalTransformFns, pluginOptions },
+          ),
+        );
       }
     },
 
@@ -226,32 +193,32 @@ function rollupPluginHtml(pluginOptions) {
      * @deprecated use getHtmlFileNames instead
      */
     getHtmlFileName() {
-      if (thisHtmlFiles.length > 1) {
+      if (htmlFiles.length > 1) {
         throw createError(
           'Using getHtmlFileName is not possible when having multiple html files. Use getHtmlFileNames instead.',
         );
       }
-      if (thisHtmlFiles.length === 0) {
+      if (htmlFiles.length === 0) {
         return pluginOptions.name || defaultFileName;
       }
-      return thisHtmlFiles[0].htmlFileName;
+      return htmlFiles[0].htmlFileName;
     },
 
     getHtmlFileNames() {
-      if (thisHtmlFiles.length === 0) {
+      if (htmlFiles.length === 0) {
         if (pluginOptions.name) {
           return [pluginOptions.name];
         }
         return [defaultFileName];
       }
-      return thisHtmlFiles.map(htmlFile => htmlFile.htmlFileName);
+      return htmlFiles.map(htmlFile => htmlFile.htmlFileName);
     },
 
     /**
      * @param {TransformFunction} transformFunction
      */
     addHtmlTransformer(transformFunction) {
-      thisExternalTransformFns.push(transformFunction);
+      externalTransformFns.push(transformFunction);
     },
 
     /**
@@ -261,14 +228,14 @@ function rollupPluginHtml(pluginOptions) {
      * @param {string} name
      */
     addOutput(name) {
-      if (!name || thisMultiOutputNames.includes(name)) {
+      if (!name || multiOutputNames.includes(name)) {
         throw createError('Each output must have a unique name');
       }
 
-      thisMultiOutputNames.push(name);
+      multiOutputNames.push(name);
 
       return {
-        name: `rollup-plugin-html-multi-output-${thisMultiOutputNames.length}`,
+        name: `rollup-plugin-html-multi-output-${multiOutputNames.length}`,
 
         /**
          * Stores output bundle, and emits output HTML file if all builds
@@ -282,10 +249,10 @@ function rollupPluginHtml(pluginOptions) {
               throw createError(`Output ${name} must have a dir option set.`);
             }
 
-            thisGeneratedBundles.push({ name, options, bundle });
+            generatedBundles.push({ name, options, bundle });
 
             if (pluginOptions.outputBundleName) {
-              if (!thisMultiOutputNames.includes(pluginOptions.outputBundleName)) {
+              if (!multiOutputNames.includes(pluginOptions.outputBundleName)) {
                 throw createError(
                   `outputName is set to ${pluginOptions.outputBundleName} but there was no ` +
                     "output added with this name. Used .addOutput('name') to add it.",
@@ -298,7 +265,12 @@ function rollupPluginHtml(pluginOptions) {
                 // when all builds are finished
                 const { dir } = options;
                 deferredEmitHtmlFile = () =>
-                  createHtmlAssets(dir).then(assets => {
+                  createHtmlAssets(dir, {
+                    htmlFiles,
+                    generatedBundles,
+                    externalTransformFns,
+                    pluginOptions,
+                  }).then(assets => {
                     for (const asset of assets) {
                       this.emitFile(asset);
                     }
@@ -307,7 +279,7 @@ function rollupPluginHtml(pluginOptions) {
               }
             }
 
-            if (thisGeneratedBundles.length === thisMultiOutputNames.length) {
+            if (generatedBundles.length === multiOutputNames.length) {
               // this is the last build, emit the HTML file
               if (deferredEmitHtmlFile) {
                 // emit to another build output's asset tree
@@ -317,7 +289,7 @@ function rollupPluginHtml(pluginOptions) {
                 return;
               }
 
-              const outputDirs = new Set(thisGeneratedBundles.map(b => b.options.dir));
+              const outputDirs = new Set(generatedBundles.map(b => b.options.dir));
               if (outputDirs.size !== 1) {
                 throw createError(
                   `Multiple rollup build outputs have a different output directory set.` +
@@ -326,7 +298,12 @@ function rollupPluginHtml(pluginOptions) {
               }
 
               // emit asset from this output
-              createHtmlAssets(options.dir).then(assets => {
+              createHtmlAssets(options.dir, {
+                htmlFiles,
+                generatedBundles,
+                externalTransformFns,
+                pluginOptions,
+              }).then(assets => {
                 resolve();
                 for (const asset of assets) {
                   this.emitFile(asset);
