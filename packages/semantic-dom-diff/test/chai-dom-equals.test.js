@@ -68,4 +68,31 @@ describe('shadowDom', () => {
     expect(el).shadowDom.to.equal('<p>shadow content</p><slot>');
     expect(el).shadowDom.to.not.equal('<span>shadow content</span><slot>');
   });
+  it('additionally accepts document fragment nodes', async () => {
+    const tag = defineCE(
+      class extends HTMLElement {
+        constructor() {
+          super();
+          this.nonstandardMount = document.createElement('span');
+          document.body.appendChild(this.nonstandardMount);
+          this.nonstandardMount.attachShadow({ mode: 'open' });
+        }
+
+        connectedCallback() {
+          this.nonstandardMount.shadowRoot.innerHTML =
+            '<p>  shadow content</p> <!-- comment --> <slot></slot>';
+        }
+
+        disconnectedCallback() {
+          this.nonstandardMount.parentElement.removeChild(this.nonstandardMount);
+        }
+      },
+    );
+    const el = await fixture(`<${tag}><span>  light content  </span></${tag}>`);
+
+    assert.shadowDom.equal(el.nonstandardMount, '<p>shadow content</p><slot>');
+    assert.shadowDom.notEqual(el.nonstandardMount, '<span>shadow content</span><slot>');
+    expect(el.nonstandardMount).shadowDom.to.equal('<p>shadow content</p><slot>');
+    expect(el.nonstandardMount).shadowDom.to.not.equal('<span>shadow content</span><slot>');
+  });
 });

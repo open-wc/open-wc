@@ -34,6 +34,7 @@ export const chaiDomDiff = (chai, utils) => {
    */
   chai.Assertion.addProperty('lightDom', function lightDom() {
     new chai.Assertion(this._obj.nodeType).to.equal(1);
+
     utils.flag(this, 'lightDom', true);
   });
 
@@ -41,7 +42,7 @@ export const chaiDomDiff = (chai, utils) => {
    * can not be an arrow function as it gets rebound by chai
    */
   chai.Assertion.addProperty('shadowDom', function shadowDom() {
-    new chai.Assertion(this._obj.nodeType).to.equal(1);
+    new chai.Assertion([1, 11]).to.include(this._obj.nodeType);
     utils.flag(this, 'shadowDom', true);
   });
 
