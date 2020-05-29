@@ -46,6 +46,13 @@ module.exports = function readCommandLineArgs() {
       defaultValue: mainJs.stories || './stories/*.stories.{js,mdx}',
       description: 'List of story files e.g. --stories stories/*.stories.\\{js,mdx\\}',
     },
+    {
+      name: 'relative-imports',
+      type: Boolean,
+      defaultValue: false,
+      description:
+        'Generates relative imports in URL (required if storybook is served on a sub path)',
+    },
     { name: 'help', type: Boolean, description: 'See all options' },
   ];
 
@@ -86,6 +93,7 @@ module.exports = function readCommandLineArgs() {
   return {
     configDir: storybookArgs['config-dir'],
     stories: storybookArgs.stories,
+    relativeImports: storybookArgs['relative-imports'] || false,
     addons: mainJs.addons || [],
     setupMdjsPlugins: mainJs.setupMdjsPlugins,
 

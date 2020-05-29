@@ -10,6 +10,7 @@ const { createOrderedExports } = require('../../shared/createOrderedExports');
  * @param {string} args.previewConfigImport
  * @param {string[]} args.storiesPatterns glob patterns of story files
  * @param {string} args.rootDir
+ * @param {boolean} args.absolutePath
  */
 function createServeStorybookTransformer({
   assets,
@@ -17,6 +18,7 @@ function createServeStorybookTransformer({
   previewConfigImport,
   storiesPatterns,
   rootDir,
+  absolutePath,
 }) {
   const servedStoryUrls = new Set();
   const { indexHTML, iframeHTML } = assets;
@@ -30,7 +32,7 @@ function createServeStorybookTransformer({
         previewImport,
         previewConfigImport,
         storiesPatterns,
-        absolutePath: true,
+        absolutePath,
         rootDir,
       });
 
