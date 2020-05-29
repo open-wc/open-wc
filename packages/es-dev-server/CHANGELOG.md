@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.54.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.53.0...es-dev-server@1.54.0) (2020-05-29)
+
+
+### Features
+
+* **es-dev-server:** improve syntax error logging ([f735f4f](https://github.com/open-wc/open-wc/commit/f735f4f28dc28695b9e2721081537ba0a53a199d))
+
+
+
+
+
 # [1.53.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.52.0...es-dev-server@1.53.0) (2020-05-25)
 
 
