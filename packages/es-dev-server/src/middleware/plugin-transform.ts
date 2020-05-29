@@ -1,17 +1,24 @@
 import { FSWatcher } from 'chokidar';
 import fs from 'fs';
+import chalk from 'chalk';
 import { Context, Middleware } from 'koa';
 import LRUCache from 'lru-cache';
 import { promisify } from 'util';
 import { Plugin } from '../Plugin';
 import { addToCache, createResponseBodyCache, tryServeFromCache } from '../response-body-cache';
 import { getBodyAsString, isUtf8, RequestCancelledError } from '../utils/utils';
+import stripAnsi from 'strip-ansi';
+import { MessageChannel } from '../utils/MessageChannel';
+
+export class TransformSyntaxError extends Error {}
 
 const stat = promisify(fs.stat);
 
 export interface PluginServeMiddlewareConfig {
   plugins: Plugin[];
   fileWatcher: FSWatcher;
+  logErrorsToBrowser: boolean;
+  messageChannel?: MessageChannel;
   rootDir: string;
   fileExtensions: string[];
 }
@@ -93,18 +100,35 @@ export function createPluginTransformMiddlware(cfg: PluginServeMiddlewareConfig)
 
     let transformCache = true;
     for (const plugin of transformPlugins) {
-      const response = await plugin.transform?.(context);
-      if (response) {
-        transformCache = response.transformCache === false ? false : transformCache;
-        if (response.body != null) {
-          context.body = response.body;
-        }
+      try {
+        const response = await plugin.transform?.(context);
+        if (response) {
+          transformCache = response.transformCache === false ? false : transformCache;
+          if (response.body != null) {
+            context.body = response.body;
+          }
 
-        if (response.headers) {
-          for (const [k, v] of Object.entries(response.headers)) {
-            context.response.set(k, v);
+          if (response.headers) {
+            for (const [k, v] of Object.entries(response.headers)) {
+              context.response.set(k, v);
+            }
           }
         }
+      } catch (error) {
+        if (error instanceof TransformSyntaxError) {
+          const errorMessage = error.message.replace(`${process.cwd()}/`, '');
+          context.status = 500;
+          console.error(`Syntax error in ${errorMessage}`);
+
+          if (cfg.logErrorsToBrowser) {
+            cfg.messageChannel?.sendMessage({
+              name: 'error-message',
+              data: JSON.stringify(stripAnsi(errorMessage)),
+            });
+          }
+          return;
+        }
+        throw error;
       }
     }
 

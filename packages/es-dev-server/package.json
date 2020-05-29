@@ -36,6 +36,7 @@
     "start:root-dir": "node dist/cli.js --root-dir demo/static/ --open",
     "start:static": "node dist/cli.js -c demo/static/server.js --open",
     "start:syntax": "node dist/cli.js -c demo/syntax/server.js --open --watch",
+    "start:syntax-error": "node dist/cli.js -c demo/syntax-error/server.js --open --watch",
     "start:transformers": "node dist/cli.js -c demo/response-transformers/server.js",
     "start:typescript": "node dist/cli.js -c demo/typescript/server.js --open --watch",
     "start:web-components": "node dist/cli.js -c demo/web-components/server.js --open --watch",
