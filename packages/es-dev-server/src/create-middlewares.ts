@@ -180,6 +180,8 @@ export function createMiddlewares(config: ParsedConfig, fileWatcher = chokidar.w
       fileWatcher,
       rootDir,
       fileExtensions,
+      messageChannel,
+      logErrorsToBrowser,
     }),
   );
 

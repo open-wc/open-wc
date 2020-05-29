@@ -10,13 +10,9 @@ import {
   setTextContent,
 } from '@open-wc/building-utils/dom5-fork';
 import { findJsScripts } from '@open-wc/building-utils';
-import {
-  parse as parseHtml,
-  serialize as serializeHtml,
-  Document as DocumentAst,
-  Node as NodeAst,
-} from 'parse5';
+import { parse as parseHtml, serialize as serializeHtml } from 'parse5';
 import { Plugin } from '../Plugin';
+import { TransformSyntaxError } from '../middleware/plugin-transform';
 import { createBabelTransform, defaultConfig } from '../utils/babel-transform';
 
 export type ResolveImport = (source: string) => string | undefined | Promise<string | undefined>;
@@ -40,17 +36,22 @@ const babelTransform = createBabelTransform(
   }),
 );
 
-async function createSyntaxError(code: string, filePath: string, originalError: Error) {
+async function createSyntaxError(code: string, filePath: string) {
   // if es-module-lexer cannot parse the file, use babel to generate a user-friendly error message
-  await babelTransform(filePath, code);
+  try {
+    await babelTransform(filePath, code);
+  } catch (error) {
+    throw new TransformSyntaxError(error.message);
+  }
   // ResolveSyntaxError is thrown when resolveModuleImports runs into a syntax error from
-  // the lexer, but babel didn't see any errors. this means either a bug in the lexer, or
+  // es-module-lexer, but babel didn't see any errors. this means either a bug in the lexer, or
   // some experimental syntax. log a message and return the module untransformed to the
   // browser
-  console.error(
-    `Could not resolve module imports in ${filePath}: Unable to parse the module, this can be due to experimental syntax or a bug in the parser.`,
+  throw new TransformSyntaxError(
+    `Could not resolve module imports in ${filePath.substring(
+      1,
+    )}: Unable to parse the module, this can be due to experimental syntax or a bug in the parser.`,
   );
-  throw originalError;
 }
 
 /**
@@ -125,7 +126,7 @@ export async function resolveModuleImports(
   try {
     [imports] = await parse(code, filePath);
   } catch (error) {
-    throw await createSyntaxError(code, filePath, error);
+    throw await createSyntaxError(code, filePath);
   }
 
   let resolvedSource = '';
@@ -173,7 +174,7 @@ async function resolveWithPluginHooks(
   rootDir: string,
   resolvePlugins: Plugin[],
 ) {
-  const fileUrl = new URL(context.path, `${pathToFileURL(rootDir)}/`);
+  const fileUrl = new URL(`.${context.path}`, `${pathToFileURL(rootDir)}/`);
   const filePath = fileURLToPath(fileUrl);
 
   async function resolveImport(source: string) {
