@@ -27,6 +27,18 @@ describe('html', () => {
       input: ['<mandalore-planet class="sample"></mandalore-planet>'],
       output: ['<mandalore-planet-\\d{1,5} class="sample"></mandalore-planet-\\d{1,5}>'],
     },
+    {
+      input: ['<mandalore-planet class="sample" data-test="<my-component>"></mandalore-planet>'],
+      output: [
+        '<mandalore-planet-\\d{1,5} class="sample" data-test="<my-component>"></mandalore-planet-\\d{1,5}>',
+      ],
+    },
+    {
+      input: ['<mandalore-planet class="sample" data-test=\'<my-component>\'></mandalore-planet>'],
+      output: [
+        '<mandalore-planet-\\d{1,5} class="sample" data-test=\'<my-component>\'></mandalore-planet-\\d{1,5}>',
+      ],
+    },
   ].forEach(({ input, output }, index) => {
     it(`should transform strings tags into the actual registered tags - ${index}`, () => {
       // @ts-ignore

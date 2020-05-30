@@ -5,20 +5,6 @@ import { registerElement } from './registerElement.js';
  */
 
 /**
- * Allowed tag name chars
- *
- * @type {string}
- */
-const chars = `-|\\.|[0-9]|[a-z]`;
-
-/**
- * Regular Expression to find a custom element tag
- *
- * @type {RegExp}
- */
-const re = new RegExp(`<\\/?([a-z](${chars})*-(${chars})*)`, 'g');
-
-/**
  * The global cache of processed string arrays
  *
  * @type {Map<TemplateStringsArray, TemplateStringsArray>}
@@ -26,17 +12,102 @@ const re = new RegExp(`<\\/?([a-z](${chars})*-(${chars})*)`, 'g');
 const globalCache = new Map();
 
 /**
+ * Allowed tag name characters
+ *
+ * @type {string[]}
+ */
+const TAGNAME_CHARS = '-.0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
+/**
+ * Characters used to open a string
+ *
+ * @type {string[]}
+ */
+const OPEN_STRING_CHARS = `"'`.split('');
+
+/**
+ * Checks if the next token is an string
+ *
+ * @param {string} str
+ * @param {number} index
+ * @returns {boolean}
+ */
+const isOpenString = (str, index) => OPEN_STRING_CHARS.includes(str[index]);
+
+/**
+ * Returns the length of the opening or closing chars of a tag name
+ *
+ * @param {string} str
+ * @param {number} index
+ * @returns {number}
+ */
+const getStartTagLength = (str, index) => {
+  if (str[index] !== '<') return 0;
+  if (str[index + 1] === '/') return 2;
+
+  return 1;
+};
+
+/**
+ * Obtains the next name in the string from the index
+ *
+ * @param {string} str
+ * @param {number} index
+ * @returns {{isCustomElement: boolean, index: *, tagName: string}}
+ */
+const getName = (str, index) => {
+  let i = index;
+  let isCustomElement = false;
+
+  while (TAGNAME_CHARS.includes(str[i])) {
+    isCustomElement = isCustomElement || str[i] === '-';
+
+    i += 1;
+  }
+
+  return {
+    index,
+    isCustomElement,
+    tagName: str.substring(index, i),
+  };
+};
+
+/**
  * Find custom element tags in the string
  *
  * @param {string} str
- * @returns {RegExpExecArray[]}
+ * @returns {{index: number, tagName: string}[]}
  */
 const matchAll = str => {
   const matches = [];
-  let result;
-  // eslint-disable-next-line no-cond-assign
-  while ((result = re.exec(str)) !== null) {
-    matches.push(result);
+  let openStringChar;
+
+  for (let index = 0; index < str.length; index += 1) {
+    if (!openStringChar) {
+      const startTagLength = getStartTagLength(str, index);
+
+      if (startTagLength > 0) {
+        index += startTagLength;
+
+        const tagName = getName(str, index);
+
+        if (tagName.isCustomElement) {
+          matches.push({ index: tagName.index, tagName: tagName.tagName });
+        }
+
+        index += tagName.tagName.length;
+      }
+
+      if (isOpenString(str, index)) {
+        openStringChar = str[index];
+        index += 1;
+      }
+    }
+
+    if (str[index] === openStringChar) {
+      index += 1;
+      openStringChar = undefined;
+    }
   }
 
   return matches;
@@ -58,10 +129,10 @@ const transformTemplate = (strings, scopedElements, templateCache, tagsCache) =>
 
     for (let i = matches.length - 1; i >= 0; i -= 1) {
       const item = matches[i];
-      const klass = scopedElements[item[1]];
-      const tag = registerElement(item[1], klass, tagsCache);
-      const start = item.index + item[0].length - item[1].length;
-      const end = start + item[1].length;
+      const klass = scopedElements[item.tagName];
+      const tag = registerElement(item.tagName, klass, tagsCache);
+      const start = item.index;
+      const end = start + item.tagName.length;
 
       acc = acc.slice(0, start) + tag + acc.slice(end);
     }
