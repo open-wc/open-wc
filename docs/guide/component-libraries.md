@@ -19,6 +19,10 @@ The hardest part of any project is often getting content onto that first blank p
 
   A family of web components built with first-class participation in the Twig templating system for PHP in mind. This set is backed by an expansive catalog of usage variants.
 
+- [Carbon Design System](https://github.com/carbon-design-system/carbon-custom-elements)
+
+  Carbon is an open-source design system built by IBM. With the IBM Design Language as its foundation, the system consists of working code, design tools and resources, human interface guidelines, and a vibrant community of contributors.
+
 - [Clever Components](https://github.com/CleverCloud/clever-components)
 
   A collection of low-level (atoms) and high-level (domain specific) Web Components made by Clever Cloud for its different Web UIs (public and internal).
