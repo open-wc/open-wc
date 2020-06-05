@@ -118,7 +118,7 @@ export function createPluginTransformMiddlware(cfg: PluginServeMiddlewareConfig)
         if (error instanceof TransformSyntaxError) {
           const errorMessage = error.message.replace(`${process.cwd()}/`, '');
           context.status = 500;
-          console.error(`Syntax error in ${errorMessage}`);
+          console.error(`Syntax error: ${errorMessage}`);
 
           if (cfg.logErrorsToBrowser) {
             cfg.messageChannel?.sendMessage({

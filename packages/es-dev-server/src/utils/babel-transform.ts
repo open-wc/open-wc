@@ -57,7 +57,7 @@ export function createBabelTransform(
       sourceMaps: !largeFile,
       ...config,
     });
-    if (!result || !result.code) {
+    if (!result || typeof result.code !== 'string') {
       throw new Error('Failed to transform');
     }
     return result.code;
