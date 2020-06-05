@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.54.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.54.0...es-dev-server@1.54.1) (2020-06-05)
+
+
+### Bug Fixes
+
+* **es-dev-server:** handle transforming empty modules ([fe4dd97](https://github.com/open-wc/open-wc/commit/fe4dd9790d0393e847e07766de0fc771303b8f93))
+
+
+
+
+
 # [1.54.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.53.0...es-dev-server@1.54.0) (2020-05-29)
 
 
