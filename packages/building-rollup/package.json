@@ -64,7 +64,7 @@
     "@open-wc/building-utils": "^2.18.0",
     "@open-wc/rollup-plugin-html": "^1.1.0",
     "@open-wc/rollup-plugin-polyfills-loader": "^1.0.7",
-    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@rollup/plugin-node-resolve": "8.0.1",
     "babel-plugin-bundled-import-meta": "^0.3.2",
     "babel-plugin-template-html-minifier": "^4.0.0",
     "browserslist": "^4.9.1",

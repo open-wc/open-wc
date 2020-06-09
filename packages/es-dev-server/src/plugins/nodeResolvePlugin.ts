@@ -1,4 +1,4 @@
-import createRollupResolve, { Options } from '@rollup/plugin-node-resolve';
+import createRollupResolve, { RollupNodeResolveOptions } from '@rollup/plugin-node-resolve';
 import path from 'path';
 import { URL, pathToFileURL, fileURLToPath } from 'url';
 import whatwgUrl from 'whatwg-url';
@@ -19,7 +19,7 @@ const fakePluginContext = {
 interface NodeResolveConfig {
   rootDir: string;
   fileExtensions: string[];
-  nodeResolve: boolean | Options;
+  nodeResolve: boolean | RollupNodeResolveOptions;
 }
 
 export function nodeResolvePlugin(config: NodeResolveConfig): Plugin {

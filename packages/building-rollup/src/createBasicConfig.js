@@ -1,7 +1,7 @@
 /** @typedef {import('./types').BasicOptions} BasicOptions */
 
 /* eslint-disable no-param-reassign */
-const resolve = require('@rollup/plugin-node-resolve');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const babel = require('rollup-plugin-babel');
 const merge = require('deepmerge');
@@ -52,7 +52,7 @@ function createBasicConfig(userOptions = {}) {
 
     plugins: [
       // resolve bare module imports
-      pluginWithOptions(resolve, opts.nodeResolve, {
+      pluginWithOptions(nodeResolve, opts.nodeResolve, {
         customResolveOptions: {
           moduleDirectory: ['node_modules', 'web_modules'],
         },

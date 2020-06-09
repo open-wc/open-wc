@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Options } from '@rollup/plugin-node-resolve';
+import { RollupNodeResolveOptions } from '@rollup/plugin-node-resolve';
 import { Plugin } from '../Plugin';
 import { createCompatibilityTransform } from '../utils/compatibility-transform';
 import { getUserAgentCompat } from '../utils/user-agent-compat';
@@ -20,7 +20,7 @@ function createFilePath(context: Context, rootDir: string) {
 interface BabelTransformConfig {
   rootDir: string;
   readUserBabelConfig: boolean;
-  nodeResolve: boolean | Options;
+  nodeResolve: boolean | RollupNodeResolveOptions;
   compatibilityMode: string;
   customBabelConfig?: TransformOptions;
   fileExtensions: string[];

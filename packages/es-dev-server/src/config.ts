@@ -1,6 +1,6 @@
 import path from 'path';
 import { Middleware } from 'koa';
-import { Options as NodeResolveOptions } from '@rollup/plugin-node-resolve';
+import { RollupNodeResolveOptions } from '@rollup/plugin-node-resolve';
 import { PolyfillsLoaderConfig } from './utils/inject-polyfills-loader';
 import { toBrowserPath, setDebug } from './utils/utils';
 import { compatibilityModes } from './constants';
@@ -78,7 +78,7 @@ export interface Config {
    */
   compatibility?: string;
   /** whether to resolve bare module imports using node resolve */
-  nodeResolve?: boolean | NodeResolveOptions;
+  nodeResolve?: boolean | RollupNodeResolveOptions;
   /**
    * dedupe ensures only one
    * version of a module is ever resolved by resolving it from the root node_modules.
@@ -148,7 +148,7 @@ export interface ParsedConfig {
 
   // Code transformation
   plugins: Plugin[];
-  nodeResolve: boolean | NodeResolveOptions;
+  nodeResolve: boolean | RollupNodeResolveOptions;
   polyfillsLoader: boolean;
   polyfillsLoaderConfig?: Partial<PolyfillsLoaderConfig>;
   readUserBabelConfig: boolean;
