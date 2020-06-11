@@ -23,6 +23,8 @@ export interface CompatibilityTransformConfig {
   babelExclude: string[];
   babelModernExclude: string[];
   babelModuleExclude: string[];
+  customBabelInclude: string[];
+  customBabelExclude: string[];
 }
 
 export interface FileData {
@@ -102,7 +104,16 @@ export function createCompatibilityTransform(cfg: CompatibilityTransformConfig):
    * Returns whether we should do a babel transform, we try to minimize this for performance.
    */
   function shouldTransformBabel(file: FileData) {
-    const customUserTransform = cfg.customBabelConfig || cfg.readUserBabelConfig;
+    const hasCustomUserConfig = cfg.customBabelConfig || cfg.readUserBabelConfig;
+    const includeInCustom =
+      hasCustomUserConfig &&
+      (cfg.customBabelInclude.length === 0 ||
+        cfg.customBabelInclude.some(pattern => minimatch(file.filePath, pattern)));
+    const excludeInCustom =
+      hasCustomUserConfig &&
+      cfg.customBabelExclude.some(pattern => minimatch(file.filePath, pattern));
+    const customUserTransform = hasCustomUserConfig && includeInCustom && !excludeInCustom;
+
     // no compatibility and no custom user transform
     if (cfg.compatibilityMode === compatibilityModes.NONE && !customUserTransform) {
       return false;
@@ -124,7 +135,7 @@ export function createCompatibilityTransform(cfg: CompatibilityTransformConfig):
       return false;
     }
 
-    // we need to run babel if compatibility mode is not none, or the user has defined a custom config
+    // we need to run babel if compatibility is turned on, or the user has defined a custom config and we need to include this file
     return cfg.compatibilityMode !== compatibilityModes.NONE || customUserTransform;
   }
 
