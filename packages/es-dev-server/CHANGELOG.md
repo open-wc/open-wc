@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.55.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.54.1...es-dev-server@1.55.0) (2020-06-11)
+
+
+### Features
+
+* **es-dev-server:** allow configuring custom babel include/exclude ([c2478c7](https://github.com/open-wc/open-wc/commit/c2478c756d3afd834ae6cd137b52d866293936b7))
+
+
+
+
+
 ## [1.54.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.54.0...es-dev-server@1.54.1) (2020-06-05)
 
 
