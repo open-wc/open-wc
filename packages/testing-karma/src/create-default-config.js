@@ -17,7 +17,7 @@ const pruneSnapshots = !!process.argv.find(arg => arg.includes('--prune-snapshot
 /**
  * Creates base karma configuration.
  * @param {import("karma").Config} config
- * @return {import('karma').ConfigOptions}
+ * @return {import('karma').ConfigOptions & { coverageReporter: any }}
  */
 module.exports = config => ({
   browsers: ['ChromeHeadlessNoSandbox'],
