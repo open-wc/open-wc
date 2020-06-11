@@ -27,6 +27,8 @@ interface BabelTransformConfig {
   babelExclude: string[];
   babelModernExclude: string[];
   babelModuleExclude: string[];
+  customBabelInclude: string[];
+  customBabelExclude: string[];
 }
 
 export function babelTransformPlugin(config: BabelTransformConfig): Plugin {

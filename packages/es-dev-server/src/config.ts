@@ -108,8 +108,12 @@ export interface Config {
   babelExclude?: string[];
   /** files excluded from babel on modern browser */
   babelModernExclude?: string[];
-  /** files excluded from module transfomration */
+  /** files excluded from module transformration */
   babelModuleExclude?: string[];
+  /** files to include from user defined babel config */
+  customBabelInclude?: string[];
+  /** files to exclude from user defined babel config */
+  customBabelExclude?: string[];
   /**
    * babel config to use, this is useful when you want to provide a
    * babel config from a tool, and don't want to require all users to use the same babel config
@@ -159,6 +163,8 @@ export interface ParsedConfig {
   babelExclude: string[];
   babelModernExclude: string[];
   babelModuleExclude: string[];
+  customBabelInclude: string[];
+  customBabelExclude: string[];
 }
 
 /**
@@ -171,6 +177,8 @@ export function createConfig(config: Partial<Config>): ParsedConfig {
     babelExclude = [],
     babelModernExclude = [],
     babelModuleExclude = [],
+    customBabelInclude = [],
+    customBabelExclude = [],
     basePath,
     compress = true,
     fileExtensions: fileExtensionsArg,
@@ -289,6 +297,8 @@ export function createConfig(config: Partial<Config>): ParsedConfig {
     babelExclude,
     babelModernExclude,
     babelModuleExclude,
+    customBabelInclude,
+    customBabelExclude,
     basePath,
     compatibilityMode: compatibility,
     polyfillsLoader: polyfillsLoader !== false,

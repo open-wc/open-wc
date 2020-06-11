@@ -64,6 +64,8 @@ export function createMiddlewares(config: ParsedConfig, fileWatcher = chokidar.w
     babelExclude,
     babelModernExclude,
     babelModuleExclude,
+    customBabelInclude,
+    customBabelExclude,
   } = config;
 
   const middlewares: Middleware[] = [];
@@ -115,6 +117,8 @@ export function createMiddlewares(config: ParsedConfig, fileWatcher = chokidar.w
         babelExclude,
         babelModernExclude,
         babelModuleExclude,
+        customBabelInclude,
+        customBabelExclude,
       }),
     );
   }
