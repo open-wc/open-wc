@@ -1,21 +1,12 @@
 const appliedClassMixins = new WeakMap();
 
-function getPrototypeChain(obj) {
-  const chain = [];
-  let proto = obj;
-  while (proto) {
-    chain.push(proto);
-    proto = Object.getPrototypeOf(proto);
-  }
-  return chain;
-}
-
 function wasApplied(mixin, superClass) {
-  const classes = getPrototypeChain(superClass);
-  for (const klass of classes) {
-    if (appliedClassMixins.get(klass) === mixin) {
+  let proto = superClass;
+  while (proto) {
+    if (appliedClassMixins.get(proto) === mixin) {
       return true;
     }
+    proto = Object.getPrototypeOf(proto);
   }
   return false;
 }
