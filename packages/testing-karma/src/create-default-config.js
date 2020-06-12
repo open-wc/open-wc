@@ -86,7 +86,7 @@ module.exports = config => ({
     showDiff: true,
   },
 
-  restartOnFileChange: true,
+  restartOnFileChange: false,
 
   client: {
     mocha: {
