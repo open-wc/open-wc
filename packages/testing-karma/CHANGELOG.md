@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.4.3...@open-wc/testing-karma@3.4.4) (2020-06-12)
+
+
+### Bug Fixes
+
+* **testing-karma:** disable restartOnFileChange option ([096452c](https://github.com/open-wc/open-wc/commit/096452c35d5fc7329476a9618326084b586cce0c))
+
+
+
+
+
 ## [3.4.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.4.2...@open-wc/testing-karma@3.4.3) (2020-06-11)
 
 **Note:** Version bump only for package @open-wc/testing-karma
