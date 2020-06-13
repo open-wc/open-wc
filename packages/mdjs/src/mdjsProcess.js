@@ -90,6 +90,8 @@ async function mdjsProcess(
       `  storyEl.story = story.story;`,
       `  storyEl.code = story.code;`,
       `};`,
+      `if (!customElements.get('mdjs-preview')) { import('@mdjs/mdjs-preview/mdjs-preview.js'); }`,
+      `if (!customElements.get('mdjs-story')) { import('@mdjs/mdjs-story/mdjs-story.js'); }`,
     ].join('\n');
   }
   return { stories, jsCode: fullJsCode, html: result.contents };
