@@ -42,7 +42,7 @@ async function mdjsProcess(
   const result = /** @type {ParseResult} */ (parseResult);
 
   const { stories, jsCode } = result.data;
-  let fullJsCode = '';
+  let fullJsCode = jsCode;
 
   if (stories && stories.length > 0) {
     const storiesCode = stories.map(story => story.code).join('\n');
