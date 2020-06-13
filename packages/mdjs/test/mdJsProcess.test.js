@@ -59,6 +59,22 @@ describe('mdjsProcess', () => {
     expect(result.jsCode).to.equal('');
   });
 
+  it('handles files which have js but no stories', async () => {
+    const md = [
+      //
+      '## Intro',
+      '```js script',
+      'const bar = 2;',
+      '```',
+    ].join('\n');
+
+    const result = await mdjsProcess(md);
+    expect(result.html).to.equal(
+      '<h2 id="intro"><a aria-hidden="true" href="#intro"><span class="icon icon-link"></span></a>Intro</h2>',
+    );
+    expect(result.jsCode).to.equal('const bar = 2;');
+  });
+
   it('allows to fully configure the plugin list', async () => {
     const expected = [
       '<p>Intro</p>',
