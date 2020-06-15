@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.11](https://github.com/open-wc/open-wc/compare/storybook-addon-web-components-knobs@0.3.10...storybook-addon-web-components-knobs@0.3.11) (2020-06-15)
+
+**Note:** Version bump only for package storybook-addon-web-components-knobs
+
+
+
+
+
 ## [0.3.10](https://github.com/open-wc/open-wc/compare/storybook-addon-web-components-knobs@0.3.9...storybook-addon-web-components-knobs@0.3.10) (2020-05-01)
 
 **Note:** Version bump only for package storybook-addon-web-components-knobs

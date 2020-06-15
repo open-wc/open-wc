@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.9](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.8...@open-wc/demoing-storybook@2.3.9) (2020-06-15)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** setupMdjsPlugins should effect the build ([b7e55d2](https://github.com/open-wc/open-wc/commit/b7e55d28c84e720d69409dfde932ac5dece6aec9))
+
+
+
+
+
 ## [2.3.8](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.7...@open-wc/demoing-storybook@2.3.8) (2020-06-13)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook

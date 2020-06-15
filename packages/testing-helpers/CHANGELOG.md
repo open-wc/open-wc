@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.2...@open-wc/testing-helpers@1.8.3) (2020-06-15)
+
+
+### Bug Fixes
+
+* **testing-helpers:** auto-generate scoped elements test wrapper name ([439b39f](https://github.com/open-wc/open-wc/commit/439b39f9c0553754cd99f0f94f56525854c5a9eb))
+
+
+
+
+
 ## [1.8.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.1...@open-wc/testing-helpers@1.8.2) (2020-05-01)
 
 
