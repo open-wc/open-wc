@@ -14,6 +14,7 @@ const { copyCustomElementsJsonPlugin } = require('./copyCustomElementsJsonPlugin
  * @param {string} param.previewConfigImport
  * @param {string[]} param.storiesPatterns
  * @param {(config: object) => object | undefined} param.rollupConfigDecorator
+ * @param {function} param.setupMdjsPlugins
  */
 async function buildPreview({
   outputDir,
@@ -22,6 +23,7 @@ async function buildPreview({
   previewConfigImport,
   storiesPatterns,
   rollupConfigDecorator,
+  setupMdjsPlugins,
 }) {
   const { html } = await injectStories({
     iframeHTML,
@@ -43,7 +45,7 @@ async function buildPreview({
 
   config.plugins.unshift(
     collectStoryIdsPlugin(storyIds),
-    transformMdPlugin(storyIds),
+    transformMdPlugin(storyIds, { setupMdjsPlugins }),
     injectOrderedExportsPlugin(storyIds),
     copyCustomElementsJsonPlugin(outputDir),
   );

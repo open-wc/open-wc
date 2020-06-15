@@ -11,6 +11,7 @@ module.exports = async function build({
   storiesPatterns,
   rollupConfigDecorator,
   addons,
+  setupMdjsPlugins,
 }) {
   const managerPathRelative = `/${path.relative(
     process.cwd(),
@@ -47,5 +48,6 @@ module.exports = async function build({
     previewImport,
     previewConfigImport,
     rollupConfigDecorator,
+    setupMdjsPlugins,
   });
 };

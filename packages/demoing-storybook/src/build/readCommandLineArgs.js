@@ -60,6 +60,7 @@ module.exports = function readCommandLineArgs() {
     configDir: args['config-dir'],
     outputDir: args['output-dir'],
     stories: args.stories,
+    setupMdjsPlugins: mainJs.setupMdjsPlugins,
     rollup: mainJs.rollup,
     addons: mainJs.addons || [],
   };
