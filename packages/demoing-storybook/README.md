@@ -208,7 +208,7 @@ it('has a header', async () => {
 
 <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>You can find a more interactive version of this in the <a href="/demoing-storybook/?path=/docs/decorators-withwebcomponentknobs--example-output">withWebComponentsKnobs docs</a>.</p></div>
 
-Base on the data in [custom-elements.json](./#custom-elementsjson) we can automatically generate knobs for your stories.
+Based on the data in [custom-elements.json](./#custom-elementsjson), we can automatically generate knobs for your stories.
 
 To enable this feature you will need to add an additional decorator.
 
@@ -260,8 +260,8 @@ please see the official [documentation of the knobs for web components decorator
 ### custom-elements.json
 
 In order to get documentation for web-components you will need to have a [custom-elements.json](https://github.com/webcomponents/custom-elementsjson) file.
-You can hand write it or better generate it. Depending on the web components sugar you are choosing your mileage may vary.
-Please not that the details of the file are still being discussed so we may adopt to changes in `custom-elements.json` without a breaking release.
+You can handwrite it or better generate it. Depending on the web components sugar you are choosing your mileage may vary.
+Please note that the details of the file are still being discussed so we may adopt to changes in `custom-elements.json` without a breaking release.
 
 Known analyzers that output `custom-elements.json`:
 
