@@ -535,7 +535,7 @@ module.exports = {
       transform(context) {
         if (context.path === '/index.html') {
           const transformedBody = context.body.replace(/<base href=".*">/, '<base href="/foo/">');
-          return { body: rewritransformedBodytten };
+          return { body: transformedBody };
         }
       },
     },
