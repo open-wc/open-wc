@@ -83,15 +83,15 @@ export function polyfillsLoaderPlugin(config: PolyfillsLoaderPluginConfig): Plug
       if (!context.response.is('html')) {
         return undefined;
       }
-
       const uaCompat = getUserAgentCompat(context);
       const lastModified = context.response.headers['last-modified'];
 
       // return cached index.html if it did not change
       const data = indexHTMLData.get(`${uaCompat.browserTarget}${context.path}`);
+
       // if there is no lastModified cached, the HTML file is not served from the
       // file system
-      if (data && data?.lastModified === lastModified) {
+      if (data?.lastModified && data?.lastModified === lastModified) {
         return { body: data.indexHTML };
       }
 
