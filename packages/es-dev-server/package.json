@@ -33,6 +33,7 @@
     "start:node-builtins": "node dist/cli.js -c demo/node-builtins/server.js --open --watch",
     "start:node-resolve": "node dist/cli.js -c demo/node-resolve/server.js --open --watch",
     "start:performance": "node dist/cli.js -c demo/performance/server.js",
+    "start:plugin-serve": "node dist/cli.js -c demo/plugin-serve/server.js --open --watch",
     "start:root-dir": "node dist/cli.js --root-dir demo/static/ --open",
     "start:static": "node dist/cli.js -c demo/static/server.js --open",
     "start:syntax": "node dist/cli.js -c demo/syntax/server.js --open --watch",
