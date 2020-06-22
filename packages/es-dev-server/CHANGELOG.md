@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.55.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.55.0...es-dev-server@1.55.1) (2020-06-22)
+
+
+### Bug Fixes
+
+* **es-dev-server:** only cache HTML when there is lastModified ([f07387f](https://github.com/open-wc/open-wc/commit/f07387f6761f3da3945e7a15f72f7b98a18f2500))
+
+
+
+
+
 # [1.55.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.54.1...es-dev-server@1.55.0) (2020-06-11)
 
 
