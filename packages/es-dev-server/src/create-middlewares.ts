@@ -3,6 +3,7 @@ import { Middleware } from 'koa';
 import koaCompress from 'koa-compress';
 import koaEtag from 'koa-etag';
 import koaStatic from 'koa-static';
+import koaCors from '@koa/cors';
 import Koa from 'koa';
 import { Server } from 'net';
 import { ParsedConfig } from './config';
@@ -66,6 +67,7 @@ export function createMiddlewares(config: ParsedConfig, fileWatcher = chokidar.w
     babelModuleExclude,
     customBabelInclude,
     customBabelExclude,
+    cors,
   } = config;
 
   const middlewares: Middleware[] = [];
@@ -195,6 +197,11 @@ export function createMiddlewares(config: ParsedConfig, fileWatcher = chokidar.w
   }
 
   middlewares.push(createPluginMimeTypeMiddleware({ plugins }));
+
+  if (cors) {
+    middlewares.push(koaCors())
+  }
+
   middlewares.push(createPluginServeMiddlware({ plugins }));
 
   // serve static files

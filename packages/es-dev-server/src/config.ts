@@ -56,6 +56,8 @@ export interface Config {
   logStartup?: boolean;
   /** whether to log debug messages */
   debug?: boolean;
+  /** Enable cors */
+  cors?: boolean;
 
   // Development help
 
@@ -141,6 +143,7 @@ export interface ParsedConfig {
   customMiddlewares: Middleware[];
   responseTransformers: ResponseTransformer[];
   onServerStart?: (config: ParsedConfig) => void | Promise<void>;
+  cors: boolean;
 
   // Development help
   watch: boolean;
@@ -186,6 +189,7 @@ export function createConfig(config: Partial<Config>): ParsedConfig {
     http2 = false,
     logStartup,
     open = false,
+    cors = false,
     port,
     sslCert,
     sslKey,
@@ -315,6 +319,7 @@ export function createConfig(config: Partial<Config>): ParsedConfig {
     nodeResolve,
     openBrowser: open === true || typeof open === 'string',
     openPath,
+    cors,
     port,
     readUserBabelConfig: babel,
     rootDir,
