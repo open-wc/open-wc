@@ -90,6 +90,12 @@ export const commandLineOptions = [
     description: 'Path to local .cert file for https',
   },
   {
+    name: 'cors',
+    type: Boolean,
+    description:
+      'Enable CORS',
+  },
+  {
     name: 'node-resolve',
     alias: 'n',
     type: Boolean,

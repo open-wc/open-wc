@@ -70,6 +70,7 @@ es-dev-server requires node v10 or higher
 | root-dir  | string         | The root directory to serve files from. Default: working directory      |
 | base-path | string         | Base path the app is served on. Example: /my-app                        |
 | config    | string         | The file to read configuration from (JS or JSON)                        |
+| cors      | boolean        | Enable CORS                                                             |
 | help      | none           | See all options                                                         |
 
 ### Development help
