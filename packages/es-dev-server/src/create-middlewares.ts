@@ -201,6 +201,7 @@ export function createMiddlewares(config: ParsedConfig, fileWatcher = chokidar.w
   middlewares.push(
     koaStatic(rootDir, {
       hidden: true,
+      defer: true,
       setHeaders(res) {
         res.setHeader('cache-control', 'no-cache');
       },
