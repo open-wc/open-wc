@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.56.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.55.1...es-dev-server@1.56.0) (2020-06-25)
+
+
+### Features
+
+* **es-dev-server:** add cors option ([8d53225](https://github.com/open-wc/open-wc/commit/8d532259c3148778614848cc5b4b6c94fc5d6e0d))
+
+
+
+
+
 ## [1.55.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.55.0...es-dev-server@1.55.1) (2020-06-22)
 
 
