@@ -71,6 +71,7 @@
     "deepmerge": "^4.2.2",
     "magic-string": "^0.25.7",
     "parse5": "^5.1.1",
+    "regenerator-runtime": "^0.13.3",
     "rollup-plugin-babel": "^5.0.0-alpha.1",
     "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-workbox": "^5.0.1",
