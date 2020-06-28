@@ -8,6 +8,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
+    'plugin:import/typescript',
   ],
   rules: {
     // disable the rule for all files
