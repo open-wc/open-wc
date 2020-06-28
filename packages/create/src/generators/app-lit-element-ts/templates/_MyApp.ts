@@ -1,4 +1,4 @@
-import { LitElement, html, css, property } from 'lit-element';
+import { css, html, LitElement, property, TemplateResult } from 'lit-element';
 import { openWcLogo } from './open-wc-logo.js';
 
 export class <%= className %> extends LitElement {
@@ -49,7 +49,7 @@ export class <%= className %> extends LitElement {
     }
   `;
 
-  render() {
+  render(): TemplateResult {
     return html`
       <main>
         <div class="logo">${openWcLogo}</div>
