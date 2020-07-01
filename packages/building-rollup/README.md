@@ -161,13 +161,21 @@ const baseConfig = createSpaConfig({
 });
 ```
 
-You can also customize the name of the service worker, note that this will only take effect if you also use `injectServiceWorker`:
+If you overwrite the workbox configuration and the `swDest` property of the workbox config, `injectServiceWorker` will automatically use the value of `swDest` in the service worker registration. Example:
 
 ```js
 const baseConfig = createSpaConfig({
   injectServiceWorker: true,
-  swName: 'my-service-worker',
+  workbox: {
+    swDest: './my-sw.js',
+  },
 });
+```
+
+Will result in:
+
+```js
+navigator.serviceWorker.register('./my-sw.js');
 ```
 
 ## Supporting older browsers

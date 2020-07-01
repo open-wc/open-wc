@@ -4,7 +4,9 @@ const { createSpaConfig } = require('../../index.js');
 const baseConfig = createSpaConfig({
   developmentMode: false,
   injectServiceWorker: true,
-  swName: 'foo',
+  workbox: {
+    swDest: './dist/foo.js',
+  },
 });
 
 module.exports = merge(baseConfig, {
