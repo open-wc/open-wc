@@ -12,4 +12,5 @@ export interface SpaOptions extends BasicOptions {
   polyfillsLoader?: boolean | object;
   workbox?: boolean | object;
   injectServiceWorker?: boolean;
+  swName?: string;
 }

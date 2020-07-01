@@ -27,9 +27,12 @@ function createSpaConfig(options) {
   );
   let outputDir = basicConfig.output.dir;
 
+  const applySw = htmlString =>
+    applyServiceWorkerRegistration(htmlString, userOptions.swName || 'sw');
+
   const htmlPlugin = pluginWithOptions(html, userOptions.html, {
     minify: !userOptions.developmentMode,
-    transform: [userOptions.injectServiceWorker && applyServiceWorkerRegistration].filter(isFalsy),
+    transform: [userOptions.injectServiceWorker && applySw].filter(isFalsy),
     inject: false,
   });
 

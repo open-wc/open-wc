@@ -161,6 +161,15 @@ const baseConfig = createSpaConfig({
 });
 ```
 
+You can also customize the name of the service worker, note that this will only take effect if you also use `injectServiceWorker`:
+
+```js
+const baseConfig = createSpaConfig({
+  injectServiceWorker: true,
+  swName: 'my-service-worker',
+});
+```
+
 ## Supporting older browsers
 
 The default build output works only on browsers that support modules. If you need to support older browsers, such as IE11 or the old Edge, you can set the `legacyBuild` option when you use the create config function.
