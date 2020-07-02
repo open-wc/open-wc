@@ -41,7 +41,7 @@ function pluginWithOptions(plugin, userConfig, defaultConfig, ...otherParams) {
  * @param {string} htmlString
  * @returns {string}
  */
-function applyServiceWorkerRegistration(htmlString) {
+function applyServiceWorkerRegistration(htmlString, swPath) {
   const documentAst = parse(htmlString);
   const body = query(documentAst, predicates.hasTagName('body'));
   const swRegistration = createScript(
@@ -50,7 +50,7 @@ function applyServiceWorkerRegistration(htmlString) {
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
         navigator.serviceWorker
-          .register('./sw.js')
+          .register('${swPath}')
           .then(function() {
             console.log('ServiceWorker registered.');
           })

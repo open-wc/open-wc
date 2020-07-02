@@ -161,6 +161,23 @@ const baseConfig = createSpaConfig({
 });
 ```
 
+If you overwrite the workbox configuration and the `swDest` property of the workbox config, `injectServiceWorker` will automatically use the value of `swDest` in the service worker registration. Example:
+
+```js
+const baseConfig = createSpaConfig({
+  injectServiceWorker: true,
+  workbox: {
+    swDest: './my-sw.js',
+  },
+});
+```
+
+Will result in:
+
+```js
+navigator.serviceWorker.register('./my-sw.js');
+```
+
 ## Supporting older browsers
 
 The default build output works only on browsers that support modules. If you need to support older browsers, such as IE11 or the old Edge, you can set the `legacyBuild` option when you use the create config function.

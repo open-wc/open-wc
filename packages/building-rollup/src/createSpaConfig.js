@@ -16,6 +16,8 @@ const { defaultPolyfills } = require('./polyfills');
  */
 function createSpaConfig(options) {
   const basicConfig = createBasicConfig(options);
+
+  /** @type {SpaOptions} */
   const userOptions = merge(
     {
       html: true,
@@ -27,9 +29,18 @@ function createSpaConfig(options) {
   );
   let outputDir = basicConfig.output.dir;
 
+  let swPath;
+  if (typeof userOptions.workbox === 'boolean') {
+    swPath = './sw.js';
+  } else {
+    swPath = userOptions.workbox.swDest.replace(`${outputDir}/`, '');
+  }
+
+  const applySw = htmlString => applyServiceWorkerRegistration(htmlString, swPath);
+
   const htmlPlugin = pluginWithOptions(html, userOptions.html, {
     minify: !userOptions.developmentMode,
-    transform: [userOptions.injectServiceWorker && applyServiceWorkerRegistration].filter(isFalsy),
+    transform: [userOptions.injectServiceWorker && applySw].filter(isFalsy),
     inject: false,
   });
 
