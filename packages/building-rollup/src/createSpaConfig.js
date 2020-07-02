@@ -30,6 +30,7 @@ function createSpaConfig(options) {
   const swPath =
     (userOptions &&
       userOptions.workbox &&
+      userOptions.workbox.swDest &&
       userOptions.workbox.swDest.replace(`${outputDir}/`, '')) ||
     './sw.js';
   const applySw = htmlString => applyServiceWorkerRegistration(htmlString, swPath);
