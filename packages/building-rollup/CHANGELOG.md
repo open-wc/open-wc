@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.3.2...@open-wc/building-rollup@1.4.0) (2020-07-02)
+
+
+### Features
+
+* **building-rollup:** allow customizing sw name ([#1738](https://github.com/open-wc/open-wc/issues/1738)) ([967270f](https://github.com/open-wc/open-wc/commit/967270f529d2d5dfb5d2a53575450609449fbd80))
+
+
+
+
+
 ## [1.3.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.3.1...@open-wc/building-rollup@1.3.2) (2020-06-25)
 
 
