@@ -10,6 +10,10 @@ export interface BasicOptions {
 export interface SpaOptions extends BasicOptions {
   html?: boolean | object;
   polyfillsLoader?: boolean | object;
-  workbox?: boolean | object;
+  workbox?: boolean | WorkboxOptions;
   injectServiceWorker?: boolean;
+}
+
+interface WorkboxOptions {
+  swDest: string
 }
