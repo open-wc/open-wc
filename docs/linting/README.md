@@ -42,7 +42,7 @@ Adjust your package.json with the following:
     }
   },
   "lint-staged": {
-    "*.js": ["eslint --fix", "prettier --write", "git add"]
+    "*.js": ["eslint --fix", "prettier --write"]
   },
   "scripts": {
     "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
