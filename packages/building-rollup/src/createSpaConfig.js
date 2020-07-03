@@ -30,10 +30,10 @@ function createSpaConfig(options) {
   let outputDir = basicConfig.output.dir;
 
   let swPath;
-  if (typeof userOptions.workbox === 'boolean') {
-    swPath = './sw.js';
-  } else {
+  if (typeof userOptions.workbox === 'object' && userOptions.workbox.swDest) {
     swPath = userOptions.workbox.swDest.replace(`${outputDir}/`, '');
+  } else {
+    swPath = './sw.js';
   }
 
   const applySw = htmlString => applyServiceWorkerRegistration(htmlString, swPath);
