@@ -15,5 +15,6 @@ export interface SpaOptions extends BasicOptions {
 }
 
 interface WorkboxOptions {
-  swDest: string
+  swDest?: string,
+  globDirectory?: string,
 }
