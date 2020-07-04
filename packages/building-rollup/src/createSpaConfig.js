@@ -8,7 +8,12 @@ const polyfillsLoader = require('@open-wc/rollup-plugin-polyfills-loader');
 const path = require('path');
 const { generateSW } = require('rollup-plugin-workbox');
 const { createBasicConfig } = require('./createBasicConfig');
-const { pluginWithOptions, applyServiceWorkerRegistration, isFalsy } = require('./utils');
+const {
+  pluginWithOptions,
+  applyServiceWorkerRegistration,
+  isFalsy,
+  createSwPath,
+} = require('./utils');
 const { defaultPolyfills } = require('./polyfills');
 
 /**
@@ -29,13 +34,7 @@ function createSpaConfig(options) {
   );
   let outputDir = basicConfig.output.dir;
 
-  let swPath;
-  if (typeof userOptions.workbox === 'object' && userOptions.workbox.swDest) {
-    swPath = userOptions.workbox.swDest.replace(`${outputDir}/`, '');
-  } else {
-    swPath = './sw.js';
-  }
-
+  const swPath = createSwPath(userOptions, outputDir);
   const applySw = htmlString => applyServiceWorkerRegistration(htmlString, swPath);
 
   const htmlPlugin = pluginWithOptions(html, userOptions.html, {
