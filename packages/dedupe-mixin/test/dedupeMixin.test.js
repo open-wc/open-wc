@@ -63,4 +63,17 @@ describe('dedupeMixin', () => {
     const myObj = new MixedClass();
     expect(myObj.getMixinNames()).to.equal('Mixin1 Mixin2 Mixin3');
   });
+
+  it('dedupes mixins avoid apply twice the same mixin', () => {
+    const [Mixin1, Mixin2, Mixin3] = createMixins('Mixin1', 'Mixin2', 'Mixin3');
+    const Dedupe1 = dedupeMixin(Mixin1);
+    const Dedupe2 = dedupeMixin(Mixin2);
+    const Dedupe3 = dedupeMixin(Mixin3);
+    class BaseClass {}
+    class MixedClass extends Dedupe1(
+      Dedupe2(Dedupe3(Dedupe2(Dedupe1(Dedupe2(Dedupe3(BaseClass)))))),
+    ) {}
+    const myObj = new MixedClass();
+    expect(myObj.getMixinNames()).to.equal('Mixin1 Mixin2 Mixin3');
+  });
 });
