@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.4.0...@open-wc/building-rollup@1.4.1) (2020-07-03)
+
+
+### Bug Fixes
+
+* **building-rollup:** fix workbox typeguard ([#1742](https://github.com/open-wc/open-wc/issues/1742)) ([4bcd60a](https://github.com/open-wc/open-wc/commit/4bcd60adb58f8539e7099d401633af8104f1acb3))
+
+
+
+
+
 # [1.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.3.2...@open-wc/building-rollup@1.4.0) (2020-07-02)
 
 

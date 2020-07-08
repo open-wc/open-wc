@@ -1,3 +1,5 @@
+/** @typedef {import('./types').SpaOptions} SpaOptions */
+
 const merge = require('deepmerge');
 const { createScript } = require('@open-wc/building-utils');
 const { parse, serialize } = require('parse5');
@@ -66,9 +68,25 @@ function applyServiceWorkerRegistration(htmlString, swPath) {
   return serialize(documentAst);
 }
 
+/**
+ *
+ * @param {SpaOptions} userOptions
+ * @param {string} outputDir
+ */
+function createSwPath(userOptions, outputDir) {
+  let swPath;
+  if (typeof userOptions.workbox === 'object' && userOptions.workbox.swDest) {
+    swPath = userOptions.workbox.swDest.replace(`${outputDir}/`, '');
+  } else {
+    swPath = './sw.js';
+  }
+  return swPath;
+}
+
 module.exports = {
   isFalsy,
   pluginWithOptions,
   dedupedBabelPlugin,
   applyServiceWorkerRegistration,
+  createSwPath,
 };
