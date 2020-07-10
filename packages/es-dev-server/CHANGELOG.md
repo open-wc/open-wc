@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.56.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.56.0...es-dev-server@1.56.1) (2020-07-10)
+
+
+### Bug Fixes
+
+* **es-dev-server:** fix messagechannel to be ES5 compatible ([48a1ecd](https://github.com/open-wc/open-wc/commit/48a1ecde7e7fb86406913684fd2c16588976bac8))
+
+
+
+
+
 # [1.56.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.55.1...es-dev-server@1.56.0) (2020-06-25)
 
 
