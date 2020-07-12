@@ -1,6 +1,11 @@
 const appliedClassMixins = new WeakMap();
 
-function wasApplied(mixin, superClass) {
+/** Vefify if the Mixin was previously applyed
+ * @param {function} mixin      Mixin being applyed
+ * @param {object} superClass   Class receiving the new mixin
+ * @returns {boolean}
+ */
+function wasMixinPreviouslyApplied(mixin, superClass) {
   let klass = superClass;
   while (klass) {
     if (appliedClassMixins.get(klass) === mixin) {
@@ -11,9 +16,14 @@ function wasApplied(mixin, superClass) {
   return false;
 }
 
+/** Apply each mixin in the chain to make sure they are not applied more than once to the final class.
+ * @export
+ * @param {function} mixin      Mixin to be applyed
+ * @returns {any}               Mixed class with mixin applied
+ */
 export function dedupeMixin(mixin) {
   return superClass => {
-    if (wasApplied(mixin, superClass)) {
+    if (wasMixinPreviouslyApplied(mixin, superClass)) {
       return superClass;
     }
     const mixedClass = mixin(superClass);
