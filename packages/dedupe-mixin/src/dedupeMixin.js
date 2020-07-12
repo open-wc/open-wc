@@ -19,7 +19,7 @@ function wasMixinPreviouslyApplied(mixin, superClass) {
 /** Apply each mixin in the chain to make sure they are not applied more than once to the final class.
  * @export
  * @param {function} mixin      Mixin to be applyed
- * @returns {any}               Mixed class with mixin applied
+ * @returns {object}            Mixed class with mixin applied
  */
 export function dedupeMixin(mixin) {
   return superClass => {
