@@ -1,6 +1,7 @@
 const appliedClassMixins = new WeakMap();
 
 /** Vefify if the Mixin was previously applyed
+ * @private
  * @param {function} mixin      Mixin being applyed
  * @param {object} superClass   Class receiving the new mixin
  * @returns {boolean}
