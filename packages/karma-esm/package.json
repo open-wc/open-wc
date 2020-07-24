@@ -50,7 +50,7 @@
     "@types/lodash-es": "^4.17.3",
     "karma": "^4.1.0",
     "karma-browserstack-launcher": "^1.0.0",
-    "karma-coverage-istanbul-reporter": "^2.0.0",
+    "karma-coverage": "^2.0.2",
     "lodash-es": "^4.17.15"
   }
 }

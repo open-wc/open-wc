@@ -36,7 +36,7 @@
     "axe-core": "^3.5.3",
     "karma": "^4.1.0",
     "karma-chrome-launcher": "^3.1.0",
-    "karma-coverage-istanbul-reporter": "^2.0.0",
+    "karma-coverage": "^2.0.2",
     "karma-mocha": "^1.0.0",
     "karma-mocha-reporter": "^2.0.0",
     "karma-mocha-snapshot": "^0.2.1",
