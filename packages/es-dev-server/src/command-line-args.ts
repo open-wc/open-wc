@@ -92,8 +92,7 @@ export const commandLineOptions = [
   {
     name: 'cors',
     type: Boolean,
-    description:
-      'Enable CORS',
+    description: 'Enable CORS',
   },
   {
     name: 'node-resolve',
@@ -145,6 +144,11 @@ export const commandLineOptions = [
       'Compatibility mode for older browsers. Can be: "auto", "always", "min", "max" or "none". Default "auto"',
   },
   {
+    name: 'event-stream',
+    type: String,
+    description: 'Whether to inject event stream script into HTML pages.',
+  },
+  {
     name: 'debug',
     type: Boolean,
     description: 'Whether to log debug messages',
@@ -178,6 +182,7 @@ export interface CommandLineArgs {
   debug?: boolean;
   logStartup: boolean;
   logCompileErrors: boolean;
+  eventStream?: boolean;
 }
 
 /**
@@ -265,6 +270,7 @@ export function readCommandLineArgs(
 
   return {
     ...options,
+    eventStream: options.eventStream !== 'false',
     open,
     logStartup: true,
     // when used from the command line we log compile errors to the browser,
