@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.32.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.4...@open-wc/create@0.32.5) (2020-07-24)
+
+
+### Bug Fixes
+
+* **create:** upgrade to lint-staged@10 ([#1766](https://github.com/open-wc/open-wc/issues/1766)) ([6913611](https://github.com/open-wc/open-wc/commit/6913611953a569925fa3bb01aed33a7b5757d1da))
+
+
+
+
+
 ## [0.32.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.3...@open-wc/create@0.32.4) (2020-05-23)
 
 
