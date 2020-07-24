@@ -132,6 +132,7 @@
     "@babel/plugin-transform-modules-systemjs": "^7.9.0",
     "@babel/preset-typescript": "^7.8.3",
     "@babel/register": "^7.9.0",
+    "@types/koa__cors": "^3.0.1",
     "@types/node-fetch": "^2.3.7",
     "@types/puppeteer": "^2.0.0",
     "@types/request": "^2.48.1",

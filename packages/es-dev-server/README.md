@@ -94,6 +94,7 @@ es-dev-server requires node v10 or higher
 | babel-exclude        | number/array  | Patterns of files to exclude from babel compilation.                                                                            |
 | babel-modern-exclude | number/array  | Patterns of files to exclude from babel compilation on modern browsers.                                                         |
 | babel-module-exclude | number/array  | Patterns of files to exclude from babel compilation for modules only.                                                           |
+| event-stream         | boolean       | Whether to inject event stream script. Defaults to true.                                                                        |
 
 Most commands have an alias/shorthand. You can view them by using `--help`.
 
