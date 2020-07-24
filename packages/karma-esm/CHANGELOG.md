@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.16.18...@open-wc/karma-esm@3.0.0) (2020-07-24)
+
+
+### Features
+
+* **testing-karma:** use up to date coverage reporter ([e853364](https://github.com/open-wc/open-wc/commit/e853364b9dde1924199f4309cf6689b3bcc6e25f)), closes [#1164](https://github.com/open-wc/open-wc/issues/1164)
+
+
+### BREAKING CHANGES
+
+* **testing-karma:** coverageIstanbulReporter object in karma config has been replaced with coverageReporter
+move from karma-coverage-istanbul-reporter to karma-coverage
+
+See MIGRATION.md for more info.
+
+
+
+
+
 ## [2.16.18](https://github.com/open-wc/open-wc/compare/@open-wc/karma-esm@2.16.17...@open-wc/karma-esm@2.16.18) (2020-07-24)
 
 **Note:** Version bump only for package @open-wc/karma-esm
