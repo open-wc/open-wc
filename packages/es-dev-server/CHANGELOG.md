@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.57.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.56.1...es-dev-server@1.57.0) (2020-07-24)
+
+
+### Features
+
+* **es-dev-server:** add flag to disable injecting event stream script ([624438e](https://github.com/open-wc/open-wc/commit/624438e53b04211e30f9d5c44b8787e444243d80))
+
+
+
+
+
 ## [1.56.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.56.0...es-dev-server@1.56.1) (2020-07-10)
 
 
