@@ -13,7 +13,7 @@ Linting can help you write consistent code, and easily prevent mistakes. Open-wc
 We recommend
 
 - [ESLint](https://eslint.org/) to lint your es6 code
-- [Prettier](https://prettier.io/) to auto format your code
+- [Prettier](https://prettier.io/) to auto format your code (The Prettier extension for VSCode is also helpful)
 - [lint-staged](https://www.npmjs.com/package/lint-staged) to apply linting fixed only to changed files
 
 ## Automated Setup
@@ -70,3 +70,5 @@ Run:
 - `npm run format` to auto format your files
 
 Whenever you create a commit the update files will be auto formatted and the commit message will be linted for you.
+
+To format on save in VSCode, first enable the Prettier extension, then within your VSCode settings, check the **Editor: Format on Save** option. 
