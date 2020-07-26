@@ -3,6 +3,7 @@ import isStream from 'is-stream';
 import getStream from 'get-stream';
 import Stream from 'stream';
 import path from 'path';
+import mimeTypes from 'mime-types';
 import { Context, Request } from 'koa';
 import { isBinaryFile } from 'isbinaryfile';
 import { virtualFilePrefix } from '../constants';
@@ -28,6 +29,11 @@ export class IsBinaryFileError extends Error {}
  * with a string, so we keep a reference with a weakmap
  */
 const filePathsForRequests = new WeakMap<Request, string>();
+
+export function isUtf8(context: Context) {
+  const charSet = mimeTypes.charset(context.response.get('content-type'));
+  return charSet === false ? false : charSet.toLowerCase() === 'utf-8';
+}
 
 /**
  * Returns the body value as string. If the response is a stream, the
@@ -112,36 +118,11 @@ export class SSEStream extends Stream.Transform {
   }
 }
 
-/**
- * Returns the index html response, or null if this wasn't an index.html response
- */
-export async function isIndexHTMLResponse(ctx: Context, appIndex?: string): Promise<boolean> {
-  if (ctx.status < 200 || ctx.status >= 300) {
-    return false;
-  }
-
-  // if we're serving the app index, it's an index html response
-  if (appIndex && ctx.url === appIndex) {
-    return true;
-  }
-
-  // make the check based on content-type and `accept` request header value
-  const contentType = ctx.response.header && ctx.response.header['content-type'];
-  const acceptType = ctx.request.header && ctx.request.header.accept;
-
-  return (
-    contentType &&
-    contentType.includes('text/html') &&
-    acceptType &&
-    acceptType.includes('text/html')
-  );
-}
-
 export function isPolyfill(url: string) {
   return url.includes('/polyfills/');
 }
 
-export function shoudlTransformToModule(url: string) {
+export function shouldTransformToModule(url: string) {
   return url.includes('transform-systemjs');
 }
 

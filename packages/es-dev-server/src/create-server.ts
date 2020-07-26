@@ -23,7 +23,7 @@ function httpsRedirect(req: IncomingMessage, res: ServerResponse) {
  * http server instances.
  */
 export function createServer(cfg: ParsedConfig, fileWatcher = chokidar.watch([])) {
-  const middlewares = createMiddlewares(cfg, fileWatcher);
+  const { middlewares, onServerStarted } = createMiddlewares(cfg, fileWatcher);
 
   const app = new Koa();
 
@@ -98,5 +98,6 @@ export function createServer(cfg: ParsedConfig, fileWatcher = chokidar.watch([])
   return {
     server,
     app,
+    onServerStarted,
   };
 }

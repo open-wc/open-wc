@@ -57,7 +57,7 @@ describe('Plugin - semantic-dom-diff', () => {
 });
 ```
 
-[@open-wc/chai-a11y-axe](hhttps://www.npmjs.com/package/chai-a11y-axe) for a11y testing:
+[@open-wc/chai-a11y-axe](https://www.npmjs.com/package/chai-a11y-axe) for a11y testing:
 
 ```javascript
 import { expect, fixture, html } from '@open-wc/testing';

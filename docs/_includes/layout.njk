@@ -20,24 +20,7 @@
       <div class="global-ui"></div>
     </div>
 
-    <script>
-      document
-        .querySelector('.sidebar-button')
-        .addEventListener('click', () => {
-          document
-            .querySelector('.theme-container')
-            .classList
-            .toggle('sidebar-open');
-        });
-      document
-        .querySelector('.sidebar-mask')
-        .addEventListener('click', () => {
-          document
-            .querySelector('.theme-container')
-            .classList
-            .toggle('sidebar-open');
-        });
-    </script>
+    {% include "partials/sidebar-script.njk" %}
 
     {% if content.jsCode %}
       <script type="module">

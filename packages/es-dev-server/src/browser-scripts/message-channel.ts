@@ -12,7 +12,7 @@ export default `
       var eventSource = new EventSource('${messageChannelEndpoint}');
       var reloading = false;
 
-      eventSource.addEventListener('file-changed', function (e) {
+      eventSource.addEventListener('reload', function (e) {
         reloading = true;
         location.reload();
       });
@@ -30,8 +30,10 @@ export default `
           return;
         }
 
-        console.log('Disconnected from es-dev-server, no longer reloading on file changes.');
         eventSource.close();
+        setTimeout(function () {
+          console.log('Disconnected from es-dev-server, no longer reloading on file changes.');
+        }, 300);
       });
     }());
   </script>

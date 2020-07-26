@@ -4,6 +4,7 @@ title: Codelabs
 section: guides
 tags:
   - guides
+  - guide
 ---
 
 # Codelabs

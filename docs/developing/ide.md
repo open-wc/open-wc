@@ -4,6 +4,7 @@ title: IDE
 section: guides
 tags:
   - guides
+  - guide
 ---
 
 # IDE
@@ -42,12 +43,9 @@ We recommend the following plugins:
 
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
   Get ESLint feedback directly in your IDE => more details under [Linting](/linting/)
-- [lit-html](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html)
-  Highlights all your html tagged template literals
 - [lit-plugin](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin)
   Syntax highlighting, type checking and code completion for lit-html
-- [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
-  Highlights all your css tagged template literals
+- [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) Code formatter.
 
 ## Atom
 
@@ -55,10 +53,7 @@ An alternative to VSCode is [Atom](https://atom.io/), an IDE created by Github. 
 
 ### Recommended plugins
 
-- [atom-typescript](https://atom.io/packages/atom-typescript) - TypeScript support
 - [prettier-atom](https://atom.io/packages/prettier-atom) - Template literal highlighting and formatting
-- [docblockr](https://atom.io/packages/docblockr) - Documentation helper
-- [import-cost](https://atom.io/packages/atom-import-cost) - Displays import costs inline
 
 ## [Intellij IDEA](https://www.jetbrains.com/idea/) and other Jetbrains variants
 
@@ -77,5 +72,3 @@ Officially called a text editor Sublime Text features plugins which give it a lo
 ### Recommended plugins
 
 - [Lit Element Syntax Highlighting](https://packagecontrol.io/packages/LitElement%20Syntax%20Highlighting) - Syntax highlighting
-- [docblockr](https://packagecontrol.io/packages/DocBlockr) - Documentation helper
-- [TypeScript](https://packagecontrol.io/packages/TypeScript) - TypeScript support

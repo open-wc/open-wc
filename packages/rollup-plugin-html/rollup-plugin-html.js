@@ -8,18 +8,18 @@
 /** @typedef {import('rollup').EmittedFile} EmittedFile */
 /** @typedef {import('rollup').EmitFile} EmitFile */
 /** @typedef {import('./src/types').PluginOptions} PluginOptions */
-/** @typedef {import('./src/types').InputHtmlData} InputHtmlData */
 /** @typedef {import('./src/types').GeneratedBundle} GeneratedBundle */
 /** @typedef {import('./src/types').TransformFunction} TransformFunction */
 /** @typedef {import('./src/types').RollupPluginHtml} RollupPluginHtml */
 /** @typedef {import('./src/types').EntrypointBundle} EntrypointBundle */
 /** @typedef {import('./src/types').TransformArgs} TransformArgs */
+/** @typedef {import('./src/types').HtmlFile} HtmlFile */
 
+const path = require('path');
 const { getInputHtmlData } = require('./src/getInputHtmlData');
-const { getEntrypointBundles } = require('./src/getEntrypointBundles');
-const { getOutputHtml } = require('./src/getOutputHtml');
 const { extractModules } = require('./src/extractModules');
 const { createError, addRollupInput, shouldReadInputFromRollup } = require('./src/utils');
+const { createHtmlAsset, createHtmlAssets } = require('./src/createHtmlAssets');
 
 const watchMode = process.env.ROLLUP_WATCH === 'true';
 const defaultFileName = 'index.html';
@@ -31,22 +31,22 @@ const defaultFileName = 'index.html';
 function rollupPluginHtml(pluginOptions) {
   pluginOptions = {
     inject: true,
+    flatten: true,
     minify: !watchMode,
+    rootDir: process.cwd(),
     ...(pluginOptions || {}),
   };
 
-  /** @type {string} */
-  let inputHtml;
-  /** @type {string[]} */
-  let inputModuleIds;
-  /** @type {Map<string, string>} */
-  let inlineModules;
-  /** @type {string} */
-  let htmlFileName;
+  pluginOptions.rootDir = path.resolve(pluginOptions.rootDir);
+
   /** @type {GeneratedBundle[]} */
   let generatedBundles;
   /** @type {TransformFunction[]} */
   let externalTransformFns = [];
+  /** @type {HtmlFile[]}  */
+  const htmlFiles = [];
+  /** @type {string} */
+  let fakeModuleForPureHtmlInput = '';
 
   // variables for multi build
   /** @type {string[]} */
@@ -56,36 +56,6 @@ function rollupPluginHtml(pluginOptions) {
   // assets from
   /** @type {Function} */
   let deferredEmitHtmlFile;
-
-  /**
-   * @param {string} mainOutputDir
-   * @returns {Promise<EmittedFile>}
-   */
-  async function createHtmlAsset(mainOutputDir) {
-    if (generatedBundles.length === 0) {
-      throw createError('Cannot output HTML when no bundles have been generated');
-    }
-
-    const entrypointBundles = getEntrypointBundles({
-      pluginOptions,
-      generatedBundles,
-      inputModuleIds,
-      mainOutputDir,
-      htmlFileName,
-    });
-
-    const outputHtml = await getOutputHtml({
-      pluginOptions,
-      entrypointBundles,
-      inputHtml,
-      externalTransformFns,
-    });
-    return {
-      fileName: htmlFileName,
-      source: outputHtml,
-      type: 'asset',
-    };
-  }
 
   return {
     name: '@open-wc/rollup-plugin-html',
@@ -101,21 +71,41 @@ function rollupPluginHtml(pluginOptions) {
         rollupInput = /** @type {string} */ (rollupInputOptions.input);
       }
 
-      if (!pluginOptions.inputHtml && !pluginOptions.inputPath && !rollupInput) {
-        htmlFileName = pluginOptions.name || defaultFileName;
-        return null;
+      if (!pluginOptions.html && !pluginOptions.files && !rollupInput) {
+        /** @deprecated - use html or files instead */
+
+        if (!pluginOptions.inputHtml && !pluginOptions.inputPath) {
+          return null;
+        }
+      }
+      const htmlDataArray = getInputHtmlData(pluginOptions, rollupInput);
+      for (const htmlData of htmlDataArray) {
+        const htmlFileName = pluginOptions.name || htmlData.name || defaultFileName;
+        const inputHtmlResources = extractModules(htmlData, htmlFileName);
+        const html = inputHtmlResources.htmlWithoutModules;
+        const { inlineModules } = inputHtmlResources;
+
+        const inputModuleIds = [
+          ...inputHtmlResources.moduleImports,
+          ...inputHtmlResources.inlineModules.keys(),
+        ];
+        htmlFiles.push({
+          html,
+          inputModuleIds,
+          htmlFileName,
+          inlineModules,
+        });
+      }
+      /** @type {string[]} */
+      let inputModuleIds = [];
+      for (const htmlFile of htmlFiles) {
+        inputModuleIds = [...inputModuleIds, ...htmlFile.inputModuleIds];
       }
 
-      const inputHtmlData = getInputHtmlData(pluginOptions, rollupInput);
-      htmlFileName = pluginOptions.name || inputHtmlData.name || defaultFileName;
-      const inputHtmlResources = extractModules(inputHtmlData, htmlFileName);
-      inputHtml = inputHtmlResources.htmlWithoutModules;
-      inlineModules = inputHtmlResources.inlineModules;
-
-      inputModuleIds = [
-        ...inputHtmlResources.moduleImports,
-        ...inputHtmlResources.inlineModules.keys(),
-      ];
+      if (inputModuleIds.length === 0) {
+        fakeModuleForPureHtmlInput = 'fake-module-for-pure-html-input.js';
+        inputModuleIds.push(fakeModuleForPureHtmlInput);
+      }
 
       if (rollupInput) {
         // we are taking input from the rollup input, we should replace the html from the input
@@ -138,11 +128,15 @@ function rollupPluginHtml(pluginOptions) {
     },
 
     resolveId(id) {
-      if (!inlineModules || !inlineModules.has(id)) {
-        return null;
+      for (const file of htmlFiles) {
+        if (file.inlineModules && file.inlineModules.has(id)) {
+          return id;
+        }
       }
-
-      return id;
+      if (id === fakeModuleForPureHtmlInput) {
+        return fakeModuleForPureHtmlInput;
+      }
+      return null;
     },
 
     /**
@@ -150,7 +144,15 @@ function rollupPluginHtml(pluginOptions) {
      * @param {string} id
      */
     load(id) {
-      return (inlineModules && inlineModules.get(id)) || null;
+      for (const file of htmlFiles) {
+        if (file.inlineModules && file.inlineModules.has(id)) {
+          return file.inlineModules.get(id);
+        }
+      }
+      if (id === fakeModuleForPureHtmlInput) {
+        return 'export const doNothing = true; // I am here to allow pure html inputs for rollup';
+      }
+      return null;
     },
 
     /**
@@ -164,11 +166,52 @@ function rollupPluginHtml(pluginOptions) {
         throw createError('Output must have a dir option set.');
       }
       generatedBundles.push({ name: 'default', options, bundle });
-      this.emitFile(await createHtmlAsset(options.dir));
+
+      const assets = await createHtmlAssets(options.dir, {
+        htmlFiles,
+        generatedBundles,
+        externalTransformFns,
+        pluginOptions,
+      });
+      if (assets.length > 0) {
+        for (const asset of assets) {
+          this.emitFile(asset);
+        }
+      } else {
+        const htmlFileName = pluginOptions.name || defaultFileName;
+        this.emitFile(
+          await createHtmlAsset(
+            options.dir,
+            { htmlFileName },
+            { generatedBundles, externalTransformFns, pluginOptions },
+          ),
+        );
+      }
     },
 
+    /**
+     * @deprecated use getHtmlFileNames instead
+     */
     getHtmlFileName() {
-      return htmlFileName;
+      if (htmlFiles.length > 1) {
+        throw createError(
+          'Using getHtmlFileName is not possible when having multiple html files. Use getHtmlFileNames instead.',
+        );
+      }
+      if (htmlFiles.length === 0) {
+        return pluginOptions.name || defaultFileName;
+      }
+      return htmlFiles[0].htmlFileName;
+    },
+
+    getHtmlFileNames() {
+      if (htmlFiles.length === 0) {
+        if (pluginOptions.name) {
+          return [pluginOptions.name];
+        }
+        return [defaultFileName];
+      }
+      return htmlFiles.map(htmlFile => htmlFile.htmlFileName);
     },
 
     /**
@@ -222,8 +265,15 @@ function rollupPluginHtml(pluginOptions) {
                 // when all builds are finished
                 const { dir } = options;
                 deferredEmitHtmlFile = () =>
-                  createHtmlAsset(dir).then(asset => {
-                    this.emitFile(asset);
+                  createHtmlAssets(dir, {
+                    htmlFiles,
+                    generatedBundles,
+                    externalTransformFns,
+                    pluginOptions,
+                  }).then(assets => {
+                    for (const asset of assets) {
+                      this.emitFile(asset);
+                    }
                     resolve();
                   });
               }
@@ -248,9 +298,16 @@ function rollupPluginHtml(pluginOptions) {
               }
 
               // emit asset from this output
-              createHtmlAsset(options.dir).then(asset => {
+              createHtmlAssets(options.dir, {
+                htmlFiles,
+                generatedBundles,
+                externalTransformFns,
+                pluginOptions,
+              }).then(assets => {
                 resolve();
-                this.emitFile(asset);
+                for (const asset of assets) {
+                  this.emitFile(asset);
+                }
               });
               return;
             }

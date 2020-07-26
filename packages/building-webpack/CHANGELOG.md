@@ -3,6 +3,166 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.38](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.37...@open-wc/building-webpack@2.13.38) (2020-07-24)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.37](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.36...@open-wc/building-webpack@2.13.37) (2020-07-10)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.36](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.35...@open-wc/building-webpack@2.13.36) (2020-06-25)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.35](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.34...@open-wc/building-webpack@2.13.35) (2020-06-22)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.34](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.33...@open-wc/building-webpack@2.13.34) (2020-06-11)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.33](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.32...@open-wc/building-webpack@2.13.33) (2020-06-05)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.32](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.31...@open-wc/building-webpack@2.13.32) (2020-05-29)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.31](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.30...@open-wc/building-webpack@2.13.31) (2020-05-25)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.30](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.29...@open-wc/building-webpack@2.13.30) (2020-05-24)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.29](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.28...@open-wc/building-webpack@2.13.29) (2020-05-24)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.28](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.27...@open-wc/building-webpack@2.13.28) (2020-05-22)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.27](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.26...@open-wc/building-webpack@2.13.27) (2020-05-21)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.26](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.25...@open-wc/building-webpack@2.13.26) (2020-05-17)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.25](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.24...@open-wc/building-webpack@2.13.25) (2020-05-16)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.24](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.23...@open-wc/building-webpack@2.13.24) (2020-05-16)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.23](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.22...@open-wc/building-webpack@2.13.23) (2020-05-15)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.22](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.21...@open-wc/building-webpack@2.13.22) (2020-05-15)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.21](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.20...@open-wc/building-webpack@2.13.21) (2020-05-14)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.20](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.19...@open-wc/building-webpack@2.13.20) (2020-05-14)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
+## [2.13.19](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.18...@open-wc/building-webpack@2.13.19) (2020-05-13)
+
+**Note:** Version bump only for package @open-wc/building-webpack
+
+
+
+
+
 ## [2.13.18](https://github.com/open-wc/open-wc/compare/@open-wc/building-webpack@2.13.17...@open-wc/building-webpack@2.13.18) (2020-05-05)
 
 **Note:** Version bump only for package @open-wc/building-webpack

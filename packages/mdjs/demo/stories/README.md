@@ -1,7 +1,5 @@
 ```js script
 import { html } from 'lit-html';
-import '@mdjs/mdjs-story/mdjs-story.js';
-import '@mdjs/mdjs-preview/mdjs-preview.js';
 import './demo-wc-card.js';
 ```
 

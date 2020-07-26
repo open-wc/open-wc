@@ -1,9 +1,6 @@
 import { transformAsync, TransformOptions } from '@babel/core';
 import deepmerge from 'deepmerge';
 
-// string length at which babel starts deoptimizing
-const BABEL_DEOPTIMIZED_LENGTH = 500000;
-
 interface CreateBabelTransformConfig {
   browserTarget: string | string[];
   polyfillModules?: boolean;
@@ -51,11 +48,16 @@ export function createBabelTransform(
   ]);
 
   return async function transform(filename: string, source: string) {
-    // babel runs out of memory when processing source maps for large files
-    const sourceMaps = source.length > BABEL_DEOPTIMIZED_LENGTH ? false : 'inline';
-
-    const result = await transformAsync(source, { filename, sourceMaps, ...config });
-    if (!result || !result.code) {
+    const largeFile = source.length > 100000;
+    const result = await transformAsync(source, {
+      filename,
+      // prevent generating pretty output for large files
+      compact: largeFile,
+      // babel runs out of memory when processing source maps andfor large files
+      sourceMaps: !largeFile,
+      ...config,
+    });
+    if (!result || typeof result.code !== 'string') {
       throw new Error('Failed to transform');
     }
     return result.code;

@@ -255,6 +255,13 @@ describe('optionsToCommand', () => {
     expect(optionsToCommand(options)).to.equal('npm init @open-wc --type scaffold ');
   });
 
+  it('supports numbers', async () => {
+    const options = {
+      version: 2,
+    };
+    expect(optionsToCommand(options)).to.equal('npm init @open-wc --version 2 ');
+  });
+
   it('supports boolean', async () => {
     const options = {
       writeToDisk: true,

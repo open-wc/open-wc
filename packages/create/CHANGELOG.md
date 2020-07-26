@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.32.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.4...@open-wc/create@0.32.5) (2020-07-24)
+
+
+### Bug Fixes
+
+* **create:** upgrade to lint-staged@10 ([#1766](https://github.com/open-wc/open-wc/issues/1766)) ([6913611](https://github.com/open-wc/open-wc/commit/6913611953a569925fa3bb01aed33a7b5757d1da))
+
+
+
+
+
+## [0.32.4](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.3...@open-wc/create@0.32.4) (2020-05-23)
+
+
+### Bug Fixes
+
+* **create:** use rootDir to maintain file structure ([11c381e](https://github.com/open-wc/open-wc/commit/11c381e202328f3d066dc4349e4605414c35785d))
+
+
+
+
+
+## [0.32.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.2...@open-wc/create@0.32.3) (2020-05-20)
+
+
+### Bug Fixes
+
+* **create:** support number for optionsToCommand ([6fc4298](https://github.com/open-wc/open-wc/commit/6fc42980baf23588d485ff9e3643b6e025ded2dc))
+
+
+
+
+
+## [0.32.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.1...@open-wc/create@0.32.2) (2020-05-20)
+
+
+### Bug Fixes
+
+* **create:** generate sourcemap for ts files ([#1656](https://github.com/open-wc/open-wc/issues/1656)) ([624a90f](https://github.com/open-wc/open-wc/commit/624a90fe421fc501ee2082b86386a4a339ba7dca))
+
+
+
+
+
+## [0.32.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.0...@open-wc/create@0.32.1) (2020-05-15)
+
+
+### Bug Fixes
+
+* **create:** pin ts version ([f405cec](https://github.com/open-wc/open-wc/commit/f405cec5bba294a1427b876aacc031b360932518))
+
+
+
+
+
 # [0.32.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.31.1...@open-wc/create@0.32.0) (2020-05-06)
 
 

@@ -4,47 +4,40 @@
 
 <body>
 
-  <script>
-    const message = 'foo';
-    console.log(`The message is: ${message}`);
+  <script>var _window$foo$bar, _window, _window$foo;
 
-    class Foo {
+const message = 'foo';
+console.log(`The message is: ${message}`);
 
-    }
+class Foo {}
 
-    const bar = 'buz';
+const bar = 'buz';
+console.log((_window$foo$bar = (_window = window) == null ? void 0 : (_window$foo = _window.foo) == null ? void 0 : _window$foo.bar) != null ? _window$foo$bar : 'x');
 
-    console.log(window?.foo?.bar ?? 'x');
+async function* asyncGenerator() {
+  await Promise.resolve();
+  yield 0;
+  await Promise.resolve();
+  yield 1;
+}</script>
 
-    async function* asyncGenerator() {
-      await Promise.resolve();
-      yield 0;
-      await Promise.resolve();
-      yield 1;
-    }
-  </script>
+  <script type="module">var _window$foo$bar, _window, _window$foo;
 
-  <script type="module">
-    import { message } from 'my-module';
-    import './src/local-module.js';
+import { message } from './node_modules/my-module/index.js';
+import './src/local-module.js';
+console.log(`The message is: ${message}`);
 
-    console.log(`The message is: ${message}`);
+class Foo {}
 
-    class Foo {
+const bar = 'buz';
+console.log((_window$foo$bar = (_window = window) == null ? void 0 : (_window$foo = _window.foo) == null ? void 0 : _window$foo.bar) != null ? _window$foo$bar : 'x');
 
-    }
-
-    const bar = 'buz';
-
-    console.log(window?.foo?.bar ?? 'x');
-
-    async function* asyncGenerator() {
-      await Promise.resolve();
-      yield 0;
-      await Promise.resolve();
-      yield 1;
-    }
-  </script>
+async function* asyncGenerator() {
+  await Promise.resolve();
+  yield 0;
+  await Promise.resolve();
+  yield 1;
+}</script>
 
   
 

@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@1.0.5...@open-wc/rollup-plugin-html@1.1.0) (2020-05-27)
+
+
+### Features
+
+* **rollup-plugin-html:** support multiple html inputs ([#1671](https://github.com/open-wc/open-wc/issues/1671)) ([efea41f](https://github.com/open-wc/open-wc/commit/efea41f64cf384a7b16337fc76247d6e82645a6d))
+
+
+
+
+
+## [1.0.5](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@1.0.4...@open-wc/rollup-plugin-html@1.0.5) (2020-05-17)
+
+
+### Bug Fixes
+
+* **rollup-plugin-html:** add missing .d.ts file ([a32a022](https://github.com/open-wc/open-wc/commit/a32a02255bc8df5fc784900aee8f61dcf1876758))
+
+
+
+
+
+## [1.0.4](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@1.0.3...@open-wc/rollup-plugin-html@1.0.4) (2020-05-13)
+
+
+### Bug Fixes
+
+* **rollup-plugin-html:** set a valid entrypoint name ([6432392](https://github.com/open-wc/open-wc/commit/64323923e9dd99fb14328108bcdf2cfa210a6678))
+
+
+
+
+
 ## [1.0.3](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@1.0.2...@open-wc/rollup-plugin-html@1.0.3) (2020-05-05)
 
 

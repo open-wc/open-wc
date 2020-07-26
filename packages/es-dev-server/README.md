@@ -23,6 +23,7 @@ npx es-dev-server --node-resolve --watch
 - [resolve bare module imports for use in the browser](#node-resolve) (`--node-resolve`)
 - auto-reload on file changes with the (`--watch`)
 - history API fallback for SPA routing (`--app-index index.html`)
+- [plugin API for extensions](#plugins)
 
 [See all commands](#command-line-flags-and-configuration)
 
@@ -69,6 +70,7 @@ es-dev-server requires node v10 or higher
 | root-dir  | string         | The root directory to serve files from. Default: working directory      |
 | base-path | string         | Base path the app is served on. Example: /my-app                        |
 | config    | string         | The file to read configuration from (JS or JSON)                        |
+| cors      | boolean        | Enable CORS                                                             |
 | help      | none           | See all options                                                         |
 
 ### Development help
@@ -92,6 +94,7 @@ es-dev-server requires node v10 or higher
 | babel-exclude        | number/array  | Patterns of files to exclude from babel compilation.                                                                            |
 | babel-modern-exclude | number/array  | Patterns of files to exclude from babel compilation on modern browsers.                                                         |
 | babel-module-exclude | number/array  | Patterns of files to exclude from babel compilation for modules only.                                                           |
+| event-stream         | boolean       | Whether to inject event stream script. Defaults to true.                                                                        |
 
 Most commands have an alias/shorthand. You can view them by using `--help`.
 
@@ -107,20 +110,20 @@ module.exports = {
   watch: true,
   nodeResolve: true,
   appIndex: 'demo/index.html',
+  plugins: [],
   moduleDirs: ['node_modules', 'web_modules'],
 };
 ```
 
 In addition to the command-line flags, the configuration file accepts these additional options:
 
-| name                 | type                      | description                                              |
-| -------------------- | ------------------------- | -------------------------------------------------------- |
-| middlewares          | array                     | Koa middlewares to add to the server, read more below.   |
-| responseTransformers | array                     | Functions which transform the server's response.         |
-| babelConfig          | object                    | Babel config to run with the server.                     |
-| polyfillsLoader      | object                    | Configuration for the polyfills loader, read more below. |
-| debug                | boolean                   | Whether to turn on debug mode on the server.             |
-| onServerStart        | (config) => Promise<void> | Function called before server is started.                |
+| name            | type    | description                                               |
+| --------------- | ------- | --------------------------------------------------------- |
+| middlewares     | array   | Koa middlewares to add to the server. (read more below)   |
+| plugins         | array   | Plugins to add to the server. (read more below)           |
+| babelConfig     | object  | Babel config to run with the server.                      |
+| polyfillsLoader | object  | Configuration for the polyfills loader. (read more below) |
+| debug           | boolean | Whether to turn on debug mode on the server.              |
 
 ## Serving files
 
@@ -289,7 +292,7 @@ In the future, we are hoping that [import maps](https://github.com/WICG/import-m
 
 You can add your own middleware to es-dev-server using the `middlewares` property. The middleware should be a standard koa middleware. [Read more about koa here.](https://koajs.com/)
 
-You can use middleware to modify, respond, or redirect any request/response to/from es-dev-server. For example to set up a proxy for API requests, serve virtual files, tweak code, etc.
+You can use middleware to modify respond to any request from the browser, for example to rewrite a URL or proxy to another server. For serving or manipulating files it's recommended to use plugins.
 
 ### Proxying requests
 
@@ -336,49 +339,245 @@ module.exports = {
 
 </details>
 
-## Response transformers
+## Plugins
 
-With the `responseTransformers` property, you can transform the server's response before it is sent to the browser. This is useful for injecting code into your index.html, performing transformations on files or to serve virtual files programmatically.
+Plugins are objects with lifecycle hooks called by es-dev-server as it serves files to the browser. They can be used to serve virtual files, transform files, or resolve module imports.
+
+### Adding plugins
+
+A plugin is just an object that you add to the `plugins` array in your configuration file. You can add an object directly, or create one from a function somewhere:
 
 <details>
   <summary>Read more</summary>
 
-A response transformer is a function that receives the original response and returns an optionally modified response. This transformation happens before any other built-in transformations such as node resolve, babel, or compatibility. You can register multiple transformers, they are called in order.
+```js
+const awesomePlugin = require('awesome-plugin');
 
-The functions can be sync or async, see the full signature below:
-
-```typescript
-({ url: string, status: number, contentType: string, body: string }) => Promise<{ body?: string, contentType?: string } | null>
-```
-
-Some examples:
-
-Rewrite the base path of your `index.html`:
-
-```javascript
 module.exports = {
-  responseTransformers: [
-    function rewriteBasePath({ url, status, contentType, body }) {
-      if (url === '/' || url === '/index.html') {
-        const rewritten = body.replace(/<base href=".*">/, '<base href="/foo/">');
-        return { body: rewritten };
-      }
+  plugins: [
+    // use a plugin
+    awesomePlugin({ someOption: 'someProperty' }),
+    // create an inline plugin
+    {
+      transform(context) {
+        if (context.response.is('html')) {
+          return { body: context.body.replace(/<base href=".*">/, '<base href="/foo/">') };
+        }
+      },
     },
   ],
 };
 ```
 
-Serve a virtual file, for example an auto generated `index.html`:
+</details>
 
-```javascript
+See the full type interface for all options:
+
+<details>
+  <summary>Read more</summary>
+
+```ts
+import Koa, { Context } from 'koa';
+import { FSWatcher } from 'chokidar';
+import { Server } from 'net';
+import { ParsedConfig } from './config';
+
+type ServeResult = void | { body: string; type?: string; headers?: Record<string, string> };
+type TransformResult = void | { body?: string; headers?: Record<string, string> };
+type ResolveResult = void | string | Promise<void> | Promise<string>;
+
+interface ServerArgs {
+  config: ParsedConfig;
+  app: Koa;
+  server: Server;
+  fileWatcher: FSWatcher;
+}
+
+export interface Plugin {
+  serverStart?(args: ServerArgs): void | Promise<void>;
+  serve?(context: Context): ServeResult | Promise<ServeResult>;
+  transform?(context: Context): TransformResult | Promise<TransformResult>;
+  resolveImport?(args: { source: string; context: Context }): ResolveResult;
+  resolveMimeType?(context: Context): undefined | string | Promise<undefined | string>;
+}
+```
+
+</details>
+
+### Hook: serve
+
+The serve hook can be used to serve virtual files from the server. The first plugin to respond with a body is used. It can return a Promise.
+
+<details>
+<summary>Read more</summary>
+
+Serve an auto generated `index.html`:
+
+```js
 const indexHTML = generateIndexHTML();
 
 module.exports = {
-  responseTransformers: [
-    function serveIndex({ url, status, contentType, body }) {
-      if (url === '/' || url === '/index.html') {
-        return { body: indexHTML, contentType: 'text/html' };
-      }
+  plugins: [
+    {
+      serve(context) {
+        if (context.path === '/index.html') {
+          return { body: indexHTML };
+        }
+      },
+    },
+  ],
+};
+```
+
+Serve a virtual module:
+
+```js
+const indexHTML = generateIndexHTML();
+
+module.exports = {
+  plugins: [
+    {
+      serve(context) {
+        if (context.path === '/messages.js') {
+          return { body: 'export default "Hello world";' };
+        }
+      },
+    },
+  ],
+};
+```
+
+The file extension is used to infer the mime type to respond with. If you are using a non-standard file extension you can use the `type` property to set it explicitly:
+
+```js
+module.exports = {
+  plugins: [
+    {
+      serve(context) {
+        if (context.path === '/foo.xyz') {
+          return { body: 'console.log("foo bar");', type: 'js' };
+        }
+      },
+    },
+  ],
+};
+```
+
+</details>
+
+### Hook: resolveMimeType
+
+Browsers don't use file extensions to know how to interpret files. Instead, they use [media or MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) which is set using the `content-type` header.
+
+es-dev-server guesses the MIME type based on the file extension. When serving virtual files with non-standard file extensions, you can set the MIME type in the returned result (see the examples above). If you are transforming code from one format to another, you need to use the `resolveMimeType` hook.
+
+<details>
+<summary>Read more</summary>
+
+The returned MIME type can be a file extension, this will be used to set the corresponding default MIME type. For example `js` resolves to `application/javascript` and `css` to `text/css`.
+
+```js
+module.exports = {
+  plugins: [
+    {
+      resolveMimeType(context) {
+        // change all MD files to HTML
+        if (context.response.is('md')) {
+          return 'html';
+        }
+      },
+    },
+    {
+      resolveMimeType(context) {
+        // change all CSS files to JS, except for a specific file
+        if (context.response.is('css') && context.path !== '/global.css') {
+          return 'js';
+        }
+      },
+    },
+  ],
+};
+```
+
+It is also possible to set the full mime type directly:
+
+```js
+module.exports = {
+  plugins: [
+    {
+      resolveMimeType(context) {
+        if (context.response.is('md')) {
+          return 'text/html';
+        }
+      },
+    },
+  ],
+};
+```
+
+</details>
+
+### Hook: transform
+
+The transform hook is called for each file and can be used to transform a file. Multiple plugins can transform a single file. It can return a Promise.
+
+This hook is useful for small modifications, such as injecting environment variables, or for compiling files to JS before serving them to the browser.
+
+If you are transforming non-standard file types, you may also need to include a `resolveMimeType` hook.
+
+<details>
+  <summary>Read more</summary>
+
+Rewrite the base path of your application for local development;
+
+```js
+module.exports = {
+  plugins: [
+    {
+      transform(context) {
+        if (context.path === '/index.html') {
+          const transformedBody = context.body.replace(/<base href=".*">/, '<base href="/foo/">');
+          return { body: transformedBody };
+        }
+      },
+    },
+  ],
+};
+```
+
+Inject a script to set global variables during local development:
+
+```js
+module.exports = {
+  plugins: [
+    {
+      transform(context) {
+        if (context.path === '/index.html') {
+          const transformedBody = context.body.replace(
+            '</head>',
+            '<script>window.process = { env: { NODE_ENV: "development" } }</script></head>',
+          );
+          return { body: transformedBody };
+        }
+      },
+    },
+  ],
+};
+```
+
+Inject environment variables into a JS module:
+
+```js
+const packageJson = require('./package.json');
+
+module.exports = {
+  plugins: [
+    {
+      transform(context) {
+        if (context.path === '/src/environment.js') {
+          return { body: `export const version = '${packageJson.version}';` };
+        }
+      },
     },
   ],
 };
@@ -386,19 +585,28 @@ module.exports = {
 
 Transform markdown to HTML:
 
-```javascript
+```js
 const markdownToHTML = require('markdown-to-html-library');
 
 module.exports = {
-  responseTransformers: [
-    async function transformMarkdown({ url, status, contentType, body }) {
-      if (url === '/readme.md') {
-        const html = await markdownToHTML(body);
-        return {
-          body: html,
-          contentType: 'text/html',
-        };
-      }
+  plugins: [
+    {
+      resolveMimeType(context) {
+        // this ensures the browser interprets .md files as .html
+        if (context.path.endsWith('.md')) {
+          return 'html';
+        }
+      },
+
+      async transform(context) {
+        // this will transform all MD files. if you only want to transform certain MD files
+        // you can check context.path
+        if (context.path.endsWith('.md')) {
+          const html = await markdownToHTML(body);
+
+          return { body: html };
+        }
+      },
     },
   ],
 };
@@ -406,18 +614,27 @@ module.exports = {
 
 Polyfill CSS modules in JS:
 
-```javascript
+```js
 module.exports = {
-  responseTransformers: [
-    async function transformCSS({ url, status, contentType, body }) {
-      if (url.endsWith('.css')) {
-        const transformedBody = `
-          const stylesheet = new CSSStyleSheet();
-          stylesheet.replaceSync(${JSON.stringify(body)});
-          export default stylesheet;
-        `;
-        return { body: transformedBody, contentType: 'application/javascript' };
-      }
+  plugins: [
+    {
+      resolveMimeType(context) {
+        if (context.path.endsWith('.css')) {
+          return 'js';
+        }
+      },
+
+      async transform(context) {
+        if (context.path.endsWith('.css')) {
+          const stylesheet = `
+            const stylesheet = new CSSStyleSheet();
+            stylesheet.replaceSync(${JSON.stringify(body)});
+            export default stylesheet;
+          `;
+
+          return { body: stylesheet };
+        }
+      },
     },
   ],
 };
@@ -425,36 +642,117 @@ module.exports = {
 
 </details>
 
-## Order of execution
+### Hook: resolveImport
+
+The `resolveImport` hook is called for each module import. It can be used to resolve module imports before they reach the browser.
 
 <details>
+  <summary>Read more</summary>
 
-<summary>View</summary>
+es-dev-server already resolves module imports when the `--node-resolve` flag is turned on. You can do the resolving yourself, or overwrite it for some files.
 
-The order of execution for the es-dev-server is:
+The hook receives the import string and should return the string to replace it with. This should be a browser-compatible path, not a file path.
 
-1. Middleware
-2. es-dev-server static file middleware
-3. Response transformers
-4. es-dev-server code transform middlewares
-5. es-dev-server response cache (it also caches the code transformations!)
-6. Deferred middleware
-
-Take this into account when deciding between response transformers, custom middlewares, and whether or not you defer your custom middleware.
-
-For example, a deferred custom middleware may be necessary if you need to do something with the response body **after** caching.
-
-```javascript
-async function myMiddleware(ctx, next) {
-  ctx.url = ctx.url.replace('foo', 'bar');
-  // before es-dev-server
-  await next();
-  // deferred, after es-dev-server
-  ctx.body = ctx.body.replace('foo', 'bar');
-}
+```js
+module.exports = {
+  plugins: [
+    {
+      async resolveImport({ source, context }) {
+        const resolvedImport = fancyResolveLibrary(source);
+        return resolvedImport;
+      },
+    },
+  ],
+};
 ```
 
 </details>
+
+### Hook: serverStart
+
+The `serverStart` hook is called when the server starts. It is the ideal location to boot up other servers you will proxy to. It receives the server config, which you can use if plugins need access to general information such as the `rootDir` or `appIndex`. It also receives the HTTP server, Koa app, and `chokidar` file watcher instance. These can be used for more advanced plugins. This hook can be async, and it awaited before actually booting the server and opening the browser.
+
+<details>
+<summary>Read more</summary>
+
+Accessing the serverStart parameters:
+
+```js
+function myFancyPlugin() {
+  let rootDir;
+
+  return {
+    serverStart({ config, app, server, fileWatcher }) {
+      // take the rootDir to access it later
+      rootDir = config.rootDir;
+
+      // register a koa middleware directly
+      app.use((context, next) => {
+        console.log(context.path);
+        return next();
+      });
+
+      // register a file to be watched
+      fileWatcher.add('/foo.md');
+    },
+  };
+}
+
+module.exports = {
+  plugins: [myFancyPlugin()],
+};
+```
+
+Boot up another server for proxying in serverStart:
+
+```js
+const proxy = require('koa-proxies');
+
+module.exports = {
+  plugins: [
+    {
+      async serverStart({ app }) {
+        // set up a proxy for certain requests
+        app.use(
+          proxy('/api', {
+            target: 'http://localhost:9001',
+          }),
+        );
+
+        // boot up the other server, because it is awaited es-dev-server will also wait for it
+        await startOtherServer({ port: 9001 });
+      },
+    },
+  ],
+};
+```
+
+</details>
+
+### Koa Context
+
+The plugin hooks simply receive the Koa `Context` object. This contains information about the server's request and response. Check the [Koa documentation](https://koajs.com/) to learn more about this.
+
+To transform specific kinds of files we don't recommend relying on file extensions. Other plugins may be using non-standard file extensions. Instead, you should use the server's MIME type or content-type header. You can easily check this using the `context.response.is()` function. This is used a lot in the examples above.
+
+Because files can be requested with query parameters and hashes, we recommend using `context.path` for reading the path segment of the URL only. If you do need to access search parameters, we recommend using `context.URL.searchParams.get('my-parameter')`.
+
+## Order of execution
+
+The order of execution for the es-dev-server when a file request is received:
+
+1. User middleware: before "next"
+2. Serve
+   - Plugins: serve
+   - es-dev-server: static file middleware (if no plugin match)
+3. Plugins: resolveMimeType
+4. Plugins: transform
+5. Resolve module imports
+   - Plugins: resolveModuleImport
+   - es-dev-server: node-resolve (if no plugin resolve)
+6. es-dev-server: babel + compatibility transforms
+7. es-dev-server: response cache (caches all JS files served, including plugin transforms)
+8. User middleware: after "next"
 
 ## Typescript support
 

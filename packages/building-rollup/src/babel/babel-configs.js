@@ -3,6 +3,7 @@ const { isFalsy } = require('../utils');
 
 const createBabelConfigRollupBuild = developmentMode => ({
   babelHelpers: 'bundled',
+  compact: true,
   plugins: [
     // rollup doesn't support optional chaining yet, so we compile it during input
     [require.resolve('@babel/plugin-proposal-optional-chaining'), { loose: true }],
@@ -37,6 +38,7 @@ function createBabelConfigRollupGenerate(modern = true) {
   return {
     babelrc: false,
     configFile: false,
+    compact: true,
     presets: [
       [
         require.resolve('@babel/preset-env'),
@@ -70,6 +72,7 @@ function createBabelConfigRollupGenerate(modern = true) {
 const babelConfigSystemJs = {
   babelrc: false,
   configFile: false,
+  compact: true,
   plugins: [
     require.resolve('@babel/plugin-syntax-import-meta'),
     require.resolve('@babel/plugin-proposal-dynamic-import'),

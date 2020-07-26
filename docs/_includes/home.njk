@@ -44,7 +44,10 @@
           <!---->
         </aside>
         <main aria-labelledby="main-title" class="home">
-          <header class="hero"><img src="/hero.png" alt="hero" with="280" height="280">
+          <header class="hero">
+            <svg viewbox="0 0 244 244" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" alt="open-wc" class="logo">
+              <use xlink:href="#logo"></use>
+            </svg>
             <h1 id="main-title">open-wc</h1>
             <p class="description">
               Open Web Component Recommendations
@@ -75,12 +78,14 @@
           <div class="theme-default-content custom content__default">
             {{ content.html | safe }}
             <div class="footer">
-              MIT Licensed | Copyright © 2018-2019 open-wc
+              MIT Licensed | Copyright © 2018-2020 open-wc
             </div>
           </main>
         </div>
         <div class="global-ui"></div>
       </div>
+
+      {% include "partials/sidebar-script.njk" %}
       {% include 'partials/service-worker.njk' %}
     </body>
 

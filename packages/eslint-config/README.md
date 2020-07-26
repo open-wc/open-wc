@@ -8,7 +8,7 @@ tags:
 
 # Linting ESLint
 
-Use [ESLint](https://eslint.org/) to lint your es6 code.
+Use [ESLint](https://eslint.org/) to lint your code.
 
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 

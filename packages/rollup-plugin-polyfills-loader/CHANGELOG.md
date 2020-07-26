@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@1.0.6...@open-wc/rollup-plugin-polyfills-loader@1.0.7) (2020-05-27)
+
+**Note:** Version bump only for package @open-wc/rollup-plugin-polyfills-loader
+
+
+
+
+
+## [1.0.6](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@1.0.5...@open-wc/rollup-plugin-polyfills-loader@1.0.6) (2020-05-17)
+
+
+### Bug Fixes
+
+* **rollup-plugin-polyfills-loader:** add missing .d.ts file ([47bdeeb](https://github.com/open-wc/open-wc/commit/47bdeeba325e698ae4a218003b5b0080ca3bfe97))
+
+
+
+
+
+## [1.0.5](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@1.0.4...@open-wc/rollup-plugin-polyfills-loader@1.0.5) (2020-05-13)
+
+**Note:** Version bump only for package @open-wc/rollup-plugin-polyfills-loader
+
+
+
+
+
 ## [1.0.4](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@1.0.3...@open-wc/rollup-plugin-polyfills-loader@1.0.4) (2020-05-05)
 
 **Note:** Version bump only for package @open-wc/rollup-plugin-polyfills-loader

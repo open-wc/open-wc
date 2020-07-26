@@ -3,6 +3,215 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.13](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.12...@open-wc/demoing-storybook@2.3.13) (2020-07-24)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.3.12](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.11...@open-wc/demoing-storybook@2.3.12) (2020-07-10)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.3.11](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.10...@open-wc/demoing-storybook@2.3.11) (2020-06-25)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.3.10](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.9...@open-wc/demoing-storybook@2.3.10) (2020-06-22)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.3.9](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.8...@open-wc/demoing-storybook@2.3.9) (2020-06-15)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** setupMdjsPlugins should effect the build ([b7e55d2](https://github.com/open-wc/open-wc/commit/b7e55d28c84e720d69409dfde932ac5dece6aec9))
+
+
+
+
+
+## [2.3.8](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.7...@open-wc/demoing-storybook@2.3.8) (2020-06-13)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.3.7](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.6...@open-wc/demoing-storybook@2.3.7) (2020-06-11)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.3.6](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.5...@open-wc/demoing-storybook@2.3.6) (2020-06-05)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.3.5](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.4...@open-wc/demoing-storybook@2.3.5) (2020-05-29)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.3.4](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.3...@open-wc/demoing-storybook@2.3.4) (2020-05-27)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.3.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.2...@open-wc/demoing-storybook@2.3.3) (2020-05-25)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.3.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.1...@open-wc/demoing-storybook@2.3.2) (2020-05-24)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.0...@open-wc/demoing-storybook@2.3.1) (2020-05-24)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+# [2.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.14...@open-wc/demoing-storybook@2.3.0) (2020-05-23)
+
+
+### Features
+
+* allow to set plugins for mdjs processing ([e1ed13d](https://github.com/open-wc/open-wc/commit/e1ed13d6c99bd2b9997f7bc3fb26cae7bd8c25a0))
+
+
+
+
+
+## [2.2.14](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.13...@open-wc/demoing-storybook@2.2.14) (2020-05-22)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.2.13](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.12...@open-wc/demoing-storybook@2.2.13) (2020-05-21)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.2.12](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.11...@open-wc/demoing-storybook@2.2.12) (2020-05-17)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.2.11](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.10...@open-wc/demoing-storybook@2.2.11) (2020-05-16)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.2.10](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.9...@open-wc/demoing-storybook@2.2.10) (2020-05-16)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.2.9](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.8...@open-wc/demoing-storybook@2.2.9) (2020-05-16)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.2.8](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.7...@open-wc/demoing-storybook@2.2.8) (2020-05-15)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.2.7](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.6...@open-wc/demoing-storybook@2.2.7) (2020-05-15)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.2.6](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.5...@open-wc/demoing-storybook@2.2.6) (2020-05-14)
+
+
+### Bug Fixes
+
+* **demoing-storybook:** don't set incorrect content-type ([1ac1759](https://github.com/open-wc/open-wc/commit/1ac1759d0b0f7134c25376623a55b5bf3a17bc51))
+
+
+
+
+
+## [2.2.5](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.4...@open-wc/demoing-storybook@2.2.5) (2020-05-14)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.2.4](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.3...@open-wc/demoing-storybook@2.2.4) (2020-05-13)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
 ## [2.2.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.2.2...@open-wc/demoing-storybook@2.2.3) (2020-05-09)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook

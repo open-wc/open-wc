@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.10](https://github.com/open-wc/open-wc/compare/@open-wc/lit-helpers@0.3.9...@open-wc/lit-helpers@0.3.10) (2020-05-25)
+
+
+### Bug Fixes
+
+* **lit-helpers:** spreadProps typings ([bd25344](https://github.com/open-wc/open-wc/commit/bd253440b687b2bebf4861b0e8a0fcb9f84ed83c))
+
+
+
+
+
 ## [0.3.9](https://github.com/open-wc/open-wc/compare/@open-wc/lit-helpers@0.3.8...@open-wc/lit-helpers@0.3.9) (2020-04-20)
 
 **Note:** Version bump only for package @open-wc/lit-helpers

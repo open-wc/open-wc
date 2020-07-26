@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/rollup-plugin-html",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "publishConfig": {
     "access": "public"
   },
@@ -15,22 +15,26 @@
   "homepage": "https://github.com/open-wc/open-wc/packages/rollup-plugin-html",
   "main": "rollup-plugin-html.js",
   "scripts": {
-    "demo:mpa": "rm -rf demo/dist && rollup -c demo/mpa/rollup.config.js --watch & yarn serve-demo",
+    "demo:mpa": "yarn demo:mpa:defaults",
+    "demo:mpa:defaults": "rm -rf demo/dist && rollup -c demo/mpa/rollup.config.js --watch & yarn serve-demo",
+    "demo:mpa:virtual": "rm -rf demo/dist && rollup -c demo/mpa/virtual-rollup.config.js --watch & yarn serve-demo",
     "demo:spa": "yarn demo:spa:defaults",
     "demo:spa:defaults": "rm -rf demo/dist && rollup -c demo/spa/defaults.rollup.config.js --watch & yarn serve-demo",
     "demo:spa:html-input": "rm -rf demo/dist && rollup -c demo/spa/html-input.rollup.config.js --watch & yarn serve-demo",
     "demo:spa:manual-inject": "rm -rf demo/dist && rollup -c demo/spa/manual-inject.rollup.config.js --watch & yarn serve-demo",
     "demo:spa:multi-output": "rm -rf demo/dist && rollup -c demo/spa/multi-output.rollup.config.js --watch & yarn serve-demo",
     "demo:spa:template": "rm -rf demo/dist && rollup -c demo/spa/template.rollup.config.js --watch & yarn serve-demo",
+    "demo:spa:virtual": "rm -rf demo/dist && rollup -c demo/spa/virtual-rollup.config.js --watch & yarn serve-demo",
     "prepublishOnly": "../../scripts/insert-header.js",
-    "serve-demo": "es-dev-server --watch --root-dir demo/dist --app-index index.html --compatibility none --open",
+    "serve-demo": "node ../es-dev-server/dist/cli.js --watch --root-dir demo/dist --app-index index.html --compatibility none --open",
     "test": "npm run test:node",
     "test:node": "mocha test/**/*.test.js test/*.test.js",
     "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots",
     "test:watch": "npm run test:node -- --watch"
   },
   "files": [
-    "*.js",
+    "rollup-plugin-html.d.ts",
+    "rollup-plugin-html.js",
     "src"
   ],
   "keywords": [
@@ -40,9 +44,10 @@
     "polyfill"
   ],
   "dependencies": {
-    "@open-wc/building-utils": "^2.17.0",
+    "@open-wc/building-utils": "^2.18.0",
     "@types/html-minifier": "^3.5.3",
     "fs-extra": "^8.1.0",
+    "glob": "^7.1.3",
     "html-minifier": "^4.0.0",
     "parse5": "^5.1.1",
     "terser": "^4.6.7"

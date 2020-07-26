@@ -17,7 +17,7 @@ const pruneSnapshots = !!process.argv.find(arg => arg.includes('--prune-snapshot
 /**
  * Creates base karma configuration.
  * @param {import("karma").Config} config
- * @return {import('karma').ConfigOptions}
+ * @return {import('karma').ConfigOptions & { coverageReporter: any }}
  */
 module.exports = config => ({
   browsers: ['ChromeHeadlessNoSandbox'],
@@ -47,7 +47,7 @@ module.exports = config => ({
     require.resolve('karma-mocha'),
     require.resolve('karma-mocha-reporter'),
     require.resolve('karma-source-map-support'),
-    require.resolve('karma-coverage-istanbul-reporter'),
+    require.resolve('karma-coverage'),
     require.resolve('karma-snapshot'),
     require.resolve('karma-mocha-snapshot'),
     require.resolve('karma-chrome-launcher'),
@@ -80,13 +80,13 @@ module.exports = config => ({
     '**/__snapshots__/**/*.md': ['snapshot'],
   },
 
-  reporters: coverage ? ['mocha', 'coverage-istanbul'] : ['mocha'],
+  reporters: coverage ? ['mocha', 'coverage'] : ['mocha'],
 
   mochaReporter: {
     showDiff: true,
   },
 
-  restartOnFileChange: true,
+  restartOnFileChange: false,
 
   client: {
     mocha: {
@@ -100,11 +100,9 @@ module.exports = config => ({
   logLevel: config.LOG_INFO,
 
   // ## code coverage config
-  coverageIstanbulReporter: {
-    reports: ['html', 'lcovonly', 'text-summary'],
+  coverageReporter: {
+    reporters: [{ type: 'html' }, { type: 'lcovonly' }, { type: 'text-summary' }],
     dir: 'coverage',
-    combineBrowserReports: true,
-    skipFilesWithNoCoverage: false,
     thresholds: {
       global: {
         statements: 80,

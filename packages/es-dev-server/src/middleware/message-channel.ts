@@ -1,12 +1,11 @@
 import { Context, Middleware } from 'koa';
-import { isIndexHTMLResponse, getBodyAsString, RequestCancelledError } from '../utils/utils';
-import { setupMessageChannel } from '../utils/message-channel';
+import { getBodyAsString, RequestCancelledError } from '../utils/utils';
 import { messageChannelEndpoint } from '../constants';
 import messageChannelScript from '../browser-scripts/message-channel';
+import { MessageChannel } from '../utils/MessageChannel';
 
 interface MessageChannelMiddlewareConfig {
-  appIndex?: string;
-  rootDir: string;
+  messageChannel: MessageChannel;
 }
 
 /**
@@ -35,13 +34,13 @@ async function injectMessageChannelScript(ctx: Context) {
 export function createMessageChannelMiddleware(cfg: MessageChannelMiddlewareConfig): Middleware {
   return async function messageChannelMiddleware(ctx, next) {
     if (ctx.url === messageChannelEndpoint) {
-      setupMessageChannel(ctx);
+      cfg.messageChannel.registerListener(ctx);
       return;
     }
 
     await next();
 
-    if (!(await isIndexHTMLResponse(ctx, cfg.appIndex))) {
+    if (!ctx.response.is('html')) {
       return;
     }
 

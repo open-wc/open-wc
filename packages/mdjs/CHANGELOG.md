@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/open-wc/open-wc/compare/@mdjs/core@0.3.2...@mdjs/core@0.3.3) (2020-06-13)
+
+
+### Bug Fixes
+
+* **core:** auto load mdjs-preview/story if not defined by user ([6849afd](https://github.com/open-wc/open-wc/commit/6849afd5e20f8cdb7d54db2a1c22f384657055fd))
+* **core:** use js of md files even if there are no stories ([6d12de5](https://github.com/open-wc/open-wc/commit/6d12de5dbeeceedfd54709c37eba890c5f160e64))
+
+
+
+
+
+## [0.3.2](https://github.com/open-wc/open-wc/compare/@mdjs/core@0.3.1...@mdjs/core@0.3.2) (2020-05-23)
+
+
+### Bug Fixes
+
+* **core:** export type for plugins ([c8ea754](https://github.com/open-wc/open-wc/commit/c8ea754153e2da4e73fa1f6a927c7b24108bf658))
+
+
+
+
+
+## [0.3.1](https://github.com/open-wc/open-wc/compare/@mdjs/core@0.3.0...@mdjs/core@0.3.1) (2020-05-16)
+
+
+### Bug Fixes
+
+* **core:** use types everywhere, export interfaces ([3f4ba8b](https://github.com/open-wc/open-wc/commit/3f4ba8b2293d2fa29d8ac8b210abf2dc3727a008))
+
+
+
+
+
 # [0.3.0](https://github.com/open-wc/open-wc/compare/@mdjs/core@0.2.0...@mdjs/core@0.3.0) (2020-05-09)
 
 

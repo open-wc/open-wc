@@ -40,7 +40,6 @@ export interface InjectPolyfillsLoaderConfig {
   htmlString: string;
   indexUrl: string;
   indexFilePath: string;
-  transformJs: TransformJs;
   polyfillsLoaderConfig?: Partial<PolyfillsLoaderConfig>;
 }
 
@@ -94,10 +93,7 @@ function getPolyfillsConfig(cfg: InjectPolyfillsLoaderConfig): PolyfillsConfig {
 }
 
 function findScripts(cfg: InjectPolyfillsLoaderConfig, documentAst: DocumentAst) {
-  const scriptNodes = findJsScripts(
-    documentAst,
-    cfg.polyfillsLoaderConfig && cfg.polyfillsLoaderConfig.exclude,
-  );
+  const scriptNodes = findJsScripts(documentAst, cfg.polyfillsLoaderConfig?.exclude);
 
   const files: File[] = [];
   const inlineScripts: GeneratedFile[] = [];
@@ -133,34 +129,6 @@ function hasPolyfills(polyfills?: PolyfillsConfig) {
   return (custom && custom.length > 0) || Object.values(rest).some(v => v !== false);
 }
 
-async function transformInlineScripts(
-  cfg: InjectPolyfillsLoaderConfig,
-  inlineScriptNodes: NodeAst[],
-) {
-  const asyncTransforms = [];
-
-  for (const scriptNode of inlineScriptNodes) {
-    // we need to refer to an actual file for node resolve to work properly
-    const filePath = cfg.indexFilePath.endsWith(path.sep)
-      ? path.join(cfg.indexFilePath, 'index.html')
-      : cfg.indexFilePath;
-
-    const asyncTransform = cfg
-      .transformJs({
-        filePath,
-        uaCompat: cfg.uaCompat,
-        code: getTextContent(scriptNode),
-        transformModule: false,
-      })
-      .then((code: string) => {
-        setTextContent(scriptNode, code);
-      });
-    asyncTransforms.push(asyncTransform);
-  }
-
-  await Promise.all(asyncTransforms);
-}
-
 /**
  * transforms index.html, extracting any modules and import maps and adds them back
  * with the appropriate polyfills, shims and a script loader so that they can be loaded
@@ -175,7 +143,7 @@ export async function injectPolyfillsLoader(
     cfg.compatibilityMode === compatibilityModes.MAX;
 
   const documentAst = parse(cfg.htmlString);
-  const { files, inlineScripts, scriptNodes, inlineScriptNodes } = findScripts(cfg, documentAst);
+  const { files, inlineScripts, scriptNodes } = findScripts(cfg, documentAst);
 
   const polyfillsConfig = getPolyfillsConfig(cfg);
   const polyfillsLoaderConfig = deepmerge(
@@ -194,12 +162,6 @@ export async function injectPolyfillsLoader(
 
   if (!hasPolyfills(polyfillsLoaderConfig.polyfills) && !polyfillModules) {
     // no polyfils module polyfills, so we don't need to inject a loader
-    if (inlineScripts && inlineScripts.length > 0) {
-      // there are inline scripts, we need to transform them
-      // transformInlineScripts mutates documentAst
-      await transformInlineScripts(cfg, inlineScriptNodes);
-      return { indexHTML: serialize(documentAst), inlineScripts, polyfills: [] };
-    }
     return { indexHTML: cfg.htmlString, inlineScripts: [], polyfills: [] };
   }
 

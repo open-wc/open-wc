@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/rollup-plugin-polyfills-loader",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "publishConfig": {
     "access": "public"
   },
@@ -25,7 +25,8 @@
     "test:watch": "npm run test:node -- --watch"
   },
   "files": [
-    "*.js",
+    "rollup-plugin-polyfills-loader.d.ts",
+    "rollup-plugin-polyfills-loader.js",
     "src"
   ],
   "keywords": [
@@ -35,7 +36,7 @@
     "polyfill"
   ],
   "dependencies": {
-    "@open-wc/rollup-plugin-html": "^1.0.3",
-    "polyfills-loader": "^1.5.7"
+    "@open-wc/rollup-plugin-html": "^1.1.0",
+    "polyfills-loader": "^1.6.1"
   }
 }

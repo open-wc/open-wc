@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/open-wc/open-wc/compare/chai-a11y-axe@1.2.3...chai-a11y-axe@1.3.0) (2020-05-25)
+
+
+### Features
+
+* **chai-a11y-axe:** lazy load axe when needed ([3001381](https://github.com/open-wc/open-wc/commit/300138133c9ed11e9c77c7742223b02208ca850e))
+
+
+
+
+
 ## [1.2.3](https://github.com/open-wc/open-wc/compare/chai-a11y-axe@1.2.2...chai-a11y-axe@1.2.3) (2020-02-09)
 
 **Note:** Version bump only for package chai-a11y-axe

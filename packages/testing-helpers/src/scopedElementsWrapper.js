@@ -48,7 +48,24 @@ class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
   }
 }
 
-customElements.define('scoped-elements-test-wrapper', ScopedElementsTestWrapper);
+/**
+ * Obtains a unique tag name for the test wrapper
+ * @param {number} [counter=0]
+ * @returns {string}
+ */
+const getWrapperUniqueName = (counter = 0) => {
+  const tag = `scoped-elements-test-wrapper-${counter}`;
+
+  if (customElements.get(tag) !== undefined) {
+    return getWrapperUniqueName(counter + 1);
+  }
+
+  return tag;
+};
+
+const wrapperTagName = getWrapperUniqueName();
+
+customElements.define(wrapperTagName, ScopedElementsTestWrapper);
 
 /**
  * Wraps the template inside a scopedElements component
@@ -58,10 +75,12 @@ customElements.define('scoped-elements-test-wrapper', ScopedElementsTestWrapper)
  * @returns {TemplateResult}
  */
 export function getScopedElementsTemplate(template, scopedElements) {
-  return html`
-    <scoped-elements-test-wrapper
-      .scopedElements="${scopedElements}"
-      .template="${template}"
-    ></scoped-elements-test-wrapper>
-  `;
+  const strings = [
+    `<${wrapperTagName} .scopedElements="`,
+    '" .template="',
+    `"></${wrapperTagName}>`,
+  ];
+
+  // @ts-ignore
+  return html(strings, scopedElements, template);
 }

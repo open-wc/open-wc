@@ -76,7 +76,7 @@ describe('integration tests', () => {
 
         testCase.pages.forEach(pageUrl => {
           it(`passes the in-browser tests for page ${pageUrl}`, async function it() {
-            this.timeout(10000);
+            this.timeout(30000);
 
             const appPath = `http://localhost:8080${serverConfig.openPath}${pageUrl}`;
             const page = await browser.newPage();

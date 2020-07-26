@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.6.0...polyfills-loader@1.6.1) (2020-05-17)
+
+
+### Bug Fixes
+
+* **polyfills-loader:** add missing index.d.ts file ([da2b70c](https://github.com/open-wc/open-wc/commit/da2b70cae4dcbf04dcc0c6c12dfcbbc8b0e30d54))
+
+
+
+
+
+# [1.6.0](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.5.7...polyfills-loader@1.6.0) (2020-05-13)
+
+
+### Features
+
+* **polyfills-loader:** update to systemjs v6 ([7de4d67](https://github.com/open-wc/open-wc/commit/7de4d6759792725e919f7f165bae8262812e9e17))
+
+
+
+
+
 ## [1.5.7](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.5.6...polyfills-loader@1.5.7) (2020-05-05)
 
 **Note:** Version bump only for package polyfills-loader
