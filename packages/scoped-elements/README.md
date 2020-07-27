@@ -295,7 +295,7 @@ Every auto-defined scoped elements gets a random\* 4 digits number suffix. This 
    ✅ this.shadowRoot.querySelector('.panel');
    ```
 
-7. Using `scoped-elements` may result in a performance degradation of up to 8%.
+7. Using `scoped-elements` may result in a performance degradation of up to 2%.
 8. Loading of duplicate/similar source code (most breaking releases are not a total rewrite) should always be a temporary solution.
 9. Often, temporary solutions tend to become more permanent. Be sure to focus on keeping the lifecycle of nested dependencies short.
 
