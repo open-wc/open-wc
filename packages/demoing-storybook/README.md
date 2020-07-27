@@ -111,7 +111,7 @@ import '../demo-wc-card.js';
 
 export default {
   title: 'Demo Card/Docs (markdown)',
-  parameters: { component: 'demo-wc-card' } },
+  parameters: { component: 'demo-wc-card' },
 };
 ```
 
@@ -122,7 +122,10 @@ A component meant to display small information with additional data on the back.
 // the following demo is inline
 
 ```js story
-export const Simple = () => html` <demo-wc-card>Hello World</demo-wc-card> `;
+export const Simple = () =>
+  html`
+    <demo-wc-card>Hello World</demo-wc-card>
+  `;
 ```
 
 ## Variations
@@ -130,7 +133,10 @@ export const Simple = () => html` <demo-wc-card>Hello World</demo-wc-card> `;
 Show demo with a frame and a "show code" button.
 
 ```js preview-story
-export const Simple = () => html` <demo-wc-card>Hello World</demo-wc-card> `;
+export const Simple = () =>
+  html`
+    <demo-wc-card>Hello World</demo-wc-card>
+  `;
 ```
 
 ## API
@@ -185,7 +191,10 @@ export default {
   component: 'demo-wc-card',
 };
 
-export const singleComponent = () => html` <demo-wc-card></demo-wc-card> `;
+export const singleComponent = () =>
+  html`
+    <demo-wc-card></demo-wc-card>
+  `;
 ```
 
 For more details see the [official storybook docs](https://storybook.js.org/docs/formats/component-story-format/).
@@ -245,7 +254,10 @@ export default {
   parameters: { options: { selectedPanel: 'storybookjs/knobs/panel' } },
 };
 
-export const singleComponent = () => html` <demo-wc-card></demo-wc-card> `;
+export const singleComponent = () =>
+  html`
+    <demo-wc-card></demo-wc-card>
+  `;
 ```
 
 For additional features like
