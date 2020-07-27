@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.4.2...@open-wc/building-rollup@1.5.0) (2020-07-27)
+
+
+### Features
+
+* **building-rollup:** import babel helpers relative to output file ([170d908](https://github.com/open-wc/open-wc/commit/170d908162761354f648403e91e76f8dabfd5e56))
+
+
+
+
+
 ## [1.4.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.4.1...@open-wc/building-rollup@1.4.2) (2020-07-08)
 
 **Note:** Version bump only for package @open-wc/building-rollup
