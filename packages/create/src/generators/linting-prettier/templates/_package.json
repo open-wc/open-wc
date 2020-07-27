@@ -4,12 +4,16 @@
     "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore"
   },
   "devDependencies": {
-    "@open-wc/prettier-config": "^0.1.10"
+    "prettier": "^2.0.4",
+    "eslint-config-prettier": "^6.11.0"
   },
   "eslintConfig": {
     "extends": [
       "eslint-config-prettier"
     ]
   },
-  "prettier": "@open-wc/prettier-config"
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  }
 }

@@ -1,3 +1,3 @@
 import './shared.js';
 
-console.log('page-c.js');
+console.log('page-b.js');

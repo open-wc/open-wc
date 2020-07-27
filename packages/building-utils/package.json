@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-utils",
-  "version": "2.16.3",
+  "version": "2.18.0",
   "publishConfig": {
     "access": "public"
   },
@@ -50,7 +50,7 @@
     "resolve": "^1.11.1",
     "rimraf": "^3.0.2",
     "shady-css-scoped-element": "^0.0.2",
-    "systemjs": "^4.0.0",
+    "systemjs": "^6.3.1",
     "terser": "^4.6.7",
     "valid-url": "^1.0.9",
     "whatwg-fetch": "^3.0.0",

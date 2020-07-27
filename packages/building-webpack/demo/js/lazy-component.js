@@ -10,9 +10,7 @@ class LazyComponent extends LitElement {
   }
 
   render() {
-    return html`
-      <p>Lazy component</p>
-    `;
+    return html` <p>Lazy component</p> `;
   }
 }
 

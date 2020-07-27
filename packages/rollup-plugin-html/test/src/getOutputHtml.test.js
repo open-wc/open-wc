@@ -68,7 +68,7 @@ describe('getOutputHtml()', () => {
   it('uses the input HTML as output template', async () => {
     const output = await getOutputHtml({
       ...defaultOptions,
-      inputHtml: '<h1>Input HTML</h1>',
+      html: '<h1>Input HTML</h1>',
     });
     expect(output).to.equal(
       '<html><head></head><body><h1>Input HTML</h1>' +

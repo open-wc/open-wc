@@ -2,22 +2,14 @@
 
 const unified = require('unified');
 const markdown = require('remark-parse');
-// @ts-ignore
 const remark2rehype = require('remark-rehype');
-// @ts-ignore
 const htmlStringify = require('rehype-stringify');
-// @ts-ignore
 const htmlSlug = require('rehype-slug');
-// @ts-ignore
 const htmlHeading = require('rehype-autolink-headings');
-// @ts-ignore
 const raw = require('rehype-raw');
 
-// @ts-ignore
 const mdSlug = require('remark-slug');
-// @ts-ignore
 const mdHeadings = require('remark-autolink-headings');
-// @ts-ignore
 const mdStringify = require('remark-html');
 
 const chai = require('chai');
@@ -25,6 +17,8 @@ const { mdjsParse } = require('../src/mdjsParse.js');
 const { mdjsStoryParse } = require('../src/mdjsStoryParse.js');
 
 const { expect } = chai;
+
+/** @typedef {import("../src/mdjsParse.js").MDJSVFileData} MDJSVFileData */
 
 describe('Integration', () => {
   it('supports rehype slug, link, html', async () => {
@@ -64,10 +58,9 @@ describe('Integration', () => {
       .use(htmlHeading)
       .use(htmlStringify);
     const result = await parser.process(input);
-    // @ts-ignore
+    if (result.contents instanceof Buffer) throw new Error('contents should not be a buffer');
     expect(result.contents.split('\n')).to.deep.equal(expected);
-    // @ts-ignore
-    expect(result.data.jsCode).to.equal('const bar = 22;');
+    expect(/** @type {MDJSVFileData} */ (result.data).jsCode).to.equal('const bar = 22;');
   });
 
   it('supports JSX Code in markdown', async () => {
@@ -107,17 +100,18 @@ describe('Integration', () => {
       .use(mdStringify);
     const result = await parser.process(input);
     expect(result.contents).to.equal(expected);
-    // @ts-ignore
-    expect(result.data.stories).to.deep.equal([
+    expect(/** @type {MDJSVFileData} */ (result.data).stories).to.deep.equal([
       {
         key: 'fooStory',
         name: 'fooStory',
         code: 'export const fooStory = () => {}',
+        type: 'js',
       },
       {
         key: 'fooPreviewStory',
         name: 'fooPreviewStory',
         code: 'export const fooPreviewStory = () => {}',
+        type: 'js',
       },
     ]);
   });

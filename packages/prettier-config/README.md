@@ -2,7 +2,7 @@
 
 Use [Prettier](https://prettier.io) to format your JS, CSS and HTML code.
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
+> :Warning: this package is deprecated. We recommend using prettier v2 with the recommend config instead.
 
 ## Setup
 
@@ -59,15 +59,3 @@ test/set-game.test.js
 ```
 
 Simply run `npm run format:prettier` to format your files automatically.
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/prettier-config/README.md';
-      }
-    }
-  }
-</script>

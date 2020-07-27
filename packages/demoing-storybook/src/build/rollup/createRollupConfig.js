@@ -24,6 +24,7 @@ function onwarn(warning, warn) {
  */
 function createRollupConfig({ outputDir, indexFilename, indexHTMLString }) {
   const config = {
+    preserveEntrySignatures: false,
     output: {
       entryFileNames: '[hash].js',
       chunkFileNames: '[hash].js',
@@ -34,7 +35,9 @@ function createRollupConfig({ outputDir, indexFilename, indexHTMLString }) {
     plugins: [
       // @ts-ignore
       resolve({
-        moduleDirectory: ['node_modules', 'web_modules'],
+        customResolveOptions: {
+          moduleDirectory: ['node_modules', 'web_modules'],
+        },
       }),
       babel({
         babelHelpers: 'bundled',
@@ -96,7 +99,7 @@ function createRollupConfig({ outputDir, indexFilename, indexHTMLString }) {
           coreJs: true,
           fetch: true,
           abortController: true,
-          regeneratorRuntime: true,
+          regeneratorRuntime: 'always',
           webcomponents: true,
           intersectionObserver: true,
           resizeObserver: true,

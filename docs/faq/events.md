@@ -1,3 +1,11 @@
+---
+permalink: 'faq/events.html'
+title: Managing events in your custom elements
+section: faq
+tags:
+  - faq
+---
+
 # Managing events in your custom elements
 
 Events in the DOM can span in complexity from responding to a `click` on a `<button>` element to orchestrating the entirety of an application's logic and state. For some insight on how that spectrum might be possible, take some time to check out [`composed: true` considered harmful?](https://dev.to/open-wc/composed-true-considered-harmful-5g59) for a more complete review of the DOM Events API at large. Get started using events in your web components with the recommendations below.
@@ -59,7 +67,7 @@ If you are adding a listener to your element, from inside your element, you shou
 ```js
 constructor() {
     super();
-    this.addEventListener('done', this.handleDone.bind(this));
+    this.addEventListener('done', this.handleDone);
 }
 handleDone(event) {
     this.done = true;
@@ -67,7 +75,7 @@ handleDone(event) {
 }
 ```
 
-Side note: as you will be adding this listener manually, you _will_ need to ensure that `this` is bound to your liking. See the `.bind()` syntax above.
+Side note: as long as your event handler is a method of your custom element, there is no need to manually `bind` it. When calling `addEventListener`, the value of `this` inside the event handler [is a reference to the element](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#The_value_of_this_within_the_handler).
 
 ### On elements outside of your element
 

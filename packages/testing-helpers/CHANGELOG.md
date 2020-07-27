@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.3...@open-wc/testing-helpers@1.8.4) (2020-07-08)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.8.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.2...@open-wc/testing-helpers@1.8.3) (2020-06-15)
+
+
+### Bug Fixes
+
+* **testing-helpers:** auto-generate scoped elements test wrapper name ([439b39f](https://github.com/open-wc/open-wc/commit/439b39f9c0553754cd99f0f94f56525854c5a9eb))
+
+
+
+
+
+## [1.8.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.1...@open-wc/testing-helpers@1.8.2) (2020-05-01)
+
+
+### Bug Fixes
+
+* **testing-helpers:** await to the wrong element ([79575e1](https://github.com/open-wc/open-wc/commit/79575e16bf8d64f4eefd237f25000d9aae01edab))
+* **testing-helpers:** move peerDependencies to dependencies ([b2380eb](https://github.com/open-wc/open-wc/commit/b2380eb992bef13927c846499a8bab96714cc60e))
+
+
+
+
+
+## [1.8.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.0...@open-wc/testing-helpers@1.8.1) (2020-04-26)
+
+
+### Bug Fixes
+
+* **testing-helpers:** constrain the type of defineCE ([#1470](https://github.com/open-wc/open-wc/issues/1470)) ([1341fa9](https://github.com/open-wc/open-wc/commit/1341fa96ad8adc83c9546cab1e1f6f62c1960322))
+
+
+
+
+
+# [1.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.7.2...@open-wc/testing-helpers@1.8.0) (2020-04-26)
+
+
+### Features
+
+* **testing-helpers:** add scoped-elements support ([f265d9e](https://github.com/open-wc/open-wc/commit/f265d9e9d50bda1410f0681e90f6c58a65f347eb))
+
+
+
+
+
+## [1.7.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.7.1...@open-wc/testing-helpers@1.7.2) (2020-04-20)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
 ## [1.7.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.7.0...@open-wc/testing-helpers@1.7.1) (2020-04-12)
 
 **Note:** Version bump only for package @open-wc/testing-helpers

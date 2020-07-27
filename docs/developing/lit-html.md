@@ -1,3 +1,12 @@
+---
+permalink: 'developing/lit-html.html'
+title: lit-html
+section: guides
+tags:
+  - guides
+  - guide
+---
+
 # lit-html
 
 We recommend [lit-html](https://www.npmjs.com/package/lit-html) with the [lit-element](https://www.npmjs.com/package/lit-element) base class as a general-purpose library for building web components. `lit-html` is feature complete, extremely lightweight and offers a great development experience.
@@ -14,4 +23,4 @@ npm init @open-wc
 
 ## Examples
 
-Check out the [code examples](/developing/code-examples/) page for a collection of best practices and design patterns.
+Check out the [code examples](/developing/code-examples.html) page for a collection of best practices and design patterns.

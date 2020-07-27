@@ -18,13 +18,15 @@
   "exclude": [
     "node_modules",
     "**/node_modules/*",
+    "**/node_modules/**/node_modules",
+    "packages/**/node_modules",
     "**/coverage/*",
     "packages/create/src/generators/*/templates/**/*",
     "packages/webpack-index-html-plugin/demo/**/*",
     "packages/building-utils/test/custom-polyfils/**/*",
     "**/dist/**/*",
     "packages/**/test/**/snapshots",
-    "packages/es-dev-server/test/fixtures/**/*",
+    "packages/es-dev-server**/*",
     "packages/**/demo/**/*"
   ]
 }

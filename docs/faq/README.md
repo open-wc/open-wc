@@ -1,9 +1,31 @@
+---
+permalink: 'faq/index.html'
+title: FAQ
+section: faq
+tags:
+  - faq
+  - section
+---
+
 # FAQ
 
 In this section you can find answers to frequently asked questions regarding javascript and Web Components.
 
 **Menu:**
-[[toc]]
+
+<div class="table-of-contents">
+  <ul>
+    <li><a href="#checkboxs-checked-attribute-does-not-match-the-property">Checkbox's 'checked' attribute does not
+        match the property</a></li>
+    <li><a href="#custom-elements-render-life-cycle">Custom elements render life cycle</a></li>
+    <li><a href="#debugging-styles-in-adopted-stylesheets-with-chrome-dev-tools">Debugging styles in adopted stylesheets
+        with Chrome Dev Tools</a></li>
+    <li><a href="#how-can-i-set-host-width-via-a-property">How can I set :host width via a property?</a></li>
+    <li><a href="#redux-process-is-not-defined">Redux: process is not defined</a></li>
+    <li><a href="#why-do-certain-styles-pierce-the-shadow-dom">Why do certain styles pierce the shadow DOM?</a></li>
+    <li><a href="#stubs-on-my-element-arent-called">Stubs on my element aren't called</a></li>
+  </ul>
+</div>
 
 **Deep dives:**
 
@@ -77,9 +99,7 @@ If your custom element leverages the performance benefits of [constructable styl
 </script>
 ```
 
-::: tip Using this work around in Storybook
-If you are using Storybook to demonstrate the usage of your elements (either directly or via [`@open-wc/demoing-storybook`](/demoing) you can add this to your `preview-head.html` file to ensure that it is shipped before each of your stories for a simpler development workflow.
-:::
+<div class="custom-block tip"><p class="custom-block-title">Using this work around in Storybook</p> <p>If you are using Storybook to demonstrate the usage of your elements (either directly or via <a href="/demoing"><code>@open-wc/demoing-storybook</code></a> you can add this to your <code>preview-head.html</code> file to ensure that it is shipped before each of your stories for a simpler development workflow.</p></div>
 
 ## How can I set `:host` width via a property?
 
@@ -176,9 +196,7 @@ If this inheriting behavior is undesirable, you can reset it by adding the follo
 }
 ```
 
-::: warning
-Do note that setting `all: initial;` will also reset any CSS custom properties, which you'll usually _want_ to maintain. If you find yourself going this route, it's worth considering if you need an iframe instead.
-:::
+<div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>Do note that setting <code>all: initial;</code> will also reset any CSS custom properties, which you'll usually <em>want</em> to maintain. If you find yourself going this route, it's worth considering if you need an iframe instead.</p></div>
 
 You can find a code example [here](https://webcomponents.dev/edit/NeHSCFaBjUkpe5ldUu1N).
 
@@ -200,9 +218,7 @@ class MyComponent extends LitElement {
     // ...
   }
   render() {
-    return html`
-      <button @click=${this.myFunction}>click</button>
-    `;
+    return html` <button @click=${this.myFunction}>click</button> `;
   }
 }
 ```
@@ -215,11 +231,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 
 describe('my component', () => {
   it('calls myFunction when a button is clicked', () => {
-    const el = fixture(
-      html`
-        <my-component></my-component>
-      `,
-    );
+    const el = fixture(html` <my-component></my-component> `);
     const myFunctionStub = stub(el, 'myFunction');
     el.shadowRoot.querySelector('button').click();
     expect(myFunctionStub).to.have.callCount(1);
@@ -244,11 +256,7 @@ How can we solve this? There are a few ways to go about this:
 
 ```js
 it('does the thing', async () => {
-  const el = await fixture(
-    html`
-      <my-component></my-component>
-    `,
-  );
+  const el = await fixture(html` <my-component></my-component> `);
   const myFunctionStub = sinon.stub(el, 'myFunction');
   el.requestUpdate();
   await el.updateComplete;

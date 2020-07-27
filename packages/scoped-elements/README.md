@@ -1,3 +1,11 @@
+---
+permalink: 'scoped-elements/index.html'
+title: Scoped elements
+section: guides
+tags:
+  - guides
+---
+
 # Scoped elements
 
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
@@ -37,6 +45,21 @@ npm i --save @open-wc/scoped-elements
      }
    }
    ```
+
+   > WARNING: If you are going to use elements that are globally defined you have to declare them in `scopedElements` as well. This is required because we are trying to work as close as possible to the future Scoped Custom Element Registries feature and, by the moment, there is not going ot be inheritance between registries.
+   >
+   > You can declare them like in the following example:
+   >
+   > ```js
+   >  static get scopedElements() {
+   >    return {
+   >      'old-button': customElements.get('old-button'),
+   >      'my-panel': MyPanel,
+   >    };
+   >  }
+   > ```
+   >
+   > If you try to register the same element globally AND locally with the exact same name AND class instance it will reuse the global tag name and NOT scope it.
 
 4. Use your components in your html.
 
@@ -308,15 +331,3 @@ This is an example of the results obtained running the performance test.
 ## Special thanks
 
 This package was initially inspired by [carehtml](https://github.com/bashmish/carehtml) and we would like to thank [@bashmish](https://github.com/bashmish) for his work on it.
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/scoped-elements/README.md';
-      }
-    }
-  }
-</script>

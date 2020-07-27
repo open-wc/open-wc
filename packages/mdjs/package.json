@@ -1,6 +1,6 @@
 {
   "name": "@mdjs/core",
-  "version": "0.1.9",
+  "version": "0.3.3",
   "publishConfig": {
     "access": "public"
   },
@@ -17,8 +17,8 @@
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js",
     "start": "npm run start:stories",
-    "start:script": "es-dev-server -c demo/script/server.js --root-dir ../../",
-    "start:stories": "es-dev-server -c demo/stories/server.js --root-dir ../../",
+    "start:script": "node ../es-dev-server/dist/cli.js -c demo/script/server.js --root-dir ../../",
+    "start:stories": "node ../es-dev-server/dist/cli.js -c demo/stories/server.js --root-dir ../../",
     "test": "npm run test:node",
     "test:node": "mocha",
     "test:watch": "mocha --watch"
@@ -36,13 +36,14 @@
     "remark"
   ],
   "dependencies": {
-    "@mdjs/mdjs-preview": "^0.0.1",
+    "@mdjs/mdjs-preview": "^0.2.0",
     "@mdjs/mdjs-story": "^0.0.1",
     "@types/unist": "^2.0.3",
     "@types/vfile": "^4.0.0",
     "es-module-lexer": "^0.3.13",
     "github-markdown-css": "^3.0.1",
     "rehype-autolink-headings": "^2.0.5",
+    "rehype-prism-template": "^0.4.1",
     "rehype-raw": "^4.0.1",
     "rehype-slug": "^2.0.3",
     "rehype-stringify": "^6.0.1",
@@ -54,6 +55,7 @@
     "unist-util-visit": "^2.0.1"
   },
   "devDependencies": {
+    "demo-wc-card": "^0.1.0",
     "remark-autolink-headings": "^5.2.1",
     "remark-html": "^10.0.0",
     "remark-slug": "^5.1.2",

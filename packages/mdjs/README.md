@@ -1,7 +1,14 @@
+---
+permalink: 'mdjs/index.html'
+title: Markdown JavaScript (mdjs) Format
+section: guides
+tags:
+  - guides
+---
+
 # Markdown JavaScript (mdjs) Format
 
-The format is meant to allow using JavaScript with Markdown.
-It does so by "annotating" JavaScript that should be execute in Markdown.
+Mdjs is a format that allows you to use JavaScript with Markdown, to create interactive demos. It does so by "annotating" JavaScript that should be executed in Markdown.
 
 To annotate we use a code block with `js script`.
 
@@ -17,6 +24,21 @@ One very good use case for that can be web components.
 HTML already works in markdown so all you need is to load a web components definition file.
 
 You could even do so within the same markdown file.
+
+````md
+## This is my-card
+
+Here's an example of the component:
+
+```html preview-story
+<my-card>
+  <h2>Hello world!</h2>
+  <button>Click me!</button>
+</my-card>
+```
+````
+
+You can even execute some JavaScript:
 
 ````md
 ## This is my-el
@@ -38,18 +60,39 @@ customElements.define('my-el', MyEl);
 
 ## Demo Support (Story)
 
-mdjs comes with some additional helpers like
+mdjs comes with some additional helpers you can choose to import via
 
-### js story
+````md
+```js script
+import '@mdjs/mdjs-story/mdjs-story.js';
+import '@mdjs/mdjs-preview/mdjs-preview.js';
+```
+````
+
+once loaded you can use them like so.
+
+````md
+```js script
+import '@mdjs/mdjs-story/mdjs-story.js';
+import '@mdjs/mdjs-preview/mdjs-preview.js';
+```
+````
+
+once loaded you can use them like so.
+
+### story
 
 The code snippet will actually get executed at that place and you will have a live demo
 
 ````md
 ```js story
-export const JsStory = () =>
-  html`
-    <demo-wc-card>JS Story</demo-wc-card>
-  `;
+export const JsStory = () => html` <demo-wc-card>JS Story</demo-wc-card> `;
+```
+````
+
+````md
+```html story
+<demo-wc-card>HTML Story</demo-wc-card>
 ```
 ````
 
@@ -66,18 +109,36 @@ export const JsStory = () => {
 ```
 ````
 
-### js preview story
+### preview story
 
 Will become a live demo wrapped in a container with a show code button.
 
 ````md
 ```js preview-story
-export const JsStory = () =>
-  html`
-    <demo-wc-card>JS Story</demo-wc-card>
-  `;
+export const JsPreviewStory = () => html` <demo-wc-card>JS Preview Story</demo-wc-card> `;
 ```
 ````
+
+````md
+```html preview-story
+<demo-wc-card>HTML Preview Story</demo-wc-card>
+```
+````
+
+Here is a live example from [demo-wc-card](https://www.npmjs.com/package/demo-wc-card).
+
+```js script
+import '@mdjs/mdjs-story/mdjs-story.js';
+import '@mdjs/mdjs-preview/mdjs-preview.js';
+import { html } from 'lit-html';
+```
+
+```js preview-story
+import 'demo-wc-card/demo-wc-card.js';
+export const header = () => {
+  return html` <demo-wc-card .header=${'my new header'}></demo-wc-card> `;
+};
+```
 
 ## Supported Systems
 
@@ -152,12 +213,12 @@ const { mdjsProcess } = require('@mdjs/core');
 const data = await mdjsProcess(markdownString);
 console.log(data);
 /*
-{ 
+{
   jsCode: "
     import '@mdjs/mdjs-story/mdjs-story.js';
     ...
   ",
-  html: '<h1>Markdown One</h1>', 
+  html: '<h1>Markdown One</h1>',
 }
 */
 ```
@@ -172,10 +233,7 @@ const markdown = require('remark-parse');
 const htmlStringify = require('remark-html');
 const mdjsParse = require('@mdjs/core');
 
-const parser = unified()
-  .use(markdown)
-  .use(mdjsParse)
-  .use(htmlStringify);
+const parser = unified().use(markdown).use(mdjsParse).use(htmlStringify);
 const result = await parser.process(body);
 const { jsCode } = result.data;
 console.log(result.contents);
@@ -185,15 +243,3 @@ console.log(jsCode);
 // customElements.define('my-el', class extends HTMLElement {
 // ...
 ```
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/mdjs/README.md';
-      }
-    }
-  }
-</script>

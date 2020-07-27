@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-helpers",
-  "version": "1.7.1",
+  "version": "1.8.4",
   "publishConfig": {
     "access": "public"
   },
@@ -13,6 +13,7 @@
   },
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers",
+  "module": "index.js",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
   },
@@ -27,12 +28,12 @@
     "browser-testing",
     "fixtures"
   ],
-  "peerDependencies": {
+  "dependencies": {
+    "@open-wc/scoped-elements": "^1.1.2",
+    "lit-element": "^2.2.1",
     "lit-html": "^1.0.0"
   },
   "devDependencies": {
-    "lit-html": "^1.0.0",
     "webpack-merge": "^4.1.5"
-  },
-  "module": "index.js"
+  }
 }

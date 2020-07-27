@@ -1,167 +1,116 @@
-/* eslint-disable no-continue */
-/* eslint-disable no-restricted-syntax, no-console */
-import path from 'path';
-import {
-  tryURLParse,
-  hasFetchScheme,
-  tryURLLikeSpecifierParse,
-  BUILT_IN_MODULE_PROTOCOL,
-} from './utils.js';
+/* eslint-disable no-console, no-continue */
+/** @typedef {import('./types').ImportMap} ImportMap */
+/** @typedef {import('./types').ScopesMap} ScopesMap */
+/** @typedef {import('./types').SpecifierMap} SpecifierMap */
+/** @typedef {import('./types').ParsedImportMap} ParsedImportMap */
+/** @typedef {import('./types').ParsedScopesMap} ParsedScopesMap */
+/** @typedef {import('./types').ParsedSpecifierMap} ParsedSpecifierMap */
 
-function isJSONObject(value) {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
+const _assert = require('assert');
+// NB: TS casts the `required` function to a const, then pukes on the assertion
+// see https://github.com/microsoft/TypeScript/issues/34523#issuecomment-542978853
+/**
+ *
+ * @param {*} x
+ * @param {string|Error} [message]
+ * @return {asserts x}
+ */
+function assert(x, message) {
+  return _assert(x, message);
 }
 
-function compare(a, b) {
+const { tryURLParse, tryURLLikeSpecifierParse } = require('./utils.js');
+
+/**
+ * @param {*} value
+ * @returns {value is object}
+ */
+function isJSONObject(value) {
+  return typeof value === 'object' && value != null && !Array.isArray(value);
+}
+
+/**
+ * @param {string} a
+ * @param {string} b
+ */
+function codeUnitCompare(a, b) {
   if (a > b) {
     return 1;
   }
+
   if (b > a) {
     return -1;
   }
-  return 0;
+
+  throw new Error('This should never be reached because this is only used on JSON object keys');
 }
 
-function longerLengthThenCodeUnitOrder(a, b) {
-  return compare(b.length, a.length) || compare(a, b);
-}
-
+/**
+ * @param {string} specifierKey
+ * @param {URL} baseURL
+ * @returns {string | undefined}
+ */
 function normalizeSpecifierKey(specifierKey, baseURL) {
   // Ignore attempts to use the empty string as a specifier key
   if (specifierKey === '') {
-    return null;
+    console.warn(`Invalid empty string specifier key.`);
+    return undefined;
   }
 
   const url = tryURLLikeSpecifierParse(specifierKey, baseURL);
-  if (url !== null) {
-    const urlString = url.href;
-    if (url.protocol === BUILT_IN_MODULE_PROTOCOL && urlString.includes('/')) {
-      console.warn(
-        `Invalid specifier key "${urlString}". Built-in module specifiers must not contain "/".`,
-      );
-      return null;
-    }
-    return urlString;
+  if (url) {
+    return url.href;
   }
 
   return specifierKey;
 }
 
+/**
+ * @param {SpecifierMap} obj
+ * @param {URL} baseURL
+ * @returns {ParsedSpecifierMap}
+ */
 function sortAndNormalizeSpecifierMap(obj, baseURL) {
-  if (!isJSONObject(obj)) {
-    throw new Error('needs to be an obj');
-  }
+  assert(isJSONObject(obj));
 
-  // Normalize all entries into arrays
-  const normalized = {};
+  const normalized = /** @type {ParsedSpecifierMap} */ ({});
+
   for (const [specifierKey, value] of Object.entries(obj)) {
     const normalizedSpecifierKey = normalizeSpecifierKey(specifierKey, baseURL);
-    if (normalizedSpecifierKey === null) {
+    if (!normalizedSpecifierKey) {
       continue;
     }
 
-    if (typeof value === 'string') {
-      normalized[normalizedSpecifierKey] = [value];
-    } else if (value === null) {
-      normalized[normalizedSpecifierKey] = [];
-    } else if (Array.isArray(value)) {
-      normalized[normalizedSpecifierKey] = obj[specifierKey];
+    if (typeof value !== 'string') {
+      console.warn(
+        `Invalid address ${JSON.stringify(value)} for the specifier key "${specifierKey}". ` +
+          `Addresses must be strings.`,
+      );
+      normalized[normalizedSpecifierKey] = null;
+      continue;
     }
+
+    const addressURL = tryURLLikeSpecifierParse(value, baseURL);
+    if (!addressURL) {
+      console.warn(`Invalid address "${value}" for the specifier key "${specifierKey}".`);
+      normalized[normalizedSpecifierKey] = null;
+      continue;
+    }
+
+    if (specifierKey.endsWith('/') && !addressURL.href.endsWith('/')) {
+      console.warn(
+        `Invalid address "${addressURL.href}" for package specifier key "${specifierKey}". ` +
+          `Package addresses must end with "/".`,
+      );
+      normalized[normalizedSpecifierKey] = null;
+      continue;
+    }
+
+    normalized[normalizedSpecifierKey] = addressURL;
   }
 
-  // Normalize/validate each potential address in the array
-  for (const [specifierKey, potentialAddresses] of Object.entries(normalized)) {
-    if (!Array.isArray(potentialAddresses)) {
-      throw new Error('should be an array');
-    }
-
-    const validNormalizedAddresses = [];
-    for (const potentialAddress of potentialAddresses) {
-      if (typeof potentialAddress !== 'string') {
-        continue;
-      }
-
-      const addressURL = tryURLLikeSpecifierParse(potentialAddress, baseURL);
-      let addressUrlString = '';
-      if (addressURL !== null) {
-        if (addressURL.protocol === BUILT_IN_MODULE_PROTOCOL && addressURL.href.includes('/')) {
-          console.warn(
-            `Invalid target address "${potentialAddress}". Built-in module URLs must not contain "/".`,
-          );
-          continue;
-        }
-        addressUrlString = addressURL.href;
-      } else if (baseURL.includes('::')) {
-        const [rootPath, basePath] = baseURL.split('::');
-
-        const dirPath = potentialAddress.startsWith('/') ? '' : path.dirname(basePath);
-        addressUrlString = path.normalize(path.join(rootPath, dirPath, potentialAddress));
-      }
-
-      if (specifierKey.endsWith('/') && !addressUrlString.endsWith('/')) {
-        console.warn(
-          `Invalid target address "${addressUrlString}" for package specifier "${specifierKey}". ` +
-            `Package address targets must end with "/".`,
-        );
-        continue;
-      }
-
-      if (addressUrlString !== '') {
-        validNormalizedAddresses.push(addressUrlString);
-      }
-    }
-    normalized[specifierKey] = validNormalizedAddresses;
-  }
-
-  const sortedAndNormalized = {};
-  const sortedKeys = Object.keys(normalized).sort(longerLengthThenCodeUnitOrder);
-  for (const key of sortedKeys) {
-    sortedAndNormalized[key] = normalized[key];
-  }
-
-  return sortedAndNormalized;
-}
-
-function sortAndNormalizeScopes(obj, baseURL) {
-  const normalized = {};
-  for (const [scopePrefix, potentialSpecifierMap] of Object.entries(obj)) {
-    if (!isJSONObject(potentialSpecifierMap)) {
-      throw new TypeError(`The value for the "${scopePrefix}" scope prefix must be an object.`);
-    }
-
-    const scopePrefixURL = tryURLParse(scopePrefix, baseURL);
-    let scopeString = '';
-    if (scopePrefixURL !== null) {
-      if (!hasFetchScheme(scopePrefixURL)) {
-        console.warn(`Invalid scope "${scopePrefixURL}". Scope URLs must have a fetch scheme.`);
-        continue;
-      }
-      scopeString = scopePrefixURL.href;
-    } else {
-      const scopePrefixURLWithoutBase = tryURLParse(scopePrefix);
-      if (scopePrefixURLWithoutBase !== null) {
-        if (!hasFetchScheme(scopePrefixURLWithoutBase)) {
-          console.warn(
-            `Invalid scope "${scopePrefixURLWithoutBase}". Scope URLs must have a fetch scheme.`,
-          );
-          continue;
-        }
-        scopeString = scopePrefixURLWithoutBase.href;
-      } else if (baseURL.includes('::')) {
-        const [rootPath, basePath] = baseURL.split('::');
-
-        const dirPath = scopePrefix.startsWith('/') ? '' : path.dirname(basePath);
-        scopeString = path.normalize(path.join(rootPath, dirPath, scopePrefix));
-      } else {
-        continue;
-      }
-    }
-
-    normalized[scopeString] = sortAndNormalizeSpecifierMap(potentialSpecifierMap, baseURL);
-  }
-
-  const sortedAndNormalized = {};
-  const sortedKeys = Object.keys(normalized).sort(longerLengthThenCodeUnitOrder);
+  const sortedAndNormalized = /** @type {ParsedSpecifierMap} */ ({});
+  const sortedKeys = Object.keys(normalized).sort((a, b) => codeUnitCompare(b, a));
   for (const key of sortedKeys) {
     sortedAndNormalized[key] = normalized[key];
   }
@@ -170,43 +119,74 @@ function sortAndNormalizeScopes(obj, baseURL) {
 }
 
 /**
- * Processes and normalizes a given import-map string.
- *
- * @example
- * const importMap = `{ import: {
- *  'foo': './node_modules/foo/foo.js',
- *  'bar': '/node_modules/bar/bar.js'
- * }}`;
- * parseFromString(importMap, '/path/to/root::/src');
- * // { import: {
- * //   'foo': ['/path/to/root/src/node_modules/foo/foo.js'],
- * //   'bar': ['/path/to/root/node_modules/bar/bar.js']
- * // }}
- *
- * @param {string} input   The import map as a string
- * @param {string} baseURL The base url/path to your root + executing sub directory (separated by ::)
+ * @param {ScopesMap} obj
+ * @param {URL} baseURL
  */
-export function parseFromString(input, baseURL) {
-  const parsed = JSON.parse(input);
+function sortAndNormalizeScopes(obj, baseURL) {
+  const normalized = /** @type {ParsedScopesMap} */ ({});
+  for (const [scopePrefix, potentialSpecifierMap] of Object.entries(obj)) {
+    if (!isJSONObject(potentialSpecifierMap)) {
+      throw new TypeError(`The value for the "${scopePrefix}" scope prefix must be an object.`);
+    }
 
-  if (!isJSONObject(parsed)) {
+    const scopePrefixURL = tryURLParse(scopePrefix, baseURL);
+    if (!scopePrefixURL) {
+      console.warn(`Invalid scope "${scopePrefix}" (parsed against base URL "${baseURL}").`);
+      continue;
+    }
+
+    const normalizedScopePrefix = scopePrefixURL.href;
+    normalized[normalizedScopePrefix] = sortAndNormalizeSpecifierMap(
+      potentialSpecifierMap,
+      baseURL,
+    );
+  }
+
+  const sortedAndNormalized = /** @type {ParsedScopesMap} */ ({});
+  const sortedKeys = Object.keys(normalized).sort((a, b) => codeUnitCompare(b, a));
+  for (const key of sortedKeys) {
+    sortedAndNormalized[key] = normalized[key];
+  }
+
+  return sortedAndNormalized;
+}
+
+/**
+ * @param {ImportMap} input
+ * @param {URL} baseURL
+ * @returns {ParsedImportMap}
+ */
+function parse(input, baseURL) {
+  if (!isJSONObject(input)) {
     throw new TypeError('Import map JSON must be an object.');
   }
 
-  let sortedAndNormalizedImports = {};
-  if ('imports' in parsed) {
-    if (!isJSONObject(parsed.imports)) {
-      throw new TypeError("Import map's imports value must be an object.");
-    }
-    sortedAndNormalizedImports = sortAndNormalizeSpecifierMap(parsed.imports, baseURL);
+  if (!(baseURL instanceof URL)) {
+    throw new TypeError('Missing base URL or base URL is not a URL');
   }
 
-  let sortedAndNormalizedScopes = {};
-  if ('scopes' in parsed) {
-    if (!isJSONObject(parsed.scopes)) {
+  let sortedAndNormalizedImports = /** @type {ParsedSpecifierMap} */ ({});
+  if ('imports' in input) {
+    if (!input.imports || !isJSONObject(input.imports)) {
+      throw new TypeError("Import map's imports value must be an object.");
+    }
+    sortedAndNormalizedImports = sortAndNormalizeSpecifierMap(input.imports, baseURL);
+  }
+
+  let sortedAndNormalizedScopes = /** @type {ParsedScopesMap} */ ({});
+  if ('scopes' in input) {
+    if (!input.scopes || !isJSONObject(input.scopes)) {
       throw new TypeError("Import map's scopes value must be an object.");
     }
-    sortedAndNormalizedScopes = sortAndNormalizeScopes(parsed.scopes, baseURL);
+    sortedAndNormalizedScopes = sortAndNormalizeScopes(input.scopes, baseURL);
+  }
+
+  const badTopLevelKeys = new Set(Object.keys(input));
+  badTopLevelKeys.delete('imports');
+  badTopLevelKeys.delete('scopes');
+
+  for (const badKey of badTopLevelKeys) {
+    console.warn(`Invalid top-level key "${badKey}". Only "imports" and "scopes" can be present.`);
   }
 
   // Always have these two keys, and exactly these two keys, in the result.
@@ -215,3 +195,15 @@ export function parseFromString(input, baseURL) {
     scopes: sortedAndNormalizedScopes,
   };
 }
+
+/**
+ * @param {string} input
+ * @param {URL} baseURL
+ * @returns {ParsedImportMap}
+ */
+function parseFromString(input, baseURL) {
+  const importMap = /** @type {ImportMap} */ (JSON.parse(input));
+  return parse(importMap, baseURL);
+}
+
+module.exports = { parse, parseFromString };

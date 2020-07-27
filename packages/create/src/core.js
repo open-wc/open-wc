@@ -284,7 +284,7 @@ export function optionsToCommand(options, generatorName = '@open-wc') {
   let command = `npm init ${generatorName} `;
   Object.keys(options).forEach(key => {
     const value = options[key];
-    if (typeof value === 'string') {
+    if (typeof value === 'string' || typeof value === 'number') {
       command += `--${key} ${value} `;
     } else if (typeof value === 'boolean' && value === true) {
       command += `--${key} `;

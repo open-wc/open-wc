@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/webpack-index-html-plugin",
-  "version": "1.7.6",
+  "version": "1.7.10",
   "publishConfig": {
     "access": "public"
   },
@@ -14,10 +14,7 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/webpack-index-html-plugin",
   "main": "webpack-index-html-plugin.js",
-  "scripts": {
-    "test": "mocha test/**/*.test.js test/*.test.js",
-    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
-  },
+  "scripts": {},
   "files": [
     "*.js",
     "src"
@@ -32,7 +29,7 @@
     "webpack": "^4.28.0"
   },
   "dependencies": {
-    "@open-wc/building-utils": "^2.16.3",
+    "@open-wc/building-utils": "^2.18.0",
     "deepmerge": "^4.2.2",
     "parse5": "^5.1.1"
   },

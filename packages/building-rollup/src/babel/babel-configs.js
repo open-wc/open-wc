@@ -1,9 +1,9 @@
-const { findModernBrowserslist } = require('./findModernBrowserslist');
 const { babelPluginBundledHelpers } = require('./babel-plugin-bundled-helpers');
 const { isFalsy } = require('../utils');
 
 const createBabelConfigRollupBuild = developmentMode => ({
   babelHelpers: 'bundled',
+  compact: true,
   plugins: [
     // rollup doesn't support optional chaining yet, so we compile it during input
     [require.resolve('@babel/plugin-proposal-optional-chaining'), { loose: true }],
@@ -38,11 +38,21 @@ function createBabelConfigRollupGenerate(modern = true) {
   return {
     babelrc: false,
     configFile: false,
+    compact: true,
     presets: [
       [
         require.resolve('@babel/preset-env'),
         {
-          targets: modern ? findModernBrowserslist() : ['ie 11'],
+          targets: modern
+            ? [
+                'last 3 Chrome major versions',
+                'last 3 ChromeAndroid major versions',
+                'last 3 Firefox major versions',
+                'last 3 Edge major versions',
+                'last 3 Safari major versions',
+                'last 3 iOS major versions',
+              ]
+            : ['ie 11'],
           useBuiltIns: false,
           shippedProposals: true,
           modules: false,
@@ -62,6 +72,7 @@ function createBabelConfigRollupGenerate(modern = true) {
 const babelConfigSystemJs = {
   babelrc: false,
   configFile: false,
+  compact: true,
   plugins: [
     require.resolve('@babel/plugin-syntax-import-meta'),
     require.resolve('@babel/plugin-proposal-dynamic-import'),

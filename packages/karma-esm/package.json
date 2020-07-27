@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/karma-esm",
-  "version": "2.13.23",
+  "version": "3.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -16,11 +16,11 @@
   "main": "./karma-esm.js",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js",
-    "test": "karma start demo/basic/karma.config.js --coverage",
-    "test:import-map": "karma start demo/import-map/karma.config.js --coverage",
-    "test:no-modules": "karma start demo/no-modules/karma.config.js --coverage",
-    "test:typescript": "karma start demo/typescript/karma.config.js --coverage",
-    "test:watch": "karma start demo/basic/karma.config.js --auto-watch=true --single-run=false"
+    "test": "node ../../karma.js start demo/basic/karma.config.js --coverage",
+    "test:import-map": "node ../karma.js start demo/import-map/karma.config.js --coverage",
+    "test:no-modules": "node ../karma.js start demo/no-modules/karma.config.js --coverage",
+    "test:typescript": "node ../karma.js start demo/typescript/karma.config.js --coverage",
+    "test:watch": "node ../karma.js start demo/basic/karma.config.js --auto-watch=true --single-run=false"
   },
   "files": [
     "*.js",
@@ -32,13 +32,14 @@
     "polyfill"
   ],
   "dependencies": {
-    "@open-wc/building-utils": "^2.16.3",
+    "@open-wc/building-utils": "^2.18.0",
     "babel-plugin-istanbul": "^5.1.4",
     "chokidar": "^3.0.0",
     "deepmerge": "^4.2.2",
-    "es-dev-server": "^1.46.2",
+    "es-dev-server": "^1.57.0",
     "minimatch": "^3.0.4",
     "node-fetch": "^2.6.0",
+    "polyfills-loader": "^1.6.1",
     "portfinder": "^1.0.21",
     "request": "^2.88.0"
   },
@@ -49,7 +50,7 @@
     "@types/lodash-es": "^4.17.3",
     "karma": "^4.1.0",
     "karma-browserstack-launcher": "^1.0.0",
-    "karma-coverage-istanbul-reporter": "^2.0.0",
+    "karma-coverage": "^2.0.2",
     "lodash-es": "^4.17.15"
   }
 }

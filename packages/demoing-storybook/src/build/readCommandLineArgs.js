@@ -5,12 +5,14 @@ const fs = require('fs');
 
 module.exports = function readCommandLineArgs() {
   const tmpConfig = commandLineArgs(
-    {
-      name: 'config-dir',
-      alias: 'c',
-      type: String,
-      defaultValue: './.storybook',
-    },
+    [
+      {
+        name: 'config-dir',
+        alias: 'c',
+        type: String,
+        defaultValue: './.storybook',
+      },
+    ],
     { partial: true },
   );
   const mainFilePath = path.join(process.cwd(), tmpConfig['config-dir'], 'main.js');
@@ -58,6 +60,7 @@ module.exports = function readCommandLineArgs() {
     configDir: args['config-dir'],
     outputDir: args['output-dir'],
     stories: args.stories,
+    setupMdjsPlugins: mainJs.setupMdjsPlugins,
     rollup: mainJs.rollup,
     addons: mainJs.addons || [],
   };

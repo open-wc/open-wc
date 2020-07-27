@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/open-wc/open-wc/compare/@import-maps/resolve@0.3.1...@import-maps/resolve@0.3.2) (2020-05-07)
+
+
+### Bug Fixes
+
+* **resolve:** adjust prepublish script to not use a build ([61a78a7](https://github.com/open-wc/open-wc/commit/61a78a7d6954c796785f5dd2960ea8d1a88d8221))
+
+
+
+
+
+## [0.3.1](https://github.com/open-wc/open-wc/compare/@import-maps/resolve@0.3.0...@import-maps/resolve@0.3.1) (2020-05-07)
+
+**Note:** Version bump only for package @import-maps/resolve
+
+
+
+
+
+# [0.3.0](https://github.com/open-wc/open-wc/compare/@import-maps/resolve@0.2.6...@import-maps/resolve@0.3.0) (2020-04-28)
+
+
+### Features
+
+* **resolve:** update to latest proposal specs (only mapping and scopes) ([86ab538](https://github.com/open-wc/open-wc/commit/86ab53844e74e16982aa221b1f8520bc6598e6e0))
+
+
+
+
+
 ## [0.2.6](https://github.com/open-wc/open-wc/compare/@import-maps/resolve@0.2.5...@import-maps/resolve@0.2.6) (2020-04-12)
 
 **Note:** Version bump only for package @import-maps/resolve

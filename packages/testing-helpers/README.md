@@ -1,20 +1,19 @@
+---
+permalink: 'testing/testing-helpers.html'
+title: Testing Helpers
+section: guides
+tags:
+  - guides
+---
+
 # Testing Helpers
 
 A library with helpers functions for testing in the browser.
 
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
-::: warning
-
-Testing helpers uses [lit-html](https://lit-html.polymer-project.org/), but it's set up as a peer dependency to avoid version conflicts.
-
-You don't need to write your components with lit-html to use this library, but you will need to install it:
-
-```bash
-npm i -D lit-html
-```
-
-:::
+<div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>Testing helpers uses <a href="https://lit-html.polymer-project.org/" target="_blank" rel="noopener noreferrer">lit-html<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>, but it's set up as a peer dependency to avoid version conflicts.</p> <p>You don't need to write your components with lit-html to use this library, but you will need to install it:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> i -D lit-html
+</code></pre></div></div>
 
 # Usage
 
@@ -57,11 +56,7 @@ it('can instantiate an element', async () => {
 import { html, fixture } from '@open-wc/testing';
 
 it('can instantiate an element with properties', async () => {
-  const el = await fixture(
-    html`
-      <my-el .foo=${'bar'}></my-el>
-    `,
-  );
+  const el = await fixture(html` <my-el .foo=${'bar'}></my-el> `);
   expect(el.foo).to.equal('bar');
 });
 ```
@@ -106,6 +101,30 @@ const el = await fixture(html`<${tag} .bar=${'baz'}></${tag}>`);
 expect(el.bar).to.equal('baz');
 ```
 
+## Customize the fixture container
+
+Ordinarily, `fixture` will render your template as a child of a plain `<div>` element on karma's test runner page:
+
+```js
+const el = await fixture(html`<my-el></my-el>`);
+```
+
+```html
+<div><my-el></my-el></div>
+```
+
+This should suffice for most cases, but if you need to specify the type of element that contains your custom element fixture, (e.g., to give it an absolute position), you can pass the wrapping node in the `parentNode` option:
+
+```js
+const parentNode = document.createElement('div');
+parentNode.setAttribute('style', 'position:absolute;');
+const el = await fixture(html`<my-el></my-el>`, { parentNode });
+```
+
+```html
+<div style="position:absolute;"><my-el></my-el></div>
+```
+
 ## Timings
 
 By default fixture awaits the elements "update complete" Promise.
@@ -121,20 +140,12 @@ Essentially, `fixture` creates a synchronous fixture, then waits for the element
 This way, you can write your tests more succinctly, without having to explicitly `await` those hooks yourself.
 
 ```js
-const el = await fixture(
-  html`
-    <my-el .foo=${'bar'}></my-el>
-  `,
-);
+const el = await fixture(html` <my-el .foo=${'bar'}></my-el> `);
 expect(el.foo).to.equal('bar');
 
 // vs
 
-const el = fixtureSync(
-  html`
-    <my-el .foo=${'bar'}></my-el>
-  `,
-);
+const el = fixtureSync(html` <my-el .foo=${'bar'}></my-el> `);
 await elementUpdated(el);
 expect(el.foo).to.equal('bar');
 ```
@@ -164,11 +175,7 @@ Waits until the given condition returns true. This is useful when elements do as
 ```js
 import { fixture, waitUntil } from '@open-wc/testing-helpers';
 
-const element = await fixture(
-  html`
-    <my-element></my-element>
-  `,
-);
+const element = await fixture(html` <my-element></my-element> `);
 
 // wait until some async property is set
 await waitUntil(() => element.someAsyncProperty, 'Element did not become ready');
@@ -282,15 +289,3 @@ afterEach(() => {
   fixtureCleanup();
 });
 ```
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/testing-helpers/README.md';
-      }
-    }
-  }
-</script>

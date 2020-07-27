@@ -3,6 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.19](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.18...@open-wc/testing@2.5.19) (2020-07-08)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.5.18](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.17...@open-wc/testing@2.5.18) (2020-06-15)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.5.17](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.16...@open-wc/testing@2.5.17) (2020-05-25)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.5.16](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.15...@open-wc/testing@2.5.16) (2020-05-01)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.5.15](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.14...@open-wc/testing@2.5.15) (2020-04-26)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.5.14](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.13...@open-wc/testing@2.5.14) (2020-04-26)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** allow assertion message ([c8a3b18](https://github.com/open-wc/open-wc/commit/c8a3b18936de43cba0227c146e77b60a04327e41))
+
+
+
+
+
+## [2.5.13](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.12...@open-wc/testing@2.5.13) (2020-04-21)
+
+
+### Bug Fixes
+
+* **testing:** export types from chai ([ce4b91a](https://github.com/open-wc/open-wc/commit/ce4b91a9a22ecff48a48c05f35fd19c93ba3bc24))
+
+
+
+
+
+## [2.5.12](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.11...@open-wc/testing@2.5.12) (2020-04-20)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
 ## [2.5.11](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.10...@open-wc/testing@2.5.11) (2020-04-12)
 
 **Note:** Version bump only for package @open-wc/testing

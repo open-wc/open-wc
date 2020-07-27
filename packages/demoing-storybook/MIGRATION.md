@@ -1,3 +1,11 @@
+---
+permalink: 'demoing/migration.html'
+title: Migration
+section: guides
+tags:
+  - guides
+---
+
 # Migration
 
 - [Migration](#migration)
@@ -162,9 +170,7 @@ export default {
   parameters: { options: { selectedPanel: 'storybookjs/knobs/panel' } },
 };
 
-export const singleComponent = () => html`
-  <my-el></my-el>
-`;
+export const singleComponent = () => html` <my-el></my-el> `;
 // + setup in .storybook/config.js
 import { setCustomElements } from '@open-wc/demoing-storybook';
 import customElements from '../custom-elements.json';

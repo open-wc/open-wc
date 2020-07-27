@@ -1,3 +1,12 @@
+---
+permalink: 'guide/component-libraries.html'
+title: Web Component Libraries
+section: guides
+tags:
+  - guides
+  - guide
+---
+
 # Web Component Libraries
 
 The hardest part of any project is often getting content onto that first blank page. To make it easier to get your app off the ground quickly, we've collected a list of design systems which are based on web-components from which you can acquire elements or inspiration.
@@ -9,6 +18,10 @@ The hardest part of any project is often getting content onto that first blank p
 - [Bolt](https://boltdesignsystem.com/)
 
   A family of web components built with first-class participation in the Twig templating system for PHP in mind. This set is backed by an expansive catalog of usage variants.
+
+- [Carbon Design System](https://github.com/carbon-design-system/carbon-custom-elements)
+
+  Carbon is an open-source design system built by IBM. With the IBM Design Language as its foundation, the system consists of working code, design tools and resources, human interface guidelines, and a vibrant community of contributors.
 
 - [Clever Components](https://github.com/CleverCloud/clever-components)
 
@@ -34,6 +47,10 @@ The hardest part of any project is often getting content onto that first blank p
 
   Take advantage of the component system that powers Ionic applications with a large ecosystem to choose from and in-depth usage instructions, no matter the framework you use.
 
+- [Kor UI](https://kor-ui.com/)
+
+  A Design System and complete UI component library built to facilitate the design and development of intuitive, coherent and pleasing applications based on Web technologies (HTML5). It contains 35+ components which are compatible with any framework, form factor, input type and modern browser.
+
 - [Lightning Web Components by SalesForce](https://developer.salesforce.com/docs/component-library/overview/components)
 
   Lightning Web Components are now the go-to standard for developing applications in the SalesForce ecosystem, and with the power of web components, they can be the basis of applications outside of their ecosystem, too!
@@ -50,9 +67,9 @@ The hardest part of any project is often getting content onto that first blank p
 
   The Morningstar Design System combines vanilla HTML/CSS with web components in just the right proportions to empower the design and development of wide reaching content and functionality.
 
-- [UI5 Web Components](https://sap.github.io/ui5-webcomponents/)
+- [Shoelace](https://shoelace.style/)
 
-  Get the power and flexibility of SAP's UI5 rendering stack with the ergonomics and ease of use of web components, and bring enterprise-grade features, Fiori UX and themeability home to your application.
+  Shoelace provides a collection of professionally designed, every day UI components built on a framework-agnostic technology. Every web component is built with accessibility and developer experience in mind.
 
 - [Smart HTML Elements](https://www.htmlelements.com)
 
@@ -61,6 +78,10 @@ The hardest part of any project is often getting content onto that first blank p
 - [Spectrum Web Components](https://opensource.adobe.com/spectrum-web-components/)
 
   The Spectrum Web Components project is an implementation of Spectrum, Adobe’s design system. It's designed to work with any web framework — or even without one.
+
+- [UI5 Web Components](https://sap.github.io/ui5-webcomponents/)
+
+  Get the power and flexibility of SAP's UI5 rendering stack with the ergonomics and ease of use of web components, and bring enterprise-grade features, Fiori UX and themeability home to your application.
 
 - [Vaadin](https://vaadin.com/components)
 
@@ -74,6 +95,8 @@ The hardest part of any project is often getting content onto that first blank p
 
   A set of common UI elements with a hand-drawn, sketchy look. These can be used for wireframes, mockups, or just the fun hand-drawn look.
 
-::: tip Don't see your design system here?
-If you have a design system built on web components, we'd love to include it here! Please make a pull request adding a link with a short description via our [github repository](https://github.com/open-wc/open-wc/pulls).
-:::
+- [Zooplus Web Components](https://zooplus.github.io/zoo-web-components/)
+
+  A set of web components that implement Z+ shop style guide.
+
+<div class="custom-block tip"><p class="custom-block-title">Don't see your design system here?</p> <p>If you have a design system built on web components, we'd love to include it here! Please make a pull request adding a link with a short description via our <a href="https://github.com/open-wc/open-wc/pulls" target="_blank" rel="noopener noreferrer">github repository<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>.</p></div>

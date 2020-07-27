@@ -1,6 +1,7 @@
 /** @typedef {import('@mdjs/core').Story} Story */
 /** @typedef {import('@mdjs/core').MarkdownResult} MarkdownResult */
 /** @typedef {import('@mdjs/core').ParseResult} ParseResult */
+/** @typedef {import('@mdjs/core').MdjsProcessPlugin} MdjsProcessPlugin */
 
 const unified = require('unified');
 const markdown = require('remark-parse');
@@ -62,6 +63,16 @@ function hardBreak(h, node) {
   return [h.augment(node, u('raw', '<br />')), u('text', '\n')];
 }
 
+/**
+ * Override hr to make it closing `<hr />` as otherwise the jsx parser throws
+ *
+ * @param {*} h
+ * @param {*} node
+ */
+function thematicBreak(h, node) {
+  return h.augment(node, u('raw', `<hr />`));
+}
+
 function transformPropsHook() {
   // @ts-ignore
   return tree => {
@@ -81,26 +92,69 @@ function transformPropsHook() {
 }
 
 /**
- * @param {string} markdownText
- * @returns {Promise<MarkdownResult>}
+ * @param {string} name
  */
-async function mdjsToMd(markdownText) {
-  const parser = unified()
-    .use(markdown)
-    .use(mdjsParse)
-    .use(mdjsStoryParse, {
-      storyTag: name => `<Story name="${name}"></Story>`,
-      previewStoryTag: name => `<Preview><Story name="${name}"></Story></Preview>`,
-    })
-    .use(transformPropsHook)
-    .use(mdSlug)
-    .use(mdStringify, {
+function storyTag(name) {
+  return `<Story name="${name}"></Story>`;
+}
+
+/**
+ * @param {string} name
+ */
+function previewStoryTag(name) {
+  return `<Preview><Story name="${name}"></Story></Preview>`;
+}
+
+/** @type {MdjsProcessPlugin[]} */
+const mdjsToMdPlugins = [
+  { name: 'markdown', plugin: markdown },
+  { name: 'mdjsParse', plugin: mdjsParse },
+  {
+    name: 'mdjsStoryParse',
+    plugin: mdjsStoryParse,
+    options: {
+      storyTag,
+      previewStoryTag,
+    },
+  },
+  { name: 'transformPropsHook', plugin: transformPropsHook },
+  { name: 'mdSlug', plugin: mdSlug },
+  {
+    name: 'mdStringify',
+    plugin: mdStringify,
+    options: {
       handlers: {
         code,
         image,
         break: hardBreak,
+        thematicBreak,
       },
-    });
+    },
+  },
+];
+
+/**
+ * @param {MdjsProcessPlugin[]} plugins
+ * @param {string=} filePath
+ */
+// eslint-disable-next-line no-unused-vars
+function defaultSetupMdjsPlugins(plugins, filePath = '') {
+  return plugins;
+}
+
+/**
+ * @param {string} markdownText
+ * @returns {Promise<MarkdownResult>}
+ */
+async function mdjsToMd(
+  markdownText,
+  { filePath = '', setupMdjsPlugins = defaultSetupMdjsPlugins } = {},
+) {
+  const plugins = setupMdjsPlugins(mdjsToMdPlugins, filePath);
+  const parser = unified();
+  for (const pluginObj of plugins) {
+    parser.use(pluginObj.plugin, pluginObj.options);
+  }
   /** @type {unknown} */
   const parseResult = await parser.process(markdownText);
   const result = /** @type {ParseResult} */ (parseResult);

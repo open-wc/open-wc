@@ -9,12 +9,14 @@ const {
 
 module.exports = function readCommandLineArgs() {
   const tmpConfig = commandLineArgs(
-    {
-      name: 'config-dir',
-      alias: 'c',
-      type: String,
-      defaultValue: './.storybook',
-    },
+    [
+      {
+        name: 'config-dir',
+        alias: 'c',
+        type: String,
+        defaultValue: './.storybook',
+      },
+    ],
     { partial: true },
   );
   const mainFilePath = path.join(process.cwd(), tmpConfig['config-dir'], 'main.js');
@@ -85,6 +87,7 @@ module.exports = function readCommandLineArgs() {
     configDir: storybookArgs['config-dir'],
     stories: storybookArgs.stories,
     addons: mainJs.addons || [],
+    setupMdjsPlugins: mainJs.setupMdjsPlugins,
 
     // TODO: we should separate es dev server config and storybook config
     // command line args read from regular es-dev-server

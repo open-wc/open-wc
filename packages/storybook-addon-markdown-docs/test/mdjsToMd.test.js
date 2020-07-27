@@ -132,12 +132,24 @@ describe('mdjsToMd', () => {
         code: 'export const MyStory = () => html`<div>Hello world></div>`',
         key: 'MyStory',
         name: 'MyStory',
+        type: 'js',
       },
       {
         code: 'export const YourStory = () => html`<div>Goodbye world></div>`',
         key: 'YourStory',
         name: 'YourStory',
+        type: 'js',
       },
     ]);
+  });
+
+  it('allows to configure unified plugins via setupMdjsPlugins(plugins, filePath)', async () => {
+    const outputWithSlug = await mdjsToMd('# Title');
+    expect(outputWithSlug.html).to.equal('<h1 id="title">Title</h1>\n');
+
+    const outputWithoutSlug = await mdjsToMd('# Title', {
+      setupMdjsPlugins: plugins => plugins.filter(plugin => plugin.name !== 'mdSlug'),
+    });
+    expect(outputWithoutSlug.html).to.equal('<h1>Title</h1>\n');
   });
 });

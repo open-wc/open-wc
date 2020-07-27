@@ -1,15 +1,30 @@
 import { OutputChunk, OutputOptions, OutputBundle, Plugin } from 'rollup';
 
+export interface HtmlFile {
+  html?: string;
+  name?: string;
+  rootDir?: string;
+  inputModuleIds?: string[];
+  htmlFileName?: string;
+  inlineModules?: Map<string, string>;
+}
+
 export interface PluginOptions {
   name?: string;
-  inputPath?: string;
-  inputHtml?: string;
+  files?: string | string[];
+  flatten?: boolean;
+  html?: string | HtmlFile[];
   outputBundleName?: string;
+  rootDir?: string;
   publicPath?: string;
   inject?: boolean;
   minify?: boolean | object | MinifyFunction;
   template?: string | TemplateFunction;
   transform?: TransformFunction | TransformFunction[];
+  /** @deprecated use html instead */
+  inputHtml?: string;
+  /** @deprecated use files instead */
+  inputPath?: string;
 }
 
 export type MinifyFunction = (html: string) => string | Promise<string>;
@@ -33,6 +48,8 @@ export interface EntrypointBundle extends GeneratedBundle {
 
 export interface TemplateArgs {
   // if one of the input options was set, this references the HTML set as input
+  html?: string;
+  /** @deprecated use html instead */
   inputHtml?: string;
   // the rollup bundle to be injected on the page. if there are multiple
   // rollup output options, this will reference the first bundle
@@ -57,14 +74,10 @@ export type TransformFunction = (html: string, args: TransformArgs) => string | 
 
 export type TemplateFunction = (args: TemplateArgs) => string | Promise<string>;
 
-export interface InputHtmlData {
-  name?: string;
-  rootDir: string;
-  inputHtml: string;
-}
-
 export interface RollupPluginHtml extends Plugin {
-  getHtmlFileName(): string;
+  /** @deprecated use getHtmlFileNames instead */
+  getHtmlFileName(): string | undefined;
+  getHtmlFileNames(): string[] | undefined;
   addHtmlTransformer(transform: TransformFunction): void;
   addOutput(name: string): Plugin;
 }

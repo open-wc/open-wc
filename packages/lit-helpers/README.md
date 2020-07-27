@@ -1,3 +1,11 @@
+---
+permalink: 'developing/lit-helpers.html'
+title: Lit Helpers
+section: guides
+tags:
+  - guides
+---
+
 # Lit Helpers
 
 A library with helpers functions for working with [lit-html](https://lit-html.polymer-project.org/) and [lit-element](https://lit-element.polymer-project.org/)
@@ -47,12 +55,7 @@ Because spreading properties is a common use case, you can use the `spreadProps`
 import { html, render } from 'lit-html';
 import { spreadProps } from '@open-wc/lit-helpers';
 
-render(
-  html`
-    <div ...="${spreadProps({ propertyA: 'a', propertyB: 'b' })}"></div>
-  `,
-  document.body,
-);
+render(html` <div ...="${spreadProps({ propertyA: 'a', propertyB: 'b' })}"></div> `, document.body);
 ```
 
 ### Attribute spread
@@ -71,12 +74,7 @@ Example:
 
 ```js
 function renderSpread(data) {
-  render(
-    html`
-      <div ...="${spread(data)}"></div>
-    `,
-    document.body,
-  );
+  render(html` <div ...="${spread(data)}"></div> `, document.body);
 }
 
 // result: <div foo="bar">
@@ -104,9 +102,7 @@ A great example for this, is the DOM element's `scrollTop` property which change
 By using the `live` directive, you can make sure it is always in sync with the value rendered by `lit-html`:
 
 ```js
-html`
-  <my-element .scrollTop=${live(scrollTop)}></my-element>
-`;
+html` <my-element .scrollTop=${live(scrollTop)}></my-element> `;
 ```
 
 ## Privately Settable Read-Only Properties
@@ -206,15 +202,3 @@ class Initialized extends ReadOnlyPropertiesMixin(LitElement) {
   @property({ readOnly: true }) initialized = undefined;
 }
 ```
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/testing-helpers/README.md';
-      }
-    }
-  }
-</script>

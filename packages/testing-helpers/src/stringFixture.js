@@ -1,5 +1,7 @@
+import { html } from 'lit-html';
 import { fixtureWrapper } from './fixtureWrapper.js';
 import { elementUpdated } from './elementUpdated.js';
+import { litFixture } from './litFixture.js';
 
 /**
  * Setups an element synchronously from the provided string template and puts it in the DOM.
@@ -25,7 +27,12 @@ export function stringFixtureSync(template, options = {}) {
  * @param {import('./fixture-no-side-effect.js').FixtureOptions} [options]
  * @returns {Promise<T>}
  */
-export async function stringFixture(template, options) {
+export async function stringFixture(template, options = {}) {
+  if (options.scopedElements) {
+    // @ts-ignore
+    return litFixture(html([template]), options);
+  }
+
   const el = stringFixtureSync(template, options);
   await elementUpdated(el);
   // @ts-ignore

@@ -1,19 +1,22 @@
 #!/usr/bin/env node
 
+/** @typedef {import('es-dev-server').Config} ServerConfig */
+/** @typedef {import('@mdjs/core').MdjsProcessPlugin} MdjsProcessPlugin */
+
 /* eslint-disable no-console, no-param-reassign */
 const { createConfig, startServer } = require('es-dev-server');
 const path = require('path');
 const fs = require('fs');
 
 const readCommandLineArgs = require('./readCommandLineArgs');
-const mdjsToCsfTransformer = require('./transformers/mdjsToCsfTransformer');
+const createMdjsToCsfTransformer = require('./transformers/createMdjsToCsfTransformer');
 const createServeStorybookTransformer = require('./transformers/createServeStorybookTransformer');
 const { mdxToCsfTransformer } = require('./transformers/mdxToCsfTransformer');
 const toBrowserPath = require('../shared/toBrowserPath');
 const getAssets = require('../shared/getAssets');
 
 async function run() {
-  const config = readCommandLineArgs();
+  const config = /** @type {ServerConfig & { stories: string[], addons: string[], configDir: string, setupMdjsPlugins: MdjsProcessPlugin[] }} */ (readCommandLineArgs());
   const rootDir = config.rootDir ? path.resolve(process.cwd(), config.rootDir) : process.cwd();
 
   const storybookConfigDir = config.configDir;
@@ -43,7 +46,9 @@ async function run() {
 
   config.responseTransformers = [
     ...(config.responseTransformers || []),
-    mdjsToCsfTransformer,
+    createMdjsToCsfTransformer({
+      setupMdjsPlugins: config.setupMdjsPlugins,
+    }),
     mdxToCsfTransformer,
     createServeStorybookTransformer({
       assets,

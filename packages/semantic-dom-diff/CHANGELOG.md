@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.9](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.17.8...@open-wc/semantic-dom-diff@0.17.9) (2020-04-26)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** allow assertion message ([c8a3b18](https://github.com/open-wc/open-wc/commit/c8a3b18936de43cba0227c146e77b60a04327e41))
+
+
+
+
+
+## [0.17.8](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.17.7...@open-wc/semantic-dom-diff@0.17.8) (2020-04-20)
+
+**Note:** Version bump only for package @open-wc/semantic-dom-diff
+
+
+
+
+
 ## [0.17.7](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.17.6...@open-wc/semantic-dom-diff@0.17.7) (2020-04-12)
 
 **Note:** Version bump only for package @open-wc/semantic-dom-diff

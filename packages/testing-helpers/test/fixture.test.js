@@ -1,6 +1,7 @@
 // @ts-ignore
 import sinon from 'sinon';
 // @ts-ignore
+import { html as litHtml, LitElement } from 'lit-element';
 import { expect } from './setup.js';
 import { cachedWrappers } from '../src/fixtureWrapper.js';
 import { defineCE } from '../src/helpers.js';
@@ -69,38 +70,24 @@ describe('fixtureSync & fixture', () => {
       expect(element.localName).to.equal('div');
     }
 
-    const elementSync = fixtureSync(html`
-      <div></div>
-    `);
+    const elementSync = fixtureSync(html` <div></div> `);
     // @ts-ignore
     testElement(elementSync);
 
-    const elementAsync = await fixture(html`
-      <div></div>
-    `);
+    const elementAsync = await fixture(html` <div></div> `);
     // @ts-ignore
     testElement(elementAsync);
   });
 
   it('supports lit-html TemplateResult with custom parent', async () => {
-    const elSync = fixtureSync(
-      html`
-        <div foo="${'bar'}"></div>
-      `,
-      {
-        parentNode: createParent(),
-      },
-    );
+    const elSync = fixtureSync(html` <div foo="${'bar'}"></div> `, {
+      parentNode: createParent(),
+    });
     expect(elSync.parentElement.tagName).to.equal('MY-PARENT');
 
-    const elAsync = await fixture(
-      html`
-        <div foo="${'bar'}"></div>
-      `,
-      {
-        parentNode: createParent(),
-      },
-    );
+    const elAsync = await fixture(html` <div foo="${'bar'}"></div> `, {
+      parentNode: createParent(),
+    });
     expect(elAsync.parentElement.tagName).to.equal('MY-PARENT');
   });
 
@@ -374,5 +361,43 @@ describe('fixtureSync & fixture', () => {
     const litTag = unsafeStatic(tag);
     await fixture(html`<${litTag}></${litTag}>`);
     expect(counter).to.equal(2);
+  });
+
+  it('supports scoped-elements', async () => {
+    class TestClass extends LitElement {
+      static get properties() {
+        return {
+          foo: { type: String },
+        };
+      }
+
+      constructor() {
+        super();
+
+        this.foo = '';
+      }
+
+      render() {
+        return litHtml`
+          <div>${this.foo}</div>
+        `;
+      }
+    }
+
+    const elString = await fixture('<test-class foo="bar"></test-class>', {
+      scopedElements: {
+        'test-class': TestClass,
+      },
+    });
+
+    expect(elString).shadowDom.to.equal('<div>bar</div>');
+
+    const elLit = await fixture(html` <test-class foo="bar"></test-class> `, {
+      scopedElements: {
+        'test-class': TestClass,
+      },
+    });
+
+    expect(elLit).shadowDom.to.equal('<div>bar</div>');
   });
 });

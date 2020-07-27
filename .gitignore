@@ -23,6 +23,7 @@ lerna-debug.log
 
 ## build hp
 /_site/
+/_site-dev/
 
 ## we prefer yarn.lock
 package-lock.json

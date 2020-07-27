@@ -1,6 +1,8 @@
 const visit = require('unist-util-visit');
 const remove = require('unist-util-remove');
 
+/** @typedef {{ jsCode: string, stories: string }} MDJSVFileData */
+
 function mdjsParse() {
   let jsCode = '';
   return (tree, file) => {

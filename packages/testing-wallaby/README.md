@@ -1,3 +1,11 @@
+---
+permalink: 'testing/testing-wallaby.html'
+title: Testing in IDE via Wallaby
+section: guides
+tags:
+  - guides
+---
+
 # Testing in IDE via Wallaby
 
 Wallaby.js is a Plugin for your IDE and runs tests in real time while you are typing.
@@ -26,15 +34,3 @@ Open your wallaby.js supported IDE and start with the provided config.
 ## Example
 
 The [Set-Game Example](https://github.com/open-wc/example-vanilla-set-game/) has Wallaby Setup.
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/testing-wallaby/README.md';
-      }
-    }
-  }
-</script>

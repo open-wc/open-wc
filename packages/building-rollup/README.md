@@ -1,3 +1,11 @@
+---
+permalink: 'building/building-rollup.html'
+title: Rollup
+section: guides
+tags:
+  - guides
+---
+
 # Rollup
 
 Rollup configuration to help you get started building modern web applications.
@@ -153,6 +161,23 @@ const baseConfig = createSpaConfig({
 });
 ```
 
+If you overwrite the workbox configuration and the `swDest` property of the workbox config, `injectServiceWorker` will automatically use the value of `swDest` in the service worker registration. Example:
+
+```js
+const baseConfig = createSpaConfig({
+  injectServiceWorker: true,
+  workbox: {
+    swDest: './my-sw.js',
+  },
+});
+```
+
+Will result in:
+
+```js
+navigator.serviceWorker.register('./my-sw.js');
+```
+
 ## Supporting older browsers
 
 The default build output works only on browsers that support modules. If you need to support older browsers, such as IE11 or the old Edge, you can set the `legacyBuild` option when you use the create config function.
@@ -165,7 +190,13 @@ const baseConfig = createSpaConfig({
 });
 ```
 
-## Customizing the babel config
+## Customizations
+
+Our config generator sets you up with good defaults for most projects. It's easy to extend and customize this config further for your requirements.
+
+If you find yourself disabling a lot of the default functionality we recommend forking from the default config and taking control yourself. Rollup is relatively easy to configure compared to other build tools, it's better to be in full control if you know what you're doing.
+
+### Customizing the babel config
 
 You can define custom babel plugins to be loaded by adding a `.babelrc` or `babel.config.js` to your project. See [babeljs config](https://babeljs.io/docs/en/configuration) for more information.
 
@@ -176,12 +207,6 @@ For example to add support for class properties:
   "plugins": ["@babel/plugin-proposal-class-properties"]
 }
 ```
-
-## Customizations
-
-Our config generator sets you up with good defaults for most projects. It's easy to extend and customize this config further for your requirements.
-
-If you find yourself disabling a lot of the default functionality we recommend forking from the default config and taking control yourself. Rollup is relatively easy to configure compared to other build tools, it's better to be in full control if you know what you're doing.
 
 ### Customizing default plugins
 
@@ -282,7 +307,36 @@ const baseConfig = createSpaConfig({
 
 </details>
 
-### Extending the rollup config
+### Customize built-in babel plugins
+
+We add some babel plugins by default. These can be overwritten with a different configuration from the config. For example to change the html template minification, or add other modules to be minified:
+
+<details>
+  <summary>View example</summary>
+
+```js
+const baseConfig = createSpaConfig({
+  babel: {
+    plugins: [
+      [
+        require.resolve('babel-plugin-template-html-minifier'),
+        {
+          modules: {
+            'cool-html': ['html'],
+          },
+          htmlMinifier: {
+            removeComments: false,
+          },
+        },
+      ],
+    ],
+  },
+});
+```
+
+</details>
+
+## Extending the rollup config
 
 A rollup config is just a plain object. It's easy to extend it using javascript. We recommend using the `deepmerge` library because it is an easy way to merge objects and arrays:
 
@@ -323,9 +377,9 @@ const baseConfig = createSpaConfig({
   legacyBuild: true,
 });
 
-// set the sourceMap option on both outputs
-baseConfig.output[0].sourceMap = true;
-baseConfig.output[1].sourceMap = true;
+// set the sourcemap option on both outputs
+baseConfig.output[0].sourcemap = true;
+baseConfig.output[1].sourcemap = true;
 
 export default merge(baseConfig, {
   input: './index.html',
@@ -412,15 +466,3 @@ export default merge(baseConfig, {
 ```
 
 </details>
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/building-rollup/README.md';
-      }
-    }
-  }
-</script>

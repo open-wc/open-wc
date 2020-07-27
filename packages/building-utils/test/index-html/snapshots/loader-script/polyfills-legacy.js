@@ -12,7 +12,7 @@
   var polyfills = [];
   if (!('fetch' in window)) { polyfills.push(loadScript('polyfills/fetch.myhash.js', false)) }
   if (!('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype)) { polyfills.push(loadScript('polyfills/intersection-observer.myhash.js', false)) }
-  if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) { polyfills.push(loadScript('polyfills/webcomponents.myhash.js', false)) }
+  if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)) { polyfills.push(loadScript('polyfills/webcomponents.myhash.js', false)) }
 
   function loadEntries() {
     'noModule' in HTMLScriptElement.prototype ? ['./app.js','./shared.js'].forEach(function (entry) { window.importShim(entry); }) : ['./legacy/app.js','./legacy/shared.js'].forEach(function (entry) { System.import(entry); });

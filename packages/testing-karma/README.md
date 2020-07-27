@@ -1,10 +1,18 @@
+---
+permalink: 'testing/testing-karma.html'
+title: Testing with Karma
+section: guides
+tags:
+  - guides
+---
+
 # Testing with Karma
 
 Configuration for setting up testing with karma.
 
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
-We recommend karma as a general-purpose tool for testing code which runs in the browser. Karma can run a large range of browsers, including IE11. This way you are confident that your code runs correctly in all supported environments.
+We recommend karma as a general-purpose tool for testing code that runs in the browser. Karma can run a large range of browsers, including IE11. This way you are confident that your code runs correctly in all supported environments.
 
 During development you can run Chrome Headless, giving fast feedback in the terminal while writing your tests. In your CI you can run more browsers, and/or use a service like [Browserstack](https://www.browserstack.com/) or [Saucelabs](https://saucelabs.com/) for testing in all supported browsers.
 
@@ -23,7 +31,7 @@ This page explains how to set up `karma`, see the [testing overview](https://ope
 - Runs tests through mocha
 - Deep object diffs in mocha errors
 - Test coverage through instanbul when passing the `coverage` flag
-- Supports older browsers (down to IE11) when passing the `compatibility` flag
+- Supports older browsers (down to IE11)
 
 ## Setup
 
@@ -110,9 +118,9 @@ Adding `debugger` statements will allow you to debug using the browser's dev too
 
 ## Testing on older browsers
 
-By default, our configuration does not do any modifications to your code. It just runs it as is in the browser. Depending on which features you use, this should be fine for most major browsers.
+Testing on older browsers is powered by es-dev-server's compatibility mode.
 
-By passing the `compatibility` flag, we enable compatibility mode which makes your code run on older browsers as well. It loads polyfills and transforms modern syntax where needed. There are a few possible modes, but generally 'all' is sufficient for testing. This mode is powered by `karma-esm`. [Check out the documentaton](https://open-wc.org/testing/karma-esm.html) for more information.
+See the [compatibility documentation of es-dev-server](https://open-wc.org/developing/es-dev-server.html#compatibility-mode) for more information.
 
 ## Testing on WSL (Windows Subsystem for Linux)
 
@@ -126,9 +134,9 @@ export CHROME_BIN=/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrom
 
 ## Why don't you recommend testing tool X?
 
-Sometimes people ask why we recommend Karma and not other popular testing tools. We're always on the lookout for improving our recommendations, so if you think we can do better please let us know. What's important for us is that the testing tool is robust, simple to use, does not require any building and runs in a real browser.
+Sometimes people ask why we recommend Karma and not other popular testing tools. We're always on the lookout for improving our recommendations, so if you think we can do better please let us know. What's important for us is that the testing tool is robust, simple to use, does not require any building, and runs in a real browser.
 
-Testing tools that don't use a real browser but something like jsdom constantly need to keep up with the latest browser standards, so you need to wait for your testing tool to update before you can use a new feature. It doesn't give the same confidence as testing in a real browser, and with Headless Chrome and Puppeteer it hardly seems necessary anymore.
+Testing tools that don't use a real browser but something like JSDOM constantly need to keep up with the latest browser standards, so you need to wait for your testing tool to update before you can use a new feature. It doesn't give the same confidence as testing in a real browser, and with Headless Chrome and Puppeteer it hardly seems necessary anymore.
 
 ## Extending the config
 
@@ -150,7 +158,7 @@ module.exports = config => {
         { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' },
       ],
 
-      coverageIstanbulReporter: {
+      coverageReporter: {
         thresholds: {
           global: {
             statements: 50,
@@ -166,9 +174,13 @@ module.exports = config => {
 };
 ```
 
-### Custom babel plugins or typescript support
+### Custom babel plugins
 
-`karma-esm` supports custom babel configurations and typescript. [Check out the documentaton](https://open-wc.org/testing/karma-esm.html) for more information.
+`karma-esm` supports custom babel configurations. [Check out the documentaton](https://open-wc.org/testing/karma-esm.html) for more information.
+
+### Typescript
+
+Because `karma-esm` doesn't do any bundling, it is compatible with typescript out of the box. [Check out the documentaton](https://open-wc.org/testing/karma-esm.html) for more information.
 
 ### Testing in a monorepository
 
@@ -176,9 +188,25 @@ When testing without a bundler you will be serving every imported module straigh
 
 In a monorepo dependencies are often two levels higher in the root of the repository. To run tests in a monorepository you either have to put your config in the root of the repository, or adjust the basePath in your karma config:
 
+```js
+const { createDefaultConfig } = require('@open-wc/testing-karma');
+const merge = require('deepmerge');
+
+module.exports = config => {
+  config.set(
+    merge(createDefaultConfig(config), {
+      files: [{ pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' }],
+
+      basePath: '../../',
+    }),
+  );
+  return config;
+};
+```
+
 ### Preserving symlinks
 
-When using a tool that relies on symlinks such as `npm link` or `lerna`, the `es-dev-server` that runs under the hood of `karma-esm` plugin needs to be ran with `--preserve-symlinks` option.
+When using a tool that relies on symlinks such as `npm link` or `lerna`, the `es-dev-server` that runs under the hood of `karma-esm` plugin needs to run with `--preserve-symlinks` option.
 
 You can pass this option via the `esm` plugin configuration:
 
@@ -212,15 +240,3 @@ module.exports = config => {
   return config;
 };
 ```
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/testing-karma/README.md';
-      }
-    }
-  }
-</script>

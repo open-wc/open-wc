@@ -1,3 +1,7 @@
+import unified from 'unified';
+
+export type StoryTypes = 'js' | 'html';
+
 export interface MarkdownResult {
   html: string;
   jsCode: string;
@@ -8,6 +12,7 @@ export interface Story {
   key: string;
   name: string;
   code: string;
+  type?: StoryTypes;
 }
 
 export interface ProcessResult {
@@ -21,4 +26,10 @@ export interface ParseResult {
     stories: Story[];
     jsCode: string;
   };
+}
+
+export interface MdjsProcessPlugin {
+  name: string;
+  plugin: unified.Plugin;
+  options?: unified.Settings;
 }

@@ -3,6 +3,156 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.4.1...@open-wc/building-rollup@1.4.2) (2020-07-08)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [1.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.4.0...@open-wc/building-rollup@1.4.1) (2020-07-03)
+
+
+### Bug Fixes
+
+* **building-rollup:** fix workbox typeguard ([#1742](https://github.com/open-wc/open-wc/issues/1742)) ([4bcd60a](https://github.com/open-wc/open-wc/commit/4bcd60adb58f8539e7099d401633af8104f1acb3))
+
+
+
+
+
+# [1.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.3.2...@open-wc/building-rollup@1.4.0) (2020-07-02)
+
+
+### Features
+
+* **building-rollup:** allow customizing sw name ([#1738](https://github.com/open-wc/open-wc/issues/1738)) ([967270f](https://github.com/open-wc/open-wc/commit/967270f529d2d5dfb5d2a53575450609449fbd80))
+
+
+
+
+
+## [1.3.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.3.1...@open-wc/building-rollup@1.3.2) (2020-06-25)
+
+
+### Bug Fixes
+
+* **building-rollup:** add `regenerator-runtime` dependency explicitly ([2a14a51](https://github.com/open-wc/open-wc/commit/2a14a51a29e7e544d3e7a7cb902fad08c424933d))
+
+
+
+
+
+## [1.3.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.3.0...@open-wc/building-rollup@1.3.1) (2020-05-27)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+# [1.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.2.7...@open-wc/building-rollup@1.3.0) (2020-05-24)
+
+
+### Features
+
+* **building-rollup:** use babel compact mode ([f2414ce](https://github.com/open-wc/open-wc/commit/f2414ce0b3999440f211c81749d209089a32766e))
+
+
+
+
+
+## [1.2.7](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.2.6...@open-wc/building-rollup@1.2.7) (2020-05-17)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [1.2.6](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.2.5...@open-wc/building-rollup@1.2.6) (2020-05-13)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [1.2.5](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.2.4...@open-wc/building-rollup@1.2.5) (2020-05-05)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [1.2.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.2.3...@open-wc/building-rollup@1.2.4) (2020-05-01)
+
+
+### Bug Fixes
+
+* **building-rollup:** don't read user .browserslist ([60a5ea7](https://github.com/open-wc/open-wc/commit/60a5ea7c2e21cadfbbe779011cee05c73d179cda))
+
+
+
+
+
+## [1.2.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.2.2...@open-wc/building-rollup@1.2.3) (2020-05-01)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [1.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.2.1...@open-wc/building-rollup@1.2.2) (2020-04-30)
+
+
+### Bug Fixes
+
+* **building-rollup:** node resolve config is incorrect ([63e1165](https://github.com/open-wc/open-wc/commit/63e1165535f15532720e08bdb1ec969b4fee5834))
+
+
+
+
+
+## [1.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.2.0...@open-wc/building-rollup@1.2.1) (2020-04-28)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+# [1.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.1.4...@open-wc/building-rollup@1.2.0) (2020-04-24)
+
+
+### Features
+
+* **building-rollup:** support overriding built-in babel plugins ([ecd294e](https://github.com/open-wc/open-wc/commit/ecd294efad9648db5a0f0c8ed84833e621b757aa))
+* **building-rollup:** use new preserveEntrySignatures option ([ee31fba](https://github.com/open-wc/open-wc/commit/ee31fba7de938362e38ee3f75999c3afdfbb2301))
+
+
+
+
+
+## [1.1.4](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.1.3...@open-wc/building-rollup@1.1.4) (2020-04-21)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [1.1.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.1.2...@open-wc/building-rollup@1.1.3) (2020-04-20)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
 ## [1.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.1.1...@open-wc/building-rollup@1.1.2) (2020-04-15)
 
 

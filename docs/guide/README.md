@@ -1,3 +1,12 @@
+---
+permalink: 'guide/index.html'
+title: Guide
+section: guides
+tags:
+  - guides
+  - section
+---
+
 # Introduction
 
 The goal of Open Web Components is to empower everyone with a powerful and battle-tested setup for sharing open source web components. We try to achieve this by giving a set of recommendations and defaults on how to facilitate your web component project. Our recommendations include: developing, linting, testing, tooling, demoing, publishing and automating.
@@ -19,7 +28,7 @@ npm init @open-wc
 - [Testing](/testing/)
 - [Building](/building/)
 - [Demoing](/demoing/)
-- [Publishing](/publishing/)
+- [Deploying](/deploying/)
 - [Automating](/automating/)
 
 ## Our Philosophy

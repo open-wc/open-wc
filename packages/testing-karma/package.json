@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-karma",
-  "version": "3.3.12",
+  "version": "4.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -28,11 +28,15 @@
     "compatibility"
   ],
   "dependencies": {
-    "@open-wc/karma-esm": "^2.13.23",
-    "axe-core": "^3.3.1",
+    "@open-wc/karma-esm": "^3.0.0",
+    "@types/karma": "^5.0.0",
+    "@types/karma-coverage-istanbul-reporter": "^2.1.0",
+    "@types/karma-mocha": "^1.3.0",
+    "@types/karma-mocha-reporter": "^2.2.0",
+    "axe-core": "^3.5.3",
     "karma": "^4.1.0",
     "karma-chrome-launcher": "^3.1.0",
-    "karma-coverage-istanbul-reporter": "^2.0.0",
+    "karma-coverage": "^2.0.2",
     "karma-mocha": "^1.0.0",
     "karma-mocha-reporter": "^2.0.0",
     "karma-mocha-snapshot": "^0.2.1",

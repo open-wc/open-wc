@@ -1,6 +1,6 @@
 const mdx = require('@mdx-js/mdx');
 const { transformAsync } = require('@babel/core');
-const createCompiler = require('@storybook/addon-docs/mdx-compiler-plugin');
+const createCompiler = require('./mdx-compiler-plugin');
 
 const compilers = [createCompiler({})];
 

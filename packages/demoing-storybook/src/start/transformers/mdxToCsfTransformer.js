@@ -10,7 +10,7 @@ async function mdxToCsfTransformer({ url, body, status }) {
 
     const newBody = (await transformMdxToCsf(body, path)).code;
     if (newBody) {
-      return { body: newBody, contentType: 'text/javascript' };
+      return { body: newBody };
     }
   }
   return null;

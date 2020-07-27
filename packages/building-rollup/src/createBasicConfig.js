@@ -12,7 +12,7 @@ const {
   babelConfigSystemJs,
 } = require('./babel/babel-configs');
 const { bundledBabelHelpers } = require('./babel/rollup-plugin-bundled-babel-helpers');
-const { isFalsy, pluginWithOptions } = require('./utils');
+const { isFalsy, pluginWithOptions, dedupedBabelPlugin } = require('./utils');
 
 /**
  * @param {BasicOptions} userOptions
@@ -33,6 +33,7 @@ function createBasicConfig(userOptions = {}) {
   const assetName = `[${developmentMode ? 'name' : 'hash'}][extname]`;
 
   const config = {
+    preserveEntrySignatures: false,
     treeshake: !developmentMode,
 
     output: {
@@ -52,11 +53,14 @@ function createBasicConfig(userOptions = {}) {
     plugins: [
       // resolve bare module imports
       pluginWithOptions(resolve, opts.nodeResolve, {
-        moduleDirectory: ['node_modules', 'web_modules'],
+        customResolveOptions: {
+          moduleDirectory: ['node_modules', 'web_modules'],
+        },
       }),
 
       // build non-standard syntax to standard syntax and other babel optimization plugins
-      pluginWithOptions(babel, opts.babel, createBabelConfigRollupBuild(developmentMode)),
+      // user plugins are deduped to allow overriding
+      dedupedBabelPlugin(babel, opts.babel, createBabelConfigRollupBuild(developmentMode)),
 
       // minify js code
       !developmentMode && pluginWithOptions(terser, opts.terser, { output: { comments: false } }),

@@ -75,8 +75,8 @@ async function fetchKarmaHTML(karmaHost, name, importMap) {
         .map(
           path => `import('${path}')
           .catch((e) => {
-            console.log('Error loading test file: ${path.split('?')[0].replace('/base', '')}');
-            throw e;
+            console.error('Error loading test file: ${path.split('?')[0].replace('/base', '')}');
+            console.error(e.stack);
           })`,
         )
         .join(',')}])
@@ -123,7 +123,7 @@ async function setupDevServer(karmaConfig, esmConfig, watch, babelConfig, karmaE
     rootDir: karmaConfig.basePath,
     nodeResolve: esmConfig.nodeResolve,
     polyfillsLoader: esmConfig.polyfillsLoader,
-    dedupe: esmConfig.dedupe,
+    dedupeModules: esmConfig.dedupe,
     compatibility: esmConfig.compatibility,
     // option used to be called `moduleDirectories`
     // @ts-ignore
@@ -137,6 +137,7 @@ async function setupDevServer(karmaConfig, esmConfig, watch, babelConfig, karmaE
     // @ts-ignore
     middlewares: esmConfig.middlewares || esmConfig.customMiddlewares,
     preserveSymlinks: esmConfig.preserveSymlinks,
+    plugins: esmConfig.plugins,
     responseTransformers: [
       createServeKarmaHtml(karmaHost, importMap),
       ...(esmConfig.responseTransformers || []),

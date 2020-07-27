@@ -13,6 +13,8 @@
   <!-- absolute path -->
   
 
+  
+
 
 
 <script>(function () {
@@ -60,7 +62,7 @@
       polyfills.push(loadScript('./polyfills/intersection-observer.js'));
     }
 
-    if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)) {
+    if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || window.ShadyDOM && window.ShadyDOM.force) {
       polyfills.push(loadScript('./polyfills/webcomponents.js'));
     }
 
@@ -75,6 +77,8 @@
         return loadScript('../src/app.js', 'module');
       }, function () {
         return loadScript('/src/app.js', 'module');
+      }, function () {
+        return loadScript('./inline-script-3.js?source=%2Findex.html', 'module');
       }].reduce(function (a, c) {
         return a.then(c);
       }, Promise.resolve());

@@ -12,6 +12,8 @@ x point 1
 x point 2  
 x point 3
 
+---
+
 ## Including an image
 
 ![mdjs logo](https://raw.githubusercontent.com/open-wc/open-wc/master/assets/images/logo.png)

@@ -8,7 +8,12 @@ const polyfillsLoader = require('@open-wc/rollup-plugin-polyfills-loader');
 const path = require('path');
 const { generateSW } = require('rollup-plugin-workbox');
 const { createBasicConfig } = require('./createBasicConfig');
-const { pluginWithOptions, applyServiceWorkerRegistration, isFalsy } = require('./utils');
+const {
+  pluginWithOptions,
+  applyServiceWorkerRegistration,
+  isFalsy,
+  createSwPath,
+} = require('./utils');
 const { defaultPolyfills } = require('./polyfills');
 
 /**
@@ -16,6 +21,8 @@ const { defaultPolyfills } = require('./polyfills');
  */
 function createSpaConfig(options) {
   const basicConfig = createBasicConfig(options);
+
+  /** @type {SpaOptions} */
   const userOptions = merge(
     {
       html: true,
@@ -27,9 +34,12 @@ function createSpaConfig(options) {
   );
   let outputDir = basicConfig.output.dir;
 
+  const swPath = createSwPath(userOptions, outputDir);
+  const applySw = htmlString => applyServiceWorkerRegistration(htmlString, swPath);
+
   const htmlPlugin = pluginWithOptions(html, userOptions.html, {
     minify: !userOptions.developmentMode,
-    transform: [userOptions.injectServiceWorker && applyServiceWorkerRegistration].filter(isFalsy),
+    transform: [userOptions.injectServiceWorker && applySw].filter(isFalsy),
     inject: false,
   });
 
@@ -63,6 +73,40 @@ function createSpaConfig(options) {
     };
   }
 
+  const workboxPlugin = pluginWithOptions(
+    generateSW,
+    userOptions.workbox,
+    {
+      // Keep 'legacy-*.js' just for retro compatibility
+      globIgnores: ['polyfills/*.js', 'legacy-*.js', 'nomodule-*.js'],
+      navigateFallback: '/index.html',
+      // where to output the generated sw
+      swDest: path.join(process.cwd(), outputDir, 'sw.js'),
+      // directory to match patterns against to be precached
+      globDirectory: path.join(process.cwd(), outputDir),
+      // cache any html js and css by default
+      globPatterns: ['**/*.{html,js,css,webmanifest}'],
+      skipWaiting: true,
+      clientsClaim: true,
+      runtimeCaching: [
+        {
+          urlPattern: 'polyfills/*.js',
+          handler: 'CacheFirst',
+        },
+      ],
+    },
+    () => {},
+  );
+
+  if (userOptions.workbox) {
+    if (basicConfig.output.length > 1) {
+      const lastOutput = basicConfig.output.length - 1;
+      basicConfig.output[lastOutput].plugins.push(workboxPlugin);
+    } else {
+      basicConfig.output.plugins.push(workboxPlugin);
+    }
+  }
+
   return merge(basicConfig, {
     plugins: [
       // create HTML file output
@@ -70,32 +114,6 @@ function createSpaConfig(options) {
 
       // inject polyfills loader into HTML
       pluginWithOptions(polyfillsLoader, userOptions.polyfillsLoader, polyfillsLoaderConfig),
-
-      // generate service worker
-      userOptions.workbox &&
-        pluginWithOptions(
-          generateSW,
-          userOptions.workbox,
-          {
-            globIgnores: ['legacy-*.js'],
-            navigateFallback: '/index.html',
-            // where to output the generated sw
-            swDest: path.join(process.cwd(), outputDir, 'sw.js'),
-            // directory to match patterns against to be precached
-            globDirectory: path.join(process.cwd(), outputDir),
-            // cache any html js and css by default
-            globPatterns: ['**/*.{html,js,css}'],
-            skipWaiting: true,
-            clientsClaim: true,
-            runtimeCaching: [
-              {
-                urlPattern: 'polyfills/*.js',
-                handler: 'CacheFirst',
-              },
-            ],
-          },
-          () => {},
-        ),
     ],
   });
 }

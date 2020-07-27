@@ -1,3 +1,11 @@
+---
+permalink: 'testing/testing-chai-a11y-axe.html'
+title: Chai A11y aXe
+section: guides
+tags:
+  - guides
+---
+
 # Chai A11y aXe
 
 This module provides a Chai plugin to perform automated accessibility tests via axe.
@@ -16,40 +24,24 @@ Rules can be ignored by passing `ignoredRules` with a list of ignored rules as a
 import { fixture, expect, html } from '@open-wc/testing';
 
 it('passes accessibility test', async () => {
-  const el = await fixture(
-    html`
-      <button>label</button>
-    `,
-  );
+  const el = await fixture(html` <button>label</button> `);
   await expect(el).to.be.accessible();
 });
 
 it('fails without label', async () => {
-  const el = await fixture(
-    html`
-      <div aria-labelledby="test-x"></div>
-    `,
-  );
+  const el = await fixture(html` <div aria-labelledby="test-x"></div> `);
   await expect(el).not.to.be.accessible();
 });
 
 it('passes for all rules, ignores attributes test', async () => {
-  const el = await fixture(
-    html`
-      <div aria-labelledby="test-x"></div>
-    `,
-  );
+  const el = await fixture(html` <div aria-labelledby="test-x"></div> `);
   await expect(el).to.be.accessible({
     ignoredRules: ['aria-valid-attr-value'],
   });
 });
 
 it('accepts "done" option', done => {
-  fixture(
-    html`
-      <button>some light dom</button>
-    `,
-  ).then(el => {
+  fixture(html` <button>some light dom</button> `).then(el => {
     expect(el).to.be.accessible({
       done,
     });
@@ -65,43 +57,19 @@ The `isAccessible()` and `isNotAccessible()` methods work on Chai's `assert` fun
 import { fixture, assert, html } from '@open-wc/testing';
 
 it('passes axe accessible tests', async () => {
-  const el = await fixture(
-    html`
-      <button>some light dom</button>
-    `,
-  );
+  const el = await fixture(html` <button>some light dom</button> `);
   await assert.isAccessible(el);
 });
 
 it('accepts ignored rules list', async () => {
-  const el = await fixture(
-    html`
-      <div aria-labelledby="test-x"></div>
-    `,
-  );
+  const el = await fixture(html` <div aria-labelledby="test-x"></div> `);
   await assert.isAccessible(el, {
     ignoredRules: ['aria-valid-attr-value'],
   });
 });
 
 it('passes for negation', async () => {
-  const el = await fixture(
-    html`
-      <div aria-labelledby="test-x"></div>
-    `,
-  );
+  const el = await fixture(html` <div aria-labelledby="test-x"></div> `);
   await assert.isNotAccessible(el);
 });
 ```
-
-<script>
-  export default {
-    mounted() {
-      const editLink = document.querySelector('.edit-link a');
-      if (editLink) {
-        const url = editLink.href;
-        editLink.href = url.substr(0, url.indexOf('/master/')) + '/master/packages/chai-a11y-axe/README.md';
-      }
-    }
-  }
-</script>

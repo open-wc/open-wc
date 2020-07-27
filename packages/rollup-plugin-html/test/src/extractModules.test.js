@@ -6,7 +6,7 @@ describe('extractModules()', () => {
   it('extracts all modules from a html document', () => {
     const { moduleImports, inlineModules, htmlWithoutModules } = extractModules(
       {
-        inputHtml:
+        html:
           '<div>before</div>' +
           '<script type="module" src="./foo.js"></script>' +
           '<script type="module" src="/bar.js"></script>' +
@@ -27,7 +27,7 @@ describe('extractModules()', () => {
   it('resolves imports relative to the root dir', () => {
     const { moduleImports, inlineModules, htmlWithoutModules } = extractModules(
       {
-        inputHtml:
+        html:
           '<div>before</div>' +
           '<script type="module" src="./foo.js"></script>' +
           '<script type="module" src="/bar.js"></script>' +
@@ -51,7 +51,7 @@ describe('extractModules()', () => {
   it('resolves relative imports relative to the relative import base', () => {
     const { moduleImports, inlineModules, htmlWithoutModules } = extractModules(
       {
-        inputHtml:
+        html:
           '<div>before</div>' +
           '<script type="module" src="./foo.js"></script>' +
           '<script type="module" src="/bar.js"></script>' +
@@ -75,7 +75,7 @@ describe('extractModules()', () => {
   it('extracts all inline modules from a html document', () => {
     const { moduleImports, inlineModules, htmlWithoutModules } = extractModules(
       {
-        inputHtml:
+        html:
           '<div>before</div>' +
           '<script type="module">/* my module 1 */</script>' +
           '<script type="module">/* my module 2 */</script>' +
@@ -99,7 +99,7 @@ describe('extractModules()', () => {
   it('prefixes inline module with index.html directory', () => {
     const { moduleImports, inlineModules, htmlWithoutModules } = extractModules(
       {
-        inputHtml:
+        html:
           '<div>before</div>' +
           '<script type="module">/* my module 1 */</script>' +
           '<script type="module">/* my module 2 */</script>' +

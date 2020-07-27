@@ -3,6 +3,98 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.4.0...storybook-addon-markdown-docs@0.4.1) (2020-06-13)
+
+**Note:** Version bump only for package storybook-addon-markdown-docs
+
+
+
+
+
+# [0.4.0](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.3.1...storybook-addon-markdown-docs@0.4.0) (2020-05-23)
+
+
+### Features
+
+* allow to set plugins for mdjs processing ([e1ed13d](https://github.com/open-wc/open-wc/commit/e1ed13d6c99bd2b9997f7bc3fb26cae7bd8c25a0))
+
+
+
+
+
+## [0.3.1](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.3.0...storybook-addon-markdown-docs@0.3.1) (2020-05-16)
+
+**Note:** Version bump only for package storybook-addon-markdown-docs
+
+
+
+
+
+# [0.3.0](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.10...storybook-addon-markdown-docs@0.3.0) (2020-05-09)
+
+
+### Bug Fixes
+
+* **core:** limit Story.type to js|html and make it optional ([f0191d1](https://github.com/open-wc/open-wc/commit/f0191d1ad0974e667e730e4df8ff2f7930fa082f))
+
+
+### Features
+
+* **core:** support html preview/-stories ([c820f17](https://github.com/open-wc/open-wc/commit/c820f1718115a4f376c6541edec44c41d1ed7d8d))
+
+
+
+
+
+## [0.2.10](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.9...storybook-addon-markdown-docs@0.2.10) (2020-05-07)
+
+**Note:** Version bump only for package storybook-addon-markdown-docs
+
+
+
+
+
+## [0.2.9](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.8...storybook-addon-markdown-docs@0.2.9) (2020-05-02)
+
+**Note:** Version bump only for package storybook-addon-markdown-docs
+
+
+
+
+
+## [0.2.8](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.7...storybook-addon-markdown-docs@0.2.8) (2020-04-26)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** allow assertion message ([c8a3b18](https://github.com/open-wc/open-wc/commit/c8a3b18936de43cba0227c146e77b60a04327e41))
+
+
+
+
+
+## [0.2.7](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.6...storybook-addon-markdown-docs@0.2.7) (2020-04-20)
+
+
+### Bug Fixes
+
+* **storybook-addon-markdown-docs:** no babel user config for jsxToJs ([#1542](https://github.com/open-wc/open-wc/issues/1542)) ([484679d](https://github.com/open-wc/open-wc/commit/484679db284a48ab5083d820b76a52d49e3c5290))
+
+
+
+
+
+## [0.2.6](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.5...storybook-addon-markdown-docs@0.2.6) (2020-04-16)
+
+
+### Bug Fixes
+
+* **storybook-addon-markdown-docs:** close hr to support jsx parser ([2114f7d](https://github.com/open-wc/open-wc/commit/2114f7d32edb36b8c0cc451f92ebd806edabbe66))
+
+
+
+
+
 ## [0.2.5](https://github.com/open-wc/open-wc/compare/storybook-addon-markdown-docs@0.2.4...storybook-addon-markdown-docs@0.2.5) (2020-04-15)
 
 

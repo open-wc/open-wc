@@ -3,6 +3,279 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.57.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.56.1...es-dev-server@1.57.0) (2020-07-24)
+
+
+### Features
+
+* **es-dev-server:** add flag to disable injecting event stream script ([624438e](https://github.com/open-wc/open-wc/commit/624438e53b04211e30f9d5c44b8787e444243d80))
+
+
+
+
+
+## [1.56.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.56.0...es-dev-server@1.56.1) (2020-07-10)
+
+
+### Bug Fixes
+
+* **es-dev-server:** fix messagechannel to be ES5 compatible ([48a1ecd](https://github.com/open-wc/open-wc/commit/48a1ecde7e7fb86406913684fd2c16588976bac8))
+
+
+
+
+
+# [1.56.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.55.1...es-dev-server@1.56.0) (2020-06-25)
+
+
+### Features
+
+* **es-dev-server:** add cors option ([8d53225](https://github.com/open-wc/open-wc/commit/8d532259c3148778614848cc5b4b6c94fc5d6e0d))
+
+
+
+
+
+## [1.55.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.55.0...es-dev-server@1.55.1) (2020-06-22)
+
+
+### Bug Fixes
+
+* **es-dev-server:** only cache HTML when there is lastModified ([f07387f](https://github.com/open-wc/open-wc/commit/f07387f6761f3da3945e7a15f72f7b98a18f2500))
+
+
+
+
+
+# [1.55.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.54.1...es-dev-server@1.55.0) (2020-06-11)
+
+
+### Features
+
+* **es-dev-server:** allow configuring custom babel include/exclude ([c2478c7](https://github.com/open-wc/open-wc/commit/c2478c756d3afd834ae6cd137b52d866293936b7))
+
+
+
+
+
+## [1.54.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.54.0...es-dev-server@1.54.1) (2020-06-05)
+
+
+### Bug Fixes
+
+* **es-dev-server:** handle transforming empty modules ([fe4dd97](https://github.com/open-wc/open-wc/commit/fe4dd9790d0393e847e07766de0fc771303b8f93))
+
+
+
+
+
+# [1.54.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.53.0...es-dev-server@1.54.0) (2020-05-29)
+
+
+### Features
+
+* **es-dev-server:** improve syntax error logging ([f735f4f](https://github.com/open-wc/open-wc/commit/f735f4f28dc28695b9e2721081537ba0a53a199d))
+
+
+
+
+
+# [1.53.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.52.0...es-dev-server@1.53.0) (2020-05-25)
+
+
+### Features
+
+* **es-dev-server:** expose message channel API to plugins ([314b806](https://github.com/open-wc/open-wc/commit/314b80637c957eccac4780e202b6b9b6684bfa16))
+
+
+
+
+
+# [1.52.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.51.0...es-dev-server@1.52.0) (2020-05-24)
+
+
+### Features
+
+* **building-rollup:** use babel compact mode ([f2414ce](https://github.com/open-wc/open-wc/commit/f2414ce0b3999440f211c81749d209089a32766e))
+* **es-dev-server:** render large files in babel compact mode ([d0808b8](https://github.com/open-wc/open-wc/commit/d0808b88a8204c06edb466c0e424a8d0fd883d2c))
+
+
+
+
+
+# [1.51.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.8...es-dev-server@1.51.0) (2020-05-24)
+
+
+### Features
+
+* **es-dev-server:** allow disabling transform cache from plugins ([92e847d](https://github.com/open-wc/open-wc/commit/92e847d296d1a3e50943fbe5daa494e4246281e9))
+
+
+
+
+
+## [1.50.8](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.7...es-dev-server@1.50.8) (2020-05-22)
+
+
+### Bug Fixes
+
+* **es-dev-server:** make mime-types a dependency ([104d402](https://github.com/open-wc/open-wc/commit/104d40217ba284e16bf23b4f7435d0910967d5a8))
+
+
+
+
+
+## [1.50.7](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.6...es-dev-server@1.50.7) (2020-05-21)
+
+
+### Bug Fixes
+
+* **es-dev-server:** always set a valid filename for babel ([1497c7b](https://github.com/open-wc/open-wc/commit/1497c7bd2eed68e77efd70c60a1005b01fb15b12))
+
+
+
+
+
+## [1.50.6](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.5...es-dev-server@1.50.6) (2020-05-17)
+
+
+### Bug Fixes
+
+* **es-dev-server:** add missing dependencies to compile types ([a742c74](https://github.com/open-wc/open-wc/commit/a742c74d22e80a674ccedad763e442d6c24c70c5))
+* **rollup-plugin-polyfills-loader:** add missing .d.ts file ([47bdeeb](https://github.com/open-wc/open-wc/commit/47bdeeba325e698ae4a218003b5b0080ca3bfe97))
+
+
+
+
+
+## [1.50.5](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.4...es-dev-server@1.50.5) (2020-05-16)
+
+
+### Bug Fixes
+
+* **es-dev-server:** really fix plugin types ([330cd8a](https://github.com/open-wc/open-wc/commit/330cd8a81e34eb0ee2ae7f0d6ba8276a42647160))
+
+
+
+
+
+## [1.50.4](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.3...es-dev-server@1.50.4) (2020-05-16)
+
+
+### Bug Fixes
+
+* **es-dev-server:** typo in custom resolve hook ([2de863c](https://github.com/open-wc/open-wc/commit/2de863c137dd52085a77fc2418a35cc58b2769fa))
+
+
+
+
+
+## [1.50.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.2...es-dev-server@1.50.3) (2020-05-15)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+## [1.50.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.1...es-dev-server@1.50.2) (2020-05-15)
+
+
+### Bug Fixes
+
+* **es-dev-server:** don't rely on serverStart for built-in plugins ([7bb2b3f](https://github.com/open-wc/open-wc/commit/7bb2b3f654df53f4d1deaf708145946e198efdf1))
+
+
+
+
+
+## [1.50.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.50.0...es-dev-server@1.50.1) (2020-05-14)
+
+
+### Bug Fixes
+
+* **es-dev-server:** fix resolving inline imports ([05f6ab5](https://github.com/open-wc/open-wc/commit/05f6ab5c631190e9d4907d5074f700eac16c42cd))
+
+
+
+
+
+# [1.50.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.49.0...es-dev-server@1.50.0) (2020-05-14)
+
+
+### Features
+
+* **es-dev-server:** add plugin system ([2497345](https://github.com/open-wc/open-wc/commit/2497345c3a32cdc64758e74cd584fbdc5a0d8b20))
+
+
+
+
+
+# [1.49.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.48.1...es-dev-server@1.49.0) (2020-05-13)
+
+
+### Features
+
+* **polyfills-loader:** update to systemjs v6 ([7de4d67](https://github.com/open-wc/open-wc/commit/7de4d6759792725e919f7f165bae8262812e9e17))
+
+
+
+
+
+## [1.48.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.48.0...es-dev-server@1.48.1) (2020-05-05)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+# [1.48.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.47.0...es-dev-server@1.48.0) (2020-05-05)
+
+
+### Features
+
+* **es-dev-server:** move to typescript ([179b299](https://github.com/open-wc/open-wc/commit/179b2991442aae30460479c21cc6edfbf30b7885))
+
+
+
+
+
+# [1.47.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.46.5...es-dev-server@1.47.0) (2020-04-26)
+
+
+### Bug Fixes
+
+* **es-dev-server:** types for create-server ([8f8789f](https://github.com/open-wc/open-wc/commit/8f8789f1b95439b86f9115ff7d2bb53b47442bfd))
+
+
+### Features
+
+* **es-dev-server:** add https redirect ([1e53552](https://github.com/open-wc/open-wc/commit/1e535525a8e9f0fbcfe5772ada378bc9fba19c7d))
+
+
+
+
+
+## [1.46.5](https://github.com/open-wc/open-wc/compare/es-dev-server@1.46.4...es-dev-server@1.46.5) (2020-04-21)
+
+
+### Bug Fixes
+
+* **polyfills-loader:** allow forcing the polyfill ([ee44812](https://github.com/open-wc/open-wc/commit/ee44812f89e90879713a0ba5cd79e631c57f6d4e))
+
+
+
+
+
+## [1.46.4](https://github.com/open-wc/open-wc/compare/es-dev-server@1.46.2...es-dev-server@1.46.4) (2020-04-20)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
 ## [1.46.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.46.1...es-dev-server@1.46.2) (2020-04-12)
 
 **Note:** Version bump only for package es-dev-server

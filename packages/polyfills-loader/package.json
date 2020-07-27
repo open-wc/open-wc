@@ -1,6 +1,6 @@
 {
   "name": "polyfills-loader",
-  "version": "1.5.4",
+  "version": "1.6.1",
   "publishConfig": {
     "access": "public"
   },
@@ -25,12 +25,13 @@
     "test:watch": "mocha test/**/*.test.js test/**/*.test.js --watch"
   },
   "files": [
+    "index.d.ts",
     "index.js",
     "src"
   ],
   "dependencies": {
     "@babel/core": "^7.9.0",
-    "@open-wc/building-utils": "^2.16.3",
+    "@open-wc/building-utils": "^2.18.0",
     "@webcomponents/webcomponentsjs": "^2.4.0",
     "abortcontroller-polyfill": "^1.4.0",
     "core-js-bundle": "^3.6.0",
@@ -42,7 +43,7 @@
     "parse5": "^5.1.1",
     "regenerator-runtime": "^0.13.3",
     "resize-observer-polyfill": "^1.5.1",
-    "systemjs": "^4.0.0",
+    "systemjs": "^6.3.1",
     "terser": "^4.6.7",
     "whatwg-fetch": "^3.0.0"
   },

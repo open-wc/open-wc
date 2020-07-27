@@ -1,3 +1,11 @@
+---
+permalink: 'faq/unit-testing-custom-events.html'
+title: Unit Testing Events
+section: faq
+tags:
+  - faq
+---
+
 # Unit Testing Events
 
 Testing events can be tricky; the test needs to set up it's own test-specific event listener before the event fires. In most cases, this can be easily accomplished with the `oneEvent` helper.

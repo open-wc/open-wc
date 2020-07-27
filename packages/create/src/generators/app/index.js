@@ -3,6 +3,7 @@ import prompts from 'prompts';
 import commandLineArgs from 'command-line-args';
 import { executeMixinGenerator } from '../../core.js';
 import { AppLitElementMixin } from '../app-lit-element/index.js';
+import { TsAppLitElementMixin } from '../app-lit-element-ts/index.js';
 
 import header from './header.js';
 import { gatherMixins } from './gatherMixins.js';
@@ -20,6 +21,7 @@ const optionDefinitions = [
   { name: 'scaffoldType', type: String }, // wc, app
   { name: 'features', type: String, multiple: true }, // linting, testing, demoing, building
   { name: 'scaffoldFilesFor', type: String, multiple: true }, // testing, demoing, building
+  { name: 'typescript', type: String },
   { name: 'tagName', type: String },
   { name: 'installDependencies', type: String }, // yarn, npm, false
   { name: 'writeToDisk', type: String }, // true, false
@@ -88,6 +90,15 @@ export const AppMixin = subclass =>
           },
         },
         {
+          type: 'select',
+          name: 'typescript',
+          message: 'Would you like to use typescript?',
+          choices: [
+            { title: 'No', value: 'false' },
+            { title: 'Yes', value: 'true' },
+          ],
+        },
+        {
           type: () => (scaffoldOptions.length > 0 ? 'multiselect' : null),
           name: 'scaffoldFilesFor',
           message: 'Would you like to scaffold examples files for?',
@@ -123,7 +134,11 @@ export const AppMixin = subclass =>
       const mixins = gatherMixins(this.options);
       // app is separate to prevent circular imports
       if (this.options.type === 'scaffold' && this.options.scaffoldType === 'app') {
-        mixins.push(AppLitElementMixin);
+        if (this.options.typescript === 'true') {
+          mixins.push(TsAppLitElementMixin);
+        } else {
+          mixins.push(AppLitElementMixin);
+        }
       }
       await executeMixinGenerator(mixins, this.options);
     }
