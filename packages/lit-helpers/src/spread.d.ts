@@ -1,3 +1,3 @@
 import { AttributePart } from 'lit-html';
 
-export declare const spread: (spreadData: { [key: string]: unknown }) => (part: AttributePart) => void;
+export const spread: <T extends object>(spreadData: T) => (part: AttributePart) => void;
