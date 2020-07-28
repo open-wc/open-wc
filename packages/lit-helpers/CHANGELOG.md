@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.11](https://github.com/open-wc/open-wc/compare/@open-wc/lit-helpers@0.3.10...@open-wc/lit-helpers@0.3.11) (2020-07-28)
+
+
+### Bug Fixes
+
+* **lit-helpers:** correct spread parameter type ([c0b5b14](https://github.com/open-wc/open-wc/commit/c0b5b145090460215d6540b025df57f361b36a05))
+
+
+
+
+
 ## [0.3.10](https://github.com/open-wc/open-wc/compare/@open-wc/lit-helpers@0.3.9...@open-wc/lit-helpers@0.3.10) (2020-05-25)
 
 
