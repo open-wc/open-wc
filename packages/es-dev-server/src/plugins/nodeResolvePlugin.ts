@@ -1,6 +1,5 @@
 import createRollupResolve, { Options } from '@rollup/plugin-node-resolve';
 import path from 'path';
-import { URL, pathToFileURL, fileURLToPath } from 'url';
 import whatwgUrl from 'whatwg-url';
 import { Plugin } from '../Plugin';
 import { toBrowserPath } from '../utils/utils';
@@ -41,8 +40,8 @@ export function nodeResolvePlugin(config: NodeResolveConfig): Plugin {
     async serverStart({ config }) {},
 
     async resolveImport({ source, context }) {
-      if (whatwgUrl.parseURL(source) != null) {
-        // don't resolve urls
+      if (! path.isAbsolute(source) && whatwgUrl.parseURL(source) != null) {
+        // don't resolve relative and valid urls
         return source;
       }
       const [withoutHash, hash] = source.split('#');
@@ -57,8 +56,7 @@ export function nodeResolvePlugin(config: NodeResolveConfig): Plugin {
       }
 
       const requestedFile = context.path.endsWith('/') ? `${context.path}index.html` : context.path;
-      const fileUrl = new URL(`.${requestedFile}`, `${pathToFileURL(rootDir)}/`);
-      const filePath = fileURLToPath(fileUrl);
+      const filePath = path.resolve(rootDir, requestedFile);
 
       // do the actual resolve using the rolluo plugin
       const result = await nodeResolve.resolveId?.call(
