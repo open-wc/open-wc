@@ -56,7 +56,7 @@ export function nodeResolvePlugin(config: NodeResolveConfig): Plugin {
       }
 
       const requestedFile = context.path.endsWith('/') ? `${context.path}index.html` : context.path;
-      const filePath = path.resolve(rootDir, requestedFile);
+      const filePath = path.join(rootDir, requestedFile);
 
       // do the actual resolve using the rolluo plugin
       const result = await nodeResolve.resolveId?.call(
