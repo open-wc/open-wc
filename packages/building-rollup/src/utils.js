@@ -76,7 +76,7 @@ function applyServiceWorkerRegistration(htmlString, swPath) {
 function createSwPath(userOptions, outputDir) {
   let swPath;
   if (typeof userOptions.workbox === 'object' && userOptions.workbox.swDest) {
-    swPath = userOptions.workbox.swDest.replace(`${outputDir}/`, '');
+    swPath = userOptions.workbox.swDest.replace(`${outputDir}`, '');
   } else {
     swPath = './sw.js';
   }
