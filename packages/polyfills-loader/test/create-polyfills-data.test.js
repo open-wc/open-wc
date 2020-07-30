@@ -41,25 +41,27 @@ describe('polyfills', () => {
       },
     };
 
-    const { coreJs, polyfillFiles } = createPolyfillsData(config);
-    cleanupPolyfill(coreJs);
+    const polyfillFiles = createPolyfillsData(config);
     polyfillFiles.forEach(p => {
       expect(p.content).to.be.a('string');
       cleanupPolyfill(p);
     });
 
-    expect(coreJs).to.eql({
-      type: fileTypes.SCRIPT,
-      path: 'polyfills/core-js.js',
-      test: "!('noModule' in HTMLScriptElement.prototype)",
-    });
     expect(polyfillFiles).to.eql([
       {
+        name: 'core-js',
+        type: fileTypes.SCRIPT,
+        path: 'polyfills/core-js.js',
+        test: "!('noModule' in HTMLScriptElement.prototype)",
+      },
+      {
+        name: 'fetch',
         path: 'polyfills/fetch.js',
         test: "!('fetch' in window)",
         type: 'script',
       },
       {
+        name: 'dynamic-import',
         initializer:
           "window.dynamicImportPolyfill.initialize({ importFunctionName: 'importShim' });",
         path: 'polyfills/dynamic-import.js',
@@ -68,28 +70,33 @@ describe('polyfills', () => {
         type: 'script',
       },
       {
+        name: 'es-module-shims',
         path: 'polyfills/es-module-shims.js',
         test: "'noModule' in HTMLScriptElement.prototype",
         type: 'module',
       },
       {
+        name: 'intersection-observer',
         path: 'polyfills/intersection-observer.js',
         test:
           "!('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype)",
         type: 'script',
       },
       {
+        name: 'resize-observer',
         path: 'polyfills/resize-observer.js',
         test: "!('ResizeObserver' in window)",
         type: 'script',
       },
       {
+        name: 'webcomponents',
         path: 'polyfills/webcomponents.js',
         test:
           "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)",
         type: 'script',
       },
       {
+        name: 'custom-elements-es5-adapter',
         path: 'polyfills/custom-elements-es5-adapter.js',
         test: "!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype",
         type: 'script',
@@ -107,14 +114,14 @@ describe('polyfills', () => {
         abortController: true,
       },
     };
-    const { coreJs, polyfillFiles } = createPolyfillsData(config);
-    cleanupPolyfill(coreJs);
+    const polyfillFiles = createPolyfillsData(config);
     polyfillFiles.forEach(p => {
       expect(p.content).to.be.a('string');
       cleanupPolyfill(p);
     });
     expect(polyfillFiles).to.eql([
       {
+        name: 'fetch',
         path: 'polyfills/fetch.js',
         test:
           "!('fetch' in window) || !('Request' in window) || !('signal' in window.Request.prototype)",
@@ -133,14 +140,14 @@ describe('polyfills', () => {
         shadyCssCustomStyle: true,
       },
     };
-    const { coreJs, polyfillFiles } = createPolyfillsData(config);
-    cleanupPolyfill(coreJs);
+    const polyfillFiles = createPolyfillsData(config);
     polyfillFiles.forEach(p => {
       expect(p.content).to.be.a('string');
       cleanupPolyfill(p);
     });
     expect(polyfillFiles).to.eql([
       {
+        name: 'webcomponents-shady-css-custom-style',
         type: fileTypes.SCRIPT,
         path: 'polyfills/webcomponents-shady-css-custom-style.js',
         test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype)",
@@ -163,7 +170,7 @@ describe('polyfills', () => {
       },
     };
 
-    const { polyfillFiles } = createPolyfillsData(config);
+    const polyfillFiles = createPolyfillsData(config);
     polyfillFiles.forEach(p => {
       expect(p.content).to.be.a('string');
       cleanupPolyfill(p);
@@ -171,6 +178,7 @@ describe('polyfills', () => {
 
     expect(polyfillFiles).to.eql([
       {
+        name: 'systemjs',
         type: fileTypes.SCRIPT,
         path: 'polyfills/systemjs.js',
         test: "!('noModule' in HTMLScriptElement.prototype)",
@@ -197,8 +205,7 @@ describe('polyfills', () => {
       },
     };
 
-    const { coreJs, polyfillFiles } = createPolyfillsData(config);
-    cleanupPolyfill(coreJs);
+    const polyfillFiles = createPolyfillsData(config);
     polyfillFiles.forEach(p => {
       expect(p.content).to.be.a('string');
       cleanupPolyfill(p);
@@ -206,6 +213,7 @@ describe('polyfills', () => {
 
     expect(polyfillFiles).to.eql([
       {
+        name: 'systemjs',
         type: fileTypes.SCRIPT,
         path: 'polyfills/systemjs.js',
         test: "'foo' in bar || !('noModule' in HTMLScriptElement.prototype)",
@@ -222,8 +230,7 @@ describe('polyfills', () => {
       },
     };
 
-    const { coreJs, polyfillFiles } = createPolyfillsData(config);
-    cleanupPolyfill(coreJs);
+    const polyfillFiles = createPolyfillsData(config);
     polyfillFiles.forEach(p => {
       expect(p.content).to.be.a('string');
       cleanupPolyfill(p);
@@ -231,6 +238,7 @@ describe('polyfills', () => {
 
     expect(polyfillFiles).to.eql([
       {
+        name: 'systemjs',
         type: fileTypes.SCRIPT,
         path: 'polyfills/systemjs.js',
       },
@@ -243,10 +251,12 @@ describe('polyfills', () => {
         name: 'polyfill-a',
         test: "'foo' in window",
         path: path.resolve(__dirname, 'custom-polyfills/polyfill-a.js'),
+        order: 30,
       },
       {
         name: 'polyfill-b',
         path: path.resolve(__dirname, 'custom-polyfills/polyfill-b.js'),
+        order: 60,
       },
     ];
 
@@ -263,27 +273,53 @@ describe('polyfills', () => {
       },
     };
 
-    const { coreJs, polyfillFiles } = createPolyfillsData(config);
-    cleanupPolyfill(coreJs);
+    const polyfillFiles = createPolyfillsData(config);
     polyfillFiles.forEach(p => {
       expect(p.content).to.be.a('string');
       cleanupPolyfill(p);
     });
 
-    expect(coreJs).to.eql({
-      type: fileTypes.SCRIPT,
-      path: 'polyfills/core-js.js',
-      test: "!('noModule' in HTMLScriptElement.prototype)",
-    });
     expect(polyfillFiles).to.eql([
       {
+        name: 'polyfill-a',
         type: fileTypes.SCRIPT,
         path: 'polyfills/polyfill-a.js',
         test: "'foo' in window",
       },
       {
+        name: 'core-js',
+        type: fileTypes.SCRIPT,
+        path: 'polyfills/core-js.js',
+        test: "!('noModule' in HTMLScriptElement.prototype)",
+      },
+      {
+        name: 'polyfill-b',
         type: fileTypes.SCRIPT,
         path: 'polyfills/polyfill-b.js',
+      },
+    ]);
+  });
+
+  it('loads systemjs separatly if requested', () => {
+    /** @type {PolyfillsLoaderConfig} */
+    const config = {
+      polyfills: {
+        hash: false,
+        systemjs: true,
+      },
+    };
+
+    const polyfillFiles = createPolyfillsData(config);
+    polyfillFiles.forEach(p => {
+      expect(p.content).to.be.a('string');
+      cleanupPolyfill(p);
+    });
+
+    expect(polyfillFiles).to.eql([
+      {
+        name: 'systemjs',
+        type: fileTypes.SCRIPT,
+        path: 'polyfills/systemjs.js',
       },
     ]);
   });
