@@ -1,7 +1,7 @@
 export interface PolyfillsLoaderConfig {
   // files to load on modern browsers. loaded when there are no
   // legacy entrypoints which match
-  modern: ModernEntrypoint;
+  modern?: ModernEntrypoint;
   // legacy entrypoints to load on older browsers, each entrypoint
   // consists of a test when to load it. tests are executed in the order
   // that they appear using if else statement where the final else
@@ -36,6 +36,8 @@ export interface PolyfillsConfig {
   intersectionObserver?: boolean;
   resizeObserver?: boolean;
   dynamicImport?: boolean;
+  // systemjs s.js
+  systemjs?: boolean;
   // systemjs extended version with import maps
   systemjsExtended?: boolean;
   esModuleShims?: boolean;
@@ -56,6 +58,8 @@ export interface PolyfillConfig {
   minify?: boolean;
   // code used to initialze the module
   initializer?: string;
+  // order of the polyfill when loaded, defaults to 50
+  order?: number;
 }
 
 export interface ModernEntrypoint {
@@ -85,6 +89,8 @@ export interface GeneratedFile extends File {
 }
 
 export interface PolyfillFile extends GeneratedFile {
+  // name of the polyfill
+  name: string;
   // runtime feature detection to load this polyfill
   test?: string;
   // code run after the polyfill is loaded to initialize the polyfill
