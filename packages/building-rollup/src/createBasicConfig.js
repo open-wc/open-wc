@@ -28,7 +28,7 @@ function createBasicConfig(userOptions = {}) {
     },
     userOptions,
   );
-  const { developmentMode } = userOptions;
+  const { developmentMode, rootDir } = userOptions;
   const fileName = `[${developmentMode ? 'name' : 'hash'}].js`;
   const assetName = `[${developmentMode ? 'name' : 'hash'}][extname]`;
 
@@ -60,7 +60,11 @@ function createBasicConfig(userOptions = {}) {
 
       // build non-standard syntax to standard syntax and other babel optimization plugins
       // user plugins are deduped to allow overriding
-      dedupedBabelPlugin(babel, opts.babel, createBabelConfigRollupBuild(developmentMode)),
+      dedupedBabelPlugin(
+        babel,
+        opts.babel,
+        createBabelConfigRollupBuild({ developmentMode, rootDir }),
+      ),
 
       // minify js code
       !developmentMode && pluginWithOptions(terser, opts.terser, { output: { comments: false } }),

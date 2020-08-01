@@ -25,6 +25,7 @@ export interface PluginOptions {
   inputHtml?: string;
   /** @deprecated use files instead */
   inputPath?: string;
+  htmlFileName?: string;
 }
 
 export type MinifyFunction = (html: string) => string | Promise<string>;
@@ -68,6 +69,7 @@ export interface TransformArgs {
   bundle: EntrypointBundle;
   // see TemplateArgs
   bundles: Record<string, EntrypointBundle>;
+  htmlFileName: string;
 }
 
 export type TransformFunction = (html: string, args: TransformArgs) => string | Promise<string>;
