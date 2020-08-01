@@ -39,7 +39,7 @@ function createImportPath({ publicPath, mainOutputDir, fileOutputDir, htmlFileNa
  * @param {PluginOptions} args.pluginOptions
  * @param {GeneratedBundle[]} args.generatedBundles
  * @param {string} args.mainOutputDir
- * @param {string} args.htmlFileName
+ * @param {string | undefined} [args.htmlFileName]
  * @param {string[] | undefined} [args.inputModuleIds]
  */
 function getEntrypointBundles({
