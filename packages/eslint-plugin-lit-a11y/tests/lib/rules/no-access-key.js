@@ -1,0 +1,55 @@
+/**
+ * @fileoverview Enforce no accesskey attribute on element.
+ * @author open-wc
+ */
+
+//------------------------------------------------------------------------------
+// Requirements
+//------------------------------------------------------------------------------
+
+const { RuleTester } = require('eslint');
+const rule = require('../../../lib/rules/alt-text');
+
+//------------------------------------------------------------------------------
+// Tests
+//------------------------------------------------------------------------------
+
+const ruleTester = new RuleTester({
+  parserOptions: {
+    sourceType: 'module',
+    ecmaVersion: 2015,
+  },
+});
+ruleTester.run('no-access-key', rule, {
+  valid: [
+    { code: 'html`<a></a>`' },
+    // give me some code that won't trigger a warning
+  ],
+
+  invalid: [
+    {
+      code: "html`<a accesskey='j'></a>`",
+      errors: [
+        {
+          message: 'Avoid using the accesskey attribute.',
+        },
+      ],
+    },
+    {
+      code: "html`<a accesskey='${foo}'></a>`", // eslint-disable-line
+      errors: [
+        {
+          message: 'Avoid using the accesskey attribute.',
+        },
+      ],
+    },
+    {
+      code: "html`<a accesskey='${'f'}'></a>`", // eslint-disable-line
+      errors: [
+        {
+          message: 'Avoid using the accesskey attribute.',
+        },
+      ],
+    },
+  ],
+});
