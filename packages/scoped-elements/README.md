@@ -243,7 +243,7 @@ To demonstrate, we made three demos:
 ## How it works
 
 `ScopedElementsMixin` is mixed into your LitElement and via `static get scopedElements()` you define the tags and classes you wanna use in your elements template.
-Under the hood it changes your template so `<my-button>${this.text}</my-button>` becomes `<my-button-2748>${this.text}</my-button-2748>`.
+Under the hood it changes your template so `<my-button>${this.text}</my-button>` becomes `<my-button-2748 data-tag-name="my-button">${this.text}</my-button-2748>`.
 
 Every auto-defined scoped elements gets a random\* 4 digits number suffix. This suffix changes every time to make sure developers are not inclined to use it the generated tag name as a styling hook. Additionally the suffix allows scoped-elements and traditional self-defined elements to coexist, avoiding name collision.
 
