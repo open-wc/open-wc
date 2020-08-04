@@ -13,11 +13,12 @@ describe('createSwPath', () => {
           },
         },
         'dist',
+        'index.html',
       ),
-    ).to.equal('./foo.js');
+    ).to.equal('foo.js');
   });
 
-  it('uses "./sw.js" as swPath if no swDest is provided by the workbox config', () => {
+  it('uses "sw.js" as swPath if no swDest is provided by the workbox config', () => {
     expect(
       createSwPath(
         {
@@ -26,26 +27,29 @@ describe('createSwPath', () => {
           },
         },
         'dist',
+        'index.html',
       ),
-    ).to.equal('./sw.js');
+    ).to.equal('sw.js');
   });
 
-  it('returns "./sw.js" as swPath if the workbox property is a boolean', () => {
+  it('returns "sw.js" as swPath if the workbox property is a boolean', () => {
     expect(
       createSwPath(
         {
           workbox: true,
         },
         'dist',
+        'index.html',
       ),
-    ).to.equal('./sw.js');
+    ).to.equal('sw.js');
     expect(
       createSwPath(
         {
           workbox: false,
         },
         'dist',
+        'index.html',
       ),
-    ).to.equal('./sw.js');
+    ).to.equal('sw.js');
   });
 });

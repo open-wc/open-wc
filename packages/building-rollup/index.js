@@ -5,5 +5,6 @@
 
 const { createBasicConfig } = require('./src/createBasicConfig');
 const { createSpaConfig } = require('./src/createSpaConfig');
+const { createMpaConfig } = require('./src/createMpaConfig');
 
-module.exports = { createBasicConfig, createSpaConfig };
+module.exports = { createBasicConfig, createSpaConfig, createMpaConfig };

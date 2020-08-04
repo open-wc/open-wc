@@ -25,6 +25,15 @@ const watchMode = process.env.ROLLUP_WATCH === 'true';
 const defaultFileName = 'index.html';
 
 /**
+ * @param {string} id
+ * @param {string} rootDir
+ * @return {boolean}
+ */
+function isAbsoluteUrl(id, rootDir) {
+  return id.startsWith('/') && !id.startsWith(rootDir);
+}
+
+/**
  * @param {PluginOptions} pluginOptions
  * @returns {RollupPluginHtml}
  */
@@ -128,6 +137,9 @@ function rollupPluginHtml(pluginOptions) {
     },
 
     resolveId(id) {
+      if (pluginOptions.rootDir && isAbsoluteUrl(id, pluginOptions.rootDir)) {
+        return path.join(pluginOptions.rootDir, id);
+      }
       for (const file of htmlFiles) {
         if (file.inlineModules && file.inlineModules.has(id)) {
           return id;
