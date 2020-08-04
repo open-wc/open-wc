@@ -24,16 +24,26 @@ ruleTester.run('anchor-has-content', rule, {
   valid: [
     { code: "html`<a href='#'>foo</a>`" },
     { code: "html`<a href='#'><div>asdf</div></a>`" },
-    // give me some code that won't trigger a warning
+    { code: "html`<a><div aria-hidden='true'>foo</div>foo</a>`" },
+    { code: "html`<a><div aria-hidden='true'>foo</div><div>foo</div></a>`" },
   ],
 
   invalid: [
-    // {
-    //     code: "html`<a></a>`",
-    //     errors: [{
-    //         message: "Fill me in.",
-    //         type: "Me too"
-    //     }]
-    // }
+    {
+      code: 'html`<a></a>`',
+      errors: [
+        {
+          message: 'Anchor should contain accessible content.',
+        },
+      ],
+    },
+    {
+      code: "html`<a><div aria-hidden='true'>foo</div></a>`",
+      errors: [
+        {
+          message: 'Anchor should contain accessible content.',
+        },
+      ],
+    },
   ],
 });

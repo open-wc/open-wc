@@ -8,7 +8,7 @@ const isHiddenFromScreenReader = (type, attributes) => {
   }
 
   const ariaHidden = attributes['aria-hidden'];
-  return ariaHidden === true;
+  return ariaHidden === 'true';
 };
 
 module.exports = {

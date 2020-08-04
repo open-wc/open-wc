@@ -4,7 +4,7 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
-
+const { hasAccessibleChildren } = require('../utils/hasAccessibleChildren.js');
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
@@ -46,11 +46,16 @@ module.exports = {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
-            // eslint-disable-next-line
             enterElement: element => {
-              // TODO
-              // if (element.name === 'a') {
-              // }
+              if (element.name === 'a') {
+                if (!hasAccessibleChildren(element)) {
+                  const loc = analyzer.getLocationFor(element);
+                  context.report({
+                    loc,
+                    message: 'Anchor should contain accessible content.',
+                  });
+                }
+              }
             },
           });
         }
