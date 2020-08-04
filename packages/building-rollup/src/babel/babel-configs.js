@@ -4,6 +4,25 @@ const { isFalsy } = require('../utils');
 const createBabelConfigRollupBuild = ({ developmentMode, rootDir }) => ({
   babelHelpers: 'bundled',
   compact: true,
+  presets: [
+    [
+      require.resolve('@babel/preset-env'),
+      {
+        targets: [
+          'last 3 Chrome major versions',
+          'last 3 ChromeAndroid major versions',
+          'last 3 Firefox major versions',
+          'last 3 Edge major versions',
+          'last 3 Safari major versions',
+          'last 3 iOS major versions',
+        ],
+        useBuiltIns: false,
+        shippedProposals: true,
+        modules: false,
+        bugfixes: true,
+      },
+    ],
+  ],
   plugins: [
     // rollup doesn't support optional chaining yet, so we compile it during input
     [require.resolve('@babel/plugin-proposal-optional-chaining'), { loose: true }],
