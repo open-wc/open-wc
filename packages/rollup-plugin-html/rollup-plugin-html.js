@@ -52,8 +52,10 @@ function rollupPluginHtml(pluginOptions) {
   let generatedBundles;
   /** @type {TransformFunction[]} */
   let externalTransformFns = [];
+  /** @type {string} */
+  let inputPath = '';
   /** @type {HtmlFile[]}  */
-  const htmlFiles = [];
+  let htmlFiles = [];
   /** @type {string} */
   let fakeModuleForPureHtmlInput = '';
 
@@ -66,6 +68,17 @@ function rollupPluginHtml(pluginOptions) {
   /** @type {Function} */
   let deferredEmitHtmlFile;
 
+  /**
+   * Resets state whenever a build starts, since builds can restart in watch mode.
+   */
+  function reset() {
+    generatedBundles = [];
+    externalTransformFns = [];
+    inputPath = '';
+    htmlFiles = [];
+    fakeModuleForPureHtmlInput = '';
+  }
+
   return {
     name: '@open-wc/rollup-plugin-html',
 
@@ -75,6 +88,10 @@ function rollupPluginHtml(pluginOptions) {
      * @param {InputOptions} rollupInputOptions
      */
     options(rollupInputOptions) {
+      // options is the first hook called in a build so the build context
+      // is resetted here
+      reset();
+
       let rollupInput;
       if (shouldReadInputFromRollup(rollupInputOptions, pluginOptions)) {
         rollupInput = /** @type {string} */ (rollupInputOptions.input);
@@ -87,6 +104,7 @@ function rollupPluginHtml(pluginOptions) {
           return null;
         }
       }
+
       const htmlDataArray = getInputHtmlData(pluginOptions, rollupInput);
       for (const htmlData of htmlDataArray) {
         const htmlFileName = pluginOptions.name || htmlData.name || defaultFileName;
@@ -117,22 +135,20 @@ function rollupPluginHtml(pluginOptions) {
       }
 
       if (rollupInput) {
+        inputPath = rollupInput;
         // we are taking input from the rollup input, we should replace the html from the input
         return { ...rollupInputOptions, input: inputModuleIds };
       } // we need to add modules to existing rollup input
+      inputPath = pluginOptions.inputPath;
       return addRollupInput(rollupInputOptions, inputModuleIds);
     },
 
     /**
-     * Resets state whenever a build starts, since builds can restart in watch mode.
      * Watches input HTML for file reloads.
      */
     buildStart() {
-      generatedBundles = [];
-      externalTransformFns = [];
-
-      if (pluginOptions.inputPath) {
-        this.addWatchFile(pluginOptions.inputPath);
+      if (inputPath) {
+        this.addWatchFile(inputPath);
       }
     },
 
