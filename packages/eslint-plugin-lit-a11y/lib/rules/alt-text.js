@@ -43,7 +43,6 @@ module.exports = {
           node.tag.name === 'html'
         ) {
           const analyzer = TemplateAnalyzer.create(node);
-
           analyzer.traverse({
             enterElement: element => {
               if (element.name === 'img' && !Object.keys(element.attribs).includes('alt')) {
