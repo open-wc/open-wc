@@ -15,7 +15,7 @@ function createPolyfillsData(cfg) {
   const { polyfills = {} } = cfg;
 
   /** @type {PolyfillConfig[]} */
-  const polyfillConfigs = [...(polyfills.custom || [])];
+  const polyfillConfigs = [];
 
   /**
    * @param {PolyfillConfig} polyfillConfig
@@ -182,7 +182,7 @@ function createPolyfillsData(cfg) {
     });
   }
 
-  polyfillConfigs.sort((p1, p2) => (p1.order || 50) - (p2.order || 50));
+  polyfillConfigs.push(...(polyfills.custom || []));
 
   /**
    * @description returns the contents of a file at the given path

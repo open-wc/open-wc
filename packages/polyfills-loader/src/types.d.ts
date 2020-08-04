@@ -58,8 +58,6 @@ export interface PolyfillConfig {
   minify?: boolean;
   // code used to initialze the module
   initializer?: string;
-  // order of the polyfill when loaded, defaults to 50
-  order?: number;
 }
 
 export interface ModernEntrypoint {

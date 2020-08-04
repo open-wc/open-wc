@@ -251,12 +251,10 @@ describe('polyfills', () => {
         name: 'polyfill-a',
         test: "'foo' in window",
         path: path.resolve(__dirname, 'custom-polyfills/polyfill-a.js'),
-        order: 30,
       },
       {
         name: 'polyfill-b',
         path: path.resolve(__dirname, 'custom-polyfills/polyfill-b.js'),
-        order: 60,
       },
     ];
 
@@ -281,16 +279,16 @@ describe('polyfills', () => {
 
     expect(polyfillFiles).to.eql([
       {
-        name: 'polyfill-a',
-        type: fileTypes.SCRIPT,
-        path: 'polyfills/polyfill-a.js',
-        test: "'foo' in window",
-      },
-      {
         name: 'core-js',
         type: fileTypes.SCRIPT,
         path: 'polyfills/core-js.js',
         test: "!('noModule' in HTMLScriptElement.prototype)",
+      },
+      {
+        name: 'polyfill-a',
+        type: fileTypes.SCRIPT,
+        path: 'polyfills/polyfill-a.js',
+        test: "'foo' in window",
       },
       {
         name: 'polyfill-b',
