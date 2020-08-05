@@ -14,6 +14,10 @@ The hardest part of any project is often getting content onto that first blank p
 - [Aybolit](https://web-padawan.github.io/aybolit/)
 
   A growing family of elements with default styling for Bootstrap, Bulma, and Material, as well as a solid white-label basis for extending the underlying functionality with your own custom designs.
+  
+- [Auro](https://auro.alaskaair.com)
+
+  The Auro Design System and by extension, Auro Web Components are the core components for a new cross-team, multi-platform development strategy to ensure consistency of UI and experience for all of Alaska's customers. Auro is an eco-system of design, core utilities, and web components designed to reduce design and development efforts.   
 
 - [Bolt](https://boltdesignsystem.com/)
 
@@ -31,7 +35,7 @@ The hardest part of any project is often getting content onto that first blank p
 
   The Elix project aims to create a universal library of all general-purpose user interface patterns commonly found in desktop and mobile UIs, where each pattern is implemented as a well-designed, attractive, high-quality, performant, accessible, localizable, and extensively customizable web component.
 
-- [FAST](https://fast.design)
+  - [FAST](https://fast.design)
 
   FAST is a web component library built by Microsoft. The core, `fast-element`, is a lightweight means to easily build performant and standards-compliant Web Components. `fast-foundation` is a library of Web Component classes, templates, and other utilities built on fast-element intended to be composed into registered web components by design systems.
 
