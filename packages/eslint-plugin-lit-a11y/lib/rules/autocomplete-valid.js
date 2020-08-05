@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * @fileoverview Ensure autocomplete attribute is correct.
  * @author open-wc
