@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@4.0.1...@open-wc/testing-karma@4.0.2) (2020-08-04)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
+## [4.0.1](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@4.0.0...@open-wc/testing-karma@4.0.1) (2020-07-29)
+
+**Note:** Version bump only for package @open-wc/testing-karma
+
+
+
+
+
 # [4.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/testing-karma@3.4.8...@open-wc/testing-karma@4.0.0) (2020-07-24)
 
 

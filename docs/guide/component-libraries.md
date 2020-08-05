@@ -31,6 +31,10 @@ The hardest part of any project is often getting content onto that first blank p
 
   The Elix project aims to create a universal library of all general-purpose user interface patterns commonly found in desktop and mobile UIs, where each pattern is implemented as a well-designed, attractive, high-quality, performant, accessible, localizable, and extensively customizable web component.
 
+- [FAST](https://fast.design)
+
+  FAST is a web component library built by Microsoft. The core, `fast-element`, is a lightweight means to easily build performant and standards-compliant Web Components. `fast-foundation` is a library of Web Component classes, templates, and other utilities built on fast-element intended to be composed into registered web components by design systems.
+
 - [HelixUI](https://helixdesignsystem.github.io/helix-ui/)
 
   The HelixUI library provides front-end developers a set of reusable CSS classes and HTML Custom Elements that adhere to Helix design standards, as outlined by Rackspace.
