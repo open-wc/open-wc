@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@1.1.2...@open-wc/scoped-elements@1.2.0) (2020-08-05)
+
+
+### Features
+
+* **scoped-elements:** add data-tag-name with the original tagName ([d97454e](https://github.com/open-wc/open-wc/commit/d97454ea7e39457b754ee907c6d686aba5d5078b))
+
+
+
+
+
 ## [1.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@1.1.1...@open-wc/scoped-elements@1.1.2) (2020-07-08)
 
 **Note:** Version bump only for package @open-wc/scoped-elements
