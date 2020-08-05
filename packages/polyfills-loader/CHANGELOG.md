@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.6.1...polyfills-loader@1.7.0) (2020-08-04)
+
+
+### Bug Fixes
+
+* **polyfills-loader:** remove order for polyfills ([29cd1f1](https://github.com/open-wc/open-wc/commit/29cd1f13ee56dadc086d2220ac8c89fe9d92c272))
+
+
+### Features
+
+* **polyfills-loader:** expose `create-polyfills-data` ([7dfb1ab](https://github.com/open-wc/open-wc/commit/7dfb1abb7ff4d201b133cd6815d855ef2feab2b0))
+
+
+
+
+
 ## [1.6.1](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.6.0...polyfills-loader@1.6.1) (2020-05-17)
 
 

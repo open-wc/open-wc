@@ -102,7 +102,7 @@ function createLoadFiles(files) {
  * @param {PolyfillsLoaderConfig} cfg
  */
 function createLoadFilesFunction(cfg) {
-  const loadResources = createLoadFiles(cfg.modern.files);
+  const loadResources = cfg.modern && cfg.modern.files ? createLoadFiles(cfg.modern.files) : '';
   if (!cfg.legacy || cfg.legacy.length === 0) {
     return loadResources;
   }
@@ -197,7 +197,10 @@ function createPolyfillsLoaderCode(cfg, polyfills) {
  * @returns {PolyfillsLoader | null}
  */
 function createPolyfillsLoader(cfg) {
-  const { coreJs, polyfillFiles } = createPolyfillsData(cfg);
+  let polyfillFiles = createPolyfillsData(cfg);
+  /** @type {PolyfillFile | undefined} */
+  const coreJs = polyfillFiles.find(pf => pf.name === 'core-js');
+  polyfillFiles = polyfillFiles.filter(pf => pf !== coreJs);
   const { loadPolyfillsCode, generatedFiles } = createPolyfillsLoaderCode(cfg, polyfillFiles);
 
   let code = `

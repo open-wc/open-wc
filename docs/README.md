@@ -12,7 +12,7 @@ features:
     details: Get up and running quickly with opinionated generators, or add recommended tools to existing projects. Our comprehensive fleet of generators have got you covered.
   - title: Open Source Love
     details: Open Web Components is a community-effort, independent of any framework or company. We use mostly open-source tools and services.
-footer: MIT Licensed | Copyright © 2018-2019 open-wc
+footer: MIT Licensed | Copyright © 2018-2020 open-wc
 ---
 
 <hr>

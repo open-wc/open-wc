@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@1.1.0...@open-wc/rollup-plugin-polyfills-loader@1.1.1) (2020-08-04)
+
+**Note:** Version bump only for package @open-wc/rollup-plugin-polyfills-loader
+
+
+
+
+
+# [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@1.0.7...@open-wc/rollup-plugin-polyfills-loader@1.1.0) (2020-08-03)
+
+
+### Features
+
+* support building of multi page applications (mpa) ([a654535](https://github.com/open-wc/open-wc/commit/a65453576c42794958e90b9765000f99117097bd))
+
+
+
+
+
 ## [1.0.7](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@1.0.6...@open-wc/rollup-plugin-polyfills-loader@1.0.7) (2020-05-27)
 
 **Note:** Version bump only for package @open-wc/rollup-plugin-polyfills-loader

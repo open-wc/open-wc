@@ -11,5 +11,6 @@ const readCommandLineArgs = require('./readCommandLineArgs');
     outputDir: config.outputDir,
     rollupConfigDecorator: config.rollup,
     addons: config.addons,
+    setupMdjsPlugins: config.setupMdjsPlugins,
   });
 })();

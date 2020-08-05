@@ -16,6 +16,8 @@ const { defaultPolyfills } = require('./polyfills');
  */
 function createSpaConfig(options) {
   const basicConfig = createBasicConfig(options);
+
+  /** @type {SpaOptions} */
   const userOptions = merge(
     {
       html: true,
@@ -27,9 +29,23 @@ function createSpaConfig(options) {
   );
   let outputDir = basicConfig.output.dir;
 
+  if (userOptions.rootDir) {
+    if (typeof userOptions.html === 'boolean' && userOptions.html) {
+      userOptions.html = {
+        rootDir: userOptions.rootDir,
+      };
+    }
+    if (typeof userOptions.html === 'object') {
+      userOptions.html.rootDir = userOptions.rootDir;
+    }
+  }
+
+  const applySw = (htmlString, transformOptions) =>
+    applyServiceWorkerRegistration(htmlString, transformOptions, userOptions, outputDir);
+
   const htmlPlugin = pluginWithOptions(html, userOptions.html, {
     minify: !userOptions.developmentMode,
-    transform: [userOptions.injectServiceWorker && applyServiceWorkerRegistration].filter(isFalsy),
+    transform: [userOptions.injectServiceWorker && applySw].filter(isFalsy),
     inject: false,
   });
 

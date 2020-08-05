@@ -42,7 +42,7 @@ async function mdjsProcess(
   const result = /** @type {ParseResult} */ (parseResult);
 
   const { stories, jsCode } = result.data;
-  let fullJsCode = '';
+  let fullJsCode = jsCode;
 
   if (stories && stories.length > 0) {
     const storiesCode = stories.map(story => story.code).join('\n');
@@ -90,6 +90,8 @@ async function mdjsProcess(
       `  storyEl.story = story.story;`,
       `  storyEl.code = story.code;`,
       `};`,
+      `if (!customElements.get('mdjs-preview')) { import('@mdjs/mdjs-preview/mdjs-preview.js'); }`,
+      `if (!customElements.get('mdjs-story')) { import('@mdjs/mdjs-story/mdjs-story.js'); }`,
     ].join('\n');
   }
   return { stories, jsCode: fullJsCode, html: result.contents };

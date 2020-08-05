@@ -143,9 +143,12 @@ function bundledBabelHelpers({ format = 'es', minify = true } = {}) {
       for (const chunk of chunks) {
         const importSpecifier = getHelperImportSpecifier(this.parse(chunk.code), format);
         if (importSpecifier) {
+          const fileDepth = chunk.fileName.split('/').length - 1;
+          const helperDir = fileDepth === 0 ? './' : '../'.repeat(fileDepth);
+          const helperImport = `"${helperDir}${helperFileName}"`;
           // @ts-ignore
           const ms = new MagicString(chunk.code);
-          ms.overwrite(importSpecifier.start, importSpecifier.end, `"./${helperFileName}"`);
+          ms.overwrite(importSpecifier.start, importSpecifier.end, helperImport);
           chunk.code = ms.toString();
         }
       }

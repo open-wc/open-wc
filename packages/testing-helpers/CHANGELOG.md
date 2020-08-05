@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.5](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.4...@open-wc/testing-helpers@1.8.5) (2020-08-04)
+
+
+### Bug Fixes
+
+* **testing-helpers:** change default timeout to 1000ms for waitUntil ([dacf46f](https://github.com/open-wc/open-wc/commit/dacf46faccc9939e26902ef4fbbb102418b81ba2))
+
+
+
+
+
+## [1.8.4](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.3...@open-wc/testing-helpers@1.8.4) (2020-07-08)
+
+**Note:** Version bump only for package @open-wc/testing-helpers
+
+
+
+
+
+## [1.8.3](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.2...@open-wc/testing-helpers@1.8.3) (2020-06-15)
+
+
+### Bug Fixes
+
+* **testing-helpers:** auto-generate scoped elements test wrapper name ([439b39f](https://github.com/open-wc/open-wc/commit/439b39f9c0553754cd99f0f94f56525854c5a9eb))
+
+
+
+
+
 ## [1.8.2](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.1...@open-wc/testing-helpers@1.8.2) (2020-05-01)
 
 

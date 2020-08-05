@@ -31,6 +31,10 @@ The hardest part of any project is often getting content onto that first blank p
 
   The Elix project aims to create a universal library of all general-purpose user interface patterns commonly found in desktop and mobile UIs, where each pattern is implemented as a well-designed, attractive, high-quality, performant, accessible, localizable, and extensively customizable web component.
 
+- [FAST](https://fast.design)
+
+  FAST is a web component library built by Microsoft. The core, `fast-element`, is a lightweight means to easily build performant and standards-compliant Web Components. `fast-foundation` is a library of Web Component classes, templates, and other utilities built on fast-element intended to be composed into registered web components by design systems.
+
 - [HelixUI](https://helixdesignsystem.github.io/helix-ui/)
 
   The HelixUI library provides front-end developers a set of reusable CSS classes and HTML Custom Elements that adhere to Helix design standards, as outlined by Rackspace.
@@ -67,9 +71,9 @@ The hardest part of any project is often getting content onto that first blank p
 
   The Morningstar Design System combines vanilla HTML/CSS with web components in just the right proportions to empower the design and development of wide reaching content and functionality.
 
-- [UI5 Web Components](https://sap.github.io/ui5-webcomponents/)
+- [Shoelace](https://shoelace.style/)
 
-  Get the power and flexibility of SAP's UI5 rendering stack with the ergonomics and ease of use of web components, and bring enterprise-grade features, Fiori UX and themeability home to your application.
+  Shoelace provides a collection of professionally designed, every day UI components built on a framework-agnostic technology. Every web component is built with accessibility and developer experience in mind.
 
 - [Smart HTML Elements](https://www.htmlelements.com)
 
@@ -78,6 +82,10 @@ The hardest part of any project is often getting content onto that first blank p
 - [Spectrum Web Components](https://opensource.adobe.com/spectrum-web-components/)
 
   The Spectrum Web Components project is an implementation of Spectrum, Adobe’s design system. It's designed to work with any web framework — or even without one.
+
+- [UI5 Web Components](https://sap.github.io/ui5-webcomponents/)
+
+  Get the power and flexibility of SAP's UI5 rendering stack with the ergonomics and ease of use of web components, and bring enterprise-grade features, Fiori UX and themeability home to your application.
 
 - [Vaadin](https://vaadin.com/components)
 

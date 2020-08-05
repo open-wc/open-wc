@@ -56,6 +56,8 @@ export interface Config {
   logStartup?: boolean;
   /** whether to log debug messages */
   debug?: boolean;
+  /** Enable cors */
+  cors?: boolean;
 
   // Development help
 
@@ -99,6 +101,8 @@ export interface Config {
   moduleDirs?: string[];
   /** plugins to load */
   plugins?: Plugin[];
+  /** Disables injecting event stream script */
+  eventStream?: boolean;
 
   /** whether to use the user's .babelrc babel config */
   babel?: boolean;
@@ -141,6 +145,7 @@ export interface ParsedConfig {
   customMiddlewares: Middleware[];
   responseTransformers: ResponseTransformer[];
   onServerStart?: (config: ParsedConfig) => void | Promise<void>;
+  cors: boolean;
 
   // Development help
   watch: boolean;
@@ -165,6 +170,7 @@ export interface ParsedConfig {
   babelModuleExclude: string[];
   customBabelInclude: string[];
   customBabelExclude: string[];
+  eventStream: boolean;
 }
 
 /**
@@ -186,6 +192,7 @@ export function createConfig(config: Partial<Config>): ParsedConfig {
     http2 = false,
     logStartup,
     open = false,
+    cors = false,
     port,
     sslCert,
     sslKey,
@@ -196,6 +203,7 @@ export function createConfig(config: Partial<Config>): ParsedConfig {
     responseTransformers = [],
     debug = false,
     nodeResolve: nodeResolveArg = false,
+    eventStream = true,
     dedupeModules,
     moduleDirs = ['node_modules', 'web_modules'],
     preserveSymlinks = false,
@@ -307,6 +315,7 @@ export function createConfig(config: Partial<Config>): ParsedConfig {
     customBabelConfig: babelConfig,
     customMiddlewares: middlewares,
     responseTransformers,
+    eventStream,
     fileExtensions,
     hostname,
     http2,
@@ -315,6 +324,7 @@ export function createConfig(config: Partial<Config>): ParsedConfig {
     nodeResolve,
     openBrowser: open === true || typeof open === 'string',
     openPath,
+    cors,
     port,
     readUserBabelConfig: babel,
     rootDir,

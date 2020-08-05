@@ -70,6 +70,7 @@ es-dev-server requires node v10 or higher
 | root-dir  | string         | The root directory to serve files from. Default: working directory      |
 | base-path | string         | Base path the app is served on. Example: /my-app                        |
 | config    | string         | The file to read configuration from (JS or JSON)                        |
+| cors      | boolean        | Enable CORS                                                             |
 | help      | none           | See all options                                                         |
 
 ### Development help
@@ -93,6 +94,7 @@ es-dev-server requires node v10 or higher
 | babel-exclude        | number/array  | Patterns of files to exclude from babel compilation.                                                                            |
 | babel-modern-exclude | number/array  | Patterns of files to exclude from babel compilation on modern browsers.                                                         |
 | babel-module-exclude | number/array  | Patterns of files to exclude from babel compilation for modules only.                                                           |
+| event-stream         | boolean       | Whether to inject event stream script. Defaults to true.                                                                        |
 
 Most commands have an alias/shorthand. You can view them by using `--help`.
 
@@ -535,7 +537,7 @@ module.exports = {
       transform(context) {
         if (context.path === '/index.html') {
           const transformedBody = context.body.replace(/<base href=".*">/, '<base href="/foo/">');
-          return { body: rewritransformedBodytten };
+          return { body: transformedBody };
         }
       },
     },

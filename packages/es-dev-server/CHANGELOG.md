@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.57.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.57.1...es-dev-server@1.57.2) (2020-08-04)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+## [1.57.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.57.0...es-dev-server@1.57.1) (2020-07-29)
+
+
+### Bug Fixes
+
+* **es-dev-server:** allow absolute Windows paths in `nodeResolvePlugin` ([#1774](https://github.com/open-wc/open-wc/issues/1774)) ([646bd6d](https://github.com/open-wc/open-wc/commit/646bd6da8315ff3912bf6f5155ed3558ba1ecb89))
+
+
+
+
+
+# [1.57.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.56.1...es-dev-server@1.57.0) (2020-07-24)
+
+
+### Features
+
+* **es-dev-server:** add flag to disable injecting event stream script ([624438e](https://github.com/open-wc/open-wc/commit/624438e53b04211e30f9d5c44b8787e444243d80))
+
+
+
+
+
+## [1.56.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.56.0...es-dev-server@1.56.1) (2020-07-10)
+
+
+### Bug Fixes
+
+* **es-dev-server:** fix messagechannel to be ES5 compatible ([48a1ecd](https://github.com/open-wc/open-wc/commit/48a1ecde7e7fb86406913684fd2c16588976bac8))
+
+
+
+
+
+# [1.56.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.55.1...es-dev-server@1.56.0) (2020-06-25)
+
+
+### Features
+
+* **es-dev-server:** add cors option ([8d53225](https://github.com/open-wc/open-wc/commit/8d532259c3148778614848cc5b4b6c94fc5d6e0d))
+
+
+
+
+
+## [1.55.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.55.0...es-dev-server@1.55.1) (2020-06-22)
+
+
+### Bug Fixes
+
+* **es-dev-server:** only cache HTML when there is lastModified ([f07387f](https://github.com/open-wc/open-wc/commit/f07387f6761f3da3945e7a15f72f7b98a18f2500))
+
+
+
+
+
 # [1.55.0](https://github.com/open-wc/open-wc/compare/es-dev-server@1.54.1...es-dev-server@1.55.0) (2020-06-11)
 
 
