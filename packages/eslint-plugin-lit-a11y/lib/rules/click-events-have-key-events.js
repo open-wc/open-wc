@@ -57,7 +57,7 @@ module.exports = {
 
               if (
                 isHiddenFromScreenReader(element.name, element.attribs) ||
-                isPresentationRole(element.name, element.attribs)
+                isPresentationRole(element.attribs)
               ) {
                 return;
               }

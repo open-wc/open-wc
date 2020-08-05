@@ -47,6 +47,7 @@ ruleTester.run('click-events-have-key-events', rule, {
       ],
     },
     {
+      // eslint-disable-next-line
       code: 'html`<div @click=${foo} ></div>`;',
       errors: [
         {
@@ -54,8 +55,9 @@ ruleTester.run('click-events-have-key-events', rule, {
             'Clickable non-interactive elements must have at least 1 keyboard event listener',
         },
       ],
-    }, // eslint-disable-line
+    },
     {
+      // eslint-disable-next-line
       code: 'html`<section @click=${foo} ></section>`;',
       errors: [
         {
@@ -63,8 +65,9 @@ ruleTester.run('click-events-have-key-events', rule, {
             'Clickable non-interactive elements must have at least 1 keyboard event listener',
         },
       ],
-    }, // eslint-disable-line
+    },
     {
+      // eslint-disable-next-line
       code: 'html`<main @click=${foo} ></main>`;',
       errors: [
         {
@@ -72,8 +75,9 @@ ruleTester.run('click-events-have-key-events', rule, {
             'Clickable non-interactive elements must have at least 1 keyboard event listener',
         },
       ],
-    }, // eslint-disable-line
+    },
     {
+      // eslint-disable-next-line
       code: 'html`<article @click=${foo} ></article>`;',
       errors: [
         {
@@ -81,8 +85,9 @@ ruleTester.run('click-events-have-key-events', rule, {
             'Clickable non-interactive elements must have at least 1 keyboard event listener',
         },
       ],
-    }, // eslint-disable-line
+    },
     {
+      // eslint-disable-next-line
       code: 'html`<header @click=${foo} ></header>`;',
       errors: [
         {
@@ -90,8 +95,9 @@ ruleTester.run('click-events-have-key-events', rule, {
             'Clickable non-interactive elements must have at least 1 keyboard event listener',
         },
       ],
-    }, // eslint-disable-line
+    },
     {
+      // eslint-disable-next-line
       code: 'html`<footer @click=${foo} ></footer>`;',
       errors: [
         {
@@ -99,8 +105,9 @@ ruleTester.run('click-events-have-key-events', rule, {
             'Clickable non-interactive elements must have at least 1 keyboard event listener',
         },
       ],
-    }, // eslint-disable-line
+    },
     {
+      // eslint-disable-next-line
       code: 'html`<a @click=${foo} ></a>`;',
       errors: [
         {
@@ -108,6 +115,6 @@ ruleTester.run('click-events-have-key-events', rule, {
             'Clickable non-interactive elements must have at least 1 keyboard event listener',
         },
       ],
-    }, // eslint-disable-line
+    },
   ],
 });
