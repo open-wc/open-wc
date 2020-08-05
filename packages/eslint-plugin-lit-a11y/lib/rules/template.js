@@ -1,10 +1,10 @@
 /**
- * @fileoverview Enforce elements with aria-activedescendant are tabbable.
+ * @fileoverview template
  * @author open-wc
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
-const { isInteractiveElement } = require('../utils/isInteractiveElement.js');
+
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
@@ -12,7 +12,7 @@ const { isInteractiveElement } = require('../utils/isInteractiveElement.js');
 module.exports = {
   meta: {
     docs: {
-      description: 'Enforce elements with aria-activedescendant are tabbable.',
+      description: 'template',
       category: 'Fill me in',
       recommended: false,
     },
@@ -21,7 +21,7 @@ module.exports = {
       // fill in your schema
     ],
   },
-  // eslint-disable-next-line
+
   create(context) {
     // variables should be defined here
 
@@ -46,30 +46,10 @@ module.exports = {
 
           analyzer.traverse({
             enterElement(element) {
-              if (!Object.keys(element.attribs).includes('aria-activedescendant')) {
-                return;
-              }
-
-              const { tabindex } = element.attribs;
-
-              if (tabindex && tabindex.startsWith('{{')) {
-                return;
-              }
-              // If this is an interactive element and the tabindex attribute is not specified,
-              // or the tabIndex property was not mutated, then the tabIndex
-              // property will be undefined.
-              if (isInteractiveElement(element.name, element.attribs) && tabindex === undefined) {
-                return;
-              }
-
-              if (tabindex >= -1) {
-                return;
-              }
-
               const loc = analyzer.getLocationFor(element);
               context.report({
                 loc,
-                message: 'Elements with aria-activedescendant must be tabbable.',
+                message: 'template',
               });
             },
           });
