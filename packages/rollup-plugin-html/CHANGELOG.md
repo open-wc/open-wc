@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@1.2.1...@open-wc/rollup-plugin-html@1.2.2) (2020-08-07)
+
+
+### Bug Fixes
+
+* **rollup-plugin-html:** ensure inline module ids are unique ([573dcf1](https://github.com/open-wc/open-wc/commit/573dcf1ba3ed3527db3ca8d455c6a2863a79648c))
+
+
+
+
+
 ## [1.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@1.2.0...@open-wc/rollup-plugin-html@1.2.1) (2020-08-05)
 
 
