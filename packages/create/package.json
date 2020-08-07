@@ -50,7 +50,6 @@
     "@babel/register": "^7.9.0",
     "babel-plugin-transform-dynamic-import": "^2.1.0",
     "chai-fs": "^2.0.0",
-    "eslint": "^6.7.2",
     "onchange": "^5.2.0"
   }
 }
