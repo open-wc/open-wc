@@ -15,7 +15,6 @@
     "start": "es-dev-server --app-index index.html --node-resolve --open --watch"
   },
   "devDependencies": {
-    "eslint": "^6.1.0",
     "@open-wc/eslint-config": "^2.0.0",
     "prettier": "^2.0.4",
     "eslint-config-prettier": "^6.11.0",
