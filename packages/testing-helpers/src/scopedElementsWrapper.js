@@ -31,7 +31,7 @@ class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
     this.scopedElements = {};
 
     /** @type {import('./litFixture').LitHTMLRenderable} */
-    // eslint-disable-next-line babel/no-unused-expressions
+    // eslint-disable-next-line no-unused-expressions
     this.template;
   }
 
