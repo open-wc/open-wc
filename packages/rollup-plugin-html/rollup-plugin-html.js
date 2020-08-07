@@ -58,6 +58,7 @@ function rollupPluginHtml(pluginOptions) {
   let htmlFiles = [];
   /** @type {string} */
   let fakeModuleForPureHtmlInput = '';
+  let inlineModuleIndex = 0;
 
   // variables for multi build
   /** @type {string[]} */
@@ -108,7 +109,9 @@ function rollupPluginHtml(pluginOptions) {
       const htmlDataArray = getInputHtmlData(pluginOptions, rollupInput);
       for (const htmlData of htmlDataArray) {
         const htmlFileName = pluginOptions.name || htmlData.name || defaultFileName;
-        const inputHtmlResources = extractModules(htmlData, htmlFileName);
+        const inputHtmlResources = extractModules(inlineModuleIndex, htmlData, htmlFileName);
+        inlineModuleIndex += inputHtmlResources.inlineModules.size;
+
         const html = inputHtmlResources.htmlWithoutModules;
         const { inlineModules } = inputHtmlResources;
 
