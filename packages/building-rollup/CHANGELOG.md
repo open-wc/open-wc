@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.6.3...@open-wc/building-rollup@1.7.0) (2020-08-10)
+
+
+### Features
+
+* **building-rollup:** move to @rollup/plugin-babel ([#1802](https://github.com/open-wc/open-wc/issues/1802)) ([f5a7c39](https://github.com/open-wc/open-wc/commit/f5a7c3987dda06afd00ccfa6fd8298ec0e07cc80))
+
+
+
+
+
 ## [1.6.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.6.2...@open-wc/building-rollup@1.6.3) (2020-08-07)
 
 **Note:** Version bump only for package @open-wc/building-rollup
