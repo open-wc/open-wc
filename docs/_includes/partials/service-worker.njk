@@ -12,11 +12,30 @@
     });
   }
 
+  if (sessionStorage.getItem('openItems')) {
+    const openItems = JSON.parse(sessionStorage.getItem('openItems'));
+    const menuItems = [...document.querySelectorAll('section > p.sidebar-heading')];
+
+    if (openItems.length === menuItems.length) {
+      menuItems.forEach((item, i) => {
+        if (openItems[i]) {
+          item.click();
+        }
+      });
+
+      sessionStorage.removeItem('openItems');
+    }
+  }
+
   let refreshing;
   navigator.serviceWorker.addEventListener('controllerchange',
     function() {
       if (refreshing) return;
       refreshing = true;
+      const openItems = [...document.querySelectorAll('section > p.sidebar-heading')]
+        .map(item => item.classList.contains('open'));
+
+      sessionStorage.setItem('openItems', JSON.stringify(openItems));
       window.location.reload();
     }
   );
