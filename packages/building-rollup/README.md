@@ -215,7 +215,7 @@ Our config creators install a number of rollup plugins by default:
 Basic and SPA config plugins:
 
 - [nodeResolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve#readme)
-- [babel](https://github.com/rollup/rollup-plugin-babel#readme)
+- [babel](https://github.com/rollup/plugins/tree/master/packages/babel#readme)
 - [terser](https://github.com/TrySound/rollup-plugin-terser#readme)
 
 SPA config plugins:
