@@ -50,6 +50,7 @@ ruleTester.run('aria-attr-types', rule, {
   valid: [
     { code: 'html`<div aria-foo="true" />`' },
     { code: 'html`<div abcaria-foo="true" />`' },
+    { code: 'html`<div abcaria-foo="${true}" />`' }, // eslint-disable-line
 
     // BOOLEAN
     { code: 'html`<div aria-hidden="true" />`' },
@@ -57,14 +58,17 @@ ruleTester.run('aria-attr-types', rule, {
 
     // STRING
     { code: 'html`<div aria-label="Close" />`' },
+    { code: 'html`<div aria-label=${"close"} />`' }, // eslint-disable-line
 
     // tristate
     { code: 'html`<div aria-checked="true" />`' },
+    { code: 'html`<div aria-checked="${true}" />`' }, // eslint-disable-line
     { code: 'html`<div aria-checked />`' },
     { code: 'html`<div aria-checked="mixed" />`' },
 
     // int
     { code: 'html`<div aria-level="123" />`' },
+    { code: 'html`<div aria-level="${foo}" />`' }, // eslint-disable-line
 
     // number
     { code: 'html`<div aria-valuemax="123" />`' },

@@ -3,6 +3,7 @@
  * @author open-wc
  */
 
+const { getAttrVal } = require('../utils/getAttrVal.js');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 
 //------------------------------------------------------------------------------
@@ -63,7 +64,7 @@ module.exports = {
                     keywords = keywords.concat(context.options[0].keywords);
                   }
                   keywords.forEach(keyword => {
-                    if (element.attribs.alt.toLowerCase().includes(keyword)) {
+                    if (getAttrVal(element.attribs.alt).toLowerCase().includes(keyword)) {
                       const loc = analyzer.getLocationForAttribute(element, 'alt');
                       context.report({
                         loc,

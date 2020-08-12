@@ -39,22 +39,22 @@ ruleTester.run('aria-activedescendant-has-tabindex', rule, {
       code: 'html`<input aria-activedescendant=${someID} />;`', // eslint-disable-line
     },
     {
-      code: 'html`<input aria-activedescendant=${someID} tabIndex=${1} />;`', // eslint-disable-line
+      code: 'html`<input aria-activedescendant=${someID} tabindex=${1} />;`', // eslint-disable-line
     },
     {
-      code: 'html`<input aria-activedescendant=${someID} tabIndex=${0} />;`', // eslint-disable-line
+      code: 'html`<input aria-activedescendant=${someID} tabindex=${0} />;`', // eslint-disable-line
     },
     {
-      code: 'html`<input aria-activedescendant=${someID} tabIndex=${-1} />;`', // eslint-disable-line
+      code: 'html`<input aria-activedescendant=${someID} tabindex=${-1} />;`', // eslint-disable-line
     },
     {
-      code: 'html`<div aria-activedescendant=${someID} tabIndex=${-1} />;`', // eslint-disable-line
+      code: 'html`<div aria-activedescendant=${someID} tabindex=${-1} />;`', // eslint-disable-line
     },
     {
-      code: 'html`<div aria-activedescendant=${someID} tabIndex="-1" />;`', // eslint-disable-line
+      code: 'html`<div aria-activedescendant=${someID} tabindex="-1" />;`', // eslint-disable-line
     },
     {
-      code: 'html`<input aria-activedescendant=${someID} tabIndex=${-1} />;`', // eslint-disable-line
+      code: 'html`<input aria-activedescendant=${someID} tabindex=${-1} />;`', // eslint-disable-line
     },
   ],
 

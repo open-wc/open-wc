@@ -110,7 +110,8 @@ function templateExpressionToHtml(node) {
     const expr = node.quasi.expressions[i];
     html += quasi.value.raw;
     if (expr) {
-      html += getExpressionPlaceholder(node, quasi);
+      html += `{{${expr.name ? `{${expr.name}}` : expr.value}}}`;
+      // html += getExpressionPlaceholder(node, quasi);
     }
   }
   return html;

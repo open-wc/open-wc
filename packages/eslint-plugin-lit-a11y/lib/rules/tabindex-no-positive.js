@@ -4,6 +4,7 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { getAttrVal } = require('../utils/getAttrVal.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -47,7 +48,10 @@ module.exports = {
           analyzer.traverse({
             enterElement: element => {
               if (Object.keys(element.attribs).includes('tabindex')) {
-                const value = Number(element.attribs.tabindex);
+                const val = getAttrVal(element.attribs.tabindex);
+                if (val && val.startsWith('{{')) return;
+
+                const value = Number(val);
 
                 // eslint-disable-next-line
                 if (isNaN(value)) {

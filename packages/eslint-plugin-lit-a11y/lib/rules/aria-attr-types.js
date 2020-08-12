@@ -5,6 +5,7 @@
 
 const { aria } = require('aria-query');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { getAttrVal } = require('../utils/getAttrVal.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -125,9 +126,10 @@ module.exports = {
                     return;
                   }
 
+                  const val = getAttrVal(element.attribs[attr]);
                   // Ignore the attribute if its value is null or undefined.
-                  if (element.attribs[attr] === null) return;
-                  if (element.attribs[attr].startsWith('{{')) return;
+                  if (val === null || val === undefined) return;
+                  if (val.startsWith('{{')) return;
 
                   // These are the attributes of the property/state to check against.
                   const attributes = aria.get(normalizedName);
@@ -135,12 +137,8 @@ module.exports = {
                   const allowUndefined = attributes.allowUndefined || false;
                   const permittedValues = attributes.values || [];
                   const isValid =
-                    validityCheck(
-                      extractTypeFromLiteral(element.attribs[attr]),
-                      permittedType,
-                      permittedValues,
-                    ) ||
-                    (allowUndefined && element.attribs[attr] === undefined);
+                    validityCheck(extractTypeFromLiteral(val), permittedType, permittedValues) ||
+                    (allowUndefined && val === undefined);
 
                   if (isValid) {
                     return;

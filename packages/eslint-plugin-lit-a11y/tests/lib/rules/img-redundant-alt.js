@@ -24,13 +24,17 @@ ruleTester.run('img-redundant-alt', rule, {
   valid: [
     { code: 'html`<img src="foo" alt="Foo eating a sandwich." />`' },
     {
-      code:
-        'html`<img src="bar" aria-hidden alt="Picture of me taking a photo of an image" /> // Will pass because it is hidden.`',
+      code: 'html`<img src="bar" aria-hidden alt="Picture of me taking a photo of an image" /> `',
     },
     {
       code:
         // eslint-disable-next-line
-        'html`<img src="baz" alt=${`Baz taking a ${photo}`} /> // This is valid since photo is a variable name.`',
+        'html`<img src="baz" alt=${`Baz taking a ${photo}`} />`',
+    },
+    {
+      code:
+        // eslint-disable-next-line
+        'html`<img src="baz" alt=${"foo"} />`',
     },
     // give me some code that won't trigger a warning
   ],
@@ -38,6 +42,16 @@ ruleTester.run('img-redundant-alt', rule, {
   invalid: [
     {
       code: "html`<img src='foo' alt='Photo of foo being weird.' />`",
+      errors: [
+        {
+          message: 'Enforce img alt attribute does not contain the word image, picture, or photo.',
+        },
+      ],
+    },
+    {
+      code:
+        // eslint-disable-next-line
+        'html`<img src="baz" alt=${"photo of dog"} />`',
       errors: [
         {
           message: 'Enforce img alt attribute does not contain the word image, picture, or photo.',

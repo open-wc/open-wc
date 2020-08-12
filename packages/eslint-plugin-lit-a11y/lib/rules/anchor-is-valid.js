@@ -3,6 +3,7 @@
  * @author open-wc
  */
 
+const { getAttrVal } = require('../utils/getAttrVal.js');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { generateObjSchema, enumArraySchema } = require('../utils/schemas.js');
 
@@ -101,7 +102,7 @@ module.exports = {
                 }
 
                 // Hrefs have been found, now check for validity.
-                const invalidHrefValues = [element.attribs.href]
+                const invalidHrefValues = [getAttrVal(element.attribs.href)]
                   .filter(value => value !== undefined && value !== null)
                   .filter(
                     value =>

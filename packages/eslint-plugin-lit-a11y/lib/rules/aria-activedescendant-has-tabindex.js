@@ -55,6 +55,7 @@ module.exports = {
               if (tabindex && tabindex.startsWith('{{')) {
                 return;
               }
+
               // If this is an interactive element and the tabindex attribute is not specified,
               // or the tabIndex property was not mutated, then the tabIndex
               // property will be undefined.
