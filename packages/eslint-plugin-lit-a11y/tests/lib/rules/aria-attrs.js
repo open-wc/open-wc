@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/aria-props');
+const rule = require('../../../lib/rules/aria-attrs');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -20,7 +20,7 @@ const ruleTester = new RuleTester({
     ecmaVersion: 2015,
   },
 });
-ruleTester.run('aria-props', rule, {
+ruleTester.run('aria-attrs', rule, {
   valid: [
     {
       code: "html`<div aria-labelledby='foo'></div>`",

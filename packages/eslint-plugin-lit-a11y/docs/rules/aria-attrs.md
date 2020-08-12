@@ -1,4 +1,4 @@
-# Elements cannot use an invalid ARIA attribute. (aria-props)
+# Elements cannot use an invalid ARIA attribute. (aria-attrs)
 
 Please describe the origin of the rule here.
 
