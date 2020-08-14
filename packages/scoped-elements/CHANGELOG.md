@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@1.2.0...@open-wc/scoped-elements@1.2.1) (2020-08-14)
+
+
+### Bug Fixes
+
+* **scoped-elements:** make code ie11 compatible ([08483df](https://github.com/open-wc/open-wc/commit/08483df864276f7d1ac5a72ca0fc1b37ad6367df))
+
+
+
+
+
 # [1.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@1.1.2...@open-wc/scoped-elements@1.2.0) (2020-08-05)
 
 
