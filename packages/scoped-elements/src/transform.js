@@ -62,7 +62,7 @@ const transformTemplate = (strings, scopedElements, templateCache, tagsCache) =>
       const tag = registerElement(tagName, scopedElements[tagName], tagsCache);
       const start = item.index + block.length - tagName.length;
       const end = start + tagName.length;
-      const isClosingTag = block.startsWith('</');
+      const isClosingTag = block.indexOf('</') === 0;
 
       acc =
         acc.slice(0, start) +
