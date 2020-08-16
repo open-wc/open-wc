@@ -10,11 +10,17 @@ const {
 } = require('@open-wc/building-utils/dom5-fork/index.js');
 
 /**
+ * @param {number} inlineModuleIndex
  * @param {HtmlFile} inputHtmlData
  * @param {string} inputHtmlName
  * @param {string} [projectRootDir]
  */
-function extractModules(inputHtmlData, inputHtmlName, projectRootDir = process.cwd()) {
+function extractModules(
+  inlineModuleIndex,
+  inputHtmlData,
+  inputHtmlName,
+  projectRootDir = process.cwd(),
+) {
   const { html, rootDir: htmlRootDir } = inputHtmlData;
   const documentAst = parse(html);
   const scriptNodes = findJsScripts(documentAst, { jsScripts: true, inlineJsScripts: true });
@@ -30,7 +36,10 @@ function extractModules(inputHtmlData, inputHtmlName, projectRootDir = process.c
     if (!src) {
       // turn inline module (<script type="module"> ...code ... </script>)
       const suffix = path.posix.basename(inputHtmlName).split('.')[0];
-      const importPath = path.posix.join(htmlRootDir, `inline-module-${suffix}-${i}.js`);
+      const importPath = path.posix.join(
+        htmlRootDir,
+        `inline-module-${suffix}-${inlineModuleIndex + i}.js`,
+      );
       inlineModules.set(importPath, getTextContent(scriptNode));
     } else {
       // external script <script type="module" src="./foo.js"></script>

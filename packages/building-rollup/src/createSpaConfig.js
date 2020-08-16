@@ -29,14 +29,19 @@ function createSpaConfig(options) {
   );
   let outputDir = basicConfig.output.dir;
 
-  let swPath;
-  if (typeof userOptions.workbox === 'object' && userOptions.workbox.swDest) {
-    swPath = userOptions.workbox.swDest.replace(`${outputDir}/`, '');
-  } else {
-    swPath = './sw.js';
+  if (userOptions.rootDir) {
+    if (typeof userOptions.html === 'boolean' && userOptions.html) {
+      userOptions.html = {
+        rootDir: userOptions.rootDir,
+      };
+    }
+    if (typeof userOptions.html === 'object') {
+      userOptions.html.rootDir = userOptions.rootDir;
+    }
   }
 
-  const applySw = htmlString => applyServiceWorkerRegistration(htmlString, swPath);
+  const applySw = (htmlString, transformOptions) =>
+    applyServiceWorkerRegistration(htmlString, transformOptions, userOptions, outputDir);
 
   const htmlPlugin = pluginWithOptions(html, userOptions.html, {
     minify: !userOptions.developmentMode,

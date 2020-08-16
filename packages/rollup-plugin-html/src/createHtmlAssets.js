@@ -39,6 +39,7 @@ async function createHtmlAsset(
     entrypointBundles,
     html,
     externalTransformFns,
+    htmlFileName,
   });
   return {
     fileName: htmlFileName,

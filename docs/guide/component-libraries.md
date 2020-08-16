@@ -15,6 +15,10 @@ The hardest part of any project is often getting content onto that first blank p
 
   A growing family of elements with default styling for Bootstrap, Bulma, and Material, as well as a solid white-label basis for extending the underlying functionality with your own custom designs.
 
+- [Auro](https://auro.alaskaair.com)
+
+  The Auro Design System and by extension, Auro Web Components are the core components for a new cross-team, multi-platform development strategy to ensure consistency of UI and experience for all of Alaska's customers. Auro is an eco-system of design, core utilities, and web components designed to reduce design and development efforts.
+
 - [Bolt](https://boltdesignsystem.com/)
 
   A family of web components built with first-class participation in the Twig templating system for PHP in mind. This set is backed by an expansive catalog of usage variants.
@@ -31,6 +35,10 @@ The hardest part of any project is often getting content onto that first blank p
 
   The Elix project aims to create a universal library of all general-purpose user interface patterns commonly found in desktop and mobile UIs, where each pattern is implemented as a well-designed, attractive, high-quality, performant, accessible, localizable, and extensively customizable web component.
 
+- [FAST](https://fast.design)
+
+  FAST is a web component library built by Microsoft. The core, `fast-element`, is a lightweight means to easily build performant and standards-compliant Web Components. `fast-foundation` is a library of Web Component classes, templates, and other utilities built on fast-element intended to be composed into registered web components by design systems.
+
 - [HelixUI](https://helixdesignsystem.github.io/helix-ui/)
 
   The HelixUI library provides front-end developers a set of reusable CSS classes and HTML Custom Elements that adhere to Helix design standards, as outlined by Rackspace.
@@ -46,6 +54,10 @@ The hardest part of any project is often getting content onto that first blank p
 - [Ionic UI Components](https://ionicframework.com/docs/components)
 
   Take advantage of the component system that powers Ionic applications with a large ecosystem to choose from and in-depth usage instructions, no matter the framework you use.
+
+- [iooxa.dev](https://iooxa.dev/)
+
+  The goal of [iooxa.dev](https://iooxa.dev/) is to provide open source tools to promote and enable interactive scientific writing, reactive documents and explorable explanations.
 
 - [Kor UI](https://kor-ui.com/)
 
@@ -67,9 +79,9 @@ The hardest part of any project is often getting content onto that first blank p
 
   The Morningstar Design System combines vanilla HTML/CSS with web components in just the right proportions to empower the design and development of wide reaching content and functionality.
 
-- [UI5 Web Components](https://sap.github.io/ui5-webcomponents/)
+- [Shoelace](https://shoelace.style/)
 
-  Get the power and flexibility of SAP's UI5 rendering stack with the ergonomics and ease of use of web components, and bring enterprise-grade features, Fiori UX and themeability home to your application.
+  Shoelace provides a collection of professionally designed, every day UI components built on a framework-agnostic technology. Every web component is built with accessibility and developer experience in mind.
 
 - [Smart HTML Elements](https://www.htmlelements.com)
 
@@ -78,6 +90,10 @@ The hardest part of any project is often getting content onto that first blank p
 - [Spectrum Web Components](https://opensource.adobe.com/spectrum-web-components/)
 
   The Spectrum Web Components project is an implementation of Spectrum, Adobe’s design system. It's designed to work with any web framework — or even without one.
+
+- [UI5 Web Components](https://sap.github.io/ui5-webcomponents/)
+
+  Get the power and flexibility of SAP's UI5 rendering stack with the ergonomics and ease of use of web components, and bring enterprise-grade features, Fiori UX and themeability home to your application.
 
 - [Vaadin](https://vaadin.com/components)
 

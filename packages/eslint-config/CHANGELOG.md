@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@2.0.6...@open-wc/eslint-config@2.1.0) (2020-08-05)
+
+
+### Features
+
+* **eslint-config:** add plugins as peer dependencies ([#1740](https://github.com/open-wc/open-wc/issues/1740)) ([3760f77](https://github.com/open-wc/open-wc/commit/3760f776ea3d5036e55c926f5d7888e057a3c702))
+
+
+
+
+
 ## [2.0.6](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@2.0.5...@open-wc/eslint-config@2.0.6) (2020-05-05)
 
 

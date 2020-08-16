@@ -3,7 +3,7 @@
 /* eslint-disable no-param-reassign */
 const resolve = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
-const babel = require('rollup-plugin-babel');
+const { babel, getBabelOutputPlugin } = require('@rollup/plugin-babel');
 const merge = require('deepmerge');
 const {
   createBabelConfigRollupBuild,
@@ -28,7 +28,7 @@ function createBasicConfig(userOptions = {}) {
     },
     userOptions,
   );
-  const { developmentMode } = userOptions;
+  const { developmentMode, rootDir } = userOptions;
   const fileName = `[${developmentMode ? 'name' : 'hash'}].js`;
   const assetName = `[${developmentMode ? 'name' : 'hash'}][extname]`;
 
@@ -44,7 +44,7 @@ function createBasicConfig(userOptions = {}) {
       dir: opts.outputDir,
       plugins: [
         // build to js supported by modern browsers
-        babel.generated(babelConfigRollupGenerate),
+        getBabelOutputPlugin(babelConfigRollupGenerate),
         // create babel-helpers chunk based on es5 build
         bundledBabelHelpers({ minify: !developmentMode }),
       ],
@@ -60,7 +60,11 @@ function createBasicConfig(userOptions = {}) {
 
       // build non-standard syntax to standard syntax and other babel optimization plugins
       // user plugins are deduped to allow overriding
-      dedupedBabelPlugin(babel, opts.babel, createBabelConfigRollupBuild(developmentMode)),
+      dedupedBabelPlugin(
+        babel,
+        opts.babel,
+        createBabelConfigRollupBuild({ developmentMode, rootDir }),
+      ),
 
       // minify js code
       !developmentMode && pluginWithOptions(terser, opts.terser, { output: { comments: false } }),
@@ -80,11 +84,11 @@ function createBasicConfig(userOptions = {}) {
         assetFileNames: `nomodule-${assetName}`,
         plugins: [
           // buid to es5
-          babel.generated(babelConfigLegacyRollupGenerate),
+          getBabelOutputPlugin(babelConfigLegacyRollupGenerate),
           // create babel-helpers chunk based on es5 build
           bundledBabelHelpers({ format: 'system', minify: !developmentMode }),
           // build to systemjs after helpers, so that helpers can be statically analyzed
-          babel.generated(babelConfigSystemJs),
+          getBabelOutputPlugin(babelConfigSystemJs),
         ],
       },
     ];

@@ -1,6 +1,6 @@
 {
   "name": "es-dev-server",
-  "version": "1.56.0",
+  "version": "1.57.2",
   "publishConfig": {
     "access": "public"
   },
@@ -115,7 +115,7 @@
     "open": "^7.0.3",
     "parse5": "^5.1.1",
     "path-is-inside": "^1.0.2",
-    "polyfills-loader": "^1.6.1",
+    "polyfills-loader": "^1.7.0",
     "portfinder": "^1.0.21",
     "rollup": "^2.7.2",
     "strip-ansi": "^5.2.0",
@@ -132,6 +132,7 @@
     "@babel/plugin-transform-modules-systemjs": "^7.9.0",
     "@babel/preset-typescript": "^7.8.3",
     "@babel/register": "^7.9.0",
+    "@types/koa__cors": "^3.0.1",
     "@types/node-fetch": "^2.3.7",
     "@types/puppeteer": "^2.0.0",
     "@types/request": "^2.48.1",

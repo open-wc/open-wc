@@ -101,6 +101,8 @@ export interface Config {
   moduleDirs?: string[];
   /** plugins to load */
   plugins?: Plugin[];
+  /** Disables injecting event stream script */
+  eventStream?: boolean;
 
   /** whether to use the user's .babelrc babel config */
   babel?: boolean;
@@ -168,6 +170,7 @@ export interface ParsedConfig {
   babelModuleExclude: string[];
   customBabelInclude: string[];
   customBabelExclude: string[];
+  eventStream: boolean;
 }
 
 /**
@@ -200,6 +203,7 @@ export function createConfig(config: Partial<Config>): ParsedConfig {
     responseTransformers = [],
     debug = false,
     nodeResolve: nodeResolveArg = false,
+    eventStream = true,
     dedupeModules,
     moduleDirs = ['node_modules', 'web_modules'],
     preserveSymlinks = false,
@@ -311,6 +315,7 @@ export function createConfig(config: Partial<Config>): ParsedConfig {
     customBabelConfig: babelConfig,
     customMiddlewares: middlewares,
     responseTransformers,
+    eventStream,
     fileExtensions,
     hostname,
     http2,

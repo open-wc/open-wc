@@ -15,8 +15,15 @@ const defaultHtml = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><bo
  * @param {Record<string, EntrypointBundle>} args.entrypointBundles
  * @param {TransformFunction[]} [args.externalTransformFns]
  * @param {string | undefined} [args.html]
+ * @param {string | undefined} [args.htmlFileName]
  */
-async function getOutputHtml({ pluginOptions, entrypointBundles, externalTransformFns, html }) {
+async function getOutputHtml({
+  pluginOptions,
+  entrypointBundles,
+  externalTransformFns,
+  html,
+  htmlFileName,
+}) {
   const { template, inject, minify } = pluginOptions;
   let outputHtml;
 
@@ -55,6 +62,7 @@ async function getOutputHtml({ pluginOptions, entrypointBundles, externalTransfo
     outputHtml = await transform(outputHtml, {
       bundle: defaultBundle,
       bundles: multiBundles,
+      htmlFileName,
     });
   }
 

@@ -31,7 +31,7 @@ export default `
         }
 
         eventSource.close();
-        setTimeout(() => {
+        setTimeout(function () {
           console.log('Disconnected from es-dev-server, no longer reloading on file changes.');
         }, 300);
       });

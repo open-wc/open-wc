@@ -111,7 +111,7 @@ import '../demo-wc-card.js';
 
 export default {
   title: 'Demo Card/Docs (markdown)',
-  parameters: { component: 'demo-wc-card' } },
+  parameters: { component: 'demo-wc-card' },
 };
 ```
 

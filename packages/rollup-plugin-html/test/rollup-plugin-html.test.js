@@ -559,21 +559,23 @@ describe('rollup-plugin-html', () => {
     const config = {
       plugins: [
         htmlPlugin({
-          name: 'page-a.html',
-          inputHtml:
-            '<h1>Page A</h1><script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
-          minify: false,
-        }),
-        htmlPlugin({
-          name: 'page-b.html',
-          inputHtml:
-            '<h1>Page B</h1><script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-b.js"></script>',
-          minify: false,
-        }),
-        htmlPlugin({
-          name: 'page-c.html',
-          inputHtml:
-            '<h1>Page C</h1><script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-c.js"></script>',
+          html: [
+            {
+              name: 'page-a.html',
+              html:
+                '<h1>Page A</h1><script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
+            },
+            {
+              name: 'page-b.html',
+              html:
+                '<h1>Page B</h1><script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-b.js"></script>',
+            },
+            {
+              name: 'page-c.html',
+              html:
+                '<h1>Page C</h1><script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-c.js"></script>',
+            },
+          ],
           minify: false,
         }),
       ],
@@ -593,6 +595,47 @@ describe('rollup-plugin-html', () => {
     );
     expect(getAsset(output, 'page-c.html').source).to.equal(
       '<html><head></head><body><h1>Page C</h1><script type="module" src="./entrypoint-c.js"></script></body></html>',
+    );
+  });
+
+  it('creates sufficiently unique inline script names', async () => {
+    const config = {
+      plugins: [
+        htmlPlugin({
+          html: [
+            {
+              name: 'foo/index.html',
+              html: '<h1>Page A</h1><script type="module">console.log("A")</script>',
+            },
+            {
+              name: 'bar/index.html',
+              html: '<h1>Page B</h1><script type="module">console.log("B")</script>',
+            },
+            {
+              name: 'x.html',
+              html: '<h1>Page C</h1><script type="module">console.log("C")</script>',
+            },
+          ],
+          inject: true,
+          minify: false,
+        }),
+      ],
+    };
+    const bundle = await rollup.rollup(config);
+    const { output } = await bundle.generate(outputConfig);
+
+    expect(output.length).to.equal(6);
+    expect(getChunk(output, 'inline-module-index-0.js')).to.exist;
+    expect(getChunk(output, 'inline-module-index-1.js')).to.exist;
+    expect(getChunk(output, 'inline-module-x-2.js')).to.exist;
+    expect(getAsset(output, 'foo/index.html').source).to.equal(
+      '<html><head></head><body><h1>Page A</h1><script type="module" src="../inline-module-index-0.js"></script></body></html>',
+    );
+    expect(getAsset(output, 'bar/index.html').source).to.equal(
+      '<html><head></head><body><h1>Page B</h1><script type="module" src="../inline-module-index-1.js"></script></body></html>',
+    );
+    expect(getAsset(output, 'x.html').source).to.equal(
+      '<html><head></head><body><h1>Page C</h1><script type="module" src="./inline-module-x-2.js"></script></body></html>',
     );
   });
 

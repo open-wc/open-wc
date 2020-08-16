@@ -78,11 +78,9 @@ module.exports = config => {
       },
     },
 
-    coverageIstanbulReporter: {
-      reports: ['html', 'lcovonly', 'text-summary'],
+    coverageReporter: {
+      reporters: [{ type: 'html' }, { type: 'lcovonly' }, { type: 'text-summary' }],
       dir: 'coverage',
-      combineBrowserReports: true,
-      skipFilesWithNoCoverage: false,
       thresholds: {
         global: {
           statements: 80,

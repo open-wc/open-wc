@@ -158,7 +158,7 @@ module.exports = config => {
         { pattern: config.grep ? config.grep : 'test/**/*.test.js', type: 'module' },
       ],
 
-      coverageIstanbulReporter: {
+      coverageReporter: {
         thresholds: {
           global: {
             statements: 50,

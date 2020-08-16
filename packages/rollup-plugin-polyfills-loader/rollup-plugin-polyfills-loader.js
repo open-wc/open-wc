@@ -7,6 +7,7 @@
 /** @typedef {import('polyfills-loader').GeneratedFile} GeneratedFile */
 /** @typedef {import('./src/types').PluginOptions} PluginOptions */
 
+const path = require('path');
 const { injectPolyfillsLoader } = require('polyfills-loader');
 const { createError, shouldInjectLoader } = require('./src/utils');
 const { createPolyfillsLoaderConfig } = require('./src/createPolyfillsLoaderConfig');
@@ -72,7 +73,12 @@ function rollupPluginPolyfillsLoader(pluginOptions = {}) {
         let preloaded = [];
         for (const entrypoint of entrypoints) {
           preloaded.push(entrypoint.importPath);
-          preloaded.push(...entrypoint.chunk.imports);
+
+          // js files (incl. chunks) will always be in the root directory
+          const pathToRoot = path.posix.relative('./', path.posix.dirname(entrypoint.importPath));
+          for (const chunkPath of entrypoint.chunk.imports) {
+            preloaded.push(path.posix.join(pathToRoot, chunkPath));
+          }
         }
         preloaded = [...new Set(preloaded)];
 

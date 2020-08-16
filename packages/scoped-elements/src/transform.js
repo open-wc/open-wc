@@ -58,12 +58,16 @@ const transformTemplate = (strings, scopedElements, templateCache, tagsCache) =>
 
     for (let i = matches.length - 1; i >= 0; i -= 1) {
       const item = matches[i];
-      const klass = scopedElements[item[1]];
-      const tag = registerElement(item[1], klass, tagsCache);
-      const start = item.index + item[0].length - item[1].length;
-      const end = start + item[1].length;
+      const [block, tagName] = item;
+      const tag = registerElement(tagName, scopedElements[tagName], tagsCache);
+      const start = item.index + block.length - tagName.length;
+      const end = start + tagName.length;
+      const isClosingTag = block.indexOf('</') === 0;
 
-      acc = acc.slice(0, start) + tag + acc.slice(end);
+      acc =
+        acc.slice(0, start) +
+        (isClosingTag ? tag : `${tag} data-tag-name="${tagName}"`) +
+        acc.slice(end);
     }
 
     return acc;

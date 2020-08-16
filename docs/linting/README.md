@@ -57,7 +57,7 @@ Adjust your package.json with the following:
     "@open-wc/eslint-config": "^2.0.0",
     "prettier": "^2.0.4",
     "husky": "^1.0.0",
-    "lint-staged": "^8.0.0"
+    "lint-staged": "^10.0.0"
   }
 }
 ```

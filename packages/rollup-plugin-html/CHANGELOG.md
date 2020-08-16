@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@1.2.1...@open-wc/rollup-plugin-html@1.2.2) (2020-08-07)
+
+
+### Bug Fixes
+
+* **rollup-plugin-html:** ensure inline module ids are unique ([573dcf1](https://github.com/open-wc/open-wc/commit/573dcf1ba3ed3527db3ca8d455c6a2863a79648c))
+
+
+
+
+
+## [1.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@1.2.0...@open-wc/rollup-plugin-html@1.2.1) (2020-08-05)
+
+
+### Bug Fixes
+
+* **rollup-plugin-html:** support rollup watch mode ([#1784](https://github.com/open-wc/open-wc/issues/1784)) ([71b53d1](https://github.com/open-wc/open-wc/commit/71b53d18140bf6ed414ddde0fd9f46654cc36a4b))
+
+
+
+
+
+# [1.2.0](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@1.1.0...@open-wc/rollup-plugin-html@1.2.0) (2020-08-03)
+
+
+### Features
+
+* support building of multi page applications (mpa) ([a654535](https://github.com/open-wc/open-wc/commit/a65453576c42794958e90b9765000f99117097bd))
+
+
+
+
+
 # [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-html@1.0.5...@open-wc/rollup-plugin-html@1.1.0) (2020-05-27)
 
 

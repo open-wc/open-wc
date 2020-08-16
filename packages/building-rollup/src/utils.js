@@ -1,4 +1,7 @@
+/** @typedef {import('./types').SpaOptions} SpaOptions */
+
 const merge = require('deepmerge');
+const path = require('path');
 const { createScript } = require('@open-wc/building-utils');
 const { parse, serialize } = require('parse5');
 const { append, predicates, query } = require('@open-wc/building-utils/dom5-fork');
@@ -38,10 +41,29 @@ function pluginWithOptions(plugin, userConfig, defaultConfig, ...otherParams) {
 }
 
 /**
+ *
+ * @param {SpaOptions} userOptions
+ * @param {string} outputDir
+ * @param {string} htmlFileName
+ */
+function createSwPath(userOptions, outputDir, htmlFileName) {
+  let swPath;
+  if (typeof userOptions.workbox === 'object' && userOptions.workbox.swDest) {
+    swPath = userOptions.workbox.swDest.replace(`${outputDir}/`, '');
+  } else {
+    swPath = './sw.js';
+  }
+
+  swPath = path.relative(path.dirname(htmlFileName), swPath);
+  return swPath;
+}
+
+/**
  * @param {string} htmlString
  * @returns {string}
  */
-function applyServiceWorkerRegistration(htmlString, swPath) {
+function applyServiceWorkerRegistration(htmlString, transformOptions, userOptions, outputDir) {
+  const swPath = createSwPath(userOptions, outputDir, transformOptions.htmlFileName);
   const documentAst = parse(htmlString);
   const body = query(documentAst, predicates.hasTagName('body'));
   const swRegistration = createScript(
@@ -71,4 +93,5 @@ module.exports = {
   pluginWithOptions,
   dedupedBabelPlugin,
   applyServiceWorkerRegistration,
+  createSwPath,
 };

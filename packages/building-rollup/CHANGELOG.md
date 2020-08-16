@@ -3,6 +3,71 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.6.3...@open-wc/building-rollup@1.7.0) (2020-08-10)
+
+
+### Features
+
+* **building-rollup:** move to @rollup/plugin-babel ([#1802](https://github.com/open-wc/open-wc/issues/1802)) ([f5a7c39](https://github.com/open-wc/open-wc/commit/f5a7c3987dda06afd00ccfa6fd8298ec0e07cc80))
+
+
+
+
+
+## [1.6.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.6.2...@open-wc/building-rollup@1.6.3) (2020-08-07)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [1.6.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.6.1...@open-wc/building-rollup@1.6.2) (2020-08-05)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [1.6.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.6.0...@open-wc/building-rollup@1.6.1) (2020-08-04)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+# [1.6.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.5.0...@open-wc/building-rollup@1.6.0) (2020-08-03)
+
+
+### Features
+
+* support building of multi page applications (mpa) ([a654535](https://github.com/open-wc/open-wc/commit/a65453576c42794958e90b9765000f99117097bd))
+
+
+
+
+
+# [1.5.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.4.2...@open-wc/building-rollup@1.5.0) (2020-07-27)
+
+
+### Features
+
+* **building-rollup:** import babel helpers relative to output file ([170d908](https://github.com/open-wc/open-wc/commit/170d908162761354f648403e91e76f8dabfd5e56))
+
+
+
+
+
+## [1.4.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.4.1...@open-wc/building-rollup@1.4.2) (2020-07-08)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
 ## [1.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.4.0...@open-wc/building-rollup@1.4.1) (2020-07-03)
 
 

@@ -83,34 +83,6 @@ You will need to add to this to your `tsconfig.json`.
 
 e.g. we need to include the js files from @open-wc and you can not have it in an exclude.
 
-However as `allowJs` prevents you from generating definition files for your own typescript files ([issue 7546](https://github.com/Microsoft/TypeScript/issues/7546)) you probably want to have an alternative config `tsconfig.build.json` for that.
-
-```json
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "allowJs": false,
-    "checkJs": false
-  }
-}
-```
-
-You can then use it like so in you `package.json`
-
-```json
-{
-  "scripts": {
-    "lint:types": "tsc",
-    "build": "tsc -p tsconfig.build.json"
-  }
-}
-```
-
-That way
-
-- `tsconfig.json` will be used by the language server (in VS code)
-- `tsconfig.build.json` will be used to build your typescript project (including definition files)
-
 Example how a full config might look like
 
 ```json

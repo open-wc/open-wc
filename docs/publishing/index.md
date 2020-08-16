@@ -126,7 +126,7 @@ If you feel you need polyfills, for package demos or the like, feel free to add 
 
 ### Additional Reading
 
-- [How to Public Web Componoent to npm by Justing Fagnani](https://justinfagnani.com/2019/11/01/how-to-publish-web-components-to-npm/)
+- [How to Public Web Component to npm by Justing Fagnani](https://justinfagnani.com/2019/11/01/how-to-publish-web-components-to-npm/)
 - [npm-publish](https://docs.npmjs.com/cli/publish)
 - [Contributing Packages to the npm Registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry)
 

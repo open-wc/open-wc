@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/open-wc/open-wc/compare/@open-wc/dedupe-mixin@1.2.18...@open-wc/dedupe-mixin@1.3.0) (2020-08-05)
+
+
+### Features
+
+* **dedupe-mixin:** improve performance by simplifying the code ([#1708](https://github.com/open-wc/open-wc/issues/1708)) ([0ac7fff](https://github.com/open-wc/open-wc/commit/0ac7fffe26fffb5bcd8dcf457b185774efb2d395))
+
+
+
+
+
+## [1.2.18](https://github.com/open-wc/open-wc/compare/@open-wc/dedupe-mixin@1.2.17...@open-wc/dedupe-mixin@1.2.18) (2020-07-08)
+
+
+### Bug Fixes
+
+* **dedupe-mixin:** remove Constructor generic type default value ([84d7f6b](https://github.com/open-wc/open-wc/commit/84d7f6b89c659d8f1296ca13cc53cd5353f8907f))
+
+
+
+
+
 ## [1.2.17](https://github.com/open-wc/open-wc/compare/@open-wc/dedupe-mixin@1.2.16...@open-wc/dedupe-mixin@1.2.17) (2020-04-20)
 
 **Note:** Version bump only for package @open-wc/dedupe-mixin
