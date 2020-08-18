@@ -129,7 +129,7 @@
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-decorators": "^7.8.3",
     "@babel/plugin-proposal-private-methods": "^7.8.3",
-    "@babel/plugin-transform-modules-systemjs": "^7.9.0",
+    "@babel/plugin-transform-modules-systemjs": "^7.10.5",
     "@babel/preset-typescript": "^7.8.3",
     "@babel/register": "^7.9.0",
     "@types/koa__cors": "^3.0.1",
