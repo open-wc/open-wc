@@ -47,7 +47,7 @@
     "@babel/generator": "^7.9.6",
     "@babel/parser": "^7.9.6",
     "@babel/plugin-proposal-dynamic-import": "^7.10.4",
-    "@babel/plugin-syntax-import-meta": "^7.8.3",
+    "@babel/plugin-syntax-import-meta": "^7.10.4",
     "@babel/plugin-transform-react-jsx": "^7.9.1",
     "@babel/preset-env": "^7.9.0",
     "@mdx-js/mdx": "^1.5.1",
