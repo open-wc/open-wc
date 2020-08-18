@@ -22,6 +22,6 @@ export declare class ScopedElementsHost {
   defineScopedElement<T extends HTMLElement>(tagName: string, klass: Constructor<T>): void
 }
 
-declare function ScopedElementsMixinImplementation<T extends Constructor<LitElement>>(superclass: T): T & Constructor<ScopedElementsHost>
+declare function ScopedElementsMixinImplementation<T extends Constructor<LitElement>>(superclass: T): T & Constructor<ScopedElementsHost> & typeof ScopedElementsHost
 
 export type ScopedElementsMixin = typeof ScopedElementsMixinImplementation;
