@@ -69,7 +69,7 @@
     "magic-string": "^0.25.7",
     "rollup": "^2.7.2",
     "rollup-plugin-babel": "^5.0.0-alpha.1",
-    "rollup-plugin-terser": "^5.2.0",
+    "rollup-plugin-terser": "^6.1.0",
     "storybook-addon-markdown-docs": "^0.4.1",
     "storybook-prebuilt": "^1.5.0"
   }
