@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.9.0",
     "@babel/register": "^7.9.0",
     "babel-plugin-transform-dynamic-import": "^2.1.0",
