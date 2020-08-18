@@ -80,7 +80,7 @@
     "terser": "^4.6.7"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@rollup/plugin-commonjs": "^11.1.0",
     "@rollup/plugin-typescript": "^4.1.0"
   }
