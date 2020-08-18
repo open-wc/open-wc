@@ -3,6 +3,6 @@
     "lint:types": "tsc"
   },
   "devDependencies": {
-    "typescript": "^3.3.3333"
+    "typescript": "^3.9.0"
   }
 }
