@@ -65,6 +65,7 @@ function resolveImportsMatch(normalizedSpecifier, specifierMap) {
  * @param {string} specifier
  * @param {ParsedImportMap} parsedImportMap
  * @param {URL} scriptURL
+ * @returns {{ resolvedImport: URL | null, matched: boolean }}
  */
 function resolve(specifier, parsedImportMap, scriptURL) {
   const asURL = tryURLLikeSpecifierParse(specifier, scriptURL);
@@ -79,7 +80,7 @@ function resolve(specifier, parsedImportMap, scriptURL) {
       const scopeImportsMatch = resolveImportsMatch(normalizedSpecifier, scopeImports);
 
       if (scopeImportsMatch) {
-        return scopeImportsMatch;
+        return { resolvedImport: scopeImportsMatch, matched: true };
       }
     }
   }
@@ -90,15 +91,15 @@ function resolve(specifier, parsedImportMap, scriptURL) {
   );
 
   if (topLevelImportsMatch) {
-    return topLevelImportsMatch;
+    return { resolvedImport: topLevelImportsMatch, matched: true };
   }
 
   // The specifier was able to be turned into a URL, but wasn't remapped into anything.
   if (asURL) {
-    return asURL;
+    return { resolvedImport: asURL, matched: false };
   }
 
-  throw new TypeError(`Unmapped bare specifier "${specifier}"`);
+  return { resolvedImport: null, matched: false };
 }
 
 module.exports = { resolve };

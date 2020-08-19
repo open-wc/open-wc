@@ -106,10 +106,16 @@ function runTests(j) {
         for (const specifier in j.expectedResults) {
           const expected = j.expectedResults[specifier];
           if (!expected) {
-            expect(() => resolve(specifier, j.parsedImportMap, new URL(j.baseURL))).to.throw();
+            let result = null;
+            try {
+              result = resolve(specifier, j.parsedImportMap, new URL(j.baseURL)).resolvedImport;
+            } catch {}
+            expect(result).equal(expected);
           } else {
             // Should be resolved to `expected`.
-            expect(resolve(specifier, j.parsedImportMap, new URL(j.baseURL)).href).equal(expected);
+            expect(
+              resolve(specifier, j.parsedImportMap, new URL(j.baseURL)).resolvedImport.href,
+            ).equal(expected);
           }
         }
       });
