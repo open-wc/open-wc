@@ -86,7 +86,7 @@ To enable polyfills:
 ```js
 new WebpackIndexHTMLPlugin({
   polyfills: {
-    polyfillsHash: true,
+    hashPolyfills: true,
     coreJs: true,
     regeneratorRuntime: true,
     webcomponents: true,
