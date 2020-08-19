@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.7.0...@open-wc/building-rollup@1.7.1) (2020-08-19)
+
+
+### Bug Fixes
+
+* **building-rollup:** use a 404 page for MpaConfig by default ([3b11cba](https://github.com/open-wc/open-wc/commit/3b11cba7099f1ff5ecf17020f8057b6d40be5374))
+
+
+
+
+
 # [1.7.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.6.3...@open-wc/building-rollup@1.7.0) (2020-08-10)
 
 
