@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.9](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.8...@open-wc/testing-helpers@1.8.9) (2020-08-19)
+
+
+### Bug Fixes
+
+* **scoped-elements:** add host to the mixin type for static props ([88ffd99](https://github.com/open-wc/open-wc/commit/88ffd995efeb94d79ee686f665d18e8ca405e3bc))
+
+
+
+
+
 ## [1.8.8](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.7...@open-wc/testing-helpers@1.8.8) (2020-08-16)
 
 **Note:** Version bump only for package @open-wc/testing-helpers

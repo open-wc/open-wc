@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@1.2.1...@open-wc/scoped-elements@1.2.2) (2020-08-19)
+
+
+### Bug Fixes
+
+* **scoped-elements:** add host to the mixin type for static props ([88ffd99](https://github.com/open-wc/open-wc/commit/88ffd995efeb94d79ee686f665d18e8ca405e3bc))
+
+
+
+
+
 ## [1.2.1](https://github.com/open-wc/open-wc/compare/@open-wc/scoped-elements@1.2.0...@open-wc/scoped-elements@1.2.1) (2020-08-14)
 
 
