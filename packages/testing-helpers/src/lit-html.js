@@ -20,7 +20,7 @@ export { render } from 'lit-html/lit-html.js';
  * html`<my-tag prop="${prop}"></my-tag>`
  *
  * @param {TemplateStringsArray} strings Static Parts
- * @param {Array[any]} values Dynamic Parts
+ * @param {Array.<any>} values Dynamic Parts
  * @returns {import('lit-html').TemplateResult}
  */
 export function html(strings, ...values) {
