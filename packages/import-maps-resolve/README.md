@@ -32,7 +32,7 @@ const fileUrl2 = pathToFileURL(path.join(process.cwd(), 'foo', 'bar'));
 
 ### Parsing an import map from a string
 
-The `parseFromString` parses an import map from a JSON string. It returns the parsed import map object to be used when resolving import specifiers.
+The `parseFromString` function parses an import map from a JSON string. It returns the parsed import map object to be used when resolving import specifiers.
 
 ```js
 import { parseFromString } from '@import-maps/resolve';
@@ -60,23 +60,27 @@ const baseURL = new URL('https://www.example.com/');
 const importMap = parse(importMapString, baseURL);
 ```
 
-### Resolving specifiers
+### Resolving imports
 
-Once you've created a parsed import map, you can start resolving specifiers. The `resolve` function returns a `URL`, you can use this to either use the resolved `href` or just the `pathname`.
+Once you've created a parsed import map, you can start resolving specifiers. The `resolve` function returns an object with the resolved URL as well as a boolean whether the import was matched. When a bare import is not found in the import map, resolve returns null. When a relative import isn't found, the resolved URL is returned, and matched will be set to false.
 
 ```js
 import { resolve } from '@import-maps/resolve';
 
-const importMap = /* parse import map shown above */;
-// create a base URL to resolve imports relatively to
+const importMapString = '{ "imports": { "foo": "./bar.js" } }';
 const baseURL = new URL('https://www.example.com/');
+const importMap = parseFromString(importMapString, baseURL);
 
-const resolvedUrl = resolve(importMapString, baseURL);
+const scriptUrl = new URL('https://www.example.com/my-app.js');
 
-// the full url including protocol and domain
-console.log(resolvedUrl.href);
-// just the path
-console.log(resolvedUrl.url);
+// resolvedImport: https://www.example.com/bar.js, matched: true
+const { resolvedImport, matched } = resolve('foo', baseURL, scriptUrl);
+
+// resolvedImport: https://www.example.com/x.js, matched: false
+const { resolvedImport, matched } = resolve('./x.js', baseURL, scriptUrl);
+
+// resolvedImport: null, matched: false
+const { resolvedImport, matched } = resolve('bar', baseURL, scriptUrl);
 ```
 
 If you need to use the resolved path on the file system, you can use the `fileURLToPath` utility:
@@ -85,10 +89,10 @@ If you need to use the resolved path on the file system, you can use the `fileUR
 import { fileURLToPath } from 'url';
 import { resolve } from '@import-maps/resolve';
 
-const resolvedUrl = resolve(importMapString, baseURL);
+const { resolvedImport } = resolve(importMapString, baseURL, scriptUrl);
 
 // the fully resolved file path
-console.log(fileURLToPath(resolvedUrl));
+console.log(fileURLToPath(resolvedImport));
 ```
 
 ## Acknowledgments
