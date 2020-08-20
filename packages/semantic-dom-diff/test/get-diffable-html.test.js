@@ -335,6 +335,22 @@ describe('getDiffableHTML()', () => {
         `);
       expect(html).to.equal('<div>\n</div>\n');
     });
+
+    it('escapes attributes that require it', () => {
+      const html = getDiffableHTML(`
+        <div a="i &quot;have&quot; quotes" b="attributes &amp; values" c="with &quot;quotes&quot; &amp; amps"></div>
+      `);
+
+      // prettier-ignore
+      expect(html).to.equal(
+        '<div\n' +
+        '  a="i &quot;have&quot; quotes"\n' +
+        '  b="attributes &amp; values"\n' +
+        '  c="with &quot;quotes&quot; &amp; amps"\n' +
+        '>\n' +
+        '</div>\n'
+      );
+    });
   });
 
   describe('special elements', () => {
