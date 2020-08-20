@@ -76,6 +76,9 @@ export function getDiffableHTML(html, options = {}) {
   const ignoreTags = [...(options.ignoreTags || []), ...DEFAULT_IGNORE_TAGS];
   const ignoreChildren = options.ignoreChildren || [];
   const stripEmptyAttributes = options.stripEmptyAttributes || DEFAULT_EMPTY_ATTRS;
+  const escapeAttributes = /(&|")/g;
+  /** @param {string} match */
+  const escapeAttributesFn = match => (match === '&' ? '&amp;' : '&quot;');
 
   let text = '';
   let depth = -1;
@@ -129,7 +132,7 @@ export function getDiffableHTML(html, options = {}) {
   function getAttributeString(el, { name, value }) {
     if (shouldStripAttribute({ name, value })) return '';
     if (name === 'class') return ` class="${getClassListValueString(el)}"`;
-    return ` ${name}="${value}"`;
+    return ` ${name}="${value.replace(escapeAttributes, escapeAttributesFn)}"`;
   }
 
   /**
