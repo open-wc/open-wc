@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/webpack-index-html-plugin",
-  "version": "1.7.10",
+  "version": "1.7.11",
   "publishConfig": {
     "access": "public"
   },
@@ -29,7 +29,7 @@
     "webpack": "^4.28.0"
   },
   "dependencies": {
-    "@open-wc/building-utils": "^2.18.0",
+    "@open-wc/building-utils": "^2.18.1",
     "deepmerge": "^4.2.2",
     "parse5": "^5.1.1"
   },

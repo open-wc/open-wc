@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.7.1...@open-wc/building-rollup@1.8.0) (2020-08-27)
+
+
+### Features
+
+* **building-rollup:** avoid helper chunk in modern build ([093763f](https://github.com/open-wc/open-wc/commit/093763f12ed8e0b4f6ca2a9a38bf681c40b88a89))
+
+
+
+
+
 ## [1.7.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.7.0...@open-wc/building-rollup@1.7.1) (2020-08-19)
 
 

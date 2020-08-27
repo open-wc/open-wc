@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7](https://github.com/open-wc/open-wc/compare/@import-maps/generate@0.2.6...@import-maps/generate@0.2.7) (2020-08-27)
+
+**Note:** Version bump only for package @import-maps/generate
+
+
+
+
+
 ## [0.2.6](https://github.com/open-wc/open-wc/compare/@import-maps/generate@0.2.5...@import-maps/generate@0.2.6) (2020-04-12)
 
 **Note:** Version bump only for package @import-maps/generate

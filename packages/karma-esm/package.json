@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/karma-esm",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "publishConfig": {
     "access": "public"
   },
@@ -32,14 +32,14 @@
     "polyfill"
   ],
   "dependencies": {
-    "@open-wc/building-utils": "^2.18.0",
+    "@open-wc/building-utils": "^2.18.1",
     "babel-plugin-istanbul": "^5.1.4",
     "chokidar": "^3.0.0",
     "deepmerge": "^4.2.2",
-    "es-dev-server": "^1.57.3",
+    "es-dev-server": "^1.57.4",
     "minimatch": "^3.0.4",
     "node-fetch": "^2.6.0",
-    "polyfills-loader": "^1.7.0",
+    "polyfills-loader": "^1.7.1",
     "portfinder": "^1.0.21",
     "request": "^2.88.0"
   },
