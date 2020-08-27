@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.10](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.17.9...@open-wc/semantic-dom-diff@0.17.10) (2020-08-27)
+
+
+### Bug Fixes
+
+* **semantic-dom-diff:** fix unescaped attributes ([375180d](https://github.com/open-wc/open-wc/commit/375180de30abef00a05ac84bb30f62555f0d7059))
+
+
+
+
+
 ## [0.17.9](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.17.8...@open-wc/semantic-dom-diff@0.17.9) (2020-04-26)
 
 

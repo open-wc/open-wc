@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing",
-  "version": "2.5.24",
+  "version": "2.5.25",
   "publishConfig": {
     "access": "public"
   },
@@ -28,7 +28,7 @@
   ],
   "dependencies": {
     "@open-wc/chai-dom-equals": "^0.12.36",
-    "@open-wc/semantic-dom-diff": "^0.17.9",
+    "@open-wc/semantic-dom-diff": "^0.17.10",
     "@open-wc/testing-helpers": "^1.8.9",
     "@types/chai": "^4.2.11",
     "@types/chai-dom": "^0.0.9",
