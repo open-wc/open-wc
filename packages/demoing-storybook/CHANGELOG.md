@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.20...@open-wc/demoing-storybook@2.4.0) (2020-09-07)
+
+
+### Features
+
+* **demoing-storybook:** update to rollup-plugin-terser v7 ([6e6d5d7](https://github.com/open-wc/open-wc/commit/6e6d5d7515266c1e66a6df6a8a505f1e54b75d4c))
+
+
+
+
+
 ## [2.3.20](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.19...@open-wc/demoing-storybook@2.3.20) (2020-08-27)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook

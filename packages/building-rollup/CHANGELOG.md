@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.8.0...@open-wc/building-rollup@1.9.0) (2020-09-07)
+
+
+### Features
+
+* **building-rollup:** update to rollup-plugin-terser v7 ([774641f](https://github.com/open-wc/open-wc/commit/774641f83e66608f2e5be455836ae0ffd912ae2e))
+* **demoing-storybook:** update to rollup-plugin-terser v7 ([6e6d5d7](https://github.com/open-wc/open-wc/commit/6e6d5d7515266c1e66a6df6a8a505f1e54b75d4c))
+
+
+
+
+
 # [1.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.7.1...@open-wc/building-rollup@1.8.0) (2020-08-27)
 
 
