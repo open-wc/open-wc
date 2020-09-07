@@ -105,7 +105,7 @@ function createRollupConfig({ outputDir, indexFilename, indexHTMLString }) {
           resizeObserver: true,
         },
       }),
-      terser({ output: { comments: false } }),
+      terser({ format: { comments: false } }),
     ],
   };
 
