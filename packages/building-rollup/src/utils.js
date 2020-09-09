@@ -66,9 +66,7 @@ function applyServiceWorkerRegistration(htmlString, transformOptions, userOption
   const swPath = createSwPath(userOptions, outputDir, transformOptions.htmlFileName);
   const documentAst = parse(htmlString);
   const body = query(documentAst, predicates.hasTagName('body'));
-  const swRegistration = createScript(
-    {},
-    Terser.minify(`
+  const { code } = Terser.minify(`
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
         navigator.serviceWorker
@@ -81,8 +79,8 @@ function applyServiceWorkerRegistration(htmlString, transformOptions, userOption
           });
       });
     }
-  `).code,
-  );
+  `);
+  const swRegistration = createScript({}, code);
 
   append(body, swRegistration);
   return serialize(documentAst);
