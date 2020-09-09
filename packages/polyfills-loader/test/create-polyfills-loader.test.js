@@ -11,9 +11,9 @@ const updateSnapshots = process.argv.includes('--update-snapshots');
 /**
  * @param {{ name: string, config: PolyfillsLoaderConfig, expectedFiles?: string[] }} param0
  */
-function testSnapshot({ name, config, expectedFiles = /** @type {string[]} */ ([]) }) {
+async function testSnapshot({ name, config, expectedFiles = /** @type {string[]} */ ([]) }) {
   const snapshotPath = path.join(__dirname, 'snapshots', 'create-polyfills-loader', `${name}.js`);
-  const loader = createPolyfillsLoader(config);
+  const loader = await createPolyfillsLoader(config);
   if (!loader) {
     throw new Error('No loader was generated');
   }

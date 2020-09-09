@@ -126,7 +126,7 @@ class WebpackIndexHTMLPlugin {
           'Legacy build did not finish within 600000 ms.',
         );
 
-        emitIndexHTML(
+        await emitIndexHTML(
           compilation,
           this._config,
           baseIndex,
@@ -134,7 +134,10 @@ class WebpackIndexHTMLPlugin {
           legacyBuildResult,
         );
       } else {
-        emitIndexHTML(compilation, this._config, baseIndex, { entries, entryNamesForVariations });
+        await emitIndexHTML(compilation, this._config, baseIndex, {
+          entries,
+          entryNamesForVariations,
+        });
       }
       this.emitted = true;
       deferredLegacyBuildResult = null;

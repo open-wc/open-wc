@@ -164,7 +164,7 @@ module.exports = (pluginConfig = {}) => {
       }
 
       const entries = createEntriesConfig(outputConfig, entryFiles, preloadedFiles);
-      const files = createOutput(
+      const files = await createOutput(
         localPluginConfig,
         outputConfig,
         outputIndexHTML,

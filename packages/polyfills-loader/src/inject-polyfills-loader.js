@@ -95,9 +95,9 @@ function injectPrefetchLinks(headAst, cfg) {
  *
  * @param {string} htmlString
  * @param {PolyfillsLoaderConfig} cfg
- * @returns {{ htmlString: string, polyfillFiles: GeneratedFile[] }}
+ * @returns {Promise<{ htmlString: string, polyfillFiles: GeneratedFile[] }>}
  */
-function injectPolyfillsLoader(htmlString, cfg) {
+async function injectPolyfillsLoader(htmlString, cfg) {
   const documentAst = parse(htmlString);
 
   const headAst = query(documentAst, predicates.hasTagName('head'));
@@ -107,7 +107,7 @@ function injectPolyfillsLoader(htmlString, cfg) {
     throw new Error(`Invalid index.html: missing <head> or <body>`);
   }
 
-  const polyfillsLoader = createPolyfillsLoader(cfg);
+  const polyfillsLoader = await createPolyfillsLoader(cfg);
 
   if (polyfillsLoader === null) {
     return { htmlString, polyfillFiles: [] };

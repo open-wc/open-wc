@@ -71,7 +71,7 @@ function getHelpersWithDependencies(helpers) {
   return Array.from(all);
 }
 
-function createHelperModule(helpers, format, minify) {
+async function createHelperModule(helpers, format, minify) {
   const helpersWithDependencies = getHelpersWithDependencies(helpers);
   const addRegeneratorRuntime = helpersWithDependencies.includes('regeneratorRuntime');
   let helperSource = buildExternalHelpers(
@@ -95,10 +95,12 @@ function createHelperModule(helpers, format, minify) {
   }
 
   if (minify) {
-    helperSource = Terser.minify(helperSource, {
+    const { code } = await Terser.minify(helperSource, {
       module: format === 'es',
       toplevel: format === 'es',
-    }).code;
+    });
+
+    helperSource = code;
   }
 
   return helperSource;
@@ -125,12 +127,12 @@ function bundledBabelHelpers({ format = 'es', minify = true } = {}) {
      * Creates babel helpers chunk based on used helpers, and rewrites imports to the
      * babel helpers chunk using the hashed babel helpers filename.
      */
-    generateBundle(_, bundle) {
+    async generateBundle(_, bundle) {
       if (totalHelpers.length === 0) {
         return;
       }
 
-      const helperModule = createHelperModule(totalHelpers, format, minify);
+      const helperModule = await createHelperModule(totalHelpers, format, minify);
       const helperId = this.emitFile({
         name: 'babel-helpers.js',
         type: 'asset',

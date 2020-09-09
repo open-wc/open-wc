@@ -21,9 +21,9 @@ const defaultConfig = {
  * @param {string} htmlString
  * @param {PolyfillsLoaderConfig} config
  */
-function testSnapshot(name, htmlString, config) {
+async function testSnapshot(name, htmlString, config) {
   const snapshotPath = path.join(__dirname, 'snapshots', 'inject-polyfills-loader', `${name}.html`);
-  const result = injectPolyfillsLoader(htmlString, config);
+  const result = await injectPolyfillsLoader(htmlString, config);
 
   if (updateSnapshots) {
     fs.writeFileSync(snapshotPath, result.htmlString, 'utf-8');

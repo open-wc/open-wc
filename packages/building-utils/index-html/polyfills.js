@@ -9,9 +9,9 @@ const { createContentHash } = require('./utils');
 
 /**
  * @param {CreateIndexHTMLConfig} config
- * @returns {Polyfill[]}
+ * @returns {Promise<Polyfill[]>}
  */
-function getPolyfills(config) {
+async function getPolyfills(config) {
   /** @type {Polyfill[]} */
   const polyfills = [];
   /** @type {PolyfillInstruction[]} */
@@ -195,7 +195,7 @@ function getPolyfills(config) {
     }
   }
 
-  instructions.forEach(instruction => {
+  for (const instruction of instructions) {
     if (!instruction.name || !instruction.path) {
       throw new Error(`A polyfill should have a name and a path property.`);
     }
@@ -226,7 +226,8 @@ function getPolyfills(config) {
         sourcemap = fs.readFileSync(sourcemapPath, 'utf-8');
         // minify only if there were no source maps, and if not disabled explicitly
       } else if (!instruction.noMinify && config.minify) {
-        const minifyResult = Terser.minify(code, { sourceMap: true });
+        // eslint-disable-next-line no-await-in-loop
+        const minifyResult = await Terser.minify(code, { sourceMap: true });
         ({ code } = minifyResult);
         sourcemap = /** @type {string} */ (minifyResult.map);
       }
@@ -241,7 +242,7 @@ function getPolyfills(config) {
       code,
       sourcemap,
     });
-  });
+  }
 
   return polyfills;
 }

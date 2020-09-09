@@ -19,14 +19,14 @@ function cloneAST(ast) {
  * @param {BuildResult} buildResult
  * @param {BuildResult} [legacyBuildResult]
  */
-function emitIndexHTML(compilation, config, baseIndex, buildResult, legacyBuildResult) {
+async function emitIndexHTML(compilation, config, baseIndex, buildResult, legacyBuildResult) {
   /**
    * @param {string} [filename]
    * @param {string[]} [entries]
    * @param {string[]} [legacyEntries]
    * @param {string | Symbol} [variation]
    */
-  const generateIndex = (filename, entries, legacyEntries, variation) => {
+  const generateIndex = async (filename, entries, legacyEntries, variation) => {
     /** @type {import('parse5').Document} */
     let localBaseIndex;
 
@@ -56,7 +56,7 @@ function emitIndexHTML(compilation, config, baseIndex, buildResult, legacyBuildR
 
     /** Inject generated output into index.html */
     if (config.inject) {
-      const generateResult = createIndexHTML(localBaseIndex, {
+      const generateResult = await createIndexHTML(localBaseIndex, {
         ...config,
         entries: { type: 'script', files: entries },
         legacyEntries: legacyEntries ? { type: 'script', files: legacyEntries } : undefined,
@@ -91,14 +91,14 @@ function emitIndexHTML(compilation, config, baseIndex, buildResult, legacyBuildR
 
   if (!buildResult.entryNamesForVariations) {
     // regular build without variations
-    generateIndex(
+    await generateIndex(
       'index.html',
       buildResult.entries,
       legacyBuildResult && legacyBuildResult.entries,
     );
   } else {
     // build with variations with a separate index per variation
-    buildResult.entryNamesForVariations.forEach((entryNamesForVariation, variation) => {
+    buildResult.entryNamesForVariations.forEach(async (entryNamesForVariation, variation) => {
       const entriesForVariation = buildResult.entries.filter(e1 =>
         entryNamesForVariation.some(e2 => e1.startsWith(e2)),
       );
@@ -109,7 +109,7 @@ function emitIndexHTML(compilation, config, baseIndex, buildResult, legacyBuildR
           legacyBuildResult.entryNamesForVariations.get(variation).some(e2 => e1.includes(e2)),
         );
 
-      generateIndex(
+      await generateIndex(
         `index-${variation}.html`,
         entriesForVariation,
         legacyEntriesForVariation,
@@ -134,7 +134,7 @@ function emitIndexHTML(compilation, config, baseIndex, buildResult, legacyBuildR
             .some(e2 => e1.includes(e2)),
         );
 
-      generateIndex(
+      await generateIndex(
         'index.html',
         entriesForVariation,
         legacyEntriesForVariation,

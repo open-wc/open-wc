@@ -151,9 +151,9 @@ function createScripts(polyfillsConfig, polyfills, entries, needsLoader) {
  *
  * @param {ASTNode} baseIndex the base index.html
  * @param {Partial<CreateIndexHTMLConfig>} config
- * @returns {{ indexHTML: string, files: FileResult[] }} the updated index html
+ * @returns {Promise<{ indexHTML: string, files: FileResult[] }>} the updated index html
  */
-function createIndexHTML(baseIndex, config) {
+async function createIndexHTML(baseIndex, config) {
   const localConfig = deepmerge(defaultConfig, config);
   if (!baseIndex) {
     throw new Error('Missing baseIndex.');
@@ -178,7 +178,7 @@ function createIndexHTML(baseIndex, config) {
 
   /** @type {FileResult[]} */
   const files = [];
-  const polyfills = getPolyfills(localConfig);
+  const polyfills = await getPolyfills(localConfig);
 
   /**
    * Check whether we need add a special loader script, or if we can load app
@@ -216,7 +216,7 @@ function createIndexHTML(baseIndex, config) {
 
   let loaderCode;
   if (needsLoader) {
-    loaderCode = createLoaderScript(
+    loaderCode = await createLoaderScript(
       localConfig.entries,
       localConfig.legacyEntries,
       polyfills,

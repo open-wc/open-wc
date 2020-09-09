@@ -49,12 +49,12 @@ function rollupPluginPolyfillsLoader(pluginOptions = {}) {
         );
       }
 
-      htmlPlugin.addHtmlTransformer((html, { bundle, bundles }) => {
+      htmlPlugin.addHtmlTransformer(async (html, { bundle, bundles }) => {
         const config = createPolyfillsLoaderConfig(pluginOptions, bundle, bundles);
         let htmlString = html;
 
         if (shouldInjectLoader(config)) {
-          const result = injectPolyfillsLoader(html, config);
+          const result = await injectPolyfillsLoader(html, config);
           htmlString = result.htmlString;
           generatedFiles = result.polyfillFiles;
         } else {

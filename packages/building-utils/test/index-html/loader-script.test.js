@@ -51,9 +51,9 @@ const defaultPolyfillsConfig = {
   fetch: false,
 };
 
-function testSnapshot({ name, entries, legacyEntries = null, polyfills = null }) {
+async function testSnapshot({ name, entries, legacyEntries = null, polyfills = null }) {
   const snapshotPath = path.join(__dirname, 'snapshots', 'loader-script', `${name}.js`);
-  const script = createLoaderScript(
+  const script = await createLoaderScript(
     entries,
     legacyEntries,
     polyfills,

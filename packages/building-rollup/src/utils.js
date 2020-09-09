@@ -60,13 +60,18 @@ function createSwPath(userOptions, outputDir, htmlFileName) {
 
 /**
  * @param {string} htmlString
- * @returns {string}
+ * @returns {Promise<string>}
  */
-function applyServiceWorkerRegistration(htmlString, transformOptions, userOptions, outputDir) {
+async function applyServiceWorkerRegistration(
+  htmlString,
+  transformOptions,
+  userOptions,
+  outputDir,
+) {
   const swPath = createSwPath(userOptions, outputDir, transformOptions.htmlFileName);
   const documentAst = parse(htmlString);
   const body = query(documentAst, predicates.hasTagName('body'));
-  const { code } = Terser.minify(`
+  const { code } = await Terser.minify(`
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
         navigator.serviceWorker

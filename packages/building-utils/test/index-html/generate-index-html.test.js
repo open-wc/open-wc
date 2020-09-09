@@ -30,10 +30,10 @@ const indexHTML = `
 </html>
 `;
 
-function testSnapshot(name, config) {
+async function testSnapshot(name, config) {
   const snapshotPath = path.join(__dirname, 'snapshots', 'create-index-html', `${name}.html`);
   const ast = parse(indexHTML);
-  const result = createIndexHTML(ast, config);
+  const result = await createIndexHTML(ast, config);
 
   if (updateSnapshots) {
     fs.writeFileSync(snapshotPath, result.indexHTML, 'utf-8');

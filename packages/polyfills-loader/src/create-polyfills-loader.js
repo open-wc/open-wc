@@ -194,9 +194,9 @@ function createPolyfillsLoaderCode(cfg, polyfills) {
  * polyfills and resources (app entrypoints, scripts etc.).
  *
  * @param {PolyfillsLoaderConfig} cfg
- * @returns {PolyfillsLoader | null}
+ * @returns {Promise<PolyfillsLoader | null>}
  */
-function createPolyfillsLoader(cfg) {
+async function createPolyfillsLoader(cfg) {
   let polyfillFiles = createPolyfillsData(cfg);
   /** @type {PolyfillFile | undefined} */
   const coreJs = polyfillFiles.find(pf => pf.name === 'core-js');
@@ -245,7 +245,7 @@ function createPolyfillsLoader(cfg) {
   }
 
   if (cfg.minify) {
-    const output = Terser.minify(code);
+    const output = await Terser.minify(code);
     if (!output || !output.code) {
       throw new Error('Could not minify loader.');
     }

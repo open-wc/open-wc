@@ -77,14 +77,14 @@ function getOutputIndexHTML(pluginConfig, inputIndexHTML, entries, legacyEntries
  * @param {ASTNode} inputIndexHTML
  * @param {EntriesConfig} entries
  * @param {EntriesConfig} [legacyEntries]
- * @returns {OutputResult[]}
+ * @returns {Promise<OutputResult[]>}
  */
-function injectIntoIndexHTML(pluginConfig, inputIndexHTML, entries, legacyEntries) {
+async function injectIntoIndexHTML(pluginConfig, inputIndexHTML, entries, legacyEntries) {
   /**
    * Inject output files, loader script and polyfills into index.html
    */
   if (pluginConfig.inject) {
-    const result = createIndexHTML(inputIndexHTML, {
+    const result = await createIndexHTML(inputIndexHTML, {
       ...pluginConfig,
       entries,
       legacyEntries,
@@ -106,13 +106,13 @@ function injectIntoIndexHTML(pluginConfig, inputIndexHTML, entries, legacyEntrie
  * @param {ASTNode} inputIndexHTML
  * @param {EntriesConfig} entries
  * @param {EntriesConfig} [legacyEntries]
- * @returns {OutputResult[]}
+ * @returns {Promise<OutputResult[]>}
  */
-function createOutput(pluginConfig, outputConfig, inputIndexHTML, entries, legacyEntries) {
+async function createOutput(pluginConfig, outputConfig, inputIndexHTML, entries, legacyEntries) {
   const mergedPluginConfig = { indexFilename: 'index.html', ...pluginConfig };
 
   const indexHTML = getOutputIndexHTML(mergedPluginConfig, inputIndexHTML, entries, legacyEntries);
-  const files = injectIntoIndexHTML(mergedPluginConfig, indexHTML, entries, legacyEntries);
+  const files = await injectIntoIndexHTML(mergedPluginConfig, indexHTML, entries, legacyEntries);
 
   const outputDir = path.join(outputConfig.dir);
   return files.map(file => ({

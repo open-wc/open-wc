@@ -174,7 +174,7 @@ export async function injectPolyfillsLoader(
 
   logDebug('[polyfills-loader] config', polyfillsLoaderConfig);
 
-  const result = originalInjectPolyfillsLoader(serialize(documentAst), polyfillsLoaderConfig);
+  const result = await originalInjectPolyfillsLoader(serialize(documentAst), polyfillsLoaderConfig);
 
   logDebug(
     '[polyfills-loader] generated polyfills: ',

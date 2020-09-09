@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const { getPolyfills } = require('../../index-html/polyfills');
 
 describe('polyfills', () => {
-  it('returns the correct polyfills', () => {
+  it('returns the correct polyfills', async () => {
     const config = {
       polyfills: {
         coreJs: true,
@@ -15,7 +15,7 @@ describe('polyfills', () => {
     };
 
     // @ts-ignore
-    const polyfills = getPolyfills(config);
+    const polyfills = await getPolyfills(config);
     const polyfillsWithoutCode = polyfills.map(p => ({
       ...p,
       hash: undefined,
@@ -79,7 +79,7 @@ describe('polyfills', () => {
     });
   });
 
-  it('polyfills system with nomodule false if entry is systemjs', () => {
+  it('polyfills system with nomodule false if entry is systemjs', async () => {
     const config = {
       polyfills: {
         systemJs: true,
@@ -90,7 +90,7 @@ describe('polyfills', () => {
     };
 
     // @ts-ignore
-    const polyfills = getPolyfills(config);
+    const polyfills = await getPolyfills(config);
     const polyfillsWithoutCode = polyfills.map(p => ({
       ...p,
       hash: undefined,
@@ -111,7 +111,7 @@ describe('polyfills', () => {
     ]);
   });
 
-  it('polyfills system with nomodule true', () => {
+  it('polyfills system with nomodule true', async () => {
     const config = {
       polyfills: {
         systemJs: true,
@@ -122,7 +122,7 @@ describe('polyfills', () => {
     };
 
     // @ts-ignore
-    const polyfills = getPolyfills(config);
+    const polyfills = await getPolyfills(config);
     const polyfillsWithoutCode = polyfills.map(p => ({
       ...p,
       hash: undefined,
@@ -143,7 +143,7 @@ describe('polyfills', () => {
     ]);
   });
 
-  it('can load custom polyfills', () => {
+  it('can load custom polyfills', async () => {
     const customPolyfills = [
       {
         name: 'polyfill-a',
@@ -169,7 +169,7 @@ describe('polyfills', () => {
     };
 
     // @ts-ignore
-    const polyfills = getPolyfills(config);
+    const polyfills = await getPolyfills(config);
     const polyfillsWithoutCode = polyfills.map(p => ({
       ...p,
       hash: undefined,
