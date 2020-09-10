@@ -285,3 +285,89 @@ it('renders correctly', async () => {
   });
 });
 ```
+
+**[Scoped elements](https://open-wc.org/scoped-elements/)**
+
+You might want to ignore scoped elements when working with _Shadow DOM snapshots_, like so:
+
+```js
+import { MyButton } from '@somewhere/my-button';
+
+class MyElement extends ScopedElementsMixin(LitElement) {
+  static get scopedElements() {
+    return {
+      'my-button': MyButton,
+    };
+  }
+  render() {
+    return html`
+      <p>Here's my button</p>
+      <my-button>Hey!</my-button>
+    `;
+  }
+}
+
+window.customElements.define('my-element', MyElement);
+
+it('renders correctly', async () => {
+  const el = await fixture(`
+      <my-custom-element>
+      </my-custom-element>
+  `);
+
+  expect(el).shadowDom.to.equalSnapshot({
+    ignoreTags: [el.constructor.getScopedTagName('my-button', el.constructor.scopedElements)],
+  });
+});
+```
+
+This example will save the following snapshot:
+
+```html
+<my-custom-element>
+  <p>
+    Here's my button
+  </p>
+</my-custom-element>
+```
+
+However, what if you actually care about testing what goes into scoped elements?
+
+In that case, scoped elements should not be ignored, but diffed in snapshots correctly with their original tag name instead. Our differ will take that into account when making Shadow DOM snapshots, by default. Following the previous example:
+
+```js
+it('renders correctly', async () => {
+  const el = await fixture(`
+      <my-custom-element>
+      </my-custom-element>
+  `);
+
+  expect(el).shadowDom.to.equalSnapshot();
+});
+```
+
+This example will save this snapshot:
+
+```html
+<my-custom-element>
+  <p>
+    Here's my button
+  </p>
+  <my-button data-tag-name="my-button">
+    Hey!
+  </my-button>
+</my-custom-element>
+```
+
+With the actual implementation of scoped elements, without ignoring its tags or if our differ wouldn't check them by default, the test snapshot would be produced with scoped element tags with different random numbers _every time_:
+
+```html
+<my-custom-element>
+  <p>
+    Here's my button
+  </p>
+  <my-button-23443 data-tag-name="my-button">
+    Hey!
+  </my-button-23443>
+</my-custom-element>
+```

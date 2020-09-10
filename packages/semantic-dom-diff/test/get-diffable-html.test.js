@@ -789,6 +789,32 @@ describe('getDiffableHTML()', () => {
           '</div>\n',
       );
     });
+
+    it('scoped tags', () => {
+      const html = getDiffableHTML(
+        `
+        <scoped-element-123 data-tag-name="scoped-element">
+        </scoped-element-123>
+        <scoped-element>
+        </scoped-element>
+        <my-element-123>
+        </my-element-123>
+        <my-element>
+        </my-element>
+      `,
+      );
+
+      expect(html).to.equal(
+        '<scoped-element data-tag-name="scoped-element">\n' +
+          '</scoped-element>\n' +
+          '<scoped-element>\n' +
+          '</scoped-element>\n' +
+          '<my-element-123>\n' +
+          '</my-element-123>\n' +
+          '<my-element>\n' +
+          '</my-element>\n',
+      );
+    });
   });
 
   it('dom node as input', () => {

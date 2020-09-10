@@ -178,8 +178,15 @@ export function getDiffableHTML(html, options = {}) {
   }
 
   /** @param {Element} el */
+  function getLocalName(el) {
+    // Use original tag if available via data-tag-name attribute (use-case for scoped elements)
+    // See packages/scoped-elements for more info
+    return el.getAttribute('data-tag-name') || el.localName;
+  }
+
+  /** @param {Element} el */
   function printOpenElement(el) {
-    text += `${getIndentation()}<${el.localName}${getAttributesString(el)}>\n`;
+    text += `${getIndentation()}<${getLocalName(el)}${getAttributesString(el)}>\n`;
   }
 
   /** @param {Node} node */
@@ -207,11 +214,11 @@ export function getDiffableHTML(html, options = {}) {
 
   /** @param {Element} el */
   function printCloseElement(el) {
-    if (el.localName === 'diff-container' || VOID_ELEMENTS.includes(el.localName)) {
+    if (getLocalName(el) === 'diff-container' || VOID_ELEMENTS.includes(getLocalName(el))) {
       return;
     }
 
-    text += `${getIndentation()}</${el.localName}>\n`;
+    text += `${getIndentation()}</${getLocalName(el)}>\n`;
   }
 
   /** @param {Node} node */
