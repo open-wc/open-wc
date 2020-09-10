@@ -159,7 +159,7 @@ module.exports = config => {
       ],
 
       coverageReporter: {
-        thresholds: {
+        check: {
           global: {
             statements: 50,
             lines: 50,
