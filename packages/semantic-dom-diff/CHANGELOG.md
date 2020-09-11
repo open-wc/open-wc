@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.17.10...@open-wc/semantic-dom-diff@0.18.0) (2020-09-11)
+
+
+### Features
+
+* **semantic-dom-diff:** diff Scoped Element tags correctly into Shadow DOM snapshots ([4385957](https://github.com/open-wc/open-wc/commit/43859579bd6131e205130cdf90021fce3fd94b20))
+
+
+
+
+
 ## [0.17.10](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.17.9...@open-wc/semantic-dom-diff@0.17.10) (2020-08-27)
 
 
