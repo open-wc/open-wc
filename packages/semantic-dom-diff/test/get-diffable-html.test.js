@@ -815,6 +815,36 @@ describe('getDiffableHTML()', () => {
           '</my-element>\n',
       );
     });
+
+    it('ignored scoped tags', () => {
+      const html = getDiffableHTML(
+        `<div>
+          <div>A</div>
+          <span-123 data-tag-name="span">
+            <div>B</div>
+              <span>
+                <div>C</div>
+                <div>D</div>
+              </span>
+            <div>E</div>
+            <div>F</div>
+          </span-123>
+          <div>G</div>
+        </div>
+      `,
+        { ignoreTags: ['span'] },
+      );
+      expect(html).to.equal(
+        '<div>\n' +
+          '  <div>\n' +
+          '    A\n' +
+          '  </div>\n' +
+          '  <div>\n' +
+          '    G\n' +
+          '  </div>\n' +
+          '</div>\n',
+      );
+    });
   });
 
   it('dom node as input', () => {
