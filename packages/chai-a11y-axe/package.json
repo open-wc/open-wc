@@ -29,7 +29,7 @@
     "testing"
   ],
   "dependencies": {
-    "axe-core": "^3.5.3"
+    "axe-core": "^4.0.2"
   },
   "contributors": [
     "Pawel Psztyc"
