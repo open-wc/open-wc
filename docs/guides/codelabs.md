@@ -1,13 +1,10 @@
 ---
-permalink: 'codelabs/index.html'
 title: Codelabs
-section: guides
-tags:
-  - guides
-  - guide
+layout: with-index.njk
+eleventyNavigation:
+  key: Codelabs
+  order: 20
 ---
-
-# Codelabs
 
 Codelabs are step by step tutorials. They teach a specific topic through practical examples you can follow along, where each step is explained in depth.
 

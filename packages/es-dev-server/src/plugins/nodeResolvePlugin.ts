@@ -34,7 +34,7 @@ export function nodeResolvePlugin(config: NodeResolveConfig): Plugin {
 
   // call buildStart
   const preserveSymlinks = options?.customResolveOptions?.preserveSymlinks;
-  nodeResolve.buildStart?.call(fakePluginContext as any, { preserveSymlinks });
+  nodeResolve.buildStart?.call(fakePluginContext as any, { preserveSymlinks } as any);
 
   return {
     async serverStart({ config }) {},

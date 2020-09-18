@@ -1,0 +1,57 @@
+body[layout='home'] .markdown-body .call-to-action:nth-of-type(2) {
+  --primary-color: #222;
+  --primary-color-lighter: #333;
+  --primary-color-darker: #000;
+}
+
+rocket-navigation {
+  font-family: 'Montserrat', sans-serif;
+}
+
+header {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* TODO: should be in rocket? */
+#sidebar-nav .logo-link {
+  text-decoration: none;
+}
+
+@media screen and (min-width: 1024px) {
+  body[layout='home'].has-background .page-background {
+    top: -111px;
+    right: -360px;
+  }
+}
+
+body,
+#sidebar-nav {
+  background: var(--page-background);
+}
+
+footer {
+  background-color: var(--footer-background);
+}
+
+#newsletter {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.101562);
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+  background-color: var(--blog-ba) #fafafa;
+  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
+}
+
+#newsletter h4 {
+  margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .markdown-body {
+    color: var(--primary-text-color);
+  }
+  .sidebar-tags .tag {
+    background: var(--footer-background);
+  }
+}
