@@ -42,3 +42,6 @@ local.log
 
 ## generated codelabs
 docs/.vuepress/public/codelabs
+
+# Local Netlify folder
+.netlify

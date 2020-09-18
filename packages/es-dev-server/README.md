@@ -1,12 +1,9 @@
 ---
-permalink: 'developing/es-dev-server.html'
-title: ES dev server
-section: guides
-tags:
-  - guides
+title: es dev server
+eleventyNavigation:
+  key: es dev server
+  order: 30
 ---
-
-# es dev server
 
 A web server for development without bundling.
 

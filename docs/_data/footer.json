@@ -1,0 +1,49 @@
+[
+  {
+    "name": "Discover",
+    "children": [
+      {
+        "text": "Blog",
+        "href": "/blog/"
+      },
+      {
+        "text": "About",
+        "href": "/discover/about/"
+      },
+      {
+        "text": "Help and Feedback",
+        "href": "https://github.com/open-wc/open-wc/issues"
+      }
+    ]
+  },
+  {
+    "name": "Follow",
+    "children": [
+      {
+        "text": "Github",
+        "href": "https://github.com/open-wc/open-wc"
+      },
+      {
+        "text": "Twitter",
+        "href": "https://twitter.com/openwc"
+      },
+      {
+        "text": "Slack",
+        "href": "/discover/slack/"
+      }
+    ]
+  },
+  {
+    "name": "Support",
+    "children": [
+      {
+        "text": "Sponsor",
+        "href": "https://opencollective.com/modern-web"
+      },
+      {
+        "text": "Contribute",
+        "href": "https://github.com/open-wc/open-wc/blob/master/CONTRIBUTING.md"
+      }
+    ]
+  }
+]
