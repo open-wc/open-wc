@@ -1,5 +1,4 @@
-const Terser = require('terser');
-const htmlMinifier = require('html-minifier');
+const htmlMinifier = require('html-minifier-terser');
 
 const defaultMinifyHTMLConfig = {
   collapseWhitespace: true,
@@ -9,8 +8,7 @@ const defaultMinifyHTMLConfig = {
   removeStyleLinkTypeAttributes: true,
   useShortDoctype: true,
   minifyCSS: true,
-  /** @param {string} code */
-  minifyJS: code => Terser.minify(code).code,
+  minifyJS: true,
 };
 
 /**
