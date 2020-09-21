@@ -38,7 +38,6 @@
     "deepmerge": "^4.2.2",
     "dynamic-import-polyfill": "^0.1.1",
     "es-module-shims": "^0.4.6",
-    "html-minifier": "^4.0.0",
     "intersection-observer": "^0.7.0",
     "parse5": "^5.1.1",
     "regenerator-runtime": "^0.13.3",
