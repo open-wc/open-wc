@@ -269,7 +269,7 @@ describe('getOutputHtml()', () => {
       },
     });
 
-    expect(output).to.equal('<script>console.log("bar");</script>');
+    expect(output).to.equal('<script>console.log("bar")</script>');
   });
 
   it('default minify minifies inline css', async () => {
