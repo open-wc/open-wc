@@ -1,6 +1,6 @@
 ---
-title: Learning Open WC
-pageTitle: Learning Open WC
+title: Learning open wc
+pageTitle: Learning open wc
 eleventyNavigation:
   key: Guides
   order: 10

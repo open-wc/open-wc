@@ -1,7 +1,7 @@
 html {
   --page-background: white;
-  --footer-background: rgba(0, 0, 0, 0.1);
-  --primary-color: #235f8a;
+  --footer-background: rgba(0, 0, 0, 0.02);
+  --primary-color: rgb(44, 62, 80);
   --primary-color-lighter: #449ad7;
   --primary-color-darker: #1a5285;
   --primary-color-accent: #cee5f6;
@@ -9,6 +9,18 @@ html {
   --contrast-color-dark: #1d3557;
   --primary-text-color: #2c3e50;
   --primary-lines-color: #ccc;
+  --markdown-link-color: #2758ff;
+
+  --header-color: white;
+
+  --owc-active-color: #2758ff;
+  --owc-hover-color: #436eff;
+
+  --button-one: #2758ff;
+  --button-one-hover: #436eff;
+
+  --button-two: black;
+  --button-two-hover: #444444;
 }
 
 /* TODO: markdown Vars */
@@ -17,10 +29,12 @@ html {
 
 @media (prefers-color-scheme: dark) {
   html {
+    --header-color: #2f3136;
+
     --footer-background: rgba(255, 255, 255, 0.1);
-    --page-background: #212121;
+    --page-background: #36393e;
     --primary-text-color: #eee;
-    --primary-color: #3f93ce;
+    --primary-color: white;
     --primary-color-lighter: #449ad7;
     --primary-color-darker: #1a5285;
     --primary-color-accent: #cee5f6;
@@ -28,10 +42,20 @@ html {
     --contrast-color-dark: #1d3557;
     --primary-lines-color: #333;
 
+    --owc-active-color: #41ffb0;
+    --owc-hover-color: #6dffc2;
+
+    --button-one: #9b03fe;
+    --button-one-hover: #a724ff;
+
+    --button-two: black;
+    --button-two-hover: rgb(36, 36, 36);
+
+
     /* Markdown */
     --markdown-octicon-link: var(--primary-text-color);
     --markdown-body: #24292e;
-    --markdown-link-color: #75b3f9;
+    --markdown-link-color: #41ffb0;
     --markdown-divider-color: #e1e4e8;
     --markdown-blockquote-border-color: #dfe2e5;
     --markdown-blockquote-color: #90aac7;
