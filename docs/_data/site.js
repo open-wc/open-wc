@@ -5,7 +5,7 @@ module.exports = async function () {
   const defaultValues = await getRocketValues();
   return {
     ...defaultValues,
-    name: 'Open WC',
+    name: 'open wc',
     description:
       'Open Web Components provides a set of defaults, recommendations and tools to help facilitate your web component project. Our recommendations include: developing, linting, testing, building, tooling, demoing, publishing and automating.',
     socialLinks: [

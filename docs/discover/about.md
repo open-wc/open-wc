@@ -1,8 +1,8 @@
 ---
-title: About Open WC
+title: About open wc
 layout: with-index.njk
 eleventyNavigation:
-  key: About Open WC
+  key: About open wc
 ---
 
 ## Why `open-wc`
