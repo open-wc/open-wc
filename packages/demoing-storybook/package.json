@@ -40,7 +40,7 @@
     "testing"
   ],
   "peerDependencies": {
-    "lit-html": "^1.0.0"
+    "lit-html": "^2.0.0-pre.3"
   },
   "dependencies": {
     "@babel/core": "^7.11.1",
@@ -64,7 +64,7 @@
     "fs-extra": "^8.1.0",
     "glob": "^7.1.3",
     "js-string-escape": "^1.0.1",
-    "lit-html": "^1.0.0",
+    "lit-html": "^2.0.0-pre.3",
     "lodash": "^4.17.15",
     "magic-string": "^0.25.7",
     "rollup": "^2.7.2",

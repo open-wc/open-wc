@@ -1,5 +1,5 @@
 import { ScopedElementsMixin } from '@open-wc/scoped-elements';
-import { html, LitElement, TemplateResult } from 'lit-element';
+import { html, LitElement } from 'lit-element';
 import { isIterable } from './lib.js';
 
 /** @typedef {import('@open-wc/scoped-elements').ScopedElementsMap} ScopedElementsMap */
@@ -9,7 +9,7 @@ const transform = template => {
     return [...template].map(v => transform(v));
   }
 
-  if (template instanceof TemplateResult) {
+  if (typeof template._$litType$ !== 'undefined') {
     return html(template.strings, ...template.values);
   }
 
@@ -86,7 +86,7 @@ customElements.define(wrapperTagName, ScopedElementsTestWrapper);
  *
  * @param {import('./litFixture').LitHTMLRenderable} template
  * @param {ScopedElementsMap} scopedElements
- * @returns {TemplateResult}
+ * @returns {import('lit-html').TemplateResult}
  */
 export function getScopedElementsTemplate(template, scopedElements) {
   const strings = [

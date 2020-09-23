@@ -139,7 +139,7 @@
     "abort-controller": "^3.0.0",
     "buffer": "^5.4.3",
     "koa-proxies": "^0.8.1",
-    "lit-html": "^1.0.0",
+    "lit-html": "^2.0.0-pre.3",
     "lodash-es": "^4.17.15",
     "node-fetch": "^2.6.0",
     "request": "^2.88.0",

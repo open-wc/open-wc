@@ -1,10 +1,8 @@
-import { TemplateResult } from 'lit-html';
-
 export const isIterable = object => object != null && typeof object[Symbol.iterator] === 'function';
 
 function isValidNonIterableRenderArg(x) {
   return (
-    x instanceof TemplateResult ||
+    typeof x._$litType$ !== 'undefined' ||
     x instanceof Node ||
     typeof x === 'number' ||
     typeof x === 'boolean' ||

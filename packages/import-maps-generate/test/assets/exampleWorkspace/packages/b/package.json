@@ -4,6 +4,6 @@
   "private": true,
   "main": "./b.js",
   "dependencies": {
-    "lit-html": "^1.0.0"
+    "lit-html": "^2.0.0-pre.3"
   }
 }

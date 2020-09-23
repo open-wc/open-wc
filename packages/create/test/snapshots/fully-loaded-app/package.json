@@ -58,7 +58,7 @@
   "author": "scaffold-app",
   "license": "MIT",
   "dependencies": {
-    "lit-html": "^1.0.0",
-    "lit-element": "^2.0.1"
+    "lit-html": "^2.0.0-pre.3",
+    "lit-element": "^3.0.0-pre.1"
   }
 }

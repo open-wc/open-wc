@@ -27,7 +27,7 @@
     "testing"
   ],
   "peerDependencies": {
-    "lit-html": "^1.0.0"
+    "lit-html": "^2.0.0-pre.3"
   },
   "dependencies": {
     "@open-wc/testing-helpers": "^1.8.9"
@@ -43,6 +43,6 @@
     "@storybook/addon-viewport": "^5.3.1",
     "@storybook/web-components": "^5.3.1",
     "babel-loader": "^8.0.0",
-    "lit-html": "^1.0.0"
+    "lit-html": "^2.0.0-pre.3"
   }
 }
