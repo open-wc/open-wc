@@ -10,7 +10,7 @@ version: 2.1
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: circleci/node:10.16.0-browsers
+    - image: circleci/node:10.17.0-browsers
 
 jobs:
   build:
