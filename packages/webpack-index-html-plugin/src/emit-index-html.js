@@ -19,7 +19,7 @@ function cloneAST(ast) {
  * @param {BuildResult} buildResult
  * @param {BuildResult} [legacyBuildResult]
  */
-function emitIndexHTML(compilation, config, baseIndex, buildResult, legacyBuildResult) {
+function emitIndexHTML(compilation, config, buildResult, legacyBuildResult, baseIndex) {
   /**
    * @param {string} [filename]
    * @param {string[]} [entries]
