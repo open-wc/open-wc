@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.57.6](https://github.com/open-wc/open-wc/compare/es-dev-server@1.57.5...es-dev-server@1.57.6) (2020-10-01)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
 ## [1.57.5](https://github.com/open-wc/open-wc/compare/es-dev-server@1.57.4...es-dev-server@1.57.5) (2020-09-25)
 
 **Note:** Version bump only for package es-dev-server
