@@ -129,12 +129,18 @@ class WebpackIndexHTMLPlugin {
         emitIndexHTML(
           compilation,
           this._config,
-          baseIndex,
           { entries, entryNamesForVariations },
           legacyBuildResult,
+          baseIndex,
         );
       } else {
-        emitIndexHTML(compilation, this._config, baseIndex, { entries, entryNamesForVariations });
+        emitIndexHTML(
+          compilation,
+          this._config,
+          { entries, entryNamesForVariations },
+          undefined,
+          baseIndex,
+        );
       }
       this.emitted = true;
       deferredLegacyBuildResult = null;
