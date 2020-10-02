@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.10](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.9...@open-wc/testing-helpers@1.8.10) (2020-10-02)
+
+
+### Bug Fixes
+
+* **testing-helpers:** replace ts-expect-error with ignore ([f64ed31](https://github.com/open-wc/open-wc/commit/f64ed31c4595019636ff8afc249fb9c01b858522))
+
+
+
+
+
 ## [1.8.9](https://github.com/open-wc/open-wc/compare/@open-wc/testing-helpers@1.8.8...@open-wc/testing-helpers@1.8.9) (2020-08-19)
 
 
