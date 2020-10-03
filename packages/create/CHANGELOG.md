@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.33.3...@open-wc/create@0.34.0) (2020-10-03)
+
+
+### Features
+
+* **create:** update to use @web/dev-server ([#1858](https://github.com/open-wc/open-wc/issues/1858)) ([3383658](https://github.com/open-wc/open-wc/commit/33836581bbf2db98e5815f5f3a066446b201b742))
+
+
+
+
+
 ## [0.33.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.33.2...@open-wc/create@0.33.3) (2020-10-01)
 
 **Note:** Version bump only for package @open-wc/create
