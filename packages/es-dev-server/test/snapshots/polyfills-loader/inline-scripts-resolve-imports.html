@@ -50,7 +50,7 @@
     }
 
     if (!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || window.ShadyDOM && window.ShadyDOM.force) {
-      polyfills.push(loadScript('./polyfills/webcomponents.6954abecfe8b165751e6bc9b0af6c639.js'));
+      polyfills.push(loadScript('./polyfills/webcomponents.06b4c3b88cf074d8d957bbee7eaf7012.js'));
     }
 
     if (!('noModule' in HTMLScriptElement.prototype) && 'getRootNode' in Element.prototype) {
@@ -84,7 +84,7 @@
       polyfillsLoader();
     }
 
-    s.src = "polyfills/core-js.da8d8819d4fcddc05b82706be190ca82.js";
+    s.src = "polyfills/core-js.a8ea21cd3f54f879f981d1dccc3c2a0c.js";
     s.onload = onLoaded;
 
     s.onerror = function () {

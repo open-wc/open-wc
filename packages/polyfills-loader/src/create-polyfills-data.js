@@ -194,7 +194,16 @@ function createPolyfillsData(cfg) {
     if (!codePath || !fs.existsSync(codePath) || !fs.statSync(codePath).isFile()) {
       throw new Error(`Could not find a file at ${filePath}`);
     }
-    return fs.readFileSync(filePath, 'utf-8');
+
+    const contentLines = fs.readFileSync(filePath, 'utf-8').split('\n');
+
+    // remove source map url
+    for (let i = contentLines.length - 1; i >= 0; i -= 1) {
+      if (contentLines[i].startsWith('//# sourceMappingURL')) {
+        contentLines[i] = '';
+      }
+    }
+    return contentLines.join('\n');
   }
 
   /** @type {PolyfillFile[]} */
