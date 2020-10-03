@@ -1,4 +1,4 @@
-export const TestingKarmaMixin = subclass =>
+export const TestingWebTestRunnerMixin = subclass =>
   class extends subclass {
     async execute() {
       await super.execute();
