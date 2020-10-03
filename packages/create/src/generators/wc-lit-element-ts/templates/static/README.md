@@ -24,7 +24,7 @@ For most of the tools, the configuration is in the `package.json` to reduce the 
 
 If you customize the configuration a lot, you can consider moving them to individual files.
 
-## Local Demo with `es-dev-server`
+## Local Demo with `web-dev-server`
 ```bash
 npm start
 ```
