@@ -102,8 +102,18 @@ export function getDiffableHTML(html, options = {}) {
   }
 
   /** @param {Node} node */
+  function getTagName(node) {
+    // Use original tag if available via data-tag-name attribute (use-case for scoped elements)
+    // See packages/scoped-elements for more info
+    if (node instanceof Element) {
+      return node.getAttribute('data-tag-name') || node.localName;
+    }
+    return node.nodeName.toLowerCase();
+  }
+
+  /** @param {Node} node */
   function shouldProcessChildren(node) {
-    const name = node.nodeName.toLowerCase();
+    const name = getTagName(node);
     return (
       !ignoreTags.includes(name) &&
       !ignoreChildren.includes(name) &&
@@ -151,7 +161,7 @@ export function getDiffableHTML(html, options = {}) {
             `An object entry to ignoreAttributes should contain a 'tags' and an 'attributes' property.`,
           );
         }
-        return e.tags.includes(el.nodeName.toLowerCase()) && e.attributes.includes(attr.name);
+        return e.tags.includes(getTagName(el)) && e.attributes.includes(attr.name);
       });
     };
   }
@@ -178,21 +188,14 @@ export function getDiffableHTML(html, options = {}) {
   }
 
   /** @param {Element} el */
-  function getLocalName(el) {
-    // Use original tag if available via data-tag-name attribute (use-case for scoped elements)
-    // See packages/scoped-elements for more info
-    return el.getAttribute('data-tag-name') || el.localName;
-  }
-
-  /** @param {Element} el */
   function printOpenElement(el) {
-    text += `${getIndentation()}<${getLocalName(el)}${getAttributesString(el)}>\n`;
+    text += `${getIndentation()}<${getTagName(el)}${getAttributesString(el)}>\n`;
   }
 
   /** @param {Node} node */
   function onNodeStart(node) {
     // don't print this node if we should ignore it
-    if (node.nodeName === 'DIFF-CONTAINER' || ignoreTags.includes(node.nodeName.toLowerCase())) {
+    if (getTagName(node) === 'diff-container' || ignoreTags.includes(getTagName(node))) {
       return;
     }
 
@@ -214,17 +217,17 @@ export function getDiffableHTML(html, options = {}) {
 
   /** @param {Element} el */
   function printCloseElement(el) {
-    if (getLocalName(el) === 'diff-container' || VOID_ELEMENTS.includes(getLocalName(el))) {
+    if (getTagName(el) === 'diff-container' || VOID_ELEMENTS.includes(getTagName(el))) {
       return;
     }
 
-    text += `${getIndentation()}</${getLocalName(el)}>\n`;
+    text += `${getIndentation()}</${getTagName(el)}>\n`;
   }
 
   /** @param {Node} node */
   function onNodeEnd(node) {
     // don't print this node if we should ignore it
-    if (ignoreTags.includes(node.nodeName.toLowerCase())) {
+    if (ignoreTags.includes(getTagName(node))) {
       return;
     }
 

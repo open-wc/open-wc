@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.18.0...@open-wc/semantic-dom-diff@0.19.0) (2020-10-03)
+
+
+### Features
+
+* **semantic-dom-diff:** diff options now process scoped elements ([caa1608](https://github.com/open-wc/open-wc/commit/caa16081e38cc4202a8300cf5637657a6ff11a3d))
+
+
+
+
+
 # [0.18.0](https://github.com/open-wc/open-wc/compare/@open-wc/semantic-dom-diff@0.17.10...@open-wc/semantic-dom-diff@0.18.0) (2020-09-11)
 
 
