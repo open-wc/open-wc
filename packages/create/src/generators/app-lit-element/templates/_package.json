@@ -2,13 +2,13 @@
   "name": "<%= tagName %>",
   "license": "MIT",
   "scripts": {
-    "start": "es-dev-server --app-index index.html --node-resolve --open --watch"
+    "start": "web-dev-server --app-index index.html --node-resolve --open --watch"
   },
   "dependencies": {
     "lit-html": "^1.0.0",
     "lit-element": "^2.0.1"
   },
   "devDependencies": {
-    "es-dev-server": "^1.5.0"
+    "@web/dev-server": "^0.0.12"
   }
 }
