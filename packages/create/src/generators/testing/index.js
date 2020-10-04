@@ -1,8 +1,8 @@
 /* eslint-disable max-classes-per-file */
-import { TestingKarmaMixin } from '../testing-karma/index.js';
+import { TestingWebTestRunnerMixin } from '../testing-wtr/index.js';
 
 export const TestingMixin = subclass =>
-  class extends TestingKarmaMixin(subclass) {
+  class extends TestingWebTestRunnerMixin(subclass) {
     async execute() {
       await super.execute();
 

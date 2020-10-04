@@ -53,8 +53,7 @@
 │   ├── .gitignore
 │   ├── custom-elements.json
 │   ├── index.html
-│   ├── karma.bs.config.js
-│   ├── karma.conf.js
+│   ├── web-test-runner.config.js
 │   ├── LICENSE
 │   ├── package.json
 │   ├── README.md

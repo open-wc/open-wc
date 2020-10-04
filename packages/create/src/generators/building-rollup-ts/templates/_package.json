@@ -5,6 +5,7 @@
   },
   "devDependencies": {
     "@open-wc/building-rollup": "^1.0.0",
+    "deepmerge": "^4.2.2",
     "rimraf": "^2.6.3",
     "rollup": "^2.3.4"
   }

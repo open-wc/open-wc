@@ -71,7 +71,7 @@ export const AppMixin = subclass =>
           choices: (prev, all) =>
             [
               { title: 'Linting (eslint & prettier)', value: 'linting' },
-              { title: 'Testing (karma)', value: 'testing' },
+              { title: 'Testing (web-test-runner)', value: 'testing' },
               { title: 'Demoing (storybook)', value: 'demoing' },
               all.scaffoldType !== 'wc' && {
                 title: 'Building (rollup)',
