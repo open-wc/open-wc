@@ -1,9 +1,10 @@
 {
-  "main": "index.js",
-  "module": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "scripts": {
     "start": "concurrently --kill-others --names tsc,web-dev-server \"npm run tsc:watch\" \"web-dev-server --app-index demo/index.html --node-resolve --open --watch\"",
-    "tsc:watch": "tsc --watch"
+    "tsc:watch": "tsc --watch",
+    "prepublish": "tsc"
   },
   "dependencies": {
     "lit-html": "^1.1.2",
