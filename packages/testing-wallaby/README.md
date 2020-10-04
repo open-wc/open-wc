@@ -6,6 +6,12 @@ tags:
   - guides
 ---
 
+> **Notice**
+>
+> We have stopped new development of this package.
+>
+> We will continue to support security patches and bug fixes, but we recommend [web test runner](https://modern-web.dev/docs/test-runner/overview/) for testing web component projects.
+
 # Testing in IDE via Wallaby
 
 Wallaby.js is a Plugin for your IDE and runs tests in real time while you are typing.

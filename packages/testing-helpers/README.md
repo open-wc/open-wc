@@ -103,7 +103,7 @@ expect(el.bar).to.equal('baz');
 
 ## Customize the fixture container
 
-Ordinarily, `fixture` will render your template as a child of a plain `<div>` element on karma's test runner page:
+Ordinarily, `fixture` will render your template as a child of a plain `<div>` element on the test page:
 
 ```js
 const el = await fixture(html`<my-el></my-el>`);
