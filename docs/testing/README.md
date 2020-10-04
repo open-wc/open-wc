@@ -32,7 +32,7 @@ To help you get started with testing, we recommend [reading this article](https:
 
 ## Web Test Runner
 
-For testing in the browser, we recommend [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/). With Web Test Runner, you can run unit tests for our javascript, as well as component tests on the rendered dom elements.
+For testing in the browser, we recommend [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/). With Web Test Runner, you can run unit tests for your javascript, as well as component tests on the rendered dom elements.
 
 See the [this guide](https://modern-web.dev/guides/test-runner/getting-started/) for a step by step guide how to set up the test runner.
 
