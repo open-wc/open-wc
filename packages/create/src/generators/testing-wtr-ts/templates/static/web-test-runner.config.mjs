@@ -1,5 +1,4 @@
 export default {
-    files: 'dist/**/test/**/*.test.js',
-    concurrency: 10,
-    nodeResolve: true
+  files: 'dist/**/test/**/*.test.js',
+  nodeResolve: true
 };
