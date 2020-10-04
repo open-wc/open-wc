@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.34.0...@open-wc/create@0.35.0) (2020-10-04)
+
+
+### Features
+
+* **create:** update to use @web/test-runner ([#1861](https://github.com/open-wc/open-wc/issues/1861)) ([0bad752](https://github.com/open-wc/open-wc/commit/0bad752609c613bbaed887fe26bc70d0809872cf))
+
+
+
+
+
 # [0.34.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.33.3...@open-wc/create@0.34.0) (2020-10-03)
 
 
