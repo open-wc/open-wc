@@ -6,6 +6,12 @@ tags:
   - guides
 ---
 
+> **Notice**
+>
+> We have stopped new development of this package.
+>
+> We will continue to support security patches and bug fixes, but we recommend [web test runner](https://modern-web.dev/docs/test-runner/overview/) for testing web component projects.
+
 # Testing via Browserstack
 
 Configuration for setting up browserstack testing with karma.
