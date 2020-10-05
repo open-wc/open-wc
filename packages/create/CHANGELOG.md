@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.36.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.35.0...@open-wc/create@0.36.0) (2020-10-05)
+
+
+### Features
+
+* **create:** add prepublish script to typescript wc generator ([828adad](https://github.com/open-wc/open-wc/commit/828adadb75327d9870d3be4132e57370e4f61490))
+
+
+
+
+
 # [0.35.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.34.0...@open-wc/create@0.35.0) (2020-10-04)
 
 
