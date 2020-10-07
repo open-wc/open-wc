@@ -1334,7 +1334,7 @@ render() {
 
 If you refresh, the UI should remain unchanged. If that is the case, congratulations! You're now composing elements like a pro. :)
 
-Notice that we are again using the property syntax to pass on the data in `this.todo` to the `<todo-list>` element.
+Notice that we are again using the property syntax to pass on the data in `this.todos` to the `<todo-list>` element.
 
 Next, we need to listen to the new events of `<todo-list>`:
 
