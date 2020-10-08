@@ -20,8 +20,6 @@ A web server for development without bundling.
 npx es-dev-server --node-resolve --watch
 ```
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 **Quick overview**
 
 - efficient browser caching for fast reloads
