@@ -16,8 +16,6 @@ tags:
 
 Karma plugin for testing with real es modules without any bundling.
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 Out the box es modules don't work with karma because they import their dependencies at runtime from the browser. Karma doesn't allow requesting any files it doesn't know about upfront.
 
 The `karma-esm` plugin fixes this and spins up [es-dev-server](https://open-wc.org/developing/es-dev-server.html) behind the scenes. This lets you write tests using es modules, modern javascript syntax, and features, and have karma run them on all modern browsers and IE11.
