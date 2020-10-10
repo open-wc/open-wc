@@ -27,7 +27,7 @@ function getPolyfills(config) {
       });
     } catch (error) {
       throw new Error(
-        'configured to pollyfill core-js, but no polyfills found. Install with "npm i -D core-js-bundle"',
+        'configured to polyfill core-js, but no polyfills found. Install with "npm i -D core-js-bundle"',
       );
     }
   }
@@ -44,7 +44,7 @@ function getPolyfills(config) {
       });
     } catch (error) {
       throw new Error(
-        'configured to pollyfill systemjs, but no polyfills found. Install with "npm i -D systemjs"',
+        'configured to polyfill systemjs, but no polyfills found. Install with "npm i -D systemjs"',
       );
     }
   }
@@ -62,7 +62,7 @@ function getPolyfills(config) {
       });
     } catch (error) {
       throw new Error(
-        'configured to pollyfill systemjs, but no polyfills found. Install with "npm i -D systemjs"',
+        'configured to polyfill systemjs, but no polyfills found. Install with "npm i -D systemjs"',
       );
     }
   }
@@ -81,7 +81,7 @@ function getPolyfills(config) {
       });
     } catch (error) {
       throw new Error(
-        'configured to pollyfill regenerator-runtime, but no polyfills found. Install with "npm i -D regenerator-runtime"',
+        'configured to polyfill regenerator-runtime, but no polyfills found. Install with "npm i -D regenerator-runtime"',
       );
     }
   }
@@ -95,7 +95,7 @@ function getPolyfills(config) {
       });
     } catch (error) {
       throw new Error(
-        'configured to pollyfill fetch, but no polyfills found. Install with "npm i -D whatwg-fetch"',
+        'configured to polyfill fetch, but no polyfills found. Install with "npm i -D whatwg-fetch"',
       );
     }
   }
@@ -122,7 +122,7 @@ function getPolyfills(config) {
       });
     } catch (error) {
       throw new Error(
-        'configured to pollyfill IntersectionObserver, but no polyfills found. Install with "npm i -D intersection-observer"',
+        'configured to polyfill IntersectionObserver, but no polyfills found. Install with "npm i -D intersection-observer"',
       );
     }
   }
@@ -148,7 +148,7 @@ function getPolyfills(config) {
       });
     } catch (error) {
       throw new Error(
-        'configured to pollyfill webcomponentsjs, but no polyfills found. Install with "npm i -D @webcomponents/webcomponentsjs"',
+        'configured to polyfill webcomponentsjs, but no polyfills found. Install with "npm i -D @webcomponents/webcomponentsjs"',
       );
     }
   }
@@ -164,7 +164,7 @@ function getPolyfills(config) {
       });
     } catch (error) {
       throw new Error(
-        'configured to pollyfill es-module-shims, but no polyfills found. Install with "npm i -D es-module-shims"',
+        'configured to polyfill es-module-shims, but no polyfills found. Install with "npm i -D es-module-shims"',
       );
     }
   }
@@ -190,7 +190,7 @@ function getPolyfills(config) {
       });
     } catch (error) {
       throw new Error(
-        'configured to polyfill ShadyCssCustomStyle, but no pollyfills found. Install with "npm i -D @webcomponents/shadycss" and "npm i -D @webcomponents/shady-scoped-css-element"',
+        'configured to polyfill ShadyCssCustomStyle, but no polyfills found. Install with "npm i -D @webcomponents/shadycss" and "npm i -D @webcomponents/shady-scoped-css-element"',
       );
     }
   }
