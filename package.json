@@ -49,6 +49,7 @@
     "@types/chai": "^4.2.11",
     "@types/chai-fs": "^2.0.2",
     "@types/eslint": "^7.2.4",
+    "@types/estree": "^0.0.45",
     "@types/parse5-htmlparser2-tree-adapter": "^5.0.1",
     "babel-eslint": "^10.0.3",
     "chai": "^4.2.0",

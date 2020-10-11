@@ -58,6 +58,14 @@ function hasDecorators(member) {
 }
 
 /**
+ * @param {import("estree").Property|import("estree").SpreadElement} property
+ * @return {property is import('estree').SpreadElement}
+ */
+function isSpreadElement(property) {
+  return property.type === 'SpreadElement';
+}
+
+/**
  * Get the properties object of an element class
  *
  * @param {import('estree').Class} node Class to retrieve map from
@@ -77,9 +85,11 @@ function getPropertyMap(node) {
       if (ret) {
         const arg = ret.argument;
         for (const prop of arg.properties) {
-          const name = getIdentifierName(prop.key);
-          if (name && prop.value.type === 'ObjectExpression') {
-            result.set(name, prop.value);
+          if (!isSpreadElement(prop)) {
+            const name = getIdentifierName(prop.key);
+            if (name && prop.value.type === 'ObjectExpression') {
+              result.set(name, prop.value);
+            }
           }
         }
       }
