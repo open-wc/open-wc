@@ -1,11 +1,8 @@
 /* eslint-disable */
-const { getRocketValues } = require('@d4kmor/cli');
 
 module.exports = async function () {
-  const defaultValues = await getRocketValues();
   return {
-    ...defaultValues,
-    name: 'open wc',
+    name: 'Open Web Components',
     description:
       'Open Web Components provides a set of defaults, recommendations and tools to help facilitate your web component project. Our recommendations include: developing, linting, testing, building, tooling, demoing, publishing and automating.',
     socialLinks: [

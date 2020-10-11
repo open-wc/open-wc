@@ -1,5 +1,5 @@
 ---
-title: open wc
+title: Open Web Components
 layout: home.njk
 slogan: 'Open Web Components provides a set of defaults, recommendations and tools to help facilitate your web component project. Our recommendations include: developing, linting, testing, building, tooling, demoing, publishing and automating.'
 callToActionItems:
