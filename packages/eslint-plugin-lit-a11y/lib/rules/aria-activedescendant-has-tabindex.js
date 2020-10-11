@@ -19,27 +19,13 @@ const AriaActiveDescendantHasTabindexRule = {
       category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
 
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
-
     return {
-      TaggedTemplateExpression: node => {
+      TaggedTemplateExpression(node) {
         if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
@@ -52,7 +38,7 @@ const AriaActiveDescendantHasTabindexRule = {
               const { tabindex } = element.attribs;
 
               if (tabindex && tabindex.startsWith('{{')) {
-                return;
+                return; // tabindex is interpolated. ignore this node, assuming it's valid
               }
 
               // If this is an interactive element and the tabindex attribute is not specified,
@@ -67,6 +53,7 @@ const AriaActiveDescendantHasTabindexRule = {
               }
 
               const loc = analyzer.getLocationFor(element);
+
               context.report({
                 loc,
                 message: 'Elements with aria-activedescendant must be tabbable.',

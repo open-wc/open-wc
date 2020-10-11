@@ -9,15 +9,23 @@ This rule aims to...
 Examples of **incorrect** code for this rule:
 
 ```js
-html`<a accesskey="j"></a>`;
-html`<a accesskey="${foo}"></a>`;
-html`<a accesskey="${'f'}"></a>`;
+html`
+  <a accesskey="j"></a>
+`;
+html`
+  <a accesskey="${foo}"></a>
+`;
+html`
+  <a accesskey="${'f'}"></a>
+`;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`<div></div>`;
+html`
+  <div></div>
+`;
 ```
 
 ### Options

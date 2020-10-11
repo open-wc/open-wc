@@ -31,7 +31,7 @@ ruleTester.run('no-autofocus', rule, {
       code: 'html`<div autofocus></div>`',
       errors: [
         {
-          message: 'Enforce that autofocus attribute is not used on elements.',
+          message: 'The autofocus attribute is not allowed.',
         },
       ],
     },
@@ -39,7 +39,7 @@ ruleTester.run('no-autofocus', rule, {
       code: "html`<div autofocus='true'></div>`",
       errors: [
         {
-          message: 'Enforce that autofocus attribute is not used on elements.',
+          message: 'The autofocus attribute is not allowed.',
         },
       ],
     },
@@ -47,7 +47,7 @@ ruleTester.run('no-autofocus', rule, {
       code: "html`<div autofocus='false'></div>`",
       errors: [
         {
-          message: 'Enforce that autofocus attribute is not used on elements.',
+          message: 'The autofocus attribute is not allowed.',
         },
       ],
     },
@@ -55,7 +55,7 @@ ruleTester.run('no-autofocus', rule, {
       code: 'html`<div autofocus=${foo}></div>`',
       errors: [
         {
-          message: 'Enforce that autofocus attribute is not used on elements.',
+          message: 'The autofocus attribute is not allowed.',
         },
       ],
     },

@@ -26,120 +26,55 @@ ruleTester.run('no-redundant-role', rule, {
   invalid: [
     {
       code: "html`<button role='button'></button>`",
-      errors: [
-        {
-          message:
-            'Enforce explicit role property is not the same as implicit/default role property on element',
-        },
-      ],
+      errors: [{ message: '"button" role is implicit in <button> element.' }],
     },
     {
       code: "html`<a href='foo' role='link'></a>`",
-      errors: [
-        {
-          message:
-            'Enforce explicit role property is not the same as implicit/default role property on element',
-        },
-      ],
+      errors: [{ message: '"link" role is implicit in <a> element.' }],
     },
     {
       code: "html`<area href='foo' role='link'></area>`",
-      errors: [
-        {
-          message:
-            'Enforce explicit role property is not the same as implicit/default role property on element',
-        },
-      ],
+      errors: [{ message: '"link" role is implicit in <area> element.' }],
     },
     {
       code: "html`<article role='article'></article>`",
-      errors: [
-        {
-          message:
-            'Enforce explicit role property is not the same as implicit/default role property on element',
-        },
-      ],
+      errors: [{ message: '"article" role is implicit in <article> element.' }],
     },
     {
       code: "html`<aside role='complementary'></aside>`",
-      errors: [
-        {
-          message:
-            'Enforce explicit role property is not the same as implicit/default role property on element',
-        },
-      ],
+      errors: [{ message: '"complementary" role is implicit in <aside> element.' }],
     },
     {
       code: "html`<datalist role='listbox'></datalist>`",
-      errors: [
-        {
-          message:
-            'Enforce explicit role property is not the same as implicit/default role property on element',
-        },
-      ],
+      errors: [{ message: '"listbox" role is implicit in <datalist> element.' }],
     },
     {
       code: "html`<details role='group'></details>`",
-      errors: [
-        {
-          message:
-            'Enforce explicit role property is not the same as implicit/default role property on element',
-        },
-      ],
+      errors: [{ message: '"group" role is implicit in <details> element.' }],
     },
     {
       code: "html`<dialog role='dialog'></dialog>`",
-      errors: [
-        {
-          message:
-            'Enforce explicit role property is not the same as implicit/default role property on element',
-        },
-      ],
+      errors: [{ message: '"dialog" role is implicit in <dialog> element.' }],
     },
     {
       code: "html`<dl role='list'></dl>`",
-      errors: [
-        {
-          message:
-            'Enforce explicit role property is not the same as implicit/default role property on element',
-        },
-      ],
+      errors: [{ message: '"list" role is implicit in <dl> element.' }],
     },
     {
       code: "html`<h1 role='heading'></h1>`",
-      errors: [
-        {
-          message:
-            'Enforce explicit role property is not the same as implicit/default role property on element',
-        },
-      ],
+      errors: [{ message: '"heading" role is implicit in <h1> element.' }],
     },
     {
       code: "html`<hr role='separator'></hr>`",
-      errors: [
-        {
-          message:
-            'Enforce explicit role property is not the same as implicit/default role property on element',
-        },
-      ],
+      errors: [{ message: '"separator" role is implicit in <hr> element.' }],
     },
     {
       code: "html`<img alt='foo' role='img'></img>`",
-      errors: [
-        {
-          message:
-            'Enforce explicit role property is not the same as implicit/default role property on element',
-        },
-      ],
+      errors: [{ message: '"img" role is implicit in <img> element.' }],
     },
     {
       code: "html`<img role='img'></img>`",
-      errors: [
-        {
-          message:
-            'Enforce explicit role property is not the same as implicit/default role property on element',
-        },
-      ],
+      errors: [{ message: '"img" role is implicit in <img> element.' }],
     },
   ],
 });

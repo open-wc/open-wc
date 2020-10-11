@@ -19,45 +19,35 @@ const MouseEventsHaveKeyEventsRule = {
       category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
 
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
-
     return {
-      TaggedTemplateExpression: node => {
+      TaggedTemplateExpression(node) {
         if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
             enterElement(element) {
               const { attribs } = element;
-              // Check onmouseover / onfocus pairing.
-              const onMouseOver = Object.keys(attribs).includes('@mouseover');
-              const onMouseOverValue = attribs['@mouseover'];
+              // Check @mouseover / @focus pairing.
+              const hasMouseoverHandler = Object.keys(attribs).includes('@mouseover');
+              const mouseoverHandlerValue = attribs['@mouseover'];
 
-              if (onMouseOver && onMouseOverValue != null) {
-                const hasOnFocus = Object.keys(attribs).includes('@focus');
-                const onFocusValue = attribs['@focus'];
+              if (hasMouseoverHandler && mouseoverHandlerValue != null) {
+                const hasFocusHandler = Object.keys(attribs).includes('@focus');
+                const focusHandlerValue = attribs['@focus'];
 
-                if (hasOnFocus === false || onFocusValue === null || onFocusValue === undefined) {
+                if (
+                  hasFocusHandler === false ||
+                  focusHandlerValue === null ||
+                  focusHandlerValue === undefined
+                ) {
                   context.report({
                     node,
-                    message: '@mouseover must be accompanied by @focus for accessibility.',
+                    message: '@mouseover must be accompanied by @focus.',
                   });
                 }
               }
@@ -72,7 +62,7 @@ const MouseEventsHaveKeyEventsRule = {
                 if (hasOnBlur === false || onBlurValue === null || onBlurValue === undefined) {
                   context.report({
                     node,
-                    message: '@mouseout must be accompanied by @blur for accessibility.',
+                    message: '@mouseout must be accompanied by @blur.',
                   });
                 }
               }

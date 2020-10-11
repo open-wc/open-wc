@@ -4,6 +4,7 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isAriaHidden } = require('../utils/aria.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
 const { isInteractiveElement } = require('../utils/isInteractiveElement.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
@@ -22,69 +23,52 @@ const ClickEventsHaveKeyEventsRule = {
       category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
 
   create(context) {
-    // variables should be defined here
+    /**
+     * @param {import("parse5-htmlparser2-tree-adapter").Element} element
+     * @return {boolean}
+     */
+    function hasClickListener(element) {
+      return Object.keys(element.attribs).includes('@click');
+    }
 
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
+    /**
+     * @param {import("parse5-htmlparser2-tree-adapter").Element} element
+     * @return {boolean}
+     */
+    function hasKeyboardListener(element) {
+      const requiredProps = ['@keydown', '@keyup', '@keypress'];
+      return Object.keys(element.attribs).some(attr => requiredProps.includes(attr));
+    }
 
     return {
-      TaggedTemplateExpression: node => {
+      TaggedTemplateExpression(node) {
         if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
             enterElement(element) {
-              if (!Object.keys(element.attribs).includes('@click')) {
-                return;
-              }
-
-              const requiredProps = ['@keydown', '@keyup', '@keypress'];
-
               if (
-                isHiddenFromScreenReader(element.name, element.attribs) ||
-                isPresentationRole(element.attribs)
-              ) {
-                return;
-              }
-
-              if (isInteractiveElement(element.name, element.attribs)) {
-                return;
-              }
-
-              if (Object.keys(element.attribs).some(attr => requiredProps.includes(attr))) {
-                return;
-              }
-
-              if (
-                (Object.keys(element.attribs).includes('aria-hidden') &&
-                  element.attribs['aria-hidden'] === 'true') ||
-                (element.attribs['aria-hidden'] &&
-                  element.attribs['aria-hidden'].startsWith('{{')) ||
-                element.attribs['aria-hidden'] === ''
+                !hasClickListener(element) || // not clickable
+                isHiddenFromScreenReader(element.name, element.attribs) || // excluded from AOM
+                isPresentationRole(element.attribs) || // excluded from AOM
+                isAriaHidden(element) || // excluded from AOM
+                hasKeyboardListener(element) || // has keyboard listeners
+                isInteractiveElement(element.name, element.attribs) // keyboard-accesible by default
               ) {
                 return;
               }
 
               const loc = analyzer.getLocationFor(element);
-              context.report({
-                loc,
-                message:
-                  'Clickable non-interactive elements must have at least 1 keyboard event listener',
-              });
+
+              const message =
+                'Clickable non-interactive elements must have at least 1 keyboard event listener';
+
+              context.report({ loc, message });
             },
           });
         }

@@ -24,13 +24,9 @@ const ruleTester = new RuleTester({
 ruleTester.run('mouse-events-have-key-events', rule, {
   valid: [
     { code: 'html`<div @mouseover=${foo} @focus=${foo} />;`' },
-    {
-      code: 'html`<div @mouseover=${foo} @focus=${foo} />;`',
-    },
+    { code: 'html`<div @mouseover=${foo} @focus=${foo} />;`' },
     { code: 'html`<div @mouseover=${handleMouseOver} @focus=${handleFocus} />`' },
-    {
-      code: 'html`<div @mouseover=${handleMouseOver} @focus=${handleFocus} />`',
-    },
+    { code: 'html`<div @mouseover=${handleMouseOver} @focus=${handleFocus} />`' },
     { code: 'html`<div />;`' },
     { code: 'html`<div @blur=${() => {}} />`' },
     { code: 'html`<div @focus=${() => {}} />`' },
@@ -43,19 +39,19 @@ ruleTester.run('mouse-events-have-key-events', rule, {
   invalid: [
     {
       code: 'html`<div @mouseover=${foo} />;`',
-      errors: ['@mouseover must be accompanied by @focus for accessibility.'],
+      errors: ['@mouseover must be accompanied by @focus.'],
     },
     {
       code: 'html`<div @mouseout=${foo} />`',
-      errors: ['@mouseout must be accompanied by @blur for accessibility.'],
+      errors: ['@mouseout must be accompanied by @blur.'],
     },
     {
       code: 'html`<div @mouseover=${foo} />`',
-      errors: ['@mouseover must be accompanied by @focus for accessibility.'],
+      errors: ['@mouseover must be accompanied by @focus.'],
     },
     {
       code: 'html`<div @mouseout=${foo} />`',
-      errors: ['@mouseout must be accompanied by @blur for accessibility.'],
+      errors: ['@mouseout must be accompanied by @blur.'],
     },
   ],
 });

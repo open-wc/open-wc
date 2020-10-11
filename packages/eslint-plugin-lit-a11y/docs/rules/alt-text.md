@@ -9,14 +9,20 @@ This rule aims to...
 Examples of **incorrect** code for this rule:
 
 ```js
-html`<img src="./myimg.png" />`;
+html`
+  <img src="./myimg.png" />
+`;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`<img alt="" />`;
-html`<img alt="foo" />`;
+html`
+  <img alt="" />
+`;
+html`
+  <img alt="foo" />
+`;
 ```
 
 ### Options

@@ -18,7 +18,33 @@ function isAriaPropertyName(string) {
   return aria.get(string) !== undefined;
 }
 
+/**
+ * Identifies invalid aria-* attributes
+ * @param {string} attr
+ * @return {boolean}
+ */
+function isInvalidAriaAttribute(attr) {
+  const lower = attr.toLowerCase();
+  return lower.startsWith('aria-') && !isAriaPropertyName(lower);
+}
+
+/**
+ * Is the element excluded from the AOM by means of the `aria-hidden` attribute?
+ * @param {import('parse5-htmlparser2-tree-adapter').Element} element
+ * @return {boolean}
+ */
+function isAriaHidden(element) {
+  return (
+    (Object.keys(element.attribs).includes('aria-hidden') &&
+      element.attribs['aria-hidden'] === 'true') ||
+    (element.attribs['aria-hidden'] && element.attribs['aria-hidden'].startsWith('{{')) ||
+    element.attribs['aria-hidden'] === ''
+  );
+}
+
 module.exports = {
   isAriaRole,
   isAriaPropertyName,
+  isInvalidAriaAttribute,
+  isAriaHidden,
 };

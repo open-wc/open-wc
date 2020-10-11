@@ -29,7 +29,7 @@ ruleTester.run('no-distracting-elements', rule, {
       code: 'html`<marquee></marquee>`',
       errors: [
         {
-          message: "Don't use distracting elements.",
+          message: '<marquee> elements are distracting and must not be used.',
         },
       ],
     },
@@ -37,7 +37,7 @@ ruleTester.run('no-distracting-elements', rule, {
       code: 'html`<blink></blink>`',
       errors: [
         {
-          message: "Don't use distracting elements.",
+          message: '<blink> elements are distracting and must not be used.',
         },
       ],
     },

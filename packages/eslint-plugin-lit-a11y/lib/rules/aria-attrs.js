@@ -4,7 +4,7 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
-const { isAriaPropertyName } = require('../utils/aria.js');
+const { isInvalidAriaAttribute } = require('../utils/aria.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
@@ -20,41 +20,28 @@ const AriaAttrsRule = {
       category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
 
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
-
     return {
-      TaggedTemplateExpression: node => {
+      TaggedTemplateExpression(node) {
         if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
             enterElement(element) {
               for (const attr of Object.keys(element.attribs)) {
-                if (attr.startsWith('aria-')) {
-                  if (!isAriaPropertyName(attr)) {
-                    const loc = analyzer.getLocationForAttribute(element, attr);
-                    context.report({
-                      loc,
-                      message: 'Elements cannot use an invalid ARIA attribute.',
-                    });
-                  }
+                if (isInvalidAriaAttribute(attr)) {
+                  const loc = analyzer.getLocationForAttribute(element, attr);
+                  context.report({
+                    loc,
+                    message: 'Invalid ARIA attribute "{{attr}}".',
+                    data: {
+                      attr,
+                    },
+                  });
                 }
               }
             },

@@ -9,17 +9,29 @@ This rule aims to...
 Examples of **incorrect** code for this rule:
 
 ```js
-html`<div role="foo"></div>`;
+html`
+  <div role="foo"></div>
+`;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`<div role="alert"></div>`;
-html`<div role="navigation"></div>`;
-html`<div role="${foo}"></div>`;
-html`<div role=${foo}></div>`;
-html`<div></div>`;
+html`
+  <div role="alert"></div>
+`;
+html`
+  <div role="navigation"></div>
+`;
+html`
+  <div role="${foo}"></div>
+`;
+html`
+  <div role=${foo}></div>
+`;
+html`
+  <div></div>
+`;
 ```
 
 ### Options

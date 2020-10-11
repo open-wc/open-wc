@@ -1,5 +1,5 @@
 /**
- * @fileoverview Enforce usage of onBlur over onChange for accessibility.
+ * @fileoverview Enforce usage of @blur over @change with <select> and <option>.
  * @author open-wc
  */
 
@@ -13,40 +13,26 @@ const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const applicableTypes = ['select', 'option'];
 
 /** @type {import("eslint").Rule.RuleModule} */
-const NoOnchangeRule = {
+const NoInvalidChangeHandlerRule = {
   meta: {
     type: 'suggestion',
     docs: {
-      description: 'Enforce usage of @blur over @change for accessibility.',
+      description: 'Enforce usage of @blur over @change with <select> and <option>.',
       category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
 
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
-
     return {
-      TaggedTemplateExpression: node => {
+      TaggedTemplateExpression(node) {
         if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
-            enterElement: element => {
+            enterElement(element) {
               if (applicableTypes.includes(element.name)) {
                 const change = Object.keys(element.attribs).includes('@change');
                 const blur = Object.keys(element.attribs).includes('@blur');
@@ -55,8 +41,10 @@ const NoOnchangeRule = {
                   const loc = analyzer.getLocationFor(element);
                   context.report({
                     loc,
-                    message:
-                      '@blur must be used instead of @change, unless absolutely necessary and it causes no negative consequences for keyboard only or screen reader users.',
+                    message: `@blur must be used instead of @change on <{{tagName}}>, unless absolutely necessary and it causes no negative consequences for keyboard only or screen reader users.`,
+                    data: {
+                      tagName: element.name,
+                    },
                   });
                 }
               }
@@ -68,4 +56,4 @@ const NoOnchangeRule = {
   },
 };
 
-module.exports = NoOnchangeRule;
+module.exports = NoInvalidChangeHandlerRule;

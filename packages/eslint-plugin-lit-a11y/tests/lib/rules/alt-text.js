@@ -32,7 +32,7 @@ ruleTester.run('alt-text', rule, {
       code: "html`<img src='./myimg.png'/>`",
       errors: [
         {
-          message: 'Images require alt text.',
+          message: '<img> elements must have an alt attribute.',
         },
       ],
     },

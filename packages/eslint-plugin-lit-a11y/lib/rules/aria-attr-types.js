@@ -102,43 +102,24 @@ const AriaAttrTypesRule = {
       category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
 
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
-
     return {
-      TaggedTemplateExpression: node => {
+      TaggedTemplateExpression(node) {
         if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
             enterElement(element) {
-              const ariaAttributes = Object.keys(element.attribs).filter(attr =>
-                attr.startsWith('aria-'),
-              );
+              const ariaAttributes = Object.keys(element.attribs)
+                .map(attr => attr.toLowerCase())
+                .filter(isAriaPropertyName);
+
               if (ariaAttributes.length > 0) {
                 ariaAttributes.forEach(attr => {
-                  const normalizedName = attr.toLowerCase();
-                  // Not a valid aria-* state or property.
-                  if (!isAriaPropertyName(normalizedName)) {
-                    return;
-                  }
-
                   const val = getAttrVal(element.attribs[attr]);
 
                   // Ignore the attribute if its value is null or undefined.
@@ -147,7 +128,7 @@ const AriaAttrTypesRule = {
 
                   // These are the attributes of the property/state to check against.
                   // @ts-expect-error: see https://github.com/A11yance/aria-query/pull/74
-                  const { allowundefined = false, type, values } = aria.get(normalizedName);
+                  const { allowundefined = false, type, values } = aria.get(attr);
 
                   const permittedValues = values || [];
 

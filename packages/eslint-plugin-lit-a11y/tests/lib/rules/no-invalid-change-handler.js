@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/no-onchange');
+const rule = require('../../../lib/rules/no-invalid-change-handler');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -20,7 +20,7 @@ const ruleTester = new RuleTester({
     ecmaVersion: 2015,
   },
 });
-ruleTester.run('no-onchange', rule, {
+ruleTester.run('no-invalid-change-handler', rule, {
   valid: [{ code: 'html`<select @blur=${foo}></select>`' }, { code: 'html`<div></div>`' }],
 
   invalid: [
@@ -29,7 +29,7 @@ ruleTester.run('no-onchange', rule, {
       errors: [
         {
           message:
-            '@blur must be used instead of @change, unless absolutely necessary and it causes no negative consequences for keyboard only or screen reader users.',
+            '@blur must be used instead of @change on <select>, unless absolutely necessary and it causes no negative consequences for keyboard only or screen reader users.',
         },
       ],
     },
@@ -38,7 +38,7 @@ ruleTester.run('no-onchange', rule, {
       errors: [
         {
           message:
-            '@blur must be used instead of @change, unless absolutely necessary and it causes no negative consequences for keyboard only or screen reader users.',
+            '@blur must be used instead of @change on <option>, unless absolutely necessary and it causes no negative consequences for keyboard only or screen reader users.',
         },
       ],
     },

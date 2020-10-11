@@ -58,43 +58,38 @@ const AriaRoleRule = {
       category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
 
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
-
     return {
-      TaggedTemplateExpression: node => {
+      TaggedTemplateExpression(node) {
         if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
-            enterElement: element => {
-              for (const [attr, value] of Object.entries(element.attribs)) {
-                if (attr === 'role') {
-                  if (!validAriaRoles.includes(value)) {
-                    if (!value.startsWith('{{')) {
-                      const loc = analyzer.getLocationForAttribute(element, attr);
-                      context.report({
-                        loc,
-                        message: 'Invalid role',
-                      });
-                    }
-                  }
+            enterElement(element) {
+              for (const [attr, rawValue] of Object.entries(element.attribs)) {
+                if (attr !== 'role') {
+                  return;
+                }
+
+                const role = rawValue.replace(/^{{(.*)}}$/, '$1');
+
+                if (/^{(.*)}$/.test(role)) {
+                  return; // the value is interpolated with a name. assume it's legitimate and move on.
+                }
+
+                if (!validAriaRoles.includes(role)) {
+                  const loc = analyzer.getLocationForAttribute(element, attr);
+                  context.report({
+                    loc,
+                    message: `Invalid role "{{role}}".`,
+                    data: {
+                      role,
+                    },
+                  });
                 }
               }
             },

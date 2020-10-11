@@ -1,4 +1,4 @@
-# Enforce usage of onBlur over onChange for accessibility. (no-onchange)
+# Enforce usage of @blur over @change with `<select>` and `<option>`. (no-invalid-change-handler)
 
 Please describe the origin of the rule here.
 
@@ -9,15 +9,23 @@ This rule aims to...
 Examples of **incorrect** code for this rule:
 
 ```js
-html`<select @change=${foo}></select>`;
-html`<option @change=${foo}></option>`;
+html`
+  <select @change=${foo}></select>
+`;
+html`
+  <option @change=${foo}></option>
+`;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`<select @blur=${foo}></select>`;
-html`<div></div>`;
+html`
+  <select @blur=${foo}></select>
+`;
+html`
+  <div></div>
+`;
 ```
 
 ### Options

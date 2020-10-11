@@ -9,13 +9,17 @@ This rule aims to...
 Examples of **incorrect** code for this rule:
 
 ```js
-html`<div aria-foo=""></div>`;
+html`
+  <div aria-foo=""></div>
+`;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`<div aria-labelledby="foo"></div>`;
+html`
+  <div aria-labelledby="foo"></div>
+`;
 ```
 
 ### Options

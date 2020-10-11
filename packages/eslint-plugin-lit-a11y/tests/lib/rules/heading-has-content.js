@@ -41,19 +41,31 @@ ruleTester.run('heading-has-content', rule, {
   invalid: [
     {
       code: "html`<h1><div aria-hidden='true'>foo</div></h1>`",
-      errors: [
-        {
-          message: 'Heading (h1, h2, etc) elements must contain accessible content.',
-        },
-      ],
+      errors: [{ message: '<h1> elements must have accessible content.' }],
     },
     {
       code: 'html`<h1></h1>`',
-      errors: [
-        {
-          message: 'Heading (h1, h2, etc) elements must contain accessible content.',
-        },
-      ],
+      errors: [{ message: '<h1> elements must have accessible content.' }],
+    },
+    {
+      code: 'html`<h2></h2>`',
+      errors: [{ message: '<h2> elements must have accessible content.' }],
+    },
+    {
+      code: 'html`<h3></h3>`',
+      errors: [{ message: '<h3> elements must have accessible content.' }],
+    },
+    {
+      code: 'html`<h4></h4>`',
+      errors: [{ message: '<h4> elements must have accessible content.' }],
+    },
+    {
+      code: 'html`<h5></h5>`',
+      errors: [{ message: '<h5> elements must have accessible content.' }],
+    },
+    {
+      code: 'html`<h6></h6>`',
+      errors: [{ message: '<h6> elements must have accessible content.' }],
     },
   ],
 });

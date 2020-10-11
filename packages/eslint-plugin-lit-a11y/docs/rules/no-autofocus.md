@@ -9,16 +9,26 @@ This rule aims to...
 Examples of **incorrect** code for this rule:
 
 ```js
-html`<div autofocus></div>`;
-html`<div autofocus="true"></div>`;
-html`<div autofocus="false"></div>`;
-html`<div autofocus=${foo}></div>`;
+html`
+  <div autofocus></div>
+`;
+html`
+  <div autofocus="true"></div>
+`;
+html`
+  <div autofocus="false"></div>
+`;
+html`
+  <div autofocus=${foo}></div>
+`;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`<div></div>`;
+html`
+  <div></div>
+`;
 ```
 
 ### Options

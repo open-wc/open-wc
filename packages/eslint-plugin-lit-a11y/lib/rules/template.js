@@ -39,7 +39,7 @@ const Rule = {
     //----------------------------------------------------------------------
 
     return {
-      TaggedTemplateExpression: node => {
+      TaggedTemplateExpression(node) {
         if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 

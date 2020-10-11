@@ -8,6 +8,16 @@ const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.
 const { isAriaRole } = require('../utils/aria.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
+if (!('ListFormat' in Intl)) {
+  /* eslint-disable global-require */
+  // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
+  require('intl-list-format');
+  // eslint-disable-next-line global-require
+  // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
+  require('intl-list-format/locale-data/en');
+  /* eslint-enable global-require */
+}
+
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
@@ -22,32 +32,21 @@ const RoleHasRequiredAriaAttrsRule = {
       category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
 
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
+    // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
+    const formatter = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' });
 
     return {
-      TaggedTemplateExpression: node => {
+      TaggedTemplateExpression(node) {
         if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
-            enterElement: element => {
+            enterElement(element) {
               // if element has a role attr
               if (Object.keys(element.attribs).includes('role')) {
                 const { role } = element.attribs;
@@ -65,9 +64,12 @@ const RoleHasRequiredAriaAttrsRule = {
                     const loc = analyzer.getLocationFor(element);
                     context.report({
                       loc,
-                      message: `Role '${role}' requires the following ARIA attribute(s): '${requiredAriaAttributes.join(
-                        ', ',
-                      )}'`,
+                      message: `The "{{role}}" role requires the {{plural}} {{requiredAttrs}}.`,
+                      data: {
+                        role,
+                        plural: requiredAriaAttributes.length > 1 ? 'attributes' : 'attribute',
+                        requiredAttrs: formatter.format(requiredAriaAttributes.map(x => `"${x}"`)),
+                      },
                     });
                   }
                 }

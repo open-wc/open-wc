@@ -9,15 +9,23 @@ This rule aims to...
 Examples of **incorrect** code for this rule:
 
 ```js
-html`<li aria-required role="radio" aria-checked="false">Rainbow Trout</li>`;
-html`<div role="combobox" aria-checked="true"></div>`;
+html`
+  <li aria-required role="radio" aria-checked="false">Rainbow Trout</li>
+`;
+html`
+  <div role="combobox" aria-checked="true"></div>
+`;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`<div role="checkbox" aria-checked="true"></div>`;
-html`<div role="presentation"></div>`;
+html`
+  <div role="checkbox" aria-checked="true"></div>
+`;
+html`
+  <div role="presentation"></div>
+`;
 ```
 
 ### Options

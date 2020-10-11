@@ -9,19 +9,35 @@ This rule aims to...
 Examples of **incorrect** code for this rule:
 
 ```js
-html`<span role="checkbox"></span>`;
-html`<div role="combobox"></div>`;
-html`<div role="slider"></div>`;
+html`
+  <span role="checkbox"></span>
+`;
+html`
+  <div role="combobox"></div>
+`;
+html`
+  <div role="slider"></div>
+`;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`<span role="alert" aria-atomic="foo" aria-live="foo"></span>`;
-html`<span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span>`;
-html`<span role="row"></span>`;
-html`<input type="checkbox" role="switch" aria-checked="true" />`;
-html`<div role="combobox" aria-controls="foo" aria-expanded="foo"></div>`;
+html`
+  <span role="alert" aria-atomic="foo" aria-live="foo"></span>
+`;
+html`
+  <span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span>
+`;
+html`
+  <span role="row"></span>
+`;
+html`
+  <input type="checkbox" role="switch" aria-checked="true" />
+`;
+html`
+  <div role="combobox" aria-controls="foo" aria-expanded="foo"></div>
+`;
 ```
 
 ### Options

@@ -22,32 +22,18 @@ const RoleSupportsAriaAttrRule = {
       category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
 
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
-
     return {
-      TaggedTemplateExpression: node => {
+      TaggedTemplateExpression(node) {
         if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
-            enterElement: element => {
+            enterElement(element) {
               if (Object.keys(element.attribs).includes('role')) {
                 /** @type {element['attribs'] & { role?: import("aria-query").ARIARole }} */
                 const { role } = element.attribs;
@@ -65,7 +51,11 @@ const RoleSupportsAriaAttrRule = {
                       const loc = analyzer.getLocationForAttribute(element, attr);
                       context.report({
                         loc,
-                        message: `Role '${role}' does not support usage of the '${attr}' ARIA attribute.'`,
+                        message: `The "{{role}}" role must not be used with the "${attr}" attribute.'`,
+                        data: {
+                          role,
+                          attr,
+                        },
                       });
                     }
                   });
