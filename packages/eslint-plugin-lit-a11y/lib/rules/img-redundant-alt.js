@@ -74,9 +74,7 @@ const ImgRedundantAltRule = {
               const bannedKeywords = [...DEFAULT_KEYWORDS, ...optionsKeywords];
 
               const contraband = bannedKeywords.filter(keyword =>
-                getAttrVal(element.attribs.alt)
-                  .toLowerCase()
-                  .includes(keyword.toLowerCase()),
+                getAttrVal(element.attribs.alt).toLowerCase().includes(keyword.toLowerCase()),
               );
 
               if (contraband.length > 0) {

@@ -9,35 +9,25 @@ This rule aims to...
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <input type="text" autocomplete="foo" />
-`;
+html` <input type="text" autocomplete="foo" /> `;
 ```
 
 ```js
-html`
-  <input type="date" autocomplete="email" />;
-`;
+html` <input type="date" autocomplete="email" />; `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <input type="text" autocomplete="name" />
-`;
+html` <input type="text" autocomplete="name" /> `;
 ```
 
 ```js
-html`
-  <input type="text" autocomplete=${autocompl} />
-`;
+html` <input type="text" autocomplete=${autocompl} /> `;
 ```
 
 ```js
-html`
-  <input type="text" autocomplete="section-somewhere shipping work email" />;
-`;
+html` <input type="text" autocomplete="section-somewhere shipping work email" />; `;
 ```
 
 ## Further Reading

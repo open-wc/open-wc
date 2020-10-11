@@ -31,9 +31,7 @@ html`
 All these _anchor_ implementations indicate that the element is only used to execute JavaScript code. All the above should be replaced with:
 
 ```js
-html`
-  <button @click=${foo}>Perform action</button>
-`;
+html` <button @click=${foo}>Perform action</button> `;
 ```
 
 ### Case: I want navigable links

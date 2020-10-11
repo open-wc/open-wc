@@ -9,23 +9,17 @@ This rule aims to prevent accessibility problems with `<select>` and `<option>` 
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <select @change=${foo}></select>
-`;
+html` <select @change=${foo}></select> `;
 ```
 
 ```js
-html`
-  <option @change=${foo}></option>
-`;
+html` <option @change=${foo}></option> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <select @blur=${foo}></select>
-`;
+html` <select @blur=${foo}></select> `;
 ```
 
 ```js

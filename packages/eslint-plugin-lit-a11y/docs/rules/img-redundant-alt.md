@@ -26,29 +26,17 @@ The rule will first check if `aria-hidden` is true to determine whether to enfor
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <img src="foo" alt="Photo of foo being weird." />
-`;
-html`
-  <img src="foo" alt="Image of me at a bar!" />
-`;
-html`
-  <img src="foo" alt="Picture of baz fixing a bug." />
-`;
+html` <img src="foo" alt="Photo of foo being weird." /> `;
+html` <img src="foo" alt="Image of me at a bar!" /> `;
+html` <img src="foo" alt="Picture of baz fixing a bug." /> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <img src="foo" alt="Foo eating a sandwich." />
-`;
-html`
-  <img src="bar" aria-hidden alt="Picture of me taking a photo of an image" />
-`; // Will pass because it is hidden.
-html`
-  <img src="baz" alt=${`Baz taking a ${photo}`} />
-`; // This is valid since photo is a variable name.`
+html` <img src="foo" alt="Foo eating a sandwich." /> `;
+html` <img src="bar" aria-hidden alt="Picture of me taking a photo of an image" /> `; // Will pass because it is hidden.
+html` <img src="baz" alt=${`Baz taking a ${photo}`} /> `; // This is valid since photo is a variable name.`
 ```
 
 ## Further Reading

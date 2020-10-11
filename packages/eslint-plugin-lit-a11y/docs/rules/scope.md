@@ -10,23 +10,17 @@ This rule aims to prevent invalid use of `scope` attribute.
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <td scope="row"></td>
-`;
+html` <td scope="row"></td> `;
 ```
 
 ```js
-html`
-  <div scope="col"></div>
-`;
+html` <div scope="col"></div> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <th scope="row"></th>
-`;
+html` <th scope="row"></th> `;
 ```
 
 ## When Not To Use It

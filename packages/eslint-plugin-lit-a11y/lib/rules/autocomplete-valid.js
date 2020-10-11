@@ -31,9 +31,9 @@ const AutocompleteValidRule = {
      */
     function isInputElementWithAutoComplete(element) {
       return (
-        (element.name === 'input' &&
+        element.name === 'input' &&
         element.attribs &&
-        typeof element.attribs.autocomplete === 'string')
+        typeof element.attribs.autocomplete === 'string'
       );
     }
 

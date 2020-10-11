@@ -11,23 +11,17 @@ This rule aims to prevent inaccessible use of emoji in lit-html templates.
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <span>🐼</span>
-`;
+html` <span>🐼</span> `;
 ```
 
 ```js
-html`
-  <i role="img" aria-label="Panda face">🐼</i>
-`;
+html` <i role="img" aria-label="Panda face">🐼</i> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <span role="img" aria-label="Panda face">🐼</span>
-`;
+html` <span role="img" aria-label="Panda face">🐼</span> `;
 ```
 
 ```js

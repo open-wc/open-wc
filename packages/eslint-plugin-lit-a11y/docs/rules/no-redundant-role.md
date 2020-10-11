@@ -12,29 +12,21 @@ This rule aims to prevent redundant use of the `role` attribute.
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <dialog role="dialog"></dialog>
-`;
+html` <dialog role="dialog"></dialog> `;
 ```
 
 ```js
-html`
-  <button role="button"></button>
-`;
+html` <button role="button"></button> `;
 ```
 
 ```js
-html`
-  <a href="foo" role="link"></a>
-`;
+html` <a href="foo" role="link"></a> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <img role="presentation" />
-`;
+html` <img role="presentation" /> `;
 ```
 
 ## When Not To Use It

@@ -7,23 +7,17 @@ Enforce `@click` is accompanied by at least one of `@keyup`, `@keydown`, or `@ke
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <div @click="${onClick}"></div>
-`;
+html` <div @click="${onClick}"></div> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <button @click="${onClick}"></button>
-`;
+html` <button @click="${onClick}"></button> `;
 ```
 
 ```js
-html`
-  <div @click="${onClick}" @keyup="${onKeyup}"></div>
-`;
+html` <div @click="${onClick}" @keyup="${onKeyup}"></div> `;
 ```
 
 ## Further Reading

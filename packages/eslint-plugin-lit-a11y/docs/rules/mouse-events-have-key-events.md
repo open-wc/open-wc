@@ -7,29 +7,21 @@ Enforce `@mouseover`/`@mouseout` are accompanied by `@focus`/`@blur`. Coding for
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <button @mouseout="${onMouseout}"></button>
-`;
+html` <button @mouseout="${onMouseout}"></button> `;
 ```
 
 ```js
-html`
-  <button @mouseover="${onMouseover}"></button>
-`;
+html` <button @mouseover="${onMouseover}"></button> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <button @mouseout="${onMouseout}" @blur="${onBlur}"></button>
-`;
+html` <button @mouseout="${onMouseout}" @blur="${onBlur}"></button> `;
 ```
 
 ```js
-html`
-  <button @mouseover="${onMouseover}" @blur="${onBlur}"></button>
-`;
+html` <button @mouseover="${onMouseover}" @blur="${onBlur}"></button> `;
 ```
 
 ## Further Reading

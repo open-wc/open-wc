@@ -10,53 +10,37 @@ This rule aims to ensure the validity of the Accessibility Object Model.
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <span role="checkbox"></span>
-`;
+html` <span role="checkbox"></span> `;
 ```
 
 ```js
-html`
-  <div role="combobox"></div>
-`;
+html` <div role="combobox"></div> `;
 ```
 
 ```js
-html`
-  <div role="slider"></div>
-`;
+html` <div role="slider"></div> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <span role="alert" aria-atomic="foo" aria-live="foo"></span>
-`;
+html` <span role="alert" aria-atomic="foo" aria-live="foo"></span> `;
 ```
 
 ```js
-html`
-  <span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span>
-`;
+html` <span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span> `;
 ```
 
 ```js
-html`
-  <span role="row"></span>
-`;
+html` <span role="row"></span> `;
 ```
 
 ```js
-html`
-  <input type="checkbox" role="switch" aria-checked="true" />
-`;
+html` <input type="checkbox" role="switch" aria-checked="true" /> `;
 ```
 
 ```js
-html`
-  <div role="combobox" aria-controls="foo" aria-expanded="foo"></div>
-`;
+html` <div role="combobox" aria-controls="foo" aria-expanded="foo"></div> `;
 ```
 
 ## When Not To Use It

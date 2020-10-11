@@ -17,17 +17,13 @@ html`
 ```
 
 ```js
-html`
-  <h1></h1>
-`;
+html` <h1></h1> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <h1>Foo</h1>
-`;
+html` <h1>Foo</h1> `;
 ```
 
 ```js

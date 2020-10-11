@@ -7,23 +7,17 @@ Enforce that all elements that require alternative text have meaningful informat
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <img src="${src}" />
-`;
+html` <img src="${src}" /> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <img src="${src}" alt="" />
-`;
+html` <img src="${src}" alt="" /> `;
 ```
 
 ```js
-html`
-  <img src="${src}" alt="foo" />
-`;
+html` <img src="${src}" alt="foo" /> `;
 ```
 
 ## Further Reading

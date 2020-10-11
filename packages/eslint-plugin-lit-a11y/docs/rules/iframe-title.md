@@ -7,17 +7,13 @@
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <iframe src="${foo}"></iframe>
-`;
+html` <iframe src="${foo}"></iframe> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <iframe title="Foo" src="${foo}"></iframe>
-`;
+html` <iframe title="Foo" src="${foo}"></iframe> `;
 ```
 
 ## Further Reading

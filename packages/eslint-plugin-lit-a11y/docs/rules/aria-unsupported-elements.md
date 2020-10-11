@@ -7,32 +7,18 @@ Certain reserved DOM elements do not support ARIA roles, states and properties. 
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <meta charset="UTF-8" aria-hidden="false" />
-`;
-html`
-  <script role="foo"></script>
-`;
-html`
-  <style aria-hidden="foo"></style>
-`;
-html`
-  <style role="foo" aria-hidden="foo"></style>
-`;
+html` <meta charset="UTF-8" aria-hidden="false" /> `;
+html` <script role="foo"></script> `;
+html` <style aria-hidden="foo"></style> `;
+html` <style role="foo" aria-hidden="foo"></style> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <script src="./foo.js"></script>
-`;
-html`
-  <meta charset="UTF-8" />
-`;
-html`
-  <style></style>
-`;
+html` <script src="./foo.js"></script> `;
+html` <meta charset="UTF-8" /> `;
+html` <style></style> `;
 ```
 
 ## Further Reading

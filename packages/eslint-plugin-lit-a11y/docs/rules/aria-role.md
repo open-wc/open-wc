@@ -7,41 +7,29 @@ Elements with ARIA roles must use a valid, non-abstract ARIA role. A reference t
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <div role="foo"></div>
-`;
+html` <div role="foo"></div> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <div role="alert"></div>
-`;
+html` <div role="alert"></div> `;
 ```
 
 ```js
-html`
-  <div role="navigation"></div>
-`;
+html` <div role="navigation"></div> `;
 ```
 
 ```js
-html`
-  <div role="${foo}"></div>
-`;
+html` <div role="${foo}"></div> `;
 ```
 
 ```js
-html`
-  <div role=${foo}></div>
-`;
+html` <div role=${foo}></div> `;
 ```
 
 ```js
-html`
-  <div></div>
-`;
+html` <div></div> `;
 ```
 
 ## Further Reading

@@ -7,17 +7,13 @@ ARIA state and property values must be valid.
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <span aria-hidden="yes">foo</span>
-`;
+html` <span aria-hidden="yes">foo</span> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <span aria-hidden="true">foo</span>
-`;
+html` <span aria-hidden="true">foo</span> `;
 ```
 
 ## Further Reading

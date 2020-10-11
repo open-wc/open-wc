@@ -21,17 +21,13 @@ This rule aims to...
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <div aria-activedescendant=${someID}></div>
-`;
+html` <div aria-activedescendant=${someID}></div> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <div aria-activedescendant="foo" tabindex="0"></div>
-`;
+html` <div aria-activedescendant="foo" tabindex="0"></div> `;
 ```
 
 ## Further Reading

@@ -12,35 +12,25 @@ This rule aims to prevent degradation of keyboard accessibility for keyboard-foc
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <div tabindex="1"></div>
-`;
+html` <div tabindex="1"></div> `;
 ```
 
 ```js
-html`
-  <div tabindex="2"></div>
-`;
+html` <div tabindex="2"></div> `;
 ```
 
 ```js
-html`
-  <div tabindex="foo"></div>
-`;
+html` <div tabindex="foo"></div> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <div tabindex="0"></div>
-`;
+html` <div tabindex="0"></div> `;
 ```
 
 ```js
-html`
-  <div tabindex="-1"></div>
-`;
+html` <div tabindex="-1"></div> `;
 ```
 
 ## When Not To Use It

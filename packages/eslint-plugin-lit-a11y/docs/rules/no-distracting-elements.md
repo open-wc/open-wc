@@ -7,23 +7,17 @@ Enforces that no distracting `<marquee>` or `<blink>` elements are used. These e
 Examples of **incorrect** code for this rule:
 
 ```js
-html`
-  <marquee>Can't read this</marquee>
-`;
+html` <marquee>Can't read this</marquee> `;
 ```
 
 ```js
-html`
-  <blink>Can't read this</blink>
-`;
+html` <blink>Can't read this</blink> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`
-  <span class="highlight">Readable Content</span>
-`;
+html` <span class="highlight">Readable Content</span> `;
 ```
 
 ## Accessibility guidelines
