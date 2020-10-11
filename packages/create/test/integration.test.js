@@ -106,6 +106,7 @@ describe('create', function create() {
 
   it('generates a project which passes linting', async () => {
     const cli = new CLIEngine({ useEslintrc: true });
+    // @ts-expect-error: a problem with @types/eslint?
     const { errorCount, warningCount, messages = [] } = cli.executeOnFiles([ACTUAL_PATH]);
     const prettyOutput = messages.map(getFileMessages).join('\n\n');
     expect(errorCount).to.equal(0, prettyOutput);
