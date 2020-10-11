@@ -21,7 +21,11 @@ const ruleTester = new RuleTester({
   },
 });
 ruleTester.run('no-redundant-role', rule, {
-  valid: [{ code: 'html`<button></button>`' }],
+  valid: [
+    { code: 'html`<button></button>`' },
+    { code: 'html`<div role="button"></div>`' },
+    { code: 'html`<img role="presentation"/>`' },
+  ],
 
   invalid: [
     {

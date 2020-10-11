@@ -10,7 +10,7 @@ const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 // Rule Definition
 //------------------------------------------------------------------------------
 
-const unsupportedElements = ['meta', 'script', 'style'];
+const UNSUPPORTED_ELEMENTS = ['meta', 'script', 'style'];
 
 /** @type {import("eslint").Rule.RuleModule} */
 const AriaUnsupportedElementsRule = {
@@ -34,7 +34,7 @@ const AriaUnsupportedElementsRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              if (unsupportedElements.includes(element.name)) {
+              if (UNSUPPORTED_ELEMENTS.includes(element.name)) {
                 for (const attr of Object.keys(element.attribs)) {
                   if (attr.startsWith('aria-') || attr === 'role') {
                     const loc = analyzer.getLocationForAttribute(element, attr);

@@ -1,16 +1,14 @@
-# Images require alt text (alt-text)
+# alt-text
 
-Please describe the origin of the rule here.
+Enforce that all elements that require alternative text have meaningful information to relay back to the end user. This is a critical component of accessibility for screen reader users in order for them to understand the content's purpose on the page. By default, this rule checks for alternative text on `<img>` elements.
 
 ## Rule Details
-
-This rule aims to...
 
 Examples of **incorrect** code for this rule:
 
 ```js
 html`
-  <img src="./myimg.png" />
+  <img src="${src}" />
 `;
 ```
 
@@ -18,21 +16,20 @@ Examples of **correct** code for this rule:
 
 ```js
 html`
-  <img alt="" />
-`;
-html`
-  <img alt="foo" />
+  <img src="${src}" alt="" />
 `;
 ```
 
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
-
-## When Not To Use It
-
-Give a short description of when it would be appropriate to turn off this rule.
+```js
+html`
+  <img src="${src}" alt="foo" />
+`;
+```
 
 ## Further Reading
 
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+- [WCAG 1.1.1](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html)
+- [axe-core, object-alt](https://dequeuniversity.com/rules/axe/3.2/object-alt)
+- [axe-core, image-alt](https://dequeuniversity.com/rules/axe/3.2/image-alt)
+- [axe-core, input-image-alt](https://dequeuniversity.com/rules/axe/3.2/input-image-alt)
+- [axe-core, area-alt](https://dequeuniversity.com/rules/axe/3.2/area-alt)

@@ -1,10 +1,10 @@
-# Enforce no accesskey attribute on element. (no-access-key)
+# no-access-key
 
-Please describe the origin of the rule here.
+Enforce no accesskey attribute on element. Access keys are HTML attributes that allow web developers to assign keyboard shortcuts to elements. Inconsistencies between keyboard shortcuts and keyboard commands used by screenreader and keyboard only users create accessibility complications so to avoid complications, access keys should not be used.
 
 ## Rule Details
 
-This rule aims to...
+This rule takes no arguments.
 
 Examples of **incorrect** code for this rule:
 
@@ -28,14 +28,6 @@ html`
 `;
 ```
 
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
-
-## When Not To Use It
-
-Give a short description of when it would be appropriate to turn off this rule.
-
 ## Further Reading
 
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+- [WebAIM, Keyboard Accessibility: Accesskey](http://webaim.org/techniques/keyboard/accesskey#spec)

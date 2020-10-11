@@ -42,9 +42,20 @@ function isAriaHidden(element) {
   );
 }
 
+/**
+ * Gets the ARIA attribute names in use on the element
+ * @param {import("parse5-htmlparser2-tree-adapter").Element} element
+ */
+function getElementAriaAttributes(element) {
+  return Object.keys(element.attribs)
+    .map(attr => attr.toLowerCase())
+    .filter(isAriaPropertyName);
+}
+
 module.exports = {
   isAriaRole,
   isAriaPropertyName,
   isInvalidAriaAttribute,
   isAriaHidden,
+  getElementAriaAttributes,
 };

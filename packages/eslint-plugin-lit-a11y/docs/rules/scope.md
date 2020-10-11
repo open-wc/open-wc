@@ -1,31 +1,39 @@
-# Enforce scope prop is only used on &lt;th&gt; elements. (scope)
+# scope
 
-Please describe the origin of the rule here.
+Enforce scope attribute is only used on &lt;th&gt; elements.
+The scope attribute may only be used on `<th>` elements.
 
 ## Rule Details
 
-This rule aims to...
+This rule aims to prevent invalid use of `scope` attribute.
 
 Examples of **incorrect** code for this rule:
 
 ```js
-// fill me in
+html`
+  <td scope="row"></td>
+`;
+```
+
+```js
+html`
+  <div scope="col"></div>
+`;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-// fill me in
+html`
+  <th scope="row"></th>
+`;
 ```
-
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
 
 ## When Not To Use It
 
-Give a short description of when it would be appropriate to turn off this rule.
+When you do not use the `scope` attribute in your lit-html templates.
 
 ## Further Reading
 
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+- [MDN: `<th>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th#attr-scope)
+- [WebAIM: Creating Accessible Tables](https://webaim.org/techniques/tables/data#headers)

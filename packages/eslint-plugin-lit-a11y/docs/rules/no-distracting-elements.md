@@ -1,31 +1,36 @@
-# Enforce distracting elements are not used. (no-distracting-elements)
+# no-distracting-elements
 
-Please describe the origin of the rule here.
+Enforces that no distracting `<marquee>` or `<blink>` elements are used. These elements are visually distracting and can cause accessibility issues with visually impaired users. Such elements are also deprecated, and should not be used.
 
 ## Rule Details
-
-This rule aims to...
 
 Examples of **incorrect** code for this rule:
 
 ```js
-// fill me in
+html`
+  <marquee>Can't read this</marquee>
+`;
+```
+
+```js
+html`
+  <blink>Can't read this</blink>
+`;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-// fill me in
+html`
+  <span class="highlight">Readable Content</span>
+`;
 ```
 
-### Options
+## Accessibility guidelines
 
-If there are any options, describe them here. Otherwise, delete this section.
+- [WCAG 2.2.2](https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide)
 
-## When Not To Use It
+### Resources
 
-Give a short description of when it would be appropriate to turn off this rule.
-
-## Further Reading
-
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+- [axe-core, marquee](https://dequeuniversity.com/rules/axe/3.2/marquee)
+- [axe-core, blink](https://dequeuniversity.com/rules/axe/3.2/blink)

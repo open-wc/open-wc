@@ -36,7 +36,6 @@ ruleTester.run('tabindex-no-positive', rule, {
     },
     {
       code: 'html`<div tabindex=${foo}></div>`',
-      errors: [{ message: 'Invalid tabindex value.' }],
     },
   ],
 

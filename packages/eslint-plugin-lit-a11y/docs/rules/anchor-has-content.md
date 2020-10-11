@@ -1,6 +1,6 @@
-# Enforce anchor elements to contain accessible content. (anchor-has-content)
+# anchor-has-content
 
-Please describe the origin of the rule here.
+Enforce that anchors have content and that the content is accessible to screen readers. Accessible means that it is not hidden using the `aria-hidden` attribute. Refer to the references to learn about why this is important.
 
 ## Rule Details
 
@@ -9,23 +9,23 @@ This rule aims to...
 Examples of **incorrect** code for this rule:
 
 ```js
-// fill me in
+html`
+  <a></a>
+  <a><some-text-bearing-component aria-hidden></some-text-bearing-component></a>
+`;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-// fill me in
+html`
+  <a>Anchor Content!</a>
+  <a><some-text-bearing-component></some-text-bearing-component></a>
+`;
 ```
-
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
-
-## When Not To Use It
-
-Give a short description of when it would be appropriate to turn off this rule.
 
 ## Further Reading
 
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+- [WCAG 2.4.4](https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context)
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+- [axe-core, link-name](https://dequeuniversity.com/rules/axe/3.2/link-name)

@@ -4,6 +4,7 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
@@ -30,7 +31,7 @@ const ScopeRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              if (element.name !== 'th' && Object.keys(element.attribs).includes('scope')) {
+              if (element.name !== 'th' && elementHasAttribute(element, 'scope')) {
                 const loc = analyzer.getLocationForAttribute(element, 'scope');
                 context.report({
                   loc,

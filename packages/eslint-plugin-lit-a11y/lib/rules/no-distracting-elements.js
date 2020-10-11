@@ -10,7 +10,7 @@ const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 // Rule Definition
 //------------------------------------------------------------------------------
 
-const distractingElements = ['blink', 'marquee'];
+const BANNED_ELEMENTS = ['blink', 'marquee'];
 
 /** @type {import("eslint").Rule.RuleModule} */
 const NoDistractingElementsRule = {
@@ -32,7 +32,7 @@ const NoDistractingElementsRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              if (distractingElements.includes(element.name)) {
+              if (BANNED_ELEMENTS.includes(element.name)) {
                 const loc = analyzer.getLocationFor(element);
                 context.report({
                   loc,

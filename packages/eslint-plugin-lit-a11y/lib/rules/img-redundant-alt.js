@@ -6,6 +6,8 @@
 const { getAttrVal } = require('../utils/getAttrVal.js');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
+const { isAriaHidden } = require('../utils/aria.js');
+const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
 
 if (!('ListFormat' in Intl)) {
   /* eslint-disable global-require */
@@ -58,33 +60,37 @@ const ImgRedundantAltRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              if (element.name === 'img') {
-                if ('alt' in element.attribs && !('aria-hidden' in element.attribs)) {
-                  const optionsKeywords =
-                    ((context.options && context.options[0] && context.options[0].keywords) || []);
-                  const bannedKeywords = [...DEFAULT_KEYWORDS, ...optionsKeywords].map(x =>
-                    x.toLowerCase(),
-                  );
-                  const contraband = bannedKeywords.filter(keyword =>
-                    getAttrVal(element.attribs.alt)
-                      .toLowerCase()
-                      .includes(keyword),
-                  );
+              if (
+                element.name !== 'img' ||
+                !elementHasAttribute(element, 'alt') ||
+                isAriaHidden(element)
+              ) {
+                return;
+              }
 
-                  if (contraband.length > 0) {
-                    const formatted = formatter.format(contraband);
-                    const loc = analyzer.getLocationForAttribute(element, 'alt');
-                    context.report({
-                      loc,
-                      message:
-                        '<img> alt attribute must be descriptive; it cannot contain the banned {{plural}} {{formatted}}.',
-                      data: {
-                        formatted,
-                        plural: contraband.length > 1 ? 'words' : 'word',
-                      },
-                    });
-                  }
-                }
+              const optionsKeywords =
+                (context.options && context.options[0] && context.options[0].keywords) || [];
+
+              const bannedKeywords = [...DEFAULT_KEYWORDS, ...optionsKeywords];
+
+              const contraband = bannedKeywords.filter(keyword =>
+                getAttrVal(element.attribs.alt)
+                  .toLowerCase()
+                  .includes(keyword.toLowerCase()),
+              );
+
+              if (contraband.length > 0) {
+                const formatted = formatter.format(contraband);
+                const loc = analyzer.getLocationForAttribute(element, 'alt');
+                context.report({
+                  loc,
+                  message:
+                    '<img> alt attribute must be descriptive; it cannot contain the banned {{plural}} {{formatted}}.',
+                  data: {
+                    formatted,
+                    plural: contraband.length > 1 ? 'words' : 'word',
+                  },
+                });
               }
             },
           });

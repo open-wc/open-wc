@@ -1,11 +1,11 @@
 /**
- * @fileoverview aria-attr-types
+ * @fileoverview aria-attr-valid-value
  * @author open-wc
  */
 
 const { aria } = require('aria-query');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
-const { isAriaPropertyName } = require('../utils/aria.js');
+const { getElementAriaAttributes } = require('../utils/aria.js');
 const { getAttrVal } = require('../utils/getAttrVal.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
@@ -98,7 +98,7 @@ const AriaAttrTypesRule = {
   meta: {
     type: 'suggestion',
     docs: {
-      description: 'aria-attr-types',
+      description: 'aria-attr-valid-value',
       category: 'Accessibility',
       recommended: false,
     },
@@ -114,9 +114,7 @@ const AriaAttrTypesRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              const ariaAttributes = Object.keys(element.attribs)
-                .map(attr => attr.toLowerCase())
-                .filter(isAriaPropertyName);
+              const ariaAttributes = getElementAriaAttributes(element);
 
               if (ariaAttributes.length > 0) {
                 ariaAttributes.forEach(attr => {

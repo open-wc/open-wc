@@ -1,10 +1,8 @@
 # aria-role
 
-Please describe the origin of the rule here.
+Elements with ARIA roles must use a valid, non-abstract ARIA role. A reference to role definitions can be found at [WAI-ARIA](https://www.w3.org/TR/wai-aria/#role_definitions) site.
 
 ## Rule Details
-
-This rule aims to...
 
 Examples of **incorrect** code for this rule:
 
@@ -20,28 +18,34 @@ Examples of **correct** code for this rule:
 html`
   <div role="alert"></div>
 `;
+```
+
+```js
 html`
   <div role="navigation"></div>
 `;
+```
+
+```js
 html`
   <div role="${foo}"></div>
 `;
+```
+
+```js
 html`
   <div role=${foo}></div>
 `;
+```
+
+```js
 html`
   <div></div>
 `;
 ```
 
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
-
-## When Not To Use It
-
-Give a short description of when it would be appropriate to turn off this rule.
-
 ## Further Reading
 
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+- [Chrome Audit Rules, AX_ARIA_01](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_01)
+- [DPUB-ARIA roles](https://www.w3.org/TR/dpub-aria-1.0/)

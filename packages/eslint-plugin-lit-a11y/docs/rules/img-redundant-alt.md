@@ -1,10 +1,27 @@
-# Enforce img alt attribute does not contain the word image, picture, or photo. (img-redundant-alt)
+# img-redundant-alt
 
-Please describe the origin of the rule here.
+Enforce img alt attribute does not contain the words image, picture, or photo. Screenreaders already announce img elements as an image. There is no need to use words such as image, photo, and/or picture.
 
 ## Rule Details
 
-This rule aims to...
+This rule takes one optional object argument of type object:
+
+```json
+{
+  "rules": {
+    "lit-a11y/img-redundant-alt": [
+      2,
+      {
+        "words": ["Bild", "Foto"]
+      }
+    ]
+  }
+}
+```
+
+For the `words` option, these strings can be used to specify custom words that should be checked for in the alt prop, including `image`, `photo`, and `picture`. Useful for specifying words in other languages.
+
+The rule will first check if `aria-hidden` is true to determine whether to enforce the rule. If the image is hidden, then rule will always succeed.
 
 Examples of **incorrect** code for this rule:
 
@@ -34,28 +51,6 @@ html`
 `; // This is valid since photo is a variable name.`
 ```
 
-### Options
-
-You can also specify additional keywords to fail on. Example:
-
-```js
-{
-  keywords: ['foo'];
-}
-```
-
-Will make the following fail:
-
-```js
-html`
-  <img alt="foo" />
-`;
-```
-
-## When Not To Use It
-
-Give a short description of when it would be appropriate to turn off this rule.
-
 ## Further Reading
 
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+- [WebAIM, Alternative Text](https://webaim.org/techniques/alttext/)

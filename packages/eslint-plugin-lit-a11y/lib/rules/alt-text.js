@@ -4,6 +4,7 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
@@ -31,7 +32,7 @@ const AltTextRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              if (element.name === 'img' && !Object.keys(element.attribs).includes('alt')) {
+              if (element.name === 'img' && !elementHasAttribute(element, 'alt')) {
                 const loc = analyzer.getLocationFor(element);
                 context.report({
                   loc,

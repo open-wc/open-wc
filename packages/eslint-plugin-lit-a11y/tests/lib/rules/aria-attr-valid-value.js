@@ -1,5 +1,5 @@
 /**
- * @fileoverview aria-attr-types
+ * @fileoverview aria-attr-valid-value
  * @author open-wc
  */
 
@@ -9,7 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const { aria } = require('aria-query');
-const rule = require('../../../lib/rules/aria-attr-types');
+const rule = require('../../../lib/rules/aria-attr-valid-value');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -50,7 +50,7 @@ const ruleTester = new RuleTester({
   },
 });
 
-ruleTester.run('aria-attr-types', rule, {
+ruleTester.run('aria-attr-valid-value', rule, {
   valid: [
     { code: 'html`<div aria-foo="true" />`' },
     { code: 'html`<div abcaria-foo="true" />`' },
