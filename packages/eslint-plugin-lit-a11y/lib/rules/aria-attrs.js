@@ -4,55 +4,20 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isAriaPropertyName } = require('../utils/aria.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-const validAriaProps = [
-  'aria-activedescendant',
-  'aria-atomic',
-  'aria-autocomplete',
-  'aria-busy',
-  'aria-checked',
-  'aria-controls',
-  'aria-describedat',
-  'aria-describedby',
-  'aria-disabled',
-  'aria-dropeffect',
-  'aria-expanded',
-  'aria-flowto',
-  'aria-grabbed',
-  'aria-haspopup',
-  'aria-hidden',
-  'aria-invalid',
-  'aria-label',
-  'aria-labelledby',
-  'aria-level',
-  'aria-live',
-  'aria-multiline',
-  'aria-multiselectable',
-  'aria-orientation',
-  'aria-owns',
-  'aria-posinset',
-  'aria-pressed',
-  'aria-readonly',
-  'aria-relevant',
-  'aria-required',
-  'aria-selected',
-  'aria-setsize',
-  'aria-sort',
-  'aria-valuemax',
-  'aria-valuemin',
-  'aria-valuenow',
-  'aria-valuetext',
-];
-
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const AriaAttrsRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description: 'Elements cannot use an invalid ARIA attribute.',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
     fixable: null, // or "code" or "whitespace"
@@ -76,19 +41,14 @@ module.exports = {
 
     return {
       TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
             enterElement(element) {
-              // eslint-disable-next-line
-              for (const attr in element.attribs) {
+              for (const attr of Object.keys(element.attribs)) {
                 if (attr.startsWith('aria-')) {
-                  if (!validAriaProps.includes(attr)) {
+                  if (!isAriaPropertyName(attr)) {
                     const loc = analyzer.getLocationForAttribute(element, attr);
                     context.report({
                       loc,
@@ -104,3 +64,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = AriaAttrsRule;

@@ -29,10 +29,10 @@ ruleTester.run('aria-role', rule, {
       code: "html`<div role='navigation'></div>`;",
     },
     {
-      code: "html`<div role='${foo}'></div>`;", // eslint-disable-line
+      code: "html`<div role='${foo}'></div>`;",
     },
     {
-      code: 'html`<div role=${foo}></div>`;', // eslint-disable-line
+      code: 'html`<div role=${foo}></div>`;',
     },
     {
       code: 'html`<div></div>`;',

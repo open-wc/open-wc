@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * @fileoverview Enforce emojis are wrapped in <span> and provide screenreader access.
  * @author open-wc
@@ -6,17 +5,21 @@
 
 const emojiRegex = require('emoji-regex');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isTextNode } = require('../../template-analyzer/util.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-module.exports = {
+/** @type{import('eslint').Rule.RuleModule} */
+const AccessibleEmojiRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description: 'Enforce emojis are wrapped in <span> and provide screenreader access.',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
     fixable: null, // or "code" or "whitespace"
@@ -40,19 +43,19 @@ module.exports = {
 
     return {
       TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
             enterElement(element) {
               // todo: figure out what is meant with literalChildValue, try to see from tests
-              const literalChildValue = element.children.find(child => child.type === 'text');
+              const literalChildValue = element.children.find(isTextNode);
 
-              if (literalChildValue && emojiRegex().test(literalChildValue.data)) {
+              /** @type {RegExp} */
+              // @ts-expect-error: 'emoji-regex' package declares its type with `export default`, but its actually CJS
+              const EMOJI_REGEXP = emojiRegex();
+
+              if (literalChildValue && EMOJI_REGEXP.test(literalChildValue.data)) {
                 if (isHiddenFromScreenReader(element.name, element.attribs)) {
                   return; // emoji is decorative
                 }
@@ -78,3 +81,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = AccessibleEmojiRule;

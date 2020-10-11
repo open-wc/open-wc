@@ -4,16 +4,19 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const IframeTitleRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description: '<iframe> elements must have a unique title property.',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
     fixable: null, // or "code" or "whitespace"
@@ -21,7 +24,6 @@ module.exports = {
       // fill in your schema
     ],
   },
-  // eslint-disable-next-line
   create(context) {
     // variables should be defined here
 
@@ -37,11 +39,7 @@ module.exports = {
 
     return {
       TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -63,3 +61,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = IframeTitleRule;

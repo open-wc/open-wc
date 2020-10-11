@@ -21,14 +21,11 @@ const ruleTester = new RuleTester({
   },
 });
 ruleTester.run('no-onchange', rule, {
-  valid: [
-    { code: 'html`<select @blur=${foo}></select>`' }, // eslint-disable-line
-    { code: 'html`<div></div>`' },
-  ],
+  valid: [{ code: 'html`<select @blur=${foo}></select>`' }, { code: 'html`<div></div>`' }],
 
   invalid: [
     {
-      code: 'html`<select @change=${foo}></select>`', // eslint-disable-line
+      code: 'html`<select @change=${foo}></select>`',
       errors: [
         {
           message:
@@ -37,7 +34,7 @@ ruleTester.run('no-onchange', rule, {
       ],
     },
     {
-      code: 'html`<option @change=${foo}></option>`', // eslint-disable-line
+      code: 'html`<option @change=${foo}></option>`',
       errors: [
         {
           message:

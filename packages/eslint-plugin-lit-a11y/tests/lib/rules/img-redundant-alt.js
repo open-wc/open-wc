@@ -27,14 +27,10 @@ ruleTester.run('img-redundant-alt', rule, {
       code: 'html`<img src="bar" aria-hidden alt="Picture of me taking a photo of an image" /> `',
     },
     {
-      code:
-        // eslint-disable-next-line
-        'html`<img src="baz" alt=${`Baz taking a ${photo}`} />`',
+      code: 'html`<img src="baz" alt=${`Baz taking a ${photo}`} />`',
     },
     {
-      code:
-        // eslint-disable-next-line
-        'html`<img src="baz" alt=${"foo"} />`',
+      code: 'html`<img src="baz" alt=${"foo"} />`',
     },
     // give me some code that won't trigger a warning
   ],
@@ -49,9 +45,7 @@ ruleTester.run('img-redundant-alt', rule, {
       ],
     },
     {
-      code:
-        // eslint-disable-next-line
-        'html`<img src="baz" alt=${"photo of dog"} />`',
+      code: 'html`<img src="baz" alt=${"photo of dog"} />`',
       errors: [
         {
           message: 'Enforce img alt attribute does not contain the word image, picture, or photo.',

@@ -4,6 +4,7 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -48,11 +49,13 @@ const validAriaRoles = [
   'timer',
 ];
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const AriaRoleRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description: 'aria-role',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
     fixable: null, // or "code" or "whitespace"
@@ -76,20 +79,15 @@ module.exports = {
 
     return {
       TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
             enterElement: element => {
-              // eslint-disable-next-line
-              for (const attr in element.attribs) {
+              for (const [attr, value] of Object.entries(element.attribs)) {
                 if (attr === 'role') {
-                  if (!validAriaRoles.includes(element.attribs[attr])) {
-                    if (!element.attribs[attr].startsWith('{{')) {
+                  if (!validAriaRoles.includes(value)) {
+                    if (!value.startsWith('{{')) {
                       const loc = analyzer.getLocationForAttribute(element, attr);
                       context.report({
                         loc,
@@ -106,3 +104,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = AriaRoleRule;

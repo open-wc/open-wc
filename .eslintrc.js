@@ -11,5 +11,11 @@ module.exports = {
         'import/no-extraneous-dependencies': 'off', // we moved all devDependencies to root
       },
     },
+    {
+      files: ['packages/eslint-plugin-lit-a11y/tests/**/*.js'],
+      rules: {
+        'no-template-curly-in-string': 'off',
+      },
+    },
   ],
 };

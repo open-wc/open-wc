@@ -6,6 +6,7 @@
 const { getAttrVal } = require('../utils/getAttrVal.js');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { generateObjSchema, enumArraySchema } = require('../utils/schemas.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -26,11 +27,13 @@ const schema = generateObjSchema({
   aspects: enumArraySchema(allAspects, 1),
 });
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const AnchorIsValidRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description: 'anchor-is-valid',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
     fixable: null, // or "code" or "whitespace"
@@ -52,11 +55,7 @@ module.exports = {
 
     return {
       TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -134,3 +133,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = AnchorIsValidRule;

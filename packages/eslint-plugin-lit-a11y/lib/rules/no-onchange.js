@@ -4,6 +4,7 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -11,11 +12,13 @@ const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.
 
 const applicableTypes = ['select', 'option'];
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const NoOnchangeRule = {
   meta: {
+    type: 'suggestion',
     docs: {
-      description: 'Enforce usage of onBlur over onChange for accessibility.',
-      category: 'Fill me in',
+      description: 'Enforce usage of @blur over @change for accessibility.',
+      category: 'Accessibility',
       recommended: false,
     },
     fixable: null, // or "code" or "whitespace"
@@ -39,11 +42,7 @@ module.exports = {
 
     return {
       TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -68,3 +67,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = NoOnchangeRule;

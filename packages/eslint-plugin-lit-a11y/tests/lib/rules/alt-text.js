@@ -24,7 +24,7 @@ ruleTester.run('alt-text', rule, {
   valid: [
     { code: "html`<img alt=''/>`" },
     { code: "html`<img alt='foo'/>`" },
-    { code: "html`<img alt='${foo}'/>`" }, // eslint-disable-line
+    { code: "html`<img alt='${foo}'/>`" },
   ],
 
   invalid: [

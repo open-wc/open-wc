@@ -5,6 +5,7 @@
 
 const { getAttrVal } = require('../utils/getAttrVal.js');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -12,11 +13,13 @@ const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.
 
 let keywords = ['image', 'picture', 'photo'];
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const ImgRedundantAltRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description: 'Enforce img alt attribute does not contain the word image, picture, or photo.',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
     fixable: null, // or "code" or "whitespace"
@@ -49,11 +52,7 @@ module.exports = {
 
     return {
       TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -82,3 +81,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = ImgRedundantAltRule;

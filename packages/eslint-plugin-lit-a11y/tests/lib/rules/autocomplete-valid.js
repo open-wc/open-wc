@@ -31,9 +31,9 @@ ruleTester.run('autocomplete-valid', rule, {
     { code: 'html`<input type="text" autocomplete="section-blue shipping street-address" />;`' },
     { code: 'html`<input type="text" autocomplete="section-somewhere shipping work email" />;`' },
     { code: 'html`<input type="text" autocomplete />;`' },
-    { code: 'html`<input type="text" autocomplete=${autocompl} />;`' }, // eslint-disable-line
-    { code: 'html`<input type="text" autocomplete=${autocompl || "name"} />;`' }, // eslint-disable-line
-    { code: 'html`<input type="text" autocomplete=${autocompl || "foo"} />;`' }, // eslint-disable-line
+    { code: 'html`<input type="text" autocomplete=${autocompl} />;`' },
+    { code: 'html`<input type="text" autocomplete="${autocompl || \'name\'}" />;`' },
+    { code: 'html`<input type="text" autocomplete="${autocompl || \'foo\'}" />;`' },
   ],
 
   invalid: [

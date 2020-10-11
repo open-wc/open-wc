@@ -5,15 +5,18 @@
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { isInteractiveElement } = require('../utils/isInteractiveElement.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const AriaActiveDescendantHasTabindexRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description: 'Enforce elements with aria-activedescendant are tabbable.',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
     fixable: null, // or "code" or "whitespace"
@@ -21,7 +24,7 @@ module.exports = {
       // fill in your schema
     ],
   },
-  // eslint-disable-next-line
+
   create(context) {
     // variables should be defined here
 
@@ -37,11 +40,7 @@ module.exports = {
 
     return {
       TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -63,7 +62,7 @@ module.exports = {
                 return;
               }
 
-              if (tabindex >= -1) {
+              if (parseInt(tabindex, 10) >= -1) {
                 return;
               }
 
@@ -79,3 +78,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = AriaActiveDescendantHasTabindexRule;

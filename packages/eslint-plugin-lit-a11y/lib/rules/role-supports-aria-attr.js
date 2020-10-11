@@ -5,17 +5,21 @@
 
 const { roles, aria } = require('aria-query');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isAriaPropertyName } = require('../utils/aria.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const RoleSupportsAriaAttrRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description:
         'Enforce that elements with a defined role contain only supported ARIA attributes for that role.',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
     fixable: null, // or "code" or "whitespace"
@@ -39,16 +43,13 @@ module.exports = {
 
     return {
       TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
             enterElement: element => {
               if (Object.keys(element.attribs).includes('role')) {
+                /** @type {element['attribs'] & { role?: import("aria-query").ARIARole }} */
                 const { role } = element.attribs;
 
                 const { props: propKeyValues } = roles.get(role);
@@ -58,7 +59,7 @@ module.exports = {
                 );
 
                 Object.keys(element.attribs)
-                  .filter(attr => attr.startsWith('aria-'))
+                  .filter(isAriaPropertyName)
                   .forEach(attr => {
                     if (invalidAriaPropsForRole.includes(attr)) {
                       const loc = analyzer.getLocationForAttribute(element, attr);
@@ -76,3 +77,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = RoleSupportsAriaAttrRule;

@@ -4,6 +4,7 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -11,12 +12,14 @@ const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.
 
 const unsupportedElements = ['meta', 'script', 'style'];
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const AriaUnsupportedElementsRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description:
         'Certain reserved DOM elements do not support ARIA roles, states and properties. ',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
     fixable: null, // or "code" or "whitespace"
@@ -40,24 +43,19 @@ module.exports = {
 
     return {
       TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
             enterElement: element => {
               if (unsupportedElements.includes(element.name)) {
-                // eslint-disable-next-line
-                for (const attr in element.attribs) {
+                for (const attr of Object.keys(element.attribs)) {
                   if (attr.startsWith('aria-') || attr === 'role') {
                     const loc = analyzer.getLocationForAttribute(element, attr);
                     context.report({
                       loc,
                       message:
-                        'Certain reserved DOM elements do not support ARIA roles, states and properties.',
+                        'Certain reserved DOM elements do not support ARIA roles, states, or properties.',
                     });
                   }
                 }
@@ -69,3 +67,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = AriaUnsupportedElementsRule;

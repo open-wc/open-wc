@@ -5,17 +5,21 @@
 
 const { roles } = require('aria-query');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isAriaRole } = require('../utils/aria.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const RoleHasRequiredAriaAttrsRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description:
         'Enforce that elements with ARIA roles must have all required attributes for that role.',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
     fixable: null, // or "code" or "whitespace"
@@ -39,11 +43,7 @@ module.exports = {
 
     return {
       TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -52,7 +52,7 @@ module.exports = {
               if (Object.keys(element.attribs).includes('role')) {
                 const { role } = element.attribs;
                 // if the role is a valid/existing role
-                if ([...roles.keys()].includes(role)) {
+                if (isAriaRole(role)) {
                   const requiredAriaAttributes = Object.keys(roles.get(role).requiredProps).sort();
                   const presentAriaAttributes = Object.keys(element.attribs)
                     .filter(attr => attr.startsWith('aria-'))
@@ -79,3 +79,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = RoleHasRequiredAriaAttrsRule;

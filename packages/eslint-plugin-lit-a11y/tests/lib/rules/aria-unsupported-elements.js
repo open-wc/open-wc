@@ -1,5 +1,5 @@
 /**
- * @fileoverview Certain reserved DOM elements do not support ARIA roles, states and properties.
+ * @fileoverview Certain reserved DOM elements do not support ARIA roles, states, or properties.
  * @author open-wc
  */
 
@@ -34,7 +34,7 @@ ruleTester.run('aria-unsupported-elements', rule, {
       errors: [
         {
           message:
-            'Certain reserved DOM elements do not support ARIA roles, states and properties.',
+            'Certain reserved DOM elements do not support ARIA roles, states, or properties.',
         },
       ],
     },
@@ -43,7 +43,7 @@ ruleTester.run('aria-unsupported-elements', rule, {
       errors: [
         {
           message:
-            'Certain reserved DOM elements do not support ARIA roles, states and properties.',
+            'Certain reserved DOM elements do not support ARIA roles, states, or properties.',
         },
       ],
     },
@@ -52,7 +52,7 @@ ruleTester.run('aria-unsupported-elements', rule, {
       errors: [
         {
           message:
-            'Certain reserved DOM elements do not support ARIA roles, states and properties.',
+            'Certain reserved DOM elements do not support ARIA roles, states, or properties.',
         },
       ],
     },
@@ -61,11 +61,11 @@ ruleTester.run('aria-unsupported-elements', rule, {
       errors: [
         {
           message:
-            'Certain reserved DOM elements do not support ARIA roles, states and properties.',
+            'Certain reserved DOM elements do not support ARIA roles, states, or properties.',
         },
         {
           message:
-            'Certain reserved DOM elements do not support ARIA roles, states and properties.',
+            'Certain reserved DOM elements do not support ARIA roles, states, or properties.',
         },
       ],
     },

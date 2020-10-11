@@ -32,8 +32,8 @@ ruleTester.run('accessible-emoji', rule, {
     { code: 'html`<span role="img" aria-labelledby="id1">🐼</span>`' },
     { code: 'html`<span role="img" aria-labelledby="id1">&#9731;</span>`' },
     { code: 'html`<span role="img" aria-labelledby="id1" aria-label="Snowman">&#9731;</span>`' },
-    { code: 'html`<span>${foo}</span>`' }, // eslint-disable-line
-    { code: 'html`<span aria-hidden>${foo}</span>`' }, // eslint-disable-line
+    { code: 'html`<span>${foo}</span>`' },
+    { code: 'html`<span aria-hidden>${foo}</span>`' },
     { code: 'html`<span aria-hidden="true">🐼</span>`' },
     { code: 'html`<span aria-hidden>🐼</span>`' },
     { code: 'html`<div aria-hidden="true">🐼</div>`' },

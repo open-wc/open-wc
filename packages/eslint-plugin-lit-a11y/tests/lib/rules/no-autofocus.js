@@ -52,7 +52,7 @@ ruleTester.run('no-autofocus', rule, {
       ],
     },
     {
-      code: 'html`<div autofocus=${foo}></div>`', // eslint-disable-line
+      code: 'html`<div autofocus=${foo}></div>`',
       errors: [
         {
           message: 'Enforce that autofocus attribute is not used on elements.',
