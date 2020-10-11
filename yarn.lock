@@ -2767,28 +2767,16 @@
   integrity sha512-BONpjHcGX2zFa9mfnwBCLEmlDsOHzT+j6Qt1yfK3MzFXFtAykfzFjAgaxPetu0YbBlCfXuMlfxI4vlRGCGMvFg==
 
 "@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-<<<<<<< HEAD
-  version "1.3.86"
+  version "1.3.93"
   dependencies:
-    "@open-wc/testing-karma" "^4.0.1"
-=======
-  version "1.3.91"
-  dependencies:
-    "@open-wc/testing-karma" "^4.0.6"
->>>>>>> master
+    "@open-wc/testing-karma" "^4.0.8"
     "@types/node" "^11.13.0"
     karma-browserstack-launcher "^1.0.0"
 
 "@open-wc/testing-karma@file:./packages/testing-karma":
-<<<<<<< HEAD
-  version "4.0.1"
+  version "4.0.8"
   dependencies:
-    "@open-wc/karma-esm" "^3.0.1"
-=======
-  version "4.0.6"
-  dependencies:
-    "@open-wc/karma-esm" "^3.0.6"
->>>>>>> master
+    "@open-wc/karma-esm" "^3.0.8"
     "@types/karma" "^5.0.0"
     "@types/karma-coverage-istanbul-reporter" "^2.1.0"
     "@types/karma-mocha" "^1.3.0"
