@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.36.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.35.0...@open-wc/create@0.36.0) (2020-10-05)
+
+
+### Features
+
+* **create:** add prepublish script to typescript wc generator ([828adad](https://github.com/open-wc/open-wc/commit/828adadb75327d9870d3be4132e57370e4f61490))
+
+
+
+
+
+# [0.35.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.34.0...@open-wc/create@0.35.0) (2020-10-04)
+
+
+### Features
+
+* **create:** update to use @web/test-runner ([#1861](https://github.com/open-wc/open-wc/issues/1861)) ([0bad752](https://github.com/open-wc/open-wc/commit/0bad752609c613bbaed887fe26bc70d0809872cf))
+
+
+
+
+
+# [0.34.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.33.3...@open-wc/create@0.34.0) (2020-10-03)
+
+
+### Features
+
+* **create:** update to use @web/dev-server ([#1858](https://github.com/open-wc/open-wc/issues/1858)) ([3383658](https://github.com/open-wc/open-wc/commit/33836581bbf2db98e5815f5f3a066446b201b742))
+
+
+
+
+
+## [0.33.3](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.33.2...@open-wc/create@0.33.3) (2020-10-01)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+## [0.33.2](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.33.1...@open-wc/create@0.33.2) (2020-08-27)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+## [0.33.1](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.33.0...@open-wc/create@0.33.1) (2020-08-19)
+
+**Note:** Version bump only for package @open-wc/create
+
+
+
+
+
+# [0.33.0](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.5...@open-wc/create@0.33.0) (2020-08-16)
+
+
+### Features
+
+* support building of multi page applications (mpa) ([a654535](https://github.com/open-wc/open-wc/commit/a65453576c42794958e90b9765000f99117097bd))
+
+
+
+
+
 ## [0.32.5](https://github.com/open-wc/open-wc/compare/@open-wc/create@0.32.4...@open-wc/create@0.32.5) (2020-07-24)
 
 

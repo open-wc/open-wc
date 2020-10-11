@@ -86,8 +86,8 @@ describe('injectBundles()', () => {
     ].join('');
 
     const output = injectBundles(html, [
+      // @ts-ignore
       {
-        // @ts-ignore
         options: { format: 'es' },
         entrypoints: [
           {
@@ -97,8 +97,8 @@ describe('injectBundles()', () => {
           },
         ],
       },
+      // @ts-ignore
       {
-        // @ts-ignore
         options: { format: 'iife' },
         entrypoints: [
           {

@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.6](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@1.1.5...@open-wc/rollup-plugin-polyfills-loader@1.1.6) (2020-10-03)
+
+**Note:** Version bump only for package @open-wc/rollup-plugin-polyfills-loader
+
+
+
+
+
+## [1.1.5](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@1.1.4...@open-wc/rollup-plugin-polyfills-loader@1.1.5) (2020-09-25)
+
+**Note:** Version bump only for package @open-wc/rollup-plugin-polyfills-loader
+
+
+
+
+
+## [1.1.4](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@1.1.3...@open-wc/rollup-plugin-polyfills-loader@1.1.4) (2020-08-27)
+
+**Note:** Version bump only for package @open-wc/rollup-plugin-polyfills-loader
+
+
+
+
+
+## [1.1.3](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@1.1.2...@open-wc/rollup-plugin-polyfills-loader@1.1.3) (2020-08-07)
+
+**Note:** Version bump only for package @open-wc/rollup-plugin-polyfills-loader
+
+
+
+
+
+## [1.1.2](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@1.1.1...@open-wc/rollup-plugin-polyfills-loader@1.1.2) (2020-08-05)
+
+**Note:** Version bump only for package @open-wc/rollup-plugin-polyfills-loader
+
+
+
+
+
+## [1.1.1](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@1.1.0...@open-wc/rollup-plugin-polyfills-loader@1.1.1) (2020-08-04)
+
+**Note:** Version bump only for package @open-wc/rollup-plugin-polyfills-loader
+
+
+
+
+
 # [1.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/rollup-plugin-polyfills-loader@1.0.7...@open-wc/rollup-plugin-polyfills-loader@1.1.0) (2020-08-03)
 
 

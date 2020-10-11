@@ -285,3 +285,91 @@ it('renders correctly', async () => {
   });
 });
 ```
+
+**[Scoped elements](https://open-wc.org/scoped-elements/)**
+
+Let's take this example going forward:
+
+```js
+import { ScopedElementsMixin } from '@open-wc/scoped-elements';
+import { LitElement } from 'lit-element';
+import { MyButton } from '@somewhere/my-button';
+
+class MyElement extends ScopedElementsMixin(LitElement) {
+  static get scopedElements() {
+    return {
+      'my-button': MyButton,
+    };
+  }
+  render() {
+    return html`
+      <p>Here's my button</p>
+      <my-button>Hey!</my-button>
+    `;
+  }
+}
+
+window.customElements.define('my-element', MyElement);
+```
+
+Without a proper diffing, scoped elements will produce untestable Shadow DOM snapshots. A different chunk of random numbers is attached to these elements' tags, _every time_, like so:
+
+```html
+<my-element>
+  <p>
+    Here's my button
+  </p>
+  <my-button-23443 data-tag-name="my-button">
+    Hey!
+  </my-button-23443>
+</my-element>
+```
+
+Whether you want to ignore this tag entirely:
+
+```js
+it('renders correctly', async () => {
+  const el = await fixture(`
+      <my-element>
+      </my-element>
+  `);
+
+  expect(el).shadowDom.to.equalSnapshot({ ignoreTags: 'my-button' });
+});
+```
+
+```html
+<my-element>
+  <p>
+    Here's my button
+  </p>
+</my-element>
+```
+
+... or just take a whole Shadow DOM snapshot of it:
+
+```js
+it('renders correctly', async () => {
+  const el = await fixture(`
+      <my-element>
+      </my-element>
+  `);
+
+  expect(el).shadowDom.to.equalSnapshot();
+});
+```
+
+```html
+<my-element>
+  <p>
+    Here's my button
+  </p>
+  <my-button data-tag-name="my-button">
+    Hey!
+  </my-button>
+</my-element>
+```
+
+We've got you covered! ;)
+
+Notice how in both examples the diff has worked out the real name and produced a testable snapshot.

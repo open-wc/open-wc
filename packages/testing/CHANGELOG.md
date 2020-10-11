@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.29](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.28...@open-wc/testing@2.5.29) (2020-10-03)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.5.28](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.27...@open-wc/testing@2.5.28) (2020-10-02)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.5.27](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.26...@open-wc/testing@2.5.27) (2020-09-25)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.5.26](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.25...@open-wc/testing@2.5.26) (2020-09-11)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.5.25](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.24...@open-wc/testing@2.5.25) (2020-08-27)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.5.24](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.23...@open-wc/testing@2.5.24) (2020-08-19)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.5.23](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.22...@open-wc/testing@2.5.23) (2020-08-16)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.5.22](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.21...@open-wc/testing@2.5.22) (2020-08-14)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.5.21](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.20...@open-wc/testing@2.5.21) (2020-08-05)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
+## [2.5.20](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.19...@open-wc/testing@2.5.20) (2020-08-04)
+
+**Note:** Version bump only for package @open-wc/testing
+
+
+
+
+
 ## [2.5.19](https://github.com/open-wc/open-wc/compare/@open-wc/testing@2.5.18...@open-wc/testing@2.5.19) (2020-07-08)
 
 **Note:** Version bump only for package @open-wc/testing

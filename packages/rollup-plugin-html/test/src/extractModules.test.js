@@ -5,6 +5,7 @@ const { extractModules } = require('../../src/extractModules');
 describe('extractModules()', () => {
   it('extracts all modules from a html document', () => {
     const { moduleImports, inlineModules, htmlWithoutModules } = extractModules(
+      0,
       {
         html:
           '<div>before</div>' +
@@ -26,6 +27,7 @@ describe('extractModules()', () => {
 
   it('resolves imports relative to the root dir', () => {
     const { moduleImports, inlineModules, htmlWithoutModules } = extractModules(
+      0,
       {
         html:
           '<div>before</div>' +
@@ -50,6 +52,7 @@ describe('extractModules()', () => {
 
   it('resolves relative imports relative to the relative import base', () => {
     const { moduleImports, inlineModules, htmlWithoutModules } = extractModules(
+      0,
       {
         html:
           '<div>before</div>' +
@@ -74,6 +77,7 @@ describe('extractModules()', () => {
 
   it('extracts all inline modules from a html document', () => {
     const { moduleImports, inlineModules, htmlWithoutModules } = extractModules(
+      0,
       {
         html:
           '<div>before</div>' +
@@ -98,6 +102,7 @@ describe('extractModules()', () => {
 
   it('prefixes inline module with index.html directory', () => {
     const { moduleImports, inlineModules, htmlWithoutModules } = extractModules(
+      0,
       {
         html:
           '<div>before</div>' +

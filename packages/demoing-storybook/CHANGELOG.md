@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.4](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.4.3...@open-wc/demoing-storybook@2.4.4) (2020-10-03)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.4.3](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.4.2...@open-wc/demoing-storybook@2.4.3) (2020-10-01)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.4.2](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.4.1...@open-wc/demoing-storybook@2.4.2) (2020-09-25)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.4.1](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.4.0...@open-wc/demoing-storybook@2.4.1) (2020-09-12)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+# [2.4.0](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.20...@open-wc/demoing-storybook@2.4.0) (2020-09-07)
+
+
+### Features
+
+* **demoing-storybook:** update to rollup-plugin-terser v7 ([6e6d5d7](https://github.com/open-wc/open-wc/commit/6e6d5d7515266c1e66a6df6a8a505f1e54b75d4c))
+
+
+
+
+
+## [2.3.20](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.19...@open-wc/demoing-storybook@2.3.20) (2020-08-27)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.3.19](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.18...@open-wc/demoing-storybook@2.3.19) (2020-08-19)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.3.18](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.17...@open-wc/demoing-storybook@2.3.18) (2020-08-07)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.3.17](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.16...@open-wc/demoing-storybook@2.3.17) (2020-08-05)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
+## [2.3.16](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.15...@open-wc/demoing-storybook@2.3.16) (2020-08-04)
+
+**Note:** Version bump only for package @open-wc/demoing-storybook
+
+
+
+
+
 ## [2.3.15](https://github.com/open-wc/open-wc/compare/@open-wc/demoing-storybook@2.3.14...@open-wc/demoing-storybook@2.3.15) (2020-08-03)
 
 **Note:** Version bump only for package @open-wc/demoing-storybook

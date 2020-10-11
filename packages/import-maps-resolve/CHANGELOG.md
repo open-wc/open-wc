@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/open-wc/open-wc/compare/@import-maps/resolve@0.3.2...@import-maps/resolve@1.0.0) (2020-08-19)
+
+
+### Features
+
+* **resolve:** return whether a resolved import was matched ([c8da78a](https://github.com/open-wc/open-wc/commit/c8da78a917a0156528cd99e413dd38038837b794))
+
+
+### BREAKING CHANGES
+
+* **resolve:** Resolve now returns an object instead of a string. Check the docs for the updated syntax.
+
+
+
+
+
 ## [0.3.2](https://github.com/open-wc/open-wc/compare/@import-maps/resolve@0.3.1...@import-maps/resolve@0.3.2) (2020-05-07)
 
 

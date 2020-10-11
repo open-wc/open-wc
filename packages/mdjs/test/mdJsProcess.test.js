@@ -77,7 +77,7 @@ describe('mdjsProcess', () => {
     expect(result.jsCode).to.equal('const bar = 2;');
   });
 
-  it('allows to fully configure the plugin list', async () => {
+  it('[deprecated] allows to fully configure the plugin list', async () => {
     const expected = [
       '<p>Intro</p>',
       '<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> foo <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>',
@@ -104,5 +104,65 @@ describe('mdjsProcess', () => {
     });
 
     expect(result.html).to.equal(expected);
+  });
+
+  it('can setup all unified plugins via "setupUnifiedPlugins" which accepts a single function or an array of functions', async () => {
+    const expected = [
+      '<p>Intro</p>',
+      '<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> foo <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>',
+      '</code></pre>',
+      '<my-story mdjs-story-name="fooStory"></my-story>',
+      '<my-preview mdjs-story-name="fooPreviewStory"></my-preview>',
+    ].join('\n');
+
+    function replaceStoryTag(plugins) {
+      return plugins.map(pluginObj => {
+        if (pluginObj.name === 'mdjsStoryParse') {
+          return {
+            ...pluginObj,
+            options: {
+              storyTag: name => `<my-story mdjs-story-name="${name}"></my-story>`,
+              previewStoryTag: name => `<my-preview mdjs-story-name="${name}"></></my-preview>`,
+            },
+          };
+        }
+        return pluginObj;
+      });
+    }
+
+    const result = await mdjsProcess(input, {
+      setupUnifiedPlugins: replaceStoryTag,
+    });
+    expect(result.html).to.equal(expected);
+
+    // Works with arrays
+
+    const expectedForArray = [
+      '<p>Intro</p>',
+      '<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> foo <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>',
+      '</code></pre>',
+      '<my-story2 mdjs-story-name="fooStory"></my-story2>',
+      '<my-preview2 mdjs-story-name="fooPreviewStory"></my-preview2>',
+    ].join('\n');
+
+    function replaceStoryTag2(plugins) {
+      return plugins.map(pluginObj => {
+        if (pluginObj.name === 'mdjsStoryParse') {
+          return {
+            ...pluginObj,
+            options: {
+              storyTag: name => `<my-story2 mdjs-story-name="${name}"></my-story2>`,
+              previewStoryTag: name => `<my-preview2 mdjs-story-name="${name}"></></my-preview2>`,
+            },
+          };
+        }
+        return pluginObj;
+      });
+    }
+
+    const resultOfArray = await mdjsProcess(input, {
+      setupUnifiedPlugins: [replaceStoryTag, replaceStoryTag2],
+    });
+    expect(resultOfArray.html).to.equal(expectedForArray);
   });
 });

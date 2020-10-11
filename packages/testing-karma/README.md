@@ -6,11 +6,15 @@ tags:
   - guides
 ---
 
+> **Notice**
+>
+> We have stopped new development of this package.
+>
+> We will continue to support security patches and bug fixes, but we recommend [web test runner](https://modern-web.dev/docs/test-runner/overview/) for testing web component projects.
+
 # Testing with Karma
 
 Configuration for setting up testing with karma.
-
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 We recommend karma as a general-purpose tool for testing code that runs in the browser. Karma can run a large range of browsers, including IE11. This way you are confident that your code runs correctly in all supported environments.
 
@@ -159,7 +163,7 @@ module.exports = config => {
       ],
 
       coverageReporter: {
-        thresholds: {
+        check: {
           global: {
             statements: 50,
             lines: 50,

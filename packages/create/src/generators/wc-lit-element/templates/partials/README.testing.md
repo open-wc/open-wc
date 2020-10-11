@@ -1,5 +1,5 @@
-## Testing with Karma
-To run the suite of karma tests, run
+## Testing with Web Test Runner
+To run the suite of Web Test Runner tests, run
 ```bash
 <%= scriptRunCommand %> test
 ```

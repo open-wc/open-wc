@@ -11,6 +11,7 @@
 
 const { injectPolyfillsLoader } = require('./src/inject-polyfills-loader');
 const { createPolyfillsLoader } = require('./src/create-polyfills-loader');
+const { createPolyfillsData } = require('./src/create-polyfills-data');
 const {
   noModuleSupportTest,
   fileTypes,
@@ -24,6 +25,7 @@ module.exports = {
   injectPolyfillsLoader,
   createPolyfillsLoader,
 
+  createPolyfillsData,
   noModuleSupportTest,
   fileTypes,
   createContentHash,

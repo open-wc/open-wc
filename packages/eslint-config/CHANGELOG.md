@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@2.1.0...@open-wc/eslint-config@3.0.0) (2020-08-16)
+
+
+### Features
+
+* **eslint-config:** upgrade eslint to 7.x ([7802511](https://github.com/open-wc/open-wc/commit/78025116dd9161ecc975c671f5c0022235d5b285))
+
+
+### BREAKING CHANGES
+
+* **eslint-config:** for a guide to migrate your code to eslint 7.x, as well as a list of breaking changes, please refer to:
+- https://eslint.org/docs/user-guide/migrating-to-6.0.0
+- https://eslint.org/docs/user-guide/migrating-to-7.0.0
+
+Additionally, this change also removes the usage of `babel-eslint`. For most projects, this should work transparently. However, if your code specifically references one of its rules, you can:
+- add `@babel/eslint-parser` to your devDependencies
+or
+- remove the references, as some of the rules have been merged into eslint
+
+
+
+
+
+# [2.1.0](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@2.0.6...@open-wc/eslint-config@2.1.0) (2020-08-05)
+
+
+### Features
+
+* **eslint-config:** add plugins as peer dependencies ([#1740](https://github.com/open-wc/open-wc/issues/1740)) ([3760f77](https://github.com/open-wc/open-wc/commit/3760f776ea3d5036e55c926f5d7888e057a3c702))
+
+
+
+
+
 ## [2.0.6](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@2.0.5...@open-wc/eslint-config@2.0.6) (2020-05-05)
 
 

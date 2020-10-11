@@ -16,6 +16,20 @@ const transform = template => {
   return template;
 };
 
+/**
+ * Regarding the @ts-expect-error, it is caused by having '& typeof ScopedElementsHost' on ScopedElementsMixin.
+ * This type intersection is necessary though, in order to access static props of the mixin. For example:
+ *
+ * static get scopedElements() {
+ *   return {
+ *     ...super.scopedElements, // <-- this will error without '& typeof ScopedElementsHost'
+ *   }
+ * }
+ *
+ * However, a new type error is created --> Base constructors must all have the same return type.ts(2510)
+ * But this can be ignored, and then at least you do get the super static props typed properly.
+ */
+// @ts-ignore https://github.com/microsoft/TypeScript/issues/40110 , not using expect-error, because in some TS versions it does not throw
 class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
   static get properties() {
     return {
@@ -31,7 +45,7 @@ class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
     this.scopedElements = {};
 
     /** @type {import('./litFixture').LitHTMLRenderable} */
-    // eslint-disable-next-line babel/no-unused-expressions
+    // eslint-disable-next-line no-unused-expressions
     this.template;
   }
 

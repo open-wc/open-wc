@@ -6,6 +6,12 @@ tags:
   - guides
 ---
 
+> **Notice**
+>
+> Development of es-dev-server continues under a new name: [web dev server](https://modern-web.dev/docs/dev-server/overview/). We recommend using it for new projects, and upgrading for existing projects.
+>
+> We will continue to support fixing bugs for es-dev-server.
+
 # es dev server
 
 A web server for development without bundling.
@@ -13,8 +19,6 @@ A web server for development without bundling.
 ```bash
 npx es-dev-server --node-resolve --watch
 ```
-
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 **Quick overview**
 

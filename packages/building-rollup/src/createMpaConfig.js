@@ -11,6 +11,9 @@ function createMpaConfig(options) {
   const userOptions = merge(
     {
       html: { flatten: false },
+      workbox: {
+        navigateFallback: '/404.html',
+      },
     },
     options,
   );

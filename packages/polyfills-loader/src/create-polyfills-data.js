@@ -9,13 +9,13 @@ const { createContentHash, noModuleSupportTest, hasFileOfType, fileTypes } = req
 
 /**
  * @param {PolyfillsLoaderConfig} cfg
- * @returns {{ coreJs?: PolyfillFile, polyfillFiles: PolyfillFile[] }}
+ * @returns {PolyfillFile[]}
  */
 function createPolyfillsData(cfg) {
   const { polyfills = {} } = cfg;
 
   /** @type {PolyfillConfig[]} */
-  const polyfillConfigs = [...(polyfills.custom || [])];
+  const polyfillConfigs = [];
 
   /**
    * @param {PolyfillConfig} polyfillConfig
@@ -76,9 +76,14 @@ function createPolyfillsData(cfg) {
   // load systemjs, an es module polyfill, if one of the entries needs it
   const hasSystemJs =
     cfg.polyfills && cfg.polyfills.custom && cfg.polyfills.custom.find(c => c.name === 'systemjs');
-  if (!hasSystemJs && hasFileOfType(cfg, fileTypes.SYSTEMJS)) {
+  if (
+    polyfills.systemjs ||
+    polyfills.systemjsExtended ||
+    (!hasSystemJs && hasFileOfType(cfg, fileTypes.SYSTEMJS))
+  ) {
     const name = 'systemjs';
-    const alwaysLoad = cfg.modern.files.some(f => f.type === fileTypes.SYSTEMJS);
+    const alwaysLoad =
+      cfg.modern && cfg.modern.files && cfg.modern.files.some(f => f.type === fileTypes.SYSTEMJS);
     const test = alwaysLoad || !cfg.legacy ? undefined : cfg.legacy.map(e => e.test).join(' || ');
 
     if (polyfills.systemjsExtended) {
@@ -177,6 +182,8 @@ function createPolyfillsData(cfg) {
     });
   }
 
+  polyfillConfigs.push(...(polyfills.custom || []));
+
   /**
    * @description returns the contents of a file at the given path
    * @param {string} filePath
@@ -187,13 +194,20 @@ function createPolyfillsData(cfg) {
     if (!codePath || !fs.existsSync(codePath) || !fs.statSync(codePath).isFile()) {
       throw new Error(`Could not find a file at ${filePath}`);
     }
-    return fs.readFileSync(filePath, 'utf-8');
+
+    const contentLines = fs.readFileSync(filePath, 'utf-8').split('\n');
+
+    // remove source map url
+    for (let i = contentLines.length - 1; i >= 0; i -= 1) {
+      if (contentLines[i].startsWith('//# sourceMappingURL')) {
+        contentLines[i] = '';
+      }
+    }
+    return contentLines.join('\n');
   }
 
   /** @type {PolyfillFile[]} */
   const polyfillFiles = [];
-  /** @type {PolyfillFile | undefined} */
-  let coreJs;
 
   for (const polyfillConfig of polyfillConfigs) {
     if (!polyfillConfig.name || !polyfillConfig.path) {
@@ -217,6 +231,7 @@ function createPolyfillsData(cfg) {
     )}.js`;
 
     const polyfillFile = {
+      name: polyfillConfig.name,
       type: polyfillConfig.fileType || fileTypes.SCRIPT,
       path: filePath,
       content,
@@ -224,14 +239,10 @@ function createPolyfillsData(cfg) {
       initializer: polyfillConfig.initializer,
     };
 
-    if (polyfillConfig.name !== 'core-js') {
-      polyfillFiles.push(polyfillFile);
-    } else {
-      coreJs = polyfillFile;
-    }
+    polyfillFiles.push(polyfillFile);
   }
 
-  return { coreJs, polyfillFiles };
+  return polyfillFiles;
 }
 
 module.exports = {

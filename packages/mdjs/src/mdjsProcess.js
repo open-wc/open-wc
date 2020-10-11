@@ -28,12 +28,51 @@ const mdjsProcessPlugins = [
   { name: 'htmlStringify', plugin: htmlStringify },
 ];
 
+/**
+ * @param {MdjsProcessPlugin[]} plugins
+ */
+function defaultSetupUnifiedPlugins(plugins) {
+  return plugins;
+}
+
+/**
+ * Processes mdjs to html/js/stories
+ *
+ * Js code includes the linking between js and stories
+ *
+ * @param {string} mdjs
+ * @param {object} options
+ * @param {string} [options.rootNodeQueryCode]
+ * @param {function | function[]} [options.setupUnifiedPlugins]
+ * @param {MdjsProcessPlugin[]} [options.plugins] @deprecated use setupUnifiedPlugins instead
+ */
 async function mdjsProcess(
   mdjs,
-  { rootNodeQueryCode = 'document', plugins = mdjsProcessPlugins } = {},
+  {
+    rootNodeQueryCode = 'document',
+    setupUnifiedPlugins = [defaultSetupUnifiedPlugins],
+    /** @deprecated */
+    plugins = mdjsProcessPlugins,
+  } = {},
 ) {
   const parser = unified();
-  for (const pluginObj of plugins) {
+
+  let setupPlugins = plugins;
+  /** @type {function[]} */
+  let userSetupUnifiedPlugins = [];
+  if (setupUnifiedPlugins) {
+    if (typeof setupUnifiedPlugins === 'function') {
+      userSetupUnifiedPlugins = [setupUnifiedPlugins];
+    }
+    if (Array.isArray(setupUnifiedPlugins)) {
+      userSetupUnifiedPlugins = setupUnifiedPlugins;
+    }
+  }
+  for (const setupFn of userSetupUnifiedPlugins) {
+    setupPlugins = setupFn(setupPlugins);
+  }
+
+  for (const pluginObj of setupPlugins) {
     parser.use(pluginObj.plugin, pluginObj.options);
   }
 
@@ -47,7 +86,7 @@ async function mdjsProcess(
   if (stories && stories.length > 0) {
     const storiesCode = stories.map(story => story.code).join('\n');
 
-    const codePlugins = plugins.filter(pluginObj =>
+    const codePlugins = setupPlugins.filter(pluginObj =>
       ['markdown', 'remark2rehype', 'rehypePrism', 'htmlStringify'].includes(pluginObj.name),
     );
     const codeParser = unified();
@@ -99,5 +138,6 @@ async function mdjsProcess(
 
 module.exports = {
   mdjsProcess,
+  /** @deprecated use setupUnifiedPlugins option on mdjsProcess instead */
   mdjsProcessPlugins,
 };

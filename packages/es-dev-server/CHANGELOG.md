@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.57.7](https://github.com/open-wc/open-wc/compare/es-dev-server@1.57.6...es-dev-server@1.57.7) (2020-10-03)
+
+
+### Bug Fixes
+
+* **polyfills-loader:** remove source map URL ([31a952b](https://github.com/open-wc/open-wc/commit/31a952b98a78059471b9e606596b9557c6c43783))
+
+
+
+
+
+## [1.57.6](https://github.com/open-wc/open-wc/compare/es-dev-server@1.57.5...es-dev-server@1.57.6) (2020-10-01)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+## [1.57.5](https://github.com/open-wc/open-wc/compare/es-dev-server@1.57.4...es-dev-server@1.57.5) (2020-09-25)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+## [1.57.4](https://github.com/open-wc/open-wc/compare/es-dev-server@1.57.3...es-dev-server@1.57.4) (2020-08-27)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+## [1.57.3](https://github.com/open-wc/open-wc/compare/es-dev-server@1.57.2...es-dev-server@1.57.3) (2020-08-19)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
+## [1.57.2](https://github.com/open-wc/open-wc/compare/es-dev-server@1.57.1...es-dev-server@1.57.2) (2020-08-04)
+
+**Note:** Version bump only for package es-dev-server
+
+
+
+
+
 ## [1.57.1](https://github.com/open-wc/open-wc/compare/es-dev-server@1.57.0...es-dev-server@1.57.1) (2020-07-29)
 
 

@@ -6,11 +6,15 @@ tags:
   - guides
 ---
 
+> **Notice**
+>
+> We have stopped new development of this package.
+>
+> We will continue to support security patches and bug fixes, but we recommend [web test runner](https://modern-web.dev/docs/test-runner/overview/) for testing web component projects.
+
 # karma-esm
 
 Karma plugin for testing with real es modules without any bundling.
-
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 Out the box es modules don't work with karma because they import their dependencies at runtime from the browser. Karma doesn't allow requesting any files it doesn't know about upfront.
 

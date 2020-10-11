@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/open-wc/open-wc/compare/@mdjs/core@0.3.3...@mdjs/core@0.4.0) (2020-09-12)
+
+
+### Features
+
+* **core:** replace exporting plugins array with setup functions ([44de89e](https://github.com/open-wc/open-wc/commit/44de89e01092835248425f6c53255337061a935a))
+
+
+
+
+
 ## [0.3.3](https://github.com/open-wc/open-wc/compare/@mdjs/core@0.3.2...@mdjs/core@0.3.3) (2020-06-13)
 
 

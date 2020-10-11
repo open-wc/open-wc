@@ -3,12 +3,14 @@ module.exports = {
     require.resolve('eslint-config-airbnb-base'),
     require.resolve('./src/eslint-plugin-wc-export'),
   ],
-  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
   env: {
     browser: true,
     mocha: true,
   },
-  plugins: ['lit', 'html', 'no-only-tests', 'babel'],
+  plugins: ['lit', 'html', 'no-only-tests'],
   rules: {
     'arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
     'no-underscore-dangle': 'off',
@@ -66,12 +68,6 @@ module.exports = {
       },
     ],
 
-    // Currently, eslint doesn't support optional chaining,
-    // so switching to a babel rule for now.
-    // https://github.com/eslint/eslint/issues/12642
-    'no-unused-expressions': 'off',
-    'babel/no-unused-expressions': 'error',
-
     // eslint-plugin-lit
     'lit/no-template-bind': 'error',
     'lit/no-duplicate-template-bindings': 'error',
@@ -90,7 +86,6 @@ module.exports = {
       rules: {
         'no-console': 'off',
         'no-unused-expressions': 'off',
-        'babel/no-unused-expressions': 'off',
         'class-methods-use-this': 'off',
 
         // loosen templating restrictions in tests and demos

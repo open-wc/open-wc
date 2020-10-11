@@ -3,11 +3,10 @@
 /* eslint-disable no-param-reassign */
 const resolve = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
-const babel = require('rollup-plugin-babel');
+const { babel, getBabelOutputPlugin } = require('@rollup/plugin-babel');
 const merge = require('deepmerge');
 const {
   createBabelConfigRollupBuild,
-  babelConfigRollupGenerate,
   babelConfigLegacyRollupGenerate,
   babelConfigSystemJs,
 } = require('./babel/babel-configs');
@@ -42,12 +41,7 @@ function createBasicConfig(userOptions = {}) {
       assetFileNames: assetName,
       format: 'es',
       dir: opts.outputDir,
-      plugins: [
-        // build to js supported by modern browsers
-        babel.generated(babelConfigRollupGenerate),
-        // create babel-helpers chunk based on es5 build
-        bundledBabelHelpers({ minify: !developmentMode }),
-      ],
+      plugins: [],
     },
 
     plugins: [
@@ -58,8 +52,7 @@ function createBasicConfig(userOptions = {}) {
         },
       }),
 
-      // build non-standard syntax to standard syntax and other babel optimization plugins
-      // user plugins are deduped to allow overriding
+      // run babel, compiling down to latest of modern browsers
       dedupedBabelPlugin(
         babel,
         opts.babel,
@@ -67,7 +60,7 @@ function createBasicConfig(userOptions = {}) {
       ),
 
       // minify js code
-      !developmentMode && pluginWithOptions(terser, opts.terser, { output: { comments: false } }),
+      !developmentMode && pluginWithOptions(terser, opts.terser, { format: { comments: false } }),
     ].filter(isFalsy),
   };
 
@@ -82,13 +75,15 @@ function createBasicConfig(userOptions = {}) {
         entryFileNames: `nomodule-${fileName}`,
         chunkFileNames: `nomodule-${fileName}`,
         assetFileNames: `nomodule-${assetName}`,
+        // in the legacy build we want to build to es5, but the babel plugin in the input plugins runs for both
+        // we add output plugins here only for the legacy build to build to es5
         plugins: [
           // buid to es5
-          babel.generated(babelConfigLegacyRollupGenerate),
+          getBabelOutputPlugin(babelConfigLegacyRollupGenerate),
           // create babel-helpers chunk based on es5 build
           bundledBabelHelpers({ format: 'system', minify: !developmentMode }),
           // build to systemjs after helpers, so that helpers can be statically analyzed
-          babel.generated(babelConfigSystemJs),
+          getBabelOutputPlugin(babelConfigSystemJs),
         ],
       },
     ];

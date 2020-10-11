@@ -3,6 +3,91 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.9.1...@open-wc/building-rollup@1.9.2) (2020-10-03)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [1.9.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.9.0...@open-wc/building-rollup@1.9.1) (2020-09-25)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+# [1.9.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.8.0...@open-wc/building-rollup@1.9.0) (2020-09-07)
+
+
+### Features
+
+* **building-rollup:** update to rollup-plugin-terser v7 ([774641f](https://github.com/open-wc/open-wc/commit/774641f83e66608f2e5be455836ae0ffd912ae2e))
+* **demoing-storybook:** update to rollup-plugin-terser v7 ([6e6d5d7](https://github.com/open-wc/open-wc/commit/6e6d5d7515266c1e66a6df6a8a505f1e54b75d4c))
+
+
+
+
+
+# [1.8.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.7.1...@open-wc/building-rollup@1.8.0) (2020-08-27)
+
+
+### Features
+
+* **building-rollup:** avoid helper chunk in modern build ([093763f](https://github.com/open-wc/open-wc/commit/093763f12ed8e0b4f6ca2a9a38bf681c40b88a89))
+
+
+
+
+
+## [1.7.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.7.0...@open-wc/building-rollup@1.7.1) (2020-08-19)
+
+
+### Bug Fixes
+
+* **building-rollup:** use a 404 page for MpaConfig by default ([3b11cba](https://github.com/open-wc/open-wc/commit/3b11cba7099f1ff5ecf17020f8057b6d40be5374))
+
+
+
+
+
+# [1.7.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.6.3...@open-wc/building-rollup@1.7.0) (2020-08-10)
+
+
+### Features
+
+* **building-rollup:** move to @rollup/plugin-babel ([#1802](https://github.com/open-wc/open-wc/issues/1802)) ([f5a7c39](https://github.com/open-wc/open-wc/commit/f5a7c3987dda06afd00ccfa6fd8298ec0e07cc80))
+
+
+
+
+
+## [1.6.3](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.6.2...@open-wc/building-rollup@1.6.3) (2020-08-07)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [1.6.2](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.6.1...@open-wc/building-rollup@1.6.2) (2020-08-05)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
+## [1.6.1](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.6.0...@open-wc/building-rollup@1.6.1) (2020-08-04)
+
+**Note:** Version bump only for package @open-wc/building-rollup
+
+
+
+
+
 # [1.6.0](https://github.com/open-wc/open-wc/compare/@open-wc/building-rollup@1.5.0...@open-wc/building-rollup@1.6.0) (2020-08-03)
 
 

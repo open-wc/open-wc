@@ -2,7 +2,7 @@
   "name": "<%= tagName %>",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index index.html --node-resolve --open --watch\"",
+    "start": "concurrently --kill-others --names tsc,web-dev-server \"npm run tsc:watch\" \"web-dev-server --app-index index.html --node-resolve --open --watch\"",
     "tsc:watch": "tsc --watch"
   },
   "dependencies": {
@@ -11,8 +11,8 @@
   },
   "devDependencies": {
     "@types/node": "13.11.1",
-    "es-dev-server": "^1.5.0",
-    "typescript": "~3.8.2",
+    "@web/dev-server": "^0.0.12",
+    "typescript": "~4.0.3",
     "concurrently": "^5.1.0",
     "tslib": "^1.11.0"
   }

@@ -335,6 +335,22 @@ describe('getDiffableHTML()', () => {
         `);
       expect(html).to.equal('<div>\n</div>\n');
     });
+
+    it('escapes attributes that require it', () => {
+      const html = getDiffableHTML(`
+        <div a="i &quot;have&quot; quotes" b="attributes &amp; values" c="with &quot;quotes&quot; &amp; amps"></div>
+      `);
+
+      // prettier-ignore
+      expect(html).to.equal(
+        '<div\n' +
+        '  a="i &quot;have&quot; quotes"\n' +
+        '  b="attributes &amp; values"\n' +
+        '  c="with &quot;quotes&quot; &amp; amps"\n' +
+        '>\n' +
+        '</div>\n'
+      );
+    });
   });
 
   describe('special elements', () => {
@@ -769,6 +785,62 @@ describe('getDiffableHTML()', () => {
           '      <my-element-1 hidden="">\n' +
           '      </my-element-1>\n' +
           '    </div>\n' +
+          '  </div>\n' +
+          '</div>\n',
+      );
+    });
+
+    it('scoped tags', () => {
+      const html = getDiffableHTML(
+        `
+        <scoped-element-123 data-tag-name="scoped-element">
+        </scoped-element-123>
+        <scoped-element>
+        </scoped-element>
+        <my-element-123>
+        </my-element-123>
+        <my-element>
+        </my-element>
+      `,
+      );
+
+      expect(html).to.equal(
+        '<scoped-element data-tag-name="scoped-element">\n' +
+          '</scoped-element>\n' +
+          '<scoped-element>\n' +
+          '</scoped-element>\n' +
+          '<my-element-123>\n' +
+          '</my-element-123>\n' +
+          '<my-element>\n' +
+          '</my-element>\n',
+      );
+    });
+
+    it('ignored scoped tags', () => {
+      const html = getDiffableHTML(
+        `<div>
+          <div>A</div>
+          <span-123 data-tag-name="span">
+            <div>B</div>
+              <span>
+                <div>C</div>
+                <div>D</div>
+              </span>
+            <div>E</div>
+            <div>F</div>
+          </span-123>
+          <div>G</div>
+        </div>
+      `,
+        { ignoreTags: ['span'] },
+      );
+      expect(html).to.equal(
+        '<div>\n' +
+          '  <div>\n' +
+          '    A\n' +
+          '  </div>\n' +
+          '  <div>\n' +
+          '    G\n' +
           '  </div>\n' +
           '</div>\n',
       );
