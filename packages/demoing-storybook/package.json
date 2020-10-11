@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/demoing-storybook",
-  "version": "2.4.4",
+  "version": "2.4.5",
   "publishConfig": {
     "access": "public"
   },
@@ -51,15 +51,15 @@
     "@babel/plugin-transform-react-jsx": "^7.9.1",
     "@babel/preset-env": "^7.9.0",
     "@mdx-js/mdx": "^1.5.1",
-    "@open-wc/rollup-plugin-html": "^1.2.4",
-    "@open-wc/rollup-plugin-polyfills-loader": "^1.1.6",
+    "@open-wc/rollup-plugin-html": "^1.2.5",
+    "@open-wc/rollup-plugin-polyfills-loader": "^1.1.7",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "babel-plugin-bundled-import-meta": "^0.3.2",
     "babel-plugin-template-html-minifier": "^4.0.0",
     "command-line-args": "^5.0.2",
     "command-line-usage": "^6.1.0",
     "deepmerge": "^4.2.2",
-    "es-dev-server": "^1.57.7",
+    "es-dev-server": "^1.57.8",
     "es-module-lexer": "^0.3.13",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.3",
