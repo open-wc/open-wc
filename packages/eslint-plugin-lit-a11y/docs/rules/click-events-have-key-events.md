@@ -1,31 +1,25 @@
-# Enforce a clickable non-interactive element has at least 1 keyboard event listener. (click-events-have-key-events)
+# click-events-have-key-events
 
-Please describe the origin of the rule here.
+Enforce `@click` is accompanied by at least one of `@keyup`, `@keydown`, or `@keypress`. Coding for the keyboard is important for users with physical disabilities who cannot use a mouse, AT compatibility, and screenreader users. This does not apply for interactive or hidden elements.
 
 ## Rule Details
-
-This rule aims to...
 
 Examples of **incorrect** code for this rule:
 
 ```js
-// fill me in
+html` <div @click="${onClick}"></div> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-// fill me in
+html` <button @click="${onClick}"></button> `;
 ```
 
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
-
-## When Not To Use It
-
-Give a short description of when it would be appropriate to turn off this rule.
+```js
+html` <div @click="${onClick}" @keyup="${onKeyup}"></div> `;
+```
 
 ## Further Reading
 
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+- [WCAG 2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard)

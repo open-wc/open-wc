@@ -5,50 +5,37 @@
 
 const { roles, aria } = require('aria-query');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isAriaPropertyName } = require('../utils/aria.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const RoleSupportsAriaAttrRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description:
         'Enforce that elements with a defined role contain only supported ARIA attributes for that role.',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
 
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
-
     return {
-      TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+      TaggedTemplateExpression(node) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
-            enterElement: element => {
+            enterElement(element) {
               if (Object.keys(element.attribs).includes('role')) {
+                /** @type {element['attribs'] & { role?: import("aria-query").ARIARole }} */
                 const { role } = element.attribs;
 
                 const { props: propKeyValues } = roles.get(role);
@@ -58,13 +45,17 @@ module.exports = {
                 );
 
                 Object.keys(element.attribs)
-                  .filter(attr => attr.startsWith('aria-'))
+                  .filter(isAriaPropertyName)
                   .forEach(attr => {
                     if (invalidAriaPropsForRole.includes(attr)) {
                       const loc = analyzer.getLocationForAttribute(element, attr);
                       context.report({
                         loc,
-                        message: `Role '${role}' does not support usage of the '${attr}' ARIA attribute.'`,
+                        message: `The "{{role}}" role must not be used with the "${attr}" attribute.'`,
+                        data: {
+                          role,
+                          attr,
+                        },
                       });
                     }
                   });
@@ -76,3 +67,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = RoleSupportsAriaAttrRule;

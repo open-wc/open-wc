@@ -36,7 +36,7 @@ ruleTester.run('no-access-key', rule, {
       ],
     },
     {
-      code: "html`<a accesskey='${foo}'></a>`", // eslint-disable-line
+      code: "html`<a accesskey='${foo}'></a>`",
       errors: [
         {
           message: 'Avoid using the accesskey attribute.',
@@ -44,7 +44,7 @@ ruleTester.run('no-access-key', rule, {
       ],
     },
     {
-      code: "html`<a accesskey='${'f'}'></a>`", // eslint-disable-line
+      code: "html`<a accesskey='${'f'}'></a>`",
       errors: [
         {
           message: 'Avoid using the accesskey attribute.',

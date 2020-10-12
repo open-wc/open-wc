@@ -1,5 +1,5 @@
 /**
- * @fileoverview aria-attr-types
+ * @fileoverview aria-attr-valid-value
  * @author open-wc
  */
 
@@ -9,13 +9,17 @@
 
 const { RuleTester } = require('eslint');
 const { aria } = require('aria-query');
-const rule = require('../../../lib/rules/aria-attr-types');
+const rule = require('../../../lib/rules/aria-attr-valid-value');
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
+/**
+ * @param {string} name
+ */
 const errorMessage = name => {
+  // @ts-expect-error: see https://github.com/A11yance/aria-query/pull/74
   const { type, values: permittedValues } = aria.get(name.toLowerCase());
 
   switch (type) {
@@ -46,11 +50,11 @@ const ruleTester = new RuleTester({
   },
 });
 
-ruleTester.run('aria-attr-types', rule, {
+ruleTester.run('aria-attr-valid-value', rule, {
   valid: [
     { code: 'html`<div aria-foo="true" />`' },
     { code: 'html`<div abcaria-foo="true" />`' },
-    { code: 'html`<div abcaria-foo="${true}" />`' }, // eslint-disable-line
+    { code: 'html`<div abcaria-foo="${true}" />`' },
 
     // BOOLEAN
     { code: 'html`<div aria-hidden="true" />`' },
@@ -58,21 +62,21 @@ ruleTester.run('aria-attr-types', rule, {
 
     // STRING
     { code: 'html`<div aria-label="Close" />`' },
-    { code: 'html`<div aria-label=${"close"} />`' }, // eslint-disable-line
+    { code: 'html`<div aria-label=${"close"} />`' },
 
     // tristate
     { code: 'html`<div aria-checked="true" />`' },
-    { code: 'html`<div aria-checked="${true}" />`' }, // eslint-disable-line
+    { code: 'html`<div aria-checked="${true}" />`' },
     { code: 'html`<div aria-checked />`' },
     { code: 'html`<div aria-checked="mixed" />`' },
 
     // int
     { code: 'html`<div aria-level="123" />`' },
-    { code: 'html`<div aria-level="${foo}" />`' }, // eslint-disable-line
+    { code: 'html`<div aria-level="${foo}" />`' },
 
     // number
     { code: 'html`<div aria-valuemax="123" />`' },
-    { code: 'html`<div aria-valuemax=${foo} />`' }, // eslint-disable-line
+    { code: 'html`<div aria-valuemax=${foo} />`' },
 
     // token
     { code: 'html`<div aria-sort="ascending" />`' },

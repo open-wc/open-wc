@@ -1,31 +1,39 @@
-# Enforce explicit role property is not the same as implicit/default role property on element. (no-redundant-role)
+# no-redundant-role
 
-Please describe the origin of the rule here.
+Enforce explicit role property is not the same as implicit/default role property on element.
+
+Some HTML elements have implicit roles. For example, a `<dialog>` element has the implicit role `dialog`.
+For those elements, there's no need to define a role unless you need to explicity change the existing one.
 
 ## Rule Details
 
-This rule aims to...
+This rule aims to prevent redundant use of the `role` attribute.
 
 Examples of **incorrect** code for this rule:
 
 ```js
-// fill me in
+html` <dialog role="dialog"></dialog> `;
+```
+
+```js
+html` <button role="button"></button> `;
+```
+
+```js
+html` <a href="foo" role="link"></a> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-// fill me in
+html` <img role="presentation" /> `;
 ```
-
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
 
 ## When Not To Use It
 
-Give a short description of when it would be appropriate to turn off this rule.
+If you do not use ARIA roles in your lit-html templates.
 
 ## Further Reading
 
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+- [MDN: WAI-ARIA Roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles)
+- [Web Fundamentals: Introduction to ARIA](https://developers.google.com/web/fundamentals/accessibility/semantics-aria/)

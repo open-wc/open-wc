@@ -20,33 +20,52 @@ const ruleTester = new RuleTester({
     ecmaVersion: 2015,
   },
 });
+
 ruleTester.run('aria-role', rule, {
   valid: [
-    {
-      code: "html`<div role='alert'></div>`;",
-    },
-    {
-      code: "html`<div role='navigation'></div>`;",
-    },
-    {
-      code: "html`<div role='${foo}'></div>`;", // eslint-disable-line
-    },
-    {
-      code: 'html`<div role=${foo}></div>`;', // eslint-disable-line
-    },
-    {
-      code: 'html`<div></div>`;',
-    },
+    { code: "html`<div role='alert'></div>`;" },
+    { code: "html`<div role='navigation'></div>`;" },
+    { code: 'html`<div role="navigation"></div>`;' },
+    { code: "html`<div role=${'navigation'}></div>`;" },
+    { code: 'html`<div role="${\'navigation\'}"></div>`;' },
+    { code: 'html`<div role=\'${"navigation"}\'></div>`;' },
+    { code: "html`<div role='${foo}'></div>`;" },
+    { code: 'html`<div role=${foo}></div>`;' },
+    { code: 'html`<div></div>`;' },
   ],
 
   invalid: [
     {
       code: "html`<div role='foo'>`;",
-      errors: [
-        {
-          message: 'Invalid role',
-        },
-      ],
+      errors: [{ message: 'Invalid role "foo".' }],
+    },
+    {
+      code: 'html`<div role=\'${"foo"}\'>`;',
+      errors: [{ message: 'Invalid role "foo".' }],
+    },
+    {
+      code: "html`<div role='${'foo'}'>`;",
+      errors: [{ message: 'Invalid role "foo".' }],
+    },
+    {
+      code: 'html`<div role="foo">`;',
+      errors: [{ message: 'Invalid role "foo".' }],
+    },
+    {
+      code: 'html`<div role="${\'foo\'}">`;',
+      errors: [{ message: 'Invalid role "foo".' }],
+    },
+    {
+      code: 'html`<div role="${"foo"}">`;',
+      errors: [{ message: 'Invalid role "foo".' }],
+    },
+    {
+      code: "html`<div role=${'foo'}>`;",
+      errors: [{ message: 'Invalid role "foo".' }],
+    },
+    {
+      code: 'html`<div role=${"foo"}>`;',
+      errors: [{ message: 'Invalid role "foo".' }],
     },
   ],
 });

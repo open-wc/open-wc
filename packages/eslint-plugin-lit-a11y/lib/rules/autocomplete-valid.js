@@ -6,55 +6,47 @@
 
 const { runVirtualRule } = require('axe-core');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const AutocompleteValidRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description: 'Ensure autocomplete attribute is correct.',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
-  // eslint-disable-next-line
+
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
+    /**
+     * @param {import('parse5-htmlparser2-tree-adapter').Element} element
+     */
+    function isInputElementWithAutoComplete(element) {
+      return (
+        element.name === 'input' &&
+        element.attribs &&
+        typeof element.attribs.autocomplete === 'string'
+      );
+    }
 
     return {
-      TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+      TaggedTemplateExpression(node) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
-            enterElement: element => {
-              if (
-                element.name === 'input' &&
-                element.attribs &&
-                typeof element.attribs.autocomplete === 'string'
-              ) {
+            enterElement(element) {
+              if (isInputElementWithAutoComplete(element)) {
                 if (element.attribs.autocomplete.startsWith('{{')) {
-                  return;
+                  return; // autocomplete is interpolated. assume it's legit and move on.
                 }
 
                 const { violations } = runVirtualRule('autocomplete-valid', {
@@ -83,3 +75,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = AutocompleteValidRule;

@@ -1,36 +1,28 @@
-# Certain reserved DOM elements do not support ARIA roles, states and properties. (aria-unsupported-elements)
+# aria-unsupported-elements
 
-Please describe the origin of the rule here.
+Certain reserved DOM elements do not support ARIA roles, states and properties. This is often because they are not visible, for example `meta`, `script`, and `style`. This rule enforces that these DOM elements do not contain the role and/or aria-\* attributes.
 
 ## Rule Details
-
-This rule aims to...
 
 Examples of **incorrect** code for this rule:
 
 ```js
-html`<meta charset="UTF-8" aria-hidden="false" />`;
-html`<script role="foo"></script>`;
-html`<style aria-hidden="foo"></style>`;
-html`<style role="foo" aria-hidden="foo"></style>`;
+html` <meta charset="UTF-8" aria-hidden="false" /> `;
+html` <script role="foo"></script> `;
+html` <style aria-hidden="foo"></style> `;
+html` <style role="foo" aria-hidden="foo"></style> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`<script src="./foo.js"></script>`;
-html`<meta charset="UTF-8" />`;
-html`<style></style>`;
+html` <script src="./foo.js"></script> `;
+html` <meta charset="UTF-8" /> `;
+html` <style></style> `;
 ```
-
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
-
-## When Not To Use It
-
-Give a short description of when it would be appropriate to turn off this rule.
 
 ## Further Reading
 
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+- [Chrome Audit Rules, AX_ARIA_12](https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_12)
+- [DPUB-ARIA roles](https://www.w3.org/TR/dpub-aria-1.0/)

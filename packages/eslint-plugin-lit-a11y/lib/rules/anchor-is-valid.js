@@ -6,11 +6,13 @@
 const { getAttrVal } = require('../utils/getAttrVal.js');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { generateObjSchema, enumArraySchema } = require('../utils/schemas.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
+/** @type {['noHref', 'invalidHref', 'preferButton']} */
 const allAspects = ['noHref', 'invalidHref', 'preferButton'];
 
 const preferButtonErrorMessage =
@@ -26,37 +28,23 @@ const schema = generateObjSchema({
   aspects: enumArraySchema(allAspects, 1),
 });
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const AnchorIsValidRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description: 'anchor-is-valid',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
+    fixable: null,
     schema: [schema],
   },
 
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
-
     return {
-      TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+      TaggedTemplateExpression(node) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -68,21 +56,24 @@ module.exports = {
 
                 // Create active aspect flag object. Failing checks will only report
                 // if the related flag is set to true.
-                const activeAspects = {};
-                allAspects.forEach(aspect => {
-                  activeAspects[aspect] = aspects.indexOf(aspect) !== -1;
-                });
+                const activeAspects = allAspects.reduce(
+                  (acc, aspect) => ({
+                    ...acc,
+                    [aspect]: aspects.indexOf(aspect) !== -1,
+                  }),
+                  { noHref: undefined, invalidHref: undefined, preferButton: undefined },
+                );
 
                 const hasAnyHref = Object.keys(element.attribs).includes('href');
-                const onClick = Object.keys(element.attribs).includes('@click');
+                const hasClickListener = Object.keys(element.attribs).includes('@click');
 
                 // When there is no href at all, specific scenarios apply:
                 if (!hasAnyHref) {
-                  // If no spread operator is found and no onClick event is present
+                  // If no spread operator is found and no click handler is present
                   // it is a link without href.
                   if (
                     activeAspects.noHref &&
-                    (!onClick || (onClick && !activeAspects.preferButton))
+                    (!hasClickListener || (hasClickListener && !activeAspects.preferButton))
                   ) {
                     const loc = analyzer.getLocationFor(element);
                     context.report({
@@ -90,8 +81,9 @@ module.exports = {
                       message: noHrefErrorMessage,
                     });
                   }
-                  // If no spread operator is found but an onClick is preset it should be a button.
-                  if (onClick && activeAspects.preferButton) {
+
+                  // If no spread operator is found but a click handler is preset it should be a button.
+                  if (hasClickListener && activeAspects.preferButton) {
                     const loc = analyzer.getLocationFor(element);
                     context.report({
                       loc,
@@ -102,17 +94,15 @@ module.exports = {
                 }
 
                 // Hrefs have been found, now check for validity.
-                const invalidHrefValues = [getAttrVal(element.attribs.href)]
-                  .filter(value => value !== undefined && value !== null)
-                  .filter(
-                    value =>
-                      typeof value === 'string' &&
-                      (!value.length || value === '#' || /^\W*?javascript:/.test(value)),
-                  );
+                const invalidHrefValues = [getAttrVal(element.attribs.href)].filter(
+                  value =>
+                    typeof value === 'string' &&
+                    (!value.length || value === '#' || /^\W*?javascript:/.test(value)),
+                );
 
                 if (invalidHrefValues.length !== 0) {
-                  // If an onClick is found it should be a button, otherwise it is an invalid link.
-                  if (onClick && activeAspects.preferButton) {
+                  // If a click handler is found it should be a button, otherwise it is an invalid link.
+                  if (hasClickListener && activeAspects.preferButton) {
                     const loc = analyzer.getLocationFor(element);
                     context.report({
                       loc,
@@ -134,3 +124,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = AnchorIsValidRule;

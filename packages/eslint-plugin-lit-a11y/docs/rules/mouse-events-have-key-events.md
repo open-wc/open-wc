@@ -1,31 +1,29 @@
-# template (template)
+# mouse-events-have-key-events
 
-Please describe the origin of the rule here.
+Enforce `@mouseover`/`@mouseout` are accompanied by `@focus`/`@blur`. Coding for the keyboard is important for users with physical disabilities who cannot use a mouse, AT compatibility, and screenreader users.
 
 ## Rule Details
-
-This rule aims to...
 
 Examples of **incorrect** code for this rule:
 
 ```js
-// fill me in
+html` <button @mouseout="${onMouseout}"></button> `;
+```
+
+```js
+html` <button @mouseover="${onMouseover}"></button> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-// fill me in
+html` <button @mouseout="${onMouseout}" @blur="${onBlur}"></button> `;
 ```
 
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
-
-## When Not To Use It
-
-Give a short description of when it would be appropriate to turn off this rule.
+```js
+html` <button @mouseover="${onMouseover}" @blur="${onBlur}"></button> `;
+```
 
 ## Further Reading
 
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+- [WCAG 2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard)

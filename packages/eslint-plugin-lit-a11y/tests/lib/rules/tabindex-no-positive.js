@@ -26,96 +26,55 @@ ruleTester.run('tabindex-no-positive', rule, {
       code: "html`<div tabindex='0'></div>`",
     },
     {
-      code: "html`<div tabindex='${'0'}'></div>`", // eslint-disable-line
+      code: "html`<div tabindex='${'0'}'></div>`",
     },
     {
-      code: "html`<div tabindex='${0}'></div>`", // eslint-disable-line
+      code: "html`<div tabindex='${0}'></div>`",
     },
     {
       code: "html`<div tabindex='-1'></div>`",
     },
     {
-      code: 'html`<div tabindex=${foo}></div>`', // eslint-disable-line
-      errors: [
-        {
-          message: 'Invalid tabindex value.',
-        },
-      ],
+      code: 'html`<div tabindex=${foo}></div>`',
     },
   ],
 
   invalid: [
     {
+      code: "html`<div tabindex='foo'></div>`",
+      errors: [{ message: 'Invalid tabindex value foo.' }],
+    },
+    {
+      code: "html`<div tabindex=${'bar'}></div>`",
+      errors: [{ message: 'Invalid tabindex value bar.' }],
+    },
+    {
+      code: 'html`<div tabindex=${true}></div>`',
+      errors: [{ message: 'Invalid tabindex value true.' }],
+    },
+    {
+      code: 'html`<div tabindex=${undefined}></div>`',
+      errors: [{ message: 'Invalid tabindex value undefined.' }],
+    },
+    {
+      code: 'html`<div tabindex=${null}></div>`',
+      errors: [{ message: 'Invalid tabindex value null.' }],
+    },
+    {
+      code: 'html`<div tabindex=${1}></div>`',
+      errors: [{ message: 'Avoid positive tabindex.' }],
+    },
+    {
+      code: "html`<div tabindex=${'1'}></div>`",
+      errors: [{ message: 'Avoid positive tabindex.' }],
+    },
+    {
       code: "html`<div tabindex='1'></div>`",
-      errors: [
-        {
-          message: 'Avoid positive tabindex.',
-        },
-      ],
+      errors: [{ message: 'Avoid positive tabindex.' }],
     },
     {
       code: "html`<div tabindex='2'></div>`",
-      errors: [
-        {
-          message: 'Avoid positive tabindex.',
-        },
-      ],
-    },
-    {
-      code: "html`<div tabindex='foo'></div>`",
-      errors: [
-        {
-          message: 'Invalid tabindex value.',
-        },
-      ],
-    },
-    {
-      code: "html`<div tabindex=${'bar'}></div>`", // eslint-disable-line
-      errors: [
-        {
-          message: 'Invalid tabindex value.',
-        },
-      ],
-    },
-    {
-      code: 'html`<div tabindex=${true}></div>`', // eslint-disable-line
-      errors: [
-        {
-          message: 'Invalid tabindex value.',
-        },
-      ],
-    },
-    {
-      code: 'html`<div tabindex=${undefined}></div>`', // eslint-disable-line
-      errors: [
-        {
-          message: 'Invalid tabindex value.',
-        },
-      ],
-    },
-    {
-      code: 'html`<div tabindex=${null}></div>`', // eslint-disable-line
-      errors: [
-        {
-          message: 'Invalid tabindex value.',
-        },
-      ],
-    },
-    {
-      code: 'html`<div tabindex=${1}></div>`', // eslint-disable-line
-      errors: [
-        {
-          message: 'Avoid positive tabindex.',
-        },
-      ],
-    },
-    {
-      code: "html`<div tabindex=${'1'}></div>`", // eslint-disable-line
-      errors: [
-        {
-          message: 'Avoid positive tabindex.',
-        },
-      ],
+      errors: [{ message: 'Avoid positive tabindex.' }],
     },
   ],
 });

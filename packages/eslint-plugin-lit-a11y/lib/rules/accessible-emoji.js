@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * @fileoverview Enforce emojis are wrapped in <span> and provide screenreader access.
  * @author open-wc
@@ -6,70 +5,72 @@
 
 const emojiRegex = require('emoji-regex');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isTextNode } = require('../../template-analyzer/util.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-module.exports = {
+/** @type{import('eslint').Rule.RuleModule} */
+const AccessibleEmojiRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description: 'Enforce emojis are wrapped in <span> and provide screenreader access.',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
 
   create(context) {
-    // variables should be defined here
+    /**
+     * @param {import('parse5-htmlparser2-tree-adapter').Element} element
+     * @return {boolean}
+     */
+    function hasEmojiTextContent(element) {
+      const textNode = element.children.find(isTextNode);
 
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
+      if (!textNode) return false;
 
-    // any helper functions should go here or else delete this section
+      /** @type {RegExp} */
+      // @ts-expect-error: 'emoji-regex' package declares its type with `export default`, but its actually CJS
+      const EMOJI_REGEXP = emojiRegex();
 
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
+      return EMOJI_REGEXP.test(textNode.data);
+    }
 
     return {
-      TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+      TaggedTemplateExpression(node) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
             enterElement(element) {
-              // todo: figure out what is meant with literalChildValue, try to see from tests
-              const literalChildValue = element.children.find(child => child.type === 'text');
+              if (!hasEmojiTextContent(element)) {
+                return; // element has no emoji text content
+              }
 
-              if (literalChildValue && emojiRegex().test(literalChildValue.data)) {
-                if (isHiddenFromScreenReader(element.name, element.attribs)) {
-                  return; // emoji is decorative
-                }
-                const rolePropValue = element.attribs.role;
-                const ariaLabelProp = element.attribs['aria-label'];
-                const arialLabelledByProp = element.attribs['aria-labelledby'];
-                const hasLabel = ariaLabelProp !== undefined || arialLabelledByProp !== undefined;
-                const isSpan = element.name === 'span';
+              if (isHiddenFromScreenReader(element.name, element.attribs)) {
+                return; // emoji is decorative
+              }
 
-                if (hasLabel === false || rolePropValue !== 'img' || isSpan === false) {
-                  const loc = analyzer.getLocationFor(element);
-                  context.report({
-                    loc,
-                    message:
-                      'Enforce emojis are wrapped in <span> and provide screenreader access.',
-                  });
-                }
+              const rolePropValue = element.attribs.role;
+              const ariaLabelProp = element.attribs['aria-label'];
+              const arialLabelledByProp = element.attribs['aria-labelledby'];
+              const hasLabel = ariaLabelProp !== undefined || arialLabelledByProp !== undefined;
+              const isSpan = element.name === 'span';
+
+              if (hasLabel === false || rolePropValue !== 'img' || isSpan === false) {
+                const loc = analyzer.getLocationFor(element);
+                context.report({
+                  loc,
+                  message:
+                    'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
+                });
               }
             },
           });
@@ -78,3 +79,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = AccessibleEmojiRule;

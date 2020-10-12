@@ -24,7 +24,7 @@ ruleTester.run('alt-text', rule, {
   valid: [
     { code: "html`<img alt=''/>`" },
     { code: "html`<img alt='foo'/>`" },
-    { code: "html`<img alt='${foo}'/>`" }, // eslint-disable-line
+    { code: "html`<img alt='${foo}'/>`" },
   ],
 
   invalid: [
@@ -32,7 +32,7 @@ ruleTester.run('alt-text', rule, {
       code: "html`<img src='./myimg.png'/>`",
       errors: [
         {
-          message: 'Images require alt text.',
+          message: '<img> elements must have an alt attribute.',
         },
       ],
     },

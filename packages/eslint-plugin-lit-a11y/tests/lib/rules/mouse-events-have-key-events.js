@@ -23,41 +23,35 @@ const ruleTester = new RuleTester({
 
 ruleTester.run('mouse-events-have-key-events', rule, {
   valid: [
-    { code: 'html`<div @mouseover=${foo} @focus=${foo} />;`' }, // eslint-disable-line
-    {
-      code: 'html`<div @mouseover=${foo} @focus=${foo} />;`', // eslint-disable-line
-    },
-    { code: 'html`<div @mouseover=${handleMouseOver} @focus=${handleFocus} />`' }, // eslint-disable-line
-    {
-      code: 'html`<div @mouseover=${handleMouseOver} @focus=${handleFocus} />`', // eslint-disable-line
-    },
+    { code: 'html`<div @mouseover=${foo} @focus=${foo} />;`' },
+    { code: 'html`<div @mouseover=${foo} @focus=${foo} />;`' },
+    { code: 'html`<div @mouseover=${handleMouseOver} @focus=${handleFocus} />`' },
+    { code: 'html`<div @mouseover=${handleMouseOver} @focus=${handleFocus} />`' },
     { code: 'html`<div />;`' },
-    { code: 'html`<div @blur=${() => {}} />`' }, // eslint-disable-line
-    { code: 'html`<div @focus=${() => {}} />`' }, // eslint-disable-line
-    { code: 'html`<div @mouseout=${foo} @blur=${foo} />`' }, // eslint-disable-line
-    { code: 'html`<div @mouseout=${foo} @blur=${foo} />`' }, // eslint-disable-line
-    { code: 'html`<div @mouseout=${handleMouseOut} @blur=${handleOnBlur} />`' }, // eslint-disable-line
-    { code: 'html`<div @mouseout=${handleMouseOut} @blur=${handleOnBlur} />`' }, // eslint-disable-line
+    { code: 'html`<div @blur=${() => {}} />`' },
+    { code: 'html`<div @focus=${() => {}} />`' },
+    { code: 'html`<div @mouseout=${foo} @blur=${foo} />`' },
+    { code: 'html`<div @mouseout=${foo} @blur=${foo} />`' },
+    { code: 'html`<div @mouseout=${handleMouseOut} @blur=${handleOnBlur} />`' },
+    { code: 'html`<div @mouseout=${handleMouseOut} @blur=${handleOnBlur} />`' },
   ],
 
   invalid: [
     {
-      // eslint-disable-next-line
       code: 'html`<div @mouseover=${foo} />;`',
-      errors: ['@mouseover must be accompanied by @focus for accessibility.'],
+      errors: ['@mouseover must be accompanied by @focus.'],
     },
     {
-      // eslint-disable-next-line
       code: 'html`<div @mouseout=${foo} />`',
-      errors: ['@mouseout must be accompanied by @blur for accessibility.'],
+      errors: ['@mouseout must be accompanied by @blur.'],
     },
     {
-      code: 'html`<div @mouseover=${foo} />`', // eslint-disable-line
-      errors: ['@mouseover must be accompanied by @focus for accessibility.'],
+      code: 'html`<div @mouseover=${foo} />`',
+      errors: ['@mouseover must be accompanied by @focus.'],
     },
     {
-      code: 'html`<div @mouseout=${foo} />`', // eslint-disable-line
-      errors: ['@mouseout must be accompanied by @blur for accessibility.'],
+      code: 'html`<div @mouseout=${foo} />`',
+      errors: ['@mouseout must be accompanied by @blur.'],
     },
   ],
 });

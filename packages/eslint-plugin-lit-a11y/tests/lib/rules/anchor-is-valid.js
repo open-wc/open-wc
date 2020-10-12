@@ -76,7 +76,7 @@ const ruleTester = new RuleTester({
 ruleTester.run('anchor-is-valid', rule, {
   valid: [
     { code: 'html`<a href="foo" />`' },
-    { code: 'html`<a href=${foo} />`' }, // eslint-disable-line
+    { code: 'html`<a href=${foo} />`' },
     { code: 'html`<a href="/foo" />`' },
     { code: 'html`<a href="https://foo.bar.com" />`' },
     { code: 'html`<div href="foo" />`' },
@@ -86,35 +86,35 @@ ruleTester.run('anchor-is-valid', rule, {
     { code: 'html`<a href="#javascript" />`' },
     { code: 'html`<a href="#javascriptFoo" />`' },
 
-    { code: 'html`<a href="foo" @click=${foo} />`' }, // eslint-disable-line
-    { code: 'html`<a href=${foo} @click=${foo} />`' }, // eslint-disable-line
-    { code: 'html`<a href="/foo" @click=${foo} />`' }, // eslint-disable-line
-    { code: 'html`<a href="https://foo.bar.com" @click=${foo} />`' }, // eslint-disable-line
-    { code: 'html`<div href="foo" @click=${foo} />`' }, // eslint-disable-line
-    { code: 'html`<a href=${`#foo`} @click=${foo} />`' }, // eslint-disable-line
-    { code: 'html`<a href="#foo" @click=${foo} />`' }, // eslint-disable-line
+    { code: 'html`<a href="foo" @click=${foo} />`' },
+    { code: 'html`<a href=${foo} @click=${foo} />`' },
+    { code: 'html`<a href="/foo" @click=${foo} />`' },
+    { code: 'html`<a href="https://foo.bar.com" @click=${foo} />`' },
+    { code: 'html`<div href="foo" @click=${foo} />`' },
+    { code: 'html`<a href=${`#foo`} @click=${foo} />`' },
+    { code: 'html`<a href="#foo" @click=${foo} />`' },
 
     { code: 'html`<a href="" />;`', options: preferButtonAspect },
     { code: 'html`<a href="#" />`', options: preferButtonAspect },
-    { code: 'html`<a href=${"#"} />`', options: preferButtonAspect }, // eslint-disable-line
+    { code: 'html`<a href=${"#"} />`', options: preferButtonAspect },
     { code: 'html`<a href="javascript:void(0)" />`', options: preferButtonAspect },
-    { code: 'html`<a href=${"javascript:void(0)"} />`', options: preferButtonAspect }, // eslint-disable-line
+    { code: 'html`<a href=${"javascript:void(0)"} />`', options: preferButtonAspect },
     { code: 'html`<a href="" />;`', options: noHrefAspect },
     { code: 'html`<a href="#" />`', options: noHrefAspect },
-    { code: 'html`<a href=${"#"} />`', options: noHrefAspect }, // eslint-disable-line
+    { code: 'html`<a href=${"#"} />`', options: noHrefAspect },
     { code: 'html`<a href="javascript:void(0)" />`', options: noHrefAspect },
-    { code: 'html`<a href=${"javascript:void(0)"} />`', options: noHrefAspect }, // eslint-disable-line
+    { code: 'html`<a href=${"javascript:void(0)"} />`', options: noHrefAspect },
     { code: 'html`<a href="" />;`', options: noHrefPreferButtonAspect },
     { code: 'html`<a href="#" />`', options: noHrefPreferButtonAspect },
-    { code: 'html`<a href=${"#"} />`', options: noHrefPreferButtonAspect }, // eslint-disable-line
+    { code: 'html`<a href=${"#"} />`', options: noHrefPreferButtonAspect },
     { code: 'html`<a href="javascript:void(0)" />`', options: noHrefPreferButtonAspect },
-    { code: 'html`<a href=${"javascript:void(0)"} />`', options: noHrefPreferButtonAspect }, // eslint-disable-line
+    { code: 'html`<a href=${"javascript:void(0)"} />`', options: noHrefPreferButtonAspect },
 
-    { code: 'html`<a @click=${foo} />`', options: invalidHrefAspect }, // eslint-disable-line
-    { code: 'html`<a href="#" @click=${foo} />`', options: noHrefAspect }, // eslint-disable-line
-    { code: 'html`<a href="javascript:void(0)" @click=${foo} />`', options: noHrefAspect }, // eslint-disable-line
+    { code: 'html`<a @click=${foo} />`', options: invalidHrefAspect },
+    { code: 'html`<a href="#" @click=${foo} />`', options: noHrefAspect },
+    { code: 'html`<a href="javascript:void(0)" @click=${foo} />`', options: noHrefAspect },
     {
-      code: 'html`<a href=${"javascript:void(0)"} @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a href=${"javascript:void(0)"} @click=${foo} />`',
       options: noHrefAspect,
     },
   ],
@@ -126,12 +126,12 @@ ruleTester.run('anchor-is-valid', rule, {
     { code: 'html`<a href="#" />`', errors: [invalidHrefErrorMessage] },
     { code: 'html`<a href="javascript:void(0)" />`', errors: [invalidHrefexpectedError] },
     // SHOULD BE BUTTON
-    { code: 'html`<a @click=${foo} />`', errors: [preferButtonexpectedError] }, // eslint-disable-line
-    { code: 'html`<a href="#" @click=${foo} />`', errors: [preferButtonexpectedError] }, // eslint-disable-line
+    { code: 'html`<a @click=${foo} />`', errors: [preferButtonexpectedError] },
+    { code: 'html`<a href="#" @click=${foo} />`', errors: [preferButtonexpectedError] },
     {
-      code: 'html`<a href="javascript:void(0)" @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a href="javascript:void(0)" @click=${foo} />`',
       errors: [preferButtonexpectedError],
-    }, // eslint-disable-line
+    },
 
     // WITH ASPECTS TESTS
     // NO HREF
@@ -184,73 +184,73 @@ ruleTester.run('anchor-is-valid', rule, {
 
     // SHOULD BE BUTTON
     {
-      code: 'html`<a @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a @click=${foo} />`',
       options: preferButtonAspect,
       errors: [preferButtonErrorMessage],
-    }, // eslint-disable-line
+    },
     {
-      code: 'html`<a @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a @click=${foo} />`',
       options: preferButtonInvalidHrefAspect,
       errors: [preferButtonErrorMessage],
     },
     {
-      code: 'html`<a @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a @click=${foo} />`',
       options: noHrefPreferButtonAspect,
       errors: [preferButtonErrorMessage],
-    }, // eslint-disable-line
-    { code: 'html`<a @click=${foo} />`', options: noHrefAspect, errors: [noHrefErrorMessage] }, // eslint-disable-line
+    },
+    { code: 'html`<a @click=${foo} />`', options: noHrefAspect, errors: [noHrefErrorMessage] },
     {
-      code: 'html`<a @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a @click=${foo} />`',
       options: noHrefInvalidHrefAspect,
       errors: [noHrefErrorMessage],
-    }, // eslint-disable-line
+    },
     {
-      code: 'html`<a href="#" @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a href="#" @click=${foo} />`',
       options: preferButtonAspect,
       errors: [preferButtonErrorMessage],
-    }, // eslint-disable-line
+    },
     {
-      code: 'html`<a href="#" @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a href="#" @click=${foo} />`',
       options: noHrefPreferButtonAspect,
       errors: [preferButtonErrorMessage],
     },
     {
-      code: 'html`<a href="#" @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a href="#" @click=${foo} />`',
       options: preferButtonInvalidHrefAspect,
       errors: [preferButtonErrorMessage],
     },
     {
-      code: 'html`<a href="#" @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a href="#" @click=${foo} />`',
       options: invalidHrefAspect,
       errors: [invalidHrefErrorMessage],
-    }, // eslint-disable-line
+    },
     {
-      code: 'html`<a href="#" @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a href="#" @click=${foo} />`',
       options: noHrefInvalidHrefAspect,
       errors: [invalidHrefErrorMessage],
     },
     {
-      code: 'html`<a href="javascript:void(0)" @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a href="javascript:void(0)" @click=${foo} />`',
       options: preferButtonAspect,
       errors: [preferButtonErrorMessage],
     },
     {
-      code: 'html`<a href="javascript:void(0)" @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a href="javascript:void(0)" @click=${foo} />`',
       options: noHrefPreferButtonAspect,
       errors: [preferButtonErrorMessage],
     },
     {
-      code: 'html`<a href="javascript:void(0)" @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a href="javascript:void(0)" @click=${foo} />`',
       options: preferButtonInvalidHrefAspect,
       errors: [preferButtonErrorMessage],
     },
     {
-      code: 'html`<a href="javascript:void(0)" @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a href="javascript:void(0)" @click=${foo} />`',
       options: invalidHrefAspect,
       errors: [invalidHrefErrorMessage],
     },
     {
-      code: 'html`<a href="javascript:void(0)" @click=${foo} />`', // eslint-disable-line
+      code: 'html`<a href="javascript:void(0)" @click=${foo} />`',
       options: noHrefInvalidHrefAspect,
       errors: [invalidHrefErrorMessage],
     },

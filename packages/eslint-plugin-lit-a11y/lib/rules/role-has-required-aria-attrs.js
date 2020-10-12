@@ -5,54 +5,53 @@
 
 const { roles } = require('aria-query');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isAriaRole } = require('../utils/aria.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
+
+if (!('ListFormat' in Intl)) {
+  /* eslint-disable global-require */
+  // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
+  require('intl-list-format');
+  // eslint-disable-next-line global-require
+  // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
+  require('intl-list-format/locale-data/en');
+  /* eslint-enable global-require */
+}
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const RoleHasRequiredAriaAttrsRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description:
         'Enforce that elements with ARIA roles must have all required attributes for that role.',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
 
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
+    // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
+    const formatter = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' });
 
     return {
-      TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+      TaggedTemplateExpression(node) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
-            enterElement: element => {
+            enterElement(element) {
               // if element has a role attr
               if (Object.keys(element.attribs).includes('role')) {
                 const { role } = element.attribs;
                 // if the role is a valid/existing role
-                if ([...roles.keys()].includes(role)) {
+                if (isAriaRole(role)) {
                   const requiredAriaAttributes = Object.keys(roles.get(role).requiredProps).sort();
                   const presentAriaAttributes = Object.keys(element.attribs)
                     .filter(attr => attr.startsWith('aria-'))
@@ -65,9 +64,12 @@ module.exports = {
                     const loc = analyzer.getLocationFor(element);
                     context.report({
                       loc,
-                      message: `Role '${role}' requires the following ARIA attribute(s): '${requiredAriaAttributes.join(
-                        ', ',
-                      )}'`,
+                      message: `The "{{role}}" role requires the {{plural}} {{requiredAttrs}}.`,
+                      data: {
+                        role,
+                        plural: requiredAriaAttributes.length > 1 ? 'attributes' : 'attribute',
+                        requiredAttrs: formatter.format(requiredAriaAttributes.map(x => `"${x}"`)),
+                      },
                     });
                   }
                 }
@@ -79,3 +81,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = RoleHasRequiredAriaAttrsRule;

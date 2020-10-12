@@ -1,31 +1,40 @@
 # Enforce emojis are wrapped in <span> and provide screenreader access. (accessible-emoji)
 
-Please describe the origin of the rule here.
+> Emoji help us communicate complex ideas very easily. When used in native apps and applications, emoji are reasonably accessible to screen readers, but on the web we need to do a little more to make sure everyone can understand emoji.
+
+- [Léonie Watson](https://tink.uk/accessible-emoji/)
 
 ## Rule Details
 
-This rule aims to...
+This rule aims to prevent inaccessible use of emoji in lit-html templates.
 
 Examples of **incorrect** code for this rule:
 
 ```js
-// fill me in
+html` <span>🐼</span> `;
+```
+
+```js
+html` <i role="img" aria-label="Panda face">🐼</i> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-// fill me in
+html` <span role="img" aria-label="Panda face">🐼</span> `;
 ```
 
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
+```js
+html`
+  <label id="label">Clown</label>
+  <span role="img" aria-labelledby="label">🤡</span>
+`;
+```
 
 ## When Not To Use It
 
-Give a short description of when it would be appropriate to turn off this rule.
+If you do not use emoji in your lit-html templates.
 
 ## Further Reading
 
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+[Accessible emoji by Léonie Watson](https://tink.uk/accessible-emoji/)

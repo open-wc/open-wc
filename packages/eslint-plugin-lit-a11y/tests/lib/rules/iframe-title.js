@@ -24,7 +24,7 @@ ruleTester.run('iframe-title', rule, {
   valid: [
     { code: 'html`<div></div>;`' },
     { code: 'html`<iframe title="Unique title"></iframe>`' },
-    { code: 'html`<iframe title=${foo} ></iframe>`' }, // eslint-disable-line
+    { code: 'html`<iframe title=${foo} ></iframe>`' },
     // give me some code that won't trigger a warning
   ],
 

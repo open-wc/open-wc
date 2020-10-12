@@ -1,31 +1,23 @@
-# &lt;iframe&gt; elements must have a unique title property. (iframe-title)
+# iframe-title
 
-Please describe the origin of the rule here.
+`<iframe>` elements must have a unique title property to indicate its content to the user.
 
 ## Rule Details
-
-This rule aims to...
 
 Examples of **incorrect** code for this rule:
 
 ```js
-// fill me in
+html` <iframe src="${foo}"></iframe> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-// fill me in
+html` <iframe title="Foo" src="${foo}"></iframe> `;
 ```
-
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
-
-## When Not To Use It
-
-Give a short description of when it would be appropriate to turn off this rule.
 
 ## Further Reading
 
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+- [WCAG 2.4.1](https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks)
+- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+- [axe-core, frame-title](https://dequeuniversity.com/rules/axe/3.2/frame-title)

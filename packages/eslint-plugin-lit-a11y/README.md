@@ -76,21 +76,17 @@ Here's an example of a simple rule:
 
 ```js
 return {
-  TaggedTemplateExpression: node => {
+  TaggedTemplateExpression(node) {
     // 1. only target html`` tagged template literals
-    if (
-      node.type === 'TaggedTemplateExpression' &&
-      node.tag.type === 'Identifier' &&
-      node.tag.name === 'html'
-    ) {
+    if (isHtmlTaggedTemplate(node)) {
       // 2. create a TemplateAnalyzer and pass it the node
       const analyzer = TemplateAnalyzer.create(node);
 
       // 3. traverse DOM elements in the html tagged template literal
       analyzer.traverse({
-        enterElement: element => {
+        enterElement(element) {
           // 4. implement rule
-          if ('autofocus' in element.attribs) {
+          if (elementHasAttribute(element, 'autofocus')) {
             const loc = analyzer.getLocationForAttribute(element, 'autofocus');
             context.report({
               loc,

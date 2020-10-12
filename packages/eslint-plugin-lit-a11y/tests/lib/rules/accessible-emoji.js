@@ -32,8 +32,8 @@ ruleTester.run('accessible-emoji', rule, {
     { code: 'html`<span role="img" aria-labelledby="id1">🐼</span>`' },
     { code: 'html`<span role="img" aria-labelledby="id1">&#9731;</span>`' },
     { code: 'html`<span role="img" aria-labelledby="id1" aria-label="Snowman">&#9731;</span>`' },
-    { code: 'html`<span>${foo}</span>`' }, // eslint-disable-line
-    { code: 'html`<span aria-hidden>${foo}</span>`' }, // eslint-disable-line
+    { code: 'html`<span>${foo}</span>`' },
+    { code: 'html`<span aria-hidden>${foo}</span>`' },
     { code: 'html`<span aria-hidden="true">🐼</span>`' },
     { code: 'html`<span aria-hidden>🐼</span>`' },
     { code: 'html`<div aria-hidden="true">🐼</div>`' },
@@ -43,37 +43,55 @@ ruleTester.run('accessible-emoji', rule, {
     {
       code: 'html`<span>🐼</span>`',
       errors: [
-        { message: 'Enforce emojis are wrapped in <span> and provide screenreader access.' },
+        {
+          message:
+            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
+        },
       ],
     },
     {
       code: 'html`<span>foo🐼bar</span>`',
       errors: [
-        { message: 'Enforce emojis are wrapped in <span> and provide screenreader access.' },
+        {
+          message:
+            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
+        },
       ],
     },
     {
       code: 'html`<span>foo 🐼 bar</span>`',
       errors: [
-        { message: 'Enforce emojis are wrapped in <span> and provide screenreader access.' },
+        {
+          message:
+            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
+        },
       ],
     },
     {
       code: 'html`<i role="img" aria-label="Panda face">🐼</i>`',
       errors: [
-        { message: 'Enforce emojis are wrapped in <span> and provide screenreader access.' },
+        {
+          message:
+            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
+        },
       ],
     },
     {
       code: 'html`<i role="img" aria-labelledby="id1">🐼</i>`',
       errors: [
-        { message: 'Enforce emojis are wrapped in <span> and provide screenreader access.' },
+        {
+          message:
+            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
+        },
       ],
     },
     {
       code: 'html`<span aria-hidden="false">🐼</span>`',
       errors: [
-        { message: 'Enforce emojis are wrapped in <span> and provide screenreader access.' },
+        {
+          message:
+            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
+        },
       ],
     },
   ],

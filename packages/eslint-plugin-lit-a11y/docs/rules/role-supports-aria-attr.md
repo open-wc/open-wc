@@ -1,33 +1,37 @@
-# Enforce that elements with a defined role contain only supported ARIA attributes for that role. (role-supports-aria-attr)
+# role-supports-aria-attr
 
-Please describe the origin of the rule here.
+Enforce that elements with a defined role contain only supported ARIA attributes for that role.
+Some ARIA attributes are invalid when used with certain roles.
 
 ## Rule Details
 
-This rule aims to...
+This rule aims to ensure the validity of the Accessibility Object Model.
 
 Examples of **incorrect** code for this rule:
 
 ```js
-html`<li aria-required role="radio" aria-checked="false">Rainbow Trout</li>`;
-html`<div role="combobox" aria-checked="true"></div>`;
+html` <li aria-required role="radio" aria-checked="false">Rainbow Trout</li> `;
+```
+
+```js
+html` <div role="combobox" aria-checked="true"></div> `;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html`<div role="checkbox" aria-checked="true"></div>`;
-html`<div role="presentation"></div>`;
+html` <div role="checkbox" aria-checked="true"></div> `;
 ```
 
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
+```js
+html` <div role="presentation"></div> `;
+```
 
 ## When Not To Use It
 
-Give a short description of when it would be appropriate to turn off this rule.
+If you do not use ARIA roles in your lit-html templates.
 
 ## Further Reading
 
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+- [MDN: WAI-ARIA Roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles)
+- [Web Fundamentals: Introduction to ARIA](https://developers.google.com/web/fundamentals/accessibility/semantics-aria/)

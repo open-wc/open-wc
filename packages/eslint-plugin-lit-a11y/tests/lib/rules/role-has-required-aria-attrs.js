@@ -22,9 +22,7 @@ const ruleTester = new RuleTester({
 });
 ruleTester.run('role-has-required-aria-attrs', rule, {
   valid: [
-    {
-      code: "html`<span role='alert' aria-atomic='foo' aria-live='foo'></span>`",
-    },
+    { code: "html`<span role='alert' aria-atomic='foo' aria-live='foo'></span>`" },
     {
       code:
         'html`<span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span>`',
@@ -37,28 +35,20 @@ ruleTester.run('role-has-required-aria-attrs', rule, {
   invalid: [
     {
       code: "html`<span role='checkbox'></span>`",
-      errors: [
-        {
-          message: "Role 'checkbox' requires the following ARIA attribute(s): 'aria-checked'",
-        },
-      ],
+      errors: [{ message: 'The "checkbox" role requires the attribute "aria-checked".' }],
     },
     {
       code: "html`<div role='combobox'></div>`",
       errors: [
         {
           message:
-            "Role 'combobox' requires the following ARIA attribute(s): 'aria-controls, aria-expanded'",
+            'The "combobox" role requires the attributes "aria-controls" and "aria-expanded".',
         },
       ],
     },
     {
       code: 'html`<div role="slider" ></div>`',
-      errors: [
-        {
-          message: "Role 'slider' requires the following ARIA attribute(s): 'aria-valuenow'",
-        },
-      ],
+      errors: [{ message: 'The "slider" role requires the attribute "aria-valuenow".' }],
     },
   ],
 });

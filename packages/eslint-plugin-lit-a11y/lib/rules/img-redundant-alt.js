@@ -5,21 +5,36 @@
 
 const { getAttrVal } = require('../utils/getAttrVal.js');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
+const { isAriaHidden } = require('../utils/aria.js');
+const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
+
+if (!('ListFormat' in Intl)) {
+  /* eslint-disable global-require */
+  // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
+  require('intl-list-format');
+  // eslint-disable-next-line global-require
+  // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
+  require('intl-list-format/locale-data/en');
+  /* eslint-enable global-require */
+}
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-let keywords = ['image', 'picture', 'photo'];
+const DEFAULT_KEYWORDS = ['image', 'picture', 'photo'];
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const ImgRedundantAltRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description: 'Enforce img alt attribute does not contain the word image, picture, or photo.',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
+    fixable: null,
     schema: [
       {
         keywords: {
@@ -35,45 +50,45 @@ module.exports = {
   },
 
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
+    // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
+    const formatter = new Intl.ListFormat('en', { style: 'long', type: 'disjunction' });
 
     return {
-      TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+      TaggedTemplateExpression(node) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
-            enterElement: element => {
-              if (element.name === 'img') {
-                if ('alt' in element.attribs && !('aria-hidden' in element.attribs)) {
-                  if (context.options && context.options[0] && context.options[0].keywords) {
-                    keywords = keywords.concat(context.options[0].keywords);
-                  }
-                  keywords.forEach(keyword => {
-                    if (getAttrVal(element.attribs.alt).toLowerCase().includes(keyword)) {
-                      const loc = analyzer.getLocationForAttribute(element, 'alt');
-                      context.report({
-                        loc,
-                        message:
-                          'Enforce img alt attribute does not contain the word image, picture, or photo.',
-                      });
-                    }
-                  });
-                }
+            enterElement(element) {
+              if (
+                element.name !== 'img' ||
+                !elementHasAttribute(element, 'alt') ||
+                isAriaHidden(element)
+              ) {
+                return;
+              }
+
+              const optionsKeywords =
+                (context.options && context.options[0] && context.options[0].keywords) || [];
+
+              const bannedKeywords = [...DEFAULT_KEYWORDS, ...optionsKeywords];
+
+              const contraband = bannedKeywords.filter(keyword =>
+                getAttrVal(element.attribs.alt).toLowerCase().includes(keyword.toLowerCase()),
+              );
+
+              if (contraband.length > 0) {
+                const formatted = formatter.format(contraband);
+                const loc = analyzer.getLocationForAttribute(element, 'alt');
+                context.report({
+                  loc,
+                  message:
+                    '<img> alt attribute must be descriptive; it cannot contain the banned {{plural}} {{formatted}}.',
+                  data: {
+                    formatted,
+                    plural: contraband.length > 1 ? 'words' : 'word',
+                  },
+                });
               }
             },
           });
@@ -82,3 +97,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = ImgRedundantAltRule;

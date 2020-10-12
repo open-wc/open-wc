@@ -1,11 +1,32 @@
-// @ts-nocheck
-/* eslint-disable */
+/* eslint-disable camelcase, strict */
+
 'use strict';
+
 Object.defineProperty(exports, '__esModule', { value: true });
+
 const parse5 = require('parse5');
 const treeAdapter = require('parse5-htmlparser2-tree-adapter');
 const util_1 = require('./util');
+
 const analyzerCache = new WeakMap();
+
+/** @typedef {import('../lib/utils/isLitHtmlTemplate').LitTaggedExpression<'html'|'css'|'svg'>} GenericLitTaggedExpression */
+
+/**
+ * @template {treeAdapter.Node} NodeType
+ * @typedef {(node: NodeType, parent: treeAdapter.Node | treeAdapter.DocumentFragment) => void} NodeVisitorCallback
+ */
+
+/**
+ * @typedef {Object} Visitor
+ * @property {NodeVisitorCallback<treeAdapter.Node>} [enter]
+ * @property {NodeVisitorCallback<treeAdapter.DocumentFragment>} [enterDocumentFragment]
+ * @property {NodeVisitorCallback<treeAdapter.CommentNode>} [enterCommentNode]
+ * @property {NodeVisitorCallback<treeAdapter.TextNode>} [enterTextNode]
+ * @property {NodeVisitorCallback<treeAdapter.Element>} [enterElement]
+ * @property {NodeVisitorCallback<treeAdapter.Node>} [exit]
+ */
+
 /**
  * Analyzes a given template expression for traversing its contained
  * HTML tree.
@@ -14,25 +35,31 @@ class TemplateAnalyzer {
   /**
    * Constructor
    *
-   * @param {ESTree.TaggedTemplateExpression} node Node to analyze
+   * @param {GenericLitTaggedExpression} node Node to analyze
    */
   constructor(node) {
     this.errors = [];
     this._node = node;
     const html = util_1.templateExpressionToHtml(node);
+    /** @type{import("parse5").ParserOptions} */
     const opts = {
-      treeAdapter: treeAdapter,
+      treeAdapter,
       sourceCodeLocationInfo: true,
+      // @ts-expect-error: this is certainly a problem with parse5's types. see https://github.com/inikulin/parse5/blob/377cdaf0a6504065e2c47bd65fb0b0a8cdabcb90/packages/parse5/lib/parser/index.js#L333-L335
       onParseError: err => {
         this.errors.push(err);
       },
     };
+    /** @type {treeAdapter.DocumentType} */
+    // TODO: This is not ideal
+    // @ts-expect-error: parse5.DocumentFragment is a union with {}, so let's fudge this type for convenience
     this._ast = parse5.parseFragment(html, opts);
   }
+
   /**
    * Create an analyzer instance for a given node
    *
-   * @param {ESTree.TaggedTemplateExpression} node Node to use
+   * @param {GenericLitTaggedExpression} node Node to use
    * @return {!TemplateAnalyzer}
    */
   static create(node) {
@@ -43,19 +70,20 @@ class TemplateAnalyzer {
     }
     return cached;
   }
+
   /**
    * Returns the ESTree location equivalent of a given parsed location.
    *
    * @param {treeAdapter.Node} node Node to retrieve location of
-   * @return {?ESTree.SourceLocation}
+   * @return {?import("estree").SourceLocation}
    */
   getLocationFor(node) {
-    if (treeAdapter.isElementNode(node)) {
+    if (util_1.isElementNode(node)) {
       const loc = node.sourceCodeLocation;
       if (loc) {
         return this.resolveLocation(loc.startTag);
       }
-    } else if (treeAdapter.isCommentNode(node) || treeAdapter.isTextNode(node)) {
+    } else if (util_1.isCommentNode(node) || util_1.isTextNode(node)) {
       const loc = node.sourceCodeLocation;
       if (loc) {
         return this.resolveLocation(loc);
@@ -63,12 +91,13 @@ class TemplateAnalyzer {
     }
     return this._node.loc;
   }
+
   /**
    * Returns the ESTree location equivalent of a given attribute
    *
    * @param {treeAdapter.Element} element Element which owns this attribute
    * @param {string} attr Attribute name to retrieve
-   * @return {?ESTree.SourceLocation}
+   * @return {?import("estree").SourceLocation}
    */
   getLocationForAttribute(element, attr) {
     if (!element.sourceCodeLocation) {
@@ -77,6 +106,7 @@ class TemplateAnalyzer {
     const loc = element.sourceCodeLocation.attrs[attr.toLowerCase()];
     return loc ? this.resolveLocation(loc) : null;
   }
+
   /**
    * Returns the raw attribute source of a given attribute
    *
@@ -115,11 +145,12 @@ class TemplateAnalyzer {
     }
     return null;
   }
+
   /**
    * Resolves a Parse5 location into an ESTree location
    *
    * @param {parse5.Location} loc Location to convert
-   * @return {ESTree.SourceLocation}
+   * @return {import("estree").SourceLocation}
    */
   resolveLocation(loc) {
     let offset = 0;
@@ -132,6 +163,7 @@ class TemplateAnalyzer {
     }
     return null;
   }
+
   /**
    * Traverse the inner HTML tree with a given visitor
    *
@@ -139,31 +171,30 @@ class TemplateAnalyzer {
    * @return {void}
    */
   traverse(visitor) {
+    /**
+     * @param {treeAdapter.Node | treeAdapter.DocumentFragment} node
+     * @param {treeAdapter.Node | treeAdapter.DocumentFragment} parent
+     */
     const visit = (node, parent) => {
       if (!node) {
         return;
       }
+
       if (visitor.enter) {
         visitor.enter(node, parent);
       }
-      if (node.type === 'root') {
-        if (visitor.enterDocumentFragment) {
-          visitor.enterDocumentFragment(node, parent);
-        }
-      } else if (treeAdapter.isCommentNode(node)) {
-        if (visitor.enterCommentNode) {
-          visitor.enterCommentNode(node, parent);
-        }
-      } else if (treeAdapter.isTextNode(node)) {
-        if (visitor.enterTextNode) {
-          visitor.enterTextNode(node, parent);
-        }
-      } else if (treeAdapter.isElementNode(node)) {
-        if (visitor.enterElement) {
-          visitor.enterElement(node, parent);
-        }
+
+      if (util_1.isDocumentFragment(node) && visitor.enterDocumentFragment) {
+        visitor.enterDocumentFragment(node, parent);
+      } else if (util_1.isCommentNode(node) && visitor.enterCommentNode) {
+        visitor.enterCommentNode(node, parent);
+      } else if (util_1.isTextNode(node) && visitor.enterTextNode) {
+        visitor.enterTextNode(node, parent);
+      } else if (util_1.isElementNode(node) && visitor.enterElement) {
+        visitor.enterElement(node, parent);
       }
-      if (treeAdapter.isElementNode(node) || node.type === 'root') {
+
+      if (util_1.isElementNode(node) || util_1.isDocumentFragment(node)) {
         const children = node.childNodes;
         if (children && children.length > 0) {
           children.forEach(child => {
@@ -178,4 +209,5 @@ class TemplateAnalyzer {
     visit(this._ast, null);
   }
 }
+
 exports.TemplateAnalyzer = TemplateAnalyzer;

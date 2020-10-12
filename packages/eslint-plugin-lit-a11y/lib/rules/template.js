@@ -4,16 +4,19 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const Rule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description: 'template',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
     fixable: null, // or "code" or "whitespace"
@@ -36,12 +39,8 @@ module.exports = {
     //----------------------------------------------------------------------
 
     return {
-      TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+      TaggedTemplateExpression(node) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -49,7 +48,7 @@ module.exports = {
               const loc = analyzer.getLocationFor(element);
               context.report({
                 loc,
-                message: 'template',
+                message: '',
               });
             },
           });
@@ -58,3 +57,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = Rule;

@@ -5,48 +5,32 @@
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { hasAccessibleChildren } = require('../utils/hasAccessibleChildren.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-module.exports = {
+/** @type {import('eslint').Rule.RuleModule} */
+const AnchorHasContentRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description: 'Enforce anchor elements to contain accessible content.',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
 
-  // eslint-disable-next-line
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
-
     return {
-      TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+      TaggedTemplateExpression(node) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
-            enterElement: element => {
+            enterElement(element) {
               if (element.name === 'a') {
                 if (!hasAccessibleChildren(element)) {
                   const loc = analyzer.getLocationFor(element);
@@ -63,3 +47,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = AnchorHasContentRule;

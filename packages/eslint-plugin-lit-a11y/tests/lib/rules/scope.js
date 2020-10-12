@@ -29,7 +29,7 @@ ruleTester.run('scope', rule, {
       code: "html`<div scope='col'></div>`",
       errors: [
         {
-          message: 'The scope prop can only be used on <th> elements.',
+          message: 'The scope attribute may only be used on <th> elements.',
         },
       ],
     },
@@ -37,7 +37,7 @@ ruleTester.run('scope', rule, {
       code: "html`<td scope='row'></td>`",
       errors: [
         {
-          message: 'The scope prop can only be used on <th> elements.',
+          message: 'The scope attribute may only be used on <th> elements.',
         },
       ],
     },

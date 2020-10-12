@@ -33,7 +33,7 @@ ruleTester.run('aria-attrs', rule, {
       code: "html`<div aria-foo=''></div>`",
       errors: [
         {
-          message: 'Elements cannot use an invalid ARIA attribute.',
+          message: 'Invalid ARIA attribute "aria-foo".',
         },
       ],
     },

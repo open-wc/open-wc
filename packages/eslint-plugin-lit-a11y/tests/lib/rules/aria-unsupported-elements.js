@@ -1,5 +1,5 @@
 /**
- * @fileoverview Certain reserved DOM elements do not support ARIA roles, states and properties.
+ * @fileoverview Certain reserved DOM elements do not support ARIA roles, states, or properties.
  * @author open-wc
  */
 
@@ -33,8 +33,7 @@ ruleTester.run('aria-unsupported-elements', rule, {
       code: 'html`<meta charset="UTF-8" aria-hidden="false" />`',
       errors: [
         {
-          message:
-            'Certain reserved DOM elements do not support ARIA roles, states and properties.',
+          message: '<meta> element does not support ARIA roles, states, or properties.',
         },
       ],
     },
@@ -42,8 +41,7 @@ ruleTester.run('aria-unsupported-elements', rule, {
       code: "html`<script role='foo'></script>`",
       errors: [
         {
-          message:
-            'Certain reserved DOM elements do not support ARIA roles, states and properties.',
+          message: '<script> element does not support ARIA roles, states, or properties.',
         },
       ],
     },
@@ -51,8 +49,7 @@ ruleTester.run('aria-unsupported-elements', rule, {
       code: "html`<style aria-hidden='foo'></style>`",
       errors: [
         {
-          message:
-            'Certain reserved DOM elements do not support ARIA roles, states and properties.',
+          message: '<style> element does not support ARIA roles, states, or properties.',
         },
       ],
     },
@@ -60,12 +57,10 @@ ruleTester.run('aria-unsupported-elements', rule, {
       code: "html`<style role='foo' aria-hidden='foo'></style>`",
       errors: [
         {
-          message:
-            'Certain reserved DOM elements do not support ARIA roles, states and properties.',
+          message: '<style> element does not support ARIA roles, states, or properties.',
         },
         {
-          message:
-            'Certain reserved DOM elements do not support ARIA roles, states and properties.',
+          message: '<style> element does not support ARIA roles, states, or properties.',
         },
       ],
     },

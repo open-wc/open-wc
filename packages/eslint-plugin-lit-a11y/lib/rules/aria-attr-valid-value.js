@@ -1,16 +1,24 @@
 /**
- * @fileoverview aria-attr-types
+ * @fileoverview aria-attr-valid-value
  * @author open-wc
  */
 
 const { aria } = require('aria-query');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { getElementAriaAttributes } = require('../utils/aria.js');
 const { getAttrVal } = require('../utils/getAttrVal.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
+/**
+ * Format the error message
+ * @param {string} name
+ * @param {string} type
+ * @param {(string|number|boolean)[]} permittedValues
+ */
 const errorMessage = (name, type, permittedValues) => {
   switch (type) {
     case 'tristate':
@@ -33,6 +41,9 @@ tokens from the following: ${permittedValues}.`;
   }
 };
 
+/**
+ * @param {string} value
+ */
 const extractTypeFromLiteral = value => {
   const normalizedStringValue = typeof value === 'string' && value.toLowerCase();
   if (normalizedStringValue === 'true' || normalizedStringValue === '') {
@@ -46,7 +57,13 @@ const extractTypeFromLiteral = value => {
   return value;
 };
 
-// aria-hidden, boolean, []
+/**
+ * aria-hidden, boolean, []
+ * @param {*} value
+ * @param {'boolean'|'string'|'id'|'tristate'|'integer'|'number'|'token'|'idlist'|'tokenlist'} expectedType
+ * @param {any[]} permittedValues
+ * @return {boolean}
+ */
 const validityCheck = (value, expectedType, permittedValues) => {
   switch (expectedType) {
     case 'boolean':
@@ -59,8 +76,7 @@ const validityCheck = (value, expectedType, permittedValues) => {
     case 'integer':
     case 'number':
       // Booleans resolve to 0/1 values so hard check that it's not first.
-      // eslint-disable-next-line no-restricted-globals
-      return typeof value !== 'boolean' && isNaN(Number(value)) === false;
+      return typeof value !== 'boolean' && Number.isNaN(Number(value)) === false;
     case 'token':
       return permittedValues.indexOf(typeof value === 'string' ? value.toLowerCase() : value) > -1;
     case 'idlist':
@@ -77,77 +93,56 @@ const validityCheck = (value, expectedType, permittedValues) => {
   }
 };
 
-module.exports = {
-  validityCheck,
+/** @type {import("eslint").Rule.RuleModule} */
+const AriaAttrTypesRule = {
   meta: {
+    type: 'suggestion',
     docs: {
-      description: 'aria-attr-types',
-      category: 'Fill me in',
+      description: 'aria-attr-valid-value',
+      category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
 
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
-
     return {
-      TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+      TaggedTemplateExpression(node) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
             enterElement(element) {
-              const ariaAttributes = Object.keys(element.attribs).filter(attr =>
-                attr.startsWith('aria-'),
-              );
+              const ariaAttributes = getElementAriaAttributes(element);
+
               if (ariaAttributes.length > 0) {
                 ariaAttributes.forEach(attr => {
-                  const normalizedName = attr.toLowerCase();
-                  // Not a valid aria-* state or property.
-                  if (aria.get(normalizedName) === undefined) {
-                    return;
-                  }
-
                   const val = getAttrVal(element.attribs[attr]);
+
                   // Ignore the attribute if its value is null or undefined.
-                  if (val === null || val === undefined) return;
+                  if (val == null) return;
                   if (val.startsWith('{{')) return;
 
                   // These are the attributes of the property/state to check against.
-                  const attributes = aria.get(normalizedName);
-                  const permittedType = attributes.type;
-                  const allowUndefined = attributes.allowUndefined || false;
-                  const permittedValues = attributes.values || [];
+                  // @ts-expect-error: see https://github.com/A11yance/aria-query/pull/74
+                  const { allowundefined = false, type, values } = aria.get(attr);
+
+                  const permittedValues = values || [];
+
                   const isValid =
-                    validityCheck(extractTypeFromLiteral(val), permittedType, permittedValues) ||
-                    (allowUndefined && val === undefined);
+                    validityCheck(extractTypeFromLiteral(val), type, permittedValues) ||
+                    (allowundefined && val === undefined);
 
                   if (isValid) {
                     return;
                   }
 
                   const loc = analyzer.getLocationForAttribute(element, attr);
+
                   context.report({
                     loc,
-                    message: errorMessage(attr, permittedType, permittedValues),
+                    message: errorMessage(attr, type, permittedValues),
                   });
                 });
               }
@@ -158,3 +153,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = AriaAttrTypesRule;

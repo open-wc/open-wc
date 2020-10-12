@@ -23,22 +23,22 @@ const ruleTester = new RuleTester({
 
 ruleTester.run('click-events-have-key-events', rule, {
   valid: [
-    { code: 'html`<div @click=${foo} aria-hidden />`' }, // eslint-disable-line
-    { code: 'html`<div @click=${foo} aria-hidden="true" />`' }, // eslint-disable-line
-    { code: 'html`<div @click=${foo} aria-hidden=${true} />`' }, // eslint-disable-line
-    { code: 'html`<div @click=${foo} aria-hidden=${false} @keydown=${foo} />`' }, // eslint-disable-line
-    { code: 'html`<a @click=${foo} href="http://x.y.z" />`' }, // eslint-disable-line
-    { code: 'html`<a @click=${foo} href="http://x.y.z" tabindex="0" />`' }, // eslint-disable-line
-    { code: 'html`<div @click=${foo} @keydown=${foo}/>`' }, // eslint-disable-line
-    { code: 'html`<div @click=${foo} @keyup=${foo} />`' }, // eslint-disable-line
-    { code: 'html`<div @click=${foo} @keypress=${foo}/>`' }, // eslint-disable-line
-    { code: 'html`<input @click=${foo} />`' }, // eslint-disable-line
-    { code: 'html`<div @click=${foo} @keydown=${foo} />`' }, // eslint-disable-line
+    { code: 'html`<div @click=${foo} aria-hidden />`' },
+    { code: 'html`<div @click=${foo} aria-hidden="true" />`' },
+    { code: 'html`<div @click=${foo} aria-hidden=${true} />`' },
+    { code: 'html`<div @click=${foo} aria-hidden=${false} @keydown=${foo} />`' },
+    { code: 'html`<a @click=${foo} href="http://x.y.z" />`' },
+    { code: 'html`<a @click=${foo} href="http://x.y.z" tabindex="0" />`' },
+    { code: 'html`<div @click=${foo} @keydown=${foo}/>`' },
+    { code: 'html`<div @click=${foo} @keyup=${foo} />`' },
+    { code: 'html`<div @click=${foo} @keypress=${foo}/>`' },
+    { code: 'html`<input @click=${foo} />`' },
+    { code: 'html`<div @click=${foo} @keydown=${foo} />`' },
   ],
 
   invalid: [
     {
-      code: 'html`<div @click=${foo}></div>`', // eslint-disable-line
+      code: 'html`<div @click=${foo}></div>`',
       errors: [
         {
           message:
@@ -47,7 +47,6 @@ ruleTester.run('click-events-have-key-events', rule, {
       ],
     },
     {
-      // eslint-disable-next-line
       code: 'html`<div @click=${foo} ></div>`;',
       errors: [
         {
@@ -57,7 +56,6 @@ ruleTester.run('click-events-have-key-events', rule, {
       ],
     },
     {
-      // eslint-disable-next-line
       code: 'html`<section @click=${foo} ></section>`;',
       errors: [
         {
@@ -67,7 +65,6 @@ ruleTester.run('click-events-have-key-events', rule, {
       ],
     },
     {
-      // eslint-disable-next-line
       code: 'html`<main @click=${foo} ></main>`;',
       errors: [
         {
@@ -77,7 +74,6 @@ ruleTester.run('click-events-have-key-events', rule, {
       ],
     },
     {
-      // eslint-disable-next-line
       code: 'html`<article @click=${foo} ></article>`;',
       errors: [
         {
@@ -87,7 +83,6 @@ ruleTester.run('click-events-have-key-events', rule, {
       ],
     },
     {
-      // eslint-disable-next-line
       code: 'html`<header @click=${foo} ></header>`;',
       errors: [
         {
@@ -97,7 +92,6 @@ ruleTester.run('click-events-have-key-events', rule, {
       ],
     },
     {
-      // eslint-disable-next-line
       code: 'html`<footer @click=${foo} ></footer>`;',
       errors: [
         {
@@ -107,7 +101,6 @@ ruleTester.run('click-events-have-key-events', rule, {
       ],
     },
     {
-      // eslint-disable-next-line
       code: 'html`<a @click=${foo} ></a>`;',
       errors: [
         {

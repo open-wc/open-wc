@@ -4,53 +4,38 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-module.exports = {
+/** @type {import("eslint").Rule.RuleModule} */
+const NoAutofocusRule = {
   meta: {
+    type: 'suggestion',
     docs: {
       description: 'Enforce that autoFocus prop is not used on elements.',
-      category: 'Fill me in',
+      category: 'Accessibility',
       recommended: false,
     },
-    fixable: null, // or "code" or "whitespace"
-    schema: [
-      // fill in your schema
-    ],
+    fixable: null,
+    schema: [],
   },
 
   create(context) {
-    // variables should be defined here
-
-    //----------------------------------------------------------------------
-    // Helpers
-    //----------------------------------------------------------------------
-
-    // any helper functions should go here or else delete this section
-
-    //----------------------------------------------------------------------
-    // Public
-    //----------------------------------------------------------------------
-
     return {
-      TaggedTemplateExpression: node => {
-        if (
-          node.type === 'TaggedTemplateExpression' &&
-          node.tag.type === 'Identifier' &&
-          node.tag.name === 'html'
-        ) {
+      TaggedTemplateExpression(node) {
+        if (isHtmlTaggedTemplate(node)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
-            enterElement: element => {
+            enterElement(element) {
               if ('autofocus' in element.attribs) {
                 const loc = analyzer.getLocationForAttribute(element, 'autofocus');
                 context.report({
                   loc,
-                  message: 'Enforce that autofocus attribute is not used on elements.',
+                  message: 'The autofocus attribute is not allowed.',
                 });
               }
             },
@@ -60,3 +45,5 @@ module.exports = {
     };
   },
 };
+
+module.exports = NoAutofocusRule;

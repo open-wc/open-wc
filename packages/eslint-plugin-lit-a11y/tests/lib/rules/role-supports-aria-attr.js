@@ -30,17 +30,13 @@ ruleTester.run('role-supports-aria-attr', rule, {
     {
       code: "html`<li aria-required role='radio' aria-checked='false'>Rainbow Trout</li>`",
       errors: [
-        {
-          message: "Role 'radio' does not support usage of the 'aria-required' ARIA attribute.'",
-        },
+        { message: 'The "radio" role must not be used with the "aria-required" attribute.\'' },
       ],
     },
     {
       code: "html`<div role='combobox' aria-checked='true'></div>`",
       errors: [
-        {
-          message: "Role 'combobox' does not support usage of the 'aria-checked' ARIA attribute.'",
-        },
+        { message: 'The "combobox" role must not be used with the "aria-checked" attribute.\'' },
       ],
     },
   ],

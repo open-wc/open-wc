@@ -27,14 +27,10 @@ ruleTester.run('img-redundant-alt', rule, {
       code: 'html`<img src="bar" aria-hidden alt="Picture of me taking a photo of an image" /> `',
     },
     {
-      code:
-        // eslint-disable-next-line
-        'html`<img src="baz" alt=${`Baz taking a ${photo}`} />`',
+      code: 'html`<img src="baz" alt=${`Baz taking a ${photo}`} />`',
     },
     {
-      code:
-        // eslint-disable-next-line
-        'html`<img src="baz" alt=${"foo"} />`',
+      code: 'html`<img src="baz" alt=${"foo"} />`',
     },
     // give me some code that won't trigger a warning
   ],
@@ -44,17 +40,17 @@ ruleTester.run('img-redundant-alt', rule, {
       code: "html`<img src='foo' alt='Photo of foo being weird.' />`",
       errors: [
         {
-          message: 'Enforce img alt attribute does not contain the word image, picture, or photo.',
+          message:
+            '<img> alt attribute must be descriptive; it cannot contain the banned word photo.',
         },
       ],
     },
     {
-      code:
-        // eslint-disable-next-line
-        'html`<img src="baz" alt=${"photo of dog"} />`',
+      code: 'html`<img src="baz" alt=${"photo of dog"} />`',
       errors: [
         {
-          message: 'Enforce img alt attribute does not contain the word image, picture, or photo.',
+          message:
+            '<img> alt attribute must be descriptive; it cannot contain the banned word photo.',
         },
       ],
     },
@@ -62,7 +58,8 @@ ruleTester.run('img-redundant-alt', rule, {
       code: "html`<img src='foo' alt='Image of me at a bar!' />`",
       errors: [
         {
-          message: 'Enforce img alt attribute does not contain the word image, picture, or photo.',
+          message:
+            '<img> alt attribute must be descriptive; it cannot contain the banned word image.',
         },
       ],
     },
@@ -70,7 +67,8 @@ ruleTester.run('img-redundant-alt', rule, {
       code: "html`<img src='foo' alt='Picture of baz fixing a bug.' />`",
       errors: [
         {
-          message: 'Enforce img alt attribute does not contain the word image, picture, or photo.',
+          message:
+            '<img> alt attribute must be descriptive; it cannot contain the banned word picture.',
         },
       ],
     },
@@ -79,7 +77,28 @@ ruleTester.run('img-redundant-alt', rule, {
       options: [{ keywords: ['foo'] }],
       errors: [
         {
-          message: 'Enforce img alt attribute does not contain the word image, picture, or photo.',
+          message:
+            '<img> alt attribute must be descriptive; it cannot contain the banned word foo.',
+        },
+      ],
+    },
+    {
+      code: "html`<img src='foo' alt='image of baz foo bar.' />`",
+      options: [{ keywords: ['foo'] }],
+      errors: [
+        {
+          message:
+            '<img> alt attribute must be descriptive; it cannot contain the banned words image or foo.',
+        },
+      ],
+    },
+    {
+      code: "html`<img src='foo' alt='image of picture baz foo bar.' />`",
+      options: [{ keywords: ['foo'] }],
+      errors: [
+        {
+          message:
+            '<img> alt attribute must be descriptive; it cannot contain the banned words image, picture, or foo.',
         },
       ],
     },

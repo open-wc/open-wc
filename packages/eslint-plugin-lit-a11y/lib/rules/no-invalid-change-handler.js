@@ -1,22 +1,23 @@
 /**
- * @fileoverview Elements cannot use an invalid ARIA attribute.
+ * @fileoverview Enforce usage of @blur over @change with <select> and <option>.
  * @author open-wc
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
-const { isInvalidAriaAttribute } = require('../utils/aria.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
+const applicableTypes = ['select', 'option'];
+
 /** @type {import("eslint").Rule.RuleModule} */
-const AriaAttrsRule = {
+const NoInvalidChangeHandlerRule = {
   meta: {
     type: 'suggestion',
     docs: {
-      description: 'Elements cannot use an invalid ARIA attribute.',
+      description: 'Enforce usage of @blur over @change with <select> and <option>.',
       category: 'Accessibility',
       recommended: false,
     },
@@ -32,14 +33,17 @@ const AriaAttrsRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              for (const attr of Object.keys(element.attribs)) {
-                if (isInvalidAriaAttribute(attr)) {
-                  const loc = analyzer.getLocationForAttribute(element, attr);
+              if (applicableTypes.includes(element.name)) {
+                const change = Object.keys(element.attribs).includes('@change');
+                const blur = Object.keys(element.attribs).includes('@blur');
+
+                if (change && !blur) {
+                  const loc = analyzer.getLocationFor(element);
                   context.report({
                     loc,
-                    message: 'Invalid ARIA attribute "{{attr}}".',
+                    message: `@blur must be used instead of @change on <{{tagName}}>, unless absolutely necessary and it causes no negative consequences for keyboard only or screen reader users.`,
                     data: {
-                      attr,
+                      tagName: element.name,
                     },
                   });
                 }
@@ -52,4 +56,4 @@ const AriaAttrsRule = {
   },
 };
 
-module.exports = AriaAttrsRule;
+module.exports = NoInvalidChangeHandlerRule;
