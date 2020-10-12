@@ -1,1 +1,0 @@
-../../packages/lit-helpers/README.md

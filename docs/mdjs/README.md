@@ -1,1 +1,0 @@
-../../packages/mdjs/README.md

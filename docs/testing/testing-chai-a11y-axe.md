@@ -1,1 +1,0 @@
-../../packages/chai-a11y-axe/README.md

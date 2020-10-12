@@ -1,1 +1,0 @@
-../../packages/building-rollup/README.md
