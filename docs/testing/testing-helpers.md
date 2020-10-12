@@ -1,1 +1,0 @@
-../../packages/testing-helpers/README.md

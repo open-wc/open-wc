@@ -1247,11 +1247,7 @@ function breweryTemplate(brewery, toggleVisitedStatus) {
 Then, to render the template:
 
 ```js
-html`
-  <li>
-    ${breweryTemplate(brewery, () => this.toggleVisitedStatus(brewery))}
-  </li>
-`;
+html` <li>${breweryTemplate(brewery, () => this.toggleVisitedStatus(brewery))}</li> `;
 ```
 
 </details>
@@ -1334,9 +1330,7 @@ html`
             <ul>
               ${breweries.map(
                 brewery => html`
-                  <li>
-                    ${breweryTemplate(brewery, () => this.toggleVisitedStatus(brewery))}
-                  </li>
+                  <li>${breweryTemplate(brewery, () => this.toggleVisitedStatus(brewery))}</li>
                 `,
               )}
             </ul>

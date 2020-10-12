@@ -4,9 +4,6 @@
   "license": "MIT",
   "scripts": {
     "codelabs:build": "node ./packages/codelabs/build-codelabs.js",
-    "docs:build": "rimraf _site && node cli-build.js",
-    "docs:serve-build": "node packages/es-dev-server/dist/cli.js -o docs/",
-    "docs:start": "node cli-start.js",
     "format": "npm run format:eslint && npm run format:prettier",
     "format:eslint": "eslint --ext .js,.html . --fix",
     "format:prettier": "prettier \"**/*.{js,md}\" \"**/package.json\" --write",
@@ -15,13 +12,12 @@
     "lint:prettier": "prettier \"**/*.{js,md}\" \"**/package.json\" --check",
     "lint:types": "npm run types",
     "lint:versions": "node ./scripts/lint-versions.js",
-    "postinstall": "patch-package && npm run setup",
+    "postinstall": "npm run setup",
     "release": "changeset publish && yarn format",
     "setup": "npm run setup:ts-configs",
     "setup:ts-configs": "node scripts/generate-ts-configs.mjs",
-    "site:build": "npm run docs:build && node scripts/workspaces-scripts-bin.mjs site:build",
-    "site:start": "npm run docs:start",
-    "start": "npm run docs:start",
+    "site:build": "node scripts/workspaces-scripts-bin.mjs site:build && npm run codelabs:build && rocket build",
+    "start": "rocket start",
     "test": "yarn test:web && yarn test:node",
     "test:node": "mocha --exit --retries 3 --timeout 10000 \"packages/*/test-node/**/*.test.{ts,js,mjs,cjs}\" ",
     "test:node:watch": "mocha --watch \"packages/*/test-node/**/*.test.{ts,js,mjs,cjs}\" ",
@@ -33,7 +29,9 @@
     "update-dependency": "node scripts/update-dependency.js"
   },
   "dependencies": {
-    "patch-package": "^6.2.2"
+    "@d4kmor/cli": "^0.5.6",
+    "@d4kmor/launch": "^0.4.10",
+    "@d4kmor/search": "^0.1.2"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.11.0",
@@ -67,6 +65,8 @@
     "lit-element": "^2.2.1",
     "mocha": "^6.2.2",
     "mock-require": "^3.0.3",
+    "netlify-cli": "^2.63.2",
+    "node-fetch": "^2.6.1",
     "npm-run-all": "4.1.3",
     "prettier": "^2.0.0",
     "prettier-plugin-package": "^1.0.0",

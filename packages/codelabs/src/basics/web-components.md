@@ -356,9 +356,7 @@ To see the encapsulation in action, we can add the same content of our template 
 
 <html>
   <body>
-    <template>
-      ...
-    </template>
+    <template> ... </template>
 
     <h1>Hello world!</h1>
 
@@ -382,9 +380,7 @@ Similarly we can add styles to the main page, and you will see that it doesn't a
 
 <html>
   <body>
-    <template>
-      ...
-    </template>
+    <template> ... </template>
 
     <style>
       h1 {

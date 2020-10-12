@@ -27,7 +27,7 @@
     "storybook:build": "node src/build/cli.js -c demo/.storybook",
     "storybook:build:start": "npm run storybook:build && es-dev-server --root-dir storybook-static --open",
     "test": "mocha test-node",
-    "test:watch": "mocha test/**/*.test.js test/*.test.js --watch"
+    "test:watch": "mocha test-node/**/*.test.js test-node/*.test.js --watch"
   },
   "files": [
     "*.js",

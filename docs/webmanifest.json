@@ -1,0 +1,29 @@
+{
+  "name": "Open Web Componets",
+  "short_name": "Open Web Components",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "Scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "./_merged_assets/icons/android-chrome-192x192.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "./_merged_assets/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./_merged_assets/icons/maskable-icon.jpg",
+      "sizes": "1024x1024",
+      "type": "image/jpg",
+      "purpose": "any maskable"
+    }
+  ],
+  "splash_pages": null
+}

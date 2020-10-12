@@ -1,1 +1,0 @@
-../../packages/scoped-elements/README.md

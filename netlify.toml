@@ -1,7 +1,7 @@
-[[plugins]]
-package = "netlify-plugin-checklinks"
-
-[plugins.inputs]
-pretty = true
-
-skipPatterns = ['open-wc-org.netlify.app']
+# [[plugins]]
+# package = "netlify-plugin-checklinks"
+# 
+# [plugins.inputs]
+# pretty = true
+# 
+# skipPatterns = ['open-wc-org.netlify.app']
