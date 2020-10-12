@@ -1,1 +1,0 @@
-../../packages/rollup-plugin-html/README.md

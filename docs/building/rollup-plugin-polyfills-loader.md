@@ -1,1 +1,0 @@
-../../packages/rollup-plugin-polyfills-loader/README.md
