@@ -69,9 +69,7 @@ export const ProvideRows = () => {
     { header: 'mana', value: '100' },
   ];
   return html`
-    <demo-wc-card back-side .rows=${rows}>
-      A card with data on the back
-    </demo-wc-card>
+    <demo-wc-card back-side .rows=${rows}> A card with data on the back </demo-wc-card>
   `;
 };
 ```

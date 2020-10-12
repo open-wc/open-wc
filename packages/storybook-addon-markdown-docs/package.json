@@ -16,7 +16,7 @@
     "start": "npm run storybook",
     "storybook": "start-storybook -c demo/.storybook --root-dir ../../",
     "test": "npm run test:node",
-    "test:node": "mocha",
+    "test:node": "mocha test-node/**/*.test.js test-node/*.test.js",
     "test:update-snapshots": "export CHAI_SNAPSHOT_UPDATE=true && npm run test:node",
     "test:watch": "mocha --watch"
   },

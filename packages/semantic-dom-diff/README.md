@@ -316,12 +316,8 @@ Without a proper diffing, scoped elements will produce untestable Shadow DOM sna
 
 ```html
 <my-element>
-  <p>
-    Here's my button
-  </p>
-  <my-button-23443 data-tag-name="my-button">
-    Hey!
-  </my-button-23443>
+  <p>Here's my button</p>
+  <my-button-23443 data-tag-name="my-button"> Hey! </my-button-23443>
 </my-element>
 ```
 
@@ -340,9 +336,7 @@ it('renders correctly', async () => {
 
 ```html
 <my-element>
-  <p>
-    Here's my button
-  </p>
+  <p>Here's my button</p>
 </my-element>
 ```
 
@@ -361,12 +355,8 @@ it('renders correctly', async () => {
 
 ```html
 <my-element>
-  <p>
-    Here's my button
-  </p>
-  <my-button data-tag-name="my-button">
-    Hey!
-  </my-button>
+  <p>Here's my button</p>
+  <my-button data-tag-name="my-button"> Hey! </my-button>
 </my-element>
 ```
 

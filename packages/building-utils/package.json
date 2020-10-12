@@ -16,7 +16,7 @@
   "scripts": {
     "test": "npm run test:node",
     "test:node": "mocha test-node",
-    "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
+    "test:update-snapshots": "mocha test-node/**/*.test.js test-node/*.test.js --update-snapshots"
   },
   "files": [
     "*.js",
