@@ -15,7 +15,7 @@ customElements.define(
   },
 );
 
-describe('component-a', () => {
+xdescribe('component-a', () => {
   describe('success states', () => {
     it('matches a string snapshot', () => {
       expect('<div>A</div>').to.equalSnapshot();
@@ -93,7 +93,7 @@ describe('component-a', () => {
   });
 });
 
-describe('component-b', () => {
+xdescribe('component-b', () => {
   describe('success states', () => {
     it('can ignore attributes', () => {
       expect(`<div random-attribute="${Math.random()}">A</div>`).to.equalSnapshot({

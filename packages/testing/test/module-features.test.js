@@ -13,6 +13,8 @@ describe('module-features', () => {
   });
 
   it('handles import.meta.url', async () => {
-    expect(importMetaUrl).to.include('/base/packages/testing/demo/module-features.js');
+    expect(importMetaUrl).to.include(
+      `${window.location.origin}/packages/testing/demo/module-features.js`,
+    );
   });
 });
