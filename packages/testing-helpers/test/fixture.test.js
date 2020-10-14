@@ -9,6 +9,8 @@ import { fixture, fixtureSync } from '../src/fixture.js';
 import { html, unsafeStatic } from '../src/lit-html.js';
 import { NODE_TYPES } from '../src/lib.js';
 
+import '../../testing/register-chai-plugins.js';
+
 function createParent() {
   return document.createElement('my-parent');
 }
