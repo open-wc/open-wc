@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.4](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.7.3...polyfills-loader@1.7.4) (2020-10-11)
+
+**Note:** Version bump only for package polyfills-loader
+
+
+
+
+
 ## [1.7.3](https://github.com/open-wc/open-wc/compare/polyfills-loader@1.7.2...polyfills-loader@1.7.3) (2020-10-03)
 
 
