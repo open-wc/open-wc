@@ -40,75 +40,16 @@ Then configure the rules you want to use under the rules section.
 }
 ```
 
+## Configuration
+
+You may also extend the recommended configuration like so:
+
+```json
+{
+  "extends": ["plugin:lit-ally/recommended"]
+}
+```
+
 ## Supported Rules
 
 - Fill in provided rules here
-
-## Contributing
-
-### Getting up and running
-
-Run:
-
-```bash
-npm install
-```
-
-#### Adding a new rule
-
-Make sure to have yeoman installed, and the eslint generator.
-
-```bash
-npm i -g yo generator-eslint
-```
-
-Add a new rule by running:
-
-```bash
-yo eslint:rule
-```
-
-#### Implementing a new rule
-
-Implementing rules is made possible by the TemplateAnalyzer from [eslint-plugin-lit](https://www.npmjs.com/package/eslint-plugin-lit). You can take the implementations of [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y) as an example.
-
-Here's an example of a simple rule:
-
-```js
-return {
-  TaggedTemplateExpression(node) {
-    // 1. only target html`` tagged template literals
-    if (isHtmlTaggedTemplate(node)) {
-      // 2. create a TemplateAnalyzer and pass it the node
-      const analyzer = TemplateAnalyzer.create(node);
-
-      // 3. traverse DOM elements in the html tagged template literal
-      analyzer.traverse({
-        enterElement(element) {
-          // 4. implement rule
-          if (elementHasAttribute(element, 'autofocus')) {
-            const loc = analyzer.getLocationForAttribute(element, 'autofocus');
-            context.report({
-              loc,
-              message: 'Enforce that autofocus attribute is not used on elements.',
-            });
-          }
-        },
-      });
-    }
-  },
-};
-```
-
-#### Testing a rule
-
-In order to test a rule, you need to pass some options to the `RuleTester` to be able to support tagged template literals.
-
-```js
-var ruleTester = new RuleTester({
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 2015,
-  },
-});
-```
