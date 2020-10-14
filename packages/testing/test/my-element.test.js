@@ -7,6 +7,9 @@ describe('my-element', () => {
     // @ts-ignore
     await element.updateComplete;
 
-    expect(element).shadowDom.to.equalSnapshot();
+    expect(element).shadowDom.to.equal(`
+      <h1>My Element</h1>
+      <p>hello world!</p>
+    `);
   });
 });

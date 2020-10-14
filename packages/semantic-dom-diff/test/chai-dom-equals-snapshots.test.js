@@ -15,7 +15,8 @@ customElements.define(
   },
 );
 
-describe('component-a', () => {
+// TODO: skipped until web test runner supports snapshots
+describe.skip('component-a', () => {
   describe('success states', () => {
     it('matches a string snapshot', () => {
       expect('<div>A</div>').to.equalSnapshot();
@@ -93,7 +94,8 @@ describe('component-a', () => {
   });
 });
 
-describe('component-b', () => {
+// TODO: skipped until web test runner supports snapshots
+describe.skip('component-b', () => {
   describe('success states', () => {
     it('can ignore attributes', () => {
       expect(`<div random-attribute="${Math.random()}">A</div>`).to.equalSnapshot({

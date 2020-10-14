@@ -10,7 +10,7 @@ version: 2.1
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: circleci/node:10.16.0-browsers
+    - image: circleci/node:14-browsers
 
 jobs:
   build:
@@ -44,16 +44,16 @@ jobs:
       - run: npm run lint
       - run: npm run test:node
       - run: npm run test:browser
-  test-bs:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v4-dependencies-{{ checksum "yarn.lock" }}
-      - attach_workspace:
-          at: ~/
-      - run: npm run test:bs
+  # test-bs:
+  #   <<: *defaults
+  #   steps:
+  #     - checkout
+  #     - restore_cache:
+  #         keys:
+  #           - v4-dependencies-{{ checksum "yarn.lock" }}
+  #     - attach_workspace:
+  #         at: ~/
+  #     - run: npm run test:bs
   # test-windows:
   #   executor: windows/default
   #   steps:
@@ -90,13 +90,13 @@ workflows:
       - test-local:
           requires:
             - build
-      - test-bs:
-          requires:
-            - build
+      # - test-bs:
+      #     requires:
+      #       - build
       - deploy:
           requires:
             - test-local
-            - test-bs
+            # - test-bs
           filters:
             branches:
               only: master
