@@ -1,0 +1,103 @@
+/**
+ * @fileoverview aria-role
+ * @author open-wc
+ */
+
+const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
+
+//------------------------------------------------------------------------------
+// Rule Definition
+//------------------------------------------------------------------------------
+
+const validAriaRoles = [
+  'alert',
+  'application',
+  'article',
+  'banner',
+  'button',
+  'cell',
+  'checkbox',
+  'comment',
+  'complementary',
+  'contentinfo',
+  'dialog',
+  'document',
+  'feed',
+  'figure',
+  'form',
+  'grid',
+  'gridcell',
+  'heading',
+  'img',
+  'list',
+  'listbox',
+  'listitem',
+  'main',
+  'mark',
+  'navigation',
+  'region',
+  'row',
+  'rowgroup',
+  'search',
+  'suggestion',
+  'switch',
+  'tab',
+  'table',
+  'tabpanel',
+  'textbox',
+  'timer',
+];
+
+/** @type {import("eslint").Rule.RuleModule} */
+const AriaRoleRule = {
+  meta: {
+    type: 'suggestion',
+    docs: {
+      description: 'aria-role',
+      category: 'Accessibility',
+      recommended: false,
+    },
+    fixable: null,
+    schema: [],
+  },
+
+  create(context) {
+    return {
+      TaggedTemplateExpression(node) {
+        if (isHtmlTaggedTemplate(node)) {
+          const analyzer = TemplateAnalyzer.create(node);
+
+          analyzer.traverse({
+            enterElement(element) {
+              for (const [attr, rawValue] of Object.entries(element.attribs)) {
+                if (attr !== 'role') {
+                  return;
+                }
+
+                const role = rawValue.replace(/^{{(.*)}}$/, '$1');
+
+                if (/^{(.*)}$/.test(role)) {
+                  return; // the value is interpolated with a name. assume it's legitimate and move on.
+                }
+
+                if (!validAriaRoles.includes(role)) {
+                  const loc = analyzer.getLocationForAttribute(element, attr);
+                  context.report({
+                    loc,
+                    message: `Invalid role "{{role}}".`,
+                    data: {
+                      role,
+                    },
+                  });
+                }
+              }
+            },
+          });
+        }
+      },
+    };
+  },
+};
+
+module.exports = AriaRoleRule;
