@@ -34,6 +34,7 @@ ruleTester.run('click-events-have-key-events', rule, {
     { code: 'html`<div @click=${foo} @keypress=${foo}/>`' },
     { code: 'html`<input @click=${foo} />`' },
     { code: 'html`<div @click=${foo} @keydown=${foo} />`' },
+    { code: 'html`<custom-button @click=${foo} />`', options: [{ allowList: ['custom-button'] }] },
   ],
 
   invalid: [
@@ -102,6 +103,24 @@ ruleTester.run('click-events-have-key-events', rule, {
     },
     {
       code: 'html`<a @click=${foo} ></a>`;',
+      errors: [
+        {
+          message:
+            'Clickable non-interactive elements must have at least 1 keyboard event listener',
+        },
+      ],
+    },
+    {
+      code: 'html`<custom-button @click=${foo} ></custom-button>`;',
+      errors: [
+        {
+          message:
+            'Clickable non-interactive elements must have at least 1 keyboard event listener',
+        },
+      ],
+    },
+    {
+      code: 'html`<another-button @click=${foo} ></another-button>`;',
       errors: [
         {
           message:
