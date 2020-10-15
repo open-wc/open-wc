@@ -42,7 +42,7 @@ ruleTester.run('heading-has-content', rule, {
     { code: 'html`<h1>${foo(true)}</h1>`' },
     { code: 'html`<h1>${foo(bar)}</h1>`' },
     { code: 'html`<h1>${foo(bar, "hello", 1, true)}</h1>`' },
-    { code: 'html`<div aria-label="${this.foo("foo")}"></div>`' },
+    { code: 'html`<h1>${this.foo()}</h1>`' },
   ],
 
   invalid: [
