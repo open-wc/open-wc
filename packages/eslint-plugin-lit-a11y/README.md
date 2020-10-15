@@ -46,7 +46,7 @@ You may also extend the recommended configuration like so:
 
 ```json
 {
-  "extends": ["plugin:lit-ally/recommended"]
+  "extends": ["plugin:lit-a11y/recommended"]
 }
 ```
 
