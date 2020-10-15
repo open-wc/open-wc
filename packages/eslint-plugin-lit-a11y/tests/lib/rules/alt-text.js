@@ -25,6 +25,8 @@ ruleTester.run('alt-text', rule, {
     { code: "html`<img alt=''/>`" },
     { code: "html`<img alt='foo'/>`" },
     { code: "html`<img alt='${foo}'/>`" },
+    { code: "html`<div role='img' alt='foo'/>`" },
+    { code: "html`<img role='presentation'/>`" },
   ],
 
   invalid: [
@@ -33,6 +35,14 @@ ruleTester.run('alt-text', rule, {
       errors: [
         {
           message: '<img> elements must have an alt attribute.',
+        },
+      ],
+    },
+    {
+      code: "html`<div role='img'/>`",
+      errors: [
+        {
+          message: 'role="img" elements must have an alt attribute.',
         },
       ],
     },
