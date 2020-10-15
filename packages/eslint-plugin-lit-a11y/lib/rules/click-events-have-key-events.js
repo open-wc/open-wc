@@ -24,7 +24,18 @@ const ClickEventsHaveKeyEventsRule = {
       recommended: false,
     },
     fixable: null,
-    schema: [],
+    schema: [
+      {
+        allowList: {
+          type: 'array',
+          items: {
+            type: 'string',
+          },
+          uniqueItems: true,
+          additionalItems: false,
+        },
+      },
+    ],
   },
 
   create(context) {
@@ -52,13 +63,17 @@ const ClickEventsHaveKeyEventsRule = {
 
           analyzer.traverse({
             enterElement(element) {
+              const allowListOptions =
+                (context.options && context.options[0] && context.options[0].allowList) || [];
+
               if (
                 !hasClickListener(element) || // not clickable
                 isHiddenFromScreenReader(element.name, element.attribs) || // excluded from AOM
                 isPresentationRole(element.attribs) || // excluded from AOM
                 isAriaHidden(element) || // excluded from AOM
                 hasKeyboardListener(element) || // has keyboard listeners
-                isInteractiveElement(element.name, element.attribs) // keyboard-accesible by default
+                isInteractiveElement(element.name, element.attribs) || // keyboard-accesible by default
+                allowListOptions.includes(element.name) // button-like custom-elements allow list
               ) {
                 return;
               }
