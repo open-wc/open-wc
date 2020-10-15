@@ -32,11 +32,25 @@ const AltTextRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              if (element.name === 'img' && !elementHasAttribute(element, 'alt')) {
+              if (
+                element.name === 'img' &&
+                element.attribs.role !== 'presentation' &&
+                !elementHasAttribute(element, 'alt')
+              ) {
                 const loc = analyzer.getLocationFor(element);
                 context.report({
                   loc,
                   message: '<img> elements must have an alt attribute.',
+                });
+              } else if (
+                element.name !== 'img' &&
+                element.attribs.role === 'img' &&
+                !elementHasAttribute(element, 'alt')
+              ) {
+                const loc = analyzer.getLocationFor(element);
+                context.report({
+                  loc,
+                  message: 'role="img" elements must have an alt attribute.',
                 });
               }
             },
