@@ -9,7 +9,8 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha tests --recursive"
+    "test": "mocha tests --recursive",
+    "test:single": "mocha tests/lib/rules/alt-text.js"
   },
   "keywords": [
     "eslint",
