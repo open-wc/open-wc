@@ -19,6 +19,9 @@ function getIdentifierName(node) {
   if (node.type === 'Literal') {
     return node.raw;
   }
+  if (node.type === 'CallExpression') {
+    return getIdentifierName(node.callee);
+  }
   return undefined;
 }
 
@@ -158,6 +161,23 @@ function isIdentifier(expr) {
 }
 
 /**
+ *
+ * @param {import("estree").Expression} expr
+ * @return {expr is import("estree").CallExpression}
+ */
+function isCallExpression(expr) {
+  return expr && expr.type === 'CallExpression';
+}
+
+/**
+ * @param {import('estree').CallExpression} expr
+ * @return {string|number|boolean}
+ */
+function getCallExprValue(expr) {
+  return expr && expr.arguments && expr.arguments.map(arg => getIdentifierName(arg)).join(', ');
+}
+
+/**
  * @param {import("estree").Expression} expr
  * @return {expr is import("estree").SimpleLiteral}
  */
@@ -202,6 +222,8 @@ function templateExpressionToHtml(node) {
       html += `{{${expr.operator}${getUnaryExprValue(expr)}}}`;
     } else if (isLiteral(expr)) {
       html += `{{${expr.value}}}`;
+    } else if (isCallExpression(expr)) {
+      html += `{{{${getIdentifierName(expr.callee)}(${getCallExprValue(expr)})}}}`;
     }
   }
   return html;

@@ -36,6 +36,12 @@ ruleTester.run('heading-has-content', rule, {
     { code: 'html`<h5>${foo}</h5>`' },
     { code: 'html`<h6>${foo}</h6>`' },
     { code: "html`<h1><div aria-hidden='true'>foo</div> foo</h1>`" },
+    { code: 'html`<h1>${foo()}</h1>`' },
+    { code: 'html`<h1>${foo("hello")}</h1>`' },
+    { code: 'html`<h1>${foo(1)}</h1>`' },
+    { code: 'html`<h1>${foo(true)}</h1>`' },
+    { code: 'html`<h1>${foo(bar)}</h1>`' },
+    { code: 'html`<h1>${foo(bar, "hello", 1, true)}</h1>`' },
   ],
 
   invalid: [
