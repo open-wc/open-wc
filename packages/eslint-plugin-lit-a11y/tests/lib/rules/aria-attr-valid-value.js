@@ -109,6 +109,10 @@ ruleTester.run('aria-attr-valid-value', rule, {
     { code: 'html`<div aria-labelledby="additions additions" />`' },
     { code: 'html`<div aria-labelledby="additions removals text" />`' },
     { code: 'html`<div aria-labelledby="additions removals text all" />`' },
+
+    // FUNCTION CALL
+    { code: 'html`<div aria-label="${foo("foo")}"></div>`' },
+    { code: 'html`<div aria-label="${this.foo("foo")}"></div>`' },
   ],
 
   invalid: [
