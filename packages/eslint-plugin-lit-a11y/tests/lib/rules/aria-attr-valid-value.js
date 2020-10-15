@@ -112,6 +112,7 @@ ruleTester.run('aria-attr-valid-value', rule, {
 
     // FUNCTION CALL
     { code: 'html`<div aria-label="${foo("foo")}"></div>`' },
+    { code: 'html`<div aria-label="${this.foo("foo")}"></div>`' },
   ],
 
   invalid: [
