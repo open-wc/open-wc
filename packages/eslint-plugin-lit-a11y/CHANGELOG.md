@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/open-wc/open-wc/compare/eslint-plugin-lit-a11y@0.2.2...eslint-plugin-lit-a11y@0.3.0) (2020-10-15)
+
+
+### Features
+
+* **eslint-plugin-lit-a11y:** add heading-has-content function calls ([#1883](https://github.com/open-wc/open-wc/issues/1883)) ([fb06880](https://github.com/open-wc/open-wc/commit/fb06880a5b5b6222d18308a027d67e8bbe8e297a))
+* **eslint-plugin-lit-a11y:** allow alt-text role img and presentation ([#1884](https://github.com/open-wc/open-wc/issues/1884)) ([7ce1aa4](https://github.com/open-wc/open-wc/commit/7ce1aa4dea8639177a549eddce281d4127862439))
+
+
+
+
+
 ## [0.2.2](https://github.com/open-wc/open-wc/compare/eslint-plugin-lit-a11y@0.2.0...eslint-plugin-lit-a11y@0.2.2) (2020-10-15)
 
 **Note:** Version bump only for package eslint-plugin-lit-a11y

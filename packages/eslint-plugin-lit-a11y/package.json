@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-lit-a11y",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "linting plugin for lit-a11y",
   "license": "ISC",
   "author": "open-wc",
