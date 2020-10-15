@@ -12,6 +12,8 @@ const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 // Rule Definition
 //------------------------------------------------------------------------------
 
+const DEFAULT_ROLE_EXCEPTIONS = { nav: ['navigation'] };
+
 /** @type {import("eslint").Rule.RuleModule} */
 const NoRedundantRoleRule = {
   meta: {
@@ -36,7 +38,17 @@ const NoRedundantRoleRule = {
               const implicitRole = getImplicitRole(tagName, element.attribs);
               const explicitRole = getExplicitRole(element.attribs);
 
+              if (!implicitRole || !explicitRole) {
+                return;
+              }
+
               if (implicitRole === explicitRole) {
+                const redundantRolesForElement = DEFAULT_ROLE_EXCEPTIONS[tagName] || [];
+
+                if (redundantRolesForElement.includes(implicitRole)) {
+                  return;
+                }
+
                 const loc = analyzer.getLocationFor(element);
                 context.report({
                   loc,
