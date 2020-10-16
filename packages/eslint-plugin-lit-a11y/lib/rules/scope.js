@@ -52,7 +52,7 @@ const ScopeRule = {
                 context.report({
                   loc,
                   message:
-                    'The scope attribute "{{scope}}" informed is not valid. The valid values are: {{validScopes}}.',
+                    '"{{scope}}" is not a valid value for the scope attribute. The valid values are: {{validScopes}}.',
                   data: {
                     scope: element.attribs.scope,
                     validScopes: validScopeValues.join(', '),
