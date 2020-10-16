@@ -11,6 +11,8 @@ const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 // Rule Definition
 //------------------------------------------------------------------------------
 
+const validScopeValues = ['col', 'row', 'rowgroup', 'colgroup'];
+
 /** @type {import("eslint").Rule.RuleModule} */
 const ScopeRule = {
   meta: {
@@ -31,11 +33,30 @@ const ScopeRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              if (element.name !== 'th' && elementHasAttribute(element, 'scope')) {
+              if (
+                element.name !== 'th' &&
+                !element.name.includes('-') &&
+                elementHasAttribute(element, 'scope')
+              ) {
                 const loc = analyzer.getLocationForAttribute(element, 'scope');
                 context.report({
                   loc,
                   message: 'The scope attribute may only be used on <th> elements.',
+                });
+              } else if (
+                (element.name === 'th' || element.name.includes('-')) &&
+                elementHasAttribute(element, 'scope') &&
+                !validScopeValues.includes(element.attribs.scope)
+              ) {
+                const loc = analyzer.getLocationForAttribute(element, 'scope');
+                context.report({
+                  loc,
+                  message:
+                    'The scope attribute "{{scope}}" informed is not valid. The valid values are: {{validScopes}}.',
+                  data: {
+                    scope: element.attribs.scope,
+                    validScopes: validScopeValues.join(', '),
+                  },
                 });
               }
             },

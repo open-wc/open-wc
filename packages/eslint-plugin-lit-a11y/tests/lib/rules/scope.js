@@ -22,7 +22,16 @@ const ruleTester = new RuleTester({
 });
 
 ruleTester.run('scope', rule, {
-  valid: [{ code: "html`<th scope='col'></th>`" }],
+  valid: [
+    { code: "html`<th scope='col'></th>`" },
+    { code: "html`<th scope='row'></th>`" },
+    { code: "html`<th scope='rowgroup'></th>`" },
+    { code: "html`<th scope='colgroup'></th>`" },
+    { code: "html`<foo-bar scope='col'></foo-bar>`" },
+    { code: "html`<foo-bar scope='row'></foo-bar>`" },
+    { code: "html`<foo-bar scope='rowgroup'></foo-bar>`" },
+    { code: "html`<foo-bar scope='colgroup'></foo-bar>`" },
+  ],
 
   invalid: [
     {
@@ -38,6 +47,33 @@ ruleTester.run('scope', rule, {
       errors: [
         {
           message: 'The scope attribute may only be used on <th> elements.',
+        },
+      ],
+    },
+    {
+      code: "html`<th scope='column'></th>`",
+      errors: [
+        {
+          message:
+            'The scope attribute "column" informed is not valid. The valid values are: col, row, rowgroup, colgroup.',
+        },
+      ],
+    },
+    {
+      code: "html`<th scope='foo'></th>`",
+      errors: [
+        {
+          message:
+            'The scope attribute "foo" informed is not valid. The valid values are: col, row, rowgroup, colgroup.',
+        },
+      ],
+    },
+    {
+      code: "html`<foo-bar scope='bar'></foo-bar>`",
+      errors: [
+        {
+          message:
+            'The scope attribute "bar" informed is not valid. The valid values are: col, row, rowgroup, colgroup.',
         },
       ],
     },
