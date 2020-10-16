@@ -17,10 +17,38 @@ html` <td scope="row"></td> `;
 html` <div scope="col"></div> `;
 ```
 
+```js
+html` <th scope="foo"></div> `;
+```
+
 Examples of **correct** code for this rule:
 
 ```js
+html` <th scope="col"></th> `;
+```
+
+```js
 html` <th scope="row"></th> `;
+```
+
+```js
+html` <th scope="colgroup"></th> `;
+```
+
+```js
+html` <th scope="rowgroup"></th> `;
+```
+
+```js
+html` <foo-bar scope="col"></div> `;
+```
+
+```js
+html` <foo-bar scope="row"></div> `;
+```
+
+```js
+html` <foo-bar scope="foo"></div> `;
 ```
 
 ## When Not To Use It
