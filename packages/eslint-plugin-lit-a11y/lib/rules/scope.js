@@ -44,7 +44,7 @@ const ScopeRule = {
                   message: 'The scope attribute may only be used on <th> elements.',
                 });
               } else if (
-                (element.name === 'th' || element.name.includes('-')) &&
+                element.name === 'th' &&
                 elementHasAttribute(element, 'scope') &&
                 !validScopeValues.includes(element.attribs.scope)
               ) {

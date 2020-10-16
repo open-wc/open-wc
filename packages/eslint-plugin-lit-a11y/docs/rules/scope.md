@@ -1,7 +1,7 @@
 # scope
 
-Enforce scope attribute is only used on &lt;th&gt; elements and on custom elements.
-The scope attribute may only be used on `<th>` elements or custom elements and the valid values are 'col', 'row', 'colgroup' or 'rowgroup'.
+Enforce scope attribute is only used on &lt;th&gt; elements.
+The scope attribute may only be used on `<th>` elements.
 
 ## Rule Details
 
@@ -19,10 +19,6 @@ html` <div scope="col"></div> `;
 
 ```js
 html` <th scope="foo"></div> `;
-```
-
-```js
-html` <foo-bar scope="foo"></div> `;
 ```
 
 Examples of **correct** code for this rule:
@@ -49,6 +45,10 @@ html` <foo-bar scope="col"></div> `;
 
 ```js
 html` <foo-bar scope="row"></div> `;
+```
+
+```js
+html` <foo-bar scope="foo"></div> `;
 ```
 
 ## When Not To Use It

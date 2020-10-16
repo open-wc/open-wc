@@ -28,9 +28,7 @@ ruleTester.run('scope', rule, {
     { code: "html`<th scope='rowgroup'></th>`" },
     { code: "html`<th scope='colgroup'></th>`" },
     { code: "html`<foo-bar scope='col'></foo-bar>`" },
-    { code: "html`<foo-bar scope='row'></foo-bar>`" },
-    { code: "html`<foo-bar scope='rowgroup'></foo-bar>`" },
-    { code: "html`<foo-bar scope='colgroup'></foo-bar>`" },
+    { code: "html`<foo-bar scope='foo'></foo-bar>`" },
   ],
 
   invalid: [
@@ -65,15 +63,6 @@ ruleTester.run('scope', rule, {
         {
           message:
             'The scope attribute "foo" informed is not valid. The valid values are: col, row, rowgroup, colgroup.',
-        },
-      ],
-    },
-    {
-      code: "html`<foo-bar scope='bar'></foo-bar>`",
-      errors: [
-        {
-          message:
-            'The scope attribute "bar" informed is not valid. The valid values are: col, row, rowgroup, colgroup.',
         },
       ],
     },
