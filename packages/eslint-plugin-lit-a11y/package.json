@@ -9,8 +9,9 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha tests --recursive",
-    "test:single": "mocha tests/lib/rules/alt-text.js"
+    "test": "npm run test:node",
+    "test:node": "mocha tests --recursive",
+    "test:single": "mocha tests/lib/rules/aria-attr-valid-value.js --watch"
   },
   "keywords": [
     "eslint",
