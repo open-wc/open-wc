@@ -77,6 +77,7 @@ ruleTester.run('aria-attr-valid-value', rule, {
     // number
     { code: 'html`<div aria-valuemax="123" />`' },
     { code: 'html`<div aria-valuemax=${foo} />`' },
+    { code: 'html`<div aria-valuemax=${this.foo} />`' },
 
     // token
     { code: 'html`<div aria-sort="ascending" />`' },
@@ -113,6 +114,9 @@ ruleTester.run('aria-attr-valid-value', rule, {
     // FUNCTION CALL
     { code: 'html`<div aria-label="${foo("foo")}"></div>`' },
     { code: 'html`<div aria-label="${this.foo("foo")}"></div>`' },
+
+    // CONDITIONAL
+    { code: 'html`<div aria-disabled="${this.foo ? "true" : "false"}"></div>`' },
   ],
 
   invalid: [
