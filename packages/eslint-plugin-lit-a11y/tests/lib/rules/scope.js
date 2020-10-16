@@ -53,7 +53,7 @@ ruleTester.run('scope', rule, {
       errors: [
         {
           message:
-            '"column" is not a valid value for the scope attribute. The valid values are:  col, row, rowgroup, colgroup.',
+            '"column" is not a valid value for the scope attribute. The valid values are: col, row, rowgroup, colgroup.',
         },
       ],
     },
@@ -62,7 +62,7 @@ ruleTester.run('scope', rule, {
       errors: [
         {
           message:
-            '"foo" is not a valid value for the scope attribute. The valid values are:  col, row, rowgroup, colgroup.',
+            '"foo" is not a valid value for the scope attribute. The valid values are: col, row, rowgroup, colgroup.',
         },
       ],
     },
