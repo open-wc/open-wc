@@ -3,6 +3,7 @@
  * @author open-wc
  */
 
+const { roles } = require('aria-query');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
@@ -10,44 +11,7 @@ const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 // Rule Definition
 //------------------------------------------------------------------------------
 
-const validAriaRoles = [
-  'alert',
-  'application',
-  'article',
-  'banner',
-  'button',
-  'cell',
-  'checkbox',
-  'comment',
-  'complementary',
-  'contentinfo',
-  'dialog',
-  'document',
-  'feed',
-  'figure',
-  'form',
-  'grid',
-  'gridcell',
-  'heading',
-  'img',
-  'list',
-  'listbox',
-  'listitem',
-  'main',
-  'mark',
-  'navigation',
-  'region',
-  'row',
-  'rowgroup',
-  'search',
-  'suggestion',
-  'switch',
-  'tab',
-  'table',
-  'tabpanel',
-  'textbox',
-  'timer',
-];
+const validAriaRoles = [...roles.keys()].filter(role => roles.get(role).abstract === false);
 
 /** @type {import("eslint").Rule.RuleModule} */
 const AriaRoleRule = {
@@ -75,7 +39,10 @@ const AriaRoleRule = {
                   return;
                 }
 
-                const role = rawValue.replace(/^{{(.*)}}$/, '$1');
+                const role = /** @type {import("aria-query").ARIARoleDefintionKey} */ (rawValue.replace(
+                  /^{{(.*)}}$/,
+                  '$1',
+                ));
 
                 if (/^{(.*)}$/.test(role)) {
                   return; // the value is interpolated with a name. assume it's legitimate and move on.
