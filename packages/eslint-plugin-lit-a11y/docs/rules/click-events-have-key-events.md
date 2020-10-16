@@ -4,6 +4,19 @@ Enforce `@click` is accompanied by at least one of `@keyup`, `@keydown`, or `@ke
 
 ## Rule Details
 
+```json
+{
+  "rules": {
+    "lit-a11y/click-events-have-key-events": [
+      "error",
+      {
+        "allowList": ["foo-button"]
+      }
+    ]
+  }
+}
+```
+
 Examples of **incorrect** code for this rule:
 
 ```js
