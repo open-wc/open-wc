@@ -66,6 +66,7 @@ You may also extend the recommended configuration like so:
 - [lit-a11y/heading-has-content](./docs/rules/heading-has-content.md)
 - [lit-a11y/iframe-title](./docs/rules/iframe-title.md)
 - [lit-a11y/img-redundant-alt](./docs/rules/img-redundant-alt.md)
+- [lit-a11y/interactive-supports-focus](./docs/rules/interactive-supports-focus.md)
 - [lit-a11y/mouse-events-have-key-events](./docs/rules/mouse-events-have-key-events.md)
 - [lit-a11y/no-access-key](./docs/rules/no-access-key.md)
 - [lit-a11y/no-autofocus](./docs/rules/no-autofocus.md)

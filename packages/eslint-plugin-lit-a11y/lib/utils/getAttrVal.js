@@ -2,7 +2,7 @@
  * Gets the attribute value by stripping interpolation markers, except for interpolated variables.
  * @param {string} val
  */
-function getAttrVal(val) {
+function getAttrVal(val = '') {
   // is expression
   if (val.startsWith('{{')) {
     // is expression with a variable

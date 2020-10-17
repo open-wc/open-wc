@@ -124,6 +124,75 @@ const isInteractiveElement = (tagName, attributes) => {
   return checkIsInteractiveElement(tagName, attributes);
 };
 
+const nonInteractiveAXObjects = new Set(
+  [...AXObjects.keys()].filter(name => ['window', 'structure'].includes(AXObjects.get(name).type)),
+);
+
+const nonInteractiveElementAXObjectSchemas = [...elementAXObjects].reduce(
+  (accumulator, [elementSchema, AXObjectSet]) => {
+    if ([...AXObjectSet].every(role => nonInteractiveAXObjects.has(role))) {
+      accumulator.push(elementSchema);
+    }
+    return accumulator;
+  },
+  [],
+);
+
+function checkIsNonInteractiveElement(tagName, attributes) {
+  function elementSchemaMatcher(elementSchema) {
+    return (
+      tagName === elementSchema.name && !attributesComparator(elementSchema.attributes, attributes)
+    );
+  }
+  // Check in elementRoles for inherent non-interactive role associations for
+  // this element.
+  const isInherentNonInteractiveElement = nonInteractiveElementRoleSchemas.some(
+    elementSchemaMatcher,
+  );
+  if (isInherentNonInteractiveElement) {
+    return true;
+  }
+  // Check in elementRoles for inherent interactive role associations for
+  // this element.
+  const isInherentInteractiveElement = interactiveElementRoleSchemas.some(elementSchemaMatcher);
+  if (isInherentInteractiveElement) {
+    return false;
+  }
+  // Check in elementAXObjects for AX Tree associations for this element.
+  const isNonInteractiveAXElement = nonInteractiveElementAXObjectSchemas.some(elementSchemaMatcher);
+  if (isNonInteractiveAXElement) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Returns boolean indicating whether the given element is a non-interactive
+ * element. If the element has either a non-interactive role assigned or it
+ * is an element with an inherently non-interactive role, then this utility
+ * returns true. Elements that lack either an explicitly assigned role or
+ * an inherent role are not considered. For those, this utility returns false
+ * because a positive determination of interactiveness cannot be determined.
+ */
+const isNonInteractiveElement = (tagName, attributes) => {
+  // Do not test higher level JSX components, as we do not know what
+  // low-level DOM element this maps to.
+  if (!domKeys.includes(tagName)) {
+    return false;
+  }
+  // <header> elements do not technically have semantics, unless the
+  // element is a direct descendant of <body>, and this plugin cannot
+  // reliably test that.
+  // @see https://www.w3.org/TR/wai-aria-practices/examples/landmarks/banner.html
+  if (tagName === 'header') {
+    return false;
+  }
+
+  return checkIsNonInteractiveElement(tagName, attributes);
+};
+
 module.exports = {
   isInteractiveElement,
+  isNonInteractiveElement,
 };
