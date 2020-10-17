@@ -1,16 +1,10 @@
-# Component >> Testing ||40
+# Testing >> Testing Package ||10
 
-> This text is not yet written or polished - care to help?
-
-An opinionated package that combines and configures testing libraries to minimize the amount of ceremony required when writing tests.
-
-## Step by step guide
-
-To help you get started with testing, we recommend [reading this article](https://dev.to/open-wc/testing-workflow-for-web-components-g73) for a great step by step guide.
+`@open-wc/testing` is an opinionated package that combines and configures testing libraries to minimize the amount of ceremony required when writing tests.
 
 ## Testing helpers
 
-Exposes all functions of [@open-wc/testing-helpers](https://open-wc.org/testing/testing-helpers.html), so that you have a single package to import from:
+Exposes all functions of [@open-wc/testing-helpers](./helpers.md), so that you have a single package to import from:
 
 ```javascript
 import { fixture, html } from '@open-wc/testing';

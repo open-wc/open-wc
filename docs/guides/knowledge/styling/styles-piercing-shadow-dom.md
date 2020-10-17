@@ -1,4 +1,4 @@
-# Knowledge >> Style >> Styles Piercing Shadow DOM ||30
+# Knowledge >> Styling >> Styles Piercing Shadow DOM ||30
 
 > "Doesn't shadow DOM provide total encapsulation?"
 

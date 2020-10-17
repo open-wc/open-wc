@@ -4,7 +4,7 @@ You can write web components using just the basic web component APIs. This can b
 
 We recommend [lit-html](https://www.npmjs.com/package/lit-html) with the [lit-element](https://www.npmjs.com/package/lit-element) base class as a general-purpose library for building web components. `lit-html` is feature complete, extremely lightweight and offers a great development experience. Check out the [lit-html page](/developing/lit-html.html) for code examples and more information.
 
-In the code snippets throughout our documentation we use `lit-html` and `lit-element`, but our recommendations and tools are not specific to them. You should be able to use them with any web component library that follows browser standards. If you do run into issues, or have any questions, let us know about it!
+In the code snippets throughout our documentation, we use `lit-html` and `lit-element`, but our recommendations and tools are not specific to them. You should be able to use them with any web component library that follows browser standards. If you do run into issues or have any questions, let us know about it!
 
 ### Alternative libraries
 

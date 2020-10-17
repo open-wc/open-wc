@@ -1,6 +1,6 @@
-# Setup >> IDE ||20
+# Tools >> IDE ||10
 
-Your integrated development environment (IDE) is your primary tool while working with code, we recommend the following tools and plugins to make developing Web Components easier.
+Your integrated development environment (IDE) is your primary tool while working with code, we recommend the following tools and plugins to make developing web components easier.
 
 ## Visual Studio Code
 
@@ -41,9 +41,9 @@ We recommend the following plugins:
 
 ## Intellij IDEA and other Jetbrains variants
 
-[Intellij IDEA](https://www.jetbrains.com/idea/) is a Java IDE for developing computer software. It is developed by JetBrains (formerly known as IntelliJ), and is available as an Apache 2 Licensed community edition and in a proprietary commercial edition.
+[Intellij IDEA](https://www.jetbrains.com/idea/) is a Java IDE for developing computer software. It is developed by JetBrains (formerly known as IntelliJ) and is available as an Apache 2 Licensed community edition and in a proprietary commercial edition.
 
-Syntax highlighting from html and css in template literals should be supported out of the box. Generic web components related functionalitites such as Custom Elements support and completion is also available. You can read more about it [here](https://blog.jetbrains.com/phpstorm/2013/10/phpstorm-7-web-toolkit-javascript-templates-web-components-support/).
+Syntax highlighting from HTML and CSS in template literals should be supported out of the box. Generic web component related functionalities such as Custom Elements support and completion is also available. You can read more about it [here](https://blog.jetbrains.com/phpstorm/2013/10/phpstorm-7-web-toolkit-javascript-templates-web-components-support/).
 
 ![intellij-syntax0-highlighting](../assets/intellij-syntax-highlighting.png)
 
@@ -51,7 +51,7 @@ Due to the support available directly in the IDE, the ecosystem for plugins is v
 
 ## Sublime Text 3
 
-[Sublime Text 3](https://www.sublimetext.com/3) is officially called a text editor however Sublime Text features plugins which give it a lot of the possibilities like an IDE. It is available for Windows, Linux and OSX and can be evaluated for free.
+[Sublime Text 3](https://www.sublimetext.com/3) is officially called a text editor however Sublime Text features plugins which give it a lot of the possibilities like an IDE. It is available for Windows, Linux, and OSX and can be evaluated for free.
 
 ### Plugins
 

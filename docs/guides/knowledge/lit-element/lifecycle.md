@@ -1,4 +1,4 @@
-# Knowledge >> Life Cycle >> LitElement ||20
+# Knowledge >> LitElement >> Lifecycle ||20
 
 Below is an overview of the most useful lifecycle callbacks. Check out the [official documentation](https://lit-element.polymer-project.org/guide/lifecycle) for a full overview.
 
@@ -72,15 +72,15 @@ class MyElement extends LitElement {
 }
 ```
 
-## Lifecycle sequence
+### Lifecycle sequence
 
-### First update:
+#### First update:
 
 ```
 constructor -> connectedCallback -> update -> render -> updated -> firstUpdated
 ```
 
-### Subsequent renders:
+#### Subsequent renders:
 
 ```
 update -> render -> updated

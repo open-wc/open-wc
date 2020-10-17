@@ -1,4 +1,4 @@
-## Component >> Types ||50 -> Hide for now
+## Developing Components >> Types ||50 -> Hide for now
 
 > This text is not yet written or polished - care to help?
 

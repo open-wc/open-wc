@@ -1,4 +1,4 @@
-# Knowledge >> Style >> Host via property ||30
+# Knowledge >> Styling >> Host via property ||30
 
 The following example features 3 variations:
 

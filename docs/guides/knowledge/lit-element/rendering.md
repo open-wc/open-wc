@@ -1,4 +1,4 @@
-# Knowledge >> Life Cycle >> Rerender ||30
+# Knowledge >> LitElement >> Rendering ||30
 
 Imagine the following scenario: you've created a custom element that observes an `items` property:
 

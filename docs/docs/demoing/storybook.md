@@ -1,4 +1,4 @@
-# Demoing >> Overview ||10
+# Demoing >> Storybook ||10
 
 For demoing, documenting and showcasing different states of your Web Component, we recommend using [storybook](https://storybook.js.org/).
 
