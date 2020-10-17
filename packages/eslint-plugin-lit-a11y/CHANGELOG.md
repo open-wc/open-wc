@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/open-wc/open-wc/compare/eslint-plugin-lit-a11y@0.3.1...eslint-plugin-lit-a11y@0.4.0) (2020-10-16)
+
+
+### Features
+
+* **eslint-plugin-lit-a11y:** allow only valid scopes ([#1892](https://github.com/open-wc/open-wc/issues/1892)) ([a725038](https://github.com/open-wc/open-wc/commit/a72503822ed5d9700c200ee31c24d40c82569a76))
+
+
+
+
+
 ## [0.3.1](https://github.com/open-wc/open-wc/compare/eslint-plugin-lit-a11y@0.3.0...eslint-plugin-lit-a11y@0.3.1) (2020-10-16)
 
 **Note:** Version bump only for package eslint-plugin-lit-a11y
