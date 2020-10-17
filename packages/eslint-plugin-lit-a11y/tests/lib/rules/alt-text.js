@@ -25,7 +25,9 @@ ruleTester.run('alt-text', rule, {
     { code: "html`<img alt=''/>`" },
     { code: "html`<img alt='foo'/>`" },
     { code: "html`<img alt='${foo}'/>`" },
-    { code: "html`<div role='img' alt='foo'/>`" },
+    { code: "html`<div role='img' alt='foo'></div>`" },
+    { code: "html`<div role='img' aria-label='foo'></div>`" },
+    { code: "html`<label id=\"foo\">foo</label><div role='img' aria-labelledby='foo'></div>`" },
     { code: "html`<img role='presentation'/>`" },
   ],
 
@@ -39,10 +41,11 @@ ruleTester.run('alt-text', rule, {
       ],
     },
     {
-      code: "html`<div role='img'/>`",
+      code: "html`<div role='img'></div>`",
       errors: [
         {
-          message: 'role="img" elements must have an alt attribute.',
+          message:
+            "elements with role 'img' must have an alt, aria-label, or aria-labelledby attribute.",
         },
       ],
     },

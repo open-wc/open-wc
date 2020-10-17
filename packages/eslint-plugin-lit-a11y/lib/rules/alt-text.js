@@ -4,8 +4,18 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
-const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
+const { elementHasAttribute, elementHasSomeAttribute } = require('../utils/elementHasAttribute.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
+
+if (!('ListFormat' in Intl)) {
+  /* eslint-disable global-require */
+  // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
+  require('intl-list-format');
+  // eslint-disable-next-line global-require
+  // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
+  require('intl-list-format/locale-data/en');
+  /* eslint-enable global-require */
+}
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -25,6 +35,12 @@ const AltTextRule = {
   },
 
   create(context) {
+    // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
+    const formatter = new Intl.ListFormat('en', { style: 'long', type: 'disjunction' });
+
+    /** These are the attributes which, if present, allow an element with role "img" to pass */
+    const ALT_ATTRS = ['alt', 'aria-label', 'aria-labelledby'];
+
     return {
       TaggedTemplateExpression(node) {
         if (isHtmlTaggedTemplate(node)) {
@@ -45,12 +61,16 @@ const AltTextRule = {
               } else if (
                 element.name !== 'img' &&
                 element.attribs.role === 'img' &&
-                !elementHasAttribute(element, 'alt')
+                !elementHasSomeAttribute(element, ALT_ATTRS)
               ) {
                 const loc = analyzer.getLocationFor(element);
                 context.report({
                   loc,
-                  message: 'role="img" elements must have an alt attribute.',
+                  message: "elements with role '{{role}}' must have an {{attrs}} attribute.",
+                  data: {
+                    role: 'img',
+                    attrs: formatter.format(ALT_ATTRS),
+                  },
                 });
               }
             },

@@ -13,11 +13,16 @@ html` <img src="${src}" /> `;
 Examples of **correct** code for this rule:
 
 ```js
-html` <img src="${src}" alt="" /> `;
-```
+html`
+  <img src="${src}" alt="" />
 
-```js
-html` <img src="${src}" alt="foo" /> `;
+  <img src="${src}" alt="foo" />
+
+  <img src="${src}" aria-label="foo" />
+
+  <label id="label>foo</label>
+  <img src="${src}" aria-labelledby="label" />
+`;
 ```
 
 ## Further Reading
