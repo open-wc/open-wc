@@ -17,7 +17,7 @@
     "lint:prettier": "prettier \"**/*.{js,md}\" \"**/package.json\" --check",
     "lint:types": "tsc",
     "lint:versions": "node ./scripts/lint-versions.js",
-    "postinstall": "npm run build && patch-package",
+    "postinstall": "patch-package",
     "release": "changeset publish && yarn format",
     "site:build": "npm run docs:build && node scripts/workspaces-scripts-bin.mjs site:build",
     "site:start": "npm run docs:start",
@@ -29,6 +29,7 @@
     "test:browser:watch": "node ./karma.js start --auto-watch=true --single-run=false",
     "test:bs": "node ./karma.js start karma.bs.conf.js --coverage",
     "test:node": "node scripts/workspaces-scripts-bin.mjs test:node",
+    "test:node-single": "mocha \"packages/*/test/**/*.test.{ts,js,mjs,cjs}\" --exit --retries 3",
     "test:node-windows": "node scripts/workspaces-scripts-bin.mjs --scope \"@open-wc/rollup-plugin-html\" --scope \"@open-wc/rollup-plugin-polyfills-loader\" --scope \"polyfills-loader\" test:node",
     "test:update-snapshots": "node scripts/workspaces-scripts-bin.mjs test:update-snapshots",
     "update-dependency": "node scripts/update-dependency.js"

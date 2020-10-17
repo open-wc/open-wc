@@ -3,6 +3,7 @@ coverage/
 dist
 tsc-dist
 stats.html
+/packages/*/test-browser
 /packages/create/src/generators/*/templates/**/*
 /packages/import-maps-generate/test/assets/**/node_modules
 /packages/**/test/**/snapshots

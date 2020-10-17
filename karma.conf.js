@@ -19,7 +19,7 @@ module.exports = config => {
         {
           pattern: config.grep
             ? config.grep
-            : `packages/*(${packagesToTestInBrowser})/test/**/*.test.js`,
+            : `packages/*(${packagesToTestInBrowser})/test-browser/**/*.test.js`,
           type: 'module',
         },
       ],
