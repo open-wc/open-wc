@@ -187,6 +187,22 @@ function isLiteral(expr) {
 
 /**
  * @param {import("estree").Expression} expr
+ * @return {expr is import("estree").MemberExpression}
+ */
+function isMemberExpressions(expr) {
+  return expr && expr.type === 'MemberExpression';
+}
+
+/**
+ * @param {import("estree").Expression} expr
+ * @return {expr is import("estree").ConditionalExpression}
+ */
+function isConditionalExpression(expr) {
+  return expr && expr.type === 'ConditionalExpression';
+}
+
+/**
+ * @param {import("estree").Expression} expr
  * @return {expr is import("estree").UnaryExpression} expr
  */
 function isUnaryExpression(expr) {
@@ -224,6 +240,10 @@ function templateExpressionToHtml(node) {
       html += `{{${expr.value}}}`;
     } else if (isCallExpression(expr)) {
       html += `{{{${getIdentifierName(expr.callee)}(${getCallExprValue(expr)})}}}`;
+    } else if (isMemberExpressions(expr)) {
+      html += `{{{}}}`;
+    } else if (isConditionalExpression(expr)) {
+      html += `{{{}}}`;
     }
   }
   return html;

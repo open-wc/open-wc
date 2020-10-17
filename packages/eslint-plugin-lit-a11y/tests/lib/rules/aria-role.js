@@ -24,6 +24,7 @@ const ruleTester = new RuleTester({
 ruleTester.run('aria-role', rule, {
   valid: [
     { code: "html`<div role='alert'></div>`;" },
+    { code: "html`<div role='progressbar'></div>`;" },
     { code: "html`<div role='navigation'></div>`;" },
     { code: 'html`<div role="navigation"></div>`;' },
     { code: "html`<div role=${'navigation'}></div>`;" },
