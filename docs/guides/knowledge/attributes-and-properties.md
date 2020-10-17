@@ -114,7 +114,7 @@ console.log(myInput.getAttribute('type')); // text
 If we change the type attribute to `number`, it will be synced with the property:
 
 ```js
-myButton.setAttribute('type', 'number')';
+myButton.setAttribute('type', 'number');
 console.log(myInput.type); // number
 ```
 
