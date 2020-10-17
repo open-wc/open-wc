@@ -6,6 +6,7 @@
 const emojiRegex = require('emoji-regex');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { isTextNode } = require('../../template-analyzer/util.js');
+const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
@@ -60,8 +61,11 @@ const AccessibleEmojiRule = {
 
               const rolePropValue = element.attribs.role;
               const ariaLabelProp = element.attribs['aria-label'];
-              const arialLabelledByProp = element.attribs['aria-labelledby'];
-              const hasLabel = ariaLabelProp !== undefined || arialLabelledByProp !== undefined;
+              const ariaLabelledByProp = element.attribs['aria-labelledby'];
+              const hasLabel =
+                ariaLabelProp !== undefined ||
+                ariaLabelledByProp !== undefined ||
+                elementHasAttribute(element, 'alt');
               const isSpan = element.name === 'span';
 
               if (hasLabel === false || rolePropValue !== 'img' || isSpan === false) {
@@ -69,7 +73,7 @@ const AccessibleEmojiRule = {
                 context.report({
                   loc,
                   message:
-                    'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
+                    'Emojis must either be wrapped in <span role="img"> with a label or alt attribute, or hidden from the AOM.',
                 });
               }
             },

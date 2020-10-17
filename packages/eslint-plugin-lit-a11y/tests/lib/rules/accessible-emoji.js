@@ -27,6 +27,7 @@ ruleTester.run('accessible-emoji', rule, {
     { code: 'html`<div>asdf</div>`' },
     { code: 'html`<span></span>`' },
     { code: 'html`<span>No emoji here!</span>`' },
+    { code: 'html`<span role="img" alt="Panda face">🐼</span>`' },
     { code: 'html`<span role="img" aria-label="Panda face">🐼</span>`' },
     { code: 'html`<span role="img" aria-label="Snowman">&#9731;</span>`' },
     { code: 'html`<span role="img" aria-labelledby="id1">🐼</span>`' },
@@ -45,7 +46,7 @@ ruleTester.run('accessible-emoji', rule, {
       errors: [
         {
           message:
-            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
+            'Emojis must either be wrapped in <span role="img"> with a label or alt attribute, or hidden from the AOM.',
         },
       ],
     },
@@ -54,7 +55,7 @@ ruleTester.run('accessible-emoji', rule, {
       errors: [
         {
           message:
-            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
+            'Emojis must either be wrapped in <span role="img"> with a label or alt attribute, or hidden from the AOM.',
         },
       ],
     },
@@ -63,7 +64,7 @@ ruleTester.run('accessible-emoji', rule, {
       errors: [
         {
           message:
-            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
+            'Emojis must either be wrapped in <span role="img"> with a label or alt attribute, or hidden from the AOM.',
         },
       ],
     },
@@ -72,7 +73,7 @@ ruleTester.run('accessible-emoji', rule, {
       errors: [
         {
           message:
-            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
+            'Emojis must either be wrapped in <span role="img"> with a label or alt attribute, or hidden from the AOM.',
         },
       ],
     },
@@ -81,7 +82,7 @@ ruleTester.run('accessible-emoji', rule, {
       errors: [
         {
           message:
-            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
+            'Emojis must either be wrapped in <span role="img"> with a label or alt attribute, or hidden from the AOM.',
         },
       ],
     },
@@ -90,7 +91,7 @@ ruleTester.run('accessible-emoji', rule, {
       errors: [
         {
           message:
-            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
+            'Emojis must either be wrapped in <span role="img"> with a label or alt attribute, or hidden from the AOM.',
         },
       ],
     },

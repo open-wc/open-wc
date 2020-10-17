@@ -25,6 +25,10 @@ html` <span role="img" aria-label="Panda face">🐼</span> `;
 ```
 
 ```js
+html` <span role="img" alt="Panda face">🐼</span> `;
+```
+
+```js
 html`
   <label id="label">Clown</label>
   <span role="img" aria-labelledby="label">🤡</span>
