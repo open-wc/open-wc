@@ -241,9 +241,9 @@ function templateExpressionToHtml(node) {
     } else if (isCallExpression(expr)) {
       html += `{{{${getIdentifierName(expr.callee)}(${getCallExprValue(expr)})}}}`;
     } else if (isMemberExpressions(expr)) {
-      html += `{{}}`;
+      html += `{{{}}}`;
     } else if (isConditionalExpression(expr)) {
-      html += `{{}}`;
+      html += `{{{}}}`;
     }
   }
   return html;
