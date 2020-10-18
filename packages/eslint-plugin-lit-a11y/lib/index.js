@@ -20,7 +20,7 @@ module.exports.configs = {
   recommended: {
     plugins: ['lit-a11y'],
     rules: {
-      'lit-a11y/accessible-emoji': 'error',
+      'lit-a11y/accessible-emoji': 'off',
       'lit-a11y/alt-text': 'error',
       'lit-a11y/anchor-has-content': 'error',
       'lit-a11y/anchor-is-valid': 'error',
