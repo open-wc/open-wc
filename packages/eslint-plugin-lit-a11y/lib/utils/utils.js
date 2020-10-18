@@ -9,28 +9,34 @@ function hasAttr(attributes, attribute) {
 }
 
 function createValidLitHtmlSources(context) {
-  return ['lit-html', 'lit-element', ...context.settings.litHtmlSources || []];
+  return ['lit-html', 'lit-element', ...(context.settings.litHtmlSources || [])];
 }
 
 function hasLitHtmlImport(node, validLitHtmlSources) {
-  return node.specifiers && node.specifiers.some((specifier) => { // eslint-disable-line
-    return specifier.type
-    && specifier.type === "ImportSpecifier"
-    && specifier.local.name === 'html'
-    && validLitHtmlSources.includes(node.source.value)
-  })
+  return (
+    node.specifiers &&
+    node.specifiers.some(specifier => {
+      // eslint-disable-line
+      return (
+        specifier.type &&
+        specifier.type === 'ImportSpecifier' &&
+        specifier.local.name === 'html' &&
+        validLitHtmlSources.includes(node.source.value)
+      );
+    })
+  );
 }
 
 function prependLitHtmlImport(i) {
   return {
     ...i,
-    code: `import {html} from 'lit-html';${i.code}`
-  }
+    code: `import {html} from 'lit-html';${i.code}`,
+  };
 }
 
 module.exports = {
   hasAttr,
   prependLitHtmlImport,
   hasLitHtmlImport,
-  createValidLitHtmlSources
+  createValidLitHtmlSources,
 };

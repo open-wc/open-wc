@@ -33,13 +33,12 @@ const RoleSupportsAriaAttrRule = {
 
     return {
       ImportDeclaration(node) {
-        if(hasLitHtmlImport(node, validLitHtmlSources)) {
+        if (hasLitHtmlImport(node, validLitHtmlSources)) {
           isLitHtml = true;
         }
       },
       TaggedTemplateExpression(node) {
         if (isHtmlTaggedTemplate(node) && isLitHtml) {
-
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({

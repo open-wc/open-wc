@@ -22,7 +22,9 @@ const ruleTester = new RuleTester({
   },
 });
 ruleTester.run('no-invalid-change-handler', rule, {
-  valid: [{ code: 'html`<select @blur=${foo}></select>`' }, { code: 'html`<div></div>`' }].map(prependLitHtmlImport),
+  valid: [{ code: 'html`<select @blur=${foo}></select>`' }, { code: 'html`<div></div>`' }].map(
+    prependLitHtmlImport,
+  ),
 
   invalid: [
     {

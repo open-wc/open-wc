@@ -33,7 +33,7 @@ const AriaUnsupportedElementsRule = {
 
     return {
       ImportDeclaration(node) {
-        if(hasLitHtmlImport(node, validLitHtmlSources)) {
+        if (hasLitHtmlImport(node, validLitHtmlSources)) {
           isLitHtml = true;
         }
       },

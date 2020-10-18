@@ -56,9 +56,9 @@ In this case, you can configure `@apollo-elements/lit-apollo` as a valid lit-htm
 
 ```json
 {
-    "settings": {
-        "litHtmlSources": ["@apollo-elements/lit-apollo"]
-    }
+  "settings": {
+    "litHtmlSources": ["@apollo-elements/lit-apollo"]
+  }
 }
 ```
 
