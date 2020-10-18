@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/open-wc/open-wc/compare/eslint-plugin-lit-a11y@0.4.1...eslint-plugin-lit-a11y@0.4.2) (2020-10-18)
+
+
+### Bug Fixes
+
+* **eslint-plugin-lit-a11y:** aria-label img role ([#1899](https://github.com/open-wc/open-wc/issues/1899)) ([b22dc15](https://github.com/open-wc/open-wc/commit/b22dc155ea2d4410a94db42fdd5699f7ee9a6249))
+* **eslint-plugin-lit-a11y:** revert custom placeholder logic ([#1907](https://github.com/open-wc/open-wc/issues/1907)) ([956597a](https://github.com/open-wc/open-wc/commit/956597ae1baf27032daa619c284a5d3c00a6f4fb))
+
+
+
+
+
 ## [0.4.1](https://github.com/open-wc/open-wc/compare/eslint-plugin-lit-a11y@0.4.0...eslint-plugin-lit-a11y@0.4.1) (2020-10-17)
 
 
