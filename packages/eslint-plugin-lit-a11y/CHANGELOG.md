@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/open-wc/open-wc/compare/eslint-plugin-lit-a11y@0.4.2...eslint-plugin-lit-a11y@0.5.0) (2020-10-18)
+
+
+### Features
+
+* **eslint-plugin-lit-a11y:** detect lit-html ([#1908](https://github.com/open-wc/open-wc/issues/1908)) ([ea8b181](https://github.com/open-wc/open-wc/commit/ea8b181b42713a13f1a19852173f16e597399d64))
+
+
+
+
+
 ## [0.4.2](https://github.com/open-wc/open-wc/compare/eslint-plugin-lit-a11y@0.4.1...eslint-plugin-lit-a11y@0.4.2) (2020-10-18)
 
 
