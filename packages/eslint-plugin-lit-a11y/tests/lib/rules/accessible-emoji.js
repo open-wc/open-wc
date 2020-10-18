@@ -43,57 +43,31 @@ ruleTester.run('accessible-emoji', rule, {
   invalid: [
     {
       code: 'html`<span>🐼</span>`',
-      errors: [
-        {
-          message:
-            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
-        },
-      ],
+      errors: [{ messageId: 'wrapEmoji' }],
     },
     {
       code: 'html`<span>foo🐼bar</span>`',
-      errors: [
-        {
-          message:
-            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
-        },
-      ],
+      errors: [{ messageId: 'wrapEmoji' }],
     },
     {
       code: 'html`<span>foo 🐼 bar</span>`',
-      errors: [
-        {
-          message:
-            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
-        },
-      ],
+      errors: [{ messageId: 'wrapEmoji' }],
     },
     {
       code: 'html`<i role="img" aria-label="Panda face">🐼</i>`',
-      errors: [
-        {
-          message:
-            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
-        },
-      ],
+      errors: [{ messageId: 'wrapEmoji' }],
     },
     {
       code: 'html`<i role="img" aria-labelledby="id1">🐼</i>`',
-      errors: [
-        {
-          message:
-            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
-        },
-      ],
+      errors: [{ messageId: 'wrapEmoji' }],
     },
     {
       code: 'html`<span aria-hidden="false">🐼</span>`',
-      errors: [
-        {
-          message:
-            'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
-        },
-      ],
+      errors: [{ messageId: 'wrapEmoji' }],
+    },
+    {
+      code: 'html`<span role="img" alt="Panda face">🐼</span>`',
+      errors: [{ messageId: 'wrapEmoji' }],
     },
   ].map(prependLitHtmlImport),
 });
