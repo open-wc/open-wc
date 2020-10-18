@@ -10,58 +10,6 @@
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/anchor-is-valid.js');
 
-const preferButtonErrorMessage =
-  'Anchor used as a button. Anchors are primarily expected to navigate. Use the button element instead. Learn more: https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md';
-
-const noHrefErrorMessage =
-  'The href attribute is required for an anchor to be keyboard accessible. Provide a valid, navigable address as the href value. If you cannot provide an href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md';
-
-const invalidHrefErrorMessage =
-  'The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md';
-
-const preferButtonexpectedError = {
-  message: preferButtonErrorMessage,
-};
-
-const noHrefexpectedError = {
-  message: noHrefErrorMessage,
-};
-
-const invalidHrefexpectedError = {
-  message: invalidHrefErrorMessage,
-};
-
-const noHrefAspect = [
-  {
-    aspects: ['noHref'],
-  },
-];
-const invalidHrefAspect = [
-  {
-    aspects: ['invalidHref'],
-  },
-];
-const preferButtonAspect = [
-  {
-    aspects: ['preferButton'],
-  },
-];
-const noHrefInvalidHrefAspect = [
-  {
-    aspects: ['noHref', 'invalidHref'],
-  },
-];
-const noHrefPreferButtonAspect = [
-  {
-    aspects: ['noHref', 'preferButton'],
-  },
-];
-const preferButtonInvalidHrefAspect = [
-  {
-    aspects: ['preferButton', 'invalidHref'],
-  },
-];
-
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
@@ -94,165 +42,200 @@ ruleTester.run('anchor-is-valid', rule, {
     { code: 'html`<a href=${`#foo`} @click=${foo} />`' },
     { code: 'html`<a href="#foo" @click=${foo} />`' },
 
-    { code: 'html`<a href="" />;`', options: preferButtonAspect },
-    { code: 'html`<a href="#" />`', options: preferButtonAspect },
-    { code: 'html`<a href=${"#"} />`', options: preferButtonAspect },
-    { code: 'html`<a href="javascript:void(0)" />`', options: preferButtonAspect },
-    { code: 'html`<a href=${"javascript:void(0)"} />`', options: preferButtonAspect },
-    { code: 'html`<a href="" />;`', options: noHrefAspect },
-    { code: 'html`<a href="#" />`', options: noHrefAspect },
-    { code: 'html`<a href=${"#"} />`', options: noHrefAspect },
-    { code: 'html`<a href="javascript:void(0)" />`', options: noHrefAspect },
-    { code: 'html`<a href=${"javascript:void(0)"} />`', options: noHrefAspect },
-    { code: 'html`<a href="" />;`', options: noHrefPreferButtonAspect },
-    { code: 'html`<a href="#" />`', options: noHrefPreferButtonAspect },
-    { code: 'html`<a href=${"#"} />`', options: noHrefPreferButtonAspect },
-    { code: 'html`<a href="javascript:void(0)" />`', options: noHrefPreferButtonAspect },
-    { code: 'html`<a href=${"javascript:void(0)"} />`', options: noHrefPreferButtonAspect },
+    { code: 'html`<a href="" />;`', options: [{ aspects: ['preferButton'] }] },
+    { code: 'html`<a href="#" />`', options: [{ aspects: ['preferButton'] }] },
+    { code: 'html`<a href=${"#"} />`', options: [{ aspects: ['preferButton'] }] },
+    { code: 'html`<a href="javascript:void(0)" />`', options: [{ aspects: ['preferButton'] }] },
+    { code: 'html`<a href=${"javascript:void(0)"} />`', options: [{ aspects: ['preferButton'] }] },
+    { code: 'html`<a href="" />;`', options: [{ aspects: ['noHref'] }] },
+    { code: 'html`<a href="#" />`', options: [{ aspects: ['noHref'] }] },
+    { code: 'html`<a href=${"#"} />`', options: [{ aspects: ['noHref'] }] },
+    { code: 'html`<a href="javascript:void(0)" />`', options: [{ aspects: ['noHref'] }] },
+    { code: 'html`<a href=${"javascript:void(0)"} />`', options: [{ aspects: ['noHref'] }] },
+    { code: 'html`<a href="" />;`', options: [{ aspects: ['noHref', 'preferButton'] }] },
+    { code: 'html`<a href="#" />`', options: [{ aspects: ['noHref', 'preferButton'] }] },
+    { code: 'html`<a href=${"#"} />`', options: [{ aspects: ['noHref', 'preferButton'] }] },
+    {
+      code: 'html`<a href="javascript:void(0)" />`',
+      options: [{ aspects: ['noHref', 'preferButton'] }],
+    },
+    {
+      code: 'html`<a href=${"javascript:void(0)"} />`',
+      options: [{ aspects: ['noHref', 'preferButton'] }],
+    },
 
-    { code: 'html`<a @click=${foo} />`', options: invalidHrefAspect },
-    { code: 'html`<a href="#" @click=${foo} />`', options: noHrefAspect },
-    { code: 'html`<a href="javascript:void(0)" @click=${foo} />`', options: noHrefAspect },
+    { code: 'html`<a @click=${foo} />`', options: [{ aspects: ['invalidHref'] }] },
+    { code: 'html`<a href="#" @click=${foo} />`', options: [{ aspects: ['noHref'] }] },
+    {
+      code: 'html`<a href="javascript:void(0)" @click=${foo} />`',
+      options: [{ aspects: ['noHref'] }],
+    },
     {
       code: 'html`<a href=${"javascript:void(0)"} @click=${foo} />`',
-      options: noHrefAspect,
+      options: [{ aspects: ['noHref'] }],
     },
   ],
 
   invalid: [
-    { code: 'html`<a />`', errors: [noHrefexpectedError] },
+    { code: 'html`<a />`', errors: [{ messageId: 'noHrefErrorMessage' }] },
     // INVALID HREF
-    { code: 'html`<a href="" />;`', errors: [invalidHrefexpectedError] },
-    { code: 'html`<a href="#" />`', errors: [invalidHrefErrorMessage] },
-    { code: 'html`<a href="javascript:void(0)" />`', errors: [invalidHrefexpectedError] },
+    { code: 'html`<a href="" />;`', errors: [{ messageId: 'invalidHrefErrorMessage' }] },
+    { code: 'html`<a href="#" />`', errors: [{ messageId: 'invalidHrefErrorMessage' }] },
+    {
+      code: 'html`<a href="javascript:void(0)" />`',
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
+    },
     // SHOULD BE BUTTON
-    { code: 'html`<a @click=${foo} />`', errors: [preferButtonexpectedError] },
-    { code: 'html`<a href="#" @click=${foo} />`', errors: [preferButtonexpectedError] },
+    { code: 'html`<a @click=${foo} />`', errors: [{ messageId: 'preferButtonErrorMessage' }] },
+    {
+      code: 'html`<a href="#" @click=${foo} />`',
+      errors: [{ messageId: 'preferButtonErrorMessage' }],
+    },
     {
       code: 'html`<a href="javascript:void(0)" @click=${foo} />`',
-      errors: [preferButtonexpectedError],
+      errors: [{ messageId: 'preferButtonErrorMessage' }],
     },
 
     // WITH ASPECTS TESTS
     // NO HREF
-    { code: 'html`<a />`', options: noHrefAspect, errors: [noHrefErrorMessage] },
-    { code: 'html`<a />`', options: noHrefPreferButtonAspect, errors: [noHrefErrorMessage] },
-    { code: 'html`<a />`', options: noHrefInvalidHrefAspect, errors: [noHrefErrorMessage] },
+    {
+      code: 'html`<a />`',
+      options: [{ aspects: ['noHref'] }],
+      errors: [{ messageId: 'noHrefErrorMessage' }],
+    },
+    {
+      code: 'html`<a />`',
+      options: [{ aspects: ['noHref', 'preferButton'] }],
+      errors: [{ messageId: 'noHrefErrorMessage' }],
+    },
+    {
+      code: 'html`<a />`',
+      options: [{ aspects: ['noHref', 'invalidHref'] }],
+      errors: [{ messageId: 'noHrefErrorMessage' }],
+    },
 
     // INVALID HREF
-    { code: 'html`<a href="" />;`', options: invalidHrefAspect, errors: [invalidHrefErrorMessage] },
     {
       code: 'html`<a href="" />;`',
-      options: noHrefInvalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      options: [{ aspects: ['invalidHref'] }],
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
     },
     {
       code: 'html`<a href="" />;`',
-      options: preferButtonInvalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      options: [{ aspects: ['noHref', 'invalidHref'] }],
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
+    },
+    {
+      code: 'html`<a href="" />;`',
+      options: [{ aspects: ['preferButton', 'invalidHref'] }],
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
     },
     {
       code: 'html`<a href="#" />;`',
-      options: invalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      options: [{ aspects: ['invalidHref'] }],
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
     },
     {
       code: 'html`<a href="#" />;`',
-      options: noHrefInvalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      options: [{ aspects: ['noHref', 'invalidHref'] }],
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
     },
     {
       code: 'html`<a href="#" />;`',
-      options: preferButtonInvalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      options: [{ aspects: ['preferButton', 'invalidHref'] }],
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
     },
     {
       code: 'html`<a href="javascript:void(0)" />;`',
-      options: invalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      options: [{ aspects: ['invalidHref'] }],
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
     },
     {
       code: 'html`<a href="javascript:void(0)" />;`',
-      options: noHrefInvalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      options: [{ aspects: ['noHref', 'invalidHref'] }],
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
     },
     {
       code: 'html`<a href="javascript:void(0)" />;`',
-      options: preferButtonInvalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      options: [{ aspects: ['preferButton', 'invalidHref'] }],
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
     },
 
     // SHOULD BE BUTTON
     {
       code: 'html`<a @click=${foo} />`',
-      options: preferButtonAspect,
-      errors: [preferButtonErrorMessage],
+      options: [{ aspects: ['preferButton'] }],
+      errors: [{ messageId: 'preferButtonErrorMessage' }],
     },
     {
       code: 'html`<a @click=${foo} />`',
-      options: preferButtonInvalidHrefAspect,
-      errors: [preferButtonErrorMessage],
+      options: [{ aspects: ['preferButton', 'invalidHref'] }],
+      errors: [{ messageId: 'preferButtonErrorMessage' }],
     },
     {
       code: 'html`<a @click=${foo} />`',
-      options: noHrefPreferButtonAspect,
-      errors: [preferButtonErrorMessage],
+      options: [{ aspects: ['noHref', 'preferButton'] }],
+      errors: [{ messageId: 'preferButtonErrorMessage' }],
     },
-    { code: 'html`<a @click=${foo} />`', options: noHrefAspect, errors: [noHrefErrorMessage] },
     {
       code: 'html`<a @click=${foo} />`',
-      options: noHrefInvalidHrefAspect,
-      errors: [noHrefErrorMessage],
+      options: [{ aspects: ['noHref'] }],
+      errors: [{ messageId: 'noHrefErrorMessage' }],
+    },
+    {
+      code: 'html`<a @click=${foo} />`',
+      options: [{ aspects: ['noHref', 'invalidHref'] }],
+      errors: [{ messageId: 'noHrefErrorMessage' }],
     },
     {
       code: 'html`<a href="#" @click=${foo} />`',
-      options: preferButtonAspect,
-      errors: [preferButtonErrorMessage],
+      options: [{ aspects: ['preferButton'] }],
+      errors: [{ messageId: 'preferButtonErrorMessage' }],
     },
     {
       code: 'html`<a href="#" @click=${foo} />`',
-      options: noHrefPreferButtonAspect,
-      errors: [preferButtonErrorMessage],
+      options: [{ aspects: ['noHref', 'preferButton'] }],
+      errors: [{ messageId: 'preferButtonErrorMessage' }],
     },
     {
       code: 'html`<a href="#" @click=${foo} />`',
-      options: preferButtonInvalidHrefAspect,
-      errors: [preferButtonErrorMessage],
+      options: [{ aspects: ['preferButton', 'invalidHref'] }],
+      errors: [{ messageId: 'preferButtonErrorMessage' }],
     },
     {
       code: 'html`<a href="#" @click=${foo} />`',
-      options: invalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      options: [{ aspects: ['invalidHref'] }],
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
     },
     {
       code: 'html`<a href="#" @click=${foo} />`',
-      options: noHrefInvalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      options: [{ aspects: ['noHref', 'invalidHref'] }],
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
     },
     {
       code: 'html`<a href="javascript:void(0)" @click=${foo} />`',
-      options: preferButtonAspect,
-      errors: [preferButtonErrorMessage],
+      options: [{ aspects: ['preferButton'] }],
+      errors: [{ messageId: 'preferButtonErrorMessage' }],
     },
     {
       code: 'html`<a href="javascript:void(0)" @click=${foo} />`',
-      options: noHrefPreferButtonAspect,
-      errors: [preferButtonErrorMessage],
+      options: [{ aspects: ['noHref', 'preferButton'] }],
+      errors: [{ messageId: 'preferButtonErrorMessage' }],
     },
     {
       code: 'html`<a href="javascript:void(0)" @click=${foo} />`',
-      options: preferButtonInvalidHrefAspect,
-      errors: [preferButtonErrorMessage],
+      options: [{ aspects: ['preferButton', 'invalidHref'] }],
+      errors: [{ messageId: 'preferButtonErrorMessage' }],
     },
     {
       code: 'html`<a href="javascript:void(0)" @click=${foo} />`',
-      options: invalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      options: [{ aspects: ['invalidHref'] }],
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
     },
     {
       code: 'html`<a href="javascript:void(0)" @click=${foo} />`',
-      options: noHrefInvalidHrefAspect,
-      errors: [invalidHrefErrorMessage],
+      options: [{ aspects: ['noHref', 'invalidHref'] }],
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
     },
   ],
 });

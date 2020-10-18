@@ -21,6 +21,8 @@ const AccessibleEmojiRule = {
       description: 'Enforce emojis are wrapped in <span> and provide screenreader access.',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/accessible-emoji.md',
     },
     messages: {
       wrapEmoji:
@@ -58,7 +60,7 @@ const AccessibleEmojiRule = {
                 return; // element has no emoji text content
               }
 
-              if (isHiddenFromScreenReader(element.name, element.attribs)) {
+              if (isHiddenFromScreenReader(element)) {
                 return; // emoji is decorative
               }
 

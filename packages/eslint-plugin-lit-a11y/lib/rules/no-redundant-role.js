@@ -23,6 +23,8 @@ const NoRedundantRoleRule = {
         'Enforce explicit role property is not the same as implicit/default role property on element.',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-redundant-role.md',
     },
     fixable: null,
     schema: [],

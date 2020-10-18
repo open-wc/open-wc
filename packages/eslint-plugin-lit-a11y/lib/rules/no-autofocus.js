@@ -15,9 +15,14 @@ const NoAutofocusRule = {
   meta: {
     type: 'suggestion',
     docs: {
-      description: 'Enforce that autoFocus prop is not used on elements.',
+      description: 'Enforce that autofocus attribute or property are not used on elements.',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-autofocus.md',
+    },
+    messages: {
+      noAutofocus: 'The autofocus {{type}} is not allowed.',
     },
     fixable: null,
     schema: [],
@@ -35,7 +40,16 @@ const NoAutofocusRule = {
                 const loc = analyzer.getLocationForAttribute(element, 'autofocus');
                 context.report({
                   loc,
-                  message: 'The autofocus attribute is not allowed.',
+                  messageId: 'noAutofocus',
+                  data: { type: 'attribute' },
+                });
+              }
+              if ('.autofocus' in element.attribs) {
+                const loc = analyzer.getLocationForAttribute(element, '.autofocus');
+                context.report({
+                  loc,
+                  messageId: 'noAutofocus',
+                  data: { type: 'property' },
                 });
               }
             },

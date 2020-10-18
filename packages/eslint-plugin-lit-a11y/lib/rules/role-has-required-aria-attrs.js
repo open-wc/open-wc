@@ -31,6 +31,8 @@ const RoleHasRequiredAriaAttrsRule = {
         'Enforce that elements with ARIA roles must have all required attributes for that role.',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/role-has-required-aria-attrs.md',
     },
     fixable: null,
     schema: [],

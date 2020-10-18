@@ -31,19 +31,11 @@ ruleTester.run('iframe-title', rule, {
   invalid: [
     {
       code: 'html`<iframe></iframe>`',
-      errors: [
-        {
-          message: '<iframe> elements must have a unique title property.',
-        },
-      ],
+      errors: [{ messageId: 'iframeTitle' }],
     },
     {
       code: "html`<iframe title=''></iframe>`",
-      errors: [
-        {
-          message: '<iframe> elements must have a unique title property.',
-        },
-      ],
+      errors: [{ messageId: 'iframeTitle' }],
     },
   ],
 });

@@ -18,6 +18,8 @@ const NoAccessKeyRule = {
       description: 'Enforce no accesskey attribute on element.',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-access-key.md',
     },
     fixable: null,
     schema: [],

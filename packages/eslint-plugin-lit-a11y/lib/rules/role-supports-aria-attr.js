@@ -21,6 +21,8 @@ const RoleSupportsAriaAttrRule = {
         'Enforce that elements with a defined role contain only supported ARIA attributes for that role.',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/role-supports-aria-attrs.md',
     },
     fixable: null,
     schema: [],

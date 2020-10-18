@@ -29,35 +29,32 @@ ruleTester.run('no-autofocus', rule, {
   invalid: [
     {
       code: 'html`<div autofocus></div>`',
-      errors: [
-        {
-          message: 'The autofocus attribute is not allowed.',
-        },
-      ],
+      errors: [{ messageId: 'noAutofocus', data: { type: 'attribute' } }],
     },
     {
       code: "html`<div autofocus='true'></div>`",
-      errors: [
-        {
-          message: 'The autofocus attribute is not allowed.',
-        },
-      ],
+      errors: [{ messageId: 'noAutofocus', data: { type: 'attribute' } }],
     },
     {
       code: "html`<div autofocus='false'></div>`",
-      errors: [
-        {
-          message: 'The autofocus attribute is not allowed.',
-        },
-      ],
+      errors: [{ messageId: 'noAutofocus', data: { type: 'attribute' } }],
     },
     {
       code: 'html`<div autofocus=${foo}></div>`',
-      errors: [
-        {
-          message: 'The autofocus attribute is not allowed.',
-        },
-      ],
+      errors: [{ messageId: 'noAutofocus', data: { type: 'attribute' } }],
+    },
+
+    {
+      code: "html`<div .autofocus='true'></div>`",
+      errors: [{ messageId: 'noAutofocus', data: { type: 'property' } }],
+    },
+    {
+      code: "html`<div .autofocus='false'></div>`",
+      errors: [{ messageId: 'noAutofocus', data: { type: 'property' } }],
+    },
+    {
+      code: 'html`<div .autofocus=${foo}></div>`',
+      errors: [{ messageId: 'noAutofocus', data: { type: 'property' } }],
     },
   ],
 });

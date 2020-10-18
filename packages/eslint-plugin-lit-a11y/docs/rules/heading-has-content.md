@@ -35,6 +35,78 @@ html`
 `;
 ```
 
+### Options
+
+The `customHeadingElements` option lets you specify tag names to include in this rule, for example, if you have a custom element which implements heading semantics.
+
+```js
+customElements.define(
+  'custom-heading',
+  class CustomHeading extends HTMLElement {
+    static get observedAttributes() {
+      return ['level'];
+    }
+
+    get level() {
+      const parsed = parseInt(this.getAttribute('level'));
+      if (!Number.isNaN(parsed)) return parsed;
+      else return null;
+    }
+
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' });
+    }
+
+    connectedCallback() {
+      this.render();
+    }
+
+    attributeChangedCallback() {
+      if (typeof this.level === 'number') this.render();
+    }
+
+    render() {
+      const heading = `h${this.level}`;
+      this.shadowRoot.innerHTML = `
+      <${heading}>
+        <slot></slot>
+      </${heading}>
+    `;
+    }
+  },
+);
+```
+
+```json
+{
+  "rules": {
+    "lit-a11y/heading-has-content": [
+      "error",
+      {
+        "customHeadingElements": ["custom-heading"]
+      }
+    ]
+  }
+}
+```
+
+Examples of **incorrect** code with `customHeadingElements: ["custom-heading"]`:
+
+```js
+html` <custom-heading></custom-heading> `;
+```
+
+Examples of **incorrect** code with `customHeadingElements: ["custom-heading"]`:
+
+```js
+html`
+  <custom-heading>Heading</custom-heading>
+  <custom-heading><span>Heading</span></custom-heading>
+  <custom-heading>${foo}</custom-heading>
+`;
+```
+
 ## Further Reading
 
 - [WCAG 2.4.6](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-descriptive.html)

@@ -18,6 +18,8 @@ const AnchorHasContentRule = {
       description: 'Enforce anchor elements to contain accessible content.',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/anchor-has-content.md',
     },
     fixable: null,
     schema: [],
