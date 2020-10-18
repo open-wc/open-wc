@@ -18,16 +18,6 @@ function isHiddenFromScreenReader(element) {
   return ariaHidden === 'true' || ariaHidden === '';
 }
 
-/**
- * Is the element hidden from the screen-reader?
- * @param {import("parse5-htmlparser2-tree-adapter").Element} element
- * @return {boolean}
- */
-function elementIsHiddenFromScreenReader(element) {
-  return isHiddenFromScreenReader(element.type, element.attribs);
-}
-
 module.exports = {
   isHiddenFromScreenReader,
-  elementIsHiddenFromScreenReader,
 };
