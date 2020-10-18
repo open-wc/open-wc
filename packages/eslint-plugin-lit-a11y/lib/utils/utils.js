@@ -15,8 +15,8 @@ function createValidLitHtmlSources(context) {
 function hasLitHtmlImport(node, validLitHtmlSources) {
   return (
     node.specifiers &&
+    // eslint-disable-next-line
     node.specifiers.some(specifier => {
-      // eslint-disable-line
       return (
         specifier.type &&
         specifier.type === 'ImportSpecifier' &&

@@ -27,6 +27,16 @@ ruleTester.run('lit-html-imports', rule, {
       settings: { litHtmlSources: ['ing-web'] },
     },
     {
+      code: `
+        import bar from 'foo';
+        import * as foo from 'bar';
+        import {baz} from 'baz';
+        import {html} from 'ing-web';
+        html\`<img alt=''/>\`
+      `,
+      settings: { litHtmlSources: ['ing-web'] },
+    },
+    {
       code: "import {html} from 'lit-html'; html`<img alt=''/>`",
       settings: { litHtmlSources: ['ing-web'] },
     },
