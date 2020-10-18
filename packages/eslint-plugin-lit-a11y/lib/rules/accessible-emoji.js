@@ -6,7 +6,6 @@
 const emojiRegex = require('emoji-regex');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { isTextNode } = require('../../template-analyzer/util.js');
-const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
@@ -18,10 +17,15 @@ const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const AccessibleEmojiRule = {
   meta: {
     type: 'suggestion',
+    deprecated: true,
     docs: {
       description: 'Enforce emojis are wrapped in <span> and provide screenreader access.',
       category: 'Accessibility',
       recommended: false,
+    },
+    messages: {
+      wrapEmoji:
+        'Emojis must either be wrapped in <span role="img"> with a label, or hidden from the AOM.',
     },
     fixable: null,
     schema: [],
@@ -62,19 +66,12 @@ const AccessibleEmojiRule = {
               const rolePropValue = element.attribs.role;
               const ariaLabelProp = element.attribs['aria-label'];
               const ariaLabelledByProp = element.attribs['aria-labelledby'];
-              const hasLabel =
-                ariaLabelProp !== undefined ||
-                ariaLabelledByProp !== undefined ||
-                elementHasAttribute(element, 'alt');
+              const hasLabel = ariaLabelProp !== undefined || ariaLabelledByProp !== undefined;
               const isSpan = element.name === 'span';
 
               if (hasLabel === false || rolePropValue !== 'img' || isSpan === false) {
                 const loc = analyzer.getLocationFor(element);
-                context.report({
-                  loc,
-                  message:
-                    'Emojis must either be wrapped in <span role="img"> with a label or alt attribute, or hidden from the AOM.',
-                });
+                context.report({ loc, messageId: 'wrapEmoji' });
               }
             },
           });
