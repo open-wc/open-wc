@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/aria-activedescendant-has-tabindex');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -56,7 +57,7 @@ ruleTester.run('aria-activedescendant-has-tabindex', rule, {
     {
       code: 'html`<input aria-activedescendant=${someID} tabindex=${-1} />`;',
     },
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -67,5 +68,5 @@ ruleTester.run('aria-activedescendant-has-tabindex', rule, {
         },
       ],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

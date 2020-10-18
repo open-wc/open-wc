@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/heading-has-content');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -43,7 +44,7 @@ ruleTester.run('heading-has-content', rule, {
     { code: 'html`<h1>${foo(bar)}</h1>`' },
     { code: 'html`<h1>${foo(bar, "hello", 1, true)}</h1>`' },
     { code: 'html`<h1>${this.foo()}</h1>`' },
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -74,5 +75,5 @@ ruleTester.run('heading-has-content', rule, {
       code: 'html`<h6></h6>`',
       errors: [{ message: '<h6> elements must have accessible content.' }],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/role-has-required-aria-attrs');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -30,7 +31,7 @@ ruleTester.run('role-has-required-aria-attrs', rule, {
     { code: 'html`<span role="row"></span>`' },
     { code: 'html`<input type="checkbox" role="switch" aria-checked="true" />`' },
     { code: 'html`<div role="combobox" aria-controls="foo"  aria-expanded="foo"></div>`' },
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -50,5 +51,5 @@ ruleTester.run('role-has-required-aria-attrs', rule, {
       code: 'html`<div role="slider" ></div>`',
       errors: [{ message: 'The "slider" role requires the attribute "aria-valuenow".' }],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

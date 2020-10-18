@@ -50,6 +50,20 @@ You may also extend the recommended configuration like so:
 }
 ```
 
+By default, only templates imported from `'lit-html'` or `'lit-element'` are exported. It may be the case, however, that you're importing `html` from a package that re-exports lit-html, like for example `@apollo-elements/lit-apollo` does.
+
+In this case, you can configure `@apollo-elements/lit-apollo` as a valid lit-html source like so:
+
+```json
+{
+  "settings": {
+    "litHtmlSources": ["@apollo-elements/lit-apollo"]
+  }
+}
+```
+
+The reason for this check is that project may make use of multiple rendering libraries, which may have similar apis, like for example [`htm`](https://github.com/developit/htm), which also uses a `html` tagged template literal, but handles syntax differently.
+
 ## Supported Rules
 
 - [lit-a11y/accessible-emoji](./docs/rules/accessible-emoji.md)

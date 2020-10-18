@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/alt-text');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -33,7 +34,7 @@ ruleTester.run('alt-text', rule, {
     { code: 'html`<div role=\'img\' aria-hidden="true"></div>`' },
     { code: "html`<label id=\"foo\">foo</label><div role='img' aria-labelledby='foo'></div>`" },
     { code: "html`<img role='presentation'/>`" },
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -68,5 +69,5 @@ ruleTester.run('alt-text', rule, {
         },
       ],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

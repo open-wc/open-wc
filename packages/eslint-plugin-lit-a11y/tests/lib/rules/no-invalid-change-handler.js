@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/no-invalid-change-handler');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -21,7 +22,9 @@ const ruleTester = new RuleTester({
   },
 });
 ruleTester.run('no-invalid-change-handler', rule, {
-  valid: [{ code: 'html`<select @blur=${foo}></select>`' }, { code: 'html`<div></div>`' }],
+  valid: [{ code: 'html`<select @blur=${foo}></select>`' }, { code: 'html`<div></div>`' }].map(
+    prependLitHtmlImport,
+  ),
 
   invalid: [
     {
@@ -42,5 +45,5 @@ ruleTester.run('no-invalid-change-handler', rule, {
         },
       ],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });
