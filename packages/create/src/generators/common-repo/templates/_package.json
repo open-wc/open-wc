@@ -1,7 +1,0 @@
-{
-  "name": "<%= tagName %>",
-  "version": "0.0.0",
-  "description": "Webcomponent <%= tagName %> following open-wc recommendations",
-  "author": "<%= tagName %>",
-  "license": "MIT"
-}
