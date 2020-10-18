@@ -122,7 +122,7 @@ const AriaAttrTypesRule = {
 
                   // Ignore the attribute if its value is null or undefined.
                   if (val == null) return;
-                  if (val.startsWith('{{')) return;
+                  if (val.startsWith('__')) return;
 
                   // These are the attributes of the property/state to check against.
                   // @ts-expect-error: see https://github.com/A11yance/aria-query/pull/74
