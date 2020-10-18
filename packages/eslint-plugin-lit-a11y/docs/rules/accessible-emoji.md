@@ -4,6 +4,8 @@
 
 - [Léonie Watson](https://tink.uk/accessible-emoji/)
 
+While many modern user agents are able to announce emoji to screen reader users, this rule is still useful for apps targetting older user agents.
+
 ## Rule Details
 
 This rule aims to prevent inaccessible use of emoji in lit-html templates.
@@ -37,7 +39,7 @@ html`
 
 ## When Not To Use It
 
-If you do not use emoji in your lit-html templates.
+If you exclusively target modern user agents which explicitly support emoji in plain text, or if you do not use emoji in your lit-html templates.
 
 ## Further Reading
 
