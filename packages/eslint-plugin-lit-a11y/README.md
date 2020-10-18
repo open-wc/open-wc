@@ -62,6 +62,8 @@ In this case, you can configure `@apollo-elements/lit-apollo` as a valid lit-htm
 }
 ```
 
+The reason for this check is that project may make use of multiple rendering libraries, which may have similar apis, like for example [`htm`](https://github.com/developit/htm), which also uses a `html` tagged template literal, but handles syntax differently.
+
 ## Supported Rules
 
 - [lit-a11y/accessible-emoji](./docs/rules/accessible-emoji.md)
