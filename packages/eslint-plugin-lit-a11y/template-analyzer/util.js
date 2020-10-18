@@ -151,74 +151,6 @@ function isExpressionPlaceholder(value) {
 exports.isExpressionPlaceholder = isExpressionPlaceholder;
 
 /**
- *
- * @param {import("estree").Expression} expr
- * @return {expr is import("estree").Identifier}
- */
-function isIdentifier(expr) {
-  // @ts-expect-error: disambiguating a type
-  return expr && expr.name;
-}
-
-/**
- *
- * @param {import("estree").Expression} expr
- * @return {expr is import("estree").CallExpression}
- */
-function isCallExpression(expr) {
-  return expr && expr.type === 'CallExpression';
-}
-
-/**
- * @param {import('estree').CallExpression} expr
- * @return {string|number|boolean}
- */
-function getCallExprValue(expr) {
-  return expr && expr.arguments && expr.arguments.map(arg => getIdentifierName(arg)).join(', ');
-}
-
-/**
- * @param {import("estree").Expression} expr
- * @return {expr is import("estree").SimpleLiteral}
- */
-function isLiteral(expr) {
-  return expr && expr.type === 'Literal';
-}
-
-/**
- * @param {import("estree").Expression} expr
- * @return {expr is import("estree").MemberExpression}
- */
-function isMemberExpressions(expr) {
-  return expr && expr.type === 'MemberExpression';
-}
-
-/**
- * @param {import("estree").Expression} expr
- * @return {expr is import("estree").ConditionalExpression}
- */
-function isConditionalExpression(expr) {
-  return expr && expr.type === 'ConditionalExpression';
-}
-
-/**
- * @param {import("estree").Expression} expr
- * @return {expr is import("estree").UnaryExpression} expr
- */
-function isUnaryExpression(expr) {
-  return expr && expr.type === 'UnaryExpression';
-}
-
-/**
- * @param {import('estree').UnaryExpression} expr
- * @return {string|number|boolean}
- */
-function getUnaryExprValue(expr) {
-  // TODO: handle more complex cases like `-someValue`, `-Number(something)`
-  return isLiteral(expr.argument) ? expr.argument.value : '';
-}
-
-/**
  * Converts a template expression into HTML
  *
  * @param {import("estree").TaggedTemplateExpression} node Node to convert
@@ -232,18 +164,8 @@ function templateExpressionToHtml(node) {
     const quasi = node.quasi.quasis[i];
     const expr = node.quasi.expressions[i];
     html += quasi.value.raw;
-    if (isIdentifier(expr)) {
-      html += `{{{${expr.name}}}}`;
-    } else if (isUnaryExpression(expr)) {
-      html += `{{${expr.operator}${getUnaryExprValue(expr)}}}`;
-    } else if (isLiteral(expr)) {
-      html += `{{${expr.value}}}`;
-    } else if (isCallExpression(expr)) {
-      html += `{{{${getIdentifierName(expr.callee)}(${getCallExprValue(expr)})}}}`;
-    } else if (isMemberExpressions(expr)) {
-      html += `{{{}}}`;
-    } else if (isConditionalExpression(expr)) {
-      html += `{{{}}}`;
+    if (expr) {
+      html += getExpressionPlaceholder(node, quasi);
     }
   }
   return html;

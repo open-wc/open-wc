@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/click-events-have-key-events');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -50,7 +51,7 @@ ruleTester.run('click-events-have-key-events', rule, {
       code: 'html`<another-button @click=${foo}></another-button>`',
       options: [{ allowCustomElements: true }],
     },
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -105,5 +106,5 @@ ruleTester.run('click-events-have-key-events', rule, {
       errors: [{ messageId: 'clickableNonInteractiveElements' }],
       options: [{ allowCustomElements: false, allowList: ['custom-button'] }],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

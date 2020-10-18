@@ -8,6 +8,7 @@ const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.
 const { getElementAriaAttributes } = require('../utils/aria.js');
 const { getAttrVal } = require('../utils/getAttrVal.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
+const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -109,9 +110,17 @@ const AriaAttrTypesRule = {
   },
 
   create(context) {
+    let isLitHtml = false;
+    const validLitHtmlSources = createValidLitHtmlSources(context);
+
     return {
+      ImportDeclaration(node) {
+        if (hasLitHtmlImport(node, validLitHtmlSources)) {
+          isLitHtml = true;
+        }
+      },
       TaggedTemplateExpression(node) {
-        if (isHtmlTaggedTemplate(node)) {
+        if (isHtmlTaggedTemplate(node) && isLitHtml) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -124,7 +133,7 @@ const AriaAttrTypesRule = {
 
                   // Ignore the attribute if its value is null or undefined.
                   if (val == null) return;
-                  if (val.startsWith('{{')) return;
+                  if (val.startsWith('__')) return;
 
                   // These are the attributes of the property/state to check against.
                   // @ts-expect-error: see https://github.com/A11yance/aria-query/pull/74

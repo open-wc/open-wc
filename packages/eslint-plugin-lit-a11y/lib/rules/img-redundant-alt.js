@@ -8,6 +8,7 @@ const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { isAriaHidden } = require('../utils/aria.js');
 const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
+const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
 
 if (!('ListFormat' in Intl)) {
   /* eslint-disable global-require */
@@ -59,10 +60,17 @@ const ImgRedundantAltRule = {
   create(context) {
     // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
     const formatter = new Intl.ListFormat('en', { style: 'long', type: 'disjunction' });
+    let isLitHtml = false;
+    const validLitHtmlSources = createValidLitHtmlSources(context);
 
     return {
+      ImportDeclaration(node) {
+        if (hasLitHtmlImport(node, validLitHtmlSources)) {
+          isLitHtml = true;
+        }
+      },
       TaggedTemplateExpression(node) {
-        if (isHtmlTaggedTemplate(node)) {
+        if (isHtmlTaggedTemplate(node) && isLitHtml) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({

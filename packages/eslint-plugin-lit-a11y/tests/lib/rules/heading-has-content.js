@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/heading-has-content');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -51,7 +52,7 @@ ruleTester.run('heading-has-content', rule, {
         },
       ],
     },
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -91,5 +92,5 @@ ruleTester.run('heading-has-content', rule, {
         },
       ],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/no-distracting-elements');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -22,7 +23,7 @@ const ruleTester = new RuleTester({
 });
 
 ruleTester.run('no-distracting-elements', rule, {
-  valid: [{ code: 'html`<div></div>`' }],
+  valid: [{ code: 'html`<div></div>`' }].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -41,5 +42,5 @@ ruleTester.run('no-distracting-elements', rule, {
         },
       ],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

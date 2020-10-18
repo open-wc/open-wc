@@ -5,6 +5,7 @@
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
+const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -28,9 +29,17 @@ const NoInvalidChangeHandlerRule = {
   },
 
   create(context) {
+    let isLitHtml = false;
+    const validLitHtmlSources = createValidLitHtmlSources(context);
+
     return {
+      ImportDeclaration(node) {
+        if (hasLitHtmlImport(node, validLitHtmlSources)) {
+          isLitHtml = true;
+        }
+      },
       TaggedTemplateExpression(node) {
-        if (isHtmlTaggedTemplate(node)) {
+        if (isHtmlTaggedTemplate(node) && isLitHtml) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({

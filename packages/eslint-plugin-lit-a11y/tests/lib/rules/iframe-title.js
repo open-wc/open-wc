@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/iframe-title');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -26,7 +27,7 @@ ruleTester.run('iframe-title', rule, {
     { code: 'html`<iframe title="Unique title"></iframe>`' },
     { code: 'html`<iframe title=${foo} ></iframe>`' },
     // give me some code that won't trigger a warning
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -37,5 +38,5 @@ ruleTester.run('iframe-title', rule, {
       code: "html`<iframe title=''></iframe>`",
       errors: [{ messageId: 'iframeTitle' }],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

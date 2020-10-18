@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/mouse-events-have-key-events.js');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -163,5 +164,5 @@ ruleTester.run('mouse-events-have-key-events', rule, {
         },
       ],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

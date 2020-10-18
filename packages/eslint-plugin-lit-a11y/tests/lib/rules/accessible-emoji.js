@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/accessible-emoji');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -37,7 +38,7 @@ ruleTester.run('accessible-emoji', rule, {
     { code: 'html`<span aria-hidden="true">🐼</span>`' },
     { code: 'html`<span aria-hidden>🐼</span>`' },
     { code: 'html`<div aria-hidden="true">🐼</div>`' },
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -68,5 +69,9 @@ ruleTester.run('accessible-emoji', rule, {
       code: 'html`<span role="img" alt="Panda face">🐼</span>`',
       errors: [{ messageId: 'wrapEmoji' }],
     },
-  ],
+    {
+      code: 'html`<span role="img" alt="Panda face">🐼</span>`',
+      errors: [{ messageId: 'wrapEmoji' }],
+    },
+  ].map(prependLitHtmlImport),
 });

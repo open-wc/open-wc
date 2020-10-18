@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/img-redundant-alt');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -32,10 +33,6 @@ ruleTester.run('img-redundant-alt', rule, {
   invalid: [
     {
       code: "html`<img src='foo' alt='Photo of foo being weird.' />`",
-      errors: [{ messageId: 'imgRedundantAlt', data: { banned: 'photo', plural: 'word' } }],
-    },
-    {
-      code: 'html`<img src="baz" alt=${"photo of dog"} />`',
       errors: [{ messageId: 'imgRedundantAlt', data: { banned: 'photo', plural: 'word' } }],
     },
     {
@@ -66,5 +63,5 @@ ruleTester.run('img-redundant-alt', rule, {
         },
       ],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

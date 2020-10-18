@@ -10,6 +10,7 @@
 const { RuleTester } = require('eslint');
 const { aria } = require('aria-query');
 const rule = require('../../../lib/rules/aria-attr-valid-value');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -117,7 +118,7 @@ ruleTester.run('aria-attr-valid-value', rule, {
 
     // CONDITIONAL
     { code: 'html`<div aria-disabled="${this.foo ? "true" : "false"}"></div>`' },
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     // BOOLEAN
@@ -158,5 +159,5 @@ ruleTester.run('aria-attr-valid-value', rule, {
       code: 'html`<div aria-relevant="additions removalss " />`',
       errors: [errorMessage('aria-relevant')],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

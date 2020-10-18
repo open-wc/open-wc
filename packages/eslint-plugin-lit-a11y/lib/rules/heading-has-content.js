@@ -8,6 +8,7 @@ const { hasAccessibleChildren } = require('../utils/hasAccessibleChildren.js');
 const { isCustomElement } = require('../utils/isCustomElement.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
+const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -57,10 +58,17 @@ const HeadingHasContentRule = {
       if (isCustomElement(element)) return customHeadingElements.includes(element.name);
       return headings.includes(element.name);
     }
+    let isLitHtml = false;
+    const validLitHtmlSources = createValidLitHtmlSources(context);
 
     return {
+      ImportDeclaration(node) {
+        if (hasLitHtmlImport(node, validLitHtmlSources)) {
+          isLitHtml = true;
+        }
+      },
       TaggedTemplateExpression(node) {
-        if (isHtmlTaggedTemplate(node)) {
+        if (isHtmlTaggedTemplate(node) && isLitHtml) {
           const analyzer = TemplateAnalyzer.create(node);
 
           const options = (context.options && context.options[0]) || {};

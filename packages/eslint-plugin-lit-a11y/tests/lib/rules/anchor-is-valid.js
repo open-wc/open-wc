@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/anchor-is-valid.js');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -74,7 +75,7 @@ ruleTester.run('anchor-is-valid', rule, {
       code: 'html`<a href=${"javascript:void(0)"} @click=${foo} />`',
       options: [{ aspects: ['noHref'] }],
     },
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     { code: 'html`<a />`', errors: [{ messageId: 'noHrefErrorMessage' }] },
@@ -237,5 +238,5 @@ ruleTester.run('anchor-is-valid', rule, {
       options: [{ aspects: ['noHref', 'invalidHref'] }],
       errors: [{ messageId: 'invalidHrefErrorMessage' }],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

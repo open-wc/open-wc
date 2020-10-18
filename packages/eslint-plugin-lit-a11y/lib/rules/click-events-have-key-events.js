@@ -7,6 +7,7 @@ const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.
 const { isIncludedInAOM } = require('../utils/isIncludedInAOM.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { isNonInteractiveElement } = require('../utils/isNonInteractiveElement.js');
+const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -53,6 +54,9 @@ const ClickEventsHaveKeyEventsRule = {
   },
 
   create(context) {
+    let isLitHtml = false;
+    const validLitHtmlSources = createValidLitHtmlSources(context);
+
     /**
      * @param {import("parse5-htmlparser2-tree-adapter").Element} element
      * @return {boolean}
@@ -71,8 +75,13 @@ const ClickEventsHaveKeyEventsRule = {
     }
 
     return {
+      ImportDeclaration(node) {
+        if (hasLitHtmlImport(node, validLitHtmlSources)) {
+          isLitHtml = true;
+        }
+      },
       TaggedTemplateExpression(node) {
-        if (isHtmlTaggedTemplate(node)) {
+        if (isHtmlTaggedTemplate(node) && isLitHtml) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({

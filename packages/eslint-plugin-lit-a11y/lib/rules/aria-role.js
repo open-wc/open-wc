@@ -6,6 +6,7 @@
 const { roles } = require('aria-query');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
+const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -29,9 +30,17 @@ const AriaRoleRule = {
   },
 
   create(context) {
+    let isLitHtml = false;
+    const validLitHtmlSources = createValidLitHtmlSources(context);
+
     return {
+      ImportDeclaration(node) {
+        if (hasLitHtmlImport(node, validLitHtmlSources)) {
+          isLitHtml = true;
+        }
+      },
       TaggedTemplateExpression(node) {
-        if (isHtmlTaggedTemplate(node)) {
+        if (isHtmlTaggedTemplate(node) && isLitHtml) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -41,22 +50,21 @@ const AriaRoleRule = {
                   return;
                 }
 
-                const role = /** @type {import("aria-query").ARIARoleDefintionKey} */ (rawValue.replace(
-                  /^{{(.*)}}$/,
-                  '$1',
-                ));
-
-                if (/^{(.*)}$/.test(role)) {
+                if (rawValue.startsWith('{{')) {
                   return; // the value is interpolated with a name. assume it's legitimate and move on.
                 }
 
-                if (!validAriaRoles.includes(role)) {
+                if (
+                  !validAriaRoles.includes(
+                    /** @type {import("aria-query").ARIARoleDefintionKey} */ (rawValue),
+                  )
+                ) {
                   const loc = analyzer.getLocationForAttribute(element, attr);
                   context.report({
                     loc,
-                    message: `Invalid role "{{role}}".`,
+                    message: `Invalid role "{{rawValue}}".`,
                     data: {
-                      role,
+                      rawValue,
                     },
                   });
                 }

@@ -8,6 +8,7 @@ const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.
 const { isTextNode } = require('../../template-analyzer/util.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
+const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -17,6 +18,7 @@ const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const AccessibleEmojiRule = {
   meta: {
     type: 'suggestion',
+    deprecated: true,
     docs: {
       description: 'Enforce emojis are wrapped in <span> and provide screenreader access.',
       category: 'Accessibility',
@@ -33,6 +35,9 @@ const AccessibleEmojiRule = {
   },
 
   create(context) {
+    let isLitHtml = false;
+    const validLitHtmlSources = createValidLitHtmlSources(context);
+
     /**
      * @param {import('parse5-htmlparser2-tree-adapter').Element} element
      * @return {boolean}
@@ -50,8 +55,13 @@ const AccessibleEmojiRule = {
     }
 
     return {
+      ImportDeclaration(node) {
+        if (hasLitHtmlImport(node, validLitHtmlSources)) {
+          isLitHtml = true;
+        }
+      },
       TaggedTemplateExpression(node) {
-        if (isHtmlTaggedTemplate(node)) {
+        if (isHtmlTaggedTemplate(node) && isLitHtml) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
