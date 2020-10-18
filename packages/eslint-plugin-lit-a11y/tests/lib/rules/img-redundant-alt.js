@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/img-redundant-alt');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -33,7 +34,7 @@ ruleTester.run('img-redundant-alt', rule, {
       code: 'html`<img src="baz" alt=${"foo"} />`',
     },
     // give me some code that won't trigger a warning
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -102,5 +103,5 @@ ruleTester.run('img-redundant-alt', rule, {
         },
       ],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

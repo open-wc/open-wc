@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/click-events-have-key-events');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -35,7 +36,7 @@ ruleTester.run('click-events-have-key-events', rule, {
     { code: 'html`<input @click=${foo} />`' },
     { code: 'html`<div @click=${foo} @keydown=${foo} />`' },
     { code: 'html`<custom-button @click=${foo} />`', options: [{ allowList: ['custom-button'] }] },
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -128,5 +129,5 @@ ruleTester.run('click-events-have-key-events', rule, {
         },
       ],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

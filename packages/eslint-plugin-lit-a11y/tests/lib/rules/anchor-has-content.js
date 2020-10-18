@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/anchor-has-content');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -27,7 +28,7 @@ ruleTester.run('anchor-has-content', rule, {
     { code: "html`<a href='#'><div>asdf</div></a>`" },
     { code: "html`<a><div aria-hidden='true'>foo</div>foo</a>`" },
     { code: "html`<a><div aria-hidden='true'>foo</div><div>foo</div></a>`" },
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -46,5 +47,5 @@ ruleTester.run('anchor-has-content', rule, {
         },
       ],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

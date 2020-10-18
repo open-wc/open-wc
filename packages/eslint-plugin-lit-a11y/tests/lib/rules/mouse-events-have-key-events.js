@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/mouse-events-have-key-events.js');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -34,7 +35,7 @@ ruleTester.run('mouse-events-have-key-events', rule, {
     { code: 'html`<div @mouseout=${foo} @blur=${foo} />`' },
     { code: 'html`<div @mouseout=${handleMouseOut} @blur=${handleOnBlur} />`' },
     { code: 'html`<div @mouseout=${handleMouseOut} @blur=${handleOnBlur} />`' },
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -53,5 +54,5 @@ ruleTester.run('mouse-events-have-key-events', rule, {
       code: 'html`<div @mouseout=${foo} />`',
       errors: ['@mouseout must be accompanied by @blur.'],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

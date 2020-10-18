@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/anchor-is-valid.js');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 const preferButtonErrorMessage =
   'Anchor used as a button. Anchors are primarily expected to navigate. Use the button element instead. Learn more: https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md';
@@ -117,7 +118,7 @@ ruleTester.run('anchor-is-valid', rule, {
       code: 'html`<a href=${"javascript:void(0)"} @click=${foo} />`',
       options: noHrefAspect,
     },
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     { code: 'html`<a />`', errors: [noHrefexpectedError] },
@@ -254,5 +255,5 @@ ruleTester.run('anchor-is-valid', rule, {
       options: noHrefInvalidHrefAspect,
       errors: [invalidHrefErrorMessage],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

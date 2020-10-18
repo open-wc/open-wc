@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/no-redundant-role');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -27,7 +28,7 @@ ruleTester.run('no-redundant-role', rule, {
     { code: 'html`<button></button>`' },
     { code: 'html`<div role="button"></div>`' },
     { code: 'html`<img role="presentation"/>`' },
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -82,5 +83,5 @@ ruleTester.run('no-redundant-role', rule, {
       code: "html`<img role='img'></img>`",
       errors: [{ message: '"img" role is implicit in <img> element.' }],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

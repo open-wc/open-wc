@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/aria-unsupported-elements');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -26,7 +27,7 @@ ruleTester.run('aria-unsupported-elements', rule, {
     { code: "html`<meta charset='UTF-8'/>`" },
     { code: 'html`<style></style>`' },
     // give me some code that won't trigger a warning
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -64,5 +65,5 @@ ruleTester.run('aria-unsupported-elements', rule, {
         },
       ],
     },
-  ],
+  ].map(prependLitHtmlImport),
 });

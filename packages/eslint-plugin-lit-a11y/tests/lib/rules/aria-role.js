@@ -9,6 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/aria-role');
+const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -33,7 +34,7 @@ ruleTester.run('aria-role', rule, {
     { code: "html`<div role='${foo}'></div>`;" },
     { code: 'html`<div role=${foo}></div>`;' },
     { code: 'html`<div></div>`;' },
-  ],
+  ].map(prependLitHtmlImport),
 
   invalid: [
     {
@@ -52,21 +53,5 @@ ruleTester.run('aria-role', rule, {
       code: 'html`<div role="foo">`;',
       errors: [{ message: 'Invalid role "foo".' }],
     },
-    {
-      code: 'html`<div role="${\'foo\'}">`;',
-      errors: [{ message: 'Invalid role "foo".' }],
-    },
-    {
-      code: 'html`<div role="${"foo"}">`;',
-      errors: [{ message: 'Invalid role "foo".' }],
-    },
-    {
-      code: "html`<div role=${'foo'}>`;",
-      errors: [{ message: 'Invalid role "foo".' }],
-    },
-    {
-      code: 'html`<div role=${"foo"}>`;',
-      errors: [{ message: 'Invalid role "foo".' }],
-    },
-  ],
+  ].map(prependLitHtmlImport),
 });
