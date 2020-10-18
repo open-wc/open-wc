@@ -42,14 +42,6 @@ ruleTester.run('aria-role', rule, {
       errors: [{ message: 'Invalid role "foo".' }],
     },
     {
-      code: 'html`<div role=\'${"foo"}\'>`;',
-      errors: [{ message: 'Invalid role "foo".' }],
-    },
-    {
-      code: "html`<div role='${'foo'}'>`;",
-      errors: [{ message: 'Invalid role "foo".' }],
-    },
-    {
       code: 'html`<div role="foo">`;',
       errors: [{ message: 'Invalid role "foo".' }],
     },
