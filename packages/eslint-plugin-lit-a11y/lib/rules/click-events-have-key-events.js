@@ -4,11 +4,9 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
-const { isAriaHidden } = require('../utils/aria.js');
-const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
-const { isInteractiveElement } = require('../utils/isInteractiveElement.js');
+const { isIncludedInAOM } = require('../utils/isIncludedInAOM.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { isPresentationRole } = require('../utils/isPresentationRole.js');
+const { isNonInteractiveElement } = require('../utils/isNonInteractiveElement.js');
 const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
 
 //------------------------------------------------------------------------------
@@ -23,17 +21,33 @@ const ClickEventsHaveKeyEventsRule = {
       description: 'click-events-have-key-events',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/click-events-have-key-events.md',
+    },
+    messages: {
+      clickableNonInteractiveElements:
+        'Clickable non-interactive elements must have at least 1 keyboard event listener',
     },
     fixable: null,
     schema: [
       {
         allowList: {
           type: 'array',
-          items: {
-            type: 'string',
-          },
+          description:
+            'list of tag names which are permitted to have click listeners without key listeners',
+          default: [],
           uniqueItems: true,
           additionalItems: false,
+          items: {
+            type: 'string',
+            pattern: '^[a-z]\\w+-\\w+',
+          },
+        },
+        allowCustomElements: {
+          type: 'boolean',
+          description:
+            'When true, permits all custom elements to have click listeners without key listeners',
+          default: true,
         },
       },
     ],
@@ -72,27 +86,18 @@ const ClickEventsHaveKeyEventsRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              const allowListOptions =
-                (context.options && context.options[0] && context.options[0].allowList) || [];
+              const options = (context.options && context.options[0]) || {};
 
               if (
-                !hasClickListener(element) || // not clickable
-                isHiddenFromScreenReader(element.name, element.attribs) || // excluded from AOM
-                isPresentationRole(element.attribs) || // excluded from AOM
-                isAriaHidden(element) || // excluded from AOM
-                hasKeyboardListener(element) || // has keyboard listeners
-                isInteractiveElement(element.name, element.attribs) || // keyboard-accesible by default
-                allowListOptions.includes(element.name) // button-like custom-elements allow list
+                hasClickListener(element) &&
+                !hasKeyboardListener(element) && // doesn't keyboard listeners
+                isIncludedInAOM(element) &&
+                isNonInteractiveElement(element, options)
               ) {
-                return;
+                const loc = analyzer.getLocationFor(element);
+
+                context.report({ loc, messageId: 'clickableNonInteractiveElements' });
               }
-
-              const loc = analyzer.getLocationFor(element);
-
-              const message =
-                'Clickable non-interactive elements must have at least 1 keyboard event listener';
-
-              context.report({ loc, message });
             },
           });
         }

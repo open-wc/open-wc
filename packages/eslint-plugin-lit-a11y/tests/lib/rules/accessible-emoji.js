@@ -69,5 +69,9 @@ ruleTester.run('accessible-emoji', rule, {
       code: 'html`<span role="img" alt="Panda face">🐼</span>`',
       errors: [{ messageId: 'wrapEmoji' }],
     },
+    {
+      code: 'html`<span role="img" alt="Panda face">🐼</span>`',
+      errors: [{ messageId: 'wrapEmoji' }],
+    },
   ].map(prependLitHtmlImport),
 });

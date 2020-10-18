@@ -43,11 +43,11 @@ ruleTester.run('tabindex-no-positive', rule, {
   invalid: [
     {
       code: "html`<div tabindex='foo'></div>`",
-      errors: [{ message: 'Invalid tabindex value foo.' }],
+      errors: [{ messageId: 'tabindexNoPositive', data: { val: 'foo' } }],
     },
     {
       code: "html`<div tabindex='2'></div>`",
-      errors: [{ message: 'Avoid positive tabindex.' }],
+      errors: [{ messageId: 'avoidPositiveTabindex' }],
     },
   ].map(prependLitHtmlImport),
 });

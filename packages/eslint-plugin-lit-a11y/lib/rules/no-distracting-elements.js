@@ -21,6 +21,8 @@ const NoDistractingElementsRule = {
       description: 'Enforce distracting elements are not used.',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-distracting-elements.md',
     },
     fixable: null,
     schema: [],

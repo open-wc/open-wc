@@ -20,6 +20,8 @@ const AriaActiveDescendantHasTabindexRule = {
       description: 'Enforce elements with aria-activedescendant are tabbable.',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/aria-activedescendant-has-tabindex.md',
     },
     fixable: null,
     schema: [],
@@ -54,7 +56,7 @@ const AriaActiveDescendantHasTabindexRule = {
               // If this is an interactive element and the tabindex attribute is not specified,
               // or the tabIndex property was not mutated, then the tabIndex
               // property will be undefined.
-              if (isInteractiveElement(element.name, element.attribs) && tabindex === undefined) {
+              if (isInteractiveElement(element) && tabindex === undefined) {
                 return;
               }
 

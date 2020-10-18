@@ -34,12 +34,19 @@ const ImgRedundantAltRule = {
       description: 'Enforce img alt attribute does not contain the word image, picture, or photo.',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/img-redundant-alt.md',
+    },
+    messages: {
+      imgRedundantAlt:
+        '<img> alt attribute must be descriptive; it cannot contain the banned {{plural}} {{formatted}}.',
     },
     fixable: null,
     schema: [
       {
         keywords: {
           type: 'array',
+          default: DEFAULT_KEYWORDS,
           items: {
             type: 'string',
           },
@@ -86,14 +93,13 @@ const ImgRedundantAltRule = {
               );
 
               if (contraband.length > 0) {
-                const formatted = formatter.format(contraband);
+                const banned = formatter.format(contraband);
                 const loc = analyzer.getLocationForAttribute(element, 'alt');
                 context.report({
                   loc,
-                  message:
-                    '<img> alt attribute must be descriptive; it cannot contain the banned {{plural}} {{formatted}}.',
+                  messageId: 'imgRedundantAlt',
                   data: {
-                    formatted,
+                    banned,
                     plural: contraband.length > 1 ? 'words' : 'word',
                   },
                 });

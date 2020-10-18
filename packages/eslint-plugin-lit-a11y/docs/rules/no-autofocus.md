@@ -7,16 +7,21 @@ Enforce that autofocus attribute is not used on elements. Autofocusing elements 
 Examples of **incorrect** code for this rule:
 
 ```js
-html` <div autofocus></div> `;
-html` <div autofocus="true"></div> `;
-html` <div autofocus="false"></div> `;
-html` <div autofocus=${foo}></div> `;
+html`
+  <input autofocus />
+  <input autofocus="true" />
+  <input autofocus="false" />
+  <input autofocus=${foo} />
+  <input .autofocus=${foo} />
+  <input .autofocus=${true} />
+  <input .autofocus=${false} />
+`;
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-html` <div></div> `;
+html` <input /> `;
 ```
 
 ### Resources

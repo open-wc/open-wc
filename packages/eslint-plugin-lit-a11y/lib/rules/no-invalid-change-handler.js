@@ -21,6 +21,8 @@ const NoInvalidChangeHandlerRule = {
       description: 'Enforce usage of @blur over @change with <select> and <option>.',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-invalid-change-handler.md',
     },
     fixable: null,
     schema: [],

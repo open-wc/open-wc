@@ -16,19 +16,6 @@ const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.
 /** @type {['noHref', 'invalidHref', 'preferButton']} */
 const allAspects = ['noHref', 'invalidHref', 'preferButton'];
 
-const preferButtonErrorMessage =
-  'Anchor used as a button. Anchors are primarily expected to navigate. Use the button element instead. Learn more: https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md';
-
-const noHrefErrorMessage =
-  'The href attribute is required for an anchor to be keyboard accessible. Provide a valid, navigable address as the href value. If you cannot provide an href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md';
-
-const invalidHrefErrorMessage =
-  'The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md';
-
-const schema = generateObjSchema({
-  aspects: enumArraySchema(allAspects, 1),
-});
-
 /** @type {import("eslint").Rule.RuleModule} */
 const AnchorIsValidRule = {
   meta: {
@@ -37,9 +24,23 @@ const AnchorIsValidRule = {
       description: 'anchor-is-valid',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/anchor-is-valid.md',
+    },
+    messages: {
+      preferButtonErrorMessage:
+        'Anchor used as a button. Anchors are primarily expected to navigate. Use the button element instead.',
+      noHrefErrorMessage:
+        'The href attribute is required for an anchor to be keyboard accessible. Provide a valid, navigable address as the href value. If you cannot provide an href, but still need the element to resemble a link, use a button and change it with appropriate styles.',
+      invalidHrefErrorMessage:
+        'The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles.',
     },
     fixable: null,
-    schema: [schema],
+    schema: [
+      generateObjSchema({
+        aspects: enumArraySchema(allAspects, 1),
+      }),
+    ],
   },
 
   create(context) {
@@ -85,19 +86,13 @@ const AnchorIsValidRule = {
                     (!hasClickListener || (hasClickListener && !activeAspects.preferButton))
                   ) {
                     const loc = analyzer.getLocationFor(element);
-                    context.report({
-                      loc,
-                      message: noHrefErrorMessage,
-                    });
+                    context.report({ loc, messageId: 'noHrefErrorMessage' });
                   }
 
                   // If no spread operator is found but a click handler is preset it should be a button.
                   if (hasClickListener && activeAspects.preferButton) {
                     const loc = analyzer.getLocationFor(element);
-                    context.report({
-                      loc,
-                      message: preferButtonErrorMessage,
-                    });
+                    context.report({ loc, messageId: 'preferButtonErrorMessage' });
                   }
                   return;
                 }
@@ -113,16 +108,10 @@ const AnchorIsValidRule = {
                   // If a click handler is found it should be a button, otherwise it is an invalid link.
                   if (hasClickListener && activeAspects.preferButton) {
                     const loc = analyzer.getLocationFor(element);
-                    context.report({
-                      loc,
-                      message: preferButtonErrorMessage,
-                    });
+                    context.report({ loc, messageId: 'preferButtonErrorMessage' });
                   } else if (activeAspects.invalidHref) {
                     const loc = analyzer.getLocationFor(element);
-                    context.report({
-                      loc,
-                      message: invalidHrefErrorMessage,
-                    });
+                    context.report({ loc, messageId: 'invalidHrefErrorMessage' });
                   }
                 }
               }
