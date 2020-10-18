@@ -35,7 +35,7 @@ const TabindexNoPositiveRule = {
               if (Object.keys(element.attribs).includes('tabindex')) {
                 const val = getAttrVal(element.attribs.tabindex);
 
-                if (val && val.startsWith('{{')) return;
+                if (val && val.startsWith('__')) return;
 
                 const value = Number(val);
 

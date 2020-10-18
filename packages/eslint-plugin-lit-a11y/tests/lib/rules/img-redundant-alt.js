@@ -46,15 +46,6 @@ ruleTester.run('img-redundant-alt', rule, {
       ],
     },
     {
-      code: 'html`<img src="baz" alt=${"photo of dog"} />`',
-      errors: [
-        {
-          message:
-            '<img> alt attribute must be descriptive; it cannot contain the banned word photo.',
-        },
-      ],
-    },
-    {
       code: "html`<img src='foo' alt='Image of me at a bar!' />`",
       errors: [
         {
