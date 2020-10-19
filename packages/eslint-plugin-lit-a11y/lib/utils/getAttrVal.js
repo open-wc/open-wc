@@ -3,30 +3,20 @@
  * @param {string} val
  */
 function getAttrVal(val) {
-  // is expression
-  if (val.startsWith('{{')) {
-    // is expression with a variable
-    if (val.startsWith('{{{')) {
-      // handles ${undefined}
-      if (val.includes('undefined')) {
-        return undefined;
-      }
-      // handles ${null}
-      if (val.includes('null')) {
-        return null;
-      }
+  return val;
+}
 
-      // is variable of some kind - we can ignore
-      return '{{}}';
-    }
+function getExpressionValue(analyzer, placeholder) {
+  let val = analyzer.expressionValues.get(placeholder);
 
-    // is a raw value, return without brackets
-    return val.replace('{{', '').replace('}}', '');
+  if(typeof val === 'string') {
+    val = val.replace(/"|'/g, '');
   }
-  // is regular attr, return val
+
   return val;
 }
 
 module.exports = {
   getAttrVal,
+  getExpressionValue
 };

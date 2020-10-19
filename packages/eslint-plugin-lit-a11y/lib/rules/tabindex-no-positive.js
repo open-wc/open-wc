@@ -4,7 +4,7 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
-const { getAttrVal } = require('../utils/getAttrVal.js');
+const { getAttrVal, getExpressionValue } = require('../utils/getAttrVal.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
 
@@ -20,6 +20,10 @@ const TabindexNoPositiveRule = {
       description: 'Enforce tabIndex value is not greater than zero.',
       category: 'Accessibility',
       recommended: false,
+    },
+    messages: {
+      tabindexNoPositive: 'Invalid tabindex value {{val}}.',
+      avoidPositiveTabindex: 'Avoid positive tabindex.',
     },
     fixable: null,
     schema: [],
@@ -42,30 +46,26 @@ const TabindexNoPositiveRule = {
           analyzer.traverse({
             enterElement(element) {
               if (Object.keys(element.attribs).includes('tabindex')) {
-                const val = getAttrVal(element.attribs.tabindex);
+                const attributeValue = getAttrVal(element.attribs.tabindex);
+                const val = getExpressionValue(analyzer, attributeValue);
 
-                if (val && val.startsWith('__')) return;
+                if (!val && attributeValue.startsWith('{{')) return;
 
-                const value = Number(val);
+                const value = Number(val || attributeValue);
 
                 if (Number.isNaN(value)) {
                   const loc = analyzer.getLocationForAttribute(element, 'tabindex');
                   context.report({
                     loc,
-                    message: `Invalid tabindex value {{val}}.`,
-                    data: {
-                      val,
-                    },
+                    messageId: 'tabindexNoPositive',
+                    data: { val: val || attributeValue },
                   });
                   return;
                 }
 
                 if (value > 0) {
                   const loc = analyzer.getLocationForAttribute(element, 'tabindex');
-                  context.report({
-                    loc,
-                    message: `Avoid positive tabindex.`,
-                  });
+                  context.report({ loc, messageId: 'avoidPositiveTabindex' });
                 }
               }
             },

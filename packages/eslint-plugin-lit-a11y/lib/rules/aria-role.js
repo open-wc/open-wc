@@ -7,6 +7,7 @@ const { roles } = require('aria-query');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
+const { getExpressionValue } = require('../utils/getAttrVal.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -48,21 +49,23 @@ const AriaRoleRule = {
                   return;
                 }
 
-                if (rawValue.startsWith('{{')) {
+                const val = getExpressionValue(analyzer, rawValue);
+
+                if (!val && rawValue.startsWith('{{')) {
                   return; // the value is interpolated with a name. assume it's legitimate and move on.
                 }
 
                 if (
                   !validAriaRoles.includes(
-                    /** @type {import("aria-query").ARIARoleDefintionKey} */ (rawValue),
+                    /** @type {import("aria-query").ARIARoleDefintionKey} */ (val || rawValue),
                   )
                 ) {
                   const loc = analyzer.getLocationForAttribute(element, attr);
                   context.report({
                     loc,
-                    message: `Invalid role "{{rawValue}}".`,
+                    message: `Invalid role "{{val}}".`,
                     data: {
-                      rawValue,
+                      val: val || rawValue,
                     },
                   });
                 }

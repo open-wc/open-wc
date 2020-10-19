@@ -40,7 +40,8 @@ class TemplateAnalyzer {
   constructor(node) {
     this.errors = [];
     this._node = node;
-    const html = util_1.templateExpressionToHtml(node);
+    this.expressionValues = new Map();
+    const html = util_1.templateExpressionToHtml.call(this, node);
     /** @type{import("parse5").ParserOptions} */
     const opts = {
       treeAdapter,

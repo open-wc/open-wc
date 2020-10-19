@@ -45,5 +45,29 @@ ruleTester.run('aria-role', rule, {
       code: 'html`<div role="foo">`;',
       errors: [{ message: 'Invalid role "foo".' }],
     },
+    {
+      code: 'html`<div role=\'${"foo"}\'>`;',
+      errors: [{ message: 'Invalid role "foo".' }],
+    },
+    {
+      code: "html`<div role='${'foo'}'>`;",
+      errors: [{ message: 'Invalid role "foo".' }],
+    },
+    {
+      code: 'html`<div role="${\'foo\'}">`;',
+      errors: [{ message: 'Invalid role "foo".' }],
+    },
+    {
+      code: 'html`<div role=${"foo"}>`;',
+      errors: [{ message: 'Invalid role "foo".' }],
+    },
+    {
+      code: "html`<div role=${'foo'}>`;",
+      errors: [{ message: 'Invalid role "foo".' }],
+    },
+    {
+      code: 'html`<div role=${"foo"}>`;',
+      errors: [{ message: 'Invalid role "foo".' }],
+    },
   ].map(prependLitHtmlImport),
 });

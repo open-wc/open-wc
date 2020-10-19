@@ -49,5 +49,33 @@ ruleTester.run('tabindex-no-positive', rule, {
       code: "html`<div tabindex='2'></div>`",
       errors: [{ message: 'Avoid positive tabindex.' }],
     },
+    {
+      code: "html`<div tabindex='${'bar'}'></div>`",
+      errors: [{ message: 'Invalid tabindex value bar.' }],
+    },
+    {
+      code: 'html`<div tabindex="${true}"></div>`',
+      errors: [{ message: 'Invalid tabindex value true.' }],
+    },
+    {
+      code: 'html`<div tabindex="${null}"></div>`',
+      errors: [{ message: 'Invalid tabindex value null.' }],
+    },
+    {
+      code: 'html`<div tabindex="${1}"></div>`',
+      errors: [{ message: 'Avoid positive tabindex.' }],
+    },
+    {
+      code: "html`<div tabindex='${'1'}'></div>`",
+      errors: [{ message: 'Avoid positive tabindex.' }],
+    },
+    {
+      code: "html`<div tabindex=${'1'}></div>`",
+      errors: [{ message: 'Avoid positive tabindex.' }],
+    },
+    {
+      code: "html`<div tabindex='1'></div>`",
+      errors: [{ message: 'Avoid positive tabindex.' }],
+    },
   ].map(prependLitHtmlImport),
 });

@@ -3,7 +3,7 @@
  * @author open-wc
  */
 
-const { getAttrVal } = require('../utils/getAttrVal.js');
+const { getAttrVal, getExpressionValue } = require('../utils/getAttrVal.js');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { isAriaHidden } = require('../utils/aria.js');
@@ -34,6 +34,10 @@ const ImgRedundantAltRule = {
       description: 'Enforce img alt attribute does not contain the word image, picture, or photo.',
       category: 'Accessibility',
       recommended: false,
+    },
+    messages: {
+      imgRedundantAlt:
+        '<img> alt attribute must be descriptive; it cannot contain the banned {{plural}} {{formatted}}.',
     },
     fixable: null,
     schema: [
@@ -81,19 +85,21 @@ const ImgRedundantAltRule = {
 
               const bannedKeywords = [...DEFAULT_KEYWORDS, ...optionsKeywords];
 
-              const contraband = bannedKeywords.filter(keyword =>
-                getAttrVal(element.attribs.alt).toLowerCase().includes(keyword.toLowerCase()),
+              const contraband = bannedKeywords.filter(keyword => {
+                  const val = getExpressionValue(analyzer, element.attribs.alt) || getAttrVal(element.attribs.alt)
+                  return val.toLowerCase().includes(keyword.toLowerCase());
+                }
               );
 
               if (contraband.length > 0) {
-                const formatted = formatter.format(contraband);
+                const banned = formatter.format(contraband);
                 const loc = analyzer.getLocationForAttribute(element, 'alt');
+
                 context.report({
                   loc,
-                  message:
-                    '<img> alt attribute must be descriptive; it cannot contain the banned {{plural}} {{formatted}}.',
+                  messageId: 'imgRedundantAlt',
                   data: {
-                    formatted,
+                    formatted: banned,
                     plural: contraband.length > 1 ? 'words' : 'word',
                   },
                 });

@@ -151,6 +151,15 @@ function isExpressionPlaceholder(value) {
 exports.isExpressionPlaceholder = isExpressionPlaceholder;
 
 /**
+ * @param {import("estree").Expression} expr
+ * @return {expr is import("estree").SimpleLiteral}
+ */
+function isLiteral(expr) {
+  return expr && expr.type === 'Literal';
+}
+
+
+/**
  * Converts a template expression into HTML
  *
  * @param {import("estree").TaggedTemplateExpression} node Node to convert
@@ -165,7 +174,12 @@ function templateExpressionToHtml(node) {
     const expr = node.quasi.expressions[i];
     html += quasi.value.raw;
     if (expr) {
-      html += getExpressionPlaceholder(node, quasi);
+      const placeholder = getExpressionPlaceholder(node, quasi);
+
+      html += placeholder;
+      if(isLiteral(expr)) {
+        this.expressionValues.set(placeholder.replace(/"|'/g, ''), expr.raw);
+      }
     }
   }
   return html;
