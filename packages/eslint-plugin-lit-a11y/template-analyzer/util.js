@@ -164,6 +164,7 @@ function isLiteral(expr) {
  * @param {import("estree").TaggedTemplateExpression} node Node to convert
  * @return {string}
  */
+// @ts-expect-error: ignore
 function templateExpressionToHtml(node) {
   let html = '';
   // since we need the corresponding member of two arrays, for loops is ergonomic
@@ -177,6 +178,7 @@ function templateExpressionToHtml(node) {
 
       html += placeholder;
       if (isLiteral(expr)) {
+        // @ts-expect-error: ignore
         this.expressionValues.set(placeholder.replace(/"|'/g, ''), expr.raw);
       }
     }
