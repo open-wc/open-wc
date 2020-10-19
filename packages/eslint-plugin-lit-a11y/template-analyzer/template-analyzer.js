@@ -6,7 +6,13 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const parse5 = require('parse5');
 const treeAdapter = require('parse5-htmlparser2-tree-adapter');
-const util_1 = require('./util');
+const {
+  isDocumentFragment,
+  isCommentNode,
+  isTextNode,
+  isElementNode,
+  getExpressionPlaceholder,
+} = require('./util');
 
 const analyzerCache = new WeakMap();
 
@@ -28,6 +34,14 @@ const analyzerCache = new WeakMap();
  */
 
 /**
+ * @param {import("estree").Expression} expr
+ * @return {expr is import("estree").SimpleLiteral}
+ */
+function isLiteral(expr) {
+  return expr && expr.type === 'Literal';
+}
+
+/**
  * Analyzes a given template expression for traversing its contained
  * HTML tree.
  */
@@ -41,20 +55,16 @@ class TemplateAnalyzer {
     this.errors = [];
     this._node = node;
     this.expressionValues = new Map();
-    const html = util_1.templateExpressionToHtml.call(this, node);
-    /** @type{import("parse5").ParserOptions} */
-    const opts = {
-      treeAdapter,
-      sourceCodeLocationInfo: true,
-      // @ts-expect-error: this is certainly a problem with parse5's types. see https://github.com/inikulin/parse5/blob/377cdaf0a6504065e2c47bd65fb0b0a8cdabcb90/packages/parse5/lib/parser/index.js#L333-L335
-      onParseError: err => {
-        this.errors.push(err);
-      },
-    };
     /** @type {treeAdapter.DocumentType} */
     // TODO: This is not ideal
     // @ts-expect-error: parse5.DocumentFragment is a union with {}, so let's fudge this type for convenience
-    this._ast = parse5.parseFragment(html, opts);
+    this._ast = parse5.parseFragment(this.templateExpressionToHtml(node), {
+      treeAdapter,
+      sourceCodeLocationInfo: true,
+      onParseError: err => {
+        this.errors.push(err);
+      },
+    });
   }
 
   /**
@@ -73,18 +83,45 @@ class TemplateAnalyzer {
   }
 
   /**
+   * Converts a template expression into HTML
+   *
+   * @param {import("estree").TaggedTemplateExpression} node Node to convert
+   * @return {string}
+   */
+  templateExpressionToHtml(node) {
+    let html = '';
+    // since we need the corresponding member of two arrays, for loops is ergonomic
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < node.quasi.quasis.length; i++) {
+      const quasi = node.quasi.quasis[i];
+      const expr = node.quasi.expressions[i];
+      html += quasi.value.raw;
+      if (expr) {
+        const placeholder = getExpressionPlaceholder(node, quasi);
+
+        html += placeholder;
+
+        if (isLiteral(expr)) {
+          this.expressionValues.set(placeholder.replace(/"|'/g, ''), expr.raw);
+        }
+      }
+    }
+    return html;
+  }
+
+  /**
    * Returns the ESTree location equivalent of a given parsed location.
    *
    * @param {treeAdapter.Node} node Node to retrieve location of
    * @return {?import("estree").SourceLocation}
    */
   getLocationFor(node) {
-    if (util_1.isElementNode(node)) {
+    if (isElementNode(node)) {
       const loc = node.sourceCodeLocation;
       if (loc) {
         return this.resolveLocation(loc.startTag);
       }
-    } else if (util_1.isCommentNode(node) || util_1.isTextNode(node)) {
+    } else if (isCommentNode(node) || isTextNode(node)) {
       const loc = node.sourceCodeLocation;
       if (loc) {
         return this.resolveLocation(loc);
@@ -130,7 +167,7 @@ class TemplateAnalyzer {
     const loc = element.sourceCodeLocation.attrs[originalAttr];
     let str = '';
     for (const quasi of this._node.quasi.quasis) {
-      const placeholder = util_1.getExpressionPlaceholder(this._node, quasi);
+      const placeholder = getExpressionPlaceholder(this._node, quasi);
       const val = quasi.value.raw + placeholder;
       str += val;
       if (loc.endOffset < str.length) {
@@ -159,7 +196,7 @@ class TemplateAnalyzer {
     let height = 0;
 
     for (const quasi of this._node.quasi.quasis) {
-      const placeholder = util_1.getExpressionPlaceholder(this._node, quasi);
+      const placeholder = getExpressionPlaceholder(this._node, quasi);
       offset += quasi.value.raw.length + placeholder.length;
 
       const i = this._node.quasi.quasis.indexOf(quasi);
@@ -209,17 +246,17 @@ class TemplateAnalyzer {
         visitor.enter(node, parent);
       }
 
-      if (util_1.isDocumentFragment(node) && visitor.enterDocumentFragment) {
+      if (isDocumentFragment(node) && visitor.enterDocumentFragment) {
         visitor.enterDocumentFragment(node, parent);
-      } else if (util_1.isCommentNode(node) && visitor.enterCommentNode) {
+      } else if (isCommentNode(node) && visitor.enterCommentNode) {
         visitor.enterCommentNode(node, parent);
-      } else if (util_1.isTextNode(node) && visitor.enterTextNode) {
+      } else if (isTextNode(node) && visitor.enterTextNode) {
         visitor.enterTextNode(node, parent);
-      } else if (util_1.isElementNode(node) && visitor.enterElement) {
+      } else if (isElementNode(node) && visitor.enterElement) {
         visitor.enterElement(node, parent);
       }
 
-      if (util_1.isElementNode(node) || util_1.isDocumentFragment(node)) {
+      if (isElementNode(node) || isDocumentFragment(node)) {
         const children = node.childNodes;
         if (children && children.length > 0) {
           children.forEach(child => {
