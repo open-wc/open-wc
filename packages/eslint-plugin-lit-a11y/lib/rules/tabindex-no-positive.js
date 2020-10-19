@@ -4,7 +4,7 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
-const { getAttrVal, getExpressionValue } = require('../utils/getAttrVal.js');
+const { getExpressionValue } = require('../utils/getExpressionValue.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
 
@@ -22,10 +22,6 @@ const TabindexNoPositiveRule = {
       recommended: false,
       url:
         'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/tabindex-no-positive.md',
-    },
-    messages: {
-      tabindexNoPositive: 'Invalid tabindex value {{val}}.',
-      avoidPositiveTabindex: 'Avoid positive tabindex.',
     },
     messages: {
       tabindexNoPositive: 'Invalid tabindex value {{val}}.',
@@ -52,7 +48,7 @@ const TabindexNoPositiveRule = {
           analyzer.traverse({
             enterElement(element) {
               if (Object.keys(element.attribs).includes('tabindex')) {
-                const attributeValue = getAttrVal(element.attribs.tabindex);
+                const attributeValue = element.attribs.tabindex;
                 const val = getExpressionValue(analyzer, attributeValue);
 
                 if (!val && attributeValue.startsWith('{{')) return;

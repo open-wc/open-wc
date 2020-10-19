@@ -3,7 +3,7 @@
  * @author open-wc
  */
 
-const { getAttrVal, getExpressionValue } = require('../utils/getAttrVal.js');
+const { getExpressionValue } = require('../utils/getExpressionValue.js');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { isAriaHidden } = require('../utils/aria.js');
@@ -89,10 +89,10 @@ const ImgRedundantAltRule = {
               const bannedKeywords = [...DEFAULT_KEYWORDS, ...optionsKeywords];
 
               const contraband = bannedKeywords.filter(keyword => {
-                  const val = getExpressionValue(analyzer, element.attribs.alt) || getAttrVal(element.attribs.alt)
-                  return val.toLowerCase().includes(keyword.toLowerCase());
-                }
-              );
+                const val =
+                  getExpressionValue(analyzer, element.attribs.alt) || element.attribs.alt;
+                return val.toLowerCase().includes(keyword.toLowerCase());
+              });
 
               if (contraband.length > 0) {
                 const banned = formatter.format(contraband);

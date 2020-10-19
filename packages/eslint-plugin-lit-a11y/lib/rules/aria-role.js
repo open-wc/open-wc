@@ -7,7 +7,7 @@ const { roles } = require('aria-query');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
-const { getExpressionValue } = require('../utils/getAttrVal.js');
+const { getExpressionValue } = require('../utils/getExpressionValue.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition

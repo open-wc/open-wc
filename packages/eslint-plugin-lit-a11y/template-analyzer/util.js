@@ -158,7 +158,6 @@ function isLiteral(expr) {
   return expr && expr.type === 'Literal';
 }
 
-
 /**
  * Converts a template expression into HTML
  *
@@ -177,7 +176,7 @@ function templateExpressionToHtml(node) {
       const placeholder = getExpressionPlaceholder(node, quasi);
 
       html += placeholder;
-      if(isLiteral(expr)) {
+      if (isLiteral(expr)) {
         this.expressionValues.set(placeholder.replace(/"|'/g, ''), expr.raw);
       }
     }
