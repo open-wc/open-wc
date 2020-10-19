@@ -24,110 +24,87 @@ const ruleTester = new RuleTester({
 
 ruleTester.run('click-events-have-key-events', rule, {
   valid: [
-    { code: 'html`<div @click=${foo} aria-hidden />`' },
-    { code: 'html`<div @click=${foo} aria-hidden="true" />`' },
-    { code: 'html`<div @click=${foo} aria-hidden=${true} />`' },
-    { code: 'html`<div @click=${foo} aria-hidden=${false} @keydown=${foo} />`' },
-    { code: 'html`<a @click=${foo} href="http://x.y.z" />`' },
-    { code: 'html`<a @click=${foo} href="http://x.y.z" tabindex="0" />`' },
-    { code: 'html`<div @click=${foo} @keydown=${foo}/>`' },
-    { code: 'html`<div @click=${foo} @keyup=${foo} />`' },
-    { code: 'html`<div @click=${foo} @keypress=${foo}/>`' },
+    { code: 'html`<div @click=${foo} aria-hidden></div>`' },
+    { code: 'html`<div @click=${foo} aria-hidden="true"></div>`' },
+    { code: 'html`<div @click=${foo} aria-hidden=${true}></div>`' },
+    { code: 'html`<div @click=${foo} aria-hidden=${false} @keydown=${foo}></div>`' },
+    { code: 'html`<a @click=${foo} href="http://x.y.z"></a>`' },
+    { code: 'html`<a @click=${foo} href="http://x.y.z" tabindex="0"></a>`' },
+    { code: 'html`<div @click=${foo} @keydown=${foo}></div>`' },
+    { code: 'html`<div @click=${foo} @keyup=${foo}></div>`' },
+    { code: 'html`<div @click=${foo} @keypress=${foo}></div>`' },
     { code: 'html`<input @click=${foo} />`' },
-    { code: 'html`<div @click=${foo} @keydown=${foo} />`' },
-    { code: 'html`<custom-button @click=${foo} />`', options: [{ allowList: ['custom-button'] }] },
+    { code: 'html`<div @click=${foo} @keydown=${foo}></div>`' },
+    {
+      code: 'html`<custom-button @click=${foo}></custom-button>`',
+      options: [{ allowList: ['custom-button'] }],
+    },
+    {
+      code: 'html`<another-button @click=${foo}></another-button>`',
+      options: [{ allowList: ['another-button'] }],
+    },
+    {
+      code: 'html`<custom-button @click=${foo}></custom-button>`',
+      options: [{ allowCustomElements: true }],
+    },
+    {
+      code: 'html`<another-button @click=${foo}></another-button>`',
+      options: [{ allowCustomElements: true }],
+    },
   ].map(prependLitHtmlImport),
 
   invalid: [
     {
       code: 'html`<div @click=${foo}></div>`',
-      errors: [
-        {
-          message:
-            'Clickable non-interactive elements must have at least 1 keyboard event listener',
-        },
-      ],
+      errors: [{ messageId: 'clickableNonInteractiveElements' }],
     },
     {
-      code: 'html`<div @click=${foo} ></div>`;',
-      errors: [
-        {
-          message:
-            'Clickable non-interactive elements must have at least 1 keyboard event listener',
-        },
-      ],
+      code: 'html`<div @click=${foo}></div>`;',
+      errors: [{ messageId: 'clickableNonInteractiveElements' }],
     },
     {
-      code: 'html`<section @click=${foo} ></section>`;',
-      errors: [
-        {
-          message:
-            'Clickable non-interactive elements must have at least 1 keyboard event listener',
-        },
-      ],
+      code: 'html`<section @click=${foo}></section>`;',
+      errors: [{ messageId: 'clickableNonInteractiveElements' }],
     },
     {
-      code: 'html`<main @click=${foo} ></main>`;',
-      errors: [
-        {
-          message:
-            'Clickable non-interactive elements must have at least 1 keyboard event listener',
-        },
-      ],
+      code: 'html`<main @click=${foo}></main>`;',
+      errors: [{ messageId: 'clickableNonInteractiveElements' }],
     },
     {
-      code: 'html`<article @click=${foo} ></article>`;',
-      errors: [
-        {
-          message:
-            'Clickable non-interactive elements must have at least 1 keyboard event listener',
-        },
-      ],
+      code: 'html`<article @click=${foo}></article>`;',
+      errors: [{ messageId: 'clickableNonInteractiveElements' }],
     },
     {
-      code: 'html`<header @click=${foo} ></header>`;',
-      errors: [
-        {
-          message:
-            'Clickable non-interactive elements must have at least 1 keyboard event listener',
-        },
-      ],
+      code: 'html`<header @click=${foo}></header>`;',
+      errors: [{ messageId: 'clickableNonInteractiveElements' }],
     },
     {
-      code: 'html`<footer @click=${foo} ></footer>`;',
-      errors: [
-        {
-          message:
-            'Clickable non-interactive elements must have at least 1 keyboard event listener',
-        },
-      ],
+      code: 'html`<footer @click=${foo}></footer>`;',
+      errors: [{ messageId: 'clickableNonInteractiveElements' }],
     },
     {
-      code: 'html`<a @click=${foo} ></a>`;',
-      errors: [
-        {
-          message:
-            'Clickable non-interactive elements must have at least 1 keyboard event listener',
-        },
-      ],
+      code: 'html`<a @click=${foo}></a>`;',
+      errors: [{ messageId: 'clickableNonInteractiveElements' }],
     },
     {
-      code: 'html`<custom-button @click=${foo} ></custom-button>`;',
-      errors: [
-        {
-          message:
-            'Clickable non-interactive elements must have at least 1 keyboard event listener',
-        },
-      ],
+      code: 'html`<custom-button @click=${foo}></custom-button>`;',
+      errors: [{ messageId: 'clickableNonInteractiveElements' }],
+      options: [{ allowCustomElements: false }],
     },
     {
-      code: 'html`<another-button @click=${foo} ></another-button>`;',
-      errors: [
-        {
-          message:
-            'Clickable non-interactive elements must have at least 1 keyboard event listener',
-        },
-      ],
+      code: 'html`<another-button @click=${foo}></another-button>`;',
+      errors: [{ messageId: 'clickableNonInteractiveElements' }],
+      options: [{ allowCustomElements: false }],
+    },
+    {
+      code: 'html`<custom-button @click=${foo}></custom-button>`;',
+      errors: [{ messageId: 'clickableNonInteractiveElements' }],
+      options: [{ allowCustomElements: false, allowList: ['another-button'] }],
+    },
+    {
+      code: 'html`<another-button @click=${foo}></another-button>`;',
+      errors: [{ messageId: 'clickableNonInteractiveElements' }],
+      options: [{ allowCustomElements: false, allowList: ['custom-button'] }],
     },
   ].map(prependLitHtmlImport),
 });

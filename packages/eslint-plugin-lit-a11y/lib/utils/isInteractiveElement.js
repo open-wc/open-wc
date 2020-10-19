@@ -113,15 +113,14 @@ function checkIsInteractiveElement(tagName, attributes) {
  * interactive on the DOM or not. Usually used when an element
  * has a dynamic handler on it and we need to discern whether or not
  * it's intention is to be interacted with on the DOM.
+ * @param {import('parse5-htmlparser2-tree-adapter').Element} element
  */
-const isInteractiveElement = (tagName, attributes) => {
-  // Do not test higher level JSX components, as we do not know what
-  // low-level DOM element this maps to.
-  if (!domKeys.includes(tagName)) {
+const isInteractiveElement = element => {
+  if (!domKeys.includes(element.name)) {
     return false;
   }
 
-  return checkIsInteractiveElement(tagName, attributes);
+  return checkIsInteractiveElement(element.name, element.attribs);
 };
 
 module.exports = {

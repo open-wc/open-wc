@@ -1,9 +1,0 @@
-{
-  "scripts": {
-    "storybook": "start-storybook",
-    "storybook:build": "build-storybook"
-  },
-  "devDependencies": {
-    "@open-wc/demoing-storybook": "^2.0.0"
-  }
-}

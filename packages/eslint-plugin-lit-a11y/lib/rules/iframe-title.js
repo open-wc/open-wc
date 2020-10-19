@@ -19,11 +19,24 @@ const IframeTitleRule = {
       description: '<iframe> elements must have a unique title property.',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/iframe-title.md',
+    },
+    messages: {
+      iframeTitle: '<iframe> elements must have a unique title property.',
     },
     fixable: null,
     schema: [],
   },
   create(context) {
+    /**
+     * @param {import("parse5-htmlparser2-tree-adapter").Element} element
+     */
+    function isUntitledIframe(element) {
+      return (
+        element.name === 'iframe' && (!element.attribs.title || element.attribs.title === undefined)
+      );
+    }
     let isLitHtml = false;
     const validLitHtmlSources = createValidLitHtmlSources(context);
 
@@ -39,15 +52,9 @@ const IframeTitleRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              if (
-                element.name === 'iframe' &&
-                (!Object.keys(element.attribs).includes('title') || element.attribs.title === '')
-              ) {
+              if (isUntitledIframe(element)) {
                 const loc = analyzer.getLocationFor(element);
-                context.report({
-                  loc,
-                  message: '<iframe> elements must have a unique title property.',
-                });
+                context.report({ loc, messageId: 'iframeTitle' });
               }
             },
           });

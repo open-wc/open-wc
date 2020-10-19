@@ -23,6 +23,8 @@ const AriaRoleRule = {
       description: 'aria-role',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/aria-role.md',
     },
     fixable: null,
     schema: [],

@@ -21,76 +21,45 @@ const ruleTester = new RuleTester({
     ecmaVersion: 2015,
   },
 });
+
 ruleTester.run('img-redundant-alt', rule, {
   valid: [
     { code: 'html`<img src="foo" alt="Foo eating a sandwich." />`' },
-    {
-      code: 'html`<img src="bar" aria-hidden alt="Picture of me taking a photo of an image" /> `',
-    },
-    {
-      code: 'html`<img src="baz" alt=${`Baz taking a ${photo}`} />`',
-    },
-    {
-      code: 'html`<img src="baz" alt=${"foo"} />`',
-    },
-    // give me some code that won't trigger a warning
-  ].map(prependLitHtmlImport),
+    { code: 'html`<img src="bar" aria-hidden alt="Picture of me taking a photo of an image" /> `' },
+    { code: 'html`<img src="baz" alt=${`Baz taking a ${photo}`} />`' },
+    { code: 'html`<img src="baz" alt=${"foo"} />`' },
+  ],
 
   invalid: [
     {
       code: "html`<img src='foo' alt='Photo of foo being weird.' />`",
-      errors: [
-        {
-          message:
-            '<img> alt attribute must be descriptive; it cannot contain the banned word photo.',
-        },
-      ],
+      errors: [{ messageId: 'imgRedundantAlt', data: { banned: 'photo', plural: 'word' } }],
     },
     {
       code: "html`<img src='foo' alt='Image of me at a bar!' />`",
-      errors: [
-        {
-          message:
-            '<img> alt attribute must be descriptive; it cannot contain the banned word image.',
-        },
-      ],
+      errors: [{ messageId: 'imgRedundantAlt', data: { banned: 'image', plural: 'word' } }],
     },
     {
       code: "html`<img src='foo' alt='Picture of baz fixing a bug.' />`",
-      errors: [
-        {
-          message:
-            '<img> alt attribute must be descriptive; it cannot contain the banned word picture.',
-        },
-      ],
+      errors: [{ messageId: 'imgRedundantAlt', data: { banned: 'picture', plural: 'word' } }],
     },
     {
       code: "html`<img src='foo' alt='baz foo bar.' />`",
       options: [{ keywords: ['foo'] }],
-      errors: [
-        {
-          message:
-            '<img> alt attribute must be descriptive; it cannot contain the banned word foo.',
-        },
-      ],
+      errors: [{ messageId: 'imgRedundantAlt', data: { banned: 'foo', plural: 'word' } }],
     },
     {
       code: "html`<img src='foo' alt='image of baz foo bar.' />`",
       options: [{ keywords: ['foo'] }],
-      errors: [
-        {
-          message:
-            '<img> alt attribute must be descriptive; it cannot contain the banned words image or foo.',
-        },
-      ],
+      errors: [{ messageId: 'imgRedundantAlt', data: { banned: 'image or foo', plural: 'words' } }],
     },
     {
       code: "html`<img src='foo' alt='image of picture baz foo bar.' />`",
       options: [{ keywords: ['foo'] }],
       errors: [
         {
-          message:
-            '<img> alt attribute must be descriptive; it cannot contain the banned words image, picture, or foo.',
+          messageId: 'imgRedundantAlt',
+          data: { banned: 'image, picture, or foo', plural: 'words' },
         },
       ],
     },
@@ -99,7 +68,7 @@ ruleTester.run('img-redundant-alt', rule, {
       errors: [
         {
           messageId:'imgRedundantAlt',
-          data: { formatted: 'photo', plural: 'word' },
+          data: { banned: 'photo', plural: 'word' },
         },
       ],
     },

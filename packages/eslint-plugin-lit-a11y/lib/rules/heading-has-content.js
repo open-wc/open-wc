@@ -5,6 +5,7 @@
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { hasAccessibleChildren } = require('../utils/hasAccessibleChildren.js');
+const { isCustomElement } = require('../utils/isCustomElement.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
@@ -23,11 +24,40 @@ const HeadingHasContentRule = {
       description: 'Enforce heading (h1, h2, etc) elements contain accessible content.',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/heading-has-content.md',
+    },
+    messages: {
+      headingHasContent: '<{{tagName}}> elements must have accessible content.',
     },
     fixable: null,
-    schema: [],
+    schema: [
+      {
+        customHeadingElements: {
+          type: 'array',
+          description: 'list of custom elements tag names which should be considered headings',
+          default: [],
+          uniqueItems: true,
+          additionalItems: false,
+          items: {
+            type: 'string',
+            pattern: '^[a-z]\\w+-\\w+',
+          },
+        },
+      },
+    ],
   },
   create(context) {
+    /**
+     * Is it a heading element?
+     * @param {import("parse5-htmlparser2-tree-adapter").Element} element
+     * @param {string[]} customHeadingElements list of custom elements tag names which should be considered headings
+     * @return {boolean}
+     */
+    function isHeading(element, customHeadingElements = []) {
+      if (isCustomElement(element)) return customHeadingElements.includes(element.name);
+      return headings.includes(element.name);
+    }
     let isLitHtml = false;
     const validLitHtmlSources = createValidLitHtmlSources(context);
 
@@ -41,23 +71,22 @@ const HeadingHasContentRule = {
         if (isHtmlTaggedTemplate(node) && isLitHtml) {
           const analyzer = TemplateAnalyzer.create(node);
 
+          const options = (context.options && context.options[0]) || {};
+
           analyzer.traverse({
             enterElement(element) {
-              if (headings.includes(element.name)) {
-                if (
-                  hasAccessibleChildren(element) ||
-                  isHiddenFromScreenReader(element.name, element.attribs)
-                ) {
-                  return;
-                }
-
+              if (
+                isHeading(element, options.customHeadingElements) &&
+                !hasAccessibleChildren(element) &&
+                !isHiddenFromScreenReader(element)
+              ) {
                 const loc = analyzer.getLocationFor(element);
 
-                const message = `<{{tagName}}> elements must have accessible content.`;
+                const messageId = 'headingHasContent';
 
                 const data = { tagName: element.name };
 
-                context.report({ loc, message, data });
+                context.report({ loc, messageId, data });
               }
             },
           });

@@ -5,9 +5,19 @@
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { elementHasAttribute, elementHasSomeAttribute } = require('../utils/elementHasAttribute.js');
-const { elementIsHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
+const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
+
+if (!('ListFormat' in Intl)) {
+  /* eslint-disable global-require */
+  // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
+  require('intl-list-format');
+  // eslint-disable-next-line global-require
+  // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
+  require('intl-list-format/locale-data/en');
+  /* eslint-enable global-require */
+}
 
 if (!('ListFormat' in Intl)) {
   /* eslint-disable global-require */
@@ -31,6 +41,8 @@ const AltTextRule = {
       description: 'Images require alt text',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/alt-text.md',
     },
     messages: {
       roleImgAttrs: "elements with role '{{role}}' must have an {{attrs}} attribute.",
@@ -58,7 +70,7 @@ const AltTextRule = {
       return (
         element.name === 'img' &&
         element.attribs.role !== 'presentation' &&
-        !elementIsHiddenFromScreenReader(element) &&
+        !isHiddenFromScreenReader(element) &&
         !elementHasAttribute(element, 'alt')
       );
     }
@@ -72,7 +84,7 @@ const AltTextRule = {
       return (
         element.name !== 'img' &&
         element.attribs.role === 'img' &&
-        !elementIsHiddenFromScreenReader(element) &&
+        !isHiddenFromScreenReader(element) &&
         !elementHasSomeAttribute(element, ALT_ATTRS)
       );
     }

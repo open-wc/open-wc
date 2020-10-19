@@ -26,7 +26,7 @@ const roleImgAttrs = 'aria-label or aria-labelledby';
 
 ruleTester.run('alt-text', rule, {
   valid: [
-    { code: "html`<div foo='${1}' bar='${'a'}'></div>`" },
+    { code: "html`<img alt=''/>`" },
     { code: 'html`<img aria-hidden="true"/>`' },
     { code: "html`<img alt='foo'/>`" },
     { code: "html`<img alt='${foo}'/>`" },

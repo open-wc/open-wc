@@ -154,9 +154,38 @@ class TemplateAnalyzer {
    * @return {import("estree").SourceLocation}
    */
   resolveLocation(loc) {
+    let offset = 0;
+    let expression;
+    let height = 0;
+
+    for (const quasi of this._node.quasi.quasis) {
+      const placeholder = util_1.getExpressionPlaceholder(this._node, quasi);
+      offset += quasi.value.raw.length + placeholder.length;
+
+      const i = this._node.quasi.quasis.indexOf(quasi);
+      if (i !== 0) {
+        expression = this._node.quasi.expressions[i - 1];
+        height += expression.loc.end.line - expression.loc.start.line;
+      }
+
+      if (loc.startOffset < offset) {
+        break;
+      }
+    }
+
+    let startOffset;
+    let endOffset;
+    if (loc.startLine === 1) {
+      startOffset = loc.startCol + this._node.quasi.loc.start.column;
+      endOffset = loc.endCol + this._node.quasi.loc.start.column;
+    } else {
+      startOffset = loc.startCol - 1;
+      endOffset = loc.endCol;
+    }
+
     return {
-      start: { line: loc.startLine - 1 + this._node.loc.start.line, column: loc.startCol - 1 },
-      end: { line: loc.endLine - 1 + this._node.loc.start.line, column: loc.endCol - 1 },
+      start: { line: loc.startLine - 1 + this._node.loc.start.line + height, column: startOffset },
+      end: { line: loc.endLine - 1 + this._node.loc.start.line + height, column: endOffset },
     };
   }
 

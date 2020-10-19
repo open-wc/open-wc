@@ -20,6 +20,8 @@ const AriaAttrsRule = {
       description: 'Elements cannot use an invalid ARIA attribute.',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/aria-attrs.md',
     },
     fixable: null,
     schema: [],

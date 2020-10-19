@@ -20,6 +20,12 @@ const TabindexNoPositiveRule = {
       description: 'Enforce tabIndex value is not greater than zero.',
       category: 'Accessibility',
       recommended: false,
+      url:
+        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/tabindex-no-positive.md',
+    },
+    messages: {
+      tabindexNoPositive: 'Invalid tabindex value {{val}}.',
+      avoidPositiveTabindex: 'Avoid positive tabindex.',
     },
     messages: {
       tabindexNoPositive: 'Invalid tabindex value {{val}}.',

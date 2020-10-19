@@ -22,6 +22,14 @@ html`
 Examples of **correct** code for this rule:
 
 ```js
+html` <span role="img" aria-label="Panda face">🐼</span> `;
+```
+
+```js
+html` <span role="img" alt="Panda face">🐼</span> `;
+```
+
+```js
 html`
   <span role="img" aria-label="Panda face">🐼</span>
   <span role="img" alt="Panda face">🐼</span>
