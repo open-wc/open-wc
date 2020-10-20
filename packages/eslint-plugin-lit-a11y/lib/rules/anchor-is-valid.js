@@ -3,7 +3,6 @@
  * @author open-wc
  */
 
-const { getAttrVal } = require('../utils/getAttrVal.js');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { generateObjSchema, enumArraySchema } = require('../utils/schemas.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
@@ -98,7 +97,7 @@ const AnchorIsValidRule = {
                 }
 
                 // Hrefs have been found, now check for validity.
-                const invalidHrefValues = [getAttrVal(element.attribs.href)].filter(
+                const invalidHrefValues = [element.attribs.href].filter(
                   value =>
                     typeof value === 'string' &&
                     (!value.length || value === '#' || /^\W*?javascript:/.test(value)),

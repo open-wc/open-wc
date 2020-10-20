@@ -63,5 +63,14 @@ ruleTester.run('img-redundant-alt', rule, {
         },
       ],
     },
+    {
+      code: 'html`<img src="baz" alt=${"photo of dog"} />`',
+      errors: [
+        {
+          messageId: 'imgRedundantAlt',
+          data: { banned: 'photo', plural: 'word' },
+        },
+      ],
+    },
   ].map(prependLitHtmlImport),
 });

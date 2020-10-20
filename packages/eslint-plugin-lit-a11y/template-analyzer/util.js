@@ -151,29 +151,6 @@ function isExpressionPlaceholder(value) {
 exports.isExpressionPlaceholder = isExpressionPlaceholder;
 
 /**
- * Converts a template expression into HTML
- *
- * @param {import("estree").TaggedTemplateExpression} node Node to convert
- * @return {string}
- */
-function templateExpressionToHtml(node) {
-  let html = '';
-  // since we need the corresponding member of two arrays, for loops is ergonomic
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < node.quasi.quasis.length; i++) {
-    const quasi = node.quasi.quasis[i];
-    const expr = node.quasi.expressions[i];
-    html += quasi.value.raw;
-    if (expr) {
-      html += getExpressionPlaceholder(node, quasi);
-    }
-  }
-  return html;
-}
-
-exports.templateExpressionToHtml = templateExpressionToHtml;
-
-/**
  * @param {TreeAdapter.Node} node
  * @return {node is TreeAdapter.Element}
  */

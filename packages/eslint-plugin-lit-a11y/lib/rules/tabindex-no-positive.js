@@ -4,7 +4,7 @@
  */
 
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
-const { getAttrVal } = require('../utils/getAttrVal.js');
+const { getExpressionValue } = require('../utils/getExpressionValue.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
 
@@ -48,18 +48,19 @@ const TabindexNoPositiveRule = {
           analyzer.traverse({
             enterElement(element) {
               if (Object.keys(element.attribs).includes('tabindex')) {
-                const attributeValue = getAttrVal(element.attribs.tabindex);
+                const attributeValue = element.attribs.tabindex;
+                const val = getExpressionValue(analyzer, attributeValue);
 
-                if (attributeValue && attributeValue.startsWith('__')) return;
+                if (!val && attributeValue.startsWith('{{')) return;
 
-                const value = Number(attributeValue);
+                const value = Number(val || attributeValue);
 
                 if (Number.isNaN(value)) {
                   const loc = analyzer.getLocationForAttribute(element, 'tabindex');
                   context.report({
                     loc,
                     messageId: 'tabindexNoPositive',
-                    data: { val: attributeValue },
+                    data: { val: val || attributeValue },
                   });
                   return;
                 }
