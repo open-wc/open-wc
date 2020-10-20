@@ -2805,16 +2805,16 @@
   integrity sha512-BONpjHcGX2zFa9mfnwBCLEmlDsOHzT+j6Qt1yfK3MzFXFtAykfzFjAgaxPetu0YbBlCfXuMlfxI4vlRGCGMvFg==
 
 "@open-wc/testing-karma-bs@file:./packages/testing-karma-bs":
-  version "1.3.93"
+  version "1.3.94"
   dependencies:
-    "@open-wc/testing-karma" "^4.0.8"
+    "@open-wc/testing-karma" "^4.0.9"
     "@types/node" "^11.13.0"
     karma-browserstack-launcher "^1.0.0"
 
 "@open-wc/testing-karma@file:./packages/testing-karma":
-  version "4.0.8"
+  version "4.0.9"
   dependencies:
-    "@open-wc/karma-esm" "^3.0.8"
+    "@open-wc/karma-esm" "^3.0.9"
     "@types/karma" "^5.0.0"
     "@types/karma-coverage-istanbul-reporter" "^2.1.0"
     "@types/karma-mocha" "^1.3.0"
@@ -4784,14 +4784,6 @@ array-differ@^3.0.0:
   resolved "https://registry.yarnpkg.com/array-differ/-/array-differ-3.0.0.tgz#3cbb3d0f316810eafcc47624734237d6aee4ae6b"
   integrity sha512-THtfYS6KtME/yIAhKjZ2ul7XI96lQGHRputJQHO80LAWQnuGP4iCIN8vdMRboGbIEYBwU33q8Tch1os2+X0kMg==
 
-array-events@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/array-events/-/array-events-0.2.0.tgz#ff42ac53e66f485d6f883234c32252bc2286130e"
-  integrity sha1-/0KsU+ZvSF1viDI0wyJSvCKGEw4=
-  dependencies:
-    async-arrays "*"
-    extended-emitter "*"
-
 array-find-index@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/array-find-index/-/array-find-index-1.0.2.tgz#df010aa1287e164bbda6f9723b0a96a1ec4187a1"
@@ -4953,13 +4945,6 @@ astral-regex@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/astral-regex/-/astral-regex-2.0.0.tgz#483143c567aeed4785759c0865786dc77d7d2e31"
   integrity sha512-Z7tMw1ytTXt5jqMcOP+OQteU1VuNK9Y02uuJtKQ1Sv69jXQKKg5cibLwGJow8yzZP+eAc18EmLGPal0bp36rvQ==
-
-async-arrays@*:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/async-arrays/-/async-arrays-1.0.1.tgz#347af2b70f2a7a5767a2d5679cc42bbf1c220fd9"
-  integrity sha1-NHrytw8qeldnotVnnMQrvxwiD9k=
-  dependencies:
-    sift "*"
 
 async-each-series@0.1.1:
   version "0.1.1"
@@ -5956,13 +5941,6 @@ bindings@^1.5.0:
   dependencies:
     file-uri-to-path "1.0.0"
 
-bit-mask@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/bit-mask/-/bit-mask-1.0.2.tgz#42f708362119611d6223cd53202c79428bf70b81"
-  integrity sha512-UGtq08LSiazxL4zVmBzrhdCWnT4RWx3JhhD/3crhfv8xxjnVHxf/WoVjEstjSUaZeZRP7kZrWNqup1VvUClCaQ==
-  dependencies:
-    array-events "^0.2.0"
-
 blob@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/blob/-/blob-0.0.5.tgz#d680eeef25f8cd91ad533f5b01eed48e64caf683"
@@ -6547,14 +6525,6 @@ chai-dom@^1.8.1:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/chai-dom/-/chai-dom-1.8.2.tgz#e06353baeafa8fddaaabda96a67f859c111a3c7c"
   integrity sha512-kk2SnCuJliouO5M58OjA7M8VXN338WAxHOm+LbpjeL09pJgRpXugSC5aj8uwFm/6Lmpcdtq7hf+DldTdBm5/Sw==
-
-chai-fs@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/chai-fs/-/chai-fs-2.0.0.tgz#35ae039fbbb0710f5122aae17faba1e8f41107c6"
-  integrity sha1-Na4Dn7uwcQ9RIqrhf6uh6PQRB8Y=
-  dependencies:
-    bit-mask "^1.0.1"
-    readdir-enhanced "^1.4.0"
 
 chai@^4.2.0:
   version "4.2.0"
@@ -8521,7 +8491,7 @@ es5-shim@^4.5.13:
   resolved "https://registry.yarnpkg.com/es5-shim/-/es5-shim-4.5.14.tgz#90009e1019d0ea327447cb523deaff8fe45697ef"
   integrity sha512-7SwlpL+2JpymWTt8sNLuC2zdhhc+wrfe5cMPI2j0o6WsPdfAiPwmFy2f0AocPB4RQVBOZ9kNTgi5YF7TdhkvEg==
 
-es6-promise@^4.0.3, es6-promise@^4.1.0:
+es6-promise@^4.0.3:
   version "4.2.8"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.2.8.tgz#4eb21594c972bc40553d276e510539143db53e0a"
   integrity sha512-HJDGx5daxeIvxdBxvG2cb9g4tEvwIk3i8+nhX0yGrYmZUzbkdg8QbDevheDB8gd0//uPj4c1EQua8Q+MViT0/w==
@@ -8638,6 +8608,11 @@ eslint-plugin-wc@^1.2.0:
   dependencies:
     js-levenshtein-esm "^1.2.0"
     validate-element-name "^2.1.1"
+
+eslint-rule-extender@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-rule-extender/-/eslint-rule-extender-0.0.1.tgz#ae9faf15d1e651a714d579af0961fd80456f3b16"
+  integrity sha512-F0j1Twve3lamL3J0rRSVAynlp58sDPG39JFcQrM+u9Na7PmCgiPHNODh6YE9mduaGcsn3NBqbf6LZRj0cLr8Ng==
 
 eslint-scope@^4.0.3:
   version "4.0.3"
@@ -8933,14 +8908,6 @@ extend@^3.0.0, extend@^3.0.1, extend@^3.0.2, extend@~3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
   integrity sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==
-
-extended-emitter@*:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/extended-emitter/-/extended-emitter-1.0.3.tgz#ea1014882a9cd29f2e11cc781b1b56fa10d5ab64"
-  integrity sha512-gdaWWszJmr2oq6rKSxPmuclQtEwfzt4JwmGrEqTnE89GQHqZyvPZ/NWj6fBgK3IKufvRyJDnLZviUFPrrJf36Q==
-  dependencies:
-    sift "*"
-    wolfy87-eventemitter "*"
 
 external-editor@^3.0.3:
   version "3.1.0"
@@ -15346,15 +15313,6 @@ read@1, read@~1.0.1:
     string_decoder "^1.1.1"
     util-deprecate "^1.0.1"
 
-readdir-enhanced@^1.4.0:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/readdir-enhanced/-/readdir-enhanced-1.5.2.tgz#61463048690ac6a455b75b62fa78a88f8dc85e53"
-  integrity sha1-YUYwSGkKxqRVt1ti+nioj43IXlM=
-  dependencies:
-    call-me-maybe "^1.0.1"
-    es6-promise "^4.1.0"
-    glob-to-regexp "^0.3.0"
-
 readdir-scoped-modules@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/readdir-scoped-modules/-/readdir-scoped-modules-1.1.0.tgz#8d45407b4f870a0dcaebc0e28670d18e74514309"
@@ -16536,11 +16494,6 @@ side-channel@^1.0.2:
   dependencies:
     es-abstract "^1.17.0-next.1"
     object-inspect "^1.7.0"
-
-sift@*:
-  version "12.0.1"
-  resolved "https://registry.yarnpkg.com/sift/-/sift-12.0.1.tgz#ec3b5fda13c569138a71cbeda6acb4395cc7f4be"
-  integrity sha512-TVJzYmDLSSK2Qmps/SG16y1UfgQJAB5urJ6iIYNO7Ok+EHnQu/Mh5p31gCLkFMubtOSqWZk7fycRVcsrupQF+w==
 
 sigmund@^1.0.1:
   version "1.0.1"
@@ -18856,11 +18809,6 @@ with@^5.0.0:
   dependencies:
     acorn "^3.1.0"
     acorn-globals "^3.0.0"
-
-wolfy87-eventemitter@*:
-  version "5.2.9"
-  resolved "https://registry.yarnpkg.com/wolfy87-eventemitter/-/wolfy87-eventemitter-5.2.9.tgz#e879f770b30fbb6512a8afbb330c388591099c2a"
-  integrity sha512-P+6vtWyuDw+MB01X7UeF8TaHBvbCovf4HPEMF/SV7BdDc1SMTiBy13SRD71lQh4ExFTG1d/WNzDGDCyOKSMblw==
 
 word-wrap@^1.2.3, word-wrap@~1.2.3:
   version "1.2.3"

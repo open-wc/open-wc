@@ -83,30 +83,19 @@ class TemplateAnalyzer {
   }
 
   /**
-   * Converts a template expression into HTML
+   * Converts a template expression into HTML, and caches any literal expressions for later analysis
    *
    * @param {import("estree").TaggedTemplateExpression} node Node to convert
    * @return {string}
    */
   templateExpressionToHtml(node) {
-    let html = '';
-    // since we need the corresponding member of two arrays, for loops is ergonomic
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < node.quasi.quasis.length; i++) {
-      const quasi = node.quasi.quasis[i];
+    return node.quasi.quasis.reduce((html, quasi, i) => {
       const expr = node.quasi.expressions[i];
-      html += quasi.value.raw;
-      if (expr) {
-        const placeholder = getExpressionPlaceholder(node, quasi);
-
-        html += placeholder;
-
-        if (isLiteral(expr)) {
-          this.expressionValues.set(placeholder.replace(/"|'/g, ''), expr.raw);
-        }
-      }
-    }
-    return html;
+      const placeholder = getExpressionPlaceholder(node, quasi);
+      // cache literal expressions for later analysis
+      if (isLiteral(expr)) this.expressionValues.set(placeholder.replace(/"|'/g, ''), expr.raw);
+      return `${html}${quasi.value.raw}${placeholder}`;
+    }, '');
   }
 
   /**

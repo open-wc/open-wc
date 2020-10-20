@@ -3,11 +3,12 @@
  * @author open-wc
  */
 
+const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { elementHasAttribute, elementHasSomeAttribute } = require('../utils/elementHasAttribute.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
+const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 
 if (!('ListFormat' in Intl)) {
   /* eslint-disable global-require */
@@ -53,8 +54,6 @@ const AltTextRule = {
   },
 
   create(context) {
-    let isLitHtml = false;
-    const validLitHtmlSources = createValidLitHtmlSources(context);
     // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
     const formatter = new Intl.ListFormat('en', { style: 'long', type: 'disjunction' });
 
@@ -90,13 +89,8 @@ const AltTextRule = {
     }
 
     return {
-      ImportDeclaration(node) {
-        if (hasLitHtmlImport(node, validLitHtmlSources)) {
-          isLitHtml = true;
-        }
-      },
       TaggedTemplateExpression(node) {
-        if (isHtmlTaggedTemplate(node) && isLitHtml) {
+        if (isHtmlTaggedTemplate(node, context)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -123,4 +117,4 @@ const AltTextRule = {
   },
 };
 
-module.exports = AltTextRule;
+module.exports = ruleExtender(AltTextRule, HasLitHtmlImportRuleExtension);

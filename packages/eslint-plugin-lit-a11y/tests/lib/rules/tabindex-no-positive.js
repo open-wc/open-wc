@@ -9,18 +9,19 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/tabindex-no-positive');
-const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
+  settings: { litHtmlSources: false },
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2015,
   },
 });
+
 ruleTester.run('tabindex-no-positive', rule, {
   valid: [
     {
@@ -38,7 +39,7 @@ ruleTester.run('tabindex-no-positive', rule, {
     {
       code: 'html`<div tabindex=${foo}></div>`',
     },
-  ].map(prependLitHtmlImport),
+  ],
 
   invalid: [
     {
@@ -77,5 +78,5 @@ ruleTester.run('tabindex-no-positive', rule, {
       code: "html`<div tabindex='1'></div>`",
       errors: [{ message: 'Avoid positive tabindex.' }],
     },
-  ].map(prependLitHtmlImport),
+  ],
 });

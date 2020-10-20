@@ -2,11 +2,11 @@
  * @fileoverview Enforce elements with aria-activedescendant are tabbable.
  * @author open-wc
  */
-
+const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 const { isInteractiveElement } = require('../utils/isInteractiveElement.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -28,17 +28,9 @@ const AriaActiveDescendantHasTabindexRule = {
   },
 
   create(context) {
-    let isLitHtml = false;
-    const validLitHtmlSources = createValidLitHtmlSources(context);
-
     return {
-      ImportDeclaration(node) {
-        if (hasLitHtmlImport(node, validLitHtmlSources)) {
-          isLitHtml = true;
-        }
-      },
       TaggedTemplateExpression(node) {
-        if (isHtmlTaggedTemplate(node) && isLitHtml) {
+        if (isHtmlTaggedTemplate(node, context)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -78,4 +70,4 @@ const AriaActiveDescendantHasTabindexRule = {
   },
 };
 
-module.exports = AriaActiveDescendantHasTabindexRule;
+module.exports = ruleExtender(AriaActiveDescendantHasTabindexRule, HasLitHtmlImportRuleExtension);

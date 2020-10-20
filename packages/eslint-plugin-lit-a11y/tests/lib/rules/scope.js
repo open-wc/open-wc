@@ -9,13 +9,13 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/scope');
-const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
+  settings: { litHtmlSources: false },
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2015,
@@ -30,7 +30,7 @@ ruleTester.run('scope', rule, {
     { code: "html`<th scope='colgroup'></th>`" },
     { code: "html`<foo-bar scope='col'></foo-bar>`" },
     { code: "html`<foo-bar scope='foo'></foo-bar>`" },
-  ].map(prependLitHtmlImport),
+  ],
 
   invalid: [
     {
@@ -67,5 +67,5 @@ ruleTester.run('scope', rule, {
         },
       ],
     },
-  ].map(prependLitHtmlImport),
+  ],
 });
