@@ -148,7 +148,10 @@ class TemplateAnalyzer {
       throw new Error('Cannot analyze non-literal expressions');
 
     /** @type {import('estree').SimpleLiteral} */
-    const expr = this.getExpressionFromPlaceholder(placeholder);
+    const expr = /** @type {import('estree').SimpleLiteral} */ (this.getExpressionFromPlaceholder(
+      // thanks, prettier
+      placeholder,
+    ));
 
     return expr.value;
   }
