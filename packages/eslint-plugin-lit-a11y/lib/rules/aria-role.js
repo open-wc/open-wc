@@ -4,22 +4,22 @@
  */
 
 const ruleExtender = require('eslint-rule-extender');
-const { roles } = require('aria-query');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
-const { getExpressionValue } = require('../utils/getExpressionValue.js');
+const { isConcreteAriaRole } = require('../utils/aria.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-const validAriaRoles = [...roles.keys()].filter(role => roles.get(role).abstract === false);
-
 /** @type {import("eslint").Rule.RuleModule} */
 const AriaRoleRule = {
   meta: {
     type: 'suggestion',
+    messages: {
+      invalidRole: 'Invalid role "{{role}}".',
+    },
     docs: {
       description: 'aria-role',
       category: 'Accessibility',
@@ -40,27 +40,21 @@ const AriaRoleRule = {
           analyzer.traverse({
             enterElement(element) {
               for (const [attr, rawValue] of Object.entries(element.attribs)) {
-                if (attr !== 'role') {
-                  return;
-                }
+                if (attr !== 'role') return;
 
-                const val = getExpressionValue(analyzer, rawValue);
+                const { value } = analyzer.describeAttribute(rawValue);
 
-                if (!val && rawValue.startsWith('{{')) {
-                  return; // the value is interpolated with a name. assume it's legitimate and move on.
-                }
+                if (value === undefined) return;
 
-                if (
-                  !validAriaRoles.includes(
-                    /** @type {import("aria-query").ARIARoleDefintionKey} */ (val || rawValue),
-                  )
-                ) {
+                const role = value.toString();
+
+                if (!isConcreteAriaRole(role)) {
                   const loc = analyzer.getLocationForAttribute(element, attr);
                   context.report({
                     loc,
-                    message: `Invalid role "{{val}}".`,
+                    messageId: 'invalidRole',
                     data: {
-                      val: val || rawValue,
+                      role,
                     },
                   });
                 }

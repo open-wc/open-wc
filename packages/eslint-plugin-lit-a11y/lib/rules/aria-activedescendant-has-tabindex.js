@@ -16,6 +16,9 @@ const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const AriaActiveDescendantHasTabindexRule = {
   meta: {
     type: 'suggestion',
+    messages: {
+      ariaActiveDescendantHasTabindex: 'Elements with aria-activedescendant must be tabbable.',
+    },
     docs: {
       description: 'Enforce elements with aria-activedescendant are tabbable.',
       category: 'Accessibility',
@@ -35,33 +38,26 @@ const AriaActiveDescendantHasTabindexRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              if (!Object.keys(element.attribs).includes('aria-activedescendant')) {
-                return;
-              }
+              if (!Object.keys(element.attribs).includes('aria-activedescendant')) return;
 
               const { tabindex } = element.attribs;
-
-              if (tabindex && tabindex.startsWith('{{')) {
-                return; // tabindex is interpolated. ignore this node, assuming it's valid
-              }
 
               // If this is an interactive element and the tabindex attribute is not specified,
               // or the tabIndex property was not mutated, then the tabIndex
               // property will be undefined.
-              if (isInteractiveElement(element) && tabindex === undefined) {
-                return;
-              }
+              if (isInteractiveElement(element) && tabindex === undefined) return;
 
-              if (parseInt(tabindex, 10) >= -1) {
-                return;
-              }
+              const { value } = analyzer.describeAttribute(tabindex);
+
+              if (tabindex && value === undefined) return;
+
+              const tabIndex = typeof value === 'number' ? value : parseInt(`${value}`, 10);
+
+              if (tabIndex >= -1) return;
 
               const loc = analyzer.getLocationFor(element);
 
-              context.report({
-                loc,
-                message: 'Elements with aria-activedescendant must be tabbable.',
-              });
+              context.report({ loc, messageId: 'ariaActiveDescendantHasTabindex' });
             },
           });
         }

@@ -39,35 +39,35 @@ ruleTester.run('aria-role', rule, {
   invalid: [
     {
       code: "html`<div role='foo'>`;",
-      errors: [{ message: 'Invalid role "foo".' }],
+      errors: [{ messageId: 'invalidRole', data: { role: 'foo' } }],
     },
     {
       code: 'html`<div role="foo">`;',
-      errors: [{ message: 'Invalid role "foo".' }],
+      errors: [{ messageId: 'invalidRole', data: { role: 'foo' } }],
     },
     {
       code: 'html`<div role=\'${"foo"}\'>`;',
-      errors: [{ message: 'Invalid role "foo".' }],
+      errors: [{ messageId: 'invalidRole', data: { role: 'foo' } }],
     },
     {
       code: "html`<div role='${'foo'}'>`;",
-      errors: [{ message: 'Invalid role "foo".' }],
+      errors: [{ messageId: 'invalidRole', data: { role: 'foo' } }],
     },
     {
       code: 'html`<div role="${\'foo\'}">`;',
-      errors: [{ message: 'Invalid role "foo".' }],
+      errors: [{ messageId: 'invalidRole', data: { role: 'foo' } }],
     },
     {
       code: 'html`<div role=${"foo"}>`;',
-      errors: [{ message: 'Invalid role "foo".' }],
+      errors: [{ messageId: 'invalidRole', data: { role: 'foo' } }],
     },
     {
       code: "html`<div role=${'foo'}>`;",
-      errors: [{ message: 'Invalid role "foo".' }],
+      errors: [{ messageId: 'invalidRole', data: { role: 'foo' } }],
     },
     {
       code: 'html`<div role=${"foo"}>`;',
-      errors: [{ message: 'Invalid role "foo".' }],
+      errors: [{ messageId: 'invalidRole', data: { role: 'foo' } }],
     },
   ],
 });

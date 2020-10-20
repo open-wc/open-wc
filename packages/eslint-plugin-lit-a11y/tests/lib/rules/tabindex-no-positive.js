@@ -44,39 +44,39 @@ ruleTester.run('tabindex-no-positive', rule, {
   invalid: [
     {
       code: "html`<div tabindex='foo'></div>`",
-      errors: [{ messageId: 'tabindexNoPositive', data: { val: 'foo' } }],
+      errors: [{ messageId: 'tabindexNoPositive', data: { value: 'foo' } }],
+    },
+    {
+      code: "html`<div tabindex='${'bar'}'></div>`",
+      errors: [{ messageId: 'tabindexNoPositive', data: { value: 'bar' } }],
+    },
+    {
+      code: 'html`<div tabindex="${true}"></div>`',
+      errors: [{ messageId: 'tabindexNoPositive', data: { value: 'true' } }],
+    },
+    {
+      code: 'html`<div tabindex="${null}"></div>`',
+      errors: [{ messageId: 'tabindexNoPositive', data: { value: 'null' } }],
     },
     {
       code: "html`<div tabindex='2'></div>`",
       errors: [{ messageId: 'avoidPositiveTabindex' }],
     },
     {
-      code: "html`<div tabindex='${'bar'}'></div>`",
-      errors: [{ message: 'Invalid tabindex value bar.' }],
-    },
-    {
-      code: 'html`<div tabindex="${true}"></div>`',
-      errors: [{ message: 'Invalid tabindex value true.' }],
-    },
-    {
-      code: 'html`<div tabindex="${null}"></div>`',
-      errors: [{ message: 'Invalid tabindex value null.' }],
-    },
-    {
       code: 'html`<div tabindex="${1}"></div>`',
-      errors: [{ message: 'Avoid positive tabindex.' }],
+      errors: [{ messageId: 'avoidPositiveTabindex' }],
     },
     {
       code: "html`<div tabindex='${'1'}'></div>`",
-      errors: [{ message: 'Avoid positive tabindex.' }],
+      errors: [{ messageId: 'avoidPositiveTabindex' }],
     },
     {
       code: "html`<div tabindex=${'1'}></div>`",
-      errors: [{ message: 'Avoid positive tabindex.' }],
+      errors: [{ messageId: 'avoidPositiveTabindex' }],
     },
     {
       code: "html`<div tabindex='1'></div>`",
-      errors: [{ message: 'Avoid positive tabindex.' }],
+      errors: [{ messageId: 'avoidPositiveTabindex' }],
     },
   ],
 });

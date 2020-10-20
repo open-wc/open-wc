@@ -151,6 +151,17 @@ function isExpressionPlaceholder(value) {
 exports.isExpressionPlaceholder = isExpressionPlaceholder;
 
 /**
+ * Is the expression a simple literal e.g. string or number literal?
+ * @param {import("estree").Expression} expr
+ * @return {expr is import("estree").SimpleLiteral}
+ */
+function isLiteral(expr) {
+  return expr && expr.type === 'Literal';
+}
+
+exports.isLiteral = isLiteral;
+
+/**
  * @param {TreeAdapter.Node} node
  * @return {node is TreeAdapter.Element}
  */

@@ -4,7 +4,6 @@
  */
 
 const ruleExtender = require('eslint-rule-extender');
-const { getExpressionValue } = require('../utils/getExpressionValue.js');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { isAriaHidden } = require('../utils/aria.js');
@@ -82,11 +81,15 @@ const ImgRedundantAltRule = {
 
               const bannedKeywords = [...DEFAULT_KEYWORDS, ...optionsKeywords];
 
-              const contraband = bannedKeywords.filter(keyword => {
-                const val =
-                  getExpressionValue(analyzer, element.attribs.alt) || element.attribs.alt;
-                return val.toLowerCase().includes(keyword.toLowerCase());
-              });
+              const { value } = analyzer.describeAttribute(element.attribs.alt);
+
+              if (!value) return;
+
+              const alt = value.toString();
+
+              const contraband = bannedKeywords.filter(keyword =>
+                alt.toString().toLowerCase().includes(keyword.toLowerCase()),
+              );
 
               if (contraband.length > 0) {
                 const banned = formatter.format(contraband);
