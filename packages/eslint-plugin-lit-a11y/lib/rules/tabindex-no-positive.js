@@ -35,6 +35,8 @@ const TabindexNoPositiveRule = {
     let isLitHtml = false;
     const validLitHtmlSources = createValidLitHtmlSources(context);
 
+    const tabIndexAttributes = ['tabindex', '.tabindex'];
+
     return {
       ImportDeclaration(node) {
         if (hasLitHtmlImport(node, validLitHtmlSources)) {
@@ -47,8 +49,12 @@ const TabindexNoPositiveRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              if (Object.keys(element.attribs).includes('tabindex')) {
-                const attributeValue = element.attribs.tabindex;
+              const attribs = Object.keys(element.attribs);
+              tabIndexAttributes.forEach(tabIndexAttribute => {
+                if (!attribs.includes(tabIndexAttribute)) {
+                  return;
+                }
+                const attributeValue = element.attribs[tabIndexAttribute];
                 const val = getExpressionValue(analyzer, attributeValue);
 
                 if (!val && attributeValue.startsWith('{{')) return;
@@ -56,7 +62,7 @@ const TabindexNoPositiveRule = {
                 const value = Number(val || attributeValue);
 
                 if (Number.isNaN(value)) {
-                  const loc = analyzer.getLocationForAttribute(element, 'tabindex');
+                  const loc = analyzer.getLocationForAttribute(element, tabIndexAttribute);
                   context.report({
                     loc,
                     messageId: 'tabindexNoPositive',
@@ -66,10 +72,10 @@ const TabindexNoPositiveRule = {
                 }
 
                 if (value > 0) {
-                  const loc = analyzer.getLocationForAttribute(element, 'tabindex');
+                  const loc = analyzer.getLocationForAttribute(element, tabIndexAttribute);
                   context.report({ loc, messageId: 'avoidPositiveTabindex' });
                 }
-              }
+              });
             },
           });
         }
