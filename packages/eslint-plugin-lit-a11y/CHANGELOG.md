@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/open-wc/open-wc/compare/eslint-plugin-lit-a11y@0.5.1...eslint-plugin-lit-a11y@0.5.2) (2020-10-20)
+
+**Note:** Version bump only for package eslint-plugin-lit-a11y
+
+
+
+
+
 ## [0.5.1](https://github.com/open-wc/open-wc/compare/eslint-plugin-lit-a11y@0.5.0...eslint-plugin-lit-a11y@0.5.1) (2020-10-18)
 
 
