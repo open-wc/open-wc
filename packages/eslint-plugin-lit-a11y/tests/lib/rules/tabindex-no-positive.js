@@ -9,18 +9,19 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/tabindex-no-positive');
-const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
+  settings: { litHtmlSources: false },
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2015,
   },
 });
+
 ruleTester.run('tabindex-no-positive', rule, {
   valid: [
     {
@@ -38,44 +39,44 @@ ruleTester.run('tabindex-no-positive', rule, {
     {
       code: 'html`<div tabindex=${foo}></div>`',
     },
-  ].map(prependLitHtmlImport),
+  ],
 
   invalid: [
     {
       code: "html`<div tabindex='foo'></div>`",
-      errors: [{ messageId: 'tabindexNoPositive', data: { val: 'foo' } }],
+      errors: [{ messageId: 'tabindexNoPositive', data: { value: 'foo' } }],
+    },
+    {
+      code: "html`<div tabindex='${'bar'}'></div>`",
+      errors: [{ messageId: 'tabindexNoPositive', data: { value: 'bar' } }],
+    },
+    {
+      code: 'html`<div tabindex="${true}"></div>`',
+      errors: [{ messageId: 'tabindexNoPositive', data: { value: 'true' } }],
+    },
+    {
+      code: 'html`<div tabindex="${null}"></div>`',
+      errors: [{ messageId: 'tabindexNoPositive', data: { value: 'null' } }],
     },
     {
       code: "html`<div tabindex='2'></div>`",
       errors: [{ messageId: 'avoidPositiveTabindex' }],
     },
     {
-      code: "html`<div tabindex='${'bar'}'></div>`",
-      errors: [{ message: 'Invalid tabindex value bar.' }],
-    },
-    {
-      code: 'html`<div tabindex="${true}"></div>`',
-      errors: [{ message: 'Invalid tabindex value true.' }],
-    },
-    {
-      code: 'html`<div tabindex="${null}"></div>`',
-      errors: [{ message: 'Invalid tabindex value null.' }],
-    },
-    {
       code: 'html`<div tabindex="${1}"></div>`',
-      errors: [{ message: 'Avoid positive tabindex.' }],
+      errors: [{ messageId: 'avoidPositiveTabindex' }],
     },
     {
       code: "html`<div tabindex='${'1'}'></div>`",
-      errors: [{ message: 'Avoid positive tabindex.' }],
+      errors: [{ messageId: 'avoidPositiveTabindex' }],
     },
     {
       code: "html`<div tabindex=${'1'}></div>`",
-      errors: [{ message: 'Avoid positive tabindex.' }],
+      errors: [{ messageId: 'avoidPositiveTabindex' }],
     },
     {
       code: "html`<div tabindex='1'></div>`",
-      errors: [{ message: 'Avoid positive tabindex.' }],
+      errors: [{ messageId: 'avoidPositiveTabindex' }],
     },
-  ].map(prependLitHtmlImport),
+  ],
 });

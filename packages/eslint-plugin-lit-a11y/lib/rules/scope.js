@@ -2,11 +2,11 @@
  * @fileoverview Enforce scope prop is only used on <th> elements.
  * @author open-wc
  */
-
+const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
+const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -29,17 +29,9 @@ const ScopeRule = {
     schema: [],
   },
   create(context) {
-    let isLitHtml = false;
-    const validLitHtmlSources = createValidLitHtmlSources(context);
-
     return {
-      ImportDeclaration(node) {
-        if (hasLitHtmlImport(node, validLitHtmlSources)) {
-          isLitHtml = true;
-        }
-      },
       TaggedTemplateExpression(node) {
-        if (isHtmlTaggedTemplate(node) && isLitHtml) {
+        if (isHtmlTaggedTemplate(node, context)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -78,4 +70,4 @@ const ScopeRule = {
   },
 };
 
-module.exports = ScopeRule;
+module.exports = ruleExtender(ScopeRule, HasLitHtmlImportRuleExtension);

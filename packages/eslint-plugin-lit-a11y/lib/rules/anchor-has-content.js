@@ -3,10 +3,11 @@
  * @author open-wc
  */
 
+const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { hasAccessibleChildren } = require('../utils/hasAccessibleChildren.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
+const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -28,17 +29,9 @@ const AnchorHasContentRule = {
   },
 
   create(context) {
-    let isLitHtml = false;
-    const validLitHtmlSources = createValidLitHtmlSources(context);
-
     return {
-      ImportDeclaration(node) {
-        if (hasLitHtmlImport(node, validLitHtmlSources)) {
-          isLitHtml = true;
-        }
-      },
       TaggedTemplateExpression(node) {
-        if (isHtmlTaggedTemplate(node) && isLitHtml) {
+        if (isHtmlTaggedTemplate(node, context)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -60,4 +53,4 @@ const AnchorHasContentRule = {
   },
 };
 
-module.exports = AnchorHasContentRule;
+module.exports = ruleExtender(AnchorHasContentRule, HasLitHtmlImportRuleExtension);

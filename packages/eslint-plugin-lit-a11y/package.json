@@ -31,6 +31,7 @@
     "dom5": "^3.0.1",
     "emoji-regex": "^9.0.0",
     "eslint": "^7.6.0",
+    "eslint-rule-extender": "0.0.1",
     "intl-list-format": "^1.0.3",
     "parse5": "^5.1.1",
     "parse5-htmlparser2-tree-adapter": "^6.0.0",

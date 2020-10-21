@@ -10,18 +10,19 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/autocomplete-valid');
-const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
+  settings: { litHtmlSources: false },
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2015,
   },
 });
+
 ruleTester.run('autocomplete-valid', rule, {
   valid: [
     { code: 'html`<input type="text" autocomplete="name" />`;' },
@@ -35,7 +36,7 @@ ruleTester.run('autocomplete-valid', rule, {
     { code: 'html`<input type="text" autocomplete=${autocompl} />;`' },
     { code: 'html`<input type="text" autocomplete="${autocompl || \'name\'}" />;`' },
     { code: 'html`<input type="text" autocomplete="${autocompl || \'foo\'}" />;`' },
-  ].map(prependLitHtmlImport),
+  ],
 
   invalid: [
     {
@@ -94,5 +95,5 @@ ruleTester.run('autocomplete-valid', rule, {
         },
       ],
     },
-  ].map(prependLitHtmlImport),
+  ],
 });

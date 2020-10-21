@@ -9,23 +9,24 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/role-supports-aria-attr');
-const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
+  settings: { litHtmlSources: false },
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2015,
   },
 });
+
 ruleTester.run('role-supports-aria-attr', rule, {
   valid: [
     { code: "html`<div role='checkbox' aria-checked='true'></div>`" },
     { code: "html`<div role='presentation'></div>`" },
-  ].map(prependLitHtmlImport),
+  ],
 
   invalid: [
     {
@@ -40,5 +41,5 @@ ruleTester.run('role-supports-aria-attr', rule, {
         { message: 'The "combobox" role must not be used with the "aria-checked" attribute.\'' },
       ],
     },
-  ].map(prependLitHtmlImport),
+  ],
 });

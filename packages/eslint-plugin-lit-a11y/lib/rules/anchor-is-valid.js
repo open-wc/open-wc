@@ -3,10 +3,11 @@
  * @author open-wc
  */
 
+const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { generateObjSchema, enumArraySchema } = require('../utils/schemas.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
+const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -38,22 +39,18 @@ const AnchorIsValidRule = {
     schema: [
       generateObjSchema({
         aspects: enumArraySchema(allAspects, 1),
+        allowHash: {
+          type: 'boolean',
+          default: true,
+        },
       }),
     ],
   },
 
   create(context) {
-    let isLitHtml = false;
-    const validLitHtmlSources = createValidLitHtmlSources(context);
-
     return {
-      ImportDeclaration(node) {
-        if (hasLitHtmlImport(node, validLitHtmlSources)) {
-          isLitHtml = true;
-        }
-      },
       TaggedTemplateExpression(node) {
-        if (isHtmlTaggedTemplate(node) && isLitHtml) {
+        if (isHtmlTaggedTemplate(node, context)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -61,17 +58,15 @@ const AnchorIsValidRule = {
               if (element.name === 'a') {
                 // Set up the rule aspects to check.
                 const options = context.options[0] || {};
-                const aspects = options.aspects || allAspects;
+                const hasAspectsOption = Array.isArray(options.aspects);
 
                 // Create active aspect flag object. Failing checks will only report
                 // if the related flag is set to true.
-                const activeAspects = allAspects.reduce(
-                  (acc, aspect) => ({
-                    ...acc,
-                    [aspect]: aspects.indexOf(aspect) !== -1,
-                  }),
-                  { noHref: undefined, invalidHref: undefined, preferButton: undefined },
-                );
+                const activeAspects = {
+                  noHref: hasAspectsOption ? options.aspects.includes('noHref') : true,
+                  invalidHref: hasAspectsOption ? options.aspects.includes('invalidHref') : true,
+                  preferButton: hasAspectsOption ? options.aspects.includes('preferButton') : true,
+                };
 
                 const hasAnyHref = Object.keys(element.attribs).includes('href');
                 const hasClickListener = Object.keys(element.attribs).includes('@click');
@@ -97,11 +92,17 @@ const AnchorIsValidRule = {
                 }
 
                 // Hrefs have been found, now check for validity.
-                const invalidHrefValues = [element.attribs.href].filter(
-                  value =>
-                    typeof value === 'string' &&
-                    (!value.length || value === '#' || /^\W*?javascript:/.test(value)),
-                );
+                const invalidHrefValues = [element.attribs.href].filter(href => {
+                  const { value } = analyzer.describeAttribute(href);
+
+                  if (typeof value !== 'string') return false;
+
+                  return (
+                    !value.length ||
+                    (options.allowHash === false && value === '#') ||
+                    /^\W*?javascript:/.test(value)
+                  );
+                });
 
                 if (invalidHrefValues.length !== 0) {
                   // If a click handler is found it should be a button, otherwise it is an invalid link.
@@ -122,4 +123,4 @@ const AnchorIsValidRule = {
   },
 };
 
-module.exports = AnchorIsValidRule;
+module.exports = ruleExtender(AnchorIsValidRule, HasLitHtmlImportRuleExtension);

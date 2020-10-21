@@ -9,13 +9,13 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/img-redundant-alt');
-const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
+  settings: { litHtmlSources: false },
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2015,
@@ -72,5 +72,5 @@ ruleTester.run('img-redundant-alt', rule, {
         },
       ],
     },
-  ].map(prependLitHtmlImport),
+  ],
 });

@@ -3,12 +3,12 @@
  * @author open-wc
  */
 
-const { getExpressionValue } = require('../utils/getExpressionValue.js');
+const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { isAriaHidden } = require('../utils/aria.js');
 const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
-const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
+const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 
 if (!('ListFormat' in Intl)) {
   /* eslint-disable global-require */
@@ -60,17 +60,10 @@ const ImgRedundantAltRule = {
   create(context) {
     // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
     const formatter = new Intl.ListFormat('en', { style: 'long', type: 'disjunction' });
-    let isLitHtml = false;
-    const validLitHtmlSources = createValidLitHtmlSources(context);
 
     return {
-      ImportDeclaration(node) {
-        if (hasLitHtmlImport(node, validLitHtmlSources)) {
-          isLitHtml = true;
-        }
-      },
       TaggedTemplateExpression(node) {
-        if (isHtmlTaggedTemplate(node) && isLitHtml) {
+        if (isHtmlTaggedTemplate(node, context)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
@@ -88,11 +81,15 @@ const ImgRedundantAltRule = {
 
               const bannedKeywords = [...DEFAULT_KEYWORDS, ...optionsKeywords];
 
-              const contraband = bannedKeywords.filter(keyword => {
-                const val =
-                  getExpressionValue(analyzer, element.attribs.alt) || element.attribs.alt;
-                return val.toLowerCase().includes(keyword.toLowerCase());
-              });
+              const { value } = analyzer.describeAttribute(element.attribs.alt);
+
+              if (!value) return;
+
+              const alt = value.toString();
+
+              const contraband = bannedKeywords.filter(keyword =>
+                alt.toString().toLowerCase().includes(keyword.toLowerCase()),
+              );
 
               if (contraband.length > 0) {
                 const banned = formatter.format(contraband);
@@ -115,4 +112,4 @@ const ImgRedundantAltRule = {
   },
 };
 
-module.exports = ImgRedundantAltRule;
+module.exports = ruleExtender(ImgRedundantAltRule, HasLitHtmlImportRuleExtension);

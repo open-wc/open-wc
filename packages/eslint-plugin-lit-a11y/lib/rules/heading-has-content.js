@@ -3,12 +3,13 @@
  * @author open-wc
  */
 
+const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { hasAccessibleChildren } = require('../utils/hasAccessibleChildren.js');
 const { isCustomElement } = require('../utils/isCustomElement.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
+const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -58,17 +59,10 @@ const HeadingHasContentRule = {
       if (isCustomElement(element)) return customHeadingElements.includes(element.name);
       return headings.includes(element.name);
     }
-    let isLitHtml = false;
-    const validLitHtmlSources = createValidLitHtmlSources(context);
 
     return {
-      ImportDeclaration(node) {
-        if (hasLitHtmlImport(node, validLitHtmlSources)) {
-          isLitHtml = true;
-        }
-      },
       TaggedTemplateExpression(node) {
-        if (isHtmlTaggedTemplate(node) && isLitHtml) {
+        if (isHtmlTaggedTemplate(node, context)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           const options = (context.options && context.options[0]) || {};
@@ -96,4 +90,4 @@ const HeadingHasContentRule = {
   },
 };
 
-module.exports = HeadingHasContentRule;
+module.exports = ruleExtender(HeadingHasContentRule, HasLitHtmlImportRuleExtension);

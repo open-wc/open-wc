@@ -11,6 +11,17 @@ function isAriaRole(string) {
 
 /**
  * @param {string} string
+ * @return {string is import("aria-query").ARIARoleDefintionKey}
+ */
+function isConcreteAriaRole(string) {
+  return (
+    isAriaRole(string) &&
+    [...roles.keys()].some(role => roles.get(role).abstract === false && role === string)
+  );
+}
+
+/**
+ * @param {string} string
  * @return {string is import('aria-query').ARIAProperty}
  */
 function isAriaPropertyName(string) {
@@ -57,5 +68,6 @@ module.exports = {
   isAriaPropertyName,
   isInvalidAriaAttribute,
   isAriaHidden,
+  isConcreteAriaRole,
   getElementAriaAttributes,
 };

@@ -9,23 +9,24 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/no-autofocus');
-const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
+  settings: { litHtmlSources: false },
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2015,
   },
 });
+
 ruleTester.run('no-autofocus', rule, {
   valid: [
     { code: 'html`<div></div>`' },
     // give me some code that won't trigger a warning
-  ].map(prependLitHtmlImport),
+  ],
 
   invalid: [
     {
@@ -57,5 +58,5 @@ ruleTester.run('no-autofocus', rule, {
       code: 'html`<div .autofocus=${foo}></div>`',
       errors: [{ messageId: 'noAutofocus', data: { type: 'property' } }],
     },
-  ].map(prependLitHtmlImport),
+  ],
 });
