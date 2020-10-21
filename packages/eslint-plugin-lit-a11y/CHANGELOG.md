@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://github.com/open-wc/open-wc/compare/eslint-plugin-lit-a11y@0.5.2...eslint-plugin-lit-a11y@0.5.3) (2020-10-21)
+
+
+### Bug Fixes
+
+* **eslint-plugin-lit-a11y:** qualified specifiers ([#1917](https://github.com/open-wc/open-wc/issues/1917)) ([5b52a5a](https://github.com/open-wc/open-wc/commit/5b52a5a6eb73998d11d34e1062972fdc5de6ade8)), closes [#1911](https://github.com/open-wc/open-wc/issues/1911) [#1916](https://github.com/open-wc/open-wc/issues/1916)
+
+
+
+
+
 ## [0.5.2](https://github.com/open-wc/open-wc/compare/eslint-plugin-lit-a11y@0.5.1...eslint-plugin-lit-a11y@0.5.2) (2020-10-20)
 
 **Note:** Version bump only for package eslint-plugin-lit-a11y
