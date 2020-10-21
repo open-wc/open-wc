@@ -50,7 +50,7 @@ You may also extend the recommended configuration like so:
 }
 ```
 
-By default, only templates imported from `'lit-html'` or `'lit-element'` are exported. It may be the case, however, that you're importing `html` from a package that re-exports lit-html, like for example `@apollo-elements/lit-apollo` does.
+By default, only templates imported from `'lit-html'` or `'lit-element'` are linted. It may be the case, however, that you're importing lit-html's `html` template tag function from a package that re-exports lit-html, like for example `@apollo-elements/lit-apollo` does.
 
 In this case, you can configure `@apollo-elements/lit-apollo` as a valid lit-html source like so:
 
