@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/open-wc/open-wc/compare/eslint-plugin-lit-a11y@0.5.3...eslint-plugin-lit-a11y@0.5.4) (2020-10-21)
+
+
+### Bug Fixes
+
+* **eslint-plugin-lit-a11y:** check for tabIndex property ([#1918](https://github.com/open-wc/open-wc/issues/1918)) ([02381b3](https://github.com/open-wc/open-wc/commit/02381b38620cf7ad1ebefac721a117a47357984f))
+
+
+
+
+
 ## [0.5.3](https://github.com/open-wc/open-wc/compare/eslint-plugin-lit-a11y@0.5.2...eslint-plugin-lit-a11y@0.5.3) (2020-10-21)
 
 
