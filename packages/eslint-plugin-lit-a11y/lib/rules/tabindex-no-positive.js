@@ -32,6 +32,8 @@ const TabindexNoPositiveRule = {
   },
 
   create(context) {
+    const tabIndexAttributes = ['tabindex', '.tabindex'];
+
     return {
       TaggedTemplateExpression(node) {
         if (isHtmlTaggedTemplate(node, context)) {
@@ -39,8 +41,10 @@ const TabindexNoPositiveRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              if (Object.keys(element.attribs).includes('tabindex')) {
-                let literal = element.attribs.tabindex;
+              Object.entries(element.attribs).forEach(([attributeName, attributeValue]) => {
+                if (!tabIndexAttributes.includes(attributeName)) return;
+
+                let literal = attributeValue;
 
                 if (isExpressionPlaceholder(literal)) {
                   const expr = analyzer.getExpressionFromPlaceholder(literal);
@@ -55,7 +59,7 @@ const TabindexNoPositiveRule = {
                 const value = parseInt(literal, 10);
 
                 if (Number.isNaN(value)) {
-                  const loc = analyzer.getLocationForAttribute(element, 'tabindex');
+                  const loc = analyzer.getLocationForAttribute(element, attributeName);
                   context.report({
                     loc,
                     messageId: 'tabindexNoPositive',
@@ -65,10 +69,10 @@ const TabindexNoPositiveRule = {
                 }
 
                 if (value > 0) {
-                  const loc = analyzer.getLocationForAttribute(element, 'tabindex');
+                  const loc = analyzer.getLocationForAttribute(element, attributeName);
                   context.report({ loc, messageId: 'avoidPositiveTabindex' });
                 }
-              }
+              });
             },
           });
         }
