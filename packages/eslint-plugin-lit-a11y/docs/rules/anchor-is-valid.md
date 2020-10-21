@@ -50,7 +50,7 @@ html`
 `;
 ```
 
-### Case: I need the HTML to be interactive, don't I need to use an a tag for that?
+### Case: I need the HTML to be interactive, don't I need to use an `a` tag for that?
 
 An `<a>` tag is not inherently interactive. Without an href attribute, it really is no different to a `<div>`.
 
@@ -146,11 +146,26 @@ This rule takes one optional object argument of type object:
     "lit-a11y/anchor-is-valid": [
       "error",
       {
+        "allowHash": true,
         "aspects": ["noHref", "invalidHref", "preferButton"]
       }
     ]
   }
 }
+```
+
+For the `allowHash` option (default `true`), if set to `false`, the empty hash or "scroll-to-top" link will be considered an error.
+
+Examples of **incorrect** code for this rule with `"allowHash": false`:
+
+```js
+html` <a href="#"></a> `;
+```
+
+Examples of **correct** code for this rule with `"allowHash": false`:
+
+```js
+html` <a href="#top"></a> `;
 ```
 
 For the `aspects` option, these strings determine which sub-rules are run. This allows omission of certain error types in restrictive environments.
@@ -170,9 +185,6 @@ Anchors should be a button:
 ```js
 html`
   <a @click=${foo}></a>
-  <a href="#" @click=${foo}></a>
-  <a href=${'#'} @click=${foo}></a>
-  <a href=${`#`} @click=${foo}></a>
   <a href="javascript:void(0)" @click=${foo}></a>
   <a href=${'javascript:void(0)'} @click=${foo}></a>
   <a href=${`javascript:void(0)`} @click=${foo}></a>
@@ -193,9 +205,6 @@ Invalid `href` attribute:
 
 ```js
 html`
-  <a href="#"></a>
-  <a href={"#"}></a>
-  <a href={`#`}></a>
   <a href="javascript:void(0)"></a>
   <a href={"javascript:void(0)"}></a>
   <a href={`javascript:void(0)`}></a>
@@ -207,6 +216,7 @@ Examples of **correct** code for this rule:
 ```js
 html`
   <a href="https://github.com"></a>
+  <a href="#"></a>
   <a href="#section"></a>
   <a href="foo"></a>
   <a href="/foo/bar"></a>

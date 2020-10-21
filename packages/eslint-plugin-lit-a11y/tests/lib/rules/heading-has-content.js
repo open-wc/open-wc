@@ -9,18 +9,19 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/heading-has-content');
-const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
+  settings: { litHtmlSources: false },
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2015,
   },
 });
+
 ruleTester.run('heading-has-content', rule, {
   valid: [
     { code: 'html`<h1>hello</h1>`' },
@@ -52,7 +53,7 @@ ruleTester.run('heading-has-content', rule, {
         },
       ],
     },
-  ].map(prependLitHtmlImport),
+  ],
 
   invalid: [
     {
@@ -92,5 +93,5 @@ ruleTester.run('heading-has-content', rule, {
         },
       ],
     },
-  ].map(prependLitHtmlImport),
+  ],
 });

@@ -12,6 +12,8 @@ const {
   isTextNode,
   isElementNode,
   getExpressionPlaceholder,
+  isExpressionPlaceholder,
+  isLiteral,
 } = require('./util');
 
 const analyzerCache = new WeakMap();
@@ -24,7 +26,7 @@ const analyzerCache = new WeakMap();
  */
 
 /**
- * @typedef {Object} Visitor
+ * @typedef {object} Visitor
  * @property {NodeVisitorCallback<treeAdapter.Node>} [enter]
  * @property {NodeVisitorCallback<treeAdapter.DocumentFragment>} [enterDocumentFragment]
  * @property {NodeVisitorCallback<treeAdapter.CommentNode>} [enterCommentNode]
@@ -34,12 +36,12 @@ const analyzerCache = new WeakMap();
  */
 
 /**
- * @param {import("estree").Expression} expr
- * @return {expr is import("estree").SimpleLiteral}
+ * @typedef {object} LitAttributeValueDescriptor
+ * @property {boolean} isLiteralExpression is the attribute value a simple literal e.g. string or number literal
+ * @property {string} source the attribute value's text in the parsed source
+ * @property {import('estree').SimpleLiteral['value']} value the literal value of the attribute
+ * @property {import('estree').Expression} expression the Expression for the attribute value
  */
-function isLiteral(expr) {
-  return expr && expr.type === 'Literal';
-}
 
 /**
  * Analyzes a given template expression for traversing its contained
@@ -52,9 +54,17 @@ class TemplateAnalyzer {
    * @param {GenericLitTaggedExpression} node Node to analyze
    */
   constructor(node) {
+    /** @type{Error[]} */
     this.errors = [];
+
     this._node = node;
+
+    /**
+     * Map cache of placeholder strings to expression values
+     * @type {Map<string, import('estree').Expression>}
+     */
     this.expressionValues = new Map();
+
     /** @type {treeAdapter.DocumentType} */
     // TODO: This is not ideal
     // @ts-expect-error: parse5.DocumentFragment is a union with {}, so let's fudge this type for convenience
@@ -83,30 +93,19 @@ class TemplateAnalyzer {
   }
 
   /**
-   * Converts a template expression into HTML
+   * Converts a template expression into HTML, and caches any literal expressions for later analysis
    *
    * @param {import("estree").TaggedTemplateExpression} node Node to convert
    * @return {string}
    */
   templateExpressionToHtml(node) {
-    let html = '';
-    // since we need the corresponding member of two arrays, for loops is ergonomic
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < node.quasi.quasis.length; i++) {
-      const quasi = node.quasi.quasis[i];
+    return node.quasi.quasis.reduce((html, quasi, i) => {
       const expr = node.quasi.expressions[i];
-      html += quasi.value.raw;
-      if (expr) {
-        const placeholder = getExpressionPlaceholder(node, quasi);
-
-        html += placeholder;
-
-        if (isLiteral(expr)) {
-          this.expressionValues.set(placeholder.replace(/"|'/g, ''), expr.raw);
-        }
-      }
-    }
-    return html;
+      const placeholder = getExpressionPlaceholder(node, quasi);
+      // cache literal expressions for later analysis
+      this.expressionValues.set(placeholder.replace(/"|'/g, ''), expr);
+      return `${html}${quasi.value.raw}${placeholder}`;
+    }, '');
   }
 
   /**
@@ -128,6 +127,71 @@ class TemplateAnalyzer {
       }
     }
     return this._node.loc;
+  }
+
+  /**
+   * Retrieve the cached expression value for a given placeholder
+   * @param {string} placeholder
+   */
+  getExpressionFromPlaceholder(placeholder) {
+    return this.expressionValues.get(placeholder);
+  }
+
+  /**
+   * Only returns values of simple literal expressions, e.g. number or string literals
+   * Otherwise returns null.
+   * @param {string} placeholder
+   * @return {import("estree").SimpleLiteral['value']}
+   */
+  getExpressionValue(placeholder) {
+    if (!this.isLiteralExpressionPlaceholder(placeholder))
+      throw new Error('Cannot analyze non-literal expressions');
+
+    /** @type {import('estree').SimpleLiteral} */
+    const expr = /** @type {import('estree').SimpleLiteral} */ (this.getExpressionFromPlaceholder(
+      // thanks, prettier
+      placeholder,
+    ));
+
+    return expr.value;
+  }
+
+  /**
+   * Get a descriptor of a lit-html template expression.
+   * @param {string} source
+   * @return {LitAttributeValueDescriptor}
+   */
+  describeAttribute(source) {
+    let value;
+    let isLiteralExpression = false;
+    const expression = this.getExpressionFromPlaceholder(source);
+    if (isExpressionPlaceholder(source)) {
+      if (this.isLiteralExpressionPlaceholder(source)) {
+        // if the value is interpolated with a literal expression e.g. string or number literal
+        // then we can analyze it
+        value = this.getExpressionValue(source);
+        isLiteralExpression = true;
+      }
+    } else {
+      value = source;
+    }
+
+    return {
+      source,
+      value,
+      isLiteralExpression,
+      expression,
+    };
+  }
+
+  /**
+   * Is the expression for the placeholder string a literal expression (e.g. string or number literal)
+   * @param {string} placeholder
+   * @return {boolean}
+   */
+  isLiteralExpressionPlaceholder(placeholder) {
+    if (!isExpressionPlaceholder(placeholder)) return false;
+    return isLiteral(this.getExpressionFromPlaceholder(placeholder));
   }
 
   /**

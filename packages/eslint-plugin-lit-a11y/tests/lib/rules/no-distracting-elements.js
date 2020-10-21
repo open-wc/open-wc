@@ -9,13 +9,13 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/no-distracting-elements');
-const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
+  settings: { litHtmlSources: false },
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2015,
@@ -23,7 +23,7 @@ const ruleTester = new RuleTester({
 });
 
 ruleTester.run('no-distracting-elements', rule, {
-  valid: [{ code: 'html`<div></div>`' }].map(prependLitHtmlImport),
+  valid: [{ code: 'html`<div></div>`' }],
 
   invalid: [
     {
@@ -42,5 +42,5 @@ ruleTester.run('no-distracting-elements', rule, {
         },
       ],
     },
-  ].map(prependLitHtmlImport),
+  ],
 });

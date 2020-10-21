@@ -9,23 +9,24 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/no-access-key');
-const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
+  settings: { litHtmlSources: false },
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2015,
   },
 });
+
 ruleTester.run('no-access-key', rule, {
   valid: [
     { code: 'html`<a></a>`' },
     // give me some code that won't trigger a warning
-  ].map(prependLitHtmlImport),
+  ],
 
   invalid: [
     {
@@ -52,5 +53,5 @@ ruleTester.run('no-access-key', rule, {
         },
       ],
     },
-  ].map(prependLitHtmlImport),
+  ],
 });

@@ -3,22 +3,23 @@
  * @author open-wc
  */
 
-const { roles } = require('aria-query');
+const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { hasLitHtmlImport, createValidLitHtmlSources } = require('../utils/utils.js');
-const { getExpressionValue } = require('../utils/getExpressionValue.js');
+const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
+const { isConcreteAriaRole } = require('../utils/aria.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
 
-const validAriaRoles = [...roles.keys()].filter(role => roles.get(role).abstract === false);
-
 /** @type {import("eslint").Rule.RuleModule} */
 const AriaRoleRule = {
   meta: {
     type: 'suggestion',
+    messages: {
+      invalidRole: 'Invalid role "{{role}}".',
+    },
     docs: {
       description: 'aria-role',
       category: 'Accessibility',
@@ -31,43 +32,29 @@ const AriaRoleRule = {
   },
 
   create(context) {
-    let isLitHtml = false;
-    const validLitHtmlSources = createValidLitHtmlSources(context);
-
     return {
-      ImportDeclaration(node) {
-        if (hasLitHtmlImport(node, validLitHtmlSources)) {
-          isLitHtml = true;
-        }
-      },
       TaggedTemplateExpression(node) {
-        if (isHtmlTaggedTemplate(node) && isLitHtml) {
+        if (isHtmlTaggedTemplate(node, context)) {
           const analyzer = TemplateAnalyzer.create(node);
 
           analyzer.traverse({
             enterElement(element) {
               for (const [attr, rawValue] of Object.entries(element.attribs)) {
-                if (attr !== 'role') {
-                  return;
-                }
+                if (attr !== 'role') return;
 
-                const val = getExpressionValue(analyzer, rawValue);
+                const { value } = analyzer.describeAttribute(rawValue);
 
-                if (!val && rawValue.startsWith('{{')) {
-                  return; // the value is interpolated with a name. assume it's legitimate and move on.
-                }
+                if (value === undefined) return;
 
-                if (
-                  !validAriaRoles.includes(
-                    /** @type {import("aria-query").ARIARoleDefintionKey} */ (val || rawValue),
-                  )
-                ) {
+                const role = value.toString();
+
+                if (!isConcreteAriaRole(role)) {
                   const loc = analyzer.getLocationForAttribute(element, attr);
                   context.report({
                     loc,
-                    message: `Invalid role "{{val}}".`,
+                    messageId: 'invalidRole',
                     data: {
-                      val: val || rawValue,
+                      role,
                     },
                   });
                 }
@@ -80,4 +67,4 @@ const AriaRoleRule = {
   },
 };
 
-module.exports = AriaRoleRule;
+module.exports = ruleExtender(AriaRoleRule, HasLitHtmlImportRuleExtension);

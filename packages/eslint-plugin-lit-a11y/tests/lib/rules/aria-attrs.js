@@ -9,25 +9,26 @@
 
 const { RuleTester } = require('eslint');
 const rule = require('../../../lib/rules/aria-attrs');
-const { prependLitHtmlImport } = require('../../../lib/utils/utils.js');
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
+  settings: { litHtmlSources: false },
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2015,
   },
 });
+
 ruleTester.run('aria-attrs', rule, {
   valid: [
     {
       code: "html`<div aria-labelledby='foo'></div>`",
     },
     // give me some code that won't trigger a warning
-  ].map(prependLitHtmlImport),
+  ],
 
   invalid: [
     {
@@ -38,5 +39,5 @@ ruleTester.run('aria-attrs', rule, {
         },
       ],
     },
-  ].map(prependLitHtmlImport),
+  ],
 });
