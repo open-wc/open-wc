@@ -41,12 +41,10 @@ const TabindexNoPositiveRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              const attribs = Object.keys(element.attribs);
-              tabIndexAttributes.forEach(tabIndexAttribute => {
-                if (!attribs.includes(tabIndexAttribute))
-                  return;
+              Object.entries(element.attribs).forEach(([attributeName, attributeValue]) => {
+                if (!tabIndexAttributes.includes(attributeName)) return;
 
-                let literal = element.attribs[tabIndexAttribute];
+                let literal = attributeValue;
 
                 if (isExpressionPlaceholder(literal)) {
                   const expr = analyzer.getExpressionFromPlaceholder(literal);
@@ -61,7 +59,7 @@ const TabindexNoPositiveRule = {
                 const value = parseInt(literal, 10);
 
                 if (Number.isNaN(value)) {
-                  const loc = analyzer.getLocationForAttribute(element, tabIndexAttribute);
+                  const loc = analyzer.getLocationForAttribute(element, attributeName);
                   context.report({
                     loc,
                     messageId: 'tabindexNoPositive',
@@ -71,7 +69,7 @@ const TabindexNoPositiveRule = {
                 }
 
                 if (value > 0) {
-                  const loc = analyzer.getLocationForAttribute(element, tabIndexAttribute);
+                  const loc = analyzer.getLocationForAttribute(element, attributeName);
                   context.report({ loc, messageId: 'avoidPositiveTabindex' });
                 }
               });
