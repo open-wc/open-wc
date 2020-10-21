@@ -3,7 +3,13 @@
   "version": "0.5.4",
   "description": "linting plugin for lit-a11y",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/eslint-plugin-lit-a11y"
+  },
   "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/eslint-plugin-lit-a11y",
   "main": "lib/index.js",
   "engines": {
     "node": ">=0.10.0"
