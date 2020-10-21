@@ -50,8 +50,6 @@ const TabindexNoPositiveRule = {
                   // if the interpolated value is a variable name or some other
                   // non-literal expression, we can't analyze it
                   else return;
-
-                  if (!literal) return;
                 }
 
                 const value = parseInt(literal, 10);
