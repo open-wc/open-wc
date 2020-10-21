@@ -5,6 +5,12 @@
   "license": "ISC",
   "author": "open-wc",
   "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/eslint-plugin-lit-a11y"
+  },
+  "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/eslint-plugin-lit-a11y",
   "engines": {
     "node": ">=0.10.0"
   },
