@@ -136,10 +136,31 @@ const HasLitHtmlImportRuleExtension = {
 
     return {
       ImportDeclaration(node) {
-        const shouldAnalyseNode =
-          userExplicitlyDisabledImportValidation || isLitHtmlImportDeclaration(node, context);
+        const { litHtmlSources } = context.settings;
 
-        if (shouldAnalyseNode) {
+        // litHtmlSources is undefined -> lint all
+        // litHtmlSources is false -> lint everything
+        if (!litHtmlSources) {
+          context.parserServices.shouldAnalyseHtmlTaggedLiterals = true;
+
+          context.parserServices.litHtmlNamespaces = [
+            ...(context.parserServices.litHtmlNamespaces || []),
+            ...getLitHtmlNamespaces(node),
+          ];
+
+          context.parserServices.litHtmlTags = [
+            ...(context.parserServices.litHtmlTags || []),
+            ...getLitHtmlTags(node),
+          ];
+          return;
+        }
+
+        // litHtmlSources is ['ing-web'] -> lint only lit-html & lit-element & ing-web
+        // litHtmlSources is true -> lint only lit-html & lit-element
+        if (
+          (litHtmlSources === true || Array.isArray(litHtmlSources)) &&
+          isLitHtmlImportDeclaration(node, context)
+        ) {
           context.parserServices.shouldAnalyseHtmlTaggedLiterals = true;
 
           context.parserServices.litHtmlNamespaces = [

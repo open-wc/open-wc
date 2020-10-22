@@ -21,7 +21,7 @@ const defaultLitHtmlSourcesRuleTester = new RuleTester({
   },
 });
 
-defaultLitHtmlSourcesRuleTester.run('lit-html-imports', rule, {
+defaultLitHtmlSourcesRuleTester.run('lit-html-imsdasdasdports', rule, {
   valid: [
     // CASE: importing named, aliased, and namespaced from bare lit-html specifier
     { code: "import {html} from 'lit-html'; html`<img alt=''/>`" },
@@ -39,19 +39,19 @@ defaultLitHtmlSourcesRuleTester.run('lit-html-imports', rule, {
     { code: "import * as Lit from 'lit-element'; Lit.html`<img alt=''/>`" },
 
     // invalid if it was lit-html, but no error because default export html is not a valid lithtmlsource
-    { code: "import html from 'lit-html'; html`<img/>`" },
+    { code: "import html from 'lit-html'; html`<img alt=''/>`" },
 
     // invalid if it was lit-html, but `html` is not imported
-    { code: "import {html as h} from 'lit-html'; html`<img/>`" },
+    { code: "import {html as h} from 'lit-html'; html`<img alt=''/>`" },
 
     // invalid if it was lit-html, but `html` is not imported
-    { code: "import {html as h} from 'lit-element'; html`<img/>`" },
+    { code: "import {html as h} from 'lit-element'; html`<img alt=''/>`" },
 
     // invalid if it was lit-html, but no error because default export html is not a valid lithtmlsource
-    { code: "import html from 'foo'; html`<img/>`" },
+    { code: "import html from 'foo'; html`<img alt=''/>`" },
 
     // invalid if it was lit-html, but `html` is not imported
-    { code: "import {html as h} from 'foo'; h`<img/>`" },
+    { code: "import {html as h} from 'foo'; h`<img alt=''/>`" },
 
     {
       code: `
@@ -63,8 +63,9 @@ defaultLitHtmlSourcesRuleTester.run('lit-html-imports', rule, {
       `,
     },
   ],
+
   invalid: [
-    { code: "import {html} from 'lit-html'; html`<img/>`", errors: [{ messageId: 'imgAttrs' }] },
+    { code: "import {html} from 'foo'; html`<img/>`", errors: [{ messageId: 'imgAttrs' }] },
     { code: "import {html as h} from 'lit-html'; h`<img/>`", errors: [{ messageId: 'imgAttrs' }] },
     {
       code: "import * as Lit from 'lit-html'; Lit.html`<img/>`",
@@ -137,7 +138,7 @@ userLitHtmlSourcesRuleTester.run('lit-html-imports', rule, {
     { code: "import * as Lit from '@bar/baz/foo.js'; Lit.html`<img alt=''/>`" },
 
     // invalid if it was lit-html, but no error because `bar` is not a valid lithtmlsource
-    { code: "import {html} from 'bar'; html`<img/>`" },
+    { code: "import {html} from 'bar'; html`<img alt=''/>`" },
 
     // invalid, but no error because default export html is not a valid lithtmlsource
     { code: "import html from 'foo'; html`<img/>`" },
@@ -223,4 +224,23 @@ userLitHtmlSourcesRuleTester.run('lit-html-imports', rule, {
       errors: [{ messageId: 'imgAttrs' }],
     },
   ],
+});
+
+const litHtmlSourcesTrue = new RuleTester({
+  settings: { litHtmlSources: true },
+  parserOptions: {
+    sourceType: 'module',
+    ecmaVersion: 2015,
+  },
+});
+
+litHtmlSourcesTrue.run('lit-html-imports', rule, {
+  valid: [
+    // CASE: importing named, aliased, and namespaced from bare lit-html specifier
+    { code: "import {html} from 'lit-html'; html`<img alt=''/>`" },
+    // not reported because foo is not a valid lit-html source
+    { code: "import {html} from 'foo'; html`<img/>`" },
+    { code: "import {html} from 'bar'; html`<img/>`" },
+  ],
+  invalid: [],
 });
