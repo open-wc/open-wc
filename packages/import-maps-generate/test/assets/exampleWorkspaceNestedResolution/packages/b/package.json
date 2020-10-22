@@ -1,9 +1,0 @@
-{
-  "name": "b",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./b.js",
-  "dependencies": {
-    "lit-html": "^0.14.0"
-  }
-}

@@ -56,6 +56,7 @@
     "core-js": "2.6.10",
     "eslint": "^7.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.14.0",
     "eslint-plugin-html": "^6.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-no-only-tests": "^2.4.0",
