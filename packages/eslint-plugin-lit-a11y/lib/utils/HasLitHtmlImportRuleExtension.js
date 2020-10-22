@@ -3,6 +3,7 @@
  * @property {boolean} shouldAnalyseHtmlTaggedLiterals;
  * @property {string[]} [litHtmlNamespaces]
  * @property {string[]} [litHtmlTags]
+ * @property {string[]} [litHtmlSpecifiers]
  */
 
 /**
@@ -28,25 +29,6 @@
 
 const DEFAULT_LIT_HTML_SPECIFIERS = ['lit-html', 'lit-element'];
 
-/** @type {WeakMap<import('eslint').Rule.RuleContext, string[]>} */
-const contextSpecifiers = new WeakMap();
-
-/**
- * Returns a list of acceptable lit-html exporting module specifiers
- * @param {LitA11yRuleContext} context
- * @return {string[]}
- */
-function getLitHtmlSpecifiers(context) {
-  if (!contextSpecifiers.has(context)) {
-    const USER_LIT_HTML_SPECIFIERS = Array.isArray(context.settings.litHtmlSources)
-      ? context.settings.litHtmlSources
-      : DEFAULT_LIT_HTML_SPECIFIERS;
-    contextSpecifiers.set(context, [...DEFAULT_LIT_HTML_SPECIFIERS, ...USER_LIT_HTML_SPECIFIERS]);
-  }
-
-  return contextSpecifiers.get(context);
-}
-
 /**
  * Given an import id like `lit-html/lit-html.js`, returns the package name i.e. `lit-html`
  * @param {string|number|boolean|RegExp} id
@@ -60,21 +42,27 @@ function getPackageName(id) {
   return [scope, pkg].join('/');
 }
 
+/** @typedef {import('estree').ImportDeclaration & import('eslint').Rule.NodeParentExtension} ImportNode */
+
+/**
+ * @param {LitA11yRuleContext} context
+ * @param {ImportNode} node
+ */
+const isLitHtmlImport = (context, node) =>
+  /** @param {ImportNode['specifiers'][number]} specifier */
+  specifier =>
+    specifier.type !== 'ImportDefaultSpecifier' &&
+    (specifier.type === 'ImportNamespaceSpecifier' || specifier.type === 'ImportSpecifier') &&
+    context.parserServices.litHtmlSpecifiers.includes(getPackageName(node.source.value));
+
 /**
  * Is this ImportDeclaration importing lit-html, taking the user's settings into account
- * @param {import('estree').ImportDeclaration & import('eslint').Rule.NodeParentExtension} node
+ * @param {ImportNode} node
  * @param {LitA11yRuleContext} context
  */
 function isLitHtmlImportDeclaration(node, context) {
-  /** @param {typeof node.specifiers[number]} specifier */
-  const isLitHtmlImport = specifier =>
-    (specifier.type && specifier.type === 'ImportNamespaceSpecifier') ||
-    (specifier.type === 'ImportSpecifier' &&
-      getLitHtmlSpecifiers(context).includes(getPackageName(node.source.value)));
-
   const { specifiers = [] } = node;
-
-  return specifiers.some(isLitHtmlImport);
+  return specifiers.some(isLitHtmlImport(context, node));
 }
 
 /**
@@ -123,56 +111,41 @@ const HasLitHtmlImportRuleExtension = {
    * @return {import('eslint').Rule.RuleListener}
    */
   createAdditionalVisitors(context) {
-    /**
-     * if user set `litHtmlSources` to literal `false`,
-     * consider every tagged-template-literal with tag name `html`
-     * to be a lit-html template.
-     */
-    const userExplicitlyDisabledImportValidation = context.settings.litHtmlSources === false;
-
     /* eslint-disable no-param-reassign */
+    const { litHtmlSources } = context.settings;
 
-    context.parserServices.shouldAnalyseHtmlTaggedLiterals = userExplicitlyDisabledImportValidation;
+    const USER_LIT_HTML_SPECIFIERS = Array.isArray(context.settings.litHtmlSources)
+      ? context.settings.litHtmlSources
+      : [];
+
+    context.parserServices.litHtmlSpecifiers = [
+      ...DEFAULT_LIT_HTML_SPECIFIERS,
+      ...USER_LIT_HTML_SPECIFIERS,
+    ];
 
     return {
       ImportDeclaration(node) {
-        const { litHtmlSources } = context.settings;
+        context.parserServices.shouldAnalyseHtmlTaggedLiterals =
+          // A previous import supplied lit-html
+          context.parserServices.shouldAnalyseHtmlTaggedLiterals ||
+          // litHtmlSources is falsy -> lint everything
+          !litHtmlSources ||
+          // litHtmlSources is an Array -> lint only lit-html & lit-element & ...specified packages
+          // litHtmlSources is true -> lint only lit-html & lit-element
+          isLitHtmlImportDeclaration(node, context);
 
-        // litHtmlSources is undefined -> lint all
-        // litHtmlSources is false -> lint everything
-        if (!litHtmlSources) {
-          context.parserServices.shouldAnalyseHtmlTaggedLiterals = true;
+        if (!context.parserServices.shouldAnalyseHtmlTaggedLiterals) return;
 
-          context.parserServices.litHtmlNamespaces = [
+        context.parserServices.litHtmlNamespaces = [
+          ...new Set([
             ...(context.parserServices.litHtmlNamespaces || []),
             ...getLitHtmlNamespaces(node),
-          ];
+          ]),
+        ];
 
-          context.parserServices.litHtmlTags = [
-            ...(context.parserServices.litHtmlTags || []),
-            ...getLitHtmlTags(node),
-          ];
-          return;
-        }
-
-        // litHtmlSources is ['ing-web'] -> lint only lit-html & lit-element & ing-web
-        // litHtmlSources is true -> lint only lit-html & lit-element
-        if (
-          (litHtmlSources === true || Array.isArray(litHtmlSources)) &&
-          isLitHtmlImportDeclaration(node, context)
-        ) {
-          context.parserServices.shouldAnalyseHtmlTaggedLiterals = true;
-
-          context.parserServices.litHtmlNamespaces = [
-            ...(context.parserServices.litHtmlNamespaces || []),
-            ...getLitHtmlNamespaces(node),
-          ];
-
-          context.parserServices.litHtmlTags = [
-            ...(context.parserServices.litHtmlTags || []),
-            ...getLitHtmlTags(node),
-          ];
-        }
+        context.parserServices.litHtmlTags = [
+          ...new Set([...(context.parserServices.litHtmlTags || []), ...getLitHtmlTags(node)]),
+        ];
       },
     };
 
