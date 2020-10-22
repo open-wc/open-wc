@@ -30,7 +30,7 @@ module.exports.configs = {
       'lit-a11y/aria-role': 'error',
       'lit-a11y/aria-unsupported-elements': 'error',
       'lit-a11y/autocomplete-valid': 'error',
-      'lit-a11y/click-events-have-key-events': 'warn',
+      'lit-a11y/click-events-have-key-events': 'error',
       'lit-a11y/heading-has-content': 'error',
       'lit-a11y/iframe-title': 'error',
       'lit-a11y/img-redundant-alt': 'error',

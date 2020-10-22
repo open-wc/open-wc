@@ -2,7 +2,7 @@
 
 Accessibility linting plugin for lit-html.
 
-Most of the rules are ported from [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y).
+Most of the rules are ported from [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y), and made to work with [lit-html](https://lit-html.polymer-project.org/) templates and custom elements.
 
 ## Installation
 
