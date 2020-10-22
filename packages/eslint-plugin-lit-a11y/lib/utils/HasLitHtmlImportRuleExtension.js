@@ -123,6 +123,11 @@ const HasLitHtmlImportRuleExtension = {
       ...USER_LIT_HTML_SPECIFIERS,
     ];
 
+    if (!context.settings.litHtmlSources) {
+      context.parserServices.shouldAnalyseHtmlTaggedLiterals = true;
+      context.parserServices.litHtmlTags = ['html'];
+    }
+
     return {
       ImportDeclaration(node) {
         context.parserServices.shouldAnalyseHtmlTaggedLiterals =
@@ -131,7 +136,6 @@ const HasLitHtmlImportRuleExtension = {
           // litHtmlSources is falsy -> lint everything
           !litHtmlSources ||
           // litHtmlSources is an Array -> lint only lit-html & lit-element & ...specified packages
-          // litHtmlSources is true -> lint only lit-html & lit-element
           isLitHtmlImportDeclaration(node, context);
 
         if (!context.parserServices.shouldAnalyseHtmlTaggedLiterals) return;

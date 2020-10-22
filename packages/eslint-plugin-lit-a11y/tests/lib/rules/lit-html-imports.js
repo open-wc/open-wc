@@ -14,6 +14,8 @@ const rule = require('../../../lib/rules/alt-text');
 // Tests
 //------------------------------------------------------------------------------
 
+const errors = [{ messageId: 'imgAttrs' }];
+
 const defaultLitHtmlSourcesRuleTester = new RuleTester({
   parserOptions: {
     sourceType: 'module',
@@ -23,6 +25,13 @@ const defaultLitHtmlSourcesRuleTester = new RuleTester({
 
 defaultLitHtmlSourcesRuleTester.run('lit-html-imports-default-config', rule, {
   valid: [
+    {
+      code: `
+        html\`<img alt=''/>\`
+        h\`<img alt=''/>\`
+        Lit.html\`<img alt=''/>\`
+        foo\`<img alt=''/>\``,
+    },
     // CASE: importing named, aliased, and namespaced from bare lit-html specifier
     {
       code: `
@@ -122,60 +131,65 @@ defaultLitHtmlSourcesRuleTester.run('lit-html-imports-default-config', rule, {
 
   invalid: [
     {
+      errors,
+      code: `
+        html\`<img/>\``,
+    },
+    {
+      errors,
       code: `
         import {html} from 'foo';
         html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import {html as h} from 'lit-html';
         h\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import * as Lit from 'lit-html';
         Lit.html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
 
     {
+      errors,
       code: `
         import {html} from 'lit-html/lit-html.js';
         html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import {html as h} from 'lit-html/lit-html.js';
         h\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import * as Lit from 'lit-html/lit-html.js';
         Lit.html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
 
     {
+      errors,
       code: `
         import {html} from 'lit-element';
         html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import {html as h} from 'lit-element';
         h\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import * as Lit from 'lit-element';
         Lit.html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
   ],
 });
@@ -331,136 +345,136 @@ userLitHtmlSourcesRuleTester.run('lit-html-imports-specific-packages-config', ru
   ],
   invalid: [
     {
+      errors,
       code: `
         import {html} from 'lit-html';
         html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import {html as h} from 'lit-html';
         h\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import * as Lit from 'lit-html';
         Lit.html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
 
     {
+      errors,
       code: `
         import {html} from 'lit-html/lit-html.js';
         html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import {html as h} from 'lit-html/lit-html.js';
         h\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import * as Lit from 'lit-html/lit-html.js';
         Lit.html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
 
     {
+      errors,
       code: `
         import {html} from 'lit-element';
         html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import {html as h} from 'lit-element';
         h\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import * as Lit from 'lit-element';
         Lit.html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
 
     {
+      errors,
       code: `
         import {html} from 'foo';
         html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import {html as h} from 'foo';
         h\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import * as Lit from 'foo';
         Lit.html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
 
     {
+      errors,
       code: `
         import {html} from 'foo/foo.js';
         html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import {html as h} from 'foo/foo.js';
         h\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import * as Lit from 'foo/foo.js';
         Lit.html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
 
     {
+      errors,
       code: `
         import {html} from '@bar/baz';
         html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import {html as h} from '@bar/baz';
         h\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import * as Lit from '@bar/baz';
         Lit.html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
 
     {
+      errors,
       code: `
         import {html} from '@bar/baz/foo.js';
         html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import {html as h} from '@bar/baz/foo.js';
         h\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
     {
+      errors,
       code: `
         import * as Lit from '@bar/baz/foo.js';
         Lit.html\`<img/>\``,
-      errors: [{ messageId: 'imgAttrs' }],
     },
   ],
 });
