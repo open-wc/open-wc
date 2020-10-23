@@ -50,26 +50,30 @@ You may also extend the recommended configuration like so:
 }
 ```
 
-By default, only templates imported from `'lit-html'` or `'lit-element'` are linted. It may be the case, however, that you're importing lit-html's `html` template tag function from a package that re-exports lit-html, like for example `@apollo-elements/lit-apollo` does.
+By default, any tagged template literal that starts with `html` is linted. Example:
 
-In this case, you can configure `@apollo-elements/lit-apollo` as a valid lit-html source like so:
+```js
+html`<img />`;
+```
+
+It could be the case, however, that you're using multiple rendering libraries in a project, like for example [`htm`](https://github.com/developit/htm), which also uses a `html` tagged template literal, but has a slightly different syntax than lit-html. In this case you can specify the following option, to make sure only lit-html tagged template literals are linted:
+
+```json
+{
+  "settings": {
+    "litHtmlSources": true
+  }
+}
+```
+
+This will cause the plugin to lint _only_ `html` tagged template literals that are imported from either `'lit-html'` or `'lit-element'`.
+
+If you're importing lit-html from a package that re-exports lit-html, like for example `@apollo-elements/lit-apollo`, you can specify `@apollo-elements/lit-apollo` as a valid litHtmlSource like so:
 
 ```json
 {
   "settings": {
     "litHtmlSources": ["@apollo-elements/lit-apollo"]
-  }
-}
-```
-
-The reason for this check is that project may make use of multiple rendering libraries, which may have similar apis, like for example [`htm`](https://github.com/developit/htm), which also uses a `html` tagged template literal, but handles syntax differently.
-
-If you wish, you can disable this check by passing `false`. In that case, every tagged-template-literal whose tag name is `html` will be considered a lit-html template. This is not recommended in most cases.
-
-```json
-{
-  "settings": {
-    "litHtmlSources": false
   }
 }
 ```
