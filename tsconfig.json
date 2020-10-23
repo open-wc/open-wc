@@ -22,7 +22,6 @@
     "packages/**/node_modules",
     "**/coverage/*",
     "packages/create/src/generators/*/templates/**/*",
-    "packages/webpack-index-html-plugin/demo/**/*",
     "packages/building-utils/test/custom-polyfils/**/*",
     "**/dist/**/*",
     "packages/**/test/**/snapshots",

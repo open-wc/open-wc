@@ -38,4 +38,4 @@ We are still in the process of investigating and documenting our recommendations
 
 ## Webpack
 
-We recommend [rollup](https://rollupjs.org/guide/en/) as a build tool. It is designed specifically for standard es modules and it's very easy to use. But sometimes you are not in control of choosing the tools to use on a project, and you need to make things work with other tools. For webpack, we also have a [standard config](https://github.com/open-wc/open-wc/tree/master/packages/building-webpack) which can be used to build apps with web components.
+We recommend [rollup](https://rollupjs.org/guide/en/) as a build tool. It is designed specifically for standard es modules and it's very easy to use. But sometimes you are not in control of choosing the tools to use on a project, and you need to make things work with other tools. For webpack, we have a legacy [standard config](https://github.com/open-wc/legacy/tree/master/packages/building-webpack) which can be used to build apps with web components.
