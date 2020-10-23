@@ -54,12 +54,18 @@ const RoleHasRequiredAriaAttrsRule = {
               // if element has a role attr
               if (Object.keys(element.attribs).includes('role')) {
                 const { role } = element.attribs;
+                const isNotAriaControls = attr => attr !== 'aria-controls';
+
                 // if the role is a valid/existing role
                 if (isAriaRole(role)) {
-                  const requiredAriaAttributes = Object.keys(roles.get(role).requiredProps).sort();
+                  const requiredAriaAttributes = Object.keys(roles.get(role).requiredProps)
+                    .filter(isNotAriaControls)
+                    .sort();
                   const presentAriaAttributes = Object.keys(element.attribs)
+                    .filter(isNotAriaControls)
                     .filter(attr => attr.startsWith('aria-'))
                     .sort();
+
                   const hasRequiredAriaAttributes = requiredAriaAttributes.every(
                     (attr, i) => attr === presentAriaAttributes[i],
                   );

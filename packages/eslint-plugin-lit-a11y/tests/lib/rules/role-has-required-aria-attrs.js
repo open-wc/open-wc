@@ -30,8 +30,9 @@ ruleTester.run('role-has-required-aria-attrs', rule, {
         'html`<span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span>`',
     },
     { code: 'html`<span role="row"></span>`' },
+    { code: 'html`<span role="${foo}"></span>`' },
+    { code: 'html`<span role="checkbox" aria-checked=${true}></span>`' },
     { code: 'html`<input type="checkbox" role="switch" aria-checked="true" />`' },
-    { code: 'html`<div role="combobox" aria-controls="foo"  aria-expanded="foo"></div>`' },
   ],
 
   invalid: [
@@ -43,8 +44,7 @@ ruleTester.run('role-has-required-aria-attrs', rule, {
       code: "html`<div role='combobox'></div>`",
       errors: [
         {
-          message:
-            'The "combobox" role requires the attributes "aria-controls" and "aria-expanded".',
+          message: 'The "combobox" role requires the attribute "aria-expanded".',
         },
       ],
     },
