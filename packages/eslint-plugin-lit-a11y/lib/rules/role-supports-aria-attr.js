@@ -41,7 +41,7 @@ const RoleSupportsAriaAttrRule = {
               if (Object.keys(element.attribs).includes('role')) {
                 /** @type {element['attribs'] & { role?: import("aria-query").ARIARole }} */
                 const { role } = element.attribs;
-
+                if (role.startsWith('{{')) return; // role is interpolated, assume its OK
                 const { props: propKeyValues } = roles.get(role);
                 const propertySet = Object.keys(propKeyValues);
                 const invalidAriaPropsForRole = [...aria.keys()].filter(
