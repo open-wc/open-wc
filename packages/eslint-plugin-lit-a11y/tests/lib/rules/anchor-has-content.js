@@ -26,6 +26,7 @@ ruleTester.run('anchor-has-content', rule, {
   valid: [
     { code: "html`<a href='#'>foo</a>`" },
     { code: "html`<a href='#'>${'foo'}</a>`" },
+    { code: "html`<a href='#'>${foo}</a>`" },
     { code: "html`<a href='#'><div>asdf</div></a>`" },
     { code: "html`<a><div aria-hidden='true'>foo</div>foo</a>`" },
     { code: "html`<a><div aria-hidden='true'>foo</div><div>foo</div></a>`" },

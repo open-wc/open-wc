@@ -29,6 +29,7 @@ ruleTester.run('no-redundant-role', rule, {
     { code: 'html`<button></button>`' },
     { code: 'html`<div role="button"></div>`' },
     { code: 'html`<img role="presentation"/>`' },
+    { code: 'html`<img role="${foo}"/>`' },
   ],
 
   invalid: [

@@ -92,6 +92,11 @@ defaultLitHtmlSourcesRuleTester.run('lit-html-imports-default-config', rule, {
     },
     {
       code: `
+        import {html} from 'lit-element';
+        html\`<img alt='\${foo}'/>\``,
+    },
+    {
+      code: `
         import {html as h} from 'lit-element';
         h\`<img alt=''/>\``,
     },

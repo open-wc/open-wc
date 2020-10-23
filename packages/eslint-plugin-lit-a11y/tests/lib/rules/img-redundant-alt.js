@@ -28,6 +28,7 @@ ruleTester.run('img-redundant-alt', rule, {
     { code: 'html`<img src="bar" aria-hidden alt="Picture of me taking a photo of an image" /> `' },
     { code: 'html`<img src="baz" alt=${`Baz taking a ${photo}`} />`' },
     { code: 'html`<img src="baz" alt=${"foo"} />`' },
+    { code: 'html`<img src="baz" alt=${foo} />`' },
   ],
 
   invalid: [

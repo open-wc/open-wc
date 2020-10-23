@@ -27,6 +27,9 @@ ruleTester.run('aria-attrs', rule, {
     {
       code: "html`<div aria-labelledby='foo'></div>`",
     },
+    {
+      code: "html`<div aria-labelledby='${foo}'></div>`",
+    },
     // give me some code that won't trigger a warning
   ],
 

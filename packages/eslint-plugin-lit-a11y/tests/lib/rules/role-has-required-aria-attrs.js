@@ -25,6 +25,7 @@ const ruleTester = new RuleTester({
 ruleTester.run('role-has-required-aria-attrs', rule, {
   valid: [
     { code: "html`<span role='alert' aria-atomic='foo' aria-live='foo'></span>`" },
+    { code: "html`<span role='alert' aria-atomic='${foo}' aria-live='foo'></span>`" },
     {
       code:
         'html`<span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span>`',
