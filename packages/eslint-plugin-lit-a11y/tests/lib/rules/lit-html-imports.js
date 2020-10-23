@@ -25,13 +25,31 @@ const defaultLitHtmlSourcesRuleTester = new RuleTester({
 
 defaultLitHtmlSourcesRuleTester.run('lit-html-imports-default-config', rule, {
   valid: [
+    /**
+     * If a user doesn't specify a `litHtmlSources` option in the settings,
+     * we want to lint any tagged template literal that starts with `html`
+     *
+     * In this case, the following cases are valid because `Lit.html`,
+     * `h`, and `foo` are not linted
+     */
     {
       code: `
-        html\`<img alt=''/>\`
-        h\`<img alt=''/>\`
-        Lit.html\`<img alt=''/>\`
-        foo\`<img alt=''/>\``,
+        Lit.html\`<img />\``,
     },
+    {
+      code: `
+        foo\`<img />\``,
+    },
+    {
+      code: `
+        h\`<img />\``,
+    },
+    // CASE: This does pass because `html` IS checked, and the img has alt
+    {
+      code: `
+        html\`<img alt='' />\``,
+    },
+
     // CASE: importing named, aliased, and namespaced from bare lit-html specifier
     {
       code: `
