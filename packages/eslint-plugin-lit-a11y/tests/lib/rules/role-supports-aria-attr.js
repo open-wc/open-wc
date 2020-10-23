@@ -24,6 +24,7 @@ const ruleTester = new RuleTester({
 
 ruleTester.run('role-supports-aria-attr', rule, {
   valid: [
+    { code: "html`<div class='${classMap(calendarClasses)}' role='${ifDefined(role)}'>`" },
     { code: "html`<div role='checkbox' aria-checked='true'></div>`" },
     { code: "html`<div role='presentation'></div>`" },
   ],
