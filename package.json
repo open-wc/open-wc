@@ -3,7 +3,6 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "lerna run build",
     "build:types": "tsc -p tsconfig.build.types.json",
     "codelabs:build": "node ./packages/codelabs/build-codelabs.js",
     "docs:build": "rimraf _site && node cli-build.js",
@@ -17,14 +16,15 @@
     "lint:prettier": "prettier \"**/*.{js,md}\" \"**/package.json\" --check",
     "lint:types": "tsc",
     "lint:versions": "node ./scripts/lint-versions.js",
-    "postinstall": "npm run build && patch-package",
-    "publish": "lerna publish --message 'chore: release new versions'",
-    "site:build": "npm run docs:build && lerna run site:build",
+    "postinstall": "patch-package",
+    "release": "changeset publish && yarn format",
+    "site:build": "npm run docs:build && node scripts/workspaces-scripts-bin.mjs site:build",
     "site:start": "npm run docs:start",
     "start": "npm run docs:start",
-    "test": "yarn test:browser && yarn test:node",
-    "test:browser": "web-test-runner",
-    "test:node": "lerna run test:node --stream",
+    "test": "yarn test:web && yarn test:node",
+    "test:node": "mocha \"packages/*/test-node/**/*.test.{ts,js,mjs,cjs}\" --exit --retries 3",
+    "test:node:watch": "mocha \"packages/*/test-node/**/*.test.{ts,js,mjs,cjs}\" --watch",
+    "test:web": "web-test-runner",
     "update-dependency": "node scripts/update-dependency.js"
   },
   "dependencies": {
@@ -33,9 +33,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^0.11.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
-    "@commitlint/cli": "7.2.1",
-    "@commitlint/config-conventional": "7.1.2",
-    "@commitlint/config-lerna-scopes": "7.2.1",
+    "@changesets/cli": "^2.11.1",
     "@github/clipboard-copy-element": "^1.1.1",
     "@types/aria-query": "^4.2.0",
     "@types/chai": "^4.2.11",
@@ -47,6 +45,7 @@
     "@web/test-runner-playwright": "^0.6.4",
     "babel-eslint": "^10.0.3",
     "chai": "^4.2.0",
+    "concurrently": "^5.2.0",
     "core-js": "2.6.10",
     "eslint": "^7.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
@@ -57,7 +56,6 @@
     "eslint-plugin-wc": "^1.2.0",
     "fs-extra": "^8.1.0",
     "husky": "3.0.0",
-    "lerna": "3.4.3",
     "lint-staged": "^10.0.0",
     "lit-element": "^2.2.1",
     "mocha": "^6.2.2",
@@ -79,12 +77,10 @@
   "lint-staged": {
     "*.js": [
       "eslint --fix",
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ],
     "*.md": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "workspaces": [

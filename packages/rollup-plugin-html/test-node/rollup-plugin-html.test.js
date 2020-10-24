@@ -5,8 +5,11 @@
 /** @typedef {(OutputChunk | OutputAsset)[]} Output */
 
 const rollup = require('rollup');
+const path = require('path');
 const { expect } = require('chai');
 const htmlPlugin = require('../rollup-plugin-html');
+
+const relativeUrl = `./${path.relative(process.cwd(), __dirname)}`;
 
 /**
  * @param {Output} output
@@ -183,7 +186,7 @@ describe('rollup-plugin-html', () => {
           name: 'index.html',
           html:
             '<h1>Hello world</h1>' +
-            '<script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
+            `<script type="module" src="${relativeUrl}/fixtures/rollup-plugin-html/entrypoint-a.js"></script>`,
           minify: false,
         }),
       ],
@@ -205,7 +208,7 @@ describe('rollup-plugin-html', () => {
           name: 'index.html',
           inputHtml:
             '<h1>Hello world</h1>' +
-            '<script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
+            `<script type="module" src="${relativeUrl}/fixtures/rollup-plugin-html/entrypoint-a.js"></script>`,
           minify: false,
         }),
       ],
@@ -227,7 +230,7 @@ describe('rollup-plugin-html', () => {
           name: 'index.html',
           inputHtml:
             '<h1>Hello world</h1>' +
-            '<script type="module">import "./test/fixtures/rollup-plugin-html/entrypoint-a.js";</script>',
+            `<script type="module">import "${relativeUrl}/fixtures/rollup-plugin-html/entrypoint-a.js";</script>`,
           minify: false,
         }),
       ],
@@ -248,7 +251,10 @@ describe('rollup-plugin-html', () => {
   it('resolves inline module imports relative to the HTML file', async () => {
     const config = {
       plugins: [
-        htmlPlugin({ inputPath: 'test/fixtures/rollup-plugin-html/foo/foo.html', minify: false }),
+        htmlPlugin({
+          inputPath: `${relativeUrl}/fixtures/rollup-plugin-html/foo/foo.html`,
+          minify: false,
+        }),
       ],
     };
 
@@ -293,7 +299,7 @@ describe('rollup-plugin-html', () => {
           name: 'index.html',
           inputHtml:
             '<h1>Hello world</h1>' +
-            '<script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
+            `<script type="module" src="${relativeUrl}/fixtures/rollup-plugin-html/entrypoint-a.js"></script>`,
           transform(html) {
             return html.replace('Hello world', 'Goodbye world');
           },
@@ -319,7 +325,7 @@ describe('rollup-plugin-html', () => {
           name: 'index.html',
           inputHtml:
             '<h1>Hello world</h1>' +
-            '<script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
+            `<script type="module" src="${relativeUrl}/fixtures/rollup-plugin-html/entrypoint-a.js"></script>`,
           publicPath: '/static/',
           minify: false,
         }),
@@ -343,7 +349,7 @@ describe('rollup-plugin-html', () => {
           name: 'pages/index.html',
           inputHtml:
             '<h1>Hello world</h1>' +
-            '<script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
+            `<script type="module" src="${relativeUrl}/fixtures/rollup-plugin-html/entrypoint-a.js"></script>`,
           publicPath: '/static/',
           minify: false,
         }),
@@ -364,7 +370,7 @@ describe('rollup-plugin-html', () => {
       name: 'index.html',
       inputHtml:
         '<h1>Hello world</h1>' +
-        '<script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
+        `<script type="module" src="${relativeUrl}/fixtures/rollup-plugin-html/entrypoint-a.js"></script>`,
       publicPath: '/static/',
       minify: false,
     });
@@ -411,7 +417,7 @@ describe('rollup-plugin-html', () => {
       outputBundleName: 'modern',
       inputHtml:
         '<h1>Hello world</h1>' +
-        '<script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
+        `<script type="module" src="${relativeUrl}/fixtures/rollup-plugin-html/entrypoint-a.js"></script>`,
       publicPath: '/static/',
       minify: false,
     });
@@ -458,7 +464,7 @@ describe('rollup-plugin-html', () => {
           name: 'index.html',
           inputHtml:
             '<h1>Hello world</h1>' +
-            '<script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
+            `<script type="module" src="${relativeUrl}/fixtures/rollup-plugin-html/entrypoint-a.js"></script>`,
           minify: false,
         }),
 
@@ -489,7 +495,7 @@ describe('rollup-plugin-html', () => {
     const config = {
       plugins: [
         htmlPlugin({
-          inputPath: 'test/fixtures/rollup-plugin-html/index.html',
+          inputPath: `${relativeUrl}/fixtures/rollup-plugin-html/index.html`,
           minify: false,
         }),
       ],
@@ -562,18 +568,15 @@ describe('rollup-plugin-html', () => {
           html: [
             {
               name: 'page-a.html',
-              html:
-                '<h1>Page A</h1><script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
+              html: `<h1>Page A</h1><script type="module" src="${relativeUrl}/fixtures/rollup-plugin-html/entrypoint-a.js"></script>`,
             },
             {
               name: 'page-b.html',
-              html:
-                '<h1>Page B</h1><script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-b.js"></script>',
+              html: `<h1>Page B</h1><script type="module" src="${relativeUrl}/fixtures/rollup-plugin-html/entrypoint-b.js"></script>`,
             },
             {
               name: 'page-c.html',
-              html:
-                '<h1>Page C</h1><script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-c.js"></script>',
+              html: `<h1>Page C</h1><script type="module" src="${relativeUrl}/fixtures/rollup-plugin-html/entrypoint-c.js"></script>`,
             },
           ],
           minify: false,
@@ -646,7 +649,7 @@ describe('rollup-plugin-html', () => {
           name: 'index.html',
           inputHtml:
             '<h1>Hello world</h1>' +
-            '<script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
+            `<script type="module" src="${relativeUrl}/fixtures/rollup-plugin-html/entrypoint-a.js"></script>`,
           minify: false,
         }),
       ],
@@ -677,7 +680,7 @@ describe('rollup-plugin-html', () => {
           name: 'pages/index.html',
           inputHtml:
             '<h1>Hello world</h1>' +
-            '<script type="module" src="./test/fixtures/rollup-plugin-html/entrypoint-a.js"></script>',
+            `<script type="module" src="${relativeUrl}/fixtures/rollup-plugin-html/entrypoint-a.js"></script>`,
           minify: false,
         }),
       ],
@@ -695,11 +698,13 @@ describe('rollup-plugin-html', () => {
     // default filename
     const pluginA = htmlPlugin({ inputHtml: 'Hello world' });
     // filename inferred from input filename
-    const pluginB = htmlPlugin({ inputPath: 'test/fixtures/rollup-plugin-html/my-page.html' });
+    const pluginB = htmlPlugin({
+      inputPath: `${relativeUrl}/fixtures/rollup-plugin-html/my-page.html`,
+    });
     // filename explicitly set
     const pluginC = htmlPlugin({
       name: 'pages/my-other-page.html',
-      inputPath: 'test/fixtures/rollup-plugin-html/index.html',
+      inputPath: `${relativeUrl}/fixtures/rollup-plugin-html/index.html`,
     });
 
     await rollup.rollup({

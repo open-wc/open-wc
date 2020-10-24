@@ -20,7 +20,7 @@
     "demo:single-build": "rm -rf demo/dist && rollup -c demo/single-build/rollup.config.js --watch & yarn serve-demo",
     "serve-demo": "es-dev-server --watch --root-dir demo/dist --app-index index.html --compatibility none --open",
     "test": "npm run test:node",
-    "test:node": "mocha test/**/*.test.js test/*.test.js",
+    "test:node": "mocha test-node",
     "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots",
     "test:watch": "npm run test:node -- --watch"
   },

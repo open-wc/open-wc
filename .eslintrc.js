@@ -1,9 +1,14 @@
 module.exports = {
   extends: ['./packages/eslint-config/index.js', require.resolve('eslint-config-prettier')],
+  rules: {
+    'lit/no-useless-template-literals': 'off',
+  },
   overrides: [
     {
-      files: ['**/test/**/*.js', '**/*.config.js'],
+      files: ['**/test-node/**/*.js', '**/test-web/**/*.js', '**/*.config.js'],
       rules: {
+        'lit/no-invalid-html': 'off',
+        'lit/binding-positions': 'off',
         'no-console': 'off',
         'no-unused-expressions': 'off',
         'class-methods-use-this': 'off',

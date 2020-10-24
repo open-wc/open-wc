@@ -20,8 +20,8 @@
     "start:script": "node ../es-dev-server/dist/cli.js -c demo/script/server.js --root-dir ../../",
     "start:stories": "node ../es-dev-server/dist/cli.js -c demo/stories/server.js --root-dir ../../",
     "test": "npm run test:node",
-    "test:node": "mocha",
-    "test:watch": "mocha --watch"
+    "test:node": "mocha test-node",
+    "test:watch": "mocha test-node --watch"
   },
   "files": [
     "*.d.ts",

@@ -37,7 +37,7 @@
     "start:ts": "npm run build:ts && npm run start:build",
     "start:watch": "npm run build:spa-nomodule -- --watch & npm run start:build",
     "test": "npm run test:node",
-    "test:node": "mocha test/**/*.test.js test/*.test.js"
+    "test:node": "mocha test-node"
   },
   "files": [
     "*.js",
