@@ -2,6 +2,7 @@ module.exports = {
   extends: [
     require.resolve('eslint-config-airbnb-base'),
     require.resolve('./src/eslint-plugin-wc-export'),
+    'plugin:lit-a11y/recommended',
   ],
   parserOptions: {
     ecmaVersion: 2020,
