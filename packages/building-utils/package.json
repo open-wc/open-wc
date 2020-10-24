@@ -15,7 +15,7 @@
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/building-utils",
   "scripts": {
     "test": "npm run test:node",
-    "test:node": "mocha test/**/*.test.js test/*.test.js",
+    "test:node": "mocha test-node",
     "test:update-snapshots": "mocha test/**/*.test.js test/*.test.js --update-snapshots"
   },
   "files": [

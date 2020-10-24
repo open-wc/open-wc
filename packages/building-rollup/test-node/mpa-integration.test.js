@@ -36,7 +36,7 @@ describe('integration tests', () => {
   });
 
   describe(`Mpa Config`, function describe() {
-    this.timeout(10000);
+    this.timeout(20000);
     let page;
 
     before(async () => {

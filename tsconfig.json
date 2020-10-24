@@ -21,11 +21,9 @@
     "**/node_modules/**/node_modules",
     "packages/**/node_modules",
     "**/coverage/*",
-    "packages/create/src/generators/*/templates/**/*",
     "packages/building-utils/test/custom-polyfils/**/*",
     "**/dist/**/*",
-    "packages/**/test/**/snapshots",
-    "packages/es-dev-server**/*",
+    "packages/**/test-node/**/snapshots",
     "packages/**/demo/**/*"
   ]
 }

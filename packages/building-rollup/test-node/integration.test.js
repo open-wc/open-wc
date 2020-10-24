@@ -37,7 +37,7 @@ describe('integration tests', () => {
 
   ['js/rollup.spa.config.js', 'js/rollup.spa-nomodule.config.js'].forEach(testCase => {
     describe(`testcase ${testCase}`, function describe() {
-      this.timeout(10000);
+      this.timeout(20000);
       let page;
 
       before(async () => {

@@ -14,6 +14,8 @@ const path = require('path');
 const html = require('@open-wc/rollup-plugin-html');
 const polyfillsLoader = require('../rollup-plugin-polyfills-loader');
 
+const relativeUrl = `./${path.relative(process.cwd(), __dirname)}`;
+
 const updateSnapshots = process.argv.includes('--update-snapshots');
 
 /**
@@ -72,7 +74,7 @@ describe('rollup-plugin-polyfills-loader', function describe() {
     const inputOptions = {
       plugins: [
         html({
-          inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
+          inputHtml: `<script type="module" src="${relativeUrl}/fixtures/entrypoint-a.js"></script>`,
           inject: false,
           minify: false,
         }),
@@ -95,13 +97,13 @@ describe('rollup-plugin-polyfills-loader', function describe() {
       plugins: [
         html({
           name: 'bar.html',
-          inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>Bar',
+          inputHtml: `<script type="module" src="${relativeUrl}/fixtures/entrypoint-a.js"></script>Bar`,
           inject: false,
           minify: false,
         }),
         html({
           name: 'foo.html',
-          inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
+          inputHtml: `<script type="module" src="${relativeUrl}/fixtures/entrypoint-a.js"></script>`,
           inject: false,
           minify: false,
         }),
@@ -128,7 +130,7 @@ describe('rollup-plugin-polyfills-loader', function describe() {
       plugins: [
         html({
           name: 'index.html',
-          inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
+          inputHtml: `<script type="module" src="${relativeUrl}/fixtures/entrypoint-a.js"></script>`,
           inject: false,
           minify: false,
         }),
@@ -156,7 +158,7 @@ describe('rollup-plugin-polyfills-loader', function describe() {
   it('can inject with multiple build outputs', async () => {
     const htmlPlugin = html({
       name: 'index.html',
-      inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
+      inputHtml: `<script type="module" src="${relativeUrl}/fixtures/entrypoint-a.js"></script>`,
       inject: false,
       minify: false,
     });
@@ -196,7 +198,7 @@ describe('rollup-plugin-polyfills-loader', function describe() {
   it('can customize the file type', async () => {
     const htmlPlugin = html({
       name: 'index.html',
-      inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
+      inputHtml: `<script type="module" src="${relativeUrl}/fixtures/entrypoint-a.js"></script>`,
       inject: false,
       minify: false,
     });
@@ -243,7 +245,7 @@ describe('rollup-plugin-polyfills-loader', function describe() {
     const inputOptions = {
       plugins: [
         html({
-          inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
+          inputHtml: `<script type="module" src="${relativeUrl}/fixtures/entrypoint-a.js"></script>`,
           inject: false,
         }),
         polyfillsLoader({
@@ -264,7 +266,7 @@ describe('rollup-plugin-polyfills-loader', function describe() {
     const inputOptions = {
       plugins: [
         html({
-          inputHtml: '<script type="module" src="test/fixtures/entrypoint-a.js"></script>',
+          inputHtml: `<script type="module" src="${relativeUrl}/fixtures/entrypoint-a.js"></script>`,
           inject: false,
           minify: false,
         }),
