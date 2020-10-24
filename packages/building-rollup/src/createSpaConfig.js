@@ -87,9 +87,9 @@ function createSpaConfig(options) {
       globIgnores: ['polyfills/*.js', 'legacy-*.js', 'nomodule-*.js'],
       navigateFallback: '/index.html',
       // where to output the generated sw
-      swDest: path.join(process.cwd(), outputDir, 'sw.js'),
+      swDest: path.join(outputDir, 'sw.js'),
       // directory to match patterns against to be precached
-      globDirectory: path.join(process.cwd(), outputDir),
+      globDirectory: path.join(outputDir),
       // cache any html js and css by default
       globPatterns: ['**/*.{html,js,css,webmanifest}'],
       skipWaiting: true,
