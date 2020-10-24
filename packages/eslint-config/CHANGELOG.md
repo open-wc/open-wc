@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@3.0.0...@open-wc/eslint-config@4.0.0) (2020-10-24)
+
+
+### Features
+
+* **eslint-config:** add lit a11y plugin to openwc eslint config ([#1945](https://github.com/open-wc/open-wc/issues/1945)) ([47ac059](https://github.com/open-wc/open-wc/commit/47ac05998564afcb107e04247688da5aa6327ae5))
+
+
+### BREAKING CHANGES
+
+* **eslint-config:** add lit-a11y plugin to open-wc eslint config
+
+
+
+
+
 # [3.0.0](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@2.1.0...@open-wc/eslint-config@3.0.0) (2020-08-16)
 
 
