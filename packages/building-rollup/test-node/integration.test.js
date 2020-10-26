@@ -5,39 +5,38 @@ const path = require('path');
 const fs = require('fs');
 const rimraf = require('rimraf');
 const { rollup } = require('rollup');
-const { startServer, createConfig } = require('es-dev-server');
+const { startDevServer } = require('@web/dev-server');
 
 const rootDir = path.resolve(__dirname, '..', 'dist');
 
 describe('integration tests', () => {
   let server;
-  let serverConfig;
   /** @type {import('puppeteer').Browser} */
   let browser;
 
   before(async () => {
-    serverConfig = createConfig({
-      port: 8081,
-      rootDir,
+    server = await startDevServer({
+      config: {
+        port: 8081,
+        rootDir,
+      },
+      readCliArgs: false,
+      readFileConfig: false,
+      logStartMessage: false,
+      clearTerminalOnReload: false,
     });
-
-    ({ server } = await startServer(serverConfig));
     browser = await puppeteer.launch();
     rimraf.sync(rootDir);
   });
 
   after(async () => {
     await browser.close();
-    await new Promise(resolve =>
-      server.close(() => {
-        resolve();
-      }),
-    );
+    await server.stop();
   });
 
   ['js/rollup.spa.config.js', 'js/rollup.spa-nomodule.config.js'].forEach(testCase => {
     describe(`testcase ${testCase}`, function describe() {
-      this.timeout(20000);
+      this.timeout(30000);
       let page;
 
       before(async () => {

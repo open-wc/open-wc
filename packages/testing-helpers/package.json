@@ -14,13 +14,11 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers",
   "module": "index.js",
-  "scripts": {
-    "prepublishOnly": "../../scripts/insert-header.js"
-  },
   "files": [
     "*.d.ts",
     "*.js",
-    "src"
+    "src",
+    "types"
   ],
   "keywords": [
     "testing",
@@ -33,7 +31,5 @@
     "lit-element": "^2.2.1",
     "lit-html": "^1.0.0"
   },
-  "devDependencies": {
-    "webpack-merge": "^4.1.5"
-  }
+  "types": "types/index.d.ts"
 }

@@ -3,6 +3,7 @@
 /** @typedef {import('./types').FileType} FileType */
 /** @typedef {import('./types').PolyfillsLoaderConfig} PolyfillsLoaderConfig */
 
+// @ts-ignore
 const { getAttribute } = require('@open-wc/building-utils/dom5-fork');
 const crypto = require('crypto');
 
@@ -54,6 +55,7 @@ function getScriptFileType(script) {
  */
 function hasFileOfType(cfg, type) {
   return (
+    // @ts-ignore
     cfg.modern.files.some(f => f.type === type) ||
     (cfg.legacy && cfg.legacy.some(e => e.files.some(f => f.type === type)))
   );

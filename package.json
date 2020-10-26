@@ -3,7 +3,6 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build:types": "tsc -p tsconfig.build.types.json",
     "codelabs:build": "node ./packages/codelabs/build-codelabs.js",
     "docs:build": "rimraf _site && node cli-build.js",
     "docs:serve-build": "node packages/es-dev-server/dist/cli.js -o docs/",
@@ -14,10 +13,12 @@
     "lint": "run-p lint:*",
     "lint:eslint": "eslint --ext .js,.html .",
     "lint:prettier": "prettier \"**/*.{js,md}\" \"**/package.json\" --check",
-    "lint:types": "tsc",
+    "lint:types": "npm run types",
     "lint:versions": "node ./scripts/lint-versions.js",
-    "postinstall": "patch-package",
+    "postinstall": "patch-package && npm run setup",
     "release": "changeset publish && yarn format",
+    "setup": "npm run setup:ts-configs",
+    "setup:ts-configs": "node scripts/generate-ts-configs.mjs",
     "site:build": "npm run docs:build && node scripts/workspaces-scripts-bin.mjs site:build",
     "site:start": "npm run docs:start",
     "start": "npm run docs:start",
@@ -25,6 +26,10 @@
     "test:node": "mocha \"packages/*/test-node/**/*.test.{ts,js,mjs,cjs}\" --exit --retries 3",
     "test:node:watch": "mocha \"packages/*/test-node/**/*.test.{ts,js,mjs,cjs}\" --watch",
     "test:web": "web-test-runner",
+    "types": "run-s types:clear types:copy types:build",
+    "types:build": "tsc --build",
+    "types:clear": "rimraf packages/*/types/",
+    "types:copy": "node scripts/workspaces-scripts-bin.mjs types:copy",
     "update-dependency": "node scripts/update-dependency.js"
   },
   "dependencies": {
@@ -41,11 +46,13 @@
     "@types/eslint": "^7.2.4",
     "@types/estree": "^0.0.45",
     "@types/parse5-htmlparser2-tree-adapter": "^5.0.1",
+    "@web/dev-server": "^0.0.15",
     "@web/test-runner": "^0.9.5",
     "@web/test-runner-playwright": "^0.6.4",
     "babel-eslint": "^10.0.3",
     "chai": "^4.2.0",
     "concurrently": "^5.2.0",
+    "copyfiles": "^2.4.0",
     "core-js": "2.6.10",
     "eslint": "^7.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
@@ -68,8 +75,7 @@
     "rollup": "^2.7.2",
     "rollup-plugin-copy": "^3.3.0",
     "sinon": "^7.4.1",
-    "typescript": "~4.0.3",
-    "webpack-merge": "^4.1.5"
+    "typescript": "~4.0.3"
   },
   "resolutions": {
     "@types/estree": "0.0.45"

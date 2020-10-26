@@ -8,6 +8,10 @@
 ## code coverage folders
 coverage/
 
+## generated types
+packages/*/types
+tsconfig.tsbuildinfo
+
 ## npm
 node_modules
 !packages/es-dev-server/test/**/node_modules
