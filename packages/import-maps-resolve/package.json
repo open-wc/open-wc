@@ -17,15 +17,18 @@
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js",
     "test": "npm run test:node",
-    "test:node": "mocha test/run-tests.js"
+    "test:node": "mocha test/run-tests.js",
+    "types:copy": "copyfiles \"./src/**/*.d.ts\" \"./*.d.ts\" types"
   },
   "files": [
     "*.d.ts",
     "*.js",
-    "src"
+    "src",
+    "types"
   ],
   "keywords": [
     "import-map",
     "import-maps"
-  ]
+  ],
+  "types": "types/index.d.ts"
 }

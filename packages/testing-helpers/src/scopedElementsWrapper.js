@@ -53,6 +53,7 @@ class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
     super.firstUpdated(_changed);
 
     Object.keys(this.scopedElements).forEach(key =>
+      // @ts-ignore
       this.defineScopedElement(key, this.scopedElements[key]),
     );
   }
@@ -79,6 +80,7 @@ const getWrapperUniqueName = (counter = 0) => {
 
 const wrapperTagName = getWrapperUniqueName();
 
+// @ts-ignore
 customElements.define(wrapperTagName, ScopedElementsTestWrapper);
 
 /**

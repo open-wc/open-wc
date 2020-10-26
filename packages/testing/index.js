@@ -18,7 +18,7 @@ export {
   fixtureCleanup,
   elementUpdated,
   waitUntil,
-} from '@open-wc/testing-helpers/index.js';
+} from '@open-wc/testing-helpers';
 
 // @ts-ignore
 const { expect, should, assert } = chai;

@@ -21,7 +21,8 @@
     "start:stories": "node ../es-dev-server/dist/cli.js -c demo/stories/server.js --root-dir ../../",
     "test": "npm run test:node",
     "test:node": "mocha test-node",
-    "test:watch": "mocha test-node --watch"
+    "test:watch": "mocha test-node --watch",
+    "types:copy": "copyfiles -f \"./types-global/**/*.d.ts\" types"
   },
   "files": [
     "*.d.ts",
@@ -61,5 +62,5 @@
     "remark-slug": "^5.1.2",
     "remark-stringify": "^7.0.4"
   },
-  "types": "index.d.ts"
+  "types": "./types/index.d.ts"
 }

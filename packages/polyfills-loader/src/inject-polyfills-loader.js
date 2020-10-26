@@ -11,7 +11,9 @@ const {
   insertAfter,
   append,
   cloneNode,
+  // @ts-ignore
 } = require('@open-wc/building-utils/dom5-fork');
+// @ts-ignore
 const { createScript, createElement, findImportMapScripts } = require('@open-wc/building-utils');
 const { createPolyfillsLoader } = require('./create-polyfills-loader');
 const { hasFileOfType, fileTypes } = require('./utils');
@@ -70,6 +72,7 @@ function injectLoaderScript(bodyAst, polyfillsLoader) {
  * @param {PolyfillsLoaderConfig} cfg
  */
 function injectPrefetchLinks(headAst, cfg) {
+  // @ts-ignore
   for (const file of cfg.modern.files) {
     const { path } = file;
     const href = path.startsWith('.') || path.startsWith('/') ? path : `./${path}`;
