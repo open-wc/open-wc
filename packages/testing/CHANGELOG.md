@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.5.32
+
+### Patch Changes
+
+- 0362fe08: Keep hand written types for semantic-dom-diff for now
+- Updated dependencies [0362fe08]
+  - @open-wc/semantic-dom-diff@0.19.3
+
 ## 2.5.31
 
 ### Patch Changes

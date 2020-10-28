@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.19.3
+
+### Patch Changes
+
+- 0362fe08: Keep hand written types for semantic-dom-diff for now
+
 ## 0.19.2
 
 ### Patch Changes
