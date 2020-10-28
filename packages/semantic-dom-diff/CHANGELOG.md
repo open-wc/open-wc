@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.19.2
+
+### Patch Changes
+
+- 4a81d791: Add types folder to npm artifacts
+
 ## 0.19.1
 
 ### Patch Changes

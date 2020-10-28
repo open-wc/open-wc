@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-helpers",
-  "version": "1.8.11",
+  "version": "1.8.12",
   "publishConfig": {
     "access": "public"
   },
@@ -27,7 +27,7 @@
     "fixtures"
   ],
   "dependencies": {
-    "@open-wc/scoped-elements": "^1.2.3",
+    "@open-wc/scoped-elements": "^1.2.4",
     "lit-element": "^2.2.1",
     "lit-html": "^1.0.0"
   },

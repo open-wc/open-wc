@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.5.31
+
+### Patch Changes
+
+- 4a81d791: Add types folder to npm artifacts
+- Updated dependencies [4a81d791]
+  - @open-wc/semantic-dom-diff@0.19.2
+  - @open-wc/testing-helpers@1.8.12
+
 ## 2.5.30
 
 ### Patch Changes

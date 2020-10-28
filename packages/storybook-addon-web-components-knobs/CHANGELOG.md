@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.3.20
+
+### Patch Changes
+
+- 4a81d791: Add types folder to npm artifacts
+- Updated dependencies [4a81d791]
+  - @open-wc/testing-helpers@1.8.12
+
 ## 0.3.19
 
 ### Patch Changes
