@@ -6,7 +6,7 @@
 '@open-wc/semantic-dom-diff': patch
 '@open-wc/testing': patch
 '@open-wc/testing-helpers': patch
-'rollup-plugin-polyfills-loader': patch
+'@open-wc/rollup-plugin-polyfills-loader': patch
 'storybook-addon-markdown-docs': patch
 'storybook-addon-web-components-knobs': patch
 ---
