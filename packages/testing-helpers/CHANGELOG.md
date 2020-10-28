@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.8.12
+
+### Patch Changes
+
+- 4a81d791: Add types folder to npm artifacts
+- Updated dependencies [4a81d791]
+  - @open-wc/scoped-elements@1.2.4
+
 ## 1.8.11
 
 ### Patch Changes
