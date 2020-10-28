@@ -9,6 +9,7 @@
 '@open-wc/rollup-plugin-polyfills-loader': patch
 'storybook-addon-markdown-docs': patch
 'storybook-addon-web-components-knobs': patch
+'@open-wc/demoing-storybook': patch
 ---
 
 Change type distribution workflow
