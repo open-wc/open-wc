@@ -20,7 +20,8 @@
   "files": [
     "*.d.ts",
     "*.js",
-    "src"
+    "src",
+    "types"
   ],
   "keywords": [
     "dom-diff",
