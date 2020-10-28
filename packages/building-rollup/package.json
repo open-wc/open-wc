@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "1.9.3",
+  "version": "1.9.4",
   "publishConfig": {
     "access": "public"
   },
@@ -65,7 +65,7 @@
     "@babel/preset-env": "^7.9.0",
     "@open-wc/building-utils": "^2.18.3",
     "@open-wc/rollup-plugin-html": "^1.2.5",
-    "@open-wc/rollup-plugin-polyfills-loader": "^1.1.7",
+    "@open-wc/rollup-plugin-polyfills-loader": "^1.1.8",
     "@rollup/plugin-babel": "^5.1.0",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "babel-plugin-bundled-import-meta": "^0.3.2",
