@@ -11,6 +11,7 @@ module.exports = async function () {
         url: 'https://github.com/open-wc/open-wc',
       },
     ],
+    gitSiteUrl: 'https://github.com/open-wc/open-wc',
     helpUrl: 'https://github.com/open-wc/open-wc/issues',
     logoAlt: 'O with occluded right edge to appear also as a C',
     iconColorMaskIcon: '#3f93ce',
