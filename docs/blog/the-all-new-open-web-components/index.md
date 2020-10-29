@@ -20,13 +20,13 @@ As you may have noticed we completely restructured all our content. There is now
 
 In [Guides](../../guides/index.md) we focus more on step by step explanations while [Documentation](../../docs/index.md) is meant as a reference book where you can look up all available options and configuration.
 
-In Guides you can find some of our most popular pages like [Codelabs](../../guides/developing-components/codelabs.md), [Code Examples](../../guides/developing-components/code-examples.md) or [Publishing](../../guides/developing-components/publishing.md). However we also added a complete new [Community](../../guides/community/getting-started.md) section which showcases web component communities you can join and differentt Base Libraries and Component Libraries you should check out.
+In Guides you can find some of our most popular pages like [Codelabs](../../guides/developing-components/codelabs.md), [Code Examples](../../guides/developing-components/code-examples.md) or [Publishing](../../guides/developing-components/publishing.md). However we also added a complete new [Community](../../guides/community/getting-started.md) section which showcases web component communities you can join and different Base Libraries and Component Libraries you should check out.
 
 We also made the FAQ pages more prominent in a new knowledge section. There we share things like how [attributes and properties](../../guides/knowledge/attributes-and-properties.md) or [events](../../guides/knowledge/events.md) work.
 
 Technically the new website is built using [eleventy](11ty.dev), [rollup](https://rollupjs.org/), and our own tools like Web Dev Server, Rollup HTML plugin, and MDJS. We use a service worker that caches the static HTML pages.
 
-## Cleanup our repo
+## Cleaned up our repo
 
 Over the last years, we have created different projects and recommendations. During this time certain projects have become deprecated as we moved on to different tools or approaches.
 
@@ -45,7 +45,7 @@ The documentation for our legacy projects is maintained in the GitHub readmes:
 - [webpack-index-html-plugin](https://github.com/open-wc/legacy/tree/master/packages/webpack-index-html-plugin): we now recommend rollup over webpack
 - [storybook-addon-web-components-knobs](https://github.com/open-wc/legacy/tree/master/packages/storybook-addon-web-components-knobs): storybook v6 has a new better knobs system
 
-We also move out our [create](https://github.com/open-wc/create) Generators into a dedicated repository - which is only our first step as we will later automate updating it's dependencies via a bot so you can always be sure you get the latest versions.
+We also moved out our [create](https://github.com/open-wc/create) Generators into a dedicated repository - which is only our first step as we will later automate updating it's dependencies via a bot so you can always be sure you get the latest versions.
 
 As we [announced before](https://github.com/open-wc/open-wc/issues/1681), we have moved some generic tools and recommendations to our new [Modern Web](http://modern-web.dev/) project.
 
