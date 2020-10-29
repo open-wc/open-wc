@@ -121,6 +121,9 @@ rocket-navigation > ul > li > a {
   .sidebar-tags .tag {
     background: var(--footer-background);
   }
+  #mobile-menu-trigger svg {
+    color: #fff;
+  }
 }
 
 @media screen and (min-width: 1024px) {
