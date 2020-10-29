@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/scoped-elements",
-  "version": "1.2.2",
+  "version": "1.2.4",
   "publishConfig": {
     "access": "public"
   },
@@ -30,7 +30,8 @@
   "files": [
     "*.d.ts",
     "*.js",
-    "src"
+    "src",
+    "types"
   ],
   "keywords": [
     "lit-html",

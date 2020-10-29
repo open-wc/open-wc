@@ -14,9 +14,6 @@
       "path": "./packages/import-maps-resolve/tsconfig.json"
     },
     {
-      "path": "./packages/semantic-dom-diff/tsconfig.json"
-    },
-    {
       "path": "./packages/testing-helpers/tsconfig.json"
     },
     {

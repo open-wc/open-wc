@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/semantic-dom-diff",
-  "version": "0.19.0",
+  "version": "0.19.3",
   "publishConfig": {
     "access": "public"
   },
@@ -20,7 +20,8 @@
   "files": [
     "*.d.ts",
     "*.js",
-    "src"
+    "src",
+    "types"
   ],
   "keywords": [
     "dom-diff",
@@ -29,6 +30,5 @@
   ],
   "dependencies": {
     "@types/chai": "^4.2.11"
-  },
-  "types": "types/index.d.ts"
+  }
 }
