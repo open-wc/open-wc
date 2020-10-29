@@ -63,9 +63,70 @@ const baseLibraries = [
     description: 'The Deceptively Simple User Interface Library',
   },
   {
-    package: 'stencil',
-    description: 'web component with typescript and JSX (requires a build step)',
+    name: 'Stencil',
+    package: '@stencil/core',
+    description: 'Stencil is a toolchain for building reusable, scalable Design Systems.',
     url: 'https://stenciljs.com/',
+  },
+  {
+    name: 'CanJS',
+    package: 'can',
+    description: 'Build CRUD apps in fewer lines of code',
+    url: 'https://canjs.com/',
+  },
+  {
+    name: 'ElemX',
+    package: 'elemx',
+    description:
+      'Library for connecting MobX to native Web Components with a Vue-like template binding syntax',
+    url: 'https://github.com/agquick/elemx.js',
+  },
+  {
+    name: 'Omi',
+    package: 'omi',
+    description: 'Front End Cross-Frameworks Framework',
+    url: 'https://tencent.github.io/omi/',
+  },
+  {
+    name: 'ReadyMade',
+    package: '@readymade/core',
+    description: 'JavaScript microlibrary for developing Web Components with Decorators',
+    url: 'https://github.com/readymade-ui/readymade',
+  },
+  {
+    name: 'µce-template',
+    package: 'uce-template',
+    description: 'A tiny toolless library with tools included',
+    url: 'https://github.com/WebReflection/uce-template',
+  },
+  {
+    name: 'Gallop',
+    package: '@gallop/gallop',
+    description: 'Use full power of web components',
+    url: 'https://github.com/tarnishablec/gallop',
+  },
+  {
+    package: 'heresy',
+    description:
+      "Don't simulate the DOM. Be the DOM. React-like Custom Elements via the V1 API built-in extends.",
+    url: 'https://github.com/WebReflection/heresy',
+  },
+  {
+    package: 'litedom',
+    description:
+      'A blazing fast view library to create Web Components and use Javascript Template Literals in HTML',
+    url: 'https://litedom.js.org/',
+  },
+  {
+    package: 'swiss',
+    description: 'Functional custom elements.',
+    url: 'https://github.com/luwes/swiss',
+  },
+  {
+    name: 'µce',
+    package: 'uce',
+    description: 'µhtml based Custom Elements.',
+    url: 'https://github.com/WebReflection/uce',
   },
 ];
 
