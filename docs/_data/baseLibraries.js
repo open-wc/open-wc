@@ -63,7 +63,7 @@ const baseLibraries = [
     description: 'The Deceptively Simple User Interface Library',
   },
   {
-    package: 'stencil',
+    package: '@stencil/core',
     description: 'web component with typescript and JSX (requires a build step)',
     url: 'https://stenciljs.com/',
   },
