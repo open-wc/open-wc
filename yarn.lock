@@ -15,7 +15,7 @@
     jsdom "^16.4.0"
     prismjs "^1.21.0"
 
-"@11ty/eleventy@^0.11.0":
+"@11ty/eleventy@^0.11.0", "@11ty/eleventy@^0.11.1":
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/@11ty/eleventy/-/eleventy-0.11.1.tgz#2820c4d920756c25b068265a3faea18dae280dbc"
   integrity sha512-90iTOifuiRN92gttDFMeGsAuG0/5XwsKvCn/9d5CHYUO80Okq0biSJxr69abYmOstg9jHfkaVxuPkcs4feRb8Q==
@@ -1288,12 +1288,12 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@d4kmor/cli@^0.5.6":
-  version "0.5.7"
-  resolved "https://registry.yarnpkg.com/@d4kmor/cli/-/cli-0.5.7.tgz#3bba4603b82f913c52308bbf0e71b14278d79cef"
-  integrity sha512-2aj/nyD1mb9OhmHX+fC9tr1jTlNkI+SRymYw9FpZ94HPZ1iaTj9pvj+Zn0MR7Z2khUg5YbzapgARWs3ItYVFIA==
+"@d4kmor/cli@^0.5.8":
+  version "0.5.8"
+  resolved "https://registry.yarnpkg.com/@d4kmor/cli/-/cli-0.5.8.tgz#e867aa64fda1e18d53fdacbe03a111f048502d32"
+  integrity sha512-G7E4syjJDdJ23OAm46rXw873bVWMsegDksFpId38Ryb0ZV9C5HMjsVbTJjUEICZkTVHZSbi+5Nw62JtSYe5zPg==
   dependencies:
-    "@11ty/eleventy" "^0.11.0"
+    "@11ty/eleventy" "^0.11.1"
     "@d4kmor/core" "^0.1.2"
     "@d4kmor/eleventy-plugin-mdjs-unified" "^0.3.1"
     "@d4kmor/eleventy-rocket-nav" "^0.2.1"
