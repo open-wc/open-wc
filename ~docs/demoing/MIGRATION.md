@@ -1,1 +1,0 @@
-../../packages/demoing-storybook/MIGRATION.md
