@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.3.0
+
+### Minor Changes
+
+- 95d055dc: Define lazy components per Scoped Element instance instead of by Scoped Element class. This forces `getScopedTagName` method to stop being a static method.
+
 ## 1.2.4
 
 ### Patch Changes
