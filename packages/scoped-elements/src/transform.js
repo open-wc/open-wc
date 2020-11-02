@@ -1,4 +1,5 @@
 import { registerElement } from './registerElement.js';
+import { Cache } from './Cache.js';
 
 /**
  * @typedef {import('./types').ScopedElementsMap} ScopedElementsMap
@@ -21,9 +22,9 @@ const re = new RegExp(`<\\/?([a-z](${chars})*-(${chars})*)`, 'g');
 /**
  * The global cache of processed string arrays
  *
- * @type {Map<TemplateStringsArray, TemplateStringsArray>}
+ * @type {Cache<TemplateStringsArray, TemplateStringsArray>}
  */
-const globalCache = new Map();
+const globalCache = new Cache();
 
 /**
  * Find custom element tags in the string
@@ -47,8 +48,8 @@ const matchAll = str => {
  *
  * @param {TemplateStringsArray} strings
  * @param {ScopedElementsMap} scopedElements
- * @param {Map<TemplateStringsArray, TemplateStringsArray>} templateCache
- * @param {Map<string, string>} tagsCache
+ * @param {Cache<TemplateStringsArray, TemplateStringsArray>} templateCache
+ * @param {Cache<string, string>} tagsCache
  * @returns {TemplateStringsArray}
  */
 const transformTemplate = (strings, scopedElements, templateCache, tagsCache) => {
@@ -88,8 +89,8 @@ const transformTemplate = (strings, scopedElements, templateCache, tagsCache) =>
  * @exports
  * @param {TemplateStringsArray} strings
  * @param {ScopedElementsMap} scopedElements
- * @param {Map<TemplateStringsArray, TemplateStringsArray>} templateCache
- * @param {Map<string, string>} tagsCache
+ * @param {import('./Cache.js').Cache<TemplateStringsArray, TemplateStringsArray>} templateCache
+ * @param {import('./Cache.js').Cache<string, string>} tagsCache
  * @returns {TemplateStringsArray}
  */
 export function transform(strings, scopedElements, templateCache = globalCache, tagsCache) {

@@ -1,9 +1,9 @@
 /**
  * The global cache for tag names
  *
- * @type {Map<typeof HTMLElement, string>}
+ * @type {WeakMap<typeof HTMLElement, string>}
  */
-const globalTagsCache = new Map();
+const globalTagsCache = new WeakMap();
 
 /**
  * Adds a tag to the global tags cache

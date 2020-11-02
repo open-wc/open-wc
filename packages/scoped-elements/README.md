@@ -148,7 +148,7 @@ export class MyElement extends ScopedElementsMixin(LitElement) {
 
 ### Obtaining a scoped tag name
 
-Maybe you want to create a scoped element programmatically and don't know which one is the scoped tag name? No problem, there is a static method called `getScopedTagName` that would help you for that.
+Maybe you want to create a scoped element programmatically and don't know which one is the scoped tag name? No problem, there is a method called `getScopedTagName` that would help you for that.
 
 ```js
 import { LitElement } from 'lit-element';
@@ -167,7 +167,7 @@ export class MyElement extends ScopedElementsMixin(LitElement) {
   constructor() {
     super();
 
-    const scopedTagName = this.constructor.getScopedTagName('my-button');
+    const scopedTagName = this.getScopedTagName('my-button');
 
     // do whatever you need with the scopedTagName
   }
