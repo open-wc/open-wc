@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 import { TemplateResult } from 'lit-html';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
+import { Cache } from './Cache.js';
 import { transform } from './transform.js';
 import { defineScopedElement, registerElement } from './registerElement.js';
 import { shadyTemplateFactory } from './shadyTemplateFactory.js';
@@ -16,7 +17,7 @@ import { shadyTemplateFactory } from './shadyTemplateFactory.js';
 /**
  * Template caches
  *
- * @type {WeakMap<Function, Map<TemplateStringsArray, TemplateStringsArray>>}
+ * @type {WeakMap<Function, Cache<TemplateStringsArray, TemplateStringsArray>>}
  */
 const templateCaches = new WeakMap();
 
@@ -24,11 +25,12 @@ const templateCaches = new WeakMap();
  * Retrieves or creates a templateCache for a specific key
  *
  * @param {Function} key
- * @returns {Map<TemplateStringsArray, TemplateStringsArray>}
+ * @returns {Cache<TemplateStringsArray, TemplateStringsArray>}
  */
 const getTemplateCache = key => {
   if (!templateCaches.has(key)) {
-    templateCaches.set(key, new Map());
+    // @ts-ignore
+    templateCaches.set(key, new Cache(templateCaches.get(key.constructor)));
   }
 
   return templateCaches.get(key);
@@ -37,18 +39,18 @@ const getTemplateCache = key => {
 /**
  * Tags caches
  *
- * @type {WeakMap<object, Map<string, string>>}
+ * @type {WeakMap<object, Cache<string, string>>}
  */
 const tagsCaches = new WeakMap();
 
 /**
  * Retrieves or creates a tagsCache for a specific key
  * @param {object} key
- * @returns {Map<string, string>}
+ * @returns {Cache<string, string>}
  */
 const getTagsCache = key => {
   if (!tagsCaches.has(key)) {
-    tagsCaches.set(key, new Map());
+    tagsCaches.set(key, new Cache(tagsCaches.get(key.constructor)));
   }
 
   return tagsCaches.get(key);
@@ -59,8 +61,8 @@ const getTagsCache = key => {
  *
  * @param {ReadonlyArray} items
  * @param {ScopedElementsMap} scopedElements
- * @param {Map<TemplateStringsArray, TemplateStringsArray>} templateCache
- * @param {Map<string, string>} tagsCache
+ * @param {Cache<TemplateStringsArray, TemplateStringsArray>} templateCache
+ * @param {Cache<string, string>} tagsCache
  * @returns {ReadonlyArray}
  */
 const transformArray = (items, scopedElements, templateCache, tagsCache) =>
@@ -81,8 +83,8 @@ const transformArray = (items, scopedElements, templateCache, tagsCache) =>
  *
  * @param {TemplateResult} template
  * @param {ScopedElementsMap} scopedElements
- * @param {Map<TemplateStringsArray, TemplateStringsArray>} templateCache
- * @param {Map<string, string>} tagsCache
+ * @param {Cache<TemplateStringsArray, TemplateStringsArray>} templateCache
+ * @param {Cache<string, string>} tagsCache
  * @returns {TemplateResult}
  */
 const transformTemplate = (template, scopedElements, templateCache, tagsCache) =>
@@ -98,8 +100,8 @@ const transformTemplate = (template, scopedElements, templateCache, tagsCache) =
  *
  * @param {string} scopeName
  * @param {ScopedElementsMap} scopedElements
- * @param {Map<TemplateStringsArray, TemplateStringsArray>} templateCache
- * @param {Map<string, string>} tagsCache
+ * @param {Cache<TemplateStringsArray, TemplateStringsArray>} templateCache
+ * @param {Cache<string, string>} tagsCache
  * @returns {function(any): any}
  */
 const scopedElementsTemplateFactory = (
@@ -130,10 +132,10 @@ const ScopedElementsMixinImplementation = superclass =>
       if (!options || typeof options !== 'object' || !options.scopeName) {
         throw new Error('The `scopeName` option is required.');
       }
-      const { scopeName } = options;
+      const { scopeName, eventContext } = options;
 
-      const templateCache = getTemplateCache(this);
-      const tagsCache = getTagsCache(this);
+      const templateCache = getTemplateCache(eventContext);
+      const tagsCache = getTagsCache(eventContext);
       const { scopedElements } = this;
 
       return super.render(template, container, {
@@ -154,7 +156,24 @@ const ScopedElementsMixinImplementation = superclass =>
      * @param {typeof HTMLElement} klass
      */
     defineScopedElement(tagName, klass) {
-      return defineScopedElement(tagName, klass, getTagsCache(this.constructor));
+      return defineScopedElement(tagName, klass, getTagsCache(this));
+    }
+
+    /**
+     * Returns a scoped tag name
+     *
+     * @deprecated Please, use the instance method instead of the static one. This static method is not able to
+     * obtain the tagName of lazy defined elements, while the instance one is.
+     * @param {string} tagName
+     * @returns {string|undefined}
+     */
+    static getScopedTagName(tagName) {
+      // @ts-ignore
+      const klass = this.scopedElements[tagName];
+
+      return klass
+        ? registerElement(tagName, klass, getTagsCache(this))
+        : getTagsCache(this).get(tagName);
     }
 
     /**
@@ -163,8 +182,9 @@ const ScopedElementsMixinImplementation = superclass =>
      * @param {string} tagName
      * @returns {string|undefined}
      */
-    static getScopedTagName(tagName) {
-      const klass = this.scopedElements[tagName];
+    getScopedTagName(tagName) {
+      // @ts-ignore
+      const klass = this.constructor.scopedElements[tagName];
 
       return klass
         ? registerElement(tagName, klass, getTagsCache(this))

@@ -26,7 +26,7 @@ const defineElement = (tagName, klass, registry = customElements) => {
  *
  * @param {string} tagName
  * @param {CustomElementRegistry} registry
- * @param {Map<string, string>} tagsCache
+ * @param {import('./Cache.js').Cache<string, string>} tagsCache
  * @returns {string}
  */
 const storeLazyElementInCache = (tagName, registry, tagsCache) => {
@@ -46,7 +46,7 @@ const storeLazyElementInCache = (tagName, registry, tagsCache) => {
  *
  * @param {string} tagName
  * @param {typeof HTMLElement} klass
- * @param {Map<string, string>} tagsCache
+ * @param {import('./Cache.js').Cache<string, string>} tagsCache
  * @returns {string}
  */
 const defineElementAndStoreInCache = (tagName, klass, tagsCache) => {
@@ -76,7 +76,7 @@ const defineElementAndStoreInCache = (tagName, klass, tagsCache) => {
  * @exports
  * @param {string} tagName
  * @param {typeof HTMLElement} klass
- * @param {Map<string, string>} tagsCache
+ * @param {import('./Cache.js').Cache<string, string>} tagsCache
  * @returns {string}
  */
 export function registerElement(tagName, klass, tagsCache = undefined) {
@@ -93,7 +93,7 @@ export function registerElement(tagName, klass, tagsCache = undefined) {
  *
  * @param {string} tagName
  * @param {typeof HTMLElement} klass
- * @param {Map<string, string>} tagsCache
+ * @param {import('./Cache.js').Cache<string, string>} tagsCache
  */
 export function defineScopedElement(tagName, klass, tagsCache) {
   const tag = tagsCache.get(tagName);

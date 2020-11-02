@@ -322,6 +322,56 @@ describe('ScopedElementsMixin', () => {
     await waitUntil(() => el.shadowRoot.children[1] instanceof LazyElement);
   });
 
+  it('define a lazy elements per instance instead of per class', async () => {
+    class LazyElementA extends LitElement {
+      render() {
+        return html` <div>Lazy element A</div> `;
+      }
+    }
+
+    class LazyElementB extends LitElement {
+      render() {
+        return html` <div>Lazy element B</div> `;
+      }
+    }
+
+    const tag = defineCE(
+      class extends ScopedElementsMixin(LitElement) {
+        static get scopedElements() {
+          return {
+            'feature-a': FeatureA,
+          };
+        }
+
+        connectedCallback() {
+          if (super.connectedCallback) {
+            super.connectedCallback();
+          }
+
+          this.loading = new Promise(resolve => {
+            resolve(html` <lazy-element></lazy-element> `);
+          });
+        }
+
+        render() {
+          return html`
+            <feature-a></feature-a>
+            ${until(this.loading, html` <div>Loading...</div> `)}
+          `;
+        }
+      },
+    );
+
+    const $el1 = await fixture(`<${tag}></${tag}>`);
+    const $el2 = await fixture(`<${tag}></${tag}>`);
+
+    $el1.defineScopedElement('lazy-element', LazyElementA);
+    $el2.defineScopedElement('lazy-element', LazyElementB);
+
+    await waitUntil(() => $el1.shadowRoot.children[1] instanceof LazyElementA);
+    await waitUntil(() => $el2.shadowRoot.children[1] instanceof LazyElementB);
+  });
+
   it('should reuse the global tag if defined with the same name and class reference', async () => {
     class ItemA extends LitElement {
       render() {
@@ -377,8 +427,8 @@ describe('ScopedElementsMixin', () => {
 
       const el = await fixture(`<${tag}></${tag}>`);
 
-      expect(el.constructor.getScopedTagName('feature-a')).to.match(tagRegExp);
-      expect(el.constructor.getScopedTagName('feature-b')).to.match(tagRegExp);
+      expect(el.getScopedTagName('feature-a')).to.match(tagRegExp);
+      expect(el.getScopedTagName('feature-b')).to.match(tagRegExp);
     });
 
     it('should return the scoped tag name for a non already registered element', async () => {
@@ -403,7 +453,7 @@ describe('ScopedElementsMixin', () => {
 
       const el = await fixture(`<${tag}></${tag}>`);
 
-      expect(el.constructor.getScopedTagName('unregistered-feature')).to.match(tagRegExp);
+      expect(el.getScopedTagName('unregistered-feature')).to.match(tagRegExp);
     });
   });
 
