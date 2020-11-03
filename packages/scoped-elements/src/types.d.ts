@@ -17,6 +17,11 @@ export declare class ScopedElementsHost {
   static getScopedTagName(tagName: string): string;
 
   /**
+   * Returns a scoped tag name
+   */
+  getScopedTagName(tagName: string): string;
+
+  /**
    * Defines a scoped element
    */
   defineScopedElement<T extends HTMLElement>(tagName: string, klass: Constructor<T>): void
