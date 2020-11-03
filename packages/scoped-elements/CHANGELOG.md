@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.3.1
+
+### Patch Changes
+
+- 04666893: Fix types
+
 ## 1.3.0
 
 ### Minor Changes
