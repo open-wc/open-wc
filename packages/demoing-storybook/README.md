@@ -10,6 +10,8 @@ tags:
 
 For demoing, documenting and showcasing different states of your Web Component, we recommend using [storybook](https://storybook.js.org/).
 
+<div class="custom-block warning"><p class="custom-block-title">NOTICE</p> <p>`@open-wc/demoing-storybook` is currently configured to work with Storybook v5. However you write your stories, be sure that you use syntax compatible with v5 to best prepare your project for success. If you are interested in working with Storybook v6, follow along to development of the next generation of <a href="https://github.com/modernweb-dev/storybook-prebuilt" target="_blank" rel="noopener noreferrer">Storybook Prebuilt<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>.</p></div>
+
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 # Features
@@ -21,6 +23,8 @@ For demoing, documenting and showcasing different states of your Web Component, 
 - Uses es-dev-server (serve modern code while developing)
 - Completely separate storybook UI from your code
 
+NOTE: some code processing often attributed to the Storybook webpack build (e.g. the use of `*.css` or `*.svg` files directly in JS or the inline processing of Typescipt) will by default not be included herein. One option here is to ensure that you code is "browser ready" when loading it into Storybook. Alternatively, checkout the [full documentation](https://github.com/open-wc/es-dev-server) for es-dev-server for information on other options around supporting these processes.
+
 ## Demo
 
 <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>Don't take our word for it but look at <a href="https://open-wc.org/demoing-storybook/?path=/docs/demo-card-docs--simple" target="_blank" rel="noopener noreferrer">the documentation of a demo card<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> and <a href="https://open-wc.org/demoing-storybook/?path=/docs/decorators-withwebcomponentknobs--example-output" target="_blank" rel="noopener noreferrer">the documentation of the knobs decorator<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>.</p></div>
@@ -31,6 +35,8 @@ For demoing, documenting and showcasing different states of your Web Component, 
 npm init @open-wc
 # Upgrade > Demoing
 ```
+
+When looking to have the Storybook configuration files added to you project, be sure that you actively highlight `◉ Demoing (storybook)` (with the <kdb>Spacebar</kbd> or <kbd>right arrow key</kbd>) in response to "Would you like to scaffold examples files for?" to ensure that those files are added to your project.
 
 ### Manual
 
@@ -103,7 +109,7 @@ module.exports = {
 
 Create a `*.stories.md` (for example `card.stories.md`) file within the `stories` folder.
 
-This uses the [Markdown JavaScript (mdjs) Format](https://open-wc.org/mdjs/) via [storybook-addon-markdown-docs](https://open-wc.org/demoing/storybook-addon-markdown-docs.html).
+This uses the [Markdown JavaScript (mdjs) Format](https://open-wc.org/docs/experimental/mdjs/) via [storybook-addon-markdown-docs](https://github.com/open-wc/legacy/tree/master/packages/storybook-addon-web-components-knobs).
 
 ````md
 ```js script
@@ -294,6 +300,8 @@ It basically looks like this:
 ```
 
 For a full example see the [./demo/custom-elements.json](./demo/custom-elements.json).
+
+<div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>Storybook Knobs cannot deliver the value `undefined` to your stories. Custom element that register propertie with a default value of `undefined` will have those properties excluded from the list of knobs that are created for your story from the associated entry in your `custom-elements.json` file.</p></div>
 
 ### Additional middleware config like an api proxy
 
