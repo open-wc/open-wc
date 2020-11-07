@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.1
+
+### Patch Changes
+
+- 23e247c0: add missing dependency
+
 ## 1.0.0
 
 ### Major Changes

@@ -1,6 +1,6 @@
 {
   "name": "storybook-addon-markdown-docs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Write documentation in markdown for storybook",
   "license": "MIT",
   "repository": {
