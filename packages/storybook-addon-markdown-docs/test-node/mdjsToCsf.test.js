@@ -63,7 +63,7 @@ describe('mdjsToCsf', () => {
       resultFilePath = filePath;
       return plugins;
     }
-    await mdjsToCsf(input, '/foo.js', {
+    await mdjsToCsf(input, '/foo.js', 'web-components', {
       setupMdjsPlugins,
     });
     expect(resultPlugins.length).to.equal(6);

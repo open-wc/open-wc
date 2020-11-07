@@ -12,10 +12,9 @@ function createStoriesCode(stories) {
     if (!code) throw new Error(`Missing code in story`);
 
     allCode += `${code}\n`;
-    allCode += `${key}.story = ${key}.story || {};\n`;
-    allCode += `${name !== key ? `${key}.story.name = ${JSON.stringify(name)};\n` : ''}`;
-    allCode += `${key}.story.parameters = ${key}.story.parameters || {};\n`;
-    allCode += `${key}.story.parameters.mdxSource = ${JSON.stringify(code.trim())};\n`;
+    allCode += `${name !== key ? `${key}.storyName = ${JSON.stringify(name)};\n` : ''}`;
+    allCode += `${key}.parameters = ${key}.parameters || {};\n`;
+    allCode += `${key}.parameters.mdxSource = ${JSON.stringify(code.trim())};\n`;
     allCode += '\n';
   }
   return allCode;
