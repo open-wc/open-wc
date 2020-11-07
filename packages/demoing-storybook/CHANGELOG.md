@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.4.7
+
+### Patch Changes
+
+- ffb5f16c: inline MDJS plugin
+
 ## 2.4.6
 
 ### Patch Changes

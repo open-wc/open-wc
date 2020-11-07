@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/demoing-storybook",
-  "version": "2.4.6",
+  "version": "2.4.7",
   "publishConfig": {
     "access": "public"
   },

@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.0
+
+### Major Changes
+
+- b38bc1d6: update to @web/dev-server-storybook
+
 ## 0.4.4
 
 ### Patch Changes
