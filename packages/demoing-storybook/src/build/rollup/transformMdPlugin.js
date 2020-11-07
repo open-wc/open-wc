@@ -1,4 +1,4 @@
-const { mdjsToCsf } = require('storybook-addon-markdown-docs');
+const { mdjsToCsf } = require('../../storybook-addon-markdown-docs');
 const { transformMdxToCsf } = require('../../shared/transformMdxToCsf');
 
 /**
