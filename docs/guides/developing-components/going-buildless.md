@@ -32,7 +32,7 @@ For example:
 import foo from 'foo';
 ```
 
-Imports such as this are useful when dependencies in your `node_modules` folder need to reference other packages. We this in the generator project as well.
+Imports such as this are useful when dependencies in your `node_modules` folder need to reference other packages. We do this in the generator project as well.
 
 Unfortunately, the browser does not understand this style of imports today and require some form of preprocessing to resolve the imports to reference the actual file location. Luckily `@web/dev-server` can handle this for us using the `--node-resolve` option.
 
