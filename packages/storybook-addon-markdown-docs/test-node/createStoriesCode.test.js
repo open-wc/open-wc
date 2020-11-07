@@ -15,9 +15,8 @@ describe('createStoriesCode', () => {
     ];
     expect(createStoriesCode(stories).trim()).to.eql(
       `export const StoryA = () => html\`<div>Hello world</div>\`
-StoryA.story = StoryA.story || {};
-StoryA.story.parameters = StoryA.story.parameters || {};
-StoryA.story.parameters.mdxSource = "export const StoryA = () => html\`<div>Hello world</div>\`";`,
+StoryA.parameters = StoryA.parameters || {};
+StoryA.parameters.mdxSource = "export const StoryA = () => html\`<div>Hello world</div>\`";`,
     );
   });
 
@@ -37,14 +36,12 @@ StoryA.story.parameters.mdxSource = "export const StoryA = () => html\`<div>Hell
     ];
     expect(createStoriesCode(stories).trim()).to.eql(
       `export const StoryA = () => html\`<div>Hello world</div>\`
-StoryA.story = StoryA.story || {};
-StoryA.story.parameters = StoryA.story.parameters || {};
-StoryA.story.parameters.mdxSource = "export const StoryA = () => html\`<div>Hello world</div>\`";
+StoryA.parameters = StoryA.parameters || {};
+StoryA.parameters.mdxSource = "export const StoryA = () => html\`<div>Hello world</div>\`";
 
 export const StoryB = () => html\`<div>Hello world</div>\`
-StoryB.story = StoryB.story || {};
-StoryB.story.parameters = StoryB.story.parameters || {};
-StoryB.story.parameters.mdxSource = "export const StoryB = () => html\`<div>Hello world</div>\`";`,
+StoryB.parameters = StoryB.parameters || {};
+StoryB.parameters.mdxSource = "export const StoryB = () => html\`<div>Hello world</div>\`";`,
     );
   });
 
@@ -59,10 +56,9 @@ StoryB.story.parameters.mdxSource = "export const StoryB = () => html\`<div>Hell
     ];
     expect(createStoriesCode(stories).trim()).to.eql(
       `export const StoryA = () => html\`<div>Hello world</div>\`
-StoryA.story = StoryA.story || {};
-StoryA.story.name = "Story A";
-StoryA.story.parameters = StoryA.story.parameters || {};
-StoryA.story.parameters.mdxSource = "export const StoryA = () => html\`<div>Hello world</div>\`";`,
+StoryA.storyName = "Story A";
+StoryA.parameters = StoryA.parameters || {};
+StoryA.parameters.mdxSource = "export const StoryA = () => html\`<div>Hello world</div>\`";`,
     );
   });
 
@@ -81,10 +77,9 @@ StoryA.story.parameters.mdxSource = "export const StoryA = () => html\`<div>Hell
       `export const StoryA = () => html\`
   <div>Hello world</div>
 \`;
-StoryA.story = StoryA.story || {};
-StoryA.story.name = "Story A";
-StoryA.story.parameters = StoryA.story.parameters || {};
-StoryA.story.parameters.mdxSource = "export const StoryA = () => html\`\\n  <div>Hello world</div>\\n\`;";`,
+StoryA.storyName = "Story A";
+StoryA.parameters = StoryA.parameters || {};
+StoryA.parameters.mdxSource = "export const StoryA = () => html\`\\n  <div>Hello world</div>\\n\`;";`,
     );
   });
 

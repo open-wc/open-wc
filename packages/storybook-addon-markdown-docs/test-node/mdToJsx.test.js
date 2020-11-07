@@ -59,9 +59,9 @@ describe('compileMdToJsx', () => {
 
 describe('createDocsPage()', () => {
   it('creates a docs page default export', () => {
-    expect(createDocsPage().trim()).to.equal(
-      `import * as React from 'storybook-prebuilt/react.js';
-import { mdx, AddContext } from 'storybook-prebuilt/addon-docs/blocks.js';
+    expect(createDocsPage([], 'web-components').trim()).to.equal(
+      `import { React, mdx } from '@web/storybook-prebuilt/web-components.js';
+import { AddContext } from '@web/storybook-prebuilt/addon-docs/blocks.js';
 
 // Setup docs page
 const mdxStoryNameToKey = {};
@@ -75,10 +75,8 @@ __export_default__.parameters.docs.page = () => <AddContext
 export const __page = () => {
   throw new Error("Docs-only story");
 };
-__page.story = {
-  parameters: {
+__page.parameters = {
     docsOnly: true
-  }
 };
 
 
