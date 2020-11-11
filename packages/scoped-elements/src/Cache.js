@@ -19,7 +19,7 @@ export class Cache {
    * @return {boolean}
    */
   has(key) {
-    return !!(this._cache.has(key) || this._parent?._cache.has(key));
+    return !!(this._cache.has(key) || (this._parent && this._parent._cache.has(key)));
   }
 
   /**
@@ -44,6 +44,6 @@ export class Cache {
    * @return {Q}
    */
   get(key) {
-    return this._cache.get(key) || this._parent?._cache.get(key);
+    return this._cache.get(key) || (this._parent && this._parent._cache.get(key));
   }
 }

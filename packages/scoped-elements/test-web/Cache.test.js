@@ -24,6 +24,12 @@ describe('Cache', () => {
       expect(cache.has('key')).to.be.false;
     });
 
+    it(`should return false if the key does not exist and no parent exists`, () => {
+      const cache = new Cache();
+
+      expect(cache.has('key')).to.be.false;
+    });
+
     it(`should return true if the key exist`, () => {
       const cache = new Cache();
       cache._cache.set('key', 'value');
@@ -89,6 +95,12 @@ describe('Cache', () => {
     it('should return undefined in case the key is not in hierarchy', () => {
       const parent = new Cache();
       const cache = new Cache(parent);
+
+      expect(cache.get('key')).to.be.undefined;
+    });
+
+    it('should return undefined in case key does not exist and parent does not exist', () => {
+      const cache = new Cache();
 
       expect(cache.get('key')).to.be.undefined;
     });
