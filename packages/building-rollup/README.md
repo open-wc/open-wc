@@ -149,7 +149,7 @@ export default merge(baseConfig, {
 
 If you are not building a single page app you can use `createBasicConfig` to set up regular JS to JS bundling.
 
-From there on it's easy to extend further for different use cases. For example, to bundle and generate multiple HTML files you can take a look at the documentation of [@open-wc/rollup-plugin-html](https://github.com/open-wc/open-wc/tree/master/packages/rollup-plugin-html#readme). See below how to add plugins to the rollup config.
+From there on it's easy to extend further for different use cases. For example, to bundle and generate multiple HTML files you can take a look at the documentation of [@web/rollup-plugin-html](https://modern-web.dev/docs/building/rollup-plugin-html/). See below how to add plugins to the rollup config.
 
 ## Injecting a service worker
 
@@ -248,7 +248,7 @@ Examples:
 
 ### Customize HTML
 
-[@open-wc/rollup-plugin-html](https://github.com/open-wc/open-wc/tree/master/packages/rollup-plugin-html#readme) powers a lot of what our rollup config does. It has a lot of options available, for example, to transform the HTML output or set a different template.
+[@web/rollup-plugin-html](https://modern-web.dev/docs/building/rollup-plugin-html/) powers a lot of what our rollup config does. It has a lot of options available, for example, to transform the HTML output or set a different template.
 
 We recommend looking into the documentation to get an overview of all available options.
 
@@ -278,7 +278,7 @@ const baseConfig = createSpaConfig({
 
 ### Customize polyfills
 
-[@open-wc/rollup-plugin-polyills-loader](https://github.com/open-wc/open-wc/tree/master/packages/rollup-plugin-polyfills-loader#readme) loads polyfills only when necessary based on feature detection.
+[@web/rollup-plugin-polyills-loader](https://modern-web.dev/docs/building/rollup-plugin-polyfills-loader/) loads polyfills only when necessary based on feature detection.
 
 You can prevent certain polyfills from being loaded or add your own polyfills.
 

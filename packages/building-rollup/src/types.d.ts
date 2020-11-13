@@ -1,4 +1,4 @@
-import { PluginOptions } from '@open-wc/rollup-plugin-html';
+import { RollupPluginHTMLOptions } from '@web/rollup-plugin-html';
 
 export interface BasicOptions {
   outputDir?: string;
@@ -11,7 +11,7 @@ export interface BasicOptions {
 }
 
 export interface SpaOptions extends BasicOptions {
-  html?: boolean | PluginOptions;
+  html?: boolean | RollupPluginHTMLOptions;
   polyfillsLoader?: boolean | object;
   workbox?: boolean | WorkboxOptions;
   injectServiceWorker?: boolean;

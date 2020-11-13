@@ -3,8 +3,8 @@
 /** @typedef {import('polyfills-loader').PolyfillsLoaderConfig} PolyfillsLoaderConfig */
 
 const merge = require('deepmerge');
-const html = require('@open-wc/rollup-plugin-html');
-const polyfillsLoader = require('@open-wc/rollup-plugin-polyfills-loader');
+const html = require('@web/rollup-plugin-html');
+const polyfillsLoader = require('@web/rollup-plugin-polyfills-loader');
 const path = require('path');
 const { generateSW } = require('rollup-plugin-workbox');
 const { createBasicConfig } = require('./createBasicConfig');
