@@ -29,7 +29,7 @@ render(
     <div
       ...=${spread({
         'my-attribute': 'foo',
-        '?my-boolean-attribute': true
+        '?my-boolean-attribute': true,
         '.myProperty': { foo: 'bar' },
         '@my-event': () => console.log('my-event fired'),
       })}
