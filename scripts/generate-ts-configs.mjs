@@ -80,6 +80,7 @@ packageDirnameMap.forEach((packageDirname, packageName) => {
         rootDir: '.',
         composite: true,
         allowJs: true,
+        strict: pkg.strict,
         checkJs: pkg.type === 'js' ? true : undefined,
         emitDeclarationOnly: pkg.type === 'js' ? true : undefined,
       },
