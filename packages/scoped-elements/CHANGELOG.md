@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.3.2
+
+### Patch Changes
+
+- 9fb1c131: refactor to remove optional chaining syntax in Cache file for better tooling compatibility
+
 ## 1.3.1
 
 ### Patch Changes
