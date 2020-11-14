@@ -48,7 +48,7 @@
     "@types/babel__core": "^7.1.3",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^5.0.0",
-    "@web/dev-server": "^0.0.19",
+    "@web/dev-server": "^0.0.24",
     "@web/dev-server-storybook": "^0.1.3",
     "babel-loader": "^8.0.0",
     "mocha-chai-snapshot": "^1.0.0"

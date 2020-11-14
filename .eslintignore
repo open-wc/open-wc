@@ -6,3 +6,4 @@ stats.html
 /packages/**/test-node/**/snapshots
 /packages/demoing-storybook/storybook-static/**/*
 /packages/**/demo/**/*
+/packages/dev-server-hmr/src/patches/**/*

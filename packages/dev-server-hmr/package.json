@@ -1,0 +1,63 @@
+{
+  "name": "@open-wc/dev-server-wc-hmr",
+  "version": "0.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Plugin for HMR with web components",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-wc/open-wc.git",
+    "directory": "packages/dev-server-wc-hmr"
+  },
+  "author": "open-wc",
+  "homepage": "https://github.com/open-wc/open-wc/packages/dev-server-wc-hmr",
+  "main": "dist/index.js",
+  "scripts": {
+    "start:fast": "wds --config demo/fast-element/server.config.mjs",
+    "start:lit": "wds --config demo/lit-element/server.config.mjs",
+    "start:lit-ts": "wds --config demo/lit-element-ts/server.config.mjs",
+    "start:vanilla": "wds --config demo/vanilla/server.config.mjs",
+    "test": "npm run test:node",
+    "test:node": "mocha test-node --recursive",
+    "test:watch": "npm run test:node -- --watch --watchfiles test"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "web",
+    "dev server",
+    "hmr",
+    "hot",
+    "module",
+    "replacement",
+    "reload",
+    "web",
+    "components"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-syntax-import-assertions": "^7.12.1",
+    "@babel/plugin-syntax-top-level-await": "^7.12.1",
+    "@web/dev-server-core": "^0.2.18",
+    "@web/dev-server-hmr": "^0.1.6",
+    "picomatch": "^2.2.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@microsoft/fast-element": "^0.19.1",
+    "@types/babel__core": "^7.1.12",
+    "@types/babel__generator": "^7.6.2",
+    "@types/babel__parser": "^7.1.1",
+    "@types/babel__traverse": "^7.0.15",
+    "@types/picomatch": "^2.2.1",
+    "@web/dev-server": "^0.0.24",
+    "@web/dev-server-esbuild": "^0.2.8",
+    "lit-element": "^2.4.0",
+    "mocha": "^8.2.1"
+  }
+}

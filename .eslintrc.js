@@ -2,6 +2,8 @@ module.exports = {
   extends: ['./packages/eslint-config/index.js', require.resolve('eslint-config-prettier')],
   rules: {
     'lit/no-useless-template-literals': 'off',
+    'consistent-return': 'off',
+    'max-classes-per-file': 'off',
   },
   overrides: [
     {
