@@ -48,7 +48,7 @@ const baseLibraries = [
     description: 'Generate/register a custom element from a preact component',
   },
   {
-    package: 'skatejs',
+    package: '@skatejs/element',
     description:
       'Skate is a library built on top of the W3C web component specs that enables you to write functional and performant web components with a very small footprint.',
     url: 'https://skatejs.netlify.com/',
