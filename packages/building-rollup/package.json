@@ -72,6 +72,7 @@
     "babel-plugin-template-html-minifier": "^4.0.0",
     "browserslist": "^4.16.0",
     "deepmerge": "^4.2.2",
+    "html-minifier-terser": "^5.1.1",
     "magic-string": "^0.25.7",
     "parse5": "^5.1.1",
     "regenerator-runtime": "^0.13.7",

@@ -6,6 +6,7 @@ const merge = require('deepmerge');
 const html = require('@web/rollup-plugin-html');
 const polyfillsLoader = require('@web/rollup-plugin-polyfills-loader');
 const path = require('path');
+const { minify } = require('html-minifier-terser');
 const { generateSW } = require('rollup-plugin-workbox');
 const { createBasicConfig } = require('./createBasicConfig');
 const { pluginWithOptions, applyServiceWorkerRegistration, isFalsy } = require('./utils');
@@ -29,11 +30,16 @@ function createSpaConfig(options) {
   );
   let outputDir = basicConfig.output.dir;
 
+  const minifyHtml = htmlString => minify(htmlString);
+
   const applySw = (htmlString, transformOptions) =>
     applyServiceWorkerRegistration(htmlString, transformOptions, userOptions, outputDir);
 
   const htmlPlugin = pluginWithOptions(html, userOptions.html, {
-    transformHtml: [userOptions.injectServiceWorker && applySw].filter(isFalsy),
+    transformHtml: [
+      [!userOptions.developmentMode && minifyHtml].filter(isFalsy),
+      [userOptions.injectServiceWorker && applySw].filter(isFalsy),
+    ],
   });
 
   let polyfillsLoaderConfig = {
