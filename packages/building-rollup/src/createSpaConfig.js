@@ -30,6 +30,17 @@ function createSpaConfig(options) {
   );
   let outputDir = basicConfig.output.dir;
 
+  if (userOptions.rootDir) {
+    if (typeof userOptions.html === 'boolean' && userOptions.html) {
+      userOptions.html = {
+        rootDir: userOptions.rootDir,
+      };
+    }
+    if (typeof userOptions.html === 'object') {
+      userOptions.html.rootDir = userOptions.rootDir;
+    }
+  }
+
   const minifyHtml = htmlString => minify(htmlString);
 
   const applySw = (htmlString, transformOptions) =>
