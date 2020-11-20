@@ -128,6 +128,12 @@ const baseLibraries = [
     description: 'µhtml based Custom Elements.',
     url: 'https://github.com/WebReflection/uce',
   },
+  {
+    name: 'DataFormsJS',
+    package: 'dataformsjs',
+    description: 'Set of Web Components that can be used to build Single Page Apps (SPA), Display JSON data from API’s and Web Services, and bind data to different elements on screen. All Web Components are plain JavaScript and require no build process.',
+    url: 'https://github.com/dataformsjs/dataformsjs',
+  },
 ];
 
 module.exports = async function getBaseLibraries() {
