@@ -131,7 +131,8 @@ const baseLibraries = [
   {
     name: 'DataFormsJS',
     package: 'dataformsjs',
-    description: 'Set of Web Components that can be used to build Single Page Apps (SPA), Display JSON data from API’s and Web Services, and bind data to different elements on screen. All Web Components are plain JavaScript and require no build process.',
+    description:
+      'Set of Web Components that can be used to build Single Page Apps (SPA), Display JSON data from API’s and Web Services, and bind data to different elements on screen. All Web Components are plain JavaScript and require no build process.',
     url: 'https://github.com/dataformsjs/dataformsjs',
   },
 ];
