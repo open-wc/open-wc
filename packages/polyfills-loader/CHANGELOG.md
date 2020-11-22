@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.7.6
+
+### Patch Changes
+
+- 800a9132: publish types
+
 ## 1.7.5
 
 ### Patch Changes
