@@ -28,7 +28,8 @@
   "files": [
     "index.d.ts",
     "index.js",
-    "src"
+    "src",
+    "types"
   ],
   "dependencies": {
     "@babel/core": "^7.11.1",
