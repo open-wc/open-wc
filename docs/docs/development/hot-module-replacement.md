@@ -32,7 +32,9 @@ export default {
 };
 ```
 
-Pick one of the presets below if needed, then start the dev server like normal.
+Pick one of the presets below if needed, then start the dev server like normal. There are no code modifications needed. If a component or one of it's dependencies is changed, the component is replaced. Otherwise the page is reloaded.
+
+> Make sure to start the dev server without `watch` mode, as this always forces a page reload on change.
 
 ## Implementations
 
