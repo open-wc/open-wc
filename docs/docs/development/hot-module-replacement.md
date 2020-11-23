@@ -2,13 +2,15 @@
 
 > This project is currently experimental. Try it out and let us know what you think!
 
-Plugin for "hot module replacement" or "fast refresh" with web components.
+[@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) plugin for "hot module replacement" or "fast refresh" with web components.
 
 Keeps track of web component definitions in your code, and updates them at runtime on change. This is faster than a full page reload and preserves the page's state.
 
 HMR requires the web component base class to implement a `hotReplaceCallback`.
 
 ## Installation
+
+> Make sure you have [@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) installed.
 
 Install the package:
 
@@ -29,6 +31,8 @@ export default {
   ],
 };
 ```
+
+Then start the dev server like normal.
 
 ## Implementations
 
