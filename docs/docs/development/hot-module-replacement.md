@@ -13,7 +13,7 @@ HMR requires the web component base class to implement a `hotReplaceCallback`.
 Install the package:
 
 ```
-npm i --save-dev @web/dev-server-hmr
+npm i --save-dev @open-wc/dev-server-hmr
 ```
 
 Add the plugin to your `web-dev-server-config.mjs`:
