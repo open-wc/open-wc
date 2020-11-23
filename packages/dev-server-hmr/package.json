@@ -1,5 +1,5 @@
 {
-  "name": "@open-wc/dev-server-wc-hmr",
+  "name": "@open-wc/dev-server-hmr",
   "version": "0.0.1",
   "publishConfig": {
     "access": "public"
@@ -9,10 +9,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/open-wc/open-wc.git",
-    "directory": "packages/dev-server-wc-hmr"
+    "directory": "packages/dev-server-hmr"
   },
   "author": "open-wc",
-  "homepage": "https://github.com/open-wc/open-wc/packages/dev-server-wc-hmr",
+  "homepage": "https://github.com/open-wc/open-wc/packages/dev-server-hmr",
   "main": "dist/index.js",
   "scripts": {
     "start:fast": "wds --config demo/fast-element/server.config.mjs",
