@@ -13,7 +13,13 @@
   },
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/packages/dev-server-hmr",
-  "main": "dist/index.js",
+  "main": "src/index.js",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./src/index.js"
+    }
+  },
   "scripts": {
     "start:fast": "wds --config demo/fast-element/server.config.mjs",
     "start:lit": "wds --config demo/lit-element/server.config.mjs",
@@ -25,6 +31,7 @@
   },
   "files": [
     "dist",
+    "index.mjs",
     "src"
   ],
   "keywords": [
