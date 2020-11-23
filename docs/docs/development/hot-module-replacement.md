@@ -130,7 +130,23 @@ hmrPlugin({
 
 ### Functions
 
-We don't currently support function based web components. Let us know if you have ideas on how this could work!
+Some libraries create the web component class definition from a function. The functions can be matched by name, or as an import from a specific module.
+
+```js
+hmrPlugin({
+  include: ['src/**/*'],
+  functions: [
+    // any class that uses a function called component
+    { name: 'component' },
+    // any class that uses a function called component imported from 'my-element'
+    { name: 'component', import: 'my-element' },
+    // any class that uses a function called component imported from './src/MyElement.js' (relative to current working directory)
+    { name: 'component', import: './src/MyElement.js' },
+    // any class that uses a function default imported from 'my-element'
+    { name: 'default', import: 'my-element' },
+  ],
+});
+```
 
 ## Limitations
 

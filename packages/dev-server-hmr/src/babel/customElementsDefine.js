@@ -21,7 +21,10 @@ function isDefineCall(callee, args) {
     return false;
   }
 
-  return args.length >= 2 && (args[1].isIdentifier() || args[1].isClassExpression());
+  return (
+    args.length >= 2 &&
+    (args[1].isIdentifier() || args[1].isClassExpression() || args[1].isCallExpression())
+  );
 }
 
 /** @param {NodePath<MemberExpression>} memberExpr */

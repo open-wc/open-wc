@@ -6,6 +6,7 @@
 /** @template T @typedef {import('@babel/core').NodePath<T>} NodePath */
 /** @typedef {import('./babelPluginWcHmr').BaseClass} BaseClass */
 /** @typedef {import('./babelPluginWcHmr').Decorator} Decorator */
+/** @typedef {import('./babelPluginWcHmr').FunctionOption} FunctionOption */
 
 const path = require('path');
 const { singlePath } = require('./utils');
@@ -38,11 +39,19 @@ function isMatchingImport(importSpecifier, importPath, filename, rootDir) {
 /**
  * @param {BaseClass[]} baseClasses
  * @param {Decorator[]} decorators
+ * @param {FunctionOption[]} functions
  * @param {string} importSpecifier
  * @param {string} filename
  * @param {string} rootDir
  */
-function getMatchesForImport(baseClasses, decorators, importSpecifier, filename, rootDir) {
+function getMatchesForImport(
+  baseClasses,
+  decorators,
+  functions,
+  importSpecifier,
+  filename,
+  rootDir,
+) {
   return {
     baseClasses: baseClasses.filter(
       baseClass =>
@@ -52,24 +61,45 @@ function getMatchesForImport(baseClasses, decorators, importSpecifier, filename,
       decorator =>
         decorator.import && isMatchingImport(importSpecifier, decorator.import, filename, rootDir),
     ),
+    functions: functions.filter(
+      func => func.import && isMatchingImport(importSpecifier, func.import, filename, rootDir),
+    ),
   };
 }
 
 /**
  * @param {BaseClass[]} baseClasses
  * @param {Decorator[]} decorators
+ * @param {FunctionOption[]} functions
  * @param {NodePath<ImportDeclaration>} importDeclaration
  * @param {string} filename
  * @param {string} rootDir
  */
-function getImportedVariableNames(baseClasses, decorators, importDeclaration, filename, rootDir) {
+function getImportedVariableNames(
+  baseClasses,
+  decorators,
+  functions,
+  importDeclaration,
+  filename,
+  rootDir,
+) {
   const importSpecifier = importDeclaration.node.source.value;
-  const matches = getMatchesForImport(baseClasses, decorators, importSpecifier, filename, rootDir);
+  const matches = getMatchesForImport(
+    baseClasses,
+    decorators,
+    functions,
+    importSpecifier,
+    filename,
+    rootDir,
+  );
   /** @type {string[]} */
   const baseClassNames = [];
+  /** @type {string[]} */
   const decoratorNames = [];
+  /** @type {string[]} */
+  const functionNames = [];
 
-  if (matches.baseClasses.length || matches.decorators.length) {
+  if (matches.baseClasses.length || matches.decorators.length || matches.functions.length) {
     for (const specifier of importDeclaration.get('specifiers')) {
       if (specifier.isImportDefaultSpecifier()) {
         if (matches.baseClasses.some(cl => cl.name === 'default')) {
@@ -77,6 +107,9 @@ function getImportedVariableNames(baseClasses, decorators, importDeclaration, fi
         }
         if (matches.decorators.some(cl => cl.name === 'default')) {
           decoratorNames.push(specifier.node.local.name);
+        }
+        if (matches.functions.some(cl => cl.name === 'default')) {
+          functionNames.push(specifier.node.local.name);
         }
       } else if (specifier.isImportSpecifier()) {
         const imported = specifier.get('imported');
@@ -90,11 +123,14 @@ function getImportedVariableNames(baseClasses, decorators, importDeclaration, fi
           if (matches.decorators.some(cl => cl.name === importedName)) {
             decoratorNames.push(specifier.node.local.name);
           }
+          if (matches.functions.some(cl => cl.name === importedName)) {
+            functionNames.push(specifier.node.local.name);
+          }
         }
       }
     }
   }
-  return { baseClassNames, decoratorNames };
+  return { baseClassNames, decoratorNames, functionNames };
 }
 
 module.exports = { getImportedVariableNames };

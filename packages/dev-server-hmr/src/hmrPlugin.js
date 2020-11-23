@@ -14,6 +14,12 @@
  */
 
 /**
+ * @typedef {object} FunctionOption
+ * @property {string} name
+ * @property {string} [import]
+ */
+
+/**
  * @typedef {object} Preset
  * @property {BaseClass[]} baseClasses
  * @property {Decorator[]} decorators
@@ -27,6 +33,7 @@
  * @property {Preset[]} [presets]
  * @property {BaseClass[]} [baseClasses]
  * @property {Decorator[]} [decorators]
+ * @property {FunctionOption[]} [functions]
  * @property {string[]} [patches]
  */
 
@@ -114,6 +121,7 @@ function hmrPlugin(pluginConfig) {
           context.body = await babelTransform(context.body, filePath, {
             baseClasses: parsedPluginConfig.baseClasses,
             decorators: parsedPluginConfig.decorators,
+            functions: parsedPluginConfig.functions,
             patches: parsedPluginConfig.patches,
             rootDir,
           });

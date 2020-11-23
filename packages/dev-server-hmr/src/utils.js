@@ -34,6 +34,7 @@ function parseConfig(config) {
   assertOptionalArray(config, 'patches');
   assertOptionalArray(config, 'baseClasses');
   assertOptionalArray(config, 'decorators');
+  assertOptionalArray(config, 'functions');
   assertOptionalArray(config, 'presets');
 
   config.baseClasses = config.baseClasses || [];
