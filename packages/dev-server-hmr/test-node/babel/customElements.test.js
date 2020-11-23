@@ -85,7 +85,7 @@ customElements.define('x-foo', Foo);`,
     );
   });
 
-  it('injects registration when detecting an inline class', () => {
+  it('injects registration when detecting a class expression', () => {
     const code = `customElements.define('x-foo', class Foo extends HTMLElement {});`;
     const result = transform(code);
     expect(result).to.equal(`${banner}
@@ -96,7 +96,7 @@ __$wc_hmr$__.register(import.meta.url, _Foo);
 customElements.define('x-foo', _Foo);`);
   });
 
-  it('injects registration when detecting an anonymous inline class', () => {
+  it('injects registration when detecting an anonymous class expression', () => {
     const code = `customElements.define('x-foo', class extends HTMLElement {});`;
     const result = transform(code);
     expect(result).to.equal(`${banner}
@@ -134,5 +134,16 @@ console.log("x");
 
   customElements.define('x-foo', _ref);
 })();`);
+  });
+
+  it('handles function expression', () => {
+    const code = `customElements.define('x-foo', component(Foo));`;
+    const result = transform(code);
+    expect(result).to.equal(`${banner}
+const _component = component(Foo);
+
+__$wc_hmr$__.register(import.meta.url, _component);
+
+customElements.define('x-foo', _component);`);
   });
 });

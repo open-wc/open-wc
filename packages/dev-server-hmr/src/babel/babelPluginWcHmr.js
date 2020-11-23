@@ -14,10 +14,17 @@
  */
 
 /**
+ * @typedef {object} FunctionOption
+ * @property {string} name
+ * @property {string} [import]
+ */
+
+/**
  * @typedef {object} BabelPluginWcHmrOptions
  * @property {string} rootDir
  * @property {BaseClass[]} [baseClasses]
  * @property {Decorator[]} [decorators]
+ * @property {FunctionOption[]} [functions]
  * @property {string[]} [patches]
  */
 
@@ -28,6 +35,7 @@ const { findDefinedCustomElement } = require('./customElementsDefine');
 const { findDecoratedCustomElement } = require('./decorators');
 const { injectRegisterClass, injectRuntime } = require('./inject');
 const { parseOptions, singlePath, addToSet } = require('./utils');
+const { findFunctionComponent } = require('./functions');
 const { getImportedVariableNames } = require('./getImportedVariableNames');
 const { implementsBaseClass } = require('./class');
 const { createError } = require('../utils');
@@ -42,11 +50,14 @@ function babelPluginWcHmr() {
         const opts = parseOptions(/** @type {BabelPluginWcHmrOptions} */ (this.opts));
         const baseClasses = opts.baseClasses || [];
         const decorators = opts.decorators || [];
+        const functions = opts.functions || [];
 
         /** @type {Set<string>} */
         const baseClassNames = new Set();
         /** @type {Set<string>} */
         const decoratorNames = new Set();
+        /** @type {Set<string>} */
+        const functionNames = new Set();
         /** @type {Set<string>} */
         const injectedClassNames = new Set();
         let injectedRegister = false;
@@ -74,6 +85,10 @@ function babelPluginWcHmr() {
           decoratorNames,
           decorators.filter(c => !c.import).map(d => d.name),
         );
+        addToSet(
+          functionNames,
+          functions.filter(c => !c.import).map(d => d.name),
+        );
 
         program.traverse({
           ImportDeclaration(importDecl) {
@@ -81,16 +96,25 @@ function babelPluginWcHmr() {
             const result = getImportedVariableNames(
               baseClasses,
               decorators,
+              functions,
               importDecl,
               resolvedFilename,
               opts.rootDir,
             );
             addToSet(baseClassNames, result.baseClassNames);
             addToSet(decoratorNames, result.decoratorNames);
+            addToSet(functionNames, result.functionNames);
           },
         });
 
         program.traverse({
+          VariableDeclaration(varDecl) {
+            const name = findFunctionComponent(varDecl, functionNames);
+            if (name) {
+              maybeInjectRegister(varDecl, name);
+            }
+          },
+
           CallExpression(callExpr) {
             const callee = callExpr.get('callee');
             const args = callExpr.get('arguments');
@@ -109,7 +133,10 @@ function babelPluginWcHmr() {
                 maybeInjectRegister(callExpr, definedCustomElement.node.name);
               }
 
-              if (definedCustomElement.isClassExpression()) {
+              if (
+                definedCustomElement.isClassExpression() ||
+                definedCustomElement.isCallExpression()
+              ) {
                 // take inline class expression out of the define so that it can be registered
                 const id = callExpr.scope.generateUidIdentifierBasedOnNode(
                   definedCustomElement.node,
