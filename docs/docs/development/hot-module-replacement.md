@@ -32,7 +32,7 @@ export default {
 };
 ```
 
-Then start the dev server like normal.
+Pick one of the presets below if needed, then start the dev server like normal.
 
 ## Implementations
 
@@ -82,7 +82,9 @@ If you know any other libraries that work correctly with HMR we can add presets 
 
 To "hot replace" an edited web component we have to be able to detect component definitions in your code. By default we look for usage of `customElements.define` and extending from `HTMLElement`.
 
-For other use cases, you can specify base classes or decorators to indicate component definitions. We have some presets shown above which configure this for libraries that we know to work with HMR.
+For other use cases, you can specify base classes or decorators to indicate component definitions.
+
+> If you are using a preset, the detection will already be configured correctly.
 
 ### Base classes
 
