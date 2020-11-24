@@ -22,10 +22,10 @@
   },
   "scripts": {
     "start:fast": "wds --config demo/fast-element/server.config.mjs",
+    "start:haunted": "wds --config demo/haunted/server.config.mjs",
     "start:lit": "wds --config demo/lit-element/server.config.mjs",
     "start:lit-ts": "wds --config demo/lit-element-ts/server.config.mjs",
     "start:vanilla": "wds --config demo/vanilla/server.config.mjs",
-    "start:haunted": "wds --config demo/haunted/server.config.mjs",
     "test": "npm run test:node",
     "test:node": "mocha test-node --recursive",
     "test:watch": "npm run test:node -- --watch --watchfiles test"

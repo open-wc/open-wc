@@ -168,9 +168,9 @@ We'd love to hear any feedback or questions you might have. You can reach us at:
   You can join the Polymer slack by visiting [this link](https://join.slack.com/t/polymer/shared_invite/enQtNTAzNzg3NjU4ODM4LTkzZGVlOGIxMmNiMjMzZDM1YzYyMzdiYTk0YjQyOWZhZTMwN2RlNjM5ZDFmZjMxZWRjMWViMDA1MjNiYWFhZWM).
   ​
 - You can find our recommendations and documentation over at: [open-wc](https://open-wc.org).
-​
-You can also find some of us on twitter: [BennyP](https://twitter.com/PowersBenny), [daKmoR](https://twitter.com/daKmoR), [passle](https://twitter.com/passle_)
-​
-<br>
-<p align="center">
-🚽 Made with love by <a href="https://github.com/open-wc/open-wc">open-wc</a>. </p>
+  ​
+  You can also find some of us on twitter: [BennyP](https://twitter.com/PowersBenny), [daKmoR](https://twitter.com/daKmoR), [passle](https://twitter.com/passle_)
+  ​
+  <br>
+  <p align="center">
+  🚽 Made with love by <a href="https://github.com/open-wc/open-wc">open-wc</a>. </p>
