@@ -1,5 +1,11 @@
 # @open-wc/dev-server-wc-hmr
 
+## 0.0.3
+
+### Patch Changes
+
+- 3fd1afdd: support function components
+
 ## 0.0.2
 
 ### Patch Changes
