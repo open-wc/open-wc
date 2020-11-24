@@ -53,7 +53,7 @@ You may also extend the recommended configuration like so:
 By default, any tagged template literal that starts with `html` is linted. Example:
 
 ```js
-html`<img />`;
+html` <img /> `;
 ```
 
 It could be the case, however, that you're using multiple rendering libraries in a project, like for example [`htm`](https://github.com/developit/htm), which also uses a `html` tagged template literal, but has a slightly different syntax than lit-html. In this case you can specify the following option, to make sure only lit-html tagged template literals are linted:

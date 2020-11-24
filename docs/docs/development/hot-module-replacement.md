@@ -2,7 +2,7 @@
 
 > This project is currently experimental. Try it out and let us know what you think!
 
-[@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) plugin for "hot module replacement" or "fast refresh" with web components.
+[@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) plugin for "hot module replacement" or "fast refresh" with web components and es modules.
 
 Keeps track of web component definitions in your code, and updates them at runtime on change. This is faster than a full page reload and preserves the page's state.
 
@@ -10,7 +10,7 @@ HMR requires the web component base class to implement a `hotReplaceCallback`.
 
 ## Installation
 
-> Make sure you have [@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) installed.
+First install [@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) if you don't already have this installed in your project.
 
 Install the package:
 
@@ -32,7 +32,7 @@ export default {
 };
 ```
 
-Pick one of the presets below if needed, then start the dev server like normal. There are no code modifications needed. If a component or one of it's dependencies is changed, the component is replaced. Otherwise the page is reloaded.
+Pick one of the presets below if needed, then start the dev server like normal. You don't need to make any changes to your code. If a component or one of it's dependencies is changed, the component is replaced. Otherwise the page is reloaded.
 
 > Make sure to start the dev server without `watch` mode, as this always forces a page reload on change.
 
@@ -206,6 +206,12 @@ class MyElement extends HTMLElement {
   }
 }
 ```
+
+## HMR implementation
+
+This plugin currently only works for web dev server. The approach should be compatible with other ESM-HMR implementations in other dev servers. This is something that can be explored.
+
+Compatibility with non es modules HMR, such as webpack, is not currently a goal.
 
 ### Static callback
 

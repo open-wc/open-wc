@@ -106,7 +106,7 @@ expect(el.bar).to.equal('baz');
 Ordinarily, `fixture` will render your template as a child of a plain `<div>` element on the test page:
 
 ```js
-const el = await fixture(html`<my-el></my-el>`);
+const el = await fixture(html` <my-el></my-el> `);
 ```
 
 ```html
@@ -118,7 +118,7 @@ This should suffice for most cases, but if you need to specify the type of eleme
 ```js
 const parentNode = document.createElement('div');
 parentNode.setAttribute('style', 'position:absolute;');
-const el = await fixture(html`<my-el></my-el>`, { parentNode });
+const el = await fixture(html` <my-el></my-el> `, { parentNode });
 ```
 
 ```html

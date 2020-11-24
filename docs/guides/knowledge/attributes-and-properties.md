@@ -59,9 +59,9 @@ Most templating systems allow setting properties. For example in `lit-html` ther
 ```js
 // set an attribute
 const foo = 'bar';
-html`<my-element foo="${foo}"></my-element>`;
+html` <my-element foo="${foo}"></my-element> `;
 // set a property
-html`<my-element .foo="${foo}"></my-element>`;
+html` <my-element .foo="${foo}"></my-element> `;
 ```
 
 `preact` does some detection to see if a property exists on the element, and will set the property instead of the attribute.
@@ -161,5 +161,5 @@ console.log(mycheck.checked); // false
 When using lit-html, we can get around this by always setting the property instead of the attribute:
 
 ```js
-html`<input type="checkbox" .checked=${this.checkboxChecked} />`;
+html` <input type="checkbox" .checked=${this.checkboxChecked} /> `;
 ```

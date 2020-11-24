@@ -75,9 +75,7 @@ function TodoList() {
 
     <div class="add">
       <input id="input" placeholder="Add a TODO" autocomplete="off" />
-      <button @click=${addTodo}>
-        Add
-      </button>
+      <button @click=${addTodo}>Add</button>
     </div>
 
     ${sharedTemplate}
