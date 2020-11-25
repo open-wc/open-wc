@@ -31,7 +31,7 @@ async function babelTransform(code, filename, options) {
     sourceType: 'module',
   });
 
-  if (!result?.code) {
+  if (!result || !result.code) {
     throw createError(`Failed to babel transform ${filename}`);
   }
   return result.code;
