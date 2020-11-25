@@ -1,5 +1,11 @@
 # @open-wc/dev-server-wc-hmr
 
+## 0.0.4
+
+### Patch Changes
+
+- a71fcac8: remove usage of optional chaining
+
 ## 0.0.3
 
 ### Patch Changes
