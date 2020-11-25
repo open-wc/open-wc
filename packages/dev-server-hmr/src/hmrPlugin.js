@@ -70,7 +70,7 @@ function hmrPlugin(pluginConfig) {
         return source;
       }
 
-      return baseHmrPlugin.resolveImport?.(...args);
+      return baseHmrPlugin.resolveImport && baseHmrPlugin.resolveImport(...args);
     },
 
     serve(...args) {
@@ -80,14 +80,14 @@ function hmrPlugin(pluginConfig) {
       }
 
       if (context.path === WC_HMR_MODULE_PATCH) {
-        return pluginConfig.patches?.join('\n') || '';
+        return (pluginConfig.patches && pluginConfig.patches.join('\n')) || '';
       }
 
-      return baseHmrPlugin.serve?.(...args);
+      return baseHmrPlugin.serve && baseHmrPlugin.serve(...args);
     },
 
     serverStart(...args) {
-      if (args[0].config.plugins?.find(pl => pl.name === 'hmr')) {
+      if (!args[0].config.plugins || args[0].config.plugins.find(pl => pl.name === 'hmr')) {
         throw createError(
           `Cannot include both @web/dev-server-hmr and @open-wc/dev-server-hmr plugins.`,
         );
@@ -102,7 +102,7 @@ function hmrPlugin(pluginConfig) {
         matchExclude = createMatchers(rootDir, parsedPluginConfig.exclude);
       }
 
-      return baseHmrPlugin.serverStart?.(...args);
+      return baseHmrPlugin.serverStart && baseHmrPlugin.serverStart(...args);
     },
 
     async transform(...args) {
@@ -135,21 +135,21 @@ function hmrPlugin(pluginConfig) {
         }
       }
 
-      return baseHmrPlugin.transform?.(...args);
+      return baseHmrPlugin.transform && baseHmrPlugin.transform(...args);
     },
 
     // forward all other plugin hooks
     serverStop(...args) {
-      return baseHmrPlugin.serverStop?.(...args);
+      return baseHmrPlugin.serverStop && baseHmrPlugin.serverStop(...args);
     },
     transformCacheKey(...args) {
-      return baseHmrPlugin.transformCacheKey?.(...args);
+      return baseHmrPlugin.transformCacheKey && baseHmrPlugin.transformCacheKey(...args);
     },
     transformImport(...args) {
-      return baseHmrPlugin.transformImport?.(...args);
+      return baseHmrPlugin.transformImport && baseHmrPlugin.transformImport(...args);
     },
     resolveMimeType(...args) {
-      return baseHmrPlugin.resolveMimeType?.(...args);
+      return baseHmrPlugin.resolveMimeType && baseHmrPlugin.resolveMimeType(...args);
     },
   };
 }
