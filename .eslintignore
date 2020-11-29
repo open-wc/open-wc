@@ -7,3 +7,5 @@ stats.html
 /packages/demoing-storybook/storybook-static/**/*
 /packages/**/demo/**/*
 /packages/dev-server-hmr/src/patches/**/*
+_site/
+_site-dev
