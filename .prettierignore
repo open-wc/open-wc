@@ -11,3 +11,5 @@ packages/**/test-node/**/snapshots
 /packages/rollup-plugin-html/dist/**/*
 CHANGELOG.md
 __snapshots__/
+_site/
+_site-dev/

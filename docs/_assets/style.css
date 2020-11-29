@@ -124,6 +124,10 @@ rocket-navigation > ul > li > a {
   #mobile-menu-trigger svg {
     color: #fff;
   }
+
+  rocket-search svg {
+    fill: #fff;
+  }
 }
 
 @media screen and (min-width: 1024px) {

@@ -51,6 +51,10 @@ html {
     --button-two: black;
     --button-two-hover: rgb(36, 36, 36);
 
+    --rocket-search-background-color: #4a4d52;
+    --rocket-search-highlight-color: #41ffb0;
+    --rocket-search-hover-background-color: #6b717a;
+    --rocket-search-fill-color: #fff;
 
     /* Markdown */
     --markdown-octicon-link: var(--primary-text-color);
