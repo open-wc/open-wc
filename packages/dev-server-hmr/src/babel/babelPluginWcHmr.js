@@ -169,7 +169,11 @@ function babelPluginWcHmr() {
                 }
 
                 if (decoratedCustomElement.isIdentifier()) {
-                  maybeInjectRegister(callExpr.parentPath, decoratedCustomElement.node.name);
+                  let assignExpr = callExpr.parentPath;
+                  while (assignExpr && assignExpr.isAssignmentExpression()) {
+                    assignExpr = assignExpr.parentPath;
+                  }
+                  maybeInjectRegister(assignExpr, decoratedCustomElement.node.name);
                 }
               }
             }
