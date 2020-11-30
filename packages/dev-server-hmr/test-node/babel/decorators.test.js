@@ -112,4 +112,21 @@ __$wc_hmr$__.register(import.meta.url, Foo);
 
 Foo = __decorate([defineElement('x-foo')], Foo);`);
   });
+
+  it('compiled decorator with a double assigned variable', () => {
+    const code = `
+function __decorate() {}
+let Foo = Foo_1 = class extends HTMLElement {};
+Foo = Foo_1 = __decorate([customElement('x-foo')], Foo);`;
+    const result = transform(code, { decorators: [{ name: 'customElement' }] });
+
+    expect(result).to.equal(`${banner}
+function __decorate() {}
+
+let Foo = Foo_1 = class extends HTMLElement {};
+
+__$wc_hmr$__.register(import.meta.url, Foo);
+
+Foo = Foo_1 = __decorate([customElement('x-foo')], Foo);`);
+  });
 });
