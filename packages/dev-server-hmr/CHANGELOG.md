@@ -1,5 +1,11 @@
 # @open-wc/dev-server-wc-hmr
 
+## 0.0.5
+
+### Patch Changes
+
+- afadd6fa: handle multiple assigned variables
+
 ## 0.0.4
 
 ### Patch Changes
