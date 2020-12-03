@@ -4,6 +4,7 @@
 
 const merge = require('deepmerge');
 const html = require('@web/rollup-plugin-html');
+const { importMetaAssets } = require('@web/rollup-plugin-import-meta-assets');
 const polyfillsLoader = require('@web/rollup-plugin-polyfills-loader');
 const path = require('path');
 const { minify } = require('html-minifier-terser');
@@ -121,6 +122,8 @@ function createSpaConfig(options) {
     plugins: [
       // create HTML file output
       htmlPlugin,
+
+      importMetaAssets(),
 
       // inject polyfills loader into HTML
       pluginWithOptions(polyfillsLoader, userOptions.polyfillsLoader, polyfillsLoaderConfig),
