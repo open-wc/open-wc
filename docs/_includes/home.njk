@@ -1,0 +1,72 @@
+{% extends 'layout.njk' %}
+
+{% block bodyTag %}
+  <body layout="home" home-layout="{{rocketLaunch.homeLayout}}">
+{% endblock bodyTag %}
+
+{% block sidebar %}
+  <rocket-drawer id="sidebar">
+    <nav slot="content" id="sidebar-nav">
+      {% include 'partials/logoLink.njk' %}
+      <rocket-navigation>
+        <ul>
+          {%- for entry in collections.header %}
+            <li>
+              <a href="{{ entry.url | url }}" class="
+                {% if entry.url == page.url %} current {% endif %}
+                {% if (page.url.search(entry.url) !== -1) and (page.url !== '/') %} active {% endif %}
+              ">{{ entry.data.eleventyNavigation.key }}</a>
+            </li>
+          {%- endfor %}
+        </ul>
+        {% include 'partials/mobile-sidebar-bottom.njk' %}
+      </rocket-navigation>
+    </nav>
+  </rocket-drawer>
+{% endblock sidebar %}
+
+{% block main %}
+  <main class="markdown-body">
+    <img class="page-logo" src="{{ '_assets/logo.svg' | asset | url }}" alt="{{ site.title }} Logo"/>
+
+    {% if rocketLaunch.homeLayout === 'background' %}
+      <img class="page-background" src="{{ '_assets/home-background.svg' | asset | url }}" role="presentation"/>
+    {% endif %}
+
+    <h1 class="page-title">{{ title }}</h1>
+
+    <p class="page-slogan">{{slogan}}</p>
+
+    <div class="call-to-action-list">
+      {% for callToAction in callToActionItems %}
+        <a class="call-to-action" href="{{ callToAction.href | url }}">{{ callToAction.text | safe }}</a>
+      {% endfor %}
+    </div>
+
+    <h2 class="reason-header">{{ reasonHeader }}</h2>
+
+    <div class="reasons">
+      {% for reason in reasons %}
+        <div>
+          <h3>{{ reason.header }}</h3>
+          {{ reason.text | safe }}
+        </div>
+      {% endfor %}
+    </div>
+
+    <h2 class="reason-header">{{ supportedByHeader }}</h2>
+
+    <div class="reasons supported-by-items">
+      {% for item in supportedByItems %}
+        <div>
+          <a href="{{ item.href }}">
+            <img src="{{ item.image }}" alt="{{ item.name }}" width="{{ item.width }}"/>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+    {{ content.html | safe }}
+    {% include 'partials/previousNext.njk' %}
+  </main>
+{% endblock main %}

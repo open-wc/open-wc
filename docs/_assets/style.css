@@ -114,6 +114,21 @@ rocket-navigation > ul > li > a {
   text-transform: none!important;
 }
 
+.supported-by-items {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  column-gap: 100px;
+  row-gap: 40px;
+  color: var(--text-color);
+  margin-top: 60px;
+}
+
+.supported-by-items div {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media (prefers-color-scheme: dark) {
   .markdown-body {
     color: var(--primary-text-color);
