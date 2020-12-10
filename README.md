@@ -79,8 +79,6 @@ You can join the Polymer slack by visiting [https://www.polymer-project.org/slac
 
 <a href="http://netlify.com/" style="border: none;"><img src="https://www.netlify.com/img/press/logos/full-logo-light.svg" width="185" alt="netlify logo" /></a>
 
-<a href="http://ing.com/" style="border: none;"><img src="https://www.ing.com/static/ingdotcompresentation/static/img/logos/logo.hd.png" width="185" alt="ing logo" /></a>
-
 ## Guide
 
 ```bash

@@ -30,12 +30,6 @@ supportedByItems:
       image: 'https://raw.githubusercontent.com/open-wc/open-wc/97309eecd83e8b58dffc08a4fb4aa049d062a22b/assets/images/Browserstack-logo.svg',
     },
     {
-      name: 'ING',
-      width: 100,
-      href: 'http://ing.com/',
-      image: 'https://www.ing.com/static/ingdotcompresentation/static/img/logos/logo.hd.png',
-    },
-    {
       name: 'Netlify',
       width: 100,
       href: 'http://netlify.com/',
