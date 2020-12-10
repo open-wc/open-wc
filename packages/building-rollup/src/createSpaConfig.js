@@ -3,7 +3,7 @@
 /** @typedef {import('polyfills-loader').PolyfillsLoaderConfig} PolyfillsLoaderConfig */
 
 const merge = require('deepmerge');
-const html = require('@web/rollup-plugin-html');
+const { rollupPluginHTML } = require('@web/rollup-plugin-html');
 const { importMetaAssets } = require('@web/rollup-plugin-import-meta-assets');
 const polyfillsLoader = require('@web/rollup-plugin-polyfills-loader');
 const path = require('path');
@@ -47,7 +47,7 @@ function createSpaConfig(options) {
   const applySw = (htmlString, transformOptions) =>
     applyServiceWorkerRegistration(htmlString, transformOptions, userOptions, outputDir);
 
-  const htmlPlugin = pluginWithOptions(html, userOptions.html, {
+  const htmlPlugin = pluginWithOptions(rollupPluginHTML, userOptions.html, {
     transformHtml: [
       [!userOptions.developmentMode && minifyHtml].filter(isFalsy),
       [userOptions.injectServiceWorker && applySw].filter(isFalsy),
