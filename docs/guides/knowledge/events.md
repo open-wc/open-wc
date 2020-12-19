@@ -41,12 +41,11 @@ When adding event listening inside of your components, assuming you are using `l
 
 ```js
 render() {
-    return html`
-        ${this.open
-            ? html`<button @click=${this.handleClose}>Close</button>
-            : html``
-        }
-    `;
+    return (
+        this.open
+        ? html`<button @click=${this.handleClose}>Close</button>`
+        : html``
+    );
 }
 ```
 
@@ -167,7 +166,7 @@ const customEvent = new CustomEvent('custom-event', {
     wasHeard: false,
   },
 });
-el.didispatchEventspatch(customEvent);
+el.dispatchEvent(customEvent);
 console.log(customEvent.detail.wasHeard); // true
 ```
 
