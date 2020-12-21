@@ -6,11 +6,11 @@
 
 Keeps track of web component definitions in your code, and updates them at runtime on change. This is faster than a full page reload and preserves the page's state.
 
-HMR requires the web component base class to implement a `hotReplaceCallback`.
+HMR requires the web component base class to implement a `hotReplacedCallback`.
 
 ## Installation
 
-First install [@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) if you don't already have this installed in your project.
+First, install [@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) if you don't already have this installed in your project.
 
 Install the package:
 
@@ -32,15 +32,15 @@ export default {
 };
 ```
 
-Pick one of the presets below if needed, then start the dev server like normal. You don't need to make any changes to your code. If a component or one of it's dependencies is changed, the component is replaced. Otherwise the page is reloaded.
+Pick one of the presets below if needed, then start the dev server like normal. You don't need to make any changes to your code. If a component or one of its dependencies is changed, the component is replaced. Otherwise, the page is reloaded.
 
-> Make sure to start the dev server without `watch` mode, as this always forces a page reload on change.
+> Make sure to start the dev server without `watch` mode, as this always forces a page to reload on change.
 
 ## Implementations
 
 ### Vanilla
 
-For vanilla web component projects that don't implement any base class or library this plugin should detect your components correctly. Read more below on how to implement the `hotReplaceCallback`.
+For vanilla web component projects that don't implement any base class or library this plugin should detect your components automatically. You need to implement a `hotReplacedCallback` on your element to trigger a re-render, read more about that below.
 
 ### LitElement
 
@@ -76,13 +76,50 @@ export default {
 };
 ```
 
+### Haunted
+
+We have experimental support for Haunted using a small code patch included in the preset. This might not cover all use cases yet, let us know if you run into any issues!
+
+```js
+import { hmrPlugin, presets } from '@open-wc/dev-server-hmr';
+
+export default {
+  plugins: [
+    hmrPlugin({
+      include: ['src/**/*'],
+      presets: [presets.haunted],
+    }),
+  ],
+};
+```
+
 ### Other libraries
 
 If you know any other libraries that work correctly with HMR we can add presets for them here. Presets help by configuring the detection of base classes, decorators, and/or runtime code patches.
 
+## How it works
+
+Web component HMR works by replacing class references and instance prototype chains with proxies. Whenever a class or a property on the prototype chain is accessed, the proxy will forward to the latest implementation of the web component class.
+
+After updating a web component class, newly created elements will use the latest class and things work as expected from there.
+
+For existing elements, the prototype chain is updated to reference the new class. This means that things like class methods are updated, but local class fields or properties are not. This is a feature because it retains component state, but also a limitation because newly added fields/properties are not available. The constructor is also not re-run for existing elements.
+
+Web component HMR works best when editing HTML and CSS. Because we're overwriting and moving around code at runtime, assumptions you can normally make about how your code runs is broken. It's recommended to periodically do a full refresh of the page.
+
+### Limitations
+
+The following limitations should be kept in mind when working with open-wc HMR:
+
+- For existing elements, constructors are not re-run when updating a class.
+- For existing elements, newly added fields/properties are not available.
+- A web component's `observedAttributes` list cannot be updated over time. Updates require a refresh.
+
+> Did you run into other limitations? Let us know so we can improve this list.
+
 ## Detecting web components
 
-To "hot replace" an edited web component we have to be able to detect component definitions in your code. By default we look for usage of `customElements.define` and extending from `HTMLElement`.
+To "hot replace" an edited web component we have to be able to detect component definitions in your code. By default we look for usage of `customElements.define` and/or classes that from `HTMLElement` directly.
 
 For other use cases, you can specify base classes or decorators to indicate component definitions.
 
@@ -148,82 +185,29 @@ hmrPlugin({
 });
 ```
 
-## Limitations
-
-HMR workflows are not perfect. We're overwriting and moving around code at runtime. It breaks assumptions you normally make about your code. We recommended periodically doing a full refresh of the page, especially when you encounter strange behavior.
-
-The following limitations should be kept in mind when working with open-wc HMR:
-
-- Modules containing web components are re-imported under a new name and only the web component class is replaced. Side effects are triggered again but exported symbols are not updated.
-- Constructors for already created elements are not re-run when a class is replaced. Otherwise it would reset the properties of your element. This does mean that newly added properties don't show up.
-- Instance class fields act like properties defined in a constructor, and newly added or changed class fields are not hot replaced.
-- Newly created elements do use the new constructors and class fields.
-
-> Did you run into other limitations? Let us know so we can improve this list.
-
 ## Implementing HMR
 
-When hot replacing a web component class we can't replace the actual class. The custom element registry doesn't allow re-registration and we want to preserve the state of already rendered components. Instead, we patch the initial class with the properties from the updates class.
-
-This updating logic can be different for each base class, and it can be implemented using the `hotReplaceCallback`.
-
-This is the default implementation:
+To implement HMR your element or element's base class should implement one of the `hotReplacedCallback` methods. In your method
+you can do custom updating logic, and kick off re-rendering of your element.
 
 ```js
-function updateObjectMembers(currentObj, newObj) {
-  const currentProperties = new Set(Object.getOwnPropertyNames(hmrClass));
-  const newProperties = new Set(Object.getOwnPropertyNames(newClass));
-
-  // add new and overwrite existing properties/methods
-  for (const prop of Object.getOwnPropertyNames(newClass)) {
-    const descriptor = Object.getOwnPropertyDescriptor(newClass, prop);
-    if (descriptor && descriptor.configurable) {
-      Object.defineProperty(hmrClass, prop, descriptor);
-    }
-  }
-
-  // delete removed properties
-  for (const existingProp of currentProperties) {
-    if (!newProperties.has(existingProp)) {
-      try {
-        delete hmrClass[existingProp];
-      } catch {}
-    }
-  }
-}
-
 class MyElement extends HTMLElement {
   // static callback, called once when a class updates
-  static hotReplaceCallback(newClass) {
-    updateObjectMembers(this, newClass);
-    updateObjectMembers(this.prototype, newClass.prototype);
+  static hotReplacedCallback() {
+    this.update();
   }
 
   // instance callback, called for each connected element
-  hotReplaceCallback() {
+  hotReplacedCallback() {
     // this should kick off re-rendering
-    this.update();
+    this.rerender();
   }
 }
 ```
 
-## HMR implementation
-
-This plugin currently only works for web dev server. The approach should be compatible with other ESM-HMR implementations in other dev servers. This is something that can be explored.
+This plugin currently only works for Web Dev Server. The approach should be compatible with other ESM-HMR implementations in other dev servers. This is something that can be explored.
 
 Compatibility with non es modules HMR, such as webpack, is not currently a goal.
-
-### Static callback
-
-The static `hotReplaceCallback` callback is called once for each replacement on the initial class of the component. This is where you can copy over properties from the new class to the existing class.
-
-Implementing this callback is not mandatory, by default we copy over properties of the new class to the existing class. If this is not sufficient, you can customize this logic.
-
-### Instance callback
-
-The instance callback is called on each connected element implementing the replaced class. Implementing this is necessary to do some work at the instance level, such as trigger a re-render or style update.
-
-When the instance callback is called, all the class members (properties, methods, etc.) have already been updated. So it could be as simple as kicking off the regular updating/rendering pipeline.
 
 ### Patching
 
@@ -232,11 +216,11 @@ If you don't want to include the HMR code in your production code, you could pat
 ```js
 import { MyElement } from 'my-element';
 
-MyElement.hotReplaceCallback = function hotReplaceCallback(newClass) {
+MyElement.hotReplacedCallback = function hotReplacedCallback() {
   // code for the static callback
 };
 
-MyElement.prototype.hotReplaceCallback = function hotReplaceCallback(newClass) {
+MyElement.prototype.hotReplacedCallback = function hotReplacedCallback() {
   // code for the instance callback
 };
 ```
@@ -249,11 +233,11 @@ import { hmrPlugin } from '@open-wc/dev-server-hmr';
 const myElementPatch = `
 import { MyElement } from 'my-element';
 
-MyElement.hotReplaceCallback = function hotReplaceCallback(newClass) {
+MyElement.hotReplacedCallback = function hotReplacedCallback() {
   // code for the static callback
 };
 
-MyElement.prototype.hotReplaceCallback = function hotReplaceCallback(newClass) {
+MyElement.prototype.hotReplacedCallback = function hotReplacedCallback() {
   // code for the instance callback
 };
 `;

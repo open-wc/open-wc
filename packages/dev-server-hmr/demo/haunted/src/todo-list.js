@@ -65,7 +65,7 @@ function TodoList() {
                 .message=${item.message}
                 .checked=${item.checked}
                 data-i=${i}
-                @checked-changed=${this._onCheckedChanged}
+                @checked-changed=${onCheckedChanged}
                 @delete=${onDelete}
               ></todo-item>
             </li>

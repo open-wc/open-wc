@@ -8,9 +8,7 @@ describe('babelPluginWcHmr - detecting customElements.define', () => {
     const result = transform(code);
     expect(result).to.equal(
       `${banner}
-class Foo extends HTMLElement {}
-
-__$wc_hmr$__.register(import.meta.url, Foo);
+let Foo = __$wc_hmr$__.register(import.meta.url, class Foo extends HTMLElement {});
 
 customElements.define('x-foo', Foo);`,
     );
@@ -21,9 +19,7 @@ customElements.define('x-foo', Foo);`,
     const result = transform(code);
     expect(result).to.equal(
       `${banner}
-class Foo extends HTMLElement {}
-
-__$wc_hmr$__.register(import.meta.url, Foo);
+let Foo = __$wc_hmr$__.register(import.meta.url, class Foo extends HTMLElement {});
 
 window.customElements.define('x-foo', Foo);`,
     );
@@ -34,11 +30,47 @@ window.customElements.define('x-foo', Foo);`,
     const result = transform(code);
     expect(result).to.equal(
       `${banner}
-class Foo extends HTMLElement {}
-
-__$wc_hmr$__.register(import.meta.url, Foo);
+let Foo = __$wc_hmr$__.register(import.meta.url, class Foo extends HTMLElement {});
 
 globalThis.customElements.define('x-foo', Foo);`,
+    );
+  });
+
+  it('injects registration when detecting a class expression', () => {
+    const code = `customElements.define('x-foo', class Foo extends HTMLElement {});`;
+    const result = transform(code);
+    expect(result).to.equal(`${banner}
+customElements.define('x-foo', __$wc_hmr$__.register(import.meta.url, class Foo extends HTMLElement {}));`);
+  });
+
+  it('injects registration when detecting an anonymous class expression', () => {
+    const code = `customElements.define('x-foo', class extends HTMLElement {});`;
+    const result = transform(code);
+    expect(result).to.equal(`${banner}
+customElements.define('x-foo', __$wc_hmr$__.register(import.meta.url, class extends HTMLElement {}));`);
+  });
+
+  it('injects registration on a class expression assigned to a variable', () => {
+    const code = `const Foo = class Foo extends HTMLElement {}\ncustomElements.define('x-foo', Foo);`;
+    const result = transform(code);
+    expect(result).to.equal(
+      `${banner}
+const Foo = __$wc_hmr$__.register(import.meta.url, class Foo extends HTMLElement {});
+
+customElements.define('x-foo', Foo);`,
+    );
+  });
+
+  it('injects registration on a reassigned class to a variable with the same name', () => {
+    const code = `let Foo = class Foo extends HTMLElement {}\n Foo = Foo;\n customElements.define('x-foo', Foo);`;
+    const result = transform(code);
+    console.log(result);
+    expect(result).to.equal(
+      `${banner}
+let Foo = __$wc_hmr$__.register(import.meta.url, class Foo extends HTMLElement {});
+
+Foo = Foo;
+customElements.define('x-foo', Foo);`,
     );
   });
 
@@ -47,25 +79,18 @@ globalThis.customElements.define('x-foo', Foo);`,
       "class Foo extends HTMLElement {}\ncustomElements.define('x-foo', Foo);\n" +
       "class Bar extends HTMLElement {}\ncustomElements.define('x-bar', Bar);" +
       "class Baz extends HTMLElement {}\ncustomElements.define('x-baz', Baz);";
-    // console.log(code);
     const result = transform(code);
     expect(result).to.equal(
       `${banner}
-class Foo extends HTMLElement {}
-
-__$wc_hmr$__.register(import.meta.url, Foo);
+let Foo = __$wc_hmr$__.register(import.meta.url, class Foo extends HTMLElement {});
 
 customElements.define('x-foo', Foo);
 
-class Bar extends HTMLElement {}
-
-__$wc_hmr$__.register(import.meta.url, Bar);
+let Bar = __$wc_hmr$__.register(import.meta.url, class Bar extends HTMLElement {});
 
 customElements.define('x-bar', Bar);
 
-class Baz extends HTMLElement {}
-
-__$wc_hmr$__.register(import.meta.url, Baz);
+let Baz = __$wc_hmr$__.register(import.meta.url, class Baz extends HTMLElement {});
 
 customElements.define('x-baz', Baz);`,
     );
@@ -77,73 +102,38 @@ customElements.define('x-baz', Baz);`,
     expect(result).to.equal(
       `import '/__web-dev-server__/wc-hmr/patch.js';
 ${banner}
-class Foo extends HTMLElement {}
-
-__$wc_hmr$__.register(import.meta.url, Foo);
+let Foo = __$wc_hmr$__.register(import.meta.url, class Foo extends HTMLElement {});
 
 customElements.define('x-foo', Foo);`,
     );
-  });
-
-  it('injects registration when detecting a class expression', () => {
-    const code = `customElements.define('x-foo', class Foo extends HTMLElement {});`;
-    const result = transform(code);
-    expect(result).to.equal(`${banner}
-const _Foo = class Foo extends HTMLElement {};
-
-__$wc_hmr$__.register(import.meta.url, _Foo);
-
-customElements.define('x-foo', _Foo);`);
-  });
-
-  it('injects registration when detecting an anonymous class expression', () => {
-    const code = `customElements.define('x-foo', class extends HTMLElement {});`;
-    const result = transform(code);
-    expect(result).to.equal(`${banner}
-const _ref = class extends HTMLElement {};
-
-__$wc_hmr$__.register(import.meta.url, _ref);
-
-customElements.define('x-foo', _ref);`);
-  });
-
-  it('deconflicts variable names', () => {
-    const code = `const Foo = 1; const _Foo = 2; customElements.define('x-foo', class Foo extends HTMLElement {});`;
-    const result = transform(code);
-    expect(result).to.equal(`${banner}
-const Foo = 1;
-const _Foo = 2;
-
-const _Foo2 = class Foo extends HTMLElement {};
-
-__$wc_hmr$__.register(import.meta.url, _Foo2);
-
-customElements.define('x-foo', _Foo2);`);
-  });
-
-  it('respects the custom element define scope', () => {
-    const code = `console.log("x"); (function () { customElements.define('x-foo', class extends HTMLElement {}); })();`;
-    const result = transform(code);
-    expect(result).to.equal(`${banner}
-console.log("x");
-
-(function () {
-  const _ref = class extends HTMLElement {};
-
-  __$wc_hmr$__.register(import.meta.url, _ref);
-
-  customElements.define('x-foo', _ref);
-})();`);
   });
 
   it('handles function expression', () => {
     const code = `customElements.define('x-foo', component(Foo));`;
     const result = transform(code);
     expect(result).to.equal(`${banner}
-const _component = component(Foo);
+customElements.define('x-foo', __$wc_hmr$__.register(import.meta.url, component(Foo)));`);
+  });
 
-__$wc_hmr$__.register(import.meta.url, _component);
+  it('does not wrap an already handled class 1', () => {
+    const code = `let Foo = __$wc_hmr$__.register(import.meta.url, class Foo extends HTMLElement {});
 
-customElements.define('x-foo', _component);`);
+customElements.define('x-foo', Foo);`;
+    const result = transform(code);
+    expect(result).to.equal(
+      `${banner}
+let Foo = __$wc_hmr$__.register(import.meta.url, class Foo extends HTMLElement {});
+
+customElements.define('x-foo', Foo);`,
+    );
+  });
+
+  it('does not wrap an already handled class 2', () => {
+    const code = `customElements.define('x-foo', __$wc_hmr$__.register(import.meta.url, class Foo extends HTMLElement {}));`;
+    const result = transform(code);
+    expect(result).to.equal(
+      `${banner}
+customElements.define('x-foo', __$wc_hmr$__.register(import.meta.url, class Foo extends HTMLElement {}));`,
+    );
   });
 });

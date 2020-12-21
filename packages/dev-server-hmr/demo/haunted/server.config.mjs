@@ -7,7 +7,7 @@ export default {
   plugins: [
     hmrPlugin({
       exclude: ['**/*/node_modules/**/*'],
-      functions: [{ name: 'component', import: 'haunted' }],
+      presets: [presets.haunted],
     }),
   ],
 };

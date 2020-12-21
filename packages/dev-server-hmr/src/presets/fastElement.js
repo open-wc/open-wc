@@ -1,13 +1,15 @@
-const { WC_HMR_MODULE_RUNTIME } = require('../constants');
-
 const patch = `import { FASTElement, FASTElementDefinition } from '@microsoft/fast-element';
-import { updateClassMembers } from '${WC_HMR_MODULE_RUNTIME}';
-
-FASTElement.prototype.hotReplaceCallback = function hotReplaceCallback(newClass) {
-  const newDefinition = FASTElementDefinition.forType(newClass);
+FASTElement.prototype.hotReplacedCallback = function hotReplacedCallback() {
+  const newDefinition = FASTElementDefinition.forType(this.constructor);
   if (newDefinition) {
-    this.$fastController.styles = newDefinition.styles;
-    this.$fastController.template = newDefinition.template;
+    if (newDefinition.styles) {
+      this.$fastController.styles = newDefinition.styles;
+    } else {
+      // TODO: removed styles?
+    }
+    if (newDefinition.template) {
+      this.$fastController.template = newDefinition.template;
+    }
   }
 };`;
 

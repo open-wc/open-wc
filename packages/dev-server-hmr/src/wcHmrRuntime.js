@@ -1,4 +1,6 @@
-const wcHmrRuntime = `
+// @ts-nocheck
+/* eslint-disable no-param-reassign */
+
 // override global define to allow double registrations
 const originalDefine = window.customElements.define;
 window.customElements.define = (name, ...rest) => {
@@ -7,43 +9,12 @@ window.customElements.define = (name, ...rest) => {
   }
 };
 
-const registry = new Map();
+const proxiesForKeys = new Map();
+const keysForClasses = new Map();
 
-function createClassKey(importMetaUrl, className) {
+function createClassKey(importMetaUrl, clazz) {
   const modulePath = new URL(importMetaUrl).pathname;
-  return \`\${modulePath}:\${className}\`;
-}
-
-export function register(importMetaUrl, hmrClass) {
-  const key = createClassKey(importMetaUrl, hmrClass.name);
-  const hotReplaceCallback = registry.get(key);
-  if (hotReplaceCallback) {
-    // class is already registered, call the replace function registered below
-    hotReplaceCallback(hmrClass);
-    return;
-  }
-  // class is not yet registered, set it up and register an update callback
-  const connectedElements = trackConnectedElements(hmrClass);
-
-  // register a callback for this class later patch in updates to the class
-  registry.set(key, async newClass => {
-    // wait 1 microtask to allow the class definition to propagate
-    await 0;
-
-    if (hmrClass.hotReplaceCallback) {
-      // class has implemented a callback, use that
-      hmrClass.hotReplaceCallback(newClass);
-    } else {
-      // otherwise apply default update
-      updateClassMembers(hmrClass, newClass);
-    }
-
-    for (const element of connectedElements) {
-      if (element.hotReplaceCallback) {
-        element.hotReplaceCallback(newClass);
-      }
-    }
-  });
+  return `${modulePath}:${clazz.name}`;
 }
 
 function trackConnectedElements(hmrClass) {
@@ -66,31 +37,140 @@ function trackConnectedElements(hmrClass) {
   return connectedElements;
 }
 
-const preserved = ['connectedCallback', 'disconnectedCallback', 'observedAttributes'];
+const proxyMethods = [
+  'construct',
+  'defineProperty',
+  'deleteProperty',
+  'getOwnPropertyDescriptor',
+  'getPrototypeOf',
+  'setPrototypeOf',
+  'isExtensible',
+  'ownKeys',
+  'preventExtensions',
+  'has',
+  'get',
+  'set',
+];
 
-export function updateClassMembers(hmrClass, newClass) {
-  updateObjectMembers(hmrClass, newClass);
-  updateObjectMembers(hmrClass.prototype, newClass.prototype);
+/**
+ * Creates a proxy for the given target, and fowards any calls to the most up to the latest
+ * version of the target. (ex. the latest hot replaced class).
+ */
+function createProxy(originalTarget, getCurrentTarget) {
+  const proxyHandler = {};
+  for (const method of proxyMethods) {
+    proxyHandler[method] = (_, ...args) => {
+      if (method === 'get' && args[0] === 'prototype') {
+        // prototype must always return original target value
+        return Reflect[method](originalTarget, ...args);
+      }
+      return Reflect[method](getCurrentTarget(), ...args);
+    };
+  }
+  return new Proxy(originalTarget, proxyHandler);
 }
 
-export function updateObjectMembers(hmrClass, newClass) {
-  const currentProperties = new Set(Object.getOwnPropertyNames(hmrClass));
-  const newProperties = new Set(Object.getOwnPropertyNames(newClass));
+/**
+ * Replaces all prototypes in the inheritance chain with a proxy
+ * that references the latest implementation
+ */
+function replacePrototypesWithProxies(instance) {
+  let previous = instance;
+  let proto = Object.getPrototypeOf(instance);
 
-  for (const prop of Object.getOwnPropertyNames(newClass)) {
-    const descriptor = Object.getOwnPropertyDescriptor(newClass, prop);
-    if (descriptor && descriptor.configurable) {
-      Object.defineProperty(hmrClass, prop, descriptor);
+  while (proto && proto.constructor !== HTMLElement) {
+    const key = keysForClasses.get(proto.constructor);
+    if (key) {
+      // this is a prototype that might be hot-replaced later
+      const getCurrentProto = () => proxiesForKeys.get(key).currentClass.prototype;
+      Object.setPrototypeOf(previous, createProxy(proto, getCurrentProto));
     }
+
+    previous = proto;
+    proto = Object.getPrototypeOf(proto);
+  }
+}
+
+export class WebComponentHmr extends HTMLElement {
+  constructor(...args) {
+    super(...args);
+    const key = keysForClasses.get(this.constructor);
+    const p = proxiesForKeys.get(key);
+    // replace the constructor with a proxy that references the latest implementation of this class
+    this.constructor = p.proxy;
+    // replace prototype chain with a proxy to the latest prototype implementation
+    replacePrototypesWithProxies(this);
+  }
+}
+
+window.WebComponentHmr = WebComponentHmr;
+
+/**
+ * Injects the WebComponentHmr class into the inheritance chain
+ */
+function injectInheritsHmrClass(clazz) {
+  let parent = clazz;
+  let proto = Object.getPrototypeOf(clazz);
+  while (proto && proto !== HTMLElement) {
+    parent = proto;
+    proto = Object.getPrototypeOf(proto);
   }
 
-  for (const existingProp of currentProperties) {
-    if (!preserved.includes(existingProp) && !newProperties.has(existingProp)) {
-      try {
-        delete hmrClass[existingProp];
-      } catch {}
-    }
+  if (proto !== HTMLElement) {
+    // not a web component
+    return;
   }
-}`;
+  if (parent === WebComponentHmr) {
+    // class already inherits WebComponentHmr
+    return;
+  }
+  Object.setPrototypeOf(parent, WebComponentHmr);
+}
 
-module.exports = { wcHmrRuntime };
+/**
+ * Registers a web component class. Triggers a hot replacement if the
+ * class was already registered before.
+ */
+export function register(importMeta, clazz) {
+  const key = createClassKey(importMeta, clazz);
+  const existing = proxiesForKeys.get(key);
+  if (!existing) {
+    // this class was not yet registered,
+
+    // create a proxy that will forward to the latest implementation
+    const proxy = createProxy(clazz, () => proxiesForKeys.get(key).currentClass);
+    // inject a HMR class into the inheritance chain
+    injectInheritsHmrClass(clazz);
+    // keep track of all connected elements for this class
+    const connectedElements = trackConnectedElements(clazz);
+
+    proxiesForKeys.set(key, {
+      proxy,
+      originalClass: clazz,
+      currentClass: clazz,
+      connectedElements,
+    });
+    keysForClasses.set(clazz, key);
+    return proxy;
+  }
+  // class was already registered before
+
+  // register new class, all calls will be proxied to this class
+  existing.currentClass = clazz;
+
+  Promise.resolve().then(() => {
+    // call optional HMR on the class if they exist, after next microtask to ensure
+    // module bodies have executed fully
+    if (clazz.hotReplacedCallback) {
+      clazz.hotReplacedCallback();
+    }
+
+    for (const element of existing.connectedElements) {
+      if (element.hotReplacedCallback) {
+        element.hotReplacedCallback();
+      }
+    }
+  });
+
+  return existing.proxy;
+}

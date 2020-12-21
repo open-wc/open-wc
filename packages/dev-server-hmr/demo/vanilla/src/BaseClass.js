@@ -11,7 +11,7 @@ export class BaseClass extends HTMLElement {
     this.update();
   }
 
-  hotReplaceCallback() {
+  hotReplacedCallback() {
     this.update();
   }
 

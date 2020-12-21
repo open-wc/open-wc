@@ -2,7 +2,7 @@
 /** @typedef {import('./babelPluginWcHmr').Decorator} Decorator */
 /** @template T @typedef {import('@babel/core').NodePath<T>} NodePath<T> */
 
-const { singlePath } = require('./utils');
+const { findComponentDefinition, singlePath } = require('./utils');
 
 /**
  * @param {Set<string>} decoratorNames
@@ -44,7 +44,9 @@ function findCompiledTsDecoratedCustomElement(decoratorNames, callee, args) {
   if (!decoratorCall) {
     return;
   }
-  return decoratedClass;
+
+  const found = findComponentDefinition(decoratedClass);
+  return found;
 }
 
 /**
