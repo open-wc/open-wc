@@ -1,21 +1,16 @@
-const { WC_HMR_MODULE_RUNTIME } = require('../constants');
-
 const patch = `import { LitElement } from 'lit-element';
-import { updateClassMembers } from '${WC_HMR_MODULE_RUNTIME}';
 const supportsAdoptingStyleSheets = (window.ShadowRoot) &&
   (window.ShadyCSS === undefined || window.ShadyCSS.nativeShadow) &&
   ('adoptedStyleSheets' in Document.prototype) &&
   ('replace' in CSSStyleSheet.prototype);
 
 // static callback
-LitElement.hotReplaceCallback = function hotReplaceCallback(newClass) {
-  newClass.finalize();
-  updateClassMembers(this, newClass);
+LitElement.hotReplacedCallback = function hotReplacedCallback() {
   this.finalize();
 };
 
 // instance callback
-LitElement.prototype.hotReplaceCallback = function hotReplaceCallback() {
+LitElement.prototype.hotReplacedCallback = function hotReplacedCallback() {
   if (!supportsAdoptingStyleSheets) {
     const nodes = Array.from(this.renderRoot.children);
     for (const node of nodes) {
@@ -25,6 +20,9 @@ LitElement.prototype.hotReplaceCallback = function hotReplaceCallback() {
     }
   }
 
+  // delete styles to ensure that they get recalculated, including picking up
+  // changes from parent classes
+  delete this.constructor._styles;
   this.constructor._getUniqueStyles();
   if (window.ShadowRoot && this.renderRoot instanceof window.ShadowRoot) {
     this.adoptStyles();

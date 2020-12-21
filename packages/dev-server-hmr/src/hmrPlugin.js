@@ -39,11 +39,14 @@
 
 const { getRequestFilePath, PluginSyntaxError } = require('@web/dev-server-core');
 const { hmrPlugin: createBaseHmrPlugin } = require('@web/dev-server-hmr');
+const fs = require('fs');
+const path = require('path');
 
 const { WC_HMR_MODULE_PREFIX, WC_HMR_MODULE_RUNTIME, WC_HMR_MODULE_PATCH } = require('./constants');
 const { parseConfig, createMatchers, createError } = require('./utils');
 const { babelTransform } = require('./babel/babelTransform');
-const { wcHmrRuntime } = require('./wcHmrRuntime');
+
+const wcHmrRuntime = fs.readFileSync(path.resolve(__dirname, 'wcHmrRuntime.js'), 'utf-8');
 
 /**
  * @param {WcHmrPluginConfig} pluginConfig
@@ -107,7 +110,7 @@ function hmrPlugin(pluginConfig) {
 
     async transform(...args) {
       const context = args[0];
-      if (!context.response.is('js')) {
+      if (!context.response.is('js') || context.path.startsWith('/__web-dev-server__')) {
         return;
       }
 

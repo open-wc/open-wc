@@ -1,8 +1,11 @@
+/* eslint-disable no-console */
 /** @typedef {import('@babel/types').MemberExpression} MemberExpression */
 /** @typedef {import('@babel/types').CallExpression} CallExpression */
+/** @typedef {import('@babel/types').ClassDeclaration} ClassDeclaration */
+/** @typedef {import('@babel/types').Expression} Expression */
 /** @template T @typedef {import('@babel/core').NodePath<T>} NodePath<T> */
 
-const { resolvePath, singlePath } = require('./utils');
+const { resolvePath, findComponentDefinition, singlePath } = require('./utils');
 
 const GLOBALS = ['window', 'self', 'globalThis'];
 
@@ -67,21 +70,13 @@ function isCallOnCustomElementObject(memberExpr) {
   return false;
 }
 
-/** @param {NodePath<any>[]} args  */
-function getDefinedClass(args) {
-  if (!args || !Array.isArray(args)) {
-    return;
-  }
-  return args[1];
-}
-
 /**
  * @param {NodePath<MemberExpression>} memberExpr
  * @param {NodePath<any>[]} args
  */
 function findDefinedCustomElement(memberExpr, args) {
   if (isDefineCall(memberExpr, args) && isCallOnCustomElementObject(memberExpr)) {
-    return getDefinedClass(args);
+    return findComponentDefinition(args[1]);
   }
 }
 

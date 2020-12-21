@@ -7,23 +7,17 @@ describe('babelPluginWcHmr - detecting base class', () => {
   it('global base class', () => {
     const code = `class Foo extends MyElement {}`;
     const result = transform(code, { baseClasses: [{ name: 'MyElement' }] });
-
     expect(result).to.equal(`${banner}
-class Foo extends MyElement {}
-
-__$wc_hmr$__.register(import.meta.url, Foo);`);
+let Foo = __$wc_hmr$__.register(import.meta.url, class Foo extends MyElement {});`);
   });
 
   it('named import', () => {
     const code = `import { MyElement } from 'my-element'; class Foo extends MyElement {}`;
     const result = transform(code, { baseClasses: [{ name: 'MyElement', import: 'my-element' }] });
-
     expect(result).to.equal(`${banner}
 import { MyElement } from 'my-element';
 
-class Foo extends MyElement {}
-
-__$wc_hmr$__.register(import.meta.url, Foo);`);
+let Foo = __$wc_hmr$__.register(import.meta.url, class Foo extends MyElement {});`);
   });
 
   it('unmatched import', () => {
@@ -41,45 +35,35 @@ class Foo extends MyElement {}`);
     expect(result).to.equal(`${banner}
 import BaseElement from 'base-element';
 
-class Foo extends BaseElement {}
-
-__$wc_hmr$__.register(import.meta.url, Foo);`);
+let Foo = __$wc_hmr$__.register(import.meta.url, class Foo extends BaseElement {});`);
   });
 
   it('mixins', () => {
     const code = `import { MyElement } from 'my-element'; class Foo extends MixA(MixB(MyElement)) {}`;
     const result = transform(code, { baseClasses: [{ name: 'MyElement', import: 'my-element' }] });
-
     expect(result).to.equal(`${banner}
 import { MyElement } from 'my-element';
 
-class Foo extends MixA(MixB(MyElement)) {}
-
-__$wc_hmr$__.register(import.meta.url, Foo);`);
+let Foo = __$wc_hmr$__.register(import.meta.url, class Foo extends MixA(MixB(MyElement)) {});`);
   });
 
   it('multiple classes', () => {
     const code = `import { MyElement } from 'my-element'; 
 class A extends MyElement {}
 class B {}
-class C extends HTMLElement {}
+class C extends X {}
 class D extends MyElement {}`;
     const result = transform(code, { baseClasses: [{ name: 'MyElement', import: 'my-element' }] });
-
     expect(result).to.equal(`${banner}
 import { MyElement } from 'my-element';
 
-class A extends MyElement {}
-
-__$wc_hmr$__.register(import.meta.url, A);
+let A = __$wc_hmr$__.register(import.meta.url, class A extends MyElement {});
 
 class B {}
 
-class C extends HTMLElement {}
+class C extends X {}
 
-class D extends MyElement {}
-
-__$wc_hmr$__.register(import.meta.url, D);`);
+let D = __$wc_hmr$__.register(import.meta.url, class D extends MyElement {});`);
   });
 
   it('multiple base class definitions', () => {
@@ -87,27 +71,22 @@ __$wc_hmr$__.register(import.meta.url, D);`);
 import ElementB from 'element-b';
 class A extends ElementA {}
 class B extends ElementB {}
-class C extends HTMLElement {}`;
+class C extends X {}`;
     const result = transform(code, {
       baseClasses: [
         { name: 'ElementA', import: 'element-a' },
         { name: 'default', import: 'element-b' },
       ],
     });
-
     expect(result).to.equal(`${banner}
 import { ElementA } from 'element-a';
 import ElementB from 'element-b';
 
-class A extends ElementA {}
+let A = __$wc_hmr$__.register(import.meta.url, class A extends ElementA {});
 
-__$wc_hmr$__.register(import.meta.url, A);
+let B = __$wc_hmr$__.register(import.meta.url, class B extends ElementB {});
 
-class B extends ElementB {}
-
-__$wc_hmr$__.register(import.meta.url, B);
-
-class C extends HTMLElement {}`);
+class C extends X {}`);
   });
 
   it('base class with a specific import path', () => {
@@ -115,12 +94,9 @@ class C extends HTMLElement {}`);
     const result = transform(code, {
       baseClasses: [{ name: 'MyElement', import: path.join(rootDir, 'MyElement.js') }],
     });
-
     expect(result).to.equal(`${banner}
 import { MyElement } from '../MyElement.js';
 
-class Foo extends MyElement {}
-
-__$wc_hmr$__.register(import.meta.url, Foo);`);
+let Foo = __$wc_hmr$__.register(import.meta.url, class Foo extends MyElement {});`);
   });
 });

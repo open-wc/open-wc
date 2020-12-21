@@ -8,8 +8,15 @@ const { isAbsolute, posix, sep } = require('path');
 /**
  * @param {string} msg
  */
+function createErrorMessage(msg) {
+  return `[@open-wc/dev-server-hmr] ${msg}`;
+}
+
+/**
+ * @param {string} msg
+ */
 function createError(msg) {
-  return new Error(`[@open-wc/dev-server-hmr] ${msg}`);
+  return new Error(createErrorMessage(msg));
 }
 
 /**
@@ -85,4 +92,4 @@ function createMatchers(rootDir, patterns) {
   };
 }
 
-module.exports = { createMatcher, createMatchers, parseConfig, createError };
+module.exports = { createMatcher, createMatchers, parseConfig, createErrorMessage, createError };

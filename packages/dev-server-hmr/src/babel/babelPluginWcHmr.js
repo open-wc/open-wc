@@ -1,4 +1,6 @@
 /** @typedef {import('@babel/core').PluginObj} PluginObj */
+/** @typedef {import('@babel/types').ClassDeclaration} ClassDeclaration */
+/** @typedef {import('@babel/types').Expression} Expression */
 /** @template T @typedef {import('@babel/core').NodePath<T>} NodePath<T> */
 
 /**
@@ -28,14 +30,13 @@
  * @property {string[]} [patches]
  */
 
-const { types } = require('@babel/core');
 const path = require('path');
 
 const { findDefinedCustomElement } = require('./customElementsDefine');
 const { findDecoratedCustomElement } = require('./decorators');
 const { injectRegisterClass, injectRuntime } = require('./inject');
 const { parseOptions, singlePath, addToSet } = require('./utils');
-const { findFunctionComponent } = require('./functions');
+const { isFunctionComponent } = require('./functions');
 const { getImportedVariableNames } = require('./getImportedVariableNames');
 const { implementsBaseClass } = require('./class');
 const { createError } = require('../utils');
@@ -58,22 +59,16 @@ function babelPluginWcHmr() {
         const decoratorNames = new Set();
         /** @type {Set<string>} */
         const functionNames = new Set();
-        /** @type {Set<string>} */
-        const injectedClassNames = new Set();
         let injectedRegister = false;
 
+        baseClassNames.add('HTMLElement');
+
         /**
-         * @param {NodePath<any>} nodePath
-         * @param {string} name
-         * @param {boolean} insertAfter
+         * @param {NodePath<ClassDeclaration> | NodePath<Expression>} nodePath
          */
-        function maybeInjectRegister(nodePath, name, insertAfter = false) {
-          if (injectedClassNames.has(name)) {
-            return;
-          }
-          injectRegisterClass(nodePath, name, insertAfter);
+        function injectRegister(nodePath) {
+          injectRegisterClass(nodePath);
           injectedRegister = true;
-          injectedClassNames.add(name);
         }
 
         // add decorators that don't require their import to be checked
@@ -108,14 +103,12 @@ function babelPluginWcHmr() {
         });
 
         program.traverse({
-          VariableDeclaration(varDecl) {
-            const name = findFunctionComponent(varDecl, functionNames);
-            if (name) {
-              maybeInjectRegister(varDecl, name);
-            }
-          },
-
           CallExpression(callExpr) {
+            if (callExpr.isCallExpression() && isFunctionComponent(callExpr, functionNames)) {
+              injectRegister(/** @type {NodePath<Expression>} */ (callExpr));
+              return;
+            }
+
             const callee = callExpr.get('callee');
             const args = callExpr.get('arguments');
             if (!singlePath(callee) || !Array.isArray(args)) {
@@ -129,30 +122,7 @@ function babelPluginWcHmr() {
                 return;
               }
 
-              if (definedCustomElement.isIdentifier()) {
-                maybeInjectRegister(callExpr, definedCustomElement.node.name);
-              }
-
-              if (
-                definedCustomElement.isClassExpression() ||
-                definedCustomElement.isCallExpression()
-              ) {
-                // take inline class expression out of the define so that it can be registered
-                const id = callExpr.scope.generateUidIdentifierBasedOnNode(
-                  definedCustomElement.node,
-                );
-                const { name } = id;
-
-                if (!injectedClassNames.has(name)) {
-                  callExpr.insertBefore(
-                    types.variableDeclaration('const', [
-                      types.variableDeclarator(id, definedCustomElement.node),
-                    ]),
-                  );
-                  definedCustomElement.replaceWith(id);
-                  maybeInjectRegister(callExpr, name);
-                }
-              }
+              injectRegister(definedCustomElement);
               return;
             }
 
@@ -168,13 +138,7 @@ function babelPluginWcHmr() {
                   return;
                 }
 
-                if (decoratedCustomElement.isIdentifier()) {
-                  let assignExpr = callExpr.parentPath;
-                  while (assignExpr && assignExpr.isAssignmentExpression()) {
-                    assignExpr = assignExpr.parentPath;
-                  }
-                  maybeInjectRegister(assignExpr, decoratedCustomElement.node.name);
-                }
+                injectRegister(decoratedCustomElement);
               }
             }
           },
@@ -182,7 +146,7 @@ function babelPluginWcHmr() {
           ClassDeclaration(classDecl) {
             // this is a class declaration like class A extends HTMLElement {}
             if (implementsBaseClass(classDecl, baseClassNames)) {
-              maybeInjectRegister(classDecl, classDecl.node.id.name, true);
+              injectRegister(classDecl);
             }
           },
 
@@ -205,8 +169,8 @@ function babelPluginWcHmr() {
             }
 
             // this is a class expression assignment like const A = class B extends HTMLElement {}
-            if (implementsBaseClass(classExpr, baseClassNames)) {
-              maybeInjectRegister(classExpr, id.node.name, true);
+            if (classExpr.isExpression() && implementsBaseClass(classExpr, baseClassNames)) {
+              injectRegister(classExpr);
             }
           },
         });

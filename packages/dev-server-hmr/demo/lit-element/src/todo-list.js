@@ -1,12 +1,9 @@
 import { LitElement, html, css } from 'lit-element';
-import { sharedTemplate } from './sharedTemplate.js';
-import { sharedStyles } from './sharedStyles.js';
 import './todo-item.js';
 
 class TodoList extends LitElement {
   static get styles() {
     return [
-      sharedStyles,
       css`
         ul {
           list-style: none;
@@ -26,7 +23,9 @@ class TodoList extends LitElement {
   }
 
   static get properties() {
-    return { items: { type: Object } };
+    return {
+      items: { type: Object },
+    };
   }
 
   constructor() {
@@ -66,8 +65,6 @@ class TodoList extends LitElement {
           Add
         </button>
       </div>
-
-      ${sharedTemplate}
     `;
   }
 

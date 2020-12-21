@@ -14,9 +14,7 @@ Foo = __decorate([customElement('x-foo')], Foo);`;
     expect(result).to.equal(`${banner}
 function __decorate() {}
 
-let Foo = class extends HTMLElement {};
-
-__$wc_hmr$__.register(import.meta.url, Foo);
+let Foo = __$wc_hmr$__.register(import.meta.url, class extends HTMLElement {});
 
 Foo = __decorate([customElement('x-foo')], Foo);`);
   });
@@ -31,9 +29,7 @@ Foo = __decorate([x(), y(), customElement('x-foo')], Foo);`;
     expect(result).to.equal(`${banner}
 function __decorate() {}
 
-let Foo = class extends HTMLElement {};
-
-__$wc_hmr$__.register(import.meta.url, Foo);
+let Foo = __$wc_hmr$__.register(import.meta.url, class extends HTMLElement {});
 
 Foo = __decorate([x(), y(), customElement('x-foo')], Foo);`);
   });
@@ -62,9 +58,7 @@ import { customElement } from 'my-package';
 
 function __decorate() {}
 
-let Foo = class extends HTMLElement {};
-
-__$wc_hmr$__.register(import.meta.url, Foo);
+let Foo = __$wc_hmr$__.register(import.meta.url, class extends HTMLElement {});
 
 Foo = __decorate([customElement('x-foo')], Foo);`);
   });
@@ -84,9 +78,7 @@ import customElement from 'my-package';
 
 function __decorate() {}
 
-let Foo = class extends HTMLElement {};
-
-__$wc_hmr$__.register(import.meta.url, Foo);
+let Foo = __$wc_hmr$__.register(import.meta.url, class extends HTMLElement {});
 
 Foo = __decorate([customElement('x-foo')], Foo);`);
   });
@@ -106,9 +98,7 @@ import { defineElement } from '../defineElement.js';
 
 function __decorate() {}
 
-let Foo = class extends HTMLElement {};
-
-__$wc_hmr$__.register(import.meta.url, Foo);
+let Foo = __$wc_hmr$__.register(import.meta.url, class extends HTMLElement {});
 
 Foo = __decorate([defineElement('x-foo')], Foo);`);
   });
@@ -123,9 +113,7 @@ Foo = Foo_1 = __decorate([customElement('x-foo')], Foo);`;
     expect(result).to.equal(`${banner}
 function __decorate() {}
 
-let Foo = Foo_1 = class extends HTMLElement {};
-
-__$wc_hmr$__.register(import.meta.url, Foo);
+let Foo = __$wc_hmr$__.register(import.meta.url, Foo_1 = class extends HTMLElement {});
 
 Foo = Foo_1 = __decorate([customElement('x-foo')], Foo);`);
   });
