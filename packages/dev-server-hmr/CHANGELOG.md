@@ -1,5 +1,11 @@
 # @open-wc/dev-server-wc-hmr
 
+## 0.0.6
+
+### Patch Changes
+
+- cd442855: implement HMR using proxies
+
 ## 0.0.5
 
 ### Patch Changes
