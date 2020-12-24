@@ -12,11 +12,6 @@ window.customElements.define = (name, ...rest) => {
 const proxiesForKeys = new Map();
 const keysForClasses = new Map();
 
-function createClassKey(importMetaUrl, clazz) {
-  const modulePath = new URL(importMetaUrl).pathname;
-  return `${modulePath}:${clazz.name}`;
-}
-
 function trackConnectedElements(hmrClass) {
   const connectedElements = new Set();
   const originalCb = hmrClass.prototype.connectedCallback;
@@ -62,6 +57,10 @@ function createProxy(originalTarget, getCurrentTarget) {
     proxyHandler[method] = (_, ...args) => {
       if (method === 'get' && args[0] === 'prototype') {
         // prototype must always return original target value
+        return Reflect[method](originalTarget, ...args);
+      }
+      if (args[0] === 'observedAttributes') {
+        // observedAttributes must always be forwarded to the original class
         return Reflect[method](originalTarget, ...args);
       }
       return Reflect[method](getCurrentTarget(), ...args);
@@ -131,8 +130,8 @@ function injectInheritsHmrClass(clazz) {
  * Registers a web component class. Triggers a hot replacement if the
  * class was already registered before.
  */
-export function register(importMeta, clazz) {
-  const key = createClassKey(importMeta, clazz);
+export function register(importMeta, name, clazz) {
+  const key = `${new URL(importMeta.url).pathname}:${name}`;
   const existing = proxiesForKeys.get(key);
   if (!existing) {
     // this class was not yet registered,

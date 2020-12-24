@@ -2,8 +2,10 @@
 /** @typedef {import('@babel/types').CallExpression} CallExpression */
 /** @typedef {import('@babel/types').ClassDeclaration} ClassDeclaration */
 /** @typedef {import('@babel/types').Expression} Expression */
+/** @typedef {import('@babel/types').Statement} Statement */
 /** @template T @typedef {import('@babel/core').NodePath<T>} NodePath<T> */
 
+const { parse } = require('@babel/core');
 const { createError } = require('../utils');
 
 /**
@@ -80,4 +82,29 @@ function addToSet(set, elements) {
   }
 }
 
-module.exports = { parseOptions, resolvePath, findComponentDefinition, singlePath, addToSet };
+/**
+ * @template {Statement} T
+ * @param {string} codeString
+ * @param {(statement: Statement) => statement is T} assertion
+ * @returns {T}
+ */
+function parseStatement(codeString, assertion) {
+  const parsed = parse(codeString);
+  if (!parsed || parsed.type !== 'File') {
+    throw createError('Internal error: Expected File from parsed result.');
+  }
+  const statement = parsed.program.body[0];
+  if (!statement || !assertion(statement)) {
+    throw createError(`Internal error: Parsed result did not match assertion ${assertion.name}.`);
+  }
+  return statement;
+}
+
+module.exports = {
+  parseOptions,
+  resolvePath,
+  findComponentDefinition,
+  singlePath,
+  addToSet,
+  parseStatement,
+};

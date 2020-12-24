@@ -47,9 +47,7 @@ const template = html<TodoList>`
 
   <div class="add">
     <input id="input" placeholder="Add a TODO" autocomplete="off" />
-    <button @click=${x => x._addTodo()}>
-      Add
-    </button>
+    <button @click=${x => x._addTodo()}>Add</button>
   </div>
 
   ${sharedTemplate}

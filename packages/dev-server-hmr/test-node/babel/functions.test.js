@@ -9,7 +9,7 @@ describe('babelPluginWcHmr - detecting function components', () => {
     const result = transform(code, { functions: [{ name: 'component' }] });
 
     expect(result).to.equal(`${banner}
-const MyElementClass = __$wc_hmr$__.register(import.meta.url, component(MyElement));`);
+const MyElementClass = __$wc_hmr$__.register(import.meta, "MyElementClass", component(MyElement));`);
   });
 
   it('handles multiple functions', () => {
@@ -17,9 +17,9 @@ const MyElementClass = __$wc_hmr$__.register(import.meta.url, component(MyElemen
     const result = transform(code, { functions: [{ name: 'component' }] });
 
     expect(result).to.equal(`${banner}
-const x = __$wc_hmr$__.register(import.meta.url, component(y));
+const x = __$wc_hmr$__.register(import.meta, "x", component(y));
 
-const a = __$wc_hmr$__.register(import.meta.url, component(b));`);
+const a = __$wc_hmr$__.register(import.meta, "a", component(b));`);
   });
 
   it('does not inject for a function with a different name', () => {
@@ -39,10 +39,10 @@ const a = __$wc_hmr$__.register(import.meta.url, component(b));`);
     expect(result).to.equal(`${banner}
 import { component } from "my-package";
 
-const MyElementClass = __$wc_hmr$__.register(import.meta.url, component(MyElement));`);
+const MyElementClass = __$wc_hmr$__.register(import.meta, "MyElementClass", component(MyElement));`);
   });
 
-  it('compiled decorator with a default import', () => {
+  it('function component with a default import', () => {
     const code = 'import foo from "my-package"; const MyElementClass = foo(MyElement);';
 
     const result = transform(code, {
@@ -52,10 +52,10 @@ const MyElementClass = __$wc_hmr$__.register(import.meta.url, component(MyElemen
     expect(result).to.equal(`${banner}
 import foo from "my-package";
 
-const MyElementClass = __$wc_hmr$__.register(import.meta.url, foo(MyElement));`);
+const MyElementClass = __$wc_hmr$__.register(import.meta, "MyElementClass", foo(MyElement));`);
   });
 
-  it('compiled decorator with a specific import path', () => {
+  it('function component with a specific import path', () => {
     const code =
       'import { component } from "../component.js"; const MyElementClass = component(MyElement);';
 
@@ -66,6 +66,6 @@ const MyElementClass = __$wc_hmr$__.register(import.meta.url, foo(MyElement));`)
     expect(result).to.equal(`${banner}
 import { component } from "../component.js";
 
-const MyElementClass = __$wc_hmr$__.register(import.meta.url, component(MyElement));`);
+const MyElementClass = __$wc_hmr$__.register(import.meta, "MyElementClass", component(MyElement));`);
   });
 });

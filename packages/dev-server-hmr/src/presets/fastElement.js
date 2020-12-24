@@ -4,8 +4,6 @@ FASTElement.prototype.hotReplacedCallback = function hotReplacedCallback() {
   if (newDefinition) {
     if (newDefinition.styles) {
       this.$fastController.styles = newDefinition.styles;
-    } else {
-      // TODO: removed styles?
     }
     if (newDefinition.template) {
       this.$fastController.template = newDefinition.template;
