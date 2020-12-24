@@ -1,12 +1,13 @@
 /** @typedef {import('@babel/types').Program} Program */
 /** @typedef {import('@babel/types').ClassDeclaration} ClassDeclaration */
 /** @typedef {import('@babel/types').Expression} Expression */
+/** @typedef {import('@babel/types').ExpressionStatement} ExpressionStatement */
 /** @typedef {import('./babelPluginWcHmr').BabelPluginWcHmrOptions} BabelPluginWcHmrOptions */
 /** @template T @typedef {import('@babel/core').NodePath<T>} NodePath<T> */
 
 const { parse, types: t } = require('@babel/core');
 const { WC_HMR_NAMESPACE, WC_HMR_MODULE_PATCH, WC_HMR_MODULE_RUNTIME } = require('../constants');
-const { singlePath } = require('./utils');
+const { singlePath, parseStatement } = require('./utils');
 
 const REGISTER_FN_NAME = 'register';
 
@@ -34,23 +35,46 @@ function isRegisterCall(callExpr) {
 /**
  * @param {NodePath<ClassDeclaration> | NodePath<Expression>} clazz
  */
-function isAlreadyRegistered(clazz) {
+function isClassRegistered(clazz) {
   const callExpr = clazz.parentPath;
   return isRegisterCall(clazz) || isRegisterCall(callExpr);
 }
 
 /**
- * Wraps a class declaration or expression into a register call
  * @param {NodePath<ClassDeclaration> | NodePath<Expression> } clazz
  */
-function injectRegisterClass(clazz) {
-  if (isAlreadyRegistered(clazz)) return;
+function findComponentName(clazz) {
+  if (clazz.isClassDeclaration()) {
+    // class declaration always has a name
+    return clazz.node.id.name;
+  }
 
+  if (clazz.isClassExpression()) {
+    if (clazz.node.id && clazz.node.id.name) {
+      // class expression can have a name
+      return clazz.node.id.name;
+    }
+  }
+
+  const parent = clazz.parentPath;
+  if (parent.isVariableDeclarator()) {
+    const id = parent.get('id');
+    if (singlePath(id) && id.isIdentifier()) {
+      // there is an ID that defines the name of the class
+      return id.node.name;
+    }
+  }
+}
+
+/**
+ * Wraps a class declaration or expression into a register call
+ * @param {NodePath<ClassDeclaration> | NodePath<Expression> } clazz
+ * @param {string} componentName
+ */
+function injectRegisterClass(clazz, componentName) {
   const callee = t.memberExpression(t.identifier(WC_HMR_NAMESPACE), t.identifier(REGISTER_FN_NAME));
-  const importMetaUrl = t.memberExpression(
-    t.metaProperty(t.identifier('import'), t.identifier('meta')),
-    t.identifier('url'),
-  );
+  const importMeta = parseStatement(`import.meta`, t.isExpressionStatement).expression;
+  const componentNameString = t.stringLiteral(componentName);
 
   const classExpr = clazz.isExpression()
     ? clazz.node
@@ -60,7 +84,7 @@ function injectRegisterClass(clazz) {
         clazz.node.body,
         clazz.node.decorators,
       );
-  const callExpr = t.callExpression(callee, [importMetaUrl, classExpr]);
+  const callExpr = t.callExpression(callee, [importMeta, componentNameString, classExpr]);
 
   if (clazz.isExpression()) {
     clazz.replaceWith(callExpr);
@@ -88,4 +112,4 @@ function injectRuntime(options, program) {
   }
 }
 
-module.exports = { injectRegisterClass, injectRuntime };
+module.exports = { findComponentName, injectRegisterClass, isClassRegistered, injectRuntime };

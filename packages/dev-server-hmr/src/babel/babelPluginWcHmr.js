@@ -34,7 +34,12 @@ const path = require('path');
 
 const { findDefinedCustomElement } = require('./customElementsDefine');
 const { findDecoratedCustomElement } = require('./decorators');
-const { injectRegisterClass, injectRuntime } = require('./inject');
+const {
+  injectRegisterClass,
+  injectRuntime,
+  isClassRegistered,
+  findComponentName,
+} = require('./inject');
 const { parseOptions, singlePath, addToSet } = require('./utils');
 const { isFunctionComponent } = require('./functions');
 const { getImportedVariableNames } = require('./getImportedVariableNames');
@@ -60,6 +65,7 @@ function babelPluginWcHmr() {
         /** @type {Set<string>} */
         const functionNames = new Set();
         let injectedRegister = false;
+        let anonymousClassCount = -1;
 
         baseClassNames.add('HTMLElement');
 
@@ -67,7 +73,15 @@ function babelPluginWcHmr() {
          * @param {NodePath<ClassDeclaration> | NodePath<Expression>} nodePath
          */
         function injectRegister(nodePath) {
-          injectRegisterClass(nodePath);
+          if (isClassRegistered(nodePath)) {
+            return;
+          }
+          let componentName = findComponentName(nodePath);
+          if (!componentName) {
+            anonymousClassCount += 1;
+            componentName = `anonymous${anonymousClassCount}`;
+          }
+          injectRegisterClass(nodePath, componentName);
           injectedRegister = true;
         }
 
@@ -152,10 +166,10 @@ function babelPluginWcHmr() {
 
           ClassExpression(classExpr) {
             const { parent, parentPath: varDeclarator } = classExpr;
-            if (!parent || varDeclarator.isVariableDeclarator()) {
+            if (!parent || !varDeclarator.isVariableDeclarator()) {
               return;
             }
-            if (!varDeclarator || varDeclarator.parentPath.isVariableDeclaration()) {
+            if (!varDeclarator || !varDeclarator.parentPath.isVariableDeclaration()) {
               return;
             }
             const id = varDeclarator.get('id');
