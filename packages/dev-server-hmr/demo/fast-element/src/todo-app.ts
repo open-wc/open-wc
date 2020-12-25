@@ -10,6 +10,4 @@ const template = html<TodoApp>`
   name: 'todo-app',
   template,
 })
-class TodoApp extends FASTElement {
-  static definition = { name: 'todo-app', template };
-}
+class TodoApp extends FASTElement {}
