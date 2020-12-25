@@ -1,5 +1,5 @@
 // @ts-nocheck
-/* eslint-disable no-param-reassign */
+/* eslint-disable no-param-reassign, no-console */
 
 // override global define to allow double registrations
 const originalDefine = window.customElements.define;
@@ -57,11 +57,7 @@ function createProxy(originalTarget, getCurrentTarget) {
     proxyHandler[method] = (_, ...args) => {
       if (method === 'get' && args[0] === 'prototype') {
         // prototype must always return original target value
-        return Reflect[method](originalTarget, ...args);
-      }
-      if (args[0] === 'observedAttributes') {
-        // observedAttributes must always be forwarded to the original class
-        return Reflect[method](originalTarget, ...args);
+        return Reflect[method](_, ...args);
       }
       return Reflect[method](getCurrentTarget(), ...args);
     };
@@ -96,7 +92,7 @@ export class WebComponentHmr extends HTMLElement {
     const key = keysForClasses.get(this.constructor);
     const p = proxiesForKeys.get(key);
     // replace the constructor with a proxy that references the latest implementation of this class
-    this.constructor = p.proxy;
+    this.constructor = p.currentProxy;
     // replace prototype chain with a proxy to the latest prototype implementation
     replacePrototypesWithProxies(this);
   }
@@ -110,6 +106,7 @@ window.WebComponentHmr = WebComponentHmr;
 function injectInheritsHmrClass(clazz) {
   let parent = clazz;
   let proto = Object.getPrototypeOf(clazz);
+  // walk prototypes until we reach HTMLElement
   while (proto && proto !== HTMLElement) {
     parent = proto;
     proto = Object.getPrototypeOf(proto);
@@ -144,7 +141,8 @@ export function register(importMeta, name, clazz) {
     const connectedElements = trackConnectedElements(clazz);
 
     proxiesForKeys.set(key, {
-      proxy,
+      originalProxy: proxy,
+      currentProxy: proxy,
       originalClass: clazz,
       currentClass: clazz,
       connectedElements,
@@ -155,21 +153,42 @@ export function register(importMeta, name, clazz) {
   // class was already registered before
 
   // register new class, all calls will be proxied to this class
+  const previousProxy = existing.currentProxy;
+  const currentProxy = createProxy(clazz, () => proxiesForKeys.get(key).currentClass);
   existing.currentClass = clazz;
+  existing.currentProxy = currentProxy;
 
   Promise.resolve().then(() => {
     // call optional HMR on the class if they exist, after next microtask to ensure
     // module bodies have executed fully
     if (clazz.hotReplacedCallback) {
-      clazz.hotReplacedCallback();
+      try {
+        clazz.hotReplacedCallback();
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     for (const element of existing.connectedElements) {
+      if (element.constructor === previousProxy) {
+        // we need to update the constructor of the element to match to newly created proxy
+        // but we should only do this for elements that was directly created with this class
+        // and not for elements that extend this
+        element.constructor = currentProxy;
+      }
+
       if (element.hotReplacedCallback) {
-        element.hotReplacedCallback();
+        try {
+          element.hotReplacedCallback();
+        } catch (error) {
+          console.error(error);
+        }
       }
     }
   });
 
-  return existing.proxy;
+  // the original proxy already forwards to the new class but we're return a new proxy
+  // because access to `prototype` must return the original value and we need to be able to
+  // manipulate the prototype on the new class
+  return currentProxy;
 }

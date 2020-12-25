@@ -1,7 +1,7 @@
 const patch = `import { WebComponentHmr } from '/__web-dev-server__/wc-hmr/runtime.js';
 
 HTMLElement.prototype.hotReplacedCallback = function hotReplacedCallback() {
-  const temp = new this.constructor();
+  const temp = document.createElement(this.localName);
   this._scheduler.renderer = temp._scheduler.renderer;
   this._scheduler.update();
 };
