@@ -1,5 +1,15 @@
 # @open-wc/dev-server-wc-hmr
 
+## 0.1.0
+
+### Minor Changes
+
+- 9405f2e5: Generate a correct name when using anonymous classes
+
+### Patch Changes
+
+- be1f93e8: allow prototype modification
+
 ## 0.0.6
 
 ### Patch Changes
