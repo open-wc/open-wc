@@ -23,7 +23,7 @@ export const getOuterHtml = el => {
 };
 
 /**
- * For comparision we do not need the style scoping classes on polyfilled browsers
+ * For comparison we do not need the style scoping classes on polyfilled browsers
  * Rather naive approach for now - probably need to improve once we have failing cases.
  *
  * @param {Element} el Element you want to get the cleaned shadow dom
