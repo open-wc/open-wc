@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.2.0
+
+### Minor Changes
+
+- ce208aab: added MJS and TS extensions
+
 ## 4.1.0
 
 ### Minor Changes
