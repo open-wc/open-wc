@@ -1,7 +1,7 @@
 ---
 title: 'LitElement: A deep dive into batching updates'
 pageTitle: 'LitElement: A deep dive into batching updates'
-date: 2020-12-28
+date: 2020-12-26
 published: true
 description: 'Whats always better than doing work? Not doing work!'
 tags: [webcomponents, lithtml, litelement, javascript]
