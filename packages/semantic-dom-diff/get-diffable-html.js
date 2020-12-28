@@ -92,9 +92,25 @@ export function getDiffableHTML(html, options = {}) {
     return '  '.repeat(depth);
   }
 
-  /** @param {Text} textNode */
-  function printText(textNode) {
-    const value = textNode.nodeValue.trim();
+  /**
+   * @param {Text} textNode
+   * @param {TreeWalker} walker
+   */
+  function printText(textNode, walker) {
+    let value = '';
+    let node = textNode;
+
+    while (node && node instanceof Text) {
+      value += node.nodeValue;
+
+      node = walker.nextSibling();
+    }
+
+    if (node) {
+      walker.previousSibling();
+    }
+
+    value = value.trim();
 
     if (value !== '') {
       text += `${getIndentation()}${value}\n`;
@@ -192,8 +208,11 @@ export function getDiffableHTML(html, options = {}) {
     text += `${getIndentation()}<${getTagName(el)}${getAttributesString(el)}>\n`;
   }
 
-  /** @param {Node} node */
-  function onNodeStart(node) {
+  /**
+   * @param {Node} node
+   * @param {TreeWalker} walker
+   */
+  function onNodeStart(node, walker) {
     // don't print this node if we should ignore it
     if (getTagName(node) === 'diff-container' || ignoreTags.includes(getTagName(node))) {
       return;
@@ -207,7 +226,7 @@ export function getDiffableHTML(html, options = {}) {
     handledNodeStarted.add(node);
 
     if (node instanceof Text) {
-      printText(node);
+      printText(node, walker);
     } else if (node instanceof Element) {
       printOpenElement(node);
     } else {
@@ -259,7 +278,7 @@ export function getDiffableHTML(html, options = {}) {
   // walk the dom and create a diffable string representation
   while (walker.currentNode) {
     const current = walker.currentNode;
-    onNodeStart(current);
+    onNodeStart(current, walker);
 
     // crawl children if we should for this node, and if it has children
     if (shouldProcessChildren(current) && walker.firstChild()) {

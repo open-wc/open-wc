@@ -26,6 +26,12 @@ describe('lightDom', () => {
     assert.lightDom.notEqual(el, '<h2>Hey</h2>');
   });
 
+  it('can normalize adjacent textNodes when separated by comment', async () => {
+    const el = await fixture(`<div><span>Hello, <!--ignore-me-->world!</span></div>`);
+    expect(el).lightDom.to.equal('<span>Hello, world!</span>');
+    assert.lightDom.equal(el, '<span>Hello, world!</span>');
+  });
+
   it('passes along provided configuration', async () => {
     const el = await fixture('<div><p foo="bar">foo</p></div>');
     expect(el).lightDom.to.equal('<p>foo</p>', { ignoreAttributes: ['foo'] });
