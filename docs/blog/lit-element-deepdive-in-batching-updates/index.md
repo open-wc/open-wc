@@ -10,6 +10,8 @@ cover_image: https://res.cloudinary.com/practicaldev/image/fetch/s--EmbzNoW0--/c
 socialMediaImage: https://res.cloudinary.com/practicaldev/image/fetch/s--EmbzNoW0--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://imgur.com/nfpRFlK.png
 ---
 
+# LitElement: A deep dive into batching updates
+
 ## Introduction
 
 [LitElement](https://lit-element.polymer-project.org/) is a base class for developing web components. It's very small, efficient at updating, and takes a lot of the heavy lifting of writing web components out of the developers hands, by being lazy (or: efficient).
