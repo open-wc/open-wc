@@ -182,9 +182,9 @@ describe('getDiffableHTML()', () => {
         <div>
           <!-- foo -->
           <span>
-            lorem
             <!-- foo -->
-            ipsum
+            lorem <!-- foo --> ipsum
+            <!-- foo -->
           </span>
           <!-- <div id="bar"></div> -->
         </div>
@@ -194,8 +194,7 @@ describe('getDiffableHTML()', () => {
       expect(html).to.equal(
         '<div>\n' +
         '  <span>\n' +
-        '    lorem\n' +
-        '    ipsum\n' +
+        '    lorem  ipsum\n' +
         '  </span>\n' +
         '</div>\n',
       );
