@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.19.4
+
+### Patch Changes
+
+- 47f54fb0: Remove comments before creating the TreeWalking, so text nodes should not be splitted by them and treated as semantic.
+
 ## 0.19.3
 
 ### Patch Changes
