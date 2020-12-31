@@ -46,7 +46,7 @@
     "resize-observer-polyfill": "^1.5.1",
     "systemjs": "^6.3.1",
     "terser": "^4.6.7",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
     "@types/babel__core": "^7.1.3",
