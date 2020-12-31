@@ -38,7 +38,7 @@
     "chokidar": "^3.0.0",
     "clean-css": "^4.2.1",
     "clone": "^2.1.2",
-    "core-js-bundle": "^3.6.0",
+    "core-js-bundle": "^3.8.1",
     "deepmerge": "^4.2.2",
     "es-module-shims": "^0.4.6",
     "html-minifier-terser": "^5.1.1",
