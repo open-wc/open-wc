@@ -47,7 +47,7 @@
     "parse5": "^5.1.1",
     "path-is-inside": "^1.0.2",
     "regenerator-runtime": "^0.13.3",
-    "resolve": "^1.11.1",
+    "resolve": "^1.19.0",
     "rimraf": "^3.0.2",
     "shady-css-scoped-element": "^0.0.2",
     "systemjs": "^6.8.3",
