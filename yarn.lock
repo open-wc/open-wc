@@ -17252,7 +17252,7 @@ rollup-plugin-terser@^7.0.2:
     serialize-javascript "^4.0.0"
     terser "^5.0.0"
 
-rollup-plugin-workbox@^5.0.1:
+rollup-plugin-workbox@^5.0.1, rollup-plugin-workbox@^5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/rollup-plugin-workbox/-/rollup-plugin-workbox-5.2.1.tgz#371b0753667df03886742ec072281525803c2c75"
   integrity sha512-C+yIoYkZ3VUcJTZpOH2zbaarHCwy8eQod987eS8hXE6qwfMLDqV3RkLYNplnO0PcMi+3JgZPiE6d1zuXgwkO7Q==
