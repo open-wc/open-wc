@@ -53,7 +53,7 @@
     "systemjs": "^6.3.1",
     "terser": "^4.6.7",
     "valid-url": "^1.0.9",
-    "whatwg-fetch": "^3.0.0",
+    "whatwg-fetch": "^3.5.0",
     "whatwg-url": "^7.1.0"
   },
   "devDependencies": {
