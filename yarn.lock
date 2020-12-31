@@ -17798,7 +17798,7 @@ singleton-manager@1.2.0:
   resolved "https://registry.yarnpkg.com/singleton-manager/-/singleton-manager-1.2.0.tgz#5f80f89bda3a49b926ce6f721c14abdd8bff067a"
   integrity sha512-CJvFjCjO6rhAB+N10CJ3nlb6EbuoZv+TEA5y+91oGRHk0egtQJMTbDEUQBg6gw7ksrTgjMhg4RRngE1Km6diAQ==
 
-sinon-chai@^3.3.0:
+sinon-chai@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/sinon-chai/-/sinon-chai-3.5.0.tgz#c9a78304b0e15befe57ef68e8a85a00553f5c60e"
   integrity sha512-IifbusYiQBpUxxFJkR3wTU68xzBN0+bxCScEaKMjBvAQERg6FnTTc1F17rseLb1tjmkJ23730AXpFI0c47FgAg==
