@@ -41,7 +41,7 @@
     "intl-list-format": "^1.0.3",
     "parse5": "^5.1.1",
     "parse5-htmlparser2-tree-adapter": "^6.0.0",
-    "requireindex": "~1.1.0"
+    "requireindex": "~1.2.0"
   },
   "devDependencies": {
     "mocha": "^6.2.2"
