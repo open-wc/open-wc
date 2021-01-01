@@ -33,15 +33,15 @@
     "@open-wc/testing-helpers": "^1.8.12"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^5.3.1",
-    "@storybook/addon-actions": "^5.3.1",
-    "@storybook/addon-backgrounds": "^5.3.1",
+    "@storybook/addon-a11y": "^5.3.21",
+    "@storybook/addon-actions": "^5.3.21",
+    "@storybook/addon-backgrounds": "^5.3.21",
     "@storybook/addon-console": "^1.1.0",
-    "@storybook/addon-docs": "5.3.1",
-    "@storybook/addon-knobs": "^5.3.1",
-    "@storybook/addon-links": "^5.3.1",
-    "@storybook/addon-viewport": "^5.3.1",
-    "@storybook/web-components": "^5.3.1",
+    "@storybook/addon-docs": "5.3.21",
+    "@storybook/addon-knobs": "^5.3.21",
+    "@storybook/addon-links": "^5.3.21",
+    "@storybook/addon-viewport": "^5.3.21",
+    "@storybook/web-components": "^5.3.21",
     "babel-loader": "^8.0.0",
     "lit-html": "^1.0.0"
   }

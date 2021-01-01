@@ -5,7 +5,7 @@ describe('chaiA11yAxe', () => {
     it('passes axe accessible tests', async () => {
       const el = await fixture(html` <button>some light dom</button> `);
       await expect(el).to.be.accessible();
-    });
+    }).timeout(5000);
 
     it('accepts "done" option', done => {
       fixture(html` <button>some light dom</button> `).then(el => {

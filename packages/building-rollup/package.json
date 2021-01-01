@@ -70,13 +70,13 @@
     "@rollup/plugin-node-resolve": "^7.1.1",
     "babel-plugin-bundled-import-meta": "^0.3.2",
     "babel-plugin-template-html-minifier": "^4.0.0",
-    "browserslist": "^4.9.1",
+    "browserslist": "^4.16.0",
     "deepmerge": "^4.2.2",
     "magic-string": "^0.25.7",
     "parse5": "^5.1.1",
-    "regenerator-runtime": "^0.13.3",
+    "regenerator-runtime": "^0.13.7",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-workbox": "^5.0.1",
+    "rollup-plugin-workbox": "^5.2.1",
     "terser": "^4.6.7"
   },
   "devDependencies": {

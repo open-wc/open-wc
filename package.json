@@ -48,9 +48,9 @@
     "@web/test-runner-playwright": "^0.6.4",
     "babel-eslint": "^10.0.3",
     "chai": "^4.2.0",
-    "concurrently": "^5.2.0",
+    "concurrently": "^5.3.0",
     "copyfiles": "^2.4.0",
-    "core-js": "2.6.10",
+    "core-js": "2.6.12",
     "eslint": "^7.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.14.0",
@@ -59,14 +59,14 @@
     "eslint-plugin-no-only-tests": "^2.4.0",
     "eslint-plugin-wc": "^1.2.0",
     "fs-extra": "^8.1.0",
-    "husky": "3.0.0",
-    "lint-staged": "^10.0.0",
+    "husky": "3.1.0",
+    "lint-staged": "^10.5.3",
     "lit-element": "^2.2.1",
     "mocha": "^6.2.2",
     "mock-require": "^3.0.3",
     "netlify-cli": "^2.63.2",
     "node-fetch": "^2.6.1",
-    "npm-run-all": "4.1.3",
+    "npm-run-all": "4.1.5",
     "prettier": "^2.0.0",
     "prettier-plugin-package": "^1.0.0",
     "puppeteer": "^2.1.1",
@@ -74,7 +74,7 @@
     "rollup": "^2.7.2",
     "rollup-plugin-copy": "^3.3.0",
     "sinon": "^7.4.1",
-    "typescript": "~4.0.3"
+    "typescript": "~4.1.3"
   },
   "resolutions": {
     "@types/estree": "0.0.45"

@@ -41,11 +41,11 @@
     "@mdjs/mdjs-story": "^0.0.1",
     "@types/unist": "^2.0.3",
     "@types/vfile": "^4.0.0",
-    "es-module-lexer": "^0.3.13",
+    "es-module-lexer": "^0.3.26",
     "github-markdown-css": "^3.0.1",
     "rehype-autolink-headings": "^2.0.5",
     "rehype-prism-template": "^0.4.1",
-    "rehype-raw": "^4.0.1",
+    "rehype-raw": "^4.0.2",
     "rehype-slug": "^2.0.3",
     "rehype-stringify": "^6.0.1",
     "remark": "^11.0.2",
@@ -53,11 +53,11 @@
     "remark-rehype": "^5.0.0",
     "unified": "^8.4.2",
     "unist-util-remove": "^1.0.3",
-    "unist-util-visit": "^2.0.1"
+    "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
     "demo-wc-card": "^0.1.0",
-    "remark-autolink-headings": "^5.2.1",
+    "remark-autolink-headings": "^5.2.2",
     "remark-html": "^10.0.0",
     "remark-slug": "^5.1.2",
     "remark-stringify": "^7.0.4"
