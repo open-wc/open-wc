@@ -8066,7 +8066,7 @@ detab@2.0.3:
   dependencies:
     repeat-string "^1.5.4"
 
-detab@^2.0.0, detab@^2.0.3:
+detab@^2.0.0, detab@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/detab/-/detab-2.0.4.tgz#b927892069aff405fbb9a186fe97a44a92a94b43"
   integrity sha512-8zdsQA5bIkoRECvCrNKPla84lyoR7DSAyf7p0YgXzBO9PDJx8KntPUay7NS6yp+KdxdVtiE5SpHKtbp2ZQyA9g==
