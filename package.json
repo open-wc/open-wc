@@ -60,7 +60,7 @@
     "eslint-plugin-wc": "^1.2.0",
     "fs-extra": "^8.1.0",
     "husky": "3.0.0",
-    "lint-staged": "^10.0.0",
+    "lint-staged": "^10.5.3",
     "lit-element": "^2.2.1",
     "mocha": "^6.2.2",
     "mock-require": "^3.0.3",
