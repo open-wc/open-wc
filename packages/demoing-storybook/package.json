@@ -59,7 +59,7 @@
     "babel-plugin-bundled-import-meta": "^0.3.2",
     "babel-plugin-template-html-minifier": "^4.0.0",
     "command-line-args": "^5.1.1",
-    "command-line-usage": "^6.1.0",
+    "command-line-usage": "^6.1.1",
     "deepmerge": "^4.2.2",
     "detab": "^2.0.4",
     "es-dev-server": "^1.57.8",
