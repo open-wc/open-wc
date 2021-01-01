@@ -63,7 +63,7 @@
     "deepmerge": "^4.2.2",
     "detab": "^2.0.3",
     "es-dev-server": "^1.57.8",
-    "es-module-lexer": "^0.3.13",
+    "es-module-lexer": "^0.3.26",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6",
     "js-string-escape": "^1.0.1",
