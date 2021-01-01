@@ -61,7 +61,7 @@
     "command-line-args": "^5.1.1",
     "command-line-usage": "^6.1.0",
     "deepmerge": "^4.2.2",
-    "detab": "^2.0.3",
+    "detab": "^2.0.4",
     "es-dev-server": "^1.57.8",
     "es-module-lexer": "^0.3.26",
     "fs-extra": "^8.1.0",
