@@ -1859,10 +1859,10 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.21.tgz#25f97a0a1b76e78c16ae5d98c6c73e1be8d89e39"
   integrity sha512-6sANhqfEHu6gdHZSrzDjN18Y48mIon8f2Os6J+IFmMHN0IhNG/0PUIIsI07kA1sZ9t6vgZNBloVmcDa5WOSe6A==
 
-"@microsoft/fast-element@^0.19.1":
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/@microsoft/fast-element/-/fast-element-0.19.1.tgz#7b7cddc844168eb168f75e41ea63d23d942667cb"
-  integrity sha512-qfEqj4s7E3B0qsNRoiQyKF682fdpEbCINV/GS6tE/ZOFC/B0CKpcZjk3mWyw8XAfsLA50E4YuR9Hn8SuMc2sFg==
+"@microsoft/fast-element@^0.21.1":
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/@microsoft/fast-element/-/fast-element-0.21.1.tgz#366fb006608819edf8053e0fbdb31618957b86a4"
+  integrity sha512-DZVu9KGtwP+vg9z6fAHpiPntPPFNj4ex6qBSsRLP5RP8akqD54OiUokRTJ9/JodIF7R9w34XLG3EJRD75LQwDQ==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
