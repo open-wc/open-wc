@@ -1,7 +1,7 @@
 ---
 title: Open Web Components Blog
 pageTitle: Open Web Components Blog
-layout: blog-overview.njk
+layout: blog
 eleventyNavigation:
   key: Blog
   order: 30
