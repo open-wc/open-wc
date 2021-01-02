@@ -4,9 +4,7 @@ import { rocketSearch } from '@d4kmor/search';
 import { absoluteBaseUrlNetlify } from '@d4kmor/core/helpers';
 
 export default {
-  themes: [rocketLaunch(), rocketBlog(), rocketSearch()],
-  build: {
-    emptyOutputDir: false,
-    absoluteBaseUrl: absoluteBaseUrlNetlify('http://localhost:8080'),
-  },
+  presets: [rocketLaunch(), rocketBlog(), rocketSearch()],
+  emptyOutputDir: false,
+  absoluteBaseUrl: absoluteBaseUrlNetlify('http://localhost:8080'),
 };
