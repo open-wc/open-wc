@@ -1582,9 +1582,9 @@
     plugins-manager "^0.1.0"
 
 "@d4kmor/building-rollup@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@d4kmor/building-rollup/-/building-rollup-0.1.0.tgz#ab4183ff614f9335ff6416f3b9ecfccaf26e1382"
-  integrity sha512-cfwobauRFKW/sKjt+Pbva1Ol8AxOpU36auIcGpHHtyLIQCmuYiA/MsWvdH11K0LrMoIWrhmUf1hSq6OlPIrblA==
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@d4kmor/building-rollup/-/building-rollup-0.1.1.tgz#8b81942749ece91eb5a40e01a5c323355ed2723f"
+  integrity sha512-ydpvs0HRser0Hg+XCBBfcI8Vu5PWMjEqJVBOdFlocVv6KmkdVcmJg7ebWKqBl9OO1hlVCqIg3iqOmNeRRkM+Ww==
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/preset-env" "^7.12.11"
@@ -1648,10 +1648,10 @@
     dependency-graph "^0.9.0"
     sax-wasm "^2.0.0"
 
-"@d4kmor/launch@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@d4kmor/launch/-/launch-0.11.0.tgz#cbed29973f70472b4ae9343eeb25c7cfc2cae174"
-  integrity sha512-e9IGcqXXtYn8iLWBmYvF8z4OW5EY2qf2WxvOeZp4RZ/SFdjtdLZ2eAWVcXW3U35ervxz8bDBUp0giK+dRkcdDA==
+"@d4kmor/launch@^0.11.1":
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/@d4kmor/launch/-/launch-0.11.1.tgz#2002e99f974b66b813e9c6782028eba4ae2ee6f4"
+  integrity sha512-pxg+90uZYalV+WZ53aaSgaMIiIhIozv00m7uZJytV3ZXAZOW6hxfjvyw4sEwbc9hNMykCrFMYYH1oeURQJQOwg==
   dependencies:
     "@d4kmor/drawer" "^0.4.0"
     "@d4kmor/navigation" "^0.4.0"

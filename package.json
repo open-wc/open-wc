@@ -32,7 +32,7 @@
     "@d4kmor/blog": "^0.3.0",
     "@d4kmor/cli": "^0.12.0",
     "@d4kmor/core": "^0.3.0",
-    "@d4kmor/launch": "^0.11.0",
+    "@d4kmor/launch": "^0.11.1",
     "@d4kmor/search": "^0.4.1"
   },
   "devDependencies": {

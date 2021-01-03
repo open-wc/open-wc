@@ -6,5 +6,5 @@ import { absoluteBaseUrlNetlify } from '@d4kmor/core/helpers';
 export default {
   presets: [rocketLaunch(), rocketBlog(), rocketSearch()],
   emptyOutputDir: false,
-  absoluteBaseUrl: absoluteBaseUrlNetlify('http://localhost:8080'),
+  absoluteBaseUrl: absoluteBaseUrlNetlify('http://localhost:8000'),
 };
