@@ -30,6 +30,12 @@ const componentLibraries = [
       'A collection of low-level (atoms) and high-level (domain specific) Web Components made by Clever Cloud for its different Web UIs (public and internal).',
   },
   {
+    name: 'Crayons by Freshworks',
+    url: 'https://crayons.freshworks.com',
+    description:
+      'Crayons is a web component library for developers who build apps for Freshworks. Through pre-built components, Crayons offers control and flexibility to build rich interfaces consistent with the Freshworks product design and experience.',
+  },
+  {
     name: 'Elix',
     url: 'https://component.kitchen/elix',
     description:
