@@ -35,7 +35,7 @@ If this inheriting behavior is undesirable, you can reset it by adding the follo
 ```
 
 ```js script
-import '@d4kmor/launch/inline-notification/inline-notification.js';
+import '@rocket/launch/inline-notification/inline-notification.js';
 ```
 
 <inline-notification type="warning">

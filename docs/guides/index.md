@@ -12,7 +12,7 @@ npm init @open-wc
 ```
 
 ```js script
-import '@d4kmor/launch/inline-notification/inline-notification.js';
+import '@rocket/launch/inline-notification/inline-notification.js';
 ```
 
 ## Our Guides / Tools

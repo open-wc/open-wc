@@ -3,7 +3,7 @@
 A library with helpers functions for testing in the browser.
 
 ```js script
-import '@d4kmor/launch/inline-notification/inline-notification.js';
+import '@rocket/launch/inline-notification/inline-notification.js';
 ```
 
 <inline-notification type="warning">

@@ -1,7 +1,7 @@
-import { rocketLaunch } from '@d4kmor/launch';
-import { rocketBlog } from '@d4kmor/blog';
-import { rocketSearch } from '@d4kmor/search';
-import { absoluteBaseUrlNetlify } from '@d4kmor/core/helpers';
+import { rocketLaunch } from '@rocket/launch';
+import { rocketBlog } from '@rocket/blog';
+import { rocketSearch } from '@rocket/search';
+import { absoluteBaseUrlNetlify } from '@rocket/core/helpers';
 
 export default {
   presets: [rocketLaunch(), rocketBlog(), rocketSearch()],
