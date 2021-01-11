@@ -24,7 +24,7 @@ NOTE: some code processing often attributed to the Storybook webpack build (e.g.
 ## Demo
 
 ```js script
-import '@d4kmor/launch/inline-notification/inline-notification.js';
+import '@rocket/launch/inline-notification/inline-notification.js';
 ```
 
 <inline-notification type="tip">

@@ -29,11 +29,11 @@
     "update-dependency": "node scripts/update-dependency.js"
   },
   "dependencies": {
-    "@d4kmor/blog": "^0.3.0",
-    "@d4kmor/cli": "^0.12.0",
-    "@d4kmor/core": "^0.3.0",
-    "@d4kmor/launch": "^0.11.1",
-    "@d4kmor/search": "^0.4.1"
+    "@rocket/blog": "^0.1.1",
+    "@rocket/cli": "^0.1.4",
+    "@rocket/core": "^0.1.0",
+    "@rocket/launch": "^0.1.2",
+    "@rocket/search": "^0.1.1"
   },
   "devDependencies": {
     "@changesets/cli": "^2.11.1",
