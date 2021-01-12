@@ -15,7 +15,7 @@ You write modern javascript using the latest browser features, rollup will optim
 
 ## Automatic setup
 
-We recommend the open-wc [project generator](https://open-wc.org/init/) for automated setup, for new projects or to upgrade existing projects.
+We recommend the open-wc [project generator](https://open-wc.org/guides/developing-components/getting-started/) for automated setup, for new projects or to upgrade existing projects.
 
 ## Manual setup
 
