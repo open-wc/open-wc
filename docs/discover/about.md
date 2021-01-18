@@ -1,6 +1,6 @@
 # About Open Web Components
 
-## Why `open-wc`
+## Why `Open Web Components`
 
 We want to provide the community with well-known and experience-tested recommendations for their web component projects. Everything we do here is to encourage and support development with these open standards.
 
@@ -8,7 +8,7 @@ We want to provide the community with well-known and experience-tested recommend
 
 The goal of Open Web Components is to empower developers with powerful and battle-tested tools for creating and sharing open-source web components.
 
-Many web developers have experienced the dreaded "Javascript Fatigue". With our recommendations, we hope you'll enjoy the peace of mind that comes from having a well-known default solution for almost everything. From IDE to CI, `open-wc` has got you covered.
+Many web developers have experienced the dreaded "Javascript Fatigue". With our recommendations, we hope you'll enjoy the peace of mind that comes from having a well-known default solution for almost everything. From IDE to CI, `Open Web Components` has got you covered.
 
 We want web component development to be accessible and approachable for everyone, regardless of their background. Therefore, our recommendations aim to be easy to use, be ready to use, and provide that "it just works" developer experience we all crave for the various aspects of web component development.
 
@@ -48,11 +48,11 @@ The web components standards are fairly low-level, letting library authors build
 
 ## Modern Web Family
 
-Open-wc is part of the Modern Web family, which consists of:
+Open Web Components is part of the Modern Web family, which consists of:
 
 - modern-web.dev with the `@web` npm namespace
 - open-wc.org with the `@open-wc` npm namespace
 
 ## Contribute
 
-Feel free to critique, ask questions, and join the conversation, we'd love to hear your opinions and feedback. You can reach us by creating an issue on our [github](https://github.com/open-wc) or on the [#open-wc](hhttps://slack.com/share/IUQNUPWUF/awabyN8iYH4dXX6aGpu16ES9/enQtOTc2Nzc2ODEyOTY3LWM5ZGExNGFiMmM4NDY2YWI2MzYwOGY5ZTNlZjk4OGU4NTFhMGJjNmVhNGI4MzVlNTMwNGRiNGIxNjc4MGJhNDg) channel in the [Polymer slack](https://www.polymer-project.org/slack-invite).
+Feel free to critique, ask questions, and join the conversation, we'd love to hear your opinions and feedback. You can reach us by creating an issue on our [github](https://github.com/open-wc) or on the [#open-wc](https://slack.com/share/IUQNUPWUF/awabyN8iYH4dXX6aGpu16ES9/enQtOTc2Nzc2ODEyOTY3LWM5ZGExNGFiMmM4NDY2YWI2MzYwOGY5ZTNlZjk4OGU4NTFhMGJjNmVhNGI4MzVlNTMwNGRiNGIxNjc4MGJhNDg) channel in the [Polymer slack](https://www.polymer-project.org/slack-invite).

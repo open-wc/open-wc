@@ -38,7 +38,7 @@ html` <button @click=${foo}>Perform action</button> `;
 
 ### Case: I want navigable links
 
-An `<a>` element without an `href` attribute no longer functions as a hyperlink. That means that it can no longer accept keyboard focus or be clicked on. The documentation for [no-noninteractive-tabindex](no-noninteractive-tabindex.md) explores this further. Preferably use another element (such as `div` or `span`) for display of text.
+An `<a>` element without an `href` attribute no longer functions as a hyperlink. That means that it can no longer accept keyboard focus or be clicked on. The documentation for [no-noninteractive-tabindex](./no-noninteractive-tabindex.md) explores this further. Preferably use another element (such as `div` or `span`) for display of text.
 
 To properly function as a hyperlink, the `href` attribute should be present and also contain a valid _URL_. _JavaScript_ strings, empty values or using only **#** are not considered valid `href` values.
 

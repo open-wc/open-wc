@@ -26,7 +26,7 @@ We recommend the following user settings:
 We recommend the following plugins:
 
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-  Get ESLint feedback directly in your IDE => more details under [Linting](/linting/)
+  Get ESLint feedback directly in your IDE => more details under [Linting](./linting-and-formatting.md)
 - [lit-plugin](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin)
   Syntax highlighting, type checking and code completion for lit-html
 - [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) Code formatter.
@@ -45,7 +45,7 @@ We recommend the following plugins:
 
 Syntax highlighting from HTML and CSS in template literals should be supported out of the box. Generic web component related functionalities such as Custom Elements support and completion is also available. You can read more about it [here](https://blog.jetbrains.com/phpstorm/2013/10/phpstorm-7-web-toolkit-javascript-templates-web-components-support/).
 
-![intellij-syntax0-highlighting](../assets/intellij-syntax-highlighting.png)
+![intellij-syntax0-highlighting](./assets/intellij-syntax-highlighting.png)
 
 Due to the support available directly in the IDE, the ecosystem for plugins is very limited and we do not recommend any.
 
