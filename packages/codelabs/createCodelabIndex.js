@@ -18,7 +18,6 @@ module.exports = function createIndex(codelab) {
       <meta name="theme-color" content="#4F7DC9">
       <meta charset="UTF-8">
       <title>open-wc codelab | ${codelab.heading}</title>
-      <link rel="icon" type="image/png" href="/favicon.png">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
       <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">

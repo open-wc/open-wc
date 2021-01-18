@@ -24,7 +24,7 @@ In Guides you can find some of our most popular pages like [Codelabs](../../guid
 
 We also made the FAQ pages more prominent in a new knowledge section. There we share things like how [attributes and properties](../../guides/knowledge/attributes-and-properties.md) or [events](../../guides/knowledge/events.md) work.
 
-Technically the new website is built using [eleventy](11ty.dev), [rollup](https://rollupjs.org/), and our own tools like Web Dev Server, Rollup HTML plugin, and MDJS. We use a service worker that caches the static HTML pages.
+Technically the new website is built using [eleventy](https://11ty.dev), [rollup](https://rollupjs.org/), and our own tools like Web Dev Server, Rollup HTML plugin, and MDJS. We use a service worker that caches the static HTML pages.
 
 ## Cleaned up our repo
 

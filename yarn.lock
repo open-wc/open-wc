@@ -2671,10 +2671,10 @@
     rollup-plugin-terser "^7.0.2"
     rollup-plugin-workbox "^6.1.0"
 
-"@rocket/cli@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@rocket/cli/-/cli-0.3.0.tgz#3e76d215f61a2d46833fd6b6f11f9aff9524b1f7"
-  integrity sha512-d2LZCDnU32KKyASe4yltOgv37QmFdRO/PITsLuKNtGKC89ftkiWmOZgJbKVrnJ46Q9L0WQYp+7ZUQ1CVNf/ejg==
+"@rocket/cli@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@rocket/cli/-/cli-0.3.1.tgz#3d90b08169cb883e43cf30bc0c1272d0599fe794"
+  integrity sha512-dHjEIDQtpsUoNbj1CliGlxHIZVISMeoH7Uiwv6OOGJDjkx5YS5DYySJcAFamX88ab9q1bvjRRJ0IfIl8RIQxNA==
   dependencies:
     "@11ty/eleventy" "^0.11.1"
     "@11ty/eleventy-img" "^0.7.4"
