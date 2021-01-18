@@ -90,9 +90,12 @@ export class WebComponentHmr extends HTMLElement {
   constructor(...args) {
     super(...args);
     const key = keysForClasses.get(this.constructor);
-    const p = proxiesForKeys.get(key);
-    // replace the constructor with a proxy that references the latest implementation of this class
-    this.constructor = p.currentProxy;
+    // check if the constructor is registered
+    if (key) {
+      const p = proxiesForKeys.get(key);
+      // replace the constructor with a proxy that references the latest implementation of this class
+      this.constructor = p.currentProxy;
+    }
     // replace prototype chain with a proxy to the latest prototype implementation
     replacePrototypesWithProxies(this);
   }
