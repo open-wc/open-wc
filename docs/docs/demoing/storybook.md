@@ -307,7 +307,7 @@ It basically looks like this:
 }
 ```
 
-For a full example see the [./demo/custom-elements.json](./demo/custom-elements.json).
+For a full example see the [/demoing-storybook/demo/custom-elements.json](/demoing-storybook/demo/custom-elements.json).
 
 <inline-notification type="tip">
 

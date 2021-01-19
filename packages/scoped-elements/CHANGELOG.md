@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.3.3
+
+### Patch Changes
+
+- 31ff454a: Add constructor to ScopedElementsHost type so that base constructors have the same return type as extensions. See [TypeScript issue](https://github.com/microsoft/TypeScript/issues/40110).
+
 ## 1.3.2
 
 ### Patch Changes

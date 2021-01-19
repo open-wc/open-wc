@@ -129,7 +129,7 @@ If you're stuck, you can <a href="https://www.openbrewerydb.org/documentation/01
 
 Besides displaying UI, web components can also use any of the available javascript APIs. We are going to use the `fetch` function to make an HTTP request to retrieve a list of breweries. `fetch` is an asynchronous operation, and it costs system resources. We, therefore, need to be a bit more careful about when and how we use it.
 
-`LitElement` has several lifecycle methods available for this, some of them will be familiar to you by now. See [this page](/faq/lit-element-lifecycle.html) for a full overview and reference of all the available lifecycle methods.
+`LitElement` has several lifecycle methods available for this, some of them will be familiar to you by now. See [this page](/guides/knowledge/lit-element/lifecycle/index.html) for a full overview and reference of all the available lifecycle methods.
 
 We could trigger our `fetch` in the constructor since it's run only once. But because it's a best practice to not perform any side effects there, it's better to use the `connectedCallback.` Because this method can be called multiple times during an element's lifecycle, we should be careful to trigger a `fetch` only when the data hasn't already been fetched before.
 
