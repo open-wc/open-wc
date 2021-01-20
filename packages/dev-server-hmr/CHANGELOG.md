@@ -1,5 +1,11 @@
 # @open-wc/dev-server-wc-hmr
 
+## 0.1.1
+
+### Patch Changes
+
+- e2f9240e: fix(dev-server-hmr): fix compatibility with scoped-elements
+
 ## 0.1.0
 
 ### Minor Changes
