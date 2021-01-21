@@ -400,7 +400,7 @@ export default merge(baseConfig, {
   input: './index.html',
   plugins: [
     copy({
-      targets: [{ src: 'assets/**/*', dest: '/dist' }],
+      targets: [{ src: 'assets/**/*', dest: 'dist' }],
       // set flatten to false to preserve folder structure
       flatten: false,
     }),
