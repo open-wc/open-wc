@@ -1,0 +1,13 @@
+on: [pull_request, release]
+
+jobs:
+  check_html_links_job:
+    runs-on: ubuntu-latest
+    name: Checking for dead links
+    steps:
+    - uses: actions/checkout@v2
+    - name: check-html-links-action step
+      id: check-links
+      uses: modernweb-dev/check-html-links-action@v1.1
+      with:
+        doc-folder: '_site'
