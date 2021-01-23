@@ -4279,11 +4279,6 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.0.2.tgz#419bd85a2ebdbd4f42963e98c5a1b103452176d9"
   integrity sha512-Zx869zlNoujFOclKIoYmkh8ES2RcS/+Jn546yOiPyZ+3+Ejivnr+fb8l+DdXUEFjo+iVDNR3KyLzg03aBFfZ4Q==
 
-"@web/browser-logs@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@web/browser-logs/-/browser-logs-0.1.6.tgz#275c9e2e0aa5767d8a5649ba487378b9f6a61efb"
-  integrity sha512-AQ3y3W5CLC3b68PYWMnimTApjDsgk6qJt82bPTJTxzCp3HZaUxuZJeMxrtt7FrtmaPt6E56pJobu1pcaqn1jcA==
-
 "@web/browser-logs@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@web/browser-logs/-/browser-logs-0.2.0.tgz#3f39d59154bf668f0bce467026354ff2b9f3e06b"
@@ -4389,7 +4384,7 @@
     picomatch "^2.2.2"
     ws "^7.4.2"
 
-"@web/dev-server-core@^0.3.1", "@web/dev-server-core@^0.3.2":
+"@web/dev-server-core@^0.3.2":
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@web/dev-server-core/-/dev-server-core-0.3.2.tgz#a49c7db0c3aeda06f4e46c51b21a6548d424bff0"
   integrity sha512-7JSiFjh2a4mElrq34H2y4H8GymS7gjqMn/zkpVoMk8j++KRzUI2WoMIlK0ENCfPZihyhr+7E/c+V2452dFSN1w==
@@ -4656,37 +4651,6 @@
     source-map "^0.7.3"
     uuid "^8.3.2"
 
-"@web/test-runner-core@^0.9.0":
-  version "0.9.3"
-  resolved "https://registry.yarnpkg.com/@web/test-runner-core/-/test-runner-core-0.9.3.tgz#f4fa664ac392e08d7ceeeacba392a8398ff4fc8d"
-  integrity sha512-bmMGYe3x4z0T625C/BSexQ3Wa0a7s9po72S8lTKrKglGgYJcXw4bYWlTD/W4nt8Vhelb75o6a6D+GukHEH8t1A==
-  dependencies:
-    "@babel/code-frame" "^7.12.11"
-    "@web/browser-logs" "^0.1.6"
-    "@web/dev-server-core" "^0.3.1"
-    chalk "^4.1.0"
-    cli-cursor "^3.1.0"
-    co-body "^6.1.0"
-    debounce "^1.2.0"
-    dependency-graph "^0.9.0"
-    globby "^11.0.1"
-    ip "^1.1.5"
-    istanbul-lib-coverage "^3.0.0"
-    istanbul-lib-report "^3.0.0"
-    istanbul-reports "^3.0.2"
-    log-update "^4.0.0"
-    picomatch "^2.2.2"
-    uuid "^8.3.2"
-
-"@web/test-runner-coverage-v8@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@web/test-runner-coverage-v8/-/test-runner-coverage-v8-0.3.0.tgz#dcaeecb3a4179a6e19ea7bd746a29a7d8b5a458b"
-  integrity sha512-y7RCXj2zlqFVeE317MK0kSAezNRMsMYebghIROSi5T96WNBXWG8Ss51edVTd0hEIkbydABcSZYhMWf/s5fm5JQ==
-  dependencies:
-    "@web/test-runner-core" "^0.9.0"
-    istanbul-lib-coverage "^3.0.0"
-    v8-to-istanbul "^7.0.0"
-
 "@web/test-runner-coverage-v8@^0.4.2":
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/@web/test-runner-coverage-v8/-/test-runner-coverage-v8-0.4.2.tgz#2beabb03b770172732995a5ed8517c54ffb44013"
@@ -4705,13 +4669,13 @@
     "@types/mocha" "^8.2.0"
     "@web/test-runner-core" "^0.10.0"
 
-"@web/test-runner-playwright@^0.7.2":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@web/test-runner-playwright/-/test-runner-playwright-0.7.2.tgz#3a7968b768cc473091097d00ccfa3ab50bb47988"
-  integrity sha512-u/juWValzX69Vv4Kk2n/+6t53kCJOKchYo4RW/JLzAsePp/WL5pJ+3rnT5v13udaplMtKJH07ISc5TR9S0W8sA==
+"@web/test-runner-playwright@^0.8.1":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@web/test-runner-playwright/-/test-runner-playwright-0.8.1.tgz#ab9980940184abbe2fd091c1c73e834d0b480082"
+  integrity sha512-ji3e7CCddCMu7WzdZw9aekE65nWMMKcrAvPHSHwFM8xZnMrNcz0lim3IyAkrSAPSXHm5o/VprAKYvvsz6ut7nQ==
   dependencies:
-    "@web/test-runner-core" "^0.9.0"
-    "@web/test-runner-coverage-v8" "^0.3.0"
+    "@web/test-runner-core" "^0.10.5"
+    "@web/test-runner-coverage-v8" "^0.4.2"
     playwright "^1.7.1"
 
 "@web/test-runner@^0.12.6":
@@ -20445,7 +20409,7 @@ v8-compile-cache@^2.0.3:
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.2.0.tgz#9471efa3ef9128d2f7c6a7ca39c4dd6b5055b132"
   integrity sha512-gTpR5XQNKFwOd4clxfnhaqvfqMpqEwr4tOtCyz4MtYZX2JYhfr1JvBFKdS+7K/9rfpZR3VLX+YWBbKoxCgS43Q==
 
-v8-to-istanbul@^7.0.0, v8-to-istanbul@^7.1.0:
+v8-to-istanbul@^7.1.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/v8-to-istanbul/-/v8-to-istanbul-7.1.0.tgz#5b95cef45c0f83217ec79f8fc7ee1c8b486aee07"
   integrity sha512-uXUVqNUCLa0AH1vuVxzi+MI4RfxEOKt9pBgKwHbgH7st8Kv2P1m+jvWNnektzBh5QShF3ODgKmUFCf38LnVz1g==
