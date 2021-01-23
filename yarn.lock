@@ -4291,13 +4291,6 @@
   dependencies:
     errorstacks "^2.2.0"
 
-"@web/config-loader@^0.1.1":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@web/config-loader/-/config-loader-0.1.2.tgz#c1dd2368288329a009a017ebc9a307be63c2e855"
-  integrity sha512-uh+VL79V/TJjrleAQM66Rke8jKu/J/sqzhiJ08iwGcUKV5lqUbLxGoC4RiNRwcEh8dna9HLBPpi935EuAD5tnw==
-  dependencies:
-    semver "^7.3.2"
-
 "@web/config-loader@^0.1.3":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@web/config-loader/-/config-loader-0.1.3.tgz#8325ea54f75ef2ee7166783e64e66936db25bff7"
@@ -4328,7 +4321,7 @@
     picomatch "^2.2.2"
     ws "^7.3.1"
 
-"@web/dev-server-core@^0.2.17", "@web/dev-server-core@^0.2.18":
+"@web/dev-server-core@^0.2.18":
   version "0.2.18"
   resolved "https://registry.yarnpkg.com/@web/dev-server-core/-/dev-server-core-0.2.18.tgz#c96bd373a9aa10429eceb13387202fd5ded06f4d"
   integrity sha512-cgZuB0eG6i1wYZydVEd+g5J8Qa0EyRcZcPk3977+E298kOZ/2XPpM1tattDBQHu9J1afl9gX9bW80OH0iuTMhQ==
@@ -4438,17 +4431,6 @@
   dependencies:
     "@web/dev-server-core" "^0.2.18"
 
-"@web/dev-server-rollup@^0.2.11":
-  version "0.2.11"
-  resolved "https://registry.yarnpkg.com/@web/dev-server-rollup/-/dev-server-rollup-0.2.11.tgz#daa65b9e2f0eaeaa9d7c6d39d0943d494eda8bb7"
-  integrity sha512-cqeXC93BElaKIV0Bel05M86Or5HQKem7FuBjfoMMlgp0irt6ZYCovYe7l2rG0Hw+/MCYaNs+uxjMK5UYLuWMBw==
-  dependencies:
-    "@web/dev-server-core" "^0.2.17"
-    chalk "^4.1.0"
-    parse5 "^6.0.1"
-    rollup "^2.33.2"
-    whatwg-url "^8.1.0"
-
 "@web/dev-server-rollup@^0.3.2":
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@web/dev-server-rollup/-/dev-server-rollup-0.3.2.tgz#8cf0df70fdca6f92f085f2840472677d29cf5862"
@@ -4509,27 +4491,6 @@
     rollup "^2.35.1"
     rollup-plugin-terser "^7.0.2"
     storybook-addon-markdown-docs "^1.0.1"
-
-"@web/dev-server@^0.0.24":
-  version "0.0.24"
-  resolved "https://registry.yarnpkg.com/@web/dev-server/-/dev-server-0.0.24.tgz#891de7da5497a538d74b50b7c99a492a1f5661b3"
-  integrity sha512-vBvI6Q3h7oiTq2G9j6Xlj4LkCpTulSycEDvaFCrHwadDvKLoQLPFqm1wv4A8mvjU0zm6Mjs5X5eZndNJU0naIA==
-  dependencies:
-    "@babel/code-frame" "^7.10.4"
-    "@rollup/plugin-node-resolve" "^8.4.0"
-    "@types/command-line-args" "^5.0.0"
-    "@web/config-loader" "^0.1.1"
-    "@web/dev-server-core" "^0.2.18"
-    "@web/dev-server-rollup" "^0.2.11"
-    camelcase "^6.2.0"
-    chalk "^4.1.0"
-    command-line-args "^5.1.1"
-    command-line-usage "^6.1.1"
-    debounce "^1.2.0"
-    deepmerge "^4.2.2"
-    ip "^1.1.5"
-    open "^7.3.0"
-    portfinder "^1.0.28"
 
 "@web/dev-server@^0.1.4":
   version "0.1.4"
@@ -17967,13 +17928,6 @@ rollup@^2.33.1:
   optionalDependencies:
     fsevents "~2.1.2"
 
-rollup@^2.33.2:
-  version "2.33.3"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.33.3.tgz#ae72ce31f992b09a580072951bfea76e9df17342"
-  integrity sha512-RpayhPTe4Gu/uFGCmk7Gp5Z9Qic2VsqZ040G+KZZvsZYdcuWaJg678JeDJJvJeEQXminu24a2au+y92CUWVd+w==
-  optionalDependencies:
-    fsevents "~2.1.2"
-
 rsvp@^4.8.4:
   version "4.8.5"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"
@@ -20786,7 +20740,7 @@ whatwg-url@^7.0.0, whatwg-url@^7.1.0:
     tr46 "^1.0.1"
     webidl-conversions "^4.0.2"
 
-whatwg-url@^8.1.0, whatwg-url@^8.4.0:
+whatwg-url@^8.4.0:
   version "8.4.0"
   resolved "https://registry.yarnpkg.com/whatwg-url/-/whatwg-url-8.4.0.tgz#50fb9615b05469591d2b2bd6dfaed2942ed72837"
   integrity sha512-vwTUFf6V4zhcPkWp/4CQPr1TW9Ml6SF4lVyaIMBdJw5i6qUUJ1QWM4Z6YYVkfka0OUIzVo/0aNtGVGk256IKWw==
