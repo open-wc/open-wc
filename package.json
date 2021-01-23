@@ -44,7 +44,7 @@
     "@types/estree": "^0.0.45",
     "@types/parse5-htmlparser2-tree-adapter": "^5.0.1",
     "@web/dev-server": "^0.0.24",
-    "@web/test-runner": "^0.11.7",
+    "@web/test-runner": "^0.12.6",
     "@web/test-runner-playwright": "^0.7.2",
     "babel-eslint": "^10.0.3",
     "chai": "^4.2.0",
