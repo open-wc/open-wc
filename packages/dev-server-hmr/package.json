@@ -64,7 +64,7 @@
     "@types/babel__parser": "^7.1.1",
     "@types/babel__traverse": "^7.0.15",
     "@types/picomatch": "^2.2.1",
-    "@web/dev-server": "^0.0.24",
+    "@web/dev-server": "^0.1.5",
     "@web/dev-server-esbuild": "^0.2.8",
     "@web/dev-server-storybook": "^0.3.2",
     "haunted": "^4.7.1",
