@@ -1983,41 +1983,6 @@
     unist-util-remove "^2.0.1"
     unist-util-visit "^2.0.3"
 
-"@mdjs/mdjs-preview@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@mdjs/mdjs-preview/-/mdjs-preview-0.0.1.tgz#a478ed4f0223302b4c710bb9193536342558a044"
-  integrity sha512-KCLSeM+vz/tZM5GLYM9khqE/AFgn6WC/GF8Aw72NodFWzSx4CvqojYHJ75vkKFwEDnD81AJ7zweAs3bTUAQrrg==
-  dependencies:
-    lit-element "^2.2.1"
-
-"@mdjs/mdjs-preview@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@mdjs/mdjs-preview/-/mdjs-preview-0.0.2.tgz#e97115b3d93a79d1957e98cb054e383fb9ba35b1"
-  integrity sha512-tRm04H6VgsnFLJKvPq15lmV7PUv5qlH++tOaXCDFRAgN/NrOjWs9a2qjD+eRg6yqw5SDgrLT7smoLNrU88nPJw==
-  dependencies:
-    "@mdjs/mdjs-preview" "^0.0.1"
-    "@mdjs/mdjs-story" "^0.0.1"
-    lit-element "^2.3.1"
-
-"@mdjs/mdjs-preview@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@mdjs/mdjs-preview/-/mdjs-preview-0.1.0.tgz#e2497bf8798279b8c0a14b995d2a346fc8b852f9"
-  integrity sha512-vivm1Qr3XGP2VtoRH0q+L7kjRb09tVTdet/G/Tx2yUAyywctW+EnlmQBQbE9B2un4L2MGFXEu1HQ4RIFwuRmmQ==
-  dependencies:
-    "@mdjs/mdjs-preview" "^0.0.2"
-    "@mdjs/mdjs-story" "^0.0.1"
-    lit-element "^2.3.1"
-
-"@mdjs/mdjs-preview@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@mdjs/mdjs-preview/-/mdjs-preview-0.2.0.tgz#c3100d626afc3da9fd97274a81a7ca32dac70fe7"
-  integrity sha512-AIdTbUef2H6vQ3NnUZcVEeRJg0N5aFruJp+uPE4+vAm4XDzytpPUFOOfZovTbkAVQ8ehgmEfyadRaXPBOVUbTA==
-  dependencies:
-    "@mdjs/mdjs-preview" "^0.1.0"
-    "@mdjs/mdjs-story" "^0.0.1"
-    lit-element "^2.3.1"
-    lit-html "^1.2.1"
-
 "@mdjs/mdjs-preview@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@mdjs/mdjs-preview/-/mdjs-preview-0.3.0.tgz#e9ab9a4111ce32bdd6fd7bfbbe7d57b38966ec6b"

@@ -37,7 +37,7 @@
     "remark"
   ],
   "dependencies": {
-    "@mdjs/mdjs-preview": "^0.2.0",
+    "@mdjs/mdjs-preview": "^0.3.0",
     "@mdjs/mdjs-story": "^0.0.1",
     "@types/unist": "^2.0.3",
     "@types/vfile": "^4.0.0",
