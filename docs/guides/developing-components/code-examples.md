@@ -1,6 +1,6 @@
 # Developing Components >> Code Examples ||50
 
-This page contains code examples of common patterns using different web component libraires.
+This page contains code examples of common patterns using different web component libraries.
 
 ## lit-html and lit-element
 
