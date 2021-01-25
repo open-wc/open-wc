@@ -5,7 +5,7 @@
 const merge = require('deepmerge');
 const { rollupPluginHTML } = require('@web/rollup-plugin-html');
 const { importMetaAssets } = require('@web/rollup-plugin-import-meta-assets');
-const polyfillsLoader = require('@web/rollup-plugin-polyfills-loader');
+const { polyfillsLoader } = require('@web/rollup-plugin-polyfills-loader');
 const path = require('path');
 const { minify } = require('html-minifier-terser');
 const { generateSW } = require('rollup-plugin-workbox');
