@@ -76,7 +76,7 @@ function createRollupConfig({ outputDir, indexFilename, indexHTMLString }) {
                 '@open-wc/testing-helpers': ['html', { name: 'css', encapsulation: 'style' }],
               },
               logOnError: true,
-              failOnError: false,
+              failOnError: true,
               strictCSS: true,
               htmlMinifier: {
                 collapseWhitespace: true,
