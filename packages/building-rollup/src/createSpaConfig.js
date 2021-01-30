@@ -49,8 +49,8 @@ function createSpaConfig(options) {
 
   const htmlPlugin = pluginWithOptions(rollupPluginHTML, userOptions.html, {
     transformHtml: [
-      [!userOptions.developmentMode && minifyHtml].filter(isFalsy),
-      [userOptions.injectServiceWorker && applySw].filter(isFalsy),
+      ...[!userOptions.developmentMode && minifyHtml].filter(isFalsy),
+      ...[userOptions.injectServiceWorker && applySw].filter(isFalsy),
     ],
   });
 
@@ -65,8 +65,8 @@ function createSpaConfig(options) {
     }
     outputDir = basicConfig.output[0].dir;
 
-    basicConfig.output[0].plugins.push(htmlPlugin.addOutput('module'));
-    basicConfig.output[1].plugins.push(htmlPlugin.addOutput('nomodule'));
+    basicConfig.output[0].plugins.push(htmlPlugin.api.addOutput('module'));
+    basicConfig.output[1].plugins.push(htmlPlugin.api.addOutput('nomodule'));
     polyfillsLoaderConfig = {
       modernOutput: {
         name: 'module',
