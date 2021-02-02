@@ -8,9 +8,6 @@
       "path": "./packages/scoped-elements/tsconfig.json"
     },
     {
-      "path": "./packages/polyfills-loader/tsconfig.json"
-    },
-    {
       "path": "./packages/dev-server-hmr/tsconfig.json"
     },
     {
@@ -18,9 +15,6 @@
     },
     {
       "path": "./packages/testing-helpers/tsconfig.json"
-    },
-    {
-      "path": "./packages/mdjs/tsconfig.json"
     }
   ]
 }
