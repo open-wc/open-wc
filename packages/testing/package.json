@@ -14,6 +14,7 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/testing",
   "module": "index.js",
+  "exports": "./index.js",
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
   },

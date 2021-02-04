@@ -14,6 +14,11 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers",
   "module": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./no-side-effects": "./index-no-side-effects.js",
+    "./index-no-side-effects.js": "./index-no-side-effects.js"
+  },
   "files": [
     "*.d.ts",
     "*.js",
