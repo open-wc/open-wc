@@ -189,7 +189,7 @@ await waitUntil(
 );
 ```
 
-`waitUntil` has a default timeout of 2000ms and a polling interval of 50ms. This can be customized:
+`waitUntil` has a default timeout of 1000ms and a polling interval of 50ms. This can be customized:
 
 ```js
 await waitUntil(predicate, 'Element should become visible', { interval: 10, timeout: 10000 });
