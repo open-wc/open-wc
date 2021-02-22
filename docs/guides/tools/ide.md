@@ -56,3 +56,58 @@ Due to the support available directly in the IDE, the ecosystem for plugins is v
 ### Plugins
 
 - [Lit Element Syntax Highlighting](https://packagecontrol.io/packages/LitElement%20Syntax%20Highlighting) - Syntax highlighting
+
+## Vim & NeoVim
+
+Vim can be configured similiarly to an IDE, and with a vast amount of plugins, can be used to create a fluid development experience
+with lit-html and javascript.
+
+### Plugins
+
+- [vim-html-template-literals](https://github.com/jonsmithers/vim-html-template-literals) Get syntax highlighting for html`and css` tags
+- [vim-javascript](https://github.com/pangloss/vim-javascript) Required by vim-html-template-literals. Provides Javascript syntax highlighting
+- [typescript-vim](https://github.com/leafgarland/typescript-vim) Same as vim-javascript but for Typescript
+- [vim-css-color](https://github.com/ap/vim-css-color) Highlight color codes with corresponding color
+- [vim-closetag](https://github.com/alvan/vim-closetag) Automatically close HTML tags (can be used with vim-html-template-literals)
+- [NeoFormat](https://github.com/sbdchd/neoformat) Format your code. Works together with prettier
+
+### Configuration
+
+Install the plugins with your favorite Vim package manager.
+
+Example with [vim-plug](https://github.com/junegunn/vim-plug)
+
+```vim
+call plug#begin('~/.vim/plugged')
+
+Plug 'jonsmithers/vim-html-template-literals'
+Plug 'pangloss/vim-javascript'
+Plug 'ap/vim-css-color'
+Plug 'sbdchd/neoformat'
+
+call plug#end()
+
+```
+
+Configuring vim-html-template-literals
+
+```vim
+  "--- LIT highlighting and autclosing
+  let g:htl_css_templates = 1
+  let g:htl_all_templates = 1
+  let g:closetag_filetypes = 'html,xhtml,phtml,javascript,typescript'
+  let g:closetag_regions = {
+        \ 'typescript.tsx': 'jsxRegion,tsxRegion,litHtmlRegion',
+        \ 'javascript.jsx': 'jsxRegion,litHtmlRegion',
+        \ 'javascript':     'litHtmlRegion',
+        \ 'typescript':     'litHtmlRegion',
+        \ }
+```
+
+Configuring Neoformat to format on save
+
+```vim
+autocmd BufWritePre *.js Neoformat
+autocmd BufWritePre *.ts Neoformat
+autocmd BufWritePre *.html Neoformat
+```
