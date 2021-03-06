@@ -41,11 +41,11 @@ module.exports = {
       'error',
       {
         devDependencies: [
-          '**/test/**/*.{js,mjs,ts}',
-          '**/stories/**/*.{js,mjs,ts}',
-          '**/demo/**/*.{js,mjs,ts}',
-          '**/*.config.{js,mjs,ts}',
-          '**/*.conf.{js,mjs,ts}',
+          '**/test/**/*.{html,js,mjs,ts}',
+          '**/stories/**/*.{html,js,mjs,ts}',
+          '**/demo/**/*.{html,js,mjs,ts}',
+          '**/*.config.{html,js,mjs,ts}',
+          '**/*.conf.{html,js,mjs,ts}',
         ],
       },
     ],
@@ -84,9 +84,9 @@ module.exports = {
   overrides: [
     {
       files: [
-        '**/test/**/*.{js,mjs,ts}',
-        '**/demo/**/*.{js,mjs,ts}',
-        '**/stories/**/*.{js,mjs,ts}',
+        '**/test/**/*.{html,js,mjs,ts}',
+        '**/demo/**/*.{html,js,mjs,ts}',
+        '**/stories/**/*.{html,js,mjs,ts}',
       ],
       rules: {
         'no-console': 'off',
