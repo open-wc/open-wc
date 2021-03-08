@@ -26,6 +26,7 @@ These suggestions are not specifically useful for publishing to a CDN or any oth
 - _Optional_: [use `type: "module"` when possible](#optional-use-type-module)
 - _Optional_: [include typings; e.g. `*.d.ts` files](#optional-include-typings)
 - _Optional_: [include source maps](#optional-include-source-maps)
+- _Optional_: [React wrapper](#optional-react-wrapper)
 
 ### Don't: 👎
 
@@ -102,6 +103,13 @@ Using `type: "module"` in your `package.json` will help CDNs and bundlers choose
 ### Optional: include source maps
 
 If you choose work in TypeScript, or to use syntax that is newer than the standards discussed above, it can be important to include source maps and the source files (TypeScript or otherwise) that your published code originates from to make understanding that code, as well as possibly reporting/fixing issues in that code, easier for your users.
+
+### Optional: React wrapper
+
+React can render and pass attributes properly to web components, but it can't pass properties or listen to events declaratively.
+
+A good alternative in case your component will likely be used in React projects is to provide an export which wraps your component in a React component.
+Using the [@lit-labs/react](https://www.npmjs.com/package/@lit-labs/react) package is a good way to easily achieve this.
 
 ### Do not optimize
 
