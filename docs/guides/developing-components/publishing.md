@@ -106,10 +106,10 @@ If you choose work in TypeScript, or to use syntax that is newer than the standa
 
 ### Optional: React wrapper
 
-React can render and pass attributes properly to web components, but it can't pass properties or listen to events declaratively.
+React can render and pass attributes to web components, but it can't pass properties or listen to events declaratively.
 
 A good alternative in case your component will likely be used in React projects is to provide an export which wraps your component in a React component.
-Using the [@lit-labs/react](https://www.npmjs.com/package/@lit-labs/react) package is a good way to easily achieve this.
+Using the [@lit-labs/react](https://www.npmjs.com/package/@lit-labs/react) package is a good way to achieve this.
 
 ### Do not optimize
 
