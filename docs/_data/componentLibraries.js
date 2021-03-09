@@ -26,7 +26,7 @@ const componentLibraries = [
   {
     name: 'Clarity Design System',
     url: 'https://clarity.design/',
-    description: 'Clarity is an open-source, enterprise-focused design system with a core design principle of inclusion.',
+    description: 'Clarity is an open-source, enterprise-focused design system built by VMware, with a core design principle of inclusion.',
   },
   {
     name: 'Clever Components',
