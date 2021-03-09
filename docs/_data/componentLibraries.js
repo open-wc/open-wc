@@ -24,6 +24,11 @@ const componentLibraries = [
       'Carbon is an open-source design system built by IBM. With the IBM Design Language as its foundation, the system consists of working code, design tools and resources, human interface guidelines, and a vibrant community of contributors.',
   },
   {
+    name: 'Clarity Design System',
+    url: 'https://clarity.design/',
+    description: 'Clarity is an open-source, enterprise-focused design system with a core design principle of inclusion.',
+  },
+  {
     name: 'Clever Components',
     url: 'https://github.com/CleverCloud/clever-components',
     description:
