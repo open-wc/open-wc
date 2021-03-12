@@ -24,10 +24,6 @@ const createBabelConfigRollupBuild = ({ developmentMode, rootDir }) => ({
     ],
   ],
   plugins: [
-    // rollup doesn't support optional chaining yet, so we compile it during input
-    [require.resolve('@babel/plugin-proposal-optional-chaining'), { loose: true }],
-    [require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'), { loose: true }],
-
     // plugins that aren't part of @babel/preset-env should be applied regularly in
     // the rollup build phase
     [require.resolve('babel-plugin-bundled-import-meta'), { bundleDir: rootDir }],
