@@ -1,10 +1,9 @@
-// @ts-nocheck
+import '@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js';
 import { expect, fixture, defineCE, waitUntil } from '@open-wc/testing';
-import { LitElement, html } from 'lit-element';
-import { until } from 'lit-html/directives/until.js';
-import { repeat } from 'lit-html/directives/repeat';
+import { LitElement, html } from 'lit';
+import { until } from 'lit/directives/until.js';
+
 import { ScopedElementsMixin } from '../index.js';
-import { getFromGlobalTagsCache } from '../src/globalTagsCache.js';
 
 class FeatureA extends LitElement {
   render() {
@@ -117,9 +116,9 @@ describe('ScopedElementsMixin', () => {
     const pageAFeatureANode = el.shadowRoot.children[0].shadowRoot.children[0];
     const pageBFeatureANode = el.shadowRoot.children[1].shadowRoot.children[0];
 
-    expect(pageAFeatureANode.tagName.toLowerCase()).to.match(new RegExp(`feature-a-\\d{1,5}`));
+    expect(pageAFeatureANode.tagName.toLowerCase()).to.match(new RegExp(`feature-a`));
     expect(pageAFeatureANode).to.be.an.instanceOf(FeatureA1x);
-    expect(pageBFeatureANode.tagName.toLowerCase()).to.match(new RegExp(`feature-a-\\d{1,5}`));
+    expect(pageBFeatureANode.tagName.toLowerCase()).to.match(new RegExp(`feature-a`));
     expect(pageBFeatureANode).to.be.an.instanceOf(FeatureA2x);
   });
 
@@ -183,9 +182,9 @@ describe('ScopedElementsMixin', () => {
     const pageAFeatureANode = el.shadowRoot.children[0].shadowRoot.children[0];
     const pageBFeatureANode = el.shadowRoot.children[1].shadowRoot.children[0];
 
-    expect(pageAFeatureANode.tagName.toLowerCase()).to.match(new RegExp(`feature-a-\\d{1,5}`));
+    expect(pageAFeatureANode.tagName.toLowerCase()).to.match(new RegExp(`feature-a`));
     expect(pageAFeatureANode).to.be.an.instanceOf(FeatureA1x);
-    expect(pageBFeatureANode.tagName.toLowerCase()).to.match(new RegExp(`feature-a-\\d{1,5}`));
+    expect(pageBFeatureANode.tagName.toLowerCase()).to.match(new RegExp(`feature-a`));
     expect(pageBFeatureANode).to.be.an.instanceOf(FeatureA2x);
   });
 
@@ -228,7 +227,6 @@ describe('ScopedElementsMixin', () => {
     const el = await fixture(`<${tag}></${tag}>`);
 
     expect(el.shadowRoot.children[0]).to.be.an.instanceOf(FeatureC);
-    expect(getFromGlobalTagsCache(FeatureD)).to.be.undefined;
   });
 
   it('supports lazy loaded elements', async () => {
@@ -403,60 +401,6 @@ describe('ScopedElementsMixin', () => {
     expect(firstElement).to.be.instanceof(ItemA);
   });
 
-  describe('getScopedTagName', () => {
-    it('should return the scoped tag name for a registered element', async () => {
-      const chars = `-|\\.|[0-9]|[a-z]`;
-      const tagRegExp = new RegExp(`[a-z](${chars})*-(${chars})*-[0-9]{1,5}`);
-
-      const tag = defineCE(
-        class extends ScopedElementsMixin(LitElement) {
-          static get scopedElements() {
-            return {
-              'feature-a': FeatureA,
-            };
-          }
-
-          render() {
-            return html`
-              <feature-a></feature-a>
-              <feature-b></feature-b>
-            `;
-          }
-        },
-      );
-
-      const el = await fixture(`<${tag}></${tag}>`);
-
-      expect(el.getScopedTagName('feature-a')).to.match(tagRegExp);
-      expect(el.getScopedTagName('feature-b')).to.match(tagRegExp);
-    });
-
-    it('should return the scoped tag name for a non already registered element', async () => {
-      const chars = `-|\\.|[0-9]|[a-z]`;
-      const tagRegExp = new RegExp(`[a-z](${chars})*-(${chars})*-[0-9]{1,5}`);
-
-      class UnregisteredFeature extends LitElement {
-        render() {
-          return html` <div>Unregistered feature</div> `;
-        }
-      }
-
-      const tag = defineCE(
-        class extends ScopedElementsMixin(LitElement) {
-          static get scopedElements() {
-            return {
-              'unregistered-feature': UnregisteredFeature,
-            };
-          }
-        },
-      );
-
-      const el = await fixture(`<${tag}></${tag}>`);
-
-      expect(el.getScopedTagName('unregistered-feature')).to.match(tagRegExp);
-    });
-  });
-
   describe('directives integration', () => {
     it('should work with until(...)', async () => {
       const content = new Promise(resolve => {
@@ -485,33 +429,6 @@ describe('ScopedElementsMixin', () => {
       const feature = el.shadowRoot.getElementById('feat');
 
       expect(feature).shadowDom.to.equal('<div>Element A</div>');
-    });
-
-    it('should work with repeat(...)', async () => {
-      const tag = defineCE(
-        class ContainerElement extends ScopedElementsMixin(LitElement) {
-          static get scopedElements() {
-            return {
-              'feature-a': FeatureA,
-            };
-          }
-
-          render() {
-            return html`
-              ${repeat(
-                [...Array(10).keys()],
-                () => html` <feature-a data-type="child"></feature-a> `,
-              )}
-            `;
-          }
-        },
-      );
-
-      const el = await fixture(`<${tag}></${tag}>`);
-
-      el.shadowRoot.querySelectorAll('[data-type="child"]').forEach(child => {
-        expect(child).shadowDom.to.equal('<div>Element A</div>');
-      });
     });
   });
 });
