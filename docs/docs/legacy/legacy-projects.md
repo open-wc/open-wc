@@ -8,11 +8,15 @@ The documentation for our legacy projects is maintained in the GitHub readmes:
 
 ### Legacy projects
 
-- [es-dev-server](https://github.com/open-wc/es-dev-server): we rebranded it as [web-dev-server](https://modern-web.dev/docs/dev-server/overview/)
-- [testing-karma](https://github.com/open-wc/legacy/tree/master/packages/testing-karma) & [karma-esm](https://github.com/open-wc/legacy/tree/master/packages/karma-esm): we now recommend [web-test-runner](https://modern-web.dev/docs/test-runner/overview/)
-- [testing-karma-bs](https://github.com/open-wc/legacy/tree/master/packages/testing-karma-bs): we now recommend [web-test-runner](https://modern-web.dev/docs/test-runner/overview/) & [@web/test-runner-browserstack](https://modern-web.dev/docs/test-runner/browser-launchers/browserstack/)
-- [rollup-plugin-index-html](https://github.com/open-wc/legacy/tree/master/packages/rollup-plugin-index-html): we now recommend `@web/rollup-plugin-html`
+- [es-dev-server](https://github.com/open-wc/es-dev-server): we rebranded it as [@web/dev-server](https://modern-web.dev/docs/dev-server/overview/)
+- [testing-karma](https://github.com/open-wc/legacy/tree/master/packages/testing-karma) & [karma-esm](https://github.com/open-wc/legacy/tree/master/packages/karma-esm): we now recommend [@web/test-runner](https://modern-web.dev/docs/test-runner/overview/)
+- [testing-karma-bs](https://github.com/open-wc/legacy/tree/master/packages/testing-karma-bs): we now recommend [@web/test-runner](https://modern-web.dev/docs/test-runner/overview/) & [@web/test-runner-browserstack](https://modern-web.dev/docs/test-runner/browser-launchers/browserstack/)
+- [rollup-plugin-index-html](https://github.com/open-wc/legacy/tree/master/packages/rollup-plugin-index-html): we now recommend [@web/rollup-plugin-html](https://modern-web.dev/docs/building/rollup-plugin-html/)
 - [webpack-import-meta-loader](https://github.com/open-wc/legacy/tree/master/packages/webpack-import-meta-loader): we now recommend [babel-plugin-bundled-import-meta](https://www.npmjs.com/package/babel-plugin-bundled-import-meta)
 - [building-webpack](https://github.com/open-wc/legacy/tree/master/packages/building-webpack): we now recommend rollup over webpack
 - [webpack-index-html-plugin](https://github.com/open-wc/legacy/tree/master/packages/webpack-index-html-plugin): we now recommend rollup over webpack
 - [storybook-addon-web-components-knobs](https://github.com/open-wc/legacy/tree/master/packages/storybook-addon-web-components-knobs): storybook v6 has a new better knobs system
+- [rollup-plugin-html](https://github.com/open-wc/legacy/tree/master/packages/rollup-plugin-html): we now recommend [@web/rollup-plugin-html](https://modern-web.dev/docs/building/rollup-plugin-html/)
+- [rollup-plugin-polyfills-loader](https://github.com/open-wc/legacy/tree/master/packages/rollup-plugin-polyfills-loader): we now recommend [@web/rollup-plugin-polyfills-loader](https://modern-web.dev/docs/building/rollup-plugin-polyfills-loader/)
+- [demoing-storybook](https://github.com/open-wc/legacy/tree/master/packages/demoing-storybook): we now recommend [@web/dev-server-storybook](https://modern-web.dev/docs/dev-server/plugins/storybook/)
+- [polyfills-loader](https://github.com/open-wc/legacy/tree/master/packages/polyfills-loader): we now recommend [@web/polyfills-loader](https://modern-web.dev/docs/building/polyfills-loader/)

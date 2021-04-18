@@ -205,10 +205,7 @@ function createIndexHTML(baseIndex, config) {
 
   const appendPreloadScript = href => {
     if (localConfig.entries.type === 'module') {
-      append(
-        head,
-        createElement('link', { rel: 'preload', href, as: 'script', crossorigin: 'anonymous' }),
-      );
+      append(head, createElement('link', { rel: 'modulepreload', href, as: 'script' }));
     } else {
       append(head, createElement('link', { rel: 'preload', href, as: 'script' }));
     }
