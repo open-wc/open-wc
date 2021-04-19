@@ -1,20 +1,8 @@
 import { ScopedElementsMixin } from '@open-wc/scoped-elements';
-import { html, LitElement, TemplateResult } from 'lit-element';
-import { isIterable } from './lib.js';
+import { html, LitElement } from 'lit';
 
 /** @typedef {import('@open-wc/scoped-elements').ScopedElementsMap} ScopedElementsMap */
-
-const transform = template => {
-  if (isIterable(template)) {
-    return [...template].map(v => transform(v));
-  }
-
-  if (template instanceof TemplateResult) {
-    return html(template.strings, ...template.values);
-  }
-
-  return template;
-};
+/** @typedef {import('lit/html.js').TemplateResult} TemplateResult */
 
 /**
  * Regarding the @ts-expect-error, it is caused by having '& typeof ScopedElementsHost' on ScopedElementsMixin.
@@ -59,7 +47,7 @@ class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
   }
 
   render() {
-    return transform(this.template);
+    return this.template;
   }
 }
 
@@ -78,19 +66,19 @@ const getWrapperUniqueName = (counter = 0) => {
   return tag;
 };
 
-const wrapperTagName = getWrapperUniqueName();
-
-// @ts-ignore
-customElements.define(wrapperTagName, ScopedElementsTestWrapper);
-
 /**
  * Wraps the template inside a scopedElements component
  *
  * @param {import('./litFixture').LitHTMLRenderable} template
  * @param {ScopedElementsMap} scopedElements
- * @returns {TemplateResult}
+ * @return {TemplateResult}
  */
 export function getScopedElementsTemplate(template, scopedElements) {
+  const wrapperTagName = getWrapperUniqueName();
+
+  // @ts-ignore
+  customElements.define(wrapperTagName, class extends ScopedElementsTestWrapper {});
+
   const strings = [
     `<${wrapperTagName} .scopedElements="`,
     '" .template="',
