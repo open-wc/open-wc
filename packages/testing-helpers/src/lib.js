@@ -1,10 +1,10 @@
-import { TemplateResult } from 'lit-html';
+import { isTemplateResult } from 'lit/directive-helpers.js';
 
 export const isIterable = object => object != null && typeof object[Symbol.iterator] === 'function';
 
 function isValidNonIterableRenderArg(x) {
   return (
-    x instanceof TemplateResult ||
+    isTemplateResult(x) ||
     x instanceof Node ||
     typeof x === 'number' ||
     typeof x === 'boolean' ||
