@@ -1,7 +1,6 @@
-// @ts-ignore
+import '@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js';
 import sinon from 'sinon';
-// @ts-ignore
-import { html as litHtml, LitElement } from 'lit-element';
+import { html as litHtml, LitElement } from 'lit';
 import { expect } from './setup.js';
 import { cachedWrappers } from '../src/fixtureWrapper.js';
 import { defineCE } from '../src/helpers.js';
@@ -365,7 +364,7 @@ describe('fixtureSync & fixture', () => {
     expect(counter).to.equal(2);
   });
 
-  it('supports scoped-elements', async () => {
+  describe('supports scoped-elements', () => {
     class TestClass extends LitElement {
       static get properties() {
         return {
@@ -386,20 +385,24 @@ describe('fixtureSync & fixture', () => {
       }
     }
 
-    const elString = await fixture('<test-class foo="bar"></test-class>', {
-      scopedElements: {
-        'test-class': TestClass,
-      },
+    it('supports a litFixture', async () => {
+      const elLit = await fixture(html` <test-class foo="bar"></test-class> `, {
+        scopedElements: {
+          'test-class': TestClass,
+        },
+      });
+
+      expect(elLit).shadowRoot.to.equal('<div>bar</div>');
     });
 
-    expect(elString.shadowRoot.innerHTML).to.include('bar');
+    it('supports a stringFixture', async () => {
+      const elString = await fixture('<test1-class foo="bar"></test1-class>', {
+        scopedElements: {
+          'test1-class': TestClass,
+        },
+      });
 
-    const elLit = await fixture(html` <test-class foo="bar"></test-class> `, {
-      scopedElements: {
-        'test-class': TestClass,
-      },
+      expect(elString).shadowRoot.to.equal('<div>bar</div>');
     });
-
-    expect(elLit.shadowRoot.innerHTML).to.include('bar');
   });
 });

@@ -1,6 +1,6 @@
-import { html as litHtml } from 'lit-html/lit-html.js';
+import { html as litHtml } from 'lit/html.js';
 
-export { render } from 'lit-html/lit-html.js';
+export { render } from 'lit/html.js';
 
 /**
  * This is a wrapper around lit-html that supports dynamic strings to be added as a preprocessing
@@ -21,7 +21,7 @@ export { render } from 'lit-html/lit-html.js';
  *
  * @param {TemplateStringsArray} strings Static Parts
  * @param {Array.<any>} values Dynamic Parts
- * @returns {import('lit-html').TemplateResult}
+ * @returns {import('lit/html.js').TemplateResult}
  */
 export function html(strings, ...values) {
   const newVal = []; // result values to be passed on to lit-html

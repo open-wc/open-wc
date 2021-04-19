@@ -1,6 +1,6 @@
-import { TemplateResult } from 'lit-html';
+import { render } from 'lit/html.js';
+import { isTemplateResult } from 'lit/directive-helpers.js';
 import { fixtureWrapper } from './fixtureWrapper.js';
-import { render } from './lit-html.js';
 import { elementUpdated } from './elementUpdated.js';
 import { NODE_TYPES } from './lib.js';
 import { getScopedElementsTemplate } from './scopedElementsWrapper.js';
@@ -36,14 +36,14 @@ const isUsefulNode = ({ nodeType, textContent }) => {
  * @returns {T}
  */
 export function litFixtureSync(template, options = {}) {
-  const wrapper = fixtureWrapper(options.parentNode);
+  const wrapper = /** @type {HTMLElement} */ (fixtureWrapper(options.parentNode));
 
   render(
     options.scopedElements ? getScopedElementsTemplate(template, options.scopedElements) : template,
     wrapper,
   );
 
-  if (template instanceof TemplateResult) {
+  if (isTemplateResult(template)) {
     return /** @type {T} */ (wrapper.firstElementChild);
   }
   const [node] = Array.from(wrapper.childNodes).filter(isUsefulNode);
