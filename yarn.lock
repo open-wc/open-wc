@@ -3381,6 +3381,30 @@
     picomatch "^2.2.2"
     ws "^7.4.2"
 
+"@web/dev-server-core@^0.3.10":
+  version "0.3.10"
+  resolved "https://registry.yarnpkg.com/@web/dev-server-core/-/dev-server-core-0.3.10.tgz#5a3f5d164d192913ad1a4b91d6af2ceec37d7485"
+  integrity sha512-3Ca0kyOTPbLJ29jb2/C8DUBpBdRh5ikKV1mXv2+s95ph0uAWroWZfUtWnsGIDy1WI7meF8PBNi5brN6zOemj8Q==
+  dependencies:
+    "@types/koa" "^2.11.6"
+    "@types/ws" "^7.4.0"
+    "@web/parse5-utils" "^1.2.0"
+    chokidar "^3.4.3"
+    clone "^2.1.2"
+    es-module-lexer "^0.4.0"
+    get-stream "^6.0.0"
+    is-stream "^2.0.0"
+    isbinaryfile "^4.0.6"
+    koa "^2.13.0"
+    koa-etag "^4.0.0"
+    koa-send "^5.0.1"
+    koa-static "^5.0.0"
+    lru-cache "^6.0.0"
+    mime-types "^2.1.27"
+    parse5 "^6.0.1"
+    picomatch "^2.2.2"
+    ws "^7.4.2"
+
 "@web/dev-server-core@^0.3.2":
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@web/dev-server-core/-/dev-server-core-0.3.2.tgz#a49c7db0c3aeda06f4e46c51b21a6548d424bff0"
@@ -3530,6 +3554,14 @@
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@web/parse5-utils/-/parse5-utils-1.1.2.tgz#b53e7f62679170371da36023517b23bbb1f7c582"
   integrity sha512-/JQHbK53BmYiFK2igr2B+Psl2Ivp2ju75Nx1InZweTbxLQNGG9yUBaudER85aqebIH6smkPkKwVtpdBXBiwy1A==
+  dependencies:
+    "@types/parse5" "^5.0.3"
+    parse5 "^6.0.1"
+
+"@web/parse5-utils@^1.2.0":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@web/parse5-utils/-/parse5-utils-1.2.2.tgz#33eec93321eb07cf364651c131b980a7afd8c4d7"
+  integrity sha512-B68DoJ5qF8Cu3o7nDA2RQTCf9bslVz2b0WHTk3qir5YCbWfhnPEGhDOedOjbE8xDiHqgzI1zXQsJ2+655aluLA==
   dependencies:
     "@types/parse5" "^5.0.3"
     parse5 "^6.0.1"
@@ -6980,6 +7012,11 @@ es-module-lexer@^0.3.26:
   version "0.3.26"
   resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-0.3.26.tgz#7b507044e97d5b03b01d4392c74ffeb9c177a83b"
   integrity sha512-Va0Q/xqtrss45hWzP8CZJwzGSZJjDM5/MJRE3IXXnUCcVLElR9BRaE9F62BopysASyc4nM3uwhSW7FFB9nlWAA==
+
+es-module-lexer@^0.4.0:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-0.4.1.tgz#dda8c6a14d8f340a24e34331e0fab0cb50438e0e"
+  integrity sha512-ooYciCUtfw6/d2w56UVeqHPcoCFAiJdz5XOkYpv/Txl1HMUozpXjz/2RIQgqwKdXNDPSF1W7mJCFse3G+HDyAA==
 
 es-module-shims@^0.4.6, es-module-shims@^0.4.7:
   version "0.4.7"

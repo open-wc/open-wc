@@ -52,7 +52,7 @@
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-syntax-import-assertions": "^7.12.1",
     "@babel/plugin-syntax-top-level-await": "^7.12.1",
-    "@web/dev-server-core": "^0.2.18",
+    "@web/dev-server-core": "^0.3.10",
     "@web/dev-server-hmr": "^0.1.6",
     "picomatch": "^2.2.2"
   },
