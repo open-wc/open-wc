@@ -22,7 +22,7 @@ describe('chaiA11yAxe', () => {
         </div>
       `);
       await expect(el).to.be.accessible({
-        ignoredRules: ['aria-valid-attr-value', 'button-name'],
+        ignoredRules: ['aria-valid-attr-value', 'aria-command-name'],
       });
     });
 
