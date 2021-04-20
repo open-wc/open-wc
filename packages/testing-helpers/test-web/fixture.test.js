@@ -392,7 +392,7 @@ describe('fixtureSync & fixture', () => {
       },
     });
 
-    expect(elString).shadowDom.to.equal('<div>bar</div>');
+    expect(elString.shadowRoot.innerHTML).to.include('bar');
 
     const elLit = await fixture(html` <test-class foo="bar"></test-class> `, {
       scopedElements: {
@@ -400,6 +400,6 @@ describe('fixtureSync & fixture', () => {
       },
     });
 
-    expect(elLit).shadowDom.to.equal('<div>bar</div>');
+    expect(elLit.shadowRoot.innerHTML).to.include('bar');
   });
 });
