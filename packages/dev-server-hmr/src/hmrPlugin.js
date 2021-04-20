@@ -118,7 +118,8 @@ function hmrPlugin(pluginConfig) {
       if (
         matchInclude(filePath) &&
         !matchExclude(filePath) &&
-        !filePath.startsWith('__web-dev-server__')
+        !filePath.startsWith('__web-dev-server__') &&
+        typeof context.body === 'string'
       ) {
         try {
           context.body = await babelTransform(context.body, filePath, {

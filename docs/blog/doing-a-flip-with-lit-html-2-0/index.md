@@ -149,7 +149,7 @@ import { render, html } from 'lit-html';
 import { createRef, ref } from 'lit-html/directives/ref.js';
 
 const inputRef = createRef();
-render(html`<input ${ref(inputRef)} />`, container);
+render(html` <input ${ref(inputRef)} /> `, container);
 inputRef.value.focus();
 ```
 

@@ -1,7 +1,6 @@
 import { expect } from './setup.js';
 import { stringFixture, stringFixtureSync } from '../src/stringFixture.js';
-import { litFixture, litFixtureSync } from '../src/litFixture.js';
-import { defineCE, nextFrame } from '../src/helpers.js';
+import { litFixture, litFixtureSync, defineCE, nextFrame } from '../index.js';
 import { html, unsafeStatic } from '../src/lit-html.js';
 
 class TestComponent extends HTMLElement {}
