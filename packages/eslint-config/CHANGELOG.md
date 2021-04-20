@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.3.0
+
+### Minor Changes
+
+- ad24cd57: added HTML extension
+
 ## 4.2.0
 
 ### Minor Changes
