@@ -9,6 +9,7 @@ packages/**/test-node/**/snapshots
 /packages/demoing-storybook/storybook-static/**/*
 /packages/rollup-plugin-input-html/test/fixtures/**/*
 /packages/rollup-plugin-html/dist/**/*
+/packages/testing/plugins/**/*
 CHANGELOG.md
 __snapshots__/
 _site/
