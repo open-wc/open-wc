@@ -43,7 +43,7 @@
     "@types/eslint": "^7.2.4",
     "@types/estree": "^0.0.45",
     "@types/parse5-htmlparser2-tree-adapter": "^5.0.1",
-    "@web/dev-server": "^0.1.5",
+    "@web/dev-server": "^0.1.14",
     "@web/test-runner": "^0.12.6",
     "@web/test-runner-playwright": "^0.8.1",
     "babel-eslint": "^10.0.3",

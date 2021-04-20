@@ -10,11 +10,8 @@ export default {
     playwrightLauncher({ product: 'chromium' }),
     playwrightLauncher({ product: 'webkit' }),
   ],
-  coverage: true, 
+  coverage: true,
   coverageConfig: {
-    exclude: [
-      'packages/testing/import-wrappers/**/*'
-    ],
     report: true,
     reportDir: 'coverage',
     threshold: {
@@ -22,6 +19,6 @@ export default {
       branches: 60,
       functions: 70,
       lines: 80,
-    }
+    },
   },
 };
