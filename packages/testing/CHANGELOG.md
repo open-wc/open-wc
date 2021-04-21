@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.33
+
+### Patch Changes
+
+- aee0ee63: export waitUntil from index-no-side-effects
+
 ## 2.5.32
 
 ### Patch Changes
