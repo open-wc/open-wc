@@ -15,6 +15,7 @@ export {
   fixtureSync,
   fixtureCleanup,
   elementUpdated,
+  waitUntil,
 } from '@open-wc/testing-helpers/index-no-side-effects.js';
 
 // @ts-ignore
