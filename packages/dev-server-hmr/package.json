@@ -49,7 +49,7 @@
   ],
   "dependencies": {
     "@babel/core": "^7.12.3",
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-import-assertions": "^7.12.1",
     "@babel/plugin-syntax-top-level-await": "^7.12.1",
     "@web/dev-server-core": "^0.3.10",
