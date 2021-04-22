@@ -23,7 +23,7 @@
     "eslint",
     "eslintplugin",
     "eslint-plugin",
-    "lit-html",
+    "lit",
     "a11y",
     "accessibility"
   ],
