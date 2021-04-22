@@ -15,16 +15,15 @@
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements",
   "module": "index.js",
   "scripts": {
+    "debug": "cd ../../ && yarn debug --group scoped-elements",
     "demo-build:before-nesting": "rollup -c demo/before-nesting/rollup.config.js",
     "demo-build:no-scope": "rollup -c demo/no-scope/rollup.config.js",
     "demo-build:with-scope": "rollup -c demo/with-scope/rollup.config.js",
-    "prepublishOnly": "../../scripts/insert-header.js",
     "site:build": "run-p demo-build:*",
-    "start:before-nesting": "es-dev-server -c demo/before-nesting/server.js",
-    "start:no-scope": "es-dev-server -c demo/no-scope/server.js",
-    "start:with-scope": "es-dev-server -c demo/with-scope/server.js",
-    "test": "cd ../../ && yarn test:browser --grep \"packages/scoped-elements/test/*.test.js\"",
-    "test:watch": "cd ../../ && yarn test:browser:watch --grep \"packages/scoped-elements/test/*.test.js\"",
+    "start:before-nesting": "web-dev-server -c demo/before-nesting/server.js",
+    "start:no-scope": "web-dev-server -c demo/no-scope/server.js",
+    "start:with-scope": "web-dev-server -c demo/with-scope/server.js",
+    "test": "cd ../../ && yarn test:web --group scoped-elements",
     "types:copy": "copyfiles \"./src/**/*.d.ts\" \"./*.d.ts\" types"
   },
   "files": [
@@ -41,9 +40,8 @@
     "helpers"
   ],
   "dependencies": {
-    "@lit/reactive-element": "^1.0.0-pre.3",
-    "@open-wc/dedupe-mixin": "^1.3.0",
-    "lit": "^2.0.0-pre.2"
+    "@lit/reactive-element": "^1.0.0-rc.1",
+    "@open-wc/dedupe-mixin": "^1.3.0"
   },
   "devDependencies": {
     "@webcomponents/scoped-custom-element-registry": "0.0.1"
