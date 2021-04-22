@@ -20,4 +20,6 @@ export {
   fixtureCleanup,
   elementUpdated,
   waitUntil,
-} from '@open-wc/testing-helpers/index-no-side-effects.js';
+  // eslint does not understand export maps yet
+  // eslint-disable-next-line import/no-unresolved
+} from '@open-wc/testing-helpers/pure';

@@ -131,7 +131,7 @@ const el = await fixture(html` <my-el></my-el> `, { parentNode });
 
 By default fixture awaits the elements "update complete" Promise.
 
-- for [lit-element](https://github.com/polymer/lit-element) that is `el.updateComplete`;
+- for [lit](https://github.com/lit/lit) that is `el.updateComplete`;
 - for [stencil](https://github.com/ionic-team/stencil/) that is `el.componentOnReady()`;
 
 If none of those specfic Promise hooks are found, it will wait for one frame via `await nextFrame()`.<br>
@@ -278,7 +278,7 @@ By default, if you import anything via `import { ... } from '@open-wc/testing';`
 If you want to be in full control you can do so by using
 
 ```js
-import { fixture, fixtureCleanup } from '@open-wc/testing-helpers/index-no-side-effects.js';
+import { fixture, fixtureCleanup } from '@open-wc/testing-helpers/pure';
 
 it('can instantiate an element with properties', async () => {
   const el = await fixture(html`<my-el .foo=${'bar'}></my-el>`);
