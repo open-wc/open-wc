@@ -1,4 +1,4 @@
-import { html, css } from 'lit-element';
+import { html, css } from 'lit';
 import { SharedClass } from './SharedClass';
 
 class TodoSharedB extends SharedClass {

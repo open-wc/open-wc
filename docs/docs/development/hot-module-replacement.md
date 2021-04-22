@@ -42,9 +42,23 @@ Pick one of the presets below if needed, then start the dev server like normal. 
 
 For vanilla web component projects that don't implement any base class or library this plugin should detect your components automatically. You need to implement a `hotReplacedCallback` on your element to trigger a re-render, read more about that below.
 
-### LitElement
+### Lit & LitElement
 
-LitElement v2 supports HMR with a small code patch included in the preset. There is no support yet for the v3 prerelease.
+LitElement v2 and Lit v2 (which is LitElement v3) need different "patches" to support HMR.
+To distinguish between v2 and v3 we take the import as a hint.
+
+```js
+// v2 patch
+import { LitElement } from 'lit-element';
+// v3 patch
+import { LitElement } from 'lit';
+```
+
+<inline-notification type="warning">
+
+If you mix LitElement v2 and LitElement v3 in the same app be sure to import v2 from 'lit-element' and v3 from 'lit';
+
+</inline-notification>
 
 ```js
 import { hmrPlugin, presets } from '@open-wc/dev-server-hmr';
@@ -53,7 +67,12 @@ export default {
   plugins: [
     hmrPlugin({
       include: ['src/**/*'],
+      // only v3
+      presets: [presets.lit],
+      // only v2
       presets: [presets.litElement],
+      // both v3 & v2
+      presets: [presets.lit, presets.litElement],
     }),
   ],
 };
