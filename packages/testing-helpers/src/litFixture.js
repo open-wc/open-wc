@@ -7,8 +7,8 @@ import { getScopedElementsTemplate } from './scopedElementsWrapper.js';
 
 /**
  * @typedef {
-     import('lit-html').TemplateResult
-   | import('lit-html').TemplateResult[]
+     import('lit').TemplateResult
+   | import('lit').TemplateResult[]
    | Node | Node[]
    | string | string[]
    | number | number[]

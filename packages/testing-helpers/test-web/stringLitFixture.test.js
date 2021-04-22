@@ -1,7 +1,7 @@
+import { html, unsafeStatic } from 'lit/static-html.js';
 import { expect } from './setup.js';
 import { stringFixture, stringFixtureSync } from '../src/stringFixture.js';
 import { litFixture, litFixtureSync, defineCE, nextFrame } from '../index.js';
-import { html, unsafeStatic } from '../src/lit-html.js';
 
 class TestComponent extends HTMLElement {}
 customElements.define('test-component', TestComponent);
