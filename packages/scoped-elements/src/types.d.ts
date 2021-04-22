@@ -1,7 +1,7 @@
 import { Constructor } from '@open-wc/dedupe-mixin';
 import { ReactiveElement } from '@lit/reactive-element';
 
-export type { Constructor } from 'lit-element';
+export type { Constructor } from 'lit';
 
 export type ScopedElementsMap = {
   [key: string]: typeof HTMLElement;

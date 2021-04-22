@@ -5,25 +5,33 @@ Scope element tag names avoiding naming collision and allowing to use different 
 ## Installation
 
 ```bash
-npm i --save @open-wc/scoped-elements
+npm i --save @open-wc/scoped-elements @webcomponents/scoped-custom-element-registry
 ```
 
 ## Usage
 
-1. Import `ScopedElementsMixin` from `@open-wc/scoped-elements`.
+1. Be sure your application/environment supports a scoped registry by loading the polyfill
+
+   ```html
+   <script type="module">
+     import '@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js';
+   </script>
+   ```
+
+2. Import `ScopedElementsMixin` from `@open-wc/scoped-elements`.
 
    ```js
    import { ScopedElementsMixin } from '@open-wc/scoped-elements';
    ```
 
-2. Import the classes of the components you want to use.
+3. Import the classes of the components you want to use.
 
    ```js
    import { MyButton } from './MyButton.js';
    import { MyPanel } from './MyPanel.js';
    ```
 
-3. Apply `ScopedElementsMixin` and define the tags you want to use for your components.
+4. Apply `ScopedElementsMixin` and define the tags you want to use for your components.
 
    ```js
    class MyElement extends ScopedElementsMixin(LitElement) {
@@ -51,7 +59,7 @@ npm i --save @open-wc/scoped-elements
    >
    > If you try to register the same element globally AND locally with the exact same name AND class instance it will reuse the global tag name and NOT scope it.
 
-4. Use your components in your html.
+5. Use your components in your html.
 
    ```js
    render() {
@@ -66,7 +74,7 @@ npm i --save @open-wc/scoped-elements
 ### Complete example
 
 ```js
-import { css, LitElement } from 'lit-element';
+import { css, LitElement } from 'lit';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements';
 import { MyButton } from './MyButton.js';
 import { MyPanel } from './MyPanel.js';
@@ -109,7 +117,7 @@ export class MyElement extends ScopedElementsMixin(LitElement) {
 In some situations may happen that you want to use a component in your templates that is not already loaded at the moment of defining the scoped elements map. The `ScopedElementsMixin` provides the `defineScopedElement` method to define scoped elements at any time.
 
 ```js
-import { LitElement } from 'lit-element';
+import { LitElement } from 'lit';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements';
 import { MyPanel } from './MyPanel.js';
 
@@ -133,36 +141,6 @@ export class MyElement extends ScopedElementsMixin(LitElement) {
       </my-panel>
     `;
   }
-}
-```
-
-### Obtaining a scoped tag name
-
-Maybe you want to create a scoped element programmatically and don't know which one is the scoped tag name? No problem, there is a static method called `getScopedTagName` that would help you for that.
-
-```js
-import { LitElement } from 'lit-element';
-import { ScopedElementsMixin } from '@open-wc/scoped-elements';
-import { MyButton } from './MyButton.js';
-import { MyPanel } from './MyPanel.js';
-
-export class MyElement extends ScopedElementsMixin(LitElement) {
-  static get scopedElements() {
-    return {
-      'my-panel': MyPanel,
-      'my-button': MyButton,
-    };
-  }
-
-  constructor() {
-    super();
-
-    const scopedTagName = this.constructor.getScopedTagName('my-button');
-
-    // do whatever you need with the scopedTagName
-  }
-
-  // ...
 }
 ```
 
@@ -241,7 +219,8 @@ Every auto-defined scoped elements gets a random\* 4 digits number suffix. This 
 
 ## Limitations
 
-1. Components imported via npm **SHOULD NOT** be self registering components. If a shared component (installed from npm) does not offer an export to the class alone, without the registration side effect, then this component may not be used. E.g. every component that calls `customElement.define`.
+1. You are force to use a polyfill (@webcomponents/scoped-custom-element-registry)[https://github.com/webcomponents/polyfills/tree/master/packages/scoped-custom-element-registry].
+2. Components imported via npm **SHOULD NOT** be self registering components. If a shared component (installed from npm) does not offer an export to the class alone, without the registration side effect, then this component may not be used. E.g. every component that calls `customElement.define`.
 
    ```js
    export class MyEl { ... }
@@ -261,63 +240,9 @@ Every auto-defined scoped elements gets a random\* 4 digits number suffix. This 
    export class MyEl { ... }
    ```
 
-2. Every component that uses sub components should use `scoped-elements`. Any import to a self registering component can potentially result in a browser exception - completely breaking the whole application.
-
-3. Imported elements should be fully side effect free (not only element registration)
-
-4. Currently, only `lit-element` is supported (though other elements/rendering engines could be incorporated in the future).
-
-5. You cannot use tag selectors in css, but you could use an id, a class name or even a property instead.
-
-   ```css
-   🚫 my-panel {
-     width: 300px;
-   }
-   ✅ .panel {
-     width: 300px;
-   }
-   ```
-
-6. You cannot use tag names using javascript querySelectors, but you could use an id, a class name or even a property instead.
-
-   ```js
-   🚫 this.shadowRoot.querySelector('my-panel');
-   ✅ this.shadowRoot.querySelector('.panel');
-   ```
-
-7. Using `scoped-elements` may result in a performance degradation of up to 8%.
-8. Loading of duplicate/similar source code (most breaking releases are not a total rewrite) should always be a temporary solution.
-9. Often, temporary solutions tend to become more permanent. Be sure to focus on keeping the lifecycle of nested dependencies short.
-
-## Performance
-
-We are using [Tachometer](https://github.com/Polymer/tachometer) to measure the performance penalty of using the scoped elements feature. The chosen test application is a slight variation of the [Polymer Shop Application](https://shop.polymer-project.org).
-
-This is an example of the results obtained running the performance test.
-
-```
-⠋ Auto-sample 560 (timeout in 16m27s)
-┌─────────────┬───────────────┐
-│     Version │ <none>        │
-├─────────────┼───────────────┤
-│     Browser │ chrome        │
-│             │ 80.0.3987.106 │
-├─────────────┼───────────────┤
-│ Sample size │ 610           │
-└─────────────┴───────────────┘
-┌─────────────────────────────┬────────────┬─────────────────────┬─────────────────┬──────────────────────────┐
-│ Benchmark                   │ Bytes      │            Avg time │  vs lit-element │ vs scoped-elements-mixin │
-├─────────────────────────────┼────────────┼─────────────────────┼─────────────────┼──────────────────────────┤
-│ lit-element                 │ 281.24 KiB │ 285.72ms - 286.69ms │                 │                   faster │
-│                             │            │                     │        -        │                  2% - 2% │
-│                             │            │                     │                 │           5.68ms - 7.1ms │
-├─────────────────────────────┼────────────┼─────────────────────┼─────────────────┼──────────────────────────┤
-│ scoped-elements-mixin       │ 283.21 KiB │ 292.08ms - 293.11ms │          slower │                          │
-│                             │            │                     │         2% - 2% │                 -        │
-│                             │            │                     │ 5.68ms - 7.10ms │                          │
-└─────────────────────────────┴────────────┴─────────────────────┴─────────────────┴──────────────────────────┘
-```
-
-## Special thanks
-
-This package was initially inspired by [carehtml](https://github.com/bashmish/carehtml) and we would like to thank [@bashmish](https://github.com/bashmish) for his work on it.
+3. Every component that uses sub components should use `scoped-elements`. Any import to a self registering component can potentially result in a browser exception - completely breaking the whole application.
+4. Imported elements should be fully side effect free (not only element registration)
+5. Currently, only `lit-element` is supported (though other elements/rendering engines could be incorporated in the future).
+6. Using `scoped-elements` may result in a performance degradation of up to 8%.
+7. Loading of duplicate/similar source code (most breaking releases are not a total rewrite) should always be a temporary solution.
+8. Often, temporary solutions tend to become more permanent. Be sure to focus on keeping the lifecycle of nested dependencies short.
