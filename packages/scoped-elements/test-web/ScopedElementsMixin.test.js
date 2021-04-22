@@ -431,4 +431,52 @@ describe('ScopedElementsMixin', () => {
       expect(feature).shadowDom.to.equal('<div>Element A</div>');
     });
   });
+
+  describe('[deprecated] getScopedTagName', () => {
+    it('should return the scoped tag name for a registered element', async () => {
+      const tag = defineCE(
+        class extends ScopedElementsMixin(LitElement) {
+          static get scopedElements() {
+            return {
+              'feature-a': FeatureA,
+            };
+          }
+
+          render() {
+            return html`
+              <feature-a></feature-a>
+              <feature-b></feature-b>
+            `;
+          }
+        },
+      );
+
+      const el = await fixture(`<${tag}></${tag}>`);
+
+      expect(el.getScopedTagName('feature-a')).to.equal(tag);
+      expect(el.getScopedTagName('feature-b')).to.equal(tag);
+    });
+
+    it('should return the scoped tag name for a non already registered element', async () => {
+      class UnregisteredFeature extends LitElement {
+        render() {
+          return html` <div>Unregistered feature</div> `;
+        }
+      }
+
+      const tag = defineCE(
+        class extends ScopedElementsMixin(LitElement) {
+          static get scopedElements() {
+            return {
+              'unregistered-feature': UnregisteredFeature,
+            };
+          }
+        },
+      );
+
+      const el = await fixture(`<${tag}></${tag}>`);
+
+      expect(el.getScopedTagName('unregistered-feature')).to.equal(tag);
+    });
+  });
 });

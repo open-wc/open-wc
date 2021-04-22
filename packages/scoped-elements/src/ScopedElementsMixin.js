@@ -101,6 +101,14 @@ const ScopedElementsMixinImplementation = superclass =>
     defineScopedElement(tagName, klass) {
       return this.registry.get(tagName) || this.registry.define(tagName, klass);
     }
+
+    /**
+     * @deprecated use the native el.tagName instead
+     * @returns {string} the tag name in lowercase
+     */
+    getScopedTagName() {
+      return this.tagName.toLowerCase();
+    }
   };
 
 export const ScopedElementsMixin = dedupeMixin(ScopedElementsMixinImplementation);
