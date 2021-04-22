@@ -1,4 +1,4 @@
-import { LitElement, customElement, html } from 'lit-element';
+import { LitElement, customElement, html } from 'lit';
 import './todo-list.js';
 
 @customElement('todo-app')

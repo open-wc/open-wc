@@ -1,4 +1,4 @@
-import { html } from 'lit-element';
+import { html } from 'lit';
 import '../src/my-button.js';
 
 export const Button = args =>
