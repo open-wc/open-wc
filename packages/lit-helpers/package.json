@@ -14,6 +14,9 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/lit-helpers",
   "module": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
   "scripts": {
     "prepublishOnly": "../../scripts/insert-header.js"
   },
@@ -23,15 +26,14 @@
     "src"
   ],
   "keywords": [
-    "lit-html",
-    "lit-element",
+    "lit",
+    "lit",
     "web components",
     "utils",
     "helpers"
   ],
   "peerDependencies": {
-    "lit-element": "^2.0.0",
-    "lit-html": "^1.0.0"
+    "lit": "^2.0.0-rc.1"
   },
   "sideEffects": false
 }

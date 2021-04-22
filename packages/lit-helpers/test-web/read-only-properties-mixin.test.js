@@ -1,5 +1,5 @@
 import { expect, html, fixture, defineCE, unsafeStatic } from '@open-wc/testing';
-import { LitElement } from 'lit-element';
+import { LitElement } from 'lit';
 import { ReadOnlyPropertiesMixin } from '../src/read-only-properties-mixin.js';
 
 describe('ReadOnlyPropertiesMixin', () => {
