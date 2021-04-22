@@ -15,7 +15,9 @@
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff",
   "module": "index.js",
   "scripts": {
-    "prepublishOnly": "../../scripts/insert-header.js"
+    "debug": "cd ../../ && yarn debug --group testing-helpers",
+    "prepublishOnly": "../../scripts/insert-header.js",
+    "test": "cd ../../ && yarn test:web --group testing-helpers"
   },
   "files": [
     "*.d.ts",

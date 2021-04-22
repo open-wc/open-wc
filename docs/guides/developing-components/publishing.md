@@ -72,24 +72,24 @@ If you do choose to publish code with side effects as part of your entry point, 
 
 ### Do import 3rd party node modules with "bare" import specifiers
 
-When referring to 3rd party dependencies in your code, you cannot guarantee that implementing projects rely on the same file structure as you do. To prevent dependency specifiers from causing issues across different environments, be sure to import these dependencies into your project with "bare" import specifiers so that tooling in your users' environment can manage resolving the location of those dependencies; e.g. `import { LitElement } from 'lit-element';`
+When referring to 3rd party dependencies in your code, you cannot guarantee that implementing projects rely on the same file structure as you do. To prevent dependency specifiers from causing issues across different environments, be sure to import these dependencies into your project with "bare" import specifiers so that tooling in your users' environment can manage resolving the location of those dependencies; e.g. `import { LitElement } from 'lit';`
 
 ### Do include file extensions in import specifiers
 
-When importing something that doesn't point directly to the entry point of a module, e.g.: `import {LitElement} from 'lit-element';`, always make sure to include a file extension: `import { ifDefined } from 'lit-html/directives/if-defined.js';`
+When importing something that doesn't point directly to the entry point of a module, e.g.: `import { LitElement } from 'lit';`, always make sure to include a file extension: `import { ifDefined } from 'lit/directives/if-defined.js';`
 
 **Yes:** 👍
 
 ```js
-import { html } from 'lit-html';
-import { ifDefined } from 'lit-html/directives/if-defined.js';
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
 ```
 
 **No:** 👎
 
 ```js
-import { html } from 'lit-html.js';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { html } from 'lit.js';
+import { ifDefined } from 'lit/directives/if-defined';
 ```
 
 ### Optional: use `type: "module"`

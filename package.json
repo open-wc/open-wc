@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "codelabs:build": "node ./packages/codelabs/build-codelabs.js",
+    "debug": "web-test-runner --watch",
     "format": "npm run format:eslint && npm run format:prettier",
     "format:eslint": "eslint --ext .js,.html . --fix",
     "format:prettier": "prettier \"**/*.{js,md}\" \"**/package.json\" --write",
@@ -61,7 +62,6 @@
     "fs-extra": "^8.1.0",
     "husky": "3.1.0",
     "lint-staged": "^10.5.3",
-    "lit-element": "^2.2.1",
     "mocha": "^6.2.2",
     "mock-require": "^3.0.3",
     "netlify-cli": "^2.63.2",
