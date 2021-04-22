@@ -3,10 +3,10 @@ const fetch = require('node-fetch');
 
 const baseLibraries = [
   {
-    name: 'lit-element',
-    package: 'lit-element',
-    description: 'A simple base class for creating fast, lightweight web components',
-    url: 'https://lit-element.polymer-project.org/',
+    name: 'lit',
+    package: 'lit',
+    description: 'Simple. Fast. Web Components.',
+    url: 'https://lit.dev/',
   },
   {
     name: 'FAST',
