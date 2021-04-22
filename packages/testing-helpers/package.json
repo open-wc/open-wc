@@ -14,6 +14,14 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/testing-helpers",
   "module": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./pure": "./index-no-side-effects.js"
+  },
+  "scripts": {
+    "debug": "cd ../../ && yarn debug --group testing-helpers",
+    "test": "cd ../../ && yarn test:web --group testing-helpers"
+  },
   "files": [
     "*.d.ts",
     "*.js",
@@ -28,7 +36,7 @@
   ],
   "dependencies": {
     "@open-wc/scoped-elements": "^1.3.1",
-    "lit": "^2.0.0-pre.2"
+    "lit": "^2.0.0-rc.1"
   },
   "devDependencies": {
     "@webcomponents/scoped-custom-element-registry": "0.0.1"

@@ -1,11 +1,11 @@
 import '@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js';
+import { LitElement } from 'lit';
+import { html, unsafeStatic } from 'lit/static-html.js';
 import sinon from 'sinon';
-import { html as litHtml, LitElement } from 'lit';
 import { expect } from './setup.js';
 import { cachedWrappers } from '../src/fixtureWrapper.js';
 import { defineCE } from '../src/helpers.js';
 import { fixture, fixtureSync } from '../src/fixture.js';
-import { html, unsafeStatic } from '../src/lit-html.js';
 import { NODE_TYPES } from '../src/lib.js';
 
 import '../../testing/register-chai-plugins.js';
@@ -379,9 +379,7 @@ describe('fixtureSync & fixture', () => {
       }
 
       render() {
-        return litHtml`
-          <div>${this.foo}</div>
-        `;
+        return html` <div>${this.foo}</div> `;
       }
     }
 

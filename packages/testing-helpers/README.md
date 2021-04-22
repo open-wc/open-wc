@@ -276,7 +276,7 @@ By default, if you import anything via `import { ... } from '@open-wc/testing';`
 If you want to be in full control you can do so by using
 
 ```js
-import { fixture, fixtureCleanup } from '@open-wc/testing-helpers/index-no-side-effects.js';
+import { fixture, fixtureCleanup } from '@open-wc/testing-helpers/pure';
 
 it('can instantiate an element with properties', async () => {
   const el = await fixture(html`<my-el .foo=${'bar'}></my-el>`);
