@@ -66,7 +66,7 @@ It could be the case, however, that you're using multiple rendering libraries in
 }
 ```
 
-This will cause the plugin to lint _only_ `html` tagged template literals that are imported from either `'lit-html'` or `'lit-element'`.
+This will cause the plugin to lint _only_ `html` tagged template literals that are imported from either `'lit'` or `'lit'`.
 
 If you're importing lit-html from a package that re-exports lit-html, like for example `@apollo-elements/lit-apollo`, you can specify `@apollo-elements/lit-apollo` as a valid litHtmlSource like so:
 
