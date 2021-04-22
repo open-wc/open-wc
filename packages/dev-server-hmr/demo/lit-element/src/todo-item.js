@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css } from 'lit';
 
 class TodoItem extends LitElement {
   static get styles() {
@@ -11,6 +11,7 @@ class TodoItem extends LitElement {
 
       .message {
         color: blue;
+        color: orange;
       }
 
       .delete {

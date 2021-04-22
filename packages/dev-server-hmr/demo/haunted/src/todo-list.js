@@ -1,4 +1,4 @@
-import { html } from 'lit-html';
+import { html } from 'lit';
 import { component, useState } from 'haunted';
 import { sharedTemplate } from './sharedTemplate.js';
 import { sharedStyles } from './sharedStyles.js';
