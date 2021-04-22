@@ -292,7 +292,7 @@ Let's take this example going forward:
 
 ```js
 import { ScopedElementsMixin } from '@open-wc/scoped-elements';
-import { LitElement } from 'lit-element';
+import { LitElement } from 'lit';
 import { MyButton } from '@somewhere/my-button';
 
 class MyElement extends ScopedElementsMixin(LitElement) {
