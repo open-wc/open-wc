@@ -384,23 +384,26 @@ describe('fixtureSync & fixture', () => {
     }
 
     it('supports a litFixture', async () => {
-      const elLit = await fixture(html` <test-class foo="bar"></test-class> `, {
+      const el = await fixture(html` <test-class foo="bar"></test-class> `, {
         scopedElements: {
           'test-class': TestClass,
         },
       });
 
-      expect(elLit).shadowRoot.to.equal('<div>bar</div>');
+      const contentNode = el.shadowRoot.children[0];
+      expect(contentNode.tagName).to.equal('DIV');
+      expect(contentNode.textContent).to.equal('bar');
     });
 
     it('supports a stringFixture', async () => {
-      const elString = await fixture('<test1-class foo="bar"></test1-class>', {
+      const el = await fixture('<test1-class foo="bar"></test1-class>', {
         scopedElements: {
           'test1-class': TestClass,
         },
       });
-
-      expect(elString).shadowRoot.to.equal('<div>bar</div>');
+      const contentNode = el.shadowRoot.children[0];
+      expect(contentNode.tagName).to.equal('DIV');
+      expect(contentNode.textContent).to.equal('bar');
     });
   });
 });
