@@ -20,15 +20,15 @@
   },
   "scripts": {
     "build-plugins": "rollup -c rollup.config.js",
+    "debug": "cd ../../ && yarn debug --group testing",
     "postinstall": "npm run build-plugins",
     "prepublishOnly": "../../scripts/insert-header.js",
-    "debug": "cd ../../ && yarn debug --group testing",
     "test": "cd ../../ && yarn test:web --group testing"
   },
   "files": [
     "*.d.ts",
     "*.js",
-    "import-wrappers"
+    "plugins"
   ],
   "keywords": [
     "testing",
