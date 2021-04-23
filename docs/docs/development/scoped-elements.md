@@ -5,12 +5,16 @@ Scope element tag names avoiding naming collision and allowing to use different 
 ## Installation
 
 ```bash
-npm i --save @open-wc/scoped-elements @webcomponents/scoped-custom-element-registry
+npm i --save @open-wc/scoped-elements
 ```
 
 ## Usage
 
 1. Be sure your application/environment supports a scoped registry by loading the polyfill
+
+   ```bash
+   npm i --save @webcomponents/scoped-custom-element-registry
+   ```
 
    ```html
    <script type="module">
@@ -56,8 +60,6 @@ npm i --save @open-wc/scoped-elements @webcomponents/scoped-custom-element-regis
    >    };
    >  }
    > ```
-   >
-   > If you try to register the same element globally AND locally with the exact same name AND class instance it will reuse the global tag name and NOT scope it.
 
 5. Use your components in your html.
 
