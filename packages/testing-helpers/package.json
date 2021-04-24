@@ -20,6 +20,7 @@
   },
   "scripts": {
     "debug": "cd ../../ && yarn debug --group testing-helpers",
+    "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
     "test": "cd ../../ && yarn test:web --group testing-helpers"
   },
   "files": [

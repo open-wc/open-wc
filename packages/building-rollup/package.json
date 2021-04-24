@@ -24,7 +24,7 @@
     "build:spa-js-input": "rimraf dist && rollup -c demo/js/rollup.spa-js-input.config.js",
     "build:spa-nomodule": "rimraf dist && rollup -c demo/js/rollup.spa-nomodule.config.js",
     "build:ts": "rimraf dist && rollup -c demo/ts/rollup.spa.config.js",
-    "prepublishOnly": "../../scripts/insert-header.js",
+    "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
     "start:babelrc": "npm run build:babelrc && npm run start:build",
     "start:build": "node ../es-dev-server/dist/cli.js --root-dir dist --compatibility none --open",
     "start:cjs": "npm run build:cjs && npm run start:build",
