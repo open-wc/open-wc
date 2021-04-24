@@ -1,1 +1,0 @@
-I moved into the legacy repository [testing-karma-bs](https://github.com/open-wc/legacy/tree/master/packages/testing-karma-bs) we now recommend [web-test-runner](https://modern-web.dev/docs/test-runner/overview/).
