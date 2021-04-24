@@ -7219,7 +7219,7 @@ fs-extra@^8.1, fs-extra@^8.1.0:
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
-fs-extra@^9.0, fs-extra@^9.0.1:
+fs-extra@^9.0, fs-extra@^9.0.0, fs-extra@^9.0.1:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.1.0.tgz#5954460c764a8da2094ba3554bf839e6b9a7c86d"
   integrity sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==
@@ -12087,6 +12087,15 @@ pseudomap@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
   integrity sha1-8FKijacOYYkX7wqKw0wa5aaChrM=
+
+publish-docs@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/publish-docs/-/publish-docs-0.1.1.tgz#7c42339c7c40e04fb8aeda38a91c389457fa01f3"
+  integrity sha512-uhSprPFJ+pvzLJDkkuYzNmO/l7fs+lCtRKIhpoD702AHNpDmM21RZAt6bEkfOs/VuikBqFNXoa/zY3FC8W/A9Q==
+  dependencies:
+    command-line-args "^5.1.1"
+    fs-extra "^9.0.0"
+    glob "^7.1.6"
 
 pug-attrs@^2.0.4:
   version "2.0.4"
