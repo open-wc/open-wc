@@ -10,7 +10,7 @@ npm i --save @open-wc/scoped-elements
 
 <inline-notification type="warning">
 
-Version 2 of Scoped Elements only supports [lit](lit.dev) with `lit-element 3.x`. If you need to support `lit-element 2.x` be sure to use version 1 of Scoped Elements.
+Version 2 of Scoped Elements only supports [lit](https://lit.dev/) with `lit-element 3.x`. If you need to support `lit-element 2.x` be sure to use version 1 of Scoped Elements.
 
 </inline-notification>
 
