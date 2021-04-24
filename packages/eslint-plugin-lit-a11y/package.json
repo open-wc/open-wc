@@ -15,6 +15,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
+    "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
     "test": "npm run test:node",
     "test:node": "mocha tests --recursive",
     "test:single": "mocha tests/lib/rules/aria-attr-valid-value.js --watch"
