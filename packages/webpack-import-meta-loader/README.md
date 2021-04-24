@@ -1,1 +1,0 @@
-I move into the legacy repository [webpack-import-meta-loader](https://github.com/open-wc/legacy/tree/master/packages/webpack-import-meta-loader) we now recommend [babel-plugin-bundled-import-meta](https://www.npmjs.com/package/babel-plugin-bundled-import-meta).
