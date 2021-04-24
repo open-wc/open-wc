@@ -1,6 +1,6 @@
 ---
 title: Open Web Components
-layout: home.njk
+layout: layout-home
 slogan: 'Open Web Components provides guides, tools and libraries for developing web components'
 callToActionItems:
   [{ text: 'Follow Guides', href: '/guides/' }, { text: 'Browse Docs', href: '/docs/' }]
