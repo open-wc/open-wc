@@ -15,7 +15,6 @@
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/import-maps-resolve",
   "main": "./index.js",
   "scripts": {
-    "prepublishOnly": "../../scripts/insert-header.js",
     "test": "npm run test:node",
     "test:node": "mocha test/run-tests.js",
     "types:copy": "copyfiles \"./src/**/*.d.ts\" \"./*.d.ts\" types"
