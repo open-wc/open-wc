@@ -1,3 +1,4 @@
+import './loadPolyfill.js';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { adoptStyles } from '@lit/reactive-element/css-tag.js';
 
