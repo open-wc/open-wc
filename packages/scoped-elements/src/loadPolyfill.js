@@ -4,9 +4,7 @@
  * Needs a fork until https://github.com/webcomponents/polyfills/issues/438 is resolved.
  */
 
-if (!window.__scopedElementsMixinLoadedPolyfill) {
-  window.__scopedElementsMixinLoadedPolyfill = true;
-
+if (!ShadowRoot.prototype.createElement) {
   /**
    * @license
    * Copyright (c) 2020 The Polymer Project Authors. All rights reserved.
@@ -65,6 +63,7 @@ if (!window.__scopedElementsMixinLoadedPolyfill) {
       const attributeChangedCallback = elementClass.prototype.attributeChangedCallback;
       const observedAttributes = new Set(elementClass.observedAttributes || []);
       patchAttributes(elementClass, observedAttributes, attributeChangedCallback);
+      patchHTMLElement(elementClass);
       // Register the definition
       const definition = {
         elementClass,
@@ -285,6 +284,18 @@ if (!window.__scopedElementsMixinLoadedPolyfill) {
     }
   };
 
+  const patchHTMLElement = elementClass => {
+    const parentClass = Object.getPrototypeOf(elementClass);
+
+    if (parentClass !== window.HTMLElement) {
+      if (parentClass === NativeHTMLElement) {
+        return Object.setPrototypeOf(elementClass, window.HTMLElement);
+      }
+
+      return patchHTMLElement(parentClass);
+    }
+  };
+
   // Helper to upgrade an instance with a CE definition using "constructor call trick"
   const upgrade = (instance, definition) => {
     Object.setPrototypeOf(instance, definition.elementClass.prototype);
@@ -346,5 +357,4 @@ if (!window.__scopedElementsMixinLoadedPolyfill) {
     configurable: true,
     writable: true,
   });
-
 }
