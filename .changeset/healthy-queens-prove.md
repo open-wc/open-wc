@@ -4,16 +4,18 @@
 
 Add compatibility with lit-html 2 and lit-element 3.
 
-- You are now require to load a polyfill for the scoped registry
+- Uses a `CustomElementsRegistry` instance for each component class instead of for each component instance. In case you need to have a registry for each component instance, you must override the registry `get` and `set` methods to bind the registry to the component instance.
 
-  ```bash
-  npm i --save @open-wc/scoped-elements @webcomponents/scoped-custom-element-registry
-  ```
+  ```js
+  /** @override */
+  get registry() {
+    return this.__registry;
+  }
 
-  ```html
-  <script type="module">
-    import '@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js';
-  </script>
+  /** @override */
+  set registry(registry) {
+    this.__registry = registry;
+  }
   ```
 
 - `getScopedTagName` became deprecated - use the native `el.tagName` instead
