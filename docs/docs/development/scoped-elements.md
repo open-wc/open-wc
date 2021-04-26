@@ -146,6 +146,46 @@ export class MyElement extends ScopedElementsMixin(LitElement) {
 }
 ```
 
+### Using a registry per component instance
+
+By default, `ScopedElementsMixin` shares the same `CustomElementsRegistry` instance between all the instances of the same component class. There are some use cases in which you need to have just one registry instance per component instance. For those cases, you can override the `get` and `set` methods for the registry assigning and retrieving it from the component instance.
+
+```js
+import { LitElement } from 'lit';
+import { ScopedElementsMixin } from '@open-wc/scoped-elements';
+import { MyPanel } from './MyPanel.js';
+
+export class MyElement extends ScopedElementsMixin(LitElement) {
+  static get scopedElements() {
+    return {
+      'my-panel': MyPanel,
+    };
+  }
+
+  get registry() {
+    return this.__registry;
+  }
+
+  set registry(registry) {
+    this.__registry = registry;
+  }
+
+  constructor() {
+    super();
+
+    import('./MyButton.js').then(({ MyButton }) => this.defineScopedElement('my-button', MyButton));
+  }
+
+  render() {
+    return html`
+      <my-panel class="panel">
+        <my-button>${this.text}</my-button>
+      </my-panel>
+    `;
+  }
+}
+```
+
 ## Motivation
 
 Complex Web Component applications are often developed by several teams across organizations. In that scenario it is common that shared component libraries are used by teams to create a homogeneous look and feel or just to avoid creating the same components multiple times, but as those libraries evolve problems between different versions of the same library may appear, as teams may not be able to evolve and update their code at the same velocity. This causes bottlenecks in software delivery that should be managed by the teams and complex build systems, to try to alleviate the problem.

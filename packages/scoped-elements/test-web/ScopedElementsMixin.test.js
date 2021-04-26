@@ -320,16 +320,10 @@ describe('ScopedElementsMixin', () => {
     await waitUntil(() => el.shadowRoot.children[1] instanceof LazyElement);
   });
 
-  it('define a lazy elements per instance instead of per class', async () => {
+  it('should use by default a registry per class instead of per instance', async () => {
     class LazyElementA extends LitElement {
       render() {
         return html` <div>Lazy element A</div> `;
-      }
-    }
-
-    class LazyElementB extends LitElement {
-      render() {
-        return html` <div>Lazy element B</div> `;
       }
     }
 
@@ -364,10 +358,137 @@ describe('ScopedElementsMixin', () => {
     const $el2 = await fixture(`<${tag}></${tag}>`);
 
     $el1.defineScopedElement('lazy-element', LazyElementA);
+
+    await waitUntil(() => $el1.shadowRoot.children[1] instanceof LazyElementA);
+    await waitUntil(() => $el2.shadowRoot.children[1] instanceof LazyElementA);
+  });
+
+  it('should be able to have a registry per instance instead of per class', async () => {
+    class LazyElementA extends LitElement {
+      render() {
+        return html` <div>Lazy element A</div> `;
+      }
+    }
+
+    class LazyElementB extends LitElement {
+      render() {
+        return html` <div>Lazy element B</div> `;
+      }
+    }
+
+    const tag = defineCE(
+      class extends ScopedElementsMixin(LitElement) {
+        static get scopedElements() {
+          return {
+            'feature-a': FeatureA,
+          };
+        }
+
+        get registry() {
+          return this.__registry;
+        }
+
+        set registry(registry) {
+          this.__registry = registry;
+        }
+
+        connectedCallback() {
+          if (super.connectedCallback) {
+            super.connectedCallback();
+          }
+
+          this.loading = new Promise(resolve => {
+            resolve(html` <lazy-element></lazy-element> `);
+          });
+        }
+
+        render() {
+          return html`
+            <feature-a></feature-a>
+            ${until(this.loading, html` <div>Loading...</div> `)}
+          `;
+        }
+      },
+    );
+
+    const $el1 = await fixture(`<${tag}></${tag}>`);
+    const $el2 = await fixture(`<${tag}></${tag}>`);
+
+    $el1.defineScopedElement('lazy-element', LazyElementA);
     $el2.defineScopedElement('lazy-element', LazyElementB);
 
     await waitUntil(() => $el1.shadowRoot.children[1] instanceof LazyElementA);
     await waitUntil(() => $el2.shadowRoot.children[1] instanceof LazyElementB);
+  });
+
+  it('should be able to share a registry between different classes', async () => {
+    const registry = new CustomElementRegistry();
+
+    registry.define('feature-a', FeatureA);
+
+    class LazyElementA extends LitElement {
+      render() {
+        return html` <div>Lazy element A</div> `;
+      }
+    }
+
+    const tagA = defineCE(
+      class extends ScopedElementsMixin(LitElement) {
+        get registry() {
+          return registry;
+        }
+
+        connectedCallback() {
+          if (super.connectedCallback) {
+            super.connectedCallback();
+          }
+
+          this.loading = new Promise(resolve => {
+            resolve(html` <lazy-element></lazy-element> `);
+          });
+        }
+
+        render() {
+          return html`
+            <feature-a></feature-a>
+            ${until(this.loading, html` <div>Loading...</div> `)}
+          `;
+        }
+      },
+    );
+
+    const tagB = defineCE(
+      class extends ScopedElementsMixin(LitElement) {
+        get registry() {
+          return registry;
+        }
+
+        connectedCallback() {
+          if (super.connectedCallback) {
+            super.connectedCallback();
+          }
+
+          this.loading = new Promise(resolve => {
+            resolve(html` <lazy-element></lazy-element> `);
+          });
+        }
+
+        render() {
+          return html`
+            <feature-a></feature-a>
+            ${until(this.loading, html` <div>Loading...</div> `)}
+          `;
+        }
+      },
+    );
+
+    const $el1 = await fixture(`<${tagA}></${tagA}>`);
+    const $el2 = await fixture(`<${tagB}></${tagB}>`);
+
+    $el1.defineScopedElement('lazy-element', LazyElementA);
+
+    await waitUntil(() => $el1.shadowRoot.children[1] instanceof LazyElementA);
+    await waitUntil(() => $el2.shadowRoot.children[1] instanceof LazyElementA);
   });
 
   it('should reuse the global tag if defined with the same name and class reference', async () => {
