@@ -15,7 +15,7 @@ import { adoptStyles } from '@lit/reactive-element/css-tag.js';
  * @return {T & import('./types').Constructor<ScopedElementsHost>}
  */
 const ScopedElementsMixinImplementation = superclass =>
-  /** @type {ScopedElementsMixin} */
+  /** @type {ScopedElementsHost} */
   class ScopedElementsHost extends superclass {
     /**
      * Obtains the scoped elements definitions map if specified.
@@ -26,17 +26,29 @@ const ScopedElementsMixinImplementation = superclass =>
       return {};
     }
 
-    /** @type {ShadowRootInit} */
+    /**
+     * Obtains the ShadowRoot options.
+     *
+     * @type {ShadowRootInit}
+     */
     static get shadowRootOptions() {
       return this.__shadowRootOptions;
     }
 
-    /** @type {ShadowRootInit} */
+    /**
+     * Set the shadowRoot options.
+     *
+     * @param {ShadowRootInit} value
+     */
     static set shadowRootOptions(value) {
       this.__shadowRootOptions = value;
     }
 
-    /** @type {CSSResultFlatArray} */
+    /**
+     * Obtains the element styles.
+     *
+     * @returns {CSSResultFlatArray}
+     */
     static get elementStyles() {
       return this.__elementStyles;
     }
@@ -54,18 +66,26 @@ const ScopedElementsMixinImplementation = superclass =>
     }
 
     /**
-     * Obtains the CustomElementRegistry if specified.
+     * Obtains the CustomElementRegistry associated to the ShadowRoot.
      *
-     * @return {CustomElementRegistry}
+     * @returns {CustomElementRegistry}
      */
     get registry() {
-      if (!this._registry) {
-        this._registry = new CustomElementRegistry();
-      }
-
-      return this._registry;
+      // @ts-ignore
+      return this.constructor.__registry;
     }
 
+    /**
+     * Set the CustomElementRegistry associated to the ShadowRoot
+     *
+     * @param {CustomElementRegistry} registry
+     */
+    set registry(registry) {
+      // @ts-ignore
+      this.constructor.__registry = registry;
+    }
+
+    /** @override */
     createRenderRoot() {
       const {
         scopedElements,
@@ -73,9 +93,13 @@ const ScopedElementsMixinImplementation = superclass =>
         elementStyles,
       } = /** @type {typeof ScopedElementsHost} */ (this.constructor);
 
-      Object.entries(scopedElements).forEach(([tagName, klass]) =>
-        this.registry.define(tagName, klass),
-      );
+      if (!this.registry) {
+        this.registry = new CustomElementRegistry();
+
+        Object.entries(scopedElements).forEach(([tagName, klass]) =>
+          this.registry.define(tagName, klass),
+        );
+      }
 
       /** @type {ShadowRootInit} */
       const options = {

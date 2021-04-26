@@ -24,7 +24,7 @@ export declare class ScopedElementsHost {
   /**
    * Obtains the CustomElementRegistry
    */
-  static registry: CustomElementRegistry;
+  registry: CustomElementRegistry;
 
   /**
    * Defines a scoped element inside the CustomElementRegistry bound to the shadowRoot.
