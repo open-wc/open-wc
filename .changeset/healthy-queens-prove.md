@@ -2,9 +2,10 @@
 '@open-wc/scoped-elements': major
 ---
 
-Add compatibility with lit-html 2 and lit-element 3.
+Adds compatibility for [lit](https://lit.dev/) with `lit-html v2` and `lit-element v3`.
 
-- Uses a `CustomElementsRegistry` instance for each component class instead of for each component instance. In case you need to have a registry for each component instance, you must override the registry `get` and `set` methods to bind the registry to the component instance.
+- This version does NOT work with lit-element v2 - please use Scoped Elements v1 for it
+- Uses a `CustomElementsRegistry` instance for each component class instead of for each component instance. In case you need to have a registry for each component instance, you must override the registry `get` and `set` methods to bind the registry to the component instance
 
   ```js
   /** @override */

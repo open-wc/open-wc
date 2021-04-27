@@ -271,3 +271,7 @@ export default {
   ],
 };
 ```
+
+```js script
+import '@rocket/launch/inline-notification/inline-notification.js';
+```

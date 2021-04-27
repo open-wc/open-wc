@@ -2,4 +2,4 @@
 '@open-wc/testing': major
 ---
 
-use chai as a module
+We now use an es module version of chai from `@esm-bundle/chai`.
