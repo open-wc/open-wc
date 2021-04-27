@@ -1,5 +1,15 @@
 # Change Log
 
+## 0.4.0-next.0
+
+### Minor Changes
+
+- f3cbb2a7: Removes directives from package
+
+  - the `live` directive is in the official [lit](https://lit.dev/docs/templates/directives/#live) package.
+  - the `spread` and `spreadProps` directives no longer work with the updated directive API of `lit`. They will need to be recreated and we will do this in [lit-labs](https://github.com/lit/lit/tree/main/packages/labs).
+  - `import { /* ... */ } from '@open-wc/lit-helpers';` is now the only valid entrypoint
+
 ## 0.3.12
 
 ### Patch Changes
