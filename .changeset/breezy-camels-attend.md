@@ -2,4 +2,4 @@
 '@open-wc/dev-server-hmr': patch
 ---
 
-use correct babel dependency
+Update babel dependency to use `@babel/plugin-syntax-import-assertions`.
