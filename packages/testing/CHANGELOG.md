@@ -1,5 +1,30 @@
 # Change Log
 
+## 3.0.0-next.0
+
+### Major Changes
+
+- 689c9ea3: Upgrade to support latest `lit` package.
+
+  - the exports `html` and `unsafeStatic` are now deprecated we recommend to import them directly from `lit/static-html.js`;
+  - You need to load a polyfill for the scoped registry if you wanna use the `scopedElements` option
+  - We now enforce our entrypoints via an export map
+  - The side effect free import got renamed to `pure`
+
+    ```js
+    // old
+    import { fixture } from '@open-wc/testing-helpers/index-no-side-effects.js';
+    // new
+    import { fixture } from '@open-wc/testing-helpers/pure';
+    ```
+
+- a5a79a25: We now use an es module version of chai from `@esm-bundle/chai`.
+
+### Patch Changes
+
+- Updated dependencies [689c9ea3]
+  - @open-wc/testing-helpers@2.0.0-next.0
+
 ## 2.5.33
 
 ### Patch Changes

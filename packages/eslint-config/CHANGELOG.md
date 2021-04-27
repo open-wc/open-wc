@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [f411714e]
+  - eslint-plugin-lit-a11y@1.1.0-next.0
+
 ## 4.3.0
 
 ### Minor Changes

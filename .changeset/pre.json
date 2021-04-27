@@ -18,5 +18,13 @@
     "@open-wc/testing": "2.5.33",
     "@open-wc/testing-helpers": "1.8.12"
   },
-  "changesets": []
+  "changesets": [
+    "breezy-camels-attend",
+    "clean-lies-rescue",
+    "cold-rockets-wash",
+    "early-rockets-matter",
+    "healthy-queens-prove",
+    "modern-elephants-collect",
+    "two-avocados-float"
+  ]
 }
