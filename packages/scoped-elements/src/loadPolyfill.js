@@ -1,7 +1,7 @@
 // @ts-nocheck
 /* eslint-disable */
 /**
- * Needs a fork until https://github.com/webcomponents/polyfills/issues/438 is resolved.
+ * Needs a fork until https://github.com/webcomponents/polyfills/issues/438 & https://github.com/webcomponents/polyfills/issues/440 is resolved.
  */
 
 if (!ShadowRoot.prototype.createElement) {

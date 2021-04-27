@@ -8,34 +8,28 @@ Scope element tag names avoiding naming collision and allowing to use different 
 npm i --save @open-wc/scoped-elements
 ```
 
+<inline-notification type="warning">
+
+Version 2 of Scoped Elements only supports [lit](lit.dev) with `lit-element 3.x`. If you need to support `lit-element 2.x` be sure to use version 1 of Scoped Elements.
+
+</inline-notification>
+
 ## Usage
 
-1. Be sure your application/environment supports a scoped registry by loading the polyfill
-
-   ```bash
-   npm i --save @webcomponents/scoped-custom-element-registry
-   ```
-
-   ```html
-   <script type="module">
-     import '@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js';
-   </script>
-   ```
-
-2. Import `ScopedElementsMixin` from `@open-wc/scoped-elements`.
+1. Import `ScopedElementsMixin` from `@open-wc/scoped-elements`.
 
    ```js
    import { ScopedElementsMixin } from '@open-wc/scoped-elements';
    ```
 
-3. Import the classes of the components you want to use.
+2. Import the classes of the components you want to use.
 
    ```js
    import { MyButton } from './MyButton.js';
    import { MyPanel } from './MyPanel.js';
    ```
 
-4. Apply `ScopedElementsMixin` and define the tags you want to use for your components.
+3. Apply `ScopedElementsMixin` and define the tags you want to use for your components.
 
    ```js
    class MyElement extends ScopedElementsMixin(LitElement) {
@@ -48,20 +42,23 @@ npm i --save @open-wc/scoped-elements
    }
    ```
 
-   > WARNING: If you are going to use elements that are globally defined you have to declare them in `scopedElements` as well. This is required because we are trying to work as close as possible to the future Scoped Custom Element Registries feature and, by the moment, there is not going ot be inheritance between registries.
-   >
-   > You can declare them like in the following example:
-   >
-   > ```js
-   >  static get scopedElements() {
-   >    return {
-   >      'old-button': customElements.get('old-button'),
-   >      'my-panel': MyPanel,
-   >    };
-   >  }
-   > ```
+   <inline-notification type="warning">
 
-5. Use your components in your html.
+   If you are going to use elements that are globally defined you have to declare them in `scopedElements` as well. This is required because we are trying to work as close as possible to the future Scoped Custom Element Registries feature and, by the moment, there is not going ot be inheritance between registries.
+   You can declare them like in the following example:
+
+   ```js
+   static get scopedElements() {
+     return {
+       'old-button': customElements.get('old-button'),
+       'my-panel': MyPanel,
+     };
+   }
+   ```
+
+   </inline-notification>
+
+4. Use your components in your html.
 
    ```js
    render() {
@@ -72,6 +69,13 @@ npm i --save @open-wc/scoped-elements
      `;
    }
    ```
+
+<inline-notification type="tip">
+
+ScopedElements loads a polyfill of the scoped registry for you . Why do we do this? The spec is quite mature but not yet implemented in a browser and the polyfill is pretty new so we want to control it to be able to patch things if needed to stay backward compatible.
+The polyfill we use is [@webcomponents/scoped-custom-element-registry](https://github.com/webcomponents/polyfills/tree/master/packages/scoped-custom-element-registry).
+
+</inline-notification>
 
 ### Complete example
 
@@ -250,19 +254,9 @@ To demonstrate, we made three demos:
 
 3. [with-scope](https://open-wc.org/scoped-elements/demo/with-scope/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/with-scope)] This example successfully fixes the problem by using `ScopedElementsMixin` on both **Page A** and **Page B**.
 
-## How it works
-
-`ScopedElementsMixin` is mixed into your LitElement and via `static get scopedElements()` you define the tags and classes you wanna use in your elements template.
-Under the hood it changes your template so `<my-button>${this.text}</my-button>` becomes `<my-button-2748 data-tag-name="my-button">${this.text}</my-button-2748>`.
-
-Every auto-defined scoped elements gets a random\* 4 digits number suffix. This suffix changes every time to make sure developers are not inclined to use it the generated tag name as a styling hook. Additionally the suffix allows scoped-elements and traditional self-defined elements to coexist, avoiding name collision.
-
-\* it is actually a global counter that gets initialized with a random starting number on load
-
 ## Limitations
 
-1. You are force to use a polyfill (@webcomponents/scoped-custom-element-registry)[https://github.com/webcomponents/polyfills/tree/master/packages/scoped-custom-element-registry].
-2. Components imported via npm **SHOULD NOT** be self registering components. If a shared component (installed from npm) does not offer an export to the class alone, without the registration side effect, then this component may not be used. E.g. every component that calls `customElement.define`.
+1. Components imported via npm **SHOULD NOT** be self registering components. If a shared component (installed from npm) does not offer an export to the class alone, without the registration side effect, then this component may not be used. E.g. every component that calls `customElement.define`
 
    ```js
    export class MyEl { ... }
@@ -282,9 +276,12 @@ Every auto-defined scoped elements gets a random\* 4 digits number suffix. This 
    export class MyEl { ... }
    ```
 
-3. Every component that uses sub components should use `scoped-elements`. Any import to a self registering component can potentially result in a browser exception - completely breaking the whole application.
-4. Imported elements should be fully side effect free (not only element registration)
-5. Currently, only `lit-element` is supported (though other elements/rendering engines could be incorporated in the future).
-6. Using `scoped-elements` may result in a performance degradation of up to 8%.
-7. Loading of duplicate/similar source code (most breaking releases are not a total rewrite) should always be a temporary solution.
-8. Often, temporary solutions tend to become more permanent. Be sure to focus on keeping the lifecycle of nested dependencies short.
+2. Every component that uses sub components should use `scoped-elements`. Any import to a self registering component can potentially result in a browser exception - completely breaking the whole application
+3. Imported elements should be fully side effect free (not only element registration)
+4. Using the `scoped registry polyfill` may result in a small performance degradation
+5. Loading of duplicate/similar source code (most breaking releases are not a total rewrite) should always be a temporary solution
+6. Often, temporary solutions tend to become more permanent. Be sure to focus on keeping the lifecycle of nested dependencies short
+
+```js script
+import '@rocket/launch/inline-notification/inline-notification.js';
+```
