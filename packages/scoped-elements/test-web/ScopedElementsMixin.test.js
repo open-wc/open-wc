@@ -1,4 +1,3 @@
-import '@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js';
 import { expect, fixture, defineCE, waitUntil } from '@open-wc/testing';
 import { LitElement, html } from 'lit';
 import { until } from 'lit/directives/until.js';
