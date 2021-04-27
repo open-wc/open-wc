@@ -2191,6 +2191,14 @@
     "@open-wc/rollup-plugin-html" "^1.2.5"
     polyfills-loader "^1.7.5"
 
+"@open-wc/scoped-elements@^1.3.2", "@open-wc/scoped-elements@^1.3.3":
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/@open-wc/scoped-elements/-/scoped-elements-1.3.3.tgz#fe008aef4d74fb00c553c900602960638fc1c7b0"
+  integrity sha512-vFIQVYYjFw67odUE4JzZOpctnF7S/2DX+S+clrL3bQPql7HvEnV0wMFwOWUavQTuCJi0rfU8GTcNMiUybio+Yg==
+  dependencies:
+    "@open-wc/dedupe-mixin" "^1.3.0"
+    lit-html "^1.0.0"
+
 "@open-wc/semantic-dom-diff@^0.13.16":
   version "0.13.21"
   resolved "https://registry.yarnpkg.com/@open-wc/semantic-dom-diff/-/semantic-dom-diff-0.13.21.tgz#718b9ec5f9a98935fc775e577ad094ae8d8b7dea"
@@ -2278,18 +2286,18 @@
     dependency-graph "^0.10.0"
     sax-wasm "^2.0.0"
 
-"@rocket/launch@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@rocket/launch/-/launch-0.3.0.tgz#67f2e9f2b98fc6e351008c53affb517b62e20b00"
-  integrity sha512-B+EqCIDx0zZpu5UkMAZHTm1T8LNJU3uFlxwME3l5ROt3wumt1LfvYBbzRvM1y2iJISgH6PQJKNQQC65mkMqtng==
+"@rocket/launch@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@rocket/launch/-/launch-0.4.0.tgz#f94e197e7f5d3bd7620802266503391cd4b021c9"
+  integrity sha512-s5nuEXR9IERNK0qmBabAkXYkU/d3fdhKV9a7dPnJZmlW8MvImdMjOQAbOehd180wIiUJEAOvDkGPRjlAKEtFSQ==
   dependencies:
     "@rocket/drawer" "^0.1.2"
-    "@rocket/navigation" "^0.1.0"
+    "@rocket/navigation" "^0.2.0"
 
-"@rocket/navigation@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@rocket/navigation/-/navigation-0.1.0.tgz#33c2ce9b0f62cb2daf337c2385627678cbc40b1f"
-  integrity sha512-o831fCtoo8c4PU522bVPXd3Oi49SguJq8TFnpQmdrRgmjx1HOmwJeThJ/vvxbLsQgIu554laSXHAlSBYilgSBg==
+"@rocket/navigation@^0.2.0":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@rocket/navigation/-/navigation-0.2.1.tgz#ce9c22a6a3b1eafbf531880214d82dbaa9ffe192"
+  integrity sha512-MNrMM8yssg39+vpqeWn3YnqwYMQ61iucAPvGBBdXRVP26Ay3xCEKL+iZvdq/sizx63i3G+BvLpvb8lrOz6542Q==
 
 "@rocket/search@^0.2.0":
   version "0.2.0"
