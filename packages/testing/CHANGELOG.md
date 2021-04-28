@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.1
+
+### Patch Changes
+
+- 89fdfa03: Do not generate chai plugins on user install. Do it only on monorepo install.
+
 ## 3.0.0-next.0
 
 ### Major Changes
