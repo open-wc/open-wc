@@ -5,7 +5,7 @@ A library with helpers functions for working with [lit](https://lit.dev/).
 ## Installation
 
 ```bash
-npm i --save @open-wc/lit-helpers
+npm i --save @open-wc/lit-helpers@next
 ```
 
 ## Privately Settable Read-Only Properties
