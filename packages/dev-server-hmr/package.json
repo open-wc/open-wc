@@ -59,7 +59,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
-    "@microsoft/fast-element": "^0.22.0",
+    "@microsoft/fast-element": "^1.0.2",
     "@types/babel__core": "^7.1.12",
     "@types/babel__generator": "^7.6.2",
     "@types/babel__parser": "^7.1.1",
