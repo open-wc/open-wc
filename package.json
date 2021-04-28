@@ -72,7 +72,7 @@
     "prettier": "^2.0.0",
     "prettier-plugin-package": "^1.0.0",
     "publish-docs": "^0.1.1",
-    "puppeteer": "^2.1.1",
+    "puppeteer": "^5.5.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.7.2",
     "rollup-plugin-copy": "^3.3.0",
