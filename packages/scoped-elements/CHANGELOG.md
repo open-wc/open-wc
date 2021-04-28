@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.0-next.1
+
+### Patch Changes
+
+- c05d92fb: Mark `loadPolyfill.js` as a side effect
+
 ## 2.0.0-next.0
 
 ### Major Changes
