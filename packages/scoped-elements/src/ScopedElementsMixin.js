@@ -129,10 +129,13 @@ const ScopedElementsMixinImplementation = superclass =>
 
     /**
      * @deprecated use the native el.tagName instead
+     *
+     * @param {string} tagName
      * @returns {string} the tag name in lowercase
      */
-    getScopedTagName() {
-      return this.tagName.toLowerCase();
+    // eslint-disable-next-line class-methods-use-this
+    getScopedTagName(tagName) {
+      return tagName;
     }
   };
 
