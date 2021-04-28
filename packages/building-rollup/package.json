@@ -80,6 +80,6 @@
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@rollup/plugin-commonjs": "^18.0.0",
-    "@rollup/plugin-typescript": "^4.1.0"
+    "@rollup/plugin-typescript": "^5.0.2"
   }
 }
