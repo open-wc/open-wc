@@ -46,5 +46,7 @@
     "@webcomponents/scoped-custom-element-registry": "0.0.1"
   },
   "types": "types/index.d.ts",
-  "sideEffects": false
+  "sideEffects": [
+    "./src/loadPolyfill.js"
+  ]
 }
