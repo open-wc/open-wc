@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.0-next.2
+
+### Patch Changes
+
+- a0b5e360: fix getScopedTagName returning the tag that was passed in
+
 ## 2.0.0-next.1
 
 ### Patch Changes
