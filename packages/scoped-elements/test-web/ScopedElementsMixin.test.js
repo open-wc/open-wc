@@ -573,8 +573,8 @@ describe('ScopedElementsMixin', () => {
 
       const el = await fixture(`<${tag}></${tag}>`);
 
-      expect(el.getScopedTagName('feature-a')).to.equal(tag);
-      expect(el.getScopedTagName('feature-b')).to.equal(tag);
+      expect(el.getScopedTagName('feature-a')).to.equal('feature-a');
+      expect(el.getScopedTagName('feature-b')).to.equal('feature-b');
     });
 
     it('should return the scoped tag name for a non already registered element', async () => {
@@ -596,7 +596,7 @@ describe('ScopedElementsMixin', () => {
 
       const el = await fixture(`<${tag}></${tag}>`);
 
-      expect(el.getScopedTagName('unregistered-feature')).to.equal(tag);
+      expect(el.getScopedTagName('unregistered-feature')).to.equal('unregistered-feature');
     });
   });
 });
