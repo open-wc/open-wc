@@ -15,7 +15,7 @@ First, install [@web/dev-server](https://modern-web.dev/docs/dev-server/overview
 Install the package:
 
 ```
-npm i --save-dev @open-wc/dev-server-hmr
+npm i --save-dev @open-wc/dev-server-hmr@next
 ```
 
 Add the plugin to your `web-dev-server-config.mjs`:
