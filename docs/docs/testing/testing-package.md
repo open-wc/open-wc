@@ -2,6 +2,12 @@
 
 `@open-wc/testing` is an opinionated package that combines and configures testing libraries to minimize the amount of ceremony required when writing tests.
 
+## Setup
+
+```bash
+npm i -D @open-wc/testing@next
+```
+
 ## Testing helpers
 
 Exposes all functions of [@open-wc/testing-helpers](./helpers.md), so that you have a single package to import from:

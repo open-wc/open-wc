@@ -10,3 +10,6 @@ stats.html
 /packages/testing/plugins/**/*
 _site/
 _site-dev
+docs/_merged_assets/
+docs/_merged_data/
+docs/_merged_includes/

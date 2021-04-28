@@ -8,11 +8,11 @@ import '@rocket/launch/inline-notification/inline-notification.js';
 
 <inline-notification type="warning">
 
-Testing helpers uses [lit-html](https://lit-html.polymer-project.org/), but it's set up as a peer dependency to avoid version conflicts.
+Testing helpers uses [lit](https://lit.dev/), but it's set up as a peer dependency to avoid version conflicts.
 You don't need to write your components with lit-html to use this library, but you will need to install it:
 
 ```
-npm i -D lit-html
+npm i -D lit
 ```
 
 </inline-notification>
@@ -39,7 +39,7 @@ Test fixtures are async to ensure rendering is properly completed.
 
 ### Templates
 
-Test fixtures can be set up by using a string or a [lit-html](https://github.com/Polymer/lit-html) template. You don't need to use `lit-html` in your project to use the test fixtures, it just renders standard HTML.
+Test fixtures can be set up by using a string or a [lit](https://lit.dev/) template. You don't need to use `lit-html` in your project to use the test fixtures, it just renders standard HTML.
 
 ### Test a custom element
 

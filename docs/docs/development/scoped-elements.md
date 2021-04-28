@@ -5,7 +5,7 @@ Scope element tag names avoiding naming collision and allowing to use different 
 ## Installation
 
 ```bash
-npm i --save @open-wc/scoped-elements
+npm i --save @open-wc/scoped-elements@next
 ```
 
 <inline-notification type="warning">

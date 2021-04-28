@@ -15,7 +15,7 @@ $ npm i eslint --save-dev
 Next, install `eslint-plugin-lit-a11y`:
 
 ```
-$ npm install eslint-plugin-lit-a11y --save-dev
+$ npm install eslint-plugin-lit-a11y@next --save-dev
 ```
 
 **Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-lit-a11y` globally.
