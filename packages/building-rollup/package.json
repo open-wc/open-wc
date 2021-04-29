@@ -76,10 +76,5 @@
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-workbox": "^5.2.1",
     "terser": "^4.6.7"
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@rollup/plugin-commonjs": "^18.0.0",
-    "@rollup/plugin-typescript": "^4.1.0"
   }
 }

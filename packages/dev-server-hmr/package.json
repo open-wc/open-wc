@@ -56,19 +56,5 @@
     "@web/dev-server-core": "^0.3.10",
     "@web/dev-server-hmr": "^0.1.6",
     "picomatch": "^2.2.2"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@microsoft/fast-element": "^0.22.0",
-    "@types/babel__core": "^7.1.12",
-    "@types/babel__generator": "^7.6.2",
-    "@types/babel__parser": "^7.1.1",
-    "@types/babel__traverse": "^7.0.15",
-    "@types/picomatch": "^2.2.1",
-    "@web/dev-server": "^0.1.14",
-    "@web/dev-server-esbuild": "^0.2.12",
-    "@web/dev-server-storybook": "^0.3.2",
-    "haunted": "^4.7.1",
-    "mocha": "^8.2.1"
   }
 }

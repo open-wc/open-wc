@@ -55,9 +55,5 @@
     "valid-url": "^1.0.9",
     "whatwg-fetch": "^3.5.0",
     "whatwg-url": "^7.1.0"
-  },
-  "devDependencies": {
-    "@types/lru-cache": "^5.1.0",
-    "@types/rimraf": "^3.0.0"
   }
 }
