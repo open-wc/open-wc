@@ -39,8 +39,5 @@
     "@open-wc/scoped-elements": "^2.0.0-next.0",
     "lit": "^2.0.0-rc.1"
   },
-  "devDependencies": {
-    "@webcomponents/scoped-custom-element-registry": "0.0.1"
-  },
   "types": "types/index.d.ts"
 }

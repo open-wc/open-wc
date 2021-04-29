@@ -31,9 +31,6 @@
   "dependencies": {
     "axe-core": "^4.0.2"
   },
-  "devDependencies": {
-    "@esm-bundle/chai": "^4.3.4"
-  },
   "contributors": [
     "Pawel Psztyc"
   ]

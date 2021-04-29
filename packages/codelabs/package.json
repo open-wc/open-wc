@@ -27,7 +27,6 @@
     "@types/fs-extra": "^8.0.1",
     "@types/marked": "^0.6.5",
     "cheerio": "^1.0.0-rc.5",
-    "fs-extra": "^8.1.0",
     "marked": "^0.7.0"
   }
 }
