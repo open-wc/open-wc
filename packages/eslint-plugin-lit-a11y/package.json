@@ -12,7 +12,7 @@
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/eslint-plugin-lit-a11y",
   "main": "lib/index.js",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=v6.17.1"
   },
   "scripts": {
     "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
