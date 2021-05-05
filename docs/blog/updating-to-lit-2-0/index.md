@@ -37,7 +37,7 @@ You can expect the following in this pre release:
 You can get the prerelease via
 
 ```bash
-npm i -D @open-wc/testing@3.0.0-next.0 @open-wc/testing-helpers@next
+npm i -D @open-wc/testing@next @open-wc/testing-helpers@next
 ```
 
 - Upgrade to support latest `lit` package.
