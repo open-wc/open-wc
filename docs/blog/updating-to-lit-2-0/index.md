@@ -128,13 +128,13 @@ npm i -D @open-wc/dev-server-hmr@next
 
 ## Service Worker strategy change
 
-As our page grows so did what you needed to download when visiting our page. Our strategy was to make the full page available offline whenever you visited our website. That was fine when we had a view pages but now an update can lead to you downloading 10 MB even though you might only be interested in a single article. It also meant that you where looking at the old cached version of the website until every single page was downloaded. So from today we are changing our strategy to
+As our page grows so did what you needed to download when visiting our page. Our strategy was to make the full documentation site available for offline usage whenever you visited our website. That was fine when we had only a few pages but now an update can lead to our users downloading 10 MB even though you might only be interested in a single article. It also meant that the user would see the old cached version of the website until every single page was downloaded. So from today we are changing our strategy to
 
 - caches only visited pages
 - caches assets of visited pages (up to 100 files then it replaces older entries)
 - on service worker activation it will reload the page if a newer version is available
 
-At some point we want to offer you choices to enable offline for the entire website or for sections of the website but it's not there yet.
+In the future, we'll iterate on this pattern, and allow users to opt in to enabling offline mode for the entire website, or select parts of the website.
 This change however will drastically reduce the cache size and the time for you to see the new content.
 
 --
