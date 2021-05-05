@@ -1,8 +1,8 @@
 ---
 title: 'Updating to Lit 2'
 pageTitle: 'Updating to Lit 2'
-date: 2021-04-29
-published: false
+date: 2021-05-05
+published: true
 description: 'Simple. Fast. Web Components.'
 tags: [webcomponents, lit, javascript]
 canonical_url: https://open-wc.org/blog/updating-to-lit-2-0/
@@ -28,12 +28,12 @@ It will be our first breaking change to our testing and testing helpers package 
 
 You can expect the following in this pre release:
 
-## @open-wc/testing@3.0.0-next.0 & @open-wc/testing-helpers@2.0.0-next.0
+## @open-wc/testing@next & @open-wc/testing-helpers@next
 
 You can get the prerelease via
 
 ```bash
-npm i -D @open-wc/testing@3.0.0-next.0 @open-wc/testing-helpers@2.0.0-next.0
+npm i -D @open-wc/testing@3.0.0-next.0 @open-wc/testing-helpers@next
 ```
 
 - Upgrade to support latest `lit` package.
@@ -51,12 +51,12 @@ npm i -D @open-wc/testing@3.0.0-next.0 @open-wc/testing-helpers@2.0.0-next.0
 
 - (only testing): We now use an es module version of chai from `@esm-bundle/chai`.
 
-## @open-wc/scoped-elements@2.0.0-next.2
+## @open-wc/scoped-elements@next
 
 You can get the prerelease via
 
 ```bash
-npm i -D @open-wc/scoped-elements@3.0.0-next.2
+npm i -D @open-wc/scoped-elements@next
 ```
 
 Adds compatibility for [lit](https://lit.dev/) with `lit-html v2` and `lit-element v3`.
@@ -78,12 +78,18 @@ Adds compatibility for [lit](https://lit.dev/) with `lit-html v2` and `lit-eleme
 
 - `getScopedTagName` became deprecated - use the native `el.tagName` instead
 
-## @open-wc/lit-helpers@0.4.0-next.0
+<inline-notification type="warning">
+
+This version of `@open-wc/scoped-elements` is now following the [Scoped Custom Element Registries](https://github.com/WICG/webcomponents/blob/gh-pages/proposals/Scoped-Custom-Element-Registries.md) and automatically loads a polyfill [@webcomponents/scoped-custom-element-registry](https://github.com/webcomponents/polyfills/tree/master/packages/scoped-custom-element-registry). One edge case that is not yet full covered by the polyfill is reusing global components within the a scoped registry. In that case expect issues with [upgrading](https://github.com/webcomponents/polyfills/issues/442) and [whenDefined](https://github.com/webcomponents/polyfills/issues/443). For all other cases we encourage you to try it out and we are very curious for feedback.
+
+</inline-notification>
+
+## @open-wc/lit-helpers@next
 
 You can get the prerelease via
 
 ```bash
-npm i -D @open-wc/lit-helpers@0.4.0-next.0
+npm i -D @open-wc/lit-helpers@next
 ```
 
 - Removes directives from package
@@ -91,12 +97,18 @@ npm i -D @open-wc/lit-helpers@0.4.0-next.0
 - the `spread` and `spreadProps` directives no longer work with the updated directive API of `lit`. They will need to be recreated and we will do this in [lit-labs](https://github.com/lit/lit/tree/main/packages/labs).
 - `import { /* ... */ } from '@open-wc/lit-helpers';` is now the only valid entrypoint
 
-## @open-wc/dev-server-hmr@0.1.2-next.0
+<inline-notification type="warning">
+
+There is no alternative to `spread` or `spreadProps` yet - if you are currently using it we recommend to wait with upgrading
+
+</inline-notification>
+
+## @open-wc/dev-server-hmr@next
 
 You can get the prerelease via
 
 ```bash
-npm i -D @open-wc/dev-server-hmr@0.1.2-next.0
+npm i -D @open-wc/dev-server-hmr@next
 ```
 
 - Update babel dependency to use `@babel/plugin-syntax-import-assertions`.
@@ -114,6 +126,21 @@ npm i -D @open-wc/dev-server-hmr@0.1.2-next.0
   };
   ```
 
+## Service Worker strategy change
+
+As our page grows so did what you needed to download when visiting our page. Our strategy was to make the full page available offline whenever you visited our website. That was fine when we had a view pages but now an update can lead to you downloading 10 MB even though you might only be interested in a single article. It also meant that you where looking at the old cached version of the website until every single page was downloaded. So from today we are changing our strategy to
+
+- caches only visited pages
+- caches assets of visited pages (up to 100 files then it replaces older entries)
+- on service worker activation it will reload the page if a newer version is available
+
+At some point we want to offer you choices to enable offline for the entire website or for sections of the website but it's not there yet.
+This change however will drastically reduce the cache size and the time for you to see the new content.
+
 --
 
 Photo by <a href="https://unsplash.com/@paulrobert?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Paul Robert</a> on <a href="https://unsplash.com/s/photos/lit?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+```js script
+import '@rocket/launch/inline-notification/inline-notification.js';
+```
