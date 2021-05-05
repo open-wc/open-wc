@@ -14,15 +14,19 @@ socialMediaImage: /blog/updating-to-lit-2-0/images/social-media-image.jpg
 
 With this pre release we update all of our packages to support [Lit - Simple. Fast. Web Components.](https://lit.dev/).
 
-> Lit 2.0 is designed to work with most code written for LitElement 2.x and lit-html 1.x. There are a small number of changes required to migrate your code to Lit 2.0. The high-level changes required include:
+1. Update your code to Lit 2.0
 
-> 1. Updating npm packages and import paths.
-> 2. Loading polyfill-support script when loading the web components polyfills.
-> 3. Updating any custom directive implementations to use new class-based API and associated helpers.
-> 4. Updating code to renamed APIs.
-> 5. Adapting to minor breaking changes, mostly in uncommon cases.
+   > Lit 2.0 is designed to work with most code written for LitElement 2.x and lit-html 1.x. There are a small number of changes required to migrate your code to Lit 2.0. The high-level changes required include:
 
-If you have existing lit-element components be sure to follow the rest of the [official upgrade guide](https://lit.dev/docs/releases/upgrade/).
+   > 1. Updating npm packages and import paths.
+   > 2. Loading polyfill-support script when loading the web components polyfills.
+   > 3. Updating any custom directive implementations to use new class-based API and associated helpers.
+   > 4. Updating code to renamed APIs.
+   > 5. Adapting to minor breaking changes, mostly in uncommon cases.
+
+   If you have existing lit-element components be sure to follow the rest of the [official upgrade guide](https://lit.dev/docs/releases/upgrade/).
+
+2. Update to the `@open-wc` pre release tooling as needed
 
 It will be our first breaking change to our testing and testing helpers package for ~2 years. We encourage you to test it out.
 
@@ -37,8 +41,8 @@ npm i -D @open-wc/testing@3.0.0-next.0 @open-wc/testing-helpers@next
 ```
 
 - Upgrade to support latest `lit` package.
-- the exports `html` and `unsafeStatic` are now deprecated we recommend to import them directly from `lit/static-html.js`;
-- You need to load a polyfill for the scoped registry if you wanna use the `scopedElements` option
+- The exports `html` and `unsafeStatic` are now deprecated we recommend to import them directly from `lit/static-html.js`;
+- The `scopedElements` is now following the [Scoped Custom Element Registries](https://github.com/WICG/webcomponents/blob/gh-pages/proposals/Scoped-Custom-Element-Registries.md) and automatically loads a polyfill [@webcomponents/scoped-custom-element-registry](https://github.com/webcomponents/polyfills/tree/master/packages/scoped-custom-element-registry)
 - We now enforce our entrypoints via an export map
 - The side effect free import got renamed to `pure`
 
@@ -50,6 +54,27 @@ npm i -D @open-wc/testing@3.0.0-next.0 @open-wc/testing-helpers@next
   ```
 
 - (only testing): We now use an es module version of chai from `@esm-bundle/chai`.
+
+**Migration**:
+
+- Any import not being as follows need to be adjust to one of those
+
+  ```js
+  import { fixture } from '@open-wc/testing';
+  import { fixture } from '@open-wc/testing/pure';
+  import { fixture } from '@open-wc/testing-helpers';
+  import { fixture } from '@open-wc/testing-helpers/pure';
+  ```
+
+- Directives in tests need to use the updated lit directive api ([migration guide](https://lit.dev/docs/releases/upgrade/#update-custom-directive-implementations))
+- We are now using an es module version of chai - therefore global chai plugins that register via a side effect will no longer work. You will need to create or find an es module version of your plugins and load it as follows
+
+  ```js
+  import chai from '@esm-bundle/chai';
+  import esmVersionOfPlugin from 'esm-version-of-plugin.js';
+
+  chai.use(esmVersionOfPlugin);
+  ```
 
 ## @open-wc/scoped-elements@next
 
