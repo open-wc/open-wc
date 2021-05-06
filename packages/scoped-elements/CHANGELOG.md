@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.0-next.3
+
+### Patch Changes
+
+- 0513917c: Keep deprecated static getScopedTagName function
+
 ## 2.0.0-next.2
 
 ### Patch Changes
