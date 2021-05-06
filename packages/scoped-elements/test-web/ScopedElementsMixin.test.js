@@ -575,6 +575,8 @@ describe('ScopedElementsMixin', () => {
 
       expect(el.getScopedTagName('feature-a')).to.equal('feature-a');
       expect(el.getScopedTagName('feature-b')).to.equal('feature-b');
+      expect(el.constructor.getScopedTagName('feature-a')).to.equal('feature-a');
+      expect(el.constructor.getScopedTagName('feature-b')).to.equal('feature-b');
     });
 
     it('should return the scoped tag name for a non already registered element', async () => {
