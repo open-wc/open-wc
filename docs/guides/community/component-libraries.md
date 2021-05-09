@@ -13,4 +13,4 @@ The hardest part of any project is often getting content onto that first blank p
 
 <!-- The data for this list is maintained in /docs/_data/componentLibraries.js -->
 
-> Note: want to add another component library to this list? Send us a pull request!
+> Note: want to add another component library to this list? Send us a <a href="https://github.com/open-wc/open-wc/edit/master/docs/_data/componentLibraries.js" target="_blank" rel="noopener noreferrer">pull request</a>!
