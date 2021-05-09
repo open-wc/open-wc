@@ -19,7 +19,7 @@ const componentLibraries = [
   },
   {
     name: 'Carbon Design System',
-    url: 'https://github.com/carbon-design-system/carbon-custom-elements',
+    url: 'https://github.com/carbon-design-system/carbon-web-components',
     description:
       'Carbon is an open-source design system built by IBM. With the IBM Design Language as its foundation, the system consists of working code, design tools and resources, human interface guidelines, and a vibrant community of contributors.',
   },
