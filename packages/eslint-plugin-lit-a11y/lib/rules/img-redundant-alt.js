@@ -10,16 +10,6 @@ const { isAriaHidden } = require('../utils/aria.js');
 const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 
-if (!('ListFormat' in Intl)) {
-  /* eslint-disable global-require */
-  // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
-  require('intl-list-format');
-  // eslint-disable-next-line global-require
-  // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
-  require('intl-list-format/locale-data/en');
-  /* eslint-enable global-require */
-}
-
 //------------------------------------------------------------------------------
 // Rule Definition
 //------------------------------------------------------------------------------
