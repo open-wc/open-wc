@@ -104,7 +104,7 @@ const componentLibraries = [
   },
   {
     name: 'Morningstar',
-    url: 'http://designsystem.morningstar.com/components/component-status.html',
+    url: 'https://designsystem.morningstar.com/components/component-status/',
     description:
       'The Morningstar Design System combines vanilla HTML/CSS with web components in just the right proportions to empower the design and development of wide reaching content and functionality.',
   },
