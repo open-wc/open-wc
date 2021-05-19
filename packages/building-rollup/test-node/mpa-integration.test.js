@@ -63,11 +63,13 @@ describe('integration tests', () => {
       // @ts-ignore
       const browserTests = await page.evaluate(() => window.__tests);
       expect(browserTests).to.eql({
-        homepageMetaUrl: 'http://localhost:8081/homepage.js',
-        homepageDepMetaUrl: 'http://localhost:8081/js/homepage-dep.js',
+        homepageMetaUrl: 'http://localhost:8081/inline-module-74e22978361a5c35d6658b2499984aa3.js',
+        homepageDepMetaUrl:
+          'http://localhost:8081/inline-module-74e22978361a5c35d6658b2499984aa3.js',
         __homepageSideEffectMetaUrl: 'http://localhost:8081/homepage-side-effect.js',
-        __homepageSideEffectDepMetaUrl: 'http://localhost:8081/js/homepage-side-effect-dep.js',
-        navigationMetaUrl: 'http://localhost:8081/navigation.js',
+        __homepageSideEffectDepMetaUrl: 'http://localhost:8081/homepage-side-effect.js',
+        navigationMetaUrl:
+          'http://localhost:8081/inline-module-74e22978361a5c35d6658b2499984aa3.js',
         serviceWorkerScriptUrl: 'sw.js',
       });
     });
