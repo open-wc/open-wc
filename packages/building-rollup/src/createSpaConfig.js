@@ -3,8 +3,9 @@
 /** @typedef {import('polyfills-loader').PolyfillsLoaderConfig} PolyfillsLoaderConfig */
 
 const merge = require('deepmerge');
-const html = require('@open-wc/rollup-plugin-html');
-const polyfillsLoader = require('@open-wc/rollup-plugin-polyfills-loader');
+const { rollupPluginHTML } = require('@web/rollup-plugin-html');
+const { importMetaAssets } = require('@web/rollup-plugin-import-meta-assets');
+const { polyfillsLoader } = require('@web/rollup-plugin-polyfills-loader');
 const path = require('path');
 const { generateSW } = require('rollup-plugin-workbox');
 const { createBasicConfig } = require('./createBasicConfig');
@@ -43,10 +44,10 @@ function createSpaConfig(options) {
   const applySw = (htmlString, transformOptions) =>
     applyServiceWorkerRegistration(htmlString, transformOptions, userOptions, outputDir);
 
-  const htmlPlugin = pluginWithOptions(html, userOptions.html, {
+  const htmlPlugin = pluginWithOptions(rollupPluginHTML, userOptions.html, {
     minify: !userOptions.developmentMode,
-    transform: [userOptions.injectServiceWorker && applySw].filter(isFalsy),
-    inject: false,
+    transformHtml: [userOptions.injectServiceWorker && applySw].filter(isFalsy),
+    injectServiceWorker: false,
   });
 
   let polyfillsLoaderConfig = {
@@ -60,8 +61,8 @@ function createSpaConfig(options) {
     }
     outputDir = basicConfig.output[0].dir;
 
-    basicConfig.output[0].plugins.push(htmlPlugin.addOutput('module'));
-    basicConfig.output[1].plugins.push(htmlPlugin.addOutput('nomodule'));
+    basicConfig.output[0].plugins.push(htmlPlugin.api.addOutput('module'));
+    basicConfig.output[1].plugins.push(htmlPlugin.api.addOutput('nomodule'));
     polyfillsLoaderConfig = {
       modernOutput: {
         name: 'module',
@@ -117,6 +118,8 @@ function createSpaConfig(options) {
     plugins: [
       // create HTML file output
       htmlPlugin,
+
+      importMetaAssets(),
 
       // inject polyfills loader into HTML
       pluginWithOptions(polyfillsLoader, userOptions.polyfillsLoader, polyfillsLoaderConfig),
