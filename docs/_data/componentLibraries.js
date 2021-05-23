@@ -103,12 +103,6 @@ const componentLibraries = [
       "Material Design Components from Material Design team themselves. Stay as close as possible to the changing specification with these components from Google's own Material Design team.",
   },
   {
-    name: 'Morningstar',
-    url: 'http://designsystem.morningstar.com/components/component-status.html',
-    description:
-      'The Morningstar Design System combines vanilla HTML/CSS with web components in just the right proportions to empower the design and development of wide reaching content and functionality.',
-  },
-  {
     name: 'Shoelace',
     url: 'https://shoelace.style/',
     description:
