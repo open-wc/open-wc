@@ -18,6 +18,7 @@ const applicableTypes = ['select', 'option'];
 const NoInvalidChangeHandlerRule = {
   meta: {
     type: 'suggestion',
+    deprecated: true,
     docs: {
       description: 'Enforce usage of @blur over @change with <select> and <option>.',
       category: 'Accessibility',
