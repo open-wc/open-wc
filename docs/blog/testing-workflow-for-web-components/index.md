@@ -169,7 +169,7 @@ render() {
 }
 ```
 
-Interesting, the test should be green... but it's not :thinking: Let's take a look.
+Interesting, the test should be green... but it's not 🤔 Let's take a look.
 
 ```
 ✖ has a static shadowDom
@@ -193,7 +193,7 @@ If we use `innerHTML` to compare the DOM, we'd have to rely on simple string equ
 
 Fortunately, we've got you covered. If you're using `@open-wc/testing` then it automatically loads the `@open-wc/semantic-dom-diff` chai plugin for us to use.
 
-So let's try it out :muscle:
+So let's try it out 💪
 
 ```js
 // old:
@@ -206,7 +206,7 @@ expect(el).shadowDom.to.equal(`
 `);
 ```
 
-Bam :tada:
+Bam 🎉
 
 ```
 a11y input
@@ -257,7 +257,7 @@ connectedCallback() {
 }
 ```
 
-So we tested our light and shadow dom :muscle: and our tests run clean :tada:
+So we tested our light and shadow dom 💪 and our tests run clean 🎉
 
 > Note: Using the DOM API in a lit-element's lifecycle is an anti-pattern, however to allow for <abbr title="accessibility">a11y</abbr> it might be a real use case - anyways it's great for illustration purposes
 
@@ -426,12 +426,12 @@ FAILED TESTS:
 For more details please see [semantic-dom-diff](https://open-wc.org/testing/semantic-dom-diff.html).
 
 I think that's now enough about comparing dom trees...
-It's time for a change :hugs:
+It's time for a change 🤗
 
 ### Code coverage
 
 Another useful metric we get when testing with the open-wc setup is code coverage.
-So what does it mean and how can we get it? [Code coverage](https://www.wikiwand.com/en/Code_coverage) is a measure of *how much* of our code is checked by tests. If there's a line, statement, function, or branch (e.g. `if`/`else` statement) that our tests don't cover our coverage score will be affected.
+So what does it mean and how can we get it? [Code coverage](https://www.wikiwand.com/en/Code_coverage) is a measure of _how much_ of our code is checked by tests. If there's a line, statement, function, or branch (e.g. `if`/`else` statement) that our tests don't cover our coverage score will be affected.
 A simple `npm run test` is all we need and you will get the following:
 
 ```
@@ -461,6 +461,7 @@ set value(newValue) {
 ```
 
 It's a vastly different result
+
 ```
 SUMMARY:
 ✔ 4 tests completed
@@ -482,6 +483,7 @@ Our coverage is way lower than before. Our test command even fails, even though 
 This is because by default open-wc's config sets a 90% threshold for code coverage.
 
 If we want to improve coverage we need to add tests - so let's do it
+
 ```js
 it('can set/get the input value directly via the custom element', async () => {
   const el = /** @type {A11yInput} */ (await fixture(html`
@@ -491,7 +493,8 @@ it('can set/get the input value directly via the custom element', async () => {
 });
 ```
 
-uh oh :scream: we wanted to improve coverage but now we need fix an actual bug first :disappointed:
+uh oh 😱 we wanted to improve coverage but now we need fix an actual bug first 😞
+
 ```
 FAILED TESTS:
   a11y input
@@ -508,7 +511,6 @@ When we run our test with watch, karma sets up a persistent browser environment 
 
 - Be sure you started with `npm run test:watch`
 - visit [http://localhost:9876/debug.html](http://localhost:9876/debug.html)
-
 
 You should see something like this
 ![02-debugging-in-browser](./images/02-debugging-in-browser.png)
@@ -538,10 +540,9 @@ set value(newValue) {
 ```
 
 Alright, that worked so our chrome console we write `console.log(this)` let's see what we have here
+
 ```js
-<a11y-input>
-  #shadow-root (open)
-</a11y-input>
+<a11y-input>#shadow-root (open)</a11y-input>
 ```
 
 Ahh there we have it - the shadow dom is not yet rendered when the setter is called.
@@ -558,15 +559,15 @@ set value(newValue) {
 }
 ```
 
-Fatel error is gone :tada:
-But we now have a failing test :sob:
+Fatel error is gone 🎉
+But we now have a failing test 😭
 
 ```
 ✖ can set/get the input value directly via the custom element
 AssertionError: expected '' to equal 'foo'
 ```
 
-We may need a change of tactic :thinking:
+We may need a change of tactic 🤔
 We can add it as a separate `value` property and sync when needed.
 
 ```js
@@ -595,9 +596,9 @@ update(changedProperties) {
 }
 ```
 
-And we're finally back in business! :tada:
+And we're finally back in business! 🎉
 
-ok bug fixed - can we please get back to coverage? thank you :pray:
+ok bug fixed - can we please get back to coverage? thank you 🙏
 
 ### Back to coverage
 
@@ -627,6 +628,7 @@ So we can immediately see which lines are not executed yet by our tests.
 ![04-coverage-line-by-line](./images/04-coverage-line-by-line.png)
 
 So let's add a test for that
+
 ```js
 it('logs "We like cats too :)" if the value is "cat"', async () => {
   const el = /** @type {A11yInput} */ (await fixture(html`
@@ -664,7 +666,7 @@ it('can update its label', async () => {
 });
 ```
 
-boom 100% :muscle: we win :1st_place_medal:
+boom 100% 💪 we win 🥇
 
 ```
 =============================== Coverage summary ===============================
@@ -676,16 +678,18 @@ Lines        : 100% ( 24/24 )
 ```
 
 But wait we didn't even finish the test above - the code is still
+
 ```js
-  // somehow check that console.log was called
+// somehow check that console.log was called
 ```
 
 #### How come we have 100% test coverage?
 
-Lets first try to understand how code coverage works :thinking:
+Lets first try to understand how code coverage works 🤔
 The way code coverage gets measured is by applying a form of `instrumentation`. In short, before our code is executed it gets changed (`instrumented`) and it behaves something like this:
 
 **Note:** This is a super simplified version for illustration purposes.
+
 ```js
 if (this.value === 'cat') {
   console.log('We like cats too :)');
@@ -703,7 +707,7 @@ if (this.value === 'cat') {
 
 Basically, your code gets littered with many many flags. Based on which flags get trigger a statistic gets created.
 
-So 100% test coverage only means that every line you have in your code was executed at least once after all your tests finished. It does *not* mean that you tested everything, or if your tests make the correct assertions.
+So 100% test coverage only means that every line you have in your code was executed at least once after all your tests finished. It does _not_ mean that you tested everything, or if your tests make the correct assertions.
 
 So even though we already have 100% code coverage we are still going to improve our log test.
 
@@ -725,9 +729,7 @@ import sinon from 'sinon';
 
 it('outputs "We like cats too :)" if the value is set to "cat"', async () => {
   const logSpy = sinon.spy(console, 'log');
-  const el = /** @type {A11yInput} */ (await fixture(html`
-    <a11y-input></a11y-input>
-  `));
+  const el = /** @type {A11yInput} */ (await fixture(html` <a11y-input></a11y-input> `));
 
   el.value = 'cat';
   expect(logSpy.callCount).to.equal(1);
@@ -735,6 +737,7 @@ it('outputs "We like cats too :)" if the value is set to "cat"', async () => {
 ```
 
 Uh oh... the test fails:
+
 ```
 AssertionError: expected 0 to equal 1
 ```
@@ -757,13 +760,11 @@ log(msg) {
 }
 ```
 
-This result in no global object in our test code - sweet :hugs:
+This result in no global object in our test code - sweet 🤗
 
 ```js
 it('logs "We like cats too :)" if the value is set to "cat"', async () => {
-  const el = /** @type {A11yInput} */ (await fixture(html`
-    <a11y-input></a11y-input>
-  `));
+  const el = /** @type {A11yInput} */ (await fixture(html` <a11y-input></a11y-input> `));
   const logSpy = sinon.spy(el, 'log');
 
   el.value = 'cat';
@@ -771,12 +772,12 @@ it('logs "We like cats too :)" if the value is set to "cat"', async () => {
 });
 ```
 
-However, we still get the same error. Let's debug... boohoo apparently `update` is not sync - a wrong assumption I made :see_no_evil: I am saying *assumptions are dangerous* quite often - still I fall for it from time to time :cry:.
+However, we still get the same error. Let's debug... boohoo apparently `update` is not sync - a wrong assumption I made 🙈 I am saying _assumptions are dangerous_ quite often - still I fall for it from time to time 😢.
 
 So what can we do? Sadly there seems to be no public api to do some sync actions triggered by an property update.
 Let's create an issue for it https://github.com/Polymer/lit-element/issues/643.
 
-For now apparently, the only way is to rely on a *private* api. :see_no_evil:
+For now apparently, the only way is to rely on a _private_ api. 🙈
 Also, we needed to move the value sync to `updated` so it gets executed after every dom render.
 
 ```js
@@ -798,11 +799,10 @@ updated(changedProperties) {
 ```
 
 and here is the updated test for the logging
+
 ```js
 it('logs "We like cats too :)" if the value is set to "cat"', async () => {
-  const el = /** @type {A11yInput} */ (await fixture(html`
-    <a11y-input></a11y-input>
-  `));
+  const el = /** @type {A11yInput} */ (await fixture(html` <a11y-input></a11y-input> `));
   const logSpy = sinon.spy(el, 'log');
 
   el.value = 'cat';
@@ -818,7 +818,7 @@ it('logs "We like cats too :)" if the value is set to "cat"', async () => {
 });
 ```
 
-wow, that was a little tougher than expected but we did it :muscle:
+wow, that was a little tougher than expected but we did it 💪
 
 ```
 SUMMARY:
@@ -834,31 +834,31 @@ So just by creating a `test/index.html`.
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <link href="../node_modules/mocha/mocha.css" rel="stylesheet" />
-  <script src="../node_modules/mocha/mocha.js"></script>
-  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-</head>
-<body>
-  <div id="mocha"></div>
-  <script>
-    mocha.setup('bdd');
-  </script>
+  <head>
+    <meta charset="utf-8" />
+    <link href="../node_modules/mocha/mocha.css" rel="stylesheet" />
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script>
+      mocha.setup('bdd');
+    </script>
 
-  <script type="module">
-    import './a11y-input.test.js';
-    import './my-app.test.js';
+    <script type="module">
+      import './a11y-input.test.js';
+      import './my-app.test.js';
 
-    mocha.checkLeaks();
-    mocha.run();
-  </script>
-</body>
+      mocha.checkLeaks();
+      mocha.run();
+    </script>
+  </body>
 </html>
 ```
 
 and opening it via `owc-dev-server` in chrome, it will work perfectly fine.
-We got everything up and running without `webpack` or `karma` - sweet :hugs:
+We got everything up and running without `webpack` or `karma` - sweet 🤗
 
 ### Do the Cross-Browser Thing
 
@@ -867,6 +867,7 @@ We now feel pretty comfortable with our web component. It's tested and covered; 
 Open WC recommends [Browserstack](https://www.browserstack.com/) for cross-browser testing. If you haven't set it up yet, you can do it now - here is the link again - [https://open-wc.org/testing/](https://open-wc.org/testing/).
 
 So let's just run it
+
 ```
 npm run test:bs
 
@@ -875,9 +876,10 @@ SUMMARY:
 TOTAL: 42 SUCCESS
 ```
 
-Yeah, that works nicely! :hugs:
+Yeah, that works nicely! 🤗
 
 If there are failing tests it will output them in the summary with the specific browser where it failed.
+
 ```
 SUMMARY:
 ✔ 40 tests completed
@@ -901,6 +903,7 @@ FAILED TESTS:
 ```
 
 If you need to debug a particular browser:
+
 - `npm run test:legacy:watch`
 - visit [http://localhost:9876/debug.html](http://localhost:9876/debug.html) with that browser (either it locally or via browserstack)
 - select a specific test (or use `it.only()` in code)
@@ -917,9 +920,7 @@ module.exports = config => {
       browserStack: {
         project: 'testing-workflow-for-web-components',
       },
-      browsers: [
-        'bs_win10_firefox_ESR',
-      ],
+      browsers: ['bs_win10_firefox_ESR'],
       // define browsers
       // https://www.browserstack.com/automate/capabilities
       customLaunchers: {
@@ -957,15 +958,16 @@ merge.strategy({
 **Note:** This uses the [webpack merge strategies](https://github.com/survivejs/webpack-merge#merging-with-strategies) replace.
 
 ## Quick Recap
+
 - Testing is important for every project. Be sure to write as many as you can.
 - Try to keep your code coverage high, but remember it's not a magic guarantee, so it doesn't always need to be 100%.
 - Debug in the browser via `npm run test:watch`. For legacy browsers, use `npm run test:legacy.watch`.
 
 ## What's Next?
+
 - Run the tests in your CI (works perfectly well together with browserstack). See our recommendations at [automating](https://open-wc.org/automating/).
 
 Follow us on [Twitter](https://twitter.com/openwc), or follow me on my personal [Twitter](https://twitter.com/dakmor).
 Make sure to check out our other tools and recommendations at [open-wc.org](https://open-wc.org).
 
 Thanks to [Pascal](https://dev.to/thepassle) and [Benny](https://dev.to/bennypowers) for feedback and helping turn my scribbles to a followable story.
-````
