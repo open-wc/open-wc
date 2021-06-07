@@ -1,4 +1,4 @@
-import './loadPolyfill.js';
+import '@webcomponents/scoped-custom-element-registry';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { adoptStyles } from '@lit/reactive-element/css-tag.js';
 

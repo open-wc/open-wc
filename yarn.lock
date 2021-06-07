@@ -3402,10 +3402,10 @@
     portfinder "^1.0.28"
     source-map "^0.7.3"
 
-"@webcomponents/scoped-custom-element-registry@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@webcomponents/scoped-custom-element-registry/-/scoped-custom-element-registry-0.0.1.tgz#196365260a019f87bddbded154ab09faf0e666fc"
-  integrity sha512-ef5/v4U2vCxrnSMpo41LSWTjBOXCQ4JOt4+Y6PaSd8ympYioPhOP6E1tKmIk2ppwLSjCKbTyYf7ocHvwDat7bA==
+"@webcomponents/scoped-custom-element-registry@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@webcomponents/scoped-custom-element-registry/-/scoped-custom-element-registry-0.0.2.tgz#c863d163cb39c60063808e5ae23e06a1766fbe5f"
+  integrity sha512-lKCoZfKoE3FHvmmj2ytaLBB8Grxp4HaxfSzaGlIZN6xXnOILfpCO0PFJkAxanefLGJWMho4kRY5PhgxWFhmSOw==
 
 "@webcomponents/shadycss@^1.10.2":
   version "1.10.2"
