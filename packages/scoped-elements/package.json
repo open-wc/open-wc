@@ -43,10 +43,7 @@
   "dependencies": {
     "@lit/reactive-element": "^1.0.0-rc.1",
     "@open-wc/dedupe-mixin": "^1.3.0",
-    "@webcomponents/scoped-custom-element-registry": "0.0.1"
+    "@webcomponents/scoped-custom-element-registry": "0.0.2"
   },
-  "types": "types/index.d.ts",
-  "sideEffects": [
-    "./src/loadPolyfill.js"
-  ]
+  "types": "types/index.d.ts"
 }
