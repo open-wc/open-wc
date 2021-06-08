@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.0-next.4
+
+### Minor Changes
+
+- 1e54d297: Use the webcomponents polyfill instead of the forked one
+
 ## 2.0.0-next.3
 
 ### Patch Changes
