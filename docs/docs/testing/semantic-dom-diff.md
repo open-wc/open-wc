@@ -116,9 +116,9 @@ it('my test', async () => {
 
 ### Snapshot testing
 
-The most powerful feature of `semantic-dom-diff` is the ability to test and manage snapshots of your web components.
+`semantic-dom-diff` supports managing snapshots of your components. Snapshot testing is supported in `@web/test-runner` with mocha, or karma with `karma-snapshot` and `karma-mocha-snapshot`.
 
-> If you are not using `@open-wc/testing-karma`, you need to manually install [karma-snapshot](https://www.npmjs.com/package/karma-snapshot) and [karma-mocha-snapshot](https://www.npmjs.com/package/karma-mocha-snapshot).
+When using Web Test Runner, snapshot tests are async and the assertion must be awaited.
 
 #### Setting up a snapshot
 
@@ -133,7 +133,7 @@ describe('my-message', () => {
       <my-message message="Foo"></my-element>
     `);
 
-    expect(element).shadowDom.to.equalSnapshot();
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 
   it('renders message bar correctly', async () => {
@@ -141,7 +141,7 @@ describe('my-message', () => {
       <my-message message="Bar"></my-element>
     `);
 
-    expect(element).shadowDom.to.equalSnapshot();
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 
   it('renders a capitalized message correctly', async () => {
@@ -149,7 +149,7 @@ describe('my-message', () => {
       <my-message message="Bar" capitalized></my-element>
     `);
 
-    expect(element).shadowDom.to.equalSnapshot();
+    await expect(element).shadowDom.to.equalSnapshot();
   });
 
   it('allows rendering a message from a slot', async () => {
@@ -157,24 +157,16 @@ describe('my-message', () => {
       <my-message capitalized>Bar</my-element>
     `);
 
-    expect(element).lightDom.to.equalSnapshot();
+    await expect(element).lightDom.to.equalSnapshot();
   });
 });
 ```
 
-Snapshots are stored in the `__snapshots__` folder in your project, using the most top-level `describe` as the name for your snapshots file.
-
 #### Updating a snapshot
-
-> If you are not using the standard `@open-wc/testing-karma` configuration, see the documentation of `karma-snapshot` how to pass the update/prune flags.
 
 When your tests run for the first time the snapshot files are generated. On subsequent test runs your element is compared with the stored snapshots. If the element and the snapshots differ the test fails.
 
 If the difference was an intended change, you can update the snapshots by passing the `--update-snapshots` flag.
-
-#### Cleaning up unused snapshots
-
-After refactoring, there might be unused and leftover snapshot files. You can run karma with the `--prune-snapshots` flag to clean these up.
 
 **Ignoring tags and attributes**
 
@@ -188,11 +180,11 @@ it('renders correctly', async () => {
     </div>
   `);
 
-  expect(el).dom.to.equal('<div>Hey</div>', {
+  await expect(el).dom.to.equal('<div>Hey</div>', {
     ignoreAttributes: ['my-random-attribute'],
   });
 
-  expect(el).dom.to.equalSnapshot({
+  await expect(el).dom.to.equalSnapshot({
     ignoreAttributes: ['my-random-attribute'],
   });
 });
@@ -209,11 +201,11 @@ it('renders correctly', async () => {
   `);
 
   // ignore id attributes on input elements
-  expect(el).dom.to.equal('<div>Hey</div>', {
+  await expect(el).dom.to.equal('<div>Hey</div>', {
     ignoreAttributes: [{ tags: ['input'], attributes: ['id'] }],
   });
 
-  expect(el).dom.to.equalSnapshot({
+  await expect(el).dom.to.equalSnapshot({
     ignoreAttributes: [{ tags: ['input'], attributes: ['id'] }],
   });
 });
@@ -233,11 +225,11 @@ it('renders correctly', async () => {
   `);
 
   // ignore id attributes on input elements
-  expect(el).dom.to.equal('<div>Hey</div>', {
+  await expect(el).dom.to.equal('<div>Hey</div>', {
     ignoreTags: ['my-custom-element'],
   });
 
-  expect(el).dom.to.equalSnapshot({
+  await expect(el).dom.to.equalSnapshot({
     ignoreTags: ['my-custom-element'],
   });
 });
@@ -262,7 +254,7 @@ it('renders correctly', async () => {
   `);
 
   // ignore id attributes on input elements
-  expect(el).dom.to.equal(
+  await expect(el).dom.to.equal(
     `
     <div>
       <my-custom-input id="myInput"></my-custom-input>
@@ -272,84 +264,8 @@ it('renders correctly', async () => {
     { ignoreChildren: ['my-custom-input'] },
   );
 
-  expect(el).dom.to.equalSnapshot({
+  await expect(el).dom.to.equalSnapshot({
     ignoreChildren: ['my-custom-input'],
   });
 });
-```
-
-**[Scoped elements](https://open-wc.org/scoped-elements/)**
-
-You might want to ignore scoped elements when working with _Shadow DOM snapshots_, like so:
-
-```js
-import { MyButton } from '@somewhere/my-button';
-
-class MyElement extends ScopedElementsMixin(LitElement) {
-  static get scopedElements() {
-    return {
-      'my-button': MyButton,
-    };
-  }
-  render() {
-    return html`
-      <p>Here's my button</p>
-      <my-button>Hey!</my-button>
-    `;
-  }
-}
-
-window.customElements.define('my-element', MyElement);
-
-it('renders correctly', async () => {
-  const el = await fixture(`
-      <my-custom-element>
-      </my-custom-element>
-  `);
-
-  expect(el).shadowDom.to.equalSnapshot({
-    ignoreTags: [el.constructor.getScopedTagName('my-button', el.constructor.scopedElements)],
-  });
-});
-```
-
-This example will save the following snapshot:
-
-```html
-<my-custom-element>
-  <p>Here's my button</p>
-</my-custom-element>
-```
-
-However, what if you actually care about testing what goes into scoped elements?
-
-In that case, scoped elements should not be ignored, but diffed in snapshots correctly with their original tag name instead. Our differ will take that into account when making Shadow DOM snapshots, by default. Following the previous example:
-
-```js
-it('renders correctly', async () => {
-  const el = await fixture(`
-      <my-custom-element>
-      </my-custom-element>
-  `);
-
-  expect(el).shadowDom.to.equalSnapshot();
-});
-```
-
-This example will save this snapshot:
-
-```html
-<my-custom-element>
-  <p>Here's my button</p>
-  <my-button data-tag-name="my-button"> Hey! </my-button>
-</my-custom-element>
-```
-
-With the actual implementation of scoped elements, without ignoring its tags or if our differ wouldn't check them by default, the test snapshot would be produced with scoped element tags with different random numbers _every time_:
-
-```html
-<my-custom-element>
-  <p>Here's my button</p>
-  <my-button-23443 data-tag-name="my-button"> Hey! </my-button-23443>
-</my-custom-element>
 ```
