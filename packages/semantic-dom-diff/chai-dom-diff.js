@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
-
+import { getSnapshotConfig, getSnapshot, saveSnapshot } from '@web/test-runner-commands';
 import { getDiffableHTML, isDiffOptions } from './get-diffable-html.js';
-import { getOuterHtml, getCleanedShadowDom, snapshotPath } from './src/utils.js';
+import { getOuterHtml, getCleanedShadowDom, getMochaTestPath } from './src/utils.js';
 
 /** @typedef {import('./get-diffable-html.js').DiffOptions} DiffOptions */
 
@@ -107,9 +107,6 @@ export const chaiDomDiff = (chai, utils) => {
   chai.Assertion.overwriteMethod('equal', domEquals);
   chai.Assertion.overwriteMethod('eq', domEquals);
 
-  const context = window.__mocha_context__;
-  const snapshotState = window.__snapshot__;
-
   /**
    * Base HTML snapshot assertion for `assert` interface.
    * @this {Chai.AssertionStatic}
@@ -117,19 +114,15 @@ export const chaiDomDiff = (chai, utils) => {
    * @param {boolean} negate
    * @param {[string]|[DiffOptions]|[string, DiffOptions]} rest
    */
-  function assertHtmlEqualsSnapshot(actual, negate, ...rest) {
+  function assertHtmlEqualsSnapshotKarma(actual, negate, ...rest) {
+    const context = window.__mocha_context__;
+    const snapshotState = window.__snapshot__;
+
     const { message, options } = disambiguateArgs(...rest);
     const { index } = context;
     context.index += 1;
-    let path;
-
+    const path = getMochaTestPath(context.runnable);
     const html = getDiffableHTML(actual, options);
-
-    if (context.runnable.type === 'hook') {
-      path = snapshotPath(context.runnable.ctx.currentTest);
-    } else {
-      path = snapshotPath(context.runnable);
-    }
 
     if (snapshotState.update) {
       snapshotState.set(path, index, html, 'html');
@@ -154,6 +147,53 @@ export const chaiDomDiff = (chai, utils) => {
         }
       }
     }
+  }
+
+  /**
+   * Base HTML snapshot assertion for `assert` interface.
+   * @this {Chai.AssertionStatic}
+   * @param {string|Node} actual
+   * @param {boolean} negate
+   * @param {[string]|[DiffOptions]|[string, DiffOptions]} rest
+   */
+  async function assertHtmlEqualsSnapshotWebTestRunner(actual, negate, ...rest) {
+    const { message, options } = disambiguateArgs(...rest);
+    const path = getMochaTestPath(window.__WTR_MOCHA_RUNNER__.test);
+    const name = path.join(' ');
+    const snapshot = getDiffableHTML(actual, options);
+    const currentSnapshot = await getSnapshot({ name });
+
+    if (currentSnapshot) {
+      const config = await getSnapshotConfig();
+      if (!config.updateSnapshots) {
+        if (negate ? currentSnapshot === snapshot : currentSnapshot !== snapshot) {
+          throw new chai.AssertionError(
+            message || `Snapshot ${name} does not match the saved snapshot on disk`,
+            {
+              actual: snapshot,
+              expected: currentSnapshot,
+              showDiff: true,
+            },
+            chai.util.flag(this, 'ssfi'),
+          );
+        }
+      }
+    }
+    await saveSnapshot({ name, content: snapshot });
+  }
+
+  function assertHtmlEqualsSnapshot(actual, negate, ...rest) {
+    if (window.__mocha_context__ && window.__snapshot__) {
+      return assertHtmlEqualsSnapshotKarma.call(this, actual, negate, ...rest);
+    }
+    if (window.__WTR_MOCHA_RUNNER__) {
+      return assertHtmlEqualsSnapshotWebTestRunner.call(this, actual, negate, ...rest);
+    }
+    throw new Error(
+      'Could not detect test runner environment. ' +
+        'Snapshots require either Web Test Runner with mocha, ' +
+        'or Karma with mocha and karma mocha snapshot',
+    );
   }
 
   /**
