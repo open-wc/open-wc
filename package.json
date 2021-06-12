@@ -64,7 +64,7 @@
     "@web/dev-server": "^0.1.17",
     "@web/dev-server-esbuild": "^0.2.12",
     "@web/dev-server-storybook": "^0.3.2",
-    "@web/test-runner": "^0.13.3",
+    "@web/test-runner": "^0.13.10",
     "@web/test-runner-playwright": "^0.8.5",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
