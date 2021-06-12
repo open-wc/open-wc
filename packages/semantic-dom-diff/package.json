@@ -31,6 +31,7 @@
     "snapshots"
   ],
   "dependencies": {
-    "@types/chai": "^4.2.11"
+    "@types/chai": "^4.2.11",
+    "@web/test-runner-commands": "^0.5.3"
   }
 }
