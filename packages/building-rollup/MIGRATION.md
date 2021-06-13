@@ -1,5 +1,17 @@
 # Migration
 
+## Migrating from v1 to v2
+
+- Replaced rollup-plugin-html with @web/rollup-plugin-html
+- Replaced babel-plugin-bundled-import-meta with @web/rollup-plugin-import-meta-assets
+- Replaced @open-wc/rollup-plugin-polyfills-loader with @web/rollup-plugin-polyfills-loader
+
+If you were relying on configuring/extending the config for these plugins, you might need to make adjustments. See the docs for the associated plugins:
+
+- https://modern-web.dev/docs/building/rollup-plugin-html/
+- https://modern-web.dev/docs/building/rollup-plugin-import-meta-assets/
+- https://modern-web.dev/docs/building/rollup-plugin-polyfills-loader/
+
 ## Migrating from v0 to v1
 
 - We are using features of rollup v2, make sure to update your version of rollup too.
