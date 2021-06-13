@@ -9,41 +9,10 @@
   </head>
 
   <body>
-    <h1>Static content in subpage/index.html is preserved</h1>
+    <h1>Static content in subpage/index.html</h1>
 
     <div id="test"></div>
 
-    <script type="module" src="./subpage-side-effect.js"></script>
-
-    <script type="module">
-      import { subpageMetaUrl, subpageDepMetaUrl } from './subpage.js';
-      // supports absolute URLs as well
-      import { navigationMetaUrl } from '/navigation.js';
-
-      function extractServiceWorkerScriptUrl() {
-        const code = document.querySelectorAll('script')[2].textContent;
-        const start = code.indexOf('navigator.serviceWorker.register(');
-        const end = code.indexOf(')', start + 1);
-        return code.substring(start + 34, end - 1);
-      }
-
-      (async () => {
-        window.__tests = {
-          subpageMetaUrl,
-          subpageDepMetaUrl,
-          navigationMetaUrl,
-          __subpageSideEffectMetaUrl: window.__subpageSideEffectMetaUrl,
-          __subpageSideEffectDepMetaUrl: window.__subpageSideEffectDepMetaUrl,
-          serviceWorkerScriptUrl: navigator.serviceWorker.controller.scriptURL,
-          serviceWorkerScriptUrl: extractServiceWorkerScriptUrl(),
-        };
-
-        document.getElementById('test').innerHTML = `<pre>${JSON.stringify(
-          window.__tests,
-          null,
-          2,
-        )}</pre>`;
-      })();
-    </script>
+    <script type="module" src="./subpage.js"></script>
   </body>
 </html>

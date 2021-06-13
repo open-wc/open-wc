@@ -1,6 +1,5 @@
 /* eslint-disable */
 import { LitElement, html, css } from 'lit-element';
-import './a/b/import-meta-test-2.js';
 import './demo-component.js';
 
 // partial css trips up the minifier
@@ -86,8 +85,6 @@ function getAsyncIterated() {
 
 window.__startsWith = 'foo'.startsWith('fo');
 window.__map = new Map().set('foo', 'bar').get('foo') === 'bar';
-window.__importMeta =
-  import.meta.url.startsWith(window.location.origin) && import.meta.url.endsWith('demo-app.js');
 window.__asyncFunction = asyncFunction();
 window.__forOf = forOf() === 3;
 window.__optionalChaining = foo?.bar === 'lorem ipsum' && foo?.bar?.loremIpsum === undefined;
