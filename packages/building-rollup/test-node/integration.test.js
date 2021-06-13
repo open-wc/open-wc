@@ -67,8 +67,6 @@ describe('integration tests', () => {
           litElement: true,
           startsWith: true,
           map: true,
-          importMeta: false,
-          importMeta2: false,
           asyncFunction: true,
           forOf: true,
           optionalChaining: true,

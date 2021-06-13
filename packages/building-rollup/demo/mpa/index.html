@@ -9,41 +9,10 @@
   </head>
 
   <body>
-    <h1>Static content in index.html is preserved</h1>
+    <h1>Static content in index.html</h1>
 
     <a href="./subpage/">SubPage</a>
 
-    <div id="test"></div>
+    <script type="module" src="./home.js"></script>
 
-    <script type="module" src="./homepage-side-effect.js"></script>
-
-    <script type="module">
-      import { homepageMetaUrl, homepageDepMetaUrl } from './homepage.js';
-      import { navigationMetaUrl } from './navigation.js';
-
-      function extractServiceWorkerScriptUrl() {
-        const code = document.querySelectorAll('script')[2].textContent;
-        const start = code.indexOf('navigator.serviceWorker.register(');
-        const end = code.indexOf(')', start + 1);
-        return code.substring(start + 34, end - 1);
-      }
-
-      (async () => {
-        window.__tests = {
-          homepageMetaUrl,
-          homepageDepMetaUrl,
-          navigationMetaUrl,
-          __homepageSideEffectMetaUrl: window.__homepageSideEffectMetaUrl,
-          __homepageSideEffectDepMetaUrl: window.__homepageSideEffectDepMetaUrl,
-          serviceWorkerScriptUrl: extractServiceWorkerScriptUrl(),
-        };
-
-        document.getElementById('test').innerHTML = `<pre>${JSON.stringify(
-          window.__tests,
-          null,
-          2,
-        )}</pre>`;
-      })();
-    </script>
-  </body>
 </html>
