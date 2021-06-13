@@ -60,34 +60,18 @@ describe('integration tests', () => {
       await page.goto('http://localhost:8081/', {
         waitUntil: 'networkidle0',
       });
-      // @ts-ignore
-      const browserTests = await page.evaluate(() => window.__tests);
-      expect(browserTests).to.eql({
-        homepageMetaUrl: 'http://localhost:8081/inline-module-74e22978361a5c35d6658b2499984aa3.js',
-        homepageDepMetaUrl:
-          'http://localhost:8081/inline-module-74e22978361a5c35d6658b2499984aa3.js',
-        __homepageSideEffectMetaUrl: 'http://localhost:8081/homepage-side-effect.js',
-        __homepageSideEffectDepMetaUrl: 'http://localhost:8081/homepage-side-effect.js',
-        navigationMetaUrl:
-          'http://localhost:8081/inline-module-74e22978361a5c35d6658b2499984aa3.js',
-        serviceWorkerScriptUrl: 'sw.js',
-      });
+      const pageContent = await page.content();
+      expect(pageContent.includes('Static content in index.html')).to.be.true;
+      expect(await page.evaluate(() => window.__moduleLoaded)).to.be.true;
     });
 
     it('passes the in-browser tests for subpage/index.html', async () => {
       await page.goto('http://localhost:8081/subpage/', {
         waitUntil: 'networkidle0',
       });
-      // @ts-ignore
-      const browserTests = await page.evaluate(() => window.__tests);
-      expect(browserTests).to.eql({
-        subpageMetaUrl: 'http://localhost:8081/subpage/subpage.js',
-        subpageDepMetaUrl: 'http://localhost:8081/js/subpage-dep.js',
-        __subpageSideEffectMetaUrl: 'http://localhost:8081/subpage/subpage-side-effect.js',
-        __subpageSideEffectDepMetaUrl: 'http://localhost:8081/js/subpage-side-effect-dep.js',
-        navigationMetaUrl: 'http://localhost:8081/navigation.js',
-        serviceWorkerScriptUrl: '../sw.js',
-      });
+      const pageContent = await page.content();
+      expect(pageContent.includes('Static content in subpage/index.html')).to.be.true;
+      expect(await page.evaluate(() => window.__subPageModuleLoaded)).to.be.true;
     });
 
     it('outputs a service worker', () => {
