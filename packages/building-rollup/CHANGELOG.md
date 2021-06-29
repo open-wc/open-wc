@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.0-next.0
+
+### Major Changes
+
+- f377bf99: switch from open-wc plugins to web plugins. see MIGRATION.md for a migration guide
+
 ## 1.10.0
 
 ### Minor Changes
