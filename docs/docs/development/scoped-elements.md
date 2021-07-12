@@ -44,7 +44,7 @@ Version 2 of Scoped Elements only supports [lit](https://lit.dev/) with `lit-ele
 
    <inline-notification type="warning">
 
-   If you are going to use elements that are globally defined you have to declare them in `scopedElements` as well. This is required because we are trying to work as close as possible to the future Scoped Custom Element Registries feature and, by the moment, there is not going ot be inheritance between registries.
+   If you are going to use elements that are globally defined you have to declare them in `scopedElements` as well. This is required because we are trying to work as close as possible to the future Scoped Custom Element Registries feature and, by the moment, there is not going to be inheritance between registries.
    You can declare them like in the following example:
 
    ```js
