@@ -58,4 +58,6 @@ You can get the Web Component DevTools from the [Chrome Web Store](https://chrom
 
 ### Setting up
 
-A brief video of showcasing and setting up your development environment to get the most out of DevTools can be found [in Youtube](https://youtu.be/D6W5iX3-E9E)
+A brief video of showcasing the features and steps on setting up your development environment to get the most out of DevTools can be found [in Youtube](https://youtu.be/D6W5iX3-E9E)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/D6W5iX3-E9E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
