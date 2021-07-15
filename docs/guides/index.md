@@ -6,10 +6,24 @@ The goal of Open Web Components is to empower everyone with a powerful and battl
 
 This will kickstart a menu guiding you through all available Open Web Components actions.
 
-```bash
+<code-tabs collection="package-managers" default-tab="npm">
+
+```bash tab npm
 # in a new or existing folder:
 npm init @open-wc
 ```
+
+```bash tab yarn
+# in a new or existing folder:
+yarn init @open-wc
+```
+
+```bash tab pnpm
+# in a new or existing folder:
+pnpm init @open-wc
+```
+
+</code-tabs>
 
 ```js script
 import '@rocket/launch/inline-notification/inline-notification.js';
