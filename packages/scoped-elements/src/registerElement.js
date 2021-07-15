@@ -2,12 +2,28 @@ import { createUniqueTag } from './createUniqueTag.js';
 import { getFromGlobalTagsCache, addToGlobalTagsCache } from './globalTagsCache.js';
 
 /**
- * Checks if klass is a subclass of HTMLElement
- *
- * @param {typeof HTMLElement} klass
+ * Checks if klass is a subclass of native HTMLElement or polyfilled HTMLElement.
+ * We manually loop over the prototpe, so we can detect if we extend from native HTMLElement
+ * or the polyfilled one from scoped-custom-element-registry (window.HTMLElement)
+ * @param {typeof HTMLElement} klass a class, like LitElement
  * @returns {boolean}
  */
-const extendsHTMLElement = klass => Object.prototype.isPrototypeOf.call(HTMLElement, klass);
+function extendsHTMLElement(klass) {
+  let currentClass = klass;
+  while (currentClass) {
+    // currentClass could either be:
+    // 1. unpatched, native HTMLElement (when polyfill not loaded this is always the case), or:
+    // 2. patched window.HTMLElement (can be the case when polyfill is loaded)
+    // If polyfill is loaded and currentClass is the native HTMLElement, we don't have a
+    // reference to it (polyfill calls it NativeHTMLElement, but doesn't expose it),
+    // so we check its name.
+    if (currentClass === window.HTMLElement || currentClass.name === 'HTMLElement') {
+      return true;
+    }
+    currentClass = Object.getPrototypeOf(currentClass);
+  }
+  return false;
+}
 
 /**
  * Defines a custom element
