@@ -56,6 +56,8 @@ The list of extra support libraries will grow as adoption grows
 
 You can get the Web Component DevTools from the [Chrome Web Store](https://chrome.google.com/webstore/detail/web-component-devtools/gdniinfdlmmmjpnhgnkmfpffipenjljo/related)
 
+And from the [Firefox Addons Catalog](https://addons.mozilla.org/en-US/firefox/addon/web-component-devtools/)
+
 ### Setting up
 
 A brief video of showcasing the features and steps on setting up your development environment to get the most out of DevTools can be found [in Youtube](https://youtu.be/D6W5iX3-E9E)
