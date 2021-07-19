@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.3.4
+
+### Patch Changes
+
+- 407c9354: support lit2 elements (using scoped-custom-element-registry) in ScopedElementsMixin v1
+
 ## 1.3.3
 
 ### Patch Changes
