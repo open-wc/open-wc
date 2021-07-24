@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import { TemplateResult } from 'lit-html';
+import { TemplateResult, SVGTemplateResult } from 'lit-html';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { Cache } from './Cache.js';
 import { transform } from './transform.js';
@@ -87,13 +87,16 @@ const transformArray = (items, scopedElements, templateCache, tagsCache) =>
  * @param {Cache<string, string>} tagsCache
  * @returns {TemplateResult}
  */
-const transformTemplate = (template, scopedElements, templateCache, tagsCache) =>
-  new TemplateResult(
+const transformTemplate = (template, scopedElements, templateCache, tagsCache) => {
+  const BaseClass = template instanceof SVGTemplateResult ? SVGTemplateResult : TemplateResult;
+
+  return new BaseClass(
     transform(template.strings, scopedElements, templateCache, tagsCache),
     transformArray(template.values, scopedElements, templateCache, tagsCache),
     template.type,
     template.processor,
   );
+};
 
 /**
  * Gets an instance of the ScopedElementsTemplateFactory
