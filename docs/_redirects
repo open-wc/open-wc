@@ -9,7 +9,7 @@
 /guide/index.html	/guides/
 /testing/testing-helpers.html	/docs/testing/helpers/
 /demoing/	/docs/demoing/storybook/
-/developing/best-practices.html	/guides/knowledge/lit-element/lifecycle/
+/developing/best-practices.html	/guides/knowledge/lit/lifecycle/
 /building/building-rollup.html	/docs/building/rollup/
 /index.html	/
 /faq/events.html	/guides/knowledge/events/
@@ -23,10 +23,10 @@
 /developing/lit-helpers.html	/docs/development/lit-helpers/
 /developing/ide.html	/guides/tools/ide/
 /building/rollup-plugin-html.html	/docs/legacy/legacy-projects/
-/faq/rerender.html	/guides/knowledge/lit-element/rendering/
+/faq/rerender.html	/guides/knowledge/lit/rendering/
 /faq/unit-testing-custom-events.html	/guides/knowledge/events/
 /guide/dedupe-mixin.html	/docs/development/dedupe-mixin/
-/faq/index.html	/guides/knowledge/lit-element/lifecycle/
+/faq/index.html	/guides/knowledge/lit/lifecycle/
 /testing/semantic-dom-diff.html	/docs/testing/semantic-dom-diff/
 /linting/	/guides/tools/linting-and-formatting/
 /building/polyfills-loader.html	/docs/legacy/legacy-projects/
@@ -35,8 +35,8 @@
 /testing/testing-chai-a11y-axe.html	/docs/testing/chai-a11y-axe/
 /linting/linting-eslint.html	/guides/tools/linting-and-formatting/
 /testing/karma-esm.html	/docs/legacy/legacy-projects/
-/faq/lit-element-lifecycle.html	/guides/knowledge/lit-element/lifecycle/
+/faq/lit-element-lifecycle.html	/guides/knowledge/lit/lifecycle/
 /about/	/discover/about/
-/faq/	/guides/knowledge/lit-element/lifecycle/
+/faq/	/guides/knowledge/lit/lifecycle/
 /building/rollup-plugin-polyfills-loader.html	/docs/legacy/legacy-projects/
 /testing/testing-karma-bs.html	/docs/legacy/legacy-projects/

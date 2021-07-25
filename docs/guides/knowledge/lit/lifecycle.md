@@ -1,6 +1,6 @@
 # Knowledge >> LitElement >> Lifecycle ||20
 
-Below is an overview of the most useful lifecycle callbacks. Check out the [official documentation](https://lit-element.polymer-project.org/guide/lifecycle) for a full overview.
+Below is an overview of the most useful lifecycle callbacks. Check out the [official documentation](https://lit.dev/docs/components/lifecycle/) for a full overview.
 
 ```js
 class MyElement extends LitElement {
