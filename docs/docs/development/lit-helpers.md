@@ -1,6 +1,6 @@
 # Development >> Lit Helpers ||20
 
-A library with helpers functions for working with [lit](https://lit.dev/).
+A library with helpers functions for working with [Lit](https://lit.dev/).
 
 ## Installation
 

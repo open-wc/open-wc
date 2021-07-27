@@ -230,7 +230,7 @@ The second Web Components feature that we will look into is HTML templates. When
 To do this efficiently, the browser provides us with a `<template>` element. This element allows us to define the structure of a piece of a HTML upfront, and efficiently clone it when needed. This is a lot faster than recreating the same HTML structure each time. Using and cloning templates is (intentionally) pretty low level. You can read more about the basic API [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template).
 
 <aside class="notice">
-Usually you will not want to write and use templates directly using the low level API. For writing templates, we recommend <a href="https://lit.dev/">lit</a>. You can learn more about these libraries in a follow-up <a href="https://open-wc.org/guides/developing-components/codelabs/">codelab</a>.
+Usually you will not want to write and use templates directly using the low level API. For writing templates, we recommend <a href="https://lit.dev/">Lit</a>. You can learn more about these libraries in a follow-up <a href="https://open-wc.org/guides/developing-components/codelabs/">codelab</a>.
 </aside>
 
 Let's create a `<template>` inside the body of our previous excercise.
@@ -263,7 +263,7 @@ connectedCallback() {
 
 You should see the template rendered on the screen.
 
-In order to avoid writing this boiler plate code over and over again, you can use libraries to do the heavy lifting. `lit` has a base element that will allow you to easily use templates and much more. We will use this library in a follow-up [codelab](https://open-wc.org/guides/developing-components/codelabs/).
+In order to avoid writing this boiler plate code over and over again, you can use libraries to do the heavy lifting. `Lit` has a base element that will allow you to easily use templates and much more. We will use this library in a follow-up [codelab](https://open-wc.org/guides/developing-components/codelabs/).
 
 <details>
   <summary>

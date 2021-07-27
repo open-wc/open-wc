@@ -8,7 +8,7 @@ A simple base class for creating fast, lightweight web components.
 [LitElement documentation](https://lit-element.polymer-project.org)
 [lit-html documentation](https://lit-html.polymer-project.org)
 
-> The new major version of lit is a new package, [lit](https://lit.dev/), you should be able to change the code samples with the new lit, as most of the migration is just drop-in replacement.
+> The new major version of Lit is a new package, [Lit](https://lit.dev/), you should be able to change the code samples with the new Lit, as most of the migration is just drop-in replacement.
 
 Click on the links below to view live code samples:
 

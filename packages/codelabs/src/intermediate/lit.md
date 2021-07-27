@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This codelab is a followup from the [lit basics](https://open-wc.org/codelabs/#web-components-basics) codelab.
+This codelab is a followup from the [Lit basics](https://open-wc.org/codelabs/#web-components-basics) codelab.
 
 [lit-html](https://lit.dev/docs/components/rendering/) is an efficient, expressive and extensible HTML templating library for JavaScript. It lets you write HTML templates in JavaScript, then efficiently render and re-render those templates together with data to create and update DOM.
 
@@ -13,7 +13,7 @@ This codelab is a followup from the [lit basics](https://open-wc.org/codelabs/#w
 - A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
 - Intermediate knowledge of HTML and Javascript
 - Basic knowledge of web components, see our [basics codelab](https://open-wc.org/codelabs/#web-components-basics) to get you started.
-- Basic knowledge of lit, see our [basics codelab](https://open-wc.org/guides/developing-components/codelabs/#lit-basics)
+- Basic knowledge of Lit, see our [basics codelab](https://open-wc.org/guides/developing-components/codelabs/#lit-basics)
 - Familiarity with the following concepts:
   - [Javascript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
   - [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
@@ -39,7 +39,7 @@ At the bottom of each section, there is a "View final result" button, this will 
 
 ## Setup
 
-In this codelab, we will build a brewery app. This is a great exercise to learn the intermediate parts of lit.
+In this codelab, we will build a brewery app. This is a great exercise to learn the intermediate parts of Lit.
 
 You can follow this codelab using anything that can display a simple HTML page. For the best editing experience, we recommend setting this up using your favorite IDE. Alternatively, you can use an online code editor like [jsbin](https://jsbin.com/?html,output), [stackblitz](https://stackblitz.com/) or [webcomponents.dev](https://webcomponents.dev/).
 
@@ -1368,9 +1368,9 @@ html` <li>${breweryTemplate(brewery, () => this.toggleVisitedStatus(brewery))}</
 
 ## Wrapping up
 
-That's the end of the intermediate lit codelab! If you're eager to learn more, you can take a look at the following resources:
+That's the end of the intermediate Lit codelab! If you're eager to learn more, you can take a look at the following resources:
 
-- [lit official docs](https://lit.dev/)
+- [Lit official docs](https://lit.dev/)
 - [open-wc code samples](https://open-wc.org/guides/developing-components/code-examples/)
 - [IDE help](https://open-wc.org/guides/tools/ide/)
 

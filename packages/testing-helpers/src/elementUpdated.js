@@ -4,7 +4,7 @@ const isDefinedPromise = action => typeof action === 'object' && Promise.resolve
 
 /**
  * Awaits for "update complete promises" of elements
- * - for [lit](https://lit.dev/docs/components/lifecycle/#reactive-update-cycle) that is `el.updateComplete`;
+ * - for [Lit](https://lit.dev/docs/components/lifecycle/#reactive-update-cycle) that is `el.updateComplete`;
  * - for [stencil](https://github.com/ionic-team/stencil/) that is `el.componentOnReady()`;
  *
  * If none of those specfic Promise hooks are found, it will wait for one frame via
