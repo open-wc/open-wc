@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.0.0-next.2
+
+### Minor Changes
+
+- b9b11adc: support snapshot testing with Web Test Runner
+
+### Patch Changes
+
+- Updated dependencies [b9b11adc]
+  - @open-wc/semantic-dom-diff@0.19.5-next.0
+
 ## 3.0.0-next.1
 
 ### Patch Changes

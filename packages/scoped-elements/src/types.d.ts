@@ -9,6 +9,7 @@ export type ScopedElementsMap = {
 
 export interface RenderOptions {
   creationScope: Node|ShadowRoot;
+  renderBefore: Node|undefined;
 }
 
 export declare class ScopedElementsHost {

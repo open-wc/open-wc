@@ -67,7 +67,6 @@ function createBasicConfig(userOptions = {}) {
   // when we need to add an additional legacy build, we turn the output option into an array
   // of output configs
   if (opts.legacyBuild) {
-    // @ts-ignore
     config.output = [
       config.output,
       {

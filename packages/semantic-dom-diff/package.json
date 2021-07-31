@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/semantic-dom-diff",
-  "version": "0.19.4",
+  "version": "0.19.5-next.1",
   "publishConfig": {
     "access": "public"
   },
@@ -15,9 +15,9 @@
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff",
   "module": "index.js",
   "scripts": {
-    "debug": "cd ../../ && yarn debug --group testing-helpers",
+    "debug": "cd ../../ && yarn debug --group semantic-dom-diff",
     "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
-    "test": "cd ../../ && yarn test:web --group testing-helpers"
+    "test": "cd ../../ && yarn test:web --group semantic-dom-diff"
   },
   "files": [
     "*.d.ts",
@@ -31,6 +31,7 @@
     "snapshots"
   ],
   "dependencies": {
-    "@types/chai": "^4.2.11"
+    "@types/chai": "^4.2.11",
+    "@web/test-runner-commands": "^0.5.7"
   }
 }

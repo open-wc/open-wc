@@ -61,15 +61,12 @@ describe('integration tests', () => {
       });
 
       it('passes the in-browser tests', async () => {
-        // @ts-ignore
         const browserTests = await page.evaluate(() => window.__tests);
         expect(browserTests).to.eql({
           partialCSS: true,
           litElement: true,
           startsWith: true,
           map: true,
-          importMeta: true,
-          importMeta2: true,
           asyncFunction: true,
           forOf: true,
           optionalChaining: true,

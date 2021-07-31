@@ -169,7 +169,7 @@ render() {
 }
 ```
 
-Interesting, the test should be green... but it's not :thinking: Let's take a look.
+Interesting, the test should be green... but it's not 🤔 Let's take a look.
 
 ```
 ✖ has a static shadowDom
@@ -193,7 +193,7 @@ If we use `innerHTML` to compare the DOM, we'd have to rely on simple string equ
 
 Fortunately, we've got you covered. If you're using `@open-wc/testing` then it automatically loads the `@open-wc/semantic-dom-diff` chai plugin for us to use.
 
-So let's try it out :muscle:
+So let's try it out 💪
 
 ```js
 // old:
@@ -206,7 +206,7 @@ expect(el).shadowDom.to.equal(`
 `);
 ```
 
-Bam :tada:
+Bam 🎉
 
 ```
 a11y input
@@ -257,7 +257,7 @@ connectedCallback() {
 }
 ```
 
-So we tested our light and shadow dom :muscle: and our tests run clean :tada:
+So we tested our light and shadow dom 💪 and our tests run clean 🎉
 
 > Note: Using the DOM API in a lit-element's lifecycle is an anti-pattern, however to allow for <abbr title="accessibility">a11y</abbr> it might be a real use case - anyways it's great for illustration purposes
 
@@ -426,7 +426,7 @@ FAILED TESTS:
 For more details please see [semantic-dom-diff](https://open-wc.org/testing/semantic-dom-diff.html).
 
 I think that's now enough about comparing dom trees...
-It's time for a change :hugs:
+It's time for a change 🤗
 
 ### Code coverage
 
@@ -493,7 +493,7 @@ it('can set/get the input value directly via the custom element', async () => {
 });
 ```
 
-uh oh :scream: we wanted to improve coverage but now we need fix an actual bug first :disappointed:
+uh oh 😱 we wanted to improve coverage but now we need fix an actual bug first 😞
 
 ```
 FAILED TESTS:
@@ -559,15 +559,15 @@ set value(newValue) {
 }
 ```
 
-Fatel error is gone :tada:
-But we now have a failing test :sob:
+Fatel error is gone 🎉
+But we now have a failing test 😭
 
 ```
 ✖ can set/get the input value directly via the custom element
 AssertionError: expected '' to equal 'foo'
 ```
 
-We may need a change of tactic :thinking:
+We may need a change of tactic 🤔
 We can add it as a separate `value` property and sync when needed.
 
 ```js
@@ -596,9 +596,9 @@ update(changedProperties) {
 }
 ```
 
-And we're finally back in business! :tada:
+And we're finally back in business! 🎉
 
-ok bug fixed - can we please get back to coverage? thank you :pray:
+ok bug fixed - can we please get back to coverage? thank you 🙏
 
 ### Back to coverage
 
@@ -666,7 +666,7 @@ it('can update its label', async () => {
 });
 ```
 
-boom 100% :muscle: we win :1st_place_medal:
+boom 100% 💪 we win 🥇
 
 ```
 =============================== Coverage summary ===============================
@@ -685,7 +685,7 @@ But wait we didn't even finish the test above - the code is still
 
 #### How come we have 100% test coverage?
 
-Lets first try to understand how code coverage works :thinking:
+Lets first try to understand how code coverage works 🤔
 The way code coverage gets measured is by applying a form of `instrumentation`. In short, before our code is executed it gets changed (`instrumented`) and it behaves something like this:
 
 **Note:** This is a super simplified version for illustration purposes.
@@ -760,7 +760,7 @@ log(msg) {
 }
 ```
 
-This result in no global object in our test code - sweet :hugs:
+This result in no global object in our test code - sweet 🤗
 
 ```js
 it('logs "We like cats too :)" if the value is set to "cat"', async () => {
@@ -772,12 +772,12 @@ it('logs "We like cats too :)" if the value is set to "cat"', async () => {
 });
 ```
 
-However, we still get the same error. Let's debug... boohoo apparently `update` is not sync - a wrong assumption I made :see*no_evil: I am saying \_assumptions are dangerous* quite often - still I fall for it from time to time :cry:.
+However, we still get the same error. Let's debug... boohoo apparently `update` is not sync - a wrong assumption I made 🙈 I am saying _assumptions are dangerous_ quite often - still I fall for it from time to time 😢.
 
 So what can we do? Sadly there seems to be no public api to do some sync actions triggered by an property update.
 Let's create an issue for it https://github.com/Polymer/lit-element/issues/643.
 
-For now apparently, the only way is to rely on a _private_ api. :see_no_evil:
+For now apparently, the only way is to rely on a _private_ api. 🙈
 Also, we needed to move the value sync to `updated` so it gets executed after every dom render.
 
 ```js
@@ -818,7 +818,7 @@ it('logs "We like cats too :)" if the value is set to "cat"', async () => {
 });
 ```
 
-wow, that was a little tougher than expected but we did it :muscle:
+wow, that was a little tougher than expected but we did it 💪
 
 ```
 SUMMARY:
@@ -858,7 +858,7 @@ So just by creating a `test/index.html`.
 ```
 
 and opening it via `owc-dev-server` in chrome, it will work perfectly fine.
-We got everything up and running without `webpack` or `karma` - sweet :hugs:
+We got everything up and running without `webpack` or `karma` - sweet 🤗
 
 ### Do the Cross-Browser Thing
 
@@ -876,7 +876,7 @@ SUMMARY:
 TOTAL: 42 SUCCESS
 ```
 
-Yeah, that works nicely! :hugs:
+Yeah, that works nicely! 🤗
 
 If there are failing tests it will output them in the summary with the specific browser where it failed.
 
@@ -972,6 +972,3 @@ Make sure to check out our other tools and recommendations at [open-wc.org](http
 
 Thanks to [Pascal](https://dev.to/thepassle) and [Benny](https://dev.to/bennypowers) for feedback and helping turn my scribbles to a followable story.
 
-```
-
-```

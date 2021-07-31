@@ -1,5 +1,17 @@
 # Change Log
 
+## 0.19.5-next.1
+
+### Patch Changes
+
+- b6e868d5: Use latest dependencies
+
+## 0.19.5-next.0
+
+### Patch Changes
+
+- b9b11adc: support snapshot testing with Web Test Runner
+
 ## 0.19.4
 
 ### Patch Changes

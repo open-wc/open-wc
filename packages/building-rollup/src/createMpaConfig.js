@@ -10,7 +10,7 @@ const { createSpaConfig } = require('./createSpaConfig.js');
 function createMpaConfig(options) {
   const userOptions = merge(
     {
-      html: { flatten: false },
+      html: { flattenOutput: false },
       workbox: {
         navigateFallback: '/404.html',
       },

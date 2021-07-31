@@ -1,4 +1,4 @@
-import './loadPolyfill.js';
+import '@webcomponents/scoped-custom-element-registry';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { adoptStyles } from '@lit/reactive-element/css-tag.js';
 
@@ -111,8 +111,12 @@ const ScopedElementsMixinImplementation = superclass =>
 
       this.renderOptions.creationScope = this.attachShadow(options);
 
-      if (this.renderOptions.creationScope instanceof ShadowRoot)
+      if (this.renderOptions.creationScope instanceof ShadowRoot) {
         adoptStyles(this.renderOptions.creationScope, elementStyles);
+
+        this.renderOptions.renderBefore =
+          this.renderOptions.renderBefore || this.renderOptions.creationScope.firstChild;
+      }
 
       return this.renderOptions.creationScope;
     }

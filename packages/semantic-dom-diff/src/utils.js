@@ -44,12 +44,19 @@ export const getCleanedShadowDom = el => {
   return el.shadowRoot.innerHTML;
 };
 
-export function snapshotPath(rootNode) {
+export function getMochaTestPath(runnable) {
   const path = [];
-  let node = rootNode;
+  let node;
+  if (runnable.type === 'hook') {
+    node = runnable.ctx.currentTest;
+  } else {
+    node = runnable;
+  }
 
   while (node && node.parent) {
-    path.push(node.title);
+    if (node.title) {
+      path.push(node.title);
+    }
     node = node.parent;
   }
   return path.reverse();
