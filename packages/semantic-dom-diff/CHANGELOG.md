@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.19.5-next.1
+
+### Patch Changes
+
+- b6e868d5: Use latest dependencies
+
 ## 0.19.5-next.0
 
 ### Patch Changes
