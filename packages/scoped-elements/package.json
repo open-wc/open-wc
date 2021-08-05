@@ -14,6 +14,7 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements",
   "module": "index.js",
+  "type": "module",
   "scripts": {
     "debug": "cd ../../ && yarn debug --group scoped-elements",
     "demo-build:before-nesting": "rollup -c demo/before-nesting/rollup.config.js",
