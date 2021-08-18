@@ -152,6 +152,12 @@ await elementUpdated(el);
 expect(el.foo).to.equal('bar');
 ```
 
+All of these helpers must be imported from `@open-wc/testing`, e.g.
+
+```js
+import { nextFrame, aTimeout, waitUntil } from '@open-wc/testing';
+```
+
 ### nextFrame
 
 Uses `requestAnimationFrame` to wait for the next frame.
