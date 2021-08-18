@@ -2,6 +2,8 @@
 
 This module provides a Chai plugin to perform automated accessibility tests via axe.
 
+This package is shipped as a dependency with `@open-wc/testing` so you do not need to install this seperately.
+
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
 ## Chai BDD UI

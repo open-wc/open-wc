@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "1.10.0",
+  "version": "2.0.0-next.1",
   "publishConfig": {
     "access": "public"
   },
@@ -26,9 +26,9 @@
     "build:ts": "rimraf dist && rollup -c demo/ts/rollup.spa.config.js",
     "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
     "start:babelrc": "npm run build:babelrc && npm run start:build",
-    "start:build": "node ../es-dev-server/dist/cli.js --root-dir dist --compatibility none --open",
+    "start:build": "wds --root-dir dist --open",
     "start:cjs": "npm run build:cjs && npm run start:build",
-    "start:demo": "node ../es-dev-server/dist/cli.js --app-index demo/js/index.html --open --compatibility none",
+    "start:demo": "wds --app-index demo/js/index.html --open",
     "start:modify-babel-plugin": "npm run build:modify-babel-plugin && npm run start:build",
     "start:mpa": "npm run build:mpa && npm run start:build",
     "start:spa": "npm run build:spa && npm run start:build",
@@ -62,11 +62,11 @@
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.9.0",
     "@open-wc/building-utils": "^2.18.3",
-    "@open-wc/rollup-plugin-html": "^1.2.5",
-    "@open-wc/rollup-plugin-polyfills-loader": "^1.1.8",
     "@rollup/plugin-babel": "^5.1.0",
     "@rollup/plugin-node-resolve": "^7.1.1",
-    "babel-plugin-bundled-import-meta": "^0.3.2",
+    "@web/rollup-plugin-html": "^1.7.0",
+    "@web/rollup-plugin-import-meta-assets": "^1.0.6",
+    "@web/rollup-plugin-polyfills-loader": "^1.1.0",
     "babel-plugin-template-html-minifier": "^4.0.0",
     "browserslist": "^4.16.0",
     "deepmerge": "^4.2.2",
@@ -74,7 +74,7 @@
     "parse5": "^5.1.1",
     "regenerator-runtime": "^0.13.7",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-workbox": "^5.2.1",
+    "rollup-plugin-workbox": "^6.0.0",
     "terser": "^4.6.7"
   }
 }
