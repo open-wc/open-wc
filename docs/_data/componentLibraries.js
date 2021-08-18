@@ -105,7 +105,7 @@ const componentLibraries = [
   {
     name: 'Patternfly Elements',
     url: 'https://patternflyelements.org/',
-    description: 'Red Hat\'s set of community-created web components based on PatternFly design.',
+    description: "Red Hat's set of community-created web components based on PatternFly design.",
   },
   {
     name: 'Shoelace',
