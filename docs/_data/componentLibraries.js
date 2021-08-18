@@ -103,6 +103,11 @@ const componentLibraries = [
       "Material Design Components from Material Design team themselves. Stay as close as possible to the changing specification with these components from Google's own Material Design team.",
   },
   {
+    name: 'Patternfly Elements',
+    url: 'https://patternflyelements.org/',
+    description: "Red Hat's set of community-created web components based on PatternFly design.",
+  },
+  {
     name: 'Shoelace',
     url: 'https://shoelace.style/',
     description:
