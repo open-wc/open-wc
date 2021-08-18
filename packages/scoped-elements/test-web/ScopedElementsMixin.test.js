@@ -1,5 +1,5 @@
 import { expect, fixture, defineCE, waitUntil } from '@open-wc/testing';
-import { LitElement, html } from 'lit';
+import { LitElement, html, css } from 'lit';
 import { until } from 'lit/directives/until.js';
 
 import { ScopedElementsMixin } from '../index.js';
@@ -519,6 +519,37 @@ describe('ScopedElementsMixin', () => {
 
     expect(firstElement.tagName.toLowerCase()).to.be.equal('item-a');
     expect(firstElement).to.be.instanceof(ItemA);
+  });
+
+  it('should adjust the `renderBefore` for shimmed adoptedStyleSheets', async () => {
+    const tag = defineCE(
+      class extends ScopedElementsMixin(LitElement) {
+        static get styles() {
+          return css`
+            p {
+              color: blue;
+            }
+          `;
+        }
+
+        render() {
+          return html`
+            <style>
+              p {
+                color: red;
+              }
+            </style>
+            <p>This should be blue!</p>
+          `;
+        }
+      },
+    );
+
+    const el = await fixture(`<${tag}></${tag}>`);
+
+    expect(
+      getComputedStyle(el.shadowRoot.querySelector('p')).getPropertyValue('color'),
+    ).to.be.equal('rgb(0, 0, 255)');
   });
 
   describe('directives integration', () => {

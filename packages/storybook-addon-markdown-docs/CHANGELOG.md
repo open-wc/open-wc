@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.2-next.0
+
+### Patch Changes
+
+- b6e868d5: Use latest MDJS dependencies
+
 ## 1.0.1
 
 ### Patch Changes
