@@ -111,8 +111,12 @@ const ScopedElementsMixinImplementation = superclass =>
 
       this.renderOptions.creationScope = this.attachShadow(options);
 
-      if (this.renderOptions.creationScope instanceof ShadowRoot)
+      if (this.renderOptions.creationScope instanceof ShadowRoot) {
         adoptStyles(this.renderOptions.creationScope, elementStyles);
+
+        this.renderOptions.renderBefore =
+          this.renderOptions.renderBefore || this.renderOptions.creationScope.firstChild;
+      }
 
       return this.renderOptions.creationScope;
     }
