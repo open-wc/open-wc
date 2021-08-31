@@ -4,7 +4,10 @@
  */
 
 const ruleExtender = require('eslint-rule-extender');
+const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer');
+const { elementHasAttribute } = require('../utils/elementHasAttribute');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate');
 
 // where do I store the valid values? in a text file?
 // two tests. has a lang attribute
@@ -27,13 +30,25 @@ const ValidLangRule = {
     schema: [],
   },
 
-  create() {
+  create(context) {
     return {
-      'Literal, TemplateElement': node => {
-        const { type } = node;
+      TaggedTemplateExpression(node) {
+        if (isHtmlTaggedTemplate(node, context)) {
+          const analyzer = TemplateAnalyzer.create(node);
 
-        if (type === 'Literal') {
-          // matches <html, and doesn't have lang between the closing >
+          analyzer.traverse({
+            enterElement(element) {
+              if (!elementHasAttribute(element, 'lang')) {
+                const loc = analyzer.getLocationFor(element);
+                context.report({
+                  loc,
+                  messageId: 'noLangPresent',
+                });
+              }
+
+              // add check to see if current value is a valid one
+            },
+          });
         }
       },
     };

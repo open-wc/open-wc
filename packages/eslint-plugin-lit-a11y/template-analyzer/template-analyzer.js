@@ -89,6 +89,7 @@ class TemplateAnalyzer {
       cached = new TemplateAnalyzer(node);
       analyzerCache.set(node, cached);
     }
+
     return cached;
   }
 
@@ -101,6 +102,7 @@ class TemplateAnalyzer {
   templateExpressionToHtml(node) {
     return node.quasi.quasis.reduce((html, quasi, i) => {
       const expr = node.quasi.expressions[i];
+
       const placeholder = getExpressionPlaceholder(node, quasi);
       // cache literal expressions for later analysis
       this.expressionValues.set(placeholder.replace(/"|'/g, ''), expr);
@@ -302,6 +304,8 @@ class TemplateAnalyzer {
      * @param {treeAdapter.Node | treeAdapter.DocumentFragment} parent
      */
     const visit = (node, parent) => {
+      // console.log(node.type);
+
       if (!node) {
         return;
       }
@@ -332,6 +336,9 @@ class TemplateAnalyzer {
         visitor.exit(node, parent);
       }
     };
+
+    // console.log('thiiis', this._ast);
+
     visit(this._ast, null);
   }
 }
