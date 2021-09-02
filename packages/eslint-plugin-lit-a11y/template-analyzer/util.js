@@ -139,6 +139,19 @@ function getExpressionPlaceholder(node, quasi) {
 exports.getExpressionPlaceholder = getExpressionPlaceholder;
 
 /**
+ * Checks to see if an element is the root HTML element
+ *
+ * @param {import("estree").TaggedTemplateExpression} node Root node
+ *
+ * @return {boolean}
+ */
+function isRootElement(node) {
+  return /<html(.*)<\/html>/.test(node);
+}
+
+exports.isRootElement = isRootElement;
+
+/**
  * Tests whether a string is a placeholder or not
  *
  * @param {string} value Value to test

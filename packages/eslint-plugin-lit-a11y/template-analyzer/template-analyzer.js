@@ -14,6 +14,7 @@ const {
   getExpressionPlaceholder,
   isExpressionPlaceholder,
   isLiteral,
+  isRootElement,
 } = require('./util');
 
 const analyzerCache = new WeakMap();
@@ -65,16 +66,25 @@ class TemplateAnalyzer {
      */
     this.expressionValues = new Map();
 
-    /** @type {treeAdapter.DocumentType} */
-    // TODO: This is not ideal
-    // @ts-expect-error: parse5.DocumentFragment is a union with {}, so let's fudge this type for convenience
-    this._ast = parse5.parseFragment(this.templateExpressionToHtml(node), {
+    const html = this.templateExpressionToHtml(node);
+    const options = {
       treeAdapter,
       sourceCodeLocationInfo: true,
       onParseError: err => {
         this.errors.push(err);
       },
-    });
+    };
+
+    // parseFragment strips out html elements
+    // we do this to run checks on <html>
+    if (isRootElement(html)) {
+      this._ast = parse5.parse(html, options);
+    } else {
+      /** @type {treeAdapter.DocumentType} */
+      // TODO: This is not ideal
+      // @ts-expect-error: parse5.DocumentFragment is a union with {}, so let's fudge this type for convenience
+      this._ast = parse5.parseFragment(html, options);
+    }
   }
 
   /**
