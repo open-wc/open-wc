@@ -27,9 +27,6 @@ ruleTester.run('valid-lang', rule, {
     {
       code: "html`<html lang='en'></html>`",
     },
-    {
-      code: "html`<div lang='en'></div>`",
-    },
   ],
   invalid: [
     {
