@@ -60,8 +60,8 @@ const RoleHasRequiredAriaAttrsRule = {
                   const presentAriaAttributes = Object.keys(element.attribs)
                     .filter(attr => attr.startsWith('aria-'))
                     .sort();
-                  const hasRequiredAriaAttributes = requiredAriaAttributes.every(
-                    (attr, i) => attr === presentAriaAttributes[i],
+                  const hasRequiredAriaAttributes = requiredAriaAttributes.every(attr =>
+                    presentAriaAttributes.includes(attr),
                   );
 
                   if (!hasRequiredAriaAttributes) {

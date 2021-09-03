@@ -38,7 +38,7 @@ snapshots["component-a error states matches shadow dom snapshot"] =
 
 snapshots["component-a failed snapshots does not throw an error when a snapshot does not match using negate"] = 
 `<div>
-  0.7128290778096771
+  0.2451530753255171
 </div>
 `;
 /* end snapshot component-a failed snapshots does not throw an error when a snapshot does not match using negate */
