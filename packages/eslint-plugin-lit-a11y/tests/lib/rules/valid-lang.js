@@ -37,5 +37,9 @@ ruleTester.run('valid-lang', rule, {
       code: 'html`<html></html>`',
       errors: [{ messageId: 'noLangPresent' }],
     },
+    {
+      code: 'html`<html>\n<div></div>\n</html>`',
+      errors: [{ messageId: 'noLangPresent' }],
+    },
   ],
 });
