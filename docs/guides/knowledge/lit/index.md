@@ -2,6 +2,6 @@
 excludeFromSearch: true
 ---
 
-# Knowledge >> LitElement ||20
+# Knowledge >> Lit ||20
 
 Please see a sub page

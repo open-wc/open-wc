@@ -22,7 +22,7 @@ class StringField extends ... {
 }
 ```
 
-This method should be called before the first render when the element gets attached to the DOM in [connectedCallback](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks) or [update](https://lit-element.polymer-project.org/guide/lifecycle#update) when using [LitElement](https://lit-element.polymer-project.org/).
+This method should be called before the first render when the element gets attached to the DOM in [connectedCallback](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks) or [update](https://lit.dev/docs/components/lifecycle/#reactive-update-cycle-performing) when using [LitElement](https://lit.dev/docs/components/overview/).
 
 ## The test case
 

@@ -1,12 +1,10 @@
-# lit-html & lit-element: basics
+# Lit: basics
 
 ## Introduction
 
-In this codelab, you will learn the basics of building web components using lit-html and lit-element.
+In this codelab, you will learn the basics of building web components using Lit.
 
-[lit-html](https://github.com/Polymer/lit-html) is an efficient, expressive and extensible HTML templating library for JavaScript. It lets you write HTML templates in JavaScript, then efficiently render and re-render those templates together with data to create and update DOM:
-
-[lit-element](https://github.com/Polymer/lit-element) is a simple base class for creating fast and lightweight web components with lit-html.
+[Lit](https://lit.dev/) is a simple library for building fast, lightweight web components.
 
 **What you need**
 
@@ -22,8 +20,8 @@ In this codelab, you will learn the basics of building web components using lit-
 
 **What you'll learn**
 
-- Creating web components with lit-element
-- Templating with lit-html
+- Creating web components with Lit's `LitElement` base class
+- Templating with Lit's `lit-html` template rendering engine
 - Repeating templates
 - Conditional rendering
 - Handling events
@@ -36,7 +34,7 @@ This codelab will go step by step, explaining each code change. At the bottom of
 
 ## Setup
 
-In this codelab, we will build a simple todo app. This is a great exercise for learn the basics of lit-html and lit-element.
+In this codelab, we will build a simple todo app. This is a great exercise for learn the basics of Lit.
 
 You can follow this codelab using anything that is able to display a simple HTML page. We recommend using an [online code editor like jsbin](https://jsbin.com/?html,output), but you can also create your own html page in your favorite IDE.
 
@@ -53,11 +51,11 @@ To get started, let's create a basic HTML page:
 
 If you run this in the browser and see '_My todo app_' on the screen, you're good to go.
 
-## lit-element setup
+## Lit
 
-[lit-element](https://github.com/Polymer/lit-element) takes care of most of the boilerplating when creating components. This provides a great developer experience while staying close to the browser platform and does not require any build steps to run in the browser. It's a mere 7kb in size which makes it an ideal lightweight choice.
+[Lit Components](https://lit.dev/docs/components/overview/) are reusable pieces of UI, and the base class `LitElement` takes care of most of the boilerplating when creating components. This provides a great developer experience while staying close to the browser platform and does not require any build steps to run in the browser. It's a mere 7kb in size which makes it an ideal lightweight choice.
 
-[lit-element](https://github.com/Polymer/lit-element) is written and distributed as an ES module. This means that we can import it using the browser's native module loader. Let's create a module script and import LitElement from a CDN:
+`LitElement` is written and distributed as an ES module. This means that we can import it using the browser's native module loader. Let's create a module script and import `LitElement` from a CDN:
 
 ```html
 <!DOCTYPE html>
@@ -65,7 +63,7 @@ If you run this in the browser and see '_My todo app_' on the screen, you're goo
 <html>
   <body>
     <script type="module">
-      import { LitElement } from 'https://unpkg.com/lit-element?module';
+      import { LitElement } from 'https://unpkg.com/lit?module';
     </script>
   </body>
 </html>
@@ -77,7 +75,7 @@ Make sure that you add `type="module"` to the script tag.
 In this example we are using `unpkg`, a CDN from which we can easily import any modules that are available on NPM. When working on a real project, it is a good idea to use an actual package manager such as NPM or yarn.
 </aside>
 
-Next, we need to define our web component. When writing a vanilla web component we extend from the native `HTMLElement` class that is already in your browser. With lit-element we need to import and extend from the `LitElement` class which, in turn, extends from the `HTMLElement` class.
+Next, we need to define our web component. When writing a vanilla web component we extend from the native `HTMLElement` class that is already in your browser. With Lit we need to import and extend from the `LitElement` class which, in turn, extends from the `HTMLElement` class.
 
 ```js
 class TodoApp extends LitElement {
@@ -112,7 +110,7 @@ If you run this in the browser you should see `lit element connected` logged to 
     <todo-app></todo-app>
 
     <script type="module">
-      import { LitElement } from 'https://unpkg.com/lit-element?module';
+      import { LitElement } from 'https://unpkg.com/lit?module';
 
       class TodoApp extends LitElement {
         connectedCallback() {
@@ -131,7 +129,7 @@ If you run this in the browser you should see `lit element connected` logged to 
 
 ## Hello world
 
-Now that we defined our element we can start adding a template. lit-element uses lit-html to handle the templating. lit-html works by writing HTML inside of template literals. Template literals are a type of strings which can span multiple lines, ideal for writing HTML:
+Now that we defined our element we can start adding a template. Lit uses lit-html to handle the templating, which is included in the Lit package itself, alongside LitElement. lit-html works by writing HTML inside of template literals. Template literals are a type of strings which can span multiple lines, ideal for writing HTML:
 
 ```js
 const template = `
@@ -142,7 +140,7 @@ const template = `
 In order to create an actual lit-html template, we need to prefix the template literal with a special HTML tag:
 
 ```js
-import { html } from 'https://unpkg.com/lit-element?module';
+import { html } from 'https://unpkg.com/lit?module';
 
 const template = html` <h1>Hello world</h1> `;
 ```
@@ -153,7 +151,7 @@ This is a native browser feature called [tagged template literals](https://devel
   Most popular IDEs support syntax highlighting of HTML inside template literals, but for some you might need to install a plugin. [See our IDE section](https://open-wc.org/developing/ide.html#visual-studio-code) to learn more about that.
 </aside>
 
-lit-element has a `render()` function. The element calls the function on each update and expects a template from it to render.
+LitElement has a `render()` function. The element calls the function on each update and expects a template from it to render.
 
 Let's start by displaying the title of our app:
 
@@ -177,7 +175,7 @@ If you refresh the browser, you should see the title displayed on the page.
     <todo-app></todo-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       class TodoApp extends LitElement {
         render() {
@@ -286,7 +284,7 @@ const footerTemplate = html`
     <todo-app></todo-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       const author = 'open-wc';
       const homepage = 'https://open-wc.org/';
@@ -407,7 +405,7 @@ You should now see three todo items on the screen, where the first one is alread
     <todo-app></todo-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       const author = 'open-wc';
       const homepage = 'https://open-wc.org/';
@@ -510,7 +508,7 @@ In the inspector you also see comment nodes between different parts of your temp
     <todo-app></todo-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       const author = 'open-wc';
       const homepage = 'https://open-wc.org/';
@@ -633,7 +631,7 @@ The list should now still update like before.
     <todo-app></todo-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       const author = 'open-wc';
       const homepage = 'https://open-wc.org/';
@@ -734,7 +732,7 @@ The delete button should now be fully functional. In this function as well, we a
     <todo-app></todo-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       const author = 'open-wc';
       const homepage = 'https://open-wc.org/';
@@ -873,7 +871,7 @@ _changeTodoFinished(e, changedTodo) {
     <todo-app></todo-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       const author = 'open-wc';
       const homepage = 'https://open-wc.org/';
@@ -1001,7 +999,7 @@ Remember that the `render()` function can be called quite often. If the computat
     <todo-app></todo-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       const author = 'open-wc';
       const homepage = 'https://open-wc.org/';
@@ -1167,7 +1165,7 @@ The next step will be to actually use the new child component. We will need to p
     <todo-app></todo-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       class TodoList extends LitElement {
         static get properties() {
@@ -1389,14 +1387,14 @@ After this, your application should work just like before, but the code is not a
 
 ## Styling
 
-We've covered the basics of templating and managing data with lit-element. The last remaining topic we need to look into is styling. This isn't a codelab on CSS, so we will only look at some of the specifics of working with styling in lit-element.
+We've covered the basics of templating and managing data with Lit. The last remaining topic we need to look into is styling. This isn't a codelab on CSS, so we will only look at some of the specifics of working with styling in lit.
 
-For styling, lit-element uses Shadow DOM. If you're not familiar with Shadow DOM, I recommend following the [web component basics](https://open-wc.org/codelabs/basics/web-components.html) codelab.
+For styling, Lit uses Shadow DOM. If you're not familiar with Shadow DOM, I recommend following the [web component basics](https://open-wc.org/codelabs/basics/web-components.html) codelab.
 
 To define the styles of your element we need to import the `css` tag and add a static styles property on our element. Let's add styles to the todo list:
 
 ```js
-import { LitElement, css } from 'https://unpkg.com/lit-element?module';
+import { LitElement, css } from 'https://unpkg.com/lit?module';
 
 class TodoList extends LitElement {
   static get properties() {
@@ -1451,7 +1449,7 @@ class TodoList extends LitElement {
 customElements.define('todo-list', TodoList);
 ```
 
-The styles we define here only apply to our element. This is because we're using Shadow DOM. Lit-element doesn't need to do any extra work. This means we can write simple CSS selectors, and we don't need to worry about causing conflicts with styles defined elsewhere in the page.
+The styles we define here only apply to our element. This is because we're using Shadow DOM. LitElement doesn't need to do any extra work. This means we can write simple CSS selectors, and we don't need to worry about causing conflicts with styles defined elsewhere in the page.
 
 <aside class="notice">
 <code>:host</code> is a special selector, which selects the host of the shadow root that these styles are associated with. In our case that's our own custom element.
@@ -1467,7 +1465,7 @@ The styles we define here only apply to our element. This is because we're using
     <todo-app></todo-app>
 
     <script type="module">
-      import { LitElement, html, css } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html, css } from 'https://unpkg.com/lit?module';
 
       class TodoList extends LitElement {
         static get properties() {
@@ -1609,14 +1607,13 @@ The styles we define here only apply to our element. This is because we're using
 
 ## Wrapping up
 
-And that's it! We've gone through the basics of lit-element and lit-html. Hopefully from here onwards you will be able to move forward working with lit-element and lit-html with confidence.
+And that's it! We've gone through the basics of Lit. Hopefully from here onwards you will be able to move forward working with Lit with confidence.
 
 If you're eager to learn more, you can take a look at the following resources:
 
-- [lit-html official docs](https://lit-html.polymer-project.org/)
-- [lit-element official docs](https://lit-element.polymer-project.org/)
-- [open-wc code samples](https://open-wc.org/developing/code-examples.html)
-- [IDE help](https://open-wc.org/developing/ide.html)
+- [Lit](https://lit.dev/)
+- [open-wc code samples](https://open-wc.org/guides/developing-components/code-examples/)
+- [IDE help](https://open-wc.org/guides/tools/ide/)
 
 To get started with your own project we recommend using open-wc's project scaffolding, it's easy to set it up using this command:
 

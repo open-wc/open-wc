@@ -2,18 +2,18 @@
 
 ## Introduction
 
-This codelab is a followup from the [lit-html & lit-element basics](https://open-wc.org/codelabs/#web-components-basics) codelab.
+This codelab is a followup from the [Lit basics](https://open-wc.org/codelabs/#web-components-basics) codelab.
 
-[lit-html](https://github.com/Polymer/lit-html) is an efficient, expressive and extensible HTML templating library for JavaScript. It lets you write HTML templates in JavaScript, then efficiently render and re-render those templates together with data to create and update DOM:
+[lit-html](https://lit.dev/docs/components/rendering/) is an efficient, expressive and extensible HTML templating library for JavaScript. It lets you write HTML templates in JavaScript, then efficiently render and re-render those templates together with data to create and update DOM.
 
-[lit-element](https://github.com/Polymer/lit-element) is a simple base class for creating fast and lightweight web components with lit-html.
+[LitElement](https://lit.dev/docs/components/overview/) is a simple base class for creating fast and lightweight web components with using `lit-html` as templating library and rendering engine.
 
 **What you need**
 
 - A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
 - Intermediate knowledge of HTML and Javascript
 - Basic knowledge of web components, see our [basics codelab](https://open-wc.org/codelabs/#web-components-basics) to get you started.
-- Basic knowledge of lit-html & lit-element, see our [basics codelab](https://open-wc.org/codelabs/#lit-html--lit-element-basics)
+- Basic knowledge of Lit, see our [basics codelab](https://open-wc.org/guides/developing-components/codelabs/#lit-basics)
 - Familiarity with the following concepts:
   - [Javascript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
   - [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
@@ -33,13 +33,13 @@ This codelab is a followup from the [lit-html & lit-element basics](https://open
 
 **How it works**
 
-Unlike the [basics codelab](https://open-wc.org/codelabs/#lit-html--lit-element-basics), we will not explain the required changes for each step in detail. Instead, we give background information and the desired end-result. In most steps, we offer some tips, most of them hidden behind a toggle.
+Unlike the [basics codelab](https://open-wc.org/guides/developing-components/codelabs/#lit-basics), we will not explain the required changes for each step in detail. Instead, we give background information and the desired end-result. In most steps, we offer some tips, most of them hidden behind a toggle.
 
 At the bottom of each section, there is a "View final result" button, this will show you the correct code that you should end up with, in case you get stuck. The steps are sequential, thus results from the previous steps carry over to the next step.
 
 ## Setup
 
-In this codelab, we will build a brewery app. This is a great exercise to learn the intermediate parts of lit-html and lit-element.
+In this codelab, we will build a brewery app. This is a great exercise to learn the intermediate parts of Lit.
 
 You can follow this codelab using anything that can display a simple HTML page. For the best editing experience, we recommend setting this up using your favorite IDE. Alternatively, you can use an online code editor like [jsbin](https://jsbin.com/?html,output), [stackblitz](https://stackblitz.com/) or [webcomponents.dev](https://webcomponents.dev/).
 
@@ -51,7 +51,7 @@ Let's create a basic HTML page with a module script, and import LitElement from 
 <html>
   <body>
     <script type="module">
-      import { LitElement } from 'https://unpkg.com/lit-element?module';
+      import { LitElement } from 'https://unpkg.com/lit?module';
     </script>
   </body>
 </html>
@@ -77,7 +77,7 @@ You should already know how to create a web component using `LitElement`. Go ahe
     <brewery-app></brewery-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       class BreweryApp extends LitElement {
         render() {
@@ -129,7 +129,7 @@ If you're stuck, you can <a href="https://www.openbrewerydb.org/documentation/01
 
 Besides displaying UI, web components can also use any of the available javascript APIs. We are going to use the `fetch` function to make an HTTP request to retrieve a list of breweries. `fetch` is an asynchronous operation, and it costs system resources. We, therefore, need to be a bit more careful about when and how we use it.
 
-`LitElement` has several lifecycle methods available for this, some of them will be familiar to you by now. See [this page](/guides/knowledge/lit-element/lifecycle/index.html) for a full overview and reference of all the available lifecycle methods.
+`LitElement` has several lifecycle methods available for this, some of them will be familiar to you by now. See [this page](/guides/knowledge/lit/lifecycle/#litelement-lifecycle) for a full overview and reference of all the available lifecycle methods.
 
 We could trigger our `fetch` in the constructor since it's run only once. But because it's a best practice to not perform any side effects there, it's better to use the `connectedCallback.` Because this method can be called multiple times during an element's lifecycle, we should be careful to trigger a `fetch` only when the data hasn't already been fetched before.
 
@@ -208,7 +208,7 @@ render() {
     <brewery-app></brewery-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       class BreweryApp extends LitElement {
         static get properties() {
@@ -299,7 +299,7 @@ render() {
     <brewery-app></brewery-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       class BreweryApp extends LitElement {
         static get properties() {
@@ -417,7 +417,7 @@ render() {
     <brewery-app></brewery-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       class BreweryApp extends LitElement {
         static get properties() {
@@ -576,7 +576,7 @@ In this example, we register an event listener for the `click` event, and call t
     <brewery-app></brewery-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       class BreweryApp extends LitElement {
         static get properties() {
@@ -756,7 +756,7 @@ render() {
     <brewery-app></brewery-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       class BreweryApp extends LitElement {
         static get properties() {
@@ -896,7 +896,7 @@ Then, on the top of your `render` function, you can filter the array of brewerie
     <brewery-app></brewery-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
 
       class BreweryApp extends LitElement {
         static get properties() {
@@ -1079,7 +1079,7 @@ html`
     <brewery-app></brewery-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
       import 'https://unpkg.com/@material/mwc-button?module';
 
       class BreweryApp extends LitElement {
@@ -1264,7 +1264,7 @@ html` <li>${breweryTemplate(brewery, () => this.toggleVisitedStatus(brewery))}</
     <brewery-app></brewery-app>
 
     <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+      import { LitElement, html } from 'https://unpkg.com/lit?module';
       import 'https://unpkg.com/@material/mwc-button?module';
 
       function breweryTemplate(brewery, toggleVisitedStatus) {
@@ -1368,12 +1368,11 @@ html` <li>${breweryTemplate(brewery, () => this.toggleVisitedStatus(brewery))}</
 
 ## Wrapping up
 
-That's the end of the intermediate lit-html & lit-element codelab! If you're eager to learn more, you can take a look at the following resources:
+That's the end of the intermediate Lit codelab! If you're eager to learn more, you can take a look at the following resources:
 
-- [lit-html official docs](https://lit-html.polymer-project.org/)
-- [lit-element official docs](https://lit-element.polymer-project.org/)
-- [open-wc code samples](https://open-wc.org/developing/code-examples.html)
-- [IDE help](https://open-wc.org/developing/ide.html)
+- [Lit official docs](https://lit.dev/)
+- [open-wc code samples](https://open-wc.org/guides/developing-components/code-examples/)
+- [IDE help](https://open-wc.org/guides/tools/ide/)
 
 To get started with your own project we recommend using open-wc's project scaffolding, it's easy to set it up using this command:
 

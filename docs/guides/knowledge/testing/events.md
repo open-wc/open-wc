@@ -47,7 +47,7 @@ These are the suggested ways of testing these events:
 
 #### firstUpdated
 
-Testing `firstUpdated` is a little tricky. As soon as you add the component to the DOM, it is executed - with an arbitrary delay depending on the work your component does see [lit-element lifecycle](https://lit-element.polymer-project.org/guide/lifecycle#firstupdated).
+Testing `firstUpdated` is a little tricky. As soon as you add the component to the DOM, it is executed - with an arbitrary delay depending on the work your component does see [Lit lifecycle](https://lit.dev/docs/components/lifecycle/#reactive-update-cycle-completing).
 
 To test this, you can use `fixtureSync` and `await oneEvent` to resolve the event.
 
