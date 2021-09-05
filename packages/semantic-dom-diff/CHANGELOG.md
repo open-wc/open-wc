@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.19.5-next.2
+
+### Patch Changes
+
+- 40837d10: - use latest axe-core
+  - allow not required attributes in role testing
+- 580ce0ee: Snapshot testing with WTR updated to not modify the snapshot files running the test
+
 ## 0.19.5-next.1
 
 ### Patch Changes

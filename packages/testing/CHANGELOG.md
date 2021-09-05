@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.0.0-next.3
+
+### Patch Changes
+
+- 40837d10: - use latest axe-core
+  - allow not required attributes in role testing
+- Updated dependencies [40837d10]
+- Updated dependencies [580ce0ee]
+  - chai-a11y-axe@1.3.2-next.0
+  - @open-wc/semantic-dom-diff@0.19.5-next.2
+
 ## 3.0.0-next.2
 
 ### Minor Changes
