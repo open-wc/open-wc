@@ -104,3 +104,4 @@ If you're importing lit-html from a package that re-exports lit-html, like for e
 - [lit-a11y/role-supports-aria-attr](./rules/role-supports-aria-attr.md)
 - [lit-a11y/scope](./rules/scope.md)
 - [lit-a11y/tabindex-no-positive](./rules/tabindex-no-positive.md)
+- [lit-a11y/valid-lang](./rules/valid-lang.md)
