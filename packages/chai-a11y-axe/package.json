@@ -1,6 +1,6 @@
 {
   "name": "chai-a11y-axe",
-  "version": "1.3.2-next.0",
+  "version": "1.3.2-next.1",
   "publishConfig": {
     "access": "public"
   },
