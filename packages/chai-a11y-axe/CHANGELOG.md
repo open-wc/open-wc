@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.3.2-next.2
+
+### Patch Changes
+
+- 6940a3cb: fix: override bad publication
+
 ## 1.3.2-next.0
 
 ### Patch Changes
