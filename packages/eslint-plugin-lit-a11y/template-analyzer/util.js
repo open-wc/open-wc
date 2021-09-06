@@ -146,6 +146,7 @@ exports.getExpressionPlaceholder = getExpressionPlaceholder;
  * @return {boolean}
  */
 function isRootElement(node) {
+  // You can find a breakdown of this regex pattern here: https://regex101.com/r/lKJKFv/1
   return /<html([\s\S]*)<\/html>/.test(node);
 }
 
