@@ -23,7 +23,6 @@
     "config"
   ],
   "peerDependencies": {
-    "@babel/eslint-plugin": "^7.6.0",
     "eslint-plugin-html": "^6.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-lit": "^1.3.0",
