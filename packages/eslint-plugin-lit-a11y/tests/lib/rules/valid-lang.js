@@ -27,19 +27,33 @@ ruleTester.run('valid-lang', rule, {
     {
       code: "html`<html lang='en'></html>`",
     },
+    {
+      code: "html`<div lang='en'></div>`",
+    },
+    {
+      code: 'html`<html lang="${\'en\'}"></html>`',
+    },
   ],
   invalid: [
     {
-      code: "html`<html lang='invalid-lang'></html>`",
-      errors: [{ messageId: 'invalidLang' }],
-    },
-    {
       code: 'html`<html></html>`',
-      errors: [{ messageId: 'noLangPresent' }],
+      errors: [{ messageId: 'noLangPresent', column: 6 }],
     },
     {
       code: 'html`<html>\n<div></div>\n</html>`',
-      errors: [{ messageId: 'noLangPresent' }],
+      errors: [{ messageId: 'noLangPresent', column: 6 }],
+    },
+    {
+      code: "html`<html lang='invalid-lang'></html>`",
+      errors: [{ messageId: 'invalidLang', column: 12 }],
+    },
+    {
+      code: 'html`<html lang=${"foobar"}></html>`',
+      errors: [{ messageId: 'invalidLang', column: 12 }],
+    },
+    {
+      code: 'html`<html lang=${1}></html>`',
+      errors: [{ messageId: 'invalidLang', column: 12 }],
     },
   ],
 });

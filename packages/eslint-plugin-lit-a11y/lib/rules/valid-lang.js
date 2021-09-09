@@ -6,6 +6,7 @@
 const ruleExtender = require('eslint-rule-extender');
 const tags = require('language-tags');
 const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer');
+const { isExpressionPlaceholder, isLiteral } = require('../../template-analyzer/util');
 const { elementHasAttribute } = require('../utils/elementHasAttribute');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate');
@@ -46,7 +47,15 @@ const ValidLangRule = {
                   });
                 }
 
-                const { lang } = element.attribs;
+                let { lang } = element.attribs;
+
+                if (isExpressionPlaceholder(lang)) {
+                  const expr = analyzer.getExpressionFromPlaceholder(lang);
+
+                  if (isLiteral(expr)) {
+                    lang = `${expr.value}`;
+                  }
+                }
 
                 if (!tags.check(lang)) {
                   const loc = analyzer.getLocationForAttribute(element, 'lang');
