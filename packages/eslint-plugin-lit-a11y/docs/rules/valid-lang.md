@@ -1,11 +1,11 @@
 # valid-lang
 
 Enforce the `lang` attribute on the `html` element.
-The `lang` attribute will only be populated with a value that's a [BCP 47](https://www.ietf.org/rfc/bcp/bcp47.txt) compliant
+The `lang` attribute will only be populated with a value that's [BCP 47](https://www.ietf.org/rfc/bcp/bcp47.txt) compliant
 
 ## Rule Details
 
-This rule aims to prevent degradation of keyboard accessibility for keyboard-focusable elements.
+This rule aims to ensure HTML content is [WCAG 3.1.1 compliant](https://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning-doc-lang-id.html).
 
 Examples of **incorrect** code for this rule:
 

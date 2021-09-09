@@ -36,10 +36,10 @@ const ValidLangRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              const loc = analyzer.getLocationFor(element);
-
               if (element.name === 'html') {
                 if (!elementHasAttribute(element, 'lang')) {
+                  const loc = analyzer.getLocationFor(element);
+
                   return context.report({
                     loc,
                     messageId: 'noLangPresent',
@@ -49,6 +49,8 @@ const ValidLangRule = {
                 const { lang } = element.attribs;
 
                 if (!tags.check(lang)) {
+                  const loc = analyzer.getLocationForAttribute(element, 'lang');
+
                   return context.report({
                     loc,
                     messageId: 'invalidLang',
