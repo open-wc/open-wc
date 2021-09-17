@@ -37,6 +37,7 @@
   ],
   "dependencies": {
     "@open-wc/scoped-elements": "^2.0.0-next.0",
+    "@open-wc/semantic-dom-diff": "^0.19.5-next.2",
     "lit": "^2.0.0-rc.1"
   },
   "types": "types/index.d.ts"
