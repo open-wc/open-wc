@@ -10,8 +10,8 @@ A typical testing file looks like this
 ```js
 import { html, fixture } from '@open-wc/testing'; // html will be lit-html 2.x
 
-it('works for tags', () => {
-  const el = await fixture(fixtureHtml`<my-el></my-el>`);
+it('works for tags', async () => {
+  const el = await fixture(html`<my-el></my-el>`);
 });
 ```
 
@@ -21,11 +21,11 @@ With this export you can combine the usage of lit-html 2.x for the fixture and t
 import { html as fixtureHtml, fixture } from '@open-wc/testing'; // fixtureHtml will be lit-html 2.x
 import { html } from 'my-library'; // html will be lit-html 1.x
 
-it('works for tags', () => {
+it('works for tags', async () => {
   const el = await fixture(fixtureHtml`<my-el></my-el>`);
 });
 
-it('can be combined', () => {
+it('can be combined', async () => {
   class MyExtension extends LibraryComponent {
     render() {
       // needs to be lit-html 1.x as the library component is using LitElement with lit-html 1.x
@@ -45,7 +45,7 @@ A possible workaround for this is
 import { html, fixture } from '@open-wc/testing'; // html will be lit-html 2.x
 import { render, html as html1, fancyDirective } from 'my-library'; // html and render will be lit-html 1.x
 
-it('is a workaround for directives', () => {
+it('is a workaround for directives', async () => {
   const node = document.createElement('div');
   render(html1`<p>Testing ${fancyDirective('output')}</p>`, node);
 
