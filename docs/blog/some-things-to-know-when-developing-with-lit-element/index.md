@@ -42,7 +42,7 @@ render() {
 }
 ```
 
-From here, you could get very close to simply copy and paste the rest of a functional UI component into a LitElement for an early test of its capabilities. Leveraging scoped variables like this, rather than class properties, does leave you in much the same place that functional alternatives to UI development do; needing additional tools for memoization of that scope. As using LitElement means you're already in a class context, we can use the capabilities of a class directly rather than synthesizing them with memoization.
+From here, you could get very close to copy and paste the rest of a functional UI component into a LitElement for an early test of its capabilities. Leveraging scoped variables like this, rather than class properties, does leave you in much the same place that functional alternatives to UI development do; needing additional tools for memoization of that scope. As using LitElement means you're already in a class context, we can use the capabilities of a class directly rather than synthesizing them with memoization.
 
 A simpler approach to merging the two concepts is to set that fallback into the class property itself. Above I showed doing this in the `render()` lifecycle method, however, I find it much nicer to _only_ have the template surfaced therein. Leveraging one of the earlier lifecycle methods for managing defaults, validation, sanitation, transformation, or derivation help to maintain that structure. In this case, we'll use `willUpdate()` which doesn't require a `super` call or a returned value, but will always be visited during each render lifecycle:
 
@@ -222,7 +222,7 @@ Defaulting numbers to `px` would be a foot-gun. Instead, Lit encourages you to b
 
 ---
 
-One of the best things about `lit-html`, the renderer underlying LitElement, is that, if you want to live on that wild side, you could easily create your own directive that applied number typed properties as `px` and leverage it in your own work. Here are [the docs](https://lit.dev/docs/templates/custom-directives/) for doing just that! If you're still not convinced, check out some [directives with which I've experimented](https://dev.to/open-wc/doing-a-flip-with-lit-html-2-0-3gn4).
+One of the best things about `lit-html`, the renderer underlying LitElement, is that, if you want to live on that wild side, you could create your own directive that applied number typed properties as `px` and leverage it in your own work. Here are [the docs](https://lit.dev/docs/templates/custom-directives/) for doing just that! If you're still not convinced, check out some [directives with which I've experimented](https://dev.to/open-wc/doing-a-flip-with-lit-html-2-0-3gn4).
 
 NOTE: the above article, "Doing a FLIP with lit-html@2.0", was written against an RC of `lit@2.0` and may not be 100% current. I'll be looking to update it here, soon.
 
