@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.0-next.5
+
+### Patch Changes
+
+- ff17798f: Adjust the renderBefore node so that any styles in Lit content render before adoptedStyleSheets.
+
 ## 2.0.0-next.4
 
 ### Minor Changes
