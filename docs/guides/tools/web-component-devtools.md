@@ -17,7 +17,6 @@ Web Component DevTools provides advanced features to the developer, straight fro
 - Observing dispatched events
 - Calling functions of the custom element
 
-
 ### Supported libraries
 
 Web Component DevTools also works with libraries built for developing Web Components. Currently the libraries, with extra support by DevTools are:
