@@ -32,7 +32,7 @@
     "helpers"
   ],
   "peerDependencies": {
-    "lit": "^2.0.0-rc.1"
+    "lit": "^2.0.0"
   },
   "sideEffects": false
 }
