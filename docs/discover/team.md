@@ -15,7 +15,8 @@ members:
   - name: Westbrook Johnson
     github: Westbrook
     twitter: WestbrookJ
-    bio:
+    bio: >-
+      As a Senior Computer Scientist at Adobe, Westbrook leads the [Spectrum Web Components](https://opensource.adobe.com/spectrum-web-components) project. As a member of the broader web community, he is the chairperson of the w3c's [Web Components Community Group](https://www.w3.org/community/webcomponents/).
 
   - name: Benny Powers
     github: bennypowers
