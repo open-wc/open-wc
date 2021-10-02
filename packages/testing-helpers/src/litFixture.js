@@ -32,7 +32,7 @@ const isUsefulNode = ({ nodeType, textContent }) => {
  * @template {Element} T - Is an element or a node
  * @param {LitHTMLRenderable} template
  * @param {import('./fixture-no-side-effect.js').FixtureOptions} [options]
- * @param {import('./scopedElementsWrapper.js').getScopedElementsTemplate} [getScopedElementsTemplate]
+ * @param {import('./scopedElementsWrapper.js').ScopedElementsTemplateGetter} [getScopedElementsTemplate]
  * @returns {T}
  */
 export function litFixtureSync(template, options = {}, getScopedElementsTemplate) {
@@ -60,6 +60,7 @@ export function litFixtureSync(template, options = {}, getScopedElementsTemplate
  * @returns {Promise<T>}
  */
 export async function litFixture(template, options = {}) {
+  /** @type {import('./scopedElementsWrapper.js').ScopedElementsTemplateGetter|undefined} */
   const getScopedElementsTemplate = options.scopedElements
     ? await import('./scopedElementsWrapper.js').then(
         scopedElementWrapper => scopedElementWrapper.getScopedElementsTemplate,
