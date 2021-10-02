@@ -3,7 +3,6 @@ import { isTemplateResult } from 'lit/directive-helpers.js';
 import { fixtureWrapper } from './fixtureWrapper.js';
 import { elementUpdated } from './elementUpdated.js';
 import { NODE_TYPES } from './lib.js';
-import { getScopedElementsTemplate } from './scopedElementsWrapper.js';
 
 /**
  * @typedef {
@@ -33,9 +32,10 @@ const isUsefulNode = ({ nodeType, textContent }) => {
  * @template {Element} T - Is an element or a node
  * @param {LitHTMLRenderable} template
  * @param {import('./fixture-no-side-effect.js').FixtureOptions} [options]
+ * @param {import('./scopedElementsWrapper.js').getScopedElementsTemplate} [getScopedElementsTemplate]
  * @returns {T}
  */
-export function litFixtureSync(template, options = {}) {
+export function litFixtureSync(template, options = {}, getScopedElementsTemplate) {
   const wrapper = /** @type {HTMLElement} */ (fixtureWrapper(options.parentNode));
 
   render(
@@ -60,10 +60,15 @@ export function litFixtureSync(template, options = {}) {
  * @returns {Promise<T>}
  */
 export async function litFixture(template, options = {}) {
+  const getScopedElementsTemplate = options.scopedElements
+    ? await import('./scopedElementsWrapper.js').then(
+        scopedElementWrapper => scopedElementWrapper.getScopedElementsTemplate,
+      )
+    : undefined;
   /** @type {T} */
   // NB: in the case of scopedElements, this is ScopedElementsTestWrapper, not T,
   // but that's only a small lie
-  const el = litFixtureSync(template, options);
+  const el = litFixtureSync(template, options, getScopedElementsTemplate);
   await elementUpdated(el);
 
   if (options.scopedElements) {

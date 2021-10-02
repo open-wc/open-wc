@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-helpers",
-  "version": "2.0.0-next.0",
+  "version": "2.0.0-next.1",
   "publishConfig": {
     "access": "public"
   },
@@ -36,8 +36,8 @@
     "fixtures"
   ],
   "dependencies": {
-    "@open-wc/scoped-elements": "^2.0.0-next.0",
-    "lit": "^2.0.0-rc.1"
+    "@open-wc/scoped-elements": "^2.0.0-next.6",
+    "lit": "^2.0.0"
   },
   "types": "types/index.d.ts"
 }

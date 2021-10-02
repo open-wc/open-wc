@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/scoped-elements",
-  "version": "2.0.0-next.5",
+  "version": "2.0.0-next.6",
   "publishConfig": {
     "access": "public"
   },
@@ -41,9 +41,9 @@
     "helpers"
   ],
   "dependencies": {
-    "@lit/reactive-element": "^1.0.0-rc.1",
+    "@lit/reactive-element": "^1.0.0",
     "@open-wc/dedupe-mixin": "^1.3.0",
-    "@webcomponents/scoped-custom-element-registry": "0.0.2"
+    "@webcomponents/scoped-custom-element-registry": "^0.0.3"
   },
   "types": "types/index.d.ts"
 }

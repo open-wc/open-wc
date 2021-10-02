@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.0-next.1
+
+### Patch Changes
+
+- 4b9ea6f6: Use lit@2.0 stable based dependencies across the project.
+- 45c7fcc1: Import scoped registries code dynamically to prevent library consumers that do not leverage this API from being bound to its load order requirements.
+- Updated dependencies [4b9ea6f6]
+  - @open-wc/scoped-elements@2.0.0-next.6
+
 ## 2.0.0-next.0
 
 ### Major Changes
