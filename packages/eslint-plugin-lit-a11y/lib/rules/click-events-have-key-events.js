@@ -4,7 +4,7 @@
  */
 
 const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { isIncludedInAOM } = require('../utils/isIncludedInAOM.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { isNonInteractiveElement } = require('../utils/isNonInteractiveElement.js');
@@ -87,7 +87,7 @@ const ClickEventsHaveKeyEventsRule = {
                 isIncludedInAOM(element) &&
                 isNonInteractiveElement(element, options)
               ) {
-                const loc = analyzer.getLocationFor(element);
+                const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
 
                 context.report({ loc, messageId: 'clickableNonInteractiveElements' });
               }

@@ -6,7 +6,7 @@
 
 const ruleExtender = require('eslint-rule-extender');
 const { runVirtualRule } = require('axe-core');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 
@@ -35,9 +35,9 @@ const AutocompleteValidRule = {
      */
     function isInputElementWithAutoComplete(element) {
       return (
-        element.name === 'input' &&
+        (element.name === 'input' &&
         element.attribs &&
-        typeof element.attribs.autocomplete === 'string'
+        typeof element.attribs.autocomplete === 'string')
       );
     }
 
@@ -66,7 +66,7 @@ const AutocompleteValidRule = {
                   return;
                 }
 
-                const loc = analyzer.getLocationFor(element);
+                const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
                 context.report({
                   loc,
                   message: violations[0].nodes[0].all[0].message,

@@ -5,7 +5,7 @@
 
 const ruleExtender = require('eslint-rule-extender');
 const { roles } = require('aria-query');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { isAriaRole } = require('../utils/aria.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
@@ -65,7 +65,7 @@ const RoleHasRequiredAriaAttrsRule = {
                   );
 
                   if (!hasRequiredAriaAttributes) {
-                    const loc = analyzer.getLocationFor(element);
+                    const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
                     context.report({
                       loc,
                       message: `The "{{role}}" role requires the {{plural}} {{requiredAttrs}}.`,

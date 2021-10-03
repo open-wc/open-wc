@@ -4,7 +4,7 @@
  */
 
 const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { hasAccessibleChildren } = require('../utils/hasAccessibleChildren.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
@@ -38,7 +38,7 @@ const AnchorHasContentRule = {
             enterElement(element) {
               if (element.name === 'a') {
                 if (!hasAccessibleChildren(element)) {
-                  const loc = analyzer.getLocationFor(element);
+                  const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
                   context.report({
                     loc,
                     message: 'Anchor should contain accessible content.',

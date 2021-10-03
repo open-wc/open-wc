@@ -4,10 +4,11 @@
  */
 
 const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { generateObjSchema, enumArraySchema } = require('../utils/schemas.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
+const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -79,38 +80,39 @@ const AnchorIsValidRule = {
                     activeAspects.noHref &&
                     (!hasClickListener || (hasClickListener && !activeAspects.preferButton))
                   ) {
-                    const loc = analyzer.getLocationFor(element);
+                    const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
                     context.report({ loc, messageId: 'noHrefErrorMessage' });
                   }
 
                   // If no spread operator is found but a click handler is preset it should be a button.
                   if (hasClickListener && activeAspects.preferButton) {
-                    const loc = analyzer.getLocationFor(element);
+                    const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
                     context.report({ loc, messageId: 'preferButtonErrorMessage' });
                   }
                   return;
                 }
 
                 // Hrefs have been found, now check for validity.
-                const invalidHrefValues = [element.attribs.href].filter(href => {
-                  const { value } = analyzer.describeAttribute(href);
+                const value = getLiteralAttributeValue(
+                  analyzer,
+                  element,
+                  'href',
+                  context.getSourceCode(),
+                );
 
-                  if (typeof value !== 'string') return false;
-
-                  return (
-                    !value.length ||
+                const invalidHrefValue =
+                  typeof value === 'string' &&
+                  (!value.length ||
                     (options.allowHash === false && value === '#') ||
-                    /^\W*?javascript:/.test(value)
-                  );
-                });
+                    /^\W*?javascript:/.test(value));
 
-                if (invalidHrefValues.length !== 0) {
+                if (invalidHrefValue) {
                   // If a click handler is found it should be a button, otherwise it is an invalid link.
                   if (hasClickListener && activeAspects.preferButton) {
-                    const loc = analyzer.getLocationFor(element);
+                    const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
                     context.report({ loc, messageId: 'preferButtonErrorMessage' });
                   } else if (activeAspects.invalidHref) {
-                    const loc = analyzer.getLocationFor(element);
+                    const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
                     context.report({ loc, messageId: 'invalidHrefErrorMessage' });
                   }
                 }

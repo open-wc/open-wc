@@ -4,7 +4,7 @@
  */
 
 const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { hasAccessibleChildren } = require('../utils/hasAccessibleChildren.js');
 const { isCustomElement } = require('../utils/isCustomElement.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
@@ -74,7 +74,7 @@ const HeadingHasContentRule = {
                 !hasAccessibleChildren(element) &&
                 !isHiddenFromScreenReader(element)
               ) {
-                const loc = analyzer.getLocationFor(element);
+                const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
 
                 const messageId = 'headingHasContent';
 

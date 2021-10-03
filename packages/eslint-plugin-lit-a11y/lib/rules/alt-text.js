@@ -4,7 +4,7 @@
  */
 
 const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { elementHasAttribute, elementHasSomeAttribute } = require('../utils/elementHasAttribute.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
@@ -57,10 +57,10 @@ const AltTextRule = {
      */
     function isUnlabeledAOMImg(element) {
       return (
-        element.name === 'img' &&
+        (element.name === 'img' &&
         element.attribs.role !== 'presentation' &&
         !isHiddenFromScreenReader(element) &&
-        !elementHasAttribute(element, 'alt')
+        !elementHasAttribute(element, 'alt'))
       );
     }
 
@@ -71,10 +71,10 @@ const AltTextRule = {
      */
     function isUnlabeledImgRole(element) {
       return (
-        element.name !== 'img' &&
+        (element.name !== 'img' &&
         element.attribs.role === 'img' &&
         !isHiddenFromScreenReader(element) &&
-        !elementHasSomeAttribute(element, ALT_ATTRS)
+        !elementHasSomeAttribute(element, ALT_ATTRS))
       );
     }
 
@@ -85,11 +85,10 @@ const AltTextRule = {
 
           analyzer.traverse({
             enterElement(element) {
+              const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
               if (isUnlabeledAOMImg(element)) {
-                const loc = analyzer.getLocationFor(element);
                 context.report({ loc, messageId: 'imgAttrs' });
               } else if (isUnlabeledImgRole(element)) {
-                const loc = analyzer.getLocationFor(element);
                 context.report({
                   loc,
                   messageId: 'roleImgAttrs',

@@ -4,7 +4,7 @@
  */
 
 const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 
@@ -43,7 +43,7 @@ const NoInvalidChangeHandlerRule = {
                 const blur = Object.keys(element.attribs).includes('@blur');
 
                 if (change && !blur) {
-                  const loc = analyzer.getLocationFor(element);
+                  const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
                   context.report({
                     loc,
                     message: `@blur must be used instead of @change on <{{tagName}}>, unless absolutely necessary and it causes no negative consequences for keyboard only or screen reader users.`,

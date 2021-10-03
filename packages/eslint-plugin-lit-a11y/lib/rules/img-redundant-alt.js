@@ -4,11 +4,12 @@
  */
 
 const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { isAriaHidden } = require('../utils/aria.js');
 const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
+const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
 
 if (!('ListFormat' in Intl)) {
   /* eslint-disable global-require */
@@ -81,14 +82,20 @@ const ImgRedundantAltRule = {
 
               const bannedKeywords = [...DEFAULT_KEYWORDS, ...optionsKeywords];
 
-              const { value } = analyzer.describeAttribute(element.attribs.alt);
+              const alt = getLiteralAttributeValue(
+                analyzer,
+                element,
+                'alt',
+                context.getSourceCode(),
+              );
 
-              if (!value) return;
-
-              const alt = value.toString();
+              if (!alt) return;
 
               const contraband = bannedKeywords.filter(keyword =>
-                alt.toString().toLowerCase().includes(keyword.toLowerCase()),
+                alt
+                  .toString()
+                  .toLowerCase()
+                  .includes(keyword.toLowerCase()),
               );
 
               if (contraband.length > 0) {

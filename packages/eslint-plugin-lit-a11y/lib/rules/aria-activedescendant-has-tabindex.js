@@ -3,10 +3,11 @@
  * @author open-wc
  */
 const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 const { isInteractiveElement } = require('../utils/isInteractiveElement.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
+const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -47,7 +48,12 @@ const AriaActiveDescendantHasTabindexRule = {
               // property will be undefined.
               if (isInteractiveElement(element) && tabindex === undefined) return;
 
-              const { value } = analyzer.describeAttribute(tabindex);
+              const value = getLiteralAttributeValue(
+                analyzer,
+                element,
+                'tabindex',
+                context.getSourceCode(),
+              );
 
               if (tabindex && value === undefined) return;
 
@@ -55,7 +61,7 @@ const AriaActiveDescendantHasTabindexRule = {
 
               if (tabIndex >= -1) return;
 
-              const loc = analyzer.getLocationFor(element);
+              const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
 
               context.report({ loc, messageId: 'ariaActiveDescendantHasTabindex' });
             },

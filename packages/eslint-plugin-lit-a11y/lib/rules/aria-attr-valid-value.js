@@ -4,7 +4,7 @@
  */
 const ruleExtender = require('eslint-rule-extender');
 const { aria } = require('aria-query');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { getElementAriaAttributes } = require('../utils/aria.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');

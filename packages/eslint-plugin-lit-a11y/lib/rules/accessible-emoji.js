@@ -5,8 +5,8 @@
 
 const emojiRegex = require('emoji-regex');
 const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
-const { isTextNode } = require('../../template-analyzer/util.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
+const { isTextNode } = require('../utils/ast.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
@@ -74,7 +74,7 @@ const AccessibleEmojiRule = {
               const isSpan = element.name === 'span';
 
               if (hasLabel === false || rolePropValue !== 'img' || isSpan === false) {
-                const loc = analyzer.getLocationFor(element);
+                const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
                 context.report({ loc, messageId: 'wrapEmoji' });
               }
             },
