@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.0-next.3
+
+### Patch Changes
+
+- 72e67571: Fix type error caused by `getScopedElementsTemplate` by adding `ScopedElementsTemplateGetter`
+
 ## 2.0.0-next.2
 
 ### Minor Changes
