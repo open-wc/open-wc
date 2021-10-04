@@ -6,8 +6,8 @@ published: true
 description: 'When comparing tooling opportunities it can be valuable to understand both sides in their native context before calling one better than the other.'
 tags: [lit, webcomponents, typescript, learning]
 canonical_url: https://open-wc.org/blog/some-things-to-know-when-developing-with-lit/
-cover_image: /blog/some-things-to-know-when-developing-with-lit/images/blog-header.jpg
-socialMediaImage: /blog/some-things-to-know-when-developing-with-lit/images/social-media-image.jpg
+cover_image: /blog/some-things-to-know-when-developing-with-lit/images/blog-header.png
+socialMediaImage: /blog/some-things-to-know-when-developing-with-lit/images/social-media-image.png
 ---
 
 When reviewing software with which you have little experience, it's pretty common to attempt to compare it to software you have used before. That can help you get a handle on the general ergonomics and decisions behind the two pieces of software in question. However, one thing that this approach is not particularly good at is comparing the new software _in situ_. You may have spent a good amount of time investigating, researching, and getting comfortable with the software you're already using in the context of your particular use casso much so, that it may even be the best solution available in that context. Comparing a new software in that context (unless it, too, is purpose-built for that context) can do a disservice to the software under test, as well as to your ability to fully understand the benefits of that software.
