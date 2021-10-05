@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.1.0-next.1
+
+### Patch Changes
+
+- 40837d10: - use latest axe-core
+  - allow not required attributes in role testing
+
 ## 1.1.0-next.0
 
 ### Minor Changes
