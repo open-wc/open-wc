@@ -167,7 +167,7 @@ const customEvent = new CustomEvent('custom-event', {
     wasHeard: false,
   },
 });
-el.didispatchEventspatch(customEvent);
+el.dispatchEvent(customEvent);
 console.log(customEvent.detail.wasHeard); // true
 ```
 

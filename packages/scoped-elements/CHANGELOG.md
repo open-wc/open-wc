@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.0.0-next.6
+
+### Patch Changes
+
+- 4b9ea6f6: Use lit@2.0 stable based dependencies across the project.
+
+## 2.0.0-next.5
+
+### Patch Changes
+
+- ff17798f: Adjust the renderBefore node so that any styles in Lit content render before adoptedStyleSheets.
+
 ## 2.0.0-next.4
 
 ### Minor Changes
