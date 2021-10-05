@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/lit-helpers",
-  "version": "0.4.0-next.0",
+  "version": "0.4.0-next.1",
   "publishConfig": {
     "access": "public"
   },
@@ -14,6 +14,7 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/lit-helpers",
   "module": "index.js",
+  "type": "module",
   "exports": {
     ".": "./index.js"
   },
@@ -32,7 +33,7 @@
     "helpers"
   ],
   "peerDependencies": {
-    "lit": "^2.0.0-rc.1"
+    "lit": "^2.0.0"
   },
   "sideEffects": false
 }
