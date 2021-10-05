@@ -7,7 +7,7 @@ import { adoptStyles } from '@lit/reactive-element/css-tag.js';
  * @typedef {import('./types').ScopedElementsMixin} ScopedElementsMixin
  * @typedef {import('./types').ScopedElementsHost} ScopedElementsHost
  * @typedef {import('./types').ScopedElementsMap} ScopedElementsMap
- * @typedef {import('@lit/reactive-element').CSSResultFlatArray} CSSResultFlatArray
+ * @typedef {import('@lit/reactive-element').CSSResultOrNative} CSSResultOrNative
  */
 
 /**
@@ -48,7 +48,7 @@ const ScopedElementsMixinImplementation = superclass =>
     /**
      * Obtains the element styles.
      *
-     * @returns {CSSResultFlatArray}
+     * @returns {CSSResultOrNative[]}
      */
     static get elementStyles() {
       return this.__elementStyles;

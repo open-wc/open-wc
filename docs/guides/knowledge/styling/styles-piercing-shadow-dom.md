@@ -40,7 +40,7 @@ import '@rocket/launch/inline-notification/inline-notification.js';
 
 <inline-notification type="warning">
 
-Do note that setting `all: initial;` will also reset any CSS custom properties, which you'll usually _want_ to maintain. If you find yourself going this route, it's worth considering if you need an iframe instead.
+Do note that setting `all: initial;` will _not_ reset CSS custom properties. If for some reason you find yourself needing to reset a specific property, you must specify it explicitly.
 
 </inline-notification>
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
-import { getSnapshotConfig, getSnapshot, saveSnapshot } from '@web/test-runner-commands';
+import { getSnapshot, getSnapshotConfig, saveSnapshot } from '@web/test-runner-commands';
 import { getDiffableHTML, isDiffOptions } from './get-diffable-html.js';
-import { getOuterHtml, getCleanedShadowDom, getMochaTestPath } from './src/utils.js';
+import { getCleanedShadowDom, getMochaTestPath, getOuterHtml } from './src/utils.js';
 
 /** @typedef {import('./get-diffable-html.js').DiffOptions} DiffOptions */
 
@@ -162,24 +162,23 @@ export const chaiDomDiff = (chai, utils) => {
     const name = path.join(' ');
     const snapshot = getDiffableHTML(actual, options);
     const currentSnapshot = await getSnapshot({ name });
+    const config = await getSnapshotConfig();
 
-    if (currentSnapshot) {
-      const config = await getSnapshotConfig();
-      if (!config.updateSnapshots) {
-        if (negate ? currentSnapshot === snapshot : currentSnapshot !== snapshot) {
-          throw new chai.AssertionError(
-            message || `Snapshot ${name} does not match the saved snapshot on disk`,
-            {
-              actual: snapshot,
-              expected: currentSnapshot,
-              showDiff: true,
-            },
-            chai.util.flag(this, 'ssfi'),
-          );
-        }
+    if (currentSnapshot && !config.updateSnapshots) {
+      if (negate ? currentSnapshot === snapshot : currentSnapshot !== snapshot) {
+        throw new chai.AssertionError(
+          message || `Snapshot ${name} does not match the saved snapshot on disk`,
+          {
+            actual: snapshot,
+            expected: currentSnapshot,
+            showDiff: true,
+          },
+          chai.util.flag(this, 'ssfi'),
+        );
       }
+    } else {
+      await saveSnapshot({ name, content: snapshot });
     }
-    await saveSnapshot({ name, content: snapshot });
   }
 
   function assertHtmlEqualsSnapshot(actual, negate, ...rest) {

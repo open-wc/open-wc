@@ -23,7 +23,7 @@ console.log(myDiv.hasAttribute('foo'));
 Attributes can also be set from javascript, and will update the attribute in the DOM:
 
 ```js
-myDiv.getAttribute('foo', 'not-bar');
+myDiv.setAttribute('foo', 'not-bar');
 ```
 
 ```html
