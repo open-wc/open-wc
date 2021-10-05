@@ -13,28 +13,9 @@ Web Component DevTools provides advanced features to the developer, straight fro
 - Listing custom elements on the page, and accessible iframes inside the page
 - Filtering custom elements on the list
 - Inspecting and modifying the attributes of custom elements
-- \*Inspecting and modifying the properties of custom elements
-- \*Observing dispatched events
-- \*Calling functions of the custom element
-
--\* Feature is limited to [supported libraries](#supported-libraries) and projects with a [Custom Elements Manifest](https://github.com/webcomponents/custom-elements-manifest).
-
-**_For the best development experience it is recommended to integrate a Custom Elements analyzer to the project, so that the elements get analyzed on file changes, generating a up-to-date manifest for the devtools to use._**
-
-An example development setup of a [Modern Web Dev Server](https://modern-web.dev/docs/dev-server/overview/) paired with a CEM analyzer would look like this:
-
-```json
-{
-  "scripts": {
-    "start": "concurrently \"wds\" \"cem analyze --watch\""
-  },
-  "devDependencies": {
-    "@custom-elements-manifest/analyzer": "^0.4.11",
-    "@web/dev-server": "^0.1.18",
-    "concurrently": "^6.2.0"
-  }
-}
-```
+- Inspecting and modifying the properties of custom elements
+- Observing dispatched events
+- Calling functions of the custom element
 
 ### Supported libraries
 
@@ -54,6 +35,8 @@ The list of extra support libraries will grow as adoption grows
 
 ## Download
 
+You can find the most up to date information from the [Web Component DevTools web page](https://matsuuu.github.io/web-component-devtools/)
+
 You can get the Web Component DevTools from the [Chrome Web Store](https://chrome.google.com/webstore/detail/web-component-devtools/gdniinfdlmmmjpnhgnkmfpffipenjljo/related)
 
 And from the [Firefox Addons Catalog](https://addons.mozilla.org/en-US/firefox/addon/web-component-devtools/)
@@ -62,4 +45,4 @@ And from the [Firefox Addons Catalog](https://addons.mozilla.org/en-US/firefox/a
 
 A brief video of showcasing the features and steps on setting up your development environment to get the most out of DevTools can be found [in Youtube](https://youtu.be/D6W5iX3-E9E)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/D6W5iX3-E9E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rDv5DmgGc70" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.4.0-next.1
+
+### Patch Changes
+
+- 4b9ea6f6: Use lit@2.0 stable based dependencies across the project.
+
 ## 0.4.0-next.0
 
 ### Minor Changes

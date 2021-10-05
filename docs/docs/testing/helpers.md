@@ -19,7 +19,7 @@ npm i -D lit
 
 # Usage
 
-We recommend using this library through [@open-wc/testing](https://open-wc.org/testing/testing.html) which preconfigures and combines this library with other testing libraries.
+We recommend using this library through [@open-wc/testing](https://open-wc.org/docs/testing/testing-package/) which preconfigures and combines this library with other testing libraries.
 
 The examples that are shown here assume this setup, and import from `@open-wc/testing`. If you want to use this library standalone, you will need to import from `@open-wc/testing-helpers` directly instead:
 
