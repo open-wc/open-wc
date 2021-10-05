@@ -138,7 +138,7 @@ The following limitations should be kept in mind when working with open-wc HMR:
 
 ## Detecting web components
 
-To "hot replace" an edited web component we have to be able to detect component definitions in your code. By default we look for usage of `customElements.define` and/or classes that from `HTMLElement` directly.
+To "hot replace" an edited web component we have to be able to detect component definitions in your code. By default we look for usage of `customElements.define` and/or classes that derive from `HTMLElement` directly.
 
 For other use cases, you can specify base classes or decorators to indicate component definitions.
 
