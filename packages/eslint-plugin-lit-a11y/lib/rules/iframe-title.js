@@ -35,8 +35,7 @@ const IframeTitleRule = {
      */
     function isUntitledIframe(element) {
       return (
-        (element.name === 'iframe' &&
-        (!element.attribs.title || element.attribs.title === undefined))
+        element.name === 'iframe' && (!element.attribs.title || element.attribs.title === undefined)
       );
     }
 

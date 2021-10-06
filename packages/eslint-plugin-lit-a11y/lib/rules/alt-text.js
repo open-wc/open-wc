@@ -57,10 +57,10 @@ const AltTextRule = {
      */
     function isUnlabeledAOMImg(element) {
       return (
-        (element.name === 'img' &&
+        element.name === 'img' &&
         element.attribs.role !== 'presentation' &&
         !isHiddenFromScreenReader(element) &&
-        !elementHasAttribute(element, 'alt'))
+        !elementHasAttribute(element, 'alt')
       );
     }
 
@@ -71,10 +71,10 @@ const AltTextRule = {
      */
     function isUnlabeledImgRole(element) {
       return (
-        (element.name !== 'img' &&
+        element.name !== 'img' &&
         element.attribs.role === 'img' &&
         !isHiddenFromScreenReader(element) &&
-        !elementHasSomeAttribute(element, ALT_ATTRS))
+        !elementHasSomeAttribute(element, ALT_ATTRS)
       );
     }
 

@@ -92,10 +92,7 @@ const ImgRedundantAltRule = {
               if (!alt) return;
 
               const contraband = bannedKeywords.filter(keyword =>
-                alt
-                  .toString()
-                  .toLowerCase()
-                  .includes(keyword.toLowerCase()),
+                alt.toString().toLowerCase().includes(keyword.toLowerCase()),
               );
 
               if (contraband.length > 0) {
