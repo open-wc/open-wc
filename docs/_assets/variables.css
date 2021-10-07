@@ -1,12 +1,27 @@
 html {
-  --page-background: white;
-  --footer-background: rgba(0, 0, 0, 0.02);
   --primary-color: rgb(44, 62, 80);
   --primary-color-lighter: #449ad7;
   --primary-color-darker: #1a5285;
   --primary-color-accent: #cee5f6;
+
+  /* Contrast colors */
   --contrast-color-light: #fff;
   --contrast-color-dark: #1d3557;
+
+  /* background-colors */
+  --page-background: white;
+  --footer-background: rgba(0, 0, 0, 0.02);
+
+  /* typography */
+  --primary-font-family: 'Open Sans', sans-serif;
+  --secondary-font-family: 'Montserrat', sans-serif;
+  --monospace-font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', 'Courier',
+    monospace;
+
+  /* controls */
+  --switch-unselected-color: #808080;
+  --switch-selected-color: #42b983;
+
   --primary-text-color: #2c3e50;
   --primary-lines-color: #ccc;
   --markdown-link-color: #2758ff;
