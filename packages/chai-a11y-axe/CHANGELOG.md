@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.3.2
+
+### Patch Changes
+
+- 40837d10: - use latest axe-core
+  - allow not required attributes in role testing
+- 6940a3cb: fix: override bad publication
+
 ## 1.3.2-next.2
 
 ### Patch Changes
