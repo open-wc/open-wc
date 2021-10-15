@@ -30,7 +30,7 @@ members:
   - name: Pascal Schilp
     github: thepassle
     twitter: passle_
-    bio:
+    bio: Software engineer at ING
 ---
 
 # Team
