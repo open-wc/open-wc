@@ -5,12 +5,16 @@ members:
   - name: Thomas Allmer
     github: daKmoR
     twitter: daKmoR
-    bio:
+    bio: >-
+      Senior front-end developer at ING, leading the [Lion Web Components](https://github.com/ing-bank/lion) project.
+      Believes strongly in the web and open source. Has a passion for straight forwards solutions with little abstractions.
+      Thomas is the original founder of Open Web Components and lives in Vienna, Austria with his wife and son.
 
   - name: Lars Den Bakker
     github: LarsDenBakker
     twitter: LarsdenBakker18
-    bio:
+    bio: >-
+      Senior front-end developer at ING.
 
   - name: Westbrook Johnson
     github: Westbrook
