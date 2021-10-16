@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- 1649ba46: Release bump version as major versions have already been used and unpublished in an accidental publish about a year ago.
+- Updated dependencies [1649ba46]
+  - @open-wc/scoped-elements@2.0.1
+
 ## 2.0.0
 
 ### Major Changes
