@@ -88,3 +88,5 @@ export function getScopedElementsTemplate(template, scopedElements) {
   // @ts-ignore
   return html(strings, scopedElements, template);
 }
+
+/** @typedef {typeof getScopedElementsTemplate} ScopedElementsTemplateGetter */

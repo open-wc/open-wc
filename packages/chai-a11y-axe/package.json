@@ -1,6 +1,6 @@
 {
   "name": "chai-a11y-axe",
-  "version": "1.3.2-next.2",
+  "version": "1.3.2",
   "publishConfig": {
     "access": "public"
   },
@@ -14,6 +14,7 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/chai-a11y-axe",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../"
   },

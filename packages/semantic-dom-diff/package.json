@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/semantic-dom-diff",
-  "version": "0.19.5-next.2",
+  "version": "0.19.5",
   "publishConfig": {
     "access": "public"
   },
@@ -14,6 +14,7 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/semantic-dom-diff",
   "module": "index.js",
+  "type": "module",
   "scripts": {
     "debug": "cd ../../ && yarn debug --group semantic-dom-diff",
     "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
