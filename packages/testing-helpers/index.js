@@ -17,10 +17,4 @@ export {
 export { litFixture, litFixtureSync } from './src/litFixture.js';
 export { stringFixture, stringFixtureSync } from './src/stringFixture.js';
 
-/** @deprecated please do import { html } from 'lit/static-html.js'; */
-const deprecatedHtml = html;
-
-/** @deprecated please do import { unsafeStatic } from 'lit/static-html.js'; */
-const deprecatedUnsafeStatic = unsafeStatic;
-
-export { deprecatedHtml as html, deprecatedUnsafeStatic as unsafeStatic };
+export { html, unsafeStatic };

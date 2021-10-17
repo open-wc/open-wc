@@ -25,7 +25,7 @@ This codelab is a followup from the [lit-html & lit-element basics](https://open
 
 **What you'll learn**
 
-- Connecting you web component to an API
+- Connecting your web component to an API
 - Handling asynchronous rendering
 - Complex templating
 - Using third-party components
