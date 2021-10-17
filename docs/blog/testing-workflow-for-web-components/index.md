@@ -971,4 +971,3 @@ Follow us on [Twitter](https://twitter.com/openwc), or follow me on my personal 
 Make sure to check out our other tools and recommendations at [open-wc.org](https://open-wc.org).
 
 Thanks to [Pascal](https://dev.to/thepassle) and [Benny](https://dev.to/bennypowers) for feedback and helping turn my scribbles to a followable story.
-
