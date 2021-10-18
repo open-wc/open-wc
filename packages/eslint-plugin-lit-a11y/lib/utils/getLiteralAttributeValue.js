@@ -9,7 +9,7 @@
 function getLiteralAttributeValue(analyzer, element, attr, source) {
   const expr = analyzer.getAttributeValue(element, attr, source);
 
-  if (expr === undefined) {
+  if (expr === null) {
     return undefined;
   }
 
