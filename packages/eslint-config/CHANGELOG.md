@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.0
+
+### Patch Changes
+
+- Updated dependencies [ed2b36e8]
+- Updated dependencies [ed2b36e8]
+  - eslint-plugin-lit-a11y@2.0.0
+
 ## 5.0.0
 
 ### Patch Changes
