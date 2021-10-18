@@ -14,7 +14,7 @@ Open Web Components provides a set of defaults, recommendations and tools to hel
 ```bash
 # in a new or existing folder:
 npm init @open-wc
-# requires node 10 & npm 6 or higher
+# requires node 14 & npm 6 or higher
 ```
 
 This will kickstart a menu guiding you through all available actions.

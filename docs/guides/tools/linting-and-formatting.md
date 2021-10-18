@@ -26,9 +26,21 @@ For an automated setup, use our [project generator](../developing-components/get
 
 To set up our config manually, install the necessary packages:
 
-```bash
+<code-tabs collection="package-managers" default-tab="npm">
+
+```bash tab npm
 npm install --save-dev eslint @open-wc/eslint-config prettier eslint-config-prettier
 ```
+
+```bash tab yarn
+yarn add -D eslint @open-wc/eslint-config prettier eslint-config-prettier
+```
+
+```bash tab pnpm
+pnpm add -D eslint @open-wc/eslint-config prettier eslint-config-prettier
+```
+
+</code-tabs>
 
 And update your package.json with the commands and config:
 
@@ -66,9 +78,21 @@ To lint changed files on commit, we recommend [husky](https://www.npmjs.com/pack
 
 Install the necessary packages:
 
-```
+<code-tabs collection="package-managers" default-tab="npm">
+
+```bash tab npm
 npm install --save-dev husky lint-staged
 ```
+
+```bash tab yarn
+yarn add -D husky lint-staged
+```
+
+```bash tab pnpm
+pnpm add -D husky lint-staged
+```
+
+</code-tabs>
 
 And update your package.json:
 
