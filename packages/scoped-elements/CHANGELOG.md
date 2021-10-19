@@ -1,5 +1,46 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- 1649ba46: Release bump version as major versions have already been used and unpublished in an accidental publish about a year ago.
+
+## 2.0.0
+
+### Major Changes
+
+- edca5a82: Adds compatibility for [lit](https://lit.dev/) with `lit-html v2` and `lit-element v3`.
+
+  - This version does NOT work with lit-element v2 - please use Scoped Elements v1 for it
+  - Uses a `CustomElementsRegistry` instance for each component class instead of for each component instance. In case you need to have a registry for each component instance, you must override the registry `get` and `set` methods to bind the registry to the component instance
+
+    ```js
+    /** @override */
+    get registry() {
+      return this.__registry;
+    }
+
+    /** @override */
+    set registry(registry) {
+      this.__registry = registry;
+    }
+    ```
+
+  - `getScopedTagName` became deprecated - use the native `el.tagName` instead
+
+### Minor Changes
+
+- 1e54d297: Use the webcomponents polyfill instead of the forked one
+
+### Patch Changes
+
+- 4b9ea6f6: Use lit@2.0 stable based dependencies across the project.
+- c05d92fb: Mark `loadPolyfill.js` as a side effect
+- 0513917c: Keep deprecated static getScopedTagName function
+- ff17798f: Adjust the renderBefore node so that any styles in Lit content render before adoptedStyleSheets.
+- a0b5e360: fix getScopedTagName returning the tag that was passed in
+
 ## 2.0.0-next.6
 
 ### Patch Changes

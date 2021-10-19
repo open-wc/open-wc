@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- 1649ba46: Release bump version as major versions have already been used and unpublished in an accidental publish about a year ago.
+
+## 2.0.0
+
+### Major Changes
+
+- f377bf99: switch from open-wc plugins to web plugins. see MIGRATION.md for a migration guide
+
+### Patch Changes
+
+- d076f6a0: update rollup-plugin-workbox
+
 ## 2.0.0-next.1
 
 ### Patch Changes
