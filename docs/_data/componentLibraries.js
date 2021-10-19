@@ -29,7 +29,7 @@ const componentLibraries = [
     description:
       'Enterprise-Ready, Consumer-Simple. A scalable and customizable open source design system',
   },
-    {
+  {
     name: 'Clever Components',
     url: 'https://github.com/CleverCloud/clever-components',
     description:
