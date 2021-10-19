@@ -39,6 +39,10 @@ const AriaActiveDescendantHasTabindexRule = {
 
           analyzer.traverse({
             enterElement(element) {
+              if (!element.sourceCodeLocation) {
+                return; // probably a tree correction node
+              }
+
               if (!Object.keys(element.attribs).includes('aria-activedescendant')) return;
 
               const { tabindex } = element.attribs;
@@ -61,9 +65,15 @@ const AriaActiveDescendantHasTabindexRule = {
 
               if (tabIndex >= -1) return;
 
-              const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
+              const loc =
+                analyzer.resolveLocation(
+                  element.sourceCodeLocation.startTag,
+                  context.getSourceCode(),
+                ) ?? node.loc;
 
-              context.report({ loc, messageId: 'ariaActiveDescendantHasTabindex' });
+              if (loc) {
+                context.report({ loc, messageId: 'ariaActiveDescendantHasTabindex' });
+              }
             },
           });
         }

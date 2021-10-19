@@ -46,9 +46,19 @@ const IframeTitleRule = {
 
           analyzer.traverse({
             enterElement(element) {
+              if (!element.sourceCodeLocation) {
+                return; // probably a tree correction node
+              }
+
               if (isUntitledIframe(element)) {
-                const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
-                context.report({ loc, messageId: 'iframeTitle' });
+                const loc =
+                  analyzer.resolveLocation(
+                    element.sourceCodeLocation.startTag,
+                    context.getSourceCode(),
+                  ) ?? node.loc;
+                if (loc) {
+                  context.report({ loc, messageId: 'iframeTitle' });
+                }
               }
             },
           });

@@ -53,14 +53,18 @@ const AriaRoleRule = {
                 if (role === undefined) return;
 
                 if (!isConcreteAriaRole(role)) {
-                  const loc = analyzer.getLocationForAttribute(element, attr);
-                  context.report({
-                    loc,
-                    messageId: 'invalidRole',
-                    data: {
-                      role,
-                    },
-                  });
+                  const loc =
+                    analyzer.getLocationForAttribute(element, attr, context.getSourceCode()) ??
+                    node.loc;
+                  if (loc) {
+                    context.report({
+                      loc,
+                      messageId: 'invalidRole',
+                      data: {
+                        role,
+                      },
+                    });
+                  }
                 }
               }
             },

@@ -87,16 +87,20 @@ const ImgRedundantAltRule = {
 
               if (contraband.length > 0) {
                 const banned = formatter.format(contraband);
-                const loc = analyzer.getLocationForAttribute(element, 'alt');
+                const loc =
+                  analyzer.getLocationForAttribute(element, 'alt', context.getSourceCode()) ??
+                  node.loc;
 
-                context.report({
-                  loc,
-                  messageId: 'imgRedundantAlt',
-                  data: {
-                    banned,
-                    plural: contraband.length > 1 ? 'words' : 'word',
-                  },
-                });
+                if (loc) {
+                  context.report({
+                    loc,
+                    messageId: 'imgRedundantAlt',
+                    data: {
+                      banned,
+                      plural: contraband.length > 1 ? 'words' : 'word',
+                    },
+                  });
+                }
               }
             },
           });

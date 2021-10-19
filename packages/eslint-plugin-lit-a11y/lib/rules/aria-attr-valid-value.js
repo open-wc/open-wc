@@ -140,12 +140,16 @@ const AriaAttrTypesRule = {
                     return;
                   }
 
-                  const loc = analyzer.getLocationForAttribute(element, attr);
+                  const loc =
+                    analyzer.getLocationForAttribute(element, attr, context.getSourceCode()) ??
+                    node.loc;
 
-                  context.report({
-                    loc,
-                    message: errorMessage(attr, type, permittedValues),
-                  });
+                  if (loc) {
+                    context.report({
+                      loc,
+                      message: errorMessage(attr, type, permittedValues),
+                    });
+                  }
                 });
               }
             },

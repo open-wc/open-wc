@@ -75,7 +75,20 @@ const AltTextRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
+              if (!element.sourceCodeLocation) {
+                return; // probably a tree correction element
+              }
+
+              const loc =
+                analyzer.resolveLocation(
+                  element.sourceCodeLocation.startTag,
+                  context.getSourceCode(),
+                ) ?? node.loc;
+
+              if (!loc) {
+                return;
+              }
+
               if (isUnlabeledAOMImg(element)) {
                 context.report({ loc, messageId: 'imgAttrs' });
               } else if (isUnlabeledImgRole(element)) {

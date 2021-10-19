@@ -39,20 +39,31 @@ const NoAutofocusRule = {
           analyzer.traverse({
             enterElement(element) {
               if ('autofocus' in element.attribs) {
-                const loc = analyzer.getLocationForAttribute(element, 'autofocus');
-                context.report({
-                  loc,
-                  messageId: 'noAutofocus',
-                  data: { type: 'attribute' },
-                });
+                const loc =
+                  analyzer.getLocationForAttribute(element, 'autofocus', context.getSourceCode()) ??
+                  node.loc;
+                if (loc) {
+                  context.report({
+                    loc,
+                    messageId: 'noAutofocus',
+                    data: { type: 'attribute' },
+                  });
+                }
               }
               if ('.autofocus' in element.attribs) {
-                const loc = analyzer.getLocationForAttribute(element, '.autofocus');
-                context.report({
-                  loc,
-                  messageId: 'noAutofocus',
-                  data: { type: 'property' },
-                });
+                const loc =
+                  analyzer.getLocationForAttribute(
+                    element,
+                    '.autofocus',
+                    context.getSourceCode(),
+                  ) ?? node.loc;
+                if (loc) {
+                  context.report({
+                    loc,
+                    messageId: 'noAutofocus',
+                    data: { type: 'property' },
+                  });
+                }
               }
             },
           });

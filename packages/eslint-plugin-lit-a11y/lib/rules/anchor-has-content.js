@@ -36,13 +36,23 @@ const AnchorHasContentRule = {
 
           analyzer.traverse({
             enterElement(element) {
+              if (!element.sourceCodeLocation) {
+                return; // probably a tree correction node
+              }
+
               if (element.name === 'a') {
                 if (!hasAccessibleChildren(element)) {
-                  const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
-                  context.report({
-                    loc,
-                    message: 'Anchor should contain accessible content.',
-                  });
+                  const loc =
+                    analyzer.resolveLocation(
+                      element.sourceCodeLocation.startTag,
+                      context.getSourceCode(),
+                    ) ?? node.loc;
+                  if (loc) {
+                    context.report({
+                      loc,
+                      message: 'Anchor should contain accessible content.',
+                    });
+                  }
                 }
               }
             },

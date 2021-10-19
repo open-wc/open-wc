@@ -52,15 +52,19 @@ const RoleSupportsAriaAttrRule = {
                   .filter(isAriaPropertyName)
                   .forEach(attr => {
                     if (invalidAriaPropsForRole.includes(attr)) {
-                      const loc = analyzer.getLocationForAttribute(element, attr);
-                      context.report({
-                        loc,
-                        message: `The "{{role}}" role must not be used with the "${attr}" attribute.'`,
-                        data: {
-                          role,
-                          attr,
-                        },
-                      });
+                      const loc =
+                        analyzer.getLocationForAttribute(element, attr, context.getSourceCode()) ??
+                        node.loc;
+                      if (loc) {
+                        context.report({
+                          loc,
+                          message: `The "{{role}}" role must not be used with the "${attr}" attribute.'`,
+                          data: {
+                            role,
+                            attr,
+                          },
+                        });
+                      }
                     }
                   });
               }

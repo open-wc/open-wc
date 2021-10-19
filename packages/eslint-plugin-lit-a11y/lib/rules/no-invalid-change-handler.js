@@ -38,19 +38,29 @@ const NoInvalidChangeHandlerRule = {
 
           analyzer.traverse({
             enterElement(element) {
+              if (!element.sourceCodeLocation) {
+                return; // probably a tree correction node
+              }
+
               if (applicableTypes.includes(element.name)) {
                 const change = Object.keys(element.attribs).includes('@change');
                 const blur = Object.keys(element.attribs).includes('@blur');
 
                 if (change && !blur) {
-                  const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
-                  context.report({
-                    loc,
-                    message: `@blur must be used instead of @change on <{{tagName}}>, unless absolutely necessary and it causes no negative consequences for keyboard only or screen reader users.`,
-                    data: {
-                      tagName: element.name,
-                    },
-                  });
+                  const loc =
+                    analyzer.resolveLocation(
+                      element.sourceCodeLocation.startTag,
+                      context.getSourceCode(),
+                    ) ?? node.loc;
+                  if (loc) {
+                    context.report({
+                      loc,
+                      message: `@blur must be used instead of @change on <{{tagName}}>, unless absolutely necessary and it causes no negative consequences for keyboard only or screen reader users.`,
+                      data: {
+                        tagName: element.name,
+                      },
+                    });
+                  }
                 }
               }
             },

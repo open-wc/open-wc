@@ -36,15 +36,25 @@ const NoDistractingElementsRule = {
 
           analyzer.traverse({
             enterElement(element) {
+              if (!element.sourceCodeLocation) {
+                return; // probably a tree correction node
+              }
+
               if (BANNED_ELEMENTS.includes(element.name)) {
-                const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
-                context.report({
-                  loc,
-                  message: `<{{tagName}}> elements are distracting and must not be used.`,
-                  data: {
-                    tagName: element.name,
-                  },
-                });
+                const loc =
+                  analyzer.resolveLocation(
+                    element.sourceCodeLocation.startTag,
+                    context.getSourceCode(),
+                  ) ?? node.loc;
+                if (loc) {
+                  context.report({
+                    loc,
+                    message: `<{{tagName}}> elements are distracting and must not be used.`,
+                    data: {
+                      tagName: element.name,
+                    },
+                  });
+                }
               }
             },
           });

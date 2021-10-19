@@ -38,14 +38,19 @@ const AriaAttrsRule = {
             enterElement(element) {
               for (const attr of Object.keys(element.attribs)) {
                 if (isInvalidAriaAttribute(attr)) {
-                  const loc = analyzer.getLocationForAttribute(element, attr);
-                  context.report({
-                    loc,
-                    message: 'Invalid ARIA attribute "{{attr}}".',
-                    data: {
-                      attr,
-                    },
-                  });
+                  const loc =
+                    analyzer.getLocationForAttribute(element, attr, context.getSourceCode()) ??
+                    node.loc;
+
+                  if (loc) {
+                    context.report({
+                      loc,
+                      message: 'Invalid ARIA attribute "{{attr}}".',
+                      data: {
+                        attr,
+                      },
+                    });
+                  }
                 }
               }
             },

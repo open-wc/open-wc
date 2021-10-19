@@ -56,6 +56,10 @@ const AnchorIsValidRule = {
 
           analyzer.traverse({
             enterElement(element) {
+              if (!element.sourceCodeLocation) {
+                return; // probably a tree correction node
+              }
+
               if (element.name === 'a') {
                 // Set up the rule aspects to check.
                 const options = context.options[0] || {};
@@ -80,14 +84,26 @@ const AnchorIsValidRule = {
                     activeAspects.noHref &&
                     (!hasClickListener || (hasClickListener && !activeAspects.preferButton))
                   ) {
-                    const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
-                    context.report({ loc, messageId: 'noHrefErrorMessage' });
+                    const loc =
+                      analyzer.resolveLocation(
+                        element.sourceCodeLocation.startTag,
+                        context.getSourceCode(),
+                      ) ?? node.loc;
+                    if (loc) {
+                      context.report({ loc, messageId: 'noHrefErrorMessage' });
+                    }
                   }
 
                   // If no spread operator is found but a click handler is preset it should be a button.
                   if (hasClickListener && activeAspects.preferButton) {
-                    const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
-                    context.report({ loc, messageId: 'preferButtonErrorMessage' });
+                    const loc =
+                      analyzer.resolveLocation(
+                        element.sourceCodeLocation.startTag,
+                        context.getSourceCode(),
+                      ) ?? node.loc;
+                    if (loc) {
+                      context.report({ loc, messageId: 'preferButtonErrorMessage' });
+                    }
                   }
                   return;
                 }
@@ -109,11 +125,23 @@ const AnchorIsValidRule = {
                 if (invalidHrefValue) {
                   // If a click handler is found it should be a button, otherwise it is an invalid link.
                   if (hasClickListener && activeAspects.preferButton) {
-                    const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
-                    context.report({ loc, messageId: 'preferButtonErrorMessage' });
+                    const loc =
+                      analyzer.resolveLocation(
+                        element.sourceCodeLocation.startTag,
+                        context.getSourceCode(),
+                      ) ?? node.loc;
+                    if (loc) {
+                      context.report({ loc, messageId: 'preferButtonErrorMessage' });
+                    }
                   } else if (activeAspects.invalidHref) {
-                    const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
-                    context.report({ loc, messageId: 'invalidHrefErrorMessage' });
+                    const loc =
+                      analyzer.resolveLocation(
+                        element.sourceCodeLocation.startTag,
+                        context.getSourceCode(),
+                      ) ?? node.loc;
+                    if (loc) {
+                      context.report({ loc, messageId: 'invalidHrefErrorMessage' });
+                    }
                   }
                 }
               }

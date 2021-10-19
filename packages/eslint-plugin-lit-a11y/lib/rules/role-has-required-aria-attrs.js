@@ -41,6 +41,10 @@ const RoleHasRequiredAriaAttrsRule = {
 
           analyzer.traverse({
             enterElement(element) {
+              if (!element.sourceCodeLocation) {
+                return; // probably a tree correction node
+              }
+
               // if element has a role attr
               if (Object.keys(element.attribs).includes('role')) {
                 const { role } = element.attribs;
@@ -55,16 +59,24 @@ const RoleHasRequiredAriaAttrsRule = {
                   );
 
                   if (!hasRequiredAriaAttributes) {
-                    const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
-                    context.report({
-                      loc,
-                      message: `The "{{role}}" role requires the {{plural}} {{requiredAttrs}}.`,
-                      data: {
-                        role,
-                        plural: requiredAriaAttributes.length > 1 ? 'attributes' : 'attribute',
-                        requiredAttrs: formatter.format(requiredAriaAttributes.map(x => `"${x}"`)),
-                      },
-                    });
+                    const loc =
+                      analyzer.resolveLocation(
+                        element.sourceCodeLocation.startTag,
+                        context.getSourceCode(),
+                      ) ?? node.loc;
+                    if (loc) {
+                      context.report({
+                        loc,
+                        message: `The "{{role}}" role requires the {{plural}} {{requiredAttrs}}.`,
+                        data: {
+                          role,
+                          plural: requiredAriaAttributes.length > 1 ? 'attributes' : 'attribute',
+                          requiredAttrs: formatter.format(
+                            requiredAriaAttributes.map(x => `"${x}"`),
+                          ),
+                        },
+                      });
+                    }
                   }
                 }
               }

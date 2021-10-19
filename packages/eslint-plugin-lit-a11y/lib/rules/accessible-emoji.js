@@ -67,6 +67,10 @@ const AccessibleEmojiRule = {
                 return; // emoji is decorative
               }
 
+              if (!element.sourceCodeLocation) {
+                return; // probably a tree correction element
+              }
+
               const rolePropValue = element.attribs.role;
               const ariaLabelProp = element.attribs['aria-label'];
               const ariaLabelledByProp = element.attribs['aria-labelledby'];
@@ -74,8 +78,14 @@ const AccessibleEmojiRule = {
               const isSpan = element.name === 'span';
 
               if (hasLabel === false || rolePropValue !== 'img' || isSpan === false) {
-                const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
-                context.report({ loc, messageId: 'wrapEmoji' });
+                const loc =
+                  analyzer.resolveLocation(
+                    element.sourceCodeLocation.startTag,
+                    context.getSourceCode(),
+                  ) ?? node.loc;
+                if (loc) {
+                  context.report({ loc, messageId: 'wrapEmoji' });
+                }
               }
             },
           });

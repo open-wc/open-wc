@@ -41,14 +41,18 @@ const AriaUnsupportedElementsRule = {
               if (UNSUPPORTED_ELEMENTS.includes(element.name)) {
                 for (const attr of Object.keys(element.attribs)) {
                   if (attr.startsWith('aria-') || attr === 'role') {
-                    const loc = analyzer.getLocationForAttribute(element, attr);
-                    context.report({
-                      loc,
-                      message: `<{{tagName}}> element does not support ARIA roles, states, or properties.`,
-                      data: {
-                        tagName: element.name,
-                      },
-                    });
+                    const loc =
+                      analyzer.getLocationForAttribute(element, attr, context.getSourceCode()) ??
+                      node.loc;
+                    if (loc) {
+                      context.report({
+                        loc,
+                        message: `<{{tagName}}> element does not support ARIA roles, states, or properties.`,
+                        data: {
+                          tagName: element.name,
+                        },
+                      });
+                    }
                   }
                 }
               }

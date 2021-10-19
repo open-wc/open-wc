@@ -61,18 +61,32 @@ const TabindexNoPositiveRule = {
                 const value = parseInt(literal, 10);
 
                 if (Number.isNaN(value)) {
-                  const loc = analyzer.getLocationForAttribute(element, attributeName);
-                  context.report({
-                    loc,
-                    messageId: 'tabindexNoPositive',
-                    data: { value: literal.toString() },
-                  });
+                  const loc =
+                    analyzer.getLocationForAttribute(
+                      element,
+                      attributeName,
+                      context.getSourceCode(),
+                    ) ?? node.loc;
+                  if (loc) {
+                    context.report({
+                      loc,
+                      messageId: 'tabindexNoPositive',
+                      data: { value: literal.toString() },
+                    });
+                  }
                   return;
                 }
 
                 if (value > 0) {
-                  const loc = analyzer.getLocationForAttribute(element, attributeName);
-                  context.report({ loc, messageId: 'avoidPositiveTabindex' });
+                  const loc =
+                    analyzer.getLocationForAttribute(
+                      element,
+                      attributeName,
+                      context.getSourceCode(),
+                    ) ?? node.loc;
+                  if (loc) {
+                    context.report({ loc, messageId: 'avoidPositiveTabindex' });
+                  }
                 }
               });
             },

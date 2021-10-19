@@ -69,18 +69,28 @@ const HeadingHasContentRule = {
 
           analyzer.traverse({
             enterElement(element) {
+              if (!element.sourceCodeLocation) {
+                return; // probably a tree correction node
+              }
+
               if (
                 isHeading(element, options.customHeadingElements) &&
                 !hasAccessibleChildren(element) &&
                 !isHiddenFromScreenReader(element)
               ) {
-                const loc = analyzer.resolveLocation(element.sourceCodeLocation.startTag);
+                const loc =
+                  analyzer.resolveLocation(
+                    element.sourceCodeLocation.startTag,
+                    context.getSourceCode(),
+                  ) ?? node.loc;
 
                 const messageId = 'headingHasContent';
 
                 const data = { tagName: element.name };
 
-                context.report({ loc, messageId, data });
+                if (loc) {
+                  context.report({ loc, messageId, data });
+                }
               }
             },
           });
