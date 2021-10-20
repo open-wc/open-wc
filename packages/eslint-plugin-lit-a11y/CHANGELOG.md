@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- 45e0c17e: eslint-plugin-lit-a11y: use template-analyzer directly from lit plugin
+
 ## 2.0.0
 
 ### Major Changes
