@@ -56,13 +56,10 @@ const ValidLangRule = {
                   });
                 }
 
-                if (!tags.check(lang)) {
-                  const loc = analyzer.getLocationForAttribute(
-                    analyzer,
-                    element,
-                    'lang',
-                    context.getSourceCode(),
-                  );
+                if (!tags.check(`${lang}`)) {
+                  const loc =
+                    analyzer.getLocationForAttribute(element, 'lang', context.getSourceCode()) ??
+                    node.loc;
 
                   return context.report({
                     loc,
