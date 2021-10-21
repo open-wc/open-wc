@@ -56,6 +56,7 @@ const ValidLangRule = {
                   });
                 }
 
+                // We cast this as string, as lang could be a number, since getLiteralAttributeValue returns a primitive, this would throw an error as `language-tags` performs string methods on the argument
                 if (!tags.check(`${lang}`)) {
                   const loc =
                     analyzer.getLocationForAttribute(element, 'lang', context.getSourceCode()) ??
