@@ -44,6 +44,7 @@ module.exports.configs = {
       'lit-a11y/role-supports-aria-attr': 'error',
       'lit-a11y/scope': 'error',
       'lit-a11y/tabindex-no-positive': 'error',
+      'lit-a11y/valid-lang': 'off',
     },
   },
 };
