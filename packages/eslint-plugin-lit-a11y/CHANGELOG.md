@@ -1,5 +1,36 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- 45e0c17e: eslint-plugin-lit-a11y: use template-analyzer directly from lit plugin
+
+## 2.0.0
+
+### Major Changes
+
+- ed2b36e8: chore: remove intl list format
+- ed2b36e8: Remove `eslint` dependency (in favour of peer dependency)
+
+## 1.1.0
+
+### Minor Changes
+
+- f411714e: Check tagged template literals of the package `lit` by default
+
+### Patch Changes
+
+- 40837d10: - use latest axe-core
+  - allow not required attributes in role testing
+
+## 1.1.0-next.1
+
+### Patch Changes
+
+- 40837d10: - use latest axe-core
+  - allow not required attributes in role testing
+
 ## 1.1.0-next.0
 
 ### Minor Changes
