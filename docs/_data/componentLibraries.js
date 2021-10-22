@@ -48,6 +48,12 @@ const componentLibraries = [
       'FAST is a web component library built by Microsoft. The core, `fast-element`, is a lightweight means to easily build performant and standards-compliant Web Components. `fast-foundation` is a library of Web Component classes, templates, and other utilities built on fast-element intended to be composed into registered web components by design systems.',
   },
   {
+    name: 'Graphite Design System',
+    url: 'https://graphitedesignsystem.com',
+    description:
+      "Graphite is PAQT's white-label design system for digital products and experiences. The system consists of working code, design kits, and human interface guidelines.",
+  },
+  {
     name: 'HelixUI',
     url: 'https://helixdesignsystem.github.io/helix-ui/',
     description:
