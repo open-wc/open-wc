@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- f5e728d7: Add valid-lang rule
+
 ## 2.1.0
 
 ### Minor Changes
