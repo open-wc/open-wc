@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.2
+
+### Patch Changes
+
+- 70f52431: export chai in index.d.ts
+
 ## 3.0.1
 
 ### Patch Changes
