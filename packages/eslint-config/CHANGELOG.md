@@ -1,12 +1,5 @@
 # Change Log
 
-## 8.0.0
-
-### Patch Changes
-
-- Updated dependencies [f5e728d7]
-  - eslint-plugin-lit-a11y@2.2.0
-
 ## 7.0.0
 
 ### Patch Changes
