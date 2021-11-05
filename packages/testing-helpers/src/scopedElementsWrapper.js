@@ -32,7 +32,7 @@ class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
     /** @type {ScopedElementsMap} */
     this.scopedElements = {};
 
-    /** @type {import('./litFixture').LitHTMLRenderable} */
+    /** @type {import('./renderable').LitHTMLRenderable} */
     // eslint-disable-next-line no-unused-expressions
     this.template;
   }
@@ -69,7 +69,7 @@ const getWrapperUniqueName = (counter = 0) => {
 /**
  * Wraps the template inside a scopedElements component
  *
- * @param {import('./litFixture').LitHTMLRenderable} template
+ * @param {import('./renderable').LitHTMLRenderable} template
  * @param {ScopedElementsMap} scopedElements
  * @return {TemplateResult}
  */
