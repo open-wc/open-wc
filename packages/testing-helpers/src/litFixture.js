@@ -4,17 +4,6 @@ import { fixtureWrapper } from './fixtureWrapper.js';
 import { elementUpdated } from './elementUpdated.js';
 import { NODE_TYPES } from './lib.js';
 
-/**
- * @typedef {
-     import('lit').TemplateResult
-   | import('lit').TemplateResult[]
-   | Node | Node[]
-   | string | string[]
-   | number | number[]
-   | boolean | boolean[]
- } LitHTMLRenderable
- */
-
 const isUsefulNode = ({ nodeType, textContent }) => {
   switch (nodeType) {
     case NODE_TYPES.COMMENT_NODE:
@@ -30,7 +19,7 @@ const isUsefulNode = ({ nodeType, textContent }) => {
  * Setups an element synchronously from the provided lit-html template and puts it in the DOM.
  *
  * @template {Element} T - Is an element or a node
- * @param {LitHTMLRenderable} template
+ * @param {import('./renderable').LitHTMLRenderable} template
  * @param {import('./fixture-no-side-effect.js').FixtureOptions} [options]
  * @param {import('./scopedElementsWrapper.js').ScopedElementsTemplateGetter} [getScopedElementsTemplate]
  * @returns {T}
@@ -55,7 +44,7 @@ export function litFixtureSync(template, options = {}, getScopedElementsTemplate
  * Setups an element asynchronously from the provided lit-html template and puts it in the DOM.
  *
  * @template {Element} T - Is an element or a node
- * @param {LitHTMLRenderable} template
+ * @param {import('./renderable').LitHTMLRenderable} template
  * @param {import('./fixture-no-side-effect.js').FixtureOptions} [options]
  * @returns {Promise<T>}
  */
