@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.3
+
+### Patch Changes
+
+- de7f7b1a: Fix the typescript typings in testing helpers for projects that depend on `lit` package
+- Updated dependencies [de7f7b1a]
+  - @open-wc/testing-helpers@2.0.2
+
 ## 3.0.2
 
 ### Patch Changes
