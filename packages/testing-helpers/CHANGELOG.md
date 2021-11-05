@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.2
+
+### Patch Changes
+
+- de7f7b1a: Fix the typescript typings in testing helpers for projects that depend on `lit` package
+
 ## 2.0.1
 
 ### Patch Changes
