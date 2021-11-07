@@ -68,7 +68,7 @@
     "@web/rollup-plugin-import-meta-assets": "^1.0.6",
     "@web/rollup-plugin-polyfills-loader": "^1.1.0",
     "babel-plugin-template-html-minifier": "^4.0.0",
-    "browserslist": "^4.16.0",
+    "browserslist": "^4.16.5",
     "deepmerge": "^4.2.2",
     "magic-string": "^0.25.7",
     "parse5": "^5.1.1",
