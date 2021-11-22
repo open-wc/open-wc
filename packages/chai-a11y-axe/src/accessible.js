@@ -112,6 +112,12 @@ export const chaiA11yAxe = (chai, utils) => {
     if (!done) {
       done = () => {};
     }
+
+    if (opts.ignoredTags) {
+      const ariaHiddenElements = fixture.parentNode.querySelectorAll(opts.ignoredTags.toString());
+      ariaHiddenElements.forEach(el => el.setAttribute('aria-hidden', true));
+    }
+
     const result = runTestAsync(fixture, testOpts).then(results =>
       // @ts-ignore
       processResults(utils.flag(this, 'negate'), results, done),
