@@ -6,8 +6,8 @@
     "scripts": {
       "build": "tsc --project tsconfig.build.json",
       "start": "web-dev-server --node-resolve --watch",
-      "test": "web-test-runner test/*.test.ts --node-resolve --coverage",
-      "test:playwright": "web-test-runner test/*.test.ts --node-resolve --playwright --browsers chromium firefox webkit"
+      "test": "web-test-runner test-web/*.test.ts --node-resolve --coverage",
+      "test:playwright": "web-test-runner test-web/*.test.ts --node-resolve --playwright --browsers chromium firefox webkit"
     },
     "author": "Caleb D. Williams <caleb.d.williams@gmail.com>",
     "license": "MIT",

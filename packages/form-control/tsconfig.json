@@ -14,7 +14,8 @@
   "references": [],
   "include": [
     "src",
-    "*.js"
+    "*.js",
+    "test-web"
   ],
   "exclude": [
     "dist",
