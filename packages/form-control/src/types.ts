@@ -13,6 +13,7 @@ export interface FormControlInterface {
   touched: boolean;
   validationTarget: HTMLElement;
   validationMessage: string;
+  validity: ValidityState;
   value: any;
   connectedCallback(): void;
   formResetCallback(): void;
