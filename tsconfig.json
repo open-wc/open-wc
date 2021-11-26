@@ -15,6 +15,9 @@
     },
     {
       "path": "./packages/testing-helpers/tsconfig.json"
+    },
+    {
+      "path": "./packages/form-control/tsconfig.json"
     }
   ]
 }

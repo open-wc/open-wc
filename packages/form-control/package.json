@@ -1,0 +1,31 @@
+{
+    "name": "@open-wc/form-control",
+    "version": "0.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "build": "tsc --project tsconfig.build.json",
+      "start": "web-dev-server --node-resolve --watch",
+      "test": "web-test-runner test/*.test.ts --node-resolve --coverage",
+      "test:playwright": "web-test-runner test/*.test.ts --node-resolve --playwright --browsers chromium firefox webkit"
+    },
+    "author": "Caleb D. Williams <caleb.d.williams@gmail.com>",
+    "license": "MIT",
+    "devDependencies": {
+      "@web/dev-server": "^0.1.28",
+      "@web/dev-server-esbuild": "^0.2.16",
+      "@web/test-runner": "^0.13.22",
+      "@web/test-runner-commands": "^0.5.13",
+      "@web/test-runner-playwright": "^0.8.8",
+      "construct-style-sheets-polyfill": "^3.0.4",
+      "element-internals-polyfill": "^0.1.47",
+      "lit": "^2.0.2",
+      "sinon": "^12.0.1",
+      "typescript": "^4.4.4"
+    },
+    "sideEffects": false,
+    "dependencies": {
+      "@open-wc/testing": "^3.0.3"
+    }
+  }
+  

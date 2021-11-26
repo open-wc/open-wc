@@ -3,6 +3,7 @@ const packages = [
   { name: 'import-maps-resolve', type: 'js', environment: 'node' },
   { name: 'scoped-elements', type: 'js', environment: 'browser' },
   { name: 'testing-helpers', type: 'js', environment: 'browser' },
+  { name: 'form-control', type: 'js', environment: 'browser' }
 ];
 
 export { packages };
