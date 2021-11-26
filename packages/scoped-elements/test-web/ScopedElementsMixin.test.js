@@ -16,6 +16,12 @@ class FeatureB extends LitElement {
   }
 }
 
+class FeatureATag extends FeatureA {
+  static get tagName() {
+    return 'feature-a-tag';
+  }
+}
+
 describe('ScopedElementsMixin', () => {
   it('has a default value for "static get scopedElements()" of {}', async () => {
     const tag = defineCE(class extends ScopedElementsMixin(LitElement) {});
@@ -37,7 +43,7 @@ describe('ScopedElementsMixin', () => {
     expect(el.shadowRoot.children[1]).to.be.an.instanceOf(HTMLElement);
   });
 
-  it('supports elements define in "static get scopedElements()"', async () => {
+  it('supports elements defined in "static get scopedElements()" with custom string tags', async () => {
     const tagString = defineCE(
       class extends ScopedElementsMixin(LitElement) {
         static get scopedElements() {
@@ -55,6 +61,46 @@ describe('ScopedElementsMixin', () => {
     const el = await fixture(`<${tagString}></${tagString}>`);
     expect(el.shadowRoot.children[0]).to.be.an.instanceOf(FeatureA);
     expect(el.shadowRoot.children[1]).to.be.an.instanceOf(FeatureB);
+  });
+
+  it('supports elements defined in "static get scopedElements()" with an array of classes with tagNames', async () => {
+    const tagString = defineCE(
+      class extends ScopedElementsMixin(LitElement) {
+        static get scopedElements() {
+          return [FeatureATag];
+        }
+
+        render() {
+          return html` <feature-a-tag></feature-a-tag> `;
+        }
+      },
+    );
+    const el = await fixture(`<${tagString}></${tagString}>`);
+    expect(el.shadowRoot.children[0]).to.be.an.instanceOf(FeatureATag);
+  });
+
+  it('ignore classes in class array "static get scopedElements()" without tagNames', async () => {
+    class FeatureEmptyTag extends HTMLElement {
+      static get tagName() {
+        return '';
+      }
+    }
+
+    const tagString = defineCE(
+      class Klass extends ScopedElementsMixin(LitElement) {
+        static get scopedElements() {
+          return [FeatureA, FeatureEmptyTag, FeatureATag];
+        }
+
+        render() {
+          return html` <feature-a></feature-a><feature-a-tag></feature-a-tag> `;
+        }
+      },
+    );
+
+    const el = await fixture(`<${tagString}></${tagString}>`);
+    expect(el.shadowRoot.children[0]).not.to.be.an.instanceOf(FeatureA);
+    expect(el.shadowRoot.children[1]).to.be.an.instanceOf(FeatureATag);
   });
 
   it('supports the "same" tag name in the template for multiple different sub components', async () => {

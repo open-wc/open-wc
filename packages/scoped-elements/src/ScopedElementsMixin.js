@@ -97,9 +97,11 @@ const ScopedElementsMixinImplementation = superclass =>
       if (!this.registry) {
         this.registry = new CustomElementRegistry();
 
-        Object.entries(scopedElements).forEach(([tagName, klass]) =>
-          this.registry.define(tagName, klass),
-        );
+        const entries = Array.isArray(scopedElements)
+          ? scopedElements.filter(({ tagName }) => !!tagName).map(klass => [klass.tagName, klass])
+          : Object.entries(scopedElements);
+
+        entries.forEach(([tagName, klass]) => this.registry.define(tagName, klass));
       }
 
       /** @type {ShadowRootInit} */

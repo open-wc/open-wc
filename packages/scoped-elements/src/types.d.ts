@@ -3,9 +3,13 @@ import { ReactiveElement } from '@lit/reactive-element';
 
 export { Constructor }
 
-export type ScopedElementsMap = {
+type ScopedElementsMapByCustomTag = {
   [key: string]: typeof HTMLElement;
 };
+
+type ScopedElementsClassArray = HTMLElement[];
+
+export type ScopedElementsMap = ScopedElementsMapByCustomTag | ScopedElementsClassArray;
 
 export interface RenderOptions {
   creationScope: Node|ShadowRoot;
