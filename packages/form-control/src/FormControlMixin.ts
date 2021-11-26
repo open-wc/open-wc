@@ -253,7 +253,7 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
 
           /** If a setter already exists, make sure to call it */
           if (set) {
-            set.call(this, [newValue]);
+            set.call(this, newValue);
           }
 
           /** A requestUpdate call specifically for Lit interactivity */
