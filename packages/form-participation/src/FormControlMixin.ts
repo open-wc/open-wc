@@ -1,6 +1,17 @@
 import { IElementInternals } from 'element-internals-polyfill';
 import { Constructor, FormControlInterface, IControlHost, Validator } from './types';
 
+const focused = Symbol('focused');
+const forceError = Symbol('forceError');
+const initFormControl = Symbol('initFormControl');
+const onBlur = Symbol('onBlur');
+const onFocus = Symbol('onFocus');
+const onInvalid = Symbol('onInvalid');
+const setValue = Symbol('setValue');
+const shouldShowError = Symbol('shouldShowError');
+const touched = Symbol('touched');
+const validate = Symbol('validate');
+
 export function FormControlMixin<T extends Constructor<HTMLElement & IControlHost>>(SuperClass: T) {
   class FormControl extends SuperClass {
     /** Wires up control instances to be form associated */
@@ -51,19 +62,19 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
     internals = this.attachInternals() as unknown as IElementInternals;
 
     /** Keep track of if the control has focus */
-    focused = false;
+    [focused] = false;
+
+    /**
+     * Exists to control when an error should be displayed
+     * @private
+     */
+     [forceError] = false;
 
     /**
      * Toggles to true whenever the element has been focused. This property
      * will reset whenever the control's formResetCallback is called.
      */
-     get touched() {
-      return this.hasAttribute('touched');
-    }
-
-    set touched(touched) {
-      this.toggleAttribute('touched', !!touched);
-    }
+    [touched] = false;
 
     /**
      * The element that will receive focus when the control's validity
@@ -90,7 +101,7 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
      * prevent browsers from showing a validation popup.
      */
     get showError(): boolean {
-      return this.___checkForError();
+      return this[shouldShowError]();
     }
 
     /**
@@ -110,17 +121,11 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
       return this.internals.validity;
     }
 
-    /**
-     * Exists to control when an error should be displayed
-     * @private
-     */
-     ___forceError = false;
-
     constructor(...args: any[]) {
       super(...args);
-      this.addEventListener('focus', this.___onFocus);
-      this.addEventListener('blur', this.___onBlur);
-      this.addEventListener('invalid', this.___onInvalid);
+      this.addEventListener('focus', this[onFocus]);
+      this.addEventListener('blur', this[onBlur]);
+      this.addEventListener('invalid', this[onInvalid]);
 
       /**
        * When the element is constructed we will need to grab a list of all
@@ -135,19 +140,6 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
       });
     }
 
-    disconnectedCallback() {
-      if (super.disconnectedCallback) {
-        super.disconnectedCallback();
-      }
-      /**
-       * Remove the event listeners that toggles the touched and focused states
-       */
-      this.removeEventListener('focus', this.___onFocus);
-      this.removeEventListener('blur', this.___onBlur);
-      this.removeEventListener('invalid', this.___onInvalid);
-
-    }
-
     attributeChangedCallback(name, oldValue, newValue): void {
       if (super.attributeChangedCallback) {
         super.attributeChangedCallback(name, oldValue, newValue);
@@ -155,14 +147,14 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
 
       /**
        * Check to see if a Validator is associated with the changed attribute.
-       * If one exists, call control's ___validate function which will perform
+       * If one exists, call control's validate function which will perform
        * control validation.
        */
       const proto = this.constructor as typeof FormControl;
       const validator = proto.getValidator(name);
 
       if (validator && this.validationTarget) {
-        this.___validate(this.value);
+        this[validate](this.value);
       }
     }
 
@@ -172,15 +164,29 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
       }
 
       /** Initialize the form control  and perform initial validation */
-      this.___formControlInit();
-      this.___validate(this.value);
+      this[initFormControl]();
+      this[validate](this.value);
+      this.validationMessageCallback('');
+    }
+
+    disconnectedCallback() {
+      if (super.disconnectedCallback) {
+        super.disconnectedCallback();
+      }
+      /**
+       * Remove the event listeners that toggles the touched and focused states
+       */
+      this.removeEventListener('focus', this[onFocus]);
+      this.removeEventListener('blur', this[onBlur]);
+      this.removeEventListener('invalid', this[onInvalid]);
+
     }
 
     /**
      * Initialize the form control
      * @private
      */
-    ___formControlInit(): void {
+    [initFormControl](): void {
       /** Closed over variable to track value changes */
       let value: any = this.value || '';
 
@@ -236,7 +242,7 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
            */
           if (!hasChecked || hasChecked && this.checked) {
             value = newValue;
-            this.___setValue(newValue)
+            this[setValue](newValue)
           }
 
           /** If a setter already exists, make sure to call it */
@@ -280,10 +286,10 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
           set(newChecked) {
             if (newChecked) {
               /** If truthy, set the form value to the instance's value */
-              this.___setValue(this.value);
+              this[setValue](this.value);
             } else {
               /** If falsy, remove the instance's form value */
-              this.___setValue(null);
+              this[setValue](null);
             }
 
             /** If a setter exists, use it */
@@ -323,9 +329,9 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
       } else {
         this.value = '';
       }
-      this.touched = false;
-      this.___forceError = false;
-      this.___checkForError();
+      this[touched] = false;
+      this[forceError] = false;
+      this[shouldShowError]();
     }
 
     /**
@@ -334,13 +340,13 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
      * if necessary.
      * @private
      */
-    ___checkForError(): boolean {
+    [shouldShowError](): boolean {
       if (this.hasAttribute('disabled')) {
         return false;
       }
 
-      const showError = this.___forceError ||
-        (this.touched && !this.validity.valid && !this.focused);
+      const showError = this[forceError] ||
+        (this[touched] && !this.validity.valid && !this[focused]);
 
       if (showError) {
         this.internals.states.add('--show-error');
@@ -352,47 +358,40 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
     }
 
     /**
-     * Set this.touched and this.focused
+     * Set this[touched] and this[focused]
      * to true when the element is focused
      * @private
      */
-    ___onFocus = (): void => {
-      this.touched = true;
-      this.focused = true;
-      this.___requestUpdate();
+    [onFocus] = (): void => {
+      this[touched] = true;
+      this[focused] = true;
+      this[shouldShowError]();
     }
 
     /**
-     * Reset this.focused on blur
+     * Reset this[focused] on blur
      * @private
      */
-    ___onBlur = (): void => {
-      this.focused = false;
+    [onBlur] = (): void => {
+      this[focused] = false;
       /**
-       * Set ___forceError to ensure error messages persist until
+       * Set forceError to ensure error messages persist until
        * the value is changed.
        */
-      if (!this.validity.valid && this.touched) {
-        this.___forceError = true;
+      if (!this.validity.valid && this[touched]) {
+        this[forceError] = true;
       }
-      this.___requestUpdate();
+      const showError = this[shouldShowError]();
+      this.validationMessageCallback(showError ? this.validationMessage : '');
     }
 
     /**
      * For the show error state on invalid
      * @private
      */
-    ___onInvalid = (): void => {
-      this.___forceError = true;
-      this.___requestUpdate();
-    }
-
-    /**
-     * Call Lit's requestUpdate property
-     * @private
-     */
-    ___requestUpdate() {
-      this.___checkForError();
+    [onInvalid] = (): void => {
+      this[forceError] = true;
+      this[shouldShowError]();
     }
 
     /**
@@ -400,20 +399,22 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
      * for the element. Once the value has been set, invoke the Validators.
      * @private
      */
-    ___setValue(value: any): void {
-      this.___forceError = false;
+    [setValue](value: any): void {
+      this[forceError] = false;
       this.internals.setFormValue(value);
       if (this.valueChangedCallback) {
         this.valueChangedCallback(value);
       }
-      this.___validate(value);
+      this[validate](value);
+      const showError = this[shouldShowError]();
+      this.validationMessageCallback(showError ? this.validationMessage : '');
     }
 
     /**
      * Call all the Validators on the control
      * @private
      */
-    ___validate(value: any): void {
+    [validate](value: any): void {
       const proto = this.constructor as typeof FormControl;
       const validity: Partial<Record<keyof ValidityState, boolean>> = {};
       let validationMessage = '';
@@ -516,8 +517,13 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
      * @param validationKey {string} - The key that has returned invalid
      */
     validityCallback(validationKey: string): string|void {}
-  }
 
+    /**
+     * Called when the control's validationMessage should be changed
+     * @param message { string } - The new validation message
+     */
+    validationMessageCallback(message: string): void {}
+  }
 
   return FormControl as Constructor<FormControlInterface> & T;
 }

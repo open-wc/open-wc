@@ -6,20 +6,19 @@ export type Constructor<T = {}> = new (...args: any[]) => T;
 /** Interface of exported FormControl behavior */
 export interface FormControlInterface {
   checked?: boolean;
-  focused: boolean;
-  form: HTMLFormElement;
-  internals: IElementInternals;
-  showError: boolean;
-  touched: boolean;
-  validationTarget: HTMLElement;
-  validationMessage: string;
-  validity: ValidityState;
+  validationTarget?: HTMLElement;
   value: any;
+  readonly form: HTMLFormElement;
+  readonly internals: IElementInternals;
+  readonly showError: boolean;
+  readonly validationMessage: string;
+  readonly validity: ValidityState;
   connectedCallback(): void;
   formResetCallback(): void;
   resetFormControl(): void;
   valueChangedCallback(value: any): void;
   validityCallback(validationKey: string): string|void;
+  validationMessageCallback(message: string): void;
 }
 
 /**

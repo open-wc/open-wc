@@ -41,7 +41,7 @@ export const minLengthValidator: Validator = {
     return `Value must be at least ${instance.minLength} characters long`;
   },
   callback(instance: HTMLElement & { minLength: number }, value) {
-    if (!!value && instance.minLength >= value.length) {
+    if (!!value && instance.minLength > value.length) {
       return false;
     }
     return true;
@@ -55,7 +55,7 @@ export const maxLengthValidator: Validator = {
     return `Value must not be more than ${instance.maxLength} characters long`;
   },
   callback(instance: HTMLElement & { maxLength: number }, value) {
-    if (!!value && instance.maxLength < value.length) {
+    if (!!value && instance.maxLength <= value.length) {
       return false;
     }
     return true;

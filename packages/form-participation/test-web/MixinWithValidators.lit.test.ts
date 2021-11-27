@@ -5,7 +5,7 @@ import { html, LitElement } from 'lit';
 import { customElement, query } from 'lit/decorators.js';
 import { live } from 'lit/directives/live.js';
 
-const alwaysRequiredValidator: Validator = {
+const requiredValidator: Validator = {
   attribute: 'required',
   key: 'valueMissing',
   message: 'This field is required',
@@ -17,17 +17,14 @@ const alwaysRequiredValidator: Validator = {
 @customElement('form-control-lit-validators')
 class FormControlLitValidators extends FormControlMixin(LitElement) {
   static get formControlValidators(): Validator[] {
-    return [alwaysRequiredValidator];
+    return [requiredValidator];
   }
 
-  @query('input')
+  @query('div')
   validationTarget: HTMLElement;
 
   render() {
-    return html`<input
-      @input="${this._onInput}"
-      .value="${live(this.value)}"
-    >`;
+    return html`<div></div>`;
   }
 
   _onInput({ target }: Event & { target: HTMLInputElement }) {
@@ -65,7 +62,7 @@ describe('The FormControlMixin using LitElement', () => {
 
   it('will return the validator from getValidator', async () => {
     // @ts-ignore
-    expect(constructor.getValidator('required')).to.equal(alwaysRequiredValidator);
+    expect(constructor.getValidator('required')).to.equal(requiredValidator);
   });
 
   it('will add validator attributes to observedAttributes', async () => {
@@ -106,18 +103,15 @@ describe('The FormControlMixin using LitElement', () => {
     expect(el.showError).to.be.false;
   });
 
-  it('will set touched on focus', async () => {
-    el.dispatchEvent(new Event('focus'));
-    await elementUpdated(el as unknown as Element);
-    expect(el.touched).to.be.true;
+  it('will get save the validationMessage', async () => {
+    expect(el.validationMessage).to.equal(requiredValidator.message);
   });
 
-  it('will set focused until blur', async () => {
-    el.dispatchEvent(new Event('focus'));
-    await elementUpdated(el as unknown as Element);
-    expect(el.focused).to.be.true;
-    el.dispatchEvent(new Event('blur'));
-    await elementUpdated(el as unknown as Element);
-    expect(el.focused).to.be.false;
+  it('will evaluate when the value is set', async () => {
+    expect(el.validity.valid).to.be.false;
+    expect(el.validity.valueMissing).to.be.true;
+    el.value = 'abc';
+    expect(el.validity.valid).to.be.true;
+    expect(el.validity.valueMissing).to.be.false;
   });
 });
