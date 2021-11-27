@@ -116,32 +116,11 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
      */
      ___forceError = false;
 
-    /**
-     * Is set in the constructor, will resolve whenever the validationTarget
-     * is ready so `internals.setValidity` can have access to the element
-     * and will not throw.
-     * @private
-     */
-    ___ready: Promise<void>;
-
     constructor(...args: any[]) {
       super(...args);
       this.addEventListener('focus', this.___onFocus);
       this.addEventListener('blur', this.___onBlur);
       this.addEventListener('invalid', this.___onInvalid);
-
-      let tick = 0;
-      this.___ready = new Promise((resolve, reject) => {
-        const id = setInterval(() => {
-          if (tick >= 100) {
-            clearInterval(id);
-            reject();
-          } else if (this.validationTarget) {
-            clearInterval(id);
-            resolve();
-          }
-        }, 0);
-      })
 
       /**
        * When the element is constructed we will need to grab a list of all
@@ -182,7 +161,7 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
       const proto = this.constructor as typeof FormControl;
       const validator = proto.getValidator(name);
 
-      if (validator) {
+      if (validator && this.validationTarget) {
         this.___validate(this.value);
       }
     }
@@ -222,11 +201,20 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
        * We do this to make sure that we don't overwrite behavior of an object
        * higher in the chain.
        */
-      if (this.hasOwnProperty('value')) {
-        const descriptor = Object.getOwnPropertyDescriptor(this, 'value');
-        set = descriptor.set;
-        get = descriptor.get;
+      let descriptor = Object.getOwnPropertyDescriptor(this, 'value');
+
+      /**
+       * Many libraries like Lit will write properties to the element's
+       * prototype. This will pull the get/set from the prototype descriptor
+       * if it is available.
+       */
+      if (Object.getOwnPropertyDescriptor(this.constructor.prototype, 'value')) {
+        descriptor = Object.getOwnPropertyDescriptor(this.constructor.prototype, 'value');
       }
+
+      /** Make sure to defer to the parent */
+      set = descriptor.set;
+      get = descriptor.get;
 
       /** Define the FormControl's value property */
       Object.defineProperty(this, 'value', {
@@ -253,12 +241,7 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
 
           /** If a setter already exists, make sure to call it */
           if (set) {
-            set.call(this, newValue);
-          }
-
-          /** A requestUpdate call specifically for Lit interactivity */
-          if (this.requestUpdate) {
-            this.requestUpdate();
+            set.call(this, [newValue]);
           }
         }
       });
@@ -310,11 +293,6 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
 
             /** Updated closure value */
             checked = newChecked;
-
-            /** A requestUpdate call specifically for Lit interactivity */
-            if (this.requestUpdate) {
-              this.requestUpdate();
-            }
           }
         });
       }
@@ -357,7 +335,7 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
      * @private
      */
     ___checkForError(): boolean {
-      if (this.disabled) {
+      if (this.hasAttribute('disabled')) {
         return false;
       }
 
@@ -415,11 +393,6 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
      */
     ___requestUpdate() {
       this.___checkForError();
-      /** @ts-ignore */
-      if (this.requestUpdate) {
-        /** @ts-ignore */
-        this.requestUpdate();
-      }
     }
 
     /**
@@ -503,13 +476,34 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
       } else if (this.validationTarget) {
         this.internals.setValidity(validity, validationMessage, this.validationTarget);
       } else {
-        this.___ready
-          .then(() => {
-            this.internals.setValidity(validity, validationMessage, this.validationTarget);
-          })
-          .catch(() => {
-            console.error('Validation target is not set on element', this);
-          });
+        /**
+         * If the validationTarget is not set, the user can decide how they would
+         * prefer to handle focus when the field is validated.
+         *
+         * TODO: Document this edge case
+         */
+        this.internals.setValidity(validity, validationMessage);
+
+        /**
+         * It could be that a give component hasn't rendered by the time it is first
+         * validated. If it hasn't been, wait a bit and add the validationTarget
+         * to the setValidity call.
+         *
+         * TODO: Document the edge case that an element doesn't have a validationTarget
+         * and must be focusable some other way
+         */
+        let tick = 0;
+        const id = setInterval(() => {
+          if (tick >= 100) {
+            clearInterval(id);
+          } else if (this.validity.valid) {
+            clearInterval(id);
+          } else if (this.validationTarget) {
+            this.internals.setValidity(this.validity, this.validationMessage, this.validationTarget);
+            clearInterval(id);
+          }
+          tick += 1;
+        }, 0);
       }
     }
 
@@ -523,6 +517,7 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
      */
     validityCallback(validationKey: string): string|void {}
   }
+
 
   return FormControl as Constructor<FormControlInterface> & T;
 }
