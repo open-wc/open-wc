@@ -126,18 +126,6 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
       this.addEventListener('focus', this[onFocus]);
       this.addEventListener('blur', this[onBlur]);
       this.addEventListener('invalid', this[onInvalid]);
-
-      /**
-       * When the element is constructed we will need to grab a list of all
-       * Validators that include an attribute property and push them into the
-       * element constructor's observedAttributes array.
-       */
-      const proto = this.constructor as typeof FormControl;
-      proto.formControlValidators.forEach(validator => {
-        if (validator.attribute && !proto.observedAttributes.includes(validator.attribute)) {
-          proto.observedAttributes.push(validator.attribute);
-        }
-      });
     }
 
     attributeChangedCallback(name, oldValue, newValue): void {
@@ -247,7 +235,7 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
 
           /** If a setter already exists, make sure to call it */
           if (set) {
-            set.call(this, [newValue]);
+            set.call(this, newValue);
           }
         }
       });
@@ -451,12 +439,12 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
              * if a control has a ValidityCallback, it can override the error
              * message for a given validity key.
              */
-            if (message instanceof Function) {
+            if (this.validityCallback(key)) {
+              messageResult = this.validityCallback(key) as string;
+            } else if (message instanceof Function) {
               messageResult = message(this, value);
             } else if (typeof message === 'string') {
               messageResult = message;
-            } else if (this.validityCallback(key)) {
-              messageResult = this.validityCallback(key) as string;
             }
 
             validationMessage = messageResult;
