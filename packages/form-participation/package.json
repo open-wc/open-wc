@@ -14,6 +14,7 @@
     "devDependencies": {
       "@web/dev-server": "^0.1.28",
       "@web/dev-server-esbuild": "^0.2.16",
+      "@open-wc/testing": "^3.0.3",
       "@web/test-runner": "^0.13.22",
       "@web/test-runner-commands": "^0.5.13",
       "@web/test-runner-playwright": "^0.8.8",
@@ -23,9 +24,6 @@
       "sinon": "^12.0.1",
       "typescript": "^4.4.4"
     },
-    "sideEffects": false,
-    "dependencies": {
-      "@open-wc/testing": "^3.0.3"
-    }
+    "sideEffects": false
   }
   
