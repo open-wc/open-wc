@@ -38,7 +38,6 @@ describe('The FormControlMixin using LitElement', () => {
         ></form-control-lit-no-validators>
       </form>
     `);
-    // @ts-ignore
     el = form.querySelector<FormControlLitNoValidators>('form-control-lit-no-validators');
   });
 
