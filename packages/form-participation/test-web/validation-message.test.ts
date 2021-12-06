@@ -41,11 +41,11 @@ class ValidatorMessageDemo extends FormControlMixin(LitElement) {
 
 
 describe('The FormControlMixin using LitElement', () => {
-  let form: Element;
+  let form: HTMLFormElement;
   let el: ValidatorMessageDemo;
 
   beforeEach(async () => {
-    form = await fixture(html`
+    form = await fixture<HTMLFormElement>(html`
       <form>
         <validator-message-demo
           name="message-demo"
@@ -60,13 +60,13 @@ describe('The FormControlMixin using LitElement', () => {
 
   it('will evaluate the returned value of the function', async () => {
     el.value = 'foo';
-    await elementUpdated(el as unknown as Element);
+    await elementUpdated(el);
     expect(el.validationMessage).to.equal('value cannot be foo');
   });
 
   it('will call evaluate an error message ', async () => {
     el.value = 'invalid';
-    await elementUpdated(el as unknown as Element);
+    await elementUpdated(el);
     expect(el.validationMessage).to.equal('from validityCallback');
   });
 });

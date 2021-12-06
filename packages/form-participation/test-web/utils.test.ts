@@ -6,9 +6,9 @@ describe('The implicit submit function', () => {
   let form: HTMLFormElement;
 
   beforeEach(async () => {
-    form = await fixture(html`<form>
+    form = await fixture<HTMLFormElement>(html`<form>
       <input name="foo">
-    </form>`) as unknown as HTMLFormElement;
+    </form>`);
 
     form.submit = function() {
       form.submitted = true;
@@ -57,13 +57,13 @@ describe('The formValues utility', () => {
   let form: HTMLFormElement;
 
   beforeEach(async () => {
-    form = await fixture(html`<form>
+    form = await fixture<HTMLFormElement>(html`<form>
       <input type="text" name="project" value="form-utils">
       <input type="checkbox" name="isCool" value="open-wc" checked>
       <input type="checkbox" name="isCool" value="web components" checked>
       <input type="checkbox" name="isCool" value="stubbed toes">
       <input type="checkbox" name="isCool" value="the platform" checked>
-    </form>`) as unknown as HTMLFormElement;
+    </form>`);
   });
 
   afterEach(fixtureCleanup);
@@ -88,7 +88,7 @@ describe('The parseFormAsObject utility', () => {
   let parsed: Record<any, any>;
 
   beforeEach(async () => {
-    form = await fixture(html`<form>
+    form = await fixture<HTMLFormElement>(html`<form>
       <input name="name.first" value="Alice">
       <input name="name.last" value="Blue">
       <input name="occupation" value="developer">
@@ -98,7 +98,7 @@ describe('The parseFormAsObject utility', () => {
       <input type="checkbox" name="contact.preferred" value="email" checked>
       <input type="checkbox" name="contact.preferred" value="carrier pigeon">
       <input name="contact.other.method" value="slack">
-    </form>`) as unknown as HTMLFormElement;
+    </form>`);
     parsed = parseFormAsObject(form);
   });
 

@@ -45,12 +45,12 @@ class FormControlLitCheckedValidators extends FormControlLitValidators {
 }
 
 describe('The FormControlMixin using LitElement', () => {
-  let form: Element;
+  let form: HTMLFormElement;
   let el: FormControlLitValidators;
   let constructor: typeof FormControlLitValidators;
 
   beforeEach(async () => {
-    form = await fixture(html`
+    form = await fixture<HTMLFormElement>(html`
       <form>
         <form-control-lit-validators
           name="formControl"
@@ -97,21 +97,20 @@ describe('The FormControlMixin using LitElement', () => {
   it('will recommend showing an error when touched/not focused', async () => {
     expect(el.validity.valid).to.be.false;
     el.dispatchEvent(new Event('focus'));
-    await elementUpdated(el as unknown as Element);
-    // expect(el.showError).to.be.false;
+    await elementUpdated(el);
     el.dispatchEvent(new Event('blur'));
-    await elementUpdated(el as unknown as Element);
+    await elementUpdated(el);
     expect(el.showError).to.be.true;
   });
 
   it('will not recommend showing an error when disabled', async () => {
     expect(el.validity.valid).to.be.false;
     el.dispatchEvent(new Event('focus'));
-    await elementUpdated(el as unknown as Element);
+    await elementUpdated(el);
     expect(el.showError).to.be.false;
     el.dispatchEvent(new Event('blur'));
     el.toggleAttribute('disabled', true);
-    await elementUpdated(el as unknown as Element);
+    await elementUpdated(el);
     expect(el.showError).to.be.false;
   });
 
@@ -130,17 +129,17 @@ describe('The FormControlMixin using LitElement', () => {
   it('will respond to validator attribute changes', async () => {
     const callbackSpy = spy(requiredValidator, 'callback');
     el.toggleAttribute('required', true);
-    await elementUpdated(el as unknown as Element);
+    await elementUpdated(el);
     expect(callbackSpy.called).to.be.true;
   });
 });
 
 describe('FormControl checked behavior', () => {
-  let form;
+  let form: HTMLFormElement;
   let el;
 
   beforeEach(async () => {
-    form = await fixture(html`<form @submit="${e => e.preventDefault()}">
+    form = await fixture<HTMLFormElement>(html`<form @submit="${e => e.preventDefault()}">
       <with-checked name="with-checked"></with-checked>
     </form>`);
     el = form.querySelector('with-checked');
