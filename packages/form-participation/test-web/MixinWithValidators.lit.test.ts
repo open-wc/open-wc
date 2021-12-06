@@ -57,7 +57,6 @@ describe('The FormControlMixin using LitElement', () => {
         ></form-control-lit-validators>
       </form>
     `);
-    // @ts-ignore
     el = form.querySelector<FormControlLitValidators>('form-control-lit-validators');
     constructor = el.constructor as typeof FormControlLitValidators;
   });
