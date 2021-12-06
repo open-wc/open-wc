@@ -159,7 +159,7 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
         super.connectedCallback();
       }
 
-      /** Initialize the form control  and perform initial validation */
+      /** Initialize the form control and perform initial validation */
       this[initFormControl]();
       this[validate](this.value);
       this.validationMessageCallback('');
