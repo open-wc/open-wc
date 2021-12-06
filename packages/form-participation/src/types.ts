@@ -14,6 +14,7 @@ export interface FormControlInterface {
   readonly validationMessage: string;
   readonly validity: ValidityState;
   connectedCallback(): void;
+  checkValidity(): boolean;
   formResetCallback(): void;
   resetFormControl(): void;
   valueChangedCallback(value: any): void;

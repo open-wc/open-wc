@@ -105,6 +105,14 @@ export function FormControlMixin<T extends Constructor<HTMLElement & IControlHos
     }
 
     /**
+     * Forward the internals checkValidity method
+     * will return the valid state of the control.
+     */
+    checkValidity(): boolean {
+      return this.internals.checkValidity();
+    }
+
+    /**
      * The validation message shown by a given Validator object. If the control
      * is in a valid state this should be falsy.
      */
