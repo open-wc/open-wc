@@ -145,7 +145,7 @@ export function oneEvent(eventTarget, eventName) {
  * await waitUntil(() => element.someAsyncProperty, 'element should become ready');
  * ```
  *
- * @param {() => boolean | Promise<boolean>} predicate - predicate function which is called each poll interval.
+ * @param {() => unknown | Promise<unknown>} predicate - predicate function which is called each poll interval.
  *   The predicate is awaited, so it can return a promise.
  * @param {string} [message] an optional message to display when the condition timed out
  * @param {{ interval?: number, timeout?: number }} [options] timeout and polling interval
