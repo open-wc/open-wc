@@ -103,8 +103,7 @@ const componentLibraries = [
   },
   {
     name: 'Material Web Components',
-    url:
-      'https://material-components.github.io/material-components-web-components/demos/index.html',
+    url: 'https://material-components.github.io/material-web',
     description:
       "Material Design Components from Material Design team themselves. Stay as close as possible to the changing specification with these components from Google's own Material Design team.",
   },
