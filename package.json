@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "codelabs:build": "node ./packages/codelabs/build-codelabs.js",
-    "debug": "web-test-runner --watch",
+    "debug": "web-test-runner --config ./web-test-runner.debug.config.mjs",
     "format": "npm run format:eslint && npm run format:prettier",
     "format:eslint": "eslint --ext .js,.html . --fix",
     "format:prettier": "prettier \"**/*.{js,md}\" \"**/package.json\" --write",
@@ -16,7 +16,8 @@
     "prepare": "husky install",
     "release": "changeset publish && yarn format",
     "search": "rocket search",
-    "setup": "npm run setup:ts-configs && npm run setup:postinstall",
+    "setup": "npm run setup:ts-configs && npm run setup:patch && npm run setup:postinstall",
+    "setup:patch": "npx patch-package",
     "setup:postinstall": "node scripts/workspaces-scripts-bin.mjs monorepo:postinstall",
     "setup:ts-configs": "node scripts/generate-ts-configs.mjs",
     "site:build": "node scripts/workspaces-scripts-bin.mjs site:build && npm run codelabs:build && rocket build",
@@ -36,7 +37,7 @@
     "@rocket/cli": "^0.10.1",
     "@rocket/core": "^0.1.2",
     "@rocket/launch": "^0.6.0",
-    "@rocket/search": "^0.5.1"
+    "@rocket/search": "^0.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",

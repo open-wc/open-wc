@@ -70,12 +70,40 @@ Version 2 of Scoped Elements only supports [lit](https://lit.dev/) with `lit-ele
    }
    ```
 
-<inline-notification type="tip">
+5. (optional) load the polyfill if you need scoping
 
-ScopedElements loads a polyfill of the scoped registry for you . Why do we do this? The spec is quite mature but not yet implemented in a browser and the polyfill is pretty new so we want to control it to be able to patch things if needed to stay backward compatible.
-The polyfill we use is [@webcomponents/scoped-custom-element-registry](https://github.com/webcomponents/polyfills/tree/master/packages/scoped-custom-element-registry).
+   Defining sub elements via `scopedElements` is very useful on it's own as it makes it clear what your element requires. However, if you need the actual scoping feature for example to use two major version or two different classes with the same tag name then you will need to load a polyfill.
 
-</inline-notification>
+   We recommend [@webcomponents/scoped-custom-element-registry](https://github.com/webcomponents/polyfills/tree/master/packages/scoped-custom-element-registry).
+
+   You need to load the polyfill before any other web component gets registered.
+
+   It may look something like this in your HTML
+
+   ```html
+   <script src="/node_modules/@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js"></script>
+   ```
+
+   or if you have an SPA you can load it at the top of your app shell code
+
+   ```js
+   import '@webcomponents/scoped-custom-element-registry';
+   ```
+
+   <inline-notification type="tip">
+
+   As long as you only use one version of a web component ScopeElementsMixin will work with the polyfill. So start of without the polyfill once you need it ScopeElementsMixin will log an error.
+
+   ```
+   You are trying to re-register the "feature-a" custom element with a different class via ScopedElementsMixin.
+   This is only possible with a CustomElementRegistry.
+   Your browser does not support this feature so you will need to load a polyfill for it.
+   Load "@webcomponents/scoped-custom-element-registry" before you register ANY web component to the global customElements registry.
+   e.g. add "<script src="/node_modules/@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js"></script>" as your first script tag.
+   For more details you can visit https://open-wc.org/docs/development/scoped-elements/
+   ```
+
+   </inline-notification>
 
 ### Complete example
 
@@ -115,6 +143,45 @@ export class MyElement extends ScopedElementsMixin(LitElement) {
       </my-panel}>
     `;
   }
+}
+```
+
+### Creating elements
+
+If you use the `render` function of your lit component then it will automatically use the scoped registry as it will be defined within it's shadow root.
+
+```js
+render() {
+  return html`
+    <my-button>${this.text}</my-button>
+  `;
+}
+```
+
+When creating components outside of the render function you will need to be explicit in which scope you want to define it.
+
+```js
+initElements() {
+  // creating a `my-button` element in the global scope
+  const myButton = document.createElement('my-button');
+  //                                       👆 may fail if my-button is only registered in the scoped registry
+
+  // create a `my-button` element in the local scope
+  const myButton = this.shadowRoot.createElement('my-button');
+  //                              👆 this only works with the polyfill
+
+  this.appendChild(myButton);
+}
+```
+
+Additionally when using the ScopedElementMixin it may use the global or local scope depending on if the polyfill is loaded.
+Therefore the following code will work in both cases:
+
+```js
+initElements() {
+  const root = this.shadowRoot.createElement ? this.shadowRoot : document;
+  const myButton = root.createElement('my-button');
+  this.appendChild(myButton);
 }
 ```
 
