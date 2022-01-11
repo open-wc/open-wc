@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const fetch = require('node-fetch');
+const cache = require('@11ty/eleventy-cache-assets');
 
 const baseLibraries = [
   {
@@ -141,8 +141,10 @@ module.exports = async function getBaseLibraries() {
   const result = await Promise.all(
     baseLibraries.map(async lib => {
       const pkg = encodeURIComponent(lib.package);
-      const response = await fetch(`https://api.npmjs.org/downloads/point/last-week/${pkg}`);
-      const { downloads } = await response.json();
+      const { downloads } = await cache(`https://api.npmjs.org/downloads/point/last-week/${pkg}`, {
+        duration: '1d',
+        type: 'json',
+      });
 
       return {
         ...lib,

@@ -18,18 +18,18 @@ reasons:
   - header: Open Source Love
     text: Open Web Components is a community-effort, independent of any framework or company. We are based on open-source tools and services.
 
-supportedByHeader: 'Supported by:'
+supportedByHeader: 'Open Web Components is <a href="https://opencollective.com/modern-web">supported</a> by:'
 supportedByItems:
-  - name: Browserstack,
-    width: 180,
-    href: http://browserstack.com/,
-    image: https://raw.githubusercontent.com/open-wc/open-wc/97309eecd83e8b58dffc08a4fb4aa049d062a22b/assets/images/Browserstack-logo.svg,
-  - name: ING,
-    width: 100,
-    href: http://ing.com/,
-    image: https://www.ing.com/static/ingdotcompresentation/static/img/logos/logo.hd.png,
-  - name: Netlify,
-    width: 100,
-    href: http://netlify.com/,
-    image: https://www.netlify.com/img/press/logos/full-logo-light.svg,
+  - name: Divriots
+    width: 300
+    href: https://divriots.com/
+    image: /_merged_assets/supporters/divriots-light.svg
+    imageDark: /_merged_assets/supporters/divriots-dark.svg
+    tier: Silver
+  - name: Chrome's Web Framework & Tools Performance Fund
+    width: 100
+    href: https://google.com/chrome
+    image: /_merged_assets/supporters/chrome.svg
+    imageDark: /_merged_assets/supporters/chrome.svg
+    tier: Gold
 ---
