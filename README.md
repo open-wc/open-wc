@@ -73,13 +73,26 @@ You can also find us on the Lit & Friends slack in the [#open-wc](https://lit-an
 
 You can join the Lit & Friends slack by visiting [https://lit.dev/slack-invite/](https://lit.dev/slack-invite/).
 
+## Sponsored by
+
+<a href="https://google.com/chrome" style="border: none;" target="_blank" rel="noopener">
+  <img src="https://github.com/open-wc/open-wc/blob/master/docs/_assets/supporters/chrome.svg" width="100" alt="Chrome's Web Framework & Tools Performance Fund Logo" />
+</a>
+
+<a href="https://divriots.com/" style="border: none;" target="_blank" rel="noopener">
+  <img src="https://github.com/open-wc/open-wc/blob/master/docs/_assets/supporters/divriots-light.svg#gh-light-mode-only" width="200" alt="Divriots Logo" />
+  <img src="https://github.com/open-wc/open-wc/blob/master/docs/_assets/supporters/divriots-dark.svg#gh-dark-mode-only" width="200" alt="Divriots Logo" />
+</a>
+
 ## Supported by
 
-<a href="http://browserstack.com/" style="border: none;"><img src="https://github.com/open-wc/open-wc/blob/master/assets/images/Browserstack-logo.svg" width="200" alt="Browserstack Logo" /></a>
+<a href="http://browserstack.com/" style="border: none;" target="_blank" rel="noopener">
+  <img src="https://github.com/open-wc/open-wc/blob/master/assets/images/Browserstack-logo.svg" width="200" alt="Browserstack Logo" />
+</a>
 
-<a href="http://netlify.com/" style="border: none;"><img src="https://www.netlify.com/img/press/logos/full-logo-light.svg" width="185" alt="netlify logo" /></a>
-
-<a href="http://ing.com/" style="border: none;"><img src="https://www.ing.com/static/ingdotcompresentation/static/img/logos/logo.hd.png" width="185" alt="ing logo" /></a>
+<a href="http://netlify.com/" style="border: none;" target="_blank" rel="noopener">
+  <img src="https://www.netlify.com/img/press/logos/full-logo-light.svg" width="185" alt="netlify logo" />
+</a>
 
 ## Guide
 
