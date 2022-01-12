@@ -81,7 +81,7 @@
     "eslint-plugin-wc": "^1.3.0",
     "fs-extra": "^9.1.0",
     "haunted": "^4.7.1",
-    "http-server": "^0.12.3",
+    "http-server": "^0.13.0",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
     "mocha": "^8.3.2",
