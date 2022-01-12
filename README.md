@@ -81,7 +81,6 @@ You can join the Lit & Friends slack by visiting [https://lit.dev/slack-invite/]
 
 <a href="https://divriots.com/" style="border: none;" target="_blank" rel="noopener">
   <img src="https://github.com/open-wc/open-wc/blob/master/docs/_assets/supporters/divriots-light.svg#gh-light-mode-only" width="200" alt="Divriots Logo" />
-  <img src="https://github.com/open-wc/open-wc/blob/master/docs/_assets/supporters/divriots-dark.svg#gh-dark-mode-only" width="200" alt="Divriots Logo" />
 </a>
 
 ## Supported by
