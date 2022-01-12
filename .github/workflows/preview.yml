@@ -26,9 +26,12 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Build the preview URL from the branch name
-        run: echo ::set-output name=url::https://${GITHUB_HEAD_REF}--open-wc-org.netlify.app/
+        run: |
+          branch=$(git symbolic-ref --short HEAD)
+          branch=$(npx slugify-cli $branch)
+          echo ::set-output name=url::https://$branch--open-wc-org.netlify.app/
         id: preview
-      
+
       - name: Build Documentation Site
         env:
           DEPLOY_URL: ${{ steps.preview.outputs.url }}
