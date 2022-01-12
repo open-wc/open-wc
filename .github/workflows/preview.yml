@@ -25,10 +25,14 @@ jobs:
       - name: Install Dependencies
         run: yarn --frozen-lockfile
 
-      - name: Build the preview URL from the branch name
+      - name: Get the slugified branch name
         run: |
           branch=$(npx slugify-cli ${GITHUB_HEAD_REF})
-          echo ::set-output name=url::https://$branch--open-wc-org.netlify.app/
+          echo ::set-output name=name::$branch
+        id: slugified_branch
+
+      - name: Build the preview URL from the branch name
+        run: echo ::set-output name=url::https://${steps.slugified_branch.outputs.name}--open-wc-org.netlify.app/
         id: preview
 
       - name: Build Documentation Site
@@ -41,7 +45,7 @@ jobs:
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: yarn netlify deploy --alias=${GITHUB_HEAD_REF} --dir=_site
+        run: yarn netlify deploy --alias=${steps.slugified_branch.outputs.name} --dir=_site
 
       - name: Post Previews
         uses: actions/github-script@v4
