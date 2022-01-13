@@ -160,6 +160,11 @@ const componentLibraries = [
     url: 'https://zooplus.github.io/zoo-web-components/',
     description: 'A set of web components that implement Z+ shop style guide.',
   },
+  {
+    name: 'Vivid',
+    url: 'https://github.com/Vonage/vivid',
+    description: "Vonage's web UI 🎨 toolbelt. A library that favors lock-down and coherence over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree).",
+  },
 ];
 
 module.exports = async function getComponentLibraries() {
