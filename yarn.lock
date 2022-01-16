@@ -2962,10 +2962,10 @@
     dependency-graph "^0.10.0"
     sax-wasm "^2.0.0"
 
-"@rocket/launch@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@rocket/launch/-/launch-0.4.2.tgz#a3f175e7aa7e96ef5fa6d546e730cddd5d97d905"
-  integrity sha512-8+oTpbrxfO+Z4Wdhyxo8ve9BSj/I0HBQCBFuJ48rJ1chzUN84EIR8fSEGnFXfL6Mwhu4wGDTwOzTXejRkttHng==
+"@rocket/launch@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@rocket/launch/-/launch-0.6.0.tgz#c6225c864df8e73be2e081a4aa687b2ec1cf2b5f"
+  integrity sha512-Utk0MrJe3a9eof71QRWhR/CPeKDnKji+iN3sDbkXQxlEU46hHDTuJ7M0PggfaKdskYNp5w1Y9tGzz/v27fFSOg==
   dependencies:
     "@rocket/drawer" "^0.1.3"
     "@rocket/navigation" "^0.2.1"
