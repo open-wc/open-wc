@@ -103,8 +103,7 @@ const componentLibraries = [
   },
   {
     name: 'Material Web Components',
-    url:
-      'https://material-components.github.io/material-components-web-components/demos/index.html',
+    url: 'https://material-components.github.io/material-web',
     description:
       "Material Design Components from Material Design team themselves. Stay as close as possible to the changing specification with these components from Google's own Material Design team.",
   },
@@ -159,6 +158,11 @@ const componentLibraries = [
     name: 'Zooplus Web Components',
     url: 'https://zooplus.github.io/zoo-web-components/',
     description: 'A set of web components that implement Z+ shop style guide.',
+  },
+  {
+    name: 'Vivid',
+    url: 'https://github.com/Vonage/vivid',
+    description: "Vonage's web UI 🎨 toolbelt. A library that favors lock-down and coherence over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree).",
   },
 ];
 
