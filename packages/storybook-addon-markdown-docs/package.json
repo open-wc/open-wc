@@ -41,7 +41,7 @@
     "@mdx-js/mdx": "^1.6.22",
     "detab": "^2.0.4",
     "mdurl": "^1.0.1",
-    "remark-html": "^13.0.1",
+    "remark-html": "^13.0.2",
     "remark-parse": "^9.0.0",
     "remark-slug": "^6.0.0",
     "unified": "^9.2.0",
