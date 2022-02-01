@@ -162,7 +162,8 @@ const componentLibraries = [
   {
     name: 'Vivid',
     url: 'https://github.com/Vonage/vivid',
-    description: "Vonage's web UI 🎨 toolbelt. A library that favors lock-down and coherence over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree).",
+    description:
+      "Vonage's web UI 🎨 toolbelt. A library that favors lock-down and coherence over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree).",
   },
 ];
 
