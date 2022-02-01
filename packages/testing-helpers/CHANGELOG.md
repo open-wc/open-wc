@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.3
+
+### Patch Changes
+
+- 592196ce: Relax type of `waitUntil` predicate parameter
+
 ## 2.0.2
 
 ### Patch Changes

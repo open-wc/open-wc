@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.3
+
+### Patch Changes
+
+- 7b9d0c37: User provided code blocks should remain in the final output
+
 ## 1.0.2
 
 ### Patch Changes
