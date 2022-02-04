@@ -96,7 +96,7 @@ describe('renameDefaultExport', () => {
       error = _error;
     }
     expect(error.message.split('\n')).to.eql([
-      'Unterminated string constant (3:6)',
+      'Unterminated string constant. (3:6)',
       '',
       "  1 | const foo1 = 'bar';",
       "  2 | const bar1 = 'foo';",
