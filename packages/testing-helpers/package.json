@@ -38,7 +38,8 @@
   ],
   "dependencies": {
     "@open-wc/scoped-elements": "^2.0.1",
-    "lit": "^2.0.0"
+    "lit": "^2.0.0",
+    "lit-html": "^2.0.0"
   },
   "types": "types/index.d.ts"
 }
