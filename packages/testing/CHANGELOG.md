@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.4
+
+### Patch Changes
+
+- 987c9cd2: Add lit-html as depenency to support the generated types in strict package managers
+- Updated dependencies [987c9cd2]
+  - @open-wc/testing-helpers@2.0.4
+
 ## 3.0.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.4
+
+### Patch Changes
+
+- 987c9cd2: Add lit-html as depenency to support the generated types in strict package managers
+
 ## 2.0.3
 
 ### Patch Changes
