@@ -118,10 +118,10 @@ export async function triggerFocusFor(element) {
  * await oneEvent(el, 'done');
  * expect(el.done).to.be.true;
  *
- * @template {Event} [TEvent=CustomEvent]
- * @param {EventTarget} eventTarget Target of the event, usually an Element
- * @param {string} eventName Name of the event
- * @returns {Promise<TEvent>} Promise to await until the event has been fired
+ * @param eventTarget Target of the event, usually an Element
+ * @param eventName Name of the event
+ * @returns Promise to await until the event has been fired
+ * @type {import("./types").OneEventFn}
  */
 export function oneEvent(eventTarget, eventName) {
   return new Promise(resolve => {
