@@ -69,7 +69,7 @@ __export_default__.parameters = __export_default__.parameters || {};
 __export_default__.parameters.docs = __export_default__.parameters.docs || {};
 __export_default__.parameters.docs.page = () => <AddContext
   mdxStoryNameToKey={mdxStoryNameToKey}
-  mdxComponentMeta={__export_default__}><MDXContent
+  mdxComponentAnnotations={__export_default__}><MDXContent
 /></AddContext>;
 
 export const __page = () => {
