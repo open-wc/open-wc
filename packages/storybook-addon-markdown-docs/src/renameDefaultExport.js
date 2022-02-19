@@ -1,8 +1,11 @@
 /** @typedef {import('@babel/core').types.File} File */
 
-const { parse } = require('@babel/parser');
+import { parse } from '@babel/parser';
 // @ts-ignore
-const { codeFrameColumns } = require('@babel/code-frame');
+import { codeFrameColumns } from '@babel/code-frame';
+import babel from '@babel/core';
+import generate from '@babel/generator';
+
 const {
   isExportDefaultDeclaration,
   isExpression,
@@ -10,8 +13,7 @@ const {
   variableDeclaration,
   variableDeclarator,
   identifier,
-} = require('@babel/core').types;
-const { default: generate } = require('@babel/generator');
+} = babel.types;
 
 /**
  * @param {string} path
@@ -67,9 +69,7 @@ function renameDefaultExport(code, path, highlightError = true) {
   ]);
   body.splice(body.indexOf(defaultExport), 1, defaultExportReplacement);
 
-  return generate(file).code;
+  return generate.default(file).code;
 }
 
-module.exports = {
-  renameDefaultExport,
-};
+export { renameDefaultExport };

@@ -1,8 +1,8 @@
-const { mdjsToMd } = require('./mdjsToMd');
-const { renameDefaultExport } = require('./renameDefaultExport');
-const { createStoriesCode } = require('./createStoriesCode');
-const { mdToJsx } = require('./mdToJsx');
-const { jsxToJs } = require('./jsxToJs');
+import { mdjsToMd } from './mdjsToMd.js';
+import { renameDefaultExport } from './renameDefaultExport.js';
+import { createStoriesCode } from './createStoriesCode.js';
+import { mdToJsx } from './mdToJsx.js';
+import { jsxToJs } from './jsxToJs.js';
 
 /**
  * @param {string} markdown
@@ -13,7 +13,6 @@ const { jsxToJs } = require('./jsxToJs');
  */
 async function mdjsToCsf(markdown, filePath, projectType, mdjsOptions = {}) {
   const markdownResult = await mdjsToMd(markdown, { ...mdjsOptions, filePath });
-
   const jsCode = renameDefaultExport(markdownResult.jsCode, filePath);
   const storiesCode = createStoriesCode(markdownResult.stories);
   const docsJsx = await mdToJsx(markdownResult.html, filePath, projectType, markdownResult.stories);
@@ -22,6 +21,4 @@ async function mdjsToCsf(markdown, filePath, projectType, mdjsOptions = {}) {
   return `${jsCode}\n${storiesCode}\n${docs}`;
 }
 
-module.exports = {
-  mdjsToCsf,
-};
+export { mdjsToCsf };

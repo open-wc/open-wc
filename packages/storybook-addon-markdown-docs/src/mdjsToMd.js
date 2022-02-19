@@ -3,20 +3,20 @@
 /** @typedef {import('@mdjs/core').ParseResult} ParseResult */
 /** @typedef {import('@mdjs/core').MdjsProcessPlugin} MdjsProcessPlugin */
 
-const unified = require('unified');
-const markdown = require('remark-parse');
+import unified from 'unified';
+import markdown from 'remark-parse';
 // @ts-ignore
-const mdSlug = require('remark-slug');
+import mdSlug from 'remark-slug';
 // @ts-ignore
-const mdStringify = require('remark-html');
+import mdStringify from 'remark-html';
 // @ts-ignore
-const detab = require('detab');
-const u = require('unist-builder');
-const visit = require('unist-util-visit-parents');
+import detab from 'detab';
+import u from 'unist-builder';
+import visit from 'unist-util-visit-parents';
 // @ts-ignore
-const normalize = require('mdurl/encode');
+import normalize from 'mdurl/encode.js';
 
-const { mdjsParse, mdjsStoryParse } = require('@mdjs/core');
+import { mdjsParse, mdjsStoryParse } from '@mdjs/core';
 
 /**
  * Keep the code blocks as md source code so storybook will use it's special code block
@@ -167,4 +167,4 @@ async function mdjsToMd(
   };
 }
 
-module.exports = { mdjsToMd };
+export { mdjsToMd };
