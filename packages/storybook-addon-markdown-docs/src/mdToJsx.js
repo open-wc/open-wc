@@ -1,7 +1,7 @@
 /** @typedef {import('@mdjs/core').Story} Story */
 
-const mdx = require('@mdx-js/mdx');
-const mdxToJsx = require('@mdx-js/mdx/mdx-hast-to-jsx');
+import mdx from '@mdx-js/mdx';
+import mdxToJsx from '@mdx-js/mdx/mdx-hast-to-jsx.js';
 
 /**
  * @param {string} markdown
@@ -89,7 +89,7 @@ ${createDocsPage(stories, projectType)}
 ${await compileMdToJsx(markdown, filepath)}`;
 }
 
-module.exports = {
+export {
   mdToJsx,
   // export for testing
   createDocsPage,

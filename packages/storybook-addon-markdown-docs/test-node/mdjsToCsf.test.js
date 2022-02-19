@@ -1,9 +1,9 @@
 /** @typedef {import('@mdjs/core').MdjsProcessPlugin} MdjsProcessPlugin */
 
-const chai = require('chai');
+import chai from 'chai';
 // @ts-ignore
-const chaiSnapshot = require('mocha-chai-snapshot');
-const { mdjsToCsf } = require('../src/mdjsToCsf');
+import chaiSnapshot from 'mocha-chai-snapshot';
+import { mdjsToCsf } from '../src/mdjsToCsf.js';
 
 chai.use(chaiSnapshot);
 const { expect } = chai;

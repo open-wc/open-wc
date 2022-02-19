@@ -1,7 +1,7 @@
 /** @typedef {import('@mdjs/core').Story} Story */
 
-const { expect } = require('chai');
-const { createStoriesCode } = require('../src/createStoriesCode');
+import { expect } from 'chai';
+import { createStoriesCode } from '../src/createStoriesCode.js';
 
 describe('createStoriesCode', () => {
   it('returns a single stories as js string', () => {

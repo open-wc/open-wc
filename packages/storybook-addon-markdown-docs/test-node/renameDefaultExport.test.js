@@ -1,6 +1,6 @@
-const { expect } = require('chai');
+import { expect } from 'chai';
 
-const { renameDefaultExport } = require('../src/renameDefaultExport');
+import { renameDefaultExport } from '../src/renameDefaultExport.js';
 
 describe('renameDefaultExport', () => {
   it('renames the default export of a code string', () => {

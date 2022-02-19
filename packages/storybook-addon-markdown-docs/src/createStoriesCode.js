@@ -20,6 +20,4 @@ function createStoriesCode(stories) {
   return allCode;
 }
 
-module.exports = {
-  createStoriesCode,
-};
+export { createStoriesCode };
