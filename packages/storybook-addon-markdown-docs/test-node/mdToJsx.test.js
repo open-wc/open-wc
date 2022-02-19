@@ -1,7 +1,7 @@
 /** @typedef {import('@mdjs/core').Story} Story */
 
-const { expect } = require('chai');
-const { compileMdToJsx, createDocsPage } = require('../src/mdToJsx');
+import { expect } from 'chai';
+import { compileMdToJsx, createDocsPage } from '../src/mdToJsx.js';
 
 describe('compileMdToJsx', () => {
   it('turns MD into JSX', async () => {

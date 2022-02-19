@@ -1,5 +1,5 @@
 import { storybookPlugin } from '@web/dev-server-storybook';
-import * as mdjsModule from '../../index.js';
+import * as mdjsModule from '../../index.mjs';
 
 const { mdjsToCsf } = mdjsModule;
 
