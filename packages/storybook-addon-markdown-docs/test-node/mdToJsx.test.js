@@ -15,11 +15,11 @@ describe('compileMdToJsx', () => {
 - C
 `;
     const output = (await compileMdToJsx(input, '/foo')).trim();
-    expect(output).to.include('<h1>{`Title`}</h1>');
-    expect(output).to.include('<h2>{`Subtitle`}</h2>');
-    expect(output).to.include('<ul>');
-    expect(output).to.include('<li parentName="ul">{`A`}</li>');
-    expect(output).to.include('</ul>');
+    expect(output).to.include('<_components.h1>{"Title"}</_components.h1>');
+    expect(output).to.include('<_components.h2>{"Subtitle"}</_components.h2>');
+    expect(output).to.include('<_components.ul>');
+    expect(output).to.include('<_components.li>{"A"}</_components.li>');
+    expect(output).to.include('</_components.ul>');
   });
 
   it('turns HTML into JSX', async () => {
@@ -33,9 +33,9 @@ describe('compileMdToJsx', () => {
 </ul>
 `;
     const output = (await compileMdToJsx(input, '/foo')).trim();
-    expect(output).to.include('<h1>Title</h1>');
+    expect(output).to.include('<h1>{"Title"}</h1>');
     expect(output).to.include('<ul>');
-    expect(output).to.include('<li>A</li>');
+    expect(output).to.include('<li>{"A"}</li>');
     expect(output).to.include('</ul>');
   });
 
@@ -50,9 +50,9 @@ describe('compileMdToJsx', () => {
 </ul>
 `;
     const output = (await compileMdToJsx(input, '/foo')).trim();
-    expect(output).to.include('<h1>{`Title`}</h1>');
+    expect(output).to.include('<_components.h1>{"Title"}</_components.h1>');
     expect(output).to.include('<ul>');
-    expect(output).to.include('<li>A</li>');
+    expect(output).to.include('<li>{"A"}</li>');
     expect(output).to.include('</ul>');
   });
 });

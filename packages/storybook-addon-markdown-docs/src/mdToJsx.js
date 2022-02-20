@@ -1,28 +1,25 @@
 /** @typedef {import('@mdjs/core').Story} Story */
 
-import mdx from '@mdx-js/mdx';
-import mdxToJsx from '@mdx-js/mdx/mdx-hast-to-jsx.js';
+import { compile } from '@mdx-js/mdx';
+// import { toJSX } from '@mdx-js/mdx/mdx-hast-to-jsx.js';
 
 /**
  * @param {string} markdown
  * @param {string} filepath
  * @returns {Promise<string>}
  */
-function compileMdToJsx(markdown, filepath) {
-  return mdx(
-    `import { Story, Preview, Props } from '@web/storybook-prebuilt/addon-docs/blocks.js';\n\n${markdown}`,
+function compileMdToJsx(markdown, path) {
+  return compile(
     {
-      compilers: [
-        // custom mdx compiler which ensures mdx doesn't add a default export,
-        // we don't need it because we are adding our own
-        function mdxCompiler() {
-          // @ts-ignore
-          this.Compiler = tree => mdxToJsx.toJSX(tree, {}, { skipExport: true });
-        },
-      ],
-      filepath,
+      path,
+      value: `import { Story, Preview, Props } from '@web/storybook-prebuilt/addon-docs/blocks.js';\n\n${markdown}`,
     },
-  );
+    { jsx: true },
+  ).then(vfile => {
+    let { value } = vfile;
+    value = value.replace(/export default.*;/, '');
+    return value;
+  });
 }
 
 /**
