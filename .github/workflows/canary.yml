@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - next
-      - storybook-addon-esm
+      - storybook-addon-next
 
 jobs:
   release:
