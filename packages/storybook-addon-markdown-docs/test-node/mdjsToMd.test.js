@@ -1,6 +1,6 @@
-const { expect } = require('chai');
+import { expect } from 'chai';
 
-const { mdjsToMd } = require('../src/mdjsToMd');
+import { mdjsToMd } from '../src/mdjsToMd.js';
 
 /**
  * @param {string} output
