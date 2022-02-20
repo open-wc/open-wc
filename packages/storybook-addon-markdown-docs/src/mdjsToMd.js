@@ -3,16 +3,16 @@
 /** @typedef {import('@mdjs/core').ParseResult} ParseResult */
 /** @typedef {import('@mdjs/core').MdjsProcessPlugin} MdjsProcessPlugin */
 
-import unified from 'unified';
+import { unified } from 'unified';
 import markdown from 'remark-parse';
 // @ts-ignore
 import mdSlug from 'remark-slug';
 // @ts-ignore
 import mdStringify from 'remark-html';
 // @ts-ignore
-import detab from 'detab';
-import u from 'unist-builder';
-import visit from 'unist-util-visit-parents';
+import { detab } from 'detab';
+import { u } from 'unist-builder';
+import { visitParents as visit } from 'unist-util-visit-parents';
 // @ts-ignore
 import normalize from 'mdurl/encode.js';
 
@@ -161,7 +161,7 @@ async function mdjsToMd(
   const result = /** @type {ParseResult} */ (parseResult);
 
   return {
-    html: result.contents,
+    html: result.value,
     jsCode: result.data.jsCode,
     stories: result.data.stories,
   };
