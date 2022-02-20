@@ -69,6 +69,12 @@ const baseLibraries = [
     url: 'https://stenciljs.com/',
   },
   {
+    name: 'Svelte',
+    package: 'svelte',
+    description: 'Svelte is a compiler and a component framework for building highly optimized interfaces with minimal footprint',
+    url: 'https://svelte.dev/',
+  },
+  {
     name: 'CanJS',
     package: 'can',
     description: 'Build CRUD apps in fewer lines of code',
