@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.5
+
+### Patch Changes
+
+- 065b82a8: Add generics for oneEvent test helper function
+
 ## 2.0.4
 
 ### Patch Changes
