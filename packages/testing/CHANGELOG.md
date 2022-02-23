@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- ebbea0d5: Force lit-html dependency tree for correct types construction
+- Updated dependencies [ebbea0d5]
+  - @open-wc/testing-helpers@2.1.1
+
 ## 3.1.0
 
 ### Minor Changes
