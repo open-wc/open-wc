@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- b762707d: Feat/customize render
+
+### Patch Changes
+
+- Updated dependencies [b762707d]
+  - @open-wc/testing-helpers@2.1.0
+
 ## 3.0.4
 
 ### Patch Changes
