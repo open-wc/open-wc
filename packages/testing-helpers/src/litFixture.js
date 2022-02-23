@@ -1,4 +1,4 @@
-import { render } from 'lit/html.js';
+import { render as defaultRender } from 'lit/html.js';
 import { isTemplateResult } from 'lit/directive-helpers.js';
 import { fixtureWrapper } from './fixtureWrapper.js';
 import { elementUpdated } from './elementUpdated.js';
@@ -26,6 +26,7 @@ const isUsefulNode = ({ nodeType, textContent }) => {
  */
 export function litFixtureSync(template, options = {}, getScopedElementsTemplate) {
   const wrapper = /** @type {HTMLElement} */ (fixtureWrapper(options.parentNode));
+  const render = options.render ?? defaultRender;
 
   render(
     options.scopedElements ? getScopedElementsTemplate(template, options.scopedElements) : template,

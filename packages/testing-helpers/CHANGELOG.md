@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- b762707d: Feat/customize render
+
 ## 2.0.5
 
 ### Patch Changes
