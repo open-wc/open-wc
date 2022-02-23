@@ -63,6 +63,12 @@ describe('fixtureSync & fixture', () => {
     testElement(elementAsync);
   });
 
+  it('supports customized render functions', async () => {
+    const render = sinon.stub();
+    await fixture(html`<div></div>`, { render });
+    expect(render.called).to.equal(true);
+  });
+
   it('supports lit-html TemplateResult with whitespace', async () => {
     /**
      * @param {Element} element

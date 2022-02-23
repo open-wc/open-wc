@@ -127,6 +127,16 @@ const el = await fixture(html` <my-el></my-el> `, { parentNode });
 <div style="position:absolute;"><my-el></my-el></div>
 ```
 
+## Customize the render function
+
+It could be the case that you need to customize the render function for compatibility reasons, for example if you have multiple versions of lit-html throughout your project. You can achieve this like so:
+
+```js
+import { render } from 'custom-lit-html-version';
+
+const el = await fixture(html`<my-el></my-el>`, { render });
+```
+
 ## Timings
 
 By default fixture awaits the elements "update complete" Promise.
