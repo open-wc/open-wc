@@ -1,5 +1,5 @@
 import { ScopedElementsMixin } from '@open-wc/scoped-elements';
-import { html, LitElement } from 'lit';
+import { LitElement } from 'lit';
 
 /** @typedef {import('@open-wc/scoped-elements').ScopedElementsMap} ScopedElementsMap */
 /** @typedef {import('lit/html.js').TemplateResult} TemplateResult */
@@ -26,15 +26,15 @@ class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
     };
   }
 
-  constructor() {
+  constructor(scopedElement, template) {
     super();
 
     /** @type {ScopedElementsMap} */
-    this.scopedElements = {};
+    this.scopedElements = scopedElement;
 
     /** @type {import('./renderable').LitHTMLRenderable} */
     // eslint-disable-next-line no-unused-expressions
-    this.template;
+    this.template = template;
   }
 
   firstUpdated(_changed) {
@@ -71,22 +71,19 @@ const getWrapperUniqueName = (counter = 0) => {
  *
  * @param {import('./renderable').LitHTMLRenderable} template
  * @param {ScopedElementsMap} scopedElements
- * @return {TemplateResult}
+ * @return {HTMLElement}
  */
 export function getScopedElementsTemplate(template, scopedElements) {
   const wrapperTagName = getWrapperUniqueName();
+  class Scope extends ScopedElementsTestWrapper {}
 
   // @ts-ignore
-  customElements.define(wrapperTagName, class extends ScopedElementsTestWrapper {});
+  customElements.define(wrapperTagName, Scope);
 
-  const strings = [
-    `<${wrapperTagName} .scopedElements="`,
-    '" .template="',
-    `"></${wrapperTagName}>`,
-  ];
+  /** @type {ScopedElementsTestWrapper} */
+  const scope = new Scope(scopedElements, template);
 
-  // @ts-ignore
-  return html(strings, scopedElements, template);
+  return scope;
 }
 
 /** @typedef {typeof getScopedElementsTemplate} ScopedElementsTemplateGetter */
