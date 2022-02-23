@@ -25,7 +25,7 @@ export function fixtureSync(template, options) {
   if (typeof template === 'string') {
     return stringFixtureSync(template, options);
   }
-  if (isValidRenderArg(template)) {
+  if (!!options?.render || isValidRenderArg(template)) {
     return litFixtureSync(template, options);
   }
   throw new Error(
@@ -58,7 +58,7 @@ export async function fixture(template, options) {
   if (typeof template === 'string') {
     return stringFixture(template, options);
   }
-  if (isValidRenderArg(template)) {
+  if (!!options?.render || isValidRenderArg(template)) {
     return litFixture(template, options);
   }
   throw new Error('Invalid template provided - string or lit-html TemplateResult is supported');
