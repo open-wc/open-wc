@@ -6,8 +6,6 @@ import './register-chai-plugins.js';
 export { chai, expect, should, assert };
 
 export {
-  html,
-  unsafeStatic,
   triggerBlurFor,
   triggerFocusFor,
   oneEvent,

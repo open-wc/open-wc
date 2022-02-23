@@ -1,5 +1,6 @@
+import { html, unsafeStatic } from 'lit/static-html.js';
 import { expect } from './setup.js';
-import { html, litFixture, unsafeStatic } from '../index.js';
+import { litFixture } from '../index.js';
 
 /**
  * @typedef {Object} ChildType

@@ -1,4 +1,5 @@
-import { fixture, expect, assert, html } from '../index.js';
+import { html } from 'lit';
+import { fixture, expect, assert } from '../index.js';
 
 describe('chaiA11yAxe', () => {
   describe('Expect', () => {

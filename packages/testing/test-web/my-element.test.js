@@ -1,4 +1,5 @@
-import { fixture, expect, html } from '../index.js';
+import { html } from 'lit';
+import { fixture, expect } from '../index.js';
 import '../demo/my-element.js';
 
 describe('my-element', () => {

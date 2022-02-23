@@ -1,5 +1,3 @@
-export { html } from '@open-wc/testing-helpers/types/index-no-side-effects';
-export { unsafeStatic } from '@open-wc/testing-helpers/types/index-no-side-effects';
 export { triggerBlurFor } from '@open-wc/testing-helpers/types/index-no-side-effects';
 export { triggerFocusFor } from '@open-wc/testing-helpers/types/index-no-side-effects';
 export { oneEvent } from '@open-wc/testing-helpers/types/index-no-side-effects';
