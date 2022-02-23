@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- ebbea0d5: Force lit-html dependency tree for correct types construction
+
 ## 2.1.0
 
 ### Minor Changes
