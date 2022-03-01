@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.2
+
+### Patch Changes
+
+- 773e5b65: fix: add a type for lit v1 renderable
+
 ## 2.1.1
 
 ### Patch Changes

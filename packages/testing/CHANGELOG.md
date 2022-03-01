@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.1.2
+
+### Patch Changes
+
+- 773e5b65: fix: add a type for lit v1 renderable
+- Updated dependencies [773e5b65]
+  - @open-wc/testing-helpers@2.1.2
+
 ## 3.1.1
 
 ### Patch Changes
