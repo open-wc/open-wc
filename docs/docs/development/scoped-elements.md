@@ -58,6 +58,16 @@ Version 2 of Scoped Elements only supports [lit](https://lit.dev/) with `lit-ele
 
    </inline-notification>
 
+   If your components already have `tagName` attributes, you can define them as following:
+
+   ```js
+   class MyElement extends ScopedElementsMixin(LitElement) {
+     static get scopedElements() {
+       return [MyButton, MyPanel];
+     }
+   }
+   ```
+
 4. Use your components in your html.
 
    ```js
