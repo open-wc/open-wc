@@ -136,6 +136,31 @@ export function oneEvent(eventTarget, eventName) {
 }
 
 /**
+ * Listens for one event, calls `event.preventDefault()` and resolves with this event object after it was fired.
+ *
+ * @example
+ * const form = document.querySelector('form);
+ * form.querySelector('button[type="submit"]).click();
+ * const payload = await oneDefaultPreventedEvent(form, 'submit');
+ * expect(payload).to.be.true;
+ *
+ * @param eventTarget Target of the event, usually an Element
+ * @param eventName Name of the event
+ * @returns Promise to await until the event has been fired
+ * @type {import("./types").OneEventFn}
+ */
+export function oneDefaultPreventedEvent(eventTarget, eventName) {
+  return new Promise(resolve => {
+    function listener(ev) {
+      ev.preventDefault();
+      resolve(ev);
+      eventTarget.removeEventListener(eventName, listener);
+    }
+    eventTarget.addEventListener(eventName, listener);
+  });
+}
+
+/**
  * Waits until the given predicate returns a truthy value. Calls and awaits the predicate
  * function at the given interval time. Can be used to poll until a certain condition is true.
  *

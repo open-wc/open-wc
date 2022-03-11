@@ -1,5 +1,12 @@
 import { expect } from './setup.js';
-import { defineCE, oneEvent, triggerFocusFor, triggerBlurFor, fixture } from '../index.js';
+import {
+  defineCE,
+  oneEvent,
+  oneDefaultPreventedEvent,
+  triggerFocusFor,
+  triggerBlurFor,
+  fixture,
+} from '../index.js';
 import { waitUntil, aTimeout } from '../src/helpers.js';
 
 describe('Helpers', () => {
@@ -15,7 +22,7 @@ describe('Helpers', () => {
     expect(element2.constructor).to.equal(TestClass2);
   });
 
-  it('provides oneEvent() to await an event beeing fired', async () => {
+  it('provides oneEvent() to await an event being fired', async () => {
     const el = document.createElement('div');
     const detail = { some: 'thing' };
     const customEvent = new CustomEvent('my-custom-event', { detail });
@@ -23,6 +30,21 @@ describe('Helpers', () => {
     setTimeout(() => el.dispatchEvent(customEvent));
 
     const ev = await oneEvent(el, 'my-custom-event');
+    expect(ev).to.be.an.instanceOf(CustomEvent);
+    expect(ev).to.equal(customEvent);
+    expect(ev.detail).to.equal(detail);
+  });
+
+  it('provides oneDefaultPreventedEvent() to await an event being fired', async () => {
+    const el = document.createElement('div');
+    const detail = { some: 'thing' };
+    const customEvent = new CustomEvent('my-custom-event', { detail, cancelable: true });
+
+    setTimeout(() => el.dispatchEvent(customEvent));
+
+    const ev = await oneDefaultPreventedEvent(el, 'my-custom-event');
+
+    expect(ev.defaultPrevented).to.be.true;
     expect(ev).to.be.an.instanceOf(CustomEvent);
     expect(ev).to.equal(customEvent);
     expect(ev.detail).to.equal(detail);
