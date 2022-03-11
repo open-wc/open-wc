@@ -269,6 +269,25 @@ it('can await an event', async () => {
 });
 ```
 
+### Events with preventDefault()
+
+If you want to test events that have a default behavior, like a forms `submit` event, some testing tools can be interrupted if `event.preventDefault()` is not called on the event handler. For example, a form's `submit` event's default behavior is to navigate to the `action` of the form (or reload the page if no `action` is set). If the "page" gets reloaded in a test environment, tests can't easily recover/continue. Use the `oneDefaultPreventedEvent` function and `event.preventDefault()` will be called on the event handler and your tests can continue normally.
+
+```js
+it('can await an event and prevent the default', async () => {
+  const form = await fixture(`<form>
+    <input type="text" />
+    <button>Submit button</button>
+  </form>`);
+
+  form.querySelector('button').click();
+
+  const { detail } = await oneDefaultPreventedEvent(el, 'submit');
+
+  expect(detail).to.be.true;
+});
+```
+
 ## Testing Focus & Blur on IE11
 
 Focus and blur events are synchronous events in all browsers except IE11.
