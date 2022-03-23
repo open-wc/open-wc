@@ -135,6 +135,12 @@ const baseLibraries = [
       'Set of Web Components that can be used to build Single Page Apps (SPA), Display JSON data from API’s and Web Services, and bind data to different elements on screen. All Web Components are plain JavaScript and require no build process.',
     url: 'https://github.com/dataformsjs/dataformsjs',
   },
+  {
+    name: 'Symbiote.js',
+    package: '@symbiotejs/symbiote',
+    description: 'Library to create embedded components and data channels between them.',
+    url: 'https://symbiotejs.org/',
+  },
 ];
 
 module.exports = async function getBaseLibraries() {
