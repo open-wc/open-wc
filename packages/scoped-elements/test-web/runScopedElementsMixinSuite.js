@@ -58,6 +58,33 @@ export function runScopedElementsMixinSuite({ label }) {
       expect(el.shadowRoot.children[1]).to.be.an.instanceOf(FeatureB);
     });
 
+    it('has a "createScopedElement" helper to manually create scoped dom nodes', async () => {
+      const tagString = defineCE(
+        class extends ScopedElementsMixin(LitElement) {
+          static get scopedElements() {
+            return {
+              'feature-a': FeatureA,
+              'feature-b': FeatureB,
+            };
+          }
+
+          createTag() {
+            const tag = this.createScopedElement('feature-a');
+            tag.setAttribute('foo', 'bar');
+            return tag;
+          }
+
+          render() {
+            return html`${this.createTag()}<feature-b></feature-b> `;
+          }
+        },
+      );
+      const el = await fixture(`<${tagString}></${tagString}>`);
+      expect(el.shadowRoot.children[0]).to.be.an.instanceOf(FeatureA);
+      expect(el.shadowRoot.children[0]).to.have.an.attribute('foo', 'bar');
+      expect(el.shadowRoot.children[1]).to.be.an.instanceOf(FeatureB);
+    });
+
     it('supports to extend as ScopedElements component without defining unused sub components', async () => {
       class FeatureC extends LitElement {
         render() {

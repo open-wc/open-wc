@@ -175,12 +175,11 @@ initElements() {
 ```
 
 Additionally when using the ScopedElementMixin it may use the global or local scope depending on if the polyfill is loaded.
-Therefore the following code will work in both cases:
+We added a helper `createScopedElement` you can use to create scoped elements.
 
 ```js
 initElements() {
-  const root = this.shadowRoot.createElement ? this.shadowRoot : document;
-  const myButton = root.createElement('my-button');
+  const myButton = this.createScopedElement('my-button');
   this.appendChild(myButton);
 }
 ```
