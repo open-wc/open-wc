@@ -122,6 +122,12 @@ const ScopedElementsMixinImplementation = superclass =>
       return createdRoot;
     }
 
+    createScopedElement(tagName) {
+      const root = supportsScopedRegistry ? this.shadowRoot : document;
+      // @ts-ignore polyfill to support createElement on shadowRoot is loaded
+      return root.createElement(tagName);
+    }
+
     /**
      * Defines a scoped element.
      *
@@ -147,7 +153,6 @@ const ScopedElementsMixinImplementation = superclass =>
         return this.registry.define(tagName, klass);
       }
       return this.registry.get(tagName);
-      // return this.registry.get(tagName) || this.registry.define(tagName, klass);
     }
 
     /**

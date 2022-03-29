@@ -1,15 +1,14 @@
 diff --git a/node_modules/@lion/form-core/src/validate/ValidateMixin.js b/node_modules/@lion/form-core/src/validate/ValidateMixin.js
-index ea18839..c4bfde2 100644
+index ea18839..590b420 100644
 --- a/node_modules/@lion/form-core/src/validate/ValidateMixin.js
 +++ b/node_modules/@lion/form-core/src/validate/ValidateMixin.js
-@@ -103,8 +103,8 @@ export const ValidateMixinImplementation = superclass =>
+@@ -103,8 +103,7 @@ export const ValidateMixinImplementation = superclass =>
        return {
          ...super.slots,
          feedback: () => {
 -          // @ts-ignore we load a polyfill to support createElement on shadowRoot
 -          const feedbackEl = this.shadowRoot.createElement('lion-validation-feedback');
-+          const root = this.shadowRoot.createElement ? this.shadowRoot : document;
-+          const feedbackEl = root.createElement('lion-validation-feedback');
++          const feedbackEl = this.createScopedElement('lion-validation-feedback');
            feedbackEl.setAttribute('data-tag-name', 'lion-validation-feedback');
            return feedbackEl;
          },
