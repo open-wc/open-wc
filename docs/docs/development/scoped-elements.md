@@ -72,7 +72,7 @@ Version 2 of Scoped Elements only supports [lit](https://lit.dev/) with `lit-ele
 
 5. (optional) load the polyfill if you need scoping
 
-   Defining sub elements via `scopedElements` is very useful on it's own as it makes it clear what your element requires. However, if you need the actual scoping feature for example to use two major version or two different classes with the same tag name then you will need to load a polyfill.
+   Defining sub elements via `scopedElements` is very useful on its own as it makes it clear what your element requires. However, if you need the actual scoping feature for example to use two major version or two different classes with the same tag name ,then you will need to load a polyfill.
 
    We recommend [@webcomponents/scoped-custom-element-registry](https://github.com/webcomponents/polyfills/tree/master/packages/scoped-custom-element-registry).
 
@@ -92,7 +92,7 @@ Version 2 of Scoped Elements only supports [lit](https://lit.dev/) with `lit-ele
 
    <inline-notification type="tip">
 
-   As long as you only use one version of a web component ScopeElementsMixin will work with the polyfill. So start of without the polyfill once you need it ScopeElementsMixin will log an error.
+   As long as you only use one version of a web component ScopeElementsMixin will work with the polyfill. So start of without the polyfill. Once you need it, ScopeElementsMixin will log an error.
 
    ```
    You are trying to re-register the "feature-a" custom element with a different class via ScopedElementsMixin.
@@ -148,7 +148,7 @@ export class MyElement extends ScopedElementsMixin(LitElement) {
 
 ### Creating elements
 
-If you use the `render` function of your lit component then it will automatically use the scoped registry as it will be defined within it's shadow root.
+If you use the `render` function of your lit component then it will automatically use the scoped registry as it will be defined within its shadow root.
 
 ```js
 render() {
