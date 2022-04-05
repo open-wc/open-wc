@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.4.1
+
+### Patch Changes
+
+- b3cc79ab: fix(lit-helpers): Removed type references to deprecated `live`, `spread`, and `spreadAttributes` directives
+
 ## 0.4.0
 
 ### Minor Changes
