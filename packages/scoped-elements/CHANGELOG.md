@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- dbc2b9e2: Update `ScopedElementsMixin` type info to include `createScopedElement`
+
 ## 2.1.0
 
 ### Minor Changes
