@@ -1,15 +1,15 @@
 import { Constructor } from '@open-wc/dedupe-mixin';
 import { ReactiveElement } from '@lit/reactive-element';
 
-export { Constructor }
+export { Constructor };
 
 export type ScopedElementsMap = {
   [key: string]: typeof HTMLElement;
 };
 
 export interface RenderOptions {
-  creationScope: Node|ShadowRoot;
-  renderBefore: Node|undefined;
+  creationScope: Node | ShadowRoot;
+  renderBefore: Node | undefined;
 }
 
 export declare class ScopedElementsHost {
@@ -32,7 +32,14 @@ export declare class ScopedElementsHost {
    */
   defineScopedElement<T extends HTMLElement>(tagName: string, klass: Constructor<T>): void;
 
-  declare public renderOptions: RenderOptions
+  /**
+   * Create a scoped element inside the CustomElementRegistry bound to the shadowRoot.
+   *
+   * @param tagName string The tag name of the element to create
+   */
+  createScopedElement(tagName: string): HTMLElement;
+
+  public declare renderOptions: RenderOptions;
 }
 
 declare function ScopedElementsMixinImplementation<T extends Constructor<ReactiveElement>>(
