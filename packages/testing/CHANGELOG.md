@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.3
+
+### Patch Changes
+
+- 48a853fa: Fix deps issues with @esm-bundle/chai
+
 ## 3.1.2
 
 ### Patch Changes
