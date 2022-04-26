@@ -2257,7 +2257,7 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@esm-bundle/chai@4.3.4-fix.0", "@esm-bundle/chai@^4.3.4-fix.0":
+"@esm-bundle/chai@^4.3.4-fix.0":
   version "4.3.4-fix.0"
   resolved "https://registry.yarnpkg.com/@esm-bundle/chai/-/chai-4.3.4-fix.0.tgz#3084cff7eb46d741749f47f3a48dbbdcbaf30a92"
   integrity sha512-26SKdM4uvDWlY8/OOOxSB1AqQWeBosCX3wRYUZO7enTAj03CtVxIiCimYVG2WpULcyV51qapK4qTovwkUr5Mlw==
@@ -3545,6 +3545,11 @@
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.2.17.tgz#85f9f0610f514b22a94125d441f73eef65bde5cc"
   integrity sha512-LaiwWNnYuL8xJlQcE91QB2JoswWZckq9A4b+nMPq8dt8AP96727Nb3X4e74u+E3tm4NLTILNI9MYFsyVc30wSA==
 
+"@types/chai@^4.3.1":
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.3.1.tgz#e2c6e73e0bdeb2521d00756d099218e9f5d90a04"
+  integrity sha512-/zPMqDkzSZ8t3VtxOa4KPq7uzzW978M9Tvh+j7GHKuo6k6GTLxPJ4J5gE5cjfJ26pnXst0N5Hax8Sr0T2Mi9zQ==
+
 "@types/cheerio@^0.22.23":
   version "0.22.28"
   resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.28.tgz#90808aabb44fec40fa2950f4c72351e3e4eb065b"
@@ -4326,45 +4331,13 @@
     "@web/test-runner-core" "^0.10.20"
     mkdirp "^1.0.4"
 
-"@web/test-runner-commands@^0.5.7":
-  version "0.5.7"
-  resolved "https://registry.yarnpkg.com/@web/test-runner-commands/-/test-runner-commands-0.5.7.tgz#b2557c325ba203a715e0042251fa3619e45a78dc"
-  integrity sha512-Js+ANiiwaNCj6G4YmSp5Gw/d5CVoY97unExqLFWziIf8AKJ/alAstn8/GIzALM/rIzeLjDubI5Pk5tFp1NrbiA==
+"@web/test-runner-commands@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@web/test-runner-commands/-/test-runner-commands-0.6.1.tgz#2df5d98430d4b61161bab778e0929dbc467610c0"
+  integrity sha512-P4aQqp0duumeGdGxQ8TwLnplkrXzpLqb47eSEEqBRS//C1H7s6VskaqEng+k0dbk+cSpEa4RuZGY/G5k8aTjTw==
   dependencies:
-    "@web/test-runner-core" "^0.10.14"
+    "@web/test-runner-core" "^0.10.20"
     mkdirp "^1.0.4"
-
-"@web/test-runner-core@^0.10.14", "@web/test-runner-core@^0.10.8", "@web/test-runner-core@^0.10.9":
-  version "0.10.14"
-  resolved "https://registry.yarnpkg.com/@web/test-runner-core/-/test-runner-core-0.10.14.tgz#5794ded17f673d9839e5a5e36ead505df92962af"
-  integrity sha512-RfY6KAtWHBZvfS/JGAkvp6zprFROd3m7gPJJAUFkfYXyMUQZQnNGI5nI+Shft1FcsST16/ivPog6TPNka55+ig==
-  dependencies:
-    "@babel/code-frame" "^7.12.11"
-    "@types/co-body" "^5.1.0"
-    "@types/convert-source-map" "^1.5.1"
-    "@types/debounce" "^1.2.0"
-    "@types/istanbul-lib-coverage" "^2.0.3"
-    "@types/istanbul-reports" "^3.0.0"
-    "@types/uuid" "^8.3.0"
-    "@web/browser-logs" "^0.2.1"
-    "@web/dev-server-core" "^0.3.6"
-    chalk "^4.1.0"
-    chokidar "^3.4.3"
-    cli-cursor "^3.1.0"
-    co-body "^6.1.0"
-    convert-source-map "^1.7.0"
-    debounce "^1.2.0"
-    dependency-graph "^0.10.0"
-    globby "^11.0.1"
-    ip "^1.1.5"
-    istanbul-lib-coverage "^3.0.0"
-    istanbul-lib-report "^3.0.0"
-    istanbul-reports "^3.0.2"
-    log-update "^4.0.0"
-    open "^8.0.2"
-    picomatch "^2.2.2"
-    source-map "^0.7.3"
-    uuid "^8.3.2"
 
 "@web/test-runner-core@^0.10.20":
   version "0.10.20"
@@ -4388,6 +4361,38 @@
     convert-source-map "^1.7.0"
     debounce "^1.2.0"
     dependency-graph "^0.11.0"
+    globby "^11.0.1"
+    ip "^1.1.5"
+    istanbul-lib-coverage "^3.0.0"
+    istanbul-lib-report "^3.0.0"
+    istanbul-reports "^3.0.2"
+    log-update "^4.0.0"
+    open "^8.0.2"
+    picomatch "^2.2.2"
+    source-map "^0.7.3"
+    uuid "^8.3.2"
+
+"@web/test-runner-core@^0.10.8", "@web/test-runner-core@^0.10.9":
+  version "0.10.14"
+  resolved "https://registry.yarnpkg.com/@web/test-runner-core/-/test-runner-core-0.10.14.tgz#5794ded17f673d9839e5a5e36ead505df92962af"
+  integrity sha512-RfY6KAtWHBZvfS/JGAkvp6zprFROd3m7gPJJAUFkfYXyMUQZQnNGI5nI+Shft1FcsST16/ivPog6TPNka55+ig==
+  dependencies:
+    "@babel/code-frame" "^7.12.11"
+    "@types/co-body" "^5.1.0"
+    "@types/convert-source-map" "^1.5.1"
+    "@types/debounce" "^1.2.0"
+    "@types/istanbul-lib-coverage" "^2.0.3"
+    "@types/istanbul-reports" "^3.0.0"
+    "@types/uuid" "^8.3.0"
+    "@web/browser-logs" "^0.2.1"
+    "@web/dev-server-core" "^0.3.6"
+    chalk "^4.1.0"
+    chokidar "^3.4.3"
+    cli-cursor "^3.1.0"
+    co-body "^6.1.0"
+    convert-source-map "^1.7.0"
+    debounce "^1.2.0"
+    dependency-graph "^0.10.0"
     globby "^11.0.1"
     ip "^1.1.5"
     istanbul-lib-coverage "^3.0.0"
