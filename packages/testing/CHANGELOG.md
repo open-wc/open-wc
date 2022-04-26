@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.4
+
+### Patch Changes
+
+- 19b951b6: update semantic-dom-diff dependency
+
 ## 3.1.3
 
 ### Patch Changes
