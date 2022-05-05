@@ -96,6 +96,12 @@ const componentLibraries = [
       'Lion web components is a set of highly performant, accessible and flexible Web Components. They provide an unopinionated, white label layer that can be extended to your own layer of components.',
   },
   {
+    name: 'LRNWebcomponents',
+    url: 'https://github.com/elmsln/lrnwebcomponents',
+    description:
+      'Primarily developed by Penn State University, LRNWebcomponents is the home to hundreds of reusable, generalized components, as well as full web editors and CMSs like HAX and HAXcms. Highly accessible video players, collapses, color abstractions and more can be found here',
+  },
+  {
     name: 'Material Web Components',
     url: 'https://material-components.github.io/material-web',
     description:
