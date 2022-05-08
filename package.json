@@ -70,7 +70,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "chai": "^4.3.4",
-    "chai-dom": "^1.9.0",
+    "chai-dom": "^1.11.0",
     "concurrently": "^6.0.2",
     "copyfiles": "^2.4.1",
     "core-js": "^3.11.1",
