@@ -97,9 +97,9 @@ const componentLibraries = [
   },
   {
     name: 'LRNWebcomponents',
-    url: 'https://github.com/elmsln/lrnwebcomponents',
+    url: 'https://webcomponents.psu.edu',
     description:
-      'Primarily developed by Penn State University, LRNWebcomponents is the home to hundreds of reusable, generalized components, as well as full web editors and CMSs like HAX and HAXcms. Highly accessible video players, collapses, color abstractions and more can be found here',
+      'Developed by Penn State University, LRNWebcomponents is home to hundreds of reusable, generalized components, as well as full web editors and CMSs like HAX and HAXcms. Highly accessible video players, collapses, color abstractions and more can be found here',
   },
   {
     name: 'Material Web Components',
