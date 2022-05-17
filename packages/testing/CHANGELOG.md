@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.5
+
+### Patch Changes
+
+- ae9fe3e7: upgrade to chai-dom v1.11.0
+
 ## 3.1.4
 
 ### Patch Changes
