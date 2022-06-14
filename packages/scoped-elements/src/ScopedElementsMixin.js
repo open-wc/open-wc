@@ -95,7 +95,9 @@ const ScopedElementsMixinImplementation = superclass =>
         elementStyles,
       } = /** @type {typeof ScopedElementsHost} */ (this.constructor);
 
-      if (!this.registry) {
+      // Polyfill implementation for Object.hasOwn
+      // https://github.com/tc39/proposal-accessible-object-hasownproperty/blob/main/polyfill.js
+      if (!Object.prototype.hasOwnProperty.call(Object(this.constructor), '__registry')) {
         this.registry = supportsScopedRegistry ? new CustomElementRegistry() : customElements;
         for (const [tagName, klass] of Object.entries(scopedElements)) {
           this.defineScopedElement(tagName, klass);
