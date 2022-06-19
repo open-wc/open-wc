@@ -81,7 +81,7 @@ const componentLibraries = [
     name: 'iooxa.dev',
     url: 'https://iooxa.dev/',
     description:
-      'The goal of [iooxa.dev](https://iooxa.dev/) is to provide open source tools to promote and enable interactive scientific writing, reactive documents and explorable explanations.',
+      'The goal of iooxa.dev is to provide open source tools to promote and enable interactive scientific writing, reactive documents and explorable explanations.',
   },
   {
     name: 'Kor UI',
