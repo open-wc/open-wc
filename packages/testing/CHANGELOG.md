@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.1.6
+
+### Patch Changes
+
+- 735b0092: Avoid saving unchanged snapshots
+- Updated dependencies [735b0092]
+  - @open-wc/semantic-dom-diff@0.19.7
+
 ## 3.1.5
 
 ### Patch Changes
