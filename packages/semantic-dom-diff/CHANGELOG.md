@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.19.7
+
+### Patch Changes
+
+- 735b0092: Avoid saving unchanged snapshots
+
 ## 0.19.6
 
 ### Patch Changes
