@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing",
-  "version": "3.1.5",
+  "version": "3.1.6",
   "publishConfig": {
     "access": "public"
   },
@@ -38,7 +38,7 @@
   "dependencies": {
     "@esm-bundle/chai": "^4.3.4-fix.0",
     "@open-wc/chai-dom-equals": "^0.12.36",
-    "@open-wc/semantic-dom-diff": "^0.19.6",
+    "@open-wc/semantic-dom-diff": "^0.19.7",
     "@open-wc/testing-helpers": "^2.1.2",
     "@types/chai": "^4.2.11",
     "@types/chai-dom": "^0.0.12",
