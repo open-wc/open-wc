@@ -14,7 +14,6 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements",
   "main": "index.js",
-  "types": "./types/index.d.ts",
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
@@ -53,5 +52,6 @@
   },
   "devDependencies": {
     "@webcomponents/scoped-custom-element-registry": "^0.0.5"
-  }
+  },
+  "types": "./types/index.d.ts"
 }
