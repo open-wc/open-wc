@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.1.2
+
+### Patch Changes
+
+- bf99826e: Check if `__registry` actually exists on the current class, not a parent.
+- 12b9a736: Fixed compatibility with Typescript 4.7 nodeResolution: "node16".
+
 ## 2.1.1
 
 ### Patch Changes
