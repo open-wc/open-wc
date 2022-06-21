@@ -95,9 +95,9 @@ const ScopedElementsMixinImplementation = superclass =>
         elementStyles,
       } = /** @type {typeof ScopedElementsHost} */ (this.constructor);
 
-      // @ts-ignore
       const shouldCreateRegistry =
         !this.registry ||
+        // @ts-ignore
         (this.registry === this.constructor.__registry &&
           !Object.prototype.hasOwnProperty.call(this.constructor, '__registry'));
 
