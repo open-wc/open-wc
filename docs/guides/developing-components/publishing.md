@@ -40,9 +40,9 @@ These suggestions are not specifically useful for publishing to a CDN or any oth
 
 Your users will always have the most intimate knowledge of how and where their code will be delivered to their users. Give them the greatest amount of flexibility in preparing their code for those conditions by publishing your package with the agreement that building is an application-level concern. Any decision that you can make in support of your users having an easier time when and if they decide to bundle is a good decision to make when preparing your package for publication. Every "do" and every "don't" that is included herein will help you in doing just that.
 
-### Do publish latest standard EcmaScript
+### Do publish latest standard ECMAScript
 
-Write standard EcmaScript from the start, and publishing standard EcmaScript will come naturally. However, if you choose to write your component in TypeScript or with various emerging specifications or APIs, be sure to convert your code to standard EcmaScript before publication. If you use non-standard syntax; transpile that (and only that) down to a reasonably modern level (e.g. [TC39 Stage 4](https://github.com/tc39/proposals/blob/master/finished-proposals.md) and/or available cross-browser) to decrease the likelihood that verbose or duplicate code is included in any final production delivery of pages featuring your package.
+Write standard ECMAScript from the start, and publishing standard ECMAScript will come naturally. However, if you choose to write your component in TypeScript or with various emerging specifications or APIs, be sure to convert your code to standard ECMAScript before publication. If you use non-standard syntax; transpile that (and only that) down to a reasonably modern level (e.g. [TC39 Stage 4](https://github.com/tc39/proposals/blob/master/finished-proposals.md) and/or available cross-browser) to decrease the likelihood that verbose or duplicate code is included in any final production delivery of pages featuring your package.
 
 ### Do publish standard es modules
 
