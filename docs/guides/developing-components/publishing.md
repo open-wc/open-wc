@@ -42,7 +42,7 @@ Your users will always have the most intimate knowledge of how and where their c
 
 ### Do publish latest standard EcmaScript
 
-Write standard EcmaScript from the start, and publishing standard EcmaScrip will come naturally. However, if you choose to write your component in TypeScript or with various emerging specifications or APIs, be sure to convert your code to standard EcmaScript before publication. If you use non-standard syntax; transpile that (and only that) down to a reasonably modern level (e.g. [TC39 Stage 4](https://github.com/tc39/proposals/blob/master/finished-proposals.md) and/or available cross-browser) to decrease the likelihood that verbose or duplicate code is included in any final production delivery of pages featuring your package.
+Write standard EcmaScript from the start, and publishing standard EcmaScript will come naturally. However, if you choose to write your component in TypeScript or with various emerging specifications or APIs, be sure to convert your code to standard EcmaScript before publication. If you use non-standard syntax; transpile that (and only that) down to a reasonably modern level (e.g. [TC39 Stage 4](https://github.com/tc39/proposals/blob/master/finished-proposals.md) and/or available cross-browser) to decrease the likelihood that verbose or duplicate code is included in any final production delivery of pages featuring your package.
 
 ### Do publish standard es modules
 
