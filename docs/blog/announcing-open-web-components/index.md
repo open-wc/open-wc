@@ -142,7 +142,7 @@ Our open-wc-app-starter will set you up with a full configuration, with the foll
 - **Testing suite with Karma**
 - **Linting with ESLint, Prettier and commitlint**
   ​
-  You can find more documentation on our `open-wc-app-starter` [here](https://github.com/open-wc/open-wc-starter-app). We try to provide the best, user friendly set up available and your feedback is extremely valuable to us, so if you feel like anything is missing or you have any kind of feedback, please feel free to create an issue on our repo.
+  You can find more documentation on our `open-wc-app-starter` [here](https://github.com/open-wc/open-wc). We try to provide the best, user friendly set up available and your feedback is extremely valuable to us, so if you feel like anything is missing or you have any kind of feedback, please feel free to create an issue on our repo.
   ​
 
 ## And much, much more
