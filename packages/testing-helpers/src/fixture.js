@@ -8,14 +8,14 @@ export { fixture, fixtureSync } from './fixture-no-side-effect.js';
 try {
   // we should not assume that our users load mocha types globally
   // @ts-ignore
-  if ('afterEach' in window) {
+  if ('afterEach' in window || 'afterEach' in globalThis) {
     // @ts-ignore
     afterEach(() => {
       fixtureCleanup();
     });
   }
   // @ts-ignore
-  if ('teardown' in window) {
+  if ('teardown' in window || 'teardown' in globalThis) {
     // @ts-ignore
     teardown(() => {
       fixtureCleanup();
