@@ -39,7 +39,7 @@ const componentLibraries = [
     name: 'curvenote.dev',
     url: 'https://curvenote.dev/',
     description:
-      'The goal of [curvenote.dev](https://curvenote.dev/) is to provide open source tools to promote and enable interactive scientific writing, reactive documents and explorable explanations.',
+      'The goal of curvenote.dev is to provide open source tools to promote and enable interactive scientific writing, reactive documents and explorable explanations.',
   },
   {
     name: 'Elix',
