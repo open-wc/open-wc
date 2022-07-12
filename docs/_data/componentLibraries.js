@@ -165,6 +165,12 @@ const componentLibraries = [
     description:
       "Vonage's web UI 🎨 toolbelt. A library that favors lock-down and coherence over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree).",
   },
+  {
+    name: 'Flowbite',
+    url: 'https://flowbite.com/',
+    description:
+      "Flowbite is an open-source library of components built on top of the Tailwind CSS utility-first framework featuring interactive elements such as navigation bars, modals, dropdowns, carousels, datepickers, and more.",
+  }
 ];
 
 module.exports = async function getComponentLibraries() {
