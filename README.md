@@ -90,7 +90,7 @@ You can join the Lit & Friends slack by visiting [https://lit.dev/slack-invite/]
 </a>
 
 <a href="http://netlify.com/" style="border: none;" target="_blank" rel="noopener">
-  <img src="https://www.netlify.com/img/press/logos/full-logo-light.svg" width="185" alt="netlify logo" />
+  <img src="https://avatars.githubusercontent.com/u/7892489?s=200&v=4" width="185" alt="netlify logo" />
 </a>
 
 ## Guide
