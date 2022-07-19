@@ -27,6 +27,7 @@ ruleTester.run('role-supports-aria-attr', rule, {
     { code: "html`<div class='${classMap(calendarClasses)}' role='${ifDefined(role)}'>`" },
     { code: "html`<div role='checkbox' aria-checked='true'></div>`" },
     { code: "html`<div role='presentation'></div>`" },
+    { code: "html`<div role='pizza'>:pizza:</div>`" }, // should not throw exception see: [#2466](https://github.com/open-wc/open-wc/issues/2466)
   ],
 
   invalid: [
