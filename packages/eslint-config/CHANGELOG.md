@@ -1,5 +1,11 @@
 # Change Log
 
+## 8.0.0
+
+### Major Changes
+
+- b321871f: breaking(eslint-config): move eslint to the peerDependencies to let users decide which major version they want to use
+
 ## 7.0.0
 
 ### Patch Changes
