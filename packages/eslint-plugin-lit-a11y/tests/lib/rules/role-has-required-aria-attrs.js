@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/role-has-required-aria-attrs');
+const rule = require('../../../lib/rules/role-has-required-aria-attrs.js');
 
 //------------------------------------------------------------------------------
 // Tests

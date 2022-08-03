@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/no-distracting-elements');
+const rule = require('../../../lib/rules/no-distracting-elements.js');
 
 //------------------------------------------------------------------------------
 // Tests

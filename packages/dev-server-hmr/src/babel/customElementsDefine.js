@@ -5,7 +5,7 @@
 /** @typedef {import('@babel/types').Expression} Expression */
 /** @template T @typedef {import('@babel/core').NodePath<T>} NodePath<T> */
 
-const { resolvePath, findComponentDefinition, singlePath } = require('./utils');
+const { resolvePath, findComponentDefinition, singlePath } = require('./utils.js');
 
 const GLOBALS = ['window', 'self', 'globalThis'];
 

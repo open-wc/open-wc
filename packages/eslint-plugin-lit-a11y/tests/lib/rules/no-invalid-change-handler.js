@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/no-invalid-change-handler');
+const rule = require('../../../lib/rules/no-invalid-change-handler.js');
 
 //------------------------------------------------------------------------------
 // Tests

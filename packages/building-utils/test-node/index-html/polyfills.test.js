@@ -1,6 +1,6 @@
 const path = require('path');
 const { expect } = require('chai');
-const { getPolyfills } = require('../../index-html/polyfills');
+const { getPolyfills } = require('../../index-html/polyfills.js');
 
 describe('polyfills', () => {
   it('returns the correct polyfills', () => {

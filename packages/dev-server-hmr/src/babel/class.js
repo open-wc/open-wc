@@ -2,7 +2,7 @@
 /** @typedef {import('@babel/types').ClassExpression} ClassExpression */
 /** @template T @typedef {import('@babel/core').NodePath<T>} NodePath<T> */
 
-const { singlePath } = require('./utils');
+const { singlePath } = require('./utils.js');
 
 /**
  * @param {NodePath<ClassDeclaration> | NodePath<ClassExpression>} classDeclOrExpr

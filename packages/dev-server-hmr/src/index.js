@@ -1,9 +1,9 @@
-const { hmrPlugin } = require('./hmrPlugin');
-const { litElement } = require('./presets/litElement');
-const { lit } = require('./presets/lit');
-const { fastElement } = require('./presets/fastElement');
-const { haunted } = require('./presets/haunted');
-const { WC_HMR_MODULE_RUNTIME } = require('./constants');
+const { hmrPlugin } = require('./hmrPlugin.js');
+const { litElement } = require('./presets/litElement.js');
+const { lit } = require('./presets/lit.js');
+const { fastElement } = require('./presets/fastElement.js');
+const { haunted } = require('./presets/haunted.js');
+const { WC_HMR_MODULE_RUNTIME } = require('./constants.js');
 
 const presets = { litElement, fastElement, haunted, lit };
 

@@ -8,9 +8,9 @@ const { importMetaAssets } = require('@web/rollup-plugin-import-meta-assets');
 const { polyfillsLoader } = require('@web/rollup-plugin-polyfills-loader');
 const path = require('path');
 const { generateSW } = require('rollup-plugin-workbox');
-const { createBasicConfig } = require('./createBasicConfig');
-const { pluginWithOptions, applyServiceWorkerRegistration, isFalsy } = require('./utils');
-const { defaultPolyfills } = require('./polyfills');
+const { createBasicConfig } = require('./createBasicConfig.js');
+const { pluginWithOptions, applyServiceWorkerRegistration, isFalsy } = require('./utils.js');
+const { defaultPolyfills } = require('./polyfills.js');
 
 /**
  * @param {SpaOptions} options

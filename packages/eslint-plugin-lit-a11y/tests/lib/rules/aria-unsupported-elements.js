@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/aria-unsupported-elements');
+const rule = require('../../../lib/rules/aria-unsupported-elements.js');
 
 //------------------------------------------------------------------------------
 // Tests

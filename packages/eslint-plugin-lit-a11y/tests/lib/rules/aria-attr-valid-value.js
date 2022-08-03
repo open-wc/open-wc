@@ -9,7 +9,7 @@
 
 const { RuleTester } = require('eslint');
 const { aria } = require('aria-query');
-const rule = require('../../../lib/rules/aria-attr-valid-value');
+const rule = require('../../../lib/rules/aria-attr-valid-value.js');
 
 //------------------------------------------------------------------------------
 // Tests
