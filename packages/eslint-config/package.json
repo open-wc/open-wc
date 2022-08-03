@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/eslint-config",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "publishConfig": {
     "access": "public"
   },
@@ -23,19 +23,18 @@
     "config"
   ],
   "peerDependencies": {
-    "@babel/eslint-plugin": "^7.6.0",
     "eslint": ">=7.6.0",
     "eslint-plugin-html": "^6.0.0",
-    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-lit": "^1.3.0",
     "eslint-plugin-lit-a11y": "^2.2.0",
     "eslint-plugin-no-only-tests": "^2.4.0",
     "eslint-plugin-wc": "^1.2.0"
   },
   "dependencies": {
-    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-html": "^6.0.0",
-    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-lit": "^1.2.0",
     "eslint-plugin-lit-a11y": "^2.2.0",
     "eslint-plugin-no-only-tests": "^2.4.0",

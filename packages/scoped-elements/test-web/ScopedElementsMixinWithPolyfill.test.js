@@ -76,9 +76,9 @@ describe('ScopedElementsMixin features needing a real scope', () => {
     const pageAFeatureANode = el.shadowRoot.children[0].shadowRoot.children[0];
     const pageBFeatureANode = el.shadowRoot.children[1].shadowRoot.children[0];
 
-    expect(pageAFeatureANode.tagName.toLowerCase()).to.match(new RegExp(`feature-a`));
+    expect(pageAFeatureANode.tagName.toLowerCase()).to.match(/feature-a/);
     expect(pageAFeatureANode).to.be.an.instanceOf(FeatureA1x);
-    expect(pageBFeatureANode.tagName.toLowerCase()).to.match(new RegExp(`feature-a`));
+    expect(pageBFeatureANode.tagName.toLowerCase()).to.match(/feature-a/);
     expect(pageBFeatureANode).to.be.an.instanceOf(FeatureA2x);
   });
 
@@ -142,9 +142,9 @@ describe('ScopedElementsMixin features needing a real scope', () => {
     const pageAFeatureANode = el.shadowRoot.children[0].shadowRoot.children[0];
     const pageBFeatureANode = el.shadowRoot.children[1].shadowRoot.children[0];
 
-    expect(pageAFeatureANode.tagName.toLowerCase()).to.match(new RegExp(`feature-a`));
+    expect(pageAFeatureANode.tagName.toLowerCase()).to.match(/feature-a/);
     expect(pageAFeatureANode).to.be.an.instanceOf(FeatureA1x);
-    expect(pageBFeatureANode.tagName.toLowerCase()).to.match(new RegExp(`feature-a`));
+    expect(pageBFeatureANode.tagName.toLowerCase()).to.match(/feature-a/);
     expect(pageBFeatureANode).to.be.an.instanceOf(FeatureA2x);
   });
 
