@@ -7530,10 +7530,10 @@ es-module-lexer@^0.9.0:
   resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-0.9.3.tgz#6f13db00cc38417137daf74366f535c8eb438f19"
   integrity sha512-1HQ2M2sPtxwnvOvT1ZClHyQDiggdNjURWpY2we6aMKCQiUVxTmVs2UYPLIrD84sS+kMdUwfBSylbJPwNnBrnHQ==
 
-es-module-shims@^0.4.7:
-  version "0.4.7"
-  resolved "https://registry.yarnpkg.com/es-module-shims/-/es-module-shims-0.4.7.tgz#1419b65bbd38dfe91ab8ea5d7b4b454561e44641"
-  integrity sha512-0LTiSQoPWwdcaTVIQXhGlaDwTneD0g9/tnH1PNs3zHFFH+xoCeJclDM3rQeqF9nurXPfMKm3l9+kfPRa5VpbKg==
+es-module-shims@^0.15.1:
+  version "0.15.1"
+  resolved "https://registry.yarnpkg.com/es-module-shims/-/es-module-shims-0.15.1.tgz#7c5c5b8e58033c6fd86b773492e3e327cf78fed5"
+  integrity sha512-fj63pp8nG2+ok6p+8XfC7Awy9M0rq/OHYzrzppDfBlsTdVcDU6yQVeBFBlv/tK5V7RN8lMRfoxq1Up+mhAHCtw==
 
 es-shim-unscopables@^1.0.0:
   version "1.0.0"
