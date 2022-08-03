@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.18.5
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+
 ## 2.18.4
 
 ### Patch Changes
