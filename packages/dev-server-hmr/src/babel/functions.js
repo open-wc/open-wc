@@ -4,7 +4,7 @@
 /** @typedef {import('./babelPluginWcHmr').Decorator} Decorator */
 /** @template T @typedef {import('@babel/core').NodePath<T>} NodePath<T> */
 
-const { singlePath } = require('./utils');
+const { singlePath } = require('./utils.js');
 
 /**
  * @param {NodePath<CallExpression>} callExpr

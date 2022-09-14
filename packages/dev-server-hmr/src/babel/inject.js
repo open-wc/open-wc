@@ -6,8 +6,8 @@
 /** @template T @typedef {import('@babel/core').NodePath<T>} NodePath<T> */
 
 const { parse, types: t } = require('@babel/core');
-const { WC_HMR_NAMESPACE, WC_HMR_MODULE_PATCH, WC_HMR_MODULE_RUNTIME } = require('../constants');
-const { singlePath, parseStatement } = require('./utils');
+const { WC_HMR_NAMESPACE, WC_HMR_MODULE_PATCH, WC_HMR_MODULE_RUNTIME } = require('../constants.js');
+const { singlePath, parseStatement } = require('./utils.js');
 
 const REGISTER_FN_NAME = 'register';
 

@@ -2,7 +2,7 @@
 /** @typedef {import('./babelPluginWcHmr').Decorator} Decorator */
 /** @template T @typedef {import('@babel/core').NodePath<T>} NodePath<T> */
 
-const { findComponentDefinition, singlePath } = require('./utils');
+const { findComponentDefinition, singlePath } = require('./utils.js');
 
 /**
  * @param {Set<string>} decoratorNames

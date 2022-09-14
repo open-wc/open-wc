@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/anchor-has-content');
+const rule = require('../../../lib/rules/anchor-has-content.js');
 
 //------------------------------------------------------------------------------
 // Tests

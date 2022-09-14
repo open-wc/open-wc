@@ -9,9 +9,9 @@ const {
   createBabelConfigRollupBuild,
   babelConfigLegacyRollupGenerate,
   babelConfigSystemJs,
-} = require('./babel/babel-configs');
-const { bundledBabelHelpers } = require('./babel/rollup-plugin-bundled-babel-helpers');
-const { isFalsy, pluginWithOptions, dedupedBabelPlugin } = require('./utils');
+} = require('./babel/babel-configs.js');
+const { bundledBabelHelpers } = require('./babel/rollup-plugin-bundled-babel-helpers.js');
+const { isFalsy, pluginWithOptions, dedupedBabelPlugin } = require('./utils.js');
 
 /**
  * @param {BasicOptions} userOptions

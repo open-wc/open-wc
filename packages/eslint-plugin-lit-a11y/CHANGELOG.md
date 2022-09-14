@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.2.2
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+
+## 2.2.1
+
+### Patch Changes
+
+- c7997ff2: Fix bug #2466 issue in role-supports-aria-attr
+
 ## 2.2.0
 
 ### Minor Changes

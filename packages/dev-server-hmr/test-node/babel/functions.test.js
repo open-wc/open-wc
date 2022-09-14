@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { expect } = require('chai');
 const path = require('path');
-const { banner, transform, rootDir } = require('./utils');
+const { banner, transform, rootDir } = require('./utils.js');
 
 describe('babelPluginWcHmr - detecting function components', () => {
   it('global function name', () => {

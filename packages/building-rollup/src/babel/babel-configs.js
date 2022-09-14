@@ -1,5 +1,5 @@
-const { babelPluginBundledHelpers } = require('./babel-plugin-bundled-helpers');
-const { isFalsy } = require('../utils');
+const { babelPluginBundledHelpers } = require('./babel-plugin-bundled-helpers.js');
+const { isFalsy } = require('../utils.js');
 
 const createBabelConfigRollupBuild = ({ developmentMode }) => ({
   babelHelpers: 'bundled',

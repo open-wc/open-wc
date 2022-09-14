@@ -1,8 +1,8 @@
-const { mdjsToMd } = require('./mdjsToMd');
-const { renameDefaultExport } = require('./renameDefaultExport');
-const { createStoriesCode } = require('./createStoriesCode');
-const { mdToJsx } = require('./mdToJsx');
-const { jsxToJs } = require('./jsxToJs');
+const { mdjsToMd } = require('./mdjsToMd.js');
+const { renameDefaultExport } = require('./renameDefaultExport.js');
+const { createStoriesCode } = require('./createStoriesCode.js');
+const { mdToJsx } = require('./mdToJsx.js');
+const { jsxToJs } = require('./jsxToJs.js');
 
 /**
  * @param {string} markdown

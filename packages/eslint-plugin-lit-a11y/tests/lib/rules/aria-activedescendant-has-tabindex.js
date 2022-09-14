@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/aria-activedescendant-has-tabindex');
+const rule = require('../../../lib/rules/aria-activedescendant-has-tabindex.js');
 
 //------------------------------------------------------------------------------
 // Tests
