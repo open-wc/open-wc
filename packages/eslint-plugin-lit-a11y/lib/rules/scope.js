@@ -4,9 +4,9 @@
  */
 const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
-const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
+const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -36,38 +36,45 @@ const ScopeRule = {
 
           analyzer.traverse({
             enterElement(element) {
-              if (
-                element.name !== 'th' &&
-                !element.name.includes('-') &&
-                elementHasAttribute(element, 'scope')
-              ) {
-                const loc =
-                  analyzer.getLocationForAttribute(element, 'scope', context.getSourceCode()) ??
-                  node.loc;
-                if (loc) {
-                  context.report({
-                    loc,
-                    message: 'The scope attribute may only be used on <th> elements.',
-                  });
-                }
-              } else if (
-                element.name === 'th' &&
-                elementHasAttribute(element, 'scope') &&
-                !validScopeValues.includes(element.attribs.scope)
-              ) {
-                const loc =
-                  analyzer.getLocationForAttribute(element, 'scope', context.getSourceCode()) ??
-                  node.loc;
-                if (loc) {
-                  context.report({
-                    loc,
-                    message:
-                      '"{{scope}}" is not a valid value for the scope attribute. The valid values are: {{validScopes}}.',
-                    data: {
-                      scope: element.attribs.scope,
-                      validScopes: validScopeValues.join(', '),
-                    },
-                  });
+              for (const attr of Object.keys(element.attribs)) {
+                if (attr !== 'scope') return;
+
+                const role = getLiteralAttributeValue(
+                  analyzer,
+                  element,
+                  'scope',
+                  context.getSourceCode(),
+                );
+                if (role === undefined) return;
+
+                if (element.name !== 'th' && !element.name.includes('-')) {
+                  const loc =
+                    analyzer.getLocationForAttribute(element, 'scope', context.getSourceCode()) ??
+                    node.loc;
+                  if (loc) {
+                    context.report({
+                      loc,
+                      message: 'The scope attribute may only be used on <th> elements.',
+                    });
+                  }
+                } else if (
+                  element.name === 'th' &&
+                  !validScopeValues.includes(element.attribs.scope)
+                ) {
+                  const loc =
+                    analyzer.getLocationForAttribute(element, 'scope', context.getSourceCode()) ??
+                    node.loc;
+                  if (loc) {
+                    context.report({
+                      loc,
+                      message:
+                        '"{{scope}}" is not a valid value for the scope attribute. The valid values are: {{validScopes}}.',
+                      data: {
+                        scope: element.attribs.scope,
+                        validScopes: validScopeValues.join(', '),
+                      },
+                    });
+                  }
                 }
               }
             },
