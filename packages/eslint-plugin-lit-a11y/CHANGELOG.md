@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.3
+
+### Patch Changes
+
+- fc3e9317: Fix bug #2490 in scope rule
+
 ## 2.2.2
 
 ### Patch Changes
