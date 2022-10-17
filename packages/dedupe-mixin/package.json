@@ -32,5 +32,8 @@
     "dedupe",
     "mixins"
   ],
-  "sideEffects": false
+  "sideEffects": false,
+  "exports": {
+    ".": "./index.js"
+  }
 }
