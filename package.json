@@ -42,7 +42,7 @@
   "devDependencies": {
     "@babel/core": "^7.13.16",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
-    "@changesets/cli": "^2.16.0",
+    "@changesets/cli": "^2.25.0",
     "@esm-bundle/chai": "^4.3.4-fix.0",
     "@microsoft/fast-element": "^1.0.2",
     "@rollup/plugin-commonjs": "^18.0.0",
