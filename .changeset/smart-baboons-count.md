@@ -1,5 +1,5 @@
 ---
-"@open-wc/lit-helpers": feat
+"@open-wc/lit-helpers": minor
 ---
 
 Add "spread", "spreadEvents", and "spreadProps" directives to support spreading objects of data onto elements in a `lit-html` template literal.
