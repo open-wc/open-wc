@@ -16,8 +16,11 @@
   "module": "index.js",
   "type": "module",
   "exports": {
-    ".": "./index.js",
-    "./pure": "./index-no-side-effects.js"
+    ".": {
+      "types": "./types/index.d.ts",
+      "pure": "./index-no-side-effects.js",
+      "default": "./index.js"
+    }
   },
   "scripts": {
     "debug": "cd ../../ && yarn debug --group testing-helpers",
@@ -41,5 +44,5 @@
     "lit": "^2.0.0",
     "lit-html": "^2.0.0"
   },
-  "types": "types/index.d.ts"
+  "types": "./types/index.d.ts"
 }
