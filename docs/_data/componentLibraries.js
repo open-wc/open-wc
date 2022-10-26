@@ -111,7 +111,7 @@ const componentLibraries = [
     name: 'Nord Design System',
     url: 'https://nordhealth.design/components/',
     description:
-      "Nord Design System is a collection of reusable components and tools, guided by clear standards, that can be assembled together to build digital products and experiences.",
+      'Nord Design System is a collection of reusable components and tools, guided by clear standards, that can be assembled together to build digital products and experiences.',
   },
   {
     name: 'Patternfly Elements',
