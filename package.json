@@ -63,7 +63,7 @@
     "@types/picomatch": "^2.2.2",
     "@types/rimraf": "^3.0.0",
     "@web/dev-server": "^0.1.17",
-    "@web/dev-server-esbuild": "^0.2.12",
+    "@web/dev-server-esbuild": "^0.3.3",
     "@web/dev-server-storybook": "^0.3.2",
     "@web/test-runner": "^0.13.16",
     "@web/test-runner-playwright": "^0.8.6",
