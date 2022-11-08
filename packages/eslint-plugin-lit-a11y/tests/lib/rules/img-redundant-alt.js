@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/img-redundant-alt');
+const rule = require('../../../lib/rules/img-redundant-alt.js');
 
 //------------------------------------------------------------------------------
 // Tests

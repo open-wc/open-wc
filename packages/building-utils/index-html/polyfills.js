@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const Terser = require('terser');
-const { createContentHash } = require('./utils');
+const { createContentHash } = require('./utils.js');
 
 /** @typedef {import('./create-index-html').PolyfillInstruction} PolyfillInstruction */
 /** @typedef {import('./create-index-html').CreateIndexHTMLConfig} CreateIndexHTMLConfig */

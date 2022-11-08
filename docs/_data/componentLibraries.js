@@ -36,6 +36,12 @@ const componentLibraries = [
       'Crayons is a web component library for developers who build apps for Freshworks. Through pre-built components, Crayons offers control and flexibility to build rich interfaces consistent with the Freshworks product design and experience.',
   },
   {
+    name: 'curvenote.dev',
+    url: 'https://curvenote.dev/',
+    description:
+      'The goal of curvenote.dev is to provide open source tools to promote and enable interactive scientific writing, reactive documents and explorable explanations.',
+  },
+  {
     name: 'Elix',
     url: 'https://component.kitchen/elix',
     description:
@@ -78,12 +84,6 @@ const componentLibraries = [
       'Take advantage of the component system that powers Ionic applications with a large ecosystem to choose from and in-depth usage instructions, no matter the framework you use.',
   },
   {
-    name: 'iooxa.dev',
-    url: 'https://iooxa.dev/',
-    description:
-      'The goal of [iooxa.dev](https://iooxa.dev/) is to provide open source tools to promote and enable interactive scientific writing, reactive documents and explorable explanations.',
-  },
-  {
     name: 'Kor UI',
     url: 'https://kor-ui.com/',
     description:
@@ -106,6 +106,12 @@ const componentLibraries = [
     url: 'https://material-components.github.io/material-web',
     description:
       "Material Design Components from Material Design team themselves. Stay as close as possible to the changing specification with these components from Google's own Material Design team.",
+  },
+  {
+    name: 'Nord Design System',
+    url: 'https://nordhealth.design/components/',
+    description:
+      'Nord Design System is a collection of reusable components and tools, guided by clear standards, that can be assembled together to build digital products and experiences.',
   },
   {
     name: 'Patternfly Elements',

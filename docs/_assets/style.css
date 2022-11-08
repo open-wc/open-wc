@@ -166,7 +166,7 @@ body[layout^='layout-home'] .supported-by-items {
 }
 
 .supported-by-items img {
-  min-height: 100px;
+  height: 100px;
 }
 
 .supporters {

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { expect } = require('chai');
-const { banner, transform } = require('./utils');
+const { banner, transform } = require('./utils.js');
 
 describe('babelPluginWcHmr - detecting customElements.define', () => {
   it('injects registration when detecting a customElements.define', () => {

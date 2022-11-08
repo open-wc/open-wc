@@ -176,7 +176,7 @@ export const chaiDomDiff = (chai, utils) => {
           chai.util.flag(this, 'ssfi'),
         );
       }
-    } else {
+    } else if (currentSnapshot !== snapshot) {
       await saveSnapshot({ name, content: snapshot });
     }
   }

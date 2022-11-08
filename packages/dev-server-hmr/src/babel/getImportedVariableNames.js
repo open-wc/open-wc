@@ -9,7 +9,7 @@
 /** @typedef {import('./babelPluginWcHmr').FunctionOption} FunctionOption */
 
 const path = require('path');
-const { singlePath } = require('./utils');
+const { singlePath } = require('./utils.js');
 
 /**
  * @param {string} importSpecifier

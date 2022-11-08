@@ -11,7 +11,7 @@ const {
   predicates,
   getAttribute,
   hasAttribute,
-} = require('./dom5-fork');
+} = require('./dom5-fork/index.js');
 
 /**
  * @param {string} tag

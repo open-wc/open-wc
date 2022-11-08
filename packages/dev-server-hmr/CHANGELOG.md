@@ -1,5 +1,11 @@
 # @open-wc/dev-server-wc-hmr
 
+## 0.1.3
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+
 ## 0.1.2
 
 ### Patch Changes

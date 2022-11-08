@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const fs = require('fs');
 const path = require('path');
-const { createLoaderScript } = require('../../index-html/loader-script');
+const { createLoaderScript } = require('../../index-html/loader-script.js');
 
 const updateSnapshots = process.argv.includes('--update-snapshots');
 

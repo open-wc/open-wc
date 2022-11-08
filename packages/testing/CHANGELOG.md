@@ -1,5 +1,58 @@
 # Change Log
 
+## 3.1.6
+
+### Patch Changes
+
+- 735b0092: Avoid saving unchanged snapshots
+- Updated dependencies [735b0092]
+  - @open-wc/semantic-dom-diff@0.19.7
+
+## 3.1.5
+
+### Patch Changes
+
+- ae9fe3e7: upgrade to chai-dom v1.11.0
+
+## 3.1.4
+
+### Patch Changes
+
+- 19b951b6: update semantic-dom-diff dependency
+
+## 3.1.3
+
+### Patch Changes
+
+- 48a853fa: Fix deps issues with @esm-bundle/chai
+
+## 3.1.2
+
+### Patch Changes
+
+- 773e5b65: fix: add a type for lit v1 renderable
+- Updated dependencies [773e5b65]
+  - @open-wc/testing-helpers@2.1.2
+
+## 3.1.1
+
+### Patch Changes
+
+- ebbea0d5: Force lit-html dependency tree for correct types construction
+- Updated dependencies [ebbea0d5]
+  - @open-wc/testing-helpers@2.1.1
+
+## 3.1.0
+
+### Minor Changes
+
+- b762707d: Feat/customize render
+
+### Patch Changes
+
+- Updated dependencies [b762707d]
+  - @open-wc/testing-helpers@2.1.0
+
 ## 3.0.4
 
 ### Patch Changes

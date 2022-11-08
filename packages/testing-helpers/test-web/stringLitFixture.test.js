@@ -144,7 +144,7 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
     const tag = defineCE(
       class extends HTMLElement {
         get updateComplete() {
-          return new Promise(resolve => requestAnimationFrame(resolve)).then(() => {
+          return nextFrame().then(() => {
             counter += 1;
           });
         }

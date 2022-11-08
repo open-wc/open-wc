@@ -28,7 +28,7 @@ exports[`mdjsToCsf : transforms a mdjs file to csf 1`] = [
   "",
   "__export_default__.parameters.docs.page = () => mdx(AddContext, {",
   "  mdxStoryNameToKey: mdxStoryNameToKey,",
-  "  mdxComponentMeta: __export_default__",
+  "  mdxComponentAnnotations: __export_default__",
   "}, mdx(MDXContent, null));",
   "",
   "export default __export_default__; // The docs page, markdown turned into using jsx for storybook",

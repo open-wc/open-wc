@@ -7,8 +7,8 @@ const ruleExtender = require('eslint-rule-extender');
 const tags = require('language-tags');
 const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer');
 const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
-const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension');
-const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate');
+const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 
 const ValidLangRule = {
   meta: {

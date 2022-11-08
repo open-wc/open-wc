@@ -3,7 +3,7 @@
 const chai = require('chai');
 // @ts-ignore
 const chaiSnapshot = require('mocha-chai-snapshot');
-const { mdjsToCsf } = require('../src/mdjsToCsf');
+const { mdjsToCsf } = require('../src/mdjsToCsf.js');
 
 chai.use(chaiSnapshot);
 const { expect } = chai;

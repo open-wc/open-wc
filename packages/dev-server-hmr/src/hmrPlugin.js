@@ -42,9 +42,13 @@ const { hmrPlugin: createBaseHmrPlugin } = require('@web/dev-server-hmr');
 const fs = require('fs');
 const path = require('path');
 
-const { WC_HMR_MODULE_PREFIX, WC_HMR_MODULE_RUNTIME, WC_HMR_MODULE_PATCH } = require('./constants');
-const { parseConfig, createMatchers, createError } = require('./utils');
-const { babelTransform } = require('./babel/babelTransform');
+const {
+  WC_HMR_MODULE_PREFIX,
+  WC_HMR_MODULE_RUNTIME,
+  WC_HMR_MODULE_PATCH,
+} = require('./constants.js');
+const { parseConfig, createMatchers, createError } = require('./utils.js');
+const { babelTransform } = require('./babel/babelTransform.js');
 
 const wcHmrRuntime = fs.readFileSync(path.resolve(__dirname, 'wcHmrRuntime.js'), 'utf-8');
 

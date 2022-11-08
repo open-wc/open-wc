@@ -1,5 +1,37 @@
 # Change Log
 
+## 2.1.3
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+- Updated dependencies [61e2668f]
+  - @open-wc/scoped-elements@2.1.3
+
+## 2.1.2
+
+### Patch Changes
+
+- 773e5b65: fix: add a type for lit v1 renderable
+
+## 2.1.1
+
+### Patch Changes
+
+- ebbea0d5: Force lit-html dependency tree for correct types construction
+
+## 2.1.0
+
+### Minor Changes
+
+- b762707d: Feat/customize render
+
+## 2.0.5
+
+### Patch Changes
+
+- 065b82a8: Add generics for oneEvent test helper function
+
 ## 2.0.4
 
 ### Patch Changes
