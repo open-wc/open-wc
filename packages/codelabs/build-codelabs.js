@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies, no-await-in-loop, no-restricted-syntax */
 const fs = require('fs-extra');
 const path = require('path');
-const markedSync = require('marked');
+const { marked } = require('marked');
 const cheerio = require('cheerio');
 const createCodelabIndex = require('./createCodelabIndex.js');
 
@@ -13,7 +13,7 @@ const outputDir = path.join(__dirname, '..', '..', '_site', 'codelabs');
  */
 function mdToHtml(src) {
   return new Promise((resolve, reject) => {
-    markedSync(src, (err, result) => {
+    marked(src, (err, result) => {
       if (err) {
         reject(err);
       } else {
