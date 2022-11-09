@@ -28,8 +28,7 @@ const defaultPolyfills = [
     name: 'intersection-observer',
     nomodule: false,
     sourcemap: undefined,
-    test:
-      "!('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype)",
+    test: "!('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype)",
   },
   {
     code: undefined,
@@ -37,8 +36,7 @@ const defaultPolyfills = [
     name: 'webcomponents',
     nomodule: false,
     sourcemap: undefined,
-    test:
-      "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)",
+    test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)",
   },
 ];
 

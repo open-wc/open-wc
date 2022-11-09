@@ -116,8 +116,7 @@ function getPolyfills(config) {
     try {
       instructions.push({
         name: 'intersection-observer',
-        test:
-          "!('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype)",
+        test: "!('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype)",
         path: require.resolve('intersection-observer/intersection-observer.js'),
       });
     } catch (error) {
@@ -131,8 +130,7 @@ function getPolyfills(config) {
     try {
       instructions.push({
         name: 'webcomponents',
-        test:
-          "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)",
+        test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)",
         path: require.resolve('@webcomponents/webcomponentsjs/webcomponents-bundle.js'),
         sourcemapPath: require.resolve(
           '@webcomponents/webcomponentsjs/webcomponents-bundle.js.map',

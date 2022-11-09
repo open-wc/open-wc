@@ -18,6 +18,9 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
+      - name: Build types
+        run: yarn types
+
       - name: Lint
         run: yarn lint
 
@@ -35,6 +38,9 @@ jobs:
 
       - name: Install dependencies
         run: yarn --frozen-lockfile
+
+      - name: Build types
+        run: yarn types
 
       - name: Install Playwright dependencies
         run: npx playwright install-deps

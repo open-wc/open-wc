@@ -20,8 +20,7 @@ const IframeTitleRule = {
       description: '<iframe> elements must have a unique title property.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/iframe-title.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/iframe-title.md',
     },
     messages: {
       iframeTitle: '<iframe> elements must have a unique title property.',

@@ -1,19 +1,19 @@
-# lit-html & lit-element: intermediate
+# Lit: intermediate
 
 ## Introduction
 
-This codelab is a followup from the [lit-html & lit-element basics](https://open-wc.org/codelabs/#web-components-basics) codelab.
+This codelab is a followup from the [Lit basics](https://open-wc.org/codelabs/#lit-basics) codelab.
 
-[lit-html](https://github.com/Polymer/lit-html) is an efficient, expressive and extensible HTML templating library for JavaScript. It lets you write HTML templates in JavaScript, then efficiently render and re-render those templates together with data to create and update DOM:
+[lit-html](https://github.com/Polymer/Lit) is an efficient, expressive and extensible HTML templating library for JavaScript. It lets you write HTML templates in JavaScript, then efficiently render and re-render those templates together with data to create and update DOM:
 
-[lit-element](https://github.com/Polymer/lit-element) is a simple base class for creating fast and lightweight web components with lit-html.
+[lit-element](https://github.com/Polymer/lit-element) is a simple base class for creating fast and lightweight web components with Lit.
 
 **What you need**
 
 - A web browser that supports Web Components: Firefox, Safari, Chrome or any Chromium-based browser.
 - Intermediate knowledge of HTML and Javascript
 - Basic knowledge of web components, see our [basics codelab](https://open-wc.org/codelabs/#web-components-basics) to get you started.
-- Basic knowledge of lit-html & lit-element, see our [basics codelab](https://open-wc.org/codelabs/#lit-html--lit-element-basics)
+- Basic knowledge of Lit & lit-element, see our [basics codelab](https://open-wc.org/codelabs/#Lit--lit-element-basics)
 - Familiarity with the following concepts:
   - [Javascript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
   - [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
@@ -29,39 +29,66 @@ This codelab is a followup from the [lit-html & lit-element basics](https://open
 - Handling asynchronous rendering
 - Complex templating
 - Using third-party components
-- Creating lit-html template functions
+- Creating Lit template functions
 
 **How it works**
 
-Unlike the [basics codelab](https://open-wc.org/codelabs/#lit-html--lit-element-basics), we will not explain the required changes for each step in detail. Instead, we give background information and the desired end-result. In most steps, we offer some tips, most of them hidden behind a toggle.
+Unlike the [basics codelab](https://open-wc.org/codelabs/#Lit--lit-element-basics), we will not explain the required changes for each step in detail. Instead, we give background information and the desired end-result. In most steps, we offer some tips, most of them hidden behind a toggle.
 
 At the bottom of each section, there is a "View final result" button, this will show you the correct code that you should end up with, in case you get stuck. The steps are sequential, thus results from the previous steps carry over to the next step.
 
 ## Setup
 
-In this codelab, we will build a brewery app. This is a great exercise to learn the intermediate parts of lit-html and lit-element.
+In this codelab we will build a brewery app, using a public API as data source. This is a great exercise to learn the intermediate parts of Lit and lit-element.
 
-You can follow this codelab using anything that can display a simple HTML page. For the best editing experience, we recommend setting this up using your favorite IDE. Alternatively, you can use an online code editor like [jsbin](https://jsbin.com/?html,output), [stackblitz](https://stackblitz.com/) or [webcomponents.dev](https://webcomponents.dev/).
+You can follow this codelab using anything that is able to display a simple HTML page. We recommend using an online code editor so that you don't need to bother with all the setup. But you can use a local editor as well.
 
-Let's create a basic HTML page with a module script, and import LitElement from a CDN:
+All our examples are shown using Javascript, but Lit supports Typescript as well.
+
+### Recommended setup
+
+The code editor we recommend is [webcomponents.dev](https://webcomponents.dev/). You can use these links to quickly start a new project:
+
+- [Lit with Javascript](https://studio.webcomponents.dev/create/lit+js)
+- [Lit with Typescript](https://studio.webcomponents.dev/create/lit+ts)
+
+If instead you are creating a new project from the website, make sure to select Lit from the "Libraries" section and not the "HTMLElement based" section.
+
+### Other setup
+
+If you are using another editor, you need to set up a basic `index.html` which loads your component:
 
 ```html
 <!DOCTYPE html>
-
 <html>
   <body>
-    <script type="module">
-      import { LitElement } from 'https://unpkg.com/lit-element?module';
-    </script>
+    My app
+
+    <!-- 
+      this is a refernece in the HTML to your web component, 
+      make sure to update it based on the name you have given your component 
+    -->
+    <my-app></my-app>
+
+    <script type="module" src="./src/index.js"></script>
   </body>
 </html>
 ```
 
-Make sure that you add `type="module"` to the script tag.
+To make following further instructions easier, it's recommended to write your JS code in a `src/index.js` file to match the webcomponents.dev setup.
+
+## Code editor setup
 
 <aside class="notice">
-In this example, we are using `unpkg`, a CDN from which we can easily import any modules that are available on NPM. When working on a real project, it is a good idea to use an actual package manager such as NPM or yarn.
+  The rest of this codelab assumes you are using the recommended setup using [webcomponents.dev](https://webcomponents.dev/).
+  If you are using something else, you might need to take some additional or different steps to make it work.
 </aside>
+
+The webcomponents.dev editor creates a few files for you. We will be working only with `src/index.js` and `www/index.html`.
+
+In the `src/index.js` file there is already some code with an example element. For the sake of this tutorial, let's empty this file and start over from scratch. We can leave the `www/index.html` file as is.
+
+The editor also shows three tabs on the right side of the screen. We will only be using the "Website" tab. If you want, you could delete the `stories/index.stories.js` and `README.md` so that the other tabs disappear.
 
 You should already know how to create a web component using `LitElement`. Go ahead and create one which renders '_My brewery app_' to the screen. When it works, you're ready to move on to the next step.
 
@@ -70,25 +97,34 @@ You should already know how to create a web component using `LitElement`. Go ahe
 <details>
  <summary>View final result</summary>
 
+`www/index.html`:
+
 ```html
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="./dist/index.js" type="module"></script>
+  </head>
+
   <body>
     <brewery-app></brewery-app>
-
-    <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
-
-      class BreweryApp extends LitElement {
-        render() {
-          return html` My brewery app `;
-        }
-      }
-
-      customElements.define('brewery-app', BreweryApp);
-    </script>
   </body>
 </html>
+```
+
+`src/index.js`:
+
+```js
+import { LitElement, html } from 'lit';
+
+class BreweryApp extends LitElement {
+  render() {
+    return html`My brewery app`;
+  }
+}
+
+customElements.define('brewery-app', BreweryApp);
 ```
 
 </details>
@@ -201,45 +237,34 @@ render() {
 <details>
  <summary>View final result</summary>
 
-```html
-<!DOCTYPE html>
-<html>
-  <body>
-    <brewery-app></brewery-app>
+```js
+import { LitElement, html } from 'lit';
 
-    <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+class BreweryApp extends LitElement {
+  static properties = {
+    breweries: { type: Array },
+  };
 
-      class BreweryApp extends LitElement {
-        static get properties() {
-          return {
-            breweries: { type: Array },
-          };
-        }
+  connectedCallback() {
+    super.connectedCallback();
 
-        connectedCallback() {
-          super.connectedCallback();
+    if (!this.breweries) {
+      this.fetchBreweries();
+    }
+  }
 
-          if (!this.breweries) {
-            this.fetchBreweries();
-          }
-        }
+  async fetchBreweries() {
+    const response = await fetch('https://api.openbrewerydb.org/breweries');
+    const jsonResponse = await response.json();
+    this.breweries = jsonResponse;
+  }
 
-        async fetchBreweries() {
-          const response = await fetch('https://api.openbrewerydb.org/breweries');
-          const jsonResponse = await response.json();
-          this.breweries = jsonResponse;
-        }
+  render() {
+    return html` <pre>${JSON.stringify(this.breweries, null, 2)}</pre> `;
+  }
+}
 
-        render() {
-          return html` <pre>${JSON.stringify(this.breweries, null, 2)}</pre> `;
-        }
-      }
-
-      customElements.define('brewery-app', BreweryApp);
-    </script>
-  </body>
-</html>
+customElements.define('brewery-app', BreweryApp);
 ```
 
 </details>
@@ -292,52 +317,41 @@ render() {
 <details>
  <summary>View final result</summary>
 
-```html
-<!DOCTYPE html>
-<html>
-  <body>
-    <brewery-app></brewery-app>
+```js
+import { LitElement, html } from 'lit';
 
-    <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+class BreweryApp extends LitElement {
+  static properties = {
+    loading: { type: Boolean },
+    breweries: { type: Array },
+  };
 
-      class BreweryApp extends LitElement {
-        static get properties() {
-          return {
-            loading: { type: Boolean },
-            breweries: { type: Array },
-          };
-        }
+  connectedCallback() {
+    super.connectedCallback();
 
-        connectedCallback() {
-          super.connectedCallback();
+    if (!this.breweries) {
+      this.fetchBreweries();
+    }
+  }
 
-          if (!this.breweries) {
-            this.fetchBreweries();
-          }
-        }
+  async fetchBreweries() {
+    this.loading = true;
+    const response = await fetch('https://api.openbrewerydb.org/breweries');
+    const jsonResponse = await response.json();
+    this.breweries = jsonResponse;
+    this.loading = false;
+  }
 
-        async fetchBreweries() {
-          this.loading = true;
-          const response = await fetch('https://api.openbrewerydb.org/breweries');
-          const jsonResponse = await response.json();
-          this.breweries = jsonResponse;
-          this.loading = false;
-        }
+  render() {
+    if (this.loading) {
+      return html` <p>Loading...</p> `;
+    }
 
-        render() {
-          if (this.loading) {
-            return html` <p>Loading...</p> `;
-          }
+    return html` <pre>${JSON.stringify(this.breweries, null, 2)}</pre> `;
+  }
+}
 
-          return html` <pre>${JSON.stringify(this.breweries, null, 2)}</pre> `;
-        }
-      }
-
-      customElements.define('brewery-app', BreweryApp);
-    </script>
-  </body>
-</html>
+customElements.define('brewery-app', BreweryApp);
 ```
 
 </details>
@@ -348,7 +362,9 @@ To display individual breweries it's best to create a new component so that we s
 
 ### Tasks to complete this step
 
+- Ceate a new file called `BreweryDetail.js`
 - Create a `brewery-detail` element that displays the brewery's name, type and city.
+- Import the `BreweryDetail` component inside the `BreweryApp`
 - Display a list of `brewery-detail` elements in the `brewery-app`, one for each brewery received from the OpenBreweryDB API.
 
 ### Tips
@@ -358,13 +374,11 @@ To display individual breweries it's best to create a new component so that we s
 
 ```js
 class BreweryDetail extends LitElement {
-  static get properties() {
-    return {
-      name: { type: String },
-      type: { type: String },
-      city: { type: String },
-    };
-  }
+  static properties = {
+    name: { type: String },
+    type: { type: String },
+    city: { type: String },
+  };
 
   render() {
     return html`
@@ -410,89 +424,81 @@ render() {
 <details>
 <summary>View final result</summary>
 
-```html
-<!DOCTYPE html>
-<html>
-  <body>
-    <brewery-app></brewery-app>
+```js
+import { LitElement, html } from 'lit';
+import './BreweryDetail.js';
 
-    <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+class BreweryApp extends LitElement {
+  static properties = {
+    loading: { type: Boolean },
+    breweries: { type: Array },
+  };
 
-      class BreweryApp extends LitElement {
-        static get properties() {
-          return {
-            loading: { type: Boolean },
-            breweries: { type: Array },
-          };
-        }
+  connectedCallback() {
+    super.connectedCallback();
 
-        connectedCallback() {
-          super.connectedCallback();
+    if (!this.breweries) {
+      this.fetchBreweries();
+    }
+  }
 
-          if (!this.breweries) {
-            this.fetchBreweries();
-          }
-        }
+  async fetchBreweries() {
+    this.loading = true;
+    const response = await fetch('https://api.openbrewerydb.org/breweries');
+    const jsonResponse = await response.json();
+    this.breweries = jsonResponse;
+    this.loading = false;
+  }
 
-        async fetchBreweries() {
-          this.loading = true;
-          const response = await fetch('https://api.openbrewerydb.org/breweries');
-          const jsonResponse = await response.json();
-          this.breweries = jsonResponse;
-          this.loading = false;
-        }
+  render() {
+    if (this.loading) {
+      return html` <p>Loading...</p> `;
+    }
 
-        render() {
-          if (this.loading) {
-            return html` <p>Loading...</p> `;
-          }
+    return html`
+      <h1>Breweries App</h1>
 
-          return html`
-            <h1>Breweries App</h1>
+      <h2>Breweries</h2>
+      <ul>
+        ${this.breweries.map(
+          brewery => html`
+            <li>
+              <brewery-detail
+                .name=${brewery.name}
+                .type=${brewery.brewery_type}
+                .city=${brewery.city}
+              ></brewery-detail>
+            </li>
+          `,
+        )}
+      </ul>
+    `;
+  }
+}
 
-            <h2>Breweries</h2>
-            <ul>
-              ${this.breweries.map(
-                brewery => html`
-                  <li>
-                    <brewery-detail
-                      .name=${brewery.name}
-                      .type=${brewery.brewery_type}
-                      .city=${brewery.city}
-                    ></brewery-detail>
-                  </li>
-                `,
-              )}
-            </ul>
-          `;
-        }
-      }
+customElements.define('brewery-app', BreweryApp);
+```
 
-      customElements.define('brewery-app', BreweryApp);
+```js
+import { LitElement, html } from 'lit';
 
-      class BreweryDetail extends LitElement {
-        static get properties() {
-          return {
-            name: { type: String },
-            type: { type: String },
-            city: { type: String },
-          };
-        }
+class BreweryDetail extends LitElement {
+  static properties = {
+    name: { type: String },
+    type: { type: String },
+    city: { type: String },
+  };
 
-        render() {
-          return html`
-            <h3>${this.name}</h3>
-            <p>brewery type: ${this.type}</p>
-            <p>city: ${this.city}</p>
-          `;
-        }
-      }
+  render() {
+    return html`
+      <h3>${this.name}</h3>
+      <p>brewery type: ${this.type}</p>
+      <p>city: ${this.city}</p>
+    `;
+  }
+}
 
-      customElements.define('brewery-detail', BreweryDetail);
-    </script>
-  </body>
-</html>
+customElements.define('brewery-detail', BreweryDetail);
 ```
 
 </details>
@@ -546,7 +552,7 @@ class MyBrewery extends LitElement {
 
 <details>
  <summary>Adding event listeners</summary>
-With lit-html, you can add event listeners using the <code>@</code> syntax, which is just syntax sugar for `addEventListener`:
+With Lit, you can add event listeners using the <code>@</code> syntax, which is just syntax sugar for `addEventListener`:
 
 ```js
 render() {
@@ -569,98 +575,90 @@ In this example, we register an event listener for the `click` event, and call t
 <details>
 <summary>View final result</summary>
 
-```html
-<!DOCTYPE html>
-<html>
-  <body>
-    <brewery-app></brewery-app>
+```js
+import { LitElement, html } from 'lit';
+import './BreweryDetail.js';
 
-    <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+class BreweryApp extends LitElement {
+  static properties = {
+    loading: { type: Boolean },
+    breweries: { type: Array },
+  };
 
-      class BreweryApp extends LitElement {
-        static get properties() {
-          return {
-            loading: { type: Boolean },
-            breweries: { type: Array },
-          };
-        }
+  connectedCallback() {
+    super.connectedCallback();
 
-        connectedCallback() {
-          super.connectedCallback();
+    if (!this.breweries) {
+      this.fetchBreweries();
+    }
+  }
 
-          if (!this.breweries) {
-            this.fetchBreweries();
-          }
-        }
+  async fetchBreweries() {
+    this.loading = true;
+    const response = await fetch('https://api.openbrewerydb.org/breweries');
+    const jsonResponse = await response.json();
+    this.breweries = jsonResponse;
+    this.loading = false;
+  }
 
-        async fetchBreweries() {
-          this.loading = true;
-          const response = await fetch('https://api.openbrewerydb.org/breweries');
-          const jsonResponse = await response.json();
-          this.breweries = jsonResponse;
-          this.loading = false;
-        }
+  render() {
+    if (this.loading) {
+      return html` <p>Loading...</p> `;
+    }
 
-        render() {
-          if (this.loading) {
-            return html` <p>Loading...</p> `;
-          }
+    return html`
+      <h1>Breweries App</h1>
 
-          return html`
-            <h1>Breweries App</h1>
+      <h2>Breweries</h2>
+      <ul>
+        ${this.breweries.map(
+          brewery => html`
+            <li>
+              <brewery-detail
+                .name=${brewery.name}
+                .type=${brewery.brewery_type}
+                .city=${brewery.city}
+                .visited=${brewery.visited}
+              ></brewery-detail>
+            </li>
+          `,
+        )}
+      </ul>
+    `;
+  }
+}
 
-            <h2>Breweries</h2>
-            <ul>
-              ${this.breweries.map(
-                brewery => html`
-                  <li>
-                    <brewery-detail
-                      .name=${brewery.name}
-                      .type=${brewery.brewery_type}
-                      .city=${brewery.city}
-                      .visited=${brewery.visited}
-                    ></brewery-detail>
-                  </li>
-                `,
-              )}
-            </ul>
-          `;
-        }
-      }
+customElements.define('brewery-app', BreweryApp);
+```
 
-      customElements.define('brewery-app', BreweryApp);
+```js
+import { LitElement, html } from 'lit';
 
-      class BreweryDetail extends LitElement {
-        static get properties() {
-          return {
-            name: { type: String },
-            type: { type: String },
-            city: { type: String },
-            visited: { type: Boolean },
-          };
-        }
+class BreweryDetail extends LitElement {
+  static properties = {
+    name: { type: String },
+    type: { type: String },
+    city: { type: String },
+    visited: { type: Boolean },
+  };
 
-        render() {
-          return html`
-            <h3>${this.name} (${this.visited ? 'visited' : 'not-visited'})</h3>
-            <p>brewery type: ${this.type}</p>
-            <p>city: ${this.city}</p>
-            <button @click=${this._toggleVisitedStatus}>
-              Mark as ${this.visited ? 'not-visited' : 'visited'}
-            </button>
-          `;
-        }
+  render() {
+    return html`
+      <h3>${this.name} (${this.visited ? 'visited' : 'not-visited'})</h3>
+      <p>brewery type: ${this.type}</p>
+      <p>city: ${this.city}</p>
+      <button @click=${this._toggleVisitedStatus}>
+        Mark as ${this.visited ? 'not-visited' : 'visited'}
+      </button>
+    `;
+  }
 
-        _toggleVisitedStatus() {
-          this.visited = !this.visited;
-        }
-      }
+  _toggleVisitedStatus() {
+    this.visited = !this.visited;
+  }
+}
 
-      customElements.define('brewery-detail', BreweryDetail);
-    </script>
-  </body>
-</html>
+customElements.define('brewery-detail', BreweryDetail);
 ```
 
 </details>
@@ -749,111 +747,101 @@ render() {
 <details>
 <summary>View final result</summary>
 
-```html
-<!DOCTYPE html>
-<html>
-  <body>
-    <brewery-app></brewery-app>
+```js
+import { LitElement, html } from 'lit';
+import './BreweryDetail.js';
 
-    <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+class BreweryApp extends LitElement {
+  static properties = {
+    loading: { type: Boolean },
+    breweries: { type: Array },
+  };
 
-      class BreweryApp extends LitElement {
-        static get properties() {
-          return {
-            loading: { type: Boolean },
-            breweries: { type: Array },
-          };
-        }
+  connectedCallback() {
+    super.connectedCallback();
 
-        connectedCallback() {
-          super.connectedCallback();
+    if (!this.breweries) {
+      this.fetchBreweries();
+    }
+  }
 
-          if (!this.breweries) {
-            this.fetchBreweries();
-          }
-        }
+  async fetchBreweries() {
+    this.loading = true;
+    const response = await fetch('https://api.openbrewerydb.org/breweries');
+    const jsonResponse = await response.json();
+    this.breweries = jsonResponse;
+    this.loading = false;
+  }
 
-        async fetchBreweries() {
-          this.loading = true;
-          const response = await fetch('https://api.openbrewerydb.org/breweries');
-          const jsonResponse = await response.json();
-          this.breweries = jsonResponse;
-          this.loading = false;
-        }
+  render() {
+    if (this.loading) {
+      return html` <p>Loading...</p> `;
+    }
 
-        render() {
-          if (this.loading) {
-            return html` <p>Loading...</p> `;
-          }
+    const totalVisited = this.breweries.filter(b => b.visited).length;
+    const totalNotVisited = this.breweries.length - totalVisited;
 
-          const totalVisited = this.breweries.filter(b => b.visited).length;
-          const totalNotVisited = this.breweries.length - totalVisited;
+    return html`
+      <h1>Breweries App</h1>
 
-          return html`
-            <h1>Breweries App</h1>
+      <h2>Breweries</h2>
+      <p>(${totalVisited} visited and ${totalNotVisited} still to go)</p>
+      <ul>
+        ${this.breweries.map(
+          brewery => html`
+            <li>
+              <brewery-detail
+                .name=${brewery.name}
+                .type=${brewery.brewery_type}
+                .city=${brewery.city}
+                .visited=${brewery.visited}
+                @toggle-visited-status=${() => this._toggleVisitedStatus(brewery)}
+              ></brewery-detail>
+            </li>
+          `,
+        )}
+      </ul>
+    `;
+  }
 
-            <h2>Breweries</h2>
-            <p>(${totalVisited} visited and ${totalNotVisited} still to go)</p>
-            <ul>
-              ${this.breweries.map(
-                brewery => html`
-                  <li>
-                    <brewery-detail
-                      .name=${brewery.name}
-                      .type=${brewery.brewery_type}
-                      .city=${brewery.city}
-                      .visited=${brewery.visited}
-                      @toggle-visited-status=${() => this._toggleVisitedStatus(brewery)}
-                    ></brewery-detail>
-                  </li>
-                `,
-              )}
-            </ul>
-          `;
-        }
+  _toggleVisitedStatus(breweryToUpdate) {
+    this.breweries = this.breweries.map(brewery => {
+      return brewery === breweryToUpdate ? { ...brewery, visited: !brewery.visited } : brewery;
+    });
+  }
+}
 
-        _toggleVisitedStatus(breweryToUpdate) {
-          this.breweries = this.breweries.map(brewery => {
-            return brewery === breweryToUpdate
-              ? { ...brewery, visited: !brewery.visited }
-              : brewery;
-          });
-        }
-      }
+customElements.define('brewery-app', BreweryApp);
+```
 
-      customElements.define('brewery-app', BreweryApp);
+```js
+import { LitElement, html } from 'lit';
 
-      class BreweryDetail extends LitElement {
-        static get properties() {
-          return {
-            name: { type: String },
-            type: { type: String },
-            city: { type: String },
-            visited: { type: Boolean },
-          };
-        }
+class BreweryDetail extends LitElement {
+  static properties = {
+    name: { type: String },
+    type: { type: String },
+    city: { type: String },
+    visited: { type: Boolean },
+  };
 
-        render() {
-          return html`
-            <h3>${this.name} (${this.visited ? 'visited' : 'not-visited'})</h3>
-            <p>brewery type: ${this.type}</p>
-            <p>city: ${this.city}</p>
-            <button @click=${this._toggleVisitedStatus}>
-              Mark as ${this.visited ? 'not-visited' : 'visited'}
-            </button>
-          `;
-        }
+  render() {
+    return html`
+      <h3>${this.name} (${this.visited ? 'visited' : 'not-visited'})</h3>
+      <p>brewery type: ${this.type}</p>
+      <p>city: ${this.city}</p>
+      <button @click=${this._toggleVisitedStatus}>
+        Mark as ${this.visited ? 'not-visited' : 'visited'}
+      </button>
+    `;
+  }
 
-        _toggleVisitedStatus() {
-          this.dispatchEvent(new CustomEvent('toggle-visited-status'));
-        }
-      }
+  _toggleVisitedStatus() {
+    this.dispatchEvent(new CustomEvent('toggle-visited-status'));
+  }
+}
 
-      customElements.define('brewery-detail', BreweryDetail);
-    </script>
-  </body>
-</html>
+customElements.define('brewery-detail', BreweryDetail);
 ```
 
 </details>
@@ -889,135 +877,126 @@ Then, on the top of your `render` function, you can filter the array of brewerie
 <details>
 <summary>View final result</summary>
 
-```html
-<!DOCTYPE html>
-<html>
-  <body>
-    <brewery-app></brewery-app>
+```js
+import { LitElement, html } from 'lit';
+import './BreweryDetail.js';
 
-    <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+class BreweryApp extends LitElement {
+  static  properties{
+      loading: { type: Boolean },
+      breweries: { type: Array },
+      filter: { type: String },
+    };
 
-      class BreweryApp extends LitElement {
-        static get properties() {
-          return {
-            loading: { type: Boolean },
-            breweries: { type: Array },
-            filter: { type: String },
-          };
-        }
 
-        connectedCallback() {
-          super.connectedCallback();
+  connectedCallback() {
+    super.connectedCallback();
 
-          if (!this.breweries) {
-            this.fetchBreweries();
-          }
-        }
+    if (!this.breweries) {
+      this.fetchBreweries();
+    }
+  }
 
-        async fetchBreweries() {
-          this.loading = true;
-          const response = await fetch('https://api.openbrewerydb.org/breweries');
-          const jsonResponse = await response.json();
-          this.breweries = jsonResponse;
-          this.loading = false;
-        }
+  async fetchBreweries() {
+    this.loading = true;
+    const response = await fetch('https://api.openbrewerydb.org/breweries');
+    const jsonResponse = await response.json();
+    this.breweries = jsonResponse;
+    this.loading = false;
+  }
 
-        render() {
-          if (this.loading) {
-            return html` <p>Loading...</p> `;
-          }
+  render() {
+    if (this.loading) {
+      return html` <p>Loading...</p> `;
+    }
 
-          const totalVisited = this.breweries.filter(b => b.visited).length;
-          const totalNotVisted = this.breweries.length - totalVisited;
-          const breweries = this.breweries.filter(brewery => {
-            if (!this.filter) {
-              return true;
-            }
-            return this.filter === 'visited' ? brewery.visited : !brewery.visited;
-          });
-
-          return html`
-            <h1>Breweries App</h1>
-
-            <h2>Breweries</h2>
-            <p>(${totalVisited} visited and ${totalNotVisted} still to go)</p>
-
-            <button @click=${this._filterNone}>Filter none</button>
-            <button @click=${this._filterVisited}>Filter visited</button>
-            <button @click=${this._filterNotVisited}>Filter not-visited</button>
-
-            <ul>
-              ${breweries.map(
-                brewery => html`
-                  <li>
-                    <brewery-detail
-                      .name=${brewery.name}
-                      .type=${brewery.brewery_type}
-                      .city=${brewery.city}
-                      .visited=${brewery.visited}
-                      @toggle-visited-status=${() => this.toggleVisitedStatus(brewery)}
-                    ></brewery-detail>
-                  </li>
-                `,
-              )}
-            </ul>
-          `;
-        }
-
-        toggleVisitedStatus(breweryToUpdate) {
-          this.breweries = this.breweries.map(brewery => {
-            return brewery === breweryToUpdate
-              ? { ...brewery, visited: !brewery.visited }
-              : brewery;
-          });
-        }
-
-        _filterNone() {
-          this.filter = null;
-        }
-
-        _filterVisited() {
-          this.filter = 'visited';
-        }
-
-        _filterNotVisited() {
-          this.filter = 'not-visited';
-        }
+    const totalVisited = this.breweries.filter(b => b.visited).length;
+    const totalNotVisted = this.breweries.length - totalVisited;
+    const breweries = this.breweries.filter(brewery => {
+      if (!this.filter) {
+        return true;
       }
+      return this.filter === 'visited' ? brewery.visited : !brewery.visited;
+    });
 
-      customElements.define('brewery-app', BreweryApp);
+    return html`
+      <h1>Breweries App</h1>
 
-      class BreweryDetail extends LitElement {
-        static get properties() {
-          return {
-            name: { type: String },
-            type: { type: String },
-            city: { type: String },
-            visited: { type: Boolean },
-          };
-        }
+      <h2>Breweries</h2>
+      <p>(${totalVisited} visited and ${totalNotVisted} still to go)</p>
 
-        render() {
-          return html`
-            <h3>${this.name} (${this.visited ? 'visited' : 'not-visited'})</h3>
-            <p>brewery type: ${this.type}</p>
-            <p>city: ${this.city}</p>
-            <button @click=${this._toggleVisitedStatus}>
-              Mark as ${this.visited ? 'not-visited' : 'visited'}
-            </button>
-          `;
-        }
+      <button @click=${this._filterNone}>Filter none</button>
+      <button @click=${this._filterVisited}>Filter visited</button>
+      <button @click=${this._filterNotVisited}>Filter not-visited</button>
 
-        _toggleVisitedStatus() {
-          this.dispatchEvent(new CustomEvent('toggle-visited-status'));
-        }
-      }
+      <ul>
+        ${breweries.map(
+          brewery => html`
+            <li>
+              <brewery-detail
+                .name=${brewery.name}
+                .type=${brewery.brewery_type}
+                .city=${brewery.city}
+                .visited=${brewery.visited}
+                @toggle-visited-status=${() => this.toggleVisitedStatus(brewery)}
+              ></brewery-detail>
+            </li>
+          `,
+        )}
+      </ul>
+    `;
+  }
 
-      customElements.define('brewery-detail', BreweryDetail);
-    </script>
-  </body>
-</html>
+  toggleVisitedStatus(breweryToUpdate) {
+    this.breweries = this.breweries.map(brewery => {
+      return brewery === breweryToUpdate ? { ...brewery, visited: !brewery.visited } : brewery;
+    });
+  }
+
+  _filterNone() {
+    this.filter = null;
+  }
+
+  _filterVisited() {
+    this.filter = 'visited';
+  }
+
+  _filterNotVisited() {
+    this.filter = 'not-visited';
+  }
+}
+
+customElements.define('brewery-app', BreweryApp);
+```
+
+```js
+import { LitElement, html } from 'lit';
+
+class BreweryDetail extends LitElement {
+  static properties = {
+    name: { type: String },
+    type: { type: String },
+    city: { type: String },
+    visited: { type: Boolean },
+  };
+
+  render() {
+    return html`
+      <h3>${this.name} (${this.visited ? 'visited' : 'not-visited'})</h3>
+      <p>brewery type: ${this.type}</p>
+      <p>city: ${this.city}</p>
+      <button @click=${this._toggleVisitedStatus}>
+        Mark as ${this.visited ? 'not-visited' : 'visited'}
+      </button>
+    `;
+  }
+
+  _toggleVisitedStatus() {
+    this.dispatchEvent(new CustomEvent('toggle-visited-status'));
+  }
+}
+
+customElements.define('brewery-detail', BreweryDetail);
 ```
 
 </details>
@@ -1037,7 +1016,7 @@ The [Material Web Components](https://github.com/material-components/material-co
 To import a web component, you can use a 'side effects' import. This just runs the code of the module, which registers the web component.
 
 ```js
-import 'https://unpkg.com/@material/mwc-button?module';
+import '@material/mwc-button';
 ```
 
 <details>
@@ -1072,305 +1051,305 @@ html`
 <details>
 <summary>View final result</summary>
 
-```html
-<!DOCTYPE html>
-<html>
-  <body>
-    <brewery-app></brewery-app>
+```js
+import { LitElement, html } from 'lit';
+import '@material/mwc-button';
+import './BreweryDetail.js';
 
-    <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
-      import 'https://unpkg.com/@material/mwc-button?module';
+class BreweryApp extends LitElement {
+  static properties = {
+    loading: { type: Boolean },
+    breweries: { type: Array },
+    filter: { type: String },
+  };
 
-      class BreweryApp extends LitElement {
-        static get properties() {
-          return {
-            loading: { type: Boolean },
-            breweries: { type: Array },
-            filter: { type: String },
-          };
-        }
+  connectedCallback() {
+    super.connectedCallback();
 
-        connectedCallback() {
-          super.connectedCallback();
+    if (!this.breweries) {
+      this.fetchBreweries();
+    }
+  }
 
-          if (!this.breweries) {
-            this.fetchBreweries();
-          }
-        }
+  async fetchBreweries() {
+    this.loading = true;
+    const response = await fetch('https://api.openbrewerydb.org/breweries');
+    const jsonResponse = await response.json();
+    this.breweries = jsonResponse;
+    this.loading = false;
+  }
 
-        async fetchBreweries() {
-          this.loading = true;
-          const response = await fetch('https://api.openbrewerydb.org/breweries');
-          const jsonResponse = await response.json();
-          this.breweries = jsonResponse;
-          this.loading = false;
-        }
+  render() {
+    if (this.loading) {
+      return html` <p>Loading...</p> `;
+    }
 
-        render() {
-          if (this.loading) {
-            return html` <p>Loading...</p> `;
-          }
-
-          const totalVisited = this.breweries.filter(b => b.visited).length;
-          const totalNotVisited = this.breweries.length - totalVisited;
-          const breweries = this.breweries.filter(brewery => {
-            if (!this.filter) {
-              return true;
-            }
-            return this.filter === 'visited' ? brewery.visited : !brewery.visited;
-          });
-
-          return html`
-            <h1>Breweries App</h1>
-
-            <h2>Breweries</h2>
-            <p>(${totalVisited} visited and ${totalNotVisited} still to go)</p>
-
-            <mwc-button @click=${this._filterNone}>Filter none</mwc-button>
-            <mwc-button @click=${this._filterVisited}>Filter visited</mwc-button>
-            <mwc-button @click=${this._filterNotVisited}>Filter not-visited</mwc-button>
-
-            <ul>
-              ${breweries.map(
-                brewery => html`
-                  <li>
-                    <brewery-detail
-                      .name=${brewery.name}
-                      .type=${brewery.brewery_type}
-                      .city=${brewery.city}
-                      .visited=${brewery.visited}
-                      @toggle-visited-status=${() => this.toggleVisitedStatus(brewery)}
-                    ></brewery-detail>
-                  </li>
-                `,
-              )}
-            </ul>
-          `;
-        }
-
-        toggleVisitedStatus(breweryToUpdate) {
-          this.breweries = this.breweries.map(brewery => {
-            return brewery === breweryToUpdate
-              ? { ...brewery, visited: !brewery.visited }
-              : brewery;
-          });
-        }
-
-        _filterNone() {
-          this.filter = null;
-        }
-
-        _filterVisited() {
-          this.filter = 'visited';
-        }
-
-        _filterNotVisited() {
-          this.filter = 'not-visited';
-        }
+    const totalVisited = this.breweries.filter(b => b.visited).length;
+    const totalNotVisited = this.breweries.length - totalVisited;
+    const breweries = this.breweries.filter(brewery => {
+      if (!this.filter) {
+        return true;
       }
+      return this.filter === 'visited' ? brewery.visited : !brewery.visited;
+    });
 
-      customElements.define('brewery-app', BreweryApp);
+    return html`
+      <h1>Breweries App</h1>
 
-      class BreweryDetail extends LitElement {
-        static get properties() {
-          return {
-            name: { type: String },
-            type: { type: String },
-            city: { type: String },
-            visited: { type: Boolean },
-          };
-        }
+      <h2>Breweries</h2>
+      <p>(${totalVisited} visited and ${totalNotVisited} still to go)</p>
 
-        render() {
-          return html`
-            <h3>${this.name} (${this.visited ? 'visited' : 'not-visited'})</h3>
-            <p>brewery type: ${this.type}</p>
-            <p>city: ${this.city}</p>
-            <mwc-button @click=${this._toggleVisitedStatus}>
-              Mark as ${this.visited ? 'not-visited' : 'visited'}
-            </mwc-button>
-          `;
-        }
+      <mwc-button @click=${this._filterNone}>Filter none</mwc-button>
+      <mwc-button @click=${this._filterVisited}>Filter visited</mwc-button>
+      <mwc-button @click=${this._filterNotVisited}>Filter not-visited</mwc-button>
 
-        _toggleVisitedStatus() {
-          this.dispatchEvent(new CustomEvent('toggle-visited-status'));
-        }
-      }
+      <ul>
+        ${breweries.map(
+          brewery => html`
+            <li>
+              <brewery-detail
+                .name=${brewery.name}
+                .type=${brewery.brewery_type}
+                .city=${brewery.city}
+                .visited=${brewery.visited}
+                @toggle-visited-status=${() => this.toggleVisitedStatus(brewery)}
+              ></brewery-detail>
+            </li>
+          `,
+        )}
+      </ul>
+    `;
+  }
 
-      customElements.define('brewery-detail', BreweryDetail);
-    </script>
-  </body>
-</html>
+  toggleVisitedStatus(breweryToUpdate) {
+    this.breweries = this.breweries.map(brewery => {
+      return brewery === breweryToUpdate ? { ...brewery, visited: !brewery.visited } : brewery;
+    });
+  }
+
+  _filterNone() {
+    this.filter = null;
+  }
+
+  _filterVisited() {
+    this.filter = 'visited';
+  }
+
+  _filterNotVisited() {
+    this.filter = 'not-visited';
+  }
+}
+
+customElements.define('brewery-app', BreweryApp);
+```
+
+```js
+import { LitElement, html } from 'lit';
+
+class BreweryDetail extends LitElement {
+  static properties = {
+    name: { type: String },
+    type: { type: String },
+    city: { type: String },
+    visited: { type: Boolean },
+  };
+
+  render() {
+    return html`
+      <h3>${this.name} (${this.visited ? 'visited' : 'not-visited'})</h3>
+      <p>brewery type: ${this.type}</p>
+      <p>city: ${this.city}</p>
+      <mwc-button @click=${this._toggleVisitedStatus}>
+        Mark as ${this.visited ? 'not-visited' : 'visited'}
+      </mwc-button>
+    `;
+  }
+
+  _toggleVisitedStatus() {
+    this.dispatchEvent(new CustomEvent('toggle-visited-status'));
+  }
+}
+
+customElements.define('brewery-detail', BreweryDetail);
 ```
 
 </details>
 
-## Template function
+## Styling
 
-For our `brewery-detail` we created a separate web component. A web component creates a strong encapsulation boundary between the parent and child components. This is a great feature, we can develop components in complete isolation.
-
-But sometimes this can be overkill for just simple templates, or we may want to have no boundaries so that we can share styles or select DOM nodes.
-
-Since lit-html templates are actual javascript variables, we could write our template as a function which returns our template:
+As a final assignment we will add some styling to our app. To add styles to a LitElement, we have to import the `css` template tag and apply it to a static `styles` property:
 
 ```js
-function BeerTemplate(beer) {
-  return html` <h1>${beer}</h1> `;
-}
-```
+import { LitElement, html, css } from 'lit';
 
-### Tasks to complete this step
-
-- Replace the `brewery-detail` component with a template function.
-
-### Tips
-
-<details>
- <summary>Handling events in template functions</summary>
-
-We cannot fire any events from the template function. Instead, we should pass along the event handler from the parent component.
-
-```js
-function breweryTemplate(brewery, toggleVisitedStatus) {
-  return html`
-    <h3>${brewery.name} (${brewery.visited ? 'visited' : 'not-visited'})</h3>
-    <p>brewery type: ${brewery.brewery_type}</p>
-    <p>city: ${brewery.city}</p>
-    <mwc-button @click=${toggleVisitedStatus}>
-      Mark as ${brewery.visited ? 'not-visited' : 'visited'}
-    </mwc-button>
+class MyElement extends LitElement {
+  static styles = css`
+    h1 {
+      color: blue;
+    }
   `;
 }
 ```
 
-Then, to render the template:
+`LitElement` uses Shadow DOM by default. This is a native browser feature which scopes any styles to the web component itself. This makes it completely safe to use simple selectors such as HTML tag names. The styles will only ever affect the elements inside the web component.
 
-```js
-html` <li>${breweryTemplate(brewery, () => this.toggleVisitedStatus(brewery))}</li> `;
-```
+### Tasks to complete this step
 
-</details>
-
----
+- Apply styling to the BreweryApp element
+- Apply styling to the BreweryDetail element
 
 <details>
 <summary>View final result</summary>
 
-```html
-<!DOCTYPE html>
-<html>
-  <body>
-    <brewery-app></brewery-app>
+```js
+import { LitElement, html, css } from 'lit';
+import '@material/mwc-button';
+import './BreweryDetail.js';
 
-    <script type="module">
-      import { LitElement, html } from 'https://unpkg.com/lit-element?module';
-      import 'https://unpkg.com/@material/mwc-button?module';
+class BreweryApp extends LitElement {
+  static properties = {
+    loading: { type: Boolean },
+    breweries: { type: Array },
+    filter: { type: String },
+  };
 
-      function breweryTemplate(brewery, toggleVisitedStatus) {
-        return html`
-          <h3>${brewery.name} (${brewery.visited ? 'visited' : 'not-visited'})</h3>
-          <p>brewery type: ${brewery.brewery_type}</p>
-          <p>city: ${brewery.city}</p>
-          <mwc-button @click=${toggleVisitedStatus}>
-            Mark as ${brewery.visited ? 'not-visited' : 'visited'}
-          </mwc-button>
-        `;
+  static styles = css`
+    h1 {
+      color: blue;
+    }
+
+    p {
+      color: blue;
+    }
+  `;
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    if (!this.breweries) {
+      this.fetchBreweries();
+    }
+  }
+
+  async fetchBreweries() {
+    this.loading = true;
+    const response = await fetch('https://api.openbrewerydb.org/breweries');
+    const jsonResponse = await response.json();
+    this.breweries = jsonResponse;
+    this.loading = false;
+  }
+
+  render() {
+    if (this.loading) {
+      return html` <p>Loading...</p> `;
+    }
+
+    const totalVisited = this.breweries.filter(b => b.visited).length;
+    const totalNotVisited = this.breweries.length - totalVisited;
+    const breweries = this.breweries.filter(brewery => {
+      if (!this.filter) {
+        return true;
       }
+      return this.filter === 'visited' ? brewery.visited : !brewery.visited;
+    });
 
-      class BreweryApp extends LitElement {
-        static get properties() {
-          return {
-            loading: { type: Boolean },
-            breweries: { type: Array },
-            filter: { type: String },
-          };
-        }
+    return html`
+      <h1>Breweries App</h1>
 
-        connectedCallback() {
-          super.connectedCallback();
+      <h2>Breweries</h2>
+      <p>(${totalVisited} visited and ${totalNotVisited} still to go)</p>
 
-          if (!this.breweries) {
-            this.fetchBreweries();
-          }
-        }
+      <mwc-button @click=${this._filterNone}>Filter none</mwc-button>
+      <mwc-button @click=${this._filterVisited}>Filter visited</mwc-button>
+      <mwc-button @click=${this._filterNotVisited}>Filter not-visited</mwc-button>
 
-        async fetchBreweries() {
-          this.loading = true;
-          const response = await fetch('https://api.openbrewerydb.org/breweries');
-          const jsonResponse = await response.json();
-          this.breweries = jsonResponse;
-          this.loading = false;
-        }
+      <ul>
+        ${breweries.map(
+          brewery => html`
+            <li>
+              <brewery-detail
+                .name=${brewery.name}
+                .type=${brewery.brewery_type}
+                .city=${brewery.city}
+                .visited=${brewery.visited}
+                @toggle-visited-status=${() => this.toggleVisitedStatus(brewery)}
+              ></brewery-detail>
+            </li>
+          `,
+        )}
+      </ul>
+    `;
+  }
 
-        render() {
-          if (this.loading) {
-            return html` <p>Loading...</p> `;
-          }
+  toggleVisitedStatus(breweryToUpdate) {
+    this.breweries = this.breweries.map(brewery => {
+      return brewery === breweryToUpdate ? { ...brewery, visited: !brewery.visited } : brewery;
+    });
+  }
 
-          const totalVisited = this.breweries.filter(b => b.visited).length;
-          const totalNotVisited = this.breweries.length - totalVisited;
-          const breweries = this.breweries.filter(brewery => {
-            if (!this.filter) {
-              return true;
-            }
-            return this.filter === 'visited' ? brewery.visited : !brewery.visited;
-          });
+  _filterNone() {
+    this.filter = null;
+  }
 
-          return html`
-            <h1>Breweries App</h1>
+  _filterVisited() {
+    this.filter = 'visited';
+  }
 
-            <h2>Breweries</h2>
-            <p>(${totalVisited} visited and ${totalNotVisited} still to go)</p>
+  _filterNotVisited() {
+    this.filter = 'not-visited';
+  }
+}
 
-            <mwc-button @click=${this._filterNone}>Filter none</mwc-button>
-            <mwc-button @click=${this._filterVisited}>Filter visited</mwc-button>
-            <mwc-button @click=${this._filterNotVisited}>Filter not-visited</mwc-button>
+customElements.define('brewery-app', BreweryApp);
+```
 
-            <ul>
-              ${breweries.map(
-                brewery => html`
-                  <li>${breweryTemplate(brewery, () => this.toggleVisitedStatus(brewery))}</li>
-                `,
-              )}
-            </ul>
-          `;
-        }
+```js
+import { LitElement, html, css } from 'lit';
 
-        toggleVisitedStatus(breweryToUpdate) {
-          this.breweries = this.breweries.map(brewery => {
-            return brewery === breweryToUpdate
-              ? { ...brewery, visited: !brewery.visited }
-              : brewery;
-          });
-        }
+class BreweryDetail extends LitElement {
+  static properties = {
+    name: { type: String },
+    type: { type: String },
+    city: { type: String },
+    visited: { type: Boolean },
+  };
 
-        _filterNone() {
-          this.filter = null;
-        }
+  static styles = css`
+    h1 {
+      color: red;
+    }
 
-        _filterVisited() {
-          this.filter = 'visited';
-        }
+    p {
+      color: red;
+    }
+  `;
 
-        _filterNotVisited() {
-          this.filter = 'not-visited';
-        }
-      }
+  render() {
+    return html`
+      <h3>${this.name} (${this.visited ? 'visited' : 'not-visited'})</h3>
+      <p>brewery type: ${this.type}</p>
+      <p>city: ${this.city}</p>
+      <mwc-button @click=${this._toggleVisitedStatus}>
+        Mark as ${this.visited ? 'not-visited' : 'visited'}
+      </mwc-button>
+    `;
+  }
 
-      customElements.define('brewery-app', BreweryApp);
-    </script>
-  </body>
-</html>
+  _toggleVisitedStatus() {
+    this.dispatchEvent(new CustomEvent('toggle-visited-status'));
+  }
+}
+
+customElements.define('brewery-detail', BreweryDetail);
 ```
 
 </details>
 
 ## Wrapping up
 
-That's the end of the intermediate lit-html & lit-element codelab! If you're eager to learn more, you can take a look at the following resources:
+That's the end of the intermediate Lit codelab! If you're eager to learn more, you can take a look at the following resources:
 
-- [lit-html official docs](https://lit-html.polymer-project.org/)
+- [Lit official docs](https://Lit.polymer-project.org/)
 - [lit-element official docs](https://lit-element.polymer-project.org/)
 - [open-wc code samples](https://open-wc.org/developing/code-examples.html)
 - [IDE help](https://open-wc.org/developing/ide.html)
