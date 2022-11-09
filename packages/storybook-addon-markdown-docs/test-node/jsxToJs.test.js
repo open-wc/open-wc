@@ -24,7 +24,7 @@ function render() {
 
   it('does not transform es2018', async () => {
     const input = 'const foo = {...bar}';
-    expect(await jsxToJs(input, '/foo')).to.equal('const foo = { ...bar\n};');
+    expect(await jsxToJs(input, '/foo')).to.equal('const foo = {\n  ...bar\n};');
   });
 
   it('does not transform es2020', async () => {
