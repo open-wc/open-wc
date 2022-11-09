@@ -48,7 +48,8 @@ function getPackageName(id) {
  * @param {LitA11yRuleContext} context
  * @param {ImportNode} node
  */
-const isLitHtmlImport = (context, node) =>
+const isLitHtmlImport =
+  (context, node) =>
   /** @param {ImportNode['specifiers'][number]} specifier */
   specifier =>
     specifier.type !== 'ImportDefaultSpecifier' &&

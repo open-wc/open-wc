@@ -41,8 +41,7 @@ ruleTester.run('mouse-events-have-key-events', rule, {
       options: [{ allowCustomElements: false, allowList: ['custom-button'] }],
     },
     {
-      code:
-        'html`<custom-button @mouseover=${handleMouseOver} @focus=${handleFocus}></custom-button>`',
+      code: 'html`<custom-button @mouseover=${handleMouseOver} @focus=${handleFocus}></custom-button>`',
       options: [{ allowCustomElements: false, allowList: ['custom-button'] }],
     },
     {
@@ -58,8 +57,7 @@ ruleTester.run('mouse-events-have-key-events', rule, {
       options: [{ allowCustomElements: false, allowList: ['custom-button'] }],
     },
     {
-      code:
-        'html`<custom-button @mouseout=${handleMouseOut} @blur=${handleOnBlur}></custom-button>`',
+      code: 'html`<custom-button @mouseout=${handleMouseOut} @blur=${handleOnBlur}></custom-button>`',
       options: [{ allowCustomElements: false, allowList: ['custom-button'] }],
     },
   ],

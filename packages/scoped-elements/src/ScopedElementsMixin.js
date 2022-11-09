@@ -89,11 +89,8 @@ const ScopedElementsMixinImplementation = superclass =>
     }
 
     createRenderRoot() {
-      const {
-        scopedElements,
-        shadowRootOptions,
-        elementStyles,
-      } = /** @type {typeof ScopedElementsHost} */ (this.constructor);
+      const { scopedElements, shadowRootOptions, elementStyles } =
+        /** @type {typeof ScopedElementsHost} */ (this.constructor);
 
       const shouldCreateRegistry =
         !this.registry ||

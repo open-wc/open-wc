@@ -24,8 +24,7 @@ const AriaActiveDescendantHasTabindexRule = {
       description: 'Enforce elements with aria-activedescendant are tabbable.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/aria-activedescendant-has-tabindex.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/aria-activedescendant-has-tabindex.md',
     },
     fixable: null,
     schema: [],

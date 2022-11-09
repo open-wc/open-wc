@@ -25,8 +25,7 @@ const HeadingHasContentRule = {
       description: 'Enforce heading (h1, h2, etc) elements contain accessible content.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/heading-has-content.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/heading-has-content.md',
     },
     messages: {
       headingHasContent: '<{{tagName}}> elements must have accessible content.',

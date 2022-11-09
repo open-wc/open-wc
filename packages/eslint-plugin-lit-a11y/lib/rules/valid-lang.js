@@ -17,8 +17,7 @@ const ValidLangRule = {
       description: 'Ensures the document has a valid `lang` attribute.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/valid-html.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/valid-html.md',
     },
     messages: {
       noLangPresent: 'No lang attribute is present.',
