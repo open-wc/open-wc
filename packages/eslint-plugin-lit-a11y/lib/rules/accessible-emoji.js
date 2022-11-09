@@ -24,8 +24,7 @@ const AccessibleEmojiRule = {
       description: 'Enforce emojis are wrapped in <span> and provide screenreader access.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/accessible-emoji.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/accessible-emoji.md',
     },
     messages: {
       wrapEmoji:

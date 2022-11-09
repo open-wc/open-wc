@@ -22,8 +22,7 @@ const AutocompleteValidRule = {
       description: 'Ensure autocomplete attribute is correct.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/autocomplete-valid.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/autocomplete-valid.md',
     },
     fixable: null,
     schema: [],

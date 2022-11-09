@@ -22,8 +22,7 @@ const ScopeRule = {
       description: 'Enforce scope prop is only used on <th> elements.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/scope.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/scope.md',
     },
     fixable: null,
     schema: [],

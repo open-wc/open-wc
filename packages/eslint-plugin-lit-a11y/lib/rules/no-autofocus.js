@@ -20,8 +20,7 @@ const NoAutofocusRule = {
       description: 'Enforce that autofocus attribute or property are not used on elements.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-autofocus.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-autofocus.md',
     },
     messages: {
       noAutofocus: 'The autofocus {{type}} is not allowed.',

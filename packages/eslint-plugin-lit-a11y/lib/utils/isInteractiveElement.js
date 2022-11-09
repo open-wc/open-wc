@@ -93,9 +93,8 @@ function checkIsInteractiveElement(tagName, attributes) {
   }
   // Check in elementRoles for inherent non-interactive role associations for
   // this element.
-  const isInherentNonInteractiveElement = nonInteractiveElementRoleSchemas.some(
-    elementSchemaMatcher,
-  );
+  const isInherentNonInteractiveElement =
+    nonInteractiveElementRoleSchemas.some(elementSchemaMatcher);
   if (isInherentNonInteractiveElement) {
     return false;
   }

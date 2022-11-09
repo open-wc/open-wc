@@ -22,8 +22,7 @@ const AltTextRule = {
       description: 'Images require alt text',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/alt-text.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/alt-text.md',
     },
     messages: {
       roleImgAttrs: "elements with role '{{role}}' must have an {{attrs}} attribute.",
