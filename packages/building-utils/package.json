@@ -51,7 +51,7 @@
     "rimraf": "^3.0.2",
     "shady-css-scoped-element": "^0.0.2",
     "systemjs": "^6.8.3",
-    "terser": "^4.6.7",
+    "terser": "^4.8.1",
     "valid-url": "^1.0.9",
     "whatwg-fetch": "^3.5.0",
     "whatwg-url": "^7.1.0"
