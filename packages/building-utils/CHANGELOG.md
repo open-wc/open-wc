@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.19.0
+
+### Minor Changes
+
+- 8c71b085: Support node 17 & 18 by using md5 hashing
+
 ## 2.18.5
 
 ### Patch Changes
