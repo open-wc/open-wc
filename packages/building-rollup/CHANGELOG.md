@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- d009faae: Update dependency @rollup/plugin-node-resolve to v13
+
 ## 2.1.0
 
 ### Minor Changes
