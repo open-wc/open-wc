@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.20.0
+
+### Minor Changes
+
+- 027e58b0: Update dependency clean-css to v5
+
 ## 2.19.0
 
 ### Minor Changes

@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- 027e58b0: Update dependency clean-css to v5
+
+### Patch Changes
+
+- Updated dependencies [027e58b0]
+  - @open-wc/building-utils@2.20.0
+
 ## 2.0.2
 
 ### Patch Changes
