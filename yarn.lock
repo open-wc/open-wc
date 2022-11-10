@@ -4874,10 +4874,10 @@ clean-css@^4.1.11, clean-css@^4.2.1, clean-css@^4.2.3:
   dependencies:
     source-map "~0.6.0"
 
-clean-css@^5.2.2:
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-5.2.4.tgz#982b058f8581adb2ae062520808fb2429bd487a4"
-  integrity sha512-nKseG8wCzEuji/4yrgM/5cthL9oTDc5UOQyFMvW/Q53oP6gLH690o1NbuTh6Y18nujr7BxlsFuS7gXLnLzKJGg==
+clean-css@^5.2.2, clean-css@^5.3.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-5.3.1.tgz#d0610b0b90d125196a2894d35366f734e5d7aa32"
+  integrity sha512-lCr8OHhiWCTw4v8POJovCoh4T7I9U11yVsPjMWWnnMmp9ZowCxyad1Pathle/9HjaDp+fdQKjO9fQydE6RHTZg==
   dependencies:
     source-map "~0.6.0"
 
