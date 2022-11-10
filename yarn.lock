@@ -12221,10 +12221,10 @@ pseudomap@^1.0.2:
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
   integrity sha1-8FKijacOYYkX7wqKw0wa5aaChrM=
 
-publish-docs@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/publish-docs/-/publish-docs-0.1.2.tgz#5e3040fd55164381d24a084e19ee5aac704b4a9c"
-  integrity sha512-h6weNnTDtgDW0RXfCeY0ffYZQhJyv+4rbJc+NUFVIqqL54sXHXFyT/H7OyjkyoIpVTwTsqhmBYx8zrrhhN+gJQ==
+publish-docs@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/publish-docs/-/publish-docs-0.2.0.tgz#4a3d3a70697fd715ce57f6cb1f2553d53e301eeb"
+  integrity sha512-rHamDW2FCIgfcITTvqSnWsTCiywZiWoNlngwvlwLB0jwnHfc5wbOs3uf7O/d3nFfLaW5Gt8coNdYzji+rJqbrA==
   dependencies:
     command-line-args "^5.1.1"
     fs-extra "^9.0.0"
