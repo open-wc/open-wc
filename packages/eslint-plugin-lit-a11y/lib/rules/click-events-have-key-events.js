@@ -22,8 +22,7 @@ const ClickEventsHaveKeyEventsRule = {
       description: 'click-events-have-key-events',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/click-events-have-key-events.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/click-events-have-key-events.md',
     },
     messages: {
       clickableNonInteractiveElements:

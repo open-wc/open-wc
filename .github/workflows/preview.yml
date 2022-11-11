@@ -1,0 +1,78 @@
+name: Preview
+
+on: pull_request
+
+jobs:
+  release:
+    # Prevents changesets action from creating a PR on forks
+    if: github.repository == 'open-wc/open-wc'
+    name: Preview
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+        with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          fetch-depth: 0
+
+      - name: Setup Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'yarn'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install Dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Get the slugified branch name
+        run: |
+          branch=$(npx slugify-cli ${GITHUB_HEAD_REF})
+          echo ::set-output name=name::$branch
+        id: slugified_branch
+
+      - name: Build the preview URL from the branch name
+        run: echo ::set-output name=url::https://${{steps.slugified_branch.outputs.name}}--open-wc-org.netlify.app/
+        id: preview
+
+      - name: Build Documentation Site
+        env:
+          DEPLOY_URL: ${{ steps.preview.outputs.url }}
+          CONTEXT: deploy-preview
+        run: yarn site:build
+
+      - name: Publish to Netlify
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: yarn netlify deploy --alias=${{steps.slugified_branch.outputs.name}} --dir=_site
+
+      - name: Post Previews
+        uses: actions/github-script@v4
+        env:
+          PREVIEW_URL: ${{ steps.preview.outputs.url }}
+        with:
+            script: |
+                const body = `Preview published to [${process.env.PREVIEW_URL}](${process.env.PREVIEW_URL}).`;
+                github.issues.listComments({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                }).then(({data}) => {
+                  const priorComment = data.find(comment => comment.body.startsWith('Preview published to'));
+                  if (priorComment) {
+                    github.issues.updateComment({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      comment_id: priorComment.id,
+                      body
+                    });
+                  } else {
+                    github.issues.createComment({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      issue_number: context.issue.number,
+                      body
+                    });
+                  }
+                });

@@ -1,4 +1,5 @@
-import { html } from 'lit/html.js';
+import { html } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { fixtureWrapper } from './fixtureWrapper.js';
 import { elementUpdated } from './elementUpdated.js';
 import { litFixture } from './litFixture.js';
@@ -30,7 +31,7 @@ export function stringFixtureSync(template, options = {}) {
 export async function stringFixture(template, options = {}) {
   if (options.scopedElements) {
     // @ts-ignore
-    return litFixture(html([template]), options);
+    return litFixture(html`${unsafeHTML(template)}`, options);
   }
 
   const el = stringFixtureSync(template, options);

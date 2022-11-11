@@ -1,19 +1,8 @@
-import { render } from 'lit/html.js';
+import { render as defaultRender } from 'lit/html.js';
 import { isTemplateResult } from 'lit/directive-helpers.js';
 import { fixtureWrapper } from './fixtureWrapper.js';
 import { elementUpdated } from './elementUpdated.js';
 import { NODE_TYPES } from './lib.js';
-
-/**
- * @typedef {
-     import('lit').TemplateResult
-   | import('lit').TemplateResult[]
-   | Node | Node[]
-   | string | string[]
-   | number | number[]
-   | boolean | boolean[]
- } LitHTMLRenderable
- */
 
 const isUsefulNode = ({ nodeType, textContent }) => {
   switch (nodeType) {
@@ -30,13 +19,15 @@ const isUsefulNode = ({ nodeType, textContent }) => {
  * Setups an element synchronously from the provided lit-html template and puts it in the DOM.
  *
  * @template {Element} T - Is an element or a node
- * @param {LitHTMLRenderable} template
+ * @param {import('./renderable').LitHTMLRenderable} template
  * @param {import('./fixture-no-side-effect.js').FixtureOptions} [options]
  * @param {import('./scopedElementsWrapper.js').ScopedElementsTemplateGetter} [getScopedElementsTemplate]
  * @returns {T}
  */
+// eslint-disable-next-line default-param-last
 export function litFixtureSync(template, options = {}, getScopedElementsTemplate) {
   const wrapper = /** @type {HTMLElement} */ (fixtureWrapper(options.parentNode));
+  const render = options.render ?? defaultRender;
 
   render(
     options.scopedElements ? getScopedElementsTemplate(template, options.scopedElements) : template,
@@ -55,7 +46,7 @@ export function litFixtureSync(template, options = {}, getScopedElementsTemplate
  * Setups an element asynchronously from the provided lit-html template and puts it in the DOM.
  *
  * @template {Element} T - Is an element or a node
- * @param {LitHTMLRenderable} template
+ * @param {import('./renderable').LitHTMLRenderable} template
  * @param {import('./fixture-no-side-effect.js').FixtureOptions} [options]
  * @returns {Promise<T>}
  */

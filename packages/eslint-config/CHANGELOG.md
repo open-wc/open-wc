@@ -1,5 +1,19 @@
 # Change Log
 
+## 8.0.2
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+- Updated dependencies [61e2668f]
+  - eslint-plugin-lit-a11y@2.2.2
+
+## 8.0.0
+
+### Major Changes
+
+- b321871f: breaking(eslint-config): move eslint to the peerDependencies to let users decide which major version they want to use
+
 ## 7.0.0
 
 ### Patch Changes

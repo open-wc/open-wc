@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/tabindex-no-positive');
+const rule = require('../../../lib/rules/tabindex-no-positive.js');
 
 //------------------------------------------------------------------------------
 // Tests

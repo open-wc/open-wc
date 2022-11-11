@@ -1,5 +1,29 @@
 # Change Log
 
+## 2.20.1
+
+### Patch Changes
+
+- 45094384: Update terser dependency version to 4.8.1
+
+## 2.20.0
+
+### Minor Changes
+
+- 027e58b0: Update dependency clean-css to v5
+
+## 2.19.0
+
+### Minor Changes
+
+- 8c71b085: Support node 17 & 18 by using md5 hashing
+
+## 2.18.5
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+
 ## 2.18.4
 
 ### Patch Changes

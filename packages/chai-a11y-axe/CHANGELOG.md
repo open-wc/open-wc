@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.4.0
+
+### Minor Changes
+
+- c4e8ab99: Added ignoredTags configuration option
+
 ## 1.3.2
 
 ### Patch Changes

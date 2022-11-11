@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const fetch = require('node-fetch');
+const cache = require('@11ty/eleventy-cache-assets');
 
 const baseLibraries = [
   {
@@ -135,14 +135,22 @@ const baseLibraries = [
       'Set of Web Components that can be used to build Single Page Apps (SPA), Display JSON data from API’s and Web Services, and bind data to different elements on screen. All Web Components are plain JavaScript and require no build process.',
     url: 'https://github.com/dataformsjs/dataformsjs',
   },
+  {
+    name: 'Symbiote.js',
+    package: '@symbiotejs/symbiote',
+    description: 'Library to create embedded components and data channels between them.',
+    url: 'https://symbiotejs.org/',
+  },
 ];
 
 module.exports = async function getBaseLibraries() {
   const result = await Promise.all(
     baseLibraries.map(async lib => {
       const pkg = encodeURIComponent(lib.package);
-      const response = await fetch(`https://api.npmjs.org/downloads/point/last-week/${pkg}`);
-      const { downloads } = await response.json();
+      const { downloads } = await cache(`https://api.npmjs.org/downloads/point/last-week/${pkg}`, {
+        duration: '1d',
+        type: 'json',
+      });
 
       return {
         ...lib,

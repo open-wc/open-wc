@@ -55,7 +55,9 @@ export function aTimeout(ms) {
  * @returns {Promise<void>} Promise that resolved after requestAnimationFrame
  */
 export function nextFrame() {
-  return new Promise(resolve => requestAnimationFrame(() => resolve()));
+  return new Promise(resolve => {
+    requestAnimationFrame(() => resolve());
+  });
 }
 
 /**
@@ -118,9 +120,10 @@ export async function triggerFocusFor(element) {
  * await oneEvent(el, 'done');
  * expect(el.done).to.be.true;
  *
- * @param {EventTarget} eventTarget Target of the event, usually an Element
- * @param {string} eventName Name of the event
- * @returns {Promise<CustomEvent>} Promise to await until the event has been fired
+ * @param eventTarget Target of the event, usually an Element
+ * @param eventName Name of the event
+ * @returns Promise to await until the event has been fired
+ * @type {import("./types").OneEventFn}
  */
 export function oneEvent(eventTarget, eventName) {
   return new Promise(resolve => {
@@ -145,7 +148,7 @@ export function oneEvent(eventTarget, eventName) {
  * await waitUntil(() => element.someAsyncProperty, 'element should become ready');
  * ```
  *
- * @param {() => boolean | Promise<boolean>} predicate - predicate function which is called each poll interval.
+ * @param {() => unknown | Promise<unknown>} predicate - predicate function which is called each poll interval.
  *   The predicate is awaited, so it can return a promise.
  * @param {string} [message] an optional message to display when the condition timed out
  * @param {{ interval?: number, timeout?: number }} [options] timeout and polling interval

@@ -6,7 +6,7 @@
 /** @template T @typedef {import('@babel/core').NodePath<T>} NodePath<T> */
 
 const { parse } = require('@babel/core');
-const { createError } = require('../utils');
+const { createError } = require('../utils.js');
 
 /**
  * @param {BabelPluginWcHmrOptions} options

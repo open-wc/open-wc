@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { expect } = require('chai');
 const path = require('path');
-const { banner, transform, rootDir } = require('./utils');
+const { banner, transform, rootDir } = require('./utils.js');
 
 describe('babelPluginWcHmr - detecting function components', () => {
   it('global function name', () => {
@@ -18,7 +18,6 @@ const MyElementClass = __$wc_hmr$__.register(import.meta, "MyElementClass", comp
 
     expect(result).to.equal(`${banner}
 const x = __$wc_hmr$__.register(import.meta, "x", component(y));
-
 const a = __$wc_hmr$__.register(import.meta, "a", component(b));`);
   });
 
@@ -38,7 +37,6 @@ const a = __$wc_hmr$__.register(import.meta, "a", component(b));`);
 
     expect(result).to.equal(`${banner}
 import { component } from "my-package";
-
 const MyElementClass = __$wc_hmr$__.register(import.meta, "MyElementClass", component(MyElement));`);
   });
 
@@ -51,7 +49,6 @@ const MyElementClass = __$wc_hmr$__.register(import.meta, "MyElementClass", comp
 
     expect(result).to.equal(`${banner}
 import foo from "my-package";
-
 const MyElementClass = __$wc_hmr$__.register(import.meta, "MyElementClass", foo(MyElement));`);
   });
 
@@ -65,7 +62,6 @@ const MyElementClass = __$wc_hmr$__.register(import.meta, "MyElementClass", foo(
 
     expect(result).to.equal(`${banner}
 import { component } from "../component.js";
-
 const MyElementClass = __$wc_hmr$__.register(import.meta, "MyElementClass", component(MyElement));`);
   });
 });

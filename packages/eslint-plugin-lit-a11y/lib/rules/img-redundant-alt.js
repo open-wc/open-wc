@@ -25,8 +25,7 @@ const ImgRedundantAltRule = {
       description: 'Enforce img alt attribute does not contain the word image, picture, or photo.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/img-redundant-alt.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/img-redundant-alt.md',
     },
     messages: {
       imgRedundantAlt:

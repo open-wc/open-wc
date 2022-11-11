@@ -1,7 +1,7 @@
-const { createIndexHTML } = require('./create-index-html');
-const { minifyIndexHTML } = require('./minify-index-html');
-const { extractResources } = require('./extract-resources');
-const { findInlineEntryId } = require('./inline-entry');
+const { createIndexHTML } = require('./create-index-html.js');
+const { minifyIndexHTML } = require('./minify-index-html.js');
+const { extractResources } = require('./extract-resources.js');
+const { findInlineEntryId } = require('./inline-entry.js');
 
 module.exports = {
   createIndexHTML,

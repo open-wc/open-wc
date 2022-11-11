@@ -32,19 +32,19 @@
 
 const path = require('path');
 
-const { findDefinedCustomElement } = require('./customElementsDefine');
-const { findDecoratedCustomElement } = require('./decorators');
+const { findDefinedCustomElement } = require('./customElementsDefine.js');
+const { findDecoratedCustomElement } = require('./decorators.js');
 const {
   injectRegisterClass,
   injectRuntime,
   isClassRegistered,
   findComponentName,
-} = require('./inject');
-const { parseOptions, singlePath, addToSet } = require('./utils');
-const { isFunctionComponent } = require('./functions');
-const { getImportedVariableNames } = require('./getImportedVariableNames');
-const { implementsBaseClass } = require('./class');
-const { createError } = require('../utils');
+} = require('./inject.js');
+const { parseOptions, singlePath, addToSet } = require('./utils.js');
+const { isFunctionComponent } = require('./functions.js');
+const { getImportedVariableNames } = require('./getImportedVariableNames.js');
+const { implementsBaseClass } = require('./class.js');
+const { createError } = require('../utils.js');
 
 /** @returns {PluginObj} */
 function babelPluginWcHmr() {

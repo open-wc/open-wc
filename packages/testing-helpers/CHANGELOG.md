@@ -1,5 +1,61 @@
 # Change Log
 
+## 2.1.4
+
+### Patch Changes
+
+- b187c0bc: Add missing types export when using node16 module resolution
+
+## 2.1.3
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+- Updated dependencies [61e2668f]
+  - @open-wc/scoped-elements@2.1.3
+
+## 2.1.2
+
+### Patch Changes
+
+- 773e5b65: fix: add a type for lit v1 renderable
+
+## 2.1.1
+
+### Patch Changes
+
+- ebbea0d5: Force lit-html dependency tree for correct types construction
+
+## 2.1.0
+
+### Minor Changes
+
+- b762707d: Feat/customize render
+
+## 2.0.5
+
+### Patch Changes
+
+- 065b82a8: Add generics for oneEvent test helper function
+
+## 2.0.4
+
+### Patch Changes
+
+- 987c9cd2: Add lit-html as depenency to support the generated types in strict package managers
+
+## 2.0.3
+
+### Patch Changes
+
+- 592196ce: Relax type of `waitUntil` predicate parameter
+
+## 2.0.2
+
+### Patch Changes
+
+- de7f7b1a: Fix the typescript typings in testing helpers for projects that depend on `lit` package
+
 ## 2.0.1
 
 ### Patch Changes
@@ -36,11 +92,7 @@
   import { html, fixture } from '@open-wc/testing'; // html will be lit-html 2.x
 
   it('works for tags', async () => {
-    const el = await fixture(
-      html`
-        <my-el></my-el>
-      `,
-    );
+    const el = await fixture(html` <my-el></my-el> `);
   });
   ```
 
@@ -58,9 +110,7 @@
     class MyExtension extends LibraryComponent {
       render() {
         // needs to be lit-html 1.x as the library component is using LitElement with lit-html 1.x
-        return html`
-          <p>...</p>
-        `;
+        return html` <p>...</p> `;
       }
     }
 
@@ -81,11 +131,7 @@
     render(html1`<p>Testing ${fancyDirective('output')}</p>`, node);
 
     // you can either cleanup yourself or use fixture
-    const el = await fixture(
-      html`
-        ${node}
-      `,
-    );
+    const el = await fixture(html` ${node} `);
 
     expect(el.children[0].innerHTML).toBe('Testing [[output]]');
   });
@@ -123,11 +169,7 @@
   import { html, fixture } from '@open-wc/testing'; // html will be lit-html 2.x
 
   it('works for tags', async () => {
-    const el = await fixture(
-      html`
-        <my-el></my-el>
-      `,
-    );
+    const el = await fixture(html` <my-el></my-el> `);
   });
   ```
 
@@ -145,9 +187,7 @@
     class MyExtension extends LibraryComponent {
       render() {
         // needs to be lit-html 1.x as the library component is using LitElement with lit-html 1.x
-        return html`
-          <p>...</p>
-        `;
+        return html` <p>...</p> `;
       }
     }
 
@@ -168,11 +208,7 @@
     render(html1`<p>Testing ${fancyDirective('output')}</p>`, node);
 
     // you can either cleanup yourself or use fixture
-    const el = await fixture(
-      html`
-        ${node}
-      `,
-    );
+    const el = await fixture(html` ${node} `);
 
     expect(el.children[0].innerHTML).toBe('Testing [[output]]');
   });

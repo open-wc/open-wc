@@ -5,7 +5,7 @@ const path = require('path');
  * but it should use `/` in the browser.
  */
 function toFilePath(browserPath) {
-  return browserPath.replace(new RegExp('/', 'g'), path.sep);
+  return browserPath.replace(/\//g, path.sep);
 }
 
 module.exports = { toFilePath };

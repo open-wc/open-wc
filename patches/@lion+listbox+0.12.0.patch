@@ -1,0 +1,14 @@
+diff --git a/node_modules/@lion/listbox/src/ListboxMixin.js b/node_modules/@lion/listbox/src/ListboxMixin.js
+index 450e3c2..b9e5042 100644
+--- a/node_modules/@lion/listbox/src/ListboxMixin.js
++++ b/node_modules/@lion/listbox/src/ListboxMixin.js
+@@ -133,8 +133,7 @@ const ListboxMixinImplementation = superclass =>
+       return {
+         ...super.slots,
+         input: () => {
+-          // @ts-ignore we load a polyfill to support createElement on shadowRoot
+-          const lionOptions = this.shadowRoot.createElement('lion-options');
++          const lionOptions = this.createScopedElement('lion-options');
+           lionOptions.setAttribute('data-tag-name', 'lion-options');
+           lionOptions.registrationTarget = this;
+           return lionOptions;

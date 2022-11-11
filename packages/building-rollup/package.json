@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "2.0.1",
+  "version": "2.2.1",
   "publishConfig": {
     "access": "public"
   },
@@ -61,20 +61,20 @@
     "@babel/plugin-transform-modules-systemjs": "^7.10.5",
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.9.0",
-    "@open-wc/building-utils": "^2.18.3",
+    "@open-wc/building-utils": "^2.20.1",
     "@rollup/plugin-babel": "^5.1.0",
-    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@rollup/plugin-node-resolve": "^13.3.0",
     "@web/rollup-plugin-html": "^1.7.0",
     "@web/rollup-plugin-import-meta-assets": "^1.0.6",
     "@web/rollup-plugin-polyfills-loader": "^1.1.0",
     "babel-plugin-template-html-minifier": "^4.0.0",
-    "browserslist": "^4.16.0",
+    "browserslist": "^4.16.5",
     "deepmerge": "^4.2.2",
     "magic-string": "^0.25.7",
     "parse5": "^5.1.1",
     "regenerator-runtime": "^0.13.7",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-workbox": "^6.0.0",
-    "terser": "^4.6.7"
+    "terser": "^4.8.1"
   }
 }

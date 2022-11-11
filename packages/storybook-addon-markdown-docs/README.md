@@ -1,6 +1,6 @@
 # Storybook Addon: Markdown Docs
 
-This extension for [Storybook](https://storybook.js.org/) enables you to use [Markdown JavaScript (mdjs) Format](https://open-wc.org/mdjs/).
+This extension for [Storybook](https://storybook.js.org/) enables you to use [Markdown JavaScript (mdjs) Format](https://rocket.modern-web.dev/docs/markdown-javascript/).
 
 ## Installation
 
