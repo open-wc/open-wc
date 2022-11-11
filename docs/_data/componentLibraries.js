@@ -63,7 +63,7 @@ const componentLibraries = [
     name: 'Ignite UI for Web Components',
     url: 'https://github.com/IgniteUI/igniteui-webcomponents',
     description:
-      "Ignite UI for Web Components is a complete library of UI components, giving you the ability to build modern web application UIs. All components are based on the Indigo.Design Design System and are backed by ready-to-use UI kits for Sketch, Adobe XD and Figma.",
+      'Ignite UI for Web Components is a complete library of UI components, giving you the ability to build modern web application UIs. All components are based on the Indigo.Design Design System and are backed by ready-to-use UI kits for Sketch, Adobe XD and Figma.',
   },
   {
     name: 'Ink Components',
