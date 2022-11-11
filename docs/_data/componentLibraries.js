@@ -66,6 +66,12 @@ const componentLibraries = [
       'The HelixUI library provides front-end developers a set of reusable CSS classes and HTML Custom Elements that adhere to Helix design standards, as outlined by Rackspace.',
   },
   {
+    name: 'Ignite UI for Web Components',
+    url: 'https://github.com/IgniteUI/igniteui-webcomponents',
+    description:
+      "Ignite UI for Web Components is a complete library of UI components, giving you the ability to build modern web application UIs. All components are based on the Indigo.Design Design System and are backed by ready-to-use UI kits for Sketch, Adobe XD and Figma.",
+  },
+  {
     name: 'Ink Components',
     url: 'https://components.ink/',
     description:
@@ -149,6 +155,12 @@ const componentLibraries = [
       'Vaadin has a comprehensive set of beautifully crafted, performant, and adaptable UI components for modern mobile-first Web apps. They are the ideal building blocks for Progressive Web Applications.',
   },
   {
+    name: 'Vivid',
+    url: 'https://github.com/Vonage/vivid',
+    description:
+      "Vonage's web UI 🎨 toolbelt. A library that favors lock-down and coherence over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree).",
+  },
+  {
     name: 'Weightless',
     url: 'https://weightless.dev/',
     description:
@@ -164,18 +176,6 @@ const componentLibraries = [
     name: 'Zooplus Web Components',
     url: 'https://zooplus.github.io/zoo-web-components/',
     description: 'A set of web components that implement Z+ shop style guide.',
-  },
-  {
-    name: 'Vivid',
-    url: 'https://github.com/Vonage/vivid',
-    description:
-      "Vonage's web UI 🎨 toolbelt. A library that favors lock-down and coherence over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree).",
-  },
-  {
-    name: 'Ignite UI for Web Components',
-    url: 'https://github.com/IgniteUI/igniteui-webcomponents',
-    description:
-      "Ignite UI for Web Components is a complete library of UI components, giving you the ability to build modern web application UIs. All components are based on the Indigo.Design Design System and are backed by ready-to-use UI kits for Sketch, Adobe XD and Figma.",
   },
 ];
 
