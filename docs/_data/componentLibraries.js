@@ -1,11 +1,5 @@
 const componentLibraries = [
   {
-    name: 'aybolit',
-    url: 'https://web-padawan.github.io/aybolit/',
-    description:
-      'A growing family of elements with default styling for Bootstrap, Bulma, and Material, as well as a solid white-label basis for extending the underlying functionality with your own custom designs.',
-  },
-  {
     name: 'Auro',
     url: 'https://auro.alaskaair.com',
     description:
