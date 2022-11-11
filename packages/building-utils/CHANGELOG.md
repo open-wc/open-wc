@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.20.1
+
+### Patch Changes
+
+- 45094384: Update terser dependency version to 4.8.1
+
 ## 2.20.0
 
 ### Minor Changes
