@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- 45094384: Update terser dependency version to 4.8.1
+- Updated dependencies [45094384]
+  - @open-wc/building-utils@2.20.1
+
 ## 2.2.0
 
 ### Minor Changes
