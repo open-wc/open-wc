@@ -1,125 +1,27 @@
-/* eslint-disable no-use-before-define */
-import { TemplateResult } from 'lit-html';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
-import { Cache } from './Cache.js';
-import { transform } from './transform.js';
-import { defineScopedElement, registerElement } from './registerElement.js';
-import { shadyTemplateFactory } from './shadyTemplateFactory.js';
+import { adoptStyles } from '@lit/reactive-element/css-tag.js';
 
 /**
+ * @typedef {import('./types').RenderOptions} RenderOptions
  * @typedef {import('./types').ScopedElementsMixin} ScopedElementsMixin
+ * @typedef {import('./types').ScopedElementsHost} ScopedElementsHost
  * @typedef {import('./types').ScopedElementsMap} ScopedElementsMap
- * @typedef {import("lit-element").LitElement} LitElement
- * @typedef {import('lit-html/lib/shady-render').ShadyRenderOptions} ShadyRenderOptions
- * @typedef {function(TemplateResult, Element|DocumentFragment|ShadowRoot, ShadyRenderOptions): void} RenderFunction
+ * @typedef {import('@lit/reactive-element').CSSResultOrNative} CSSResultOrNative
  */
+
+// @ts-ignore
+const supportsScopedRegistry = !!ShadowRoot.prototype.createElement;
 
 /**
- * Template caches
- *
- * @type {WeakMap<Function, Cache<TemplateStringsArray, TemplateStringsArray>>}
+ * @template {import('./types').Constructor<HTMLElement>} T
+ * @param {T} superclass
+ * @return {T & import('./types').Constructor<ScopedElementsHost>}
  */
-const templateCaches = new WeakMap();
-
-/**
- * Retrieves or creates a templateCache for a specific key
- *
- * @param {Function} key
- * @returns {Cache<TemplateStringsArray, TemplateStringsArray>}
- */
-const getTemplateCache = key => {
-  if (!templateCaches.has(key)) {
-    // @ts-ignore
-    templateCaches.set(key, new Cache(templateCaches.get(key.constructor)));
-  }
-
-  return templateCaches.get(key);
-};
-
-/**
- * Tags caches
- *
- * @type {WeakMap<object, Cache<string, string>>}
- */
-const tagsCaches = new WeakMap();
-
-/**
- * Retrieves or creates a tagsCache for a specific key
- * @param {object} key
- * @returns {Cache<string, string>}
- */
-const getTagsCache = key => {
-  if (!tagsCaches.has(key)) {
-    tagsCaches.set(key, new Cache(tagsCaches.get(key.constructor)));
-  }
-
-  return tagsCaches.get(key);
-};
-
-/**
- * Transforms an array of TemplateResults or arrays into another one with resolved scoped elements
- *
- * @param {ReadonlyArray} items
- * @param {ScopedElementsMap} scopedElements
- * @param {Cache<TemplateStringsArray, TemplateStringsArray>} templateCache
- * @param {Cache<string, string>} tagsCache
- * @returns {ReadonlyArray}
- */
-const transformArray = (items, scopedElements, templateCache, tagsCache) =>
-  items.map(value => {
-    if (value instanceof TemplateResult) {
-      return transformTemplate(value, scopedElements, templateCache, tagsCache);
-    }
-
-    if (Array.isArray(value)) {
-      return transformArray(value, scopedElements, templateCache, tagsCache);
-    }
-
-    return value;
-  });
-
-/**
- * Transforms a TemplateResult into another one with resolved scoped elements
- *
- * @param {TemplateResult} template
- * @param {ScopedElementsMap} scopedElements
- * @param {Cache<TemplateStringsArray, TemplateStringsArray>} templateCache
- * @param {Cache<string, string>} tagsCache
- * @returns {TemplateResult}
- */
-const transformTemplate = (template, scopedElements, templateCache, tagsCache) =>
-  new TemplateResult(
-    transform(template.strings, scopedElements, templateCache, tagsCache),
-    transformArray(template.values, scopedElements, templateCache, tagsCache),
-    template.type,
-    template.processor,
-  );
-
-/**
- * Gets an instance of the ScopedElementsTemplateFactory
- *
- * @param {string} scopeName
- * @param {ScopedElementsMap} scopedElements
- * @param {Cache<TemplateStringsArray, TemplateStringsArray>} templateCache
- * @param {Cache<string, string>} tagsCache
- * @returns {function(any): any}
- */
-const scopedElementsTemplateFactory = (
-  scopeName,
-  scopedElements,
-  templateCache,
-  tagsCache,
-) => template => {
-  const newTemplate = transformTemplate(template, scopedElements, templateCache, tagsCache);
-
-  return shadyTemplateFactory(scopeName)(newTemplate);
-};
-
-/** @type {ScopedElementsMixin} */
 const ScopedElementsMixinImplementation = superclass =>
+  /** @type {ScopedElementsHost} */
   class ScopedElementsHost extends superclass {
     /**
-     * Obtains the scoped elements definitions map
+     * Obtains the scoped elements definitions map if specified.
      *
      * @returns {ScopedElementsMap}
      */
@@ -127,68 +29,160 @@ const ScopedElementsMixinImplementation = superclass =>
       return {};
     }
 
-    /** @override */
-    static render(template, container, options) {
-      if (!options || typeof options !== 'object' || !options.scopeName) {
-        throw new Error('The `scopeName` option is required.');
-      }
-      const { scopeName, eventContext } = options;
-
-      const templateCache = getTemplateCache(eventContext);
-      const tagsCache = getTagsCache(eventContext);
-      const { scopedElements } = this;
-
-      return super.render(template, container, {
-        ...options,
-        templateFactory: scopedElementsTemplateFactory(
-          scopeName,
-          scopedElements,
-          templateCache,
-          tagsCache,
-        ),
-      });
+    /**
+     * Obtains the ShadowRoot options.
+     *
+     * @type {ShadowRootInit}
+     */
+    static get shadowRootOptions() {
+      return this.__shadowRootOptions;
     }
 
     /**
-     * Defines a scoped element
+     * Set the shadowRoot options.
+     *
+     * @param {ShadowRootInit} value
+     */
+    static set shadowRootOptions(value) {
+      this.__shadowRootOptions = value;
+    }
+
+    /**
+     * Obtains the element styles.
+     *
+     * @returns {CSSResultOrNative[]}
+     */
+    static get elementStyles() {
+      return this.__elementStyles;
+    }
+
+    static set elementStyles(styles) {
+      this.__elementStyles = styles;
+    }
+
+    // either TS or ESLint will complain here
+    // eslint-disable-next-line no-unused-vars
+    constructor(..._args) {
+      super();
+      /** @type {RenderOptions} */
+      this.renderOptions = this.renderOptions || undefined;
+    }
+
+    /**
+     * Obtains the CustomElementRegistry associated to the ShadowRoot.
+     *
+     * @returns {CustomElementRegistry}
+     */
+    get registry() {
+      // @ts-ignore
+      return this.constructor.__registry;
+    }
+
+    /**
+     * Set the CustomElementRegistry associated to the ShadowRoot
+     *
+     * @param {CustomElementRegistry} registry
+     */
+    set registry(registry) {
+      // @ts-ignore
+      this.constructor.__registry = registry;
+    }
+
+    createRenderRoot() {
+      const { scopedElements, shadowRootOptions, elementStyles } =
+        /** @type {typeof ScopedElementsHost} */ (this.constructor);
+
+      const shouldCreateRegistry =
+        !this.registry ||
+        // @ts-ignore
+        (this.registry === this.constructor.__registry &&
+          !Object.prototype.hasOwnProperty.call(this.constructor, '__registry'));
+
+      /**
+       * Create a new registry if:
+       * - the registry is not defined
+       * - this class doesn't have its own registry *AND* has no shared registry
+       */
+      if (shouldCreateRegistry) {
+        this.registry = supportsScopedRegistry ? new CustomElementRegistry() : customElements;
+        for (const [tagName, klass] of Object.entries(scopedElements)) {
+          this.defineScopedElement(tagName, klass);
+        }
+      }
+
+      /** @type {ShadowRootInit} */
+      const options = {
+        mode: 'open',
+        ...shadowRootOptions,
+        customElements: this.registry,
+      };
+
+      const createdRoot = this.attachShadow(options);
+      if (supportsScopedRegistry) {
+        this.renderOptions.creationScope = createdRoot;
+      }
+
+      if (createdRoot instanceof ShadowRoot) {
+        adoptStyles(createdRoot, elementStyles);
+        this.renderOptions.renderBefore = this.renderOptions.renderBefore || createdRoot.firstChild;
+      }
+
+      return createdRoot;
+    }
+
+    createScopedElement(tagName) {
+      const root = supportsScopedRegistry ? this.shadowRoot : document;
+      // @ts-ignore polyfill to support createElement on shadowRoot is loaded
+      return root.createElement(tagName);
+    }
+
+    /**
+     * Defines a scoped element.
      *
      * @param {string} tagName
      * @param {typeof HTMLElement} klass
      */
     defineScopedElement(tagName, klass) {
-      return defineScopedElement(tagName, klass, getTagsCache(this));
+      const registeredClass = this.registry.get(tagName);
+      if (registeredClass && supportsScopedRegistry === false && registeredClass !== klass) {
+        // eslint-disable-next-line no-console
+        console.error(
+          [
+            `You are trying to re-register the "${tagName}" custom element with a different class via ScopedElementsMixin.`,
+            'This is only possible with a CustomElementRegistry.',
+            'Your browser does not support this feature so you will need to load a polyfill for it.',
+            'Load "@webcomponents/scoped-custom-element-registry" before you register ANY web component to the global customElements registry.',
+            'e.g. add "<script src="/node_modules/@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js"></script>" as your first script tag.',
+            'For more details you can visit https://open-wc.org/docs/development/scoped-elements/',
+          ].join('\n'),
+        );
+      }
+      if (!registeredClass) {
+        return this.registry.define(tagName, klass);
+      }
+      return this.registry.get(tagName);
     }
 
     /**
-     * Returns a scoped tag name
-     *
-     * @deprecated Please, use the instance method instead of the static one. This static method is not able to
-     * obtain the tagName of lazy defined elements, while the instance one is.
-     * @param {string} tagName
-     * @returns {string|undefined}
-     */
-    static getScopedTagName(tagName) {
-      // @ts-ignore
-      const klass = this.scopedElements[tagName];
-
-      return klass
-        ? registerElement(tagName, klass, getTagsCache(this))
-        : getTagsCache(this).get(tagName);
-    }
-
-    /**
-     * Returns a scoped tag name
+     * @deprecated use the native el.tagName instead
      *
      * @param {string} tagName
-     * @returns {string|undefined}
+     * @returns {string} the tag name
      */
+    // eslint-disable-next-line class-methods-use-this
     getScopedTagName(tagName) {
-      // @ts-ignore
-      const klass = this.constructor.scopedElements[tagName];
+      return tagName;
+    }
 
-      return klass
-        ? registerElement(tagName, klass, getTagsCache(this))
-        : getTagsCache(this).get(tagName);
+    /**
+     * @deprecated use the native el.tagName instead
+     *
+     * @param {string} tagName
+     * @returns {string} the tag name
+     */
+    // eslint-disable-next-line class-methods-use-this
+    static getScopedTagName(tagName) {
+      return tagName;
     }
   };
 

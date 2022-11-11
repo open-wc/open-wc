@@ -1,20 +1,8 @@
-import { TemplateResult } from 'lit-html';
+import { render as defaultRender } from 'lit/html.js';
+import { isTemplateResult } from 'lit/directive-helpers.js';
 import { fixtureWrapper } from './fixtureWrapper.js';
-import { render } from './lit-html.js';
 import { elementUpdated } from './elementUpdated.js';
 import { NODE_TYPES } from './lib.js';
-import { getScopedElementsTemplate } from './scopedElementsWrapper.js';
-
-/**
- * @typedef {
-     import('lit-html').TemplateResult
-   | import('lit-html').TemplateResult[]
-   | Node | Node[]
-   | string | string[]
-   | number | number[]
-   | boolean | boolean[]
- } LitHTMLRenderable
- */
 
 const isUsefulNode = ({ nodeType, textContent }) => {
   switch (nodeType) {
@@ -31,19 +19,22 @@ const isUsefulNode = ({ nodeType, textContent }) => {
  * Setups an element synchronously from the provided lit-html template and puts it in the DOM.
  *
  * @template {Element} T - Is an element or a node
- * @param {LitHTMLRenderable} template
+ * @param {import('./renderable').LitHTMLRenderable} template
  * @param {import('./fixture-no-side-effect.js').FixtureOptions} [options]
+ * @param {import('./scopedElementsWrapper.js').ScopedElementsTemplateGetter} [getScopedElementsTemplate]
  * @returns {T}
  */
-export function litFixtureSync(template, options = {}) {
-  const wrapper = fixtureWrapper(options.parentNode);
+// eslint-disable-next-line default-param-last
+export function litFixtureSync(template, options = {}, getScopedElementsTemplate) {
+  const wrapper = /** @type {HTMLElement} */ (fixtureWrapper(options.parentNode));
+  const render = options.render ?? defaultRender;
 
   render(
     options.scopedElements ? getScopedElementsTemplate(template, options.scopedElements) : template,
     wrapper,
   );
 
-  if (template instanceof TemplateResult) {
+  if (isTemplateResult(template)) {
     return /** @type {T} */ (wrapper.firstElementChild);
   }
   const [node] = Array.from(wrapper.childNodes).filter(isUsefulNode);
@@ -55,15 +46,21 @@ export function litFixtureSync(template, options = {}) {
  * Setups an element asynchronously from the provided lit-html template and puts it in the DOM.
  *
  * @template {Element} T - Is an element or a node
- * @param {LitHTMLRenderable} template
+ * @param {import('./renderable').LitHTMLRenderable} template
  * @param {import('./fixture-no-side-effect.js').FixtureOptions} [options]
  * @returns {Promise<T>}
  */
 export async function litFixture(template, options = {}) {
+  /** @type {import('./scopedElementsWrapper.js').ScopedElementsTemplateGetter|undefined} */
+  const getScopedElementsTemplate = options.scopedElements
+    ? await import('./scopedElementsWrapper.js').then(
+        scopedElementWrapper => scopedElementWrapper.getScopedElementsTemplate,
+      )
+    : undefined;
   /** @type {T} */
   // NB: in the case of scopedElements, this is ScopedElementsTestWrapper, not T,
   // but that's only a small lie
-  const el = litFixtureSync(template, options);
+  const el = litFixtureSync(template, options, getScopedElementsTemplate);
   await elementUpdated(el);
 
   if (options.scopedElements) {

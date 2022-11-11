@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const { mdjsToMd } = require('../src/mdjsToMd');
+const { mdjsToMd } = require('../src/mdjsToMd.js');
 
 /**
  * @param {string} output

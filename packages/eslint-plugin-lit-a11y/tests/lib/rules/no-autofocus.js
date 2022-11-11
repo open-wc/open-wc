@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/no-autofocus');
+const rule = require('../../../lib/rules/no-autofocus.js');
 
 //------------------------------------------------------------------------------
 // Tests

@@ -1,5 +1,49 @@
 # @open-wc/dev-server-wc-hmr
 
+## 0.1.3
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+
+## 0.1.2
+
+### Patch Changes
+
+- ca91826b: Update babel dependency to use `@babel/plugin-syntax-import-assertions`.
+- 487d39fb: Add a preset for the new lit package which will patch imports like `import { LitElement } from 'lit';`
+
+  ```js
+  import { hmrPlugin, presets } from '@open-wc/dev-server-hmr';
+
+  export default {
+    plugins: [
+      hmrPlugin({
+        presets: [presets.lit],
+      }),
+    ],
+  };
+  ```
+
+## 0.1.2-next.0
+
+### Patch Changes
+
+- ca91826b: Update babel dependency to use `@babel/plugin-syntax-import-assertions`.
+- 487d39fb: Add a preset for the new lit package which will patch imports like `import { LitElement } from 'lit';`
+
+  ```js
+  import { hmrPlugin, presets } from '@open-wc/dev-server-hmr';
+
+  export default {
+    plugins: [
+      hmrPlugin({
+        presets: [presets.lit],
+      }),
+    ],
+  };
+  ```
+
 ## 0.1.1
 
 ### Patch Changes

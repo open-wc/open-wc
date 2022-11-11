@@ -1,4 +1,4 @@
-## Linting >> EsLint Plugin Lit A11y >> no-access-key
+# Linting >> EsLint Plugin Lit A11y >> no-access-key
 
 Enforce no accesskey attribute on element. Access keys are HTML attributes that allow web developers to assign keyboard shortcuts to elements. Inconsistencies between keyboard shortcuts and keyboard commands used by screenreader and keyboard only users create accessibility complications so to avoid complications, access keys should not be used.
 

@@ -2,8 +2,6 @@
 
 Library for parsing and resolving [import maps](https://github.com/WICG/import-maps).
 
-[//]: # 'AUTO INSERT HEADER PREPUBLISH'
-
 ## Usage
 
 ```bash
@@ -57,7 +55,7 @@ const rawImportMap = { imports: { foo: './bar.js' } };
 // create a base URL to resolve imports relatively to
 const baseURL = new URL('https://www.example.com/');
 
-const importMap = parse(importMapString, baseURL);
+const importMap = parse(rawImportMap, baseURL);
 ```
 
 ### Resolving imports

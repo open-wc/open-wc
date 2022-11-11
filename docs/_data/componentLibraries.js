@@ -1,11 +1,5 @@
 const componentLibraries = [
   {
-    name: 'aybolit',
-    url: 'https://web-padawan.github.io/aybolit/',
-    description:
-      'A growing family of elements with default styling for Bootstrap, Bulma, and Material, as well as a solid white-label basis for extending the underlying functionality with your own custom designs.',
-  },
-  {
     name: 'Auro',
     url: 'https://auro.alaskaair.com',
     description:
@@ -19,7 +13,7 @@ const componentLibraries = [
   },
   {
     name: 'Carbon Design System',
-    url: 'https://github.com/carbon-design-system/carbon-custom-elements',
+    url: 'https://github.com/carbon-design-system/carbon-web-components',
     description:
       'Carbon is an open-source design system built by IBM. With the IBM Design Language as its foundation, the system consists of working code, design tools and resources, human interface guidelines, and a vibrant community of contributors.',
   },
@@ -36,6 +30,12 @@ const componentLibraries = [
       'Crayons is a web component library for developers who build apps for Freshworks. Through pre-built components, Crayons offers control and flexibility to build rich interfaces consistent with the Freshworks product design and experience.',
   },
   {
+    name: 'curvenote.dev',
+    url: 'https://curvenote.dev/',
+    description:
+      'The goal of curvenote.dev is to provide open source tools to promote and enable interactive scientific writing, reactive documents and explorable explanations.',
+  },
+  {
     name: 'Elix',
     url: 'https://component.kitchen/elix',
     description:
@@ -48,16 +48,22 @@ const componentLibraries = [
       'FAST is a web component library built by Microsoft. The core, `fast-element`, is a lightweight means to easily build performant and standards-compliant Web Components. `fast-foundation` is a library of Web Component classes, templates, and other utilities built on fast-element intended to be composed into registered web components by design systems.',
   },
   {
+    name: 'Graphite Design System',
+    url: 'https://graphitedesignsystem.com',
+    description:
+      "Graphite is PAQT's white-label design system for digital products and experiences. The system consists of working code, design kits, and human interface guidelines.",
+  },
+  {
     name: 'HelixUI',
     url: 'https://helixdesignsystem.github.io/helix-ui/',
     description:
       'The HelixUI library provides front-end developers a set of reusable CSS classes and HTML Custom Elements that adhere to Helix design standards, as outlined by Rackspace.',
   },
   {
-    name: 'Ink Components',
-    url: 'https://components.ink/',
+    name: 'Ignite UI for Web Components',
+    url: 'https://github.com/IgniteUI/igniteui-webcomponents',
     description:
-      'Web components for interactive scientific writing, reactive documents and explorable explanations. The Ink Components library can bring your math and science documents to the next level by breathing life into charts, equations, and variables that can be used throughout your application or content.',
+      'Ignite UI for Web Components is a complete library of UI components, giving you the ability to build modern web application UIs. All components are based on the Indigo.Design Design System and are backed by ready-to-use UI kits for Sketch, Adobe XD and Figma.',
   },
   {
     name: 'Io GUI',
@@ -70,12 +76,6 @@ const componentLibraries = [
     url: 'https://ionicframework.com/docs/components',
     description:
       'Take advantage of the component system that powers Ionic applications with a large ecosystem to choose from and in-depth usage instructions, no matter the framework you use.',
-  },
-  {
-    name: 'iooxa.dev',
-    url: 'https://iooxa.dev/',
-    description:
-      'The goal of [iooxa.dev](https://iooxa.dev/) is to provide open source tools to promote and enable interactive scientific writing, reactive documents and explorable explanations.',
   },
   {
     name: 'Kor UI',
@@ -96,17 +96,27 @@ const componentLibraries = [
       'Lion web components is a set of highly performant, accessible and flexible Web Components. They provide an unopinionated, white label layer that can be extended to your own layer of components.',
   },
   {
+    name: 'LRNWebcomponents',
+    url: 'https://webcomponents.psu.edu',
+    description:
+      'Developed by Penn State University, LRNWebcomponents is home to hundreds of reusable, generalized components, as well as full web editors and CMSs like HAX and HAXcms. Highly accessible video players, collapses, color abstractions and more can be found here',
+  },
+  {
     name: 'Material Web Components',
-    url:
-      'https://material-components.github.io/material-components-web-components/demos/index.html',
+    url: 'https://material-components.github.io/material-web',
     description:
       "Material Design Components from Material Design team themselves. Stay as close as possible to the changing specification with these components from Google's own Material Design team.",
   },
   {
-    name: 'Morningstar',
-    url: 'http://designsystem.morningstar.com/components/component-status.html',
+    name: 'Nord Design System',
+    url: 'https://nordhealth.design/components/',
     description:
-      'The Morningstar Design System combines vanilla HTML/CSS with web components in just the right proportions to empower the design and development of wide reaching content and functionality.',
+      'Nord Design System is a collection of reusable components and tools, guided by clear standards, that can be assembled together to build digital products and experiences.',
+  },
+  {
+    name: 'Patternfly Elements',
+    url: 'https://patternflyelements.org/',
+    description: "Red Hat's set of community-created web components based on PatternFly design.",
   },
   {
     name: 'Shoelace',
@@ -137,6 +147,12 @@ const componentLibraries = [
     url: 'https://vaadin.com/components',
     description:
       'Vaadin has a comprehensive set of beautifully crafted, performant, and adaptable UI components for modern mobile-first Web apps. They are the ideal building blocks for Progressive Web Applications.',
+  },
+  {
+    name: 'Vivid',
+    url: 'https://github.com/Vonage/vivid',
+    description:
+      "Vonage's web UI 🎨 toolbelt. A library that favors lock-down and coherence over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree).",
   },
   {
     name: 'Weightless',

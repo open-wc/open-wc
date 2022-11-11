@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { expect } = require('chai');
 const path = require('path');
-const { banner, transform, rootDir } = require('./utils');
+const { banner, transform, rootDir } = require('./utils.js');
 
 describe('babelPluginWcHmr - detecting decorators', () => {
   it('compiled decorator with decorator name', () => {
@@ -13,9 +13,7 @@ Foo = __decorate([customElement('x-foo')], Foo);`;
 
     expect(result).to.equal(`${banner}
 function __decorate() {}
-
 let Foo = __$wc_hmr$__.register(import.meta, "Foo", class extends HTMLElement {});
-
 Foo = __decorate([customElement('x-foo')], Foo);`);
   });
 
@@ -28,15 +26,12 @@ Foo = __decorate([x(), y(), customElement('x-foo')], Foo);`;
 
     expect(result).to.equal(`${banner}
 function __decorate() {}
-
 let Foo = __$wc_hmr$__.register(import.meta, "Foo", class extends HTMLElement {});
-
 Foo = __decorate([x(), y(), customElement('x-foo')], Foo);`);
   });
 
   it('does not inject for a decorator with a different name', () => {
     const code = `function __decorate() {}
-
 let Foo = class extends SomeElement {};
 Foo = __decorate([notCustomElement('x-foo')], Foo);`;
     const result = transform(code, { decorators: [{ name: 'customElement' }] });
@@ -55,11 +50,8 @@ Foo = __decorate([customElement('x-foo')], Foo);`;
 
     expect(result).to.equal(`${banner}
 import { customElement } from 'my-package';
-
 function __decorate() {}
-
 let Foo = __$wc_hmr$__.register(import.meta, "Foo", class extends HTMLElement {});
-
 Foo = __decorate([customElement('x-foo')], Foo);`);
   });
 
@@ -75,11 +67,8 @@ Foo = __decorate([customElement('x-foo')], Foo);`;
 
     expect(result).to.equal(`${banner}
 import customElement from 'my-package';
-
 function __decorate() {}
-
 let Foo = __$wc_hmr$__.register(import.meta, "Foo", class extends HTMLElement {});
-
 Foo = __decorate([customElement('x-foo')], Foo);`);
   });
 
@@ -95,11 +84,8 @@ Foo = __decorate([defineElement('x-foo')], Foo);`;
 
     expect(result).to.equal(`${banner}
 import { defineElement } from '../defineElement.js';
-
 function __decorate() {}
-
 let Foo = __$wc_hmr$__.register(import.meta, "Foo", class extends HTMLElement {});
-
 Foo = __decorate([defineElement('x-foo')], Foo);`);
   });
 
@@ -112,9 +98,7 @@ Foo = Foo_1 = __decorate([customElement('x-foo')], Foo);`;
 
     expect(result).to.equal(`${banner}
 function __decorate() {}
-
 let Foo = __$wc_hmr$__.register(import.meta, "Foo", Foo_1 = class extends HTMLElement {});
-
 Foo = Foo_1 = __decorate([customElement('x-foo')], Foo);`);
   });
 });

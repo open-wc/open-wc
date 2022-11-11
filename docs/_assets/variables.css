@@ -21,6 +21,13 @@ html {
 
   --button-two: black;
   --button-two-hover: #444444;
+
+  /* typography */
+  --text-color: black;
+  --primary-font-family: 'Open Sans', sans-serif;
+  --secondary-font-family: 'Montserrat', sans-serif;
+  --monospace-font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', 'Courier',
+    monospace;
 }
 
 /* TODO: markdown Vars */
@@ -30,6 +37,7 @@ html {
 @media (prefers-color-scheme: dark) {
   html {
     --header-color: #2f3136;
+    --text-color: #eee;
 
     --footer-background: rgba(255, 255, 255, 0.1);
     --page-background: #36393e;

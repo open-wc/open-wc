@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/scoped-elements",
-  "version": "1.3.3",
+  "version": "2.1.3",
   "publishConfig": {
     "access": "public"
   },
@@ -13,19 +13,24 @@
   },
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements",
-  "module": "index.js",
-  "exports": "./index.js",
+  "main": "index.js",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./index.js"
+    }
+  },
   "scripts": {
+    "debug": "cd ../../ && yarn debug --group scoped-elements",
     "demo-build:before-nesting": "rollup -c demo/before-nesting/rollup.config.js",
     "demo-build:no-scope": "rollup -c demo/no-scope/rollup.config.js",
     "demo-build:with-scope": "rollup -c demo/with-scope/rollup.config.js",
-    "prepublishOnly": "../../scripts/insert-header.js",
+    "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
     "site:build": "run-p demo-build:*",
-    "start:before-nesting": "es-dev-server -c demo/before-nesting/server.js",
-    "start:no-scope": "es-dev-server -c demo/no-scope/server.js",
-    "start:with-scope": "es-dev-server -c demo/with-scope/server.js",
-    "test": "cd ../../ && yarn test:browser --grep \"packages/scoped-elements/test/*.test.js\"",
-    "test:watch": "cd ../../ && yarn test:browser:watch --grep \"packages/scoped-elements/test/*.test.js\"",
+    "start:before-nesting": "web-dev-server -c demo/before-nesting/server.js",
+    "start:no-scope": "web-dev-server -c demo/no-scope/server.js",
+    "start:with-scope": "web-dev-server -c demo/with-scope/server.js",
+    "test": "cd ../../ && yarn test:web --group scoped-elements",
     "types:copy": "copyfiles \"./src/**/*.d.ts\" \"./*.d.ts\" types"
   },
   "files": [
@@ -42,9 +47,11 @@
     "helpers"
   ],
   "dependencies": {
-    "@open-wc/dedupe-mixin": "^1.3.0",
-    "lit-html": "^1.0.0"
+    "@lit/reactive-element": "^1.0.0",
+    "@open-wc/dedupe-mixin": "^1.3.0"
   },
-  "types": "types/index.d.ts",
-  "sideEffects": false
+  "devDependencies": {
+    "@webcomponents/scoped-custom-element-registry": "^0.0.5"
+  },
+  "types": "./types/index.d.ts"
 }

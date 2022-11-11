@@ -1,8 +1,7 @@
+import { html, unsafeStatic } from 'lit/static-html.js';
 import { expect } from './setup.js';
 import { stringFixture, stringFixtureSync } from '../src/stringFixture.js';
-import { litFixture, litFixtureSync } from '../src/litFixture.js';
-import { defineCE, nextFrame } from '../src/helpers.js';
-import { html, unsafeStatic } from '../src/lit-html.js';
+import { litFixture, litFixtureSync, defineCE, nextFrame } from '../index.js';
 
 class TestComponent extends HTMLElement {}
 customElements.define('test-component', TestComponent);
@@ -145,7 +144,7 @@ describe('stringFixtureSync & litFixtureSync & fixture & litFixture', () => {
     const tag = defineCE(
       class extends HTMLElement {
         get updateComplete() {
-          return new Promise(resolve => requestAnimationFrame(resolve)).then(() => {
+          return nextFrame().then(() => {
             counter += 1;
           });
         }

@@ -1,0 +1,41 @@
+name: Format PR Branch
+
+on:
+  # Run whenever a PR review comment is created or edited
+  pull_request_review_comment:
+    types:
+      - created
+      - edited
+
+jobs:
+  format:
+    name: Format Branch
+    # If the PR review comment contains the string 'CI format please', run this job
+    if: ${{ contains(github.event.comment.body, 'CI format please') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # Check out the PR branch
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Format
+        # format the working dir, add *ALL* changed files, commit and push
+        run: |
+          yarn format:prettier
+          echo "Setting github user"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          echo "Committing"
+          git add .
+          git commit --message "chore: lint files"
+          git push

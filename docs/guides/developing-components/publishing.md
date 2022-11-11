@@ -26,6 +26,7 @@ These suggestions are not specifically useful for publishing to a CDN or any oth
 - _Optional_: [use `type: "module"` when possible](#optional-use-type-module)
 - _Optional_: [include typings; e.g. `*.d.ts` files](#optional-include-typings)
 - _Optional_: [include source maps](#optional-include-source-maps)
+- _Optional_: [React wrapper](#optional-react-wrapper)
 
 ### Don't: 👎
 
@@ -39,9 +40,9 @@ These suggestions are not specifically useful for publishing to a CDN or any oth
 
 Your users will always have the most intimate knowledge of how and where their code will be delivered to their users. Give them the greatest amount of flexibility in preparing their code for those conditions by publishing your package with the agreement that building is an application-level concern. Any decision that you can make in support of your users having an easier time when and if they decide to bundle is a good decision to make when preparing your package for publication. Every "do" and every "don't" that is included herein will help you in doing just that.
 
-### Do publish latest standard EcmaScript
+### Do publish latest standard ECMAScript
 
-Write standard EcmaScript from the start, and publishing standard EcmaScrip will come naturally. However, if you choose to write your component in TypeScript or with various emerging specifications or APIs, be sure to convert your code to standard EcmaScript before publication. If you use non-standard syntax; transpile that (and only that) down to a reasonably modern level (e.g. [TC39 Stage 4](https://github.com/tc39/proposals/blob/master/finished-proposals.md) and/or available cross-browser) to decrease the likelihood that verbose or duplicate code is included in any final production delivery of pages featuring your package.
+Write standard ECMAScript from the start, and publishing standard ECMAScript will come naturally. However, if you choose to write your component in TypeScript or with various emerging specifications or APIs, be sure to convert your code to standard ECMAScript before publication. If you use non-standard syntax; transpile that (and only that) down to a reasonably modern level (e.g. [TC39 Stage 4](https://github.com/tc39/proposals/blob/master/finished-proposals.md) and/or available cross-browser) to decrease the likelihood that verbose or duplicate code is included in any final production delivery of pages featuring your package.
 
 ### Do publish standard es modules
 
@@ -71,24 +72,24 @@ If you do choose to publish code with side effects as part of your entry point, 
 
 ### Do import 3rd party node modules with "bare" import specifiers
 
-When referring to 3rd party dependencies in your code, you cannot guarantee that implementing projects rely on the same file structure as you do. To prevent dependency specifiers from causing issues across different environments, be sure to import these dependencies into your project with "bare" import specifiers so that tooling in your users' environment can manage resolving the location of those dependencies; e.g. `import { LitElement } from 'lit-element';`
+When referring to 3rd party dependencies in your code, you cannot guarantee that implementing projects rely on the same file structure as you do. To prevent dependency specifiers from causing issues across different environments, be sure to import these dependencies into your project with "bare" import specifiers so that tooling in your users' environment can manage resolving the location of those dependencies; e.g. `import { LitElement } from 'lit';`
 
 ### Do include file extensions in import specifiers
 
-When importing something that doesn't point directly to the entry point of a module, e.g.: `import {LitElement} from 'lit-element';`, always make sure to include a file extension: `import { ifDefined } from 'lit-html/directives/if-defined.js';`
+When importing something that doesn't point directly to the entry point of a module, e.g.: `import { LitElement } from 'lit';`, always make sure to include a file extension: `import { ifDefined } from 'lit/directives/if-defined.js';`
 
 **Yes:** 👍
 
 ```js
-import { html } from 'lit-html';
-import { ifDefined } from 'lit-html/directives/if-defined.js';
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
 ```
 
 **No:** 👎
 
 ```js
-import { html } from 'lit-html.js';
-import { ifDefined } from 'lit-html/directives/if-defined';
+import { html } from 'lit.js';
+import { ifDefined } from 'lit/directives/if-defined';
 ```
 
 ### Optional: use `type: "module"`
@@ -102,6 +103,13 @@ Using `type: "module"` in your `package.json` will help CDNs and bundlers choose
 ### Optional: include source maps
 
 If you choose work in TypeScript, or to use syntax that is newer than the standards discussed above, it can be important to include source maps and the source files (TypeScript or otherwise) that your published code originates from to make understanding that code, as well as possibly reporting/fixing issues in that code, easier for your users.
+
+### Optional: React wrapper
+
+React can render and pass attributes to web components, but it can't pass properties or listen to events declaratively.
+
+A good alternative in case your component will likely be used in React projects is to provide an export which wraps your component in a React component.
+Using the [@lit-labs/react](https://www.npmjs.com/package/@lit-labs/react) package can help you to create those wrappers.
 
 ### Do not optimize
 
@@ -125,7 +133,7 @@ If you feel you need polyfills, for package demos or the like, feel free to add 
 
 #### Additional Reading
 
-- [How to Public Web Component to npm by Justing Fagnani](https://justinfagnani.com/2019/11/01/how-to-publish-web-components-to-npm/)
+- [How to Publish Web Component to npm by Justing Fagnani](https://justinfagnani.com/2019/11/01/how-to-publish-web-components-to-npm/)
 - [npm-publish](https://docs.npmjs.com/cli/publish)
 - [Contributing Packages to the npm Registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry)
 

@@ -6,7 +6,7 @@
 
 const ruleExtender = require('eslint-rule-extender');
 const { runVirtualRule } = require('axe-core');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 
@@ -22,8 +22,7 @@ const AutocompleteValidRule = {
       description: 'Ensure autocomplete attribute is correct.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/autocomplete-valid.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/autocomplete-valid.md',
     },
     fixable: null,
     schema: [],
@@ -48,6 +47,10 @@ const AutocompleteValidRule = {
 
           analyzer.traverse({
             enterElement(element) {
+              if (!element.sourceCodeLocation) {
+                return; // probably a tree correction node
+              }
+
               if (isInputElementWithAutoComplete(element)) {
                 if (element.attribs.autocomplete.startsWith('{{')) {
                   return; // autocomplete is interpolated. assume it's legit and move on.
@@ -66,11 +69,17 @@ const AutocompleteValidRule = {
                   return;
                 }
 
-                const loc = analyzer.getLocationFor(element);
-                context.report({
-                  loc,
-                  message: violations[0].nodes[0].all[0].message,
-                });
+                const loc =
+                  analyzer.resolveLocation(
+                    element.sourceCodeLocation.startTag,
+                    context.getSourceCode(),
+                  ) ?? node.loc;
+                if (loc) {
+                  context.report({
+                    loc,
+                    message: violations[0].nodes[0].all[0].message,
+                  });
+                }
               }
             },
           });

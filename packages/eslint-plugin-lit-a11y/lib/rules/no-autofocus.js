@@ -4,7 +4,7 @@
  */
 
 const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 
@@ -20,8 +20,7 @@ const NoAutofocusRule = {
       description: 'Enforce that autofocus attribute or property are not used on elements.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-autofocus.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-autofocus.md',
     },
     messages: {
       noAutofocus: 'The autofocus {{type}} is not allowed.',
@@ -39,20 +38,31 @@ const NoAutofocusRule = {
           analyzer.traverse({
             enterElement(element) {
               if ('autofocus' in element.attribs) {
-                const loc = analyzer.getLocationForAttribute(element, 'autofocus');
-                context.report({
-                  loc,
-                  messageId: 'noAutofocus',
-                  data: { type: 'attribute' },
-                });
+                const loc =
+                  analyzer.getLocationForAttribute(element, 'autofocus', context.getSourceCode()) ??
+                  node.loc;
+                if (loc) {
+                  context.report({
+                    loc,
+                    messageId: 'noAutofocus',
+                    data: { type: 'attribute' },
+                  });
+                }
               }
               if ('.autofocus' in element.attribs) {
-                const loc = analyzer.getLocationForAttribute(element, '.autofocus');
-                context.report({
-                  loc,
-                  messageId: 'noAutofocus',
-                  data: { type: 'property' },
-                });
+                const loc =
+                  analyzer.getLocationForAttribute(
+                    element,
+                    '.autofocus',
+                    context.getSourceCode(),
+                  ) ?? node.loc;
+                if (loc) {
+                  context.report({
+                    loc,
+                    messageId: 'noAutofocus',
+                    data: { type: 'property' },
+                  });
+                }
               }
             },
           });

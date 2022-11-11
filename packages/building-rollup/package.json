@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "1.9.4",
+  "version": "2.2.1",
   "publishConfig": {
     "access": "public"
   },
@@ -25,11 +25,11 @@
     "build:spa-js-input": "rimraf dist && rollup -c demo/js/rollup.spa-js-input.config.js",
     "build:spa-nomodule": "rimraf dist && rollup -c demo/js/rollup.spa-nomodule.config.js",
     "build:ts": "rimraf dist && rollup -c demo/ts/rollup.spa.config.js",
-    "prepublishOnly": "../../scripts/insert-header.js",
+    "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
     "start:babelrc": "npm run build:babelrc && npm run start:build",
-    "start:build": "node ../es-dev-server/dist/cli.js --root-dir dist --compatibility none --open",
+    "start:build": "wds --root-dir dist --open",
     "start:cjs": "npm run build:cjs && npm run start:build",
-    "start:demo": "node ../es-dev-server/dist/cli.js --app-index demo/js/index.html --open --compatibility none",
+    "start:demo": "wds --app-index demo/js/index.html --open",
     "start:modify-babel-plugin": "npm run build:modify-babel-plugin && npm run start:build",
     "start:mpa": "npm run build:mpa && npm run start:build",
     "start:spa": "npm run build:spa && npm run start:build",
@@ -51,38 +51,31 @@
     "rollup"
   ],
   "peerDependencies": {
-    "rollup": "^2.7.2"
+    "rollup": "^2.11.0"
   },
   "dependencies": {
     "@babel/core": "^7.11.1",
     "@babel/helpers": "^7.10.4",
     "@babel/plugin-proposal-dynamic-import": "^7.10.4",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.4",
-    "@babel/plugin-proposal-optional-chaining": "^7.11.0",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/plugin-syntax-import-meta": "^7.10.4",
     "@babel/plugin-transform-modules-systemjs": "^7.10.5",
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.9.0",
-    "@open-wc/building-utils": "^2.18.3",
-    "@open-wc/rollup-plugin-html": "^1.2.5",
-    "@open-wc/rollup-plugin-polyfills-loader": "^1.1.8",
+    "@open-wc/building-utils": "^2.20.1",
     "@rollup/plugin-babel": "^5.1.0",
-    "@rollup/plugin-node-resolve": "^7.1.1",
-    "babel-plugin-bundled-import-meta": "^0.3.2",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@web/rollup-plugin-html": "^1.7.0",
+    "@web/rollup-plugin-import-meta-assets": "^1.0.6",
+    "@web/rollup-plugin-polyfills-loader": "^1.1.0",
     "babel-plugin-template-html-minifier": "^4.0.0",
-    "browserslist": "^4.16.0",
+    "browserslist": "^4.16.5",
     "deepmerge": "^4.2.2",
     "magic-string": "^0.25.7",
     "parse5": "^5.1.1",
     "regenerator-runtime": "^0.13.7",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-workbox": "^5.2.1",
-    "terser": "^4.6.7"
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@rollup/plugin-commonjs": "^11.1.0",
-    "@rollup/plugin-typescript": "^4.1.0"
+    "rollup-plugin-workbox": "^6.0.0",
+    "terser": "^4.8.1"
   }
 }

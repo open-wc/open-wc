@@ -7,7 +7,7 @@ export default {
   plugins: [
     hmrPlugin({
       exclude: ['**/*/node_modules/**/*'],
-      presets: [presets.litElement],
+      presets: [presets.lit],
     }),
   ],
 };

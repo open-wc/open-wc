@@ -15,7 +15,7 @@ $ npm i eslint --save-dev
 Next, install `eslint-plugin-lit-a11y`:
 
 ```
-$ npm install eslint-plugin-lit-a11y --save-dev
+$ npm install eslint-plugin-lit-a11y@next --save-dev
 ```
 
 **Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-lit-a11y` globally.
@@ -66,7 +66,7 @@ It could be the case, however, that you're using multiple rendering libraries in
 }
 ```
 
-This will cause the plugin to lint _only_ `html` tagged template literals that are imported from either `'lit-html'` or `'lit-element'`.
+This will cause the plugin to lint _only_ `html` tagged template literals that are imported from either `'lit'`, `'lit-element'` or `'lit-html'`.
 
 If you're importing lit-html from a package that re-exports lit-html, like for example `@apollo-elements/lit-apollo`, you can specify `@apollo-elements/lit-apollo` as a valid litHtmlSource like so:
 
@@ -104,3 +104,4 @@ If you're importing lit-html from a package that re-exports lit-html, like for e
 - [lit-a11y/role-supports-aria-attr](./rules/role-supports-aria-attr.md)
 - [lit-a11y/scope](./rules/scope.md)
 - [lit-a11y/tabindex-no-positive](./rules/tabindex-no-positive.md)
+- [lit-a11y/valid-lang](./rules/valid-lang.md)

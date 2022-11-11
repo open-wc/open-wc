@@ -1,15 +1,15 @@
-// @ts-ignore
+import '@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js';
+import { LitElement } from 'lit';
+import { html, unsafeStatic } from 'lit/static-html.js';
 import sinon from 'sinon';
-// @ts-ignore
-import { html as litHtml, LitElement } from 'lit-element';
 import { expect } from './setup.js';
 import { cachedWrappers } from '../src/fixtureWrapper.js';
 import { defineCE } from '../src/helpers.js';
 import { fixture, fixtureSync } from '../src/fixture.js';
-import { html, unsafeStatic } from '../src/lit-html.js';
 import { NODE_TYPES } from '../src/lib.js';
 
-import '../../testing/register-chai-plugins.js';
+// Register chai plugins
+import '@open-wc/testing';
 
 function createParent() {
   return document.createElement('my-parent');
@@ -62,6 +62,12 @@ describe('fixtureSync & fixture', () => {
     `);
     // @ts-ignore
     testElement(elementAsync);
+  });
+
+  it('supports customized render functions', async () => {
+    const render = sinon.stub();
+    await fixture(html`<div></div>`, { render });
+    expect(render.called).to.equal(true);
   });
 
   it('supports lit-html TemplateResult with whitespace', async () => {
@@ -365,7 +371,7 @@ describe('fixtureSync & fixture', () => {
     expect(counter).to.equal(2);
   });
 
-  it('supports scoped-elements', async () => {
+  describe('supports scoped-elements', () => {
     class TestClass extends LitElement {
       static get properties() {
         return {
@@ -380,26 +386,31 @@ describe('fixtureSync & fixture', () => {
       }
 
       render() {
-        return litHtml`
-          <div>${this.foo}</div>
-        `;
+        return html` <div>${this.foo}</div> `;
       }
     }
 
-    const elString = await fixture('<test-class foo="bar"></test-class>', {
-      scopedElements: {
-        'test-class': TestClass,
-      },
+    it('supports a litFixture', async () => {
+      const el = await fixture(html` <test-class foo="bar"></test-class> `, {
+        scopedElements: {
+          'test-class': TestClass,
+        },
+      });
+
+      const contentNode = el.shadowRoot.children[0];
+      expect(contentNode.tagName).to.equal('DIV');
+      expect(contentNode.textContent).to.equal('bar');
     });
 
-    expect(elString).shadowDom.to.equal('<div>bar</div>');
-
-    const elLit = await fixture(html` <test-class foo="bar"></test-class> `, {
-      scopedElements: {
-        'test-class': TestClass,
-      },
+    it('supports a stringFixture', async () => {
+      const el = await fixture('<test1-class foo="bar"></test1-class>', {
+        scopedElements: {
+          'test1-class': TestClass,
+        },
+      });
+      const contentNode = el.shadowRoot.children[0];
+      expect(contentNode.tagName).to.equal('DIV');
+      expect(contentNode.textContent).to.equal('bar');
     });
-
-    expect(elLit).shadowDom.to.equal('<div>bar</div>');
   });
 });

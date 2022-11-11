@@ -1,20 +1,8 @@
 import { ScopedElementsMixin } from '@open-wc/scoped-elements';
-import { html, LitElement, TemplateResult } from 'lit-element';
-import { isIterable } from './lib.js';
+import { LitElement } from 'lit';
 
 /** @typedef {import('@open-wc/scoped-elements').ScopedElementsMap} ScopedElementsMap */
-
-const transform = template => {
-  if (isIterable(template)) {
-    return [...template].map(v => transform(v));
-  }
-
-  if (template instanceof TemplateResult) {
-    return html(template.strings, ...template.values);
-  }
-
-  return template;
-};
+/** @typedef {import('lit/html.js').TemplateResult} TemplateResult */
 
 /**
  * Regarding the @ts-expect-error, it is caused by having '& typeof ScopedElementsHost' on ScopedElementsMixin.
@@ -38,15 +26,15 @@ class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
     };
   }
 
-  constructor() {
+  constructor(scopedElement, template) {
     super();
 
     /** @type {ScopedElementsMap} */
-    this.scopedElements = {};
+    this.scopedElements = scopedElement;
 
-    /** @type {import('./litFixture').LitHTMLRenderable} */
+    /** @type {import('./renderable').LitHTMLRenderable} */
     // eslint-disable-next-line no-unused-expressions
-    this.template;
+    this.template = template;
   }
 
   firstUpdated(_changed) {
@@ -59,7 +47,7 @@ class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
   }
 
   render() {
-    return transform(this.template);
+    return this.template;
   }
 }
 
@@ -78,25 +66,24 @@ const getWrapperUniqueName = (counter = 0) => {
   return tag;
 };
 
-const wrapperTagName = getWrapperUniqueName();
-
-// @ts-ignore
-customElements.define(wrapperTagName, ScopedElementsTestWrapper);
-
 /**
  * Wraps the template inside a scopedElements component
  *
- * @param {import('./litFixture').LitHTMLRenderable} template
+ * @param {import('./renderable').LitHTMLRenderable} template
  * @param {ScopedElementsMap} scopedElements
- * @returns {TemplateResult}
+ * @return {HTMLElement}
  */
 export function getScopedElementsTemplate(template, scopedElements) {
-  const strings = [
-    `<${wrapperTagName} .scopedElements="`,
-    '" .template="',
-    `"></${wrapperTagName}>`,
-  ];
+  const wrapperTagName = getWrapperUniqueName();
+  class Scope extends ScopedElementsTestWrapper {}
 
   // @ts-ignore
-  return html(strings, scopedElements, template);
+  customElements.define(wrapperTagName, Scope);
+
+  /** @type {ScopedElementsTestWrapper} */
+  const scope = new Scope(scopedElements, template);
+
+  return scope;
 }
+
+/** @typedef {typeof getScopedElementsTemplate} ScopedElementsTemplateGetter */

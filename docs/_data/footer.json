@@ -11,6 +11,10 @@
         "href": "/discover/about/"
       },
       {
+        "text": "Team",
+        "href": "/discover/team/"
+      },
+      {
         "text": "Help and Feedback",
         "href": "https://github.com/open-wc/open-wc/issues"
       }

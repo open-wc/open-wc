@@ -1,4 +1,4 @@
-import { html, css, LitElement } from 'lit-element';
+import { html, css, LitElement } from 'lit';
 
 export class SharedClass extends LitElement {
   static styles = css`
@@ -12,6 +12,6 @@ export class SharedClass extends LitElement {
   `;
 
   sharedTemplate() {
-    return html`<p>Shared class</p>`;
+    return html` <p>Shared class</p> `;
   }
 }

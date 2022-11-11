@@ -1,5 +1,5 @@
 const { types } = require('@babel/core');
-const { HELPER_MODULE_NAME } = require('./rollup-plugin-bundled-babel-helpers');
+const { HELPER_MODULE_NAME } = require('./rollup-plugin-bundled-babel-helpers.js');
 
 /**
  * Babel plugin which imports babel helpers from a helper module.

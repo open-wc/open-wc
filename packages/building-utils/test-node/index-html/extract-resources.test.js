@@ -1,6 +1,6 @@
 const { expect } = require('chai');
-const { extractResources } = require('../../index-html');
-const { getAttribute, queryAll, predicates } = require('../../dom5-fork');
+const { extractResources } = require('../../index-html/index.js');
+const { getAttribute, queryAll, predicates } = require('../../dom5-fork/index.js');
 
 describe('extract-resources', () => {
   it('returns any resources found', () => {

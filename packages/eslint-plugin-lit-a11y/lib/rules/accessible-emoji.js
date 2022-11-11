@@ -5,8 +5,8 @@
 
 const emojiRegex = require('emoji-regex');
 const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
-const { isTextNode } = require('../../template-analyzer/util.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
+const { isTextNode } = require('../utils/ast.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
@@ -24,8 +24,7 @@ const AccessibleEmojiRule = {
       description: 'Enforce emojis are wrapped in <span> and provide screenreader access.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/accessible-emoji.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/accessible-emoji.md',
     },
     messages: {
       wrapEmoji:
@@ -67,6 +66,10 @@ const AccessibleEmojiRule = {
                 return; // emoji is decorative
               }
 
+              if (!element.sourceCodeLocation) {
+                return; // probably a tree correction element
+              }
+
               const rolePropValue = element.attribs.role;
               const ariaLabelProp = element.attribs['aria-label'];
               const ariaLabelledByProp = element.attribs['aria-labelledby'];
@@ -74,8 +77,14 @@ const AccessibleEmojiRule = {
               const isSpan = element.name === 'span';
 
               if (hasLabel === false || rolePropValue !== 'img' || isSpan === false) {
-                const loc = analyzer.getLocationFor(element);
-                context.report({ loc, messageId: 'wrapEmoji' });
+                const loc =
+                  analyzer.resolveLocation(
+                    element.sourceCodeLocation.startTag,
+                    context.getSourceCode(),
+                  ) ?? node.loc;
+                if (loc) {
+                  context.report({ loc, messageId: 'wrapEmoji' });
+                }
               }
             },
           });

@@ -24,7 +24,10 @@ const VOID_ELEMENTS = [
  * @param  {(x: any) => Boolean} p predicate
  * @return {(x: any) => Boolean}
  */
-const not = p => (...args) => !p(...args);
+const not =
+  p =>
+  (...args) =>
+    !p(...args);
 
 /**
  * @typedef IgnoreAttributesForTags
@@ -67,12 +70,12 @@ const not = p => (...args) => !p(...args);
  * @returns {string} html restructured in a diffable format
  */
 export function getDiffableHTML(html, options = {}) {
-  const ignoreAttributes = /** @type {string[]} */ (options.ignoreAttributes
-    ? options.ignoreAttributes.filter(e => typeof e === 'string')
-    : []);
-  const ignoreAttributesForTags = /** @type {IgnoreAttributesForTags[]} */ (options.ignoreAttributes
-    ? options.ignoreAttributes.filter(e => typeof e !== 'string')
-    : []);
+  const ignoreAttributes = /** @type {string[]} */ (
+    options.ignoreAttributes ? options.ignoreAttributes.filter(e => typeof e === 'string') : []
+  );
+  const ignoreAttributesForTags = /** @type {IgnoreAttributesForTags[]} */ (
+    options.ignoreAttributes ? options.ignoreAttributes.filter(e => typeof e !== 'string') : []
+  );
   const ignoreTags = [...(options.ignoreTags || []), ...DEFAULT_IGNORE_TAGS];
   const ignoreChildren = options.ignoreChildren || [];
   const stripEmptyAttributes = options.stripEmptyAttributes || DEFAULT_EMPTY_ATTRS;

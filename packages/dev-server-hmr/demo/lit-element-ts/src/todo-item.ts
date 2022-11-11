@@ -1,4 +1,4 @@
-import { LitElement, property, customElement, html, css } from 'lit-element';
+import { LitElement, property, customElement, html, css } from 'lit';
 
 @customElement('todo-item')
 class TodoItem extends LitElement {

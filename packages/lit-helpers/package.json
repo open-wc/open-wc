@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/lit-helpers",
-  "version": "0.3.12",
+  "version": "0.5.0",
   "publishConfig": {
     "access": "public"
   },
@@ -14,8 +14,12 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/lit-helpers",
   "module": "index.js",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
   "scripts": {
-    "prepublishOnly": "../../scripts/insert-header.js"
+    "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../"
   },
   "files": [
     "*.d.ts",
@@ -23,15 +27,13 @@
     "src"
   ],
   "keywords": [
-    "lit-html",
-    "lit-element",
+    "lit",
     "web components",
     "utils",
     "helpers"
   ],
   "peerDependencies": {
-    "lit-element": "^2.0.0",
-    "lit-html": "^1.0.0"
+    "lit": "^2.0.0"
   },
   "sideEffects": false
 }

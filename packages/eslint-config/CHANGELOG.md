@@ -1,5 +1,55 @@
 # Change Log
 
+## 8.0.2
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+- Updated dependencies [61e2668f]
+  - eslint-plugin-lit-a11y@2.2.2
+
+## 8.0.0
+
+### Major Changes
+
+- b321871f: breaking(eslint-config): move eslint to the peerDependencies to let users decide which major version they want to use
+
+## 7.0.0
+
+### Patch Changes
+
+- Updated dependencies [45e0c17e]
+  - eslint-plugin-lit-a11y@2.1.0
+
+## 6.0.0
+
+### Patch Changes
+
+- Updated dependencies [ed2b36e8]
+- Updated dependencies [ed2b36e8]
+  - eslint-plugin-lit-a11y@2.0.0
+
+## 5.0.0
+
+### Patch Changes
+
+- Updated dependencies [40837d10]
+- Updated dependencies [f411714e]
+  - eslint-plugin-lit-a11y@1.1.0
+
+## 5.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [f411714e]
+  - eslint-plugin-lit-a11y@1.1.0-next.0
+
+## 4.3.0
+
+### Minor Changes
+
+- ad24cd57: added HTML extension
+
 ## 4.2.0
 
 ### Minor Changes

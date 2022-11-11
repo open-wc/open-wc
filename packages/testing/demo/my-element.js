@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 // @ts-nocheck
-import { LitElement, html } from 'lit-element';
+import { LitElement, html } from 'lit';
 
 class MyElement extends LitElement {
   static get properties() {

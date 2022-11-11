@@ -8,18 +8,18 @@ import '@rocket/launch/inline-notification/inline-notification.js';
 
 <inline-notification type="warning">
 
-Testing helpers uses [lit-html](https://lit-html.polymer-project.org/), but it's set up as a peer dependency to avoid version conflicts.
+Testing helpers uses [lit](https://lit.dev/), but it's set up as a peer dependency to avoid version conflicts.
 You don't need to write your components with lit-html to use this library, but you will need to install it:
 
 ```
-npm i -D lit-html
+npm i -D lit
 ```
 
 </inline-notification>
 
 # Usage
 
-We recommend using this library through [@open-wc/testing](https://open-wc.org/testing/testing.html) which preconfigures and combines this library with other testing libraries.
+We recommend using this library through [@open-wc/testing](https://open-wc.org/docs/testing/testing-package/) which preconfigures and combines this library with other testing libraries.
 
 The examples that are shown here assume this setup, and import from `@open-wc/testing`. If you want to use this library standalone, you will need to import from `@open-wc/testing-helpers` directly instead:
 
@@ -39,7 +39,7 @@ Test fixtures are async to ensure rendering is properly completed.
 
 ### Templates
 
-Test fixtures can be set up by using a string or a [lit-html](https://github.com/Polymer/lit-html) template. You don't need to use `lit-html` in your project to use the test fixtures, it just renders standard HTML.
+Test fixtures can be set up by using a string or a [lit](https://lit.dev/) template. You don't need to use `lit-html` in your project to use the test fixtures, it just renders standard HTML.
 
 ### Test a custom element
 
@@ -127,11 +127,21 @@ const el = await fixture(html` <my-el></my-el> `, { parentNode });
 <div style="position:absolute;"><my-el></my-el></div>
 ```
 
+## Customize the render function
+
+It could be the case that you need to customize the render function for compatibility reasons, for example if you have multiple versions of lit-html throughout your project. You can achieve this like so:
+
+```js
+import { render } from 'custom-lit-html-version';
+
+const el = await fixture(html`<my-el></my-el>`, { render });
+```
+
 ## Timings
 
 By default fixture awaits the elements "update complete" Promise.
 
-- for [lit-element](https://github.com/polymer/lit-element) that is `el.updateComplete`;
+- for [lit](https://github.com/lit/lit) that is `el.updateComplete`;
 - for [stencil](https://github.com/ionic-team/stencil/) that is `el.componentOnReady()`;
 
 If none of those specfic Promise hooks are found, it will wait for one frame via `await nextFrame()`.<br>
@@ -150,6 +160,12 @@ expect(el.foo).to.equal('bar');
 const el = fixtureSync(html` <my-el .foo=${'bar'}></my-el> `);
 await elementUpdated(el);
 expect(el.foo).to.equal('bar');
+```
+
+All of these helpers must be imported from `@open-wc/testing`, e.g.
+
+```js
+import { nextFrame, aTimeout, waitUntil } from '@open-wc/testing';
 ```
 
 ### nextFrame
@@ -189,7 +205,7 @@ await waitUntil(
 );
 ```
 
-`waitUntil` has a default timeout of 2000ms and a polling interval of 50ms. This can be customized:
+`waitUntil` has a default timeout of 1000ms and a polling interval of 50ms. This can be customized:
 
 ```js
 await waitUntil(predicate, 'Element should become visible', { interval: 10, timeout: 10000 });
@@ -278,7 +294,7 @@ By default, if you import anything via `import { ... } from '@open-wc/testing';`
 If you want to be in full control you can do so by using
 
 ```js
-import { fixture, fixtureCleanup } from '@open-wc/testing-helpers/index-no-side-effects.js';
+import { fixture, fixtureCleanup } from '@open-wc/testing-helpers/pure';
 
 it('can instantiate an element with properties', async () => {
   const el = await fixture(html`<my-el .foo=${'bar'}></my-el>`);

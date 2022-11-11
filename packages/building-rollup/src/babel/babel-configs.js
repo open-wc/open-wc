@@ -1,7 +1,7 @@
-const { babelPluginBundledHelpers } = require('./babel-plugin-bundled-helpers');
-const { isFalsy } = require('../utils');
+const { babelPluginBundledHelpers } = require('./babel-plugin-bundled-helpers.js');
+const { isFalsy } = require('../utils.js');
 
-const createBabelConfigRollupBuild = ({ developmentMode, rootDir }) => ({
+const createBabelConfigRollupBuild = ({ developmentMode }) => ({
   babelHelpers: 'bundled',
   compact: true,
   presets: [
@@ -24,13 +24,8 @@ const createBabelConfigRollupBuild = ({ developmentMode, rootDir }) => ({
     ],
   ],
   plugins: [
-    // rollup doesn't support optional chaining yet, so we compile it during input
-    [require.resolve('@babel/plugin-proposal-optional-chaining'), { loose: true }],
-    [require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'), { loose: true }],
-
     // plugins that aren't part of @babel/preset-env should be applied regularly in
     // the rollup build phase
-    [require.resolve('babel-plugin-bundled-import-meta'), { bundleDir: rootDir }],
     !developmentMode && [
       require.resolve('babel-plugin-template-html-minifier'),
       {

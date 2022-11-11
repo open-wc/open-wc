@@ -1,12 +1,12 @@
 const { serialize } = require('parse5');
 const path = require('path');
 const deepmerge = require('deepmerge');
-const { createScript, createElement } = require('../dom5-utils');
-const { append, insertBefore, query, predicates } = require('../dom5-fork');
-const { getPolyfills } = require('./polyfills');
-const { createLoaderScript } = require('./loader-script');
-const { minifyIndexHTML, defaultMinifyHTMLConfig } = require('./minify-index-html');
-const { createContentHash, cleanImportPath, polyfillFilename } = require('./utils');
+const { createScript, createElement } = require('../dom5-utils.js');
+const { append, insertBefore, query, predicates } = require('../dom5-fork/index.js');
+const { getPolyfills } = require('./polyfills.js');
+const { createLoaderScript } = require('./loader-script.js');
+const { minifyIndexHTML, defaultMinifyHTMLConfig } = require('./minify-index-html.js');
+const { createContentHash, cleanImportPath, polyfillFilename } = require('./utils.js');
 
 /** @typedef {import('parse5').Document} ASTNode */
 
@@ -205,10 +205,7 @@ function createIndexHTML(baseIndex, config) {
 
   const appendPreloadScript = href => {
     if (localConfig.entries.type === 'module') {
-      append(
-        head,
-        createElement('link', { rel: 'preload', href, as: 'script', crossorigin: 'anonymous' }),
-      );
+      append(head, createElement('link', { rel: 'modulepreload', href, as: 'script' }));
     } else {
       append(head, createElement('link', { rel: 'preload', href, as: 'script' }));
     }

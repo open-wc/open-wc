@@ -1,7 +1,7 @@
 /** @typedef {import('@mdjs/core').Story} Story */
 
 const { expect } = require('chai');
-const { compileMdToJsx, createDocsPage } = require('../src/mdToJsx');
+const { compileMdToJsx, createDocsPage } = require('../src/mdToJsx.js');
 
 describe('compileMdToJsx', () => {
   it('turns MD into JSX', async () => {
@@ -69,7 +69,7 @@ __export_default__.parameters = __export_default__.parameters || {};
 __export_default__.parameters.docs = __export_default__.parameters.docs || {};
 __export_default__.parameters.docs.page = () => <AddContext
   mdxStoryNameToKey={mdxStoryNameToKey}
-  mdxComponentMeta={__export_default__}><MDXContent
+  mdxComponentAnnotations={__export_default__}><MDXContent
 /></AddContext>;
 
 export const __page = () => {

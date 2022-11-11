@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing",
-  "version": "2.5.32",
+  "version": "3.1.7",
   "publishConfig": {
     "access": "public"
   },
@@ -14,31 +14,41 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/testing",
   "module": "index.js",
-  "exports": "./index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./pure": {
+      "types": "./index-no-side-effects.d.ts",
+      "default": "./index-no-side-effects.js"
+    }
+  },
   "scripts": {
-    "prepublishOnly": "../../scripts/insert-header.js"
+    "build-plugins": "rollup -c rollup.config.js",
+    "debug": "cd ../../ && yarn debug --group testing",
+    "monorepo:postinstall": "npm run build-plugins",
+    "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
+    "test": "cd ../../ && yarn test:web --group testing"
   },
   "files": [
     "*.d.ts",
     "*.js",
-    "import-wrappers"
+    "plugins"
   ],
   "keywords": [
     "testing",
     "chai"
   ],
   "dependencies": {
+    "@esm-bundle/chai": "^4.3.4-fix.0",
     "@open-wc/chai-dom-equals": "^0.12.36",
-    "@open-wc/semantic-dom-diff": "^0.19.3",
-    "@open-wc/testing-helpers": "^1.8.12",
+    "@open-wc/semantic-dom-diff": "^0.19.7",
+    "@open-wc/testing-helpers": "^2.1.4",
     "@types/chai": "^4.2.11",
-    "@types/chai-dom": "^0.0.9",
-    "@types/mocha": "^5.2.7",
+    "@types/chai-dom": "^0.0.12",
     "@types/sinon-chai": "^3.2.3",
-    "chai": "^4.2.0",
-    "chai-a11y-axe": "^1.3.1",
-    "chai-dom": "^1.8.1",
-    "mocha": "^6.2.2",
-    "sinon-chai": "^3.5.0"
+    "chai-a11y-axe": "^1.3.2"
   }
 }

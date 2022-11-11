@@ -1,4 +1,5 @@
 node_modules
+.changeset/
 coverage/
 /packages/create/src/generators/*/templates/**/*
 dist
@@ -7,8 +8,10 @@ stats.html
 packages/semantic-dom-diff/bundle/get-diffable-html.js
 packages/**/test-node/**/snapshots
 /packages/demoing-storybook/storybook-static/**/*
+/packages/lit-helpers/src/spread.js
 /packages/rollup-plugin-input-html/test/fixtures/**/*
 /packages/rollup-plugin-html/dist/**/*
+/packages/testing/plugins/**/*
 CHANGELOG.md
 __snapshots__/
 _site/

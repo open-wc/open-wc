@@ -4,7 +4,7 @@
  */
 
 const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { hasAccessibleChildren } = require('../utils/hasAccessibleChildren.js');
 const { isCustomElement } = require('../utils/isCustomElement.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
@@ -25,8 +25,7 @@ const HeadingHasContentRule = {
       description: 'Enforce heading (h1, h2, etc) elements contain accessible content.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/heading-has-content.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/heading-has-content.md',
     },
     messages: {
       headingHasContent: '<{{tagName}}> elements must have accessible content.',
@@ -69,18 +68,28 @@ const HeadingHasContentRule = {
 
           analyzer.traverse({
             enterElement(element) {
+              if (!element.sourceCodeLocation) {
+                return; // probably a tree correction node
+              }
+
               if (
                 isHeading(element, options.customHeadingElements) &&
                 !hasAccessibleChildren(element) &&
                 !isHiddenFromScreenReader(element)
               ) {
-                const loc = analyzer.getLocationFor(element);
+                const loc =
+                  analyzer.resolveLocation(
+                    element.sourceCodeLocation.startTag,
+                    context.getSourceCode(),
+                  ) ?? node.loc;
 
                 const messageId = 'headingHasContent';
 
                 const data = { tagName: element.name };
 
-                context.report({ loc, messageId, data });
+                if (loc) {
+                  context.report({ loc, messageId, data });
+                }
               }
             },
           });

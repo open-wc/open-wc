@@ -1,6 +1,6 @@
 import { expect } from '@open-wc/testing';
 
-import { dedupeMixin } from '../src/dedupeMixin.js';
+import { dedupeMixin } from '../index.js';
 
 describe('dedupeMixin', () => {
   function createMixin(name) {

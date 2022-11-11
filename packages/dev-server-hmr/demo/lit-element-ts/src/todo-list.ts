@@ -1,4 +1,4 @@
-import { LitElement, customElement, property, html, css } from 'lit-element';
+import { LitElement, customElement, property, html, css } from 'lit';
 import { sharedTemplate } from './sharedTemplate';
 import { sharedStyles } from './sharedStyles';
 import './todo-item.js';

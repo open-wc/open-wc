@@ -4,7 +4,7 @@
  */
 
 const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { hasAccessibleChildren } = require('../utils/hasAccessibleChildren.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
@@ -21,8 +21,7 @@ const AnchorHasContentRule = {
       description: 'Enforce anchor elements to contain accessible content.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/anchor-has-content.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/anchor-has-content.md',
     },
     fixable: null,
     schema: [],
@@ -36,13 +35,23 @@ const AnchorHasContentRule = {
 
           analyzer.traverse({
             enterElement(element) {
+              if (!element.sourceCodeLocation) {
+                return; // probably a tree correction node
+              }
+
               if (element.name === 'a') {
                 if (!hasAccessibleChildren(element)) {
-                  const loc = analyzer.getLocationFor(element);
-                  context.report({
-                    loc,
-                    message: 'Anchor should contain accessible content.',
-                  });
+                  const loc =
+                    analyzer.resolveLocation(
+                      element.sourceCodeLocation.startTag,
+                      context.getSourceCode(),
+                    ) ?? node.loc;
+                  if (loc) {
+                    context.report({
+                      loc,
+                      message: 'Anchor should contain accessible content.',
+                    });
+                  }
                 }
               }
             },

@@ -123,6 +123,7 @@ const mdjsToMdPlugins = [
     name: 'mdStringify',
     plugin: mdStringify,
     options: {
+      sanitize: false,
       handlers: {
         code,
         image,

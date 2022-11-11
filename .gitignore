@@ -40,6 +40,7 @@ build-stats.json
 stats.html
 .rpt2_cache
 storybook-static
+/packages/testing/plugins
 
 ## browserstack
 local.log
@@ -49,6 +50,9 @@ docs/.vuepress/public/codelabs
 
 # Local Netlify folder
 .netlify
+
+# @11ty/eleventy-cache-assets
+.cache
 
 ## Rocket ignore files (need to be the full relative path to the folders)
 docs/_merged_data/

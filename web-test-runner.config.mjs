@@ -1,5 +1,12 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+import fs from 'fs';
 import { playwrightLauncher } from '@web/test-runner-playwright';
+
+const packages = fs
+  .readdirSync('packages')
+  .filter(
+    dir =>
+      fs.statSync(`packages/${dir}`).isDirectory() && fs.existsSync(`packages/${dir}/test-web`),
+  );
 
 export default {
   files: `packages/*/test-web/*.test.(js|html)`,
@@ -10,18 +17,21 @@ export default {
     playwrightLauncher({ product: 'chromium' }),
     playwrightLauncher({ product: 'webkit' }),
   ],
-  coverage: true, 
+  groups: packages.map(pkg => {
+    return {
+      name: pkg,
+      files: `packages/${pkg}/test-web/**/*.test.js`,
+    };
+  }),
+  coverage: true,
   coverageConfig: {
-    exclude: [
-      'packages/testing/import-wrappers/**/*'
-    ],
     report: true,
     reportDir: 'coverage',
     threshold: {
       statements: 80,
       branches: 60,
-      functions: 70,
+      functions: 60,
       lines: 80,
-    }
+    },
   },
 };

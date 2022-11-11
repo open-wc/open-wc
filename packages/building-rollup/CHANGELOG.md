@@ -1,5 +1,72 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- 45094384: Update terser dependency version to 4.8.1
+- Updated dependencies [45094384]
+  - @open-wc/building-utils@2.20.1
+
+## 2.2.0
+
+### Minor Changes
+
+- d009faae: Update dependency @rollup/plugin-node-resolve to v13
+
+## 2.1.0
+
+### Minor Changes
+
+- 027e58b0: Update dependency clean-css to v5
+
+### Patch Changes
+
+- Updated dependencies [027e58b0]
+  - @open-wc/building-utils@2.20.0
+
+## 2.0.2
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+- Updated dependencies [61e2668f]
+  - @open-wc/building-utils@2.18.5
+
+## 2.0.1
+
+### Patch Changes
+
+- 1649ba46: Release bump version as major versions have already been used and unpublished in an accidental publish about a year ago.
+
+## 2.0.0
+
+### Major Changes
+
+- f377bf99: switch from open-wc plugins to web plugins. see MIGRATION.md for a migration guide
+
+### Patch Changes
+
+- d076f6a0: update rollup-plugin-workbox
+
+## 2.0.0-next.1
+
+### Patch Changes
+
+- d076f6a0: update rollup-plugin-workbox
+
+## 2.0.0-next.0
+
+### Major Changes
+
+- f377bf99: switch from open-wc plugins to web plugins. see MIGRATION.md for a migration guide
+
+## 1.10.0
+
+### Minor Changes
+
+- b55fb7b7: Remove unneeded babel plugins
+
 ## 1.9.4
 
 ### Patch Changes

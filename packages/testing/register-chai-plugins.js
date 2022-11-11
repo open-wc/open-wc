@@ -2,12 +2,14 @@
 import { chaiDomDiff } from '@open-wc/semantic-dom-diff';
 import { chaiA11yAxe } from 'chai-a11y-axe';
 
-import chai from './import-wrappers/chai.js';
+// remove esline-disable when https://github.com/esm-bundle/chai/pull/61 is merged
+/* eslint-disable-next-line import/no-unresolved */
+import chai from '@esm-bundle/chai';
 // non es module plugins
-import './import-wrappers/chai-dom.js';
-import './import-wrappers/sinon-chai.js';
+import chaiDom from './plugins/chai-dom.js';
+import sinonChai from './plugins/sinon-chai.js';
 
-// @ts-ignore
 chai.use(chaiDomDiff);
-// @ts-ignore
 chai.use(chaiA11yAxe);
+chai.use(chaiDom);
+chai.use(sinonChai);

@@ -4,21 +4,12 @@
  */
 
 const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('../../template-analyzer/template-analyzer.js');
+const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { isAriaHidden } = require('../utils/aria.js');
 const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
-
-if (!('ListFormat' in Intl)) {
-  /* eslint-disable global-require */
-  // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
-  require('intl-list-format');
-  // eslint-disable-next-line global-require
-  // @ts-expect-error: since we allow node 10. Remove when we require node >= 12
-  require('intl-list-format/locale-data/en');
-  /* eslint-enable global-require */
-}
+const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -34,8 +25,7 @@ const ImgRedundantAltRule = {
       description: 'Enforce img alt attribute does not contain the word image, picture, or photo.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/img-redundant-alt.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/img-redundant-alt.md',
     },
     messages: {
       imgRedundantAlt:
@@ -81,11 +71,14 @@ const ImgRedundantAltRule = {
 
               const bannedKeywords = [...DEFAULT_KEYWORDS, ...optionsKeywords];
 
-              const { value } = analyzer.describeAttribute(element.attribs.alt);
+              const alt = getLiteralAttributeValue(
+                analyzer,
+                element,
+                'alt',
+                context.getSourceCode(),
+              );
 
-              if (!value) return;
-
-              const alt = value.toString();
+              if (!alt) return;
 
               const contraband = bannedKeywords.filter(keyword =>
                 alt.toString().toLowerCase().includes(keyword.toLowerCase()),
@@ -93,16 +86,20 @@ const ImgRedundantAltRule = {
 
               if (contraband.length > 0) {
                 const banned = formatter.format(contraband);
-                const loc = analyzer.getLocationForAttribute(element, 'alt');
+                const loc =
+                  analyzer.getLocationForAttribute(element, 'alt', context.getSourceCode()) ??
+                  node.loc;
 
-                context.report({
-                  loc,
-                  messageId: 'imgRedundantAlt',
-                  data: {
-                    banned,
-                    plural: contraband.length > 1 ? 'words' : 'word',
-                  },
-                });
+                if (loc) {
+                  context.report({
+                    loc,
+                    messageId: 'imgRedundantAlt',
+                    data: {
+                      banned,
+                      plural: contraband.length > 1 ? 'words' : 'word',
+                    },
+                  });
+                }
               }
             },
           });

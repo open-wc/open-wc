@@ -5,8 +5,14 @@ Scope element tag names avoiding naming collision and allowing to use different 
 ## Installation
 
 ```bash
-npm i --save @open-wc/scoped-elements
+npm i --save @open-wc/scoped-elements@next
 ```
+
+<inline-notification type="warning">
+
+Version 2 of Scoped Elements only supports [lit](https://lit.dev/) with `lit-element 3.x`. If you need to support `lit-element 2.x` be sure to use [version 1](https://www.npmjs.com/package/@open-wc/scoped-elements/v/1.3.3) of Scoped Elements.
+
+</inline-notification>
 
 ## Usage
 
@@ -36,20 +42,21 @@ npm i --save @open-wc/scoped-elements
    }
    ```
 
-   > WARNING: If you are going to use elements that are globally defined you have to declare them in `scopedElements` as well. This is required because we are trying to work as close as possible to the future Scoped Custom Element Registries feature and, by the moment, there is not going ot be inheritance between registries.
-   >
-   > You can declare them like in the following example:
-   >
-   > ```js
-   >  static get scopedElements() {
-   >    return {
-   >      'old-button': customElements.get('old-button'),
-   >      'my-panel': MyPanel,
-   >    };
-   >  }
-   > ```
-   >
-   > If you try to register the same element globally AND locally with the exact same name AND class instance it will reuse the global tag name and NOT scope it.
+   <inline-notification type="warning">
+
+   If you are going to use elements that are globally defined you have to declare them in `scopedElements` as well. This is required because we are trying to work as close as possible to the future Scoped Custom Element Registries feature and, by the moment, there is not going to be inheritance between registries.
+   You can declare them like in the following example:
+
+   ```js
+   static get scopedElements() {
+     return {
+       'old-button': customElements.get('old-button'),
+       'my-panel': MyPanel,
+     };
+   }
+   ```
+
+   </inline-notification>
 
 4. Use your components in your html.
 
@@ -63,10 +70,45 @@ npm i --save @open-wc/scoped-elements
    }
    ```
 
+5. (optional) load the polyfill if you need scoping
+
+   Defining sub elements via `scopedElements` is very useful on its own as it makes it clear what your element requires. However, if you need the actual scoping feature for example to use two major version or two different classes with the same tag name ,then you will need to load a polyfill.
+
+   We recommend [@webcomponents/scoped-custom-element-registry](https://github.com/webcomponents/polyfills/tree/master/packages/scoped-custom-element-registry).
+
+   You need to load the polyfill before any other web component gets registered.
+
+   It may look something like this in your HTML
+
+   ```html
+   <script src="/node_modules/@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js"></script>
+   ```
+
+   or if you have an SPA you can load it at the top of your app shell code
+
+   ```js
+   import '@webcomponents/scoped-custom-element-registry';
+   ```
+
+   <inline-notification type="tip">
+
+   As long as you only use one version of a web component ScopeElementsMixin will work without the polyfill. So start of without the polyfill. Once you need it, ScopeElementsMixin will log an error.
+
+   ```
+   You are trying to re-register the "feature-a" custom element with a different class via ScopedElementsMixin.
+   This is only possible with a CustomElementRegistry.
+   Your browser does not support this feature so you will need to load a polyfill for it.
+   Load "@webcomponents/scoped-custom-element-registry" before you register ANY web component to the global customElements registry.
+   e.g. add "<script src="/node_modules/@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js"></script>" as your first script tag.
+   For more details you can visit https://open-wc.org/docs/development/scoped-elements/
+   ```
+
+   </inline-notification>
+
 ### Complete example
 
 ```js
-import { css, LitElement } from 'lit-element';
+import { css, LitElement } from 'lit';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements';
 import { MyButton } from './MyButton.js';
 import { MyPanel } from './MyPanel.js';
@@ -104,12 +146,50 @@ export class MyElement extends ScopedElementsMixin(LitElement) {
 }
 ```
 
+### Creating elements
+
+If you use the `render` function of your lit component then it will automatically use the scoped registry as it will be defined within its shadow root.
+
+```js
+render() {
+  return html`
+    <my-button>${this.text}</my-button>
+  `;
+}
+```
+
+When creating components outside of the render function you will need to be explicit in which scope you want to define it.
+
+```js
+initElements() {
+  // creating a `my-button` element in the global scope
+  const myButton = document.createElement('my-button');
+  //                                       👆 may fail if my-button is only registered in the scoped registry
+
+  // create a `my-button` element in the local scope
+  const myButton = this.shadowRoot.createElement('my-button');
+  //                              👆 this only works with the polyfill
+
+  this.appendChild(myButton);
+}
+```
+
+Additionally when using the ScopedElementMixin it may use the global or local scope depending on if the polyfill is loaded.
+We added a helper `createScopedElement` you can use to create scoped elements.
+
+```js
+initElements() {
+  const myButton = this.createScopedElement('my-button');
+  this.appendChild(myButton);
+}
+```
+
 ### Lazy scoped components
 
 In some situations may happen that you want to use a component in your templates that is not already loaded at the moment of defining the scoped elements map. The `ScopedElementsMixin` provides the `defineScopedElement` method to define scoped elements at any time.
 
 ```js
-import { LitElement } from 'lit-element';
+import { LitElement } from 'lit';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements';
 import { MyPanel } from './MyPanel.js';
 
@@ -136,33 +216,43 @@ export class MyElement extends ScopedElementsMixin(LitElement) {
 }
 ```
 
-### Obtaining a scoped tag name
+### Using a registry per component instance
 
-Maybe you want to create a scoped element programmatically and don't know which one is the scoped tag name? No problem, there is a static method called `getScopedTagName` that would help you for that.
+By default, `ScopedElementsMixin` shares the same `CustomElementsRegistry` instance between all the instances of the same component class. There are some use cases in which you need to have just one registry instance per component instance. For those cases, you can override the `get` and `set` methods for the registry assigning and retrieving it from the component instance.
 
 ```js
-import { LitElement } from 'lit-element';
+import { LitElement } from 'lit';
 import { ScopedElementsMixin } from '@open-wc/scoped-elements';
-import { MyButton } from './MyButton.js';
 import { MyPanel } from './MyPanel.js';
 
 export class MyElement extends ScopedElementsMixin(LitElement) {
   static get scopedElements() {
     return {
       'my-panel': MyPanel,
-      'my-button': MyButton,
     };
+  }
+
+  get registry() {
+    return this.__registry;
+  }
+
+  set registry(registry) {
+    this.__registry = registry;
   }
 
   constructor() {
     super();
 
-    const scopedTagName = this.constructor.getScopedTagName('my-button');
-
-    // do whatever you need with the scopedTagName
+    import('./MyButton.js').then(({ MyButton }) => this.defineScopedElement('my-button', MyButton));
   }
 
-  // ...
+  render() {
+    return html`
+      <my-panel class="panel">
+        <my-button>${this.text}</my-button>
+      </my-panel>
+    `;
+  }
 }
 ```
 
@@ -230,18 +320,9 @@ To demonstrate, we made three demos:
 
 3. [with-scope](https://open-wc.org/scoped-elements/demo/with-scope/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/with-scope)] This example successfully fixes the problem by using `ScopedElementsMixin` on both **Page A** and **Page B**.
 
-## How it works
-
-`ScopedElementsMixin` is mixed into your LitElement and via `static get scopedElements()` you define the tags and classes you wanna use in your elements template.
-Under the hood it changes your template so `<my-button>${this.text}</my-button>` becomes `<my-button-2748 data-tag-name="my-button">${this.text}</my-button-2748>`.
-
-Every auto-defined scoped elements gets a random\* 4 digits number suffix. This suffix changes every time to make sure developers are not inclined to use it the generated tag name as a styling hook. Additionally the suffix allows scoped-elements and traditional self-defined elements to coexist, avoiding name collision.
-
-\* it is actually a global counter that gets initialized with a random starting number on load
-
 ## Limitations
 
-1. Components imported via npm **SHOULD NOT** be self registering components. If a shared component (installed from npm) does not offer an export to the class alone, without the registration side effect, then this component may not be used. E.g. every component that calls `customElement.define`.
+1. Components imported via npm **SHOULD NOT** be self registering components. If a shared component (installed from npm) does not offer an export to the class alone, without the registration side effect, then this component may not be used. E.g. every component that calls `customElement.define`
 
    ```js
    export class MyEl { ... }
@@ -261,63 +342,12 @@ Every auto-defined scoped elements gets a random\* 4 digits number suffix. This 
    export class MyEl { ... }
    ```
 
-2. Every component that uses sub components should use `scoped-elements`. Any import to a self registering component can potentially result in a browser exception - completely breaking the whole application.
-
+2. Every component that uses sub components should use `scoped-elements`. Any import to a self registering component can potentially result in a browser exception - completely breaking the whole application
 3. Imported elements should be fully side effect free (not only element registration)
+4. Using the `scoped registry polyfill` may result in a small performance degradation
+5. Loading of duplicate/similar source code (most breaking releases are not a total rewrite) should always be a temporary solution
+6. Often, temporary solutions tend to become more permanent. Be sure to focus on keeping the lifecycle of nested dependencies short
 
-4. Currently, only `lit-element` is supported (though other elements/rendering engines could be incorporated in the future).
-
-5. You cannot use tag selectors in css, but you could use an id, a class name or even a property instead.
-
-   ```css
-   🚫 my-panel {
-     width: 300px;
-   }
-   ✅ .panel {
-     width: 300px;
-   }
-   ```
-
-6. You cannot use tag names using javascript querySelectors, but you could use an id, a class name or even a property instead.
-
-   ```js
-   🚫 this.shadowRoot.querySelector('my-panel');
-   ✅ this.shadowRoot.querySelector('.panel');
-   ```
-
-7. Using `scoped-elements` may result in a performance degradation of up to 8%.
-8. Loading of duplicate/similar source code (most breaking releases are not a total rewrite) should always be a temporary solution.
-9. Often, temporary solutions tend to become more permanent. Be sure to focus on keeping the lifecycle of nested dependencies short.
-
-## Performance
-
-We are using [Tachometer](https://github.com/Polymer/tachometer) to measure the performance penalty of using the scoped elements feature. The chosen test application is a slight variation of the [Polymer Shop Application](https://shop.polymer-project.org).
-
-This is an example of the results obtained running the performance test.
-
+```js script
+import '@rocket/launch/inline-notification/inline-notification.js';
 ```
-⠋ Auto-sample 560 (timeout in 16m27s)
-┌─────────────┬───────────────┐
-│     Version │ <none>        │
-├─────────────┼───────────────┤
-│     Browser │ chrome        │
-│             │ 80.0.3987.106 │
-├─────────────┼───────────────┤
-│ Sample size │ 610           │
-└─────────────┴───────────────┘
-┌─────────────────────────────┬────────────┬─────────────────────┬─────────────────┬──────────────────────────┐
-│ Benchmark                   │ Bytes      │            Avg time │  vs lit-element │ vs scoped-elements-mixin │
-├─────────────────────────────┼────────────┼─────────────────────┼─────────────────┼──────────────────────────┤
-│ lit-element                 │ 281.24 KiB │ 285.72ms - 286.69ms │                 │                   faster │
-│                             │            │                     │        -        │                  2% - 2% │
-│                             │            │                     │                 │           5.68ms - 7.1ms │
-├─────────────────────────────┼────────────┼─────────────────────┼─────────────────┼──────────────────────────┤
-│ scoped-elements-mixin       │ 283.21 KiB │ 292.08ms - 293.11ms │          slower │                          │
-│                             │            │                     │         2% - 2% │                 -        │
-│                             │            │                     │ 5.68ms - 7.10ms │                          │
-└─────────────────────────────┴────────────┴─────────────────────┴─────────────────┴──────────────────────────┘
-```
-
-## Special thanks
-
-This package was initially inspired by [carehtml](https://github.com/bashmish/carehtml) and we would like to thank [@bashmish](https://github.com/bashmish) for his work on it.

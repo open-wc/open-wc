@@ -10,7 +10,7 @@ A quick primer on the basics of web components. Great if you're just getting sta
   > Go to the codelab
 </a>
 
-## lit-html & lit-element: basics
+## Lit: basics
 
 A kickstart to building web components with lit-html and lit-element. Goes through the process of building a simple application, explaining in detail each step along the way.
 
@@ -18,7 +18,7 @@ A kickstart to building web components with lit-html and lit-element. Goes throu
   > Go to the codelab
 </a>
 
-## lit-html & lit-element: intermediate
+## Lit: intermediate
 
 A further deep dive into lit-html and lit-element. Handles data fetching, loading states, and complex templating.
 

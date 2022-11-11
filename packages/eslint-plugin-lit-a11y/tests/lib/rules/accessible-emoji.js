@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/accessible-emoji');
+const rule = require('../../../lib/rules/accessible-emoji.js');
 
 //------------------------------------------------------------------------------
 // Tests

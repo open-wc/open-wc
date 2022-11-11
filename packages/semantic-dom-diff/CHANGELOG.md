@@ -1,5 +1,47 @@
 # Change Log
 
+## 0.19.7
+
+### Patch Changes
+
+- 735b0092: Avoid saving unchanged snapshots
+
+## 0.19.6
+
+### Patch Changes
+
+- a7e9c20d: chore(semantic-dom-diff): updates dependencies
+
+## 0.19.5
+
+### Patch Changes
+
+- b9b11adc: support snapshot testing with Web Test Runner
+- b6e868d5: Use latest dependencies
+- 40837d10: - use latest axe-core
+  - allow not required attributes in role testing
+- 580ce0ee: Snapshot testing with WTR updated to not modify the snapshot files running the test
+
+## 0.19.5-next.2
+
+### Patch Changes
+
+- 40837d10: - use latest axe-core
+  - allow not required attributes in role testing
+- 580ce0ee: Snapshot testing with WTR updated to not modify the snapshot files running the test
+
+## 0.19.5-next.1
+
+### Patch Changes
+
+- b6e868d5: Use latest dependencies
+
+## 0.19.5-next.0
+
+### Patch Changes
+
+- b9b11adc: support snapshot testing with Web Test Runner
+
 ## 0.19.4
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { expect } = require('chai');
-const { banner, transform } = require('./utils');
+const { banner, transform } = require('./utils.js');
 
 describe('babelPluginWcHmr - detecting customElements.define', () => {
   it('injects registration when detecting a customElements.define', () => {
@@ -9,7 +9,6 @@ describe('babelPluginWcHmr - detecting customElements.define', () => {
     expect(result).to.equal(
       `${banner}
 let Foo = __$wc_hmr$__.register(import.meta, "Foo", class Foo extends HTMLElement {});
-
 customElements.define('x-foo', Foo);`,
     );
   });
@@ -20,7 +19,6 @@ customElements.define('x-foo', Foo);`,
     expect(result).to.equal(
       `${banner}
 let Foo = __$wc_hmr$__.register(import.meta, "Foo", class Foo extends HTMLElement {});
-
 window.customElements.define('x-foo', Foo);`,
     );
   });
@@ -31,7 +29,6 @@ window.customElements.define('x-foo', Foo);`,
     expect(result).to.equal(
       `${banner}
 let Foo = __$wc_hmr$__.register(import.meta, "Foo", class Foo extends HTMLElement {});
-
 globalThis.customElements.define('x-foo', Foo);`,
     );
   });
@@ -56,7 +53,6 @@ customElements.define('x-foo', __$wc_hmr$__.register(import.meta, "anonymous0", 
     expect(result).to.equal(
       `${banner}
 const Foo = __$wc_hmr$__.register(import.meta, "Foo", class Foo extends HTMLElement {});
-
 customElements.define('x-foo', Foo);`,
     );
   });
@@ -67,7 +63,6 @@ customElements.define('x-foo', Foo);`,
     expect(result).to.equal(
       `${banner}
 let Foo = __$wc_hmr$__.register(import.meta, "Foo", class Foo extends HTMLElement {});
-
 Foo = Foo;
 customElements.define('x-foo', Foo);`,
     );
@@ -89,15 +84,10 @@ customElements.define('x-foo', __$wc_hmr$__.register(import.meta, "anonymous0", 
     expect(result).to.equal(
       `${banner}
 let Foo = __$wc_hmr$__.register(import.meta, "Foo", class Foo extends HTMLElement {});
-
 customElements.define('x-foo', Foo);
-
 let Bar = __$wc_hmr$__.register(import.meta, "Bar", class Bar extends HTMLElement {});
-
 customElements.define('x-bar', Bar);
-
 let Baz = __$wc_hmr$__.register(import.meta, "Baz", class Baz extends HTMLElement {});
-
 customElements.define('x-baz', Baz);`,
     );
   });
@@ -119,7 +109,6 @@ customElements.define('x-foo', __$wc_hmr$__.register(import.meta, "anonymous1", 
       `import '/__web-dev-server__/wc-hmr/patch.js';
 ${banner}
 let Foo = __$wc_hmr$__.register(import.meta, "Foo", class Foo extends HTMLElement {});
-
 customElements.define('x-foo', Foo);`,
     );
   });
@@ -131,7 +120,6 @@ customElements.define('x-foo', Foo);`;
     const result = transform(code);
     expect(result).to.equal(
       `let Foo = __$wc_hmr$__.register(import.meta, "Foo", class Foo extends HTMLElement {});
-
 customElements.define('x-foo', Foo);`,
     );
   });

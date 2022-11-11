@@ -1,5 +1,35 @@
 # Change Log
 
+## 1.0.5
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+
+## 1.0.4
+
+### Patch Changes
+
+- ba09f2b8: Update the dependency graph of storybook-addon-markdown-docs
+
+## 1.0.3
+
+### Patch Changes
+
+- 7b9d0c37: User provided code blocks should remain in the final output
+
+## 1.0.2
+
+### Patch Changes
+
+- b6e868d5: Use latest dependencies
+
+## 1.0.2-next.0
+
+### Patch Changes
+
+- b6e868d5: Use latest MDJS dependencies
+
 ## 1.0.1
 
 ### Patch Changes

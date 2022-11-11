@@ -1,6 +1,6 @@
 // when we update to typescript 3.8
-// import type { LitElement } from "lit-element";
-import { LitElement } from "lit-element";
+// import type { LitElement } from "lit";
+import { LitElement } from "lit";
 
 declare type Constructor<T = {}> = new (...args: any[]) => T;
 

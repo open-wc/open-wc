@@ -1,6 +1,6 @@
 const path = require('path');
 const { expect } = require('chai');
-const { getPolyfills } = require('../../index-html/polyfills');
+const { getPolyfills } = require('../../index-html/polyfills.js');
 
 describe('polyfills', () => {
   it('returns the correct polyfills', () => {
@@ -49,8 +49,7 @@ describe('polyfills', () => {
         module: false,
         nomodule: false,
         sourcemap: undefined,
-        test:
-          "!('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype)",
+        test: "!('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype)",
       },
       {
         code: undefined,
@@ -59,8 +58,7 @@ describe('polyfills', () => {
         module: false,
         nomodule: false,
         sourcemap: undefined,
-        test:
-          "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)",
+        test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)",
       },
       {
         code: undefined,
