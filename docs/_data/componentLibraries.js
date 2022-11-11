@@ -66,12 +66,6 @@ const componentLibraries = [
       'Ignite UI for Web Components is a complete library of UI components, giving you the ability to build modern web application UIs. All components are based on the Indigo.Design Design System and are backed by ready-to-use UI kits for Sketch, Adobe XD and Figma.',
   },
   {
-    name: 'Ink Components',
-    url: 'https://components.ink/',
-    description:
-      'Web components for interactive scientific writing, reactive documents and explorable explanations. The Ink Components library can bring your math and science documents to the next level by breathing life into charts, equations, and variables that can be used throughout your application or content.',
-  },
-  {
     name: 'Io GUI',
     url: 'https://io-gui.dev/#page=elements',
     description:
