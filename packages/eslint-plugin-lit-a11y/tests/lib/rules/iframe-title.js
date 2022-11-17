@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/iframe-title');
+const rule = require('../../../lib/rules/iframe-title.js');
 
 //------------------------------------------------------------------------------
 // Tests

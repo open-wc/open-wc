@@ -101,8 +101,7 @@ const AriaAttrTypesRule = {
       description: 'aria-attr-valid-value',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/aria-attr-valid-value.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/aria-attr-valid-value.md',
     },
     fixable: null,
     schema: [],

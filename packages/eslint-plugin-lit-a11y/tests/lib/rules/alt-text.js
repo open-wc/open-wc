@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/alt-text');
+const rule = require('../../../lib/rules/alt-text.js');
 
 //------------------------------------------------------------------------------
 // Tests

@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const fs = require('fs');
 const path = require('path');
-const { createLoaderScript } = require('../../index-html/loader-script');
+const { createLoaderScript } = require('../../index-html/loader-script.js');
 
 const updateSnapshots = process.argv.includes('--update-snapshots');
 
@@ -28,8 +28,7 @@ const defaultPolyfills = [
     name: 'intersection-observer',
     nomodule: false,
     sourcemap: undefined,
-    test:
-      "!('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype)",
+    test: "!('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype)",
   },
   {
     code: undefined,
@@ -37,8 +36,7 @@ const defaultPolyfills = [
     name: 'webcomponents',
     nomodule: false,
     sourcemap: undefined,
-    test:
-      "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)",
+    test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || (window.ShadyDOM && window.ShadyDOM.force)",
   },
 ];
 

@@ -30,6 +30,7 @@ We recommend the following plugins:
 - [lit-plugin](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin)
   Syntax highlighting, type checking and code completion for lit-html
 - [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) Code formatter.
+- [json-in-html](https://marketplace.visualstudio.com/items?itemName=andersonbruceb.json-in-html) Syntax Coloring for Import Maps, and JSON attributes.
 
 ## Atom
 

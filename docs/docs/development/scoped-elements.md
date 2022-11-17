@@ -92,7 +92,7 @@ Version 2 of Scoped Elements only supports [lit](https://lit.dev/) with `lit-ele
 
    <inline-notification type="tip">
 
-   As long as you only use one version of a web component ScopeElementsMixin will work with the polyfill. So start of without the polyfill. Once you need it, ScopeElementsMixin will log an error.
+   As long as you only use one version of a web component ScopeElementsMixin will work without the polyfill. So start of without the polyfill. Once you need it, ScopeElementsMixin will log an error.
 
    ```
    You are trying to re-register the "feature-a" custom element with a different class via ScopedElementsMixin.

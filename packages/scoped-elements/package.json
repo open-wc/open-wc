@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/scoped-elements",
-  "version": "2.1.1",
+  "version": "2.1.3",
   "publishConfig": {
     "access": "public"
   },
@@ -13,8 +13,13 @@
   },
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements",
-  "module": "index.js",
-  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./index.js"
+    }
+  },
   "scripts": {
     "debug": "cd ../../ && yarn debug --group scoped-elements",
     "demo-build:before-nesting": "rollup -c demo/before-nesting/rollup.config.js",
@@ -48,5 +53,5 @@
   "devDependencies": {
     "@webcomponents/scoped-custom-element-registry": "^0.0.5"
   },
-  "types": "types/index.d.ts"
+  "types": "./types/index.d.ts"
 }

@@ -89,13 +89,21 @@ const ScopedElementsMixinImplementation = superclass =>
     }
 
     createRenderRoot() {
-      const {
-        scopedElements,
-        shadowRootOptions,
-        elementStyles,
-      } = /** @type {typeof ScopedElementsHost} */ (this.constructor);
+      const { scopedElements, shadowRootOptions, elementStyles } =
+        /** @type {typeof ScopedElementsHost} */ (this.constructor);
 
-      if (!this.registry) {
+      const shouldCreateRegistry =
+        !this.registry ||
+        // @ts-ignore
+        (this.registry === this.constructor.__registry &&
+          !Object.prototype.hasOwnProperty.call(this.constructor, '__registry'));
+
+      /**
+       * Create a new registry if:
+       * - the registry is not defined
+       * - this class doesn't have its own registry *AND* has no shared registry
+       */
+      if (shouldCreateRegistry) {
         this.registry = supportsScopedRegistry ? new CustomElementRegistry() : customElements;
         for (const [tagName, klass] of Object.entries(scopedElements)) {
           this.defineScopedElement(tagName, klass);

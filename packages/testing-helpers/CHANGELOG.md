@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.1.4
+
+### Patch Changes
+
+- b187c0bc: Add missing types export when using node16 module resolution
+
+## 2.1.3
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+- Updated dependencies [61e2668f]
+  - @open-wc/scoped-elements@2.1.3
+
 ## 2.1.2
 
 ### Patch Changes
@@ -78,11 +92,7 @@
   import { html, fixture } from '@open-wc/testing'; // html will be lit-html 2.x
 
   it('works for tags', async () => {
-    const el = await fixture(
-      html`
-        <my-el></my-el>
-      `,
-    );
+    const el = await fixture(html` <my-el></my-el> `);
   });
   ```
 
@@ -100,9 +110,7 @@
     class MyExtension extends LibraryComponent {
       render() {
         // needs to be lit-html 1.x as the library component is using LitElement with lit-html 1.x
-        return html`
-          <p>...</p>
-        `;
+        return html` <p>...</p> `;
       }
     }
 
@@ -123,11 +131,7 @@
     render(html1`<p>Testing ${fancyDirective('output')}</p>`, node);
 
     // you can either cleanup yourself or use fixture
-    const el = await fixture(
-      html`
-        ${node}
-      `,
-    );
+    const el = await fixture(html` ${node} `);
 
     expect(el.children[0].innerHTML).toBe('Testing [[output]]');
   });
@@ -165,11 +169,7 @@
   import { html, fixture } from '@open-wc/testing'; // html will be lit-html 2.x
 
   it('works for tags', async () => {
-    const el = await fixture(
-      html`
-        <my-el></my-el>
-      `,
-    );
+    const el = await fixture(html` <my-el></my-el> `);
   });
   ```
 
@@ -187,9 +187,7 @@
     class MyExtension extends LibraryComponent {
       render() {
         // needs to be lit-html 1.x as the library component is using LitElement with lit-html 1.x
-        return html`
-          <p>...</p>
-        `;
+        return html` <p>...</p> `;
       }
     }
 
@@ -210,11 +208,7 @@
     render(html1`<p>Testing ${fancyDirective('output')}</p>`, node);
 
     // you can either cleanup yourself or use fixture
-    const el = await fixture(
-      html`
-        ${node}
-      `,
-    );
+    const el = await fixture(html` ${node} `);
 
     expect(el.children[0].innerHTML).toBe('Testing [[output]]');
   });

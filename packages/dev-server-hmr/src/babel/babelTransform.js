@@ -1,7 +1,7 @@
 const { transformAsync } = require('@babel/core');
 
-const babelPluginWcHmr = require('./babelPluginWcHmr');
-const { createError } = require('../utils');
+const babelPluginWcHmr = require('./babelPluginWcHmr.js');
+const { createError } = require('../utils.js');
 
 /** @typedef {import('./babelPluginWcHmr').BabelPluginWcHmrOptions} BabelPluginWcHmrOptions */
 

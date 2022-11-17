@@ -8,7 +8,8 @@ import { defineCE } from '../src/helpers.js';
 import { fixture, fixtureSync } from '../src/fixture.js';
 import { NODE_TYPES } from '../src/lib.js';
 
-import '../../testing/register-chai-plugins.js';
+// Register chai plugins
+import '@open-wc/testing';
 
 function createParent() {
   return document.createElement('my-parent');

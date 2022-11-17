@@ -158,6 +158,48 @@ export function runScopedElementsMixinSuite({ label }) {
       expect(el.shadowRoot.children[1]).to.be.an.instanceOf(FeatureLazyB);
     });
 
+    it('supports inheritance with added scoped elements', async () => {
+      class Lorem extends LitElement {}
+      class Ipsum extends LitElement {}
+
+      class Foo extends ScopedElementsMixin(LitElement) {
+        static get scopedElements() {
+          return {
+            'x-lorem': Lorem,
+          };
+        }
+
+        render() {
+          return html`<x-lorem></x-lorem>`;
+        }
+      }
+      class Bar extends Foo {
+        static get scopedElements() {
+          return {
+            ...super.scopedElements,
+            'x-ipsum': Ipsum,
+          };
+        }
+
+        render() {
+          return html`
+            <x-lorem></x-lorem>
+            <x-ipsum></x-ipsum>
+          `;
+        }
+      }
+
+      const foo = defineCE(Foo);
+      const bar = defineCE(Bar);
+
+      const elFoo = await fixture(`<${foo}></${foo}>`);
+      const elBar = await fixture(`<${bar}></${bar}>`);
+
+      expect(elFoo.shadowRoot.children[0]).to.be.an.instanceOf(Lorem);
+      expect(elBar.shadowRoot.children[0]).to.be.an.instanceOf(Lorem);
+      expect(elBar.shadowRoot.children[1]).to.be.an.instanceOf(Ipsum);
+    });
+
     it('should avoid definition if lazy is already defined', async () => {
       class FeatureLazyA extends FeatureA {}
       const tag = defineCE(

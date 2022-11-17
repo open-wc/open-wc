@@ -141,6 +141,13 @@ const baseLibraries = [
     description: 'Library to create embedded components and data channels between them.',
     url: 'https://symbiotejs.org/',
   },
+  {
+    name: 'FicusJS',
+    package: 'ficusjs',
+    description:
+      'FicusJS is a set of lightweight functions for developing applications using web components.',
+    url: 'https://www.ficusjs.org/',
+  },
 ];
 
 module.exports = async function getBaseLibraries() {

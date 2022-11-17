@@ -1,11 +1,5 @@
 const componentLibraries = [
   {
-    name: 'aybolit',
-    url: 'https://web-padawan.github.io/aybolit/',
-    description:
-      'A growing family of elements with default styling for Bootstrap, Bulma, and Material, as well as a solid white-label basis for extending the underlying functionality with your own custom designs.',
-  },
-  {
     name: 'Auro',
     url: 'https://auro.alaskaair.com',
     description:
@@ -36,6 +30,12 @@ const componentLibraries = [
       'Crayons is a web component library for developers who build apps for Freshworks. Through pre-built components, Crayons offers control and flexibility to build rich interfaces consistent with the Freshworks product design and experience.',
   },
   {
+    name: 'curvenote.dev',
+    url: 'https://curvenote.dev/',
+    description:
+      'The goal of curvenote.dev is to provide open source tools to promote and enable interactive scientific writing, reactive documents and explorable explanations.',
+  },
+  {
     name: 'Elix',
     url: 'https://component.kitchen/elix',
     description:
@@ -60,10 +60,10 @@ const componentLibraries = [
       'The HelixUI library provides front-end developers a set of reusable CSS classes and HTML Custom Elements that adhere to Helix design standards, as outlined by Rackspace.',
   },
   {
-    name: 'Ink Components',
-    url: 'https://components.ink/',
+    name: 'Ignite UI for Web Components',
+    url: 'https://github.com/IgniteUI/igniteui-webcomponents',
     description:
-      'Web components for interactive scientific writing, reactive documents and explorable explanations. The Ink Components library can bring your math and science documents to the next level by breathing life into charts, equations, and variables that can be used throughout your application or content.',
+      'Ignite UI for Web Components is a complete library of UI components, giving you the ability to build modern web application UIs. All components are based on the Indigo.Design Design System and are backed by ready-to-use UI kits for Sketch, Adobe XD and Figma.',
   },
   {
     name: 'Io GUI',
@@ -76,12 +76,6 @@ const componentLibraries = [
     url: 'https://ionicframework.com/docs/components',
     description:
       'Take advantage of the component system that powers Ionic applications with a large ecosystem to choose from and in-depth usage instructions, no matter the framework you use.',
-  },
-  {
-    name: 'iooxa.dev',
-    url: 'https://iooxa.dev/',
-    description:
-      'The goal of [iooxa.dev](https://iooxa.dev/) is to provide open source tools to promote and enable interactive scientific writing, reactive documents and explorable explanations.',
   },
   {
     name: 'Kor UI',
@@ -102,10 +96,22 @@ const componentLibraries = [
       'Lion web components is a set of highly performant, accessible and flexible Web Components. They provide an unopinionated, white label layer that can be extended to your own layer of components.',
   },
   {
+    name: 'LRNWebcomponents',
+    url: 'https://webcomponents.psu.edu',
+    description:
+      'Developed by Penn State University, LRNWebcomponents is home to hundreds of reusable, generalized components, as well as full web editors and CMSs like HAX and HAXcms. Highly accessible video players, collapses, color abstractions and more can be found here',
+  },
+  {
     name: 'Material Web Components',
     url: 'https://material-components.github.io/material-web',
     description:
       "Material Design Components from Material Design team themselves. Stay as close as possible to the changing specification with these components from Google's own Material Design team.",
+  },
+  {
+    name: 'Nord Design System',
+    url: 'https://nordhealth.design/components/',
+    description:
+      'Nord Design System is a collection of reusable components and tools, guided by clear standards, that can be assembled together to build digital products and experiences.',
   },
   {
     name: 'Patternfly Elements',
@@ -143,6 +149,12 @@ const componentLibraries = [
       'Vaadin has a comprehensive set of beautifully crafted, performant, and adaptable UI components for modern mobile-first Web apps. They are the ideal building blocks for Progressive Web Applications.',
   },
   {
+    name: 'Vivid',
+    url: 'https://github.com/Vonage/vivid',
+    description:
+      "Vonage's web UI 🎨 toolbelt. A library that favors lock-down and coherence over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree).",
+  },
+  {
     name: 'Weightless',
     url: 'https://weightless.dev/',
     description:
@@ -158,12 +170,6 @@ const componentLibraries = [
     name: 'Zooplus Web Components',
     url: 'https://zooplus.github.io/zoo-web-components/',
     description: 'A set of web components that implement Z+ shop style guide.',
-  },
-  {
-    name: 'Vivid',
-    url: 'https://github.com/Vonage/vivid',
-    description:
-      "Vonage's web UI 🎨 toolbelt. A library that favors lock-down and coherence over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree).",
   },
 ];
 

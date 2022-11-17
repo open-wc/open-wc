@@ -22,8 +22,7 @@ const MouseEventsHaveKeyEventsRule = {
       description: 'mouse-events-have-key-events',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/mouse-events-have-key-events.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/mouse-events-have-key-events.md',
     },
     messages: {
       mouseEventsHaveKeyEvents: '@{{mouseevent}} must be accompanied by @{{keyevent}}',

@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/no-access-key');
+const rule = require('../../../lib/rules/no-access-key.js');
 
 //------------------------------------------------------------------------------
 // Tests
