@@ -48,7 +48,7 @@ Syntax highlighting from HTML and CSS in template literals should be supported o
 
 ![intellij-syntax0-highlighting](./assets/intellij-syntax-highlighting.png)
 
-Support in the IDE is partially provided via the [Styled Components & Styled JSX](https://plugins.jetbrains.com/plugin/9997-styled-components--styled-jsx) plugin which should be bundled by default. Otherwise, the ecosystem for plugins is very limited and we do not recommend any.
+Support in the IDE is partially provided via the [Styled Components & Styled JSX](https://plugins.jetbrains.com/plugin/9997-styled-components--styled-jsx) plugin. Otherwise, the ecosystem for plugins is very limited and we do not recommend any.
 
 ## Sublime Text 3
 
