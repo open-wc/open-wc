@@ -44,11 +44,11 @@ We recommend the following plugins:
 
 [Intellij IDEA](https://www.jetbrains.com/idea/) is a Java IDE for developing computer software. It is developed by JetBrains (formerly known as IntelliJ) and is available as an Apache 2 Licensed community edition and in a proprietary commercial edition.
 
-Syntax highlighting from HTML and CSS in template literals should be supported out of the box. Generic web component related functionalities such as Custom Elements support and completion is also available. You can read more about it [here](https://blog.jetbrains.com/phpstorm/2013/10/phpstorm-7-web-toolkit-javascript-templates-web-components-support/).
+Syntax highlighting from HTML in template literals should be supported out of the box. Generic web component related functionalities such as Custom Elements support and completion is also available. You can read more about it [here](https://blog.jetbrains.com/phpstorm/2013/10/phpstorm-7-web-toolkit-javascript-templates-web-components-support/).
 
 ![intellij-syntax0-highlighting](./assets/intellij-syntax-highlighting.png)
 
-Support in the IDE is partially provided via the [Styled Components & Styled JSX](https://plugins.jetbrains.com/plugin/9997-styled-components--styled-jsx) plugin. Otherwise, the ecosystem for plugins is very limited and we do not recommend any.
+Support for CSS syntax highlighting in tagged `css` literals is partially provided via the [Styled Components & Styled JSX](https://plugins.jetbrains.com/plugin/9997-styled-components--styled-jsx) plugin. Otherwise, the ecosystem for plugins is very limited and we do not recommend any.
 
 ## Sublime Text 3
 
