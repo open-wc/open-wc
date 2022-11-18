@@ -1,8 +1,8 @@
 # Change Log
 
-## 8.1.0
+## 9.0.0
 
-### Minor Changes
+### Major Changes
 
 - 6525833a: Update aria-query to v5, fix switch role rules
 - 9779c746: Update eslint-plugin-html to 7.1.0
