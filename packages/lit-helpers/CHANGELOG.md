@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.5.1
+
+### Patch Changes
+
+- 7c9e5c42: Include spread types and exclude their TS source
+
 ## 0.5.0
 
 ### Minor Changes

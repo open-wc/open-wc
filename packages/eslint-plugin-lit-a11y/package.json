@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-lit-a11y",
-  "version": "2.2.3",
+  "version": "2.3.0",
   "description": "linting plugin for lit-a11y",
   "license": "ISC",
   "repository": {

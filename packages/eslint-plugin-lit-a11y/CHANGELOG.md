@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.3.0
+
+### Minor Changes
+
+- 6525833a: Update aria-query to v5, fix switch role rules
+
 ## 2.2.3
 
 ### Patch Changes
