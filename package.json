@@ -48,7 +48,7 @@
     "@rollup/plugin-commonjs": "^18.0.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.2.1",
-    "@types/aria-query": "^4.2.1",
+    "@types/aria-query": "^5.0.1",
     "@types/babel__core": "^7.1.14",
     "@types/babel__generator": "^7.6.2",
     "@types/babel__parser": "^7.1.1",
