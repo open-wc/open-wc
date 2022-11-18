@@ -171,6 +171,11 @@ const componentLibraries = [
     url: 'https://zooplus.github.io/zoo-web-components/',
     description: 'A set of web components that implement Z+ shop style guide.',
   },
+  {
+    name: 'bay.js',
+    url: 'https://github.com/Dunks1980/bay.js',
+    description: "An easy to use, lightweight library for web-components. It doesn't need a build step but can be included in a build step if you want to. It's a great way to create reusable components for your projects. It's available as a NPM package and doesn't use any dependencies and is 11kb minified. It also doesn't use eval or new Function so can be used in strict CSP polices without a build step. For documentation and demos go to Bayjs.org.",
+  },
 ];
 
 module.exports = async function getComponentLibraries() {
