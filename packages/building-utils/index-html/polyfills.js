@@ -156,8 +156,7 @@ function getPolyfills(config) {
       instructions.push({
         name: 'es-module-shims',
         test: "'noModule' in HTMLScriptElement.prototype",
-        path: require.resolve('es-module-shims/dist/es-module-shims.min.js'),
-        sourcemapPath: require.resolve('es-module-shims/dist/es-module-shims.min.js.map'),
+        path: require.resolve('es-module-shims/dist/es-module-shims.js'),
         module: true,
       });
     } catch (error) {

@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.21.0
+
+### Minor Changes
+
+- 2a32c226: Update es-module-shims dependency to latest
+- aefc03a5: Update lru-cache dependency to 6.0.0
+
 ## 2.20.1
 
 ### Patch Changes
