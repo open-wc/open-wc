@@ -30,10 +30,10 @@ const indexHTML = `
 </html>
 `;
 
-function testSnapshot(name, config) {
+async function testSnapshot(name, config) {
   const snapshotPath = path.join(__dirname, 'snapshots', 'create-index-html', `${name}.html`);
   const ast = parse(indexHTML);
-  const result = createIndexHTML(ast, config);
+  const result = await createIndexHTML(ast, config);
 
   if (updateSnapshots) {
     fs.writeFileSync(snapshotPath, result.indexHTML, 'utf-8');
@@ -44,33 +44,33 @@ function testSnapshot(name, config) {
 }
 
 describe('generate-index-html', () => {
-  it('generates a index.html with module', () => {
-    testSnapshot('module', {
+  it('generates a index.html with module', async () => {
+    await testSnapshot('module', {
       entries: { type: 'module', files: ['app.js'] },
     });
   });
 
-  it('generates a index.html with a script entry', () => {
-    testSnapshot('script', {
+  it('generates a index.html with a script entry', async () => {
+    await testSnapshot('script', {
       entries: { type: 'script', files: ['app.js', 'shared.js'] },
     });
   });
 
-  it('generates a index.html with a system entry', () => {
-    testSnapshot('system', {
+  it('generates a index.html with a system entry', async () => {
+    await testSnapshot('system', {
       entries: { type: 'system', files: ['app.js', 'shared.js'] },
     });
   });
 
-  it('generates a index.html with a module and legacy system', () => {
-    testSnapshot('module-system', {
+  it('generates a index.html with a module and legacy system', async () => {
+    await testSnapshot('module-system', {
       entries: { type: 'module', files: ['app.js'] },
       legacyEntries: { type: 'system', files: ['legacy/app.js'] },
     });
   });
 
-  it('generates a index.html with core-js polyfills', () => {
-    testSnapshot('polyfill-core-js', {
+  it('generates a index.html with core-js polyfills', async () => {
+    await testSnapshot('polyfill-core-js', {
       entries: { type: 'module', files: ['app.js'] },
       polyfills: {
         coreJs: true,
@@ -78,8 +78,8 @@ describe('generate-index-html', () => {
     });
   });
 
-  it('generates a index.html with webcomponents polyfills', () => {
-    testSnapshot('polyfill-wc', {
+  it('generates a index.html with webcomponents polyfills', async () => {
+    await testSnapshot('polyfill-wc', {
       entries: { type: 'module', files: ['app.js'] },
       polyfills: {
         webcomponents: true,
@@ -87,8 +87,8 @@ describe('generate-index-html', () => {
     });
   });
 
-  it('generates a index.html with dynamic import polyfills', () => {
-    testSnapshot('dynamic-import', {
+  it('generates a index.html with dynamic import polyfills', async () => {
+    await testSnapshot('dynamic-import', {
       entries: { type: 'module', files: ['app.js'] },
       polyfills: {
         dynamicImport: true,
@@ -96,8 +96,8 @@ describe('generate-index-html', () => {
     });
   });
 
-  it('generates a index.html with multiple polyfills', () => {
-    testSnapshot('polyfill-multiple', {
+  it('generates a index.html with multiple polyfills', async () => {
+    await testSnapshot('polyfill-multiple', {
       entries: { type: 'module', files: ['app.js'] },
       polyfills: {
         coreJs: true,
@@ -120,8 +120,8 @@ describe('generate-index-html', () => {
     });
   });
 
-  it('generates a index.html with legacy and polyfills', () => {
-    testSnapshot('polyfill-multiple-legacy', {
+  it('generates a index.html with legacy and polyfills', async () => {
+    await testSnapshot('polyfill-multiple-legacy', {
       entries: { type: 'module', files: ['app.js'] },
       legacyEntries: { type: 'system', files: ['legacy/app.js'] },
       polyfills: {

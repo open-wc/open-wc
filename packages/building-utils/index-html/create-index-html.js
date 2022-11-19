@@ -151,9 +151,9 @@ function createScripts(polyfillsConfig, polyfills, entries, needsLoader) {
  *
  * @param {ASTNode} baseIndex the base index.html
  * @param {Partial<CreateIndexHTMLConfig>} config
- * @returns {{ indexHTML: string, files: FileResult[] }} the updated index html
+ * @returns {Promise<{ indexHTML: string, files: FileResult[] }>} the updated index html
  */
-function createIndexHTML(baseIndex, config) {
+async function createIndexHTML(baseIndex, config) {
   const localConfig = deepmerge(defaultConfig, config);
   if (!baseIndex) {
     throw new Error('Missing baseIndex.');
@@ -241,7 +241,10 @@ function createIndexHTML(baseIndex, config) {
   }
 
   const serialized = serialize(baseIndex);
-  const result = localConfig.minify ? minifyIndexHTML(serialized, localConfig.minify) : serialized;
+  let result = serialized;
+  if (localConfig.minify) {
+    result = await minifyIndexHTML(serialized, localConfig.minify);
+  }
 
   polyfills.forEach(polyfill => {
     files.push({

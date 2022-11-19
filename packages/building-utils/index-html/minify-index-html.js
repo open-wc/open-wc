@@ -1,4 +1,4 @@
-const htmlMinifier = require('html-minifier-terser');
+const { minify } = require('html-minifier-terser');
 
 const defaultMinifyHTMLConfig = {
   collapseWhitespace: true,
@@ -15,8 +15,8 @@ const defaultMinifyHTMLConfig = {
  * @param {string} htmlString
  * @param {object} config
  */
-function minifyIndexHTML(htmlString, config = defaultMinifyHTMLConfig) {
-  return htmlMinifier.minify(htmlString, config);
+async function minifyIndexHTML(htmlString, config = defaultMinifyHTMLConfig) {
+  return minify(htmlString, config);
 }
 
 module.exports.minifyIndexHTML = minifyIndexHTML;
