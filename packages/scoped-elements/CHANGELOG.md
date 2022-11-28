@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.1.4
+
+### Patch Changes
+
+- 89fb5601: Add type entrypoint which enables you to get more advanced type information like
+
+  ```ts
+  import { ScopedElementsHost } from '@open-wc/scoped-elements/types.js';
+  ```
+
 ## 2.1.3
 
 ### Patch Changes
