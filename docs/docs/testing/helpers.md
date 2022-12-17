@@ -302,8 +302,8 @@ it('can instantiate an element with properties', async () => {
   fixtureCleanup();
 }
 
-// Alternatively, you can add the fixtureCleanup in the afterEach function, but note that this is exactly what the automatically registered side-effect does.
-afterEach(() => {
+// Alternatively, you can add the fixtureCleanup in the teardown function, but note that this is exactly what the automatically registered side-effect does.
+teardown(() => {
   fixtureCleanup();
 });
 ```
