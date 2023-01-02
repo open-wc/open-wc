@@ -6668,6 +6668,14 @@ eslint-plugin-html@^7.1.0:
   dependencies:
     htmlparser2 "^8.0.1"
 
+eslint-plugin-import-exports-imports-resolver@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-import-exports-imports-resolver/-/eslint-plugin-import-exports-imports-resolver-1.0.1.tgz#18c6fb9a2ea6c07cc3474e840fe3f1a01fb73f7e"
+  integrity sha512-4Gqp25iQSS3k8o0/zKxymWbnDW8KIqkubrOOy67IU9Qmhmkq4AiuMXbjx9O9AhYG7Vl94ZQFBcpfwLaQkINv2w==
+  dependencies:
+    resolve.exports "^1.1.0"
+    resolve.imports "^1.2.6"
+
 eslint-plugin-import@^2.26.0:
   version "2.26.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.26.0.tgz#f812dc47be4f2b72b478a021605a59fc6fe8b88b"
@@ -11904,6 +11912,11 @@ pathval@^1.1.1:
   resolved "https://registry.yarnpkg.com/pathval/-/pathval-1.1.1.tgz#8534e77a77ce7ac5a2512ea21e0fdb8fcf6c3d8d"
   integrity sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==
 
+pattern-key-compare@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/pattern-key-compare/-/pattern-key-compare-1.0.0.tgz#eb564d520cc8a25d9fe0c2dc57bc969a946fc45c"
+  integrity sha512-7wi8a7OFmdx4Hx31+KY9kcD7gO+MWWupXtlAx7ANqoE8Pypl501FsDAPX2tSYLOuafED82A0Mv3lzeNfn82Jlg==
+
 pend@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
@@ -12976,6 +12989,18 @@ resolve-url@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
   integrity sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
+
+resolve.exports@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/resolve.exports/-/resolve.exports-1.1.0.tgz#5ce842b94b05146c0e03076985d1d0e7e48c90c9"
+  integrity sha512-J1l+Zxxp4XK3LUDZ9m60LRJF/mAe4z6a4xyabPHk7pvK5t35dACV32iIjJDFeWZFfZlO29w6SZ67knR0tHzJtQ==
+
+resolve.imports@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/resolve.imports/-/resolve.imports-1.2.6.tgz#7c0547a531c04168dc3a53cb858ad0595f50c408"
+  integrity sha512-oS6NEDMwJKc9DG6xrnt1rl7o42XB7OdTTPCYa+/VhNvEgCiugxfrFWWzHgup4APM6wbRX7IjlHnV9cipyTKzXQ==
+  dependencies:
+    pattern-key-compare "^1.0.0"
 
 resolve@^1.1.6, resolve@^1.10.0, resolve@^1.12.0, resolve@^1.14.2, resolve@^1.17.0, resolve@^1.19.0, resolve@^1.20.0, resolve@^1.22.0, resolve@^1.3.2:
   version "1.22.1"
