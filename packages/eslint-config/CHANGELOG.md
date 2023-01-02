@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0
+
+### Minor Changes
+
+- 8e2b6b4e: feat(eslint-config): add resolver for package exports/imports for eslint-plugin-import
+
 ## 9.0.0
 
 ### Major Changes
