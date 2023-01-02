@@ -81,6 +81,11 @@ module.exports = {
     'lit/no-legacy-template-syntax': 'error',
     'lit/no-private-properties': 'error',
   },
+  settings: {
+    'import/resolver': {
+      [require.resolve('eslint-plugin-import-exports-imports-resolver')]: {},
+    },
+  },
   overrides: [
     {
       files: [
