@@ -80,6 +80,7 @@ module.exports = {
     'lit/no-invalid-escape-sequences': 'error',
     'lit/no-legacy-template-syntax': 'error',
     'lit/no-private-properties': 'error',
+    'lit/no-native-attributes': 'error',
   },
   settings: {
     'import/resolver': {
