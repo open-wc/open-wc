@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.2.0
+
+### Minor Changes
+
+- e5fa8a8f: feat: update eslint-plugin-lit
+
 ## 9.1.0
 
 ### Minor Changes
