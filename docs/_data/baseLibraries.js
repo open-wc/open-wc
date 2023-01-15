@@ -152,7 +152,7 @@ const baseLibraries = [
     name: 'bay.js',
     package: '@dunks1980/bay.js',
     description:
-      "An easy to use, lightweight library for web-components. It doesn't need a build step but can be included in a build step if you want to. It's a great way to create reusable components for your projects. It's available as a NPM package and doesn't use any dependencies and is 11kb minified. It also doesn't use eval or new Function so can be used in strict CSP polices without a build step. For documentation and demos go to Bayjs.org.",
+      "An easy to use, lightweight library for web-components that doesn't need a build step but can be included in a build step if you want to. It's a great way to create reusable components for your projects. It's available as a NPM package or module and doesn't use any dependencies and is around 4.5kb minified + gzipped. It also doesn't use eval or new Function so can be used in strict CSP polices without a build step. For documentation and demos go to Bayjs.org.",
     url: 'https://bayjs.org/examples/index.html',
   },
 ];
