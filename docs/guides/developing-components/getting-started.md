@@ -1,4 +1,4 @@
-# Developing Components >> Getting Started ||10
+# Developing Components: Getting Started
 
 To get started building web components, we recommend using our generator to set up your project.
 
@@ -34,6 +34,6 @@ We follow many of the development practices defined by [Modern Web](http://moder
 
 ## Base libraries
 
-Our generator sets you up with a component built with [lit-html](http://lit-html.polymer-project.org/) and [lit-element](https://lit-element.polymer-project.org/) as base libraries. We recommend this as a general starting point. `lit-html` and `lit-element` have a strong community, making it easy to find help and examples. It is actively maintained and creates a good balance between performance, developer experience and feature richness.
+Our generator sets you up with a component built with [Lit](https://lit.dev/) as base library. We recommend this as a general starting point. `Lit` has a strong community, making it easy to find help and examples. It is actively maintained and creates a good balance between performance, developer experience and feature richness.
 
 Other base libraries excel at other points and could be a great fit for for your project as well. Check the [base libraries](../community/base-libraries.md) page for alternative options.
