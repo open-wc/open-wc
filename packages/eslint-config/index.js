@@ -4,8 +4,17 @@ module.exports = {
     require.resolve('./src/eslint-plugin-wc-export'),
     'plugin:lit-a11y/recommended',
   ],
+  /**
+   * When import assertions are stage 4 and supported by eslint by default,
+   * we can remove the babel parser, `requireConfigFile` and `babelOptions` again
+   */
+  parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 'latest',
+    requireConfigFile: false,
+    babelOptions: {
+      plugins: ['@babel/plugin-syntax-import-assertions'],
+    },
   },
   env: {
     browser: true,
