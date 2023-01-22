@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.2.2
+
+### Patch Changes
+
+- f047282c: feat(eslint-config): support import assertions
+
 ## 9.2.1
 
 ### Patch Changes

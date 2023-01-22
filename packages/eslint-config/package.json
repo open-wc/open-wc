@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/eslint-config",
-  "version": "9.2.1",
+  "version": "9.2.2",
   "publishConfig": {
     "access": "public"
   },
