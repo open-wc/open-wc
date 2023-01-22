@@ -5,7 +5,7 @@ module.exports = {
     'plugin:lit-a11y/recommended',
   ],
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 'latest',
   },
   env: {
     browser: true,
