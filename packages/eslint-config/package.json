@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/eslint-config",
-  "version": "9.2.0",
+  "version": "9.2.2",
   "publishConfig": {
     "access": "public"
   },
@@ -32,6 +32,8 @@
     "eslint-plugin-wc": "^1.2.0"
   },
   "dependencies": {
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/plugin-syntax-import-assertions": "^7.20.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-html": "^7.1.0",
     "eslint-plugin-import": "^2.26.0",
