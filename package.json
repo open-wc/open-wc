@@ -46,7 +46,7 @@
     "@changesets/cli": "^2.25.2",
     "@esm-bundle/chai": "^4.3.4-fix.0",
     "@microsoft/fast-element": "^1.11.0",
-    "@rollup/plugin-commonjs": "^18.0.0",
+    "@rollup/plugin-commonjs": "^19.0.2",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.2.1",
     "@types/aria-query": "^5.0.1",
