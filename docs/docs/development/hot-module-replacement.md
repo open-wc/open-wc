@@ -18,7 +18,7 @@ Install the package:
 npm i --save-dev @open-wc/dev-server-hmr@next
 ```
 
-Add the plugin to your `web-dev-server-config.mjs`:
+Add the plugin to your `web-dev-server.config.mjs`:
 
 ```js
 import { hmrPlugin } from '@open-wc/dev-server-hmr';
