@@ -71,7 +71,7 @@
     "browserslist": "^4.16.5",
     "deepmerge": "^4.2.2",
     "magic-string": "^0.25.7",
-    "parse5": "^5.1.1",
+    "parse5": "^6.0.1",
     "regenerator-runtime": "^0.13.7",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-workbox": "^6.0.0",
