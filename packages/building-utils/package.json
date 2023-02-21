@@ -33,7 +33,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@webcomponents/shadycss": "^1.10.2",
     "@webcomponents/webcomponentsjs": "^2.5.0",
-    "arrify": "^2.0.1",
+    "arrify": "^3.0.0",
     "browserslist": "^4.16.5",
     "chokidar": "^3.4.3",
     "clean-css": "^5.3.1",
