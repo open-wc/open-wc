@@ -12,16 +12,16 @@ socialMediaImage: /blog/testing-web-components-with-web-test-runner/images/scree
 
 So, you write web components and you're interested in expanding the work you put into unit testing them? Well, you've come to the right place. This is just the beginning, but _Testing Web Components: the Series_ is going to lay out for you how [Open Web Components](https://open-wc.org/) and [Modern Web](https://modern-web.dev/) help you to do just that. We'll start with how the Open Web Components [generator](https://open-wc.org/guides/developing-components/getting-started/) can get you up and running in no time with [`@web/test/runner`](https://modern-web.dev/docs/test-runner/overview/) right out of the box.
 
-While the component and tests that come with the generator are a great place to get started, in future posts we'll dig even deeper into what it means to test your web components in real browsers. Along the way we'll focus on a number of realities around unit testing web interfaces, like:
+While the component and tests that come with the generator are a great place to get started, in future posts we'll dig even deeper into what it means to test your web components in real browsers. Along the way, we'll focus on several realities around unit testing web interfaces, like:
 
 - the capabilities (and limitations) of testing UI from the JS thread
-- how you can test more like a user will consumer your component, whether that's with a mouse, a keyboard, or a little slower the normal JS execution time
+- how you can test more like a user will consume your component, whether that's with a mouse, a keyboard, or a little slower the normal JS execution time
 - what sort of accessibility guarantees you can test at unit time
 - and more...
 
 ## Before we get started
 
-To prepare for, let's take a look at the component that comes with the Open Web Components generator and the tests that are already written for it. To get started run `npm init @open-wc@latest` in your terminal. _Be aware that `npm init` has a pretty sticky cache. If you've run the command before, the inclusion of `@latest` will ensure you get the most current output._ We'll be **scaffolding a new project**, in which we will build a **web component**, to which we'll want to add **testing**, all of which we'll do in **Typescript**, and will call our component `testing-components`. If you give the generator permission to write this content to disk and install dependencies with NPM, the terminal output should look like the following:
+To prepare, let's take a look at the component that comes with the Open Web Components generator and the tests that are already written for it. To get started run `npm init @open-wc@latest` in your terminal. _Be aware that `npm init` has a pretty sticky cache. If you've run the command before, the inclusion of `@latest` will ensure you get the most current output._ We'll be **scaffolding a new project**, in which we will build a **web component**, to which we'll want to add **testing**, all of which we'll do in **Typescript**, and will call our component `testing-components`. If you give the generator permission to write this content to disk and install dependencies with NPM, the terminal output should look like the following:
 
 ```bash
 npm init @open-wc@latest
@@ -84,8 +84,8 @@ The first thing you'll notice are the choices from the Open Web Components gener
 Then, you'll see what we did include:
 
 - the `demo` directory holds a very simple `index.html` that is served by `@web/dev-server` via the `npm start` command, if you'd like to check out the web component that comes stock with the generator in action
-- the `dist` directory holds the JS output from running `tsc` against our Typescript source, this command is include before almost all other scripts you may choose to run, so you shouldn't ever need to do so directly
-- the `src` directory hold our web component which is broken into an `index.js` re-exporting the class definition exported from `TestingComponents.ts` as well as `testing-components.ts` that specifically registers that same class as the `testing-component` custom element name
+- the `dist` directory holds the JS output from running `tsc` against our Typescript source, this command is included before almost all other scripts you may choose to run, so you shouldn't ever need to do so directly
+- the `src` directory holds our web component which is broken into an `index.js` re-exporting the class definition exported from `TestingComponents.ts` as well as `testing-components.ts` that specifically registers that same class as the `testing-component` custom element name
 - the `test` directory with one test file, `testing-components.test.ts`, that can be run via the `npm test` command
 
 Don't let me stop you, now. I know you want to see for yourself, "will it blend?". Give `npm start` a run... you'll get something like:
@@ -97,7 +97,7 @@ Don't let me stop you, now. I know you want to see for yourself, "will it blend?
 <figcaption>The initial output of our `<testing-components>` element, saying "Hello owc World! Nr. 5!" with a button that says "Increment"</figcaption>
 </figure>
 
-You can also give the tests a blend with the `npm test` command. All things having gone as planned the output should be:
+You can also give the tests a blend with the `npm test` command. If all things have gone as planned the output should be:
 
 ```bash
 npm test
@@ -119,7 +119,7 @@ View full coverage report at coverage/lcov-report/index.html
 Finished running tests in 9s, all tests passed! 🎉
 ```
 
-So, we've got a pretty minimal web component and four passing tests. Let's dig in a little further to see what have we gotten for a trouble and what is actually under test by default here.
+So, we've got a pretty minimal web component and four passing tests. Let's dig in a little further to see what have we gotten for our trouble and what is actually under test by default here.
 
 ## The `<testing-components>` element
 
@@ -155,23 +155,23 @@ export class TestingComponents extends LitElement {
 }
 ```
 
-The generated Typescript above heavily relies on [Lit](https://lit.dev/) to keep your web component both fast and simple. Here are some important facts to take away from this code in regards to the tests we'll investigate next:
+The generated Typescript above heavily relies on [Lit](https://lit.dev/) to keep your web component both fast and simple. Here are some important facts to take away from this code regarding the tests we'll investigate next:
 
 - the class definition leverages the [`LitElement`](https://lit.dev/docs/api/LitElement/) base class, so check out [lit.dev](https://lit.dev) for more information about what that means when we get to adding new functionality in later installments
-- the [`property` decorator](https://lit.dev/docs/api/decorators/#property) it being leveraged to upgrade a couple of properties to being both reactive and bound to attributes on the element
+- the [`property` decorator](https://lit.dev/docs/api/decorators/#property) is being leveraged to upgrade a couple of properties to be both reactive and bound to attributes on the element
 - the [`html` template literal](https://lit.dev/docs/templates/overview/) from is being leveraged to performantly render out template
-- the [`@` sigil](https://lit.dev/docs/components/events/#listening-to-events) is being leveraged to declaratively listen to events on elements within out template
+- the [`@` sigil](https://lit.dev/docs/components/events/#listening-to-events) is being leveraged to declaratively listen to events on elements within our template
 
 ## The tests
 
 In our tests, a web component defined by our `TestingComponents` class is ensured to have the following characteristics:
 
 1. it has a default title "Hey there" and counter 5
-2. it increases the counter on button click
+2. it increases the counter on button clicks
 3. it can override the title via attribute
 4. it asses the a11y audit
 
-Defaults, interactivity, customization, and accessibility, these form a great baseline for testing most web UI, so let's look closer at how this is done for our `&lt;testing-components&gt;` element, and what else might be useful in these areas.
+Defaults, interactivity, customization, and accessibility, form a great baseline for testing most web UI, so let's look closer at how this is done for our `&lt;testing-components&gt;` element, and what else might be useful in these areas.
 
 ### Defaults
 
@@ -192,7 +192,7 @@ Testing that a property equals its default value by default may feel a bit super
 
 ### Interactivity
 
-When testing web UI it is important to think of your test inputs as a future visitor interacting with your web component or a future developer building with your web component. A visitor can interact with your code in a number of ways, including a [mouse](https://modern-web.dev/docs/test-runner/commands/#send-mouse) and a [keyboard](https://modern-web.dev/docs/test-runner/commands/#send-keys), and `@web/test-runner` offers some powerful ways to emulate those interactions that we will investigate, later. This generated test acts as a developer building with your web component; leveraging the fact that `@web/test-runner` exists on the JS thread of an actual browser to leverage element APIs like `querySelector()` and `click()` within your test code:
+When testing web UI it is important to think of your test inputs as a future visitor interacting with your web component or a future developer building with your web component. A visitor can interact with your code in many ways, including a [mouse](https://modern-web.dev/docs/test-runner/commands/#send-mouse) and a [keyboard](https://modern-web.dev/docs/test-runner/commands/#send-keys), and `@web/test-runner` offers some powerful ways to emulate those interactions that we will investigate, later. This generated test acts as a developer building with your web component; leveraging the fact that `@web/test-runner` exists on the JS thread of an actual browser to leverage element APIs like `querySelector()` and `click()` within your test code:
 
 ```ts
 it('increases the counter on button click', async () => {
@@ -203,13 +203,13 @@ it('increases the counter on button click', async () => {
 });
 ```
 
-If you're wondering why someone building with your web component might reach into your element and manually `click()` something within your element, you're probably not the only one. However, at test time, doing this can sometimes be the only way to initiate interactions from the JS context. Other times, it can be a clear sign the the API of your element hasn't fully considered the requirements of its public interface.
+If you're wondering why someone building with your web component might reach into your element and manually `click()` something within your element, you're probably not the only one. However, at test time, doing this can sometimes be the only way to initiate interactions from the JS context. Other times, it can be a clear sign the API of your element hasn't fully considered the requirements of its public interface.
 
 Is clicking this button something that a consuming application should be able to do without human intervention? The answer may be "no", as is the case in the generated code, but, if the answer is "yes", you may want to refactor your element to prevent consuming developers from having to reach into your web component in this way. Understanding the various techniques of testing a web component can help surface these questions, and their answers before your code ships to consumers.
 
 ### Customization
 
-By using the `property` decorator in our class definition we not only upgraded those properties to be reactive, we bound those properties to attributes on our custom element. In this way, both `title` and `counter` can be supplied new values via the attributes of the same name. The following test ensures that this relationship is maintained for the `title` attribute/property:
+By using the `property` decorator in our class definition we not only upgraded those properties to be reactive, but we also bound those properties to attributes on our custom element. In this way, both `title` and `counter` can be supplied new values via the attributes of the same name. The following test ensures that this relationship is maintained for the `title` attribute/property:
 
 ```ts
 it('can override the title via attribute', async () => {
@@ -225,7 +225,7 @@ If you are one for being "complete", the same could be done for `counter` as wel
 
 ### Accessibility (a11y)
 
-Not only does the Open Web Components project provide the generator that we are basing our web component on in this conversations, but they also vend [Chai A11y aXe](https://open-wc.org/docs/testing/chai-a11y-axe/) which binds [`axe-core`](https://github.com/dequelabs/axe-core) with [Chai](https://www.chaijs.com/) assertions for easy consumption in the `@web/test-runner` environment. This means that you can use the industry standard accessibility testing engine to confirm the the accessibility of you web component at unit test time. This looks like the following:
+Not only does the Open Web Components project provide the generator that we are basing our web component on in this conversation, but they also vend [Chai A11y aXe](https://open-wc.org/docs/testing/chai-a11y-axe/) which binds [`axe-core`](https://github.com/dequelabs/axe-core) with [Chai](https://www.chaijs.com/) assertions for easy consumption in the `@web/test-runner` environment. This means that you can use the industry standard accessibility testing engine to confirm the accessibility of your web component at unit test time. This looks like the following:
 
 ```ts
 it('passes the a11y audit', async () => {
@@ -235,24 +235,24 @@ it('passes the a11y audit', async () => {
 });
 ```
 
-**Important note:** `expect().to.be.accessible()` is an asynchronous command. If you do not `await` it you will get false positives in your test results.
+**Important note:** `expect().to.be.accessible()` is an asynchronous command. If you do not `await` this expectation you will get false positives in your test results.
 
-But, when you do `await` it, ensuring the snapshot accessibility of your custom element is just that simple. I saw "snapshot" here in that `.accessible()` knows nothing about your web component other than the state from which you called it. That means if further interactions with the element change the accessibility model, you should be sure to add a test or tests that takes your web component into that state and confirms its accessibility in that context. In future articles, we'll take a close look at what that means, a well as the difference between a component possessing an accessible tree of DOM nodes and specifically delivering a unique accessibility tree to assistive technology.
+But, when you do `await` it, ensuring the snapshot accessibility of your custom element is just that simple. I saw "snapshot" here in that `.accessible()` knows nothing about your web component other than the state from which you called it. That means if further interactions with the element change the accessibility model, you should be sure to add a test, or tests, that takes your web component into that state and confirms its accessibility in that context. In future articles, we'll take a close look at what that means, as well as the difference between a component possessing an accessible tree of DOM nodes and specifically delivering a unique accessibility tree to assistive technology.
 
 ## What have we got?
 
-Now you've got a pretty well tested `<testing-components>` element that features a `title` and `counter` attribute that delivers a button to your consumers that allows them to increment the counter. What more could you want?
+Now you've got a pretty well-tested `<testing-components>` element that features a `title` and `counter` attribute that delivers a button to your consumers that allows them to increment the counter. What more could you want?
 
 Oh... a lot?
 
-That seems fair. There isn't a lot in the component we've generated, which is good because it means that were you actually starting a new project with actual requirements there wouldn't be much to take away to start focusing on those. When we come back together in the future, we'll start from right here where we've left off and go deeper on testing web components in browser with `@web/test-runner`. Hopefully you've got at least a rough handle on how things come together in this area and are excited to come along for the ride.
+That seems fair. There isn't a lot in the component we've generated, which is good because it means that were you actually starting a new project with actual requirements there wouldn't be much to take away to start focusing on those. When we come back together in the future, we'll start from right here where we've left off and go deeper into testing web components in the browser with `@web/test-runner`. Hopefully, you've got at least a rough handle on how things come together in this area and are excited to come along for the ride.
 
 ## What's next...
 
-Now we know how to get started with a new web component project leveraging [Open Web Components](https://open-wc.org/) [generator](https://open-wc.org/guides/developing-components/getting-started/) and understand the basics of testing the defaults, interactivity, customization and accessibility of that element with [`@web/test-runner`](https://modern-web.dev/docs/test-runner/overview/), but, in the long story of UI development and testing, we're just getting started. Over the course of future conversations, we'll be digging into a number of topics important to testing web components, like:
+Now we know how to get started with a new web component project leveraging [Open Web Components](https://open-wc.org/) [generator](https://open-wc.org/guides/developing-components/getting-started/) and understand the basics of testing the defaults, interactivity, customization and accessibility of that element with [`@web/test-runner`](https://modern-web.dev/docs/test-runner/overview/), but, in the long story of UI development and testing, we're just getting started. Throughout of future conversations, we'll be digging into more topics important to testing web components, like:
 
 - the capabilities (and limitations) of testing UI from the JS thread
-- how you can test more like a user will consumer your component, whether that's with a mouse, a keyboard, or a little slower the normal JS execution time
+- how you can test more like a user will consume your component, whether that's with a mouse, a keyboard, or a little slower the normal JS execution time
 - what sort of accessibility guarantees you can test at unit time
 - testing with DOM snapshots
 - testing for visual regression
