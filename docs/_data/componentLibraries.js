@@ -124,6 +124,12 @@ const componentLibraries = [
     description:
       'Shoelace provides a collection of professionally designed, every day UI components built on a framework-agnostic technology. Every web component is built with accessibility and developer experience in mind.',
   },
+   {
+    name: 'Shadow Container Query Polyfill',
+    url: 'https://github.com/Marshal27/shadow-container-query-polyfill',
+    description:
+      "Container Queries something you're looking forward to? Are you currently working with Web Components/Shadow DOM and don't want to wait for native browser support and or need support for legacy browser versions? Check out the shadow-container-query-polyfill repo which adds Container Query support to the GoogleChromeLabs/container-query-polyfill for Shadow DOM.",
+  },
   {
     name: 'Smart HTML Elements',
     url: 'https://www.htmlelements.com',
