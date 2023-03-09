@@ -1,6 +1,6 @@
 ---
 title: 'Testing Web Components with @web/test-runner'
-pageTitle: 'Testing Web Components with @web/test-runner`='
+pageTitle: 'Testing Web Components with @web/test-runner'
 published: true
 description: 'Generate a web component with the Open WC generator and test it with @web/test-runner'
 tags: [webcomponents, javascript, testing, wtr]
@@ -138,7 +138,7 @@ export class TestingComponents extends LitElement {
     }
   `;
 
-  @property({ type: String }) title = 'Hey there';
+  @property({ type: String }) header = 'Hey there';
 
   @property({ type: Number }) counter = 5;
 
@@ -148,7 +148,7 @@ export class TestingComponents extends LitElement {
 
   render() {
     return html`
-      <h2>${this.title} Nr. ${this.counter}!</h2>
+      <h2>${this.header} Nr. ${this.counter}!</h2>
       <button @click=${this.__increment}>increment</button>
     `;
   }
@@ -166,24 +166,24 @@ The generated Typescript above heavily relies on [Lit](https://lit.dev/) to keep
 
 In our tests, a web component defined by our `TestingComponents` class is ensured to have the following characteristics:
 
-1. it has a default title "Hey there" and counter 5
+1. it has a default header "Hey there" and counter 5
 2. it increases the counter on button clicks
-3. it can override the title via attribute
+3. it can override the header via attribute
 4. it asses the a11y audit
 
 Defaults, interactivity, customization, and accessibility, form a great baseline for testing most web UI, so let's look closer at how this is done for our `&lt;testing-components&gt;` element, and what else might be useful in these areas.
 
 ### Defaults
 
-As we saw above, the `@property` decorator is being leveraged to create reactive properties on our class definition. `title` is being decorated with `type: string` meaning when its value is accepted from the attribute `title` the value will be coerced to a string. Similarly, the `counter` is decorated with `type: number`, which means values applied to the `counter` attribute will be coerced to a number. A handful of these conversions are handled out of the box by Lit, but in case you have something more complex in mind, learn about [custom converters](https://lit.dev/docs/components/properties/#conversion-converter) to solve those use cases.
+As we saw above, the `@property` decorator is being leveraged to create reactive properties on our class definition. `header` is being decorated with `type: string` meaning when its value is accepted from the attribute `header` the value will be coerced to a string. Similarly, the `counter` is decorated with `type: number`, which means values applied to the `counter` attribute will be coerced to a number. A handful of these conversions are handled out of the box by Lit, but in case you have something more complex in mind, learn about [custom converters](https://lit.dev/docs/components/properties/#conversion-converter) to solve those use cases.
 
 Numbers and strings being pretty de rigueur, the following test confirms that those values are actually applied to the custom element when attached to the DOM:
 
 ```ts
-it('has a default title "Hey there" and counter 5', async () => {
+it('has a default header "Hey there" and counter 5', async () => {
   const el = await fixture<TestingComponents>(html`<testing-components></testing-components>`);
 
-  expect(el.title).to.equal('Hey there');
+  expect(el.header).to.equal('Hey there');
   expect(el.counter).to.equal(5);
 });
 ```
@@ -209,19 +209,19 @@ Is clicking this button something that a consuming application should be able to
 
 ### Customization
 
-By using the `property` decorator in our class definition we not only upgraded those properties to be reactive, but we also bound those properties to attributes on our custom element. In this way, both `title` and `counter` can be supplied new values via the attributes of the same name. The following test ensures that this relationship is maintained for the `title` attribute/property:
+By using the `property` decorator in our class definition we not only upgraded those properties to be reactive, but we also bound those properties to attributes on our custom element. In this way, both `header` and `counter` can be supplied new values via the attributes of the same name. The following test ensures that this relationship is maintained for the `header` attribute/property:
 
 ```ts
-it('can override the title via attribute', async () => {
+it('can override the header via attribute', async () => {
   const el = await fixture<TestingComponents>(
-    html`<testing-components title="attribute title"></testing-components>`,
+    html`<testing-components header="attribute header"></testing-components>`,
   );
 
-  expect(el.title).to.equal('attribute title');
+  expect(el.header).to.equal('attribute header');
 });
 ```
 
-If you are one for being "complete", the same could be done for `counter` as well. This test specifically leverages the `html` template literal to create an instance of the `<testing-components>` element and applies the value `attribute title` as an attribute to that element. You could similarly apply that attribute manually by leveraging the element reference maintained in the `el` variable; this would be the equivalent imperative operation `el.setAttribute('title', 'attribute title');`, if you were one for being "complete"...
+If you are one for being "complete", the same could be done for `counter` as well. This test specifically leverages the `html` template literal to create an instance of the `<testing-components>` element and applies the value `attribute header` as an attribute to that element. You could similarly apply that attribute manually by leveraging the element reference maintained in the `el` variable; this would be the equivalent imperative operation `el.setAttribute('header', 'attribute header');`, if you were one for being "complete"...
 
 ### Accessibility (a11y)
 
@@ -241,7 +241,7 @@ But, when you do `await` it, ensuring the snapshot accessibility of your custom 
 
 ## What have we got?
 
-Now you've got a pretty well-tested `<testing-components>` element that features a `title` and `counter` attribute that delivers a button to your consumers that allows them to increment the counter. What more could you want?
+Now you've got a pretty well-tested `<testing-components>` element that features a `header` and `counter` attribute that delivers a button to your consumers that allows them to increment the counter. What more could you want?
 
 Oh... a lot?
 
