@@ -34,7 +34,9 @@
   "dependencies": {
     "@babel/eslint-parser": "^7.19.1",
     "@babel/plugin-syntax-import-assertions": "^7.20.0",
-    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-base": "^15.0.0"
+  },
+  "devDependencies": {
     "eslint-plugin-html": "^7.1.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-import-exports-imports-resolver": "^1.0.1",
