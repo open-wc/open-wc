@@ -65,7 +65,7 @@
     "@types/rimraf": "^3.0.2",
     "@web/dev-server": "^0.1.35",
     "@web/dev-server-esbuild": "^0.3.3",
-    "@web/dev-server-storybook": "^0.5.4",
+    "@web/dev-server-storybook": "^0.6.0",
     "@web/test-runner": "^0.15.0",
     "@web/test-runner-playwright": "^0.9.0",
     "chai": "^4.3.7",
