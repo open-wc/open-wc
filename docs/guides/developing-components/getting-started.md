@@ -1,4 +1,4 @@
-# Developing Components: Getting Started
+# Developing Components >> Getting Started ||10
 
 To get started building web components, we recommend using our generator to set up your project.
 
