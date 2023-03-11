@@ -3274,10 +3274,10 @@
     rollup "^2.67.0"
     whatwg-url "^11.0.0"
 
-"@web/dev-server-storybook@^0.5.4":
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/@web/dev-server-storybook/-/dev-server-storybook-0.5.4.tgz#a8baf715d397b1775e4cca15a2eaac61f486db61"
-  integrity sha512-zZg2cRrE9HjObL2rtD+P6OvV0qDcxOkSeY13iLxv938/01vAsNUS8eTvdGi2Hzz+EzxvuM6QitKKlxFGG3rKZw==
+"@web/dev-server-storybook@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@web/dev-server-storybook/-/dev-server-storybook-0.6.0.tgz#15d9dd58ea27f73a7818e664e362616f531b0ab9"
+  integrity sha512-DiVDO43FbQzib4YfhG3OizWpP4eHql9gzlWRWj8u0ry9o5qf7STom52Q4ETo47jcyIz2FooICaA6oxILUfl5bg==
   dependencies:
     "@babel/core" "^7.16.0"
     "@babel/preset-env" "^7.16.4"
