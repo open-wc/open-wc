@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.19.8
+
+### Patch Changes
+
+- 26292441: Change return type from Assertion to Promise<Assertion>
+
 ## 0.19.7
 
 ### Patch Changes
