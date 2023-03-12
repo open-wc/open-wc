@@ -8282,12 +8282,12 @@ hastscript@^6.0.0:
     property-information "^5.0.0"
     space-separated-tokens "^1.0.0"
 
-haunted@^4.7.1:
-  version "4.7.1"
-  resolved "https://registry.yarnpkg.com/haunted/-/haunted-4.7.1.tgz#7b16791745cd217846988c58ab08abfce6e9db24"
-  integrity sha512-bUQGPlKIAR1Ou22tjF4YgRaNaUHdeJx6T1x06h3iC7yvreHMpodO3/ixchEAU3QK1e4SjzvaFA0of0m9jiE4Kg==
+haunted@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/haunted/-/haunted-5.0.0.tgz#e531631cfc5e783a59baaf62bcb715d9f3408da4"
+  integrity sha512-hyv9KIp4F6/oL5V6GQ6b85RQIcxdV/KTjfgLxkPozQOj+KmCVZ3pDuSzlAAXoZK0lOYLekumbDqZLfzloO2s3w==
   dependencies:
-    lit-html "^1.0.0"
+    lit "^2.0.0"
 
 he@1.2.0, he@^1.2.0:
   version "1.2.0"
