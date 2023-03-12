@@ -56,7 +56,7 @@
     "@types/babel__traverse": "^7.11.1",
     "@types/chai": "^4.3.4",
     "@types/chai-fs": "^2.0.2",
-    "@types/eslint": "^7.2.10",
+    "@types/eslint": "^8.21.1",
     "@types/estree": "^1.0.0",
     "@types/lru-cache": "^5.1.0",
     "@types/mocha": "^8.2.2",
