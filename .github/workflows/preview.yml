@@ -54,21 +54,21 @@ jobs:
         with:
             script: |
                 const body = `Preview published to [${process.env.PREVIEW_URL}](${process.env.PREVIEW_URL}).`;
-                github.issues.listComments({
+                github.rest.issues.listComments({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: context.issue.number,
                 }).then(({data}) => {
                   const priorComment = data.find(comment => comment.body.startsWith('Preview published to'));
                   if (priorComment) {
-                    github.issues.updateComment({
+                    github.rest.issues.updateComment({
                       owner: context.repo.owner,
                       repo: context.repo.repo,
                       comment_id: priorComment.id,
                       body
                     });
                   } else {
-                    github.issues.createComment({
+                    github.rest.issues.createComment({
                       owner: context.repo.owner,
                       repo: context.repo.repo,
                       issue_number: context.issue.number,
