@@ -57,7 +57,7 @@
     "@types/chai": "^4.3.4",
     "@types/chai-fs": "^2.0.2",
     "@types/eslint": "^7.2.10",
-    "@types/estree": "^0.0.47",
+    "@types/estree": "^1.0.0",
     "@types/lru-cache": "^5.1.0",
     "@types/mocha": "^8.2.2",
     "@types/parse5-htmlparser2-tree-adapter": "^6.0.1",
