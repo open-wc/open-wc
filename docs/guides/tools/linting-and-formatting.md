@@ -82,6 +82,6 @@ And update your package.json:
 
 Add the lint-staged hook
 
-```sh
+```bash
 npx husky add .husky/pre-commit "npx lint-staged"
 ```
