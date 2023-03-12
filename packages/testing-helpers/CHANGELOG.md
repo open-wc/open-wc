@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- 32ed8d26: Added oneDefaultPreventedEvent() helper function
+
 ## 2.1.4
 
 ### Patch Changes
