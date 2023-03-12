@@ -48,7 +48,7 @@ jobs:
         run: yarn netlify deploy --alias=${{steps.slugified_branch.outputs.name}} --dir=_site
 
       - name: Post Previews
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         env:
           PREVIEW_URL: ${{ steps.preview.outputs.url }}
         with:
