@@ -1,4 +1,5 @@
-import { html, fixture, litFixture, expect } from '../../index.js';
+import { html } from 'lit';
+import { fixture, litFixture, expect } from '../../index.js';
 
 import '../src/get-result.js';
 

@@ -8,8 +8,6 @@ import chai, { expect, should, assert } from '@esm-bundle/chai';
 export { chai, expect, should, assert };
 
 export {
-  html,
-  unsafeStatic,
   triggerBlurFor,
   triggerFocusFor,
   oneEvent,

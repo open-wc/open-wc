@@ -1,7 +1,5 @@
 /// <reference path="./register-chai-plugins.d.ts" />
 
-export { html } from '@open-wc/testing-helpers';
-export { unsafeStatic } from '@open-wc/testing-helpers';
 export { triggerBlurFor } from '@open-wc/testing-helpers';
 export { triggerFocusFor } from '@open-wc/testing-helpers';
 export { oneEvent } from '@open-wc/testing-helpers';

@@ -85,7 +85,6 @@
     "http-server": "^13.1.0",
     "husky": "^8.0.2",
     "lint-staged": "^13.0.3",
-    "lit-html": "^2.4.0",
     "mocha": "^8.3.2",
     "mocha-chai-snapshot": "^1.0.0",
     "mock-require": "^3.0.3",

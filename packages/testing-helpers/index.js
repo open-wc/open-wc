@@ -1,5 +1,3 @@
-import { html, unsafeStatic } from 'lit/static-html.js';
-
 export { elementUpdated } from './src/elementUpdated.js';
 export { fixture, fixtureSync } from './src/fixture.js';
 export { cachedWrappers, fixtureCleanup, fixtureWrapper } from './src/fixtureWrapper.js';
@@ -17,5 +15,3 @@ export {
 
 export { litFixture, litFixtureSync } from './src/litFixture.js';
 export { stringFixture, stringFixtureSync } from './src/stringFixture.js';
-
-export { html, unsafeStatic };
