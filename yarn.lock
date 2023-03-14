@@ -2658,17 +2658,10 @@
   dependencies:
     escape-string-regexp "^5.0.0"
 
-"@sinonjs/commons@^1.6.0", "@sinonjs/commons@^1.7.0":
+"@sinonjs/commons@^1.7.0":
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/@sinonjs/commons/-/commons-1.8.3.tgz#3802ddd21a50a949b6721ddd72da36e67e7f1b2d"
   integrity sha512-xkNcLAn/wZaX14RPlwizcKicDk9G3F8m2nU3L7Ukm5zBgTwiT0wsoFAHx9Jq56fJA1z/7uKGtCRu16sOUCLIHQ==
-  dependencies:
-    type-detect "4.0.8"
-
-"@sinonjs/commons@^1.8.3":
-  version "1.8.6"
-  resolved "https://registry.yarnpkg.com/@sinonjs/commons/-/commons-1.8.6.tgz#80c516a4dc264c2a69115e7578d62581ff455ed9"
-  integrity sha512-Ky+XkAkqPZSm3NLBeUng77EBQl3cmeJhITaGHdYH8kjVB+aun3S4XBRti2zt17mtt0mIUDiNxYeoJm6drVvBJQ==
   dependencies:
     type-detect "4.0.8"
 
@@ -2700,12 +2693,12 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sinonjs/samsam@^6.1.1":
-  version "6.1.3"
-  resolved "https://registry.yarnpkg.com/@sinonjs/samsam/-/samsam-6.1.3.tgz#4e30bcd4700336363302a7d72cbec9b9ab87b104"
-  integrity sha512-nhOb2dWPeb1sd3IQXL/dVPnKHDOAFfvichtBf4xV00/rU1QbPCQqKMbvIheIjqwVjh7qIgf2AHTHi391yMOMpQ==
+"@sinonjs/samsam@^7.0.1":
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/@sinonjs/samsam/-/samsam-7.0.1.tgz#5b5fa31c554636f78308439d220986b9523fc51f"
+  integrity sha512-zsAk2Jkiq89mhZovB2LLOdTCxJF4hqqTToGP0ASWlhp4I1hqOjcfmZGafXntCN7MDC6yySH0mFHrYtHceOeLmw==
   dependencies:
-    "@sinonjs/commons" "^1.6.0"
+    "@sinonjs/commons" "^2.0.0"
     lodash.get "^4.4.2"
     type-detect "^4.0.8"
 
@@ -11787,7 +11780,7 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-nise@^5.1.1:
+nise@^5.1.2:
   version "5.1.4"
   resolved "https://registry.yarnpkg.com/nise/-/nise-5.1.4.tgz#491ce7e7307d4ec546f5a659b2efe94a18b4bbc0"
   integrity sha512-8+Ib8rRJ4L0o3kfmyVCL7gzrohyDe0cMFTBa2d364yIrEGMEoetznKJx899YxjybU6bL9SQkYPSBBs1gyYs8Xg==
@@ -14476,16 +14469,16 @@ sinon-chai@^3.7.0:
   resolved "https://registry.yarnpkg.com/sinon-chai/-/sinon-chai-3.7.0.tgz#cfb7dec1c50990ed18c153f1840721cf13139783"
   integrity sha512-mf5NURdUaSdnatJx3uhoBOrY9dtL19fiOtAdT1Azxg3+lNJFiuN0uzaU3xX1LeAfL17kHQhTAJgpsfhbMJMY2g==
 
-sinon@^13.0.2:
-  version "13.0.2"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-13.0.2.tgz#c6a8ddd655dc1415bbdc5ebf0e5b287806850c3a"
-  integrity sha512-KvOrztAVqzSJWMDoxM4vM+GPys1df2VBoXm+YciyB/OLMamfS3VXh3oGh5WtrAGSzrgczNWFFY22oKb7Fi5eeA==
+sinon@^14.0.2:
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-14.0.2.tgz#585a81a3c7b22cf950762ac4e7c28eb8b151c46f"
+  integrity sha512-PDpV0ZI3ZCS3pEqx0vpNp6kzPhHrLx72wA0G+ZLaaJjLIYeE0n8INlgaohKuGy7hP0as5tbUd23QWu5U233t+w==
   dependencies:
-    "@sinonjs/commons" "^1.8.3"
+    "@sinonjs/commons" "^2.0.0"
     "@sinonjs/fake-timers" "^9.1.2"
-    "@sinonjs/samsam" "^6.1.1"
+    "@sinonjs/samsam" "^7.0.1"
     diff "^5.0.0"
-    nise "^5.1.1"
+    nise "^5.1.2"
     supports-color "^7.2.0"
 
 slash@^1.0.0:
