@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.19.9
+
+### Patch Changes
+
+- 9e49e7a1: fix(deps): update @web/\* dependencies
+
 ## 0.19.8
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # Change Log
 
+## 10.0.0
+
+### Patch Changes
+
+- Updated dependencies [30d18829]
+  - eslint-plugin-lit-a11y@2.4.0
+
 ## 9.2.2
 
 ### Patch Changes
