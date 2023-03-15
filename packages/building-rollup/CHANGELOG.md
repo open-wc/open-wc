@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.2
+
+### Patch Changes
+
+- 9e49e7a1: fix(deps): update @web/\* dependencies
+
 ## 2.2.1
 
 ### Patch Changes

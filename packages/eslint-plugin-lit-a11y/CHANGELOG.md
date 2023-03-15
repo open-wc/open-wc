@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.4.0
+
+### Minor Changes
+
+- 30d18829: Update dependency emoji-regex to v10
+
 ## 2.3.0
 
 ### Minor Changes
