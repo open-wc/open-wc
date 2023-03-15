@@ -43,7 +43,7 @@
     "es-module-shims": "^1.4.1",
     "html-minifier-terser": "^5.1.1",
     "lru-cache": "^6.0.0",
-    "minimatch": "^3.0.4",
+    "minimatch": "^4.2.3",
     "parse5": "^5.1.1",
     "path-is-inside": "^1.0.2",
     "regenerator-runtime": "^0.13.7",
