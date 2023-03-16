@@ -10,7 +10,7 @@ cover_image: /blog/testing-web-components-with-web-test-runner/images/screenshot
 socialMediaImage: /blog/testing-web-components-with-web-test-runner/images/screenshot.png
 ---
 
-So, you write web components and you're interested in expanding the work you put into unit testing them? Well, you've come to the right place. This is just the beginning, but _Testing Web Components: the Series_ is going to lay out for you how [Open Web Components](https://open-wc.org/) and [Modern Web](https://modern-web.dev/) help you to do just that. We'll start with how the Open Web Components [generator](https://open-wc.org/guides/developing-components/getting-started/) can get you up and running in no time with [`@web/test/runner`](https://modern-web.dev/docs/test-runner/overview/) right out of the box.
+So, you write web components and you're interested in expanding the work you put into unit testing them? Well, you've come to the right place. This is just the beginning, but _Testing Web Components: the Series_ is going to lay out for you how [Open Web Components](https://open-wc.org/) and [Modern Web](https://modern-web.dev/) help you to do just that. We'll start with how the Open Web Components [generator](https://open-wc.org/guides/developing-components/getting-started/) can get you up and running in no time with [`@web/test-runner`](https://modern-web.dev/docs/test-runner/overview/) right out of the box.
 
 While the component and tests that come with the generator are a great place to get started, in future posts we'll dig even deeper into what it means to test your web components in real browsers. Along the way, we'll focus on several realities around unit testing web interfaces, like:
 
