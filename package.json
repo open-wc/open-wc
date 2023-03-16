@@ -100,7 +100,7 @@
     "rollup-plugin-copy": "^3.4.0",
     "sinon": "^15.0.2",
     "sinon-chai": "^3.7.0",
-    "typescript": "~4.1.3"
+    "typescript": "~5.0.2"
   },
   "resolutions": {
     "lit": "2.1.2"
