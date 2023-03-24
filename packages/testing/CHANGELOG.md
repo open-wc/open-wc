@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.1.8
+
+### Patch Changes
+
+- 91a5d224: fix(deps): update dependency @types/chai-dom to v1
+- Updated dependencies [077d07eb]
+  - @open-wc/testing-helpers@2.2.1
+
 ## 3.1.7
 
 ### Patch Changes

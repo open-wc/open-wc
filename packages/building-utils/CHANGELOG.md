@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.21.1
+
+### Patch Changes
+
+- 1bc7c8c6: fix(deps): update dependency minimatch to v4
+- 8ae4ca6e: fix(deps): update dependency minimatch to v5
+- 35e12a32: fix(deps): update dependency minimatch to v7
+- 228b9449: fix(deps): update dependency minimatch to v6
+- c5a675d5: fix(deps): update dependency parse5 to v7
+
 ## 2.21.0
 
 ### Minor Changes

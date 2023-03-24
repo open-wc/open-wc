@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.2.3
+
+### Patch Changes
+
+- c5a675d5: fix(deps): update dependency parse5 to v7
+- Updated dependencies [1bc7c8c6]
+- Updated dependencies [8ae4ca6e]
+- Updated dependencies [35e12a32]
+- Updated dependencies [228b9449]
+- Updated dependencies [c5a675d5]
+  - @open-wc/building-utils@2.21.1
+
 ## 2.2.2
 
 ### Patch Changes
