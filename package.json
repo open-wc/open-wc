@@ -47,7 +47,7 @@
     "@esm-bundle/chai": "^4.3.4-fix.0",
     "@microsoft/fast-element": "^1.11.0",
     "@rollup/plugin-commonjs": "^18.0.0",
-    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-typescript": "^11.0.0",
     "@types/aria-query": "^5.0.1",
     "@types/babel__core": "^7.1.20",
