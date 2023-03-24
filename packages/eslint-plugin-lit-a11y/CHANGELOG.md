@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.4.1
+
+### Patch Changes
+
+- c5a675d5: fix(deps): update dependency parse5 to v7
+
 ## 2.4.0
 
 ### Minor Changes

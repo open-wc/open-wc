@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- 077d07eb: Include a longer stacktrace in `waitUntil` timeout errors
+
 ## 2.2.0
 
 ### Minor Changes
