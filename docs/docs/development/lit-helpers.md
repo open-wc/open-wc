@@ -10,7 +10,7 @@ npm i --save @open-wc/lit-helpers@next
 
 ## Privately Settable Read-Only Properties
 
-`ReadOnlyPropertiesMixin` provides a way for based on `LitElement` (or it's parent class `UpdatingElement`) to define properties by adding `readOnly: true` to their property declaration. Those properties are read-only from the outside, but can be updated internally with the `setReadOnlyProperties` method.
+`ReadOnlyPropertiesMixin` provides a way for components based on `LitElement` (or it's parent class `UpdatingElement`) to define properties by adding `readOnly: true` to their property declaration. Those properties are read-only from the outside, but can be updated internally with the `setReadOnlyProperties` method.
 
 ```js
 import { ReadOnlyPropertiesMixin } from '@open-wc/lit-helpers';
