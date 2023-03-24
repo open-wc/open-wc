@@ -181,12 +181,21 @@ export function oneDefaultPreventedEvent(eventTarget, eventName) {
 export function waitUntil(predicate, message, options = {}) {
   const { interval = 50, timeout = 1000 } = options;
 
+  // Save the current stack so that we can reference it later if we timeout.
+  const { stack } = new Error();
+
   return new Promise((resolve, reject) => {
     let timeoutId;
 
     setTimeout(() => {
       clearTimeout(timeoutId);
-      reject(new Error(message ? `Timeout: ${message}` : `waitUntil timed out after ${timeout}ms`));
+
+      const error = new Error(
+        message ? `Timeout: ${message}` : `waitUntil timed out after ${timeout}ms`,
+      );
+      error.stack = stack;
+
+      reject(error);
     }, timeout);
 
     async function nextInterval() {
