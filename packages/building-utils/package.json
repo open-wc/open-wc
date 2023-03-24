@@ -42,7 +42,7 @@
     "deepmerge": "^4.2.2",
     "es-module-shims": "^1.4.1",
     "html-minifier-terser": "^5.1.1",
-    "lru-cache": "^6.0.0",
+    "lru-cache": "^8.0.4",
     "minimatch": "^7.4.2",
     "parse5": "^7.1.2",
     "path-is-inside": "^1.0.2",
