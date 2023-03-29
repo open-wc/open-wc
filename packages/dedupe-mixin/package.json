@@ -22,7 +22,9 @@
       "default": "./index.js"
     },
     "./index.js": "./index.js",
-    "./src/dedupeMixin.js": "./src/dedupeMixin.js"
+    "./index": "./index.js",
+    "./src/dedupeMixin.js": "./src/dedupeMixin.js",
+    "./src/dedupeMixin": "./src/dedupeMixin.js"
   },
   "scripts": {
     "demo-build:no-dedupe": "rollup -c demo-typed/no-dedupe/rollup.config.js",
