@@ -38,7 +38,7 @@
     "eslint-rule-extender": "0.0.1",
     "language-tags": "^1.0.5",
     "parse5": "^7.1.2",
-    "parse5-htmlparser2-tree-adapter": "^6.0.1",
+    "parse5-htmlparser2-tree-adapter": "^7.0.0",
     "requireindex": "~1.2.0"
   }
 }
