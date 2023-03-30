@@ -15,16 +15,13 @@
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/dedupe-mixin",
   "main": "index.js",
   "module": "index.js",
+  "types": "./index.d.ts",
   "type": "module",
   "exports": {
     ".": {
       "types": "./index.d.ts",
       "default": "./index.js"
-    },
-    "./index.js": "./index.js",
-    "./index": "./index.js",
-    "./src/dedupeMixin.js": "./src/dedupeMixin.js",
-    "./src/dedupeMixin": "./src/dedupeMixin.js"
+    }
   },
   "scripts": {
     "demo-build:no-dedupe": "rollup -c demo-typed/no-dedupe/rollup.config.js",

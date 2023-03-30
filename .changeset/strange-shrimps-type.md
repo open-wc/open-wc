@@ -1,5 +1,5 @@
 ---
-'@open-wc/dedupe-mixin': patch
+'@open-wc/dedupe-mixin': major
 ---
 
-Add "main" and "exports" to package.json
+Add "main", "types" and "exports" to package.json
