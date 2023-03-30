@@ -106,6 +106,6 @@ npm run test
 # testing via browserstack
 npm run test:bs
 
-# run commands only for a specific scope
-lerna run <command> --scope @open-wc/<package-name> --stream
+# run commands only for a specific package
+yarn workspace @open-wc/<package-name> <command>
 ```
