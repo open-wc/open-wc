@@ -1,6 +1,6 @@
 module.exports = {
   rootDir: '../../',
-  appIndex: 'packages/scoped-elements/demo/before-nesting/index.html',
+  appIndex: 'demo/before-nesting/index.html',
   nodeResolve: true,
   open: true,
 };
