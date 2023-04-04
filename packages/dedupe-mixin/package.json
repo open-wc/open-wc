@@ -15,7 +15,6 @@
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/dedupe-mixin",
   "main": "index.js",
   "module": "index.js",
-  "types": "./index.d.ts",
   "type": "module",
   "exports": {
     ".": {
@@ -40,5 +39,6 @@
     "dedupe",
     "mixins"
   ],
+  "types": "./index.d.ts",
   "sideEffects": false
 }
