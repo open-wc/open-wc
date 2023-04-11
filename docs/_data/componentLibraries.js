@@ -36,6 +36,12 @@ const componentLibraries = [
       'The goal of curvenote.dev is to provide open source tools to promote and enable interactive scientific writing, reactive documents and explorable explanations.',
   },
   {
+    name: 'Duet Design System',
+    url: 'https://www.duetds.com/',
+    description:
+      'Duet is a collection of reusable components and tools, guided by clear standards, that can be assembled together to build digital products for LocalTapiola and Turva.',
+  },
+  {
     name: 'Elix',
     url: 'https://component.kitchen/elix',
     description:
