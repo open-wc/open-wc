@@ -33,6 +33,6 @@
   ],
   "dependencies": {
     "@types/chai": "^4.3.1",
-    "@web/test-runner-commands": "^0.6.5"
+    "@web/test-runner-commands": "0.0.0-canary-20230416222938"
   }
 }
