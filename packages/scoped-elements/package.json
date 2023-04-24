@@ -23,9 +23,9 @@
   },
   "scripts": {
     "debug": "cd ../../ && yarn debug --group scoped-elements",
-    "demo-build:before-nesting": "rollup -c demo/before-nesting/rollup.config.js",
-    "demo-build:no-scope": "rollup -c demo/no-scope/rollup.config.js",
-    "demo-build:with-scope": "rollup -c demo/with-scope/rollup.config.js",
+    "demo-build:before-nesting": "rollup -c demo/before-nesting/rollup.config.mjs",
+    "demo-build:no-scope": "rollup -c demo/no-scope/rollup.config.mjs",
+    "demo-build:with-scope": "rollup -c demo/with-scope/rollup.config.mjs",
     "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
     "site:build": "run-p demo-build:*",
     "start:before-nesting": "web-dev-server -c demo/before-nesting/server.js",
