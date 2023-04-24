@@ -53,8 +53,8 @@
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-import-assertions": "^7.12.1",
     "@babel/plugin-syntax-top-level-await": "^7.12.1",
-    "@web/dev-server-core": "0.0.0-canary-20230416222938",
-    "@web/dev-server-hmr": "0.0.0-canary-20230416222938",
+    "@web/dev-server-core": "^0.5.1",
+    "@web/dev-server-hmr": "^0.2.1",
     "picomatch": "^2.2.2"
   }
 }
