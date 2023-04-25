@@ -2,7 +2,7 @@
 
 /* eslint-disable no-param-reassign */
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
-const { terser } = require('@rollup/plugin-terser');
+const terser = require('@rollup/plugin-terser');
 const { babel, getBabelOutputPlugin } = require('@rollup/plugin-babel');
 const merge = require('deepmerge');
 const {
