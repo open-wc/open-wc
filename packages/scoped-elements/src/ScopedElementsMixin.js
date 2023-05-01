@@ -171,7 +171,8 @@ const ScopedElementsMixinImplementation = superclass =>
      */
     // eslint-disable-next-line class-methods-use-this
     getScopedTagName(tagName) {
-      return tagName;
+      // @ts-ignore
+      return this.constructor.getScopedTagName(tagName);
     }
 
     /**
@@ -182,7 +183,8 @@ const ScopedElementsMixinImplementation = superclass =>
      */
     // eslint-disable-next-line class-methods-use-this
     static getScopedTagName(tagName) {
-      return tagName;
+      // @ts-ignore
+      return this.__registry.get(tagName) ? tagName : undefined;
     }
   };
 

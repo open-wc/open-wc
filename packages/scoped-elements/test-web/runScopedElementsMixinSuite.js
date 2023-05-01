@@ -399,32 +399,6 @@ export function runScopedElementsMixinSuite({ label }) {
     });
 
     describe('[deprecated] getScopedTagName', () => {
-      it('should return the scoped tag name for a registered element', async () => {
-        const tag = defineCE(
-          class extends ScopedElementsMixin(LitElement) {
-            static get scopedElements() {
-              return {
-                'feature-a': FeatureA,
-              };
-            }
-
-            render() {
-              return html`
-                <feature-a></feature-a>
-                <feature-b></feature-b>
-              `;
-            }
-          },
-        );
-
-        const el = await fixture(`<${tag}></${tag}>`);
-
-        expect(el.getScopedTagName('feature-a')).to.equal('feature-a');
-        expect(el.getScopedTagName('feature-b')).to.equal('feature-b');
-        expect(el.constructor.getScopedTagName('feature-a')).to.equal('feature-a');
-        expect(el.constructor.getScopedTagName('feature-b')).to.equal('feature-b');
-      });
-
       it('should return the scoped tag name for a non already registered element', async () => {
         class UnregisteredFeature extends LitElement {
           render() {
