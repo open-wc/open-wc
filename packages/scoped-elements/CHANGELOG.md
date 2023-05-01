@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.5
+
+### Patch Changes
+
+- 52f3fa6d: fix: getScopedTagName bug
+
 ## 2.1.4
 
 ### Patch Changes
