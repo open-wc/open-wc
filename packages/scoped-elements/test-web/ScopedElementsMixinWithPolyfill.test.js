@@ -275,4 +275,32 @@ describe('ScopedElementsMixin features needing a real scope', () => {
     await waitUntil(() => $el1.shadowRoot.children[1] instanceof LazyElementA);
     await waitUntil(() => $el2.shadowRoot.children[1] instanceof LazyElementA);
   });
+
+  describe('[deprecated] getScopedTagName', () => {
+    it('should return the scoped tag name for a registered element', async () => {
+      const tag = defineCE(
+        class extends ScopedElementsMixin(LitElement) {
+          static get scopedElements() {
+            return {
+              'feature-a': FeatureA,
+            };
+          }
+
+          render() {
+            return html`
+              <feature-a></feature-a>
+              <feature-b></feature-b>
+            `;
+          }
+        },
+      );
+
+      const el = await fixture(`<${tag}></${tag}>`);
+
+      expect(el.getScopedTagName('feature-a')).to.equal('feature-a');
+      expect(el.getScopedTagName('feature-b')).to.equal(undefined);
+      expect(el.constructor.getScopedTagName('feature-a')).to.equal('feature-a');
+      expect(el.constructor.getScopedTagName('feature-b')).to.equal(undefined);
+    });
+  });
 });
