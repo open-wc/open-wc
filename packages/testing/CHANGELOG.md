@@ -1,5 +1,82 @@
 # Change Log
 
+## 3.1.8
+
+### Patch Changes
+
+- 91a5d224: fix(deps): update dependency @types/chai-dom to v1
+- Updated dependencies [077d07eb]
+  - @open-wc/testing-helpers@2.2.1
+
+## 3.1.7
+
+### Patch Changes
+
+- b187c0bc: Add types export for node16 module resolution
+- Updated dependencies [b187c0bc]
+  - @open-wc/testing-helpers@2.1.4
+
+## 3.1.6
+
+### Patch Changes
+
+- 735b0092: Avoid saving unchanged snapshots
+- Updated dependencies [735b0092]
+  - @open-wc/semantic-dom-diff@0.19.7
+
+## 3.1.5
+
+### Patch Changes
+
+- ae9fe3e7: upgrade to chai-dom v1.11.0
+
+## 3.1.4
+
+### Patch Changes
+
+- 19b951b6: update semantic-dom-diff dependency
+
+## 3.1.3
+
+### Patch Changes
+
+- 48a853fa: Fix deps issues with @esm-bundle/chai
+
+## 3.1.2
+
+### Patch Changes
+
+- 773e5b65: fix: add a type for lit v1 renderable
+- Updated dependencies [773e5b65]
+  - @open-wc/testing-helpers@2.1.2
+
+## 3.1.1
+
+### Patch Changes
+
+- ebbea0d5: Force lit-html dependency tree for correct types construction
+- Updated dependencies [ebbea0d5]
+  - @open-wc/testing-helpers@2.1.1
+
+## 3.1.0
+
+### Minor Changes
+
+- b762707d: Feat/customize render
+
+### Patch Changes
+
+- Updated dependencies [b762707d]
+  - @open-wc/testing-helpers@2.1.0
+
+## 3.0.4
+
+### Patch Changes
+
+- 987c9cd2: Add lit-html as depenency to support the generated types in strict package managers
+- Updated dependencies [987c9cd2]
+  - @open-wc/testing-helpers@2.0.4
+
 ## 3.0.3
 
 ### Patch Changes
@@ -53,11 +130,7 @@
   import { html, fixture } from '@open-wc/testing'; // html will be lit-html 2.x
 
   it('works for tags', async () => {
-    const el = await fixture(
-      html`
-        <my-el></my-el>
-      `,
-    );
+    const el = await fixture(html` <my-el></my-el> `);
   });
   ```
 
@@ -75,9 +148,7 @@
     class MyExtension extends LibraryComponent {
       render() {
         // needs to be lit-html 1.x as the library component is using LitElement with lit-html 1.x
-        return html`
-          <p>...</p>
-        `;
+        return html` <p>...</p> `;
       }
     }
 
@@ -98,11 +169,7 @@
     render(html1`<p>Testing ${fancyDirective('output')}</p>`, node);
 
     // you can either cleanup yourself or use fixture
-    const el = await fixture(
-      html`
-        ${node}
-      `,
-    );
+    const el = await fixture(html` ${node} `);
 
     expect(el.children[0].innerHTML).toBe('Testing [[output]]');
   });
@@ -142,11 +209,7 @@
   import { html, fixture } from '@open-wc/testing'; // html will be lit-html 2.x
 
   it('works for tags', async () => {
-    const el = await fixture(
-      html`
-        <my-el></my-el>
-      `,
-    );
+    const el = await fixture(html` <my-el></my-el> `);
   });
   ```
 
@@ -164,9 +227,7 @@
     class MyExtension extends LibraryComponent {
       render() {
         // needs to be lit-html 1.x as the library component is using LitElement with lit-html 1.x
-        return html`
-          <p>...</p>
-        `;
+        return html` <p>...</p> `;
       }
     }
 
@@ -187,11 +248,7 @@
     render(html1`<p>Testing ${fancyDirective('output')}</p>`, node);
 
     // you can either cleanup yourself or use fixture
-    const el = await fixture(
-      html`
-        ${node}
-      `,
-    );
+    const el = await fixture(html` ${node} `);
 
     expect(el.children[0].innerHTML).toBe('Testing [[output]]');
   });

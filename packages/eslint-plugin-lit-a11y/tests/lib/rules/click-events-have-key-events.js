@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/click-events-have-key-events');
+const rule = require('../../../lib/rules/click-events-have-key-events.js');
 
 //------------------------------------------------------------------------------
 // Tests

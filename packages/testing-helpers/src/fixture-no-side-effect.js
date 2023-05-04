@@ -4,6 +4,7 @@ import { isValidRenderArg } from './lib.js';
 
 /**
  * @typedef {object} FixtureOptions
+ * @property {*} [render] optional render function to use
  * @property {Element} [parentNode] optional parent node to render the fixture's template to
  * @property {import('@open-wc/scoped-elements').ScopedElementsMap} [scopedElements] optional scoped-elements
  * definition map
@@ -24,7 +25,7 @@ export function fixtureSync(template, options) {
   if (typeof template === 'string') {
     return stringFixtureSync(template, options);
   }
-  if (isValidRenderArg(template)) {
+  if (!!options?.render || isValidRenderArg(template)) {
     return litFixtureSync(template, options);
   }
   throw new Error(
@@ -57,7 +58,7 @@ export async function fixture(template, options) {
   if (typeof template === 'string') {
     return stringFixture(template, options);
   }
-  if (isValidRenderArg(template)) {
+  if (!!options?.render || isValidRenderArg(template)) {
     return litFixture(template, options);
   }
   throw new Error('Invalid template provided - string or lit-html TemplateResult is supported');

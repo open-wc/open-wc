@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/lit-helpers",
-  "version": "0.4.0",
+  "version": "0.5.1",
   "publishConfig": {
     "access": "public"
   },
@@ -24,7 +24,8 @@
   "files": [
     "*.d.ts",
     "*.js",
-    "src"
+    "src",
+    "!src/spread.ts"
   ],
   "keywords": [
     "lit",

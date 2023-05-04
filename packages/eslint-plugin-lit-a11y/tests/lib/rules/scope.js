@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/scope');
+const rule = require('../../../lib/rules/scope.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -26,6 +26,7 @@ ruleTester.run('scope', rule, {
   valid: [
     { code: "html`<th scope='col'></th>`" },
     { code: "html`<th scope='row'></th>`" },
+    { code: "html`<th scope='${ true ? 'row' : 'col' }'></th>`" },
     { code: "html`<th scope='rowgroup'></th>`" },
     { code: "html`<th scope='colgroup'></th>`" },
     { code: "html`<foo-bar scope='col'></foo-bar>`" },

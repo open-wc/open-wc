@@ -7,16 +7,19 @@ jobs:
     name: Verify changes
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Setup Node 14
-        uses: actions/setup-node@v2
+      - name: Setup Node 16
+        uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '16'
           cache: 'yarn'
 
       - name: Install dependencies
         run: yarn --frozen-lockfile
+
+      - name: Build types
+        run: yarn types
 
       - name: Lint
         run: yarn lint
@@ -25,16 +28,19 @@ jobs:
     name: Web tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Setup Node 14
-        uses: actions/setup-node@v2
+      - name: Setup Node 16
+        uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '16'
           cache: 'yarn'
 
       - name: Install dependencies
         run: yarn --frozen-lockfile
+
+      - name: Build types
+        run: yarn types
 
       - name: Install Playwright dependencies
         run: npx playwright install-deps
@@ -47,12 +53,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['12', '14']
+        node-version: ['14', '16', '18']
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'

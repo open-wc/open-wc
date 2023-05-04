@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const { parse } = require('parse5');
 const path = require('path');
 const fs = require('fs');
-const { createIndexHTML } = require('../../index-html');
+const { createIndexHTML } = require('../../index-html/index.js');
 
 const updateSnapshots = process.argv.includes('--update-snapshots');
 

@@ -20,7 +20,7 @@ module.exports = function createIndex(codelab) {
       <title>open-wc codelab | ${codelab.heading}</title>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-      <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+      <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
       <style>
         .success {
           color: #1e8e3e;
@@ -40,10 +40,10 @@ module.exports = function createIndex(codelab) {
 
       </google-codelab>
 
-      <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
-      <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
-      <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
-      <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+      <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+      <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+      <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+      <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
 
     </body>
     </html>

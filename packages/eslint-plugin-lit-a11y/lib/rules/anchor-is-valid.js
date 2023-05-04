@@ -25,8 +25,7 @@ const AnchorIsValidRule = {
       description: 'anchor-is-valid',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/anchor-is-valid.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/anchor-is-valid.md',
     },
     messages: {
       preferButtonErrorMessage:

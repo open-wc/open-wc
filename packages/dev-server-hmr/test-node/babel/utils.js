@@ -1,13 +1,11 @@
 const { transformSync } = require('@babel/core');
 const path = require('path');
-const babelPluginWcHmr = require('../../src/babel/babelPluginWcHmr');
+const babelPluginWcHmr = require('../../src/babel/babelPluginWcHmr.js');
 
 const banner = `import * as __$wc_hmr$__ from '/__web-dev-server__/wc-hmr/runtime.js';
-
 if (import.meta.hot) {
   import.meta.hot.accept();
-}
-`;
+}`;
 
 const rootDir = path.join(process.cwd(), 'virtual-project');
 

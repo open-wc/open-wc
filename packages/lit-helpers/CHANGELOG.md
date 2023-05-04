@@ -1,5 +1,77 @@
 # Change Log
 
+## 0.5.1
+
+### Patch Changes
+
+- 7c9e5c42: Include spread types and exclude their TS source
+
+## 0.5.0
+
+### Minor Changes
+
+- 667b6786: Add "spread", "spreadEvents", and "spreadProps" directives to support spreading objects of data onto elements in a `lit-html` template literal.
+
+  Example of `spread`:
+
+  ```js
+  import { spread } from '@open-wc/lit-helpers';
+
+  const elementTemplate = (
+    obj = {
+      'my-attribute': 'foo',
+      '?my-boolean-attribute': true,
+      '@my-event': () => console.log('my-event fired'),
+      '.myProperty': { foo: 'bar' },
+    },
+  ) => html` <custom-element ${spread(obj)}></custom-element> `;
+  ```
+
+  Example of `spreadEvents`:
+
+  ```js
+  import { spreadEvents } from '@open-wc/lit-helpers';
+
+  const elementTemplate = (
+    obj = {
+      'my-event': () => {
+        console.log('my-event');
+      },
+      'my-other-event': () => {
+        console.log('my-other-event');
+      },
+      'my-additional-event': () => {
+        console.log('my-additional-event');
+      },
+    },
+  ) => html` <custom-element ${spreadEvents(obj)}></custom-element> `;
+  ```
+
+  Example of `spreadProps`:
+
+  ```js
+  import { spreadProps } from '@open-wc/lit-helpers';
+
+  const elementTemplate = (
+    obj = {
+      string: 'string',
+      number: 10,
+      array: ['This', 'is', 'an', 'array.'],
+      object: {
+        foo: 'bar',
+        baz: true,
+        bar: false,
+      },
+    },
+  ) => html` <custom-element ${spreadProps(obj)}></custom-element> `;
+  ```
+
+## 0.4.1
+
+### Patch Changes
+
+- b3cc79ab: fix(lit-helpers): Removed type references to deprecated `live`, `spread`, and `spreadAttributes` directives
+
 ## 0.4.0
 
 ### Minor Changes

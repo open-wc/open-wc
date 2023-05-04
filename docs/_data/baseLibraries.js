@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const fetch = require('node-fetch');
+const cache = require('@11ty/eleventy-cache-assets');
 
 const baseLibraries = [
   {
@@ -135,14 +135,36 @@ const baseLibraries = [
       'Set of Web Components that can be used to build Single Page Apps (SPA), Display JSON data from API’s and Web Services, and bind data to different elements on screen. All Web Components are plain JavaScript and require no build process.',
     url: 'https://github.com/dataformsjs/dataformsjs',
   },
+  {
+    name: 'Symbiote.js',
+    package: '@symbiotejs/symbiote',
+    description: 'Library to create embedded components and data channels between them.',
+    url: 'https://symbiotejs.org/',
+  },
+  {
+    name: 'FicusJS',
+    package: 'ficusjs',
+    description:
+      'FicusJS is a set of lightweight functions for developing applications using web components.',
+    url: 'https://www.ficusjs.org/',
+  },
+  {
+    name: 'bay.js',
+    package: '@dunks1980/bay.js',
+    description:
+      "An easy to use, lightweight library for web-components that doesn't need a build step but can be included in a build step if you want to. It's a great way to create reusable components for your projects. It's available as a NPM package or module and doesn't use any dependencies and is around 4.5kb minified + gzipped. It also doesn't use eval or new Function so can be used in strict CSP polices without a build step. For documentation and demos go to Bayjs.org.",
+    url: 'https://bayjs.org/examples/index.html',
+  },
 ];
 
 module.exports = async function getBaseLibraries() {
   const result = await Promise.all(
     baseLibraries.map(async lib => {
       const pkg = encodeURIComponent(lib.package);
-      const response = await fetch(`https://api.npmjs.org/downloads/point/last-week/${pkg}`);
-      const { downloads } = await response.json();
+      const { downloads } = await cache(`https://api.npmjs.org/downloads/point/last-week/${pkg}`, {
+        duration: '1d',
+        type: 'json',
+      });
 
       return {
         ...lib,

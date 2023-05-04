@@ -1,7 +1,7 @@
 /** @typedef {import('@mdjs/core').Story} Story */
 
 const { expect } = require('chai');
-const { jsxToJs } = require('../src/jsxToJs');
+const { jsxToJs } = require('../src/jsxToJs.js');
 
 describe('jsxToJs', () => {
   it('turns MD into JSX', async () => {
@@ -24,7 +24,7 @@ function render() {
 
   it('does not transform es2018', async () => {
     const input = 'const foo = {...bar}';
-    expect(await jsxToJs(input, '/foo')).to.equal('const foo = { ...bar\n};');
+    expect(await jsxToJs(input, '/foo')).to.equal('const foo = {\n  ...bar\n};');
   });
 
   it('does not transform es2020', async () => {

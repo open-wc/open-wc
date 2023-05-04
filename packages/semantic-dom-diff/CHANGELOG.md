@@ -1,5 +1,29 @@
 # Change Log
 
+## 0.19.9
+
+### Patch Changes
+
+- 9e49e7a1: fix(deps): update @web/\* dependencies
+
+## 0.19.8
+
+### Patch Changes
+
+- 26292441: Change return type from Assertion to Promise<Assertion>
+
+## 0.19.7
+
+### Patch Changes
+
+- 735b0092: Avoid saving unchanged snapshots
+
+## 0.19.6
+
+### Patch Changes
+
+- a7e9c20d: chore(semantic-dom-diff): updates dependencies
+
 ## 0.19.5
 
 ### Patch Changes

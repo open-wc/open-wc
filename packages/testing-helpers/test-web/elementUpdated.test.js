@@ -19,7 +19,7 @@ describe('elementUpdated', () => {
     let counter = 0;
     class TmpElement extends HTMLElement {
       get updateComplete() {
-        return new Promise(resolve => requestAnimationFrame(resolve)).then(() => {
+        return nextFrame().then(() => {
           counter += 1;
         });
       }
@@ -34,8 +34,8 @@ describe('elementUpdated', () => {
     let counter = 0;
     class TmpElement extends HTMLElement {
       // @ts-ignore
-      componentOnReady() {
-        return new Promise(resolve => requestAnimationFrame(resolve)).then(() => {
+      async componentOnReady() {
+        return nextFrame().then(() => {
           counter += 1;
         });
       }

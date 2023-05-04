@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/no-redundant-role');
+const rule = require('../../../lib/rules/no-redundant-role.js');
 
 //------------------------------------------------------------------------------
 // Tests

@@ -1,5 +1,63 @@
 # Change Log
 
+## 10.0.0
+
+### Patch Changes
+
+- Updated dependencies [30d18829]
+  - eslint-plugin-lit-a11y@2.4.0
+
+## 9.2.2
+
+### Patch Changes
+
+- f047282c: feat(eslint-config): support import assertions
+
+## 9.2.1
+
+### Patch Changes
+
+- 285eb1d0: fix(eslint-config): use latest ecmaversion for static class fields su…
+
+## 9.2.0
+
+### Minor Changes
+
+- e5fa8a8f: feat: update eslint-plugin-lit
+
+## 9.1.0
+
+### Minor Changes
+
+- 8e2b6b4e: feat(eslint-config): add resolver for package exports/imports for eslint-plugin-import
+
+## 9.0.0
+
+### Major Changes
+
+- 6525833a: Update aria-query to v5, fix switch role rules
+- 9779c746: Update eslint-plugin-html to 7.1.0
+- dcc4e759: Update eslint-plugin-no-only-tests to 3.1.0
+
+### Patch Changes
+
+- Updated dependencies [6525833a]
+  - eslint-plugin-lit-a11y@2.3.0
+
+## 8.0.2
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+- Updated dependencies [61e2668f]
+  - eslint-plugin-lit-a11y@2.2.2
+
+## 8.0.0
+
+### Major Changes
+
+- b321871f: breaking(eslint-config): move eslint to the peerDependencies to let users decide which major version they want to use
+
 ## 7.0.0
 
 ### Patch Changes

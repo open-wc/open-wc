@@ -127,6 +127,16 @@ const el = await fixture(html` <my-el></my-el> `, { parentNode });
 <div style="position:absolute;"><my-el></my-el></div>
 ```
 
+## Customize the render function
+
+It could be the case that you need to customize the render function for compatibility reasons, for example if you have multiple versions of lit-html throughout your project. You can achieve this like so:
+
+```js
+import { render } from 'custom-lit-html-version';
+
+const el = await fixture(html`<my-el></my-el>`, { render });
+```
+
 ## Timings
 
 By default fixture awaits the elements "update complete" Promise.
@@ -255,6 +265,25 @@ it('can await an event', async () => {
   const { detail } = await oneEvent(el, 'done');
 
   expect(el.done).to.be.true;
+  expect(detail).to.be.true;
+});
+```
+
+### Events with preventDefault()
+
+If you want to test events that have a default behavior, like a forms `submit` event, some testing tools can be interrupted if `event.preventDefault()` is not called on the event handler. For example, a form's `submit` event's default behavior is to navigate to the `action` of the form (or reload the page if no `action` is set). If the "page" gets reloaded in a test environment, tests can't easily recover/continue. Use the `oneDefaultPreventedEvent` function and `event.preventDefault()` will be called on the event handler and your tests can continue normally.
+
+```js
+it('can await an event and prevent the default', async () => {
+  const form = await fixture(`<form>
+    <input type="text" />
+    <button>Submit button</button>
+  </form>`);
+
+  form.querySelector('button').click();
+
+  const { detail } = await oneDefaultPreventedEvent(el, 'submit');
+
   expect(detail).to.be.true;
 });
 ```

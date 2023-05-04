@@ -1,6 +1,6 @@
 const { parse } = require('parse5');
 const { isUri } = require('valid-url');
-const { queryAll, predicates, getAttribute, remove } = require('../dom5-fork');
+const { queryAll, predicates, getAttribute, remove } = require('../dom5-fork/index.js');
 
 /**
  * @typedef {object} ExtractResult

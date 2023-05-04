@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/role-has-required-aria-attrs');
+const rule = require('../../../lib/rules/role-has-required-aria-attrs.js');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -26,19 +26,16 @@ ruleTester.run('role-has-required-aria-attrs', rule, {
   valid: [
     { code: "html`<span role='alert' aria-atomic='foo' aria-live='foo'></span>`" },
     {
-      code:
-        'html`<span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span>`',
+      code: 'html`<span role="checkbox" aria-checked="false" aria-labelledby="foo" tabindex="0"></span>`',
     },
     { code: 'html`<span role="row"></span>`' },
-    { code: 'html`<input type="checkbox" role="switch" aria-checked="true" />`' },
+    { code: 'html`<input type="checkbox" role="switch">`' },
     { code: 'html`<div role="combobox" aria-controls="foo" aria-expanded="foo"></div>`' },
     {
-      code:
-        'html`<div role="combobox" aria-activedescendant="child" aria-autocomplete="none" aria-controls="listbox" aria-expanded="false"></div>`;',
+      code: 'html`<div role="combobox" aria-activedescendant="child" aria-autocomplete="none" aria-controls="listbox" aria-expanded="false"></div>`;',
     },
     {
-      code:
-        'html`<div role="combobox" aria-activedescendant=${"child"} aria-autocomplete=${"none"} aria-controls="listbox" aria-expanded=${"false"}></div>`;',
+      code: 'html`<div role="combobox" aria-activedescendant=${"child"} aria-autocomplete=${"none"} aria-controls="listbox" aria-expanded=${"false"}></div>`;',
     },
   ],
 
@@ -46,6 +43,15 @@ ruleTester.run('role-has-required-aria-attrs', rule, {
     {
       code: "html`<span role='checkbox'></span>`",
       errors: [{ message: 'The "checkbox" role requires the attribute "aria-checked".' }],
+    },
+    {
+      code: "html`<input role='switch' aria-checked='true'>`",
+      errors: [
+        {
+          message:
+            'The "switch" role on an input[type=checkbox] cannot use the attribute "aria-checked".',
+        },
+      ],
     },
     {
       code: "html`<div role='combobox'></div>`",

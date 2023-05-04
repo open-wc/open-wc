@@ -26,6 +26,7 @@ const enumArraySchema = (enumeratedList = [], minItems = 0) => ({
  * Factory function to generate an object schema
  * with specified properties object
  */
+// eslint-disable-next-line default-param-last
 const generateObjSchema = (properties = {}, required) => ({
   type: 'object',
   properties,

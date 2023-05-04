@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/dev-server-hmr",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "publishConfig": {
     "access": "public"
   },
@@ -53,8 +53,8 @@
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-import-assertions": "^7.12.1",
     "@babel/plugin-syntax-top-level-await": "^7.12.1",
-    "@web/dev-server-core": "^0.3.10",
-    "@web/dev-server-hmr": "^0.1.6",
+    "@web/dev-server-core": "^0.4.0",
+    "@web/dev-server-hmr": "^0.1.11",
     "picomatch": "^2.2.2"
   }
 }

@@ -1,5 +1,5 @@
 const Terser = require('terser');
-const { cleanImportPath, polyfillFilename } = require('./utils');
+const { cleanImportPath, polyfillFilename } = require('./utils.js');
 
 /**
  * @typedef {import('./create-index-html').EntriesConfig} EntriesConfig

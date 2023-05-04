@@ -1,4 +1,3 @@
-import '@webcomponents/scoped-custom-element-registry';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { adoptStyles } from '@lit/reactive-element/css-tag.js';
 
@@ -9,6 +8,9 @@ import { adoptStyles } from '@lit/reactive-element/css-tag.js';
  * @typedef {import('./types').ScopedElementsMap} ScopedElementsMap
  * @typedef {import('@lit/reactive-element').CSSResultOrNative} CSSResultOrNative
  */
+
+// @ts-ignore
+const supportsScopedRegistry = !!ShadowRoot.prototype.createElement;
 
 /**
  * @template {import('./types').Constructor<HTMLElement>} T
@@ -86,20 +88,26 @@ const ScopedElementsMixinImplementation = superclass =>
       this.constructor.__registry = registry;
     }
 
-    /** @override */
     createRenderRoot() {
-      const {
-        scopedElements,
-        shadowRootOptions,
-        elementStyles,
-      } = /** @type {typeof ScopedElementsHost} */ (this.constructor);
+      const { scopedElements, shadowRootOptions, elementStyles } =
+        /** @type {typeof ScopedElementsHost} */ (this.constructor);
 
-      if (!this.registry) {
-        this.registry = new CustomElementRegistry();
+      const shouldCreateRegistry =
+        !this.registry ||
+        // @ts-ignore
+        (this.registry === this.constructor.__registry &&
+          !Object.prototype.hasOwnProperty.call(this.constructor, '__registry'));
 
-        Object.entries(scopedElements).forEach(([tagName, klass]) =>
-          this.registry.define(tagName, klass),
-        );
+      /**
+       * Create a new registry if:
+       * - the registry is not defined
+       * - this class doesn't have its own registry *AND* has no shared registry
+       */
+      if (shouldCreateRegistry) {
+        this.registry = supportsScopedRegistry ? new CustomElementRegistry() : customElements;
+        for (const [tagName, klass] of Object.entries(scopedElements)) {
+          this.defineScopedElement(tagName, klass);
+        }
       }
 
       /** @type {ShadowRootInit} */
@@ -109,16 +117,23 @@ const ScopedElementsMixinImplementation = superclass =>
         customElements: this.registry,
       };
 
-      this.renderOptions.creationScope = this.attachShadow(options);
-
-      if (this.renderOptions.creationScope instanceof ShadowRoot) {
-        adoptStyles(this.renderOptions.creationScope, elementStyles);
-
-        this.renderOptions.renderBefore =
-          this.renderOptions.renderBefore || this.renderOptions.creationScope.firstChild;
+      const createdRoot = this.attachShadow(options);
+      if (supportsScopedRegistry) {
+        this.renderOptions.creationScope = createdRoot;
       }
 
-      return this.renderOptions.creationScope;
+      if (createdRoot instanceof ShadowRoot) {
+        adoptStyles(createdRoot, elementStyles);
+        this.renderOptions.renderBefore = this.renderOptions.renderBefore || createdRoot.firstChild;
+      }
+
+      return createdRoot;
+    }
+
+    createScopedElement(tagName) {
+      const root = supportsScopedRegistry ? this.shadowRoot : document;
+      // @ts-ignore polyfill to support createElement on shadowRoot is loaded
+      return root.createElement(tagName);
     }
 
     /**
@@ -128,7 +143,24 @@ const ScopedElementsMixinImplementation = superclass =>
      * @param {typeof HTMLElement} klass
      */
     defineScopedElement(tagName, klass) {
-      return this.registry.get(tagName) || this.registry.define(tagName, klass);
+      const registeredClass = this.registry.get(tagName);
+      if (registeredClass && supportsScopedRegistry === false && registeredClass !== klass) {
+        // eslint-disable-next-line no-console
+        console.error(
+          [
+            `You are trying to re-register the "${tagName}" custom element with a different class via ScopedElementsMixin.`,
+            'This is only possible with a CustomElementRegistry.',
+            'Your browser does not support this feature so you will need to load a polyfill for it.',
+            'Load "@webcomponents/scoped-custom-element-registry" before you register ANY web component to the global customElements registry.',
+            'e.g. add "<script src="/node_modules/@webcomponents/scoped-custom-element-registry/scoped-custom-element-registry.min.js"></script>" as your first script tag.',
+            'For more details you can visit https://open-wc.org/docs/development/scoped-elements/',
+          ].join('\n'),
+        );
+      }
+      if (!registeredClass) {
+        return this.registry.define(tagName, klass);
+      }
+      return this.registry.get(tagName);
     }
 
     /**
@@ -139,7 +171,8 @@ const ScopedElementsMixinImplementation = superclass =>
      */
     // eslint-disable-next-line class-methods-use-this
     getScopedTagName(tagName) {
-      return tagName;
+      // @ts-ignore
+      return this.constructor.getScopedTagName(tagName);
     }
 
     /**
@@ -150,7 +183,8 @@ const ScopedElementsMixinImplementation = superclass =>
      */
     // eslint-disable-next-line class-methods-use-this
     static getScopedTagName(tagName) {
-      return tagName;
+      // @ts-ignore
+      return this.__registry.get(tagName) ? tagName : undefined;
     }
   };
 

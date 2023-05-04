@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const { parse } = require('parse5');
-const { getAttribute, getTextContent } = require('../dom5-fork');
-const { findJsScripts, findImportMapScripts } = require('../dom5-utils');
+const { getAttribute, getTextContent } = require('../dom5-fork/index.js');
+const { findJsScripts, findImportMapScripts } = require('../dom5-utils.js');
 
 const htmlString = `
   <html>

@@ -55,7 +55,9 @@ export function aTimeout(ms) {
  * @returns {Promise<void>} Promise that resolved after requestAnimationFrame
  */
 export function nextFrame() {
-  return new Promise(resolve => requestAnimationFrame(() => resolve()));
+  return new Promise(resolve => {
+    requestAnimationFrame(() => resolve());
+  });
 }
 
 /**
@@ -118,13 +120,39 @@ export async function triggerFocusFor(element) {
  * await oneEvent(el, 'done');
  * expect(el.done).to.be.true;
  *
- * @param {EventTarget} eventTarget Target of the event, usually an Element
- * @param {string} eventName Name of the event
- * @returns {Promise<CustomEvent>} Promise to await until the event has been fired
+ * @param eventTarget Target of the event, usually an Element
+ * @param eventName Name of the event
+ * @returns Promise to await until the event has been fired
+ * @type {import("./types").OneEventFn}
  */
 export function oneEvent(eventTarget, eventName) {
   return new Promise(resolve => {
     function listener(ev) {
+      resolve(ev);
+      eventTarget.removeEventListener(eventName, listener);
+    }
+    eventTarget.addEventListener(eventName, listener);
+  });
+}
+
+/**
+ * Listens for one event, calls `event.preventDefault()` and resolves with this event object after it was fired.
+ *
+ * @example
+ * const form = document.querySelector('form);
+ * form.querySelector('button[type="submit"]).click();
+ * const payload = await oneDefaultPreventedEvent(form, 'submit');
+ * expect(payload).to.be.true;
+ *
+ * @param eventTarget Target of the event, usually an Element
+ * @param eventName Name of the event
+ * @returns Promise to await until the event has been fired
+ * @type {import("./types").OneEventFn}
+ */
+export function oneDefaultPreventedEvent(eventTarget, eventName) {
+  return new Promise(resolve => {
+    function listener(ev) {
+      ev.preventDefault();
       resolve(ev);
       eventTarget.removeEventListener(eventName, listener);
     }
@@ -145,7 +173,7 @@ export function oneEvent(eventTarget, eventName) {
  * await waitUntil(() => element.someAsyncProperty, 'element should become ready');
  * ```
  *
- * @param {() => boolean | Promise<boolean>} predicate - predicate function which is called each poll interval.
+ * @param {() => unknown | Promise<unknown>} predicate - predicate function which is called each poll interval.
  *   The predicate is awaited, so it can return a promise.
  * @param {string} [message] an optional message to display when the condition timed out
  * @param {{ interval?: number, timeout?: number }} [options] timeout and polling interval
@@ -153,12 +181,21 @@ export function oneEvent(eventTarget, eventName) {
 export function waitUntil(predicate, message, options = {}) {
   const { interval = 50, timeout = 1000 } = options;
 
+  // Save the current stack so that we can reference it later if we timeout.
+  const { stack } = new Error();
+
   return new Promise((resolve, reject) => {
     let timeoutId;
 
     setTimeout(() => {
       clearTimeout(timeoutId);
-      reject(new Error(message ? `Timeout: ${message}` : `waitUntil timed out after ${timeout}ms`));
+
+      const error = new Error(
+        message ? `Timeout: ${message}` : `waitUntil timed out after ${timeout}ms`,
+      );
+      error.stack = stack;
+
+      reject(error);
     }, timeout);
 
     async function nextInterval() {
