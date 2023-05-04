@@ -36,6 +36,11 @@ const componentLibraries = [
       'Crayons is a web component library for developers who build apps for Freshworks. Through pre-built components, Crayons offers control and flexibility to build rich interfaces consistent with the Freshworks product design and experience.',
   },
   {
+    name: 'Dile',
+    url: 'https://dile-components.polydile.com/',
+    description: 'Custom elements made for all kind of projects and frameworks.'
+  },
+  {
     name: 'Elix',
     url: 'https://component.kitchen/elix',
     description:
