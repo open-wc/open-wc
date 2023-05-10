@@ -9,6 +9,7 @@ export {
   isIE,
   nextFrame,
   oneEvent,
+  oneDefaultPreventedEvent,
   triggerBlurFor,
   triggerFocusFor,
   waitUntil,
