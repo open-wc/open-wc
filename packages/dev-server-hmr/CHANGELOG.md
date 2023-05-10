@@ -1,5 +1,16 @@
 # @open-wc/dev-server-wc-hmr
 
+## 0.2.0
+
+### Minor Changes
+
+- 935c8ffe: Drop support for Node@14
+
+### Patch Changes
+
+- 80c6ae66: Use latest @web/\* dependencies.
+  Upgrade Rollup to `v3.x`
+
 ## 0.1.4
 
 ### Patch Changes

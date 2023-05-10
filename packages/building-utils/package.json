@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-utils",
-  "version": "2.21.1",
+  "version": "3.0.0",
   "publishConfig": {
     "access": "public"
   },

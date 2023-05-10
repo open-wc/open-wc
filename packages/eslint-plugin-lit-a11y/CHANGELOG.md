@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- 935c8ffe: Drop support for Node@14
+
 ## 2.4.1
 
 ### Patch Changes

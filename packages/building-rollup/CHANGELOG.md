@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- 935c8ffe: Drop support for Node@14
+
+### Patch Changes
+
+- 80c6ae66: Use latest @web/\* dependencies.
+  Upgrade Rollup to `v3.x`
+- Updated dependencies [935c8ffe]
+  - @open-wc/building-utils@3.0.0
+
 ## 2.2.3
 
 ### Patch Changes
