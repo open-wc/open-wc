@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "2.2.3",
+  "version": "3.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -61,7 +61,7 @@
     "@babel/plugin-transform-modules-systemjs": "^7.10.5",
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.9.0",
-    "@open-wc/building-utils": "^2.21.1",
+    "@open-wc/building-utils": "^3.0.0",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@web/rollup-plugin-html": "^2.0.0",

@@ -1,5 +1,16 @@
 # Change Log
 
+## 0.20.0
+
+### Minor Changes
+
+- 935c8ffe: Drop support for Node@14
+
+### Patch Changes
+
+- 80c6ae66: Use latest @web/\* dependencies.
+  Upgrade Rollup to `v3.x`
+
 ## 0.19.9
 
 ### Patch Changes

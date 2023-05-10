@@ -1,5 +1,16 @@
 # Change Log
 
+## 11.0.0
+
+### Major Changes
+
+- 935c8ffe: Drop support for Node@14
+
+### Patch Changes
+
+- Updated dependencies [935c8ffe]
+  - eslint-plugin-lit-a11y@3.0.0
+
 ## 10.0.0
 
 ### Patch Changes

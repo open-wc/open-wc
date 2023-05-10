@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.3.0
+
+### Minor Changes
+
+- 935c8ffe: Drop support for Node@14
+
+### Patch Changes
+
+- 3289e0eb: Add oneDefaultPreventedEvent export into testing package and no-side-effect indexes
+- Updated dependencies [935c8ffe]
+- Updated dependencies [80c6ae66]
+  - @open-wc/scoped-elements@2.2.0
+
 ## 2.2.1
 
 ### Patch Changes
