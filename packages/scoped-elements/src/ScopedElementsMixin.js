@@ -123,8 +123,7 @@ const ScopedElementsMixinImplementation = superclass =>
       }
 
       if (createdRoot instanceof ShadowRoot) {
-        adoptStyles(createdRoot, elementStyles);
-        this.renderOptions.renderBefore = this.renderOptions.renderBefore || createdRoot.firstChild;
+        this.adoptStyles(createdRoot)
       }
 
       return createdRoot;
@@ -134,6 +133,15 @@ const ScopedElementsMixinImplementation = superclass =>
       const root = supportsScopedRegistry ? this.shadowRoot : document;
       // @ts-ignore polyfill to support createElement on shadowRoot is loaded
       return root.createElement(tagName);
+    }
+    
+    // This would move to a separate file and enhance the mixin for Lit specifically.
+    // This doesn't accomplish the goal of the PR, but ideally an "adoptStyles" hook allows it to be extended
+    // for libraries that use constructable stylesheets.
+    adoptStyles(createdRoot) {
+      const { elementStyles } = this.constructor
+      adoptStyles(createdRoot, elementStyles);
+      this.renderOptions.renderBefore = this.renderOptions.renderBefore || createdRoot.firstChild;
     }
 
     /**
