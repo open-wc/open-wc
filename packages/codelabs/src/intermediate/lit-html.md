@@ -882,7 +882,7 @@ import { LitElement, html } from 'lit';
 import './BreweryDetail.js';
 
 class BreweryApp extends LitElement {
-  static  properties ={
+  static properties = {
       loading: { type: Boolean },
       breweries: { type: Array },
       filter: { type: String },
