@@ -11,6 +11,12 @@ const componentLibraries = [
     description:
       'A family of web components built with first-class participation in the Twig templating system for PHP in mind. This set is backed by an expansive catalog of usage variants.',
   },
+   {
+    name: 'Calcite Design System',
+    url: 'https://developers.arcgis.com/calcite-design-system/',
+    description:
+      'Calcite Design System is a collection of design and development resources for creating beautiful, easy to use, cohesive experiences across apps with minimal effort. It includes a UI kit, icons, color schemes, and a web component library with UI elements such as buttons, panels, accordions, alerts, and many more.',
+  },
   {
     name: 'Carbon Design System',
     url: 'https://github.com/carbon-design-system/carbon-web-components',
