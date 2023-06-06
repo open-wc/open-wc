@@ -11,7 +11,7 @@ const componentLibraries = [
     description:
       'A family of web components built with first-class participation in the Twig templating system for PHP in mind. This set is backed by an expansive catalog of usage variants.',
   },
-   {
+  {
     name: 'Calcite Design System',
     url: 'https://developers.arcgis.com/calcite-design-system/',
     description:
