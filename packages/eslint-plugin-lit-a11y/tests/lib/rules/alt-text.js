@@ -26,6 +26,8 @@ const roleImgAttrs = 'aria-label or aria-labelledby';
 
 ruleTester.run('alt-text', rule, {
   valid: [
+    { code: "html`<input type='image' alt=''/>`" },
+    { code: "html`<input type='image' alt='hello'/>`" },
     { code: "html`<img alt=''/>`" },
     { code: 'html`<img aria-hidden="true"/>`' },
     { code: "html`<img alt='foo'/>`" },
@@ -37,6 +39,14 @@ ruleTester.run('alt-text', rule, {
   ],
 
   invalid: [
+    {
+      code: "html`<input type='image'/>`",
+      errors: [
+        {
+          messageId: 'imgAttrs',
+        },
+      ],
+    },
     {
       code: "html`<img src='./myimg.png'/>`",
       errors: [

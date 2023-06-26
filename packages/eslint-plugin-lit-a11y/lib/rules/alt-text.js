@@ -26,7 +26,7 @@ const AltTextRule = {
     },
     messages: {
       roleImgAttrs: "elements with role '{{role}}' must have an {{attrs}} attribute.",
-      imgAttrs: '<img> elements must have an alt attribute.',
+      imgAttrs: '{{role}} elements must have an alt attribute.',
     },
     fixable: null,
     schema: [],
@@ -47,6 +47,21 @@ const AltTextRule = {
     function isUnlabeledAOMImg(element) {
       return (
         element.name === 'img' &&
+        element.attribs.role !== 'presentation' &&
+        !isHiddenFromScreenReader(element) &&
+        !elementHasAttribute(element, 'alt')
+      );
+    }
+
+    /**
+     * Is the element an `<input type="image">` with no `alt` attribute?
+     * @param {import('parse5-htmlparser2-tree-adapter').Element} element
+     * @return {boolean}
+     */
+    function isUnlabeledInputImg(element) {
+      return (
+        element.name === 'input' &&
+        element.attribs.type === 'image' &&
         element.attribs.role !== 'presentation' &&
         !isHiddenFromScreenReader(element) &&
         !elementHasAttribute(element, 'alt')
@@ -89,7 +104,13 @@ const AltTextRule = {
               }
 
               if (isUnlabeledAOMImg(element)) {
-                context.report({ loc, messageId: 'imgAttrs' });
+                context.report({ loc, messageId: 'imgAttrs', data: { role: '<img>' } });
+              } else if (isUnlabeledInputImg(element)) {
+                context.report({
+                  loc,
+                  messageId: 'imgAttrs',
+                  data: { role: '<input type="image">' },
+                });
               } else if (isUnlabeledImgRole(element)) {
                 context.report({
                   loc,

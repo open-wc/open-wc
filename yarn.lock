@@ -1603,6 +1603,11 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@import-maps/resolve@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@import-maps/resolve/-/resolve-1.0.1.tgz#1e9fcadcf23aa0822256a329aabca241879d37c9"
+  integrity sha512-tWZNBIS1CoekcwlMuyG2mr0a1Wo5lb5lEHwwWvZo+5GLgr3e9LLDTtmgtCWEwBpXMkxn9D+2W9j2FY6eZQq0tA==
+
 "@jest/types@^27.5.1":
   version "27.5.1"
   resolved "https://registry.npmjs.org/@jest/types/-/types-27.5.1.tgz"
@@ -15103,6 +15108,28 @@ statuses@~1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/statuses/-/statuses-1.4.0.tgz"
   integrity sha512-zhSCtt8v2NDrRlPQpCNtw/heZLtfUDqxBM1udqikb/Hbk52LK4nQSwr10u77iopCW5LsyHpuXS0GnEc48mLeew==
+
+storybook-addon-markdown-docs@^1.0.4:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/storybook-addon-markdown-docs/-/storybook-addon-markdown-docs-1.0.5.tgz#95754c694477adef87f4da8401d528aa2cfa799a"
+  integrity sha512-bePWZFx2MAD2KrLuMfoi1IgKynBMcAkERWJkEuk/vs+QGSvdFWDN9Z/45A8a7QasBlkguog6KMTuLCfErsZ+pw==
+  dependencies:
+    "@babel/code-frame" "^7.16.7"
+    "@babel/core" "^7.17.5"
+    "@babel/generator" "^7.17.3"
+    "@babel/parser" "^7.17.3"
+    "@babel/plugin-syntax-import-meta" "^7.10.4"
+    "@babel/plugin-transform-react-jsx" "^7.17.3"
+    "@mdjs/core" "^0.9.2"
+    "@mdx-js/mdx" "^1.6.22"
+    detab "^2.0.4"
+    mdurl "^1.0.1"
+    remark-html "^13.0.2"
+    remark-parse "^9.0.0"
+    remark-slug "^6.1.0"
+    unified "^9.2.2"
+    unist-builder "^2.0.3"
+    unist-util-visit-parents "^3.1.1"
 
 stream-read-all@^3.0.1:
   version "3.0.1"
