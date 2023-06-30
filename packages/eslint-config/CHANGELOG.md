@@ -1,5 +1,12 @@
 # Change Log
 
+## 12.0.0
+
+### Patch Changes
+
+- Updated dependencies [14e4270a]
+  - eslint-plugin-lit-a11y@4.0.0
+
 ## 11.0.0
 
 ### Major Changes
