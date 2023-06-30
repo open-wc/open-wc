@@ -1,11 +1,10 @@
 /**
- * @fileoverview Enforce anchor elements to contain accessible content.
+ * @fileoverview Ensure all definition lists (defined by dl elements) contain only properly-ordered dt and dd groups, div, script, or template elements.
  * @author open-wc
  */
 
 const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
-const { hasAccessibleChildren } = require('../utils/hasAccessibleChildren.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 
@@ -13,20 +12,25 @@ const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRule
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('eslint').Rule.RuleModule} */
-const AnchorHasContentRule = {
+const LIST = 'dl';
+const ALLOWED_CHILDREN = ['dt', 'dd', 'div', 'script', 'template'];
+
+/** @type {import("eslint").Rule.RuleModule} */
+const DefinitionListRule = {
   meta: {
     type: 'suggestion',
     docs: {
-      description: 'Enforce anchor elements to contain accessible content.',
+      description:
+        'Ensure all definition lists (defined by dl elements) contain only properly-ordered dt and dd groups, div, script, or template elements.',
       category: 'Accessibility',
       recommended: false,
-      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/anchor-has-content.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/definition-list.md',
+    },
+    messages: {
+      list: '<dl> elements may only contain properly-ordered <dt> and <dd> groups, <div>, <script>, or <template> elements.',
     },
     fixable: null,
-    schema: [],
   },
-
   create(context) {
     return {
       TaggedTemplateExpression(node) {
@@ -39,18 +43,22 @@ const AnchorHasContentRule = {
                 return; // probably a tree correction node
               }
 
-              if (element.name === 'a') {
-                if (!hasAccessibleChildren(element)) {
+              if (element.name === LIST) {
+                if (
+                  !element.children
+                    .filter(c => c.type === 'tag')
+                    .every(c => ALLOWED_CHILDREN.includes(c.name))
+                ) {
                   const loc =
                     analyzer.resolveLocation(
                       element.sourceCodeLocation.startTag,
                       context.getSourceCode(),
                     ) ?? node.loc;
+
+                  const messageId = 'list';
+
                   if (loc) {
-                    context.report({
-                      loc,
-                      message: 'Anchor should contain accessible content.',
-                    });
+                    context.report({ loc, messageId, data: { list: element.name } });
                   }
                 }
               }
@@ -62,4 +70,4 @@ const AnchorHasContentRule = {
   },
 };
 
-module.exports = ruleExtender(AnchorHasContentRule, HasLitHtmlImportRuleExtension);
+module.exports = ruleExtender(DefinitionListRule, HasLitHtmlImportRuleExtension);

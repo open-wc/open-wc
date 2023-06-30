@@ -1,3 +1,5 @@
+/* eslint-disable lit-a11y/accessible-name */
+
 import { fixture, expect, assert, html } from '../index.js';
 
 describe('chaiA11yAxe', () => {

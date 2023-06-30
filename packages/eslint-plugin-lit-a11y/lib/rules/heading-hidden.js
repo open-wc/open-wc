@@ -1,12 +1,10 @@
 /**
- * @fileoverview Enforce heading (h1, h2, etc) elements contain accessible content.
+ * @fileoverview Headings must not be hidden from screenreaders
  * @author open-wc
  */
 
 const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
-const { hasAccessibleChildren } = require('../utils/hasAccessibleChildren.js');
-const { isCustomElement } = require('../utils/isCustomElement.js');
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
@@ -15,20 +13,20 @@ const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRule
 // Rule Definition
 //------------------------------------------------------------------------------
 
-const headings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
 /** @type {import("eslint").Rule.RuleModule} */
-const HeadingHasContentRule = {
+const HeadingHiddenRule = {
   meta: {
     type: 'suggestion',
     docs: {
-      description: 'Enforce heading (h1, h2, etc) elements contain accessible content.',
+      description: 'Headings must not be hidden from screenreaders.',
       category: 'Accessibility',
       recommended: false,
-      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/heading-has-content.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/heading-hidden.md',
     },
     messages: {
-      headingHasContent: '<{{tagName}}> elements must have accessible content.',
+      hidden: 'Headings must not be hidden from screenreaders.',
     },
     fixable: null,
     schema: [
@@ -48,22 +46,14 @@ const HeadingHasContentRule = {
     ],
   },
   create(context) {
-    /**
-     * Is it a heading element?
-     * @param {import("parse5-htmlparser2-tree-adapter").Element} element
-     * @param {string[]} customHeadingElements list of custom elements tag names which should be considered headings
-     * @return {boolean}
-     */
-    function isHeading(element, customHeadingElements = []) {
-      if (isCustomElement(element)) return customHeadingElements.includes(element.name);
-      return headings.includes(element.name);
+    function isRelevantElement(element, relevantElements = []) {
+      return relevantElements.includes(element.name);
     }
 
     return {
       TaggedTemplateExpression(node) {
         if (isHtmlTaggedTemplate(node, context)) {
           const analyzer = TemplateAnalyzer.create(node);
-
           const options = (context.options && context.options[0]) || {};
 
           analyzer.traverse({
@@ -73,9 +63,11 @@ const HeadingHasContentRule = {
               }
 
               if (
-                isHeading(element, options.customHeadingElements) &&
-                !hasAccessibleChildren(element) &&
-                !isHiddenFromScreenReader(element)
+                isRelevantElement(element, [
+                  ...HEADINGS,
+                  ...(options.customHeadingElements || []),
+                ]) &&
+                isHiddenFromScreenReader(element)
               ) {
                 const loc =
                   analyzer.resolveLocation(
@@ -83,12 +75,8 @@ const HeadingHasContentRule = {
                     context.getSourceCode(),
                   ) ?? node.loc;
 
-                const messageId = 'headingHasContent';
-
-                const data = { tagName: element.name };
-
                 if (loc) {
-                  context.report({ loc, messageId, data });
+                  context.report({ loc, messageId: 'hidden' });
                 }
               }
             },
@@ -99,4 +87,4 @@ const HeadingHasContentRule = {
   },
 };
 
-module.exports = ruleExtender(HeadingHasContentRule, HasLitHtmlImportRuleExtension);
+module.exports = ruleExtender(HeadingHiddenRule, HasLitHtmlImportRuleExtension);
