@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.0
+
+### Major Changes
+
+- 14e4270a: feat: new a11y rules
+
 ## 3.0.0
 
 ### Major Changes
