@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- 5947c225: ci: publish new version
+
 ## 3.0.0
 
 ### Major Changes
