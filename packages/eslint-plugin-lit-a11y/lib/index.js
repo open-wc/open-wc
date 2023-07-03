@@ -38,6 +38,7 @@ module.exports.configs = {
       'lit-a11y/list': 'error',
       'lit-a11y/mouse-events-have-key-events': 'error',
       'lit-a11y/no-access-key': 'error',
+      'lit-a11y/no-aria-slot': 'error',
       'lit-a11y/no-autofocus': 'error',
       'lit-a11y/no-distracting-elements': 'error',
       'lit-a11y/no-invalid-change-handler': 'off',
