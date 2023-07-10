@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- 8c171e17: Replace `rollup-plugin-terser` with `@rollup/plugin-terser`
+
 ## 3.0.0
 
 ### Major Changes
