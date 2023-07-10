@@ -1,6 +1,6 @@
 /**
- * @fileoverview <TODO>
- * @author Cory Laviska & Konnor Rogers
+ * @fileoverview Ensure that slots do not have aria or role attributes.
+ * @author Cory LaViska
  */
 
 const ruleExtender = require('eslint-rule-extender');
@@ -17,10 +17,13 @@ const NoAriaSlot = {
   meta: {
     type: 'suggestion',
     docs: {
-      description: '<TODO>',
+      description: 'Slots do not allow aria or role attributes.',
       category: 'Accessibility',
       recommended: false,
       url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-aria-slot.md',
+    },
+    messages: {
+      noAriaSlot: 'Aria attributes and the role attribute are not permitted on slots.',
     },
     fixable: null,
   },
@@ -38,7 +41,7 @@ const NoAriaSlot = {
 
               if (
                 element.name === 'slot' &&
-                Object.keys(element.attribs).some(a => a.startsWith('aria'))
+                Object.keys(element.attribs).some(a => a === 'role' || a.startsWith('aria'))
               ) {
                 const loc =
                   analyzer.resolveLocation(
@@ -47,7 +50,10 @@ const NoAriaSlot = {
                   ) ?? node.loc;
 
                 if (loc) {
-                  context.report({ loc, message: '<TODO>' });
+                  context.report({
+                    loc,
+                    messageId: 'noAriaSlot',
+                  });
                 }
               }
             },
