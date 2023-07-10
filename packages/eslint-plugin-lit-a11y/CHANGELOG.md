@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- 76a2e824: added no-aria-slot rule to prevent invalid aria- and role attributes from appearing on slots
+
 ## 4.0.0
 
 ### Major Changes
