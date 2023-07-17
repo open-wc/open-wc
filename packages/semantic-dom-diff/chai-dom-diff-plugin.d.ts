@@ -5,33 +5,46 @@ import { DiffOptions } from './get-diffable-html';
 declare global {
   namespace Chai {
     interface Assertion extends LanguageChains, NumericComparison, TypeComparison {
-      dom: Assertion;
-      lightDom: Assertion;
-      shadowDom: Assertion;
+      dom: DomDiffAssertion;
+      lightDom: DomDiffAssertion;
+      shadowDom: DomDiffAssertion;
+      equal: DomDiffEqual;
+      equals: DomDiffEqual;
+      eq: DomDiffEqual;
+      eql: DomDiffEqual;
+      eqls: DomDiffEqual;
+      to: DomDiffAssertion;
+      be: DomDiffAssertion;
+      been: DomDiffAssertion;
+      is: DomDiffAssertion;
+      that: DomDiffAssertion;
+      which: DomDiffAssertion;
+      and: DomDiffAssertion;
+      has: DomDiffAssertion;
+      have: DomDiffAssertion;
+      with: DomDiffAssertion;
+      at: DomDiffAssertion;
+      of: DomDiffAssertion;
+      same: DomDiffAssertion;
+      but: DomDiffAssertion;
+      does: DomDiffAssertion;
+    }
+
+    interface DomDiffEqual {
+      (value: unknown, message?: string, options?: DiffOptions): Promise<Assertion>;
+      (value: unknown, options?: DiffOptions): Promise<Assertion>;
+    }
+
+    interface DomDiffAssertion extends Assertion {
       notEqual(actual: Object, expected: Object, message?: string): void;
-      equalSnapshot(options?: Object): Assertion;
-      notEqualSnapshot(options?: Object): Assertion;
+      equalSnapshot(options?: Object): Promise<Assertion>;
+      notEqualSnapshot(options?: Object): Promise<Assertion>;
     }
 
     interface Assert {
-      dom: Pick<Assertion, 'equal' | 'notEqual' | 'equalSnapshot' | 'notEqualSnapshot'>;
-      lightDom: Pick<Assertion, 'equal' | 'notEqual' | 'equalSnapshot' | 'notEqualSnapshot'>;
-      shadowDom: Pick<Assertion, 'equal' | 'notEqual' | 'equalSnapshot' | 'notEqualSnapshot'>;
-      equalSnapshot(fixture: unknown, options?: DiffOptions): Assertion;
-      notEqualSnapshot(fixture: unknown, options?: DiffOptions): Assertion;
-
-      equal<T>(actual: T, expected: T, message?: string, options?: DiffOptions): void;
-      equal<T>(actual: T, expected: T, message?: string): void;
-      equal<T>(actual: T, expected: T, options?: DiffOptions): void;
-
-      notEqual<T>(actual: T, expected: T, message?: string, options?: DiffOptions): void;
-      notEqual<T>(actual: T, expected: T, message?: string): void;
-      notEqual<T>(actual: T, expected: T, options?: DiffOptions): void;
-    }
-
-    interface Equal {
-      (value: unknown, message?: string, options?: DiffOptions): Promise<Assertion>;
-      (value: unknown, options?: DiffOptions): Promise<Assertion>;
+      dom: Pick<DomDiffAssertion, 'equal' | 'notEqual' | 'equalSnapshot' | 'notEqualSnapshot'>;
+      lightDom: Pick<DomDiffAssertion, 'equal' | 'notEqual' | 'equalSnapshot' | 'notEqualSnapshot'>;
+      shadowDom: Pick<DomDiffAssertion, 'equal' | 'notEqual' | 'equalSnapshot' | 'notEqualSnapshot'>;
     }
   }
 }
