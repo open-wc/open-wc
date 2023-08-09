@@ -74,7 +74,7 @@
     "magic-string": "^0.30.0",
     "parse5": "^7.1.2",
     "regenerator-runtime": "^0.13.7",
-    "rollup-plugin-workbox": "^7.0.0",
+    "rollup-plugin-workbox": "^8.0.0",
     "terser": "^4.8.1"
   }
 }
