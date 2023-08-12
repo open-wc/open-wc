@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.2
+
+### Patch Changes
+
+- 83561cb4: Bump `rollup-plugin-workbox` to `v8` to fix `rollup-plugin-terser` import error
+
 ## 3.0.1
 
 ### Patch Changes
