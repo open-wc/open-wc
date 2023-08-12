@@ -42,6 +42,11 @@ const componentLibraries = [
       'The goal of curvenote.dev is to provide open source tools to promote and enable interactive scientific writing, reactive documents and explorable explanations.',
   },
   {
+    name: 'Dile',
+    url: 'https://dile-components.polydile.com/',
+    description: 'Custom elements made for all kind of projects and frameworks.',
+  },
+  {
     name: 'Duet Design System',
     url: 'https://www.duetds.com/',
     description:
