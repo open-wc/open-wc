@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/building-rollup",
-  "version": "2.2.3",
+  "version": "3.0.1",
   "publishConfig": {
     "access": "public"
   },
@@ -15,15 +15,15 @@
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/building-rollup",
   "main": "index.js",
   "scripts": {
-    "build:babelrc": "rimraf dist && rollup -c demo/babelrc/rollup.config.js",
-    "build:basic": "rimraf dist && rollup -c demo/js/rollup.basic.config.js",
-    "build:cjs": "rimraf dist && rollup -c demo/cjs/rollup.spa.config.js",
-    "build:modify-babel-plugin": "rimraf dist && rollup -c demo/modify-babel-plugin/rollup.config.js",
-    "build:mpa": "rimraf dist && rollup -c demo/mpa/rollup.mpa.config.js",
-    "build:spa": "rimraf dist && rollup -c demo/js/rollup.spa.config.js",
-    "build:spa-js-input": "rimraf dist && rollup -c demo/js/rollup.spa-js-input.config.js",
-    "build:spa-nomodule": "rimraf dist && rollup -c demo/js/rollup.spa-nomodule.config.js",
-    "build:ts": "rimraf dist && rollup -c demo/ts/rollup.spa.config.js",
+    "build:babelrc": "rimraf dist && rollup -c demo/babelrc/rollup.config.mjs",
+    "build:basic": "rimraf dist && rollup -c demo/js/rollup.basic.config.mjs",
+    "build:cjs": "rimraf dist && rollup -c demo/cjs/rollup.spa.config.mjs",
+    "build:modify-babel-plugin": "rimraf dist && rollup -c demo/modify-babel-plugin/rollup.config.mjs",
+    "build:mpa": "rimraf dist && rollup -c demo/mpa/rollup.mpa.config.mjs",
+    "build:spa": "rimraf dist && rollup -c demo/js/rollup.spa.config.mjs",
+    "build:spa-js-input": "rimraf dist && rollup -c demo/js/rollup.spa-js-input.config.mjs",
+    "build:spa-nomodule": "rimraf dist && rollup -c demo/js/rollup.spa-nomodule.config.mjs",
+    "build:ts": "rimraf dist && rollup -c demo/ts/rollup.spa.config.mjs",
     "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
     "start:babelrc": "npm run build:babelrc && npm run start:build",
     "start:build": "wds --root-dir dist --open",
@@ -50,7 +50,7 @@
     "rollup"
   ],
   "peerDependencies": {
-    "rollup": "^2.11.0"
+    "rollup": "^3.21.0"
   },
   "dependencies": {
     "@babel/core": "^7.11.1",
@@ -61,20 +61,20 @@
     "@babel/plugin-transform-modules-systemjs": "^7.10.5",
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.9.0",
-    "@open-wc/building-utils": "^2.21.1",
+    "@open-wc/building-utils": "^3.0.0",
     "@rollup/plugin-babel": "^6.0.3",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@web/rollup-plugin-html": "^1.11.0",
-    "@web/rollup-plugin-import-meta-assets": "^1.0.7",
-    "@web/rollup-plugin-polyfills-loader": "^1.3.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.1",
+    "@web/rollup-plugin-html": "^2.0.0",
+    "@web/rollup-plugin-import-meta-assets": "^2.0.0",
+    "@web/rollup-plugin-polyfills-loader": "^2.0.0",
     "babel-plugin-template-html-minifier": "^4.0.0",
     "browserslist": "^4.16.5",
     "deepmerge": "^4.2.2",
     "magic-string": "^0.30.0",
     "parse5": "^7.1.2",
     "regenerator-runtime": "^0.13.7",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-workbox": "^6.0.0",
+    "rollup-plugin-workbox": "^8.0.0",
     "terser": "^4.8.1"
   }
 }

@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- 5947c225: ci: publish new version
+
+## 3.0.0
+
+### Major Changes
+
+- 935c8ffe: Drop support for Node@14
+
 ## 2.21.1
 
 ### Patch Changes

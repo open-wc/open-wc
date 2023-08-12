@@ -1,5 +1,21 @@
 # Change Log
 
+## 3.2.0
+
+### Minor Changes
+
+- 935c8ffe: Drop support for Node@14
+
+### Patch Changes
+
+- 3289e0eb: Add oneDefaultPreventedEvent export into testing package and no-side-effect indexes
+- Updated dependencies [935c8ffe]
+- Updated dependencies [3289e0eb]
+- Updated dependencies [80c6ae66]
+  - chai-a11y-axe@1.5.0
+  - @open-wc/semantic-dom-diff@0.20.0
+  - @open-wc/testing-helpers@2.3.0
+
 ## 3.1.8
 
 ### Patch Changes

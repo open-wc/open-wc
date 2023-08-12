@@ -1,11 +1,10 @@
 /**
- * @fileoverview Enforce anchor elements to contain accessible content.
- * @author open-wc
+ * @fileoverview Ensure that slots do not have aria or role attributes.
+ * @author Cory LaViska
  */
 
 const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
-const { hasAccessibleChildren } = require('../utils/hasAccessibleChildren.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 
@@ -13,20 +12,21 @@ const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRule
 // Rule Definition
 //------------------------------------------------------------------------------
 
-/** @type {import('eslint').Rule.RuleModule} */
-const AnchorHasContentRule = {
+/** @type {import("eslint").Rule.RuleModule} */
+const NoAriaSlot = {
   meta: {
     type: 'suggestion',
     docs: {
-      description: 'Enforce anchor elements to contain accessible content.',
+      description: 'Slots do not allow aria or role attributes.',
       category: 'Accessibility',
       recommended: false,
-      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/anchor-has-content.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-aria-slot.md',
+    },
+    messages: {
+      noAriaSlot: 'Aria attributes and the role attribute are not permitted on slots.',
     },
     fixable: null,
-    schema: [],
   },
-
   create(context) {
     return {
       TaggedTemplateExpression(node) {
@@ -39,19 +39,21 @@ const AnchorHasContentRule = {
                 return; // probably a tree correction node
               }
 
-              if (element.name === 'a') {
-                if (!hasAccessibleChildren(element)) {
-                  const loc =
-                    analyzer.resolveLocation(
-                      element.sourceCodeLocation.startTag,
-                      context.getSourceCode(),
-                    ) ?? node.loc;
-                  if (loc) {
-                    context.report({
-                      loc,
-                      message: 'Anchor should contain accessible content.',
-                    });
-                  }
+              if (
+                element.name === 'slot' &&
+                Object.keys(element.attribs).some(a => a === 'role' || a.startsWith('aria'))
+              ) {
+                const loc =
+                  analyzer.resolveLocation(
+                    element.sourceCodeLocation.startTag,
+                    context.getSourceCode(),
+                  ) ?? node.loc;
+
+                if (loc) {
+                  context.report({
+                    loc,
+                    messageId: 'noAriaSlot',
+                  });
                 }
               }
             },
@@ -62,4 +64,4 @@ const AnchorHasContentRule = {
   },
 };
 
-module.exports = ruleExtender(AnchorHasContentRule, HasLitHtmlImportRuleExtension);
+module.exports = ruleExtender(NoAriaSlot, HasLitHtmlImportRuleExtension);

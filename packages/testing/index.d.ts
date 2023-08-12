@@ -4,7 +4,7 @@ export { html } from '@open-wc/testing-helpers';
 export { unsafeStatic } from '@open-wc/testing-helpers';
 export { triggerBlurFor } from '@open-wc/testing-helpers';
 export { triggerFocusFor } from '@open-wc/testing-helpers';
-export { oneEvent } from '@open-wc/testing-helpers';
+export { oneEvent, oneDefaultPreventedEvent } from '@open-wc/testing-helpers';
 export { isIE } from '@open-wc/testing-helpers';
 export { defineCE } from '@open-wc/testing-helpers';
 export { aTimeout } from '@open-wc/testing-helpers';

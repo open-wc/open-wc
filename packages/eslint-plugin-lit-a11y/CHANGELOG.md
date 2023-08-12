@@ -1,5 +1,23 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- 76a2e824: added no-aria-slot rule to prevent invalid aria- and role attributes from appearing on slots
+
+## 4.0.0
+
+### Major Changes
+
+- 14e4270a: feat: new a11y rules
+
+## 3.0.0
+
+### Major Changes
+
+- 935c8ffe: Drop support for Node@14
+
 ## 2.4.1
 
 ### Patch Changes

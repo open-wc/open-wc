@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.0
+
+### Major Changes
+
+- 935c8ffe: Drop support for Node@14
+
 ## 1.0.5
 
 ### Patch Changes

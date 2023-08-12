@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/semantic-dom-diff",
-  "version": "0.19.9",
+  "version": "0.20.0",
   "publishConfig": {
     "access": "public"
   },
@@ -33,6 +33,6 @@
   ],
   "dependencies": {
     "@types/chai": "^4.3.1",
-    "@web/test-runner-commands": "^0.6.5"
+    "@web/test-runner-commands": "^0.7.0"
   }
 }

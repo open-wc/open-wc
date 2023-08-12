@@ -16,6 +16,7 @@ Examples of **incorrect** code for this rule:
 html`
   <img src="${src}" />
   <div role="img"></div>
+  <input type="image" />
 `;
 ```
 
@@ -24,6 +25,8 @@ Examples of **correct** code for this rule:
 ```js
 html`
   <img src="${src}" alt="" />
+
+  <input type="image" alt="" />
 
   <img src="${src}" aria-hidden="true" />
 
