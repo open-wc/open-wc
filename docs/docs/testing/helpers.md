@@ -49,7 +49,7 @@ import { fixture } from '@open-wc/testing';
 it('can instantiate an element', async () => {
   const el = await fixture('<my-el foo="bar"></my-el>');
   expect(el.getAttribute('foo')).to.equal('bar');
-}
+});
 ```
 
 ### Test a custom element with properties
