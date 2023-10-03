@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- 9d86f689: Add "type": "module" to package.json so build tools won't assume this is a CommonJS module.
+
 ## 2.2.0
 
 ### Minor Changes
