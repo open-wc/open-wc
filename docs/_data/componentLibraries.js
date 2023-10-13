@@ -136,6 +136,12 @@ const componentLibraries = [
     description: "Red Hat's set of community-created web components based on PatternFly design.",
   },
   {
+    name: 'Siemenx IX',
+    url: 'https://ix.siemens.io/',
+    description:
+      'Siemens Industrial Experience is an open-source design system for designers and developers to consistently create the perfect digital experience for partners and customers.',
+  },
+  {
     name: 'Shoelace',
     url: 'https://shoelace.style/',
     description:
