@@ -119,10 +119,10 @@ const componentLibraries = [
       'Developed by Penn State University, LRNWebcomponents is home to hundreds of reusable, generalized components, as well as full web editors and CMSs like HAX and HAXcms. Highly accessible video players, collapses, color abstractions and more can be found here',
   },
   {
-    name: 'Material Web Components',
-    url: 'https://material-components.github.io/material-web',
+    name: 'Material web (MWC)',
+    url: 'https://github.com/material-components/material-web',
     description:
-      "Material Design Components from Material Design team themselves. Stay as close as possible to the changing specification with these components from Google's own Material Design team.",
+      "Material Design Components from Material Design team themselves. Stay as close as possible to the living specification with these components from Google's own Material Design team.",
   },
   {
     name: 'Nord Design System',
