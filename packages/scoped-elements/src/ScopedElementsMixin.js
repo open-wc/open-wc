@@ -118,9 +118,9 @@ const scopedElementsTemplateFactory = (
   return shadyTemplateFactory(scopeName)(newTemplate);
 };
 
-const version = '1.x.x';
+const version = '1.3.6';
 // eslint-disable-next-line dot-notation
-const versions = window['scopedElementVersions'] || (window['scopedElementVersions'] = []);
+const versions = (window['scopedElementVersions'] || (window['scopedElementVersions'] = []));
 if (!versions.includes(version)) {
   versions.push(version);
 }
