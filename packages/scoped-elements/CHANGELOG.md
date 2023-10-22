@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.2
+
+### Patch Changes
+
+- 0402c80f: fix: add scopedElementsVersion
+
 ## 2.2.1
 
 ### Patch Changes
