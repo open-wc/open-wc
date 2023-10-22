@@ -28,6 +28,12 @@ export declare class ScopedElementsHost {
   defineScopedElement<T extends HTMLElement>(tagName: string, klass: Constructor<T>): void;
 }
 
+declare global {
+  interface Window {
+    scopedElementVersions: string[]
+  }
+}
+
 declare function ScopedElementsMixinImplementation<T extends Constructor<LitElement>>(
   superclass: T,
 ): T & Constructor<ScopedElementsHost> & typeof ScopedElementsHost;

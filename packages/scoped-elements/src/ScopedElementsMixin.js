@@ -118,6 +118,13 @@ const scopedElementsTemplateFactory = (
   return shadyTemplateFactory(scopeName)(newTemplate);
 };
 
+const version = '1.x.x';
+// eslint-disable-next-line dot-notation
+const versions = window['scopedElementVersions'] || (window['scopedElementVersions'] = []);
+if (!versions.includes(version)) {
+  versions.push(version);
+}
+
 /** @type {ScopedElementsMixin} */
 const ScopedElementsMixinImplementation = superclass =>
   class ScopedElementsHost extends superclass {
@@ -128,6 +135,10 @@ const ScopedElementsMixinImplementation = superclass =>
      */
     static get scopedElements() {
       return {};
+    }
+
+    static get scopedElementsVersion() {
+      return version;
     }
 
     /** @override */
