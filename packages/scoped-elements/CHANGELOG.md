@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.3.6
+
+- Adds `static scopedElementVersion` on the mixin, and adds `window.scopedElementVersions`
+
+## 1.3.5
+
+### Patch Changes
+
+- Export `ScopedElementsHost` type
+
 ## 1.3.4
 
 ### Patch Changes
