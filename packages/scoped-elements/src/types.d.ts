@@ -52,4 +52,8 @@ declare global {
   interface ShadowRootInit {
     customElements?: CustomElementRegistry;
   }
+
+  interface Window {
+    scopedElementsVersions: string[]
+  }
 }
