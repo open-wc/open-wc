@@ -19,8 +19,7 @@
     ".": {
       "types": "./types/index.d.ts",
       "default": "./index.js"
-    },
-    "./types.js": "./types/src/types.d.ts"
+    }
   },
   "scripts": {
     "debug": "cd ../../ && yarn debug --group scoped-elements",
