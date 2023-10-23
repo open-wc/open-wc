@@ -51,6 +51,7 @@ export type ScopedElementsMixin = typeof ScopedElementsMixinImplementation;
 declare global {
   interface ShadowRootInit {
     customElements?: CustomElementRegistry;
+    registry?: CustomElementRegistry;
   }
 
   interface Window {
