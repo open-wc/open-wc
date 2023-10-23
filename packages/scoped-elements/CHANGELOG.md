@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.3
+
+### Patch Changes
+
+- c6cdea6f: fix: Backport passing the scoped custom element registry via the registry option in addition to the customElement option to account for the change in the specification
+
 ## 2.2.2
 
 ### Patch Changes
