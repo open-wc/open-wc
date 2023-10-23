@@ -126,6 +126,7 @@ const ScopedElementsMixinImplementation = superclass =>
         mode: 'open',
         ...shadowRootOptions,
         customElements: this.registry,
+        registry: this.registry,
       };
 
       const createdRoot = this.attachShadow(options);
