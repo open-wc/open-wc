@@ -36,5 +36,9 @@
   "peerDependencies": {
     "lit": "^2.0.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "dependencies": {
+    "lit": "^3.0.0",
+    "lit2": "npm:lit@2"
+  }
 }

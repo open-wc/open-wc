@@ -883,11 +883,10 @@ import './BreweryDetail.js';
 
 class BreweryApp extends LitElement {
   static properties = {
-      loading: { type: Boolean },
-      breweries: { type: Array },
-      filter: { type: String },
-    };
-
+    loading: { type: Boolean },
+    breweries: { type: Array },
+    filter: { type: String },
+  };
 
   connectedCallback() {
     super.connectedCallback();
