@@ -1,5 +1,11 @@
 # Change Log
 
+## 12.0.1
+
+### Patch Changes
+
+- 1a2946db: feat: eslint rule
+
 ## 12.0.0
 
 ### Patch Changes
