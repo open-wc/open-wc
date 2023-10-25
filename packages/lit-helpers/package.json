@@ -25,7 +25,8 @@
     "*.d.ts",
     "*.js",
     "src",
-    "!src/spread.ts"
+    "!src/spread.ts",
+    "!src/spread-lit2.*"
   ],
   "keywords": [
     "lit",
