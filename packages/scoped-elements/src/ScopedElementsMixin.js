@@ -9,6 +9,13 @@ import { adoptStyles } from '@lit/reactive-element/css-tag.js';
  * @typedef {import('@lit/reactive-element').CSSResultOrNative} CSSResultOrNative
  */
 
+const version = '2.2.2';
+// eslint-disable-next-line dot-notation
+const versions = window['scopedElementsVersions'] || (window['scopedElementsVersions'] = []);
+if (!versions.includes(version)) {
+  versions.push(version);
+}
+
 // @ts-ignore
 const supportsScopedRegistry = !!ShadowRoot.prototype.createElement;
 
@@ -27,6 +34,10 @@ const ScopedElementsMixinImplementation = superclass =>
      */
     static get scopedElements() {
       return {};
+    }
+
+    static get scopedElementsVersion() {
+      return version;
     }
 
     /**
@@ -115,6 +126,7 @@ const ScopedElementsMixinImplementation = superclass =>
         mode: 'open',
         ...shadowRootOptions,
         customElements: this.registry,
+        registry: this.registry,
       };
 
       const createdRoot = this.attachShadow(options);

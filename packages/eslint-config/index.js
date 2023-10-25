@@ -90,6 +90,8 @@ module.exports = {
     'lit/no-legacy-template-syntax': 'error',
     'lit/no-private-properties': 'error',
     'lit/no-native-attributes': 'error',
+    'lit/no-classfield-shadowing': 'error',
+    'lit/lifecycle-super': 'error',
   },
   settings: {
     'import/resolver': {
