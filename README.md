@@ -60,7 +60,7 @@ For more details please visit us at [open-wc.org](https://open-wc.org).
 
 ## Contact
 
-Feel free to reach out to us on [twitter](https://twitter.com/OpenWc) or create [a github issue](https://github.com/open-wc/open-wc/issues/new) for any feedback or questions you might have.
+Feel free to reach out to us on [𝕏 (Twitter)](https://twitter.com/OpenWc) or create [a github issue](https://github.com/open-wc/open-wc/issues/new) for any feedback or questions you might have.
 
 You can also find us on the Lit & Friends slack in the [#open-wc](https://lit-and-friends.slack.com/archives/CE6D9DN05) channel.
 
