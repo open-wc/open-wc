@@ -25,7 +25,8 @@
     "*.d.ts",
     "*.js",
     "src",
-    "!src/spread.ts"
+    "!src/spread.ts",
+    "!src/spread-lit2.*"
   ],
   "keywords": [
     "lit",
@@ -34,7 +35,11 @@
     "helpers"
   ],
   "peerDependencies": {
-    "lit": "^2.0.0"
+    "lit": "^2.0.0 || ^3.0.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "devDependencies": {
+    "lit": "^3.0.0",
+    "lit2": "npm:lit@2"
+  }
 }

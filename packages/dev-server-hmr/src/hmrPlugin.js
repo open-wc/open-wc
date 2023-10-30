@@ -134,9 +134,12 @@ function hmrPlugin(pluginConfig) {
             rootDir,
           });
         } catch (error) {
+          // @ts-ignore
           if (error.name === 'SyntaxError') {
             // forward babel error to dev server
+            // @ts-ignore
             const strippedMsg = error.message.replace(new RegExp(`${filePath} ?:? ?`, 'g'), '');
+            // @ts-ignore
             throw new PluginSyntaxError(strippedMsg, filePath, error.code, error.loc, error.pos);
           }
           throw error;

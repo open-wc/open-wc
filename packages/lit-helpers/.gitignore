@@ -1,4 +1,5 @@
-spread.js
-spread.js.map
-spread.d.ts.map
-spread.d.ts
+spread*.js
+spread*.js.map
+spread*.d.ts.map
+spread*.d.ts
+

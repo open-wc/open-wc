@@ -9,6 +9,7 @@ stats.html
 /packages/dev-server-hmr/src/patches/**/*
 /packages/testing/plugins/**/*
 /packages/lit-helpers/src/spread.js
+/packages/lit-helpers/src/spread-lit2.js
 _site/
 _site-dev
 docs/_merged_assets/
