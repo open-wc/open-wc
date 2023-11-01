@@ -1,5 +1,13 @@
 # Change Log
 
+## 12.0.2
+
+### Patch Changes
+
+- e3ac8bb9: Bump 'eslint-plugin-lit' version.
+- Updated dependencies [e3ac8bb9]
+  - eslint-plugin-lit-a11y@4.1.1
+
 ## 12.0.1
 
 ### Patch Changes

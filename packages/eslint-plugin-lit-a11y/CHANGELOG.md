@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.1
+
+### Patch Changes
+
+- e3ac8bb9: Bump 'eslint-plugin-lit' version.
+
 ## 4.1.0
 
 ### Minor Changes

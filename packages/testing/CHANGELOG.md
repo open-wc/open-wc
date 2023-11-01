@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.2.1
+
+### Patch Changes
+
+- 84e38ab1: Use split versions for all lit dependencies
+- Updated dependencies [84e38ab1]
+  - @open-wc/testing-helpers@2.3.1
+
 ## 3.2.0
 
 ### Minor Changes
