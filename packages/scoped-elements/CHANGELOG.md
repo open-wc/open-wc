@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.4
+
+### Patch Changes
+
+- 84e38ab1: Use split versions for all lit dependencies
+
 ## 2.2.3
 
 ### Patch Changes

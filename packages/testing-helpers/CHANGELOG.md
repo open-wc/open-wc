@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.1
+
+### Patch Changes
+
+- 84e38ab1: Use split versions for all lit dependencies
+- Updated dependencies [84e38ab1]
+  - @open-wc/scoped-elements@2.2.4
+
 ## 2.3.0
 
 ### Minor Changes
