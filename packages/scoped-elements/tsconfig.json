@@ -3,18 +3,30 @@
 {
   "extends": "../../tsconfig.browser-base.json",
   "compilerOptions": {
-    "module": "ESNext",
-    "outDir": "./types",
+    "module": "esnext",
+    "outDir": "./dist-types",
     "rootDir": ".",
     "composite": true,
     "allowJs": true,
+    "strict": true,
     "checkJs": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "target": "esnext",
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
+    "moduleResolution": "bundler",
+    "declaration": true,
+    "esModuleInterop": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true
   },
   "references": [],
   "include": [
-    "src",
-    "*.js"
+    "lit-element.js",
+    "html-element.js",
+    "types.ts"
   ],
   "exclude": [
     "dist",
