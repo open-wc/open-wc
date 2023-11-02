@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["DOM", "ESNext"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "allowJs": true,
+    "checkJs": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true,
+    "outDir": "./dist-types"
+  },
+  "include": [
+    "lit-element.js",
+    "html-element.js",
+    "types.ts"
+  ]
+}
