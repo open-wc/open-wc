@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.3.2
+
+### Patch Changes
+
+- 48d77dfa: Use split versions for lit-html
+
 ## 2.3.1
 
 ### Patch Changes
