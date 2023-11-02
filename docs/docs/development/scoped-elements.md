@@ -146,13 +146,13 @@ Consider the following example:
     #shadowroot
     <!-- uses my-button@1.0.0 -->
     <my-button>click</my-button>
-    <feature-b>
-      #shadowroot
-      <!-- uses my-button@2.0.0 -->
-      <my-button>click</my-button></feature-b
-    ></feature-a
-  ></my-app
->
+  </feature-a>
+  <feature-b>
+    #shadowroot
+    <!-- uses my-button@2.0.0 -->
+    <my-button>click</my-button>
+  </feature-b>
+</my-app>
 ```
 
 If you're using the global `customElements` registry, you would have run into name clashes, because `my-button` would have already been defined in the global registry. Using _scoped_ custom element registries, we can assign a registry _per shadowroot_, and scope our custom elements to those registries instead.
