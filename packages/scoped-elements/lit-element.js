@@ -8,12 +8,14 @@ import { ScopedElementsMixin as BaseScopedElementsMixin } from './html-element.j
  * @typedef {import('lit').CSSResultOrNative} CSSResultOrNative
  * @typedef {import('lit').LitElement} LitElement
  * @typedef {typeof import('lit').LitElement} TypeofLitElement
+ * @typedef {import('@open-wc/dedupe-mixin').Constructor<LitElement>} LitElementConstructor
+ * @typedef {import('@open-wc/dedupe-mixin').Constructor<ScopedElementsHost>} ScopedElementsHostConstructor
  */
 
 /**
- * @template {import('./types.js').Constructor<LitElement>} T
+ * @template {LitElementConstructor} T
  * @param {T} superclass
- * @return {T & import('./types.js').Constructor<ScopedElementsHost>}
+ * @return {T & ScopedElementsHostConstructor}
  */
 const ScopedElementsMixinImplementation = superclass =>
   /** @type {ScopedElementsHost} */
