@@ -3,17 +3,17 @@ import { adoptStyles } from 'lit';
 import { ScopedElementsMixin as BaseScopedElementsMixin } from './html-element.js';
 
 /**
- * @typedef {import('./types').ScopedElementsHost} ScopedElementsHost
- * @typedef {import('./types').ScopedElementsMap} ScopedElementsMap
+ * @typedef {import('./types.js').ScopedElementsHost} ScopedElementsHost
+ * @typedef {import('./types.js').ScopedElementsMap} ScopedElementsMap
  * @typedef {import('lit').CSSResultOrNative} CSSResultOrNative
  * @typedef {import('lit').LitElement} LitElement
  * @typedef {typeof import('lit').LitElement} TypeofLitElement
  */
 
 /**
- * @template {import('./types').Constructor<LitElement>} T
+ * @template {import('./types.js').Constructor<LitElement>} T
  * @param {T} superclass
- * @return {T & import('./types').Constructor<ScopedElementsHost>}
+ * @return {T & import('./types.js').Constructor<ScopedElementsHost>}
  */
 const ScopedElementsMixinImplementation = superclass =>
   /** @type {ScopedElementsHost} */
