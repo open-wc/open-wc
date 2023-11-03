@@ -3767,6 +3767,13 @@
   dependencies:
     errorstacks "^2.2.0"
 
+"@web/browser-logs@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@web/browser-logs/-/browser-logs-0.4.0.tgz#8c4adddac46be02dff1a605312132053b3737d0a"
+  integrity sha512-/EBiDAUCJ2DzZhaFxTPRIznEPeafdLbXShIL6aTu7x73x7ZoxSDv7DGuTsh2rWNMUa4+AKli4UORrpyv6QBOiA==
+  dependencies:
+    errorstacks "^2.2.0"
+
 "@web/config-loader@^0.1.3":
   version "0.1.3"
   resolved "https://registry.npmjs.org/@web/config-loader/-/config-loader-0.1.3.tgz"
@@ -3781,7 +3788,7 @@
   dependencies:
     semver "^7.3.4"
 
-"@web/dev-server-core@0.5.1", "@web/dev-server-core@^0.3.19", "@web/dev-server-core@^0.4.0", "@web/dev-server-core@^0.5.0", "@web/dev-server-core@^0.5.1":
+"@web/dev-server-core@0.5.1", "@web/dev-server-core@^0.3.19", "@web/dev-server-core@^0.4.0", "@web/dev-server-core@^0.5.0", "@web/dev-server-core@^0.5.1", "@web/dev-server-core@^0.7.0":
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/@web/dev-server-core/-/dev-server-core-0.5.1.tgz#80e5a059f2abf5d1d40bd123c2b539ae86640e2c"
   integrity sha512-pXgb4bjDmPIaIQT9luixTSqTvRQxttUEzSKOZqLNl6pVgrl4n47ZtmZte936G2tM7nHmpT+oaMDDtCM0CgbQNQ==
@@ -4068,6 +4075,14 @@
     "@web/test-runner-core" "^0.11.0"
     mkdirp "^1.0.4"
 
+"@web/test-runner-commands@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@web/test-runner-commands/-/test-runner-commands-0.9.0.tgz#ed15a021249948204bb27559eb437ff6ceeee067"
+  integrity sha512-zeLI6QdH0jzzJMDV5O42Pd8WLJtYqovgdt0JdytgHc0d1EpzXDsc7NTCJSImboc2NcayIsWAvvGGeRF69SMMYg==
+  dependencies:
+    "@web/test-runner-core" "^0.13.0"
+    mkdirp "^1.0.4"
+
 "@web/test-runner-core@^0.11.0", "@web/test-runner-core@^0.11.1":
   version "0.11.1"
   resolved "https://registry.npmjs.org/@web/test-runner-core/-/test-runner-core-0.11.1.tgz"
@@ -4092,6 +4107,38 @@
     ip "^1.1.5"
     istanbul-lib-coverage "^3.0.0"
     istanbul-lib-report "^3.0.0"
+    istanbul-reports "^3.0.2"
+    log-update "^4.0.0"
+    nanocolors "^0.2.1"
+    nanoid "^3.1.25"
+    open "^8.0.2"
+    picomatch "^2.2.2"
+    source-map "^0.7.3"
+
+"@web/test-runner-core@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@web/test-runner-core/-/test-runner-core-0.13.0.tgz#a3799461002fcb969b0baa100d88be6c1ff504f4"
+  integrity sha512-mUrETPg9n4dHWEk+D46BU3xVhQf+ljT4cG7FSpmF7AIOsXWgWHoaXp6ReeVcEmM5fmznXec2O/apTb9hpGrP3w==
+  dependencies:
+    "@babel/code-frame" "^7.12.11"
+    "@types/babel__code-frame" "^7.0.2"
+    "@types/co-body" "^6.1.0"
+    "@types/convert-source-map" "^2.0.0"
+    "@types/debounce" "^1.2.0"
+    "@types/istanbul-lib-coverage" "^2.0.3"
+    "@types/istanbul-reports" "^3.0.0"
+    "@web/browser-logs" "^0.4.0"
+    "@web/dev-server-core" "^0.7.0"
+    chokidar "^3.4.3"
+    cli-cursor "^3.1.0"
+    co-body "^6.1.0"
+    convert-source-map "^2.0.0"
+    debounce "^1.2.0"
+    dependency-graph "^0.11.0"
+    globby "^11.0.1"
+    ip "^1.1.5"
+    istanbul-lib-coverage "^3.0.0"
+    istanbul-lib-report "^3.0.1"
     istanbul-reports "^3.0.2"
     log-update "^4.0.0"
     nanocolors "^0.2.1"
@@ -10304,6 +10351,15 @@ istanbul-lib-report@^3.0.0:
     make-dir "^3.0.0"
     supports-color "^7.1.0"
 
+istanbul-lib-report@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/istanbul-lib-report/-/istanbul-lib-report-3.0.1.tgz#908305bac9a5bd175ac6a74489eafd0fc2445a7d"
+  integrity sha512-GCfE1mtsHGOELCU8e/Z7YWzpmybrx/+dSTfLrvY8qRmaY6zXTKWn6WQIjaAFw069icm6GVMNkgu0NzI4iPZUNw==
+  dependencies:
+    istanbul-lib-coverage "^3.0.0"
+    make-dir "^4.0.0"
+    supports-color "^7.1.0"
+
 istanbul-reports@^3.0.2:
   version "3.0.2"
   resolved "https://registry.npmjs.org/istanbul-reports/-/istanbul-reports-3.0.2.tgz"
@@ -11337,6 +11393,13 @@ make-dir@^3.0.0, make-dir@^3.1.0:
   integrity sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==
   dependencies:
     semver "^6.0.0"
+
+make-dir@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-4.0.0.tgz#c3c2307a771277cd9638305f915c29ae741b614e"
+  integrity sha512-hXdUTZYIVOt1Ex//jAQi+wTZZpUpwBj/0QsOzqegb3rGMMeJiSEu5xLHnYfBrRV4RH2+OCSOO95Is/7x1WJ4bw==
+  dependencies:
+    semver "^7.5.3"
 
 make-error@^1.1.1:
   version "1.3.6"
@@ -14733,6 +14796,13 @@ semver@^7.0.0, semver@^7.3.2, semver@^7.3.4, semver@^7.3.5, semver@^7.3.7, semve
   version "7.3.8"
   resolved "https://registry.npmjs.org/semver/-/semver-7.3.8.tgz"
   integrity sha512-NB1ctGL5rlHrPJtFDVIVzTyQylMLu9N9VICA6HSFJo8MCGVTMW6gfpicwKmmK/dAjTOrqu5l63JJOpDSrAis3A==
+  dependencies:
+    lru-cache "^6.0.0"
+
+semver@^7.5.3:
+  version "7.5.4"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.5.4.tgz#483986ec4ed38e1c6c48c34894a9182dbff68a6e"
+  integrity sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==
   dependencies:
     lru-cache "^6.0.0"
 
