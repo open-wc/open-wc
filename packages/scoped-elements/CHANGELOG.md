@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.2
+
+### Patch Changes
+
+- c386fcf9: fix: types again
+
 ## 3.0.1
 
 ### Patch Changes
