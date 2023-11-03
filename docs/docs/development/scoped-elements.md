@@ -60,6 +60,24 @@ This package requires use of the [Scoped Custom Element Registry](https://www.np
 import '@webcomponents/scoped-custom-element-registry';
 ```
 
+If you're using [`@web/rollup-plugin-polyfills-loader`](https://www.npmjs.com/package/@web/rollup-plugin-polyfills-loader), you can use it in your `rollup` config like this:
+
+```js
+polyfillsLoader({
+  polyfills: {
+    scopedCustomElementRegistry: true,
+  },
+});
+```
+
+If you're using `@web/dev-server` for local development, you can use the [`@web/dev-server-polyfill`](https://www.npmjs.com/package/@web/dev-server-polyfill) plugin:
+
+```js
+polyfill({
+  scopedCustomElementRegistry: true,
+});
+```
+
 ## API
 
 ### Lazy scoped element definition
