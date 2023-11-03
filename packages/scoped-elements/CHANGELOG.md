@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- 12011875: Fix types for scoped elements
+
 ## 3.0.0
 
 ### Major changes
