@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0
+
+### Major changes
+
+- See the `MIGRATION.md` for more information
+
 ## 2.2.4
 
 ### Patch Changes
