@@ -2670,14 +2670,6 @@
   dependencies:
     "@octokit/openapi-types" "^16.0.0"
 
-"@open-wc/chai-dom-equals@^0.12.36":
-  version "0.12.36"
-  resolved "https://registry.npmjs.org/@open-wc/chai-dom-equals/-/chai-dom-equals-0.12.36.tgz"
-  integrity sha512-Gt1fa37h4rtWPQGETSU4n1L678NmMi9KwHM1sH+JCGcz45rs8DBPx7MUVeGZ+HxRlbEI5t9LU2RGGv6xT2OlyA==
-  dependencies:
-    "@open-wc/semantic-dom-diff" "^0.13.16"
-    "@types/chai" "^4.1.7"
-
 "@open-wc/scoped-elements@^1.3.3":
   version "1.3.3"
   resolved "https://registry.npmjs.org/@open-wc/scoped-elements/-/scoped-elements-1.3.3.tgz"
@@ -2693,11 +2685,6 @@
   dependencies:
     "@lit/reactive-element" "^1.0.0 || ^2.0.0"
     "@open-wc/dedupe-mixin" "^1.4.0"
-
-"@open-wc/semantic-dom-diff@^0.13.16":
-  version "0.13.21"
-  resolved "https://registry.npmjs.org/@open-wc/semantic-dom-diff/-/semantic-dom-diff-0.13.21.tgz"
-  integrity sha512-BONpjHcGX2zFa9mfnwBCLEmlDsOHzT+j6Qt1yfK3MzFXFtAykfzFjAgaxPetu0YbBlCfXuMlfxI4vlRGCGMvFg==
 
 "@pnpm/config.env-replace@^1.0.0":
   version "1.0.0"
@@ -3233,7 +3220,7 @@
     "@types/chai" "*"
     "@types/node" "*"
 
-"@types/chai@*", "@types/chai@^4.1.7", "@types/chai@^4.2.11", "@types/chai@^4.2.12", "@types/chai@^4.3.1":
+"@types/chai@*", "@types/chai@^4.2.12", "@types/chai@^4.3.1":
   version "4.3.4"
   resolved "https://registry.npmjs.org/@types/chai/-/chai-4.3.4.tgz"
   integrity sha512-KnRanxnpfpjUTqTCXslZSEdLfXExwgNxYPdiO2WGUj8+HDjFi8R3k5RVKPeSCzLjCcshCAtVO2QBbVuAV4kTnw==
