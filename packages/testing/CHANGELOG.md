@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.2.3
+
+### Patch Changes
+
+- Updated dependencies [c69af75f]
+  - @open-wc/testing-helpers@3.0.0
+
 ## 3.2.2
 
 ### Patch Changes
