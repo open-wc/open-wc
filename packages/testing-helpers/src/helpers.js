@@ -123,7 +123,7 @@ export async function triggerFocusFor(element) {
  * @param eventTarget Target of the event, usually an Element
  * @param eventName Name of the event
  * @returns Promise to await until the event has been fired
- * @type {import("./types").OneEventFn}
+ * @type {import("./types.js").OneEventFn}
  */
 export function oneEvent(eventTarget, eventName) {
   return new Promise(resolve => {
@@ -147,7 +147,7 @@ export function oneEvent(eventTarget, eventName) {
  * @param eventTarget Target of the event, usually an Element
  * @param eventName Name of the event
  * @returns Promise to await until the event has been fired
- * @type {import("./types").OneEventFn}
+ * @type {import("./types.js").OneEventFn}
  */
 export function oneDefaultPreventedEvent(eventTarget, eventName) {
   return new Promise(resolve => {

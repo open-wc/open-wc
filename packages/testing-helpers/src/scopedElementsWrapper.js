@@ -1,7 +1,7 @@
-import { ScopedElementsMixin } from '@open-wc/scoped-elements';
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/html-element.js';
 import { LitElement } from 'lit';
 
-/** @typedef {import('@open-wc/scoped-elements').ScopedElementsMap} ScopedElementsMap */
+/** @typedef {import('@open-wc/scoped-elements/html-element.js').ScopedElementsMap} ScopedElementsMap */
 /** @typedef {import('lit/html.js').TemplateResult} TemplateResult */
 
 /**
@@ -32,8 +32,7 @@ class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
     /** @type {ScopedElementsMap} */
     this.scopedElements = scopedElement;
 
-    /** @type {import('./renderable').LitHTMLRenderable} */
-    // eslint-disable-next-line no-unused-expressions
+    /** @type {import('./renderable.js').LitHTMLRenderable} */
     this.template = template;
   }
 
@@ -42,7 +41,7 @@ class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
 
     Object.keys(this.scopedElements).forEach(key =>
       // @ts-ignore
-      this.defineScopedElement(key, this.scopedElements[key]),
+      this.registry.define(key, this.scopedElements[key]),
     );
   }
 
@@ -69,7 +68,7 @@ const getWrapperUniqueName = (counter = 0) => {
 /**
  * Wraps the template inside a scopedElements component
  *
- * @param {import('./renderable').LitHTMLRenderable} template
+ * @param {import('./renderable.js').LitHTMLRenderable} template
  * @param {ScopedElementsMap} scopedElements
  * @return {HTMLElement}
  */
