@@ -1,5 +1,20 @@
 # Change Log
 
+## 4.0.0
+
+### Major Changes
+
+- Updated dependencies [c69af75f]
+  - @open-wc/testing-helpers@3.0.0
+
+If you're using a fixture like so with scoped elements:
+
+```ts
+await fixture(html`...`, { scopedElements: ... });
+```
+
+You're gonna have to load the [@webcomponents/scoped-custom-element-registry](https://www.npmjs.com/package/@webcomponents/scoped-custom-element-registry) polyfill yourself first.
+
 ## 3.2.2
 
 ### Patch Changes
