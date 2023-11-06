@@ -1,5 +1,23 @@
 # Change Log
 
+## 3.0.2
+
+### Patch Changes
+
+- c386fcf9: fix: types again
+
+## 3.0.1
+
+### Patch Changes
+
+- 12011875: Fix types for scoped elements
+
+## 3.0.0
+
+### Major changes
+
+- See the `MIGRATION.md` for more information
+
 ## 2.2.4
 
 ### Patch Changes

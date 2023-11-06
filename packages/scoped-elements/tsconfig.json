@@ -3,7 +3,7 @@
 {
   "extends": "../../tsconfig.browser-base.json",
   "compilerOptions": {
-    "module": "esnext",
+    "module": "NodeNext",
     "outDir": "./dist-types",
     "rootDir": ".",
     "composite": true,
@@ -16,7 +16,7 @@
       "DOM",
       "ESNext"
     ],
-    "moduleResolution": "bundler",
+    "moduleResolution": "node16",
     "declaration": true,
     "esModuleInterop": true,
     "alwaysStrict": true,

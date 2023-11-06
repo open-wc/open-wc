@@ -2,8 +2,8 @@
   "compilerOptions": {
     "target": "esnext",
     "lib": ["DOM", "ESNext"],
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "module": "NodeNext",
+    "moduleResolution": "node16",
     "allowJs": true,
     "checkJs": true,
     "declaration": true,

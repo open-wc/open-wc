@@ -67,3 +67,7 @@ this.defineScopedElement('my-button', MyButton);
 // ✅
 this.registry.define('my-button', MyButton);
 ```
+
+## Typescript
+
+Note that this package exposes types via package exports, and you'll have to use a `tsconfig.json` that supports resolving package exports, like for example a `moduleResolution` of either `bundler` or `node16`
