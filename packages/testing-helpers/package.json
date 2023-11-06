@@ -43,7 +43,7 @@
     "fixtures"
   ],
   "dependencies": {
-    "@open-wc/scoped-elements": "^2.2.4",
+    "@open-wc/scoped-elements": "^3.0.0",
     "lit": "^2.0.0 || ^3.0.0",
     "lit-html": "^2.0.0 || ^3.0.0"
   },
