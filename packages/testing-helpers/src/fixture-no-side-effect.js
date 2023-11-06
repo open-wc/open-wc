@@ -17,7 +17,7 @@ import { isValidRenderArg } from './lib.js';
  * const el = fixtureSync('<my-el><span></span></my-el>');
  *
  * @template {Element} T
- * @param {import('./renderable').LitHTMLRenderable} template Either a string or lit-html TemplateResult
+ * @param {import('./renderable.js').LitHTMLRenderable} template Either a string or lit-html TemplateResult
  * @param {FixtureOptions} [options]
  * @returns {T} First child of the rendered DOM
  */
@@ -50,7 +50,7 @@ export function fixtureSync(template, options) {
  * expect(el.fullyRendered).to.be.true;
  *
  * @template {Element} T
- * @param {import('./renderable').LitHTMLRenderable} template Either a string or lit-html TemplateResult
+ * @param {import('./renderable.js').LitHTMLRenderable} template Either a string or lit-html TemplateResult
  * @param {FixtureOptions} [options]
  * @returns {Promise<T>} A Promise that will resolve to the first child of the rendered DOM
  */

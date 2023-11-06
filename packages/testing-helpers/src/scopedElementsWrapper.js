@@ -32,7 +32,7 @@ class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
     /** @type {ScopedElementsMap} */
     this.scopedElements = scopedElement;
 
-    /** @type {import('./renderable').LitHTMLRenderable} */
+    /** @type {import('./renderable.js').LitHTMLRenderable} */
     this.template = template;
   }
 
@@ -68,7 +68,7 @@ const getWrapperUniqueName = (counter = 0) => {
 /**
  * Wraps the template inside a scopedElements component
  *
- * @param {import('./renderable').LitHTMLRenderable} template
+ * @param {import('./renderable.js').LitHTMLRenderable} template
  * @param {ScopedElementsMap} scopedElements
  * @return {HTMLElement}
  */

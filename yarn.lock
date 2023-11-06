@@ -2686,6 +2686,14 @@
     "@lit/reactive-element" "^1.0.0 || ^2.0.0"
     "@open-wc/dedupe-mixin" "^1.4.0"
 
+"@open-wc/scoped-elements@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@open-wc/scoped-elements/-/scoped-elements-3.0.2.tgz#0295b15cb8d6e872b87d015020f1432a1662dd0a"
+  integrity sha512-TZ9NjcAGjrfoZ8GjbMYDTuztFL1YPHtvFgqlcTrYy6C7jHSgCv67Rv9Cgf55VDNZgzRu+yBi5IjcyLzWNZ17eg==
+  dependencies:
+    "@open-wc/dedupe-mixin" "^1.4.0"
+    lit "^3.0.0"
+
 "@pnpm/config.env-replace@^1.0.0":
   version "1.0.0"
   resolved "https://registry.npmjs.org/@pnpm/config.env-replace/-/config.env-replace-1.0.0.tgz"
