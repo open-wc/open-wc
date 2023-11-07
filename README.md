@@ -90,7 +90,7 @@ You can join the Lit & Friends slack by visiting [https://lit.dev/slack-invite/]
 
 ```bash
 # bootstrap/setup
-yarn install
+npm install
 
 # linting
 npm run lint

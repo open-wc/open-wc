@@ -26,9 +26,9 @@
     }
   },
   "scripts": {
-    "debug": "cd ../../ && yarn debug --group testing-helpers",
+    "debug": "cd ../../ && npm run debug --group testing-helpers",
     "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
-    "test": "cd ../../ && yarn test:web --group testing-helpers"
+    "test": "cd ../../ && npm run test:web --group testing-helpers"
   },
   "files": [
     "*.d.ts",
