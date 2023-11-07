@@ -9,10 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Node 16
+      - name: Setup Node 20
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
@@ -30,10 +30,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Node 16
+      - name: Setup Node 20
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
@@ -53,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['16', '18', '20']
+        node-version: ['18', '20']
     steps:
       - uses: actions/checkout@v3
 
