@@ -1,5 +1,5 @@
 import { ScopedElementsMixin } from '../../../html-element.js';
-import { MyButton1 } from './index.js';
+import { MyButton1 } from './MyButton1.js';
 
 export class ConstructorClash extends ScopedElementsMixin(HTMLElement) {
   static scopedElements = {

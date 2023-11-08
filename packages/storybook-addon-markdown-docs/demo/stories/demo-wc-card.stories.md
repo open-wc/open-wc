@@ -16,7 +16,7 @@ Foo is great
 ## How to use
 
 ```bash
-yarn add @foo/demo-wc-card
+npx add @foo/demo-wc-card
 ```
 
 ```js

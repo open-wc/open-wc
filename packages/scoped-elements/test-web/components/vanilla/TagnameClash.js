@@ -1,5 +1,6 @@
 import { ScopedElementsMixin } from '../../../html-element.js';
-import { MyButton1, MyButton2 } from './index.js';
+import { MyButton1 } from './MyButton1.js';
+import { MyButton2 } from './MyButton2.js';
 
 export class TagnameClash extends ScopedElementsMixin(HTMLElement) {
   static scopedElements = {
