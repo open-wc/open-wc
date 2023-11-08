@@ -1,5 +1,19 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- c69af75f: chore: update @open-wc/scoped-elements to v3
+
+  If you're using a fixture like so with scoped elements:
+
+  ```ts
+  await fixture(html`...`, { scopedElements: ... });
+  ```
+
+  You're gonna have to load the [@webcomponents/scoped-custom-element-registry](https://www.npmjs.com/package/@webcomponents/scoped-custom-element-registry) polyfill yourself first.
+
 ## 2.3.2
 
 ### Patch Changes

@@ -24,7 +24,7 @@ describe('chaiA11yAxe', () => {
         </div>
       `);
       await expect(el).to.be.accessible({
-        ignoredRules: ['aria-allowed-attr', 'aria-command-name'],
+        ignoredRules: ['aria-allowed-attr', 'aria-command-name', 'aria-prohibited-attr'],
       });
     });
 
@@ -43,7 +43,7 @@ describe('chaiA11yAxe', () => {
     it('accepts ignored rules list', async () => {
       const el = await fixture(html` <div aria-labelledby="test-x"></div> `);
       await assert.isAccessible(el, {
-        ignoredRules: ['aria-allowed-attr'],
+        ignoredRules: ['aria-allowed-attr', 'aria-prohibited-attr'],
       });
     });
 

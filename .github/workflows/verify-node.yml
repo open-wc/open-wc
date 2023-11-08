@@ -13,16 +13,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-          cache: 'yarn'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: npm ci
 
       - name: Build types
-        run: yarn types
+        run: npm run types
 
       - name: Lint
-        run: yarn lint
+        run: npm run lint
 
   web-tests:
     name: Web tests
@@ -34,19 +34,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-          cache: 'yarn'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: npm ci
 
       - name: Build types
-        run: yarn types
+        run: npm run types
 
       - name: Install Playwright dependencies
-        run: npx playwright install-deps
+        run: npx playwright install-deps && npx playwright install
 
       - name: Test
-        run: yarn test:web
+        run: npm run test:web
 
   node-tests:
     name: Node tests
@@ -61,10 +61,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: npm ci
 
       - name: Test
-        run: yarn test:node
+        run: npm run test:node

@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing",
-  "version": "3.2.2",
+  "version": "4.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -27,10 +27,10 @@
   },
   "scripts": {
     "build-plugins": "rollup -c rollup.config.js",
-    "debug": "cd ../../ && yarn debug --group testing",
+    "debug": "cd ../../ && npm run debug --group testing",
     "monorepo:postinstall": "npm run build-plugins",
     "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
-    "test": "cd ../../ && yarn test:web --group testing"
+    "test": "cd ../../ && npm run test:web --group testing"
   },
   "files": [
     "*.d.ts",
@@ -44,7 +44,7 @@
   "dependencies": {
     "@esm-bundle/chai": "^4.3.4-fix.0",
     "@open-wc/semantic-dom-diff": "^0.20.0",
-    "@open-wc/testing-helpers": "^2.3.1",
+    "@open-wc/testing-helpers": "^3.0.0",
     "@types/chai-dom": "^1.11.0",
     "@types/sinon-chai": "^3.2.3",
     "chai-a11y-axe": "^1.5.0"

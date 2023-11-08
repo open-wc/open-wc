@@ -2,7 +2,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const { marked } = require('marked');
-const cheerio = require('cheerio');
+const cheerio = require('cheerio').default;
 const createCodelabIndex = require('./createCodelabIndex.js');
 
 const outputDir = path.join(__dirname, '..', '..', '_site', 'codelabs');

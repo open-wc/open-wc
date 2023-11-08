@@ -19,11 +19,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-          cache: 'yarn'
+          cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install Dependencies
-        run: yarn --frozen-lockfile
+        run: npm ci
 
       - name: Get the slugified branch name
         run: |
@@ -39,13 +39,13 @@ jobs:
         env:
           DEPLOY_URL: ${{ steps.preview.outputs.url }}
           CONTEXT: deploy-preview
-        run: yarn site:build
+        run: npm run site:build
 
       - name: Publish to Netlify
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: yarn netlify deploy --alias=${{steps.slugified_branch.outputs.name}} --dir=_site
+        run: npx netlify deploy --alias=${{steps.slugified_branch.outputs.name}} --dir=_site
 
       - name: Post Previews
         uses: actions/github-script@v6
