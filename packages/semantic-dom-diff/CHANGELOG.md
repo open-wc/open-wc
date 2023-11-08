@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.20.1
+
+### Patch Changes
+
+- 5ff9fe38: chore(semantic-dom-diff): update @web/test-runner-commands to v0.9.0
+
 ## 0.20.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.5.2
+
+### Patch Changes
+
+- 1180446c: chore: update to cheerio 1.0.0-rc.12
+
 ## 1.5.1
 
 ### Patch Changes
