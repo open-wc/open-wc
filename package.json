@@ -102,17 +102,13 @@
     "sinon-chai": "^3.7.0",
     "typescript": "~5.2.2"
   },
+  "lint-staged": {
+    "*.{js,html}": "npm run format",
+    "**/package.json": "npm run format",
+    "*.md": "npm run format:prettier"
+  },
   "overrides": {
     "@web/dev-server-core": "0.5.1"
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.md": [
-      "prettier --write"
-    ]
   },
   "workspaces": [
     "packages/*"
