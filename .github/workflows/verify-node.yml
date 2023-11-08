@@ -43,7 +43,7 @@ jobs:
         run: npm run types
 
       - name: Install Playwright dependencies
-        run: npx playwright install-deps
+        run: npx playwright install-deps && npx playwright install
 
       - name: Test
         run: npm run test:web
