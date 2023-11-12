@@ -252,6 +252,6 @@ function safeSetProperty(element: Element, name: string, value: unknown) {
   try {
     element[name] = value;
   } catch (error) {
-    console.warn(`Could not set property "${name}" on ${element.tagName}.`, error);
+    console.log(`Could not set property "${name}" on ${element.tagName}.`, error);
   }
 }
