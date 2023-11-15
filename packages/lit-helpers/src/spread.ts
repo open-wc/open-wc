@@ -246,12 +246,18 @@ export class SpreadDirective extends SpreadEventsDirective {
   }
 }
 
-export const spread = directive(SpreadDirective);
-
 function safeSetProperty(element: Element, name: string, value: unknown) {
-  try {
+  if (hasSetter(element, name)) {
     element[name] = value;
-  } catch (error) {
-    console.warn(`Could not set property "${name}" on ${element.tagName}.`, error);
+  } else {
+    console.warn(
+      `Could not set property "${name}" on ${element.tagName} because it has not "setter".`,
+    );
   }
 }
+
+function hasSetter(element: Element, name: string) {
+  return !!Object.getOwnPropertyDescriptor(element.constructor.prototype, name)?.set;
+}
+
+export const spread = directive(SpreadDirective);
