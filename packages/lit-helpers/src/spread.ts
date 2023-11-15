@@ -251,7 +251,7 @@ function safeSetProperty(element: Element, name: string, value: unknown) {
     element[name] = value;
   } else {
     console.warn(
-      `Could not set property "${name}" on ${element.tagName} because it has not "setter".`,
+      `Could not set property "${name}" on ${element.tagName} because it has no "setter".`,
     );
   }
 }
