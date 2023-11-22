@@ -16,11 +16,11 @@
   "type": "module",
   "exports": {
     "./html-element.js": {
-      "types": "./dist-types/html-element.d.ts",
+      "types": "./html-element.d.ts",
       "default": "./html-element.js"
     },
     "./lit-element.js": {
-      "types": "./dist-types/lit-element.d.ts",
+      "types": "./lit-element.d.ts",
       "default": "./lit-element.js"
     },
     "./package.json": "./package.json"
@@ -30,7 +30,8 @@
     "test": "cd ../../ && npm run test:web --group scoped-elements"
   },
   "files": [
-    "dist-types/*.d.ts",
+    "*.d.ts",
+    "*.d.ts.map",
     "html-element.js",
     "lit-element.js",
     "MIGRATION.md",
