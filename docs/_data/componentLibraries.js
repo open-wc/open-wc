@@ -30,6 +30,12 @@ const componentLibraries = [
       'A collection of low-level (atoms) and high-level (domain specific) Web Components made by Clever Cloud for its different Web UIs (public and internal).',
   },
   {
+    name: 'CodeStitch',
+    url: 'https://codestitch.app/',
+    description:
+      'We provide professionally designed, hand-coded HTML and CSS components with no frameworks or dependencies so you can just copy and paste and go.  Our designs are tailored toward regular small business clients such as contractors, accountants, restaurants, clinics, mechanics, and more!',
+  },
+  {
     name: 'Crayons by Freshworks',
     url: 'https://crayons.freshworks.com',
     description:
