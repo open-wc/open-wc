@@ -4,7 +4,7 @@
   "extends": "../../tsconfig.browser-base.json",
   "compilerOptions": {
     "module": "NodeNext",
-    "outDir": "./dist-types",
+    "outDir": "./",
     "rootDir": ".",
     "composite": true,
     "allowJs": true,

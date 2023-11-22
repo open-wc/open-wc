@@ -12,7 +12,7 @@
     "strict": true,
     "alwaysStrict": true,
     "skipLibCheck": true,
-    "outDir": "./dist-types"
+    "outDir": "./"
   },
   "include": [
     "lit-element.js",
