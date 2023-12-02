@@ -107,6 +107,12 @@ const componentLibraries = [
       'A Design System and complete UI component library built to facilitate the design and development of intuitive, coherent and pleasing applications based on Web technologies (HTML5). It contains 35+ components which are compatible with any framework, form factor, input type and modern browser.',
   },
   {
+    name: 'LDRS',
+    url: 'https://uiball.com/ldrs/',
+    description:
+      'A meticulously designed set of lightweight, configurable loaders and spinners.',
+  },
+  {
     name: 'Lightning Web Components by SalesForce',
     url: 'https://developer.salesforce.com/docs/component-library/overview/components',
     description:
