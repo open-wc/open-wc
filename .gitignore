@@ -10,6 +10,7 @@ coverage/
 
 ## generated types
 packages/*/types
+packages/*/*.d.ts*
 tsconfig.tsbuildinfo
 
 ## npm

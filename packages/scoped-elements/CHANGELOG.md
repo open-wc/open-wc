@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.3
+
+### Patch Changes
+
+- 3e6fff71: fix types for angular
+
 ## 3.0.2
 
 ### Patch Changes
