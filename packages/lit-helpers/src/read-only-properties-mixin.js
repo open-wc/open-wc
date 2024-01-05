@@ -36,7 +36,6 @@ export function ReadOnlyPropertiesMixin(superclass) {
       }
       // It seems like there's really no good way to extend a class and its
       // static members in typescript
-      // @ts-ignore
       super.createProperty(name, finalOptions);
     }
 

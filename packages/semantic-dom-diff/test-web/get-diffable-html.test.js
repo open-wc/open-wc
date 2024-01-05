@@ -581,7 +581,6 @@ describe('getDiffableHTML()', () => {
     it('throws on invalid options', () => {
       try {
         getDiffableHTML(`<div foo="bar"></div>`, {
-          // @ts-ignore
           ignoreAttributes: [{ tags: ['div'] }],
         });
         throw new Error('should not resolve');

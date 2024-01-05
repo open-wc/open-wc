@@ -3,7 +3,6 @@ import { LitElement, html } from 'lit-element';
 import { demoWcCardStyle } from './demoWcCardStyle.css.js';
 import { chevron } from './chevron.svg.js';
 
-// @ts-ignore
 export class DemoWcCard extends LitElement {
   static get properties() {
     return {
@@ -25,7 +24,6 @@ export class DemoWcCard extends LitElement {
   }
 
   _requestUpdate(name, oldValue) {
-    // @ts-ignore
     super._requestUpdate(name, oldValue);
 
     if (name === 'backSide') {

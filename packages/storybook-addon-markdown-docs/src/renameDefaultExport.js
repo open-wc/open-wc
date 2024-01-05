@@ -1,7 +1,6 @@
 /** @typedef {import('@babel/core').types.File} File */
 
 const { parse } = require('@babel/parser');
-// @ts-ignore
 const { codeFrameColumns } = require('@babel/code-frame');
 const {
   isExportDefaultDeclaration,
@@ -36,7 +35,6 @@ function renameDefaultExport(code, path, highlightError = true) {
   /** @type {File} */
   let file;
   try {
-    // @ts-ignore
     file = parse(code, { sourceType: 'module', sourceFilename: path });
   } catch (error) {
     const codeFrame = codeFrameColumns(

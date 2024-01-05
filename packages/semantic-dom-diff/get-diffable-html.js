@@ -146,7 +146,6 @@ export function getDiffableHTML(html, options = {}) {
    * @return {String}
    */
   function getClassListValueString(el) {
-    // @ts-ignore
     return [...el.classList.values()].sort().join(' ');
   }
 

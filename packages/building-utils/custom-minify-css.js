@@ -3,7 +3,6 @@ const CleanCSS = require('clean-css');
 const cleanCSS = new CleanCSS({
   rebase: false,
   inline: ['none'],
-  // @ts-ignore
   level: {
     1: {
       all: false,

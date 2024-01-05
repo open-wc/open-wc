@@ -90,7 +90,6 @@ export default __export_default__;`,
       { key: 'StoryB', name: 'Story B', code: '' },
       { key: 'StoryC' },
     ];
-    // @ts-ignore
     const output = createDocsPage(input);
     expect(output).to.include(
       'const mdxStoryNameToKey = {"StoryA":"StoryA","Story B":"StoryB","StoryC":"StoryC"};',

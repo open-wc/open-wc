@@ -33,7 +33,6 @@ describe('elementUpdated', () => {
   it('will wait for stencil to be updated via el.componentOnReady()', async () => {
     let counter = 0;
     class TmpElement extends HTMLElement {
-      // @ts-ignore
       async componentOnReady() {
         return nextFrame().then(() => {
           counter += 1;

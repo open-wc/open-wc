@@ -5,15 +5,11 @@
 
 const unified = require('unified');
 const markdown = require('remark-parse');
-// @ts-ignore
 const mdSlug = require('remark-slug');
-// @ts-ignore
 const mdStringify = require('remark-html');
-// @ts-ignore
 const detab = require('detab');
 const u = require('unist-builder');
 const visit = require('unist-util-visit-parents');
-// @ts-ignore
 const normalize = require('mdurl/encode');
 
 const { mdjsParse, mdjsStoryParse } = require('@mdjs/core');
@@ -74,14 +70,11 @@ function thematicBreak(h, node) {
 }
 
 function transformPropsHook() {
-  // @ts-ignore
   return tree => {
     visit(tree, 'html', (node, ancestors) => {
-      // @ts-ignore
       if (node.value.startsWith('<sb-props')) {
         /* eslint-disable no-param-reassign */
         ancestors[1].type = 'html';
-        // @ts-ignore
         ancestors[1].value = node.value.replace('<sb-props', '<Props').replace('>', ' />');
         ancestors[1].children = [];
         /* eslint-enable no-param-reassign */

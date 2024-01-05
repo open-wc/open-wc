@@ -1,4 +1,3 @@
-// @ts-ignore
 const { buildExternalHelpers, transformSync } = require('@babel/core');
 const { getDependencies } = require('@babel/helpers');
 const MagicString = require('magic-string');
@@ -146,7 +145,6 @@ function bundledBabelHelpers({ format = 'es', minify = true } = {}) {
           const fileDepth = chunk.fileName.split('/').length - 1;
           const helperDir = fileDepth === 0 ? './' : '../'.repeat(fileDepth);
           const helperImport = `"${helperDir}${helperFileName}"`;
-          // @ts-ignore
           const ms = new MagicString(chunk.code);
           ms.overwrite(importSpecifier.start, importSpecifier.end, helperImport);
           chunk.code = ms.toString();

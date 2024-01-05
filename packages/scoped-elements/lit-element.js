@@ -26,7 +26,6 @@ const ScopedElementsMixinImplementation = superclass =>
       );
 
       const shadowRoot = this.attachShadow(shadowRootOptions);
-      // @ts-ignore
       this.renderOptions.creationScope = shadowRoot;
 
       adoptStyles(shadowRoot, elementStyles);

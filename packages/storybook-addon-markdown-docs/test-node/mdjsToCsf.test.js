@@ -1,7 +1,6 @@
 /** @typedef {import('@mdjs/core').MdjsProcessPlugin} MdjsProcessPlugin */
 
 const chai = require('chai');
-// @ts-ignore
 const chaiSnapshot = require('mocha-chai-snapshot');
 const { mdjsToCsf } = require('../src/mdjsToCsf.js');
 
@@ -40,7 +39,6 @@ describe('mdjsToCsf', () => {
     ].join('\n');
 
     const output = (await mdjsToCsf(input, '/foo.js')).split('\n');
-    // @ts-ignore
     expect(output).to.matchSnapshot(this);
   });
 

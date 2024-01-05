@@ -16,7 +16,6 @@ function compileMdToJsx(markdown, filepath) {
         // custom mdx compiler which ensures mdx doesn't add a default export,
         // we don't need it because we are adding our own
         function mdxCompiler() {
-          // @ts-ignore
           this.Compiler = tree => mdxToJsx.toJSX(tree, {}, { skipExport: true });
         },
       ],

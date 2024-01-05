@@ -30,12 +30,10 @@ export function stringFixtureSync(template, options = {}) {
  */
 export async function stringFixture(template, options = {}) {
   if (options.scopedElements) {
-    // @ts-ignore
     return litFixture(html`${unsafeHTML(template)}`, options);
   }
 
   const el = stringFixtureSync(template, options);
   await elementUpdated(el);
-  // @ts-ignore
   return el;
 }

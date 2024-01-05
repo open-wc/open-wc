@@ -17,7 +17,6 @@ import { LitElement } from 'lit';
  * However, a new type error is created --> Base constructors must all have the same return type.ts(2510)
  * But this can be ignored, and then at least you do get the super static props typed properly.
  */
-// @ts-ignore https://github.com/microsoft/TypeScript/issues/40110 , not using expect-error, because in some TS versions it does not throw
 class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
   static get properties() {
     return {
@@ -40,7 +39,6 @@ class ScopedElementsTestWrapper extends ScopedElementsMixin(LitElement) {
     super.firstUpdated(_changed);
 
     Object.keys(this.scopedElements).forEach(key =>
-      // @ts-ignore
       this.registry.define(key, this.scopedElements[key]),
     );
   }
@@ -76,7 +74,6 @@ export function getScopedElementsTemplate(template, scopedElements) {
   const wrapperTagName = getWrapperUniqueName();
   class Scope extends ScopedElementsTestWrapper {}
 
-  // @ts-ignore
   customElements.define(wrapperTagName, Scope);
 
   /** @type {ScopedElementsTestWrapper} */

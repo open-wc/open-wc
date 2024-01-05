@@ -84,9 +84,7 @@ StoryA.parameters.mdxSource = "export const StoryA = () => html\`\\n  <div>Hello
   });
 
   it('throws when given invalid input', () => {
-    // @ts-ignore
     expect(() => createStoriesCode([{ code: 'console.log("hello world");' }])).to.throw();
-    // @ts-ignore
     expect(() => createStoriesCode([{ key: 'Story A' }])).to.throw();
   });
 });

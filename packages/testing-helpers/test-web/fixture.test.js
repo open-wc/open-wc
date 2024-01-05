@@ -54,13 +54,11 @@ describe('fixtureSync & fixture', () => {
     const elementSync = fixtureSync(html`
       <div .propNumber=${10} .propFunction=${myFunction}></div>
     `);
-    // @ts-ignore
     testElement(elementSync);
 
     const elementAsync = await fixture(html`
       <div .propNumber=${10} .propFunction=${myFunction}></div>
     `);
-    // @ts-ignore
     testElement(elementAsync);
   });
 
@@ -79,11 +77,9 @@ describe('fixtureSync & fixture', () => {
     }
 
     const elementSync = fixtureSync(html` <div></div> `);
-    // @ts-ignore
     testElement(elementSync);
 
     const elementAsync = await fixture(html` <div></div> `);
-    // @ts-ignore
     testElement(elementAsync);
   });
 
@@ -323,20 +319,16 @@ describe('fixtureSync & fixture', () => {
   });
 
   it('ensures ShadyDOM finished its job', async () => {
-    // @ts-ignore
     const originalShadyDOM = window.ShadyDOM;
 
-    // @ts-ignore
     window.ShadyDOM = { flush: sinon.spy() };
 
     class Test extends HTMLElement {}
 
     const tag = defineCE(Test);
     await fixture(`<${tag}></${tag}>`);
-    // @ts-ignore
     expect(window.ShadyDOM.flush.callCount).to.equal(1);
 
-    // @ts-ignore
     window.ShadyDOM = originalShadyDOM;
   });
 

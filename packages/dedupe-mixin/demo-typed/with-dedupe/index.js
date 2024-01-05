@@ -27,7 +27,6 @@ class PageRed extends Page {
     this.name = 'Red';
   }
 }
-// @ts-ignore
 customElements.define('page-red', PageRed);
 
 // ****** here we apply the mixin again ******
@@ -42,7 +41,6 @@ class PageGreen extends LoggingMixin(Page) {
     // this.logString(12);
   }
 }
-// @ts-ignore
 customElements.define('page-green', PageGreen);
 
 class PageBlue extends Page {
@@ -51,5 +49,4 @@ class PageBlue extends Page {
     this.name = 'Blue';
   }
 }
-// @ts-ignore
 customElements.define('page-blue', PageBlue);

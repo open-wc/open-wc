@@ -53,7 +53,6 @@ export class SpreadPropsDirective extends AsyncDirective {
             if (value === prevData[key]) {
                 continue;
             }
-            // @ts-ignore
             element[key] = value;
         }
     }
@@ -63,7 +62,6 @@ export class SpreadPropsDirective extends AsyncDirective {
         if (!prevData) return;
         for (const key in prevData) {
             if (!data || (!(key in data) && element[key] === prevData[key])) {
-                // @ts-ignore
                 element[key] = undefined;
             }
         }
@@ -201,7 +199,6 @@ export class SpreadDirective extends SpreadEventsDirective {
                     this.applyEvent(name, value as EventListenerWithOptions);
                     break;
                 case '.': // property
-                    // @ts-ignore
                     element[name] = value;
                     break;
                 case '?': // boolean attribute
@@ -234,7 +231,6 @@ export class SpreadDirective extends SpreadEventsDirective {
                         this.groomEvent(name, prevData[key] as EventListenerWithOptions)
                         break;
                     case '.': // property
-                        // @ts-ignore
                         element[name] = undefined;
                         break;
                     case '?': // boolean attribute

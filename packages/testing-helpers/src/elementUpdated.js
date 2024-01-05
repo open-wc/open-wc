@@ -18,14 +18,12 @@ const isDefinedPromise = action => typeof action === 'object' && Promise.resolve
  */
 export async function elementUpdated(el) {
   let hasSpecificAwait = false;
-  // @ts-ignore
   let update = el && el.updateComplete;
   if (isDefinedPromise(update)) {
     await update;
     hasSpecificAwait = true;
   }
 
-  // @ts-ignore
   update = el && el.componentOnReady ? el.componentOnReady() : false;
   if (isDefinedPromise(update)) {
     await update;
@@ -36,9 +34,7 @@ export async function elementUpdated(el) {
     await nextFrame();
   }
 
-  // @ts-ignore
   if (window.ShadyDOM && typeof window.ShadyDOM.flush === 'function') {
-    // @ts-ignore
     window.ShadyDOM.flush();
   }
 

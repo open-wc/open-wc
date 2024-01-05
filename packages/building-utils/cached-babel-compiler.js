@@ -42,7 +42,6 @@ function createCompiler(config, fileWatcher = chokidar.watch([])) {
     return babel.transform(code, {
       filename: filePath,
       ...config.options,
-      // @ts-ignore
     }).code;
   }
 

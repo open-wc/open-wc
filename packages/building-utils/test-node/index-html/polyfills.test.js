@@ -14,7 +14,6 @@ describe('polyfills', () => {
       minify: true,
     };
 
-    // @ts-ignore
     const polyfills = getPolyfills(config);
     const polyfillsWithoutCode = polyfills.map(p => ({
       ...p,
@@ -87,7 +86,6 @@ describe('polyfills', () => {
       },
     };
 
-    // @ts-ignore
     const polyfills = getPolyfills(config);
     const polyfillsWithoutCode = polyfills.map(p => ({
       ...p,
@@ -119,7 +117,6 @@ describe('polyfills', () => {
       },
     };
 
-    // @ts-ignore
     const polyfills = getPolyfills(config);
     const polyfillsWithoutCode = polyfills.map(p => ({
       ...p,
@@ -166,7 +163,6 @@ describe('polyfills', () => {
       minify: true,
     };
 
-    // @ts-ignore
     const polyfills = getPolyfills(config);
     const polyfillsWithoutCode = polyfills.map(p => ({
       ...p,

@@ -30,7 +30,6 @@ async function runTestAsync(element, opts) {
   }
 
   return new Promise((resolve, reject) => {
-    // @ts-ignore
     axe.run(element, opts, (err, results) => {
       if (err) {
         reject(new Error(err));
@@ -96,7 +95,6 @@ function processResults(negate, results, done) {
 export const chaiA11yAxe = (chai, utils) => {
   const { assert } = chai;
   utils.addMethod(chai.Assertion.prototype, 'accessible', function axeTest(options) {
-    // @ts-ignore
     const fixture = this._obj;
     const opts = options || {};
 
@@ -119,12 +117,9 @@ export const chaiA11yAxe = (chai, utils) => {
     }
 
     const result = runTestAsync(fixture, testOpts).then(results =>
-      // @ts-ignore
       processResults(utils.flag(this, 'negate'), results, done),
     );
-    // @ts-ignore
     this.then = result.then.bind(result);
-    // @ts-ignore
     return this;
   });
 
