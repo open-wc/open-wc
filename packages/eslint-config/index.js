@@ -55,6 +55,7 @@ module.exports = {
           '**/demo/**/*.{html,js,mjs,ts}',
           '**/*.config.{html,js,mjs,ts}',
           '**/*.conf.{html,js,mjs,ts}',
+          '**/.storybook/*.{html,js,mjs,cjs,ts}',
         ],
       },
     ],
