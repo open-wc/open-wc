@@ -9,6 +9,7 @@ const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js
 const { isAriaPropertyName, isAriaRole } = require('../utils/aria.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -57,7 +58,7 @@ const RoleSupportsAriaAttrRule = {
                           analyzer.getLocationForAttribute(
                             element,
                             attr,
-                            context.getSourceCode(),
+                            getContextSourceCode(context),
                           ) ?? node.loc;
                         if (loc) {
                           context.report({

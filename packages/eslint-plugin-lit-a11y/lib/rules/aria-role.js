@@ -9,6 +9,7 @@ const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 const { isConcreteAriaRole } = require('../utils/aria.js');
 const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -46,7 +47,7 @@ const AriaRoleRule = {
                   analyzer,
                   element,
                   'role',
-                  context.getSourceCode(),
+                  getContextSourceCode(context),
                 );
 
                 if (role === undefined) return;

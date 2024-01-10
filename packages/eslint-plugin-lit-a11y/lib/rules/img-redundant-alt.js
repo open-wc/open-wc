@@ -10,6 +10,7 @@ const { isAriaHidden } = require('../utils/aria.js');
 const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -75,7 +76,7 @@ const ImgRedundantAltRule = {
                 analyzer,
                 element,
                 'alt',
-                context.getSourceCode(),
+                getContextSourceCode(context),
               );
 
               if (!alt) return;
@@ -87,7 +88,7 @@ const ImgRedundantAltRule = {
               if (contraband.length > 0) {
                 const banned = formatter.format(contraband);
                 const loc =
-                  analyzer.getLocationForAttribute(element, 'alt', context.getSourceCode()) ??
+                  analyzer.getLocationForAttribute(element, 'alt', getContextSourceCode(context)) ??
                   node.loc;
 
                 if (loc) {

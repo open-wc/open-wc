@@ -7,6 +7,7 @@ const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -42,13 +43,13 @@ const ScopeRule = {
                   analyzer,
                   element,
                   'scope',
-                  context.getSourceCode(),
+                  getContextSourceCode(context),
                 );
                 if (role === undefined) return;
 
                 if (element.name !== 'th' && !element.name.includes('-')) {
                   const loc =
-                    analyzer.getLocationForAttribute(element, 'scope', context.getSourceCode()) ??
+                    analyzer.getLocationForAttribute(element, 'scope', getContextSourceCode(context)) ??
                     node.loc;
                   if (loc) {
                     context.report({
@@ -61,7 +62,7 @@ const ScopeRule = {
                   !validScopeValues.includes(element.attribs.scope)
                 ) {
                   const loc =
-                    analyzer.getLocationForAttribute(element, 'scope', context.getSourceCode()) ??
+                    analyzer.getLocationForAttribute(element, 'scope', getContextSourceCode(context)) ??
                     node.loc;
                   if (loc) {
                     context.report({
