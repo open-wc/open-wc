@@ -3,10 +3,13 @@
  *
  */
 function getContextSourceCode(context) {
-  if (typeof context.getSourceCode() === 'function') {
-    return context.getSourceCode();
-  }
-  return context.sourceCode;
+    try{
+        if (context.getSourceCode()) {
+            return context.getSourceCode();
+        }
+    }catch(e){
+        return context.sourceCode;
+    }
 }
 
 module.exports = {
