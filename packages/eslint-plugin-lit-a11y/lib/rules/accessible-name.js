@@ -157,7 +157,7 @@ const ButtonHasContentRule = {
                 const loc =
                   analyzer.resolveLocation(
                     element.sourceCodeLocation.startTag,
-                    context.getSourceCode() ? context.getSourceCode() : context.sourceCode,
+                    getContextSourceCode(context),
                   ) ?? node.loc;
 
                 if (loc) {
@@ -183,7 +183,7 @@ const ButtonHasContentRule = {
                 const loc =
                   analyzer.resolveLocation(
                     element.sourceCodeLocation.startTag,
-                    context.getSourceCode() ? context.getSourceCode() : context.sourceCode,
+                    getContextSourceCode(context),
                   ) ?? node.loc;
 
                 if (loc) {
@@ -207,7 +207,7 @@ const ButtonHasContentRule = {
                 const loc =
                   analyzer.resolveLocation(
                     element.sourceCodeLocation.startTag,
-                    context.getSourceCode() ? context.getSourceCode() : context.sourceCode,
+                    getContextSourceCode(context),
                   ) ?? node.loc;
 
                 if (loc) {
@@ -229,7 +229,7 @@ const ButtonHasContentRule = {
                 const loc =
                   analyzer.resolveLocation(
                     element.sourceCodeLocation.startTag,
-                    context.getSourceCode() ? context.getSourceCode() : context.sourceCode,
+                    getContextSourceCode(context),
                   ) ?? node.loc;
 
                 if (loc) {
@@ -247,7 +247,7 @@ const ButtonHasContentRule = {
                 const loc =
                   analyzer.resolveLocation(
                     element.sourceCodeLocation.startTag,
-                    context.getSourceCode() ? context.getSourceCode() : context.sourceCode,
+                    getContextSourceCode(context),
                   ) ?? node.loc;
 
                 if (loc) {
@@ -268,7 +268,7 @@ const ButtonHasContentRule = {
                 const loc =
                   analyzer.resolveLocation(
                     element.sourceCodeLocation.startTag,
-                    context.getSourceCode() ? context.getSourceCode() : context.sourceCode,
+                    getContextSourceCode(context),
                   ) ?? node.loc;
 
                 if (loc) {

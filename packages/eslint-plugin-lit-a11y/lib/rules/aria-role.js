@@ -54,7 +54,7 @@ const AriaRoleRule = {
 
                 if (!isConcreteAriaRole(role)) {
                   const loc =
-                    analyzer.getLocationForAttribute(element, attr, context.getSourceCode()) ??
+                    analyzer.getLocationForAttribute(element, attr, getContextSourceCode(context)) ??
                     node.loc;
                   if (loc) {
                     context.report({

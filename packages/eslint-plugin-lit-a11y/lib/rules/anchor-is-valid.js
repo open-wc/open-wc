@@ -99,7 +99,7 @@ const AnchorIsValidRule = {
                     const loc =
                       analyzer.resolveLocation(
                         element.sourceCodeLocation.startTag,
-                        context.getSourceCode() ? context.getSourceCode() : context.sourceCode,
+                        getContextSourceCode(context),
                       ) ?? node.loc;
                     if (loc) {
                       context.report({ loc, messageId: 'preferButtonErrorMessage' });
@@ -113,7 +113,7 @@ const AnchorIsValidRule = {
                   analyzer,
                   element,
                   'href',
-                  context.getSourceCode() ? context.getSourceCode() : context.sourceCode,
+                  getContextSourceCode(context),
                 );
 
                 const invalidHrefValue =
@@ -128,7 +128,7 @@ const AnchorIsValidRule = {
                     const loc =
                       analyzer.resolveLocation(
                         element.sourceCodeLocation.startTag,
-                        context.getSourceCode() ? context.getSourceCode() : context.sourceCode,
+                        getContextSourceCode(context),
                       ) ?? node.loc;
                     if (loc) {
                       context.report({ loc, messageId: 'preferButtonErrorMessage' });
@@ -137,7 +137,7 @@ const AnchorIsValidRule = {
                     const loc =
                       analyzer.resolveLocation(
                         element.sourceCodeLocation.startTag,
-                        context.getSourceCode() ? context.getSourceCode() : context.sourceCode,
+                        getContextSourceCode(context),
                       ) ?? node.loc;
                     if (loc) {
                       context.report({ loc, messageId: 'invalidHrefErrorMessage' });
