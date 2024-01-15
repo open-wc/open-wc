@@ -40,8 +40,11 @@ const NoAutofocusRule = {
             enterElement(element) {
               if ('autofocus' in element.attribs) {
                 const loc =
-                  analyzer.getLocationForAttribute(element, 'autofocus', getContextSourceCode(context)) ??
-                  node.loc;
+                  analyzer.getLocationForAttribute(
+                    element,
+                    'autofocus',
+                    getContextSourceCode(context),
+                  ) ?? node.loc;
                 if (loc) {
                   context.report({
                     loc,

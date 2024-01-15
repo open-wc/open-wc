@@ -42,8 +42,11 @@ const AriaUnsupportedElementsRule = {
                 for (const attr of Object.keys(element.attribs)) {
                   if (attr.startsWith('aria-') || attr === 'role') {
                     const loc =
-                      analyzer.getLocationForAttribute(element, attr, getContextSourceCode(context)) ??
-                      node.loc;
+                      analyzer.getLocationForAttribute(
+                        element,
+                        attr,
+                        getContextSourceCode(context),
+                      ) ?? node.loc;
                     if (loc) {
                       context.report({
                         loc,

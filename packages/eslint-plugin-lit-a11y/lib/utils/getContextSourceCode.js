@@ -3,15 +3,15 @@
  *
  */
 function getContextSourceCode(context) {
-    try{
-        if (context.getSourceCode()) {
-            return context.getSourceCode();
-        }
-    }catch(e){
-        return context.sourceCode;
+  try {
+    if (context.getSourceCode()) {
+      return context.getSourceCode();
     }
+  } catch (e) {
+    return context.sourceCode;
+  }
 }
 
 module.exports = {
-    getContextSourceCode,
+  getContextSourceCode,
 };

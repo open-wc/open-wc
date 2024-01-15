@@ -37,8 +37,11 @@ const NoAccessKeyRule = {
             enterElement(element) {
               if (Object.keys(element.attribs).includes('accesskey')) {
                 const loc =
-                  analyzer.getLocationForAttribute(element, 'accesskey', getContextSourceCode(context)) ??
-                  node.loc;
+                  analyzer.getLocationForAttribute(
+                    element,
+                    'accesskey',
+                    getContextSourceCode(context),
+                  ) ?? node.loc;
                 if (loc) {
                   context.report({
                     loc,

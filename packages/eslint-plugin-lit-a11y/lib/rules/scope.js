@@ -49,8 +49,11 @@ const ScopeRule = {
 
                 if (element.name !== 'th' && !element.name.includes('-')) {
                   const loc =
-                    analyzer.getLocationForAttribute(element, 'scope', getContextSourceCode(context)) ??
-                    node.loc;
+                    analyzer.getLocationForAttribute(
+                      element,
+                      'scope',
+                      getContextSourceCode(context),
+                    ) ?? node.loc;
                   if (loc) {
                     context.report({
                       loc,
@@ -62,8 +65,11 @@ const ScopeRule = {
                   !validScopeValues.includes(element.attribs.scope)
                 ) {
                   const loc =
-                    analyzer.getLocationForAttribute(element, 'scope', getContextSourceCode(context)) ??
-                    node.loc;
+                    analyzer.getLocationForAttribute(
+                      element,
+                      'scope',
+                      getContextSourceCode(context),
+                    ) ?? node.loc;
                   if (loc) {
                     context.report({
                       loc,

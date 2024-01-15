@@ -141,8 +141,11 @@ const AriaAttrTypesRule = {
                   }
 
                   const loc =
-                    analyzer.getLocationForAttribute(element, attr, getContextSourceCode(context)) ??
-                    node.loc;
+                    analyzer.getLocationForAttribute(
+                      element,
+                      attr,
+                      getContextSourceCode(context),
+                    ) ?? node.loc;
 
                   if (loc) {
                     context.report({
