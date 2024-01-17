@@ -7,6 +7,7 @@ jobs:
     name: Verify changes
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         eslint-version: ["8", "9"]
     steps:
