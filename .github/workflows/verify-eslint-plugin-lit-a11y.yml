@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        eslint-version: ["9", "10"]
+        eslint-version: ["8", "9"]
     steps:
       - uses: actions/checkout@v3
 
