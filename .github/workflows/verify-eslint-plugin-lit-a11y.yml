@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        eslint-version: ["8", "9"]
+        eslint-version: ["8", "9.0.0-alpha.1"]
     steps:
       - uses: actions/checkout@v3
 
