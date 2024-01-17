@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Install ESLint
-        run: npm install eslint@${{ matrix.eslint-version }}
+        run: npm install eslint@${{ matrix.eslint-version }} --force
 
       - name: Run tests
         run: npm run test --workspace eslint-plugin-lit-a11y
