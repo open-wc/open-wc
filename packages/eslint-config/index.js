@@ -55,6 +55,7 @@ module.exports = {
           '**/demo/**/*.{html,js,mjs,ts}',
           '**/*.config.{html,js,mjs,ts}',
           '**/*.conf.{html,js,mjs,ts}',
+          '**/.storybook/*.{html,js,mjs,cjs,ts}',
         ],
       },
     ],
@@ -94,6 +95,12 @@ module.exports = {
     'lit/lifecycle-super': 'error',
   },
   settings: {
+    // Adds compatibility for eslint-plugin-import in combination with flat config
+    // See: https://github.com/import-js/eslint-plugin-import/issues/2556#issuecomment-1419518561
+    'import/parsers': {
+      espree: ['.js', '.cjs', '.mjs', '.jsx'],
+      '@typescript-eslint/parser': ['.ts'],
+    },
     'import/resolver': {
       [require.resolve('eslint-plugin-import-exports-imports-resolver')]: {},
     },
