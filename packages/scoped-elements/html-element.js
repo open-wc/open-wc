@@ -57,7 +57,20 @@ const ScopedElementsMixinImplementation = superclass =>
      */
     attachShadow(options) {
       const { scopedElements } = /** @type {typeof ScopedElementsHost} */ (this.constructor);
-      if (!this.registry) {
+
+      const shouldCreateRegistry =
+        !this.registry ||
+        // @ts-ignore
+        (this.registry === this.constructor.__registry &&
+          !Object.prototype.hasOwnProperty.call(this.constructor, '__registry'));
+
+      /**
+       * Create a new registry if:
+       * - the registry is not defined
+       * - this class doesn't have its own registry *AND* has no shared registry
+       * This is important specifically for superclasses/inheritance
+       */
+      if (shouldCreateRegistry) {
         this.registry = new CustomElementRegistry();
         for (const [tagName, klass] of Object.entries(scopedElements ?? {})) {
           this.registry.define(tagName, klass);
