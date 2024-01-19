@@ -3,6 +3,7 @@ import './globally-defined-button.js';
 
 export { FeatureA } from './FeatureA.js';
 export { FeatureB } from './FeatureB.js';
+export { FeatureC } from './FeatureC.js';
 export { LazyButton } from './LazyButton.js';
 export { LazyLoading } from './LazyLoading.js';
 export { ImperativeDomCreation } from './ImperativeDomCreation.js';

@@ -1,7 +1,6 @@
-import { LitElement } from 'lit';
 import { ScopedElementsMixin } from '../../../html-element.js';
 
-export class MyButton3 extends ScopedElementsMixin(LitElement) {
+export class MyButton3 extends ScopedElementsMixin(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });

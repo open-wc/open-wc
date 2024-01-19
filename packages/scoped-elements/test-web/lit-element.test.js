@@ -4,7 +4,6 @@ import { html } from 'lit';
 import {
   FeatureA,
   FeatureB,
-  FeatureC,
   LazyLoading,
   TagnameClash,
   ConstructorClash,
@@ -18,7 +17,6 @@ import { FrameworkLike } from './components/lit/FrameworkLike.js';
 
 customElements.define('feature-a', FeatureA);
 customElements.define('feature-b', FeatureB);
-customElements.define('feature-c', FeatureC);
 
 describe('lit-element ScopedElementsMixin', () => {
   it('creates a scoped registry', async () => {
@@ -135,14 +133,5 @@ describe('lit-element ScopedElementsMixin', () => {
     const stepB = framework.shadowRoot.querySelector('step-b');
     expect(stepB.constructor).to.equal(MyButton2);
     expect(stepB.color).to.equal('blue');
-  });
-
-  it('creates unique registries when one lit element inherits another lit element', async () => {
-    const c = await fixture(`<feature-c></feature-c>`);
-    const myButton3Registry = c.shadowRoot.querySelector('my-button-3').registry;
-    const myEnhancedButton3Registry = c.shadowRoot.querySelector('my-enhanced-button-3').registry;
-    expect(myButton3Registry).to.not.equal(myEnhancedButton3Registry);
-    expect(myButton3Registry.constructor).to.equal(customElements.constructor);
-    expect(myEnhancedButton3Registry.constructor).to.equal(customElements.constructor);
   });
 });

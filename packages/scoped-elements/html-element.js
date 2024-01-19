@@ -68,6 +68,7 @@ const ScopedElementsMixinImplementation = superclass =>
        * Create a new registry if:
        * - the registry is not defined
        * - this class doesn't have its own registry *AND* has no shared registry
+       * This is important specifically for superclasses/inheritance
        */
       if (shouldCreateRegistry) {
         this.registry = new CustomElementRegistry();
