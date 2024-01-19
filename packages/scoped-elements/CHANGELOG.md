@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.4
+
+### Patch Changes
+
+- fec89f1d: Backport registry creation check from v2
+
 ## 3.0.3
 
 ### Patch Changes
