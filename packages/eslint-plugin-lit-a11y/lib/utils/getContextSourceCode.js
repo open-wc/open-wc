@@ -5,13 +5,7 @@
  * This method can be removed once v9 is released
  */
 function getContextSourceCode(context) {
-  try {
-    if (context.getSourceCode()) {
-      return context.getSourceCode();
-    }
-  } catch (e) {
-    return context.sourceCode;
-  }
+  return context?.sourceCode ?? context.getSourceCode();
 }
 
 module.exports = {
