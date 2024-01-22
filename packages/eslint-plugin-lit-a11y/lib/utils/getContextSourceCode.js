@@ -8,6 +8,11 @@ function getContextSourceCode(context) {
   return context?.sourceCode ?? context.getSourceCode();
 }
 
+function getParserServices(context) {
+  return context?.sourceCode?.parserServices ?? context.parserServices;
+}
+
 module.exports = {
   getContextSourceCode,
+  getParserServices,
 };
