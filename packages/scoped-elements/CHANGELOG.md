@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.5
+
+### Patch Changes
+
+- 479a956d: Marked `@open-wc/scoped-elements` as side-effect free
+
 ## 3.0.4
 
 ### Patch Changes
