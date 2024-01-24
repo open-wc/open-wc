@@ -138,7 +138,8 @@ const componentLibraries = [
   {
     name: 'Porsche Design System',
     url: 'https://designsystem.porsche.com/',
-    description: "The Porsche Design System provides the design fundamentals and elements for efficiently creating aesthetic and high-quality web applications, including easy-to-use Figma and UX Pin libraries, coded Web Components and comprehensive usage guidelines. Everything is built and tested following the Porsche quality standards and corporate design principles.",
+    description:
+      'The Porsche Design System provides the design fundamentals and elements for efficiently creating aesthetic and high-quality web applications, including easy-to-use Figma and UX Pin libraries, coded Web Components and comprehensive usage guidelines. Everything is built and tested following the Porsche quality standards and corporate design principles.',
   },
   {
     name: 'Siemenx IX',

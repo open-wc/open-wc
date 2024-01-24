@@ -88,6 +88,6 @@ const ScopedElementsMixinImplementation = superclass => {
       });
     }
   };
-}
+};
 
 export const ScopedElementsMixin = dedupeMixin(ScopedElementsMixinImplementation);
