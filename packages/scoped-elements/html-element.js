@@ -5,20 +5,21 @@ import { dedupeMixin } from '@open-wc/dedupe-mixin';
  * @typedef {import('./types.js').ScopedElementsMap} ScopedElementsMap
  */
 
-const version = '3.0.0';
-const versions = window.scopedElementsVersions || (window.scopedElementsVersions = []);
-if (!versions.includes(version)) {
-  versions.push(version);
-}
-
 /**
  * @template {import('./types.js').Constructor<HTMLElement>} T
  * @param {T} superclass
  * @return {T & import('./types.js').Constructor<ScopedElementsHost>}
  */
-const ScopedElementsMixinImplementation = superclass =>
+const ScopedElementsMixinImplementation = superclass => {
+  const version = '3.0.0';
+
+  const versions = window.scopedElementsVersions || (window.scopedElementsVersions = []);
+  if (!versions.includes(version)) {
+    versions.push(version);
+  }
+
   /** @type {ScopedElementsHost} */
-  class ScopedElementsHost extends superclass {
+  return class ScopedElementsHost extends superclass {
     /**
      * Obtains the scoped elements definitions map if specified.
      *
@@ -87,5 +88,6 @@ const ScopedElementsMixinImplementation = superclass =>
       });
     }
   };
+}
 
 export const ScopedElementsMixin = dedupeMixin(ScopedElementsMixinImplementation);
