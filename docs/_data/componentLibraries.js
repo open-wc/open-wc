@@ -49,7 +49,8 @@ const componentLibraries = [
   {
     name: 'drab',
     url: 'https://drab.robino.dev',
-    description: 'drab is a headless, SSR friendly, custom element library that utilizes the light DOM to enhance HTML.',
+    description:
+      'drab is a headless, SSR friendly, custom element library that utilizes the light DOM to enhance HTML.',
   },
   {
     name: 'Duet Design System',
