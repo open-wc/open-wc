@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/scoped-elements",
-  "version": "3.0.3",
+  "version": "3.0.5",
   "publishConfig": {
     "access": "public"
   },
@@ -55,5 +55,6 @@
   "devDependencies": {
     "@open-wc/testing": "^3.2.2",
     "@webcomponents/scoped-custom-element-registry": "^0.0.9"
-  }
+  },
+  "sideEffects": false
 }

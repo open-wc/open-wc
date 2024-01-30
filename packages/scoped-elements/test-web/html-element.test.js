@@ -3,6 +3,7 @@ import { expect, fixture } from '@open-wc/testing';
 import {
   FeatureA,
   FeatureB,
+  FeatureC,
   LazyLoading,
   ImperativeDomCreation,
   MyButton1,
@@ -16,6 +17,7 @@ import {
 
 customElements.define('feature-a', FeatureA);
 customElements.define('feature-b', FeatureB);
+customElements.define('feature-c', FeatureC);
 
 describe('html-element ScopedElementsMixin', () => {
   it('has static scopedElementVersions', async () => {
@@ -122,5 +124,14 @@ describe('html-element ScopedElementsMixin', () => {
     const global = el.querySelector('globally-defined-button');
     expect(global.shadowRoot.textContent).to.equal('click');
     expect(scoped.shadowRoot.textContent).to.equal('click');
+  });
+
+  it('creates unique registries when one lit element inherits another lit element', async () => {
+    const c = await fixture(`<feature-c></feature-c>`);
+    const myButton3Registry = c.shadowRoot.querySelector('my-button-3').registry;
+    const myEnhancedButton3Registry = c.shadowRoot.querySelector('my-enhanced-button-3').registry;
+    expect(myButton3Registry).to.not.equal(myEnhancedButton3Registry);
+    expect(myButton3Registry.constructor).to.equal(customElements.constructor);
+    expect(myEnhancedButton3Registry.constructor).to.equal(customElements.constructor);
   });
 });
