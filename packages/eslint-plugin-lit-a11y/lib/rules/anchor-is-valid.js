@@ -9,6 +9,7 @@ const { generateObjSchema, enumArraySchema } = require('../utils/schemas.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -86,7 +87,7 @@ const AnchorIsValidRule = {
                     const loc =
                       analyzer.resolveLocation(
                         element.sourceCodeLocation.startTag,
-                        context.getSourceCode(),
+                        getContextSourceCode(context),
                       ) ?? node.loc;
                     if (loc) {
                       context.report({ loc, messageId: 'noHrefErrorMessage' });
@@ -98,7 +99,7 @@ const AnchorIsValidRule = {
                     const loc =
                       analyzer.resolveLocation(
                         element.sourceCodeLocation.startTag,
-                        context.getSourceCode(),
+                        getContextSourceCode(context),
                       ) ?? node.loc;
                     if (loc) {
                       context.report({ loc, messageId: 'preferButtonErrorMessage' });
@@ -112,7 +113,7 @@ const AnchorIsValidRule = {
                   analyzer,
                   element,
                   'href',
-                  context.getSourceCode(),
+                  getContextSourceCode(context),
                 );
 
                 const invalidHrefValue =
@@ -127,7 +128,7 @@ const AnchorIsValidRule = {
                     const loc =
                       analyzer.resolveLocation(
                         element.sourceCodeLocation.startTag,
-                        context.getSourceCode(),
+                        getContextSourceCode(context),
                       ) ?? node.loc;
                     if (loc) {
                       context.report({ loc, messageId: 'preferButtonErrorMessage' });
@@ -136,7 +137,7 @@ const AnchorIsValidRule = {
                     const loc =
                       analyzer.resolveLocation(
                         element.sourceCodeLocation.startTag,
-                        context.getSourceCode(),
+                        getContextSourceCode(context),
                       ) ?? node.loc;
                     if (loc) {
                       context.report({ loc, messageId: 'invalidHrefErrorMessage' });
