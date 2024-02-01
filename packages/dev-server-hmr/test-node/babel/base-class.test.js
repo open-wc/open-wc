@@ -5,10 +5,14 @@ const { banner, transform, rootDir } = require('./utils.js');
 
 describe('babelPluginWcHmr - detecting base class', () => {
   it('global base class', () => {
-    const code = `class Foo extends MyElement {}`;
+    const code = `
+class Foo extends MyElement {};
+class UpdatingElement extends HTMLElement {};
+    `.trim();
     const result = transform(code, { baseClasses: [{ name: 'MyElement' }] });
     expect(result).to.equal(`${banner}
-let Foo = __$wc_hmr$__.register(import.meta, "Foo", class Foo extends MyElement {});`);
+let Foo = __$wc_hmr$__.register(import.meta, "Foo", class Foo extends MyElement {});
+class UpdatingElement extends HTMLElement {}`);
   });
 
   it('class expression', () => {
