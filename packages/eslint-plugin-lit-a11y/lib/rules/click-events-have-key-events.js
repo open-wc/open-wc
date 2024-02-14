@@ -9,6 +9,7 @@ const { isIncludedInAOM } = require('../utils/isIncludedInAOM.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { isNonInteractiveElement } = require('../utils/isNonInteractiveElement.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -93,7 +94,7 @@ const ClickEventsHaveKeyEventsRule = {
                 const loc =
                   analyzer.resolveLocation(
                     element.sourceCodeLocation.startTag,
-                    context.getSourceCode(),
+                    getContextSourceCode(context),
                   ) ?? node.loc;
                 if (loc) {
                   context.report({ loc, messageId: 'clickableNonInteractiveElements' });

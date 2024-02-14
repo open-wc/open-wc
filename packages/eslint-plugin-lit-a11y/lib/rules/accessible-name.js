@@ -10,6 +10,7 @@ const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 const { hasAccessibleName } = require('../utils/hasAccessibleName.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -134,7 +135,7 @@ const ButtonHasContentRule = {
                   const loc =
                     analyzer.resolveLocation(
                       element.sourceCodeLocation.startTag,
-                      context.getSourceCode(),
+                      getContextSourceCode(context),
                     ) ?? node.loc;
 
                   if (loc) {
@@ -156,7 +157,7 @@ const ButtonHasContentRule = {
                 const loc =
                   analyzer.resolveLocation(
                     element.sourceCodeLocation.startTag,
-                    context.getSourceCode(),
+                    getContextSourceCode(context),
                   ) ?? node.loc;
 
                 if (loc) {
@@ -182,7 +183,7 @@ const ButtonHasContentRule = {
                 const loc =
                   analyzer.resolveLocation(
                     element.sourceCodeLocation.startTag,
-                    context.getSourceCode(),
+                    getContextSourceCode(context),
                   ) ?? node.loc;
 
                 if (loc) {
@@ -206,7 +207,7 @@ const ButtonHasContentRule = {
                 const loc =
                   analyzer.resolveLocation(
                     element.sourceCodeLocation.startTag,
-                    context.getSourceCode(),
+                    getContextSourceCode(context),
                   ) ?? node.loc;
 
                 if (loc) {
@@ -228,7 +229,7 @@ const ButtonHasContentRule = {
                 const loc =
                   analyzer.resolveLocation(
                     element.sourceCodeLocation.startTag,
-                    context.getSourceCode(),
+                    getContextSourceCode(context),
                   ) ?? node.loc;
 
                 if (loc) {
@@ -246,7 +247,7 @@ const ButtonHasContentRule = {
                 const loc =
                   analyzer.resolveLocation(
                     element.sourceCodeLocation.startTag,
-                    context.getSourceCode(),
+                    getContextSourceCode(context),
                   ) ?? node.loc;
 
                 if (loc) {
@@ -267,7 +268,7 @@ const ButtonHasContentRule = {
                 const loc =
                   analyzer.resolveLocation(
                     element.sourceCodeLocation.startTag,
-                    context.getSourceCode(),
+                    getContextSourceCode(context),
                   ) ?? node.loc;
 
                 if (loc) {

@@ -47,6 +47,12 @@ const componentLibraries = [
     description: 'Custom elements made for all kind of projects and frameworks.',
   },
   {
+    name: 'drab',
+    url: 'https://drab.robino.dev',
+    description:
+      'drab is a headless, SSR friendly, custom element library that utilizes the light DOM to enhance HTML.',
+  },
+  {
     name: 'Duet Design System',
     url: 'https://www.duetds.com/',
     description:
@@ -140,6 +146,12 @@ const componentLibraries = [
     name: 'Patternfly Elements',
     url: 'https://patternflyelements.org/',
     description: "Red Hat's set of community-created web components based on PatternFly design.",
+  },
+  {
+    name: 'Porsche Design System',
+    url: 'https://designsystem.porsche.com/',
+    description:
+      'The Porsche Design System provides the design fundamentals and elements for efficiently creating aesthetic and high-quality web applications, including easy-to-use Figma and UX Pin libraries, coded Web Components and comprehensive usage guidelines. Everything is built and tested following the Porsche quality standards and corporate design principles.',
   },
   {
     name: 'Siemenx IX',
