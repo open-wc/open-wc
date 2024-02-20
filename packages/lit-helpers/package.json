@@ -34,7 +34,7 @@
     "helpers"
   ],
   "peerDependencies": {
-    "lit": "^2.0.0"
+    "lit": "^2.0.0 || ^3.0.0"
   },
   "sideEffects": false
 }
