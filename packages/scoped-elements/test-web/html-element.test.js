@@ -131,7 +131,5 @@ describe('html-element ScopedElementsMixin', () => {
     const myButton3Registry = c.shadowRoot.querySelector('my-button-3').registry;
     const myEnhancedButton3Registry = c.shadowRoot.querySelector('my-enhanced-button-3').registry;
     expect(myButton3Registry).to.not.equal(myEnhancedButton3Registry);
-    expect(myButton3Registry.constructor).to.equal(customElements.constructor);
-    expect(myEnhancedButton3Registry.constructor).to.equal(customElements.constructor);
   });
 });

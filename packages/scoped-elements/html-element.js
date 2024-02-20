@@ -72,9 +72,11 @@ const ScopedElementsMixinImplementation = superclass =>
        */
       if (shouldCreateRegistry) {
         this.registry = new CustomElementRegistry();
-        for (const [tagName, klass] of Object.entries(scopedElements ?? {})) {
-          this.registry.define(tagName, klass);
-        }
+      }
+
+      for (const [tagName, klass] of Object.entries(scopedElements ?? {})) {
+        // @ts-expect-error at this point a registry is always defined
+        this.registry.define(tagName, klass);
       }
 
       return super.attachShadow({
