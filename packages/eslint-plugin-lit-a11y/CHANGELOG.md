@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.2
+
+### Patch Changes
+
+- 325d7703: Changed context.getSourceCode to context.sourceCode with backward compatibility
+
 ## 4.1.1
 
 ### Patch Changes

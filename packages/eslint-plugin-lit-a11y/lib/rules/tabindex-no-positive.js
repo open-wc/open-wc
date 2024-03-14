@@ -6,6 +6,7 @@ const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -46,7 +47,7 @@ const TabindexNoPositiveRule = {
                 const expr = analyzer.getAttributeValue(
                   element,
                   attributeName,
-                  context.getSourceCode(),
+                  getContextSourceCode(context),
                 );
 
                 if (typeof expr !== 'string') {
@@ -64,7 +65,7 @@ const TabindexNoPositiveRule = {
                     analyzer.getLocationForAttribute(
                       element,
                       attributeName,
-                      context.getSourceCode(),
+                      getContextSourceCode(context),
                     ) ?? node.loc;
                   if (loc) {
                     context.report({
@@ -81,7 +82,7 @@ const TabindexNoPositiveRule = {
                     analyzer.getLocationForAttribute(
                       element,
                       attributeName,
-                      context.getSourceCode(),
+                      getContextSourceCode(context),
                     ) ?? node.loc;
                   if (loc) {
                     context.report({ loc, messageId: 'avoidPositiveTabindex' });
