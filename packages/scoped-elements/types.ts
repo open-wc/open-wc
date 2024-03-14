@@ -10,12 +10,14 @@ export declare class ScopedElementsHost {
   /**
    * Obtains the scoped elements definitions map
    */
-  static scopedElements: ScopedElementsMap;
+  static scopedElements: ScopedElementsMap | undefined;
 
   /**
    * Obtains the CustomElementRegistry
    */
   registry?: CustomElementRegistry;
+
+  constructor(...args: any[]);
 }
 
 declare global {
