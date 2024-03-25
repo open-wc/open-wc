@@ -131,12 +131,6 @@ const componentLibraries = [
       "Material Design Components from Material Design team themselves. Stay as close as possible to the living specification with these components from Google's own Material Design team.",
   },
   {
-    name: 'Nord Design System',
-    url: 'https://nordhealth.design/components/',
-    description:
-      'Nord Design System is a collection of reusable components and tools, guided by clear standards, that can be assembled together to build digital products and experiences.',
-  },
-  {
     name: 'Patternfly Elements',
     url: 'https://patternflyelements.org/',
     description: "Red Hat's set of community-created web components based on PatternFly design.",
