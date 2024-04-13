@@ -202,6 +202,11 @@ const componentLibraries = [
       'A set of common UI elements with a hand-drawn, sketchy look. These can be used for wireframes, mockups, or just the fun hand-drawn look.',
   },
   {
+    name: 'Wompo',
+    url: 'https://wompo.dev',
+    description: 'A lightweight and fast Web-components library that uses a React-like API. It is beginner friendly, has built-in CSS modules, JSX and Typescript support, and more.'
+  },
+  {
     name: 'Zooplus Web Components',
     url: 'https://zooplus.github.io/zoo-web-components/',
     description: 'A set of web components that implement Z+ shop style guide.',
