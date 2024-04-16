@@ -1,6 +1,6 @@
 /// <reference types="chai" />
 
-import { DiffOptions } from './get-diffable-html';
+import { DiffOptions } from './get-diffable-html.js';
 
 declare global {
   namespace Chai {
