@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- 549c2efe: fix(testing-helpers): correct type declaration for `oneEvent`
+
+  `preventDefault` parameter is not used
+
 ## 3.0.0
 
 ### Major Changes
