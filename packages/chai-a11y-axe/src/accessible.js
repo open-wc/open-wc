@@ -29,16 +29,7 @@ async function runTestAsync(element, opts) {
     await loadAxe();
   }
 
-  return new Promise((resolve, reject) => {
-    // @ts-ignore
-    axe.run(element, opts, (err, results) => {
-      if (err) {
-        reject(new Error(err));
-      } else {
-        resolve(results);
-      }
-    });
-  });
+  return axe.run(element, opts);
 }
 
 /**
