@@ -1,8 +1,13 @@
-const { expect } = require('chai');
 const { extractResources } = require('../../index-html/index.js');
 const { getAttribute, queryAll, predicates } = require('../../dom5-fork/index.js');
 
-describe('extract-resources', () => {
+describe('extract-resources', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
+
   it('returns any resources found', () => {
     const html = `
       <html>

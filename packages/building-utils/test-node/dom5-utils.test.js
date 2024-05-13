@@ -1,4 +1,3 @@
-const { expect } = require('chai');
 const { parse } = require('parse5');
 const { getAttribute, getTextContent } = require('../dom5-fork/index.js');
 const { findJsScripts, findImportMapScripts } = require('../dom5-utils.js');
@@ -22,7 +21,13 @@ const htmlString = `
   </html>
 `;
 
-describe('findJsScripts', () => {
+describe('findJsScripts', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
+
   it('returns all external scripts', () => {
     const scripts = findJsScripts(parse(htmlString), {
       jsScripts: false,
@@ -104,7 +109,8 @@ describe('findJsScripts', () => {
   });
 });
 
-describe('findImportMapScripts', () => {
+describe('findImportMapScripts', async () => {
+  const { expect } = await import('chai');
   it('returns import maps in the document', () => {
     const result = findImportMapScripts(parse(htmlString));
     const external = result.external.map(scr => getAttribute(scr, 'src'));

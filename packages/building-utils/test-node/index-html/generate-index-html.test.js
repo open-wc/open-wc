@@ -1,4 +1,3 @@
-const { expect } = require('chai');
 const { parse } = require('parse5');
 const path = require('path');
 const fs = require('fs');
@@ -30,20 +29,26 @@ const indexHTML = `
 </html>
 `;
 
-function testSnapshot(name, config) {
-  const snapshotPath = path.join(__dirname, 'snapshots', 'create-index-html', `${name}.html`);
-  const ast = parse(indexHTML);
-  const result = createIndexHTML(ast, config);
+describe('generate-index-html', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
 
-  if (updateSnapshots) {
-    fs.writeFileSync(snapshotPath, result.indexHTML, 'utf-8');
-  } else {
-    const snapshot = fs.readFileSync(snapshotPath, 'utf-8');
-    expect(result.indexHTML).to.equal(snapshot);
+  function testSnapshot(name, config) {
+    const snapshotPath = path.join(__dirname, 'snapshots', 'create-index-html', `${name}.html`);
+    const ast = parse(indexHTML);
+    const result = createIndexHTML(ast, config);
+
+    if (updateSnapshots) {
+      fs.writeFileSync(snapshotPath, result.indexHTML, 'utf-8');
+    } else {
+      const snapshot = fs.readFileSync(snapshotPath, 'utf-8');
+      expect(result.indexHTML).to.equal(snapshot);
+    }
   }
-}
 
-describe('generate-index-html', () => {
   it('generates a index.html with module', () => {
     testSnapshot('module', {
       entries: { type: 'module', files: ['app.js'] },

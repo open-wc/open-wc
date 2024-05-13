@@ -2,12 +2,9 @@
 // @ts-nocheck
 const assert = require('assert');
 const fs = require('fs');
-const chai = require('chai');
 const { pathToFileURL } = require('url');
 const { parseFromString } = require('../index');
 const { resolve } = require('../src/resolver.js');
-
-const { expect } = chai;
 
 function assertNoExtraProperties(object, expectedProperties, description) {
   for (const actualProperty in object) {
@@ -43,7 +40,9 @@ function normalizeImportMap(m) {
   return result;
 }
 
-function runTests(j) {
+async function runTests(j) {
+  const { expect } = await import('chai');
+
   const { tests } = j;
   delete j.tests;
 
@@ -134,7 +133,7 @@ function runTests(j) {
   }
 }
 
-describe('import-maps-resolve', () => {
+describe('import-maps-resolve', async () => {
   const testFiles = [
     'data-base-url',
     'empty-import-map',
@@ -162,6 +161,6 @@ describe('import-maps-resolve', () => {
     const testCase = JSON.parse(
       fs.readFileSync(new URL(`json/${testFile}.json`, pathToFileURL(__filename)), 'utf-8'),
     );
-    runTests(testCase);
+    await runTests(testCase);
   }
 });

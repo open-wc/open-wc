@@ -1,4 +1,3 @@
-const { expect } = require('chai');
 const fs = require('fs');
 const path = require('path');
 const { createLoaderScript } = require('../../index-html/loader-script.js');
@@ -49,25 +48,31 @@ const defaultPolyfillsConfig = {
   fetch: false,
 };
 
-function testSnapshot({ name, entries, legacyEntries = null, polyfills = null }) {
-  const snapshotPath = path.join(__dirname, 'snapshots', 'loader-script', `${name}.js`);
-  const script = createLoaderScript(
-    entries,
-    legacyEntries,
-    polyfills,
-    defaultPolyfillsConfig,
-    false,
-  );
+describe('loader-script', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
 
-  if (updateSnapshots) {
-    fs.writeFileSync(snapshotPath, script, 'utf-8');
-  } else {
-    const snapshot = fs.readFileSync(snapshotPath, 'utf-8');
-    expect(script).to.equal(snapshot);
+  function testSnapshot({ name, entries, legacyEntries = null, polyfills = null }) {
+    const snapshotPath = path.join(__dirname, 'snapshots', 'loader-script', `${name}.js`);
+    const script = createLoaderScript(
+      entries,
+      legacyEntries,
+      polyfills,
+      defaultPolyfillsConfig,
+      false,
+    );
+
+    if (updateSnapshots) {
+      fs.writeFileSync(snapshotPath, script, 'utf-8');
+    } else {
+      const snapshot = fs.readFileSync(snapshotPath, 'utf-8');
+      expect(script).to.equal(snapshot);
+    }
   }
-}
 
-describe('loader-script', () => {
   it('generates a loader script with one module entries', () => {
     testSnapshot({
       name: 'module-entry',

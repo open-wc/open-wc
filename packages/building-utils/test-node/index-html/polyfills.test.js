@@ -1,8 +1,12 @@
 const path = require('path');
-const { expect } = require('chai');
 const { getPolyfills } = require('../../index-html/polyfills.js');
 
-describe('polyfills', () => {
+describe('polyfills', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
   it('returns the correct polyfills', () => {
     const config = {
       polyfills: {

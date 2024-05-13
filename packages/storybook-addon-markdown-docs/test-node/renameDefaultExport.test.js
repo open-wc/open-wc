@@ -1,8 +1,12 @@
-const { expect } = require('chai');
-
 const { renameDefaultExport } = require('../src/renameDefaultExport.js');
 
-describe('renameDefaultExport', () => {
+describe('renameDefaultExport', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
+
   it('renames the default export of a code string', () => {
     const input = 'export default { title: "My docs" }';
 

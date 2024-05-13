@@ -1,9 +1,14 @@
 /** @typedef {import('@mdjs/core').Story} Story */
 
-const { expect } = require('chai');
 const { createStoriesCode } = require('../src/createStoriesCode.js');
 
-describe('createStoriesCode', () => {
+describe('createStoriesCode', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
+
   it('returns a single stories as js string', () => {
     /** @type {Story[]} */
     const stories = [

@@ -1,9 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const { expect } = require('chai');
 const path = require('path');
 const { banner, transform, rootDir } = require('./utils.js');
 
-describe('babelPluginWcHmr - detecting decorators', () => {
+describe('babelPluginWcHmr - detecting decorators', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
+
   it('compiled decorator with decorator name', () => {
     const code = `
 function __decorate() {}

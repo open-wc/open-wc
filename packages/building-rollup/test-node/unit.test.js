@@ -1,9 +1,12 @@
-const chai = require('chai');
 const { createSwPath } = require('../src/utils.js');
 
-const { expect } = chai;
+describe('createSwPath', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
 
-describe('createSwPath', () => {
   it('uses the workbox configs swDest as swPath if provided by user', () => {
     expect(
       createSwPath(

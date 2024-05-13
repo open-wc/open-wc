@@ -1,6 +1,5 @@
 /* eslint-disable global-require, import/no-dynamic-require */
 const puppeteer = require('puppeteer');
-const { expect } = require('chai');
 const path = require('path');
 const fs = require('fs');
 const rimraf = require('rimraf');
@@ -9,7 +8,13 @@ const { startDevServer } = require('@web/dev-server');
 
 const rootDir = path.resolve(__dirname, '..', 'dist');
 
-describe('integration tests', () => {
+describe('integration tests', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
+
   let server;
   /** @type {import('puppeteer').Browser} */
   let browser;
