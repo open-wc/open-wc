@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/valid-lang');
+const rule = require('../../../lib/rules/valid-lang.js');
 
 //------------------------------------------------------------------------------
 // Tests

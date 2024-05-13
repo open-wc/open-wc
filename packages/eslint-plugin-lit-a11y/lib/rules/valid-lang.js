@@ -7,8 +7,9 @@ const ruleExtender = require('eslint-rule-extender');
 const tags = require('language-tags');
 const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer');
 const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
-const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension');
-const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate');
+const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
+const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 const ValidLangRule = {
   meta: {
@@ -17,8 +18,7 @@ const ValidLangRule = {
       description: 'Ensures the document has a valid `lang` attribute.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/valid-html.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/valid-html.md',
     },
     messages: {
       noLangPresent: 'No lang attribute is present.',
@@ -41,13 +41,13 @@ const ValidLangRule = {
                   analyzer,
                   element,
                   'lang',
-                  context.getSourceCode(),
+                  getContextSourceCode(context),
                 );
 
                 if (!lang) {
                   const loc = analyzer.resolveLocation(
                     element.sourceCodeLocation.startTag,
-                    context.getSourceCode(),
+                    getContextSourceCode(context),
                   );
 
                   return context.report({
@@ -59,8 +59,11 @@ const ValidLangRule = {
                 // We cast this as string, as lang could be a number, since getLiteralAttributeValue returns a primitive, this would throw an error as `language-tags` performs string methods on the argument
                 if (!tags.check(`${lang}`)) {
                   const loc =
-                    analyzer.getLocationForAttribute(element, 'lang', context.getSourceCode()) ??
-                    node.loc;
+                    analyzer.getLocationForAttribute(
+                      element,
+                      'lang',
+                      getContextSourceCode(context),
+                    ) ?? node.loc;
 
                   return context.report({
                     loc,

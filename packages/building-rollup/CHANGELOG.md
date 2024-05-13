@@ -1,5 +1,81 @@
 # Change Log
 
+## 3.0.2
+
+### Patch Changes
+
+- 83561cb4: Bump `rollup-plugin-workbox` to `v8` to fix `rollup-plugin-terser` import error
+
+## 3.0.1
+
+### Patch Changes
+
+- 8c171e17: Replace `rollup-plugin-terser` with `@rollup/plugin-terser`
+
+## 3.0.0
+
+### Major Changes
+
+- 935c8ffe: Drop support for Node@14
+
+### Patch Changes
+
+- 80c6ae66: Use latest @web/\* dependencies.
+  Upgrade Rollup to `v3.x`
+- Updated dependencies [935c8ffe]
+  - @open-wc/building-utils@3.0.0
+
+## 2.2.3
+
+### Patch Changes
+
+- c5a675d5: fix(deps): update dependency parse5 to v7
+- Updated dependencies [1bc7c8c6]
+- Updated dependencies [8ae4ca6e]
+- Updated dependencies [35e12a32]
+- Updated dependencies [228b9449]
+- Updated dependencies [c5a675d5]
+  - @open-wc/building-utils@2.21.1
+
+## 2.2.2
+
+### Patch Changes
+
+- 9e49e7a1: fix(deps): update @web/\* dependencies
+
+## 2.2.1
+
+### Patch Changes
+
+- 45094384: Update terser dependency version to 4.8.1
+- Updated dependencies [45094384]
+  - @open-wc/building-utils@2.20.1
+
+## 2.2.0
+
+### Minor Changes
+
+- d009faae: Update dependency @rollup/plugin-node-resolve to v13
+
+## 2.1.0
+
+### Minor Changes
+
+- 027e58b0: Update dependency clean-css to v5
+
+### Patch Changes
+
+- Updated dependencies [027e58b0]
+  - @open-wc/building-utils@2.20.0
+
+## 2.0.2
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+- Updated dependencies [61e2668f]
+  - @open-wc/building-utils@2.18.5
+
 ## 2.0.1
 
 ### Patch Changes

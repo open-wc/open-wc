@@ -9,6 +9,7 @@ const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 const { isConcreteAriaRole } = require('../utils/aria.js');
 const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -25,8 +26,7 @@ const AriaRoleRule = {
       description: 'aria-role',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/aria-role.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/aria-role.md',
     },
     fixable: null,
     schema: [],
@@ -47,15 +47,18 @@ const AriaRoleRule = {
                   analyzer,
                   element,
                   'role',
-                  context.getSourceCode(),
+                  getContextSourceCode(context),
                 );
 
                 if (role === undefined) return;
 
                 if (!isConcreteAriaRole(role)) {
                   const loc =
-                    analyzer.getLocationForAttribute(element, attr, context.getSourceCode()) ??
-                    node.loc;
+                    analyzer.getLocationForAttribute(
+                      element,
+                      attr,
+                      getContextSourceCode(context),
+                    ) ?? node.loc;
                   if (loc) {
                     context.report({
                       loc,

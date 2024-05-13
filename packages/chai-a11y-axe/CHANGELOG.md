@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.5.0
+
+### Minor Changes
+
+- 935c8ffe: Drop support for Node@14
+
+## 1.4.1
+
+### Patch Changes
+
+- 26292441: Change return type from Assertion to Promise<Assertion>
+
 ## 1.4.0
 
 ### Minor Changes

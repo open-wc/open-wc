@@ -1,6 +1,6 @@
 /// <reference types="chai" />
 
-import { DiffOptions } from "./get-diffable-html";
+import { DiffOptions } from './get-diffable-html';
 
 declare global {
   namespace Chai {
@@ -14,11 +14,11 @@ declare global {
     }
 
     interface Assert {
-      dom: Pick<Assertion, 'equal'|'notEqual'|'equalSnapshot'|'notEqualSnapshot'>;
-      lightDom: Pick<Assertion, 'equal'|'notEqual'|'equalSnapshot'|'notEqualSnapshot'>;
-      shadowDom: Pick<Assertion, 'equal'|'notEqual'|'equalSnapshot'|'notEqualSnapshot'>;
-      equalSnapshot(fixture: any, options?: DiffOptions): Assertion;
-      notEqualSnapshot(fixture: any, options?: DiffOptions): Assertion;
+      dom: Pick<Assertion, 'equal' | 'notEqual' | 'equalSnapshot' | 'notEqualSnapshot'>;
+      lightDom: Pick<Assertion, 'equal' | 'notEqual' | 'equalSnapshot' | 'notEqualSnapshot'>;
+      shadowDom: Pick<Assertion, 'equal' | 'notEqual' | 'equalSnapshot' | 'notEqualSnapshot'>;
+      equalSnapshot(fixture: unknown, options?: DiffOptions): Assertion;
+      notEqualSnapshot(fixture: unknown, options?: DiffOptions): Assertion;
 
       equal<T>(actual: T, expected: T, message?: string, options?: DiffOptions): void;
       equal<T>(actual: T, expected: T, message?: string): void;
@@ -30,8 +30,8 @@ declare global {
     }
 
     interface Equal {
-      (value: any, message?: string, options?: DiffOptions): Assertion;
-      (value: any, options?: DiffOptions): Assertion;
+      (value: unknown, message?: string, options?: DiffOptions): Promise<Assertion>;
+      (value: unknown, options?: DiffOptions): Promise<Assertion>;
     }
   }
 }

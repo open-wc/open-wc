@@ -4,8 +4,17 @@ module.exports = {
     require.resolve('./src/eslint-plugin-wc-export'),
     'plugin:lit-a11y/recommended',
   ],
+  /**
+   * When import assertions are stage 4 and supported by eslint by default,
+   * we can remove the babel parser, `requireConfigFile` and `babelOptions` again
+   */
+  parser: '@babel/eslint-parser',
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 'latest',
+    requireConfigFile: false,
+    babelOptions: {
+      plugins: ['@babel/plugin-syntax-import-assertions'],
+    },
   },
   env: {
     browser: true,
@@ -46,6 +55,7 @@ module.exports = {
           '**/demo/**/*.{html,js,mjs,ts}',
           '**/*.config.{html,js,mjs,ts}',
           '**/*.conf.{html,js,mjs,ts}',
+          '**/.storybook/*.{html,js,mjs,cjs,ts}',
         ],
       },
     ],
@@ -80,6 +90,20 @@ module.exports = {
     'lit/no-invalid-escape-sequences': 'error',
     'lit/no-legacy-template-syntax': 'error',
     'lit/no-private-properties': 'error',
+    'lit/no-native-attributes': 'error',
+    'lit/no-classfield-shadowing': 'error',
+    'lit/lifecycle-super': 'error',
+  },
+  settings: {
+    // Adds compatibility for eslint-plugin-import in combination with flat config
+    // See: https://github.com/import-js/eslint-plugin-import/issues/2556#issuecomment-1419518561
+    'import/parsers': {
+      espree: ['.js', '.cjs', '.mjs', '.jsx'],
+      '@typescript-eslint/parser': ['.ts'],
+    },
+    'import/resolver': {
+      [require.resolve('eslint-plugin-import-exports-imports-resolver')]: {},
+    },
   },
   overrides: [
     {

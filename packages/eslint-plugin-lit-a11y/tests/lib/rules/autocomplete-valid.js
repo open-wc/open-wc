@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/autocomplete-valid');
+const rule = require('../../../lib/rules/autocomplete-valid.js');
 
 //------------------------------------------------------------------------------
 // Tests

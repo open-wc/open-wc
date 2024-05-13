@@ -1,5 +1,104 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- 549c2efe: fix(testing-helpers): correct type declaration for `oneEvent`
+
+  `preventDefault` parameter is not used
+
+## 3.0.0
+
+### Major Changes
+
+- c69af75f: chore: update @open-wc/scoped-elements to v3
+
+  If you're using a fixture like so with scoped elements:
+
+  ```ts
+  await fixture(html`...`, { scopedElements: ... });
+  ```
+
+  You're gonna have to load the [@webcomponents/scoped-custom-element-registry](https://www.npmjs.com/package/@webcomponents/scoped-custom-element-registry) polyfill yourself first.
+
+## 2.3.2
+
+### Patch Changes
+
+- 48d77dfa: Use split versions for lit-html
+
+## 2.3.1
+
+### Patch Changes
+
+- 84e38ab1: Use split versions for all lit dependencies
+- Updated dependencies [84e38ab1]
+  - @open-wc/scoped-elements@2.2.4
+
+## 2.3.0
+
+### Minor Changes
+
+- 935c8ffe: Drop support for Node@14
+
+### Patch Changes
+
+- 3289e0eb: Add oneDefaultPreventedEvent export into testing package and no-side-effect indexes
+- Updated dependencies [935c8ffe]
+- Updated dependencies [80c6ae66]
+  - @open-wc/scoped-elements@2.2.0
+
+## 2.2.1
+
+### Patch Changes
+
+- 077d07eb: Include a longer stacktrace in `waitUntil` timeout errors
+
+## 2.2.0
+
+### Minor Changes
+
+- 32ed8d26: Added oneDefaultPreventedEvent() helper function
+
+## 2.1.4
+
+### Patch Changes
+
+- b187c0bc: Add missing types export when using node16 module resolution
+
+## 2.1.3
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+- Updated dependencies [61e2668f]
+  - @open-wc/scoped-elements@2.1.3
+
+## 2.1.2
+
+### Patch Changes
+
+- 773e5b65: fix: add a type for lit v1 renderable
+
+## 2.1.1
+
+### Patch Changes
+
+- ebbea0d5: Force lit-html dependency tree for correct types construction
+
+## 2.1.0
+
+### Minor Changes
+
+- b762707d: Feat/customize render
+
+## 2.0.5
+
+### Patch Changes
+
+- 065b82a8: Add generics for oneEvent test helper function
+
 ## 2.0.4
 
 ### Patch Changes
@@ -54,11 +153,7 @@
   import { html, fixture } from '@open-wc/testing'; // html will be lit-html 2.x
 
   it('works for tags', async () => {
-    const el = await fixture(
-      html`
-        <my-el></my-el>
-      `,
-    );
+    const el = await fixture(html` <my-el></my-el> `);
   });
   ```
 
@@ -76,9 +171,7 @@
     class MyExtension extends LibraryComponent {
       render() {
         // needs to be lit-html 1.x as the library component is using LitElement with lit-html 1.x
-        return html`
-          <p>...</p>
-        `;
+        return html` <p>...</p> `;
       }
     }
 
@@ -99,11 +192,7 @@
     render(html1`<p>Testing ${fancyDirective('output')}</p>`, node);
 
     // you can either cleanup yourself or use fixture
-    const el = await fixture(
-      html`
-        ${node}
-      `,
-    );
+    const el = await fixture(html` ${node} `);
 
     expect(el.children[0].innerHTML).toBe('Testing [[output]]');
   });
@@ -141,11 +230,7 @@
   import { html, fixture } from '@open-wc/testing'; // html will be lit-html 2.x
 
   it('works for tags', async () => {
-    const el = await fixture(
-      html`
-        <my-el></my-el>
-      `,
-    );
+    const el = await fixture(html` <my-el></my-el> `);
   });
   ```
 
@@ -163,9 +248,7 @@
     class MyExtension extends LibraryComponent {
       render() {
         // needs to be lit-html 1.x as the library component is using LitElement with lit-html 1.x
-        return html`
-          <p>...</p>
-        `;
+        return html` <p>...</p> `;
       }
     }
 
@@ -186,11 +269,7 @@
     render(html1`<p>Testing ${fancyDirective('output')}</p>`, node);
 
     // you can either cleanup yourself or use fixture
-    const el = await fixture(
-      html`
-        ${node}
-      `,
-    );
+    const el = await fixture(html` ${node} `);
 
     expect(el.children[0].innerHTML).toBe('Testing [[output]]');
   });

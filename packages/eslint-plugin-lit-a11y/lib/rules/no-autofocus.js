@@ -7,6 +7,7 @@ const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -20,8 +21,7 @@ const NoAutofocusRule = {
       description: 'Enforce that autofocus attribute or property are not used on elements.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-autofocus.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-autofocus.md',
     },
     messages: {
       noAutofocus: 'The autofocus {{type}} is not allowed.',
@@ -40,8 +40,11 @@ const NoAutofocusRule = {
             enterElement(element) {
               if ('autofocus' in element.attribs) {
                 const loc =
-                  analyzer.getLocationForAttribute(element, 'autofocus', context.getSourceCode()) ??
-                  node.loc;
+                  analyzer.getLocationForAttribute(
+                    element,
+                    'autofocus',
+                    getContextSourceCode(context),
+                  ) ?? node.loc;
                 if (loc) {
                   context.report({
                     loc,
@@ -55,7 +58,7 @@ const NoAutofocusRule = {
                   analyzer.getLocationForAttribute(
                     element,
                     '.autofocus',
-                    context.getSourceCode(),
+                    getContextSourceCode(context),
                   ) ?? node.loc;
                 if (loc) {
                   context.report({

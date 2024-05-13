@@ -1,5 +1,23 @@
 # Change Log
 
+## 2.0.0
+
+### Major Changes
+
+- 935c8ffe: Drop support for Node@14
+
+## 1.0.5
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+
+## 1.0.4
+
+### Patch Changes
+
+- ba09f2b8: Update the dependency graph of storybook-addon-markdown-docs
+
 ## 1.0.3
 
 ### Patch Changes

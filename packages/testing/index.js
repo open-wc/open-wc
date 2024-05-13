@@ -11,6 +11,7 @@ export {
   triggerBlurFor,
   triggerFocusFor,
   oneEvent,
+  oneDefaultPreventedEvent,
   isIE,
   defineCE,
   aTimeout,

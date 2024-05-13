@@ -74,13 +74,14 @@ And update your package.json:
 
 ```json
 {
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
-    "*.js": ["eslint --fix", "prettier --write", "git add"]
+    "*.js": ["eslint --fix", "prettier --write"]
   }
 }
+```
+
+Add the lint-staged hook
+
+```bash
+npx husky add .husky/pre-commit "npx lint-staged"
 ```

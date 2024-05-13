@@ -40,9 +40,9 @@ In the case of direct values, equality is determined by directly comparing the v
 But in the case of reference types, the thing that is compared is the _reference_ to the object, not its contents.
 
 ```js
-const o = { foo: 'bar' }
-const p === { foo: 'bar' }
-o === p // false
+const o = { foo: 'bar' };
+const p = { foo: 'bar' };
+o === p; // false
 ```
 
 ### LitElement's Property System

@@ -14,24 +14,24 @@ jobs:
     if: ${{ contains(github.event.comment.body, 'CI format please') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           # Check out the PR branch
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'
-          cache: yarn
+          node-version: '20'
+          cache: npm
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: npm ci
 
       - name: Format
         # format the working dir, add *ALL* changed files, commit and push
         run: |
-          yarn format:prettier
+          npm run format:prettier
           echo "Setting github user"
           git config user.name github-actions
           git config user.email github-actions@github.com

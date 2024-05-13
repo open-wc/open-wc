@@ -9,6 +9,7 @@ const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js
 const { isAriaRole } = require('../utils/aria.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -23,8 +24,7 @@ const RoleHasRequiredAriaAttrsRule = {
         'Enforce that elements with ARIA roles must have all required attributes for that role.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/role-has-required-aria-attrs.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/role-has-required-aria-attrs.md',
     },
     fixable: null,
     schema: [],
@@ -62,7 +62,7 @@ const RoleHasRequiredAriaAttrsRule = {
                     const loc =
                       analyzer.resolveLocation(
                         element.sourceCodeLocation.startTag,
-                        context.getSourceCode(),
+                        getContextSourceCode(context),
                       ) ?? node.loc;
                     if (loc) {
                       context.report({

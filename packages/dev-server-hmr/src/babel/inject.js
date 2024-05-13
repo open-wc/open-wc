@@ -6,8 +6,8 @@
 /** @template T @typedef {import('@babel/core').NodePath<T>} NodePath<T> */
 
 const { parse, types: t } = require('@babel/core');
-const { WC_HMR_NAMESPACE, WC_HMR_MODULE_PATCH, WC_HMR_MODULE_RUNTIME } = require('../constants');
-const { singlePath, parseStatement } = require('./utils');
+const { WC_HMR_NAMESPACE, WC_HMR_MODULE_PATCH, WC_HMR_MODULE_RUNTIME } = require('../constants.js');
+const { singlePath, parseStatement } = require('./utils.js');
 
 const REGISTER_FN_NAME = 'register';
 
@@ -46,6 +46,7 @@ function isClassRegistered(clazz) {
 function findComponentName(clazz) {
   if (clazz.isClassDeclaration()) {
     // class declaration always has a name
+    // @ts-ignore
     return clazz.node.id.name;
   }
 
@@ -89,6 +90,7 @@ function injectRegisterClass(clazz, componentName) {
   if (clazz.isExpression()) {
     clazz.replaceWith(callExpr);
   } else if (clazz.isClassDeclaration()) {
+    // @ts-ignore
     const { name } = clazz.node.id;
     const declarator = t.variableDeclarator(t.identifier(name), callExpr);
     const declaration = t.variableDeclaration('let', [declarator]);

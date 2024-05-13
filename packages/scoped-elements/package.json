@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/scoped-elements",
-  "version": "2.0.1",
+  "version": "3.0.5",
   "publishConfig": {
     "access": "public"
   },
@@ -13,28 +13,35 @@
   },
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements",
-  "module": "index.js",
   "type": "module",
+  "exports": {
+    "./html-element.js": {
+      "types": "./html-element.d.ts",
+      "default": "./html-element.js"
+    },
+    "./lit-element.js": {
+      "types": "./lit-element.d.ts",
+      "default": "./lit-element.js"
+    },
+    "./package.json": "./package.json"
+  },
   "scripts": {
-    "debug": "cd ../../ && yarn debug --group scoped-elements",
-    "demo-build:before-nesting": "rollup -c demo/before-nesting/rollup.config.js",
-    "demo-build:no-scope": "rollup -c demo/no-scope/rollup.config.js",
-    "demo-build:with-scope": "rollup -c demo/with-scope/rollup.config.js",
     "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
-    "site:build": "run-p demo-build:*",
-    "start:before-nesting": "web-dev-server -c demo/before-nesting/server.js",
-    "start:no-scope": "web-dev-server -c demo/no-scope/server.js",
-    "start:with-scope": "web-dev-server -c demo/with-scope/server.js",
-    "test": "cd ../../ && yarn test:web --group scoped-elements",
-    "types:copy": "copyfiles \"./src/**/*.d.ts\" \"./*.d.ts\" types"
+    "test": "cd ../../ && npm run test:web --group scoped-elements"
   },
   "files": [
     "*.d.ts",
-    "*.js",
-    "src",
-    "types"
+    "*.d.ts.map",
+    "html-element.js",
+    "lit-element.js",
+    "MIGRATION.md",
+    "README.md"
   ],
   "keywords": [
+    "scoped elements",
+    "scoped",
+    "scoped custom element registry",
+    "custom elements",
     "lit-html",
     "lit-element",
     "web components",
@@ -42,9 +49,12 @@
     "helpers"
   ],
   "dependencies": {
-    "@lit/reactive-element": "^1.0.0",
-    "@open-wc/dedupe-mixin": "^1.3.0",
-    "@webcomponents/scoped-custom-element-registry": "^0.0.3"
+    "@open-wc/dedupe-mixin": "^1.4.0",
+    "lit": "^3.0.0"
   },
-  "types": "types/index.d.ts"
+  "devDependencies": {
+    "@open-wc/testing": "^3.2.2",
+    "@webcomponents/scoped-custom-element-registry": "^0.0.9"
+  },
+  "sideEffects": false
 }

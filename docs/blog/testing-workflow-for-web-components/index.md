@@ -231,9 +231,9 @@ We can do exactly the same thing with the light DOM. (The DOM which will be prov
 
 ```js
 it('has 1 input and 1 label in light-dom', async () => {
-  const el = /** @type {A11yInput} */ (await fixture(html`
-    <a11y-input .label=${'foo'}></a11y-input>
-  `));
+  const el = /** @type {A11yInput} */ (
+    await fixture(html` <a11y-input .label=${'foo'}></a11y-input> `)
+  );
   expect(el).lightDom.to.equal(`
     <label slot="label">foo</label>
     <input slot="input">
@@ -486,9 +486,9 @@ If we want to improve coverage we need to add tests - so let's do it
 
 ```js
 it('can set/get the input value directly via the custom element', async () => {
-  const el = /** @type {A11yInput} */ (await fixture(html`
-    <a11y-input .value=${'foo'}></a11y-input>
-  `));
+  const el = /** @type {A11yInput} */ (
+    await fixture(html` <a11y-input .value=${'foo'}></a11y-input> `)
+  );
   expect(el.value).to.equal('foo');
 });
 ```
@@ -521,9 +521,9 @@ So let's open the Chrome Dev Tools (F12) and put a debugger in the test code.
 
 ```js
 it('can set/get the input value directly via the custom element', async () => {
-  const el = /** @type {A11yInput} */ (await fixture(html`
-    <a11y-input .value=${'foo'}></a11y-input>
-  `));
+  const el = /** @type {A11yInput} */ (
+    await fixture(html` <a11y-input .value=${'foo'}></a11y-input> `)
+  );
   debugger;
   expect(el.value).to.equal('foo');
 });
@@ -631,9 +631,9 @@ So let's add a test for that
 
 ```js
 it('logs "We like cats too :)" if the value is "cat"', async () => {
-  const el = /** @type {A11yInput} */ (await fixture(html`
-    <a11y-input .value=${'cat'}></a11y-input>
-  `));
+  const el = /** @type {A11yInput} */ (
+    await fixture(html` <a11y-input .value=${'cat'}></a11y-input> `)
+  );
   // somehow check that console.log was called
 });
 ```

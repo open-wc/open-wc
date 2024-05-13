@@ -9,6 +9,7 @@ const { elementHasAttribute, elementHasSomeAttribute } = require('../utils/eleme
 const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -22,12 +23,11 @@ const AltTextRule = {
       description: 'Images require alt text',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/alt-text.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/alt-text.md',
     },
     messages: {
       roleImgAttrs: "elements with role '{{role}}' must have an {{attrs}} attribute.",
-      imgAttrs: '<img> elements must have an alt attribute.',
+      imgAttrs: '{{role}} elements must have an alt attribute.',
     },
     fixable: null,
     schema: [],
@@ -48,6 +48,21 @@ const AltTextRule = {
     function isUnlabeledAOMImg(element) {
       return (
         element.name === 'img' &&
+        element.attribs.role !== 'presentation' &&
+        !isHiddenFromScreenReader(element) &&
+        !elementHasAttribute(element, 'alt')
+      );
+    }
+
+    /**
+     * Is the element an `<input type="image">` with no `alt` attribute?
+     * @param {import('parse5-htmlparser2-tree-adapter').Element} element
+     * @return {boolean}
+     */
+    function isUnlabeledInputImg(element) {
+      return (
+        element.name === 'input' &&
+        element.attribs.type === 'image' &&
         element.attribs.role !== 'presentation' &&
         !isHiddenFromScreenReader(element) &&
         !elementHasAttribute(element, 'alt')
@@ -82,7 +97,7 @@ const AltTextRule = {
               const loc =
                 analyzer.resolveLocation(
                   element.sourceCodeLocation.startTag,
-                  context.getSourceCode(),
+                  getContextSourceCode(context),
                 ) ?? node.loc;
 
               if (!loc) {
@@ -90,7 +105,13 @@ const AltTextRule = {
               }
 
               if (isUnlabeledAOMImg(element)) {
-                context.report({ loc, messageId: 'imgAttrs' });
+                context.report({ loc, messageId: 'imgAttrs', data: { role: '<img>' } });
+              } else if (isUnlabeledInputImg(element)) {
+                context.report({
+                  loc,
+                  messageId: 'imgAttrs',
+                  data: { role: '<input type="image">' },
+                });
               } else if (isUnlabeledImgRole(element)) {
                 context.report({
                   loc,

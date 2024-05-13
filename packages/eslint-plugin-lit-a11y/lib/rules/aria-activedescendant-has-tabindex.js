@@ -8,6 +8,7 @@ const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRule
 const { isInteractiveElement } = require('../utils/isInteractiveElement.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -24,8 +25,7 @@ const AriaActiveDescendantHasTabindexRule = {
       description: 'Enforce elements with aria-activedescendant are tabbable.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/aria-activedescendant-has-tabindex.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/aria-activedescendant-has-tabindex.md',
     },
     fixable: null,
     schema: [],
@@ -56,7 +56,7 @@ const AriaActiveDescendantHasTabindexRule = {
                 analyzer,
                 element,
                 'tabindex',
-                context.getSourceCode(),
+                getContextSourceCode(context),
               );
 
               if (tabindex && value === undefined) return;
@@ -68,7 +68,7 @@ const AriaActiveDescendantHasTabindexRule = {
               const loc =
                 analyzer.resolveLocation(
                   element.sourceCodeLocation.startTag,
-                  context.getSourceCode(),
+                  getContextSourceCode(context),
                 ) ?? node.loc;
 
               if (loc) {

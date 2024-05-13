@@ -7,6 +7,7 @@ const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -23,8 +24,7 @@ const NoInvalidChangeHandlerRule = {
       description: 'Enforce usage of @blur over @change with <select> and <option>.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-invalid-change-handler.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-invalid-change-handler.md',
     },
     fixable: null,
     schema: [],
@@ -50,7 +50,7 @@ const NoInvalidChangeHandlerRule = {
                   const loc =
                     analyzer.resolveLocation(
                       element.sourceCodeLocation.startTag,
-                      context.getSourceCode(),
+                      getContextSourceCode(context),
                     ) ?? node.loc;
                   if (loc) {
                     context.report({

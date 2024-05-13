@@ -1,287 +1,178 @@
 # Development >> Scoped Elements ||40
 
-Scope element tag names avoiding naming collision and allowing to use different versions of the same web component in your code.
-
 ## Installation
 
-```bash
-npm i --save @open-wc/scoped-elements@next
+```
+npm i --save @open-wc/scoped-elements
 ```
 
-<inline-notification type="warning">
-
-Version 2 of Scoped Elements only supports [lit](https://lit.dev/) with `lit-element 3.x`. If you need to support `lit-element 2.x` be sure to use [version 1](https://www.npmjs.com/package/@open-wc/scoped-elements/v/1.3.3) of Scoped Elements.
-
-</inline-notification>
+> This package requires using the [Scoped Custom Element Registry](https://www.npmjs.com/package/@webcomponents/scoped-custom-element-registry) polyfill.
 
 ## Usage
 
-1. Import `ScopedElementsMixin` from `@open-wc/scoped-elements`.
+`@open-wc/scoped-elements` supports both vanilla `HTMLElement`, as well as `LitElement` (both `lit@2.0.0` and `lit@3.0.0` are supported) based components. You can use the mixin as follows:
 
-   ```js
-   import { ScopedElementsMixin } from '@open-wc/scoped-elements';
-   ```
-
-2. Import the classes of the components you want to use.
-
-   ```js
-   import { MyButton } from './MyButton.js';
-   import { MyPanel } from './MyPanel.js';
-   ```
-
-3. Apply `ScopedElementsMixin` and define the tags you want to use for your components.
-
-   ```js
-   class MyElement extends ScopedElementsMixin(LitElement) {
-     static get scopedElements() {
-       return {
-         'my-button': MyButton,
-         'my-panel': MyPanel,
-       };
-     }
-   }
-   ```
-
-   <inline-notification type="warning">
-
-   If you are going to use elements that are globally defined you have to declare them in `scopedElements` as well. This is required because we are trying to work as close as possible to the future Scoped Custom Element Registries feature and, by the moment, there is not going to be inheritance between registries.
-   You can declare them like in the following example:
-
-   ```js
-   static get scopedElements() {
-     return {
-       'old-button': customElements.get('old-button'),
-       'my-panel': MyPanel,
-     };
-   }
-   ```
-
-   </inline-notification>
-
-4. Use your components in your html.
-
-   ```js
-   render() {
-     return html`
-       <my-panel class="panel">
-         <my-button>${this.text}</my-button>
-       </my-panel>
-     `;
-   }
-   ```
-
-<inline-notification type="tip">
-
-ScopedElements loads a polyfill of the scoped registry for you . Why do we do this? The spec is quite mature but not yet implemented in a browser and the polyfill is pretty new so we want to control it to be able to patch things if needed to stay backward compatible.
-The polyfill we use is [@webcomponents/scoped-custom-element-registry](https://github.com/webcomponents/polyfills/tree/master/packages/scoped-custom-element-registry).
-
-</inline-notification>
-
-### Complete example
+### `HTMLElement`
 
 ```js
-import { css, LitElement } from 'lit';
-import { ScopedElementsMixin } from '@open-wc/scoped-elements';
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/html-element.js';
 import { MyButton } from './MyButton.js';
-import { MyPanel } from './MyPanel.js';
 
-export class MyElement extends ScopedElementsMixin(LitElement) {
-  static get scopedElements() {
-    return {
-      'my-button': MyButton,
-      'my-panel': MyPanel,
-    };
-  }
-
-  static get styles() {
-    return css`
-      .panel {
-        padding: 10px;
-        background-color: grey;
-      }
-    `;
-  }
-
-  static get properties() {
-    return {
-      text: String,
-    };
-  }
-
-  render() {
-    return html`
-      <my-panel class="panel">
-        <my-button>${this.text}</my-button>
-      </my-panel}>
-    `;
-  }
-}
-```
-
-### Lazy scoped components
-
-In some situations may happen that you want to use a component in your templates that is not already loaded at the moment of defining the scoped elements map. The `ScopedElementsMixin` provides the `defineScopedElement` method to define scoped elements at any time.
-
-```js
-import { LitElement } from 'lit';
-import { ScopedElementsMixin } from '@open-wc/scoped-elements';
-import { MyPanel } from './MyPanel.js';
-
-export class MyElement extends ScopedElementsMixin(LitElement) {
-  static get scopedElements() {
-    return {
-      'my-panel': MyPanel,
-    };
-  }
+class MyElement extends ScopedElementsMixin(HTMLElement) {
+  static scopedElements = {
+    'my-button': MyButton,
+  };
 
   constructor() {
     super();
-
-    import('./MyButton.js').then(({ MyButton }) => this.defineScopedElement('my-button', MyButton));
+    this.attachShadow({ mode: 'open' });
   }
 
-  render() {
-    return html`
-      <my-panel class="panel">
-        <my-button>${this.text}</my-button>
-      </my-panel>
-    `;
+  connectedCallback() {
+    this.shadowRoot.innerHTML = '<my-button>click</my-button>';
   }
 }
 ```
 
-### Using a registry per component instance
-
-By default, `ScopedElementsMixin` shares the same `CustomElementsRegistry` instance between all the instances of the same component class. There are some use cases in which you need to have just one registry instance per component instance. For those cases, you can override the `get` and `set` methods for the registry assigning and retrieving it from the component instance.
+### `LitElement`
 
 ```js
-import { LitElement } from 'lit';
-import { ScopedElementsMixin } from '@open-wc/scoped-elements';
-import { MyPanel } from './MyPanel.js';
+import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
+import { LitElement, html } from 'lit';
+import { MyButton } from './MyButton.js';
 
-export class MyElement extends ScopedElementsMixin(LitElement) {
-  static get scopedElements() {
-    return {
-      'my-panel': MyPanel,
-    };
+class MyElement extends ScopedElementsMixin(LitElement) {
+  static scopedElements = {
+    'my-button': MyButton,
+  };
+
+  render() {
+    return html`<my-button>click</my-button>`;
+  }
+}
+```
+
+## Polyfill
+
+This package requires use of the [Scoped Custom Element Registry](https://www.npmjs.com/package/@webcomponents/scoped-custom-element-registry) polyfill. Make sure to load it as the first thing in your application:
+
+```js
+import '@webcomponents/scoped-custom-element-registry';
+```
+
+If you're using [`@web/rollup-plugin-polyfills-loader`](https://www.npmjs.com/package/@web/rollup-plugin-polyfills-loader), you can use it in your `rollup` config like this:
+
+```js
+polyfillsLoader({
+  polyfills: {
+    scopedCustomElementRegistry: true,
+  },
+});
+```
+
+If you're using `@web/dev-server` for local development, you can use the [`@web/dev-server-polyfill`](https://www.npmjs.com/package/@web/dev-server-polyfill) plugin:
+
+```js
+polyfill({
+  scopedCustomElementRegistry: true,
+});
+```
+
+## API
+
+### Lazy scoped element definition
+
+If you're lazily importing custom elements, you can define them by accessing the `this.registry` directly on your element as per spec behavior:
+
+```js
+onClick() {
+  import('./LazyElement.js').then(m => {
+    this.registry.define('lazy-element', m.LazyElement);
+  });
+}
+```
+
+### Imperative scoped element creation
+
+If you need to imperatively create elements that have been scoped via the `ScopedElementsMixin`, you can use `this.shadowRoot.createElement` as per spec behavior:
+
+```js
+class MyElement extends ScopedElementsMixin(HTMLElement) {
+  static scopedElements = {
+    'foo-element': FooElement,
+  };
+
+  onClick() {
+    const el = this.shadowRoot.createElement('foo-element');
+    this.shadowRoot.appendChild(el);
+  }
+}
+```
+
+### Scope level
+
+By default, elements are scoped on the constructor level for performance reasons. For most usecase this should be fine. However, for some usecases, like for example when component registrations are provided from an external source, it can be useful to scope on the _instance_ level instead. To achieve this, you can override the `registry` getter/setter pair like this:
+
+```js
+class UserFlowFramework extends ScopedElementsMixin(LitElement) {
+  set registry(r) {
+    this.__registry = r;
   }
 
   get registry() {
     return this.__registry;
   }
-
-  set registry(registry) {
-    this.__registry = registry;
-  }
-
-  constructor() {
-    super();
-
-    import('./MyButton.js').then(({ MyButton }) => this.defineScopedElement('my-button', MyButton));
-  }
-
-  render() {
-    return html`
-      <my-panel class="panel">
-        <my-button>${this.text}</my-button>
-      </my-panel>
-    `;
-  }
 }
+```
+
+## Notes
+
+When using `@open-wc/scoped-elements`, its important that the modules containing your custom element classes are _side effect free_, and **don't** call `customElements.define` themself. The consumer of your custom elements is responsible for registering them via the `ScopedElementsMixin`.
+
+This means you should avoid code like:
+
+```js
+class MyElement extends HTMLElement {}
+// ❌
+customElements.define('my-element', MyElement);
+```
+
+You can, instead, consider splitting up the export of your component class and the registration of your component, or don't export a self-registering module at all:
+
+```js
+// ✅
+export class MyElement extends HTMLElement {}
+```
+
+You should also avoid using the `@customElement` decorator, because it calls `customElements.define` internally:
+
+```js
+// ❌
+@customElement('my-element')
+export class MyElement extends LitElement {}
 ```
 
 ## Motivation
 
-Complex Web Component applications are often developed by several teams across organizations. In that scenario it is common that shared component libraries are used by teams to create a homogeneous look and feel or just to avoid creating the same components multiple times, but as those libraries evolve problems between different versions of the same library may appear, as teams may not be able to evolve and update their code at the same velocity. This causes bottlenecks in software delivery that should be managed by the teams and complex build systems, to try to alleviate the problem.
+In large applications, it can be the case that you need to support multiple versions of a component on the same page, like for example design system components.
 
-[Scoped Custom Element Registries](https://github.com/w3c/webcomponents/issues/716) is a proposal that will solve this problem, but until it is ready, or a polyfill becomes available, we have to _scope_ custom element tag names if we want to use different versions of those custom elements in our code. This package allows you to forget about how custom elements are defined, registered and scopes their tag names if it is necessary, and avoids the name collision problem.
+Consider the following example:
 
-## Use case and demos
-
-Consider the following setup
-
-- **Team Blue** owns **Page A**
-- **Team Green** owns **Page B**
-- **Team Black** owns **Feature A & B**
-
-1. Everything is good and [your app is live](https://open-wc.org/scoped-elements/demo/before-nesting/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/before-nesting)] with both pages.
-2. **Team Black** releases a new version (**2.x**) of **Feature B** which unfortunately needs to be breaking in order to support new use-cases.
-3. **Team Blue** (on **Page A**) does not use any of those new use cases, and they have a tight deadline to meet, so they cannot update right now.
-4. **Team Green** (on **Page B**) has to deliver an important functionality to your end users, but they need to upgrade to **Feature B 2.x** since it can only be solved with this new version.
-5. Since **Feature A 1.x & 2.x** are both used in the same app, this will lead to nested dependencies, which then will lead to [catastrophic failure, and errors](https://open-wc.org/scoped-elements/demo/no-scope/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/no-scope)].
-
-Two possible solutions come to mind:
-
-1.  Temporarily (!) allow shipping similar source code (most breaking releases are not a total rewrite) and scope them via `@open-wc/scoped-elements`; see the "fixed" example [with-scope](https://open-wc.org/scoped-elements/demo/with-scope/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/with-scope)] running with nested dependencies.
-2.  Synchronizing updates of shared dependencies - e.g. make sure **Team Blue** & **Team Green** always use the same version when releasing. This can be a viable solution however it comes with a high organizational overhead and is hard to scale up (for 10+ teams)
-
-#### Technical explanation of scenario
-
-The simplified app has the following dependencies
-
-- app
-  - page-a
-    - feature-a 1.x
-    - feature-b 1.x
-  - page-b
-    - feature-a 2.x
-    - feature-b 1.x
-
-which leads to the following node_modules tree
-
-```
-├── node_modules
-│   ├── feature-a
-│   ├── feature-b
-│   ├── page-a
-│   └── page-b
-│       └── node_modules
-│           └── feature-a
-├── demo-app.js
-└── index.html
+```html
+<my-app>
+  <feature-a>
+    #shadowroot
+    <!-- uses my-button@1.0.0 -->
+    <my-button>click</my-button>
+  </feature-a>
+  <feature-b>
+    #shadowroot
+    <!-- uses my-button@2.0.0 -->
+    <my-button>click</my-button>
+  </feature-b>
+</my-app>
 ```
 
-To demonstrate, we made three demos:
+If you're using the global `customElements` registry, you would have run into name clashes, because `my-button` would have already been defined in the global registry. Using _scoped_ custom element registries, we can assign a registry _per shadowroot_, and scope our custom elements to those registries instead.
 
-1. [before-nesting](https://open-wc.org/scoped-elements/demo/before-nesting/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/before-nesting)] In this demo, everything works fine as **Page A and B** both are using the same version of **Feature A**
-
-2. [no-scope](https://open-wc.org/scoped-elements/demo/no-scope/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/no-scope)] **Feature A** version **1.x** and **2.x** are imported via self registering entry points which leads to the following error message, because the `feature-a` component tries to register multiple times:
-
-   ```
-   Uncaught DOMException: Failed to execute 'define' on 'CustomElementRegistry': the name "feature-a" has already been used with this registry
-     at [...]/node_modules/page-b/node_modules/feature-a/feature-a.js:3:16
-   ```
-
-3. [with-scope](https://open-wc.org/scoped-elements/demo/with-scope/) [[code](https://github.com/open-wc/open-wc/tree/master/packages/scoped-elements/demo/with-scope)] This example successfully fixes the problem by using `ScopedElementsMixin` on both **Page A** and **Page B**.
-
-## Limitations
-
-1. Components imported via npm **SHOULD NOT** be self registering components. If a shared component (installed from npm) does not offer an export to the class alone, without the registration side effect, then this component may not be used. E.g. every component that calls `customElement.define`
-
-   ```js
-   export class MyEl { ... }
-   customElement.define('my-el', MyEl);
-   ```
-
-   Or uses the `customElement` typescript decorator
-
-   ```ts
-   @customElement('my-el')
-   export class MyEl { ... }
-   ```
-
-   Only side effects free class exports may be used
-
-   ```js
-   export class MyEl { ... }
-   ```
-
-2. Every component that uses sub components should use `scoped-elements`. Any import to a self registering component can potentially result in a browser exception - completely breaking the whole application
-3. Imported elements should be fully side effect free (not only element registration)
-4. Using the `scoped registry polyfill` may result in a small performance degradation
-5. Loading of duplicate/similar source code (most breaking releases are not a total rewrite) should always be a temporary solution
-6. Often, temporary solutions tend to become more permanent. Be sure to focus on keeping the lifecycle of nested dependencies short
-
-```js script
-import '@rocket/launch/inline-notification/inline-notification.js';
-```
+In this case, if `feature-a` and `feature-b` use `ScopedElementsMixin`, the mixin will create a separate registry for each of their shadowroots so that the elements used internally by `feature-a` and `feature-b` will be scoped to that registry, rather than the global registry, and avoid nameclashes.

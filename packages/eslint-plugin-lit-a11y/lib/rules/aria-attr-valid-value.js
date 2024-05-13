@@ -8,6 +8,7 @@ const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js
 const { getElementAriaAttributes } = require('../utils/aria.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -101,8 +102,7 @@ const AriaAttrTypesRule = {
       description: 'aria-attr-valid-value',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/aria-attr-valid-value.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/aria-attr-valid-value.md',
     },
     fixable: null,
     schema: [],
@@ -141,8 +141,11 @@ const AriaAttrTypesRule = {
                   }
 
                   const loc =
-                    analyzer.getLocationForAttribute(element, attr, context.getSourceCode()) ??
-                    node.loc;
+                    analyzer.getLocationForAttribute(
+                      element,
+                      attr,
+                      getContextSourceCode(context),
+                    ) ?? node.loc;
 
                   if (loc) {
                     context.report({

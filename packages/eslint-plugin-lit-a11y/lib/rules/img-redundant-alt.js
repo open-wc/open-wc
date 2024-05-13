@@ -10,6 +10,7 @@ const { isAriaHidden } = require('../utils/aria.js');
 const { elementHasAttribute } = require('../utils/elementHasAttribute.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
 const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -25,8 +26,7 @@ const ImgRedundantAltRule = {
       description: 'Enforce img alt attribute does not contain the word image, picture, or photo.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/img-redundant-alt.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/img-redundant-alt.md',
     },
     messages: {
       imgRedundantAlt:
@@ -76,7 +76,7 @@ const ImgRedundantAltRule = {
                 analyzer,
                 element,
                 'alt',
-                context.getSourceCode(),
+                getContextSourceCode(context),
               );
 
               if (!alt) return;
@@ -88,7 +88,7 @@ const ImgRedundantAltRule = {
               if (contraband.length > 0) {
                 const banned = formatter.format(contraband);
                 const loc =
-                  analyzer.getLocationForAttribute(element, 'alt', context.getSourceCode()) ??
+                  analyzer.getLocationForAttribute(element, 'alt', getContextSourceCode(context)) ??
                   node.loc;
 
                 if (loc) {

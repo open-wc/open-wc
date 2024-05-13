@@ -1,5 +1,71 @@
 # Change Log
 
+## 4.1.2
+
+### Patch Changes
+
+- 325d7703: Changed context.getSourceCode to context.sourceCode with backward compatibility
+
+## 4.1.1
+
+### Patch Changes
+
+- e3ac8bb9: Bump 'eslint-plugin-lit' version.
+
+## 4.1.0
+
+### Minor Changes
+
+- 76a2e824: added no-aria-slot rule to prevent invalid aria- and role attributes from appearing on slots
+
+## 4.0.0
+
+### Major Changes
+
+- 14e4270a: feat: new a11y rules
+
+## 3.0.0
+
+### Major Changes
+
+- 935c8ffe: Drop support for Node@14
+
+## 2.4.1
+
+### Patch Changes
+
+- c5a675d5: fix(deps): update dependency parse5 to v7
+
+## 2.4.0
+
+### Minor Changes
+
+- 30d18829: Update dependency emoji-regex to v10
+
+## 2.3.0
+
+### Minor Changes
+
+- 6525833a: Update aria-query to v5, fix switch role rules
+
+## 2.2.3
+
+### Patch Changes
+
+- fc3e9317: Fix bug #2490 in scope rule
+
+## 2.2.2
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+
+## 2.2.1
+
+### Patch Changes
+
+- c7997ff2: Fix bug #2466 issue in role-supports-aria-attr
+
 ## 2.2.0
 
 ### Minor Changes

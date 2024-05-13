@@ -1,5 +1,28 @@
 # @open-wc/dev-server-wc-hmr
 
+## 0.2.0
+
+### Minor Changes
+
+- 935c8ffe: Drop support for Node@14
+
+### Patch Changes
+
+- 80c6ae66: Use latest @web/\* dependencies.
+  Upgrade Rollup to `v3.x`
+
+## 0.1.4
+
+### Patch Changes
+
+- 9e49e7a1: fix(deps): update @web/\* dependencies
+
+## 0.1.3
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+
 ## 0.1.2
 
 ### Patch Changes

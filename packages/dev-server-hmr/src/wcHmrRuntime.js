@@ -87,8 +87,8 @@ function replacePrototypesWithProxies(instance) {
 }
 
 export class WebComponentHmr extends HTMLElement {
-  constructor(...args) {
-    super(...args);
+  constructor() {
+    super();
     const key = keysForClasses.get(this.constructor);
     // check if the constructor is registered
     if (key) {

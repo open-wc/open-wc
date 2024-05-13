@@ -1,5 +1,58 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- 5947c225: ci: publish new version
+
+## 3.0.0
+
+### Major Changes
+
+- 935c8ffe: Drop support for Node@14
+
+## 2.21.1
+
+### Patch Changes
+
+- 1bc7c8c6: fix(deps): update dependency minimatch to v4
+- 8ae4ca6e: fix(deps): update dependency minimatch to v5
+- 35e12a32: fix(deps): update dependency minimatch to v7
+- 228b9449: fix(deps): update dependency minimatch to v6
+- c5a675d5: fix(deps): update dependency parse5 to v7
+
+## 2.21.0
+
+### Minor Changes
+
+- 2a32c226: Update es-module-shims dependency to latest
+- aefc03a5: Update lru-cache dependency to 6.0.0
+
+## 2.20.1
+
+### Patch Changes
+
+- 45094384: Update terser dependency version to 4.8.1
+
+## 2.20.0
+
+### Minor Changes
+
+- 027e58b0: Update dependency clean-css to v5
+
+## 2.19.0
+
+### Minor Changes
+
+- 8c71b085: Support node 17 & 18 by using md5 hashing
+
+## 2.18.5
+
+### Patch Changes
+
+- 61e2668f: update eslint, eslint-config-airbnb-base and eslint-plugin-import
+
 ## 2.18.4
 
 ### Patch Changes

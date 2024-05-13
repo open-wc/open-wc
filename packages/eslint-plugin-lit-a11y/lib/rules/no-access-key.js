@@ -7,6 +7,7 @@ const ruleExtender = require('eslint-rule-extender');
 const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
 const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
 const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
+const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -20,8 +21,7 @@ const NoAccessKeyRule = {
       description: 'Enforce no accesskey attribute on element.',
       category: 'Accessibility',
       recommended: false,
-      url:
-        'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-access-key.md',
+      url: 'https://github.com/open-wc/open-wc/blob/master/packages/eslint-plugin-lit-a11y/docs/rules/no-access-key.md',
     },
     fixable: null,
     schema: [],
@@ -37,8 +37,11 @@ const NoAccessKeyRule = {
             enterElement(element) {
               if (Object.keys(element.attribs).includes('accesskey')) {
                 const loc =
-                  analyzer.getLocationForAttribute(element, 'accesskey', context.getSourceCode()) ??
-                  node.loc;
+                  analyzer.getLocationForAttribute(
+                    element,
+                    'accesskey',
+                    getContextSourceCode(context),
+                  ) ?? node.loc;
                 if (loc) {
                   context.report({
                     loc,
