@@ -1,9 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const { expect } = require('chai');
 const path = require('path');
 const { banner, transform, rootDir } = require('./utils.js');
 
-describe('babelPluginWcHmr - detecting base class', () => {
+describe('babelPluginWcHmr - detecting base class', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
+
   it('global base class', () => {
     const code = `class Foo extends MyElement {}`;
     const result = transform(code, { baseClasses: [{ name: 'MyElement' }] });

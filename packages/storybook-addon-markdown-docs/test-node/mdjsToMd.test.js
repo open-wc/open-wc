@@ -1,5 +1,3 @@
-const { expect } = require('chai');
-
 const { mdjsToMd } = require('../src/mdjsToMd.js');
 
 /**
@@ -10,7 +8,13 @@ function transformOutput(output) {
   return output.split('\n').map(line => line.trim());
 }
 
-describe('mdjsToMd', () => {
+describe('mdjsToMd', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
+
   it('transforms mdjs to html', async () => {
     const input = [
       //

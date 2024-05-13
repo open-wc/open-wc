@@ -26,10 +26,10 @@ While `semantic-dom-diff` can be used standalone (see below), it most commonly u
 > If you are using `@open-wc/testing` this is already done for you.
 
 ```javascript
-import 'chai/chai.js';
+import { use } from 'chai';
 import { chaiDomDiff } from '@open-wc/semantic-dom-diff';
 
-window.chai.use(chaiDomDiff);
+const chai = use(chaiDomDiff);
 ```
 
 </details>

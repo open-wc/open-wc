@@ -1,9 +1,14 @@
 /** @typedef {import('@mdjs/core').Story} Story */
 
-const { expect } = require('chai');
 const { compileMdToJsx, createDocsPage } = require('../src/mdToJsx.js');
 
-describe('compileMdToJsx', () => {
+describe('compileMdToJsx', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
+
   it('turns MD into JSX', async () => {
     const input = `
 # Title
@@ -57,7 +62,8 @@ describe('compileMdToJsx', () => {
   });
 });
 
-describe('createDocsPage()', () => {
+describe('createDocsPage()', async () => {
+  const { expect } = await import('chai');
   it('creates a docs page default export', () => {
     expect(createDocsPage([], 'web-components').trim()).to.equal(
       `import { React, mdx } from '@web/storybook-prebuilt/web-components.js';

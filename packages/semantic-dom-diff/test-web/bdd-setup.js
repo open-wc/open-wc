@@ -1,6 +1,6 @@
 /* istanbul ignore next */
 // do manual setup and not use testing to not have circle dependencies
-import 'chai/chai.js';
+import { use } from 'chai';
 // eslint does not understand export maps yet
 // eslint-disable-next-line import/no-unresolved
 import { cachedWrappers } from '@open-wc/testing-helpers/pure';
@@ -21,7 +21,7 @@ if (afterEach) {
 }
 
 // register-plugins
-window.chai.use(chaiDomDiff);
+const chai = use(chaiDomDiff);
 
-const { expect, assert, should } = window.chai;
+const { expect, assert, should } = chai;
 export { expect, assert, should };

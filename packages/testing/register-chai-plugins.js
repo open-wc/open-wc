@@ -2,7 +2,7 @@
 import { chaiDomDiff } from '@open-wc/semantic-dom-diff';
 import { chaiA11yAxe } from 'chai-a11y-axe';
 
-import chai from '@esm-bundle/chai';
+import * as chai from 'chai';
 // non es module plugins
 import chaiDom from './plugins/chai-dom.js';
 import sinonChai from './plugins/sinon-chai.js';

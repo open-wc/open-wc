@@ -3,9 +3,10 @@ const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
 const rimraf = require('rimraf');
-const { expect } = require('chai');
 
 const shouldUpdateSnapshots = process.argv.includes('--update-snapshots');
+
+const { expect } = await import('chai');
 
 /**
  * Scans directory recursively and checks whether all files are present

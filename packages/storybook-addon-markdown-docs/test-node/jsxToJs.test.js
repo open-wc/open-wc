@@ -1,9 +1,13 @@
 /** @typedef {import('@mdjs/core').Story} Story */
 
-const { expect } = require('chai');
 const { jsxToJs } = require('../src/jsxToJs.js');
 
-describe('jsxToJs', () => {
+describe('jsxToJs', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
   it('turns MD into JSX', async () => {
     const input = `
 function render() {

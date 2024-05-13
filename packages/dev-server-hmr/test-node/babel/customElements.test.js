@@ -1,8 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const { expect } = require('chai');
 const { banner, transform } = require('./utils.js');
 
-describe('babelPluginWcHmr - detecting customElements.define', () => {
+describe('babelPluginWcHmr - detecting customElements.define', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
+
   it('injects registration when detecting a customElements.define', () => {
     const code = `class Foo extends HTMLElement {}\ncustomElements.define('x-foo', Foo);`;
     const result = transform(code);

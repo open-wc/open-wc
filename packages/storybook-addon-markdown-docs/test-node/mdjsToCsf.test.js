@@ -1,14 +1,16 @@
 /** @typedef {import('@mdjs/core').MdjsProcessPlugin} MdjsProcessPlugin */
 
-const chai = require('chai');
 // @ts-ignore
 const chaiSnapshot = require('mocha-chai-snapshot');
 const { mdjsToCsf } = require('../src/mdjsToCsf.js');
 
-chai.use(chaiSnapshot);
-const { expect } = chai;
+describe('mdjsToCsf', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.use(chaiSnapshot).expect;
+  });
 
-describe('mdjsToCsf', () => {
   it('transforms a mdjs file to csf', async function it() {
     const input = [
       '```js script',

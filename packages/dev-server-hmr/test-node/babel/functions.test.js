@@ -1,9 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const { expect } = require('chai');
 const path = require('path');
 const { banner, transform, rootDir } = require('./utils.js');
 
-describe('babelPluginWcHmr - detecting function components', () => {
+describe('babelPluginWcHmr - detecting function components', async () => {
+  let expect;
+  before(async () => {
+    const chai = await import('chai');
+    expect = chai.expect;
+  });
+
   it('global function name', () => {
     const code = 'const MyElementClass = component(MyElement);';
     const result = transform(code, { functions: [{ name: 'component' }] });
