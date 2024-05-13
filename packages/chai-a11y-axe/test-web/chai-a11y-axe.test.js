@@ -1,7 +1,7 @@
-import { expect, use } from 'chai';
+import { use } from 'chai';
 import { chaiA11yAxe } from '../index.js';
 
-use(chaiA11yAxe);
+const { expect } = use(chaiA11yAxe);
 
 const wrappers = [];
 

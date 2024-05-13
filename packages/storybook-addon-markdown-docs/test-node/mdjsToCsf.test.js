@@ -8,8 +8,7 @@ describe('mdjsToCsf', async () => {
   let expect;
   before(async () => {
     const chai = await import('chai');
-    chai.use(chaiSnapshot);
-    expect = chai.expect;
+    expect = chai.use(chaiSnapshot).expect;
   });
 
   it('transforms a mdjs file to csf', async function it() {
