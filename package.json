@@ -20,7 +20,7 @@
     "setup:patch": "npx patch-package",
     "setup:postinstall": "node scripts/workspaces-scripts-bin.mjs monorepo:postinstall",
     "setup:ts-configs": "node scripts/generate-ts-configs.mjs",
-    "site:build": "node scripts/workspaces-scripts-bin.mjs site:build && npm run codelabs:build && rocket build",
+    "site:build": "node scripts/workspaces-scripts-bin.mjs site:build && npm run codelabs:build && rocket build && copyfiles -f docs/_redirects _site",
     "start": "rocket start",
     "test": "npm run test:web && npm run test:node",
     "test:node": "mocha --exit --retries 3 --timeout 10000 \"packages/*/test-node/**/*.test.{ts,js,mjs,cjs}\" ",
