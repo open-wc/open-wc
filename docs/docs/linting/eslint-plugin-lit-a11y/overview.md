@@ -94,6 +94,7 @@ If you're importing lit-html from a package that re-exports lit-html, like for e
 - [lit-a11y/heading-has-content](./rules/heading-has-content.md)
 - [lit-a11y/iframe-title](./rules/iframe-title.md)
 - [lit-a11y/img-redundant-alt](./rules/img-redundant-alt.md)
+- [lit-a11y/list](./rules/list.md)
 - [lit-a11y/mouse-events-have-key-events](./rules/mouse-events-have-key-events.md)
 - [lit-a11y/no-access-key](./rules/no-access-key.md)
 - [lit-a11y/no-autofocus](./rules/no-autofocus.md)
