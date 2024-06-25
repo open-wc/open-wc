@@ -131,6 +131,11 @@ const componentLibraries = [
       "Material Design Components from Material Design team themselves. Stay as close as possible to the living specification with these components from Google's own Material Design team.",
   },
   {
+    name: 'mdui',
+    url: 'https://www.mdui.org/',
+    description: 'A Material Design 3 (Material You) library of Web Components.',
+  },
+  {
     name: 'Nord Design System',
     url: 'https://nordhealth.design/components/',
     description:
