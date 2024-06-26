@@ -1,5 +1,5 @@
 const { dom, elementRoles, roles } = require('aria-query');
-const { AXObjects, elementAXObjects } = require('axobject-query');
+const { AXObjects, elementAXObjects } = require('@thepassle/axobject-query');
 
 const { attributesComparator } = require('./attributesComparator.js');
 
