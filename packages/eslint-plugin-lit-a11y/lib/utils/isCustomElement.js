@@ -1,4 +1,4 @@
-const CE_TAGNAME_RE = /^[a-z]\w+-\w+/;
+const CE_TAGNAME_RE = /^[a-z]\w*-\w+/;
 
 /**
  * Is the element a custom element (i.e. does it contain a '-')?

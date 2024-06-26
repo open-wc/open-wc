@@ -51,6 +51,10 @@ ruleTester.run('click-events-have-key-events', rule, {
       code: 'html`<another-button @click=${foo}></another-button>`',
       options: [{ allowCustomElements: true }],
     },
+    {
+      code: 'html`<a-button-with-single-starting-letter @click=${foo}></a-button-with-single-starting-letter>`',
+      options: [{ allowCustomElements: true }],
+    },
   ],
 
   invalid: [
