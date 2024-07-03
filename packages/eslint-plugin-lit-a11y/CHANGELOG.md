@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.4
+
+### Patch Changes
+
+- e304436c: Makes regex for detecting custom elements match the spec closer
+
 ## 4.1.3
 
 ### Patch Changes
