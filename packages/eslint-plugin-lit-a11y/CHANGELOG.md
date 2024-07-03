@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.3
+
+### Patch Changes
+
+- 6bdc6f5d: remove axobject-query
+
 ## 4.1.2
 
 ### Patch Changes
