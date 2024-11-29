@@ -86,6 +86,23 @@ ruleTester.run('anchor-is-valid', rule, {
       code: 'html`<a href=${"javascript:void(0)"} @click=${foo}></a>`',
       options: [{ aspects: ['noHref'] }],
     },
+    // HREF PROPERTY
+    { code: 'html`<a .href=${foo}></a>`' },
+    { code: 'html`<a .href=${foo} @click=${foo}></a>`' },
+    { code: 'html`<a .href=${`#foo`} @click=${foo}></a>`' },
+
+    { code: 'html`<a .href=${""}></a>;`', options: [{ aspects: ['preferButton'] }] },
+    { code: 'html`<a .href=${"#"}></a>`', options: [{ aspects: ['invalidHref'] }] },
+    { code: 'html`<a .href=${"#"}></a>`', options: [{ aspects: ['preferButton'] }] },
+    {
+      code: 'html`<a .href=${"javascript:void(0)"}></a>`',
+      options: [{ aspects: ['preferButton'] }],
+    },
+    { code: 'html`<a .href=${""}></a>;`', options: [{ aspects: ['noHref'] }] },
+    { code: 'html`<a .href=${"#"}></a>`', options: [{ aspects: ['noHref'] }] },
+    { code: 'html`<a .href=${"javascript:void(0)"}></a>`', options: [{ aspects: ['noHref'] }] },
+    { code: 'html`<a .href=${""}></a>;`', options: [{ aspects: ['noHref', 'preferButton'] }] },
+    { code: "html`<a .href=${'#'}></a>`", options: [{ aspects: ['noHref', 'preferButton'] }] },
   ],
 
   invalid: [
@@ -268,6 +285,27 @@ ruleTester.run('anchor-is-valid', rule, {
       code: 'html`<a href="javascript:void(0)" @click=${foo}></a>`',
       options: [{ aspects: ['noHref', 'invalidHref'] }],
       errors: [{ messageId: 'invalidHrefErrorMessage' }],
+    },
+    /// HREF PROPERTY
+    { code: 'html`<a .href=${""}></a>;`', errors: [{ messageId: 'invalidHrefErrorMessage' }] },
+    {
+      code: 'html`<a .href=${"#"}></a>`',
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
+      options: [{ allowHash: false }],
+    },
+    {
+      code: 'html`<a .href=${"javascript:void(0)"}></a>`',
+      errors: [{ messageId: 'invalidHrefErrorMessage' }],
+    },
+    {
+      code: 'html`<a .href=${"#"} @click=${foo}></a>`',
+      options: [{ aspects: ['preferButton'], allowHash: false }],
+      errors: [{ messageId: 'preferButtonErrorMessage' }],
+    },
+    {
+      code: 'html`<a .href=${"javascript:void(0)"} @click=${foo}></a>`',
+      options: [{ aspects: ['preferButton'] }],
+      errors: [{ messageId: 'preferButtonErrorMessage' }],
     },
   ],
 });
