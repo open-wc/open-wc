@@ -13,6 +13,11 @@
   },
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/building-utils",
+  "exports": {
+    ".": "./index.js",
+    "./dom5-fork": "./dom5-fork/index.js",
+    "./dom5-fork/index.js": "./dom5-fork/index.js"
+  },
   "scripts": {
     "test": "npm run test:node",
     "test:node": "mocha test-node",
