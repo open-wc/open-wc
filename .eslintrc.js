@@ -5,6 +5,9 @@ module.exports = {
     'consistent-return': 'off',
     'max-classes-per-file': 'off',
   },
+  env: {
+    es2020: true,
+  },
   overrides: [
     {
       files: ['**/test-node/**/*.js', '**/test-web/**/*.js', '**/*.config.js'],
