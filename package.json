@@ -108,6 +108,7 @@
     "*.md": "npm run format:prettier"
   },
   "overrides": {
+    "@webcomponents/scoped-custom-element-registry": "0.0.10",
     "@web/dev-server-core": "0.5.1"
   },
   "workspaces": [
