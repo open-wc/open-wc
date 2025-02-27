@@ -26,6 +26,7 @@
     "test:node": "mocha --exit --retries 3 --timeout 10000 \"packages/*/test-node/**/*.test.{ts,js,mjs,cjs}\" ",
     "test:node:watch": "mocha --watch \"packages/*/test-node/**/*.test.{ts,js,mjs,cjs}\" ",
     "test:web": "web-test-runner",
+    "test:web:watch": "web-test-runner --watch",
     "types": "run-s types:clear types:copy types:build",
     "types:build": "tsc --build",
     "types:clear": "rimraf packages/*/types/",
