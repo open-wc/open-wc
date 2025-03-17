@@ -1,5 +1,41 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- 549c2efe: fix(testing-helpers): correct type declaration for `oneEvent`
+
+  `preventDefault` parameter is not used
+
+## 3.0.0
+
+### Major Changes
+
+- c69af75f: chore: update @open-wc/scoped-elements to v3
+
+  If you're using a fixture like so with scoped elements:
+
+  ```ts
+  await fixture(html`...`, { scopedElements: ... });
+  ```
+
+  You're gonna have to load the [@webcomponents/scoped-custom-element-registry](https://www.npmjs.com/package/@webcomponents/scoped-custom-element-registry) polyfill yourself first.
+
+## 2.3.2
+
+### Patch Changes
+
+- 48d77dfa: Use split versions for lit-html
+
+## 2.3.1
+
+### Patch Changes
+
+- 84e38ab1: Use split versions for all lit dependencies
+- Updated dependencies [84e38ab1]
+  - @open-wc/scoped-elements@2.2.4
+
 ## 2.3.0
 
 ### Minor Changes

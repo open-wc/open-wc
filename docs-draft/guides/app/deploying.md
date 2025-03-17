@@ -53,7 +53,7 @@ If the app was built to support [legacy browsers](https://open-wc.org/building/b
 
 If you want to deploy your SPA to [github-pages](https://pages.github.com/), do the following
 
-1. Install gh-pages: `yarn add gh-pages`
+1. Install gh-pages: `npx add gh-pages`
 2. Add a "deploy" script to `package.json`
 
 If you are deploying to a **project site** e.g `https://myusername.github.io/my-app`

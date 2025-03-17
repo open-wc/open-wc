@@ -10,6 +10,7 @@ coverage/
 
 ## generated types
 packages/*/types
+packages/*/*.d.ts*
 tsconfig.tsbuildinfo
 
 ## npm
@@ -17,7 +18,6 @@ node_modules
 !packages/es-dev-server/test/**/node_modules
 !packages/scoped-elements/demo/**/node_modules
 npm-debug.log
-yarn-error.log
 
 ## lerna
 lerna-debug.log
@@ -29,10 +29,7 @@ lerna-debug.log
 /_site/
 /_site-dev/
 
-## we prefer yarn.lock
-package-lock.json
-## lock files in packages we do not need to save
-packages/*/yarn.lock
+yarn.lock
 
 ## build output
 dist

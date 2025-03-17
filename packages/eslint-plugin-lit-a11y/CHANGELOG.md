@@ -1,5 +1,29 @@
 # Change Log
 
+## 4.1.4
+
+### Patch Changes
+
+- e304436c: Makes regex for detecting custom elements match the spec closer
+
+## 4.1.3
+
+### Patch Changes
+
+- 6bdc6f5d: remove axobject-query
+
+## 4.1.2
+
+### Patch Changes
+
+- 325d7703: Changed context.getSourceCode to context.sourceCode with backward compatibility
+
+## 4.1.1
+
+### Patch Changes
+
+- e3ac8bb9: Bump 'eslint-plugin-lit' version.
+
 ## 4.1.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/testing-helpers",
-  "version": "2.3.0",
+  "version": "3.0.1",
   "publishConfig": {
     "access": "public"
   },
@@ -26,9 +26,9 @@
     }
   },
   "scripts": {
-    "debug": "cd ../../ && yarn debug --group testing-helpers",
+    "debug": "cd ../../ && npm run debug --group testing-helpers",
     "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
-    "test": "cd ../../ && yarn test:web --group testing-helpers"
+    "test": "cd ../../ && npm run test:web --group testing-helpers"
   },
   "files": [
     "*.d.ts",
@@ -43,9 +43,9 @@
     "fixtures"
   ],
   "dependencies": {
-    "@open-wc/scoped-elements": "^2.2.0",
-    "lit": "^2.0.0",
-    "lit-html": "^2.0.0"
+    "@open-wc/scoped-elements": "^3.0.2",
+    "lit": "^2.0.0 || ^3.0.0",
+    "lit-html": "^2.0.0 || ^3.0.0"
   },
   "types": "types/index.d.ts"
 }

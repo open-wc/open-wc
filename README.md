@@ -48,7 +48,7 @@ For more details please visit us at [open-wc.org](https://open-wc.org).
 | [create](./packages/create)                                                                 | [![create](https://img.shields.io/npm/v/@open-wc/create.svg)](https://www.npmjs.com/package/@open-wc/create)                                  | Scaffold web components following open-wc recommendations.               |
 | [demoing-storybook](./packages/demoing-storybook)                                           | [![demoing-storybook](https://img.shields.io/npm/v/@open-wc/demoing-storybook.svg)](https://www.npmjs.com/package/@open-wc/demoing-storybook) | Storybook configuration following open-wc recommendations.               |
 | [eslint-config](./packages/eslint-config)                                                   | [![eslint-config](https://img.shields.io/npm/v/@open-wc/eslint-config.svg)](https://www.npmjs.com/package/@open-wc/eslint-config)             | Eslint configuration following open-wc recommendations.                  |
-| [es-dev-server](./packages/es-dev-server)                                                   | [![es-dev-server](https://img.shields.io/npm/v/es-dev-server.svg)](https://www.npmjs.com/package/es-dev-server)                               | Development server for modern web apps.                                  |
+| [@web/dev-server](https://modern-web.dev/docs/dev-server/overview/)                                      | [![@web/dev-server](https://img.shields.io/npm/v/@web/dev-server.svg)](https://www.npmjs.com/package/@web/dev-server)            | Modern development server for web applications, replacing es-dev-server. |
 | [polyfills-loader](./packages/polyfills-loader)                                             | [![polyfills-loader](https://img.shields.io/npm/v/@open-wc/polyfills-loader.svg)](https://www.npmjs.com/package/@open-wc/polyfills-loader)    | Load web component polyfills using dynamic imports.                      |
 | [scoped-elements](./packages/scoped-elements)                                               | [![scoped-elements](https://img.shields.io/npm/v/@open-wc/scoped-elements.svg)](https://www.npmjs.com/package/@open-wc/scoped-elements)       | Auto define custom elements to scope them and avoid the name collision.  |
 | [semantic-dom-diff](./packages/semantic-dom-diff)                                           | [![semantic-dom-diff](https://img.shields.io/npm/v/@open-wc/semantic-dom-diff.svg)](https://www.npmjs.com/package/@open-wc/semantic-dom-diff) | To compare dom and shadow dom trees. Part of open-wc recommendations.    |
@@ -60,7 +60,7 @@ For more details please visit us at [open-wc.org](https://open-wc.org).
 
 ## Contact
 
-Feel free to reach out to us on [twitter](https://twitter.com/OpenWc) or create [a github issue](https://github.com/open-wc/open-wc/issues/new) for any feedback or questions you might have.
+Feel free to reach out to us on [𝕏 (Twitter)](https://twitter.com/OpenWc) or create [a github issue](https://github.com/open-wc/open-wc/issues/new) for any feedback or questions you might have.
 
 You can also find us on the Lit & Friends slack in the [#open-wc](https://lit-and-friends.slack.com/archives/CE6D9DN05) channel.
 
@@ -90,7 +90,7 @@ You can join the Lit & Friends slack by visiting [https://lit.dev/slack-invite/]
 
 ```bash
 # bootstrap/setup
-yarn install
+npm install
 
 # linting
 npm run lint

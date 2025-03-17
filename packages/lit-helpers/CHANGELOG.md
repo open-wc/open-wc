@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.7.0
+
+### Minor Changes
+
+- 0b35003d: Support lit@2 and lit@3
+
 ## 0.6.0
 
 ### Minor Changes

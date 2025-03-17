@@ -1,5 +1,26 @@
 # Change Log
 
+## 12.0.3
+
+### Patch Changes
+
+- 43d678fe: add storybook files to devdependencies for no-extraneous-dependencies rule
+- adfb669b: add flat config support for eslint-plugin-import
+
+## 12.0.2
+
+### Patch Changes
+
+- e3ac8bb9: Bump 'eslint-plugin-lit' version.
+- Updated dependencies [e3ac8bb9]
+  - eslint-plugin-lit-a11y@4.1.1
+
+## 12.0.1
+
+### Patch Changes
+
+- 1a2946db: feat: eslint rule
+
 ## 12.0.0
 
 ### Patch Changes

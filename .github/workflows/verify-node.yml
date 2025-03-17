@@ -9,20 +9,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Node 16
+      - name: Setup Node 20
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
-          cache: 'yarn'
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: npm ci
 
       - name: Build types
-        run: yarn types
+        run: npm run types
 
       - name: Lint
-        run: yarn lint
+        run: npm run lint
 
   web-tests:
     name: Web tests
@@ -30,30 +30,30 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Node 16
+      - name: Setup Node 20
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
-          cache: 'yarn'
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: npm ci
 
       - name: Build types
-        run: yarn types
+        run: npm run types
 
       - name: Install Playwright dependencies
-        run: npx playwright install-deps
+        run: npx playwright install-deps && npx playwright install
 
       - name: Test
-        run: yarn test:web
+        run: npm run test:web
 
   node-tests:
     name: Node tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['16', '18', '20']
+        node-version: ['18', '20']
     steps:
       - uses: actions/checkout@v3
 
@@ -61,10 +61,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: npm ci
 
       - name: Test
-        run: yarn test:node
+        run: npm run test:node

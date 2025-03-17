@@ -46,6 +46,7 @@ function isClassRegistered(clazz) {
 function findComponentName(clazz) {
   if (clazz.isClassDeclaration()) {
     // class declaration always has a name
+    // @ts-ignore
     return clazz.node.id.name;
   }
 
@@ -89,6 +90,7 @@ function injectRegisterClass(clazz, componentName) {
   if (clazz.isExpression()) {
     clazz.replaceWith(callExpr);
   } else if (clazz.isClassDeclaration()) {
+    // @ts-ignore
     const { name } = clazz.node.id;
     const declarator = t.variableDeclarator(t.identifier(name), callExpr);
     const declaration = t.variableDeclaration('let', [declarator]);

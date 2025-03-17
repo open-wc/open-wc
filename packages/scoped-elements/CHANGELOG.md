@@ -1,5 +1,65 @@
 # Change Log
 
+## 3.0.5
+
+### Patch Changes
+
+- 479a956d: Marked `@open-wc/scoped-elements` as side-effect free
+
+## 3.0.4
+
+### Patch Changes
+
+- fec89f1d: Backport registry creation check from v2
+
+## 3.0.3
+
+### Patch Changes
+
+- 3e6fff71: fix types for angular
+
+## 3.0.2
+
+### Patch Changes
+
+- c386fcf9: fix: types again
+
+## 3.0.1
+
+### Patch Changes
+
+- 12011875: Fix types for scoped elements
+
+## 3.0.0
+
+### Major changes
+
+- See the `MIGRATION.md` for more information
+
+## 2.2.4
+
+### Patch Changes
+
+- 84e38ab1: Use split versions for all lit dependencies
+
+## 2.2.3
+
+### Patch Changes
+
+- c6cdea6f: fix: Backport passing the scoped custom element registry via the registry option in addition to the customElement option to account for the change in the specification
+
+## 2.2.2
+
+### Patch Changes
+
+- 0402c80f: fix: add scopedElementsVersion
+
+## 2.2.1
+
+### Patch Changes
+
+- 9d86f689: Add "type": "module" to package.json so build tools won't assume this is a CommonJS module.
+
 ## 2.2.0
 
 ### Minor Changes

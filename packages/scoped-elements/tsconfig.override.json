@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["DOM", "ESNext"],
+    "module": "NodeNext",
+    "moduleResolution": "node16",
+    "allowJs": true,
+    "checkJs": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true,
+    "outDir": "./"
+  },
+  "include": [
+    "lit-element.js",
+    "html-element.js",
+    "types.ts"
+  ]
+}

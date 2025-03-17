@@ -15,7 +15,7 @@ Events in the DOM can span in complexity from responding to a `click` on a `<but
 - prefer "just" events without `bubble` or `composed` e.g. `new Event('something-happened')`
 - when needing data consider extending `Event` or using `CustomEvent`
 - use `bubbles: true` if a node up the tree needs the event
-- retrain from using `composed: true` as it leads to event pollution
+- refrain from using `composed: true` as it leads to event pollution
 
 ## Events playground
 

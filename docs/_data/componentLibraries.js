@@ -12,6 +12,12 @@ const componentLibraries = [
       'A family of web components built with first-class participation in the Twig templating system for PHP in mind. This set is backed by an expansive catalog of usage variants.',
   },
   {
+    name: 'Calcite Design System',
+    url: 'https://developers.arcgis.com/calcite-design-system/',
+    description:
+      'Calcite Design System is a collection of design and development resources for creating beautiful, easy to use, cohesive experiences across apps with minimal effort. It includes a UI kit, icons, color schemes, and a web component library with UI elements such as buttons, panels, accordions, alerts, and many more.',
+  },
+  {
     name: 'Carbon Design System',
     url: 'https://github.com/carbon-design-system/carbon-web-components',
     description:
@@ -34,6 +40,17 @@ const componentLibraries = [
     url: 'https://curvenote.dev/',
     description:
       'The goal of curvenote.dev is to provide open source tools to promote and enable interactive scientific writing, reactive documents and explorable explanations.',
+  },
+  {
+    name: 'Dile',
+    url: 'https://dile-components.polydile.com/',
+    description: 'Custom elements made for all kind of projects and frameworks.',
+  },
+  {
+    name: 'drab',
+    url: 'https://drab.robino.dev',
+    description:
+      'drab is a headless, SSR friendly, custom element library that utilizes the light DOM to enhance HTML.',
   },
   {
     name: 'Duet Design System',
@@ -90,6 +107,12 @@ const componentLibraries = [
       'A Design System and complete UI component library built to facilitate the design and development of intuitive, coherent and pleasing applications based on Web technologies (HTML5). It contains 35+ components which are compatible with any framework, form factor, input type and modern browser.',
   },
   {
+    name: 'LDRS',
+    url: 'https://uiball.com/ldrs/',
+    description:
+      'A meticulously designed set of lightweight, configurable loaders and spinners.',
+  },
+  {
     name: 'Lightning Web Components by SalesForce',
     url: 'https://developer.salesforce.com/docs/component-library/overview/components',
     description:
@@ -108,10 +131,15 @@ const componentLibraries = [
       'Developed by Penn State University, LRNWebcomponents is home to hundreds of reusable, generalized components, as well as full web editors and CMSs like HAX and HAXcms. Highly accessible video players, collapses, color abstractions and more can be found here',
   },
   {
-    name: 'Material Web Components',
-    url: 'https://material-components.github.io/material-web',
+    name: 'Material web (MWC)',
+    url: 'https://github.com/material-components/material-web',
     description:
-      "Material Design Components from Material Design team themselves. Stay as close as possible to the changing specification with these components from Google's own Material Design team.",
+      "Material Design Components from Material Design team themselves. Stay as close as possible to the living specification with these components from Google's own Material Design team.",
+  },
+  {
+    name: 'mdui',
+    url: 'https://www.mdui.org/',
+    description: 'A Material Design 3 (Material You) library of Web Components.',
   },
   {
     name: 'Nord Design System',
@@ -123,6 +151,18 @@ const componentLibraries = [
     name: 'Patternfly Elements',
     url: 'https://patternflyelements.org/',
     description: "Red Hat's set of community-created web components based on PatternFly design.",
+  },
+  {
+    name: 'Porsche Design System',
+    url: 'https://designsystem.porsche.com/',
+    description:
+      'The Porsche Design System provides the design fundamentals and elements for efficiently creating aesthetic and high-quality web applications, including easy-to-use Figma and UX Pin libraries, coded Web Components and comprehensive usage guidelines. Everything is built and tested following the Porsche quality standards and corporate design principles.',
+  },
+  {
+    name: 'Siemenx IX',
+    url: 'https://ix.siemens.io/',
+    description:
+      'Siemens Industrial Experience is an open-source design system for designers and developers to consistently create the perfect digital experience for partners and customers.',
   },
   {
     name: 'Shoelace',

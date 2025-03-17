@@ -133,7 +133,8 @@ function hmrPlugin(pluginConfig) {
             patches: parsedPluginConfig.patches,
             rootDir,
           });
-        } catch (error) {
+        } catch (e) {
+          const error = /** @type {Error & { code: string, loc: Number, pos: number}} */ (e);
           if (error.name === 'SyntaxError') {
             // forward babel error to dev server
             const strippedMsg = error.message.replace(new RegExp(`${filePath} ?:? ?`, 'g'), '');
