@@ -30,9 +30,9 @@ type EventListenerWithOptions = EventListenerOrEventListenerObject &
 export class SpreadPropsDirective extends AsyncDirective {
     host!: EventTarget | object | Element;
     element!: Element;
-    prevData: { [key: string]: unknown } = {};
+    prevData: Record<string, any> = {};
 
-    render(_spreadData: { [key: string]: unknown }) {
+    render(_spreadData: Record<string, any>) {
         return nothing;
     }
     update(part: Part, [spreadData]: Parameters<this['render']>) {
@@ -45,7 +45,7 @@ export class SpreadPropsDirective extends AsyncDirective {
         this.prevData = { ...spreadData };
     }
 
-    apply(data: { [key: string]: unknown }) {
+    apply(data: Record<string, any>) {
         if (!data) return;
         const { prevData, element } = this;
         for (const key in data) {
@@ -58,7 +58,7 @@ export class SpreadPropsDirective extends AsyncDirective {
         }
     }
 
-    groom(data: { [key: string]: unknown }) {
+    groom(data: Record<string, any>) {
         const { prevData, element } = this;
         if (!prevData) return;
         for (const key in prevData) {
@@ -92,9 +92,9 @@ export const spreadProps = directive(SpreadPropsDirective);
  *    );
  */
 export class SpreadEventsDirective extends SpreadPropsDirective {
-    eventData: { [key: string]: unknown } = {};
+    eventData: Record<string, any> = {};
 
-    apply(data: { [key: string]: unknown }) {
+    apply(data: Record<string, any>) {
         if (!data) return;
         for (const key in data) {
             const value = data[key];
@@ -116,7 +116,7 @@ export class SpreadEventsDirective extends SpreadPropsDirective {
         element.addEventListener(eventName, this, eventValue);
     }
 
-    groom(data: { [key: string]: unknown }) {
+    groom(data: Record<string, any>) {
         const { prevData, element } = this;
         if (!prevData) return;
         for (const key in prevData) {
@@ -186,7 +186,7 @@ export const spreadEvents = directive(SpreadEventsDirective);
  *    );
  */
 export class SpreadDirective extends SpreadEventsDirective {
-    apply(data: { [key: string]: unknown }) {
+    apply(data: Record<string, any>) {
         if (!data) return;
         const { prevData, element } = this;
         for (const key in data) {
@@ -223,7 +223,7 @@ export class SpreadDirective extends SpreadEventsDirective {
         }
     }
 
-    groom(data: { [key: string]: unknown }) {
+    groom(data: Record<string, any>) {
         const { prevData, element } = this;
         if (!prevData) return;
         for (const key in prevData) {
