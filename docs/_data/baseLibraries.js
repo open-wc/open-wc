@@ -155,6 +155,13 @@ const baseLibraries = [
       "An easy to use, lightweight library for web-components that doesn't need a build step but can be included in a build step if you want to. It's a great way to create reusable components for your projects. It's available as a NPM package or module and doesn't use any dependencies and is around 4.5kb minified + gzipped. It also doesn't use eval or new Function so can be used in strict CSP polices without a build step. For documentation and demos go to Bayjs.org.",
     url: 'https://bayjs.org/examples/index.html',
   },
+  // Add Axue
+  {
+    name: 'axue',
+    url: 'https://github.com/doc-war/axue',
+    downloadsFormatted: '1000', // 如果没有下载量，可以填 'N/A'
+    description: 'A native browser component library for PC and cross framework, ready to use out of the box, with various pop-up APIs. Support customizing default tag names, icons, and styles for components during loading and runtime, pioneering the loadtime paradigm.'
+  }
 ];
 
 module.exports = async function getBaseLibraries() {
