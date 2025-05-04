@@ -159,7 +159,7 @@ const baseLibraries = [
   {
     name: 'axue',
     url: 'https://github.com/doc-war/axue',
-    downloadsFormatted: '1000', // 如果没有下载量，可以填 'N/A'
+    downloadsFormatted: '1000', 
     description: 'A native browser component library for PC and cross framework, ready to use out of the box, with various pop-up APIs. Support customizing default tag names, icons, and styles for components during loading and runtime, pioneering the loadtime paradigm.'
   }
 ];
