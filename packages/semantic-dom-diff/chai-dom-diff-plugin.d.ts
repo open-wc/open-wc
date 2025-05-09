@@ -9,16 +9,16 @@ declare global {
       lightDom: Assertion;
       shadowDom: Assertion;
       notEqual(actual: Object, expected: Object, message?: string): void;
-      equalSnapshot(options?: Object): Assertion;
-      notEqualSnapshot(options?: Object): Assertion;
+      equalSnapshot(options?: Object): Promise<Assertion>;
+      notEqualSnapshot(options?: Object): Promise<Assertion>;
     }
 
     interface Assert {
       dom: Pick<Assertion, 'equal' | 'notEqual' | 'equalSnapshot' | 'notEqualSnapshot'>;
       lightDom: Pick<Assertion, 'equal' | 'notEqual' | 'equalSnapshot' | 'notEqualSnapshot'>;
       shadowDom: Pick<Assertion, 'equal' | 'notEqual' | 'equalSnapshot' | 'notEqualSnapshot'>;
-      equalSnapshot(fixture: unknown, options?: DiffOptions): Assertion;
-      notEqualSnapshot(fixture: unknown, options?: DiffOptions): Assertion;
+      equalSnapshot(fixture: unknown, options?: DiffOptions): Promise<Assertion>;
+      notEqualSnapshot(fixture: unknown, options?: DiffOptions): Promise<Assertion>;
 
       equal<T>(actual: T, expected: T, message?: string, options?: DiffOptions): void;
       equal<T>(actual: T, expected: T, message?: string): void;
