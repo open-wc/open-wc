@@ -79,12 +79,10 @@ function transformPropsHook() {
     visit(tree, 'html', (node, ancestors) => {
       // @ts-ignore
       if (node.value.startsWith('<sb-props')) {
-        /* eslint-disable no-param-reassign */
         ancestors[1].type = 'html';
         // @ts-ignore
         ancestors[1].value = node.value.replace('<sb-props', '<Props').replace('>', ' />');
         ancestors[1].children = [];
-        /* eslint-enable no-param-reassign */
       }
     });
     return tree;
@@ -138,7 +136,7 @@ const mdjsToMdPlugins = [
  * @param {MdjsProcessPlugin[]} plugins
  * @param {string=} filePath
  */
-// eslint-disable-next-line no-unused-vars
+
 function defaultSetupMdjsPlugins(plugins, filePath = '') {
   return plugins;
 }

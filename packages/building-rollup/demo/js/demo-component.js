@@ -1,4 +1,4 @@
-/* eslint-disable class-methods-use-this, import/no-extraneous-dependencies */
+/* eslint-disable import/no-extraneous-dependencies */
 import { LitElement, html, css } from 'lit-element';
 
 class DemoComponent extends LitElement {

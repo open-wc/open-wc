@@ -37,7 +37,7 @@ function isHtmlTaggedTemplate(node, context) {
 // future iterations might want to apply CSS a11y checks,
 // at which point, imports should be checked against context just like for html
 // see also `isSvgTaggedTemplate`
-// eslint-disable-next-line no-unused-vars
+
 function isCssTaggedTemplate(node, context) {
   return (
     node.type === 'TaggedTemplateExpression' &&
@@ -52,7 +52,7 @@ function isCssTaggedTemplate(node, context) {
  * @param {import('./HasLitHtmlImportRuleExtension').LitA11yRuleContext} context
  * @returns {node is LitTaggedExpression<'svg'>}
  */
-// eslint-disable-next-line no-unused-vars
+
 function isSvgTaggedTemplate(node, context) {
   return (
     node.type === 'TaggedTemplateExpression' &&

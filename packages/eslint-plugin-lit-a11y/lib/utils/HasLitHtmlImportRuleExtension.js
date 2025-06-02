@@ -119,7 +119,6 @@ const HasLitHtmlImportRuleExtension = {
    * @return {import('eslint').Rule.RuleListener}
    */
   createAdditionalVisitors(context) {
-    /* eslint-disable no-param-reassign */
     const { litHtmlSources } = context.settings;
 
     const USER_LIT_HTML_SPECIFIERS = Array.isArray(context.settings.litHtmlSources)
@@ -160,8 +159,6 @@ const HasLitHtmlImportRuleExtension = {
         ];
       },
     };
-
-    /* eslint-enable no-param-reassign */
   },
 
   /**

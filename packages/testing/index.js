@@ -1,5 +1,5 @@
 // remove esline-disable when https://github.com/esm-bundle/chai/pull/61 is merged
-/* eslint-disable-next-line import/no-unresolved */
+
 import chai, { expect, should, assert } from '@esm-bundle/chai';
 import './register-chai-plugins.js';
 

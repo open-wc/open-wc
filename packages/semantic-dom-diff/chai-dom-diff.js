@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { getSnapshot, getSnapshotConfig, saveSnapshot } from '@web/test-runner-commands';
 import { getDiffableHTML, isDiffOptions } from './get-diffable-html.js';
 import { getCleanedShadowDom, getMochaTestPath, getOuterHtml } from './src/utils.js';
