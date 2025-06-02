@@ -5,16 +5,21 @@
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
-import { readdir } from 'fs/promises';
+import { readdir, readFile } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const pkgJson = JSON.parse(await readFile(join(__dirname, '../package.json')));
 
-// ESM replacement for requireindex - dynamically import all rules
+/**
+ * @import { RuleDefinition } from "@eslint/core";
+ */
+
 async function loadRules() {
   const rulesDir = join(__dirname, 'rules');
   const files = await readdir(rulesDir);
+  /** @type {Record<string, RuleDefinition>} */
   const rules = {};
 
   for (const file of files) {
@@ -68,31 +73,30 @@ const recommendedRules = {
   'lit-a11y/valid-lang': 'off',
 };
 
-// Plugin object for flat config
 const plugin = {
+  meta: {
+    name: pkgJson.name,
+    version: pkgJson.version,
+  },
+  processors: {},
   rules,
-  configs: {
-    // Legacy config for backwards compatibility
-    recommended: {
-      plugins: ['lit-a11y'],
-      rules: recommendedRules,
-    },
-  },
-  // Flat configs
-  flatConfigs: {
-    recommended: {
-      name: 'lit-a11y/recommended',
-      plugins: {
-        'lit-a11y': { rules },
-      },
-      rules: recommendedRules,
-    },
-  },
+  configs: {},
 };
+
+// assign configs here so we can reference `plugin`
+Object.assign(plugin.configs, {
+  recommended: {
+    plugins: {
+      'lit-a11y': plugin,
+    },
+    rules: {
+      ...recommendedRules,
+    },
+  },
+});
 
 export default plugin;
 
-// Named exports for convenience
 export { rules, recommendedRules };
 
 // For backwards compatibility with CommonJS
