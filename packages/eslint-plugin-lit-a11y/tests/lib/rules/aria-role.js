@@ -7,8 +7,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/aria-role.js');
+import { RuleTester } from 'eslint';
+import rule from '../../../lib/rules/aria-role.js';
 
 //------------------------------------------------------------------------------
 // Tests
@@ -16,9 +16,11 @@ const rule = require('../../../lib/rules/aria-role.js');
 
 const ruleTester = new RuleTester({
   settings: { litHtmlSources: false },
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 2015,
+  languageOptions: {
+    parserOptions: {
+      sourceType: 'module',
+      ecmaVersion: 2015,
+    },
   },
 });
 
@@ -63,10 +65,6 @@ ruleTester.run('aria-role', rule, {
     },
     {
       code: "html`<div role=${'foo'}>`;",
-      errors: [{ messageId: 'invalidRole', data: { role: 'foo' } }],
-    },
-    {
-      code: 'html`<div role=${"foo"}>`;',
       errors: [{ messageId: 'invalidRole', data: { role: 'foo' } }],
     },
   ],

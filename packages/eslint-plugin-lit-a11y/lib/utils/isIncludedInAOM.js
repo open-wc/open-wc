@@ -1,6 +1,6 @@
-const { isAriaHidden } = require('./aria.js');
-const { isHiddenFromScreenReader } = require('./isHiddenFromScreenReader.js');
-const { isPresentationRole } = require('./isPresentationRole.js');
+import { isAriaHidden } from './aria.js';
+import { isHiddenFromScreenReader } from './isHiddenFromScreenReader.js';
+import { isPresentationRole } from './isPresentationRole.js';
 
 /**
  * @param {import("parse5-htmlparser2-tree-adapter").Element} element
@@ -14,6 +14,4 @@ function isIncludedInAOM(element) {
   );
 }
 
-module.exports = {
-  isIncludedInAOM,
-};
+export { isIncludedInAOM };

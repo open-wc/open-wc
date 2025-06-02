@@ -32,7 +32,7 @@
 /**
  * @typedef {Omit<import('eslint').Rule.RuleContext, 'settings'|'parserServices'|'sourceCode'> & LitA11yRuleContextExtensions} LitA11yRuleContext
  */
-const { getParserServices } = require('./getContextSourceCode.js');
+import { getParserServices } from './getContextSourceCode.js';
 
 const DEFAULT_LIT_HTML_SPECIFIERS = ['lit-html', 'lit-element', 'lit'];
 
@@ -171,6 +171,4 @@ const HasLitHtmlImportRuleExtension = {
   },
 };
 
-module.exports = {
-  HasLitHtmlImportRuleExtension,
-};
+export { HasLitHtmlImportRuleExtension };

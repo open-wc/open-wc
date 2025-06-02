@@ -8,6 +8,4 @@ function hasAttr(attributes, attribute) {
   return Object.keys(attributes).includes(attribute);
 }
 
-module.exports = {
-  hasAttr,
-};
+export { hasAttr };

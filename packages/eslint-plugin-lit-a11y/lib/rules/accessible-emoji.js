@@ -3,14 +3,14 @@
  * @author open-wc
  */
 
-const emojiRegex = require('emoji-regex');
-const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
-const { isTextNode } = require('../utils/ast.js');
-const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
-const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
-const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
+import emojiRegex from 'emoji-regex';
+import ruleExtender from 'eslint-rule-extender';
+import { TemplateAnalyzer } from 'eslint-plugin-lit/lib/template-analyzer.js';
+import { isTextNode } from '../utils/ast.js';
+import { isHiddenFromScreenReader } from '../utils/isHiddenFromScreenReader.js';
+import { isHtmlTaggedTemplate } from '../utils/isLitHtmlTemplate.js';
+import { HasLitHtmlImportRuleExtension } from '../utils/HasLitHtmlImportRuleExtension.js';
+import { getContextSourceCode } from '../utils/getContextSourceCode.js';
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -95,4 +95,4 @@ const AccessibleEmojiRule = {
   },
 };
 
-module.exports = ruleExtender(AccessibleEmojiRule, HasLitHtmlImportRuleExtension);
+export default ruleExtender(AccessibleEmojiRule, HasLitHtmlImportRuleExtension);

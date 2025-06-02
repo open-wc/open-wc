@@ -2,7 +2,7 @@
  * @template {'html'|'svg'|'css'} Name
  * @typedef {import('estree').TaggedTemplateExpression & { tag: { type: 'Identifier'; name: Name } }} LitTaggedExpression
  */
-const { getParserServices } = require('./getContextSourceCode.js');
+import { getParserServices } from './getContextSourceCode.js';
 /**
  * Whether a node is a lit-html html-tagged template expression
  * @param {import('eslint').Rule.Node} node
@@ -61,8 +61,4 @@ function isSvgTaggedTemplate(node, context) {
   );
 }
 
-module.exports = {
-  isCssTaggedTemplate,
-  isHtmlTaggedTemplate,
-  isSvgTaggedTemplate,
-};
+export { isCssTaggedTemplate, isHtmlTaggedTemplate, isSvgTaggedTemplate };

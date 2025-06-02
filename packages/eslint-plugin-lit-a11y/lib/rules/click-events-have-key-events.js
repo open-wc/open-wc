@@ -3,13 +3,13 @@
  * @author open-wc
  */
 
-const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
-const { isIncludedInAOM } = require('../utils/isIncludedInAOM.js');
-const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { isNonInteractiveElement } = require('../utils/isNonInteractiveElement.js');
-const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
-const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
+import ruleExtender from 'eslint-rule-extender';
+import { TemplateAnalyzer } from 'eslint-plugin-lit/lib/template-analyzer.js';
+import { isIncludedInAOM } from '../utils/isIncludedInAOM.js';
+import { isHtmlTaggedTemplate } from '../utils/isLitHtmlTemplate.js';
+import { isNonInteractiveElement } from '../utils/isNonInteractiveElement.js';
+import { HasLitHtmlImportRuleExtension } from '../utils/HasLitHtmlImportRuleExtension.js';
+import { getContextSourceCode } from '../utils/getContextSourceCode.js';
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -108,4 +108,4 @@ const ClickEventsHaveKeyEventsRule = {
   },
 };
 
-module.exports = ruleExtender(ClickEventsHaveKeyEventsRule, HasLitHtmlImportRuleExtension);
+export default ruleExtender(ClickEventsHaveKeyEventsRule, HasLitHtmlImportRuleExtension);

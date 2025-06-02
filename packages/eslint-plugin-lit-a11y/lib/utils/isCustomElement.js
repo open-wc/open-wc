@@ -8,6 +8,4 @@ function isCustomElement(element) {
   return !!(element && typeof element.name === 'string' && CE_TAGNAME_RE.test(element.name));
 }
 
-module.exports = {
-  isCustomElement,
-};
+export { isCustomElement };

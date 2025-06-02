@@ -3,13 +3,13 @@
  * @author open-wc
  */
 
-const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
-const { elementHasAttribute, elementHasSomeAttribute } = require('../utils/elementHasAttribute.js');
-const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
-const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
-const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
+import ruleExtender from 'eslint-rule-extender';
+import { TemplateAnalyzer } from 'eslint-plugin-lit/lib/template-analyzer.js';
+import { elementHasAttribute, elementHasSomeAttribute } from '../utils/elementHasAttribute.js';
+import { isHiddenFromScreenReader } from '../utils/isHiddenFromScreenReader.js';
+import { isHtmlTaggedTemplate } from '../utils/isLitHtmlTemplate.js';
+import { HasLitHtmlImportRuleExtension } from '../utils/HasLitHtmlImportRuleExtension.js';
+import { getContextSourceCode } from '../utils/getContextSourceCode.js';
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -130,4 +130,4 @@ const AltTextRule = {
   },
 };
 
-module.exports = ruleExtender(AltTextRule, HasLitHtmlImportRuleExtension);
+export default ruleExtender(AltTextRule, HasLitHtmlImportRuleExtension);

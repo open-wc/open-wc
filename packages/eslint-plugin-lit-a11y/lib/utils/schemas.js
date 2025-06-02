@@ -33,8 +33,4 @@ const generateObjSchema = (properties = {}, required) => ({
   required,
 });
 
-module.exports = {
-  generateObjSchema,
-  enumArraySchema,
-  arraySchema,
-};
+export { generateObjSchema, enumArraySchema, arraySchema };
