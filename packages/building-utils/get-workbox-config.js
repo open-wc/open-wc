@@ -16,7 +16,6 @@ module.exports = function getWorkboxConfig(outputDir) {
   };
 
   try {
-    // eslint-disable-next-line import/no-dynamic-require, global-require
     return require(workboxConfigPath);
   } catch (error) {
     return defaultWorboxConfig;

@@ -1,4 +1,4 @@
-const TreeAdapter = require('parse5-htmlparser2-tree-adapter');
+import TreeAdapter from 'parse5-htmlparser2-tree-adapter';
 
 /**
  * @param {TreeAdapter.Node} node
@@ -8,6 +8,4 @@ function isTextNode(node) {
   return TreeAdapter.isTextNode(node);
 }
 
-module.exports = {
-  isTextNode,
-};
+export { isTextNode };

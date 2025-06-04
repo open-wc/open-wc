@@ -12,7 +12,4 @@ function getParserServices(context) {
   return context?.sourceCode?.parserServices ?? context.parserServices;
 }
 
-module.exports = {
-  getContextSourceCode,
-  getParserServices,
-};
+export { getContextSourceCode, getParserServices };

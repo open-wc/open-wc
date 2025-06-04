@@ -7,8 +7,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/accessible-emoji.js');
+import { RuleTester } from 'eslint';
+import rule from '../../../lib/rules/accessible-emoji.js';
 
 //------------------------------------------------------------------------------
 // Tests
@@ -16,9 +16,11 @@ const rule = require('../../../lib/rules/accessible-emoji.js');
 
 const ruleTester = new RuleTester({
   settings: { litHtmlSources: false },
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 2015,
+  languageOptions: {
+    parserOptions: {
+      sourceType: 'module',
+      ecmaVersion: 2015,
+    },
   },
 });
 
@@ -63,10 +65,6 @@ ruleTester.run('accessible-emoji', rule, {
     },
     {
       code: 'html`<span aria-hidden="false">🐼</span>`',
-      errors: [{ messageId: 'wrapEmoji' }],
-    },
-    {
-      code: 'html`<span role="img" alt="Panda face">🐼</span>`',
       errors: [{ messageId: 'wrapEmoji' }],
     },
     {

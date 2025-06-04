@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import-x/no-extraneous-dependencies */
 import { LitElement, html } from 'lit-element';
 import { demoWcCardStyle } from './demoWcCardStyle.css.js';
 import { chevron } from './chevron.svg.js';

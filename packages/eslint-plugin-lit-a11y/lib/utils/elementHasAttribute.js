@@ -16,7 +16,4 @@ function elementHasSomeAttribute(element, attrs) {
   return attrs.some(elementHasAttribute.bind(attrs, element));
 }
 
-module.exports = {
-  elementHasAttribute,
-  elementHasSomeAttribute,
-};
+export { elementHasAttribute, elementHasSomeAttribute };

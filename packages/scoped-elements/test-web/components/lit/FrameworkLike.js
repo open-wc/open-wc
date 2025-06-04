@@ -17,7 +17,6 @@ export class FrameworkLike extends ScopedElementsMixin(LitElement) {
     this.steps = steps;
     for (const { scopedElements } of this.steps) {
       for (const [element, importFn] of Object.entries(scopedElements)) {
-        // eslint-disable-next-line no-await-in-loop
         const klass = await importFn();
         this.registry.define(element, klass);
       }

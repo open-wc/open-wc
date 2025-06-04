@@ -5,7 +5,6 @@
  * export from the window, or a webpack specific module import.
  */
 
-/* eslint-disable global-require, import/no-mutable-exports */
 export let axe;
 
 export async function loadAxe() {

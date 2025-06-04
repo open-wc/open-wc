@@ -140,7 +140,6 @@ function createPolyfillsLoader(polyfills, polyfillsConfig) {
  * @param {import('@open-wc/building-utils/index-html/create-index-html').PolyfillsConfig} polyfillsConfig
  */
 function createLoaderScript(entries, legacyEntries, polyfills, polyfillsConfig, minified = true) {
-  /* eslint-disable prefer-template */
   const code =
     '(function() {' +
     createLoadScriptFunction(entries, legacyEntries, polyfills) +

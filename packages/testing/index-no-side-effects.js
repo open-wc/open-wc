@@ -1,8 +1,7 @@
 // eslint does not understand export maps yet
-/* eslint-disable import/no-unresolved */
 
 // remove esline-disable when https://github.com/esm-bundle/chai/pull/61 is merged
-/* eslint-disable-next-line import/no-unresolved */
+
 import chai, { expect, should, assert } from '@esm-bundle/chai';
 
 export { chai, expect, should, assert };

@@ -1,4 +1,3 @@
-/* eslint-disable global-require, import/no-dynamic-require */
 const puppeteer = require('puppeteer');
 const { expect } = require('chai');
 const path = require('path');
