@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- 322daeb8: Update to flat config and esm-ify
+
 ## 4.1.4
 
 ### Patch Changes
