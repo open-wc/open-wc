@@ -1,5 +1,16 @@
 # Change Log
 
+## 13.0.0
+
+### Major Changes
+
+- 322daeb8: Update to flat config and esm-ify
+
+### Patch Changes
+
+- Updated dependencies [322daeb8]
+  - eslint-plugin-lit-a11y@5.0.0
+
 ## 12.0.3
 
 ### Patch Changes
