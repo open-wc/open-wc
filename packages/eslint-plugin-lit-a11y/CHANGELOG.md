@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.1
+
+### Patch Changes
+
+- 4fb007de: Make plugin bundleable
+
 ## 5.0.0
 
 ### Major Changes
