@@ -5,40 +5,9 @@
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
-import { readdir, readFile } from 'fs/promises';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const pkgJson = JSON.parse(await readFile(join(__dirname, '../package.json')));
-
-/**
- * @import { RuleDefinition } from "@eslint/core";
- */
-
-async function loadRules() {
-  const rulesDir = join(__dirname, 'rules');
-  const files = await readdir(rulesDir);
-  /** @type {Record<string, RuleDefinition>} */
-  const rules = {};
-
-  for (const file of files) {
-    if (file.endsWith('.js')) {
-      const ruleName = file.replace('.js', '');
-      const ruleModule = await import(`./rules/${file}`);
-      rules[ruleName] = ruleModule.default;
-    }
-  }
-
-  return rules;
-}
-
-//------------------------------------------------------------------------------
-// Plugin Definition
-//------------------------------------------------------------------------------
-
-// Rule definitions
-const rules = await loadRules();
+import * as rules from './rules/index.js';
+import pkgJson from '../package.json' with { type: 'json' };
 
 // Recommended rule configuration
 const recommendedRules = {
@@ -79,7 +48,37 @@ const plugin = {
     version: pkgJson.version,
   },
   processors: {},
-  rules,
+  rules: {
+    'accessible-emoji': rules.accessibleEmoji,
+    'accessible-name': rules.accessibleName,
+    'alt-text': rules.altText,
+    'anchor-is-valid': rules.anchorIsValid,
+    'aria-activedescendant-has-tabindex': rules.ariaActivedescendantHasTabindex,
+    'aria-attr-valid-value': rules.ariaAttrValidValue,
+    'aria-attrs': rules.ariaAttrs,
+    'aria-role': rules.ariaRole,
+    'aria-unsupported-elements': rules.ariaUnsupportedElements,
+    'autocomplete-valid': rules.autocompleteValid,
+    'click-events-have-key-events': rules.clickEventsHaveKeyEvents,
+    'definition-list': rules.definitionList,
+    'heading-hidden': rules.headingHidden,
+    'iframe-title': rules.iframeTitle,
+    'img-redundant-alt': rules.imgRedundantAlt,
+    list: rules.list,
+    'mouse-events-have-key-events': rules.mouseEventsHaveKeyEvents,
+    'no-access-key': rules.noAccessKey,
+    'no-aria-slot': rules.noAriaSlot,
+    'no-autofocus': rules.noAutofocus,
+    'no-distracting-elements': rules.noDistractingElements,
+    'no-invalid-change-handler': rules.noInvalidChangeHandler,
+    'no-redundant-role': rules.noRedundantRole,
+    'obj-alt': rules.objAlt,
+    'role-has-required-aria-attrs': rules.roleHasRequiredAriaAttrs,
+    'role-supports-aria-attr': rules.roleSupportsAriaAttr,
+    scope: rules.scope,
+    'tabindex-no-positive': rules.tabindexNoPositive,
+    'valid-lang': rules.validLang,
+  },
   configs: {},
 };
 
