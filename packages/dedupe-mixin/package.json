@@ -4,6 +4,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "exports": "./index.js",
   "description": "Dedupe JavaScript Class Mixins",
   "license": "MIT",
   "repository": {
