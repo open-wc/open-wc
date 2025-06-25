@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.0.6
+
+### Patch Changes
+
+- Updated dependencies [b4b836dc]
+  - @open-wc/dedupe-mixin@2.0.0
+
 ## 3.0.5
 
 ### Patch Changes
@@ -86,7 +93,7 @@
 - 89fb5601: Add type entrypoint which enables you to get more advanced type information like
 
   ```ts
-  import { ScopedElementsHost } from '@open-wc/scoped-elements/types.js';
+  import { ScopedElementsHost } from "@open-wc/scoped-elements/types.js";
   ```
 
 ## 2.1.3
@@ -153,7 +160,7 @@
   or if you have an SPA you can load it at the top of your app shell code
 
   ```js
-  import '@webcomponents/scoped-custom-element-registry';
+  import "@webcomponents/scoped-custom-element-registry";
   ```
 
   You need scoping if you want to
