@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- 86e07e88: Retry release
+
 ## 2.0.0
 
 ### Major Changes
