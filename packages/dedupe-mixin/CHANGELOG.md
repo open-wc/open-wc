@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.0
+
+### Major Changes
+
+- b4b836dc: Added package exports
+
 ## 1.4.0
 
 ### Minor Changes
