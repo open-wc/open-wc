@@ -169,6 +169,14 @@ If omitted, all sub-rule aspects will be run by default. This is the recommended
 
 The option must contain at least one `aspect`.
 
+### Using href property
+
+The href property can be used similarly to the href attribute.
+
+```js
+html` <a .href=${'/'}>Home</a> `;
+```
+
 Examples of **incorrect** code for this rule:
 
 Anchors should be a button:
@@ -217,6 +225,7 @@ html`
   <a href="foo" @click=${foo}></a>
   <a href="/foo/bar" @click=${foo}></a>
   <a href=${someValidPath} @click=${foo}></a>
+  <a .href=${someValidPath}></a>
 `;
 ```
 

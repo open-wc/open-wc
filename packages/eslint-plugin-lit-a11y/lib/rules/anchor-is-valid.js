@@ -73,7 +73,9 @@ const AnchorIsValidRule = {
                   preferButton: hasAspectsOption ? options.aspects.includes('preferButton') : true,
                 };
 
-                const hasAnyHref = Object.keys(element.attribs).includes('href');
+                const hasAnyHref =
+                  Object.keys(element.attribs).includes('href') ||
+                  Object.keys(element.attribs).includes('.href');
                 const hasClickListener = Object.keys(element.attribs).includes('@click');
 
                 // When there is no href at all, specific scenarios apply:
@@ -109,12 +111,19 @@ const AnchorIsValidRule = {
                 }
 
                 // Hrefs have been found, now check for validity.
-                const value = getLiteralAttributeValue(
+                const hrefAttribute = getLiteralAttributeValue(
                   analyzer,
                   element,
                   'href',
                   getContextSourceCode(context),
                 );
+                const hrefProperty = getLiteralAttributeValue(
+                  analyzer,
+                  element,
+                  '.href',
+                  getContextSourceCode(context),
+                );
+                const value = hrefAttribute ?? hrefProperty;
 
                 const invalidHrefValue =
                   typeof value === 'string' &&
