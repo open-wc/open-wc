@@ -1,7 +1,8 @@
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
+// eslint-disable-next-line no-unused-vars, import/no-unresolved
+import { ScopedElementsHost } from './types.js';
 
 /**
- * @typedef {import('./types.js').ScopedElementsHost} ScopedElementsHost
  * @typedef {import('./types.js').ScopedElementsMap} ScopedElementsMap
  */
 
@@ -14,11 +15,10 @@ if (!versions.includes(version)) {
 /**
  * @template {import('./types.js').Constructor<HTMLElement>} T
  * @param {T} superclass
- * @return {T & import('./types.js').Constructor<ScopedElementsHost>}
+ * @return {T & import('./types.js').Constructor<ScopedElementsHost> & typeof ScopedElementsHost}
  */
 const ScopedElementsMixinImplementation = superclass =>
-  /** @type {ScopedElementsHost} */
-  class ScopedElementsHost extends superclass {
+  class ScopedElementsHostImplementation extends superclass {
     /**
      * Obtains the scoped elements definitions map if specified.
      *
@@ -39,7 +39,7 @@ const ScopedElementsMixinImplementation = superclass =>
      * @returns {CustomElementRegistry=}
      */
     get registry() {
-      return /** @type {typeof ScopedElementsHost} */ (this.constructor).__registry;
+      return /** @type {typeof ScopedElementsHostImplementation} */ (this.constructor).__registry;
     }
 
     /**
@@ -48,7 +48,8 @@ const ScopedElementsMixinImplementation = superclass =>
      * @param {CustomElementRegistry} registry
      */
     set registry(registry) {
-      /** @type {typeof ScopedElementsHost} */ (this.constructor).__registry = registry;
+      /** @type {typeof ScopedElementsHostImplementation} */ (this.constructor).__registry =
+        registry;
     }
 
     /**
