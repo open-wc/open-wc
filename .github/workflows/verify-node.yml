@@ -2,10 +2,6 @@ name: Verify changes
 
 on: pull_request
 
-env:
-  PW_CHROMIUM_ARGS: --no-sandbox
-  PUPPETEER_ARGS: --no-sandbox
-
 jobs:
   verify:
     name: Verify changes
@@ -55,6 +51,9 @@ jobs:
   node-tests:
     name: Node tests
     runs-on: ubuntu-latest
+    env:
+      PW_CHROMIUM_ARGS: --no-sandbox
+      PUPPETEER_ARGS: --no-sandbox
     strategy:
       matrix:
         node-version: ['18', '20']
