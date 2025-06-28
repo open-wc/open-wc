@@ -73,9 +73,13 @@ polyfillsLoader({
 If you're using `@web/dev-server` for local development, you can use the [`@web/dev-server-polyfill`](https://www.npmjs.com/package/@web/dev-server-polyfill) plugin:
 
 ```js
-polyfill({
-  scopedCustomElementRegistry: true,
-});
+export default {
+  plugins: [
+    polyfill({
+      scopedCustomElementRegistry: true,
+    }),
+  ],
+};
 ```
 
 ## API
