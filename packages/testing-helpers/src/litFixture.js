@@ -24,7 +24,7 @@ const isUsefulNode = ({ nodeType, textContent }) => {
  * @param {import('./scopedElementsWrapper.js').ScopedElementsTemplateGetter} [getScopedElementsTemplate]
  * @returns {T}
  */
-// eslint-disable-next-line default-param-last
+
 export function litFixtureSync(template, options = {}, getScopedElementsTemplate) {
   const wrapper = /** @type {HTMLElement} */ (fixtureWrapper(options.parentNode));
   const render = options.render ?? defaultRender;

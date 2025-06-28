@@ -18,6 +18,4 @@ function isHiddenFromScreenReader(element) {
   return ariaHidden === 'true' || ariaHidden === '';
 }
 
-module.exports = {
-  isHiddenFromScreenReader,
-};
+export { isHiddenFromScreenReader };

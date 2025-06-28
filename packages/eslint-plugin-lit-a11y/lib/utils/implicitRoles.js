@@ -1,4 +1,4 @@
-const { hasAttr } = require('./utils.js');
+import { hasAttr } from './utils.js';
 
 const implicitRoles = {
   a: attributes => {
@@ -123,6 +123,4 @@ const implicitRoles = {
   ul: () => 'list',
 };
 
-module.exports = {
-  implicitRoles,
-};
+export { implicitRoles };

@@ -58,18 +58,17 @@ function TodoList() {
 
     <ul>
       ${items.map(
-        (item, i) =>
-          html`
-            <li>
-              <todo-item
-                .message=${item.message}
-                .checked=${item.checked}
-                data-i=${i}
-                @checked-changed=${onCheckedChanged}
-                @delete=${onDelete}
-              ></todo-item>
-            </li>
-          `,
+        (item, i) => html`
+          <li>
+            <todo-item
+              .message=${item.message}
+              .checked=${item.checked}
+              data-i=${i}
+              @checked-changed=${onCheckedChanged}
+              @delete=${onDelete}
+            ></todo-item>
+          </li>
+        `,
       )}
     </ul>
 

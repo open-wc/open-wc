@@ -32,7 +32,7 @@
 /**
  * @typedef {Omit<import('eslint').Rule.RuleContext, 'settings'|'parserServices'|'sourceCode'> & LitA11yRuleContextExtensions} LitA11yRuleContext
  */
-const { getParserServices } = require('./getContextSourceCode.js');
+import { getParserServices } from './getContextSourceCode.js';
 
 const DEFAULT_LIT_HTML_SPECIFIERS = ['lit-html', 'lit-element', 'lit'];
 
@@ -119,7 +119,6 @@ const HasLitHtmlImportRuleExtension = {
    * @return {import('eslint').Rule.RuleListener}
    */
   createAdditionalVisitors(context) {
-    /* eslint-disable no-param-reassign */
     const { litHtmlSources } = context.settings;
 
     const USER_LIT_HTML_SPECIFIERS = Array.isArray(context.settings.litHtmlSources)
@@ -160,8 +159,6 @@ const HasLitHtmlImportRuleExtension = {
         ];
       },
     };
-
-    /* eslint-enable no-param-reassign */
   },
 
   /**
@@ -174,6 +171,4 @@ const HasLitHtmlImportRuleExtension = {
   },
 };
 
-module.exports = {
-  HasLitHtmlImportRuleExtension,
-};
+export { HasLitHtmlImportRuleExtension };

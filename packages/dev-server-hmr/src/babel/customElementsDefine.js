@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /** @typedef {import('@babel/types').MemberExpression} MemberExpression */
 /** @typedef {import('@babel/types').CallExpression} CallExpression */
 /** @typedef {import('@babel/types').ClassDeclaration} ClassDeclaration */

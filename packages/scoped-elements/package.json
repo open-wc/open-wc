@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/scoped-elements",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "publishConfig": {
     "access": "public"
   },
@@ -49,7 +49,7 @@
     "helpers"
   ],
   "dependencies": {
-    "@open-wc/dedupe-mixin": "^1.4.0",
+    "@open-wc/dedupe-mixin": "^2.0.0",
     "lit": "^3.0.0"
   },
   "devDependencies": {

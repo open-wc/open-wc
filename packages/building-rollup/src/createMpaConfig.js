@@ -1,4 +1,3 @@
-/* eslint-disable */
 /** @typedef {import('./types').MpaOptions} MpaOptions */
 
 const merge = require('deepmerge');

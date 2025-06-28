@@ -21,6 +21,4 @@ function attributesComparator(baseAttributes, attributes) {
     : true;
 }
 
-module.exports = {
-  attributesComparator,
-};
+export { attributesComparator };

@@ -200,7 +200,7 @@ function getPolyfills(config) {
     let sourcemap;
     if (Array.isArray(instruction.path)) {
       code = instruction.path.reduce((acc, p) => {
-        acc += `\n ${fs.readFileSync(p, 'utf-8')}`; // eslint-disable-line no-param-reassign
+        acc += `\n ${fs.readFileSync(p, 'utf-8')}`;
         return acc;
       }, '');
     } else {

@@ -3,14 +3,14 @@
  * @author open-wc
  */
 
-const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
-const { hasAccessibleChildren } = require('../utils/hasAccessibleChildren.js');
-const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
-const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
-const { hasAccessibleName } = require('../utils/hasAccessibleName.js');
-const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
+import ruleExtender from 'eslint-rule-extender';
+import { TemplateAnalyzer } from 'eslint-plugin-lit/lib/template-analyzer.js';
+import { hasAccessibleChildren } from '../utils/hasAccessibleChildren.js';
+import { isHiddenFromScreenReader } from '../utils/isHiddenFromScreenReader.js';
+import { isHtmlTaggedTemplate } from '../utils/isLitHtmlTemplate.js';
+import { HasLitHtmlImportRuleExtension } from '../utils/HasLitHtmlImportRuleExtension.js';
+import { hasAccessibleName } from '../utils/hasAccessibleName.js';
+import { getContextSourceCode } from '../utils/getContextSourceCode.js';
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -283,4 +283,4 @@ const ButtonHasContentRule = {
   },
 };
 
-module.exports = ruleExtender(ButtonHasContentRule, HasLitHtmlImportRuleExtension);
+export default ruleExtender(ButtonHasContentRule, HasLitHtmlImportRuleExtension);
