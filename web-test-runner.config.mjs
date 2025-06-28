@@ -13,9 +13,9 @@ export default {
   nodeResolve: true,
   concurrency: 10,
   browsers: [
-    playwrightLauncher({ launchOptions: { args: ['--no-sandbox'] }, product: 'firefox', concurrency: 1 }),
-    playwrightLauncher({ launchOptions: { args: ['--no-sandbox'] }, product: 'chromium' }),
-    playwrightLauncher({ launchOptions: { args: ['--no-sandbox'] }, product: 'webkit' }),
+    playwrightLauncher({ product: 'firefox', concurrency: 1 }),
+    playwrightLauncher({ product: 'chromium' }),
+    playwrightLauncher({ product: 'webkit' }),
   ],
   groups: packages.map(pkg => {
     return {
