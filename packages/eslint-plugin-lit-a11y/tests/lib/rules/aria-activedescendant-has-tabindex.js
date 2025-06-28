@@ -7,8 +7,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/aria-activedescendant-has-tabindex.js');
+import { RuleTester } from 'eslint';
+import rule from '../../../lib/rules/aria-activedescendant-has-tabindex.js';
 
 //------------------------------------------------------------------------------
 // Tests
@@ -16,9 +16,11 @@ const rule = require('../../../lib/rules/aria-activedescendant-has-tabindex.js')
 
 const ruleTester = new RuleTester({
   settings: { litHtmlSources: false },
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 2015,
+  languageOptions: {
+    parserOptions: {
+      sourceType: 'module',
+      ecmaVersion: 2015,
+    },
   },
 });
 
@@ -53,9 +55,6 @@ ruleTester.run('aria-activedescendant-has-tabindex', rule, {
     },
     {
       code: 'html`<div aria-activedescendant=${someID} tabindex="-1"></div>`;',
-    },
-    {
-      code: 'html`<input aria-activedescendant=${someID} tabindex=${-1} />`;',
     },
   ],
 

@@ -1,4 +1,3 @@
-/* eslint-disable max-classes-per-file */
 import { LoggingMixin } from './LoggingMixin.js';
 
 class Page extends LoggingMixin(HTMLElement) {

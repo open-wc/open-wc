@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import './globally-defined-button.js';
 
 export { FeatureA } from './FeatureA.js';

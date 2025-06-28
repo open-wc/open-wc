@@ -1,4 +1,4 @@
-const { isHiddenFromScreenReader } = require('./isHiddenFromScreenReader.js');
+import { isHiddenFromScreenReader } from './isHiddenFromScreenReader.js';
 
 /**
  * @param {import('parse5-htmlparser2-tree-adapter').Node} node
@@ -24,6 +24,4 @@ function hasAccessibleChildren(element) {
   return element.children.some(isAccessibleChild);
 }
 
-module.exports = {
-  hasAccessibleChildren,
-};
+export { hasAccessibleChildren };

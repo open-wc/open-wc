@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 /** @typedef {import('./types').SpaOptions} SpaOptions */
 /** @typedef {import('polyfills-loader').PolyfillsLoaderConfig} PolyfillsLoaderConfig */
 

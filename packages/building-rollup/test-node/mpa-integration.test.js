@@ -1,4 +1,3 @@
-/* eslint-disable global-require, import/no-dynamic-require */
 const puppeteer = require('puppeteer');
 const { expect } = require('chai');
 const path = require('path');
@@ -25,7 +24,7 @@ describe('integration tests', () => {
       logStartMessage: false,
       clearTerminalOnReload: false,
     });
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     rimraf.sync(rootDir);
   });
 

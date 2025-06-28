@@ -7,8 +7,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/no-redundant-role.js');
+import { RuleTester } from 'eslint';
+import rule from '../../../lib/rules/no-redundant-role.js';
 
 //------------------------------------------------------------------------------
 // Tests
@@ -16,9 +16,11 @@ const rule = require('../../../lib/rules/no-redundant-role.js');
 
 const ruleTester = new RuleTester({
   settings: { litHtmlSources: false },
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 2015,
+  languageOptions: {
+    parserOptions: {
+      sourceType: 'module',
+      ecmaVersion: 2015,
+    },
   },
 });
 

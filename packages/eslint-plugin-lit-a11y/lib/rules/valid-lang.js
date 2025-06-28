@@ -3,13 +3,13 @@
  * @author open-wc
  */
 
-const ruleExtender = require('eslint-rule-extender');
-const tags = require('language-tags');
-const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer');
-const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
-const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
-const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
+import ruleExtender from 'eslint-rule-extender';
+import tags from 'language-tags';
+import { TemplateAnalyzer } from 'eslint-plugin-lit/lib/template-analyzer.js';
+import { getLiteralAttributeValue } from '../utils/getLiteralAttributeValue.js';
+import { HasLitHtmlImportRuleExtension } from '../utils/HasLitHtmlImportRuleExtension.js';
+import { isHtmlTaggedTemplate } from '../utils/isLitHtmlTemplate.js';
+import { getContextSourceCode } from '../utils/getContextSourceCode.js';
 
 const ValidLangRule = {
   meta: {
@@ -79,4 +79,4 @@ const ValidLangRule = {
   },
 };
 
-module.exports = ruleExtender(ValidLangRule, HasLitHtmlImportRuleExtension);
+export default ruleExtender(ValidLangRule, HasLitHtmlImportRuleExtension);

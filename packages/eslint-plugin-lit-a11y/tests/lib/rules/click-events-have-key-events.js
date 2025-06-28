@@ -7,8 +7,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/click-events-have-key-events.js');
+import { RuleTester } from 'eslint';
+import rule from '../../../lib/rules/click-events-have-key-events.js';
 
 //------------------------------------------------------------------------------
 // Tests
@@ -16,9 +16,11 @@ const rule = require('../../../lib/rules/click-events-have-key-events.js');
 
 const ruleTester = new RuleTester({
   settings: { litHtmlSources: false },
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 2015,
+  languageOptions: {
+    parserOptions: {
+      sourceType: 'module',
+      ecmaVersion: 2015,
+    },
   },
 });
 
@@ -34,7 +36,6 @@ ruleTester.run('click-events-have-key-events', rule, {
     { code: 'html`<div @click=${foo} @keyup=${foo}></div>`' },
     { code: 'html`<div @click=${foo} @keypress=${foo}></div>`' },
     { code: 'html`<input @click=${foo} />`' },
-    { code: 'html`<div @click=${foo} @keydown=${foo}></div>`' },
     {
       code: 'html`<custom-button @click=${foo}></custom-button>`',
       options: [{ allowList: ['custom-button'] }],

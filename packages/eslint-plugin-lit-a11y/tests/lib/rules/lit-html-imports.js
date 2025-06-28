@@ -7,8 +7,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/alt-text.js');
+import { RuleTester } from 'eslint';
+import rule from '../../../lib/rules/alt-text.js';
 
 //------------------------------------------------------------------------------
 // Tests
@@ -17,9 +17,11 @@ const rule = require('../../../lib/rules/alt-text.js');
 const errors = [{ messageId: 'imgAttrs' }];
 
 const defaultLitHtmlSourcesRuleTester = new RuleTester({
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 2015,
+  languageOptions: {
+    parserOptions: {
+      sourceType: 'module',
+      ecmaVersion: 2015,
+    },
   },
 });
 
@@ -214,9 +216,11 @@ defaultLitHtmlSourcesRuleTester.run('lit-html-imports-default-config', rule, {
 
 const userLitHtmlSourcesRuleTester = new RuleTester({
   settings: { litHtmlSources: ['foo', '@bar/baz'] },
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 2015,
+  languageOptions: {
+    parserOptions: {
+      sourceType: 'module',
+      ecmaVersion: 2015,
+    },
   },
 });
 
@@ -499,9 +503,11 @@ userLitHtmlSourcesRuleTester.run('lit-html-imports-specific-packages-config', ru
 
 const litHtmlSourcesTrue = new RuleTester({
   settings: { litHtmlSources: true },
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 2015,
+  languageOptions: {
+    parserOptions: {
+      sourceType: 'module',
+      ecmaVersion: 2015,
+    },
   },
 });
 

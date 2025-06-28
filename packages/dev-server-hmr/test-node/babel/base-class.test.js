@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const { expect } = require('chai');
 const path = require('path');
 const { banner, transform, rootDir } = require('./utils.js');

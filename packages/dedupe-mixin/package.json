@@ -1,14 +1,21 @@
 {
   "name": "@open-wc/dedupe-mixin",
-  "version": "1.4.0",
+  "version": "2.0.1",
   "publishConfig": {
     "access": "public"
+  },
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./package.json": "./package.json"
   },
   "description": "Dedupe JavaScript Class Mixins",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/open-wc/open-wc.git",
+    "url": "git+https://github.com/open-wc/open-wc.git",
     "directory": "packages/dedupe-mixin"
   },
   "author": "open-wc",

@@ -4,12 +4,12 @@
  * @author open-wc
  */
 
-const ruleExtender = require('eslint-rule-extender');
-const { runVirtualRule } = require('axe-core');
-const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
-const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
-const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
+import ruleExtender from 'eslint-rule-extender';
+import axe from 'axe-core';
+import { TemplateAnalyzer } from 'eslint-plugin-lit/lib/template-analyzer.js';
+import { isHtmlTaggedTemplate } from '../utils/isLitHtmlTemplate.js';
+import { HasLitHtmlImportRuleExtension } from '../utils/HasLitHtmlImportRuleExtension.js';
+import { getContextSourceCode } from '../utils/getContextSourceCode.js';
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -57,7 +57,7 @@ const AutocompleteValidRule = {
                   return; // autocomplete is interpolated. assume it's legit and move on.
                 }
 
-                const { violations } = runVirtualRule('autocomplete-valid', {
+                const { violations } = axe.runVirtualRule('autocomplete-valid', {
                   nodeName: 'input',
                   attributes: {
                     autocomplete: element.attribs.autocomplete,
@@ -90,4 +90,4 @@ const AutocompleteValidRule = {
   },
 };
 
-module.exports = ruleExtender(AutocompleteValidRule, HasLitHtmlImportRuleExtension);
+export default ruleExtender(AutocompleteValidRule, HasLitHtmlImportRuleExtension);

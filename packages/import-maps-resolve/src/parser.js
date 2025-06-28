@@ -1,4 +1,3 @@
-/* eslint-disable no-console, no-continue */
 /** @typedef {import('./types').ImportMap} ImportMap */
 /** @typedef {import('./types').ScopesMap} ScopesMap */
 /** @typedef {import('./types').SpecifierMap} SpecifierMap */

@@ -16,6 +16,4 @@ function hasAccessibleName(element, checkTitle = true) {
   return hasAriaLabel || hasAriaLabelledBy || hasTitle;
 }
 
-module.exports = {
-  hasAccessibleName,
-};
+export { hasAccessibleName };

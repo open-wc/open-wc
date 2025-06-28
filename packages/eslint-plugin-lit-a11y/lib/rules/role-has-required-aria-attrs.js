@@ -3,13 +3,13 @@
  * @author open-wc
  */
 
-const ruleExtender = require('eslint-rule-extender');
-const { roles } = require('aria-query');
-const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
-const { isAriaRole } = require('../utils/aria.js');
-const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
-const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
+import ruleExtender from 'eslint-rule-extender';
+import { roles } from 'aria-query';
+import { TemplateAnalyzer } from 'eslint-plugin-lit/lib/template-analyzer.js';
+import { isAriaRole } from '../utils/aria.js';
+import { isHtmlTaggedTemplate } from '../utils/isLitHtmlTemplate.js';
+import { HasLitHtmlImportRuleExtension } from '../utils/HasLitHtmlImportRuleExtension.js';
+import { getContextSourceCode } from '../utils/getContextSourceCode.js';
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -88,4 +88,4 @@ const RoleHasRequiredAriaAttrsRule = {
   },
 };
 
-module.exports = ruleExtender(RoleHasRequiredAriaAttrsRule, HasLitHtmlImportRuleExtension);
+export default ruleExtender(RoleHasRequiredAriaAttrsRule, HasLitHtmlImportRuleExtension);
