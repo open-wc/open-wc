@@ -1,5 +1,5 @@
-const { isCustomElement } = require('./isCustomElement.js');
-const { isInteractiveElement } = require('./isInteractiveElement.js');
+import { isCustomElement } from './isCustomElement.js';
+import { isInteractiveElement } from './isInteractiveElement.js';
 
 /**
  * @param {import("parse5-htmlparser2-tree-adapter").Element} element
@@ -16,6 +16,4 @@ function isNonInteractiveElement(element, options) {
   return !allowCustomElements && !allowList.includes(element.name);
 }
 
-module.exports = {
-  isNonInteractiveElement,
-};
+export { isNonInteractiveElement };

@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import-x/no-extraneous-dependencies */
 const cache = require('@11ty/eleventy-cache-assets');
 
 const baseLibraries = [

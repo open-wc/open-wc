@@ -3,13 +3,13 @@
  * @author open-wc
  */
 
-const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
-const { generateObjSchema, enumArraySchema } = require('../utils/schemas.js');
-const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
-const { getLiteralAttributeValue } = require('../utils/getLiteralAttributeValue.js');
-const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
+import ruleExtender from 'eslint-rule-extender';
+import { TemplateAnalyzer } from 'eslint-plugin-lit/lib/template-analyzer.js';
+import { generateObjSchema, enumArraySchema } from '../utils/schemas.js';
+import { isHtmlTaggedTemplate } from '../utils/isLitHtmlTemplate.js';
+import { HasLitHtmlImportRuleExtension } from '../utils/HasLitHtmlImportRuleExtension.js';
+import { getLiteralAttributeValue } from '../utils/getLiteralAttributeValue.js';
+import { getContextSourceCode } from '../utils/getContextSourceCode.js';
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -162,4 +162,4 @@ const AnchorIsValidRule = {
   },
 };
 
-module.exports = ruleExtender(AnchorIsValidRule, HasLitHtmlImportRuleExtension);
+export default ruleExtender(AnchorIsValidRule, HasLitHtmlImportRuleExtension);

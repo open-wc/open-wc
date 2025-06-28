@@ -3,13 +3,13 @@
  * @author open-wc
  */
 
-const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
-const { getImplicitRole } = require('../utils/getImplicitRole.js');
-const { getExplicitRole } = require('../utils/getExplicitRole.js');
-const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
-const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
+import ruleExtender from 'eslint-rule-extender';
+import { TemplateAnalyzer } from 'eslint-plugin-lit/lib/template-analyzer.js';
+import { getImplicitRole } from '../utils/getImplicitRole.js';
+import { getExplicitRole } from '../utils/getExplicitRole.js';
+import { isHtmlTaggedTemplate } from '../utils/isLitHtmlTemplate.js';
+import { HasLitHtmlImportRuleExtension } from '../utils/HasLitHtmlImportRuleExtension.js';
+import { getContextSourceCode } from '../utils/getContextSourceCode.js';
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -81,4 +81,4 @@ const NoRedundantRoleRule = {
   },
 };
 
-module.exports = ruleExtender(NoRedundantRoleRule, HasLitHtmlImportRuleExtension);
+export default ruleExtender(NoRedundantRoleRule, HasLitHtmlImportRuleExtension);

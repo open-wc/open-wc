@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies, no-await-in-loop, no-restricted-syntax */
+/* eslint-disable import-x/no-extraneous-dependencies */
 const fs = require('fs-extra');
 const path = require('path');
 const { marked } = require('marked');

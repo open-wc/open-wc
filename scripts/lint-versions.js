@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const { readdirSync, existsSync, readFileSync } = require('fs');
 
 const getDirectories = source =>

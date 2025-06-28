@@ -1,5 +1,4 @@
 // @ts-nocheck
-/* eslint-disable no-param-reassign, no-console */
 
 // override global define to allow double registrations
 const originalDefine = window.customElements.define;

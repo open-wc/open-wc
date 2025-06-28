@@ -63,12 +63,7 @@ html` <a class="thing" @mouseenter=${() => (this.showSomething = true)}> ${label
 If you need to create an interface element that the user can click on, consider using a button:
 
 ```js
-html`
-  <button class="thing"
-      @click={() => this.showSomething = true}>
-    ${label}
-  </button>
-`;
+html` <button class="thing" @click="{()" ="">this.showSomething = true}> ${label}</button> `;
 ```
 
 If you want to navigate while providing the user with extra functionality, for example in the `@mouseenter` event, use an anchor with an `href` attribute containing a URL or path as its value.

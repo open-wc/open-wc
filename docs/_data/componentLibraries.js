@@ -109,8 +109,7 @@ const componentLibraries = [
   {
     name: 'LDRS',
     url: 'https://uiball.com/ldrs/',
-    description:
-      'A meticulously designed set of lightweight, configurable loaders and spinners.',
+    description: 'A meticulously designed set of lightweight, configurable loaders and spinners.',
   },
   {
     name: 'Lightning Web Components by SalesForce',

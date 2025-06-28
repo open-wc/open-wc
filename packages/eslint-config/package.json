@@ -1,6 +1,6 @@
 {
   "name": "@open-wc/eslint-config",
-  "version": "12.0.3",
+  "version": "13.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -14,6 +14,7 @@
   "author": "open-wc",
   "homepage": "https://github.com/open-wc/open-wc/tree/master/packages/eslint-config",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../"
   },
@@ -23,24 +24,20 @@
     "config"
   ],
   "peerDependencies": {
-    "eslint": ">=7.6.0",
-    "eslint-plugin-html": "^7.1.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-lit": "^1.10.1",
-    "eslint-plugin-lit-a11y": "^4.1.1",
+    "eslint": "^9.0.0",
+    "eslint-plugin-html": "^8.0.0",
+    "eslint-plugin-lit": "^2.0.0",
+    "eslint-plugin-lit-a11y": "^5.0.0",
     "eslint-plugin-no-only-tests": "^3.1.0",
-    "eslint-plugin-wc": "^1.2.0"
+    "eslint-plugin-wc": "^3.0.0"
   },
   "dependencies": {
-    "@babel/eslint-parser": "^7.19.1",
-    "@babel/plugin-syntax-import-assertions": "^7.20.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-html": "^7.1.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-import-exports-imports-resolver": "^1.0.1",
-    "eslint-plugin-lit": "^1.10.1",
-    "eslint-plugin-lit-a11y": "^4.1.1",
+    "eslint-plugin-html": "^8.0.0",
+    "eslint-plugin-import-x": "^4.15.0",
+    "eslint-plugin-lit": "^2.0.0",
+    "eslint-plugin-lit-a11y": "^5.0.0",
     "eslint-plugin-no-only-tests": "^3.1.0",
-    "eslint-plugin-wc": "^1.2.0"
+    "eslint-plugin-wc": "^3.0.0",
+    "globals": "^16.2.0"
   }
 }

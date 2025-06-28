@@ -1,4 +1,3 @@
-/* eslint-disable-next-line */
 import { expect, use } from '@esm-bundle/chai';
 import { chaiA11yAxe } from '../index.js';
 

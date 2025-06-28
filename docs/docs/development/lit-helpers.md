@@ -5,7 +5,7 @@ A library with helpers functions for working with [lit](https://lit.dev/).
 ## Installation
 
 ```bash
-npm i --save @open-wc/lit-helpers@next
+npm i --save @open-wc/lit-helpers
 ```
 
 ## Privately Settable Read-Only Properties
@@ -121,7 +121,7 @@ const elementTemplate = obj => html`
 `;
 ```
 
-This collection of directives allows you to bind object containing values of various types (`spread`), event types (`spreadEvent`), or property types (`spreadProps`) to elements in your template literals. There are many [conciderations](#considerations) to take into account when leveraging these helpers, but if you keep them in mind there is much benefit to be found in them.
+This collection of directives allows you to bind object containing values of various types (`spread`), event types (`spreadEvent`), or property types (`spreadProps`) to elements in your template literals. There are many [considerations](#considerations) to take into account when leveraging these helpers, but if you keep them in mind there is much benefit to be found in them.
 
 ### spread
 

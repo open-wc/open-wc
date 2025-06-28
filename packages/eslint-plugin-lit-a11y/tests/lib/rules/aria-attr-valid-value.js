@@ -7,9 +7,9 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const { RuleTester } = require('eslint');
-const { aria } = require('aria-query');
-const rule = require('../../../lib/rules/aria-attr-valid-value.js');
+import { RuleTester } from 'eslint';
+import { aria } from 'aria-query';
+import rule from '../../../lib/rules/aria-attr-valid-value.js';
 
 //------------------------------------------------------------------------------
 // Tests
@@ -45,9 +45,11 @@ tokens from the following: ${permittedValues}.`;
 
 const ruleTester = new RuleTester({
   settings: { litHtmlSources: false },
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 2015,
+  languageOptions: {
+    parserOptions: {
+      sourceType: 'module',
+      ecmaVersion: 2015,
+    },
   },
 });
 

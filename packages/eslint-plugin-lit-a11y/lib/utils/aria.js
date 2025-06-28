@@ -1,4 +1,4 @@
-const { aria, roles } = require('aria-query');
+import { aria, roles } from 'aria-query';
 
 /**
  * @param {string} string
@@ -63,7 +63,7 @@ function getElementAriaAttributes(element) {
     .filter(isAriaPropertyName);
 }
 
-module.exports = {
+export {
   isAriaRole,
   isAriaPropertyName,
   isInvalidAriaAttribute,
