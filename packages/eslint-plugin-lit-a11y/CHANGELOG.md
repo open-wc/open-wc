@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0
+
+### Minor Changes
+
+- f9f1cb4c: Add support for href property
+
 ## 5.0.1
 
 ### Patch Changes
