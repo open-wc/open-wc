@@ -14,7 +14,7 @@ export default {
   watch: true,
   concurrency: 10,
   browsers: [
-    playwrightLauncher({ product: 'chromium' }),
+    playwrightLauncher({launchOptions: {args: ['--no-sandbox']}, product: 'chromium' }),
   ],
   groups: packages.map(pkg => {
     return {
