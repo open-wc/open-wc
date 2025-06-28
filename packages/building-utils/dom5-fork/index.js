@@ -1,4 +1,3 @@
-/* eslint-disable */
 // @ts-nocheck
 
 'use strict';
@@ -597,9 +596,12 @@ module.exports.removeNodeSaveChildren = removeNodeSaveChildren;
 function removeFakeRootElements(ast) {
   var injectedNodes = queryAll(
     ast,
-    AND(function (node) {
-      return !node.__location;
-    }, hasMatchingTagName(/^(html|head|body)$/i)),
+    AND(
+      function (node) {
+        return !node.__location;
+      },
+      hasMatchingTagName(/^(html|head|body)$/i),
+    ),
     undefined,
     // Don't descend past 3 levels 'document > html > head|body'
     function (node) {

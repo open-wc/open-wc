@@ -1,5 +1,16 @@
 # Change Log
 
+## 13.0.0
+
+### Major Changes
+
+- 322daeb8: Update to flat config and esm-ify
+
+### Patch Changes
+
+- Updated dependencies [322daeb8]
+  - eslint-plugin-lit-a11y@5.0.0
+
 ## 12.0.3
 
 ### Patch Changes
@@ -278,13 +289,13 @@ Additionally, this change also removes the usage of `babel-eslint`. For most pro
 
 ```js
 // before
-import '../my-el';
-import '@open-wc/testing/index-no-side-effects';
-import '@open-wc/testing';
+import "../my-el";
+import "@open-wc/testing/index-no-side-effects";
+import "@open-wc/testing";
 // after
-import '../my-el.js';
-import '@open-wc/testing/index-no-side-effects.js';
-import '@open-wc/testing';
+import "../my-el.js";
+import "@open-wc/testing/index-no-side-effects.js";
+import "@open-wc/testing";
 ```
 
 ## [0.4.5](https://github.com/open-wc/open-wc/compare/@open-wc/eslint-config@0.4.4...@open-wc/eslint-config@0.4.5) (2019-04-28)

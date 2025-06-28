@@ -63,12 +63,7 @@ html` <a class="thing" @mouseenter=${() => (this.showSomething = true)}> ${label
 If you need to create an interface element that the user can click on, consider using a button:
 
 ```js
-html`
-  <button class="thing"
-      @click={() => this.showSomething = true}>
-    ${label}
-  </button>
-`;
+html` <button class="thing" @click="{()" ="">this.showSomething = true}> ${label}</button> `;
 ```
 
 If you want to navigate while providing the user with extra functionality, for example in the `@mouseenter` event, use an anchor with an `href` attribute containing a URL or path as its value.
@@ -174,6 +169,14 @@ If omitted, all sub-rule aspects will be run by default. This is the recommended
 
 The option must contain at least one `aspect`.
 
+### Using href property
+
+The href property can be used similarly to the href attribute.
+
+```js
+html` <a .href=${'/'}>Home</a> `;
+```
+
 Examples of **incorrect** code for this rule:
 
 Anchors should be a button:
@@ -222,6 +225,7 @@ html`
   <a href="foo" @click=${foo}></a>
   <a href="/foo/bar" @click=${foo}></a>
   <a href=${someValidPath} @click=${foo}></a>
+  <a .href=${someValidPath}></a>
 `;
 ```
 

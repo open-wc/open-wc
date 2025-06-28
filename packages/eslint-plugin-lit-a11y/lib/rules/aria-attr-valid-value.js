@@ -2,13 +2,13 @@
  * @fileoverview aria-attr-valid-value
  * @author open-wc
  */
-const ruleExtender = require('eslint-rule-extender');
-const { aria } = require('aria-query');
-const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
-const { getElementAriaAttributes } = require('../utils/aria.js');
-const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
-const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
+import ruleExtender from 'eslint-rule-extender';
+import { aria } from 'aria-query';
+import { TemplateAnalyzer } from 'eslint-plugin-lit/lib/template-analyzer.js';
+import { getElementAriaAttributes } from '../utils/aria.js';
+import { isHtmlTaggedTemplate } from '../utils/isLitHtmlTemplate.js';
+import { HasLitHtmlImportRuleExtension } from '../utils/HasLitHtmlImportRuleExtension.js';
+import { getContextSourceCode } from '../utils/getContextSourceCode.js';
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -163,4 +163,4 @@ const AriaAttrTypesRule = {
   },
 };
 
-module.exports = ruleExtender(AriaAttrTypesRule, HasLitHtmlImportRuleExtension);
+export default ruleExtender(AriaAttrTypesRule, HasLitHtmlImportRuleExtension);

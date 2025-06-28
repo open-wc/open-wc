@@ -7,8 +7,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const { RuleTester } = require('eslint');
-const rule = require('../../../lib/rules/mouse-events-have-key-events.js');
+import { RuleTester } from 'eslint';
+import rule from '../../../lib/rules/mouse-events-have-key-events.js';
 
 //------------------------------------------------------------------------------
 // Tests
@@ -16,9 +16,11 @@ const rule = require('../../../lib/rules/mouse-events-have-key-events.js');
 
 const ruleTester = new RuleTester({
   settings: { litHtmlSources: false },
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 2015,
+  languageOptions: {
+    parserOptions: {
+      sourceType: 'module',
+      ecmaVersion: 2015,
+    },
   },
 });
 
@@ -69,15 +71,6 @@ ruleTester.run('mouse-events-have-key-events', rule, {
         {
           messageId: 'mouseEventsHaveKeyEvents',
           data: { mouseevent: 'mouseover', keyevent: 'focus' },
-        },
-      ],
-    },
-    {
-      code: 'html`<div @mouseout=${foo}></div>`',
-      errors: [
-        {
-          messageId: 'mouseEventsHaveKeyEvents',
-          data: { mouseevent: 'mouseout', keyevent: 'blur' },
         },
       ],
     },

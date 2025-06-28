@@ -1,6 +1,6 @@
 /**
  * Retrieves the literal value of an attribute
- * @param {import('eslint-plugin-lit/lib/template-analyzer').TemplateAnalyzer} analyzer
+ * @param {import('eslint-plugin-lit/lib/template-analyzer.js').TemplateAnalyzer} analyzer
  * @param {import('estree').Element} element
  * @param {string} attr
  * @param {import('eslint').SourceCode} source
@@ -23,6 +23,4 @@ function getLiteralAttributeValue(analyzer, element, attr, source) {
   return expr;
 }
 
-module.exports = {
-  getLiteralAttributeValue,
-};
+export { getLiteralAttributeValue };

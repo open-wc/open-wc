@@ -1,6 +1,6 @@
 export const LoggingMixin = superclass =>
   // we add the class name so it can show up when debugging (instead of an anonymous class)
-  // eslint-disable-next-line no-shadow
+
   class LoggingMixin extends superclass {
     connectedCallback() {
       if (super.connectedCallback) {

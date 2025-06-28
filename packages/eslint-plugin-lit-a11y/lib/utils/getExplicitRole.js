@@ -1,4 +1,4 @@
-const { roles } = require('aria-query');
+import { roles } from 'aria-query';
 
 /**
  * Returns an element's computed role, which is
@@ -18,6 +18,4 @@ function getExplicitRole(attributes) {
   return null;
 }
 
-module.exports = {
-  getExplicitRole,
-};
+export { getExplicitRole };

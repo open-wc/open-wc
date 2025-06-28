@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- 86e07e88: Retry release
+
+## 2.0.0
+
+### Major Changes
+
+- b4b836dc: Added package exports
+
 ## 1.4.0
 
 ### Minor Changes

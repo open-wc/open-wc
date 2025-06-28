@@ -43,18 +43,17 @@ class TodoList extends LitElement {
     return html`
       <ul>
         ${this.items.map(
-          (item, i) =>
-            html`
-              <li>
-                <todo-item
-                  .message=${item.message}
-                  .checked=${item.checked}
-                  data-i=${i}
-                  @checked-changed=${this._onCheckedChanged}
-                  @delete=${this._onDelete}
-                ></todo-item>
-              </li>
-            `,
+          (item, i) => html`
+            <li>
+              <todo-item
+                .message=${item.message}
+                .checked=${item.checked}
+                data-i=${i}
+                @checked-changed=${this._onCheckedChanged}
+                @delete=${this._onDelete}
+              ></todo-item>
+            </li>
+          `,
         )}
       </ul>
 

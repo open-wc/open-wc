@@ -1,7 +1,7 @@
-const { dom, elementRoles, roles } = require('aria-query');
-const { AXObjects, elementAXObjects } = require('@thepassle/axobject-query');
+import { dom, elementRoles, roles } from 'aria-query';
+import { AXObjects, elementAXObjects } from '@thepassle/axobject-query';
 
-const { attributesComparator } = require('./attributesComparator.js');
+import { attributesComparator } from './attributesComparator.js';
 
 const domKeys = [...dom.keys()];
 const roleKeys = [...roles.keys()];
@@ -122,6 +122,4 @@ const isInteractiveElement = element => {
   return checkIsInteractiveElement(element.name, element.attribs);
 };
 
-module.exports = {
-  isInteractiveElement,
-};
+export { isInteractiveElement };

@@ -3,12 +3,12 @@
  * @author open-wc
  */
 
-const ruleExtender = require('eslint-rule-extender');
-const { TemplateAnalyzer } = require('eslint-plugin-lit/lib/template-analyzer.js');
-const { isHiddenFromScreenReader } = require('../utils/isHiddenFromScreenReader.js');
-const { isHtmlTaggedTemplate } = require('../utils/isLitHtmlTemplate.js');
-const { HasLitHtmlImportRuleExtension } = require('../utils/HasLitHtmlImportRuleExtension.js');
-const { getContextSourceCode } = require('../utils/getContextSourceCode.js');
+import ruleExtender from 'eslint-rule-extender';
+import { TemplateAnalyzer } from 'eslint-plugin-lit/lib/template-analyzer.js';
+import { isHiddenFromScreenReader } from '../utils/isHiddenFromScreenReader.js';
+import { isHtmlTaggedTemplate } from '../utils/isLitHtmlTemplate.js';
+import { HasLitHtmlImportRuleExtension } from '../utils/HasLitHtmlImportRuleExtension.js';
+import { getContextSourceCode } from '../utils/getContextSourceCode.js';
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -88,4 +88,4 @@ const HeadingHiddenRule = {
   },
 };
 
-module.exports = ruleExtender(HeadingHiddenRule, HasLitHtmlImportRuleExtension);
+export default ruleExtender(HeadingHiddenRule, HasLitHtmlImportRuleExtension);

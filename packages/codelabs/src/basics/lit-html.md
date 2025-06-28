@@ -681,14 +681,12 @@ Let's add a delete button to the template of a todo item:
 
 ```html
 <ol>
-  ${this.todos.map(
-    todo => html`
-      <li>
-        ${todo.text} (${todo.finished ? 'Finished' : 'Unfinished'})
-        <button @click=${() => this._removeTodo(todo)}>X</button>
-      </li>
-    `,
-  )}
+  ${this.todos.map( todo => html`
+  <li>
+    ${todo.text} (${todo.finished ? 'Finished' : 'Unfinished'})
+    <button @click="${()" ="">this._removeTodo(todo)}>X</button>
+  </li>
+  `, )}
 </ol>
 ```
 
@@ -777,15 +775,11 @@ A todo list is useless if we can't keep track of which todos we've finished, and
 First, let's replace our finished/unfinished text with a checkbox:
 
 ```html
-  <li>
-    <input
-      type="checkbox"
-      .checked=${todo.finished}
-      @change=${e => this._changeTodoFinished(e, todo)}
-    />
-    ${todo.text}
-    <button @click=${() => this._removeTodo(todo)}>X</button>
-  </li>
+<li>
+  <input type="checkbox" .checked="${todo.finished}" @change="${e" ="" />
+  this._changeTodoFinished(e, todo)} /> ${todo.text}
+  <button @click="${()" ="">this._removeTodo(todo)}>X</button>
+</li>
 ```
 
 Notice that we prefixed the `checked` attribute on the checkbox with a `.`. This is special Lit syntax to specifiy we want to set the property named `checked` instead of the attribute named `checked`.

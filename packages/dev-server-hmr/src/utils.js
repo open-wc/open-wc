@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 const picoMatch = require('picomatch');
 const { isAbsolute, posix, sep } = require('path');
 
