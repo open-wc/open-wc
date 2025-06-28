@@ -69,14 +69,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Check browser args
-        run: |
-          echo "PUPPETEER_ARGS=$PUPPETEER_ARGS"
-          echo "PW_CHROMIUM_ARGS=$PW_CHROMIUM_ARGS"
-
-      - name: Install Chromium via snap
-        run: |
-          sudo snap install chromium
-
       - name: Test
         run: npm run test:node
