@@ -39,43 +39,43 @@ const ButtonHasContentRule = {
     fixable: null,
     schema: [
       {
-        customButtonElements: {
-          type: 'array',
-          description: 'list of custom elements tag names which should be considered buttons',
-          default: [],
-          uniqueItems: true,
-          additionalItems: false,
-          items: {
-            type: 'string',
-            pattern: '^[a-z]\\w+-\\w+',
+        type: 'object',
+        properties: {
+          customButtonElements: {
+            type: 'array',
+            description: 'list of custom elements tag names which should be considered buttons',
+            default: [],
+            uniqueItems: true,
+            additionalItems: false,
+            items: {
+              type: 'string',
+              pattern: '^[a-z]\\w+-\\w+',
+            },
+          },
+          customLinkElements: {
+            type: 'array',
+            description: 'list of custom elements tag names which should be considered links',
+            default: [],
+            uniqueItems: true,
+            additionalItems: false,
+            items: {
+              type: 'string',
+              pattern: '^[a-z]\\w+-\\w+',
+            },
+          },
+          customHeadingElements: {
+            type: 'array',
+            description: 'list of custom elements tag names which should be considered headings',
+            default: [],
+            uniqueItems: true,
+            additionalItems: false,
+            items: {
+              type: 'string',
+              pattern: '^[a-z]\\w+-\\w+',
+            },
           },
         },
-      },
-      {
-        customLinkElements: {
-          type: 'array',
-          description: 'list of custom elements tag names which should be considered links',
-          default: [],
-          uniqueItems: true,
-          additionalItems: false,
-          items: {
-            type: 'string',
-            pattern: '^[a-z]\\w+-\\w+',
-          },
-        },
-      },
-      {
-        customHeadingElements: {
-          type: 'array',
-          description: 'list of custom elements tag names which should be considered headings',
-          default: [],
-          uniqueItems: true,
-          additionalItems: false,
-          items: {
-            type: 'string',
-            pattern: '^[a-z]\\w+-\\w+',
-          },
-        },
+        additionalProperties: false,
       },
     ],
   },
