@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.1
+
+### Patch Changes
+
+- 09d34793: Prevent crash on templates which contain comments
+
 ## 5.1.0
 
 ### Minor Changes
