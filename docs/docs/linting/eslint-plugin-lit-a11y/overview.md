@@ -22,6 +22,28 @@ $ npm install eslint-plugin-lit-a11y@next --save-dev
 
 ## Usage
 
+To support ESLint >= 9.x, we use "flat configuration" and ESM.
+
+In your `.eslint.config.js` file, add these lines:
+
+```js
+// you may have more imports
+import { configs as litA11yConfigs } from "eslint-plugin-lit-a11y";
+
+export default [
+  { files: ["**/*.{js,cjs,ts}"] }, // your files line might be different, just sharing for context
+  // you may have more configuraiton here
+    ...litA11yConfigs.recommended,
+]
+```
+
+
+## Flat Config Usage (old)
+
+In ESLint <= 8.x, the way to import was different, [see their upgrade guide for details](https://eslint.org/docs/latest/use/migrate-to-9.0.0).
+
+If you are using an older version of ESLint, you may need to follow this section to get set up.
+
 Add `lit-a11y` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
 ```json
