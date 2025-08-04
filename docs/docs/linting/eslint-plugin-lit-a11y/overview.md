@@ -9,13 +9,13 @@ Most of the rules are ported from [eslint-plugin-jsx-a11y](https://github.com/js
 You'll first need to install [ESLint](http://eslint.org):
 
 ```
-$ npm i eslint --save-dev
+$ npm install eslint --save-dev
 ```
 
 Next, install `eslint-plugin-lit-a11y`:
 
 ```
-$ npm install eslint-plugin-lit-a11y@next --save-dev
+$ npm install eslint-plugin-lit-a11y --save-dev
 ```
 
 **Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-lit-a11y` globally.
