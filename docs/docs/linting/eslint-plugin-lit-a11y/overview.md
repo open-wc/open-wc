@@ -62,7 +62,7 @@ Then configure the rules you want to use under the rules section.
 }
 ```
 
-## Configuration
+## Flat Config Configuration (old)
 
 You may also extend the recommended configuration like so:
 
