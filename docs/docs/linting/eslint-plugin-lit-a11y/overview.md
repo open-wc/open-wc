@@ -33,7 +33,7 @@ import { configs as litA11yConfigs } from "eslint-plugin-lit-a11y";
 export default [
   { files: ["**/*.{js,cjs,ts}"] }, // your files line might be different, just sharing for context
   // you may have more configuraiton here
-    ...litA11yConfigs.recommended,
+    litA11yConfigs.recommended,
 ]
 ```
 
