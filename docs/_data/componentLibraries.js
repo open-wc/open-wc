@@ -43,7 +43,7 @@ const componentLibraries = [
   },
   {
     name: 'Dile',
-    url: 'https://dile-components.polydile.com/',
+    url: 'https://dile-components.com/',
     description: 'Custom elements made for all kind of projects and frameworks.',
   },
   {
