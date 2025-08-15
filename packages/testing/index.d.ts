@@ -17,9 +17,5 @@ export { fixtureCleanup } from '@open-wc/testing-helpers';
 export { elementUpdated } from '@open-wc/testing-helpers';
 export { waitUntil } from '@open-wc/testing-helpers';
 
-import Chai from 'chai';
-
-export declare const chai: typeof Chai;
-export declare const expect: typeof Chai.expect;
-export declare const assert: typeof Chai.assert;
-export declare const should: typeof Chai.should;
+export * as chai from 'chai';
+export { expect, assert, should } from 'chai';
