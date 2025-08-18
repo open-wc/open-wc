@@ -9,8 +9,8 @@ declare global {
       lightDom: Assertion;
       shadowDom: Assertion;
       notEqual(actual: Object, expected: Object, message?: string): void;
-      equalSnapshot(options?: Object): Assertion;
-      notEqualSnapshot(options?: Object): Assertion;
+      equalSnapshot(options?: Object): Promise<Assertion>;
+      notEqualSnapshot(options?: Object): Promise<Assertion>;
     }
 
     interface Assert {
