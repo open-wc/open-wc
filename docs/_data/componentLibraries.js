@@ -1,5 +1,11 @@
 const componentLibraries = [
   {
+    name: 'AgnosticUI',
+    url: 'https://www.agnosticui.com/',
+    description:
+      "An open-source CLI-based UI component library that copies Lit web components directly into your project. Full React and Vue wrappers for native framework experience. Otherwise, Svelte, Astro, Angular, Solid, Preact, and more supported via direct web component import.",
+  },        
+  {
     name: 'Auro',
     url: 'https://auro.alaskaair.com',
     description:
