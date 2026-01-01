@@ -114,7 +114,7 @@ ruleTester.run('accessible-name', rule, {
       code: 'html`<custom-heading level="1">${this.foo()}</custom-heading>`',
       options: [
         {
-          customHeadingElements: 'custom-heading',
+          customHeadingElements: ['custom-heading'],
         },
       ],
     },
