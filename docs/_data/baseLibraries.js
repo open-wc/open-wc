@@ -138,8 +138,8 @@ const baseLibraries = [
   {
     name: 'Symbiote.js',
     package: '@symbiotejs/symbiote',
-    description: 'Library to create embedded components and data channels between them.',
-    url: 'https://symbiotejs.org/',
+    description: 'Web Components on steroids. Simple, light, close to vanilla and powerful as hell. Ready for SSR!',
+    url: 'https://rnd-pro.com/symbiote/',
   },
   {
     name: 'FicusJS',
