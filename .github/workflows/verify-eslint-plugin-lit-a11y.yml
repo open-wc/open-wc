@@ -1,0 +1,29 @@
+name: Verify ESLint Plugin Lit Accessibility
+
+on: pull_request
+
+jobs:
+  verify:
+    name: Verify changes
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        eslint-version: ["8", "9.0.0-alpha.1"]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install ESLint
+        run: npm install eslint@${{ matrix.eslint-version }} --force
+
+      - name: Run tests
+        run: npm run test --workspace eslint-plugin-lit-a11y
