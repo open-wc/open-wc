@@ -68,6 +68,12 @@ const baseLibraries = [
     description: 'Stencil is a toolchain for building reusable, scalable Design Systems.',
     url: 'https://stenciljs.com/',
   },
+    {
+    name: 'Svelte',
+    package: 'svelte',
+    description: 'Svelte is not only framework, but a compiler that brings you benefits of reactivity with minimal footrint and suports custom element as a build target.',
+    url: 'https://svelte.dev/docs/custom-elements-api',
+  },
   {
     name: 'CanJS',
     package: 'can',
