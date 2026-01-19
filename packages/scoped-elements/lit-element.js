@@ -1,9 +1,10 @@
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { adoptStyles } from 'lit';
 import { ScopedElementsMixin as BaseScopedElementsMixin } from './html-element.js';
+// eslint-disable-next-line no-unused-vars, import/no-unresolved
+import { ScopedElementsHost } from './types.js';
 
 /**
- * @typedef {import('./types.js').ScopedElementsHost} ScopedElementsHost
  * @typedef {import('./types.js').ScopedElementsMap} ScopedElementsMap
  * @typedef {import('lit').CSSResultOrNative} CSSResultOrNative
  * @typedef {import('lit').LitElement} LitElement
@@ -15,11 +16,10 @@ import { ScopedElementsMixin as BaseScopedElementsMixin } from './html-element.j
 /**
  * @template {LitElementConstructor} T
  * @param {T} superclass
- * @return {T & ScopedElementsHostConstructor}
+ * @return {T & ScopedElementsHostConstructor & typeof ScopedElementsHost}
  */
 const ScopedElementsMixinImplementation = superclass =>
-  /** @type {ScopedElementsHost} */
-  class ScopedElementsHost extends BaseScopedElementsMixin(superclass) {
+  class ScopedElementsHostImplementation extends BaseScopedElementsMixin(superclass) {
     createRenderRoot() {
       const { shadowRootOptions, elementStyles } = /** @type {TypeofLitElement} */ (
         this.constructor

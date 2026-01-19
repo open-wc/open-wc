@@ -70,7 +70,7 @@ const getWrapperUniqueName = (counter = 0) => {
  *
  * @param {import('./renderable.js').LitHTMLRenderable} template
  * @param {ScopedElementsMap} scopedElements
- * @return {HTMLElement}
+ * @return {ScopedElementsTestWrapper}
  */
 export function getScopedElementsTemplate(template, scopedElements) {
   const wrapperTagName = getWrapperUniqueName();
