@@ -206,6 +206,12 @@ const componentLibraries = [
       "Vonage's web UI 🎨 toolbelt. A library that favors lock-down and coherence over white labeling strategy, utilizing high-level design tokens to customize UI systematically rather than permuting components directly (to a balanced degree).",
   },
   {
+    name: 'WebCell',
+    url: 'https://web-cell.dev/',
+    description:
+      'Web Components engine based on VDOM, JSX, MobX & TypeScript. It has a whole ecosystem with State management, Router, UI components, HTTP request, Utility, Event stream & MarkDown integration. Async components & SSR are also in experimental.'
+  },
+  {
     name: 'Weightless',
     url: 'https://weightless.dev/',
     description:
