@@ -160,7 +160,7 @@ const baseLibraries = [
   package: '@lessjs/core',
   description:
     'A Web Standards-first DSD application framework — Declarative Shadow DOM rendering, Island Architecture, and Vite-free ESG pipeline for Web Components.',
-  url: 'https://lessjs.run/',
+  url: 'https://lessjs.com',
 },
 ];
 
