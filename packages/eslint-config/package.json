@@ -24,18 +24,18 @@
     "config"
   ],
   "peerDependencies": {
-    "eslint": "^9.0.0",
+    "eslint": "^9.0.0 || ^10.0.0",
     "eslint-plugin-html": "^8.0.0",
-    "eslint-plugin-lit": "^2.0.0",
-    "eslint-plugin-lit-a11y": "^5.1.0",
+    "eslint-plugin-lit": "^2.3.1",
+    "eslint-plugin-lit-a11y": "^5.1.1",
     "eslint-plugin-no-only-tests": "^3.1.0",
     "eslint-plugin-wc": "^3.0.0"
   },
   "dependencies": {
     "eslint-plugin-html": "^8.0.0",
-    "eslint-plugin-import-x": "^4.15.0",
-    "eslint-plugin-lit": "^2.0.0",
-    "eslint-plugin-lit-a11y": "^5.1.0",
+    "eslint-plugin-import-x": "^4.16.2",
+    "eslint-plugin-lit": "^2.3.1",
+    "eslint-plugin-lit-a11y": "^5.1.1",
     "eslint-plugin-no-only-tests": "^3.1.0",
     "eslint-plugin-wc": "^3.0.0",
     "globals": "^16.2.0"
