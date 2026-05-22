@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.7
+
+### Patch Changes
+
+- 78901955: Fix/scoped elements types
+
 ## 3.0.6
 
 ### Patch Changes
