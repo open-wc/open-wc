@@ -16,22 +16,22 @@
   "type": "module",
   "exports": {
     "./html-element.js": {
-      "types": "./html-element.d.ts",
+      "types": "./dist-types/html-element.d.ts",
       "default": "./html-element.js"
     },
     "./lit-element.js": {
-      "types": "./lit-element.d.ts",
+      "types": "./dist-types/lit-element.d.ts",
       "default": "./lit-element.js"
     },
     "./package.json": "./package.json"
   },
   "scripts": {
     "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
-    "test": "cd ../../ && npm run test:web -- --group scoped-elements"
+    "test": "npm run test:types && cd ../../ && npm run test:web -- --group scoped-elements",
+    "test:types": "tsc --project test-types/tsconfig.json"
   },
   "files": [
-    "*.d.ts",
-    "*.d.ts.map",
+    "dist-types/",
     "html-element.js",
     "lit-element.js",
     "MIGRATION.md",

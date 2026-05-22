@@ -1,0 +1,16 @@
+{
+  "extends": "../../../tsconfig.browser-base.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "allowJs": true,
+    "strict": true,
+    "checkJs": true,
+    "noEmit": true,
+    "target": "esnext",
+    "lib": ["DOM", "ESNext"],
+    "moduleResolution": "node16",
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": ["*.js"]
+}
