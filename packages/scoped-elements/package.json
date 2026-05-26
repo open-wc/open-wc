@@ -53,7 +53,7 @@
     "lit": "^3.0.0"
   },
   "devDependencies": {
-    "@open-wc/testing": "^3.2.2",
+    "@open-wc/testing": "^4.0.0",
     "@webcomponents/scoped-custom-element-registry": "^0.0.9"
   },
   "sideEffects": false
