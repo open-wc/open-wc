@@ -6,28 +6,28 @@ on:
       - next
       - snapshot-releases
 
-permissions:
-  contents: write
-  pull-requests: write
-  id-token: write
-
 jobs:
   release:
+    timeout-minutes: 30
     # Prevents changesets action from creating a PR on forks
     if: github.repository == 'open-wc/open-wc'
     name: Pre-release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
 
-      - name: Setup Node.js 20
-        uses: actions/setup-node@v3
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
 
@@ -42,11 +42,10 @@ jobs:
 
       - name: Release canary snapshots
         id: changesets
-        uses: changesets/action@master
+        uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
           publish: npx changeset publish --tag canary
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
+          NPM_TOKEN: ''
