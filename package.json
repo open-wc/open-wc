@@ -14,7 +14,7 @@
     "lint:types": "npm run types",
     "postinstall": "npm run setup",
     "prepare": "husky install",
-    "release": "changeset publish --provenance && npm run format",
+    "release": "changeset publish && npm run format",
     "search": "rocket search",
     "setup": "npm run setup:ts-configs && npm run setup:patch && npm run setup:postinstall",
     "setup:patch": "npx patch-package",
