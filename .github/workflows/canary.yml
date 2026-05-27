@@ -24,10 +24,12 @@ jobs:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
 
-      - name: Setup Node.js 22
+      - name: Setup Node.js
         uses: actions/setup-node@v4
+        env:
+          FORCE_COLOR: 0
         with:
-          node-version: '22'
+          node-version: '24'
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
 
@@ -40,13 +42,12 @@ jobs:
       - name: Version canary release
         run: npx changeset version --snapshot canary
 
-      - name: Release canary snapshots
+      - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: npx changeset publish --tag canary
+          publish: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ''
-          NPM_CONFIG_PROVENANCE: 'true'
