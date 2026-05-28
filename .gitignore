@@ -13,6 +13,7 @@ packages/*/types
 packages/*/*.d.ts*
 packages/*/dist-types
 tsconfig.tsbuildinfo
+!packages/scoped-elements/dist-types
 
 ## npm
 node_modules
