@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.9
+
+### Patch Changes
+
+- a98e4f18: publish dist-types attempt nr 2
+
 ## 3.0.8
 
 ### Patch Changes
