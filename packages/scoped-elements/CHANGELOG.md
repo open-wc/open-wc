@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.8
+
+### Patch Changes
+
+- 5084cba9: publish dist-types correctly
+
 ## 3.0.7
 
 ### Patch Changes
