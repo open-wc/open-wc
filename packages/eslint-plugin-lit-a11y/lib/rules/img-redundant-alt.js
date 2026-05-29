@@ -35,15 +35,19 @@ const ImgRedundantAltRule = {
     fixable: null,
     schema: [
       {
-        keywords: {
-          type: 'array',
-          default: DEFAULT_KEYWORDS,
-          items: {
-            type: 'string',
+        type: 'object',
+        properties: {
+          keywords: {
+            type: 'array',
+            default: DEFAULT_KEYWORDS,
+            items: {
+              type: 'string',
+            },
+            uniqueItems: true,
+            additionalItems: false,
           },
-          uniqueItems: true,
-          additionalItems: false,
         },
+        additionalProperties: false,
       },
     ],
   },
