@@ -1,5 +1,11 @@
 # Change Log
 
+## 13.1.0
+
+### Minor Changes
+
+- 1cba21e6: eslint 10
+
 ## 13.0.0
 
 ### Major Changes
