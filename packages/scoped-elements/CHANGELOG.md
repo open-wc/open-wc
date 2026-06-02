@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.10
+
+### Patch Changes
+
+- 5a6ef44c: Update package.json exports field to include a synthetic types.js (allows downstream Typescript consumers to resolve references to internal types file)
+
 ## 3.0.9
 
 ### Patch Changes
