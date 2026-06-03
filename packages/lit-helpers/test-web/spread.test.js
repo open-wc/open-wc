@@ -12,6 +12,11 @@ class SpreadTestElement extends LitElement {
     };
   }
 
+  // used to test "getter-only" properties
+  get validity() {
+    return {};
+  }
+
   constructor() {
     super();
     this.string = '';
@@ -45,6 +50,7 @@ describe('spread', () => {
         number,
         '.array': array,
         '.object': object,
+        '.validity': undefined,
         '@click': () => {
           clickTest += 1;
         },
