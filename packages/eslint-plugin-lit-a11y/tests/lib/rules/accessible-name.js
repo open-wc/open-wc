@@ -137,6 +137,7 @@ ruleTester.run('accessible-name', rule, {
     { code: 'html`<div role="treeitem" id="alb" aria-labelledby="labeldiv"></div>`' },
     { code: 'html`<div role="treeitem" id="combo" aria-label="Aria Name">Name</div>`' },
     { code: 'html`<div role="treeitem" id="title" title="Title"></div>`' },
+    { code: 'html`<li role="treeitem">Document structure</li>`' },
   ],
   invalid: [
     // BUTTONS
@@ -417,6 +418,10 @@ ruleTester.run('accessible-name', rule, {
     {
       code: 'html`<div role="treeitem" id="albmissing" aria-labelledby=""></div>`',
       errors: [{ messageId: 'name' }],
+    },
+    {
+      code: 'html`<div role="treeitem"><p aria-hidden="true">hi</p></div>`',
+      errors: [{ messageId: 'name', data: { kind: 'Role treeitem' } }],
     },
   ],
 });
