@@ -12,6 +12,7 @@ export {
   triggerFocusFor,
   oneEvent,
   oneDefaultPreventedEvent,
+  eventHasEmitted,
   isIE,
   defineCE,
   aTimeout,

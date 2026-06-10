@@ -3,6 +3,7 @@ export { unsafeStatic } from '@open-wc/testing-helpers/types/index-no-side-effec
 export { triggerBlurFor } from '@open-wc/testing-helpers/types/index-no-side-effects';
 export { triggerFocusFor } from '@open-wc/testing-helpers/types/index-no-side-effects';
 export { oneEvent } from '@open-wc/testing-helpers/types/index-no-side-effects';
+export { eventHasEmitted } from '@open-wc/testing-helpers/types/index-no-side-effects';
 export { isIE } from '@open-wc/testing-helpers/types/index-no-side-effects';
 export { defineCE } from '@open-wc/testing-helpers/types/index-no-side-effects';
 export { aTimeout } from '@open-wc/testing-helpers/types/index-no-side-effects';

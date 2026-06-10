@@ -6,6 +6,7 @@ export { cachedWrappers, fixtureCleanup, fixtureWrapper } from './src/fixtureWra
 export {
   aTimeout,
   defineCE,
+  eventHasEmitted,
   isIE,
   nextFrame,
   oneEvent,
