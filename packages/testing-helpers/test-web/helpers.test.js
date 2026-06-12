@@ -3,6 +3,7 @@ import {
   defineCE,
   oneEvent,
   oneDefaultPreventedEvent,
+  isEventEmitted,
   triggerFocusFor,
   triggerBlurFor,
   fixture,
@@ -33,6 +34,23 @@ describe('Helpers', () => {
     expect(ev).to.be.an.instanceOf(CustomEvent);
     expect(ev).to.equal(customEvent);
     expect(ev.detail).to.equal(detail);
+  });
+
+  it('rovides isEventEmitted() to return true when event was not fired within the timeout', async () => {
+    const el = document.createElement('div');
+    const customEvent = new CustomEvent('my-custom-event');
+
+    setTimeout(() => el.dispatchEvent(customEvent));
+
+    const emitted = await isEventEmitted(el, 'my-custom-event');
+    expect(emitted).to.be.true;
+  });
+
+  it('provides isEventEmitted() to return false when event was not fired within the timeout', async () => {
+    const el = document.createElement('div');
+
+    const emitted = await isEventEmitted(el, 'my-custom-event', 50);
+    expect(emitted).to.be.false;
   });
 
   it('provides oneDefaultPreventedEvent() to await an event being fired', async () => {
