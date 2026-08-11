@@ -17,5 +17,6 @@ export {
 
 export { litFixture, litFixtureSync } from './src/litFixture.js';
 export { stringFixture, stringFixtureSync } from './src/stringFixture.js';
+export { getScopedElementsTemplate } from './src/scopedElementsWrapper.js';
 
 export { html, unsafeStatic };
