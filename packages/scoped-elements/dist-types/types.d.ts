@@ -23,10 +23,12 @@ declare global {
     interface ShadowRootInit {
         customElements?: CustomElementRegistry;
         registry?: CustomElementRegistry;
+        customElementRegistry?: CustomElementRegistry;
     }
     interface ShadowRoot {
         customElements?: CustomElementRegistry;
         registry?: CustomElementRegistry;
+        customElementRegistry?: CustomElementRegistry;
     }
     interface Window {
         scopedElementsVersions: string[];
