@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.2
+
+### Patch Changes
+
+- a5a0eb50: Added support for oxlint via WeakMap as it does not support eslint parser services
+
 ## 5.1.1
 
 ### Patch Changes
