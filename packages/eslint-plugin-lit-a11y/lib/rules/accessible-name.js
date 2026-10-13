@@ -173,7 +173,6 @@ const ButtonHasContentRule = {
               if (
                 (element?.attribs?.role === 'dialog' ||
                   element?.attribs?.role === 'alertdialog' ||
-                  element?.attribs?.role === 'treeitem' ||
                   element?.attribs?.role === 'tooltip' ||
                   element?.attribs?.role === 'meter' ||
                   element?.attribs?.role === 'progressbar') &&
@@ -195,11 +194,12 @@ const ButtonHasContentRule = {
                 }
               }
 
-              // ROLES button, link, menuitem
+              // ROLES button, link, menuitem, treeitem
               if (
                 (element?.attribs?.role === 'button' ||
                   element?.attribs?.role === 'link' ||
-                  element?.attribs?.role === 'menuitem') &&
+                  element?.attribs?.role === 'menuitem' ||
+                  element?.attribs?.role === 'treeitem') &&
                 !hasAccessibleChildren(element) &&
                 !hasAccessibleName(element) &&
                 !isHiddenFromScreenReader(element)
