@@ -155,6 +155,13 @@ const baseLibraries = [
       "An easy to use, lightweight library for web-components that doesn't need a build step but can be included in a build step if you want to. It's a great way to create reusable components for your projects. It's available as a NPM package or module and doesn't use any dependencies and is around 4.5kb minified + gzipped. It also doesn't use eval or new Function so can be used in strict CSP polices without a build step. For documentation and demos go to Bayjs.org.",
     url: 'https://bayjs.org/examples/index.html',
   },
+  {
+    name: 'LessJS',
+    package: '@lessjs/core',
+    description:
+      'Web Standards-first DSD framework — Declarative Shadow DOM rendering, Island Architecture, and Vite-free SSG pipeline.',
+    url: 'https://lessjs.com/',
+  },
 ];
 
 module.exports = async function getBaseLibraries() {
