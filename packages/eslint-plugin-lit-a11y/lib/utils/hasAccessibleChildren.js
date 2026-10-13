@@ -6,7 +6,7 @@ import { isHiddenFromScreenReader } from './isHiddenFromScreenReader.js';
  */
 function isElement(node) {
   // NB: this isn't accurate, but suffices for use in `hasAccessibleChildren`.
-  return node.type !== 'text';
+  return node.type !== 'text' && node.type !== 'comment';
 }
 
 /**
