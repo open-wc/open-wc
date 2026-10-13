@@ -8,8 +8,24 @@ function getContextSourceCode(context) {
   return context?.sourceCode ?? context.getSourceCode();
 }
 
-function getParserServices(context) {
-  return context?.sourceCode?.parserServices ?? context.parserServices;
+/**
+ * Shared metadata storage for ESLint/oxlint context objects
+ * Uses WeakMap to avoid memory leaks and works with both extensible
+ * (ESLint) and non-extensible (oxlint) objects
+ */
+
+const contextMetadata = new WeakMap();
+
+/**
+ * Get or create metadata for a given context
+ * @param {import('eslint').Rule.RuleContext} context
+ * @returns {object}
+ */
+function getContextMetadata(context) {
+  if (!contextMetadata.has(context)) {
+    contextMetadata.set(context, {});
+  }
+  return contextMetadata.get(context);
 }
 
-export { getContextSourceCode, getParserServices };
+export { getContextSourceCode, getContextMetadata };
