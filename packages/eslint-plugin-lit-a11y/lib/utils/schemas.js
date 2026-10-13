@@ -31,6 +31,7 @@ const generateObjSchema = (properties = {}, required) => ({
   type: 'object',
   properties,
   required,
+  additionalProperties: false,
 });
 
 export { generateObjSchema, enumArraySchema, arraySchema };

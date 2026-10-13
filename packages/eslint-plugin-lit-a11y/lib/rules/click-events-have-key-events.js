@@ -32,24 +32,28 @@ const ClickEventsHaveKeyEventsRule = {
     fixable: null,
     schema: [
       {
-        allowList: {
-          type: 'array',
-          description:
-            'list of tag names which are permitted to have click listeners without key listeners',
-          default: [],
-          uniqueItems: true,
-          additionalItems: false,
-          items: {
-            type: 'string',
-            pattern: '^[a-z]\\w+-\\w+',
+        type: 'object',
+        properties: {
+          allowList: {
+            type: 'array',
+            description:
+              'list of tag names which are permitted to have click listeners without key listeners',
+            default: [],
+            uniqueItems: true,
+            additionalItems: false,
+            items: {
+              type: 'string',
+              pattern: '^[a-z]\\w+-\\w+',
+            },
+          },
+          allowCustomElements: {
+            type: 'boolean',
+            description:
+              'When true, permits all custom elements to have click listeners without key listeners',
+            default: true,
           },
         },
-        allowCustomElements: {
-          type: 'boolean',
-          description:
-            'When true, permits all custom elements to have click listeners without key listeners',
-          default: true,
-        },
+        additionalProperties: false,
       },
     ],
   },
