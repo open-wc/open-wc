@@ -9,18 +9,40 @@ Most of the rules are ported from [eslint-plugin-jsx-a11y](https://github.com/js
 You'll first need to install [ESLint](http://eslint.org):
 
 ```
-$ npm i eslint --save-dev
+$ npm install eslint --save-dev
 ```
 
 Next, install `eslint-plugin-lit-a11y`:
 
 ```
-$ npm install eslint-plugin-lit-a11y@next --save-dev
+$ npm install eslint-plugin-lit-a11y --save-dev
 ```
 
 **Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-lit-a11y` globally.
 
 ## Usage
+
+To support ESLint >= 9.x, we use "flat configuration" and ESM.
+
+In your `.eslint.config.js` file, add these lines:
+
+```js
+// you may have more imports
+import { configs as litA11yConfigs } from "eslint-plugin-lit-a11y";
+
+export default [
+  { files: ["**/*.{js,cjs,ts}"] }, // your files line might be different, just sharing for context
+  // you may have more configuraiton here
+    litA11yConfigs.recommended,
+]
+```
+
+
+## Flat Config Usage (old)
+
+In ESLint <= 8.x, the way to import was different, [see their upgrade guide for details](https://eslint.org/docs/latest/use/migrate-to-9.0.0).
+
+If you are using an older version of ESLint, you may need to follow this section to get set up.
 
 Add `lit-a11y` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
@@ -40,7 +62,7 @@ Then configure the rules you want to use under the rules section.
 }
 ```
 
-## Configuration
+## Flat Config Configuration (old)
 
 You may also extend the recommended configuration like so:
 
