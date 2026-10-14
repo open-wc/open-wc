@@ -8,6 +8,15 @@ import noOnlyTestsPlugin from 'eslint-plugin-no-only-tests';
 import importPlugin from 'eslint-plugin-import-x';
 import globals from 'globals';
 
+import noUnusedScopedElements from './rules/no-unused-scoped-elements.js';
+
+// inline plugin holding open-wc's own custom rules
+const openWcPlugin = {
+  rules: {
+    'no-unused-scoped-elements': noUnusedScopedElements,
+  },
+};
+
 export default defineConfig([
   {
     languageOptions: {
@@ -29,11 +38,13 @@ export default defineConfig([
       'import-x': importPlugin,
       'lit-a11y': litA11yPlugin,
       'wc-export': wcExportPlugin,
+      'open-wc': openWcPlugin,
     },
 
     rules: {
       'arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
       'no-underscore-dangle': 'off',
+      'open-wc/no-unused-scoped-elements': 'error',
 
       'no-restricted-syntax': [
         'error',

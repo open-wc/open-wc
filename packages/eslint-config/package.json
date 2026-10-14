@@ -16,7 +16,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../"
+    "prepublishOnly": "publish-docs --github-url https://github.com/open-wc/open-wc/ --git-root-dir ../../",
+    "test": "npm run test:node",
+    "test:node": "mocha test-node"
   },
   "keywords": [
     "lint",
