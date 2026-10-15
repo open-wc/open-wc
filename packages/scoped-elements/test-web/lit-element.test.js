@@ -18,10 +18,22 @@ import { FrameworkLike } from './components/lit/FrameworkLike.js';
 customElements.define('feature-a', FeatureA);
 customElements.define('feature-b', FeatureB);
 
+/**
+ * Reads the registry the shadow root actually resolves against. The polyfill exposes it
+ * as `customElements`/`registry`, the final spec as `customElementRegistry`.
+ */
+const scopedRegistryOf = shadowRoot =>
+  shadowRoot.customElementRegistry ?? shadowRoot.registry ?? shadowRoot.customElements;
+
 describe('lit-element ScopedElementsMixin', () => {
   it('creates a scoped registry', async () => {
     const a = await fixture(html`<feature-a></feature-a>`);
     expect(a.registry).to.not.be.undefined;
+  });
+
+  it('passes the scoped registry to the shadow root', async () => {
+    const a = await fixture(html`<feature-a></feature-a>`);
+    expect(scopedRegistryOf(a.shadowRoot)).to.equal(a.registry);
   });
 
   it('scopes registry on constructor level by default', async () => {

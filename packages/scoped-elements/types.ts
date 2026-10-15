@@ -26,16 +26,18 @@ export declare class ScopedElementsHost {
 
 declare global {
   interface ShadowRootInit {
-    // The polyfill currently expects the registry to be passed as `customElements`
+    // The polyfill expects the registry to be passed as `customElements`
     customElements?: CustomElementRegistry;
-    // But the proposal has moved forward, and renamed it to `registry`
-    // For backwards compatibility, we pass it as both
+    // An intermediate version of the proposal renamed it to `registry`
     registry?: CustomElementRegistry;
+    // The final spec settled on `customElementRegistry`
+    customElementRegistry?: CustomElementRegistry;
   }
 
   interface ShadowRoot {
     customElements?: CustomElementRegistry;
     registry?: CustomElementRegistry;
+    customElementRegistry?: CustomElementRegistry;
   }
 
   interface Window {
