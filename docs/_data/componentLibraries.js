@@ -188,6 +188,12 @@ const componentLibraries = [
       "The Spectrum Web Components project is an implementation of Spectrum, Adobe’s design system. It's designed to work with any web framework — or even without one.",
   },
   {
+    name: 'Tactile UI',
+    url: 'https://tactileui.dev',
+    description:
+      'Interface pieces that behave like real hardware, such as an odometer, pin screen, knobs and keys, written as plain custom elements with CSS and no dependencies. Six pieces are free and MIT.',
+  },
+  {
     name: 'UI5 Web Components',
     url: 'https://sap.github.io/ui5-webcomponents/',
     description:
