@@ -40,30 +40,9 @@ ruleTester.run('autocomplete-valid', rule, {
     { code: 'html`<input type="text" autocomplete="${autocompl || \'foo\'}" />;`' },
     // PASSED "autocomplete-appropriate"
     // see also: https://github.com/dequelabs/axe-core/issues/2912
-    {
-      code: 'html`<input type="date" autocomplete="email" />;`',
-      errors: [
-        {
-          message: 'the autocomplete value is inappropriate for this type of input',
-        },
-      ],
-    },
-    {
-      code: 'html`<input type="number" autocomplete="url" />;`',
-      errors: [
-        {
-          message: 'the autocomplete value is inappropriate for this type of input',
-        },
-      ],
-    },
-    {
-      code: 'html`<input type="month" autocomplete="tel" />;`',
-      errors: [
-        {
-          message: 'the autocomplete value is inappropriate for this type of input',
-        },
-      ],
-    },
+    { code: 'html`<input type="date" autocomplete="email" />;`' },
+    { code: 'html`<input type="number" autocomplete="url" />;`' },
+    { code: 'html`<input type="month" autocomplete="tel" />;`' },
   ],
 
   invalid: [

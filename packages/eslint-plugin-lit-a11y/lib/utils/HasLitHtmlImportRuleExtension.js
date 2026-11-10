@@ -1,5 +1,5 @@
 /**
- * @typedef {object} LitA11yParserServices
+ * @typedef {object} LitA11yContextMetadata
  * @property {boolean} shouldAnalyseHtmlTaggedLiterals;
  * @property {string[]} [litHtmlNamespaces]
  * @property {string[]} [litHtmlTags]
@@ -14,25 +14,25 @@
 /**
  * @typedef {import('eslint').Rule.RuleContext} _LitA11yRuleContext
  * @property {{ litHtmlSources: boolean | string[] }} settings
- * @property {LitA11yParserServices} parserServices
+ * @property {LitA11yContextMetadata} contextMetadata
  */
 
 /**
  * @typedef {object} LitA11ySourceCode
- * @property {LitA11yParserServices} parserServices
+ * @property {LitA11yContextMetadata} contextMetadata
  */
 
 /**
  * @typedef {object} LitA11yRuleContextExtensions
  * @property {LitA11ySettings} settings
- * @property {LitA11yParserServices} parserServices
+ * @property {LitA11yContextMetadata} contextMetadata
  * @property {LitA11ySourceCode} sourceCode
  */
 
 /**
- * @typedef {Omit<import('eslint').Rule.RuleContext, 'settings'|'parserServices'|'sourceCode'> & LitA11yRuleContextExtensions} LitA11yRuleContext
+ * @typedef {Omit<import('eslint').Rule.RuleContext, 'settings'|'contextMetadata'|'sourceCode'> & LitA11yRuleContextExtensions} LitA11yRuleContext
  */
-import { getParserServices } from './getContextSourceCode.js';
+import { getContextMetadata } from './getContextSourceCode.js';
 
 const DEFAULT_LIT_HTML_SPECIFIERS = ['lit-html', 'lit-element', 'lit'];
 
@@ -61,7 +61,7 @@ const isLitHtmlImport =
   specifier =>
     specifier.type !== 'ImportDefaultSpecifier' &&
     (specifier.type === 'ImportNamespaceSpecifier' || specifier.type === 'ImportSpecifier') &&
-    getParserServices(context).litHtmlSpecifiers.includes(getPackageName(node.source.value));
+    getContextMetadata(context).litHtmlSpecifiers.includes(getPackageName(node.source.value));
 
 /**
  * Is this ImportDeclaration importing lit-html, taking the user's settings into account
@@ -125,37 +125,37 @@ const HasLitHtmlImportRuleExtension = {
       ? context.settings.litHtmlSources
       : [];
 
-    getParserServices(context).litHtmlSpecifiers = [
+    getContextMetadata(context).litHtmlSpecifiers = [
       ...DEFAULT_LIT_HTML_SPECIFIERS,
       ...USER_LIT_HTML_SPECIFIERS,
     ];
 
     if (!context.settings.litHtmlSources) {
-      getParserServices(context).shouldAnalyseHtmlTaggedLiterals = true;
-      getParserServices(context).litHtmlTags = ['html'];
+      getContextMetadata(context).shouldAnalyseHtmlTaggedLiterals = true;
+      getContextMetadata(context).litHtmlTags = ['html'];
     }
 
     return {
       ImportDeclaration(node) {
-        getParserServices(context).shouldAnalyseHtmlTaggedLiterals =
+        getContextMetadata(context).shouldAnalyseHtmlTaggedLiterals =
           // A previous import supplied lit-html
-          getParserServices(context).shouldAnalyseHtmlTaggedLiterals ||
+          getContextMetadata(context).shouldAnalyseHtmlTaggedLiterals ||
           // litHtmlSources is falsy -> lint everything
           !litHtmlSources ||
           // litHtmlSources is an Array -> lint only lit-html & lit-element & ...specified packages
           isLitHtmlImportDeclaration(node, context);
 
-        if (!getParserServices(context).shouldAnalyseHtmlTaggedLiterals) return;
+        if (!getContextMetadata(context).shouldAnalyseHtmlTaggedLiterals) return;
 
-        getParserServices(context).litHtmlNamespaces = [
+        getContextMetadata(context).litHtmlNamespaces = [
           ...new Set([
-            ...(getParserServices(context).litHtmlNamespaces || []),
+            ...(getContextMetadata(context).litHtmlNamespaces || []),
             ...getLitHtmlNamespaces(node),
           ]),
         ];
 
-        getParserServices(context).litHtmlTags = [
-          ...new Set([...(getParserServices(context).litHtmlTags || []), ...getLitHtmlTags(node)]),
+        getContextMetadata(context).litHtmlTags = [
+          ...new Set([...(getContextMetadata(context).litHtmlTags || []), ...getLitHtmlTags(node)]),
         ];
       },
     };
@@ -166,7 +166,7 @@ const HasLitHtmlImportRuleExtension = {
    * @param {LitA11yRuleContext} context
    */
   reportOverrides(meta, context) {
-    const { shouldAnalyseHtmlTaggedLiterals } = getParserServices(context) || {};
+    const { shouldAnalyseHtmlTaggedLiterals } = getContextMetadata(context) || {};
     return !!shouldAnalyseHtmlTaggedLiterals;
   },
 };

@@ -14,7 +14,7 @@
     "lint:types": "npm run types",
     "postinstall": "npm run setup",
     "prepare": "husky install",
-    "release": "changeset publish && npm run format",
+    "release": "changeset publish --provenance && npm run format",
     "search": "rocket search",
     "setup": "npm run setup:ts-configs && npm run setup:patch && npm run setup:postinstall",
     "setup:patch": "npx patch-package",
@@ -38,7 +38,7 @@
     "@rocket/core": "^0.1.2",
     "@rocket/launch": "^0.6.0",
     "@rocket/search": "^0.6.0",
-    "eslint-plugin-lit": "^2.0.0"
+    "eslint-plugin-lit": "^2.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
@@ -73,7 +73,7 @@
     "concurrently": "^6.0.2",
     "copyfiles": "^2.4.1",
     "core-js": "^3.26.1",
-    "eslint": "^9.28.0",
+    "eslint": "^10.4.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-html": "^8.0.0",
     "eslint-plugin-no-only-tests": "^3.1.0",

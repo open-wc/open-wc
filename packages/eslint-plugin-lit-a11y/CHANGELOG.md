@@ -1,5 +1,18 @@
 # Change Log
 
+## 5.1.3
+
+### Patch Changes
+
+- cb861dc9: fix: correctly define rules object options schemas
+- 02e9153d: Don't flag `treeitem` roles that get their accessible name from text content
+
+## 5.1.2
+
+### Patch Changes
+
+- a5a0eb50: Added support for oxlint via WeakMap as it does not support eslint parser services
+
 ## 5.1.1
 
 ### Patch Changes

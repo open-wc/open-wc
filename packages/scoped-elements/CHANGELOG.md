@@ -1,5 +1,29 @@
 # Change Log
 
+## 3.0.10
+
+### Patch Changes
+
+- 5a6ef44c: Update package.json exports field to include a synthetic types.js (allows downstream Typescript consumers to resolve references to internal types file)
+
+## 3.0.9
+
+### Patch Changes
+
+- a98e4f18: publish dist-types attempt nr 2
+
+## 3.0.8
+
+### Patch Changes
+
+- 5084cba9: publish dist-types correctly
+
+## 3.0.7
+
+### Patch Changes
+
+- 78901955: Fix/scoped elements types
+
 ## 3.0.6
 
 ### Patch Changes

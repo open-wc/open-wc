@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.21.0
+
+### Minor Changes
+
+- 79d28820: update @web/test-runner-commands to latest
+
 ## 0.20.1
 
 ### Patch Changes

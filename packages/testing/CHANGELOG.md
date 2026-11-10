@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- Updated dependencies [79d28820]
+  - @open-wc/semantic-dom-diff@0.21.0
+
 ## 4.0.0
 
 ### Major Changes
@@ -157,9 +164,9 @@ You're gonna have to load the [@webcomponents/scoped-custom-element-registry](ht
 
     ```js
     // old
-    import { fixture } from '@open-wc/testing-helpers/index-no-side-effects.js';
+    import { fixture } from "@open-wc/testing-helpers/index-no-side-effects.js";
     // new
-    import { fixture } from '@open-wc/testing-helpers/pure';
+    import { fixture } from "@open-wc/testing-helpers/pure";
     ```
 
 - a5a79a25: We now use an es module version of chai from `@esm-bundle/chai`.
@@ -172,9 +179,9 @@ You're gonna have to load the [@webcomponents/scoped-custom-element-registry](ht
   A typical testing file looks like this
 
   ```js
-  import { html, fixture } from '@open-wc/testing'; // html will be lit-html 2.x
+  import { html, fixture } from "@open-wc/testing"; // html will be lit-html 2.x
 
-  it('works for tags', async () => {
+  it("works for tags", async () => {
     const el = await fixture(html` <my-el></my-el> `);
   });
   ```
@@ -182,14 +189,14 @@ You're gonna have to load the [@webcomponents/scoped-custom-element-registry](ht
   With this export you can combine the usage of lit-html 2.x for the fixture and template rendering in lit-html 1.x
 
   ```js
-  import { html as fixtureHtml, fixture } from '@open-wc/testing'; // fixtureHtml will be lit-html 2.x
-  import { html } from 'my-library'; // html will be lit-html 1.x
+  import { html as fixtureHtml, fixture } from "@open-wc/testing"; // fixtureHtml will be lit-html 2.x
+  import { html } from "my-library"; // html will be lit-html 1.x
 
-  it('works for tags', async () => {
+  it("works for tags", async () => {
     const el = await fixture(fixtureHtml`<my-el></my-el>`);
   });
 
-  it('can be combined', async () => {
+  it("can be combined", async () => {
     class MyExtension extends LibraryComponent {
       render() {
         // needs to be lit-html 1.x as the library component is using LitElement with lit-html 1.x
@@ -206,17 +213,17 @@ You're gonna have to load the [@webcomponents/scoped-custom-element-registry](ht
   A possible workaround for this is
 
   ```js
-  import { html, fixture } from '@open-wc/testing'; // html will be lit-html 2.x
-  import { render, html as html1, fancyDirective } from 'my-library'; // html and render will be lit-html 1.x
+  import { html, fixture } from "@open-wc/testing"; // html will be lit-html 2.x
+  import { render, html as html1, fancyDirective } from "my-library"; // html and render will be lit-html 1.x
 
-  it('is a workaround for directives', async () => {
-    const node = document.createElement('div');
-    render(html1`<p>Testing ${fancyDirective('output')}</p>`, node);
+  it("is a workaround for directives", async () => {
+    const node = document.createElement("div");
+    render(html1`<p>Testing ${fancyDirective("output")}</p>`, node);
 
     // you can either cleanup yourself or use fixture
     const el = await fixture(html` ${node} `);
 
-    expect(el.children[0].innerHTML).toBe('Testing [[output]]');
+    expect(el.children[0].innerHTML).toBe("Testing [[output]]");
   });
   ```
 
@@ -251,9 +258,9 @@ You're gonna have to load the [@webcomponents/scoped-custom-element-registry](ht
   A typical testing file looks like this
 
   ```js
-  import { html, fixture } from '@open-wc/testing'; // html will be lit-html 2.x
+  import { html, fixture } from "@open-wc/testing"; // html will be lit-html 2.x
 
-  it('works for tags', async () => {
+  it("works for tags", async () => {
     const el = await fixture(html` <my-el></my-el> `);
   });
   ```
@@ -261,14 +268,14 @@ You're gonna have to load the [@webcomponents/scoped-custom-element-registry](ht
   With this export you can combine the usage of lit-html 2.x for the fixture and template rendering in lit-html 1.x
 
   ```js
-  import { html as fixtureHtml, fixture } from '@open-wc/testing'; // fixtureHtml will be lit-html 2.x
-  import { html } from 'my-library'; // html will be lit-html 1.x
+  import { html as fixtureHtml, fixture } from "@open-wc/testing"; // fixtureHtml will be lit-html 2.x
+  import { html } from "my-library"; // html will be lit-html 1.x
 
-  it('works for tags', async () => {
+  it("works for tags", async () => {
     const el = await fixture(fixtureHtml`<my-el></my-el>`);
   });
 
-  it('can be combined', async () => {
+  it("can be combined", async () => {
     class MyExtension extends LibraryComponent {
       render() {
         // needs to be lit-html 1.x as the library component is using LitElement with lit-html 1.x
@@ -285,17 +292,17 @@ You're gonna have to load the [@webcomponents/scoped-custom-element-registry](ht
   A possible workaround for this is
 
   ```js
-  import { html, fixture } from '@open-wc/testing'; // html will be lit-html 2.x
-  import { render, html as html1, fancyDirective } from 'my-library'; // html and render will be lit-html 1.x
+  import { html, fixture } from "@open-wc/testing"; // html will be lit-html 2.x
+  import { render, html as html1, fancyDirective } from "my-library"; // html and render will be lit-html 1.x
 
-  it('is a workaround for directives', async () => {
-    const node = document.createElement('div');
-    render(html1`<p>Testing ${fancyDirective('output')}</p>`, node);
+  it("is a workaround for directives", async () => {
+    const node = document.createElement("div");
+    render(html1`<p>Testing ${fancyDirective("output")}</p>`, node);
 
     // you can either cleanup yourself or use fixture
     const el = await fixture(html` ${node} `);
 
-    expect(el.children[0].innerHTML).toBe('Testing [[output]]');
+    expect(el.children[0].innerHTML).toBe("Testing [[output]]");
   });
   ```
 
@@ -356,9 +363,9 @@ You're gonna have to load the [@webcomponents/scoped-custom-element-registry](ht
 
     ```js
     // old
-    import { fixture } from '@open-wc/testing-helpers/index-no-side-effects.js';
+    import { fixture } from "@open-wc/testing-helpers/index-no-side-effects.js";
     // new
-    import { fixture } from '@open-wc/testing-helpers/pure';
+    import { fixture } from "@open-wc/testing-helpers/pure";
     ```
 
 - a5a79a25: We now use an es module version of chai from `@esm-bundle/chai`.

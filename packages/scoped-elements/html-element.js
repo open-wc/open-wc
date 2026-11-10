@@ -3,6 +3,7 @@ import { dedupeMixin } from '@open-wc/dedupe-mixin';
 /**
  * @typedef {import('./types.js').ScopedElementsHost} ScopedElementsHost
  * @typedef {import('./types.js').ScopedElementsMap} ScopedElementsMap
+ * @typedef {import('./types.js').ScopedElementsHostConstructor} ScopedElementsHostConstructor
  */
 
 const version = '3.0.0';
@@ -14,7 +15,7 @@ if (!versions.includes(version)) {
 /**
  * @template {import('./types.js').Constructor<HTMLElement>} T
  * @param {T} superclass
- * @return {T & import('./types.js').Constructor<ScopedElementsHost>}
+ * @return {T & import('./types.js').Constructor<ScopedElementsHost> & ScopedElementsHostConstructor}
  */
 const ScopedElementsMixinImplementation = superclass =>
   /** @type {ScopedElementsHost} */

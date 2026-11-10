@@ -2,7 +2,7 @@
  * @template {'html'|'svg'|'css'} Name
  * @typedef {import('estree').TaggedTemplateExpression & { tag: { type: 'Identifier'; name: Name } }} LitTaggedExpression
  */
-import { getParserServices } from './getContextSourceCode.js';
+import { getContextMetadata } from './getContextSourceCode.js';
 /**
  * Whether a node is a lit-html html-tagged template expression
  * @param {import('eslint').Rule.Node} node
@@ -11,7 +11,7 @@ import { getParserServices } from './getContextSourceCode.js';
  */
 function isHtmlTaggedTemplate(node, context) {
   if (node.type !== 'TaggedTemplateExpression') return false;
-  const { litHtmlTags = ['html'], litHtmlNamespaces = [] } = getParserServices(context) || {};
+  const { litHtmlTags = ['html'], litHtmlNamespaces = [] } = getContextMetadata(context) || {};
 
   switch (node.tag.type) {
     case 'Identifier':

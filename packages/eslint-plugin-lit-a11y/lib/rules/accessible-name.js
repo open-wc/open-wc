@@ -39,43 +39,43 @@ const ButtonHasContentRule = {
     fixable: null,
     schema: [
       {
-        customButtonElements: {
-          type: 'array',
-          description: 'list of custom elements tag names which should be considered buttons',
-          default: [],
-          uniqueItems: true,
-          additionalItems: false,
-          items: {
-            type: 'string',
-            pattern: '^[a-z]\\w+-\\w+',
+        type: 'object',
+        properties: {
+          customButtonElements: {
+            type: 'array',
+            description: 'list of custom elements tag names which should be considered buttons',
+            default: [],
+            uniqueItems: true,
+            additionalItems: false,
+            items: {
+              type: 'string',
+              pattern: '^[a-z]\\w+-\\w+',
+            },
+          },
+          customLinkElements: {
+            type: 'array',
+            description: 'list of custom elements tag names which should be considered links',
+            default: [],
+            uniqueItems: true,
+            additionalItems: false,
+            items: {
+              type: 'string',
+              pattern: '^[a-z]\\w+-\\w+',
+            },
+          },
+          customHeadingElements: {
+            type: 'array',
+            description: 'list of custom elements tag names which should be considered headings',
+            default: [],
+            uniqueItems: true,
+            additionalItems: false,
+            items: {
+              type: 'string',
+              pattern: '^[a-z]\\w+-\\w+',
+            },
           },
         },
-      },
-      {
-        customLinkElements: {
-          type: 'array',
-          description: 'list of custom elements tag names which should be considered links',
-          default: [],
-          uniqueItems: true,
-          additionalItems: false,
-          items: {
-            type: 'string',
-            pattern: '^[a-z]\\w+-\\w+',
-          },
-        },
-      },
-      {
-        customHeadingElements: {
-          type: 'array',
-          description: 'list of custom elements tag names which should be considered headings',
-          default: [],
-          uniqueItems: true,
-          additionalItems: false,
-          items: {
-            type: 'string',
-            pattern: '^[a-z]\\w+-\\w+',
-          },
-        },
+        additionalProperties: false,
       },
     ],
   },
@@ -173,7 +173,6 @@ const ButtonHasContentRule = {
               if (
                 (element?.attribs?.role === 'dialog' ||
                   element?.attribs?.role === 'alertdialog' ||
-                  element?.attribs?.role === 'treeitem' ||
                   element?.attribs?.role === 'tooltip' ||
                   element?.attribs?.role === 'meter' ||
                   element?.attribs?.role === 'progressbar') &&
@@ -195,11 +194,12 @@ const ButtonHasContentRule = {
                 }
               }
 
-              // ROLES button, link, menuitem
+              // ROLES button, link, menuitem, treeitem
               if (
                 (element?.attribs?.role === 'button' ||
                   element?.attribs?.role === 'link' ||
-                  element?.attribs?.role === 'menuitem') &&
+                  element?.attribs?.role === 'menuitem' ||
+                  element?.attribs?.role === 'treeitem') &&
                 !hasAccessibleChildren(element) &&
                 !hasAccessibleName(element) &&
                 !isHiddenFromScreenReader(element)
