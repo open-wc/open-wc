@@ -161,6 +161,34 @@ export function oneDefaultPreventedEvent(eventTarget, eventName) {
 }
 
 /**
+ * Checks if an event has been emitted within the given time window.
+ *
+ * @example
+ * el.fireDone();
+ * expect(await isEventEmitted(el, 'done', 100)).to.be.true;
+ *
+ * @param {EventTarget} eventTarget Target of the event, usually an Element
+ * @param {string} eventName Name of the event
+ * @param {number} [milliseconds=100] How long to wait for the event before giving up
+ * @returns {Promise<boolean>} Promise that resolves to true if the event was emitted, false otherwise
+ * @type {import("./types.js").IsEventEmittedFn}
+ */
+export function isEventEmitted(eventTarget, eventName, milliseconds = 100) {
+  return new Promise(resolve => {
+    function listener() {
+      clearTimeout(timeoutId);
+      eventTarget.removeEventListener(eventName, listener);
+      resolve(true);
+    }
+    const timeoutId = setTimeout(() => {
+      eventTarget.removeEventListener(eventName, listener);
+      resolve(false);
+    }, milliseconds);
+    eventTarget.addEventListener(eventName, listener);
+  });
+}
+
+/**
  * Waits until the given predicate returns a truthy value. Calls and awaits the predicate
  * function at the given interval time. Can be used to poll until a certain condition is true.
  *
