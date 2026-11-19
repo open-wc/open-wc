@@ -38,7 +38,5 @@ declare global {
     registry?: CustomElementRegistry;
   }
 
-  interface Window {
-    scopedElementsVersions: string[]
-  }
+  var scopedElementsVersions: string[] | undefined;
 }
