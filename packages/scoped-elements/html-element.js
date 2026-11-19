@@ -7,7 +7,7 @@ import { dedupeMixin } from '@open-wc/dedupe-mixin';
  */
 
 const version = '3.0.0';
-const versions = window.scopedElementsVersions || (window.scopedElementsVersions = []);
+const versions = globalThis.scopedElementsVersions || (globalThis.scopedElementsVersions = []);
 if (!versions.includes(version)) {
   versions.push(version);
 }

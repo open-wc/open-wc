@@ -28,8 +28,6 @@ declare global {
         customElements?: CustomElementRegistry;
         registry?: CustomElementRegistry;
     }
-    interface Window {
-        scopedElementsVersions: string[];
-    }
+    var scopedElementsVersions: string[] | undefined;
 }
 //# sourceMappingURL=types.d.ts.map
