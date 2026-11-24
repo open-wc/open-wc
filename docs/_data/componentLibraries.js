@@ -222,6 +222,12 @@ const componentLibraries = [
     url: 'https://zooplus.github.io/zoo-web-components/',
     description: 'A set of web components that implement Z+ shop style guide.',
   },
+  {
+  name: 'Zubra UI',
+  description:
+    'Accessible web components you copy into your project and own, for plain HTML or any framework. Installed with the shadcn CLI, themed with shadcn/ui variables, and built with the Zubra compiler.',
+  url: 'https://zubra-js.github.io/zubra-ui/',
+},
 ];
 
 module.exports = async function getComponentLibraries() {
