@@ -161,10 +161,20 @@ module.exports = async function getBaseLibraries() {
   const result = await Promise.all(
     baseLibraries.map(async lib => {
       const pkg = encodeURIComponent(lib.package);
-      const { downloads } = await cache(`https://api.npmjs.org/downloads/point/last-week/${pkg}`, {
-        duration: '1d',
-        type: 'json',
-      });
+      let downloads = 0;
+      try {
+        const data = await cache(
+          `https://api.npmjs.org/downloads/point/last-week/${pkg}`,
+          {
+            duration: '1d',
+            type: 'json',
+          },
+        );
+        downloads = data.downloads ?? 0;
+      } catch {
+        // Package not found on npm (e.g. JSR-only packages)
+        downloads = 0;
+      }
 
       return {
         ...lib,
