@@ -155,6 +155,13 @@ const baseLibraries = [
       "An easy to use, lightweight library for web-components that doesn't need a build step but can be included in a build step if you want to. It's a great way to create reusable components for your projects. It's available as a NPM package or module and doesn't use any dependencies and is around 4.5kb minified + gzipped. It also doesn't use eval or new Function so can be used in strict CSP polices without a build step. For documentation and demos go to Bayjs.org.",
     url: 'https://bayjs.org/examples/index.html',
   },
+  {
+    name: 'Ponys 🦄',
+    package: 'ponys',
+    description:
+      "This project aims to create a minimal JS helper that will simply let you write web components the way you wish browsers would let you write web components; as such, the Ponys API is deliberately close to existing web standards, and constitutes a proposal for the future syntax/behavior of declarative web components. Goal being that Ponys will one day act as the ponyfill for the native API it suggests. Authored by @jhuddle",
+    url: 'https://jhuddle.github.io/ponys/',
+  },
 ];
 
 module.exports = async function getBaseLibraries() {
