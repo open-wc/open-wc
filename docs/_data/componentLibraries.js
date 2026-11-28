@@ -77,6 +77,12 @@ const componentLibraries = [
       'FAST is a web component library built by Microsoft. The core, `fast-element`, is a lightweight means to easily build performant and standards-compliant Web Components. `fast-foundation` is a library of Web Component classes, templates, and other utilities built on fast-element intended to be composed into registered web components by design systems.',
   },
   {
+    name: 'Focsd',
+    url: 'https://focsd.dev',
+    description:
+      'An MIT-licensed, accessible (WCAG 2.2 AA) design system of 128 Lit web components for plain HTML or any framework. Includes a data grid, a rich text editor, charts, an AI chat kit, design tokens with light, dark and high-contrast themes, and an MCP server for AI coding assistants.',
+  },
+  {
     name: 'Graphite Design System',
     url: 'https://graphitedesignsystem.com',
     description:
